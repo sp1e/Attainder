@@ -41,6 +41,8 @@ import {
 import { loadCountryNames, readJson, writeJson, JSON_URLS } from "../../runtime/assets.js";
 import { LABEL_FONT_SUGGESTIONS } from "../../runtime/mapSettings.js";
 import FactionCreator from "./FactionCreator.jsx";
+import DynastyStartCard from "../DynastyStartCard.jsx";
+import { startDynastyCampaign } from "../../runtime/startDynastyCampaign.js";
 import FeaturesSectionEditor from "./FeaturesSectionEditor.jsx";
 import StatsSheetEditor, { normalizeStatsEditorValue } from "./StatsSheetEditor.jsx";
 import { normalizeFeatureOverrides, normalizeFeatureSettings } from "../../runtime/gameFeatures.js";
@@ -1792,6 +1794,10 @@ const LibraryTopBar = () => {
     // the remounted menu must come up closed, over the new game.
     setMenuOpen(false);
     try {
+      if (scenario.id?.startsWith("dynasties-hadara")) {
+        await startDynastyCampaign({ mode: dynastyMode, scenarioId: scenario.id, difficulty });
+        return;
+      }
       // gamePatch merges — a full `game` write would REPLACE game.json and wipe
       // startDate/gameDate/round (the "Undated" bug). It rides on the create
       // itself: patched in a second request, after `setActive` had switched to
@@ -2898,6 +2904,21 @@ const LibraryTopBar = () => {
     });
   };
   const [countryPicker, setCountryPicker] = useState(null);
+  const [dynastyMode, setDynastyMode] = useState("realm");
+  const [dynastyStartError, setDynastyStartError] = useState("");
+  const startDynastyFromCard = async ({ mode }) => {
+    setDynastyStartError("");
+    // Activation remounts this component. Its shared menu default must already
+    // be closed when the new instance mounts, just as in startGameForCountry.
+    setMenuOpen(false);
+    try {
+      await startDynastyCampaign({ mode });
+    } catch (failure) {
+      setDynastyStartError(failure?.message || "Kampanjen kunde inte startas.");
+      setMenuOpen(true);
+      throw failure;
+    }
+  };
   const [countryOptions, setCountryOptions] = useState([]);
   const [customRegionData, setCustomRegionData] = useState(null);
   // The picked scenario's region-id -> owner map. Scenarios that reassign stock
@@ -3404,6 +3425,11 @@ const LibraryTopBar = () => {
             {difficultyPick ? (
               <>
                 <div style={{ fontWeight: 800, fontSize: "1rem" }}>Choose your difficulty</div>
+                {countryPicker.id?.startsWith("dynasties-hadara") && <fieldset style={{ margin: "12px 0", padding: 12, border: "1px solid #8b7c58", borderRadius: 8 }}>
+                  <legend>Vem följer du?</legend>
+                  <label style={{ display: "block", padding: 6 }}><input type="radio" name="dynasty-mode" value="realm" checked={dynastyMode === "realm"} onChange={() => setDynastyMode("realm")} /> Riket genom nya dynastier</label>
+                  <label style={{ display: "block", padding: 6 }}><input type="radio" name="dynasty-mode" value="family" checked={dynastyMode === "family"} onChange={() => setDynastyMode("family")} /> Familjen även efter tronförlust</label>
+                </fieldset>}
                 <div style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.75rem", margin: "0.15rem 0 0.7rem" }}>
                   How hard should the world fight back?
                 </div>
@@ -3771,6 +3797,9 @@ const LibraryTopBar = () => {
                   </button>
                 ))}
               </div>
+            )}
+            {activeTab !== "community" && (
+              <DynastyStartCard onStart={startDynastyFromCard} errorMessage={dynastyStartError} />
             )}
             {activeTab !== "community" && (
               <SuggestionsBanner scenarios={scenarios} onOpen={(scenario) => openScenarioEditor(scenario.id)} />

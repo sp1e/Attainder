@@ -915,6 +915,7 @@ const WorldMap = ({ isGlobe = false }) => {
     if (rows.length) console.table(rows);
   }, [polityLabelCollections, useLivePolityLabels]);
 
+  const initialCameraBounds = worldState?.initialCameraBounds;
   // Start a campaign with its player polity inside the composition instead of
   // blindly centring longitude zero (which wastes half a wide screen on the
   // Atlantic in European scenarios). This runs only while the camera is still
@@ -938,6 +939,17 @@ const WorldMap = ({ isGlobe = false }) => {
 
     readJson(JSON_URLS.game, { defaultValue: {} }).then((game) => {
       if (cancelled || initialFramingAppliedRef.current) return;
+      if (Array.isArray(initialCameraBounds) && initialCameraBounds.length === 2
+        && initialCameraBounds.every(point => Array.isArray(point) && point.length === 2 && point.every(Number.isFinite))
+        && initialCameraBounds[0][0] < initialCameraBounds[1][0] && initialCameraBounds[0][1] < initialCameraBounds[1][1]
+        && initialCameraBounds.every(([lng, lat]) => Math.abs(lng) <= 180 && Math.abs(lat) <= 85)
+        && mapInstance.fitBounds) {
+        const canvas = mapInstance.getCanvas?.();
+        const padding = Math.max(24, Math.min(110, Math.round(Math.min(canvas?.clientWidth || 390, canvas?.clientHeight || 844) * 0.12)));
+        initialFramingAppliedRef.current = true;
+        mapInstance.fitBounds(initialCameraBounds, { padding, maxZoom: 7, duration: 0, bearing: 0, pitch: 0 });
+        return;
+      }
       const player = String(game?.country ?? "").trim().toLocaleLowerCase();
       if (!player) {
         initialFramingAppliedRef.current = true;
@@ -975,7 +987,7 @@ const WorldMap = ({ isGlobe = false }) => {
     return () => {
       cancelled = true;
     };
-  }, [isGlobe, map, polityLabelCollections, polityOverrides]);
+  }, [isGlobe, map, polityLabelCollections, polityOverrides, initialCameraBounds]);
 
   // On custom maps the stock modern-country labels are replaced wholesale by the
   // owner labels (no more "Russia"/"Ukraine" floating over the Soviet Union).

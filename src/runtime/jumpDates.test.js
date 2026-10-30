@@ -2,8 +2,8 @@
 // Run: node --test src/runtime/jumpDates.test.js
 //
 // The timeline's buttons and its custom row say where a skip will land; the
-// jump then moves the date. Both go through jumpTargetDate, so the label is the
-// date the turn actually reaches. gameplay.js and time.jsx cannot be imported
+// jump then computes that requested date. Both go through jumpTargetDate;
+// a character care decision may end the playable period earlier. These files cannot be imported
 // under node --test, so the last test checks their source instead.
 
 import assert from "node:assert/strict";
@@ -47,7 +47,11 @@ test("the jump, the preset labels and the custom row all use jumpTargetDate", ()
   const read = (relative) => readFileSync(new URL(relative, import.meta.url), "utf8");
 
   const gameplay = read("../Game/AI/gameplay.js");
-  assert.match(gameplay, /const targetDate = jumpTargetDate\(originDate, safeDays\);/);
+  const jump = /export const simulateTimelineJump = [\s\S]*?(?=export const retryPendingJumpSegment)/.exec(gameplay)?.[0] ?? "";
+  // The requested date may have a separate binding from a shorter playable
+  // horizon. Keep the shared arithmetic contract without fixing that name.
+  assert.ok(/\b(?:const|let)\s+\w+\s*=\s*jumpTargetDate\(\s*originDate\s*,\s*safeDays\s*\)\s*;/.test(jump),
+    "simulateTimelineJump computes its requested date with jumpTargetDate(originDate, safeDays)");
 
   const time = read("../Game/GameUI/time.jsx");
   const label = /const jumpLandingLabel = [\s\S]*?;\r?\n/.exec(time)?.[0] ?? "";

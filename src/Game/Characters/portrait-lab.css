@@ -1,0 +1,20 @@
+body { margin: 0; font-family: system-ui, sans-serif; }
+.portrait-lab { position: relative; display: block; min-height: 100vh; padding: 28px; box-sizing: border-box; color: var(--char-ink); background: var(--char-bg); }
+.portrait-lab-heading { display: flex; justify-content: space-between; align-items: start; gap: 20px; max-width: 1180px; margin: 0 auto 24px; }
+.portrait-lab h1 { font: 40px Georgia, serif; margin: 10px 0; }
+.portrait-lab h2 { font: 29px Georgia, serif; }
+.portrait-lab p { font-size: 14px; line-height: 1.6; }
+.portrait-lab-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; max-width: 1128px; margin: 0 auto 22px; }
+.portrait-lab-controls label { display: grid; gap: 7px; font-size: 13px; }
+.portrait-lab-controls .char-checkbox { display: flex; }
+.portrait-lab select { padding: 10px 12px; color: var(--char-ink); background: var(--char-surface); border: 1px solid var(--char-border); border-radius: 5px; font: inherit; }
+.portrait-lab-preview { display: flex; align-items: center; gap: 35px; max-width: 1128px; margin: 0 auto 22px; }
+.portrait-lab-preview .char-portrait { width: 208px; height: 272px; }
+.portrait-lab-preview dl { font-size: 13px; display: grid; grid-template-columns: 180px 1fr; gap: 8px; }
+.portrait-lab-preview dd { margin: 0; }
+.portrait-lab-preview dt { color: var(--char-muted); }
+.portrait-lab-tools { display: flex; justify-content: space-between; gap: 18px; max-width: 1180px; margin: 26px auto; align-items: center; }
+.portrait-lab-matrix { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); gap: 12px; max-width: 1180px; margin: auto; }
+.portrait-lab-matrix article { padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; font-size: 11px; }
+.portrait-lab-matrix .char-portrait { width: 120px; height: 155px; max-width: 100%; }
+@media (max-width: 650px) { .portrait-lab { padding: 15px; }.portrait-lab-heading,.portrait-lab-preview,.portrait-lab-tools { flex-direction: column; align-items: start; }.portrait-lab h1 { font-size: 30px; }.portrait-lab-preview dl { grid-template-columns: 1fr; }.portrait-lab-controls { gap: 15px; }.portrait-lab-controls label,.portrait-lab-controls select { width: 100%; }.portrait-lab-matrix { grid-template-columns: repeat(2,minmax(0,1fr)); }.portrait-lab-matrix .char-portrait { width: 105px; height: 138px; } }

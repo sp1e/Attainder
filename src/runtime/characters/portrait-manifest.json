@@ -1,0 +1,252 @@
+{
+  "people": [
+    {
+      "id": "person-0-0",
+      "name": "Arel av Hadara",
+      "sex": "female",
+      "age": 54,
+      "archetype": "Fältherren",
+      "family": "Arel",
+      "portraitId": "person-0-0",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-0-1",
+      "name": "Iset Arel",
+      "sex": "male",
+      "age": 50,
+      "archetype": "Förvaltaren",
+      "family": "Arel",
+      "portraitId": "person-0-1",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-0-2",
+      "name": "Sera Arel",
+      "sex": "female",
+      "age": 28,
+      "archetype": "Diplomaten",
+      "family": "Arel",
+      "portraitId": "person-0-2",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-0-3",
+      "name": "Tarek Arel",
+      "sex": "male",
+      "age": 26,
+      "archetype": "Läraren",
+      "family": "Arel",
+      "portraitId": "person-0-3",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-0-4",
+      "name": "Mira Arel",
+      "sex": "female",
+      "age": 10,
+      "archetype": "Lagstiftaren",
+      "family": "Arel",
+      "portraitId": "person-0-4",
+      "ageGroup": "child"
+    },
+    {
+      "id": "person-0-5",
+      "name": "Neri Arel",
+      "sex": "male",
+      "age": 6,
+      "archetype": "Beskyddaren",
+      "family": "Arel",
+      "portraitId": "person-0-5",
+      "ageGroup": "child"
+    },
+    {
+      "id": "person-1-0",
+      "name": "Namar av Hadara",
+      "sex": "female",
+      "age": 54,
+      "archetype": "Intrigören",
+      "family": "Namar",
+      "portraitId": "person-1-0",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-1-1",
+      "name": "Dara Namar",
+      "sex": "male",
+      "age": 50,
+      "archetype": "Läraren",
+      "family": "Namar",
+      "portraitId": "person-1-1",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-1-2",
+      "name": "Kelan Namar",
+      "sex": "female",
+      "age": 28,
+      "archetype": "Lagstiftaren",
+      "family": "Namar",
+      "portraitId": "person-1-2",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-1-3",
+      "name": "Talia Namar",
+      "sex": "male",
+      "age": 26,
+      "archetype": "Beskyddaren",
+      "family": "Namar",
+      "portraitId": "person-1-3",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-1-4",
+      "name": "Eren Namar",
+      "sex": "female",
+      "age": 10,
+      "archetype": "Intrigören",
+      "family": "Namar",
+      "portraitId": "person-1-4",
+      "ageGroup": "child"
+    },
+    {
+      "id": "person-1-5",
+      "name": "Lysa Namar",
+      "sex": "male",
+      "age": 6,
+      "archetype": "Byggherren",
+      "family": "Namar",
+      "portraitId": "person-1-5",
+      "ageGroup": "child"
+    },
+    {
+      "id": "person-2-0",
+      "name": "Eshmun av Hadara",
+      "sex": "female",
+      "age": 54,
+      "archetype": "Förvaltaren",
+      "family": "Eshmun",
+      "portraitId": "person-2-0",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-2-1",
+      "name": "Maren Eshmun",
+      "sex": "male",
+      "age": 50,
+      "archetype": "Beskyddaren",
+      "family": "Eshmun",
+      "portraitId": "person-2-1",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-2-2",
+      "name": "Barek Eshmun",
+      "sex": "female",
+      "age": 28,
+      "archetype": "Intrigören",
+      "family": "Eshmun",
+      "portraitId": "person-2-2",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-2-3",
+      "name": "Yara Eshmun",
+      "sex": "male",
+      "age": 26,
+      "archetype": "Byggherren",
+      "family": "Eshmun",
+      "portraitId": "person-2-3",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-2-4",
+      "name": "Lior Eshmun",
+      "sex": "female",
+      "age": 10,
+      "archetype": "Fältherren",
+      "family": "Eshmun",
+      "portraitId": "person-2-4",
+      "ageGroup": "child"
+    },
+    {
+      "id": "person-2-5",
+      "name": "Suri Eshmun",
+      "sex": "male",
+      "age": 6,
+      "archetype": "Förvaltaren",
+      "family": "Eshmun",
+      "portraitId": "person-2-5",
+      "ageGroup": "child"
+    },
+    {
+      "id": "person-3-0",
+      "name": "Safra av Hadara",
+      "sex": "female",
+      "age": 54,
+      "archetype": "Beskyddaren",
+      "family": "Safra",
+      "portraitId": "person-3-0",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-3-1",
+      "name": "Amat Safra",
+      "sex": "male",
+      "age": 50,
+      "archetype": "Byggherren",
+      "family": "Safra",
+      "portraitId": "person-3-1",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-3-2",
+      "name": "Danel Safra",
+      "sex": "female",
+      "age": 28,
+      "archetype": "Fältherren",
+      "family": "Safra",
+      "portraitId": "person-3-2",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-3-3",
+      "name": "Reva Safra",
+      "sex": "male",
+      "age": 26,
+      "archetype": "Förvaltaren",
+      "family": "Safra",
+      "portraitId": "person-3-3",
+      "ageGroup": "adult"
+    },
+    {
+      "id": "person-3-4",
+      "name": "Tamar Safra",
+      "sex": "female",
+      "age": 10,
+      "archetype": "Diplomaten",
+      "family": "Safra",
+      "portraitId": "person-3-4",
+      "ageGroup": "child"
+    },
+    {
+      "id": "person-3-5",
+      "name": "Zuri Safra",
+      "sex": "male",
+      "age": 6,
+      "archetype": "Läraren",
+      "family": "Safra",
+      "portraitId": "person-3-5",
+      "ageGroup": "child"
+    }
+  ],
+  "fallbacks": [
+    "fallback-female-child",
+    "fallback-male-child",
+    "fallback-female-adult",
+    "fallback-male-adult",
+    "fallback-female-elder",
+    "fallback-male-elder"
+  ]
+}

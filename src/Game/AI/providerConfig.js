@@ -31,6 +31,8 @@ const FORMER_GEMINI_DEFAULT = "gemini-3.5-flash-lite";
 export const OPENAI_DEFAULT_MODEL = "gpt-6-luna";
 
 export const PROVIDER_OPTIONS = [
+    { value: "codex-cli", label: "Codex · befintlig inloggning", group: "Local CLI login", description: "Codex på samma dator, inloggad med ChatGPT", searchTerms: ["codex", "chatgpt", "cli", "inloggning"] },
+    { value: "claude-cli", label: "Claude Code · befintlig inloggning", group: "Local CLI login", description: "Claude Code på samma dator, med befintlig inloggning", searchTerms: ["claude", "cli", "inloggning"] },
     {
         value: "gemini",
         label: "Gemini",
@@ -69,6 +71,8 @@ export const PROVIDER_OPTIONS = [
 ];
 
 const PROVIDER_SETTINGS = {
+    "codex-cli": { endpoint: { storageKey: "codex_cli_endpoint", defaultValue: "/api/local-models" }, model: { storageKey: "codex_cli_model", defaultValue: "" } },
+    "claude-cli": { endpoint: { storageKey: "claude_cli_endpoint", defaultValue: "/api/local-models" }, model: { storageKey: "claude_cli_model", defaultValue: "" } },
     gemini: {
         apiKey: { storageKey: "gemini_api_key", defaultValue: "" },
         model: { storageKey: "gemini_model", defaultValue: GEMINI_DEFAULT_CHAIN[0] },
@@ -260,7 +264,7 @@ export function syncAiDebugContext() {
 // start prompt asks for it up front instead of letting the first turn fail.
 export function providerSetupRequirement(provider) {
     const normalized = normalizeProvider(provider);
-    return normalized === "openai-compatible" || normalized === "anthropic-compatible" ? "endpoint" : "apiKey";
+    return normalized === "openai-compatible" || normalized === "anthropic-compatible" || normalized === "codex-cli" || normalized === "claude-cli" ? "endpoint" : "apiKey";
 }
 
 export function describeProviderSetupNeed(provider) {

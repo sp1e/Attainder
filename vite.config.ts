@@ -152,7 +152,7 @@ export default defineConfig(({ mode }) => ({
   // save/load (and the game's runtime endpoints) work with hot-reload too.
   server: {
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api': `http://127.0.0.1:${process.env.OH_API_PORT || 3000}`,
     },
   },
   build: {

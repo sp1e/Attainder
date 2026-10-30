@@ -844,6 +844,22 @@ const impactsSchema = {
   description: "World-state effects; include only the arrays that apply.",
   properties: {
     actionIds: stringArraySchema("Player action ids this event resolves."),
+    characterOps: {
+      type: "array",
+      description: "Character command proposals when the campaign has a character system. Use an available action type and stable IDs from character context. The rules engine validates costs and rights; never emit state snapshots.",
+      maxItems: 8,
+      items: {
+        type: "object",
+        properties: {
+          id: textSchema("Unique command id."),
+          kind: { type: "string", enum: ["command"] },
+          type: textSchema("Available character action type, or resolve_story."),
+          payloadJson: textSchema("JSON object encoded as a string, with action field keys and chosen stable IDs; resolve_story uses storyId and choiceId."),
+        },
+        required: ["id", "kind", "type", "payloadJson"],
+        additionalProperties: false,
+      },
+    },
     createdChats: {
       type: "array",
       description: "Chats this event opens toward the player.",
@@ -3429,6 +3445,7 @@ const normalizeChatList = (value) => (Array.isArray(value) ? value.map(normalize
 
 const PAYLOAD_IMPACT_ARRAYS = [
   "actionIds",
+  "characterOps",
   "createdChats",
   "polityChanges",
   "regionTransfers",

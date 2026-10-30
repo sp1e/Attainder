@@ -591,3 +591,15 @@ test("quick setup needs the provider's requirement, and a self-hosted one needs 
   assert.equal(top.endpoint, "http://localhost:11434/v1");
   assert.equal(config.isFallbackListConfigured(), true);
 });
+
+test("local CLI connections require no API key and preserve the selected CLI and model", () => {
+  for (const provider of ["claude-cli", "codex-cli"]) {
+    const { entryId } = config.applyQuickAiSetup({ provider, endpoint: "/api/local-models", model: "" });
+    const top = config.getResolvedFallbackList()[0];
+    assert.equal(top.id, entryId);
+    assert.equal(top.provider, provider);
+    assert.equal(top.endpoint, "/api/local-models");
+    assert.equal(Boolean(top.apiKey), false);
+    assert.equal(config.isFallbackListConfigured(), true);
+  }
+});

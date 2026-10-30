@@ -73,6 +73,7 @@ import { appendLog, clearLog, readLogSince } from "./logStore.js";
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 import { DATA_DIR } from "./dataDir.js";
 import { appKindOf } from "./appKind.js";
+import { createLocalModelRouter } from "./localModelBridge.js";
 import { createDiscordPresence, DISCORD_APPLICATION_ID, normalizePresence } from "./discordPresence.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -972,6 +973,8 @@ const RELAY_TIMEOUT_MS = Number(process.env.OH_RELAY_TIMEOUT_MS) || 600000;
 // the browser now sees tokens as they arrive rather than one blob at the end,
 // so a local model notices a cancelled request on its next write.
 const relayTransport = (target) => (target.protocol === "https:" ? https : http);
+
+app.use("/api/local-models", createLocalModelRouter());
 
 app.post("/api/ai/relay", largeJsonParser, async (req, res) => {
   const controller = new AbortController();

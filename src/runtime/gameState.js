@@ -30,6 +30,8 @@ import {
   stepToward,
 } from "./unitMotion.js";
 import { compareGameDates, normalizeGameDate } from "./gameDates.js";
+import { normalizeCharacterSystem } from "./characters/index.js";
+import { applyCharacterOpsToWorld, normalizeCharacterOps, projectCharacterWorld, reconcileCharacterPolity, synchronizeCharacterEventDate } from "./characterWorld.js";
 
 export const GAME_DEFAULTS = {
   country: "",
@@ -41,6 +43,7 @@ export const GAME_DEFAULTS = {
 };
 
 export const WORLD_DEFAULTS = {
+  characterSystem: null,
   actionSuggestions: [],
   // The interactive event being played, a scene of beats (AI/interactiveRewind.js).
   activeInteractive: null,
@@ -2977,6 +2980,7 @@ const normalizeEventImpacts = (value, event = null) => {
   if (!value || typeof value !== "object") {
     return {
       actionIds: [],
+      characterOps: [],
       createdChats: [],
       groupOps: [],
       markerOps: [],
@@ -2993,6 +2997,7 @@ const normalizeEventImpacts = (value, event = null) => {
 
   return {
     actionIds: normalizeActionParticipants(value.actionIds),
+    characterOps: normalizeCharacterOps(value.characterOps),
     createdChats: normalizeArray(value.createdChats).map(normalizeCreatedChat).filter(Boolean),
     // Groups the event creates, changes or erases, and the regions they take or
     // lose (runtime/groups.js).
@@ -3630,9 +3635,10 @@ export const normalizeWorldState = (world) => {
   // not the raw input, so a renamed polity folds onto one identity.
   const diplomaticIdentityWorld = { ...nextWorld, polityOverrides, regionOwnershipOverrides };
 
-  return {
+  return projectCharacterWorld({
     ...WORLD_DEFAULTS,
     ...nextWorld,
+    characterSystem: normalizeCharacterSystem(nextWorld.characterSystem),
     countryTags,
     countryStats,
     actionSuggestions: normalizeActionSuggestions(nextWorld.actionSuggestions),
@@ -3776,7 +3782,7 @@ export const normalizeWorldState = (world) => {
     unitSystem: UNIT_SYSTEM_SET.has(normalizeOptionalString(nextWorld.unitSystem))
       ? normalizeOptionalString(nextWorld.unitSystem)
       : "",
-  };
+  });
 };
 
 // Does a polity currently hold no territory? A stateless actor — a
@@ -4115,7 +4121,14 @@ export const viewAsSeen = async ({ world, events, chats, game } = {}, { unseen =
   } catch { /* no restore point to stage from: the finished world, less the unseen papers */ }
   const seenDate = normalizeOptionalString(seenTurnEvents.at(-1)?.date) || normalizeOptionalString(turn.fromDate);
   return {
-    world: seenWorld ?? { ...world, reports: withoutUnseenReports(world?.reports, hidden) },
+    // No restore point means no trustworthy past character state. Hide the
+    // character panel instead of leaking the finished turn's deaths or heirs.
+    world: seenWorld ?? { ...world, characterSystem: null, characterEconomy: null,
+      characterViewUnavailable: Boolean(world?.characterSystem),
+      ...(world?.characterSystem ? { countryStats: Object.fromEntries(
+        Object.entries(world.countryStats ?? {}).filter(([key]) => key !== world.characterSystem.identity.polityId),
+      ) } : {}),
+      reports: withoutUnseenReports(world?.reports, hidden) },
     events: withoutUnseenEvents(events, hidden),
     chats: withoutUnseenChats(chats, hidden),
     game: game && seenDate ? { ...game, gameDate: seenDate } : game,
@@ -4555,6 +4568,7 @@ export const applyEventImpactsToWorld = ({
   // it is brought across first, the same way, so this turn and every prompt
   // after it see one name for one country.
   const renamedPolities = [];
+  const characterEvents = [];
   for (const { from, to } of displayNameMigrations(nextWorld, { isReserved: isRealCountryName })) {
     try {
       const result = renamePolityInWorld(nextWorld, from, to);
@@ -4575,6 +4589,11 @@ export const applyEventImpactsToWorld = ({
   let resolveOwner = createOwnerResolver(buildOwnerAliasMap(nextWorld.polityOverrides));
 
   for (const event of normalizeEvents(events)) {
+    if (nextWorld.characterSystem) {
+      const synchronized = synchronizeCharacterEventDate(nextWorld, event);
+      Object.assign(nextWorld, synchronized.world);
+      characterEvents.push(...synchronized.events);
+    }
     // A project this event COMPLETES releases its effects into this event, before
     // anything at all is applied. See releaseProjectCompletionEffects for why it
     // cannot be done further down where the project ops themselves are applied:
@@ -4720,15 +4739,24 @@ export const applyEventImpactsToWorld = ({
         { date: event.date, eventId: boardOnly.has(event.id) ? "" : event.id, round },
       );
     }
+    if (nextWorld.characterSystem) {
+      const reconciled = reconcileCharacterPolity(nextWorld, event);
+      Object.assign(nextWorld, reconciled.world);
+      characterEvents.push(...reconciled.events);
+    }
+    if (event.impacts.characterOps?.length) {
+      Object.assign(nextWorld, applyCharacterOpsToWorld(nextWorld, event.impacts.characterOps, { source: event.source }));
+    }
   }
 
   return {
     colors: nextColors,
     renamedPolities,
+    characterEvents,
     // Stamp the turn as the engine's. A save last written by the old classic
     // system still says "classic", which is how resumeStandingOrders knows game
     // time passed with nothing advancing its orders.
-    world: { ...nextWorld, unitSystem: "beta" },
+    world: projectCharacterWorld({ ...nextWorld, unitSystem: "beta" }),
   };
 };
 

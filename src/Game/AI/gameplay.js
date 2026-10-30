@@ -1,6 +1,9 @@
 /*! Open Historia — portions (briefing dossiers + timeout/fallback hardening) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 import { callAI, providerSupportsBatch, retrieveAIBatch, sendDiplomaticMessageOnceOff, submitAIBatch } from "./main.jsx";
 import { jumpDayStep, jumpTargetDate } from "../../runtime/jumpDates.js";
+import { assertCharacterModelGeneration, assertCharacterTurnHorizon, buildCharacterPromptContext, getCharacterEventBudget,
+  planCharacterTurnHorizon, prepareCharacterTimeline } from "../../runtime/characterWorld.js";
+import { commitCharacterCampaign } from "../../runtime/characterRuntime.js";
 import { NATIVE_GAME_MASTER_PROMPT, normalizePromptPack } from "./gameplayPrompts.js";
 import { collectFoundedPolities, foundingPolityChange } from "../../runtime/polityFounding.js";
 import { describeBasisAction, screenTerritoryBasis } from "../../runtime/territoryBasis.js";
@@ -1590,6 +1593,13 @@ const buildTemplateVariables = async (bundle, options = {}) => {
     variables.territorialControlContext = await buildTerritorialControlContext(bundle.world, lookups ? { maxRows: 24, viaLookups: true } : {});
   }
   variables.groupsContext = await buildGroupsContext(bundle.world);
+  if (bundle.world?.characterSystem) {
+    const visible = await viewAsSeen(bundle);
+    variables.characterContext = buildCharacterPromptContext(visible.world?.characterSystem, {
+      targetDate: ["jumpForward", "autoJumpForward"].includes(taskKey) ? options.targetDate || "" : "",
+    });
+    variables.characterEventLimit = getCharacterEventBudget(visible.world?.characterSystem?.date, options.targetDate);
+  }
   if (wants("canonicalStorylineContext")) {
     variables.canonicalStorylineContext = buildGameMasterStorylineContext(bundle.world);
   }
@@ -2882,6 +2892,7 @@ const buildTaskSystemPrompt = async (taskKey, { variables, lookups = null, remin
     ...helperValues,
   });
   let systemPrompt = rendered.text;
+  if (variables?.characterContext) systemPrompt += `\n\n${variables.characterContext}`;
   const staticPromptPrefix = rendered.text.slice(0, rendered.staticPrefixEnd);
 
   // The chosen difficulty steers every simulation task (see runtime/difficulty.js);
@@ -3428,7 +3439,13 @@ const runJsonTask = async (taskKey, {
     ? getGameplayToolForCustomStatSheet(taskKey, customStatRows, { custom: true })
     : getGameplayToolForStatIndices(taskKey, statIndexRows, { custom: customStatIndices });
   // Reshaped for this call when asked (toolTransform above).
-  const tool = typeof toolTransform === "function" ? toolTransform(taskTool) : taskTool;
+  let tool = typeof toolTransform === "function" ? toolTransform(taskTool) : taskTool;
+  if (JUMP_TASK_KEYS.has(taskKey) && variables?.characterContext && tool?.schema?.properties?.events) {
+    const limit = variables.characterEventLimit || 8;
+    tool = { ...tool, schema: { ...tool.schema, properties: { ...tool.schema.properties,
+      events: { ...tool.schema.properties.events, maxItems: Math.min(limit, tool.schema.properties.events.maxItems ?? limit) },
+    } } };
+  }
   const history = [{ role: "user", parts: [{ text: userMessage }] }];
   // Detailed mode follows every AI task, not only the ones that fail. Sizes and
   // shapes, never the prompt itself: a jump's system prompt is tens of thousands
@@ -3889,7 +3906,8 @@ const runJsonTask = async (taskKey, {
       // fixes its own answer, as it always has. The GM's transaction is left
       // alone: half a transaction is not a smaller transaction.
       let removedThisAttempt = [];
-      if (!validation.valid && parsed && lastChance && taskKey !== "gameMaster" && !transportDecodeError) {
+      if (!validation.valid && parsed && lastChance && taskKey !== "gameMaster" && !transportDecodeError
+        && !(JUMP_TASK_KEYS.has(taskKey) && variables?.characterContext)) {
         // On a copy: an answer that cannot be saved goes back to the model as it
         // wrote it, not half taken apart.
         const salvaged = salvageBySchema(cloneValue(parsed), checkAnswer, {
@@ -4051,7 +4069,7 @@ const runJsonTask = async (taskKey, {
   // answer that failed outright), that final-attempt pass never ran, and the
   // player lost a complete turn to a rule the model was never given the chance
   // to satisfy. Run it now — the same salvage the second answer would have got.
-  if (salvageCandidate) {
+  if (salvageCandidate && !(JUMP_TASK_KEYS.has(taskKey) && variables?.characterContext)) {
     try {
       const salvageError = validatePayload
         ? normalizeString(await validatePayload(salvageCandidate, { attempt: 2, finalAttempt: true }))
@@ -7243,6 +7261,7 @@ export const validateGeneratedWorldChanges = async (candidate, world, {
 };
 
 const fallbackJumpSimulation = async ({ bundle, days, mode, targetDate }) => {
+  assertCharacterModelGeneration(bundle.world, { source: "fallback" });
   const plannedActions = normalizeActions(bundle.actions).filter((action) => action.status === "planned");
   const firstThreeActions = plannedActions.slice(0, 3);
   const events = [];
@@ -7665,6 +7684,7 @@ const applySimulationResult = async ({
   baseWorld,
   result,
 }) => {
+  assertCharacterModelGeneration(baseWorld, result.generation);
   // Only a jump keeps one: a resolved interactive event comes through here too, and it is
   // not an answer the simulator will be asked to build on. Every call below is a
   // no-op on null. A copy, because a turn held on its projects pass runs this
@@ -7753,7 +7773,7 @@ const applySimulationResult = async ({
   // is a second search — a whole request, and a curator pass after it — to pad
   // a skip that came back thin, and a thin skip is still a skip: the lanes it
   // neglected are the ones the world director selects first next turn.
-  const breadthRepairAllowed = !review && (!requests?.budget || requests.budget.allows("repair"));
+  const breadthRepairAllowed = !baseWorld.characterSystem && !review && (!requests?.budget || requests.budget.allows("repair"));
   const breadthRepair = !breadthRepairAllowed ? null : await maybeRepairWorldBreadthAfterCuration({
     survivingEvents: curatedEvents,
     mainEvents: dedupedEvents,
@@ -7828,19 +7848,38 @@ const applySimulationResult = async ({
   // across the whole save, so a ledger or history reference is never ambiguous.
   // Existing history is never renamed. The ledger records were bound to the
   // segments' temporary ids; they follow the rename here.
+  let finalCharacterState = baseWorld.characterSystem;
+  let characterInterruption = null;
+  const characterEvents = baseWorld.characterSystem
+    ? normalizeEvents(prepareCharacterTimeline(baseWorld, curatedEvents, result.stopDate || baseGame.gameDate, {
+      applyHostEvent: (world, event) => applyEventImpactsToWorld({ world, events: [event] }),
+      pauseForHealthDecisions: true,
+      onComplete: (state, metadata) => { finalCharacterState = state; characterInterruption = metadata?.interruption ?? null; },
+    })) : curatedEvents;
+  assertCharacterTurnHorizon(finalCharacterState, result.stopDate || baseGame.gameDate, characterInterruption);
+  // A care stop discovered before generation is already the model's own final
+  // date. Keep the reason only when that decision actually exists at this date.
+  const plannedCare = result.characterInterruption;
+  if (!characterInterruption && !finalCharacterState?.status?.ended && plannedCare?.date === finalCharacterState?.date
+    && plannedCare.storyIds?.some((id) => finalCharacterState.stories.some((story) => story.id === id && story.status === "open"))) {
+    characterInterruption = plannedCare;
+  }
+  if (characterInterruption) result.summary = `${characterInterruption.message} ${normalizeString(result.summary)}`.trim();
   const canonicalEventIdentity = allocateCanonicalTurnEventIds({
     existingEvents: priorEvents,
-    newEvents: curatedEvents,
+    newEvents: characterEvents,
     round: (baseGame.round || 1) + 1,
   });
   const freshEvents = canonicalEventIdentity.events;
-  const warUpdates = remapLedgerEventIds(normalizeArray(keptWarUpdates), canonicalEventIdentity.idMap);
-  const relationUpdates = remapLedgerEventIds(normalizeArray(keptRelationUpdates), canonicalEventIdentity.idMap);
-  const agreementUpdates = remapLedgerEventIds(normalizeArray(keptAgreementUpdates), canonicalEventIdentity.idMap);
-  const storylineUpdates = remapLedgerEventIds(normalizeArray(keptStorylineUpdates), canonicalEventIdentity.idMap);
+  const retainedLedgerUpdates = (updates) => filterBoundLedgerUpdatesToKeptEvents(updates, curatedEvents, characterEvents);
+  const warUpdates = remapLedgerEventIds(normalizeArray(retainedLedgerUpdates(keptWarUpdates)), canonicalEventIdentity.idMap);
+  const relationUpdates = remapLedgerEventIds(normalizeArray(retainedLedgerUpdates(keptRelationUpdates)), canonicalEventIdentity.idMap);
+  const agreementUpdates = remapLedgerEventIds(normalizeArray(retainedLedgerUpdates(keptAgreementUpdates)), canonicalEventIdentity.idMap);
+  const storylineUpdates = remapLedgerEventIds(normalizeArray(retainedLedgerUpdates(keptStorylineUpdates)), canonicalEventIdentity.idMap);
   let nextGame = normalizeGameData({
     ...baseGame,
-    gameDate: normalizeString(result.stopDate) || baseGame.gameDate,
+    gameDate: finalCharacterState?.status?.ended || characterInterruption ? finalCharacterState.date
+      : normalizeString(result.stopDate) || baseGame.gameDate,
     round: (baseGame.round || 1) + 1,
   });
   const plannedActionSnapshot = normalizeActions(baseActions).filter((action) => action.status === "planned");
@@ -8465,6 +8504,14 @@ const applySimulationResult = async ({
   // rather than written over whichever campaign they opened instead.
   assertCampaignUnchanged(campaignId, activeCampaignId());
 
+  if (baseWorld.characterSystem) {
+    const currentCharacterWorld = await readWorldState({ force: true });
+    if (currentCharacterWorld.characterSystem?.revision !== baseWorld.characterSystem.revision) {
+      throw new Error("Karaktärsvärlden ändrades medan modellen arbetade. Generera turen igen från det nya läget.");
+    }
+    assertCampaignUnchanged(campaignId, activeCampaignId());
+  }
+
   // A time skip is shown one event at a time (time.jsx), its first on screen as
   // it lands; until the reveal reaches an event, nothing the player or the AI
   // speaking to them is shown may contain it (runtime/unseenEvents.js). Marked
@@ -8477,15 +8524,27 @@ const applySimulationResult = async ({
   // The chats go last: whatever hears of a new letter — the toolbar's watcher —
   // reads the world to know whether its event has been revealed, and must find
   // the turn that wrote it already there.
-  await Promise.all([
-    writeActionsState(nextActions),
-    writeEventsState(nextEvents),
-    writeGameData(nextGame),
-    writeJson(JSON_URLS.colors, nextColors, { pretty: true }),
-    ...(renamedFlags ? [writeJson(JSON_URLS.flags, renamedFlags, { pretty: true })] : []),
-    writeWorldState(nextWorld),
-  ]);
-  await writeChatsState(chatsToWrite);
+  if (baseWorld.characterSystem) {
+    await commitCharacterCampaign({
+      id: `model-turn:${nextGame.round}:${nextGame.gameDate}`,
+      startedIn: campaignId,
+      base: { game: baseGame, world: baseWorld, events: baseEvents,
+        actions: baseActions, chat: baseChats, colors: baseColors },
+      next: { game: nextGame, world: nextWorld, events: nextEvents,
+        actions: nextActions, chat: chatsToWrite, colors: nextColors },
+    });
+    if (renamedFlags) await writeJson(JSON_URLS.flags, renamedFlags, { pretty: true });
+  } else {
+    await Promise.all([
+      writeActionsState(nextActions),
+      writeEventsState(nextEvents),
+      writeGameData(nextGame),
+      writeJson(JSON_URLS.colors, nextColors, { pretty: true }),
+      ...(renamedFlags ? [writeJson(JSON_URLS.flags, renamedFlags, { pretty: true })] : []),
+      writeWorldState(nextWorld),
+    ]);
+    await writeChatsState(chatsToWrite);
+  }
 
   // The agents' file before this turn files anything into it, kept with the
   // restore point below so an undo takes the turn's reports and stolen copies
@@ -8548,6 +8607,7 @@ const applySimulationResult = async ({
     events: nextEvents,
     game: nextGame,
     generation: result.generation ?? { source: "ai", fallbackReason: "" },
+    interruption: characterInterruption,
     world: nextWorld,
   };
 };
@@ -13199,8 +13259,10 @@ const runJumpSegments = async ({ context, onEvents, onProgress, signal, state })
       const [pacedMin, pacedMax] = segmentCount > 1
         ? segmentEventRange(spanDays, plannedActionShare, { pace: direction?.eventPace, totalDays: safeDays })
         : segmentEventRange(safeDays, plannedActionCount, { pace: direction?.eventPace });
-      const minEvents = Math.max(pacedMin, scriptedBeats.length);
-      const maxEvents = Math.max(pacedMax, scriptedBeats.length + 1);
+      const characterEventLimit = bundle.world.characterSystem
+        ? getCharacterEventBudget(state.segmentOrigin, segmentTarget) : null;
+      const minEvents = characterEventLimit ? Math.min(4, characterEventLimit) : Math.max(pacedMin, scriptedBeats.length);
+      const maxEvents = characterEventLimit || Math.max(pacedMax, scriptedBeats.length + 1);
       // targetDate reaches only these two variables (promptContext.js), so the
       // expensive context — region catalog, city seed, territory index — is built
       // once for the whole jump and only the dates move per segment.
@@ -13288,7 +13350,7 @@ const runJumpSegments = async ({ context, onEvents, onProgress, signal, state })
         // Only a single-call jump falls back on its own. A failing SEGMENT throws
         // instead, so the catch below can hold the turn and hand the player the
         // choice rather than quietly deciding for them.
-        ...(segmentCount > 1
+        ...(segmentCount > 1 || bundle.world.characterSystem
           ? {}
           : { fallback: () => fallbackJumpSimulation({ bundle, days: dateStep || 1, mode, targetDate }) }),
         ...(showEvents ? { onPartialEvents: showEvents } : {}),
@@ -13319,12 +13381,15 @@ const runJumpSegments = async ({ context, onEvents, onProgress, signal, state })
           // itself (never from counting our own invocations — a schema failure on
           // attempt 1 skips this validator entirely, which used to make attempt 2
           // look "first" and leak strict feedback out as the fallback reason).
-          const strict = !finalAttempt;
+          const strict = Boolean(bundle.world.characterSystem) || !finalAttempt;
           // Mechanical: a batch whose dates are all real is put in date order
           // before anything counts positions (a malformed date is left for the
           // date validator below to report).
           sortTimelineEventsChronologically(candidate);
           const eventCount = normalizeArray(candidate?.events).length;
+          if (characterEventLimit && eventCount > characterEventLimit) {
+            return `Karaktärskampanjen tillåter högst ${characterEventLimit} meningsfulla modellhändelser i detta hopp; svaret innehöll ${eventCount}.`;
+          }
           if (mode !== "auto" && (eventCount < minEvents || eventCount > maxEvents)) {
             // Never sent back, on any attempt (the owner's call, 2026-09-26): asking
             // again is a whole second request, and a period with fewer or more events
@@ -13529,6 +13594,9 @@ const runJumpSegments = async ({ context, onEvents, onProgress, signal, state })
     // A deliberate cancel must still cancel.
     if (signal?.aborted || error?.name === "AbortError") throw error;
     const reason = normalizeString(error?.message) || `AI task "jumpForward" failed.`;
+    if (bundle.world.characterSystem) {
+      throw new Error(`Modellåret avbröts utan att flytta tiden eller ändra karaktärerna. ${reason}`, { cause: error });
+    }
 
     // The request fits no model the player has (contextWindow.js): canned events
     // would hide that, skip after skip. The turn refuses instead, with the
@@ -14104,6 +14172,7 @@ const finishTimelineJump = async ({ context, signal, state }) => {
     storylineUpdates: merged.storylineUpdates,
     breadthRepairContext: selectBreadthRepairContext(state, context),
     generation: state.generation,
+    characterInterruption: context.characterInterruption,
     hiddenEvents: state.hiddenEvents,
     boardProvisionalEventIds: state.boardProvisionalEventIds,
     receipt: state.receipt,
@@ -14160,10 +14229,13 @@ export const simulateTimelineJump = async ({ days, mode = "jump", onEvents, onPr
   phases.enter("reading");
   try {
   const bundle = withDiplomaticLedgerMigration(await readGameStateBundle({ force: true }));
+  if (bundle.world.characterSystem?.status?.ended) {
+    throw new Error(bundle.world.characterSystem.status.reason || "Kampanjen är avslutad.");
+  }
   const baseColors = await readJson(JSON_URLS.colors, { defaultValue: {}, force: true });
   // Fractional days are allowed so sub-day skips (e.g. 6h = 0.25) work; the game
   // date only advances in whole days, so a sub-day skip keeps the same date.
-  const safeDays = Math.max(0, Number(days) || 0);
+  let safeDays = Math.max(0, Number(days) || 0);
   if (safeDays <= 0) {
     throw new Error("Choose a time-skip amount greater than zero.");
   }
@@ -14174,9 +14246,17 @@ export const simulateTimelineJump = async ({ days, mode = "jump", onEvents, onPr
   }
   // One rule for where a skip lands, shared with the timeline's labels
   // (runtime/jumpDates.js), so a label never promises a date the jump misses.
-  const dateStep = jumpDayStep(safeDays);
+  let dateStep = jumpDayStep(safeDays);
   const originDate = normalizeString(bundle.game.gameDate);
-  const targetDate = jumpTargetDate(originDate, safeDays);
+  const requestedTargetDate = jumpTargetDate(originDate, safeDays);
+  const horizon = bundle.world.characterSystem
+    ? planCharacterTurnHorizon(bundle.world, requestedTargetDate)
+    : { targetDate: requestedTargetDate, interruption: null };
+  const targetDate = horizon.targetDate;
+  if (compareGameDates(targetDate, requestedTargetDate) < 0) {
+    safeDays = diffGameDays(originDate, targetDate);
+    dateStep = jumpDayStep(safeDays);
+  }
   if (dateStep >= 1 && parseIsoDate(originDate) && targetDate === originDate) {
     throw new Error("The requested jump exceeds the supported date range.");
   }
@@ -14190,6 +14270,7 @@ export const simulateTimelineJump = async ({ days, mode = "jump", onEvents, onPr
     historicalAnchorMaxItems: WORLD_SIMULATION_HISTORICAL_ANCHOR_MAX_ITEMS,
     targetDate,
   });
+  if (horizon.interruption) variables.characterContext += `\nThis request stops at ${targetDate} for a new health-care decision. Nothing beyond this date is part of the turn; leave the treatment choice to the player.`;
   // Guarantee at least one event per queued action, so each planned action has a
   // slot to resolve into (bounded so a huge queue can't demand absurd counts).
   const plannedActionCount = normalizeActions(bundle.actions).filter((action) => action.status === "planned").length;
@@ -14222,6 +14303,7 @@ export const simulateTimelineJump = async ({ days, mode = "jump", onEvents, onPr
     bundle,
     // Stamped here, at the read, not at the write minutes later.
     campaignId: activeCampaignId(),
+    characterInterruption: horizon.interruption,
     dateStep,
     mode,
     originDate,
@@ -16283,6 +16365,10 @@ export const maybeGeneratePregameHistory = async () => {
   beginSimulation();
   try {
     const bundle = await readGameStateBundle({ force: true });
+    // Character scenarios already have an authored founding state, people,
+    // promises and history. A second asynchronous bootstrap both invents a
+    // competing past and locks out the player's first character decision.
+    if (bundle.world.characterSystem) return null;
     const briefing = normalizeString(bundle.world.startingTimelineText);
     if (!briefing) return null;
     if (normalizeEvents(bundle.events).length > 0) return null;

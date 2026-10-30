@@ -69,3 +69,10 @@ electron/channel.json
 
 # Relocatable wiki preview (scripts/build-wiki-preview.mjs) — a build output, like dist-site.
 dist-wiki-preview/
+
+# Local campaigns, credentials and machine-specific verification output
+/play-data/
+/reports/
+.env
+.env.*
+!.env.example

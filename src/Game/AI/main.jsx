@@ -2241,6 +2241,9 @@ async function callAnthropicCompatible(systemPrompt, history, {
 
 function dispatchToProvider(provider, systemPrompt, history, providerOpts) {
     switch (provider) {
+    case "codex-cli":
+    case "claude-cli":
+        return import("./localCliProvider.js").then(({ callLocalCli }) => callLocalCli(provider, systemPrompt, history, providerOpts));
     case "openai":
         return callOpenAI(systemPrompt, history, providerOpts);
     case "anthropic":
