@@ -277,7 +277,7 @@ export const characterTransitionEvents = (before, result, operationId) => {
 };
 
 export const planCharacterAdvance = (world, targetDate, { id = "character-calendar", quietDateSync = false,
-  pauseForHealthDecisions = false, requestedDate = targetDate } = {}) => {
+  pauseForHealthDecisions = false, pauseForCharacterDecisions = false, requestedDate = targetDate } = {}) => {
   if (!world?.characterSystem) return { state: null, events: [] };
   let state = normalizeCharacterSystem(world.characterSystem);
   const target = normalizeGameDate(targetDate);
@@ -286,6 +286,7 @@ export const planCharacterAdvance = (world, targetDate, { id = "character-calend
   if (diffGameDays(state.date, target) > 366 * 500) throw new Error("Dela upp tidshopp som är längre än 500 år.");
   const events = [];
   const knownCare = new Set(state.stories.filter((story) => story.type === "health_care").map((story) => story.id));
+  const knownStories = new Set(state.stories.filter((story) => story.type === "character_event").map((story) => story.id));
   let checkpointBase = state;
   let steps = 0;
   while (compareGameDates(state.date, target) < 0) {
@@ -312,6 +313,13 @@ export const planCharacterAdvance = (world, targetDate, { id = "character-calend
         requestedDate: normalizeGameDate(requestedDate),
         message: "Turen stannade tidigare eftersom en ny sjukdom kräver ditt vårdbeslut. Välj vård i Rike & familjer innan du fortsätter." } };
     }
+    const newStories = state.stories.filter((story) => story.type === "character_event" && story.status === "open"
+      && !knownStories.has(story.id)).map((story) => story.id);
+    if (pauseForCharacterDecisions && newStories.length && compareGameDates(state.date, requestedDate) < 0) {
+      return { state, events, interruption: { type: "character-story", date: state.date, storyIds: newStories,
+        requestedDate: normalizeGameDate(requestedDate),
+        message: "Turen stannade vid en ny karaktärshändelse. Välj hur du vill agera under Beslut i Rike & familjer innan du fortsätter." } };
+    }
   }
   return { state, events };
 };
@@ -319,13 +327,13 @@ export const planCharacterAdvance = (world, targetDate, { id = "character-calend
 // Resolve the playable horizon before asking a model. Its summary, ledger,
 // outreach and auxiliary review must all describe this same shorter period.
 export const planCharacterTurnHorizon = (world, targetDate) => {
-  const calendar = planCharacterAdvance(world, targetDate, { pauseForHealthDecisions: true });
+  const calendar = planCharacterAdvance(world, targetDate, { pauseForHealthDecisions: true, pauseForCharacterDecisions: true });
   return { targetDate: calendar.state?.date || targetDate, interruption: calendar.interruption ?? null };
 };
 
 export const assertCharacterTurnHorizon = (state, modelStopDate, interruption) => {
   if (interruption && compareGameDates(state.date, modelStopDate) < 0) {
-    throw new Error("Världshändelserna flyttade vårdbeslutet till ett tidigare datum. Modellsvaret omfattar tiden efter beslutet och har inte sparats. Försök med ett kortare tidshopp.");
+    throw new Error("Världshändelserna flyttade beslutet till ett tidigare datum. Modellsvaret omfattar tiden efter beslutet och har inte sparats. Försök med ett kortare tidshopp.");
   }
 };
 
@@ -348,7 +356,7 @@ export const getCharacterEventBudget = (fromDate, targetDate) => {
 // Convert model proposals into validated, reproducible transitions. No model
 // supplied checkpoint, identity, death or resource balance is authoritative.
 export const prepareCharacterTimeline = (world, events, targetDate, { applyHostEvent, onComplete,
-  pauseForHealthDecisions = false } = {}) => {
+  pauseForHealthDecisions = false, pauseForCharacterDecisions = false } = {}) => {
   if (!world?.characterSystem) return events;
   let current = world;
   const stop = normalizeGameDate(targetDate || world.characterSystem.date);
@@ -363,7 +371,7 @@ export const prepareCharacterTimeline = (world, events, targetDate, { applyHostE
       throw new Error("En modellhändelse ligger utanför den aktuella turens datum. Inga karaktärsföljder har sparats.");
     }
     const calendar = planCharacterAdvance(current, eventDate, { quietDateSync: true,
-      pauseForHealthDecisions, requestedDate: stop });
+      pauseForHealthDecisions, pauseForCharacterDecisions, requestedDate: stop });
     output.push(...calendar.events);
     current = { ...current, characterSystem: calendar.state };
     if (calendar.interruption) {
@@ -400,7 +408,7 @@ export const prepareCharacterTimeline = (world, events, targetDate, { applyHostE
         impacts: {} });
     }
   }
-  const tail = planCharacterAdvance(current, stop, { pauseForHealthDecisions });
+  const tail = planCharacterAdvance(current, stop, { pauseForHealthDecisions, pauseForCharacterDecisions });
   output.push(...tail.events);
   onComplete?.(tail.state, { interruption: tail.interruption ?? null });
   return output;
@@ -425,11 +433,11 @@ export const buildCharacterPromptContext = (state, { targetDate = "" } = {}) => 
   if (targetDate && compareGameDates(targetDate, state.date) > 0) {
     blocks.push("[Character campaign timeline pacing]",
       `Aim for 4–8 meaningful AI world events per year, with an absolute maximum of ${getCharacterEventBudget(state.date, targetDate)} AI events in this entire jump. Combine routine administration into a concise period summary. Do not create filler meetings, monthly accounting or repeated implementation updates. The character engine supplies its own life events and annual economic results; do not duplicate them or invent character mutations to meet a quota. Fewer events are appropriate when less happened.`);
-    const forecast = planCharacterAdvance({ characterSystem: state }, targetDate, { pauseForHealthDecisions: true });
+    const forecast = planCharacterAdvance({ characterSystem: state }, targetDate, { pauseForHealthDecisions: true, pauseForCharacterDecisions: true });
     const outcome = getCharacterWorldEffects(forecast.state);
     blocks.push("[Calendar forecast for this simulation request only]",
       "The deterministic engine will supply these dated character developments. Do not duplicate them or invent contradictory deaths/heirs. They are conditional on no intervening character command; proposals that change the conditions are resolved by the engine after this response. Describe wider world consequences, and describe proposed family actions as proposals. This forecast is not player-visible advance knowledge.",
-      "A newly opened health-care decision ends the playable period at its date. Do not narrate or apply anything after that stop: the player must be able to choose care before later recovery or complications.",
+      "A newly opened health-care or recurring character decision ends the playable period at its date. Do not narrate or apply anything after that stop: the player must be able to decide before later outcomes. The engine selects recurring events from current roles, personality and causal memories; do not invent or resolve them.",
       JSON.stringify({ targetDate: forecast.state.date, requestedDate: targetDate,
         interruption: forecast.interruption ?? null, leaderAtEnd: outcome.leaderName,
         developments: forecast.events.map(({ date, title, description }) => ({ date, title, description })) }));

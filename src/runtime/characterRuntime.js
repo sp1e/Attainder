@@ -132,7 +132,7 @@ export const advanceCharacterYear = () => withCharacterMutation(async (bundle) =
   if (bundle.world.characterSystem.status?.ended) return failure(bundle.world.characterSystem.status.reason || "Kampanjen är avslutad.");
   const operationId = idFor("character-year");
   const result = planCharacterAdvance(bundle.world, addGameMonths(bundle.world.characterSystem.date, 12), {
-    id: operationId, pauseForHealthDecisions: true });
+    id: operationId, pauseForHealthDecisions: true, pauseForCharacterDecisions: true });
   return { ok: true, ...result, operationId, error: "" };
 });
 

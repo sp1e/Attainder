@@ -7854,6 +7854,7 @@ const applySimulationResult = async ({
     ? normalizeEvents(prepareCharacterTimeline(baseWorld, curatedEvents, result.stopDate || baseGame.gameDate, {
       applyHostEvent: (world, event) => applyEventImpactsToWorld({ world, events: [event] }),
       pauseForHealthDecisions: true,
+      pauseForCharacterDecisions: true,
       onComplete: (state, metadata) => { finalCharacterState = state; characterInterruption = metadata?.interruption ?? null; },
     })) : curatedEvents;
   assertCharacterTurnHorizon(finalCharacterState, result.stopDate || baseGame.gameDate, characterInterruption);

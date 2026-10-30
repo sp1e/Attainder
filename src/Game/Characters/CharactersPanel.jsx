@@ -108,9 +108,13 @@ function ActionCard({ action, onCommand, busy }) {
   </details>;
 }
 
-function StoryCard({ story, onCommand, busy }) {
+function StoryCard({ story, person, onCommand, busy }) {
   return <article className="char-story"><div className="char-story-heading"><span className="char-eyebrow">Ett beslut väntar</span><span>{story.dueAt ? `Senast ${dateLabel(story.dueAt)}` : dateLabel(story.createdAt)}</span></div>
+    {person && <div className="char-office-holder"><Portrait person={person} size="small" /><strong>{person.name}</strong></div>}
     <h3>{story.title}</h3><p>{story.description}</p>
+    {story.triggerDescription && <p className="char-caption">Bakgrund: {story.triggerDescription}</p>}
+    {story.causeTitle && <p className="char-caption">Tidigare minne: {story.causeTitle}</p>}
+    {story.fallbackDescription && <p className="char-caption">Om du avstår till tidsgränsen: {story.fallbackDescription}</p>}
     <div className="char-story-choices">{(story.choices || []).map((choice) => <button key={choice.id} type="button" className="char-choice" disabled={busy || Boolean(choice.disabledReason)} onClick={() => onCommand("resolve_story", { storyId: story.id, choiceId: choice.id })}>
       <strong>{choice.label}</strong><span>{choice.description}</span><small>{[choice.cost, stressLabel(choice.stress)].filter(Boolean).join(" · ")}</small>{choice.disabledReason && <em>{choice.disabledReason}</em>}
     </button>)}</div>
@@ -135,7 +139,7 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson }) {
       <p className="char-caption">Familjernas stöd, ämbetsinnehavarnas förmåga och härskarens arbetssätt påverkar utfallet.</p>
       <button className="char-button char-button--quiet" onClick={() => setTab("decisions")}>Planera nästa beslut <span aria-hidden="true">→</span></button>
     </section></div>
-    {pending.length > 0 && <section aria-label="Beslut som väntar"><div className="char-section-heading"><div><span className="char-eyebrow">Människorna bakom politiken</span><h3>{pending.length === 1 ? "Ett ärende kräver ditt beslut" : `${pending.length} ärenden kräver ditt beslut`}</h3></div></div>{pending.slice(0, 3).map((story) => <StoryCard key={story.id} story={story} onCommand={onCommand} busy={busy} />)}{pending.length > 3 && <button className="char-button" onClick={() => setTab("decisions")}>Visa alla ärenden</button>}</section>}
+    {pending.length > 0 && <section aria-label="Beslut som väntar"><div className="char-section-heading"><div><span className="char-eyebrow">Människorna bakom politiken</span><h3>{pending.length === 1 ? "Ett ärende kräver ditt beslut" : `${pending.length} ärenden kräver ditt beslut`}</h3></div></div>{pending.slice(0, 3).map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={onCommand} busy={busy} />)}{pending.length > 3 && <button className="char-button" onClick={() => setTab("decisions")}>Visa alla ärenden</button>}</section>}
     {waitingStories.length > 0 && <section><div className="char-section-heading"><div><span className="char-eyebrow">Beslut med framtida följder</span><h3>Åtaganden som består</h3></div></div><div className="char-cities">{waitingStories.map((story) => <article className="char-card" key={story.id}><h4>{story.title}</h4><p>{story.description}</p><span className="char-caption">{story.actorName}{story.dueAt ? ` · Återkommer ${dateLabel(story.dueAt)}` : ""}</span></article>)}</div></section>}
     <div className="char-section-heading"><div><span className="char-eyebrow">Förvaltning</span><h3>Städerna bär riket</h3></div></div>
     <div className="char-cities">{entries(view.cities).map((city) => <article className="char-city char-card" key={city.id}><span className="char-eyebrow">{city.familyName || view.families?.find((family) => family.id === city.familyId)?.name || "Förvaltning"}</span><h4>{city.name}</h4><p>{city.governorName ? `Guvernör: ${city.governorName}` : "Guvernörsämbetet är vakant"}</p><div className="char-inline-stats"><span>Skatt <strong>{number(city.taxIncome)}</strong></span><span>Produktion <strong>{number(Number(city.productionMultiplier ?? 1) * 100)} %</strong></span><span>Oro <strong>{number(city.unrest)}</strong></span></div></article>)}</div>
@@ -293,7 +297,7 @@ export default function CharactersPanel({ open, onClose }) {
         if (annual) {
           setYearEvents(result.events || []);
           setInterruption(result.interruption || null);
-          setReportLabel(result.interruption ? "Händelser fram till vårdbeslutet" : withModel ? "Årets händelser" : "Senaste turens händelser");
+          setReportLabel(result.interruption ? "Händelser fram till beslutet" : withModel ? "Årets händelser" : "Senaste turens händelser");
         }
       }
       await refresh();
@@ -322,7 +326,7 @@ export default function CharactersPanel({ open, onClose }) {
         {error && <div className="char-feedback char-feedback--error" role="alert"><strong>Beslutet kunde inte genomföras</strong><span>{error}</span>{error.includes("Läs färdigt") && <button type="button" className="char-button" disabled={busy} onClick={() => perform(revealLatestCharacterTurn, true, false)}>Visa senaste turens händelser</button>}<button type="button" className="char-text-button" onClick={() => setError("")}>Stäng meddelandet</button></div>}
         {notice && <div className="char-feedback" role="status">{notice}</div>}
         {annualBusy && <div className="char-feedback" role="status"><strong>Modellen arbetar med årets händelser</strong><span>Det kan ta några minuter. Du kan läsa om personer och familjer eller stänga panelen under tiden. Årets resultat visas här när det är färdigt.</span></div>}
-        {interruption && <div className="char-feedback char-care-notice" role="status"><strong>Tiden stannade vid ett vårdärende</strong><span>{interruption.message}</span>{pending.some((story) => story.type === "health_care") && <button type="button" className="char-button" onClick={() => setTab("decisions")}>Gå till vårdbeslutet →</button>}</div>}
+        {interruption && <div className="char-feedback char-care-notice" role="status"><strong>{interruption.type === "health-care" ? "Tiden stannade vid ett vårdärende" : "Tiden stannade vid en karaktärshändelse"}</strong><span>{interruption.message}</span>{pending.length > 0 && <button type="button" className="char-button" onClick={() => setTab("decisions")}>Gå till besluten →</button>}</div>}
         {yearEvents.length > 0 && <details className="char-card char-year-report" open><summary><span className="char-eyebrow">Berättelsen och beslutens följder</span><strong>{reportLabel} · {yearEvents.length}</strong></summary><MemoryList memories={yearEvents} people={Object.fromEntries(entries(view?.people).map((person) => [person.id, person]))} /></details>}
         {!loaded && <Empty title="Hovets handlingar hämtas…">Läser kampanjens aktuella tillstånd.</Empty>}
         {loaded && !view && <Empty title="Den här kampanjen har inget karaktärssystem">Starta en dynastikampanj från huvudmenyn för att välja mellan riket och familjen.</Empty>}
@@ -333,7 +337,7 @@ export default function CharactersPanel({ open, onClose }) {
           {tab === "people" && <PeopleView view={view} selectedId={personId} selectPerson={setPersonId} />}
           {tab === "families" && <FamiliesView view={view} />}
           {tab === "offices" && <OfficesView view={view} setTab={setTab} />}
-          {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Tillgängligheten följer din företrädares mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}</>}
+          {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Tillgängligheten följer din företrädares mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}</>}
           {tab === "chronicle" && <ChronicleView view={view} />}
         </>}
       </div>

@@ -23,6 +23,20 @@ Events returned by mutation: `{id,date,type,title,description,participants,publi
 
 Progression can be invoked locally without an LLM. Realm/family commands, budgets, stresses, stories and succession share one state. Long hops use stable annual boundaries and saved randomness. State remains serializable to JSON. Original content and balance constants are our own design, not claimed copies of proprietary code.
 
+## Recurring character decisions
+
+`storyDirector.js` owns the recurring catalogue and selection stream. Its saved `storyDirector` record has its own version, RNG, sequence, cooldown dates and last scheduling boundary. Absent records receive deterministic defaults for older pre-release saves. Normalization draws no randomness and creates no historical stories. Unknown versions or invalid director data are rejected. Only the version is exposed through presentation.
+
+The director selects from real participants and current circumstances. Eight templates cover household tension, a promising student, a temple petition, a governor audit, a veteran petition, reconciliation, exile contacts and a returned favor. Personality changes candidate weights and action stress. A remembered dispute supplies the cause for reconciliation; a support memory can lead to a favor after three years. An actual family head can carry that favor after the original beneficiary dies. Once resolved, a source memory cannot be claimed again.
+
+Selection occurs at annual boundaries, at most once per year, with a 36-month template cooldown, a 24-month participant cooldown and at most two open recurring stories. The independent RNG does not consume the life or health streams. Choices still affect later simulation through their documented changes to people and resources.
+
+These stories use `type: 'character_event'` and an `eventType` from the catalogue. They retain participant IDs, the player representative and family at creation, `triggerDescription`, a twelve-month deadline, and a causal memory ID when applicable. The generic `resolve_story` command validates the current cast, funds and authority before applying a choice. Success adds a linked outcome memory and opinion cause. A payment offered in return for support transfers existing personal wealth to the family treasury.
+
+Expired stories use the displayed free fallback. Death or a relevant change of representative, office or mandate closes a stale story without spending money. State and family campaigns retain separate authority and wallets. An exile offer records its accepted host and closes if that host changes or is lost. It does not grant control over the host.
+
+The host adapter's `pauseForCharacterDecisions` option stops a longer advance at a newly opened recurring story. The playable turn horizon and model forecast enable this option alongside `pauseForHealthDecisions`; health has priority if both appear at the same boundary. Forecast and committed replay use the same dated transitions. Direct engine callers can still simulate longer periods and let unanswered decisions expire.
+
 ## Implemented presentation details
 
 People include `age, alive, familyName, archetypeLabel, traitLabels, roleNames, opinion, opinionReasons, relations, stressLevel, goalLabel`. `opinionReasons` are `{label,value,causeId?,expiresAt?}` for opinion toward the current representative. `relations` are `{targetId,targetName,types}`. Other actors' private decision traces are not exposed. Families include `headName, guardianName, support, supportReasons, income, memberIds, officeCount, statusLabel`; support reasons are `{label,value}` and the final sum is clamped to 0–100.
