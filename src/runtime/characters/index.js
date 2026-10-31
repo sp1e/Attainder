@@ -59,7 +59,7 @@ function consumeRoyalConsent(state, type) { const record = royalRegency(state); 
 function canRule(state) { const actor = activeRepresentative(state); const executive = realmExecutive(state); const office = state.offices.ruler; if (state.identity.mode === 'family') { const ownHead = state.families[state.identity.familyId]?.headId; if (ownHead !== office.holderId && ownHead !== office.regentId) return false; } return Boolean(actor && executive && actor.id === executive.id); }
 const PUBLIC_COMMANDS = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'abdicate', 'recognize_claim', ...Object.values(ARCHETYPES).map((archetype) => archetype.action)]);
 // Every command type with its own branch in handleCommand. attempt_action refuses these ids and points to the command instead.
-const COMMAND_TYPES = new Set([...PUBLIC_COMMANDS, 'provide_care', 'rest', 'gift', 'exercise_office', 'educate', 'marry', 'adopt', 'build_estate', 'seek_office', 'build_support', 'press_claim', 'seek_patron', 'return_exile', 'livelihood', 'sell_estate', 'patronize_faith', 'seek_refuge', 'request_regent_consent', 'resolve_regency', 'resolve_story', 'abort_scheme', 'reinforce_scheme']);
+const COMMAND_TYPES = new Set([...PUBLIC_COMMANDS, 'provide_care', 'rest', 'gift', 'exercise_office', 'educate', 'marry', 'adopt', 'build_estate', 'seek_office', 'build_support', 'press_claim', 'seek_patron', 'return_exile', 'livelihood', 'sell_estate', 'patronize_faith', 'seek_refuge', 'request_regent_consent', 'resolve_regency', 'resolve_story', 'abort_scheme', 'reinforce_scheme', 'realm_effect', 'npc_intent']);
 function commandActor(state, type) {
   return PUBLIC_COMMANDS.has(type) || (['patronize_faith', 'exercise_office'].includes(type) && canRule(state)) ? realmExecutive(state) : householdRepresentative(state);
 }
@@ -368,6 +368,13 @@ function actionContext(state) {
   // representativeId stays the household representative, who pays through charge(). activeRepresentativeId is the person the player acts through, who gives the orders: in realm mode the ruler or regent.
   return { representativeId: representative?.id || null, activeRepresentativeId: activeRepresentative(state)?.id || null, playerControlled: true, canOrder, wallet, opinion: (fromId, toId) => getPersonalOpinion(state, fromId, toId) };
 }
+// npc_intent: an NPC acts on its own account. It orders only itself, pays from its own family's treasury and is never under the player's orders (no refusal draw). The difficulty row compares targets with the person the player acts through.
+function npcActionContext(state, actorId) {
+  const actor = Object.hasOwn(state.people, actorId) ? state.people[actorId] : null;
+  const family = actor && Object.hasOwn(state.families, actor.familyId) ? state.families[actor.familyId] : null;
+  return { ...actionContext(state), representativeId: activeRepresentative(state)?.id || null, playerControlled: false,
+    canOrder: (id) => id === actorId, wallet: (kind) => kind === 'family' ? family?.treasury ?? 0 : 0 };
+}
 /** Odds for one contested action through the engine's own context, or a Swedish refusal. Pure: no randomness, no spending. The result carries the true values used for rolling; `display` is the only part to show the player. */
 export function estimateCharacterAction(state, intent) { return estimateAction(state, intent, actionContext(state)); }
 function actionHooks(state) {
@@ -377,7 +384,7 @@ function actionHooks(state) {
     charge: (amount, options) => charge(state, amount, options),
     activeRepresentative: () => activeRepresentative(state), householdRepresentative: () => householdRepresentative(state), controlledFamily: () => controlledFamily(state),
     getPersonalOpinion: (fromId, toId) => getPersonalOpinion(state, fromId, toId), canExerciseMandate: (person) => canExerciseMandate(person, state.date), adult: (person) => adult(state, person),
-    estimateContext: () => actionContext(state), isCommandAction: (id) => COMMAND_TYPES.has(id) };
+    estimateContext: () => actionContext(state), npcEstimateContext: (actorId) => npcActionContext(state, actorId), isCommandAction: (id) => COMMAND_TYPES.has(id) };
 }
 function rawStoryChoices(state, story) { const controller = canRule(state); const actor = activeRepresentative(state); const family = controlledFamily(state); const cost = (n, pub) => (pub ? !controller ? 'Kräver härskarmandat.' : state.realm.treasury < n ? 'Otillräcklig statskassa.' : '' : !householdRepresentative(state) ? 'Familjen saknar en handlingsförmögen företrädare.' : (family?.treasury || 0) < n ? 'Otillräcklig familjekassa.' : '');
   if (story.type === 'character_event') return directedStoryChoices(state, story, storyContext(state));
@@ -536,7 +543,48 @@ function handleGovernanceCommand(state, command, events) {
   return true;
 }
 
+// Engine-only commands: the model proposes them and prepareCharacterTimeline, the only caller that sets origin 'gate', runs them. A player command of these types is refused.
+const GATE_COMMANDS = new Set(['realm_effect', 'npc_intent']);
+const GATE_ONLY = 'Rikets läge och andra familjers handlingar ändras bara när motorn prövar modellens förslag.';
+// Per-command envelopes of realm_effect. armyStrength moves state.realm.armyStrength, the base the military readiness projection reads.
+const REALM_EFFECT_ENVELOPE = Object.freeze({ treasury: [-80, 40], legitimacy: [-10, 5], armyStrength: [-15, 10] });
+const REALM_EFFECT_LABELS = Object.freeze({ treasury: 'statskassan', legitimacy: 'legitimiteten', armyStrength: 'arméns styrka' });
+const REALM_EFFECT_REASON_MAX = 200;
+const signed = (value) => `${value > 0 ? '+' : '−'}${Math.abs(value)}`;
+function applyRealmEffect(state, p, events) {
+  if (!state.realm.alive) throw new Error('Riket finns inte längre och kan inte förändras.');
+  const deltas = {};
+  for (const [key, [min, max]] of Object.entries(REALM_EFFECT_ENVELOPE)) {
+    if (p[key] === undefined) continue;
+    if (!Number.isInteger(p[key]) || p[key] < min || p[key] > max) throw new Error(`Förändringen av ${REALM_EFFECT_LABELS[key]} måste vara ett heltal från ${signed(min)} till ${signed(max)}.`);
+    if (p[key] !== 0) deltas[key] = p[key];
+  }
+  if (!Object.keys(deltas).length) throw new Error('Förslaget ändrar inget i riket.');
+  const reason = typeof p.reason === 'string' ? p.reason.trim() : '';
+  if (!reason || reason.length > REALM_EFFECT_REASON_MAX) throw new Error(`Förslaget behöver ett skäl på 1 till ${REALM_EFFECT_REASON_MAX} tecken.`);
+  // Each field stops at its existing bound: the treasury at 0, legitimacy and army strength at 0 and 100.
+  if (deltas.treasury) state.realm.treasury = rounded(Math.max(0, state.realm.treasury + deltas.treasury));
+  if (deltas.legitimacy) state.realm.legitimacy = clamp(state.realm.legitimacy + deltas.legitimacy);
+  if (deltas.armyStrength) state.realm.armyStrength = clamp(state.realm.armyStrength + deltas.armyStrength);
+  const summary = Object.entries(deltas).map(([key, value]) => `${REALM_EFFECT_LABELS[key]} ${signed(value)}`).join(', ');
+  logEvent(state, events, 'realm_effect', 'Rikets läge förändras', `${reason} Förändring: ${summary}.`, []);
+}
+// The actor of an npc_intent: a living adult who is neither the player's representative nor a member of the controlled family. Targets are free: NPCs may act against the player's people.
+function runNpcIntent(state, command, events) {
+  const p = command.payload || {};
+  const actor = typeof p.actorId === 'string' && Object.hasOwn(state.people, p.actorId) ? state.people[p.actorId] : null;
+  if (!alive(actor) || !adult(state, actor)) throw new Error('Den föreslagna aktören måste vara en levande vuxen.');
+  if ([householdRepresentative(state)?.id, activeRepresentative(state)?.id].includes(actor.id) || actor.familyId === controlledFamily(state)?.id) throw new Error('Modellen får inte handla för spelarens egna personer.');
+  const intent = { actionId: p.actionId, actorId: actor.id, targetIds: p.targetIds };
+  resolveAttempt(state, { id: command.id, payload: intent }, events, { ...actionHooks(state), estimateContext: () => npcActionContext(state, actor.id) });
+}
+
 function handleCommand(state, command, events) {
+  if (GATE_COMMANDS.has(command.type)) {
+    if (command.origin !== 'gate') throw new Error(GATE_ONLY);
+    if (command.type === 'realm_effect') applyRealmEffect(state, command.payload || {}, events); else runNpcIntent(state, command, events);
+    refreshMandates(state, events); refreshStories(state, events); updateStatus(state); return;
+  }
   const p = command.payload || {}; const type = command.type; const veto = regencyVeto(state, type); if (veto) throw new Error(veto); const actor = commandActor(state, type); const ownFamily = controlledFamily(state);
   if (handleGovernanceCommand(state, command, events)) { refreshMandates(state, events); refreshStories(state, events); updateStatus(state); return; }
   if (type === 'resolve_story') { const story = state.stories.find((s) => s.id === p.storyId && visibleTo(state, s)); if (!story || (story.status !== 'open')) throw new Error('Berättelsen är inte tillgänglig.'); resolveStory(state, story, p.choiceId, events); refreshMandates(state, events); refreshStories(state, events); updateStatus(state); return; }
@@ -742,7 +790,8 @@ export function getAvailableCharacterActions(state) {
 
 /** The command menu plus the contested actions of the action catalog, with the household representative and family that pay for them. Read-only: no randomness, no spending. */
 export function getCatalogActions(state) { return catalogFrom(state, getAvailableCharacterActions(state)); }
-const catalogFrom = (state, actions) => buildCatalogActions(state, actions, { representativeId: householdRepresentative(state)?.id || null, familyId: controlledFamily(state)?.id || null });
+// The acting person is the active representative, who gives the orders (drawOrder in actionResolution.js); the controlled family pays.
+const catalogFrom = (state, actions) => buildCatalogActions(state, actions, { representativeId: activeRepresentative(state)?.id || null, familyId: controlledFamily(state)?.id || null });
 
 function presentStory(state, story) {
   const choices = story.status === 'open' ? storyChoices(state, story) : [];

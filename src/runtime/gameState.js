@@ -4242,9 +4242,19 @@ const writeRegionSovereign = (world, regionId, sovereign) => {
 
 const POLITY_LIFECYCLE_STORES = ["countryStats", "countryTags", "internationalReputation", "intelligence"];
 
+const holdsMappedTerritory = (world, code) => [
+  ...Object.values(world.regionOwnershipOverrides || {}),
+  ...Object.values(world.regionSovereigntyOverrides || {}),
+].some((owner) => samePolity(owner, code));
+
+// `protectedPolityId` names the character polity when the event is not the
+// character engine's own. Such an event may dissolve it only by settling its
+// mapped territory in the same event: it held a region before and holds none
+// after. A bare dissolve from a model or console event is refused.
 const applyPolityAndTerritoryImpacts = ({
-  colors, eventDate = "", eventId = "", polityChanges = [], regionClaims = [], regionControlOps = [], regionTransfers = [], resolveOwner, world,
+  colors, eventDate = "", eventId = "", polityChanges = [], protectedPolityId = "", regionClaims = [], regionControlOps = [], regionTransfers = [], resolveOwner, world,
 }) => {
+  const protectedHeldTerritory = Boolean(protectedPolityId) && holdsMappedTerritory(world, protectedPolityId);
   // The net under the turn validator (runtime/territoryBasis.js). A transfer or
   // a control flip that says its own basis is a claim, a threat or a raid moves
   // no border: the claim becomes a regionClaims entry and the rest is left out.
@@ -4518,11 +4528,11 @@ const applyPolityAndTerritoryImpacts = ({
   // its stats, tags, reputation, intelligence and colour go, and its standing
   // agreements end on the event's date.
   for (const { code } of dissolutions) {
-    const holdsTerritory = [
-      ...Object.values(world.regionOwnershipOverrides || {}),
-      ...Object.values(world.regionSovereigntyOverrides || {}),
-    ].some((owner) => samePolity(owner, code));
-    if (holdsTerritory) {
+    if (protectedPolityId && samePolity(code, protectedPolityId) && !protectedHeldTerritory) {
+      console.warn(`[character realm] refusing to dissolve the character polity "${code}" from a non-engine event.`);
+      continue;
+    }
+    if (holdsMappedTerritory(world, code)) {
       console.warn(`[polity lifecycle] refusing to dissolve "${code}": it still holds or is sovereign over mapped territory; transfer or settle that territory in the same event first.`);
       continue;
     }
@@ -4623,11 +4633,15 @@ export const applyEventImpactsToWorld = ({
       ));
     }
 
+    const characterPolity = nextWorld.characterSystem?.realm.alive && event.source !== "character-system"
+      ? resolveOwner(nextWorld.characterSystem.identity.polityId) || nextWorld.characterSystem.identity.polityId
+      : "";
     const renamedHere = applyPolityAndTerritoryImpacts({
       colors: nextColors,
       eventDate: event.date,
       eventId: event.id,
       polityChanges,
+      protectedPolityId: characterPolity,
       regionClaims: [...event.impacts.regionClaims, ...released.regionClaims],
       regionControlOps: [...event.impacts.regionControlOps, ...normalizeArray(released.regionControlOps)],
       regionTransfers: [...event.impacts.regionTransfers, ...released.regionTransfers],

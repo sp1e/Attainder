@@ -123,7 +123,8 @@ export const initializeCampaignCharacters = (options = {}) => withCharacterMutat
 export const submitCharacterCommand = (command = {}) => withCharacterMutation(async (bundle) => {
   if (!bundle.world.characterSystem) return failure("Kampanjen saknar karaktärssystem.");
   const operationId = command.id || idFor("character-choice");
-  const result = executeCharacterWorldCommand(bundle.world, { ...command, id: operationId });
+  // A player command never carries the gate origin, so realm_effect and npc_intent are refused here.
+  const result = executeCharacterWorldCommand(bundle.world, { ...command, id: operationId, origin: "player" });
   return result.ok ? { ...result, operationId,
     events: characterTransitionEvents(bundle.world.characterSystem, result, operationId) } : result;
 });

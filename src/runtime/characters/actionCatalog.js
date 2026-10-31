@@ -103,8 +103,8 @@ function contestedFields(targets) {
 }
 
 /**
- * Every command action (catalogId = its type, mode 'command') followed by the contested entries. A contested entry is always listed; disabledReason is '' when the household representative can act and pay, otherwise one Swedish sentence.
- * `context` is { representativeId, familyId }: the household representative and the family whose silver pays, as index.js resolves them. Without a context there is no representative and every contested entry is disabled.
+ * Every command action (catalogId = its type, mode 'command') followed by the contested entries. A contested entry is always listed; disabledReason is '' when the active representative can act and the controlled family can pay, otherwise one Swedish sentence.
+ * `context` is { representativeId, familyId }: the active representative, the person the player acts through and who gives the orders, and the family whose silver pays, as index.js resolves them. Without a context there is no representative and every contested entry is disabled.
  */
 export function buildCatalogActions(state, commandActions, context = {}) {
   const actor = person(state, context.representativeId);

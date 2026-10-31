@@ -11,6 +11,7 @@ import {
   normalizeCharacterSystem,
   reconcileExternalHosts,
 } from "./characters/index.js";
+import { ACTION_CATALOG } from "./characters/actionCatalog.js";
 import { compareGameDates, diffGameDays, normalizeGameDate } from "./gameDates.js";
 import { buildOwnerAliasMap, createOwnerResolver } from "./ownerNames.js";
 
@@ -163,6 +164,10 @@ export const normalizeCharacterOps = (value) => (Array.isArray(value) ? value : 
     return [];
   });
 
+// The only writer of the character polity's leader, stability, treasury and
+// military readiness in the host world. Model polityChanges.stats for these
+// fields are overwritten here; a model changes them only through the gate
+// command realm_effect (prepareCharacterTimeline).
 export const projectCharacterWorld = (world) => {
   if (!world?.characterSystem) return world;
   const state = normalizeCharacterSystem(world.characterSystem);
@@ -226,6 +231,11 @@ export const projectCharacterWorld = (world) => {
     characterEconomy: effect, countryStats, units, markers };
 };
 
+// Commands stored in an event run only for the engine's own events and the
+// Game Master console. A stored model ("ai") event never executes one, also on
+// replay: model proposals reach the state only through prepareCharacterTimeline.
+const COMMAND_SOURCES = new Set(["character-system", "game-master"]);
+
 export const applyCharacterOpsToWorld = (world, operations, { source = "" } = {}) => {
   let next = world;
   for (const op of normalizeCharacterOps(operations)) {
@@ -243,6 +253,8 @@ export const applyCharacterOpsToWorld = (world, operations, { source = "" } = {}
       if (revision >= op.state.revision) continue;
       if (revision !== op.fromRevision) throw new Error("Karaktärshändelsen bygger på en annan världsversion.");
       next = { ...next, characterSystem: op.state };
+    } else if (!COMMAND_SOURCES.has(source)) {
+      console.warn(`[character gate] skipped command "${op.type}" from a "${source || "unknown"}" event.`);
     } else if (next.characterSystem) {
       const result = executeCharacterWorldCommand(next, op);
       if (result.ok) next = { ...next, characterSystem: result.state };
@@ -353,6 +365,44 @@ export const getCharacterEventBudget = (fromDate, targetDate) => {
   return Math.min(24, Math.max(8, Math.ceil(days / 366) * 8));
 };
 
+// Model proposals the engine runs itself, with their caps per model event.
+const GATE_LIMITS = Object.freeze({ realm_effect: 4, npc_intent: 3 });
+const GATE_LABELS = Object.freeze({ realm_effect: "Förändring av rikets läge", npc_intent: "Egen handling av en annan familjs person" });
+
+// Runs one model event's gate proposals with origin "gate". Each accepted one
+// becomes a character-system event carrying its patch, so replay applies the
+// result and never rolls again. Refusals become one visible notice.
+const runGateProposals = (world, event, date, proposals) => {
+  let current = world;
+  const events = [];
+  const refusals = [];
+  const counts = {};
+  proposals.forEach((op, index) => {
+    counts[op.type] = (counts[op.type] ?? 0) + 1;
+    if (counts[op.type] > GATE_LIMITS[op.type]) {
+      refusals.push(`${GATE_LABELS[op.type]}: högst ${GATE_LIMITS[op.type]} sådana förslag per händelse.`);
+      return;
+    }
+    const id = `${event.id}:gate:${index}`;
+    const before = current.characterSystem;
+    const result = executeCharacterWorldCommand(current, { id, type: op.type, payload: op.payload, origin: "gate", expectedRevision: before.revision });
+    if (!result.ok) {
+      refusals.push(`${GATE_LABELS[op.type]}: ${result.error}`);
+      return;
+    }
+    if (result.duplicate) return;
+    events.push(...characterTransitionEvents(before, result, id));
+    current = { ...current, characterSystem: result.state };
+  });
+  if (refusals.length) {
+    events.push({ id: `${event.id}:gate-refusals`, date, source: "character-system", kind: "world", tags: ["Politics"], playerRelated: true,
+      title: "Modellens förslag avvisades",
+      description: `Motorn prövade modellens förslag och avvisade ${refusals.length === 1 ? "ett" : refusals.length}. ${refusals.join(" ")}`,
+      impacts: {} });
+  }
+  return { world: current, events };
+};
+
 // Convert model proposals into validated, reproducible transitions. No model
 // supplied checkpoint, identity, death or resource balance is authoritative.
 export const prepareCharacterTimeline = (world, events, targetDate, { applyHostEvent, onComplete,
@@ -400,7 +450,11 @@ export const prepareCharacterTimeline = (world, events, targetDate, { applyHostE
       output.push(...(applied.characterEvents ?? []));
     }
     if (current.characterSystem.status?.ended) break;
-    if (proposals.length) {
+    const gated = runGateProposals(current, event, eventDate, proposals.filter((op) => Object.hasOwn(GATE_LIMITS, op.type)));
+    current = gated.world;
+    output.push(...gated.events);
+    if (current.characterSystem.status?.ended) break;
+    if (proposals.some((op) => !Object.hasOwn(GATE_LIMITS, op.type))) {
       output.push({ id: `${event.id}:character-proposals`, date: eventDate,
         source: "character-system", kind: "world", tags: ["Politics"], playerRelated: true,
         title: "Förslaget kräver ditt beslut",
@@ -421,14 +475,19 @@ export const buildCharacterPromptContext = (state, { targetDate = "" } = {}) => 
     "[Character simulation — authoritative rules]",
     "This campaign has persistent people, families, offices, memories and succession. The local rule engine controls life, death, ownership, stress and resources. Do not invent a ruler, heir, death, office transfer or character balance in prose or polityChanges.stats.leader.",
     "Health conditions, recovery, lasting scars and portrait appearance are also canonical engine facts. Describe the actual dated health events supplied in the calendar forecast and their wider consequences; do not invent an infection, injury, cure, scar or health score. Medical care remains a player choice in the character panel. There is no free-form health mutation or model-executed care action. Appearance reflects the condition's current phase, not its later outcome.",
-    "The player chooses and executes personal political actions directly in the character panel before a simulation turn. Do not spend the player's treasury or family wealth, resolve their stories, marry their representative, change their offices or issue their character commands. impacts.characterOps from a model are advisory proposals only and are NEVER executed automatically, even with a claimed player action ID. Keep that array empty normally. If advising an action, describe it as a proposal awaiting the player's decision. Calendar progression itself handles autonomous NPC characters, births, death and succession.",
+    "The player chooses and executes personal political actions directly in the character panel before a simulation turn. Do not spend the player's treasury or family wealth, resolve their stories, marry their representative, change their offices or issue their character commands. The model never acts for the player's own characters.",
+    "impacts.characterOps may carry two engine-gated proposals. The engine validates each one, rolls where the rules roll, and may refuse it; a refusal is shown to the player. (1) realm_effect payload {treasury, legitimacy, armyStrength, reason}: integer changes, each optional, at least one non-zero, within treasury -80…+40, legitimacy -10…+5, armyStrength -15…+10. A value outside its range refuses the whole proposal; the realm's fields stop at their bounds. reason is a Swedish sentence of at most 200 characters. At most 4 per event. (2) npc_intent payload {actorId, actionId, targetIds}: a living adult who is neither the player's representative nor a member of the player's family attempts one contested catalog action listed below, with the engine's odds for that NPC. The NPC's own family pays; targets may include the player's people. At most 3 per event. Give each proposal a stable id.",
+    "All other command types in impacts.characterOps are advisory proposals only and are NEVER executed automatically, even with a claimed player action ID. Keep them out normally; describe such an action as a proposal awaiting the player's decision. Calendar progression itself handles autonomous NPC characters, births, death and succession.",
+    "The player's polity ends only through an event that settles its mapped territory: it held a region before the event and holds none after it. A bare dissolve of that polity is refused.",
     "Realm mode follows the government. Family mode follows its own family, which has no right to issue state orders after losing the governing role. Independent relatives do not confer direct state control. Unknown facts are unavailable.",
     "A dissolved realm has no government or public revenue. Its family may continue as a household without commanding a conqueror. Foreign refuge is possible only through a currently existing candidate and an accepted seek_refuge action; do not invent a host state, an automatic welcome or a replacement heir. Loss of territorial control alone is not dissolution: use the host's explicit polity lifecycle and settle sovereignty first.",
     JSON.stringify({ date: view.date, mode: view.mode, playerCanDirectRealm: canCharacterDirectRealm(state), ruler: view.ruler,
       realmExists: state.realm.alive, status: state.status, externalHosts: state.externalHosts,
       representative: view.representative, economy: view.economy, succession: view.succession,
       families: view.families, offices: view.offices, people: view.people,
-      actions: view.actions, stories: view.stories, memories: view.memories?.slice(-16) }),
+      actions: view.actions, stories: view.stories, memories: view.memories?.slice(-16),
+      contestedActions: Object.values(ACTION_CATALOG).map((entry) => ({ id: entry.id, label: entry.label, durationMonths: entry.durationMonths,
+        target: `exactly one living adult other than the actor${entry.targetFamily === "other" ? ", outside the actor's family" : ""}` })) }),
   ];
   if (targetDate && compareGameDates(targetDate, state.date) > 0) {
     blocks.push("[Character campaign timeline pacing]",

@@ -88,11 +88,17 @@ const playerWitnesses = (resolution, hooks) => unique([resolution.actorId, hooks
 const playerEvent = (state, resolution, hooks) => ({ public: resolutionVisible(state, resolution, hooks.controlledFamily()?.id ?? null) });
 
 /**
- * Pays for an action, once. Every action in Phase 1 is the player's: the controlled household (or the realm, for a realm wallet) pays through charge(), which also spends the order points and adds the payer's stress for the action's tag. estimate.cost.silver already holds the catalog cost plus means.silver. A refused order spends its order points, no silver and no stress.
- * Seam for Task 8: an NPC action (resolution.playerControlled false) gets its own branch here that debits the actor family's treasury directly, without charge() and without order points.
+ * Pays for an action, once. A player action is paid by the controlled household (or the realm, for a realm wallet) through charge(), which also spends the order points and adds the payer's stress for the action's tag. estimate.cost.silver already holds the catalog cost plus means.silver. A refused order spends its order points, no silver and no stress.
+ * An NPC action (resolution.playerControlled false) is paid from the actor family's own treasury, with no order points and no player stress. Its estimate already refused an NPC that cannot pay, before any draw; the check here only guards the seam.
  */
 export function payForAction(state, resolution, estimate, hooks) {
   const { cost } = estimate;
+  if (resolution.playerControlled === false) {
+    const family = state.families[state.people[estimate.actorId].familyId];
+    if (cost.wallet !== 'family' || !family || family.treasury < cost.silver) throw new Error(`Det behövs ${cost.silver} silver; tillgängligt ${Math.floor(family?.treasury ?? 0)}.`);
+    family.treasury = Math.round((family.treasury - cost.silver) * 100) / 100;
+    return state.people[estimate.actorId];
+  }
   return hooks.charge(resolution.refused ? 0 : cost.silver, { orders: cost.orders, publicFunds: cost.wallet === 'realm', tag: resolution.refused ? REFUSED_TAG : cost.stressTag });
 }
 
@@ -149,10 +155,10 @@ function refuseOrder(state, resolution, entry, estimate, events, hooks) {
   return resolution;
 }
 
-// Agents work for the household that pays. They are found or created only when the action runs.
+// Agents work for the household that pays. They are found or created only when the action runs. An NPC hires from its own family; so does a player action when there is no controlled family at that moment (a scheme's due date), which would otherwise stop the calendar.
 function hireAgents(state, resolution, means, hooks) {
   const roles = Array.isArray(means?.agentRoles) ? means.agentRoles : [];
-  const familyId = resolution.playerControlled ? hooks.controlledFamily()?.id : state.people[resolution.actorId].familyId;
+  const familyId = (resolution.playerControlled ? hooks.controlledFamily()?.id : null) ?? state.people[resolution.actorId].familyId;
   return roles.map((role) => ensureStaff(state, familyId, role).id);
 }
 

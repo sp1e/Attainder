@@ -87,11 +87,12 @@ function playerSide(state, scheme, hooks) {
   return resolutionVisible(state, scheme, hooks.controlledFamily()?.id ?? null) || representatives.includes(scheme.targetIds[0]);
 }
 
-// The odds as they stand on the due date for the same actor, target and means. The silver was paid at the start, and an NPC scheme was never under the player's orders.
+// The odds as they stand on the due date for the same actor, target and means. The silver was paid at the start. An NPC scheme uses the NPC context of npc_intent (index.js), which orders only its own actor: the NPC rules were checked when the intent was accepted, and the plan stays the NPC's own even if its family later comes under the player.
 function dueEstimate(state, scheme, hooks) {
-  const ctx = hooks.estimateContext(), own = scheme.playerControlled === true;
+  const own = scheme.playerControlled === true;
+  const ctx = own ? hooks.estimateContext() : hooks.npcEstimateContext(scheme.actorId);
   const intent = { actionId: scheme.actionId, actorId: scheme.actorId, targetIds: scheme.targetIds, means: scheme.means };
-  return estimateAction(state, intent, { ...ctx, playerControlled: own, wallet: () => PAID, canOrder: own ? ctx.canOrder : () => true });
+  return estimateAction(state, intent, { ...ctx, wallet: () => PAID });
 }
 
 function collapse(state, scheme, reason, events, hooks) {
