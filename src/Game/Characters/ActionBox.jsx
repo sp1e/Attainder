@@ -19,6 +19,7 @@ export const TIER_HEADINGS = Object.freeze({
 const NARRATE_FAILED = "Berättelsen kunde inte skrivas; utfallet gäller.";
 const INTERPRET_FAILED = "Texten kunde inte tolkas. Välj en handling i listan.";
 const ACTION_FAILED = "Handlingen kunde inte sparas. Försök igen om en stund.";
+const ABORT_FAILED = "Intrigen kunde inte avbrytas. Försök igen om en stund.";
 const COMMAND_GROUP = ["command", "Förvaltning och hushåll"];
 const CATEGORY_LABELS = [["intrigue", "Intrig"], ["diplomacy", "Diplomati"], ["family", "Familj"], ["court", "Hovet"],
   ["military", "Krigföring"], ["religion", "Tro"], ["economy", "Ekonomi"], ["personal", "Personligt"]];
@@ -78,8 +79,9 @@ export async function prepareInterpretedAction({ text, view, interpret, estimate
 }
 
 // Engine refusals are Swedish sentences ending with a period. A transport or parser error is English and is not
-// for the player: it goes to the log and the player reads the fallback sentence.
-const ENGLISH_WORDS = /\b(the|was|failed|fetch|of|with|error|must|cannot|unexpected|invalid|there|that|object|undefined|null|network|request|response|json|http)\b/i;
+// for the player: it goes to the log and the player reads the fallback sentence. A word counts only between two
+// non-letters; `\b` treats å, ä and ö as boundaries and would find "of" in "oförmögen".
+const ENGLISH_WORDS = /(?<!\p{L})(the|was|failed|fetch|of|with|error|must|cannot|unexpected|invalid|there|that|object|undefined|null|network|request|response|json|http)(?!\p{L})/iu;
 function playerText(message, fallback) {
   const text = typeof message === "string" ? message.trim() : "";
   if (text && /[.!?]$/.test(text) && !ENGLISH_WORDS.test(text)) return text;
@@ -166,8 +168,8 @@ function ProposalFacts({ proposal, view }) {
   </>;
 }
 
-export function ConfirmationCard({ proposal, view, onConfirm, onCancel, busy = false, focusRef }) {
-  return <section className="char-confirm" aria-label="Bekräfta handlingen">
+export function ConfirmationCard({ proposal, view, onConfirm, onCancel, busy = false, focusRef, onFocus, onBlur }) {
+  return <section className="char-confirm" aria-label="Bekräfta handlingen" onFocus={onFocus} onBlur={onBlur}>
     <span className="char-eyebrow">{proposal.mode === "contested" ? "Omstridd handling" : "Beslut"}</span>
     <h4 ref={focusRef} tabIndex={-1}>{proposal.entry.label}</h4>
     {proposal.explanation && <p className="char-caption">{proposal.explanation}</p>}
@@ -259,11 +261,13 @@ export function OutcomeCard({ outcome, onDone, focusRef }) {
 /**
  * The controlled family's active schemes. "Avbryt intrigen" first asks, inside the scheme's own card; only the second
  * button aborts. Focus follows the player: to the question, back to the kept scheme, or on to the next scheme. With
- * no scheme left the list renders nothing and `onEmpty` decides where focus goes.
+ * no scheme left the list renders nothing and `onEmpty` decides where focus goes. `onAbort` resolves to the engine's
+ * result; a refused abort keeps the scheme, shows why under it and keeps focus on its own button.
  */
 export function SchemeList({ schemes, onAbort, onEmpty, busy = false }) {
   const list = entries(schemes);
   const [confirming, setConfirming] = useState(null);
+  const [refusals, setRefusals] = useState({});
   const [focusTarget, setFocusTarget] = useState(null);
   const focusArmed = useRef(false);
   const focusRef = useRef(null);
@@ -274,13 +278,25 @@ export function SchemeList({ schemes, onAbort, onEmpty, busy = false }) {
     else focusRef.current?.focus();
   }, [focusTarget, busy, list.length, onEmpty]);
   const focusNext = (target) => { focusArmed.current = true; setFocusTarget(target); };
-  const ask = (id) => { setConfirming(id); focusNext({ id, control: "keep" }); };
+  const refuse = (id, text) => setRefusals((current) => ({ ...current, [id]: text }));
+  const ask = (id) => { setConfirming(id); refuse(id, ""); focusNext({ id, control: "keep" }); };
   const keep = (id) => { setConfirming(null); focusNext({ id, control: "abort" }); };
-  const abort = (index) => {
+  const abort = async (index) => {
+    const { id } = list[index];
     const next = list[index + 1] ?? list[index - 1];
+    let result;
+    try {
+      result = await onAbort(id);
+    } catch (error) {
+      result = { ok: false, error: error?.message };
+    }
     setConfirming(null);
-    focusNext(next ? { id: next.id, control: "abort" } : { empty: true });
-    onAbort(list[index].id);
+    if (result?.ok) {
+      focusNext(next ? { id: next.id, control: "abort" } : { empty: true });
+      return;
+    }
+    refuse(id, playerText(result?.error, ABORT_FAILED));
+    focusNext({ id, control: "abort" });
   };
   const refFor = (id, control) => focusTarget?.id === id && focusTarget.control === control ? focusRef : undefined;
   if (!list.length) return null;
@@ -299,7 +315,11 @@ export function SchemeList({ schemes, onAbort, onEmpty, busy = false }) {
             <button type="button" className="char-button" ref={refFor(scheme.id, "keep")} onClick={() => keep(scheme.id)}>Behåll intrigen</button>
           </div>
         </div>
-        : <button type="button" className="char-button" ref={refFor(scheme.id, "abort")} disabled={busy} onClick={() => ask(scheme.id)}>Avbryt intrigen</button>}
+        : <>
+          {refusals[scheme.id] && <p className="char-reason" id={`char-scheme-refusal-${scheme.id}`}>{refusals[scheme.id]}</p>}
+          <button type="button" className="char-button" ref={refFor(scheme.id, "abort")} disabled={busy} onClick={() => ask(scheme.id)}
+            aria-describedby={refusals[scheme.id] ? `char-scheme-refusal-${scheme.id}` : undefined}>Avbryt intrigen</button>
+        </>}
     </li>)}</ul>
   </section>;
 }
@@ -307,7 +327,7 @@ export function SchemeList({ schemes, onAbort, onEmpty, busy = false }) {
 const IDLE = Object.freeze({ kind: "idle" });
 
 /** The confirmation card once the view has moved past the odds: no roll, only a fresh estimate or a way out. */
-function StaleCard({ proposal, onRefresh, onCancel, busy = false, focusRef }) {
+function StaleCard({ proposal, onRefresh, onCancel, busy = false, focusRef, primaryRef }) {
   const contested = proposal.mode === "contested";
   return <section className="char-confirm" aria-label="Bekräfta handlingen">
     <span className="char-eyebrow">{contested ? "Omstridd handling" : "Beslut"}</span>
@@ -316,7 +336,7 @@ function StaleCard({ proposal, onRefresh, onCancel, busy = false, focusRef }) {
       ? "Läget har ändrats sedan chansen beräknades. Beräkna chansen igen innan du bestämmer dig."
       : "Läget har ändrats sedan beslutet förbereddes. Förbered det igen innan du bestämmer dig."}</p>
     <div className="char-confirm-buttons">
-      <button type="button" className="char-button char-button--primary" disabled={busy} onClick={onRefresh}>{contested ? "Beräkna chansen igen" : "Förbered beslutet igen"}</button>
+      <button type="button" className="char-button char-button--primary" ref={primaryRef} disabled={busy} onClick={onRefresh}>{contested ? "Beräkna chansen igen" : "Förbered beslutet igen"}</button>
       <button type="button" className="char-button" disabled={busy} onClick={onCancel}>Avbryt</button>
     </div>
   </section>;
@@ -328,6 +348,7 @@ export default function ActionBox({ view, busy = false, runAction, CommandCard }
   // Focus follows the player's own steps: a handler arms it, and it lands once the panel is no longer busy.
   const focusArmed = useRef(false);
   const textRef = useRef(null), confirmRef = useRef(null), menuRef = useRef(null), outcomeRef = useRef(null);
+  const staleRef = useRef(null), focusInCard = useRef(false);
   useEffect(() => {
     if (!focusArmed.current || busy) return;
     const target = { idle: textRef, confirm: confirmRef, menu: menuRef, outcome: outcomeRef }[stage.kind];
@@ -335,7 +356,7 @@ export default function ActionBox({ view, busy = false, runAction, CommandCard }
     focusArmed.current = false;
     target.current.focus();
   }, [stage, busy]);
-  const go = (next) => { focusArmed.current = true; setStage(next); };
+  const go = (next) => { focusArmed.current = true; focusInCard.current = false; setStage(next); };
   const run = (work) => {
     const guarded = async () => {
       try {
@@ -373,6 +394,17 @@ export default function ActionBox({ view, busy = false, runAction, CommandCard }
     if (outcome.ok) setText("");
   });
   const stale = stage.kind === "confirm" && stage.proposal.viewRevision !== view?.revision;
+  // When the card goes stale under the player, the focused control disappears with it; focus moves to the refresh
+  // button. Focus the player has already moved out of the card stays where it is.
+  useEffect(() => {
+    if (!stale || busy || !focusInCard.current) return;
+    focusInCard.current = false;
+    staleRef.current?.focus();
+  }, [stale, busy]);
+  const trackFocus = {
+    onFocus: () => { focusInCard.current = true; },
+    onBlur: (event) => { if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget)) focusInCard.current = false; },
+  };
   return <section className="char-card char-action-box" aria-label="Egen handling">
     <div className="char-section-heading"><div><span className="char-eyebrow">Din företrädares nästa drag</span><h3>Handla själv</h3></div></div>
     <form className="char-action-text" onSubmit={interpret}>
@@ -385,9 +417,9 @@ export default function ActionBox({ view, busy = false, runAction, CommandCard }
       </div>
     </form>
     {stage.kind === "working" && <p className="char-caption" role="status">{stage.label}</p>}
-    {stale && <StaleCard proposal={stage.proposal} busy={busy} focusRef={confirmRef} onCancel={() => go(IDLE)}
+    {stale && <StaleCard proposal={stage.proposal} busy={busy} focusRef={confirmRef} primaryRef={staleRef} onCancel={() => go(IDLE)}
       onRefresh={() => propose(stage.proposal.entry, stage.proposal.payload, stage.proposal.explanation)} />}
-    {stage.kind === "confirm" && !stale && <ConfirmationCard proposal={stage.proposal} view={view} busy={busy} focusRef={confirmRef}
+    {stage.kind === "confirm" && !stale && <ConfirmationCard proposal={stage.proposal} view={view} busy={busy} focusRef={confirmRef} {...trackFocus}
       onConfirm={() => confirm(stage.proposal)} onCancel={() => go(IDLE)} />}
     {stage.kind === "menu" && <ActionMenu view={view} reason={stage.reason} CommandCard={CommandCard} busy={busy} focusRef={menuRef}
       onPropose={propose} onClose={() => go(IDLE)} />}

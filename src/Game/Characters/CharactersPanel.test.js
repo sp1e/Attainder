@@ -6,6 +6,7 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
 import { createCharacterSystem, estimateCharacterAction, getCharacterPresentation } from "../../runtime/characters/index.js";
+import { REASONS as ODDS_REASONS } from "../../runtime/characters/actionOdds.js";
 import { interpretCharacterAction } from "./characterModelCalls.js";
 import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testing/hookDriver.js";
 
@@ -51,11 +52,11 @@ function loadActionBox(stubs = {}) {
   return runModule(actionBoxCompiled, modules);
 }
 
-function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council", modelCalls = 0 } = {}) {
+function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council", modelCalls = 0, react = null, runtime = {}, globals = {} } = {}) {
   let stateIndex = 0;
   const calls = [];
   const modules = {
-    react: { ...React, useEffect: () => {}, useCallback: (fn) => fn,
+    react: react || { ...React, useEffect: () => {}, useCallback: (fn) => fn,
       useMemo: (fn) => fn(), useRef: (value) => ({ current: value }),
       useState: (initial) => {
         const index = stateIndex++;
@@ -71,6 +72,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
       estimateCharacterActionForView: async () => ({ ok: false, reason: "Ingen uppskattning." }),
       recordCharacterNarrative: async () => ({ ok: true }),
       submitCharacterCommand: async () => ({ ok: true, events: [] }),
+      ...runtime,
     },
     "../AI/modelCallCounter.js": { getModelCallCounts: () => ({ total: modelCalls, byKind: {} }), subscribeModelCalls: () => () => {} },
     "./characterModelCalls.js": {
@@ -82,7 +84,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
     "./Portrait.jsx": { default: ({ person }) => React.createElement("span", { "data-portrait-person": person.id }), __esModule: true },
   };
   modules["./ActionBox.jsx"] = runModule(actionBoxCompiled, modules);
-  const exports = runModule(compiled, modules, { window: { matchMedia: () => ({ matches: theme === "dark" }) }, localStorage: { getItem: () => "system" } });
+  const exports = runModule(compiled, modules, { window: { matchMedia: () => ({ matches: theme === "dark" }) }, localStorage: { getItem: () => "system" }, ...globals });
   return { ...exports, calls };
 }
 
@@ -513,7 +515,7 @@ test("the scheme list shows action, target and due date, and asks before it abor
   const props = { schemes: [
     { id: "scheme-4", actionLabel: "Undergräv", actorName: "Iset Arel", targetNames: ["Kamos Ptah"], dueAt: "-0299-04-01" },
     { id: "scheme-5", actionLabel: "Sprid rykten", actorName: "Iset Arel", targetNames: ["Nebet"], dueAt: "-0299-07-01" },
-  ], onAbort: (id) => aborted.push(id), onEmpty: () => { emptied += 1; }, busy: false };
+  ], onAbort: async (id) => { aborted.push(id); return { ok: true }; }, onEmpty: () => { emptied += 1; }, busy: false };
   const draw = () => driver.render(React.createElement(box.SchemeList, props));
   let tree = draw();
   const html = textOf(tree);
@@ -534,10 +536,12 @@ test("the scheme list shows action, target and due date, and asks before it abor
   buttonNamed(first(), "Ja, avbryt intrigen").props.onClick();
   assert.deepEqual(aborted, ["scheme-4"]);
   props.busy = true; tree = draw();
+  await settle();
   props.busy = false; props.schemes = props.schemes.slice(1); tree = draw();
   assert.equal(driver.focused.at(-1), buttonNamed(tree, "Avbryt intrigen"), "focus moves to the next scheme");
   buttonNamed(tree, "Avbryt intrigen").props.onClick(); tree = draw();
   buttonNamed(tree, "Ja, avbryt intrigen").props.onClick();
+  await settle();
   props.schemes = []; tree = draw();
   assert.equal(tree, null);
   assert.equal(emptied, 1, "with no scheme left, the panel chooses where focus goes");
@@ -748,4 +752,96 @@ test("the panel header shows the difficulty and the footer counts model calls", 
   const html = renderToStaticMarkup(loadPanel(view, { modelCalls: 3 }).default({ open: true, onClose: () => {} }));
   assert.match(html, /Svårighetsgrad: Svår/);
   assert.match(html, /Modellanrop denna session: 3/);
+});
+
+test("every odds reason from the engine reaches the player unchanged, å, ä and ö included", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  assert.equal(ODDS_REASONS.actorIncapacitated, "Aktören är oförmögen att utöva ett mandat just nu.");
+  const proposal = { mode: "command", catalogId: "gift", entry: view.catalog.find((entry) => entry.catalogId === "gift"), payload: { targetId: "person-0-2" }, revision: view.revision };
+  for (const reason of Object.values(ODDS_REASONS)) {
+    const { result: outcome, warnings } = await withWarnings(() => box.executeProposal({ proposal, view, submit: async () => ({ ok: false, error: reason }),
+      narrate: async () => assert.fail(), recordNarrative: async () => assert.fail(), present: (state) => state }));
+    assert.equal(outcome.text, reason, "a refused attempt shows the engine's sentence");
+    const step = await box.prepareInterpretedAction({ text: "Jag smickrar Iset", view, interpret: async () => swayAnswer(view), estimate: async () => ({ ok: false, reason }) });
+    assert.equal(step.reason, reason, "a refused estimate shows the engine's sentence");
+    assert.deepEqual(warnings, [], `${reason} is not treated as an internal error`);
+  }
+  const { result: transport } = await withWarnings(() => box.executeProposal({ proposal, view, submit: async () => ({ ok: false, error: "Failed to fetch the response." }),
+    narrate: async () => assert.fail(), recordNarrative: async () => assert.fail(), present: (state) => state }));
+  assert.equal(transport.text, "Handlingen kunde inte sparas. Försök igen om en stund.", "an English transport message is still kept from the player");
+});
+
+test("when the odds go stale while focus is in the card, focus moves to Beräkna chansen igen", async () => {
+  const { state, view } = engineCampaign();
+  const mount = () => mountBox({ view, model: { interpretCharacterAction: async () => swayAnswer(view) },
+    runtime: { estimateCharacterActionForView: async (intent) => ({ ...estimateCharacterAction(state, intent), revision: view.revision }) } });
+  const card = (tree) => findAll(tree, (node) => node.type === "section" && node.props["aria-label"] === "Bekräfta handlingen")[0];
+  const inside = mount();
+  await typeAndInterpret(inside, "Jag smickrar Iset");
+  card(inside.tree).props.onFocus({});
+  inside.props.view = { ...view, revision: view.revision + 1 };
+  inside.draw();
+  assert.equal(inside.driver.focused.at(-1), buttonNamed(inside.tree, "Beräkna chansen igen"));
+  // Focus the player has already moved elsewhere stays where it is.
+  const outside = mount();
+  await typeAndInterpret(outside, "Jag smickrar Iset");
+  card(outside.tree).props.onFocus({});
+  card(outside.tree).props.onBlur({ currentTarget: { contains: () => false }, relatedTarget: { tag: "textarea" } });
+  const before = outside.driver.focused.length;
+  outside.props.view = { ...view, revision: view.revision + 1 };
+  outside.draw();
+  assert.equal(outside.driver.focused.length, before);
+  assert.ok(buttonNamed(outside.tree, "Beräkna chansen igen"));
+});
+
+test("a refused abort keeps the scheme, shows why and keeps focus on the scheme's own button", async () => {
+  const schemes = [
+    { id: "scheme-4", actionLabel: "Undergräv", actorName: "Iset Arel", targetNames: ["Kamos Ptah"], dueAt: "-0299-04-01" },
+    { id: "scheme-5", actionLabel: "Sprid rykten", actorName: "Iset Arel", targetNames: ["Nebet"], dueAt: "-0299-07-01" },
+  ];
+  const cases = [
+    ["refused", async () => ({ ok: false, error: "Intrigen kan inte längre avbrytas." }), "Intrigen kan inte längre avbrytas."],
+    ["internal", async () => ({ ok: false, error: "fetch failed" }), "Intrigen kunde inte avbrytas. Försök igen om en stund."],
+    ["throws", async () => { throw new Error("socket hang up"); }, "Intrigen kunde inte avbrytas. Försök igen om en stund."],
+  ];
+  for (const [name, onAbort, shown] of cases) {
+    const driver = createHookDriver();
+    const box = loadActionBox({ react: driver.react });
+    let emptied = 0;
+    const props = { schemes, onAbort, onEmpty: () => { emptied += 1; }, busy: false };
+    let tree = driver.render(React.createElement(box.SchemeList, props));
+    const first = () => findAll(tree, (node) => node.type === "li" && textOf(node).includes("Undergräv"))[0];
+    buttonNamed(first(), "Avbryt intrigen").props.onClick();
+    tree = driver.render(React.createElement(box.SchemeList, props));
+    await withWarnings(async () => { buttonNamed(first(), "Ja, avbryt intrigen").props.onClick(); await settle(); });
+    tree = driver.render(React.createElement(box.SchemeList, props));
+    const own = buttonNamed(first(), "Avbryt intrigen");
+    assert.equal(driver.focused.at(-1), own, `${name}: focus stays on the scheme that remains`);
+    const refusal = findAll(first(), (node) => node.props?.id === own.props["aria-describedby"])[0];
+    assert.equal(textOf(refusal), shown, name);
+    assert.equal(emptied, 0, name);
+  }
+});
+
+test("in the panel a refused abort leaves the scheme with its refusal and focus on its own button", async () => {
+  const driver = createHookDriver();
+  const view = { ...engineCampaign().view, schemes: [{ id: "scheme-4", actionLabel: "Undergräv", actorName: "Iset Arel", targetNames: ["Kamos Ptah"], dueAt: "-0299-04-01" }] };
+  const submitted = [];
+  const { default: Panel } = loadPanel(view, { react: driver.react, globals: {
+    window: { matchMedia: () => ({ matches: false }), addEventListener() {}, removeEventListener() {} }, document: { activeElement: null } },
+  runtime: { submitCharacterCommand: async (command) => { submitted.push(command); return { ok: false, state: null, events: [], error: "Intrigen kan inte längre avbrytas." }; } } });
+  const draw = () => driver.render(React.createElement(Panel, { open: true, onClose: () => {} }));
+  let tree = draw();
+  await settle();
+  tree = draw();
+  const scheme = () => findAll(tree, (node) => node.type === "li" && node.props.className === "char-card char-scheme")[0];
+  buttonNamed(scheme(), "Avbryt intrigen").props.onClick();
+  tree = draw();
+  buttonNamed(scheme(), "Ja, avbryt intrigen").props.onClick();
+  await settle();
+  tree = draw();
+  assert.deepEqual(submitted.map((command) => [command.type, command.payload.schemeId]), [["abort_scheme", "scheme-4"]]);
+  assert.match(textOf(scheme()), /Intrigen kan inte längre avbrytas\./);
+  assert.equal(driver.focused.at(-1), buttonNamed(scheme(), "Avbryt intrigen"));
 });

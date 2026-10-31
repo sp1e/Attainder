@@ -33,7 +33,7 @@ const DECEITFUL_SECRECY = 8, HONEST_SECRECY = 5;
 const DIFFICULTY_STEP = Object.freeze({ easy: 10, normal: 0, hard: -10 });
 
 const COUNT_WORDS = Object.freeze(['inga', 'en', 'två', 'tre', 'fyra', 'fem']);
-const REASONS = Object.freeze({
+export const REASONS = Object.freeze({
   intent: 'Avsikten är ofullständig.',
   action: 'Handlingen är okänd eller saknar odds.',
   actorMissing: 'Aktören finns inte.',

@@ -373,11 +373,13 @@ export default function CharactersPanel({ open, onClose }) {
   const view = useMemo(() => state ? getCharacterPresentation(state) : null, [state]);
   const pending = entries(view?.stories).filter((story) => ["open", "pending", "active"].includes(story.status));
   const perform = useCallback(async (operation, annual = false, withModel = annual) => {
-    if (busyRef.current) return;
+    if (busyRef.current) return undefined;
     busyRef.current = true;
     setBusy(true); setAnnualBusy(withModel); setError(""); setNotice("");
+    // The result goes back to the caller as well, so a control such as the scheme list can react to a refusal.
+    let result;
     try {
-      const result = await operation();
+      result = await operation();
       if (!result?.ok) setError(result?.error || "Handlingen kunde inte genomföras.");
       else {
         setNotice(result.events?.length ? result.events.slice(-2).map((event) => event.title).join(" · ") : "Beslutet har sparats i kampanjen.");
@@ -388,8 +390,11 @@ export default function CharactersPanel({ open, onClose }) {
         }
       }
       await refresh();
-    } catch (reason) { setError(reason?.message || "Handlingen kunde inte sparas. Försök igen."); }
-    finally { busyRef.current = false; setBusy(false); setAnnualBusy(false); }
+    } catch (reason) {
+      result = { ok: false, error: reason?.message || "Handlingen kunde inte sparas. Försök igen." };
+      setError(result.error);
+    } finally { busyRef.current = false; setBusy(false); setAnnualBusy(false); }
+    return result;
   }, [refresh]);
   // The action box runs its own multi-step flow (interpret, estimate, attempt, narrate) under the same lock as a command.
   const runAction = useCallback(async (work) => {

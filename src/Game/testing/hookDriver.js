@@ -3,6 +3,7 @@ import React from "react";
 // Test-only: a small hook runtime for component tests without a DOM. It renders function components to a plain
 // tree, keeps their state between renders (keyed by position in the tree), runs effects after each render and lets
 // a test call the event handlers it finds. A ref on a host element receives a stand-in node whose focus() is recorded.
+// Effect cleanups are not run.
 export function createHookDriver() {
   const store = new Map();
   const focused = [];
@@ -46,7 +47,9 @@ export function createHookDriver() {
     }
     const host = { type, props: { ...props } };
     host.props.children = expand(props.children, `${path}/${type}`);
-    if (props.ref && typeof props.ref === "object") props.ref.current = { tag: type, props: host.props, focus: () => focused.push(host) };
+    // The DOM queries a component makes on its own ref find nothing, so only explicit focus() calls are recorded.
+    if (props.ref && typeof props.ref === "object") props.ref.current = { tag: type, props: host.props, focus: () => focused.push(host),
+      querySelector: () => null, querySelectorAll: () => [], contains: () => false };
     return host;
   }
 
