@@ -96,12 +96,14 @@ test('a 1.0 save migrates once and replays identically', () => {
 
 test('migration fills only what is missing and never overwrites existing values', () => {
   const old = stripExtensions(plain(createCharacterSystem({ seed: 321 })));
-  old.difficulty = 'hard'; old.actionRngState = 12345; old.secrets = [{ id: 'kept' }];
+  // A valid record, because normalize now validates secrets too.
+  const kept = { id: 'secret-900', type: 'heresy', subjectId: 'person-0-0', holderIds: ['person-1-0'], evidence: 'weak', causeId: null, exposed: false, createdAt: old.date };
+  old.difficulty = 'hard'; old.actionRngState = 12345; old.secrets = [kept];
   old.people['person-0-0'].skills.intrigue = 17;
   const state = normalizeCharacterSystem(old);
   assert.equal(state.difficulty, 'hard');
   assert.equal(state.actionRngState, 12345);
-  assert.deepEqual(state.secrets, [{ id: 'kept' }]);
+  assert.deepEqual(state.secrets, [kept]);
   assert.equal(state.people['person-0-0'].skills.intrigue, 17);
   assert.equal(state.people['person-0-0'].skills.prowess, deriveExtendedSkills(old.people['person-0-0'], state.date).prowess);
 });

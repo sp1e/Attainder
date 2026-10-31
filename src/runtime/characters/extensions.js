@@ -1,5 +1,6 @@
 import { ADULT_AGE } from './content.js';
 import { getCharacterAge } from './characterCapacity.js';
+import { syncPlotSecrets, validateSecrets } from './secrets.js';
 
 export const EXTENSIONS_VERSION = 1;
 export const DIFFICULTIES = Object.freeze({ easy: 'Lätt', normal: 'Normal', hard: 'Svår' });
@@ -29,7 +30,7 @@ export function deriveExtendedSkills(person, date = null) {
   return child ? { intrigue: Math.max(1, Math.round(intrigue / 2)), prowess: Math.max(1, Math.round(prowess / 2)) } : { intrigue, prowess };
 }
 
-/** Idempotent migration from a save without extensions. Fills only missing fields, never overwrites, and draws from no random stream. The action stream is seeded per campaign: polity, start date and the main stream's value at the moment it is first filled (the seed at creation, the save's current value on migration). */
+/** Idempotent migration from a save without extensions. Fills only missing fields, never overwrites, and draws from no random stream. Private plot memories become plot secrets (syncPlotSecrets); that spends state.sequence for the new ids but no randomness. The action stream is seeded per campaign: polity, start date and the main stream's value at the moment it is first filled (the seed at creation, the save's current value on migration). */
 export function ensureCharacterExtensions(state) {
   if (!Object.hasOwn(state, 'extensionsVersion')) state.extensionsVersion = EXTENSIONS_VERSION;
   if (!Object.hasOwn(state, 'difficulty')) state.difficulty = DEFAULT_DIFFICULTY;
@@ -43,6 +44,7 @@ export function ensureCharacterExtensions(state) {
     const derived = deriveExtendedSkills(person, state.date);
     for (const key of missing) person.skills[key] = derived[key];
   }
+  syncPlotSecrets(state);
 }
 
 export function validateCharacterExtensions(state) {
@@ -53,6 +55,7 @@ export function validateCharacterExtensions(state) {
   for (const person of Object.values(state.people || {})) {
     if (['intrigue', 'prowess'].some((key) => !Number.isFinite(person?.skills?.[key]) || person.skills[key] < 0 || person.skills[key] > SKILL_MAX)) throw new Error('En person har ogiltig intrig eller kampförmåga.');
   }
+  validateSecrets(state);
 }
 
 /** Separate xorshift stream for actions. Same algorithm as random() in index.js but it only ever touches state.actionRngState. */
