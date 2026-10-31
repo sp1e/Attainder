@@ -390,6 +390,69 @@ test('five and three precision show band labels and the sign of each modifier, n
   }
 });
 
+// A cut row says a roll sits exactly at 5 or 95 and, being a correction, carries a sign that reads as a cause. Only exact precision may show it.
+const CUT_LABEL = /möjliga (chans|nivå)/;
+const BAND_CASES = [[9, 'five'], [6, 'three']];
+const shown = (result) => result.display.modifiers;
+
+test('at five and three a success cut at 95 leaves the display rows of an uncut case with the same formula rows', () => {
+  for (const [skill, precision] of BAND_CASES) {
+    const build = (theirs, means) => estimate(scene(({ actor, target }) => { actor.skills.diplomacy = skill; target.skills.diplomacy = theirs; actor.traits = ['gregarious', 'honest']; target.traits = ['trusting']; }), 'sway', { means });
+    const cut = build(0, { silver: 60, agentRoles: ['cook', 'steward'] });
+    const plain = build(skill - 1, { silver: 5, agentRoles: ['cook'] });
+    assert.equal(cut.precision, precision);
+    assert.equal(cut.success.value, 95);
+    assert.ok(cut.success.modifiers.some((row) => CUT_LABEL.test(row.label)), 'the true rows still carry the cut, so they add up');
+    assert.equal(plain.success.modifiers.some((row) => CUT_LABEL.test(row.label)), false);
+    assert.ok(plain.success.value < 95);
+    assert.deepEqual(shown(cut), shown(plain), `${precision}: same labels and signs`);
+    assert.ok(shown(cut).every((row) => !CUT_LABEL.test(row.label)), `${precision}: no cut label`);
+    assert.equal(cut.display.success, precision === 'five' ? 'mycket hög' : 'trolig');
+  }
+});
+
+test('at five and three a success cut at 5 shows no "+" row that reads as a bonus', () => {
+  for (const [skill, precision] of BAND_CASES) {
+    const build = (theirs, stress) => estimate(scene(({ state, actor, target }) => { state.difficulty = 'hard'; actor.skills.intrigue = skill; target.skills.intrigue = theirs; actor.traits = ['honest']; target.traits = ['paranoid']; actor.stress = stress; }), 'undermine');
+    const cut = build(20, 200);
+    const plain = build(skill + 1, 20);
+    assert.equal(cut.precision, precision);
+    assert.equal(cut.success.value, 5);
+    assert.ok(cut.success.modifiers.find((row) => CUT_LABEL.test(row.label)).value > 0, 'the true cut row is a positive correction');
+    assert.ok(plain.success.value > 5);
+    assert.deepEqual(shown(cut), shown(plain), `${precision}: same labels and signs`);
+    assert.ok(shown(cut).every((row) => !CUT_LABEL.test(row.label)), `${precision}: no cut label`);
+  }
+});
+
+test('at five and three a secrecy cut at 95 is left out of the display rows as well', () => {
+  for (const [skill, precision] of BAND_CASES) {
+    const build = (theirs) => estimate(scene(({ actor, target }) => { actor.skills.diplomacy = skill; target.skills.intrigue = theirs; actor.traits = ['deceitful']; }), 'sway');
+    const cut = build(0);
+    const plain = build(skill - 1);
+    assert.equal(cut.precision, precision);
+    assert.equal(cut.secrecy.value, 95);
+    assert.ok(cut.secrecy.modifiers.some((row) => CUT_LABEL.test(row.label)));
+    assert.equal(plain.secrecy.modifiers.some((row) => CUT_LABEL.test(row.label)), false);
+    assert.ok(plain.secrecy.value < 95);
+    assert.deepEqual(shown(cut), shown(plain), `${precision}: same labels and signs`);
+    assert.ok(shown(cut).every((row) => !CUT_LABEL.test(row.label)), `${precision}: no cut label`);
+  }
+});
+
+test('at exact precision the cut rows are shown with their values', () => {
+  const high = estimate(scene(({ actor, target }) => { actor.skills.diplomacy = 14; target.skills.diplomacy = 0; target.skills.intrigue = 0; actor.traits = ['gregarious', 'deceitful']; }), 'sway', { means: { silver: 60 } });
+  assert.equal(high.precision, 'exact');
+  assert.deepEqual([high.success.value, high.secrecy.value], [95, 95]);
+  assert.equal(find(shown(high), /^Högsta möjliga chans$/).value, -3);
+  assert.equal(find(shown(high), /^Hemlighållning: högsta möjliga nivå$/).value, -7);
+  assert.deepEqual(shown(high), [...high.success.modifiers, ...high.secrecy.modifiers], 'exact shows every row');
+  const low = estimate(scene(({ state, actor, target }) => { state.difficulty = 'hard'; actor.skills.intrigue = 12; target.skills.intrigue = 20; actor.traits = ['honest']; target.traits = ['paranoid']; actor.stress = 200; }), 'undermine');
+  assert.equal(low.precision, 'exact');
+  assert.equal(low.success.value, 5);
+  assert.equal(find(shown(low), /^Lägsta möjliga chans$/).value, 28);
+});
+
 test('no label in any case contains a digit, so a hidden number cannot leak through a label', () => {
   const state = scene(({ state: s, actor, target }) => {
     actor.skills.diplomacy = 20; target.skills.diplomacy = 0; actor.traits = ['gregarious', 'honest', 'deceitful']; target.traits = ['paranoid', 'trusting'];

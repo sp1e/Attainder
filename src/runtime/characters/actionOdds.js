@@ -5,7 +5,7 @@ import { DIFFICULTIES, normalizeDifficulty } from './extensions.js';
 import { STAFF_ROLES } from './courtStaff.js';
 
 // Odds for the contested actions. An estimate is a pure function of the state and the engine's context: it draws no randomness, spends nothing, creates no staff and edits nothing. Task 6 rolls against the values computed here.
-// Both odds are integers from ODDS_MIN to ODDS_MAX. Every modifier is a row { label, value } with a Swedish label and a non-zero integer value, so the rows of one roll add up to its value. A cut at the bounds is a row of its own.
+// Both odds are integers from ODDS_MIN to ODDS_MAX. Every modifier is a row { label, value } with a Swedish label and a non-zero integer value, so the rows of one roll add up to its value. A cut at the bounds is a row of its own; it is shown at exact precision only (see CUT_ROWS).
 export const ODDS_MIN = 5;
 export const ODDS_MAX = 95;
 
@@ -25,6 +25,7 @@ const OPINION_DIVISOR = 5, OPINION_CAP = 15;
 const OLD_AGE = 65, OLD_AGE_PENALTY = 5;
 const STRESS_PER_STEP = 20, STRESS_STEP = 2, STRESS_CAP = 10;
 const FRAIL_HEALTH = 50, FRAIL_PENALTY = 5;
+// The cap comes from the design formula. With means.silver limited to MAX_EXTRA_SILVER (60) the bonus reaches +12 at most, so the cap never binds today; it keeps the bound if that limit is raised.
 const SILVER_PER_POINT = 5, SILVER_CAP = 15;
 const AGENT_SUCCESS = 6, AGENT_SECRECY = 8;
 const DECEITFUL_SECRECY = 8, HONEST_SECRECY = 5;
@@ -113,6 +114,9 @@ function readMeans(means) {
   return { silver, agents: roles.length };
 }
 
+// The cut rows that `bound` creates. A cut row says the roll sits exactly at 5 or 95 and its sign reads as a cause, so the band precisions leave it out of what the player sees (presentOdds). A WeakSet keeps the rows plain { label, value } data.
+const CUT_ROWS = new WeakSet();
+
 // Collects rows and skips zero values. `bound` adds the cut row so the rows always add up to the value inside 5 to 95.
 function rowBuilder(baseLabel, baseValue) {
   const rows = [{ label: baseLabel, value: baseValue }];
@@ -121,7 +125,11 @@ function rowBuilder(baseLabel, baseValue) {
     bound(highLabel, lowLabel) {
       const raw = rows.reduce((total, row) => total + row.value, 0);
       const value = clamp(raw, ODDS_MIN, ODDS_MAX);
-      if (value !== raw) rows.push({ label: value < raw ? highLabel : lowLabel, value: value - raw });
+      if (value !== raw) {
+        const cut = { label: value < raw ? highLabel : lowLabel, value: value - raw };
+        CUT_ROWS.add(cut);
+        rows.push(cut);
+      }
       return { value, modifiers: rows };
     },
   };
@@ -162,11 +170,12 @@ function secrecyOdds(entry, actor, target, means) {
   return rows.bound('Hemlighållning: högsta möjliga nivå', 'Hemlighållning: lägsta möjliga nivå');
 }
 
-// What the player may read. Exact shows numbers and every row; five and three show band labels and only the label and sign (+ or the real minus U+2212) of each row.
+// What the player may read. Exact shows numbers and every row, cut rows included. Five and three show band labels and only the label and sign (+ or the real minus U+2212) of each formula row; the cut rows stay out because they would reveal that a roll sits exactly at 5 or 95.
 function presentOdds(precision, success, secrecy) {
   const rows = [...success.modifiers, ...secrecy.modifiers];
   if (precision === 'exact') return { success: success.value, secrecy: secrecy.value, modifiers: rows.map(({ label, value }) => ({ label, value })) };
-  return { success: bandFor(success.value, precision), secrecy: bandFor(secrecy.value, precision), modifiers: rows.map(({ label, value }) => ({ label, sign: value > 0 ? '+' : '−' })) };
+  const causes = rows.filter((row) => !CUT_ROWS.has(row));
+  return { success: bandFor(success.value, precision), secrecy: bandFor(secrecy.value, precision), modifiers: causes.map(({ label, value }) => ({ label, sign: value > 0 ? '+' : '−' })) };
 }
 
 const refuse = (reason) => ({ ok: false, reason });
