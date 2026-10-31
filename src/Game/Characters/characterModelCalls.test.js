@@ -250,6 +250,15 @@ test('a child may fill a person field that asks for a child', async () => {
   assert.equal(result.ok, true);
 });
 
+test('a command entry ignores targetIds, so a child listed there does not make an unknown person', async () => {
+  const educate = { status: 'action', catalogId: 'educate', targetIds: ['person-0-4'], payload: { childId: 'person-0-4', mentorId: 'person-0-1', focus: 'command' }, explanation: 'Utbilda barnet.', suggestions: [] };
+  const result = await interpretCharacterAction({ text: 'utbilda barnet', view: view(), callModel: fakeModel(educate).callModel });
+  assert.equal(result.ok, true);
+  assert.deepEqual(result.payload, { childId: 'person-0-4', mentorId: 'person-0-1', focus: 'command' });
+  const badActor = await interpretCharacterAction({ text: 'utbilda barnet', view: view(), callModel: fakeModel({ ...educate, actorId: 'person-9-9' }).callModel });
+  assert.equal(badActor.reason, 'Personen finns inte i spelet.');
+});
+
 test('the unknown-person reason names the reported person text, and is bare when empty', async () => {
   const answer = (personText) => ({ status: 'unknown_person', catalogId: 'sway', targetIds: [], personText, explanation: 'Förklaring som inte ska visas.', suggestions: [] });
   const named = await interpretCharacterAction({ text: 'x', view: view(), callModel: fakeModel(answer('Lord Valdemar')).callModel });

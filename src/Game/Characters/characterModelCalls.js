@@ -135,7 +135,8 @@ function validateInterpretation(view, answer) {
   // Actor and targets must be among the living adults the prompt lists; a person field may also name a living child.
   const adults = new Map(livingAdults(view).map((person) => [person.id, person]));
   const living = new Map((view?.people || []).filter((person) => person.alive !== false).map((person) => [person.id, person]));
-  const targetIds = answer.targetIds === undefined ? [] : answer.targetIds;
+  // A command entry ignores targetIds (its persons are checked through the payload fields); the actor check applies to every entry.
+  const targetIds = entry.mode !== 'contested' || answer.targetIds === undefined ? [] : answer.targetIds;
   if (!Array.isArray(targetIds) || !targetIds.every((id) => typeof id === 'string')) throw new Rejection('targetIds must be a list of person ids.');
   const named = [...targetIds, ...(text(answer.actorId) ? [answer.actorId] : [])];
   for (const id of named) {
