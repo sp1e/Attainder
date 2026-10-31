@@ -17,7 +17,6 @@ const BACKFIRE_SEED = 3668339987;
 // First draw 31.71: below the refusal chance of a hostile member (70), above that of a loyal one (10).
 const LOW_FIRST_DRAW = 2654435761;
 const COMMAND_MESSAGE = 'Den här handlingen utförs med sitt vanliga kommando.';
-const SCHEME_MESSAGE = 'Planer som tar tid kan inte inledas ännu.';
 const LOG_ERROR = /handlingsloggen/i;
 
 const copy = (value) => JSON.parse(JSON.stringify(value));
@@ -180,12 +179,12 @@ test('a command id is refused with a pointer to its own command, before any char
   assert.equal(run(state, 'attempt_action', { actionId: 'toString', actorId: REP, targetIds: [TARGET] }).error, 'Handlingen är okänd eller saknar odds.');
 });
 
-test('a scheme action is refused before anything is rolled, paid or created', () => {
+test('a scheme attempt that fails validation is refused before anything is rolled, paid or created', () => {
   const state = withSeed(base(), CLEAN_SEED);
   const snapshot = copy(state);
-  const result = run(state, 'attempt_action', { actionId: 'undermine', actorId: REP, targetIds: [TARGET], means: { agentRoles: ['cook'] } });
+  const result = run(state, 'attempt_action', { actionId: 'undermine', actorId: REP, targetIds: [MEMBER], means: { agentRoles: ['cook'] } });
   assert.equal(result.ok, false);
-  assert.equal(result.error, SCHEME_MESSAGE);
+  assert.equal(result.error, 'Målpersonen tillhör samma familj som aktören.');
   assert.equal(result.state, state);
   assert.deepEqual(state, snapshot);
 });

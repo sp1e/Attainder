@@ -13,6 +13,7 @@ import { addSecretHolders, exposeSecret, plotSecretFor, syncPlotSecrets } from '
 import { buildCatalogActions } from './actionCatalog.js';
 import { estimateAction } from './actionOdds.js';
 import { presentResolutions, presentSchemes, recordNarrative, resolveAttempt, validateActionLog } from './actionResolution.js';
+import { abortScheme, advanceSchemes, getSchemeDates, reinforceScheme, validateSchemes } from './schemes.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
 export { PORTRAIT_STATES, PORTRAIT_AGE_GROUPS, resolvePortraitState } from './portraitState.js';
@@ -58,7 +59,7 @@ function consumeRoyalConsent(state, type) { const record = royalRegency(state); 
 function canRule(state) { const actor = activeRepresentative(state); const executive = realmExecutive(state); const office = state.offices.ruler; if (state.identity.mode === 'family') { const ownHead = state.families[state.identity.familyId]?.headId; if (ownHead !== office.holderId && ownHead !== office.regentId) return false; } return Boolean(actor && executive && actor.id === executive.id); }
 const PUBLIC_COMMANDS = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'abdicate', 'recognize_claim', ...Object.values(ARCHETYPES).map((archetype) => archetype.action)]);
 // Every command type with its own branch in handleCommand. attempt_action refuses these ids and points to the command instead.
-const COMMAND_TYPES = new Set([...PUBLIC_COMMANDS, 'provide_care', 'rest', 'gift', 'exercise_office', 'educate', 'marry', 'adopt', 'build_estate', 'seek_office', 'build_support', 'press_claim', 'seek_patron', 'return_exile', 'livelihood', 'sell_estate', 'patronize_faith', 'seek_refuge', 'request_regent_consent', 'resolve_regency', 'resolve_story']);
+const COMMAND_TYPES = new Set([...PUBLIC_COMMANDS, 'provide_care', 'rest', 'gift', 'exercise_office', 'educate', 'marry', 'adopt', 'build_estate', 'seek_office', 'build_support', 'press_claim', 'seek_patron', 'return_exile', 'livelihood', 'sell_estate', 'patronize_faith', 'seek_refuge', 'request_regent_consent', 'resolve_regency', 'resolve_story', 'abort_scheme', 'reinforce_scheme']);
 function commandActor(state, type) {
   return PUBLIC_COMMANDS.has(type) || (['patronize_faith', 'exercise_office'].includes(type) && canRule(state)) ? realmExecutive(state) : householdRepresentative(state);
 }
@@ -324,6 +325,7 @@ export function normalizeCharacterSystem(raw) {
   validateCharacterExtensions(state);
   // Called here rather than from validateCharacterExtensions: actionResolution.js imports extensions.js, so the reverse import would be a cycle.
   validateActionLog(state);
+  validateSchemes(state);
   return state;
 }
 
@@ -586,6 +588,8 @@ function handleCommand(state, command, events) {
   else if (type === 'tax_policy') { requireRule(state); if (!['gentle', 'balanced', 'harsh'].includes(p.policy)) throw new Error('Ogiltig skattepolitik.'); if (state.realm.taxPolicy === p.policy) throw new Error('Politiken gäller redan.'); charge(state, 10, { publicFunds: true, tag: p.policy === 'harsh' ? 'cruel' : 'duty' }); state.realm.taxPolicy = p.policy; for (const family of values(state.families)) family.grievance = clamp(family.grievance + (p.policy === 'harsh' ? -8 : p.policy === 'gentle' ? 6 : 2), -40, 40); logEvent(state, events, 'policy', 'Skattepolitiken ändras', p.policy === 'harsh' ? 'Högre intäkter ökar familjernas missnöje och stadens oro.' : 'Skatterna anpassas och stödet räknas om.', [actor.id]); }
   else if (type === 'patronize_faith') { const faith = state.religions[p.religionId]; if (!faith) throw new Error('Välj ett religiöst samfund.'); charge(state, 20, { publicFunds: canRule(state), tag: 'generous' }); faith.support = clamp(faith.support + 12); ownFamily.influence = clamp(ownFamily.influence + 4); memory(state, 'religion', `Stöd till ${faith.name}`, [actor.id, faith.leaderId]); logEvent(state, events, 'religion', 'Ett religiöst samfund får stöd', `${faith.name} stärker sitt politiska stöd med 12.`, [actor.id, faith.leaderId]); }
   else if (type === 'attempt_action') resolveAttempt(state, command, events, actionHooks(state));
+  else if (type === 'abort_scheme') abortScheme(state, p, actionHooks(state));
+  else if (type === 'reinforce_scheme') reinforceScheme(state, p, actionHooks(state));
   else if (Object.values(ARCHETYPES).some((a) => a.action === type)) { requireRule(state); const archetype = ARCHETYPES[actor.archetype]; if (archetype.action !== type) throw new Error('Den aktiva ledaren saknar denna arketypförmåga.'); if (state.projects.some((project) => project.kind === type && project.status === 'active' && (!project.personal || project.ownerId === actor.id))) throw new Error('Förmågan är redan aktiv.'); if (actor.cooldowns[type] && compareGameDates(actor.cooldowns[type], state.date) > 0) throw new Error('Förmågan kan användas igen nästa år.'); if (type === 'academy' && state.realm.academy) throw new Error('Akademin finns redan.'); charge(state, archetype.cost, { publicFunds: true, tag: type === 'mobilize' ? 'risky' : 'duty' }); actor.cooldowns[type] = addGameMonths(state.date, 12);
     if (['mobilize', 'reform', 'sanctuary'].includes(type)) { state.projects.push({ id: nextId(state, 'project'), kind: type, title: archetype.ability, ownerId: actor.id, createdAt: state.date, dueAt: addGameMonths(state.date, 36), personal: true, status: 'active' });  }
     if (type === 'concord') { for (const f of values(state.families)) { f.grievance = clamp(f.grievance + 10, -40, 40); opinionCause(state, f.headId, actor.id, 8, 'Försoningsråd', `concord:${state.date}`); } }
@@ -668,6 +672,7 @@ export function advanceCharacters(original, targetDate, options = {}) {
     const fatalities = advanceHealthTransitions(state, events, { representativeId: activeRepresentative(state)?.id, playerFamilyId: controlledFamily(state)?.id, nominalId: state.identity.mode === 'realm' ? state.offices.ruler.holderId : state.families[state.identity.familyId]?.headId });
     killPeople(state, fatalities.map((fatality) => fatality.personId), events, Object.fromEntries(fatalities.map((fatality) => [fatality.personId, fatality.reason])));
     refreshRepresentation(state, events);
+    advanceSchemes(state, events, actionHooks(state));
     if (compareGameDates(state.nextAnnualDate, state.date) <= 0 && !state.status.ended) { annualStep(state, events); state.nextAnnualDate = addGameMonths(state.nextAnnualDate, 12); }
     refreshStories(state, events); updateStatus(state);
     if (state.status.ended) { if (compareGameDates(state.nextAnnualDate, state.date) <= 0) state.nextAnnualDate = addGameMonths(state.nextAnnualDate, 12); break; }
@@ -682,7 +687,7 @@ export function getNextCharacterTransitionDate(state, targetDate) {
   if (!state || state.status.ended || !target || compareGameDates(target, state.date) <= 0) return null;
   const storyDeadlines = state.stories.filter((story) => (story.type === 'character_event' && story.status === 'open') || (isOfficePromise(story) && story.status === 'waiting')).map((story) => story.dueAt);
   const majorityDates = living(state).filter((person) => !adult(state, person)).map((person) => addGameMonths(person.bornAt, ADULT_AGE * 12));
-  const dates = [state.nextAnnualDate, getNextHealthTransitionDate(state), ...getEventChainDates(state), ...majorityDates, ...storyDeadlines, target].filter((date) => date && compareGameDates(date, state.date) > 0 && compareGameDates(date, target) <= 0);
+  const dates = [state.nextAnnualDate, getNextHealthTransitionDate(state), ...getEventChainDates(state), ...getSchemeDates(state), ...majorityDates, ...storyDeadlines, target].filter((date) => date && compareGameDates(date, state.date) > 0 && compareGameDates(date, target) <= 0);
   return dates.sort(compareGameDates)[0] || target;
 }
 

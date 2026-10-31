@@ -4,6 +4,7 @@ import { ODDS_MAX, ODDS_MIN, bandFor, estimateAction } from './actionOdds.js';
 import { ensureStaff } from './courtStaff.js';
 import { actionRandom } from './extensions.js';
 import { HOOK_STRENGTHS, SECRET_TYPES, createSecret, grantHook } from './secrets.js';
+import { startScheme } from './schemes.js';
 
 // Resolution of contested actions. The engine decides: an attempt is validated by estimateAction, paid, rolled twice on the action stream (success, then secrecy) and lands on one of five tiers whose effect envelope is applied at its defaults. A later narrative may move a ranged effect inside its envelope and never outside it.
 // Randomness comes only from actionRandom (state.actionRngState). The main stream state.rngState is never touched here.
@@ -33,7 +34,6 @@ const SCHEME_FIELDS = Object.freeze(['startedAt', 'completesAt', 'dueAt']);
 
 const MESSAGES = Object.freeze({
   command: 'Den här handlingen utförs med sitt vanliga kommando.',
-  scheme: 'Planer som tar tid kan inte inledas ännu.',
   missing: 'Utfallet finns inte.',
   refused: 'En vägrad order har inget utfall att berätta om.',
   told: 'Utfallet har redan en berättelse.',
@@ -96,9 +96,16 @@ export function payForAction(state, resolution, estimate, hooks) {
   return hooks.charge(resolution.refused ? 0 : cost.silver, { orders: cost.orders, publicFunds: cost.wallet === 'realm', tag: resolution.refused ? REFUSED_TAG : cost.stressTag });
 }
 
-// The single place where a scheme (durationMonths > 0) starts. Task 7 replaces this body with: the refusal draw for an ordered actor (drawRefusal), payForAction, then startScheme; the scheme rolls through completeResolution when it completes. Until then a scheme is refused here, after validation and before anything is drawn, paid or created.
-function beginScheme(state, command, entry, estimate, events, hooks) {
-  throw new Error(MESSAGES.scheme);
+// The single place where a scheme (durationMonths > 0) starts. An ordered actor draws the refusal first, exactly as for an instant action; a refused order is recorded like any refusal and starts nothing. Otherwise the start is paid once, here, and the scheme is written. The roll comes later: schemes.js calls resolveScheme on the due date, with no second refusal draw, since the order was obeyed.
+function beginScheme(state, command, entry, estimate, events, hooks, ctx) {
+  const playerControlled = ctx.playerControlled === true;
+  const order = drawOrder(state, estimate.actorId, playerControlled, ctx);
+  if (order?.refused) {
+    const resolution = recordOrder(openResolution(state, command, estimate, ctx), order);
+    return refuseOrder(state, resolution, entry, estimate, events, hooks);
+  }
+  payForAction(state, { refused: false, playerControlled }, estimate, hooks);
+  return startScheme(state, command.payload, estimate, hooks, command.id ?? null);
 }
 
 function openResolution(state, command, estimate, ctx) {
@@ -110,13 +117,26 @@ function openResolution(state, command, estimate, ctx) {
   };
 }
 
-// Orders exist only for the player and come from the active representative, the person the player acts through. Any other actor draws the refusal roll first, before the success roll; nobody refuses their own order.
-function drawRefusal(state, resolution, ctx) {
+// Orders exist only for the player and come from the active representative, the person the player acts through. Any other actor draws the refusal roll first, before the success roll; nobody refuses their own order. Returns the chance and the roll, or null when nobody gave an order and nothing was drawn.
+function drawOrder(state, actorId, playerControlled, ctx) {
   const giverId = ctx.activeRepresentativeId ?? ctx.representativeId;
-  if (!resolution.playerControlled || resolution.actorId === giverId) return false;
-  resolution.estimate.refusal = refusalChance(state.people[resolution.actorId], ctx.opinion(resolution.actorId, giverId));
-  resolution.rolls.refusal = roll(state);
-  return resolution.rolls.refusal < resolution.estimate.refusal;
+  if (!playerControlled || actorId === giverId) return null;
+  const chance = refusalChance(state.people[actorId], ctx.opinion(actorId, giverId));
+  const drawn = roll(state);
+  return { chance, roll: drawn, refused: drawn < chance };
+}
+
+function recordOrder(resolution, order) {
+  resolution.estimate.refusal = order.chance;
+  resolution.rolls.refusal = order.roll;
+  return resolution;
+}
+
+function drawRefusal(state, resolution, ctx) {
+  const order = drawOrder(state, resolution.actorId, resolution.playerControlled, ctx);
+  if (!order) return false;
+  recordOrder(resolution, order);
+  return order.refused;
 }
 
 function refuseOrder(state, resolution, entry, estimate, events, hooks) {
@@ -142,7 +162,7 @@ function describeAttempt(state, resolution) {
   return `Utförare: ${names([resolution.actorId], state.people)}. Mål: ${names(resolution.targetIds, state.people)}.${agents}`;
 }
 
-/** Rolls success, then secrecy, picks the tier, writes one chronicle event and the anchor memory, applies the tier's envelope at its defaults and appends the entry to state.actionLog. Task 7 calls this when a scheme completes. */
+/** Rolls success, then secrecy, picks the tier, writes one chronicle event and the anchor memory, applies the tier's envelope at its defaults and appends the entry to state.actionLog. Used by resolveAttempt and, on a scheme's due date, by resolveScheme. */
 export function completeResolution(state, resolution, entry, events, hooks) {
   resolution.rolls.success = roll(state);
   resolution.rolls.secrecy = roll(state);
@@ -161,7 +181,16 @@ function refuseCommandIds(intent, hooks) {
   if (typeof id === 'string' && !Object.hasOwn(ACTION_CATALOG, id) && hooks.isCommandAction(id)) throw new Error(MESSAGES.command);
 }
 
-/** Runs the command attempt_action (payload = intent). Throws a Swedish sentence when the attempt is refused before any charge. Returns the resolution entry it appended to state.actionLog. */
+/**
+ * Opens and completes the resolution of a scheme on its due date. `estimate` is the fresh ok estimate for that day. The order was obeyed and the price paid when the scheme started, so there is no refusal draw and no charge here. The scheme carries the command id and the playerControlled flag that openResolution reads. Agents are found or created now, when the action runs. Returns the action log entry.
+ */
+export function resolveScheme(state, scheme, estimate, events, hooks) {
+  const resolution = openResolution(state, { id: scheme.commandId }, estimate, scheme);
+  resolution.agentIds = hireAgents(state, resolution, scheme.means, hooks);
+  return completeResolution(state, resolution, ACTION_CATALOG[scheme.actionId], events, hooks);
+}
+
+/** Runs the command attempt_action (payload = intent). Throws a Swedish sentence when the attempt is refused before any charge. Returns the resolution entry it appended to state.actionLog, or, for an action that takes months, the scheme it started. */
 export function resolveAttempt(state, command, events, hooks) {
   const intent = command?.payload;
   refuseCommandIds(intent, hooks);
@@ -169,7 +198,7 @@ export function resolveAttempt(state, command, events, hooks) {
   const estimate = estimateAction(state, intent, ctx);
   if (!estimate.ok) throw new Error(estimate.reason);
   const entry = ACTION_CATALOG[estimate.actionId];
-  if (entry.durationMonths > 0) return beginScheme(state, command, entry, estimate, events, hooks);
+  if (entry.durationMonths > 0) return beginScheme(state, command, entry, estimate, events, hooks, ctx);
   const resolution = openResolution(state, command, estimate, ctx);
   if (drawRefusal(state, resolution, ctx)) return refuseOrder(state, resolution, entry, estimate, events, hooks);
   payForAction(state, resolution, estimate, hooks);
