@@ -103,9 +103,24 @@ export function reconcileRegency(state, id, principalId, proposedRegentId, { isA
   return null;
 }
 
+function activeRegency(state, record, principalId, regentId) {
+  return record && record.principalId === principalId && record.regentId === regentId &&
+    ['minority', 'contested'].includes(record.phase) && alive(state.people[principalId]) && alive(state.people[regentId]) ? record : null;
+}
+
+// This lookup follows the office, independently of the player's campaign mode.
+export function royalRegency(state) {
+  const office = state.offices.ruler;
+  return activeRegency(state, state.regencies?.['office:ruler'], office.holderId, office.regentId);
+}
+
 export function relevantRegencies(state) {
-  const principalIds = state.identity.mode === 'realm' ? [state.offices.ruler.holderId] : [state.families[state.identity.familyId]?.headId];
-  return values(state.regencies).filter((record) => principalIds.includes(record.principalId) && ['minority', 'contested'].includes(record.phase) && alive(state.people[record.regentId]));
+  const office = state.offices.ruler;
+  const family = state.families[state.identity.mode === 'family' ? state.identity.familyId : state.people[office.holderId]?.familyId];
+  const guardian = family && activeRegency(state, state.regencies?.[`family:${family.id}`], family.headId, family.guardianId);
+  const royal = royalRegency(state);
+  const royalRelevant = state.identity.mode === 'realm' || [office.holderId, office.regentId].includes(family?.headId);
+  return [guardian, royalRelevant && royal].filter(Boolean);
 }
 
 const RESERVED = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'mobilize', 'reform', 'concord', 'academy', 'succession_law', 'sanctuary', 'network', 'aqueduct', 'build_estate', 'adopt']);
@@ -133,8 +148,10 @@ export function regencyVeto(state, type) {
   return '';
 }
 
-export function consumeRegencyConsent(state, type) {
-  for (const record of relevantRegencies(state)) {
+export function consumeRegencyConsent(state, type, records = relevantRegencies(state)) {
+  if (!RESERVED.has(type)) return;
+  for (const record of records) {
+    if (record.id.startsWith('family:') !== ['build_estate', 'adopt'].includes(type)) continue;
     const grant = record.grants.find((item) => item.actionType === type && !item.usedAt && compareGameDates(item.expiresAt, state.date) > 0);
     if (grant) grant.usedAt = state.date;
   }
