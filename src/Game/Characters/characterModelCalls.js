@@ -185,7 +185,7 @@ export async function interpretCharacterAction({ text: playerText, view, callMod
   return result.value;
 }
 
-const EFFECT_FIELDS = ['kind', 'min', 'max', 'value', 'label', 'title', 'visibility', 'strength', 'type'];
+const EFFECT_FIELDS = ['kind', 'min', 'max', 'value', 'label', 'title', 'visibility', 'strength', 'type', 'reason', 'crime', 'topic'];
 
 function narratePrompt(resolution, view) {
   const names = new Map((view?.people || []).map((person) => [person.id, person.name]));

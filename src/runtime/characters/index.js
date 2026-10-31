@@ -14,6 +14,7 @@ import { buildCatalogActions } from './actionCatalog.js';
 import { estimateAction } from './actionOdds.js';
 import { STAFF_ROLES, staffOf } from './courtStaff.js';
 import { presentResolutions, presentSchemes, recordNarrative, resolveAttempt, validateActionLog } from './actionResolution.js';
+import { punishCrimeChoices, resolvePunishment } from './crimes.js';
 import { abortScheme, advanceSchemes, getSchemeDates, reinforceScheme, validateSchemes } from './schemes.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
@@ -212,6 +213,11 @@ function refreshStories(state, events) {
       }
     }
     if (story.type === 'health_care') { const patient = state.people[story.actorId]; const condition = patient?.healthConditions?.find((item) => item.id === story.conditionId); if (!alive(patient) || !condition || !['active', 'recovering'].includes(condition.stage) || condition.treatment || patient.familyId !== controlledFamily(state)?.id) { story.status = 'closed'; story.resolvedAt = state.date; story.resolution = 'Detta vårdbeslut är inte längre giltigt för ditt hushåll.'; } }
+    if (story.type === 'punish_crime' && (!alive(state.people[story.actorId]) || compareGameDates(story.dueAt, state.date) <= 0)) {
+      story.status = 'closed'; story.resolvedAt = state.date;
+      story.resolution = !alive(state.people[story.actorId]) ? 'Gärningspersonen har avlidit; ärendet faller.' : 'Ärendet förföll utan dom.';
+      logEvent(state, events, 'story_closed', story.title, story.resolution, [story.actorId]);
+    }
     if (story.type === 'stress_crisis' && !alive(state.people[story.actorId])) { story.status = 'closed'; story.resolvedAt = state.date; story.resolution = 'Personens liv har avslutats.'; }
   }
 }
@@ -380,8 +386,18 @@ function npcActionContext(state, actorId) {
 }
 /** Odds for one contested action through the engine's own context, or a Swedish refusal. Pure: no randomness, no spending. The result carries the true values used for rolling; `display` is the only part to show the player. */
 export function estimateCharacterAction(state, intent) { return estimateAction(state, intent, actionContext(state)); }
-function actionHooks(state) {
-  return { memory: (type, title, participants, options) => memory(state, type, title, participants, options),
+// Spouse, parent, child, sibling or the same family. Relatives by marriage count through the spouse bond only.
+function kin(state, aId, bId) {
+  const a = state.people[aId], b = state.people[bId];
+  if (!a || !b || a.id === b.id) return false;
+  const parents = (person) => [...person.legalParentIds, ...person.biologicalParentIds];
+  return a.familyId === b.familyId || a.spouseId === b.id || b.spouseId === a.id || parents(a).includes(b.id) || parents(b).includes(a.id) || parents(a).some((id) => parents(b).includes(id));
+}
+function openStory(state, story) { const item = { ...story, id: nextId(state, 'story'), status: 'open' }; state.stories.push(item); return item; }
+/** The hooks the action gate, the schemes and the plot step use. Exported so the rules modules can be tested against the engine's own helpers. */
+export function actionHooks(state) {
+  return { kill: (ids, events, reason) => killPeople(state, ids, events, reason), related: (aId, bId) => kin(state, aId, bId), ruler: () => ruler(state), openStory: (story) => openStory(state, story),
+    memory: (type, title, participants, options) => memory(state, type, title, participants, options),
     opinionCause: (fromId, toId, amount, label, causeId) => opinionCause(state, fromId, toId, amount, label, causeId),
     logEvent: (events, type, title, description, participants, extra) => logEvent(state, events, type, title, description, participants, extra),
     charge: (amount, options) => charge(state, amount, options),
@@ -398,6 +414,7 @@ function rawStoryChoices(state, story) { const controller = canRule(state); cons
   if (story.type === 'stress_crisis') return [{ id: 'rest', label: 'Dra dig tillbaka för återhämtning', description: 'Minska stress med 40 och avstå årets återstående handlingar.', cost: '0 silver', stress: '−40', disabledReason: '' }, { id: 'support', label: 'Sök stöd i hushållet', description: 'Minska stress med 25 och förbättra en familjerelation.', cost: '15 silver', stress: '−25', disabledReason: cost(15, false) }, { id: 'endure', label: 'Fortsätt under belastning', description: 'Behåll handlingsutrymmet men förlora hälsa.', cost: '0 silver', stress: '+5', disabledReason: '' }];
   if (story.type === 'coup') return controller ? [{ id: 'negotiate', label: 'Förhandla om makten', description: 'En eftergift kostar 45 silver men kan förhindra en kupp.', cost: '45 silver', stress: String(stressFor(actor, 'surrender')), disabledReason: cost(45, true) }, { id: 'resist', label: 'Försvara ämbetet', description: 'Utgången beror på faktisk militär beredskap, familjestöd och legitimitet.', cost: '0 silver', stress: String(stressFor(actor, 'risky')), disabledReason: '' }, { id: 'yield', label: 'Överlåt tronen', description: 'Riksläget följer den nya ledaren. Familjeläget behåller familjen och dess egendom.', cost: '0 silver', stress: String(stressFor(actor, 'surrender')), disabledReason: '' }] : [{ id: 'back', label: 'Stöd utmanaren', description: 'Kosta på en allierad och stärk familjens nätverk.', cost: '20 silver', stress: '0', disabledReason: cost(20, false) }, { id: 'observe', label: 'Avvakta utgången', description: 'De inblandades makt avgör striden.', cost: '0 silver', stress: '0', disabledReason: '' }];
   if (story.type === 'discovery') return [{ id: 'expose', label: 'Avslöja planen', description: 'Planens mål får veta vem som agerat och reagerar på sanningen.', cost: '0 silver', stress: '0', disabledReason: '' }, { id: 'keep', label: 'Behåll kunskapen', description: 'Hemligheten förblir känd endast av de invigda.', cost: '0 silver', stress: '0', disabledReason: '' }];
+  if (story.type === 'punish_crime') return punishCrimeChoices(state, story, { controller });
   return [{ id: 'acknowledge', label: 'Noterat', description: 'Följden läggs till i historiken.', cost: '0 silver', stress: '0', disabledReason: '' }];
 }
 
@@ -470,6 +487,7 @@ function resolveStory(state, story, choiceId, events, automatic = false) {
   } else if (story.type === 'stress_crisis') { const person = state.people[story.actorId]; if (alive(person)) { if (choiceId === 'rest') { person.stress = Math.max(0, person.stress - 40); state.actionPoints = 0; } if (choiceId === 'support') { spend(15, false); person.stress = Math.max(0, person.stress - 25); } if (choiceId === 'endure') { person.health = Math.max(1, person.health - 12); person.stress = clamp(person.stress + 5, 0, 200); } } }
   else if (story.type === 'coup') { const challenger = alive(state.people[story.actorId]) ? state.people[story.actorId] : state.people[fam?.headId]; if (alive(challenger)) { if (choiceId === 'negotiate') { spend(45, true, 'surrender'); state.families[challenger.familyId].treasury += 45; state.families[challenger.familyId].grievance += 18; } else { if (choiceId === 'back') { spend(20, false); controlledFamily(state).influence += 10; } if (choiceId === 'yield') spend(0, true, 'surrender'); if (choiceId === 'resist') spend(0, true, 'risky'); const defense = getCharacterWorldEffects(state).militaryReadiness + state.realm.legitimacy * 0.4; const attack = state.families[challenger.familyId].influence + challenger.skills.command * 3 + (choiceId === 'back' ? 15 : 0); if (choiceId === 'yield' || attack > defense) crown(state, challenger, events, 'En maktkamp förändrar rikets ledning', 35, false); else { state.families[challenger.familyId].influence = Math.max(10, state.families[challenger.familyId].influence - 20); challenger.stress = clamp(challenger.stress + 20, 0, 200); logEvent(state, events, 'coup_defeated', 'Maktövertagandet avvärjs', `${challenger.name} saknade tillräckligt stöd och militär styrka.`, [challenger.id, leader?.id]); } } } }
   else if (story.type === 'discovery' && choiceId === 'expose') { const hidden = state.memories.find((m) => m.id === story.causeId); if (hidden) { hidden.knownBy = 'public'; const plot = plotSecretFor(state, hidden.id); if (plot) exposeSecret(state, plot.id); opinionCause(state, hidden.participants[1], hidden.participants[0], -25, 'Avslöjad plan', hidden.id); memory(state, 'discovery', 'En hemlig plan avslöjades', hidden.participants, { causeId: hidden.id }); } }
+  else if (story.type === 'punish_crime') resolvePunishment(state, story, choiceId, actionHooks(state));
   story.status = 'resolved'; story.choiceId = choiceId; story.resolvedAt = state.date;
   logEvent(state, events, 'choice', story.title, `${choice.label}. ${choice.description}`, [story.actorId, actor?.id]);
 }

@@ -186,6 +186,14 @@ test('the narrate prompt holds tier, indexed effects with ranges and people, nev
   for (const forbidden of ['71', '33', 'estimate', 'odds', 'secrecy', 'hög', 'låg']) assert.ok(!prompt.includes(forbidden), `prompt leaks ${forbidden}`);
 });
 
+test('the narrate prompt carries the reason, crime and topic of the new effect kinds', async () => {
+  const { callModel, calls } = fakeModel({ title: 'T', narrative: 'N', adjustments: [] });
+  const subject = { ...resolution(), effects: [{ kind: 'kill', personId: TARGET, reason: 'Förgiftad' }, { kind: 'crime', crime: 'kinslaying', secretId: 'secret-9', exposed: true }, { kind: 'rumor', topic: 'Ett hemligt giftmord' }] };
+  await narrateCharacterResolution({ resolution: subject, view: view(), callModel });
+  const prompt = calls[0].history[0].parts[0].text;
+  for (const text of ['"reason":"Förgiftad"', '"crime":"kinslaying"', '"topic":"Ett hemligt giftmord"']) assert.ok(prompt.includes(text), `prompt lacks ${text}`);
+});
+
 test('narrate retries once on a malformed answer, then reports failure', async () => {
   const good = { title: 'T', narrative: 'N', adjustments: [] };
   const retried = fakeModel({ title: '', narrative: 'N', adjustments: [] }, good);

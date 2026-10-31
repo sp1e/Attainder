@@ -1,6 +1,7 @@
 import { compareGameDates, normalizeGameDate } from '../gameDates.js';
 import { ACTION_CATALOG, TIER_IDS, effectDefault } from './actionCatalog.js';
 import { ODDS_MAX, ODDS_MIN, bandFor, estimateAction } from './actionOdds.js';
+import { CRIME_LABELS, exposeCrime } from './crimes.js';
 import { ensureStaff } from './courtStaff.js';
 import { actionRandom } from './extensions.js';
 import { HOOK_STRENGTHS, SECRET_TYPES, createSecret, grantHook } from './secrets.js';
@@ -25,7 +26,7 @@ const REFUSAL = Object.freeze({ base: 40, loyalty: 0.4, opinion: 0.3, ambitious:
 // A failed roll in the top tenth of the failure range backfires.
 const BACKFIRE_SHARE = 0.9;
 const TITLE_MAX = 120, TEXT_MAX = 1500;
-const INFLUENCE_MAX = 100, STRESS_MAX = 200;
+const INFLUENCE_MAX = 100, STRESS_MAX = 200, LEGITIMACY_MAX = 100;
 const RECENT_LIMIT = 10;
 const PRECISIONS = new Set(['exact', 'five', 'three']);
 // charge() prices stress per tag (stressFor in index.js) and gives 0 for a tag it does not know. A refused order passes this tag, so the representative pays no stress for an order that never ran.
@@ -177,7 +178,7 @@ export function completeResolution(state, resolution, entry, events, hooks) {
   const event = hooks.logEvent(events, 'action_resolution', outcomeTitle(entry, resolution.tier), describeAttempt(state, resolution), participants, playerEvent(state, resolution, hooks));
   const knownBy = PUBLIC_TIERS.has(resolution.tier) ? 'public' : resolution.playerControlled ? playerWitnesses(resolution, hooks) : [resolution.actorId];
   resolution.memoryId = hooks.memory('action', event.title, participants, { causeId: event.id, knownBy, resolutionId: resolution.id }).id;
-  resolution.effects = applyTierEffects(state, resolution, entry, hooks);
+  resolution.effects = applyTierEffects(state, resolution, entry, hooks, events);
   state.actionLog.push(resolution);
   return resolution;
 }
@@ -226,6 +227,7 @@ const rangedRecord = (effect) => { const value = effectDefault(effect); return {
 const FIELDS = Object.freeze({
   influence: { holder: (state, effect) => state.families[effect.familyId], key: 'influence', max: INFLUENCE_MAX },
   stress: { holder: (state, effect) => state.people[effect.personId], key: 'stress', max: STRESS_MAX },
+  legitimacy: { holder: (state) => state.realm, key: 'legitimacy', max: LEGITIMACY_MAX },
 });
 // Applies a bounded effect to its field from `base` (the field without this effect) and records the change it took.
 function settleField(state, record, base) {
@@ -257,6 +259,23 @@ const APPLY = Object.freeze({
     const secret = createSecret(state, { type: effect.type, subjectId: roles[effect.subject], holderIds: effect.holders.map((role) => roles[role]), evidence: 'weak', causeId });
     return { kind: 'secret', type: secret.type, subjectId: secret.subjectId, holderIds: [...secret.holderIds], secretId: secret.id };
   },
+  kill(state, effect, { roles, hooks, events }) {
+    const personId = roles[effect.who], record = { kind: 'kill', personId, reason: effect.reason };
+    if (personOf(state, personId)?.diedAt) return { ...record, applied: false };
+    hooks.kill([personId], events, effect.reason);
+    return record;
+  },
+  // Secret first, then the exposure (which needs the secret): a murder of kin is recorded as kinslaying. The agents are court staff, not people, so the actor is the only holder.
+  crime(state, effect, { roles, causeId, hooks, events }) {
+    const crime = effect.crime === 'murder' && hooks.related(roles.actor, roles.target) ? 'kinslaying' : effect.crime;
+    const secret = createSecret(state, { type: effect.crime === 'murder' ? 'murder' : 'plot', subjectId: roles.actor, holderIds: [roles.actor], evidence: effect.exposed ? 'strong' : 'weak', causeId });
+    if (effect.exposed) exposeCrime(state, { secretId: secret.id, crime, victimId: roles.target }, events, hooks);
+    return { kind: 'crime', crime, secretId: secret.id, exposed: effect.exposed };
+  },
+  legitimacy(state, effect, { roles, hooks }) {
+    if (roles.actor !== hooks.ruler()?.id) return { kind: 'legitimacy', applied: false };
+    return settleField(state, { kind: 'legitimacy', ...rangedRecord(effect) }, state.realm.legitimacy);
+  },
   memory(state, effect, { roles, causeId, hooks }) {
     const knownBy = effect.visibility === 'private' ? [roles.actor] : 'public';
     const item = hooks.memory('action', effect.title, [roles.actor, roles.target], { causeId, knownBy });
@@ -264,9 +283,9 @@ const APPLY = Object.freeze({
   },
 });
 
-/** Applies every effect of the resolution's tier at its default and returns the applied effects. Opinions go through hooks.opinionCause with the anchor memory (resolution.memoryId) as cause; memories through hooks.memory. Exported for Task 7. */
-export function applyTierEffects(state, resolution, entry, hooks) {
-  const context = { roles: { actor: resolution.actorId, target: resolution.targetIds[0] }, label: outcomeTitle(entry, resolution.tier), causeId: resolution.memoryId, hooks };
+/** Applies every effect of the resolution's tier at its default and returns the applied effects. Opinions go through hooks.opinionCause with the anchor memory (resolution.memoryId) as cause; memories through hooks.memory. `events` is the command's event list, where a death or an exposed crime is chronicled. Exported for Task 7. */
+export function applyTierEffects(state, resolution, entry, hooks, events = []) {
+  const context = { roles: { actor: resolution.actorId, target: resolution.targetIds[0] }, label: outcomeTitle(entry, resolution.tier), causeId: resolution.memoryId, hooks, events };
   return entry.tiers[resolution.tier].effects.map((effect) => APPLY[effect.kind](state, effect, context));
 }
 
@@ -402,6 +421,10 @@ const EFFECT_CHECKS = Object.freeze({
   hook: (state, effect, known) => known.hooks.has(effect.hookId) && isPerson(state, effect.ownerId) && isPerson(state, effect.targetId) && HOOK_STRENGTHS.includes(effect.strength),
   secret: (state, effect, known) => known.secrets.has(effect.secretId) && SECRET_TYPES.includes(effect.type) && isPerson(state, effect.subjectId) && Array.isArray(effect.holderIds) && effect.holderIds.every((id) => isPerson(state, id)),
   memory: (state, effect, known) => known.memories.has(effect.memoryId) && ['private', 'public'].includes(effect.visibility) && typeof effect.title === 'string',
+  kill: (state, effect) => isPerson(state, effect.personId) && typeof effect.reason === 'string' && (!Object.hasOwn(effect, 'applied') || effect.applied === false),
+  crime: (state, effect, known) => known.secrets.has(effect.secretId) && ownKey(CRIME_LABELS, effect.crime) && typeof effect.exposed === 'boolean',
+  // A legitimacy effect the actor could not use is the bare record { kind, applied: false }.
+  legitimacy: (state, effect) => (effect.applied === false ? Object.keys(effect).length === 2 : validRange(effect)),
 });
 
 function checkEffects(state, entry, known) {

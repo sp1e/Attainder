@@ -4,7 +4,7 @@ import { STAFF_ROLES } from './courtStaff.js';
 // The action catalog: the contested actions of Phase 1 as data, and the menu that puts them next to the existing commands. Nothing here draws from a random stream, spends silver or edits the state it reads; later tasks compute odds from these entries, resolve them and let the game master pick from them.
 export const ACTION_CATEGORIES = Object.freeze(['intrigue', 'diplomacy', 'family', 'court', 'military', 'religion', 'economy', 'personal']);
 export const TIER_IDS = Object.freeze(['clean_success', 'exposed_success', 'quiet_failure', 'exposed_failure', 'backfire']);
-export const EFFECT_KINDS = Object.freeze(['opinion', 'influence', 'stress', 'hook', 'secret', 'memory']);
+export const EFFECT_KINDS = Object.freeze(['opinion', 'influence', 'stress', 'hook', 'secret', 'memory', 'kill', 'crime', 'legitimacy']);
 // The most extra silver and the most agents a player can commit to one contested action. The target form and the odds validation share these.
 export const MAX_EXTRA_SILVER = 60;
 export const MAX_AGENTS = 2;
@@ -16,6 +16,10 @@ const stress = (who, min, max) => ({ kind: 'stress', who, min, max });
 const hook = (owner, over, strength) => ({ kind: 'hook', owner, over, strength });
 const secret = (type, subject, holders) => ({ kind: 'secret', type, subject, holders });
 const memory = (visibility, title) => ({ kind: 'memory', visibility, title });
+// kill: `who` dies with `reason` as the cause of death. crime: `crimeKind` is 'murder', 'attempted_murder' or 'treason' (a murder of kin is recorded as kinslaying when it resolves); `exposed` makes the crime public at once. legitimacy: ranged, moves the realm's legitimacy only when the actor is the ruler.
+export const kill = (who, reason) => ({ kind: 'kill', who, reason });
+export const crime = (crimeKind, exposed) => ({ kind: 'crime', crime: crimeKind, exposed });
+export const legitimacy = (min, max) => ({ kind: 'legitimacy', min, max });
 const tier = (...effects) => ({ effects });
 
 function deepFreeze(value) {
@@ -63,7 +67,7 @@ const UNDERMINE = {
 
 export const ACTION_CATALOG = deepFreeze({ sway: SWAY, undermine: UNDERMINE });
 
-/** The rounded midpoint of a ranged effect (opinion, influence, stress). Effects without a range have no default and give null. */
+/** The rounded midpoint of a ranged effect (opinion, influence, stress, legitimacy). Effects without a range have no default and give null. */
 export function effectDefault(effect) {
   if (!effect || !Number.isFinite(effect.min) || !Number.isFinite(effect.max)) return null;
   return Math.round((effect.min + effect.max) / 2);

@@ -88,7 +88,7 @@ test('the outcome envelopes match the design tier by tier', () => {
 
 test('every contested entry has all five tiers and only well-formed, known effect kinds', () => {
   assert.deepEqual(TIER_IDS, ['clean_success', 'exposed_success', 'quiet_failure', 'exposed_failure', 'backfire']);
-  assert.deepEqual(EFFECT_KINDS, ['opinion', 'influence', 'stress', 'hook', 'secret', 'memory']);
+  assert.deepEqual(EFFECT_KINDS, ['opinion', 'influence', 'stress', 'hook', 'secret', 'memory', 'kill', 'crime', 'legitimacy']);
   for (const [id, entry] of Object.entries(ACTION_CATALOG)) {
     assert.deepEqual(Object.keys(entry.tiers), TIER_IDS, `${id}: tiers keyed by the five tier ids in order`);
     for (const tier of TIER_IDS) {
