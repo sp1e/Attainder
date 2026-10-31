@@ -142,7 +142,8 @@ export const normalizeCharacterOps = (value) => (Array.isArray(value) ? value : 
         && (Object.hasOwn(change, "value") || change.remove === true || Array.isArray(change.append)
           || (Number.isInteger(change.truncate) && change.truncate >= 0)));
       if (changes.length !== op.changes.length) throw new Error("Karaktärshistoriken innehåller en ogiltig förändring.");
-      return [{ id: op.id, kind: "patch", fromRevision: op.fromRevision, toRevision: op.toRevision, changes: copy(changes) }];
+      return [{ id: op.id, kind: "patch", ...(op.gate === true ? { gate: true } : {}),
+        fromRevision: op.fromRevision, toRevision: op.toRevision, changes: copy(changes) }];
     }
     if (op.kind === "checkpoint") {
       // Checkpoints are emitted by the local reducer, never accepted from model
@@ -234,13 +235,16 @@ export const projectCharacterWorld = (world) => {
 // Commands stored in an event run only for the engine's own events and the
 // Game Master console. A stored model ("ai") event never executes one, also on
 // replay: model proposals reach the state only through prepareCharacterTimeline.
+// The one patch a model event may carry is the gate's quiet patch, which
+// prepareCharacterTimeline writes there after emptying the model's own
+// characterOps (the model's schema allows only commands).
 const COMMAND_SOURCES = new Set(["character-system", "game-master"]);
 
 export const applyCharacterOpsToWorld = (world, operations, { source = "" } = {}) => {
   let next = world;
   for (const op of normalizeCharacterOps(operations)) {
     if (op.kind === "patch") {
-      if (source !== "character-system") continue;
+      if (source !== "character-system" && op.gate !== true) continue;
       const revision = next.characterSystem?.revision ?? -1;
       if (revision >= op.toRevision) continue;
       if (revision !== op.fromRevision) throw new Error("Karaktärshändelsen bygger på en annan världsversion.");
@@ -365,42 +369,74 @@ export const getCharacterEventBudget = (fromDate, targetDate) => {
   return Math.min(24, Math.max(8, Math.ceil(days / 366) * 8));
 };
 
-// Model proposals the engine runs itself, with their caps per model event.
+// Model proposals the engine runs itself, with their caps per model turn.
 const GATE_LIMITS = Object.freeze({ realm_effect: 4, npc_intent: 3 });
 const GATE_LABELS = Object.freeze({ realm_effect: "Förändring av rikets läge", npc_intent: "Egen handling av en annan familjs person" });
+// An npc_intent refusal names no actor, action or amount: its reason could reveal another family's plans.
+const NPC_INTENT_REFUSAL = "Ett förslag om en annan familjs handling avvisades.";
 
-// Runs one model event's gate proposals with origin "gate". Each accepted one
-// becomes a character-system event carrying its patch, so replay applies the
-// result and never rolls again. Refusals become one visible notice.
-const runGateProposals = (world, event, date, proposals) => {
+// Runs one model event's gate proposals with origin "gate". `turn` holds the
+// counts and proposal ids of the whole model turn. An accepted result with a
+// public event becomes a character-system card carrying its patch, so replay
+// applies the result and never rolls again. A quiet result (an NPC tier the
+// player may not see, a silent scheme start) adds no card: it folds into the
+// next card of this event or into its last one. When the event has no card,
+// the quiet patch rides on the model event itself (carrierOps), marked gate.
+// Refusals become one visible notice.
+const runGateProposals = (world, event, date, proposals, turn) => {
   let current = world;
+  let base = world.characterSystem;
+  let last = null;
   const events = [];
   const refusals = [];
-  const counts = {};
   proposals.forEach((op, index) => {
-    counts[op.type] = (counts[op.type] ?? 0) + 1;
-    if (counts[op.type] > GATE_LIMITS[op.type]) {
-      refusals.push(`${GATE_LABELS[op.type]}: högst ${GATE_LIMITS[op.type]} sådana förslag per händelse.`);
+    const label = GATE_LABELS[op.type];
+    turn.counts[op.type] = (turn.counts[op.type] ?? 0) + 1;
+    if (turn.counts[op.type] > GATE_LIMITS[op.type]) {
+      refusals.push(`${label}: gränsen på ${GATE_LIMITS[op.type]} sådana förslag per tur är nådd.`);
       return;
     }
-    const id = `${event.id}:gate:${index}`;
+    if (turn.ids.has(op.id)) {
+      refusals.push(`${label}: samma förslag fanns redan i turen.`);
+      return;
+    }
+    turn.ids.add(op.id);
     const before = current.characterSystem;
+    // The date and revision keep the id unique across turns, whatever id the model gave.
+    const id = `${event.id}:gate:${date}:r${before.revision}:${index}`;
     const result = executeCharacterWorldCommand(current, { id, type: op.type, payload: op.payload, origin: "gate", expectedRevision: before.revision });
     if (!result.ok) {
-      refusals.push(`${GATE_LABELS[op.type]}: ${result.error}`);
+      refusals.push(op.type === "npc_intent" ? NPC_INTENT_REFUSAL : `${label}: ${result.error}`);
       return;
     }
-    if (result.duplicate) return;
-    events.push(...characterTransitionEvents(before, result, id));
+    if (result.duplicate) {
+      refusals.push(`${label}: förslaget har redan prövats.`);
+      return;
+    }
     current = { ...current, characterSystem: result.state };
+    if (result.events?.some((entry) => entry.public !== false)) {
+      last = { start: events.length, base, result, id };
+      events.push(...characterTransitionEvents(base, result, id));
+      base = result.state;
+    }
   });
+  const carrierOps = [];
+  if (base !== current.characterSystem) {
+    const from = world.characterSystem;
+    if (last) {
+      events.splice(last.start, Infinity, ...characterTransitionEvents(last.base, { ...last.result, state: current.characterSystem }, last.id));
+    } else {
+      carrierOps.push({ id: `${event.id}:gate-quiet:${date}:r${from.revision}`, kind: "patch", gate: true,
+        fromRevision: from.revision, toRevision: current.characterSystem.revision, changes: diffCharacterState(from, current.characterSystem) });
+    }
+  }
   if (refusals.length) {
-    events.push({ id: `${event.id}:gate-refusals`, date, source: "character-system", kind: "world", tags: ["Politics"], playerRelated: true,
+    events.push({ id: `${event.id}:gate-refusals:${date}:r${current.characterSystem.revision}`, date, source: "character-system", kind: "world", tags: ["Politics"], playerRelated: true,
       title: "Modellens förslag avvisades",
       description: `Motorn prövade modellens förslag och avvisade ${refusals.length === 1 ? "ett" : refusals.length}. ${refusals.join(" ")}`,
       impacts: {} });
   }
-  return { world: current, events };
+  return { world: current, events, carrierOps };
 };
 
 // Convert model proposals into validated, reproducible transitions. No model
@@ -414,6 +450,7 @@ export const prepareCharacterTimeline = (world, events, targetDate, { applyHostE
     throw new Error("Modellens slutdatum ligger före karaktärsvärldens nuvarande datum.");
   }
   const output = [];
+  const turn = { counts: {}, ids: new Set() };
   for (const event of [...events].sort((a, b) => compareGameDates(a.date, b.date))) {
     if (current.characterSystem.status?.ended) break;
     const eventDate = normalizeGameDate(event.date) || current.characterSystem.date;
@@ -441,7 +478,7 @@ export const prepareCharacterTimeline = (world, events, targetDate, { applyHostE
       ...(refusedStateOrder ? { title: "Familjen saknar mandat för statsordern",
         description: "Förslaget kunde inte verkställas: familjens företrädare har inte härskarens eller regentens mandat. Familjens egna politiska handlingar prövas enligt sina regler." } : {}),
       impacts: effects };
-    output.push(hostEvent);
+    const hostIndex = output.push(hostEvent) - 1;
     // The host validates territorial settlement and polity lifecycle before
     // later character proposals. This same operation runs on timeline replay.
     if (applyHostEvent) {
@@ -450,8 +487,11 @@ export const prepareCharacterTimeline = (world, events, targetDate, { applyHostE
       output.push(...(applied.characterEvents ?? []));
     }
     if (current.characterSystem.status?.ended) break;
-    const gated = runGateProposals(current, event, eventDate, proposals.filter((op) => Object.hasOwn(GATE_LIMITS, op.type)));
+    const gated = runGateProposals(current, event, eventDate, proposals.filter((op) => Object.hasOwn(GATE_LIMITS, op.type)), turn);
     current = gated.world;
+    // Replay applies an event's characterOps after its other impacts, the same
+    // point where the gate ran here.
+    if (gated.carrierOps.length) output[hostIndex] = { ...hostEvent, impacts: { ...hostEvent.impacts, characterOps: gated.carrierOps } };
     output.push(...gated.events);
     if (current.characterSystem.status?.ended) break;
     if (proposals.some((op) => !Object.hasOwn(GATE_LIMITS, op.type))) {
@@ -476,7 +516,7 @@ export const buildCharacterPromptContext = (state, { targetDate = "" } = {}) => 
     "This campaign has persistent people, families, offices, memories and succession. The local rule engine controls life, death, ownership, stress and resources. Do not invent a ruler, heir, death, office transfer or character balance in prose or polityChanges.stats.leader.",
     "Health conditions, recovery, lasting scars and portrait appearance are also canonical engine facts. Describe the actual dated health events supplied in the calendar forecast and their wider consequences; do not invent an infection, injury, cure, scar or health score. Medical care remains a player choice in the character panel. There is no free-form health mutation or model-executed care action. Appearance reflects the condition's current phase, not its later outcome.",
     "The player chooses and executes personal political actions directly in the character panel before a simulation turn. Do not spend the player's treasury or family wealth, resolve their stories, marry their representative, change their offices or issue their character commands. The model never acts for the player's own characters.",
-    "impacts.characterOps may carry two engine-gated proposals. The engine validates each one, rolls where the rules roll, and may refuse it; a refusal is shown to the player. (1) realm_effect payload {treasury, legitimacy, armyStrength, reason}: integer changes, each optional, at least one non-zero, within treasury -80…+40, legitimacy -10…+5, armyStrength -15…+10. A value outside its range refuses the whole proposal; the realm's fields stop at their bounds. reason is a Swedish sentence of at most 200 characters. At most 4 per event. (2) npc_intent payload {actorId, actionId, targetIds}: a living adult who is neither the player's representative nor a member of the player's family attempts one contested catalog action listed below, with the engine's odds for that NPC. The NPC's own family pays; targets may include the player's people. At most 3 per event. Give each proposal a stable id.",
+    "impacts.characterOps may carry two engine-gated proposals. The engine validates each one, rolls where the rules roll, and may refuse it; a refusal is shown to the player. (1) realm_effect payload {treasury, legitimacy, armyStrength, reason}: integer changes, each optional, at least one non-zero, within treasury -80…+40, legitimacy -10…+5, armyStrength -15…+10. A value outside its range refuses the whole proposal; the realm's fields stop at their bounds. reason is a Swedish sentence of at most 200 characters. At most 4 per turn. (2) npc_intent payload {actorId, actionId, targetIds}: a living adult who is neither the player's representative nor a member of the player's family attempts one contested catalog action listed below, with the engine's odds for that NPC. The NPC's own family pays; targets may include the player's people. At most 3 per turn. Give each proposal a stable id.",
     "All other command types in impacts.characterOps are advisory proposals only and are NEVER executed automatically, even with a claimed player action ID. Keep them out normally; describe such an action as a proposal awaiting the player's decision. Calendar progression itself handles autonomous NPC characters, births, death and succession.",
     "The player's polity ends only through an event that settles its mapped territory: it held a region before the event and holds none after it. A bare dissolve of that polity is refused.",
     "Realm mode follows the government. Family mode follows its own family, which has no right to issue state orders after losing the governing role. Independent relatives do not confer direct state control. Unknown facts are unavailable.",

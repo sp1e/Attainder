@@ -1,12 +1,15 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { advanceCharacters, createCharacterSystem, estimateCharacterAction, executeCharacterCommand, getCatalogActions, getPersonalOpinion } from "./characters/index.js";
+import { advanceCharacters, createCharacterSystem, estimateCharacterAction, executeCharacterCommand, getCatalogActions, getCharacterPresentation,
+  getPersonalOpinion, normalizeCharacterSystem } from "./characters/index.js";
 import { estimateAction } from "./characters/actionOdds.js";
 import { ACTION_CATALOG } from "./characters/actionCatalog.js";
 import { resolveScheme } from "./characters/actionResolution.js";
 import { applyEventImpactsToWorld, normalizeWorldState } from "./gameState.js";
 import { buildCharacterPromptContext, prepareCharacterTimeline } from "./characterWorld.js";
 import { addGameMonths } from "./gameDates.js";
+import { setRuntimeAssetEndpoints } from "./assets.js";
+import { initializeCampaignCharacters, submitCharacterCommand } from "./characterRuntime.js";
 
 // REP rules the realm and heads the player's family; NPC heads another family.
 const REP = "person-0-0";
@@ -17,6 +20,7 @@ const PLAYER_FAMILY = "family-arel";
 const DATE = "-0300-01-01";
 const REFUSED_TITLE = "Modellens förslag avvisades";
 const DECISION_TITLE = "Förslaget kräver ditt beslut";
+const NPC_REFUSAL = "Ett förslag om en annan familjs handling avvisades.";
 
 const copy = (value) => JSON.parse(JSON.stringify(value));
 const start = (options = {}, world = {}) => normalizeWorldState({
@@ -80,7 +84,7 @@ test("a realm_effect inside its envelope changes the treasury once, also on repl
   assert.equal(planned.state.realm.legitimacy, before.realm.legitimacy - 5);
   assert.equal(planned.state.realm.armyStrength, before.realm.armyStrength + 4);
   assert.equal(planned.state.rngState, before.rngState);
-  assert.ok(planned.state.appliedCommandIds.includes("model-1:gate:0"));
+  assert.ok(planned.state.appliedCommandIds.includes(`model-1:gate:${DATE}:r${before.revision}:0`));
   assert.deepEqual(planned.events.find((event) => event.id === "model-1").impacts.characterOps, [], "the model event itself carries no command");
   assert.equal(notices(planned.events).length, 0);
   const once = replay(world, planned.events);
@@ -152,7 +156,8 @@ test("an npc_intent rolls with the NPC's odds and never acts for the player fami
   assert.equal(state.rngState, before.rngState);
   const notice = notices(planned.events);
   assert.equal(notice.length, 1);
-  assert.equal((notice[0].description.match(/egen handling/gi) ?? []).length, 2, "both refusals are listed");
+  assert.equal(notice[0].description.split(NPC_REFUSAL).length - 1, 2, "both refusals are listed with the generic line");
+  for (const name of [state.people[OWN_MEMBER].name, state.people[REP].name, ACTION_CATALOG.sway.label]) assert.equal(notice[0].description.includes(name), false, name);
   assert.deepEqual(replay(world, planned.events).characterSystem, state);
 });
 
@@ -221,7 +226,113 @@ test("the catalog evaluates contested actions for the active representative, als
   assert.ok(targets.includes(REP), "the family head is a possible target");
 });
 
+test("the caps count per turn: two events with three realm_effect each apply four", () => {
+  const world = start();
+  const before = world.characterSystem;
+  const effects = (prefix) => [1, 2, 3].map((n) => command(`${prefix}-${n}`, "realm_effect", { treasury: 5, reason: "Ett litet tillskott." }));
+  const planned = plan(world, [modelEvent(effects("a")), modelEvent(effects("b"), { id: "model-2" })]);
+  assert.equal(planned.state.realm.treasury, before.realm.treasury + 20);
+  assert.equal(planned.state.appliedCommandIds.filter((id) => id.includes(":gate:")).length, 4);
+  const notice = notices(planned.events);
+  assert.equal(notice.length, 1);
+  assert.ok(notice[0].id.startsWith("model-2:"));
+  assert.equal(notice[0].description.split("per tur är nådd").length - 1, 2, "the fifth and sixth are listed");
+  assert.deepEqual(replay(world, planned.events).characterSystem, planned.state);
+});
+
+test("a repeated proposal id in the same turn is listed as refused", () => {
+  const world = start();
+  const effect = command("same", "realm_effect", { treasury: 5, reason: "Ett litet tillskott." });
+  const planned = plan(world, [modelEvent([effect, effect])]);
+  assert.equal(planned.state.realm.treasury, world.characterSystem.realm.treasury + 5);
+  assert.match(notices(planned.events)[0].description, /samma förslag/);
+});
+
+// Finds a seed for the action stream that gives the NPC sway a quiet failure.
+function quietFailure(withOthers = (op) => [op]) {
+  const intent = command("quiet", "npc_intent", { actorId: NPC, actionId: "sway", targetIds: [REP] });
+  for (let seed = 1; seed < 1000; seed++) {
+    const world = start();
+    // Spread the seeds: xorshift's first draws from small seeds are all near zero.
+    world.characterSystem.actionRngState = (Math.imul(seed, 2654435761) >>> 0) || 1;
+    const planned = plan(world, [modelEvent(withOthers(intent))]);
+    if (planned.state.actionLog.find((entry) => entry.actorId === NPC)?.tier === "quiet_failure") return { world, planned };
+  }
+  throw new Error("no seed gives a quiet failure");
+}
+const publicLog = (state) => state.log.filter((entry) => entry.public !== false).length;
+
+test("an NPC quiet_failure adds no card and no public log entry, and replays from the model event", () => {
+  const { world, planned } = quietFailure();
+  assert.equal(publicLog(planned.state), publicLog(world.characterSystem));
+  assert.deepEqual(planned.events.map((event) => event.id), ["model-1"], "no card besides the model event");
+  assert.ok(planned.state.revision > world.characterSystem.revision);
+  assert.notEqual(planned.state.actionRngState, world.characterSystem.actionRngState);
+  assert.deepEqual(replay(world, planned.events).characterSystem, planned.state);
+  const [carrier] = planned.events[0].impacts.characterOps;
+  assert.equal(carrier.gate, true);
+  const unmarked = { ...planned.events[0], impacts: { ...planned.events[0].impacts, characterOps: [{ ...carrier, gate: false }] } };
+  assert.deepEqual(replay(world, [unmarked]).characterSystem, world.characterSystem, "a model event's unmarked patch is ignored");
+});
+
+test("a quiet NPC result folds into the event's realm_effect card, before or after it", () => {
+  const effect = command("effect", "realm_effect", { treasury: 5, reason: "Ett litet tillskott." });
+  for (const order of [(op) => [op, effect], (op) => [effect, op]]) {
+    const { world, planned } = quietFailure(order);
+    const cards = planned.events.filter((event) => event.source === "character-system");
+    assert.equal(cards.length, 1);
+    assert.equal(cards[0].title, "Rikets läge förändras");
+    assert.deepEqual(planned.events.find((event) => event.id === "model-1").impacts.characterOps, []);
+    assert.equal(publicLog(planned.state), publicLog(world.characterSystem) + 1);
+    assert.deepEqual(replay(world, planned.events).characterSystem, planned.state);
+  }
+});
+
+test("an npc_intent for the active representative outside the controlled family is refused", () => {
+  const state = copy(start().characterSystem);
+  const principal = state.people["person-0-4"];
+  principal.bornAt = addGameMonths(DATE, -10 * 12);
+  principal.health = 100;
+  state.offices.ruler.holderId = principal.id;
+  state.offices.ruler.regentId = NPC;
+  state.realm.lawfulRulerId = principal.id;
+  state.regencies["office:ruler"] = { id: "office:ruler", principalId: principal.id, regentId: NPC, phase: "minority", startedAt: DATE, grants: [], requestAfter: {}, handoverDueAt: null };
+  delete state.mandateVersion; delete state.mandateActivatedAt; delete state.mandateSequence;
+  const regency = normalizeCharacterSystem(state);
+  assert.equal(getCharacterPresentation(regency).representative.id, NPC, "the regent from another family acts for the realm");
+  assert.equal(regency.people[NPC].familyId, NPC_FAMILY);
+  const result = executeCharacterCommand(regency, { id: "regent", expectedRevision: regency.revision, type: "npc_intent", origin: "gate",
+    payload: { actorId: NPC, actionId: "sway", targetIds: [REP] } });
+  assert.equal(result.ok, false);
+  assert.equal(result.error, "Modellen får inte handla för spelarens egna personer.");
+});
+
+test("submitCharacterCommand refuses a client-supplied gate origin", async () => {
+  const originalFetch = globalThis.fetch;
+  const data = { world: {}, game: { country: "Hadara", gameDate: DATE, startDate: DATE, round: 1 },
+    events: [], actions: [], chat: [], colors: { Hadara: "#789abc" }, snapshots: [] };
+  globalThis.fetch = async (url, options = {}) => {
+    const key = new URL(String(url), "http://runtime.test").pathname.split("/").at(-1);
+    if (options.method === "PUT") data[key] = JSON.parse(options.body);
+    return new Response(JSON.stringify(data[key] ?? {}), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  setRuntimeAssetEndpoints({ token: "gate-origin-test" });
+  try {
+    const init = await initializeCampaignCharacters({ mode: "realm", seed: 17 });
+    assert.equal(init.ok, true, init.error);
+    const before = copy(data.world.characterSystem);
+    for (const [type, payload] of [["realm_effect", { treasury: 10, reason: "Försök." }], ["npc_intent", { actorId: NPC, actionId: "sway", targetIds: [REP] }]]) {
+      const result = await submitCharacterCommand({ id: `client-${type}`, expectedRevision: before.revision, type, payload, origin: "gate" });
+      assert.equal(result.ok, false);
+      assert.match(result.error, /motorn prövar modellens förslag\.$/);
+    }
+    assert.deepEqual(data.world.characterSystem, before);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("the prompt describes the gate commands and the contested catalog", () => {
   const context = buildCharacterPromptContext(start().characterSystem);
-  for (const text of ["realm_effect", "npc_intent", "-80", "+40", "-15", "+10", "sway", "undermine", ACTION_CATALOG.sway.label]) assert.ok(context.includes(text), text);
+  for (const text of ["realm_effect", "npc_intent", "-80", "+40", "-15", "+10", "sway", "undermine", ACTION_CATALOG.sway.label, "At most 4 per turn", "At most 3 per turn"]) assert.ok(context.includes(text), text);
 });
