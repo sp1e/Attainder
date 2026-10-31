@@ -9,7 +9,7 @@ import {
 } from "./gameState.js";
 import { beginSimulation, endSimulation, isSimulationBusy } from "../Game/AI/simulationStatus.js";
 import { unseenEvents, latestTurnEventIds } from "./unseenEvents.js";
-import { createCharacterSystem } from "./characters/index.js";
+import { createCharacterSystem, estimateCharacterAction } from "./characters/index.js";
 import { characterTransitionEvents, executeCharacterWorldCommand, planCharacterAdvance } from "./characterWorld.js";
 import { commitCharacterTransaction, recoverCharacterTransaction } from "./characterPersistence.js";
 
@@ -52,6 +52,14 @@ export const readVisibleCharacterState = async ({ force = false } = {}) => {
   }
   assertCampaignUnchanged(startedIn, campaignId(), "karaktärsvisning");
   return (await viewAsSeen(bundle)).world?.characterSystem ?? null;
+};
+
+// Odds for one contested intent on the state the player sees. Read-only: no randomness, no spending, no write.
+// Only the result's `display` is for the player; the true values stay for the engine.
+export const estimateCharacterActionForView = async (intent) => {
+  const state = await readVisibleCharacterState();
+  if (!state) return { ok: false, reason: "Kampanjen saknar karaktärssystem." };
+  return estimateCharacterAction(state, intent);
 };
 
 // Shared by local decisions and the connected model's completed turn. The

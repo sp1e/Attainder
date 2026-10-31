@@ -3,7 +3,8 @@ import { createCharacterSystem } from './characters/index.js';
 import { normalizeCampaignSeed } from './campaignSeed.js';
 import { DYNASTY_CITIES, DYNASTY_DATE, DYNASTY_SCENARIO_ID, createDynastyScenarioBundle } from './dynastyScenario.js';
 
-export async function startDynastyCampaign({ mode = 'realm', scenarioId, difficulty = 'standard', seed = 104729 } = {}) {
+// `difficulty` is the game's own setting; `characterDifficulty` is the character engine's (easy, normal, hard).
+export async function startDynastyCampaign({ mode = 'realm', scenarioId, difficulty = 'standard', characterDifficulty = 'normal', seed = 104729 } = {}) {
   if (!['realm','family'].includes(mode)) throw new Error('Välj riket eller familjen.');
   seed = normalizeCampaignSeed(seed);
   let id = scenarioId;
@@ -17,7 +18,7 @@ export async function startDynastyCampaign({ mode = 'realm', scenarioId, difficu
   const created = await createGame({ name:`Hadara · ${mode === 'family' ? 'Familjen Arel' : 'Riket'}`,scenarioId:id,setActive:false,gamePatch:{country:'Hadara',difficulty,language:'Swedish'} });
   const gameId = created.game.id;
   const date = created.data.game.gameDate || DYNASTY_DATE;
-  const world = { ...created.data.world, initialCameraBounds:created.data.world.initialCameraBounds || [[26.7,32.0],[33.4,37.5]], characterSystem:createCharacterSystem({date,polityId:'Hadara',polityName:'Hadara',mode,seed,cities:DYNASTY_CITIES}) };
+  const world = { ...created.data.world, initialCameraBounds:created.data.world.initialCameraBounds || [[26.7,32.0],[33.4,37.5]], characterSystem:createCharacterSystem({date,polityId:'Hadara',polityName:'Hadara',mode,seed,cities:DYNASTY_CITIES,difficulty:characterDifficulty}) };
   await saveGame(gameId,{world,gamePatch:{characterMode:mode,characterSeed:seed}});
   try { localStorage.setItem('oh-open-characters-on-start','1'); } catch { /* storage may be unavailable */ }
   await activateGame(gameId);

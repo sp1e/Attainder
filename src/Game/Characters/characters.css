@@ -246,6 +246,39 @@
 .char-local-connect .char-local-notice { color: var(--char-green, #a4c8b2); padding: 10px; border-left: 3px solid var(--char-green, #a4c8b2); }
 .char-local-connect :focus-visible { outline: 3px solid var(--char-focus, #98d6e6); outline-offset: 3px; }
 .char-local-connect--compact { padding: 17px; }
+/* Own action: free text, confirmation, menu fallback, outcome and running schemes. */
+.char-difficulty { color: var(--char-muted); font-size: 12px; }
+.char-footer { gap: 16px; }
+.char-action-box { margin-top: 22px; margin-bottom: 22px; border-top: 3px solid var(--char-accent); }
+.char-action-text { display: flex; flex-direction: column; gap: 8px; }
+.char-action-text > label { font-size: 13px; font-weight: 600; }
+.char-panel textarea { font: inherit; font-size: 14px; border: 1px solid var(--char-border); border-radius: 5px; padding: 10px 12px; background: var(--char-bg); color: var(--char-ink); width: 100%; min-width: 0; resize: vertical; line-height: 1.5; }
+.char-panel textarea::placeholder { color: var(--char-muted); }
+.char-action-text-controls { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.char-confirm, .char-outcome { border: 1px solid var(--char-border); border-left: 3px solid var(--char-gold); border-radius: 6px; padding: 18px 20px; margin-top: 18px; background: var(--char-bg); }
+.char-confirm h4, .char-outcome h4 { font-size: 21px; margin: 4px 0 8px; }
+.char-confirm-facts, .char-confirm-odds { list-style: none; padding: 0; margin: 10px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 4px 18px; font-size: 13px; }
+.char-confirm-odds { font-weight: 600; color: var(--char-accent); }
+.char-confirm-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+.char-outcome-title { display: block; font-size: 15px; margin-bottom: 6px; }
+.char-outcome p { max-width: 850px; font-size: 14px; }
+.char-outcome--error { border-left-color: var(--char-danger); }
+.char-outcome--error h4 { color: var(--char-danger); }
+.char-action-menu { margin-top: 18px; }
+.char-action-group h4 { font-size: 18px; margin: 18px 0 10px; }
+.char-action-menu .char-actions-grid { list-style: none; padding: 0; margin: 0; }
+.char-contested-form { display: flex; flex-direction: column; align-items: stretch; }
+.char-contested-form > label { display: flex; flex-direction: column; font-size: 12px; font-weight: 600; gap: 5px; margin-bottom: 12px; }
+.char-panel .char-contested-form input[type="number"] { border: 1px solid var(--char-border); border-radius: 5px; padding: 9px 11px; background: var(--char-surface); color: var(--char-ink); width: 100%; min-width: 0; font-size: 13px; }
+.char-agents { border: 1px solid var(--char-border); border-radius: 5px; padding: 6px 12px 2px; margin: 0 0 12px; min-width: 0; }
+.char-agents legend { font-size: 12px; font-weight: 600; padding: 0 4px; }
+.char-agents legend small { font-weight: 400; color: var(--char-muted); margin-left: 6px; }
+.char-agents .char-checkbox { flex-direction: row; align-items: center; font-weight: 400; font-size: 13px; margin: 8px 0; color: var(--char-ink); }
+.char-schemes { margin-bottom: 22px; }
+.char-scheme-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.char-scheme { display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
+.char-scheme strong { color: var(--char-accent); font-size: 15px; }
+.char-scheme .char-button { align-self: flex-start; margin-top: 8px; }
 @media (max-width: 950px) {
   .char-backdrop { padding: 10px; }
   .char-header, .char-campaign-strip, .char-footer { padding-left: 20px; padding-right: 20px; }
@@ -293,6 +326,9 @@
   .char-story-choices { grid-template-columns: 1fr; }
   .char-memory-list li, .char-person-detail .char-memory-list li { grid-template-columns: 1fr; gap: 5px; padding: 15px 0; }
   .char-footer { padding: 8px 15px; font-size: 9px; gap: 12px; }
+  .char-footer { flex-wrap: wrap; }
+  .char-confirm, .char-outcome { padding: 15px; }
+  .char-confirm-facts, .char-confirm-odds, .char-scheme-list { grid-template-columns: 1fr; }
   .char-content { overflow-wrap: anywhere; }
   .char-local-heading { flex-wrap: wrap; }
   .char-local-connect { padding: 17px; }

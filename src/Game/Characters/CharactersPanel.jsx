@@ -8,7 +8,9 @@ import {
   readVisibleCharacterState,
   submitCharacterCommand,
 } from "../../runtime/characterRuntime.js";
+import { getModelCallCounts, subscribeModelCalls } from "../AI/modelCallCounter.js";
 import "./characters.css";
+import ActionBox, { SchemeList } from "./ActionBox.jsx";
 import LocalModelConnect from "./LocalModelConnect.jsx";
 import Portrait from "./Portrait.jsx";
 
@@ -170,7 +172,7 @@ function StoryCard({ story, person, onCommand, busy }) {
   </article>;
 }
 
-function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson }) {
+function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, runAction }) {
   const economy = view.economy || {};
   const representative = view.representative;
   const hasAuthorityDetail = Object.values(view.authority || {}).some((mandate) => mandate && (mandate.reason || mandate.blockedReason || (mandate.principalId && mandate.representativeId !== mandate.principalId)));
@@ -189,6 +191,8 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson }) {
       <p className="char-caption">Familjernas stöd, ämbetsinnehavarnas förmåga och härskarens arbetssätt påverkar utfallet.</p>
       <button className="char-button char-button--quiet" onClick={() => setTab("decisions")}>Planera nästa beslut <span aria-hidden="true">→</span></button>
     </section></div>
+    {Array.isArray(view.catalog) && <ActionBox view={view} busy={busy} runAction={runAction} CommandCard={ActionCard} />}
+    <SchemeList schemes={view.schemes} busy={busy} onAbort={(schemeId) => onCommand("abort_scheme", { schemeId })} />
     {pending.length > 0 && <section aria-label="Beslut som väntar"><div className="char-section-heading"><div><span className="char-eyebrow">Människorna bakom politiken</span><h3>{pending.length === 1 ? "Ett ärende kräver ditt beslut" : `${pending.length} ärenden kräver ditt beslut`}</h3></div></div>{pending.slice(0, 3).map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={onCommand} busy={busy} />)}{pending.length > 3 && <button className="char-button" onClick={() => setTab("decisions")}>Visa alla ärenden</button>}</section>}
     {waitingStories.length > 0 && <section><div className="char-section-heading"><div><span className="char-eyebrow">Beslut med framtida följder</span><h3>Åtaganden som består</h3></div></div><div className="char-cities">{waitingStories.map((story) => <article className="char-card" key={story.id}><h4>{story.title}</h4><p>{story.description}</p><span className="char-caption">{story.actorName}{story.dueAt ? ` · Återkommer ${dateLabel(story.dueAt)}` : ""}</span></article>)}</div></section>}
     <div className="char-section-heading"><div><span className="char-eyebrow">Förvaltning</span><h3>Städerna bär riket</h3></div></div>
@@ -320,6 +324,7 @@ export default function CharactersPanel({ open, onClose }) {
   const [reportLabel, setReportLabel] = useState("Årets händelser");
   const [interruption, setInterruption] = useState(null);
   const [modelConnectOpen, setModelConnectOpen] = useState(false);
+  const [modelCalls, setModelCalls] = useState(() => getModelCallCounts().total);
   const busyRef = useRef(false);
   const readSequence = useRef(0);
   const panelRef = useRef(null);
@@ -349,6 +354,7 @@ export default function CharactersPanel({ open, onClose }) {
     return () => previousFocus?.focus?.();
   }, [open]);
   useEffect(() => { panelRef.current?.querySelector(".char-content")?.scrollTo({ top: 0 }); }, [tab, yearEvents]);
+  useEffect(() => subscribeModelCalls((counts) => setModelCalls(counts.total)), []);
   useEffect(() => {
     if (!open) return undefined;
     const closeOnEscape = (event) => {
@@ -384,6 +390,15 @@ export default function CharactersPanel({ open, onClose }) {
     } catch (reason) { setError(reason?.message || "Handlingen kunde inte sparas. Försök igen."); }
     finally { busyRef.current = false; setBusy(false); setAnnualBusy(false); }
   }, [refresh]);
+  // The action box runs its own multi-step flow (interpret, estimate, attempt, narrate) under the same lock as a command.
+  const runAction = useCallback(async (work) => {
+    if (busyRef.current) return undefined;
+    busyRef.current = true;
+    setBusy(true); setError(""); setNotice("");
+    try { return await work(); }
+    catch (reason) { setError(reason?.message || "Handlingen kunde inte genomföras. Försök igen."); return undefined; }
+    finally { busyRef.current = false; setBusy(false); await refresh(); }
+  }, [refresh]);
   const command = (type, payload) => perform(() => submitCharacterCommand({ type, payload, expectedRevision: view?.revision, id: `ui-${crypto.randomUUID()}` }));
   const onKeyDown = (event) => {
     event.stopPropagation();
@@ -398,7 +413,7 @@ export default function CharactersPanel({ open, onClose }) {
   return <div className="char-backdrop" data-char-theme={theme} onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
     <section className="char-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="characters-title" onKeyDown={onKeyDown}>
       <header className="char-header"><div className="char-brand"><span className="char-brand-mark"><CivicMark /></span><div><span className="char-eyebrow">Open Historia · Dynastier</span><h2 id="characters-title">Rike & familjer</h2></div></div><div className="char-header-controls"><button type="button" className="char-button char-connect-model" aria-expanded={modelConnectOpen} onClick={() => setModelConnectOpen((current) => !current)}>Anslut modell</button><button type="button" className="char-icon-button" onClick={() => choose(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? "Byt till ljust läge" : "Byt till mörkt läge"} title={theme === "dark" ? "Ljust läge" : "Mörkt läge"}>{theme === "dark" ? "☀" : "☾"}</button><button type="button" className="char-theme-system" aria-pressed={choice === "system"} onClick={() => choose("system")}>Systemtema</button><button type="button" className="char-icon-button char-close" onClick={onClose} aria-label="Stäng Rike & familjer">×</button></div></header>
-      {view && <div className="char-campaign-strip"><div><span className="char-mode">{view.mode === "family" ? "FÖLJ FAMILJEN" : "FÖLJ RIKET"}</span><strong>{view.mode === "family" ? view.families.find((family) => family.id === view.identity?.familyId)?.name : (view.identity?.realmName || view.economy?.polityName || "Riket")}</strong><span className="char-date">{dateLabel(view.date)}</span></div><button type="button" className="char-button char-button--advance" disabled={busy || view.status?.ended || view.status === "ended"} onClick={() => perform(() => advanceCharacterYearWithModel(), true)}>{busy ? "Bearbetar…" : "Nästa år med modellen"}<span aria-hidden="true"> →</span></button></div>}
+      {view && <div className="char-campaign-strip"><div><span className="char-mode">{view.mode === "family" ? "FÖLJ FAMILJEN" : "FÖLJ RIKET"}</span><strong>{view.mode === "family" ? view.families.find((family) => family.id === view.identity?.familyId)?.name : (view.identity?.realmName || view.economy?.polityName || "Riket")}</strong><span className="char-date">{dateLabel(view.date)}</span>{view.difficulty?.label && <span className="char-difficulty">Svårighetsgrad: {view.difficulty.label}</span>}</div><button type="button" className="char-button char-button--advance" disabled={busy || view.status?.ended || view.status === "ended"} onClick={() => perform(() => advanceCharacterYearWithModel(), true)}>{busy ? "Bearbetar…" : "Nästa år med modellen"}<span aria-hidden="true"> →</span></button></div>}
       <nav className="char-nav" aria-label="Rike och familjer">{TABS.map(([id, label]) => <button key={id} type="button" aria-current={tab === id ? "page" : undefined} className={tab === id ? "is-active" : ""} onClick={() => setTab(id)}>{label}{id === "decisions" && pending.length > 0 && <span className="char-tab-count">{pending.length}</span>}</button>)}</nav>
       <div className="char-content" aria-busy={busy}>
         {modelConnectOpen && <LocalModelConnect onAdvanced={() => window.dispatchEvent(new Event("oh:open-character-model-settings"))} />}
@@ -413,7 +428,7 @@ export default function CharactersPanel({ open, onClose }) {
         {view && <>
           {view.governance?.realmAlive === false && !view.status?.ended && <div className="char-feedback"><strong>Riket har upplösts</strong><span>Familjen består, men de gamla riksämbetena ger ingen makt. Sök en fristad under Beslut och följ familjens tillgångar och beskyddare under Familjer.</span></div>}
           {(view.status?.ended || view.status === "ended") && <div className="char-feedback char-feedback--error"><strong>Kampanjen är avslutad</strong><span>{view.status?.reason || "Kampanjens fortsättningsvillkor är inte längre uppfyllda."}</span></div>}
-          {tab === "council" && <CouncilView view={view} pending={pending} onCommand={command} busy={busy} setTab={setTab} selectPerson={setPersonId} />}
+          {tab === "council" && <CouncilView view={view} pending={pending} onCommand={command} busy={busy} setTab={setTab} selectPerson={setPersonId} runAction={runAction} />}
           {tab === "people" && <PeopleView view={view} selectedId={personId} selectPerson={setPersonId} />}
           {tab === "families" && <FamiliesView view={view} />}
           {tab === "offices" && <OfficesView view={view} setTab={setTab} />}
@@ -421,7 +436,7 @@ export default function CharactersPanel({ open, onClose }) {
           {tab === "chronicle" && <ChronicleView view={view} />}
         </>}
       </div>
-      <footer className="char-footer"><span>{view?.mode === "family" ? "Din familj består genom maktskiften." : "Dina ledare skiftar. Riket består."}</span><span>{busy ? "Arbetar med kampanjen…" : "Beslut sparas automatiskt"}</span></footer>
+      <footer className="char-footer"><span>{view?.mode === "family" ? "Din familj består genom maktskiften." : "Dina ledare skiftar. Riket består."}</span><span>Modellanrop denna session: {modelCalls}</span><span>{busy ? "Arbetar med kampanjen…" : "Beslut sparas automatiskt"}</span></footer>
     </section>
   </div>;
 }

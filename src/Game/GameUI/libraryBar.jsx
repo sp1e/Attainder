@@ -2906,13 +2906,13 @@ const LibraryTopBar = () => {
   const [countryPicker, setCountryPicker] = useState(null);
   const [dynastyMode, setDynastyMode] = useState("realm");
   const [dynastyStartError, setDynastyStartError] = useState("");
-  const startDynastyFromCard = async ({ mode, seed }) => {
+  const startDynastyFromCard = async ({ mode, seed, difficulty }) => {
     setDynastyStartError("");
     // Activation remounts this component. Its shared menu default must already
     // be closed when the new instance mounts, just as in startGameForCountry.
     setMenuOpen(false);
     try {
-      await startDynastyCampaign({ mode, seed });
+      await startDynastyCampaign({ mode, seed, characterDifficulty: difficulty });
     } catch (failure) {
       setDynastyStartError(failure?.message || "Kampanjen kunde inte startas.");
       setMenuOpen(true);

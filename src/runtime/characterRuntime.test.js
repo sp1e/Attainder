@@ -1,10 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { setRuntimeAssetEndpoints } from "./assets.js";
-import { getCharacterPresentation } from "./characters/index.js";
+import { estimateCharacterAction, getCharacterPresentation } from "./characters/index.js";
 import { initializeCampaignCharacters, advanceCharacterYear, submitCharacterCommand,
   readVisibleCharacterState, getCharacterRuntimeStatus, revealLatestCharacterTurn,
-  commitCharacterCampaign, recordCharacterNarrative } from "./characterRuntime.js";
+  commitCharacterCampaign, recordCharacterNarrative, estimateCharacterActionForView } from "./characterRuntime.js";
 
 test("runtime campaign start, command, date, shared save and failed-write recovery use the same world", async () => {
   const originalFetch = globalThis.fetch;
@@ -128,6 +128,43 @@ test("a narrative is recorded only through recordCharacterNarrative, never throu
     const recorded = await recordCharacterNarrative(payload);
     assert.equal(recorded.ok, true, recorded.error);
     assert.equal(data.world.characterSystem.actionLog.at(-1).narrative.title, "En vänlig gest");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("estimateCharacterActionForView gives the odds of the visible state and writes nothing", async () => {
+  const originalFetch = globalThis.fetch;
+  const data = {
+    world: { units: [] },
+    game: { country: "Hadara", gameDate: "-0300-01-01", startDate: "-0300-01-01", round: 1 },
+    events: [], actions: [], chat: [], colors: { Hadara: "#789abc" }, snapshots: [],
+  };
+  let writes = 0;
+  globalThis.fetch = async (url, options = {}) => {
+    const key = new URL(String(url), "http://runtime.test").pathname.split("/").at(-1);
+    if (options.method === "PUT") { writes += 1; data[key] = JSON.parse(options.body); }
+    return new Response(JSON.stringify(data[key] ?? {}), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  setRuntimeAssetEndpoints({ token: "characters-estimate-test" });
+  try {
+    const init = await initializeCampaignCharacters({ mode: "family", seed: 41, difficulty: "hard" });
+    assert.equal(init.ok, true, init.error);
+    const view = getCharacterPresentation(init.state);
+    assert.deepEqual(view.difficulty, { id: "hard", label: "Svår" });
+    const sway = view.catalog.find((entry) => entry.catalogId === "sway");
+    const intent = { actionId: "sway", actorId: view.representative.id, targetIds: [sway.fields[0].options[0].value], means: { silver: 0, agentRoles: [] } };
+    const before = JSON.stringify(data);
+    const writesBefore = writes;
+    const estimate = await estimateCharacterActionForView(intent);
+    assert.equal(estimate.ok, true, estimate.reason);
+    assert.deepEqual(estimate, estimateCharacterAction(data.world.characterSystem, intent));
+    assert.ok(estimate.success.modifiers.some((row) => row.label === "Svårighetsgrad: Svår" && row.value === -10));
+    assert.equal(writes, writesBefore);
+    assert.equal(JSON.stringify(data), before);
+    const refused = await estimateCharacterActionForView({ ...intent, actionId: "gift" });
+    assert.equal(refused.ok, false);
+    assert.equal(typeof refused.reason, "string");
   } finally {
     globalThis.fetch = originalFetch;
   }

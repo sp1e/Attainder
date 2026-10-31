@@ -5,6 +5,7 @@ import vm from "node:vm";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
+import { createCharacterSystem, estimateCharacterAction, getCharacterPresentation } from "../../runtime/characters/index.js";
 
 // Render the real JSX with supplied presentation data. Runtime and portrait
 // loading are stubs; these checks do not exercise the core or a browser.
@@ -12,8 +13,42 @@ const source = readFileSync(new URL("./CharactersPanel.jsx", import.meta.url), "
 const compiled = transformSync(`${source}\nexport { CouncilView, GovernanceSummary, ActionCard, StoryCard, ChainHistory };`, {
   loader: "jsx", format: "cjs", jsx: "transform",
 }).code;
+const actionBoxCompiled = transformSync(readFileSync(new URL("./ActionBox.jsx", import.meta.url), "utf8"), {
+  loader: "jsx", format: "cjs", jsx: "transform",
+}).code;
 
-function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council" } = {}) {
+function runModule(code, modules, globals = {}) {
+  const module = { exports: {} };
+  vm.runInNewContext(code, { module, exports: module.exports, require: (id) => {
+    assert.ok(id in modules, `Unexpected import: ${id}`);
+    return modules[id];
+  }, crypto: globalThis.crypto, ...globals });
+  return module.exports;
+}
+
+// The action box module with its runtime and model calls stubbed; `stubs` replaces any of them.
+function loadActionBox(stubs = {}) {
+  const modules = {
+    react: { ...React, useEffect: () => {}, useCallback: (fn) => fn, useMemo: (fn) => fn(), useRef: (value) => ({ current: value }),
+      useState: (initial) => [typeof initial === "function" ? initial() : initial, () => {}] },
+    "../../runtime/gameDates.js": { parseGameDate: () => null },
+    "../../runtime/characters/index.js": { getCharacterPresentation: (state) => state },
+    "../../runtime/characterRuntime.js": {
+      estimateCharacterActionForView: async () => ({ ok: false, reason: "Ingen uppskattning." }),
+      recordCharacterNarrative: async () => ({ ok: true }),
+      submitCharacterCommand: async () => ({ ok: true, events: [] }),
+      ...stubs.runtime,
+    },
+    "./characterModelCalls.js": {
+      interpretCharacterAction: async () => ({ ok: false, reason: "Ingen modell är ansluten.", fallback: "menu" }),
+      narrateCharacterResolution: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
+      ...stubs.model,
+    },
+  };
+  return runModule(actionBoxCompiled, modules);
+}
+
+function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council", modelCalls = 0 } = {}) {
   let stateIndex = 0;
   const calls = [];
   const modules = {
@@ -30,17 +65,22 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
     "../../runtime/characterRuntime.js": {
       advanceCharacterYearWithModel: async () => { calls.push("advance"); return {}; },
       readVisibleCharacterState: async () => view,
+      estimateCharacterActionForView: async () => ({ ok: false, reason: "Ingen uppskattning." }),
+      recordCharacterNarrative: async () => ({ ok: true }),
+      submitCharacterCommand: async () => ({ ok: true, events: [] }),
+    },
+    "../AI/modelCallCounter.js": { getModelCallCounts: () => ({ total: modelCalls, byKind: {} }), subscribeModelCalls: () => () => {} },
+    "./characterModelCalls.js": {
+      interpretCharacterAction: async () => ({ ok: false, reason: "Ingen modell är ansluten.", fallback: "menu" }),
+      narrateCharacterResolution: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
     },
     "./characters.css": {},
     "./LocalModelConnect.jsx": { default: () => null, __esModule: true },
     "./Portrait.jsx": { default: ({ person }) => React.createElement("span", { "data-portrait-person": person.id }), __esModule: true },
   };
-  const module = { exports: {} };
-  vm.runInNewContext(compiled, { module, exports: module.exports, require: (id) => {
-    assert.ok(id in modules, `Unexpected import: ${id}`);
-    return modules[id];
-  }, window: { matchMedia: () => ({ matches: theme === "dark" }) }, localStorage: { getItem: () => "system" } });
-  return { ...module.exports, calls };
+  modules["./ActionBox.jsx"] = runModule(actionBoxCompiled, modules);
+  const exports = runModule(compiled, modules, { window: { matchMedia: () => ({ matches: theme === "dark" }) }, localStorage: { getItem: () => "system" } });
+  return { ...exports, calls };
 }
 
 const principal = { id: "ruler", name: "Astrid", age: 42, alive: true, stress: 19 };
@@ -56,8 +96,9 @@ const baseView = () => ({
     household: { principalId: familyHead.id, representativeId: familyRegent.id, reason: "minority", blockedReason: "", playerCanExercise: true },
   },
 });
+// CouncilView takes the view as a prop; panel state would otherwise feed the first child hooks.
 const council = (view) => {
-  const { CouncilView } = loadPanel(view);
+  const { CouncilView } = loadPanel(view, { panelState: false });
   return renderToStaticMarkup(React.createElement(CouncilView, { view, pending: [], setTab: () => {}, selectPerson: () => {} }));
 };
 
@@ -294,4 +335,181 @@ test("Decisions includes chain history in both themes and excludes waiting stori
   const html = renderToStaticMarkup(legacy.default({ open: true, onClose: () => {} }));
   assert.match(html, /Ärenden och handlingar/);
   assert.doesNotMatch(html, /Händelsekedjornas historik/);
+});
+
+// A real family campaign from the engine, so the catalog, staff and odds are the ones the player meets.
+function engineCampaign(diplomacy) {
+  const state = createCharacterSystem({ mode: "family", seed: 41 });
+  const representativeId = getCharacterPresentation(state).representative.id;
+  if (diplomacy !== undefined) state.people[representativeId].skills.diplomacy = diplomacy;
+  return { state, view: getCharacterPresentation(state) };
+}
+const swayAnswer = (view) => ({ ok: true, mode: "contested", catalogId: "sway", explanation: "Du vill vinna Isets gunst.",
+  payload: { actionId: "sway", actorId: view.representative.id, targetIds: [view.catalog.find((entry) => entry.catalogId === "sway").fields[0].options[0].value], means: { silver: 10, agentRoles: ["cook"] } } });
+
+test("the council shows the free-text action box above the pending decisions", () => {
+  const { view } = engineCampaign();
+  const { CouncilView } = loadPanel(view, { panelState: false });
+  const pending = [{ id: "story-1", title: "Ett ärende", description: "Något väntar.", choices: [] }];
+  const html = renderToStaticMarkup(React.createElement(CouncilView, { view, pending, setTab: () => {}, selectPerson: () => {} }));
+  assert.match(html, /<textarea[^>]*id="char-action-text"/);
+  assert.match(html, /<label[^>]*for="char-action-text"[^>]*>Vad vill du göra\?<\/label>/);
+  assert.match(html, />Tolka</);
+  assert.match(html, /class="char-text-button"[^>]*>Välj från listan</);
+  assert.ok(html.indexOf("Vad vill du göra?") < html.indexOf('aria-label="Beslut som väntar"'));
+});
+
+test("a stubbed interpret answer shows the confirmation card with bands for a low-skill actor and numbers for a high-skill actor", async () => {
+  const box = loadActionBox();
+  for (const [diplomacy, expectNumbers] of [[3, false], [9, false], [14, true]]) {
+    const { state, view } = engineCampaign(diplomacy);
+    const step = await box.prepareInterpretedAction({ text: "Jag smickrar Iset", view,
+      interpret: async () => swayAnswer(view), estimate: async (intent) => estimateCharacterAction(state, intent) });
+    assert.equal(step.kind, "confirm", step.reason);
+    const html = renderToStaticMarkup(React.createElement(box.ConfirmationCard, { proposal: step.proposal, view, onConfirm: () => {}, onCancel: () => {} }));
+    const estimate = step.proposal.estimate;
+    assert.match(html, /Påverka/);
+    assert.match(html, new RegExp(`Utförs av: ${view.representative.name}`));
+    assert.match(html, /Mål: Iset Arel/);
+    assert.match(html, /Extra silver: 10/);
+    assert.match(html, /Agenter: Kock/);
+    assert.match(html, /15 silver ur familjekassan · 1 handling/);
+    assert.match(html, />Genomför</);
+    assert.match(html, />Avbryt</);
+    assert.match(html, /Grundchans/);
+    if (expectNumbers) {
+      assert.equal(estimate.precision, "exact");
+      assert.match(html, new RegExp(`Chans att lyckas: ${estimate.display.success} %`));
+      assert.match(html, new RegExp(`Chans att hållas hemlig: ${estimate.display.secrecy} %`));
+      assert.match(html, /Grundchans: \+50/);
+    } else {
+      assert.notEqual(estimate.precision, "exact");
+      assert.match(html, new RegExp(`Chans att lyckas: ${estimate.display.success}<`));
+      assert.match(html, new RegExp(`Chans att hållas hemlig: ${estimate.display.secrecy}<`));
+      assert.doesNotMatch(html, /\d\s?%/, "a band precision must not show a percentage");
+      assert.doesNotMatch(html, new RegExp(`\\b(${estimate.success.value}|${estimate.secrecy.value})\\b`), "the true odds must not reach the markup");
+      assert.doesNotMatch(html, /Högsta möjliga chans|Lägsta möjliga chans/);
+    }
+  }
+});
+
+test("a command entry from interpret shows its display cost and the chosen field values", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const gift = view.catalog.find((entry) => entry.catalogId === "gift");
+  const target = gift.fields[0].options[1];
+  const step = await box.prepareInterpretedAction({ text: "Ge en gåva", view,
+    interpret: async () => ({ ok: true, mode: "command", catalogId: "gift", payload: { targetId: target.value }, intent: { type: "gift", payload: { targetId: target.value } } }),
+    estimate: async () => assert.fail("a command entry has no odds") });
+  assert.equal(step.kind, "confirm");
+  const html = renderToStaticMarkup(React.createElement(box.ConfirmationCard, { proposal: step.proposal, view, onConfirm: () => {}, onCancel: () => {} }));
+  assert.ok(html.includes(gift.cost));
+  assert.ok(html.includes(`Mottagare: ${target.label}`));
+  assert.doesNotMatch(html, /Chans att lyckas/);
+});
+
+test("with no model the menu offers every catalog action", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const step = await box.prepareInterpretedAction({ text: "Jag smickrar Iset", view,
+    interpret: async () => ({ ok: false, reason: "Modellanropet misslyckades.", fallback: "menu" }), estimate: async () => assert.fail("no estimate without an answer") });
+  assert.deepEqual({ ...step }, { kind: "menu", reason: "Modellanropet misslyckades." });
+  const panel = loadPanel(view);
+  const html = renderToStaticMarkup(React.createElement(box.ActionMenu, { view, reason: step.reason, CommandCard: panel.ActionCard, onPropose: () => {} }));
+  const listed = [...html.matchAll(/data-catalog-id="([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(listed.sort(), view.catalog.map((entry) => entry.catalogId).sort());
+  assert.match(html, /Modellanropet misslyckades\./);
+  assert.match(html, />Intrig</);
+  assert.match(html, />Diplomati</);
+  // A disabled entry stays listed, with its reason.
+  assert.match(html, /Ingen behörig deltagare finns\./);
+});
+
+test("a contested menu entry asks for target, silver and at most two agents", () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const sway = view.catalog.find((entry) => entry.catalogId === "sway");
+  const html = renderToStaticMarkup(React.createElement(box.ContestedForm, { entry: sway, view, onPropose: () => {} }));
+  assert.match(html, /<select[^>]*>.*Iset Arel/);
+  assert.match(html, /type="number"[^>]*min="0"[^>]*max="60"/);
+  assert.equal((html.match(/type="checkbox"/g) || []).length, 5);
+  assert.match(html, /Högst 2 agenter/);
+  const disabled = renderToStaticMarkup(React.createElement(box.ContestedForm, { entry: { ...sway, disabledReason: "Årets handlingsutrymme är slut. För tiden framåt." }, view, onPropose: () => {} }));
+  assert.match(disabled, /Årets handlingsutrymme är slut/);
+  assert.match(disabled, /<button[^>]*disabled=""[^>]*>Visa chansen/);
+});
+
+test("a contested attempt is narrated and saved through recordCharacterNarrative only", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const proposal = { mode: "contested", catalogId: "sway", entry: view.catalog.find((entry) => entry.catalogId === "sway"), payload: swayAnswer(view).payload };
+  const resolution = { id: "resolution-9", tier: "clean_success", tierLabel: "Lyckat i det tysta", refused: false, actionLabel: "Påverka", effects: [] };
+  const submitted = [], recorded = [], order = [];
+  const outcome = await box.executeProposal({ proposal, view: { ...view, recentResolutions: [] },
+    submit: async (type) => { submitted.push(type); return { ok: true, state: { recentResolutions: [resolution], schemes: [] }, events: [{ title: "Påverka: lyckat i det tysta", description: "Standardtext." }, { title: "Rikets förvaltning", description: "En senare uppdatering." }] }; },
+    narrate: async () => { order.push("narrate"); return { ok: true, title: "<b>Ett leende</b>", narrative: "Iset log.", adjustments: [{ effectIndex: 0, value: 12 }] }; },
+    recordNarrative: async (payload) => { recorded.push(payload); return { ok: true }; },
+    present: (state) => state, onProgress: (interim) => order.push(`${interim.heading} | ${interim.text} | ${interim.pending}`) });
+  assert.deepEqual(order, ["Lyckat i det tysta | Standardtext. | Modellen skriver berättelsen…", "narrate"], "the tier shows before the model writes, with the outcome event's own text");
+  assert.deepEqual(submitted, ["attempt_action"]);
+  assert.deepEqual(JSON.parse(JSON.stringify(recorded)), [{ resolutionId: "resolution-9", title: "<b>Ett leende</b>", narrative: "Iset log.", adjustments: [{ effectIndex: 0, value: 12 }] }]);
+  assert.equal(outcome.heading, "Lyckat i det tysta");
+  const html = renderToStaticMarkup(React.createElement(box.OutcomeCard, { outcome }));
+  assert.match(html, /&lt;b&gt;Ett leende&lt;\/b&gt;/);
+  assert.doesNotMatch(html, /<b>/);
+  assert.doesNotMatch(html, /Berättelsen kunde inte skrivas/);
+});
+
+test("each tier has its own Swedish heading and a failed narrate keeps the default text", async () => {
+  const box = loadActionBox();
+  assert.deepEqual({ ...box.TIER_HEADINGS }, { clean_success: "Lyckat i det tysta", exposed_success: "Lyckat men avslöjat",
+    quiet_failure: "Misslyckat i det tysta", exposed_failure: "Misslyckat och avslöjat", backfire: "Det slog tillbaka" });
+  const { view } = engineCampaign();
+  const proposal = { mode: "contested", catalogId: "sway", entry: view.catalog.find((entry) => entry.catalogId === "sway"), payload: swayAnswer(view).payload };
+  let recorded = 0;
+  const outcome = await box.executeProposal({ proposal, view: { ...view, recentResolutions: [{ id: "resolution-1" }] },
+    submit: async () => ({ ok: true, state: { recentResolutions: [{ id: "resolution-1" }, { id: "resolution-2", tier: "backfire", refused: false, effects: [] }], schemes: [] }, events: [{ title: "Påverka: det slog tillbaka", description: "Iset genomskådade försöket." }] }),
+    narrate: async () => ({ ok: false, reason: "Modellanropet misslyckades." }),
+    recordNarrative: async () => { recorded += 1; return { ok: true }; },
+    present: (state) => state });
+  assert.equal(recorded, 0);
+  assert.equal(outcome.heading, "Det slog tillbaka");
+  const html = renderToStaticMarkup(React.createElement(box.OutcomeCard, { outcome }));
+  assert.match(html, /Iset genomskådade försöket\./);
+  assert.match(html, /Berättelsen kunde inte skrivas; utfallet gäller\./);
+});
+
+test("a command proposal submits its own command and calls no model", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const submitted = [];
+  const outcome = await box.executeProposal({ proposal: { mode: "command", catalogId: "gift", entry: view.catalog.find((entry) => entry.catalogId === "gift"), payload: { targetId: "person-0-2" } }, view,
+    submit: async (type, payload) => { submitted.push([type, payload]); return { ok: true, events: [{ title: "En gåva", description: "Gåvan togs emot." }] }; },
+    narrate: async () => assert.fail("a command is not narrated"), recordNarrative: async () => assert.fail("a command has no narrative"), present: (state) => state });
+  assert.deepEqual(submitted, [["gift", { targetId: "person-0-2" }]]);
+  assert.equal(outcome.ok, true);
+});
+
+test("the scheme list shows action, target and due date with an abort button", () => {
+  const box = loadActionBox();
+  const aborted = [];
+  const schemes = [{ id: "scheme-4", actionLabel: "Undergräv", actorName: "Iset Arel", targetNames: ["Kamos Ptah"], dueAt: "-0299-04-01" }];
+  const tree = box.SchemeList({ schemes, onAbort: (id) => aborted.push(id), busy: false });
+  const html = renderToStaticMarkup(tree);
+  assert.match(html, /Undergräv/);
+  assert.match(html, /Mål: Kamos Ptah/);
+  assert.match(html, /Avgörs: -0299-04-01/);
+  const button = elements(tree).find((element) => element.type === "button");
+  assert.ok(renderToStaticMarkup(button).includes("Avbryt intrigen"));
+  button.props.onClick();
+  assert.deepEqual(aborted, ["scheme-4"]);
+  assert.equal(box.SchemeList({ schemes: [], onAbort: () => {} }), null);
+});
+
+test("the panel header shows the difficulty and the footer counts model calls", () => {
+  const view = baseView();
+  view.difficulty = { id: "hard", label: "Svår" };
+  const html = renderToStaticMarkup(loadPanel(view, { modelCalls: 3 }).default({ open: true, onClose: () => {} }));
+  assert.match(html, /Svårighetsgrad: Svår/);
+  assert.match(html, /Modellanrop denna session: 3/);
 });
