@@ -17,8 +17,8 @@ const SWEDISH_TITLE = /[åäö]|^Giftet verkade$/i;
 const SWEDISH = /[åäöÅÄÖ]|silver|handling|företrädare|familj/i;
 const deepFrozen = (value) => value === null || typeof value !== 'object' || (Object.isFrozen(value) && Object.values(value).every(deepFrozen));
 
-test('the catalog holds the two contested actions of Phase 1 and the four intrigue actions', () => {
-  assert.deepEqual(Object.keys(ACTION_CATALOG), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor']);
+test('the catalog holds the two contested actions of Phase 1, the four intrigue actions and imprison', () => {
+  assert.deepEqual(Object.keys(ACTION_CATALOG), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor', 'imprison']);
   for (const [id, entry] of Object.entries(ACTION_CATALOG)) {
     assert.equal(entry.id, id);
     assert.equal(entry.mode, 'contested');
@@ -90,7 +90,7 @@ test('the outcome envelopes match the design tier by tier', () => {
 
 test('every contested entry has all five tiers and only well-formed, known effect kinds', () => {
   assert.deepEqual(TIER_IDS, ['clean_success', 'exposed_success', 'quiet_failure', 'exposed_failure', 'backfire']);
-  assert.deepEqual(EFFECT_KINDS, ['opinion', 'influence', 'stress', 'hook', 'secret', 'memory', 'kill', 'crime', 'legitimacy', 'reveal', 'hook_from_secret', 'rumor']);
+  assert.deepEqual(EFFECT_KINDS, ['opinion', 'influence', 'stress', 'hook', 'secret', 'memory', 'kill', 'crime', 'legitimacy', 'reveal', 'hook_from_secret', 'rumor', 'imprison', 'grievance']);
   for (const [id, entry] of Object.entries(ACTION_CATALOG)) {
     assert.deepEqual(Object.keys(entry.tiers), TIER_IDS, `${id}: tiers keyed by the five tier ids in order`);
     for (const tier of TIER_IDS) {
@@ -140,7 +140,7 @@ test('getCatalogActions lists every command once, then the contested actions', (
   const commands = getAvailableCharacterActions(state);
   assert.ok(commands.length > 5, 'the fixture offers real commands');
   const list = getCatalogActions(state);
-  assert.deepEqual(list.map((entry) => entry.catalogId), [...commands.map((action) => action.type), 'sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor']);
+  assert.deepEqual(list.map((entry) => entry.catalogId), [...commands.map((action) => action.type), 'sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor', 'imprison']);
   assert.equal(new Set(list.map((entry) => entry.catalogId)).size, list.length, 'each catalog id appears once');
   list.slice(0, commands.length).forEach((entry, index) => {
     const { catalogId, mode, ...rest } = entry;
@@ -148,7 +148,7 @@ test('getCatalogActions lists every command once, then the contested actions', (
     assert.equal(mode, 'command');
     assert.deepEqual(rest, commands[index], 'a command entry is the command action plus catalogId and mode');
   });
-  assert.deepEqual(contested(list).map((entry) => entry.catalogId), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor']);
+  assert.deepEqual(contested(list).map((entry) => entry.catalogId), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor', 'imprison']);
 });
 
 test('a contested entry carries its rules and the target, silver and agent fields', () => {
@@ -236,7 +236,7 @@ test('with no capable representative the contested entries stay listed and say w
   state.people[state.families['family-arel'].headId].diedAt = state.date;
   assert.deepEqual(getAvailableCharacterActions(state), [], 'the command menu is empty without a representative');
   const list = getCatalogActions(state);
-  assert.deepEqual(list.map((entry) => entry.catalogId), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor']);
+  assert.deepEqual(list.map((entry) => entry.catalogId), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor', 'imprison']);
   for (const entry of list) assert.equal(entry.disabledReason, 'Familjen saknar en handlingsförmögen företrädare.');
 });
 
@@ -260,7 +260,7 @@ test('an ended campaign keeps the entries and gives the ending reason', () => {
   const state = fresh();
   state.status = { ended: true, reason: 'Riket saknar en giltig fortsättning.' };
   const list = getCatalogActions(state);
-  assert.deepEqual(list.map((entry) => entry.catalogId), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor']);
+  assert.deepEqual(list.map((entry) => entry.catalogId), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor', 'imprison']);
   for (const entry of list) assert.equal(entry.disabledReason, 'Riket saknar en giltig fortsättning.');
   state.status = { ended: true, reason: '' };
   assert.equal(find(getCatalogActions(state), 'sway').disabledReason, 'Kampanjen är avslutad.');
@@ -294,10 +294,11 @@ test('the result does not alias the frozen catalog or the command list', () => {
 
 test('buildCatalogActions takes the representative from its context and refuses to guess', () => {
   const state = fresh();
-  const given = buildCatalogActions(state, [], { representativeId: 'person-0-0', familyId: 'family-arel' });
-  assert.deepEqual(given.map((entry) => entry.disabledReason), ['', '', '', '', '', '']);
+  const given = buildCatalogActions(state, [], { representativeId: 'person-0-0', familyId: 'family-arel', realmAccess: true });
+  assert.deepEqual(given.map((entry) => entry.disabledReason), ['', '', '', '', '', '', '']);
+  assert.equal(buildCatalogActions(state, [], { representativeId: 'person-0-0', familyId: 'family-arel' }).at(-1).disabledReason, 'Familjen saknar rätt att använda statskassan.', 'the realm wallet needs the right to spend it');
   const without = buildCatalogActions(state, []);
-  assert.deepEqual(without.map((entry) => entry.disabledReason), Array(6).fill('Familjen saknar en handlingsförmögen företrädare.'));
+  assert.deepEqual(without.map((entry) => entry.disabledReason), Array(7).fill('Familjen saknar en handlingsförmögen företrädare.'));
   const child = buildCatalogActions(state, [], { representativeId: 'person-0-5', familyId: 'family-arel' });
   assert.equal(child[0].disabledReason, 'Familjen saknar en handlingsförmögen företrädare.', 'a child cannot exercise a mandate');
   const noFamily = buildCatalogActions(state, [], { representativeId: 'person-0-0', familyId: 'family-missing' });

@@ -29,7 +29,7 @@ function ctxOf(state, extra = {}) {
     representativeId: ACTOR,
     playerControlled: true,
     canOrder: (id) => id === ACTOR,
-    wallet: (kind) => (kind === 'family' ? state.families['family-arel'].treasury : 0),
+    wallet: (kind) => (kind === 'family' ? state.families['family-arel'].treasury : kind === 'realm' ? state.realm.treasury : 0),
     opinion: (from, to) => getPersonalOpinion(state, from, to),
     ...extra,
   };
@@ -80,7 +80,7 @@ test('a neutral case gives the base odds and returns the documented shape', () =
     assert.equal(result.actionId, id);
     assert.equal(result.actorId, ACTOR);
     assert.deepEqual(result.targetIds, [TARGET]);
-    assert.deepEqual(result.cost, { orders: entry.cost.orders, silver: entry.cost.silver, wallet: 'family', stressTag: entry.cost.stressTag });
+    assert.deepEqual(result.cost, { orders: entry.cost.orders, silver: entry.cost.silver, wallet: entry.cost.wallet, stressTag: entry.cost.stressTag });
     assert.deepEqual(result.success, { value: entry.baseSuccess + evidence.length * 10, modifiers: [{ label: 'Grundchans', value: entry.baseSuccess }, ...evidence] });
     assert.deepEqual(result.secrecy, { value: entry.baseSecrecy, modifiers: [{ label: 'Hemlighållning: grundnivå', value: entry.baseSecrecy }] });
     assert.deepEqual(Object.keys(result.display), ['success', 'secrecy', 'modifiers']);
@@ -504,7 +504,7 @@ test('end to end, the shown band contains the true value of both rolls over a wi
   const seen = new Set();
   for (const [skill, table, precision] of [[9, FIVE, 'five'], [4, THREE, 'three']]) {
     for (const theirs of [0, 4, 8, 12, 16, 20]) for (const silver of [0, 15, 30, 60]) for (const agentRoles of [[], ['cook'], ['cook', 'steward']]) for (const id of Object.keys(ACTION_CATALOG)) {
-      const state = scene(({ actor, target }) => { actor.skills.diplomacy = skill; actor.skills.intrigue = skill; target.skills.diplomacy = theirs; target.skills.intrigue = theirs; });
+      const state = scene(({ actor, target }) => { actor.skills.diplomacy = skill; actor.skills.intrigue = skill; actor.skills.prowess = skill; target.skills.diplomacy = theirs; target.skills.intrigue = theirs; target.skills.prowess = theirs; });
       const result = estimate(state, id, { means: lever(state, id, { silver, agentRoles }) });
       assert.equal(result.precision, precision);
       assert.equal(result.display.success, bandOf(table, result.success.value));

@@ -3,6 +3,7 @@ import { ACTION_CATALOG, MAX_AGENTS, MAX_EXTRA_SILVER, RUMOR_TOPICS, requiresOf,
 import { ADULT_AGE, SKILL_LABELS, TRAITS } from './content.js';
 import { DIFFICULTIES, normalizeDifficulty } from './extensions.js';
 import { STAFF_ROLES } from './courtStaff.js';
+import { IMPRISONED, isImprisoned } from './prisoners.js';
 import { activeHooks } from './secrets.js';
 
 // Odds for the contested actions. An estimate is a pure function of the state and the engine's context: it draws no randomness, spends nothing, creates no staff and edits nothing. Task 6 rolls against the values computed here.
@@ -30,10 +31,10 @@ const FRAIL_HEALTH = 50, FRAIL_PENALTY = 5;
 const SILVER_PER_POINT = 5, SILVER_CAP = 15;
 const AGENT_SUCCESS = 6, AGENT_SECRECY = 8;
 const DECEITFUL_SECRECY = 8, HONEST_SECRECY = 5;
-// Leverage and target rows (success only). The ids in GUARDED_ACTIONS are the ones a ruler or an office holder is hard to reach with (imprison joins in Task 5); poison alone reads the target's health.
+// Leverage and target rows (success only). The ids in GUARDED_ACTIONS are the ones a ruler or an office holder is hard to reach with (poison and imprison); poison alone reads the target's health.
 const HOOK_BONUS = 20, EVIDENCE_BONUS = Object.freeze({ strong: 25, weak: 10 });
 const RULER_PENALTY = 15, GUARD_PENALTY = 10, FRAIL_TARGET_HEALTH = 40, FRAIL_TARGET_BONUS = 10;
-export const GUARDED_ACTIONS = Object.freeze(['poison']);
+export const GUARDED_ACTIONS = Object.freeze(['poison', 'imprison']);
 const FRAIL_TARGET_ACTIONS = Object.freeze(['poison']);
 const MEANS_KEYS = Object.freeze(['silver', 'agentRoles', 'occasionId', 'secretId', 'hookId', 'topic']);
 const MEANS_TEXT_KEYS = Object.freeze(['occasionId', 'secretId', 'hookId', 'topic']);
@@ -48,6 +49,7 @@ export const REASONS = Object.freeze({
   actorDead: 'Aktören är död.',
   actorChild: 'Aktören är för ung för att agera.',
   actorIncapacitated: 'Aktören är oförmögen att utöva ett mandat just nu.',
+  imprisoned: IMPRISONED,
   order: 'Aktören står inte under din order.',
   targetCount: 'Välj exakt ett mål.',
   targetMissing: 'Målet finns inte.',
@@ -100,6 +102,7 @@ function requireContext(ctx) {
 function actorRefusal(state, actor) {
   if (!actor) return REASONS.actorMissing;
   if (actor.diedAt) return REASONS.actorDead;
+  if (isImprisoned(state, actor.id)) return REASONS.imprisoned;
   if (getCharacterAge(actor, state.date) < ADULT_AGE) return REASONS.actorChild;
   return canExerciseMandate(actor, state.date) ? '' : REASONS.actorIncapacitated;
 }
@@ -109,6 +112,7 @@ function targetRefusal(state, entry, actor, target) {
   if (target.id === actor.id) return REASONS.targetSelf;
   if (target.diedAt) return REASONS.targetDead;
   if (getCharacterAge(target, state.date) < ADULT_AGE) return REASONS.targetChild;
+  if (entry.id === 'imprison' && isImprisoned(state, target.id)) return REASONS.imprisoned;
   return entry.targetFamily === 'other' && target.familyId === actor.familyId ? REASONS.targetFamily : '';
 }
 
@@ -254,6 +258,7 @@ export function estimateAction(state, intent, ctx) {
   const actor = personOf(state, intent.actorId);
   const actorReason = actorRefusal(state, actor);
   if (actorReason) return refuse(actorReason);
+  if (entry.actorOffice && state.offices?.[entry.actorOffice.id]?.holderId !== actor.id) return refuse(entry.actorOffice.reason);
   if (!ctx.canOrder(actor.id)) return refuse(REASONS.order);
   if (!Array.isArray(intent.targetIds) || intent.targetIds.length !== 1) return refuse(REASONS.targetCount);
   const target = personOf(state, intent.targetIds[0]);

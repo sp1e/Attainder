@@ -13,7 +13,6 @@ const CASE_MONTHS = 12;
 const FINE_SILVER = 30;
 const PARDON_LEGITIMACY = 2;
 const PARDON_GOODWILL = 15;
-export const PRISON_MISSING = 'Fängelset är inte byggt ännu.';
 const NO_MANDATE = 'Kräver härskarmandat.';
 
 const rounded = (value) => Math.round(value * 100) / 100;
@@ -61,14 +60,14 @@ export function punishCrimeChoices(state, story, { controller }) {
   const owed = Math.min(FINE_SILVER, Math.max(0, state.families[story.familyId]?.treasury ?? 0));
   const mandate = controller ? '' : NO_MANDATE;
   return [
-    { id: 'imprison', label: 'Fängsla gärningspersonen', description: 'Personen förs i fängelse utan rättegång. Brottet är avslöjat, så ingen legitimitet går förlorad.', cost: '0 silver', stress: '0', disabledReason: mandate || PRISON_MISSING },
+    { id: 'imprison', label: 'Fängsla gärningspersonen', description: 'Personen förs i fängelse utan rättegång. Brottet är avslöjat, så ingen legitimitet går förlorad.', cost: '0 silver', stress: '0', disabledReason: mandate },
     { id: 'fine', label: 'Bötfäll familjen', description: `${rounded(owed)} silver ur familjens kassa går till statskassan.`, cost: '0 silver', stress: '0', disabledReason: mandate },
     { id: 'pardon', label: 'Benåda gärningspersonen', description: `Personen går fri och minns nåden (åsikt om dig +${PARDON_GOODWILL}). Rikets legitimitet sjunker med ${PARDON_LEGITIMACY}.`, cost: '0 silver', stress: '0', disabledReason: mandate },
   ];
 }
 
-/** Applies the chosen answer to a punish_crime story. `hooks` is actionHooks(state); `hooks.imprison` is wired when the prison exists. */
-export function resolvePunishment(state, story, choiceId, hooks) {
+/** Applies the chosen answer to a punish_crime story. `hooks` is actionHooks(state); `events` is the command's event list, where an imprisonment is chronicled. */
+export function resolvePunishment(state, story, choiceId, hooks, events = []) {
   const family = state.families[story.familyId], ruler = hooks.ruler();
   if (choiceId === 'fine' && family) {
     const amount = Math.min(FINE_SILVER, Math.max(0, family.treasury));
@@ -78,7 +77,6 @@ export function resolvePunishment(state, story, choiceId, hooks) {
     state.realm.legitimacy = clampLegitimacy(state.realm.legitimacy - PARDON_LEGITIMACY);
     if (ruler) hooks.opinionCause(story.actorId, ruler.id, PARDON_GOODWILL, 'Benådning', hooks.memory('pardon', 'Ett brott benådades', [story.actorId, ruler.id], { causeId: story.causeId }).id);
   } else if (choiceId === 'imprison') {
-    if (typeof hooks.imprison !== 'function') throw new Error(PRISON_MISSING);
-    hooks.imprison(story.actorId, story);
+    hooks.imprison(story.actorId, story, events);
   }
 }

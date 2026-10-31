@@ -11,7 +11,6 @@ const TAREK = 'person-0-3';
 const KELAN = 'person-1-2';
 const BAREK = 'person-2-2';
 const NAMAR_ADULTS = ['person-1-0', 'person-1-1', 'person-1-3'];
-const PRISON_MISSING = 'Fängelset är inte byggt ännu.';
 
 const copy = (value) => JSON.parse(JSON.stringify(value));
 const fresh = () => createCharacterSystem({ seed: 321 });
@@ -188,7 +187,7 @@ test('an exposed crime by another person opens punish_crime for the player when 
   const view = getCharacterPresentation(state).stories.find((item) => item.id === story.id);
   assert.ok(view, 'the player sees it');
   assert.deepEqual(view.choices.map((choice) => choice.id), ['imprison', 'fine', 'pardon']);
-  assert.equal(view.choices[0].disabledReason, PRISON_MISSING);
+  assert.equal(view.choices[0].disabledReason, '');
   assert.equal(view.choices[1].disabledReason, '');
   assert.equal(view.choices[2].disabledReason, '');
   for (const choice of view.choices) assert.deepEqual(Object.keys(choice).sort(), ['cost', 'description', 'disabledReason', 'id', 'label', 'stress']);
@@ -209,11 +208,14 @@ function openCase() {
   return state;
 }
 
-test('punish_crime: imprison is refused until the prison exists', () => {
+test('punish_crime: imprison puts the criminal in prison without a roll and without a legitimacy cost', () => {
   const state = openCase();
   const result = run(state, 'resolve_story', { storyId: storyOf(state).id, choiceId: 'imprison' });
-  assert.equal(result.ok, false);
-  assert.equal(result.error, PRISON_MISSING);
+  assert.equal(result.ok, true, result.error);
+  assert.equal(result.state.prisoners.length, 1);
+  assert.equal(result.state.prisoners[0].personId, KELAN);
+  assert.equal(result.state.realm.legitimacy, state.realm.legitimacy);
+  assert.equal(result.state.actionRngState, state.actionRngState);
 });
 
 test('punish_crime: a fine moves 30 silver from the family to the treasury', () => {

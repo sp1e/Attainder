@@ -1,5 +1,6 @@
 import { addGameMonths, compareGameDates, normalizeGameDate } from '../gameDates.js';
 import { isAdultCharacter } from './characterCapacity.js';
+import { isImprisoned } from './prisoners.js';
 
 // Occasions: dated gatherings that change the odds of other actions. Phase 2 has one kind, the feast the player holds with the command hold_feast. An occasion is { id: 'occasion-<n>', kind, hostFamilyId, hostId, startedAt, endsAt, guestIds } and lives in state.occasions.
 // Nothing here draws randomness. The odds side (feastRows) is pure; holdFeast is the only writer and runs inside a command.
@@ -44,8 +45,8 @@ export function feastRefusal(state, familyId) {
   return recent ? MESSAGES.recent : '';
 }
 
-// Guests: every living adult of every family. Prisoners are left out once imprisonment exists.
-const guestsOf = (state) => Object.values(state.people).filter((person) => !person.diedAt && isAdultCharacter(person, state.date)).map((person) => person.id);
+// Guests: every living adult of every family who is not in prison.
+const guestsOf = (state) => Object.values(state.people).filter((person) => !person.diedAt && isAdultCharacter(person, state.date) && !isImprisoned(state, person.id)).map((person) => person.id);
 
 /**
  * Runs the command hold_feast: refuses a second feast within twelve months, charges 30 silver and one order to the controlled family, opens a one-month feast occasion and lets each guest family's head think better of the host. Returns the occasion. Draws no randomness.

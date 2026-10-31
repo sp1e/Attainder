@@ -1,11 +1,12 @@
 import { canExerciseMandate, isAdultCharacter } from './characterCapacity.js';
 import { STAFF_ROLES } from './courtStaff.js';
+import { isImprisoned } from './prisoners.js';
 import { SECRET_LABELS, activeHooks } from './secrets.js';
 
 // The action catalog: the contested actions of Phase 1 as data, and the menu that puts them next to the existing commands. Nothing here draws from a random stream, spends silver or edits the state it reads; later tasks compute odds from these entries, resolve them and let the game master pick from them.
 export const ACTION_CATEGORIES = Object.freeze(['intrigue', 'diplomacy', 'family', 'court', 'military', 'religion', 'economy', 'personal']);
 export const TIER_IDS = Object.freeze(['clean_success', 'exposed_success', 'quiet_failure', 'exposed_failure', 'backfire']);
-export const EFFECT_KINDS = Object.freeze(['opinion', 'influence', 'stress', 'hook', 'secret', 'memory', 'kill', 'crime', 'legitimacy', 'reveal', 'hook_from_secret', 'rumor']);
+export const EFFECT_KINDS = Object.freeze(['opinion', 'influence', 'stress', 'hook', 'secret', 'memory', 'kill', 'crime', 'legitimacy', 'reveal', 'hook_from_secret', 'rumor', 'imprison', 'grievance']);
 // What a spread rumor can be about (rumors.js reuses this table). The key is the topic a player sends as means.topic.
 export const RUMOR_TOPICS = Object.freeze({ plot: 'Sammansvärjning', murder: 'Mordplaner', affair: 'Otrohet', illegitimate: 'Oäkta börd' });
 // The most extra silver and the most agents a player can commit to one contested action. The target form and the odds validation share these.
@@ -27,6 +28,9 @@ export const legitimacy = (min, max) => ({ kind: 'legitimacy', min, max });
 export const reveal = (who) => ({ kind: 'reveal', who });
 export const hookFromSecret = (exposed = false) => ({ kind: 'hook_from_secret', exposed });
 export const rumor = () => ({ kind: 'rumor' });
+// imprison: `who` is taken prisoner by the actor's family (prisoners.js). grievance: the family of `family` gains `amount` grievance, a fixed change inside -40 to 40.
+export const imprison = (who) => ({ kind: 'imprison', who });
+export const grievance = (family, amount) => ({ kind: 'grievance', family, amount });
 const tier = (...effects) => ({ effects });
 
 function deepFreeze(value) {
@@ -151,7 +155,28 @@ const SPREAD_RUMOR = {
   utility: 'Start a rumor about the target on a chosen topic and cut their family\'s influence; a failure exposes the actor.',
 };
 
-export const ACTION_CATALOG = deepFreeze({ sway: SWAY, undermine: UNDERMINE, poison: POISON, investigate: INVESTIGATE, blackmail: BLACKMAIL, spread_rumor: SPREAD_RUMOR });
+const IMPRISON = {
+  id: 'imprison', category: 'court', mode: 'contested',
+  label: 'Fängsla',
+  description: 'Sätt en annan person i fängelse. Lyckas det förlorar personen sina ämbeten och sitter fängslad tills du friger, löser ut eller avrättar personen; misslyckas det väcker det ilska, och slår det tillbaka tar personens släkt illa vid sig.',
+  actorScope: 'household', target: 'person',
+  actorOffice: { id: 'ruler', reason: 'Bara härskaren kan fängsla.' },
+  skill: 'prowess', defenseSkill: 'prowess', secrecySkill: 'intrigue',
+  traitModifiers: { actor: {}, target: {} },
+  cost: { orders: 1, silver: 10, wallet: 'realm', stressTag: 'risky' },
+  durationMonths: 0, baseSuccess: 60, baseSecrecy: 5,
+  uses: [],
+  tiers: {
+    clean_success: tier(imprison('target'), opinion('target', 'actor', -30, -15)),
+    exposed_success: tier(imprison('target'), opinion('target', 'actor', -30, -15)),
+    quiet_failure: tier(),
+    exposed_failure: tier(opinion('target', 'actor', -40, -20)),
+    backfire: tier(opinion('target', 'actor', -50, -30), grievance('target', -10), stress('actor', 5, 15)),
+  },
+  utility: 'The ruler jails a person for 10 realm silver: the person loses every office and cannot act until released, ransomed or executed; an unlawful arrest costs legitimacy, and a failure angers the family of the person.',
+};
+
+export const ACTION_CATALOG = deepFreeze({ sway: SWAY, undermine: UNDERMINE, poison: POISON, investigate: INVESTIGATE, blackmail: BLACKMAIL, spread_rumor: SPREAD_RUMOR, imprison: IMPRISON });
 
 /** What an entry's means may carry beyond silver and agents: 'secret', 'hook' and 'topic'. Entries without `uses` take none. */
 export const usesOf = (entry) => (Array.isArray(entry?.uses) ? entry.uses : []);
@@ -168,20 +193,21 @@ const copy = (value) => JSON.parse(JSON.stringify(value));
 const person = (state, id) => typeof id === 'string' && Object.hasOwn(state.people, id) ? state.people[id] : null;
 const family = (state, id) => typeof id === 'string' && Object.hasOwn(state.families, id) ? state.families[id] : null;
 
-// Only the family wallet exists in Phase 1. Any other wallet kind has no known owner here and so disables the entry.
-const walletOf = (state, entry, familyId) => entry.cost.wallet === 'family' ? family(state, familyId) : null;
+// The family wallet is the controlled family's treasury; the realm wallet is the realm's, open only to a player who rules (context.realmAccess, the same right charge() asks for with public funds). Any other wallet kind has no known owner here and so disables the entry.
+const walletOf = (state, entry, context) => entry.cost.wallet === 'family' ? family(state, context.familyId) : entry.cost.wallet === 'realm' && context.realmAccess === true ? state.realm : null;
 
 // Targets an entry accepts: living adults other than the actor. An entry flagged targetFamily 'other' also leaves out the actor's own family.
 function targetsFor(state, entry, actor) {
-  return Object.values(state.people).filter((candidate) => isAdultCharacter(candidate, state.date) && candidate.id !== actor?.id && (entry.targetFamily !== 'other' || !actor || candidate.familyId !== actor.familyId));
+  return Object.values(state.people).filter((candidate) => isAdultCharacter(candidate, state.date) && candidate.id !== actor?.id && (entry.targetFamily !== 'other' || !actor || candidate.familyId !== actor.familyId) && (entry.id !== 'imprison' || !isImprisoned(state, candidate.id)));
 }
 
 // The same refusals, in the same order, that charge() in index.js applies to a family-paid action. Targets are people the player could pick.
-function disabledReason(state, entry, actor, targets, familyId) {
+function disabledReason(state, entry, actor, targets, context) {
   if (state.status?.ended) return state.status.reason || 'Kampanjen är avslutad.';
   if (!canExerciseMandate(actor, state.date)) return 'Familjen saknar en handlingsförmögen företrädare.';
-  const wallet = walletOf(state, entry, familyId);
-  if (!wallet) return 'Ingen behörig resursägare finns.';
+  if (entry.actorOffice && state.offices?.[entry.actorOffice.id]?.holderId !== actor.id) return entry.actorOffice.reason;
+  const wallet = walletOf(state, entry, context);
+  if (!wallet) return entry.cost.wallet === 'realm' && context.realmAccess !== true ? 'Familjen saknar rätt att använda statskassan.' : 'Ingen behörig resursägare finns.';
   if (state.actionPoints < entry.cost.orders) return 'Årets handlingsutrymme är slut. För tiden framåt.';
   if (wallet.treasury < entry.cost.silver) return `Det behövs ${entry.cost.silver} silver; tillgängligt ${Math.floor(wallet.treasury)}.`;
   if (!targets.length) return 'Ingen behörig deltagare finns.';
@@ -225,14 +251,14 @@ function contestedFields(state, entry, targets, representativeId) {
 
 /**
  * Every command action (catalogId = its type, mode 'command') followed by the contested entries. A contested entry is always listed; disabledReason is '' when the active representative can act and the controlled family can pay, otherwise one Swedish sentence.
- * `context` is { representativeId, familyId }: the active representative, the person the player acts through and who gives the orders, and the family whose silver pays, as index.js resolves them. Without a context there is no representative and every contested entry is disabled.
+ * `context` is { representativeId, familyId, realmAccess }: the active representative, the person the player acts through and who gives the orders, the family whose silver pays and whether the player may spend the realm's silver, as index.js resolves them. Without a context there is no representative and every contested entry is disabled.
  */
 export function buildCatalogActions(state, commandActions, context = {}) {
   const actor = person(state, context.representativeId);
   const commands = commandActions.map((action) => ({ ...copy(action), catalogId: action.type, mode: 'command' }));
   const contested = Object.values(ACTION_CATALOG).map((entry) => {
     const targets = targetsFor(state, entry, actor);
-    return { ...copy(entry), catalogId: entry.id, fields: contestedFields(state, entry, targets, actor?.id ?? null), disabledReason: disabledReason(state, entry, actor, targets, context.familyId) };
+    return { ...copy(entry), catalogId: entry.id, fields: contestedFields(state, entry, targets, actor?.id ?? null), disabledReason: disabledReason(state, entry, actor, targets, context) };
   });
   return [...commands, ...contested];
 }

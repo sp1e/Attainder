@@ -4,6 +4,7 @@ import { ODDS_MAX, ODDS_MIN, bandFor, estimateAction } from './actionOdds.js';
 import { CRIME_LABELS, crimeOfSecret, exposeCrime } from './crimes.js';
 import { ensureStaff } from './courtStaff.js';
 import { actionRandom } from './extensions.js';
+import { imprisonPerson, isImprisoned } from './prisoners.js';
 import { HOOK_STRENGTHS, SECRET_TYPES, addSecretHolders, createSecret, exposeSecret, grantHook, useHook } from './secrets.js';
 import { startScheme } from './schemes.js';
 
@@ -27,6 +28,7 @@ const REFUSAL = Object.freeze({ base: 40, loyalty: 0.4, opinion: 0.3, ambitious:
 const BACKFIRE_SHARE = 0.9;
 const TITLE_MAX = 120, TEXT_MAX = 1500;
 const INFLUENCE_MAX = 100, STRESS_MAX = 200, LEGITIMACY_MAX = 100;
+const GRIEVANCE_MIN = -40, GRIEVANCE_MAX = 40;
 const RECENT_LIMIT = 10;
 const PRECISIONS = new Set(['exact', 'five', 'three']);
 // charge() prices stress per tag (stressFor in index.js) and gives 0 for a tag it does not know. A refused order passes this tag, so the representative pays no stress for an order that never ran.
@@ -307,6 +309,20 @@ const APPLY = Object.freeze({
     if (effect.exposed) exposeHeldSecret(state, secret, events, hooks);
     return { kind: 'hook_from_secret', secretId: secret.id, hookId: hook.id, strength: hook.strength, exposed: effect.exposed === true };
   },
+  // The target goes to prison, held by the actor's family (prisoners.js). A target who died or already sits in prison since the estimate gives the bare record with applied false, as a second kill does.
+  imprison(state, effect, { roles, hooks, events }) {
+    const personId = roles[effect.who], person = personOf(state, personId), record = { kind: 'imprison', personId };
+    if (!person || person.diedAt || isImprisoned(state, personId)) return { ...record, applied: false };
+    return { ...record, prisonerId: imprisonPerson(state, personId, state.people[roles.actor].familyId, events, hooks).id };
+  },
+  // A fixed change to a family's grievance, kept inside its bounds. `applied` is the change the bound allowed.
+  grievance(state, effect, { roles }) {
+    const familyId = state.people[roles[effect.family]].familyId, family = state.families[familyId];
+    const next = clamp(family.grievance + effect.amount, GRIEVANCE_MIN, GRIEVANCE_MAX);
+    const applied = next - family.grievance;
+    family.grievance = next;
+    return { kind: 'grievance', familyId, amount: effect.amount, applied };
+  },
   // Task 6 replaces this with createRumor and records the new rumor's id.
   rumor(state, effect, { means }) {
     return { kind: 'rumor', topic: means.topic, rumorId: null };
@@ -464,6 +480,9 @@ const EFFECT_CHECKS = Object.freeze({
   reveal: (state, effect, known) => effect.secretId === null || known.secrets.has(effect.secretId),
   hook_from_secret: (state, effect, known) => known.secrets.has(effect.secretId) && known.hooks.has(effect.hookId) && HOOK_STRENGTHS.includes(effect.strength) && typeof effect.exposed === 'boolean',
   rumor: (state, effect) => ownKey(RUMOR_TOPICS, effect.topic) && (effect.rumorId === null || typeof effect.rumorId === 'string'),
+  // The record of an imprisonment names the prisoner; the bare record { kind, personId, applied: false } is a target who could no longer be taken.
+  imprison: (state, effect, known) => isPerson(state, effect.personId) && (effect.applied === false ? Object.keys(effect).length === 3 : known.prisoners.has(effect.prisonerId)),
+  grievance: (state, effect) => ownKey(state.families, effect.familyId) && Number.isFinite(effect.amount) && Number.isFinite(effect.applied),
 });
 
 function checkEffects(state, entry, known) {
@@ -481,7 +500,7 @@ function checkNarrative(entry) {
 /** Validates state.actionLog on load: ids `resolution-<n>` unique and within state.sequence, known actions and tiers, existing people, agents, memories, hooks and secrets, finite odds and rolls consistent with the refusal and the tier, ranged effects inside their stored ranges, and narratives within their limits. Throws a Swedish sentence naming the action log. */
 export function validateActionLog(state) {
   if (!Array.isArray(state.actionLog)) fail(LOG.list);
-  const known = { memories: idSet(state.memories), hooks: idSet(state.hooks), secrets: idSet(state.secrets) };
+  const known = { memories: idSet(state.memories), hooks: idSet(state.hooks), secrets: idSet(state.secrets), prisoners: idSet(state.prisoners) };
   const ids = new Set();
   for (const entry of state.actionLog) {
     if (!plainObject(entry)) fail(LOG.entry);

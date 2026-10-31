@@ -4,6 +4,7 @@ import { estimateAction } from './actionOdds.js';
 import { resolutionVisible, resolveScheme } from './actionResolution.js';
 import { STAFF_ROLES } from './courtStaff.js';
 import { actionRandom } from './extensions.js';
+import { isImprisoned } from './prisoners.js';
 
 // Schemes: contested actions that take months. A scheme is paid and ordered when it starts, checked for discovery once a month, and rolled like any other action when its due date comes (actionResolution.js records that resolution).
 // Randomness comes only from actionRandom (state.actionRngState): one draw per discovery check, then the two rolls of the resolution. The main stream state.rngState is never touched.
@@ -23,6 +24,7 @@ const MESSAGES = Object.freeze({
   silver: 'Extra silver måste vara ett positivt heltal.',
   cap: `En plan kan få högst ${MAX_EXTRA_SILVER} extra silver sammanlagt.`,
   dead: 'Utföraren eller målet har dött, så planen kunde aldrig fullföljas.',
+  imprisoned: 'Utföraren sitter fängslad, så planen kunde aldrig fullföljas.',
   stopped: 'Planen kunde inte genomföras.',
 });
 const INVALID = Object.freeze({
@@ -114,10 +116,11 @@ function discover(state, scheme, actor, target, events, hooks) {
   hooks.opinionCause(target.id, actor.id, DISCOVERY_OPINION, 'Avslöjad intrig', memory.id);
 }
 
-// One monthly check. A dead actor or target ends the scheme before anything is drawn. On the due date the odds are estimated afresh and a scheme that can no longer run fails before any draw; otherwise the discovery roll comes first and, when the plan holds, the action is rolled and recorded like an instant one.
+// One monthly check. A dead actor or target, or an imprisoned actor (who cannot act), ends the scheme before anything is drawn. On the due date the odds are estimated afresh and a scheme that can no longer run fails before any draw; otherwise the discovery roll comes first and, when the plan holds, the action is rolled and recorded like an instant one.
 function checkScheme(state, scheme, events, hooks) {
   const actor = personOf(state, scheme.actorId), target = personOf(state, scheme.targetIds[0]);
   if (![actor, ...scheme.targetIds.map((id) => personOf(state, id))].every(alive)) return collapse(state, scheme, MESSAGES.dead, events, hooks);
+  if (isImprisoned(state, scheme.actorId)) return collapse(state, scheme, MESSAGES.imprisoned, events, hooks);
   const due = compareGameDates(scheme.dueAt, state.date) <= 0;
   const estimate = due ? dueEstimate(state, scheme, hooks) : null;
   if (estimate && !estimate.ok) return collapse(state, scheme, `${MESSAGES.stopped} ${estimate.reason}`, events, hooks);
