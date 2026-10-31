@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameMonths, compareGameDates } from '../gameDates.js';
 import { applyCharacterOpsToWorld, characterTransitionEvents, planCharacterAdvance } from '../characterWorld.js';
-import { advanceCharacters, createCharacterSystem, executeCharacterCommand, getCharacterPresentation } from './index.js';
+import { advanceCharacters, createCharacterSystem, executeCharacterCommand, getCharacterPresentation, getNextCharacterTransitionDate } from './index.js';
 import { ensureEventChains, validateEventChains } from './eventChains.js';
 
 // These tests drive the heir_margin chain only through public engine entry
@@ -33,6 +33,9 @@ function answer(state, storyId, choiceId) {
 // step opens the heir_margin chain on the first anniversary. healthRng is a
 // saved health RNG fixture, as in health.test.js: 10 gives person-0-0 a
 // moderate smallpox case that does not take the household head out of office.
+// To replace a seed that no longer does: loop healthRng through openChain, print
+// person-0-0's healthConditions (kind, severity, nextTransitionAt), and keep one
+// with smallpox of severity 1 or 2 and an open health_care story.
 function openChain({ healthRng = null } = {}) {
   const initial = createCharacterSystem({ seed: 321 }); ensureEventChains(initial);
   for (const city of Object.values(initial.cities)) city.unrest = 0;
@@ -55,8 +58,46 @@ const openStories = (state, type) => state.stories.filter((item) => item.type ==
 // Two calendars for the continuation tests. In the default fixture a fever
 // resolves on the continuation date, so the engine would stop there even without
 // the chain. Health RNG 547 leaves one injury whose phase ends a month later:
-// the chain's own date is then the only calendar boundary at nextAt.
-const CALENDARS = [['default health fixture', {}], ['chain as the only dated event', { healthRng: 547 }]];
+// the chain's own date is then the only calendar boundary at nextAt. The
+// chainOnly flag makes continuation() assert that premise instead of trusting
+// the seed. To replace a seed that fails it: loop healthRng through
+// afterPaidChoice, print every person's healthConditions, and keep one that has
+// only injuries (or nothing); fever and smallpox phases land on the 3-month mark.
+const CALENDARS = [
+  { label: 'default health fixture', options: {} },
+  { label: 'chain as the only dated event', options: { healthRng: 547 }, chainOnly: true },
+];
+
+// Proves the chain is the only reason the calendar stops at record.nextAt. It
+// checks the conditions' own dates, then walks the calendar with the chain
+// closed: a fever's second phase is created later, so a field check on the
+// post-choice state alone would miss a phase that ends on nextAt.
+function assertChainIsOnlyBoundary(state, record, label, seed) {
+  const advice = `Health RNG ${seed} no longer leaves the chain as the only dated event at ${record.nextAt}; pick a new seed (see CALENDARS).`;
+  for (const person of Object.values(state.people)) for (const condition of person.healthConditions) {
+    assert.notEqual(condition.nextTransitionAt, record.nextAt, `${label}: ${person.id} ${condition.kind} ends a phase on nextAt. ${advice}`);
+    assert.notEqual(condition.nextExposureAt, record.nextAt, `${label}: ${person.id} ${condition.kind} exposes on nextAt. ${advice}`);
+  }
+  const probe = structuredClone(state);
+  const chain = probe.eventChains.records.find((item) => item.id === record.id);
+  Object.assign(chain, { status: 'closed', closedAt: probe.date, nextAt: null, nextStageId: null });
+  const end = addGameMonths(probe.date, 12);
+  let walked = probe;
+  let next = getNextCharacterTransitionDate(walked, end);
+  while (next && compareGameDates(next, record.nextAt) < 0) {
+    const step = advanceCharacters(walked, next, { id: `probe-${next}` });
+    assert.equal(step.ok, true, step.error);
+    walked = step.state;
+    next = getNextCharacterTransitionDate(walked, end);
+  }
+  assert.notEqual(next, record.nextAt, `${label}: another calendar boundary falls on nextAt once the chain is closed. ${advice}`);
+}
+// A paid-choice fixture for one calendar, with its premise checked.
+function continuation({ label, options, chainOnly = false }) {
+  const fixture = afterPaidChoice(options);
+  if (chainOnly) assertChainIsOnlyBoundary(fixture.state, fixture.record, label, options.healthRng);
+  return fixture;
+}
 
 const domain = (state) => { const { revision: _revision, appliedCommandIds: _ids, ...rest } = state; return rest; };
 
@@ -85,8 +126,9 @@ test('a paid chain choice replays from its stored patch without a second debit',
 });
 
 test('the turn stops at a chain continuation inside the year', () => {
-  for (const [label, options] of CALENDARS) {
-    const { state, record, story } = afterPaidChoice(options);
+  for (const calendar of CALENDARS) {
+    const { label } = calendar;
+    const { state, record, story } = continuation(calendar);
     const first = state.stories.find((item) => item.id === story.id);
     assert.equal(first.status, 'resolved', label);
     assert.equal(record.status, 'waiting', label);
@@ -120,6 +162,7 @@ test('health and chain decisions on the same date stay separate', () => {
   const { state: opened, story } = openChain({ healthRng: 10 });
   const patient = opened.people['person-0-0'];
   const illness = patient.healthConditions.find((item) => item.kind === 'smallpox');
+  assert.ok(illness, 'health RNG 10 should give person-0-0 smallpox; pick a new seed (see openChain)');
   assert.equal(illness.stage, 'active');
   assert.equal(openStories(opened, 'health_care').length, 1);
   assert.equal(openStories(opened, 'health_care')[0].actorId, patient.id);
@@ -156,8 +199,9 @@ test('health and chain decisions on the same date stay separate', () => {
 });
 
 test('whole and split advances through a chain continuation are identical', () => {
-  for (const [label, options] of CALENDARS) {
-    const { state, record } = afterPaidChoice(options);
+  for (const calendar of CALENDARS) {
+    const { label } = calendar;
+    const { state, record } = continuation(calendar);
     const target = addGameMonths(state.date, 12);
     assert.equal(compareGameDates(record.nextAt, target) < 0, true, label);
     const whole = advance(state, target, 'a');
