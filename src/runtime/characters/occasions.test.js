@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameDays, addGameMonths } from '../gameDates.js';
 import { ADULT_AGE } from './content.js';
-import { advanceCharacters, createCharacterSystem, getCharacterAge, estimateCharacterAction, executeCharacterCommand, getCatalogActions, getCharacterPresentation, getPersonalOpinion, normalizeCharacterSystem } from './index.js';
+import { estimateAction } from './actionOdds.js';
+import { actionHooks, advanceCharacters, createCharacterSystem, getCharacterAge, estimateCharacterAction, executeCharacterCommand, getCatalogActions, getCharacterPresentation, getPersonalOpinion, normalizeCharacterSystem } from './index.js';
 import { actionRandom } from './extensions.js';
 import { activeOccasion } from './occasions.js';
 
@@ -62,6 +63,8 @@ test('hold_feast raises the opinion of each guest family head of the host by 5',
   const before = heads.map((id) => getPersonalOpinion(state, id, REP));
   const after = feast(state);
   heads.forEach((id, index) => assert.equal(getPersonalOpinion(after, id, REP), before[index] + 5, id));
+  const hostSide = Object.values(after.relations).filter((relation) => after.people[relation.fromId].familyId === FAMILY);
+  assert.ok(hostSide.every((relation) => relation.causes.every((item) => item.label !== 'Bjöds på gästabud')), 'the host family is not courted');
   const cause = after.relations[`${TARGET}:${REP}`].causes.find((item) => item.label === 'Bjöds på gästabud');
   assert.equal(cause.amount, 5);
 });
@@ -219,4 +222,44 @@ test('validateSchemes accepts an occasion id in the means and refuses a malforme
   const numeric = copy(started);
   numeric.schemes.at(-1).means.occasionId = 4;
   assert.throws(() => normalizeCharacterSystem(numeric), /En plans medel/);
+});
+
+test('a scheme started before any feast gets no feast row when a later feast covers its due date', () => {
+  const start = ok(run({ ...copy(base()), actionRngState: QUIET_SEED }, 'attempt_action', UNDERMINE));
+  const scheme = start.schemes.at(-1);
+  assert.equal(Object.hasOwn(scheme.means, 'occasionId'), false);
+  // A feast that begins half a month before the due date and so runs over it.
+  const hosting = feast(advance(start, addGameDays(addGameMonths(start.date, 2), 15)));
+  assert.ok(activeOccasion(hosting, FAMILY, scheme.dueAt), 'the feast covers the due date');
+  const resolved = advance(hosting, scheme.dueAt);
+  const entry = resolved.actionLog.at(-1);
+  assert.equal(entry.tier, 'clean_success');
+  const live = estimateCharacterAction(resolved, UNDERMINE);
+  assert.ok(live.occasionId, 'a fresh attempt on the due date does get the feast row');
+  assert.equal(entry.estimate.success, live.success.value - 15, "the scheme's own estimate has none");
+});
+
+test('an actor whose family does not host the feast gains no feast row in an NPC context', () => {
+  const plain = base();
+  const state = feast(base());
+  const intent = { actionId: 'undermine', actorId: 'person-1-1', targetIds: [REP] };
+  const withFeast = estimateAction(state, intent, actionHooks(state).npcEstimateContext('person-1-1'));
+  const without = estimateAction(plain, intent, actionHooks(plain).npcEstimateContext('person-1-1'));
+  assert.equal(withFeast.ok, true, withFeast.reason);
+  assert.equal(withFeast.occasionId, undefined);
+  assert.equal(withFeast.success.value, without.success.value);
+  assert.equal(withFeast.secrecy.value, without.secrecy.value);
+});
+
+test('a stored occasion id counts only for an actor of the family that hosted it', () => {
+  const state = feast(base());
+  const id = state.occasions[0].id;
+  const later = copy(state);
+  later.date = state.occasions[0].endsAt;
+  const due = (actorId, context) => estimateAction(later, { actionId: 'undermine', actorId, targetIds: [actorId === REP ? TARGET : REP], means: { occasionId: id } }, { ...context, scheduled: true });
+  const host = due(REP, actionHooks(later).estimateContext());
+  assert.equal(host.occasionId, id, "the host family's actor keeps the feast");
+  const stranger = due('person-1-1', actionHooks(later).npcEstimateContext('person-1-1'));
+  assert.equal(stranger.ok, true, stranger.reason);
+  assert.equal(stranger.occasionId, undefined);
 });

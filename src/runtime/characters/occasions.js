@@ -65,6 +65,7 @@ export function holdFeast(state, events, hooks) {
   const event = hooks.logEvent(events, 'feast', `${family.name} håller gästabud`, `${host.name} bjuder släkter och gäster till ett gästabud som varar en månad.`, [host.id]);
   const memory = hooks.memory('feast', event.title, [host.id], { causeId: event.id });
   const guestFamilies = new Set(occasion.guestIds.map((id) => state.people[id].familyId));
+  guestFamilies.delete(family.id); // the host's own family is not courted
   for (const familyId of guestFamilies) {
     const head = state.people[state.families[familyId].headId];
     if (head && !head.diedAt) hooks.opinionCause(head.id, host.id, FEAST.opinion, 'Bjöds på gästabud', memory.id, FEAST.opinionYears);
@@ -74,14 +75,18 @@ export function holdFeast(state, events, hooks) {
 
 /**
  * The situational rows the odds take from occasions (ctx.situation in actionOdds.js): { success: row[], secrecy: row[], occasionId }.
- * An intrigue-category action gains the feast rows when the actor's family hosts a feast that runs now and the target is on its guest list, or when `means.occasionId` names a feast of that family (a scheme carries it from its start). Otherwise the rows are empty and occasionId is null.
+ * An intrigue-category action gains the feast rows when the actor's family hosts a feast that runs now and the target is on its guest list. On a scheme's due date (`means.scheduled`) only the feast the scheme stored in `means.occasionId` counts, and only if the actor's family hosted it; the feast running that day is never looked at. Otherwise the rows are empty and occasionId is null.
  */
 export function feastRows(state, entry, actor, target, means) {
   const none = { success: [], secrecy: [], occasionId: null };
   if (entry.category !== 'intrigue') return none;
-  const named = typeof means?.occasionId === 'string' ? list(state).find((occasion) => occasion.id === means.occasionId) : null;
-  const occasion = named?.kind === 'feast' && named.hostFamilyId === actor.familyId ? named : guestFeast(state, actor, target);
+  const occasion = means?.scheduled === true ? storedFeast(state, actor, means.occasionId) : guestFeast(state, actor, target);
   return occasion ? { success: [{ ...FEAST_ROWS.success }], secrecy: [{ ...FEAST_ROWS.secrecy }], occasionId: occasion.id } : none;
+}
+
+function storedFeast(state, actor, id) {
+  const named = typeof id === 'string' ? list(state).find((occasion) => occasion.id === id) : null;
+  return named?.kind === 'feast' && named.hostFamilyId === actor.familyId ? named : null;
 }
 
 function guestFeast(state, actor, target) {

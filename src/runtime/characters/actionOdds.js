@@ -184,11 +184,12 @@ function presentOdds(precision, success, secrecy) {
 const refuse = (reason) => ({ ok: false, reason });
 
 const NO_SITUATION = Object.freeze({ success: Object.freeze([]), secrecy: Object.freeze([]), occasionId: null });
-// The rows the engine's occasions add (ctx.situation, optional). The player's own means.occasionId is dropped: only a scheme that carries its start (ctx.scheduled, set by schemes.js on the due date) may name an occasion.
+// The rows the engine's occasions add (ctx.situation, optional). The player's own means.occasionId is dropped: only a scheme that carries its start (ctx.scheduled, set by schemes.js on the due date) may name an occasion. On that path `scheduled` tells situation to use the stored id only and never the feast that happens to run on the due date.
 function situationOf(entry, actor, target, means, ctx) {
   if (typeof ctx.situation !== 'function') return NO_SITUATION;
   const carried = ctx.scheduled === true ? means.occasionId : undefined;
-  return ctx.situation(entry, actor, target, { ...means, occasionId: carried }) ?? NO_SITUATION;
+  const scheduled = ctx.scheduled === true;
+  return ctx.situation(entry, actor, target, { ...means, occasionId: carried, scheduled }) ?? NO_SITUATION;
 }
 
 /**
