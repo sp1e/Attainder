@@ -1,26 +1,40 @@
-# Development checkpoint: event chains
+# Development checkpoint: Phase 0 of the AI game master
 
-Saved on 31 October 2026 at the owner's request to preserve work before the weekly token allowance runs out.
+Updated on 31 October 2026.
 
-## Published baseline
+## Branch state
 
-`main` commit `c49da0450dfa50a0925953f784cc2c03a958fd50` contains the reviewed adult-incapacity integration and the requested `research.html`. The full serial suite passed 3,197 tests, with no failures, one skip and two TODOs. Production build and isolated incapacity browser/persistence checks passed. The research report includes portable links, an archive notice, keyboard theme controls and verified light/dark layouts.
+`claude/ai-game-master-design` was cut from `origin/main` at `728eaec` and holds six commits on top of it. The commits are not on `main`.
 
-## Work preserved on the checkpoint branch
+- `8ab75f8` adds the design in `docs/superpowers/specs/2026-10-31-ai-game-master-design.md`.
+- `dd787af` adds the Phase 0 and Phase 1 plans in `docs/superpowers/plans/`.
+- `cf0d4f3` closes four save-validation holes in `validateEventChains`. A load now rejects a forged origin-memory cause, a step whose `familyId` differs from its chain, an outcome memory with emptied participants, and an outcome memory whose visibility or `knownBy` list was changed. Regression tests are in `src/runtime/characters/eventChains.test.js`.
+- `26dc95e` tests rollback and journal recovery after a failed multi-document save in `src/runtime/characterPersistence.test.js`.
+- `3c0004f` and `8fd0e73` add `src/runtime/characters/eventChainIntegration.test.js` with five tests: command payment and replay, exact subannual host interruption, same-date health and chain decisions, whole versus split advances, and insufficient funds.
 
-`codex/event-chains-checkpoint` preserves the next feature before final acceptance. It adds eight original event chains with 32 stages, causal memories, prior-choice flags, scheduled continuation, typed effects, separate family/public payers and a free close option. The character engine, host calendar and model horizon now recognize these chains. The character panel shows the current step, prior decisions, actual decision actors and waiting/completed history.
+## Verification at `8fd0e73`
 
-Current verification: 252 character/core/world tests pass, including eight new lifecycle tests and 44 content checks. The updated panel's 17 render tests and focused lint pass. These are separate from the baseline full-suite result. The event integration has not yet passed independent specification review, adversarial integration/persistence review, a new production build or browser acceptance. Do not describe this checkpoint as the final event release.
+- Full serial suite on 31 October 2026: 3,265 tests, 3,262 pass, 0 fail, 1 skipped, 2 todo, in 142 seconds. The baseline was 3,257 tests with 3,254 passing, so Phase 0 added 8 tests.
+- ESLint on `src/runtime/characters` and `src/runtime/characterPersistence.test.js`: no errors.
+- `npm run build`: exit code 0.
 
-An independent review reproduced malformed-save acceptance in `validateEventChains`: changing an origin memory's `causeId` to a nonexistent source, changing a step's `familyId`, emptying outcome-memory participants, or changing its visibility to private can each pass `normalizeCharacterSystem`. Fix these causal/ownership/visibility checks and add regression coverage before final acceptance. The review did not change code. These findings are preserved here because the owner requested synchronization followed by a development pause.
+## Next step
 
-## Resume in this order
+Phase 1 follows `docs/superpowers/plans/2026-10-31-phase-1-foundation.md`. A player types an action in free text, reads the odds and their reasons, confirms, and sees a result that the engine rolled, applied and saved.
 
-1. Verify checkout, HEAD, remotes and working-tree ownership. Preserve any later work. Main owns architecture, engine changes, integration and Git publication. Worker 1 and Worker 2 have bounded UI/content/test/review roles.
-2. Finish integration tests for `eventChains.js`: actual command payments and replay, exact subannual host interruption, same-date health/chain decisions, participant or mandate changes, insufficient funds, forged save references, whole/split/JSON advances and more than 1,000 newer memories. Test interrupted multi-document saving and recovery using `characterPersistence.js` without real campaigns.
-3. Inspect event save validation, immutable historical roles, story/source uniqueness and calendar ordering. A normal read must not choose a branch, spend money or draw randomness. Model output must never perform the player's chain choice.
-4. Run fresh specification review, then independent quality review. Main fixes findings and requests a focused recheck. Test the actual panel in both themes and narrow layouts, including a submitted public and private choice followed by reload.
-5. Run the affected tests, full serial suite, lint and production build. Update the README and event contract with the actual final evidence. Only then publish the accepted feature to `main`; keep intermediate checkpoints on the checkpoint branch.
+## Still open for event chains
+
+Event chains are not yet released. `main` holds the unaccepted checkpoint from merge `728eaec`, and the README does not describe them. Phase 0 did not cover these checks:
+
+1. Participant or mandate changes during a chain.
+2. JSON advances.
+3. More than 1,000 newer memories.
+4. Immutable historical roles and story/source uniqueness.
+5. The panel in both themes and narrow layouts, with one submitted public choice and one submitted private choice, each followed by a reload.
+
+After these checks, run an independent quality review, update the README and `docs/design/event-chains.md` with the final evidence, and publish the accepted feature to `main`.
+
+Two rules hold for every change. A normal read, validation or presentation call never chooses a branch, spends money or draws randomness. Model output never performs the player's chain choice.
 
 The reference implementation is in `src/runtime/characters/eventChains.js`, data in `eventChainContent.js`, host integration in `src/runtime/characterWorld.js`, and UI in `src/Game/Characters/CharactersPanel.jsx`. `docs/design/event-chains.md` records the current contract and limits.
 
