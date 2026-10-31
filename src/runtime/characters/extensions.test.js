@@ -37,12 +37,34 @@ test('new campaigns carry extensions and keep the main random stream', () => {
   }
 });
 
-test('the action stream is seeded from the polity and start date, not from the main seed', () => {
+test('the action stream is seeded per campaign from polity, start date and the main stream value', () => {
+  const fnv = (text) => { let n = 2166136261; for (let i = 0; i < text.length; i++) n = Math.imul(n ^ text.charCodeAt(i), 16777619); return n >>> 0 || 1; };
   const a = createCharacterSystem({ seed: 321 }), b = createCharacterSystem({ seed: 999 }), c = createCharacterSystem({ seed: 321, polityId: 'other' }), d = createCharacterSystem({ seed: 321, date: '-0250-01-01' });
-  assert.equal(a.actionRngState, b.actionRngState);
+  assert.equal(a.actionRngState, fnv('hadara|-0300-01-01|321|actions'));
+  // (a) same polity and start date, different campaign seed: different action stream.
+  assert.equal(a.identity.polityId, b.identity.polityId); assert.equal(a.startedAt, b.startedAt);
+  assert.notEqual(a.actionRngState, b.actionRngState);
+  assert.equal(b.actionRngState, fnv('hadara|-0300-01-01|999|actions'));
   assert.notEqual(a.actionRngState, c.actionRngState);
   assert.notEqual(a.actionRngState, d.actionRngState);
   assert.equal(a.actionRngState, createCharacterSystem({ seed: 321 }).actionRngState);
+  // (b) the same save migrated twice, and a JSON round trip of it, land on the same action stream.
+  const advanced = advanceCharacters(a, addGameMonths(a.date, 12), { id: 'y1' }).state;
+  const old = stripExtensions(plain(advanced));
+  const first = normalizeCharacterSystem(old), second = normalizeCharacterSystem(old), viaJson = normalizeCharacterSystem(JSON.parse(JSON.stringify(old)));
+  assert.equal(first.actionRngState, second.actionRngState);
+  assert.equal(first.actionRngState, viaJson.actionRngState);
+  assert.equal(first.actionRngState, normalizeCharacterSystem(plain(first)).actionRngState);
+  // A migration reads the save's current main-stream value, so it differs from the creation-time seed.
+  assert.equal(first.actionRngState, fnv(`hadara|-0300-01-01|${PRE_CHANGE_RNG.after12Months}|actions`));
+  assert.notEqual(first.actionRngState, a.actionRngState);
+  // (c) ensure draws nothing: the main stream value is untouched, on creation-shaped and on advanced saves alike.
+  for (const save of [stripExtensions(plain(createCharacterSystem({ seed: 321 }))), old]) {
+    const before = save.rngState, copy = plain(save);
+    ensureCharacterExtensions(copy); ensureCharacterExtensions(copy);
+    assert.equal(copy.rngState, before);
+    assert.equal(old.rngState, PRE_CHANGE_RNG.after12Months);
+  }
 });
 
 test('createCharacterSystem stores a known difficulty and falls back to normal', () => {
@@ -190,37 +212,44 @@ test('actionRandom is a separate xorshift stream that never touches the main one
 });
 
 test('forged extensions are rejected', () => {
+  const DIFFICULTY = /^Sparfilens svårighetsgrad är ogiltig\.$/, ACTION_STATE = /^Handlingarnas slumptillstånd är ogiltigt\.$/, COLLECTIONS = /^Karaktärstilläggens samlingar är ogiltiga\.$/;
+  const VERSION = /^Karaktärstilläggens version stöds inte\.$/, EXTENDED_SKILL = /^En person har ogiltig intrig eller kampförmåga\.$/;
+  // The existing check on SKILL_LABELS fires first for a value the extension range check would also refuse.
+  const SKILL = /^En person har ogiltig kompetens\.$/;
   const forgeries = {
-    'unknown difficulty': (s) => { s.difficulty = 'god'; },
-    'prototype key as difficulty': (s) => { s.difficulty = 'constructor'; },
-    'zero action state': (s) => { s.actionRngState = 0; },
-    'oversized action state': (s) => { s.actionRngState = 2 ** 32; },
-    'fractional action state': (s) => { s.actionRngState = 1.5; },
-    'object instead of secrets list': (s) => { s.secrets = {}; },
-    'string instead of hooks list': (s) => { s.hooks = 'x'; },
-    'null relationships': (s) => { s.relationships = null; },
-    'array as court staff': (s) => { s.courtStaff = []; },
-    'unsupported extensions version': (s) => { s.extensionsVersion = 2; },
-    'negative intrigue': (s) => { s.people['person-0-0'].skills.intrigue = -1; },
-    'prowess above 20': (s) => { s.people['person-1-1'].skills.prowess = 21; },
-    'text as prowess': (s) => { s.people['person-1-1'].skills.prowess = '12'; },
-    'null intrigue': (s) => { s.people['person-2-3'].skills.intrigue = null; },
+    'unknown difficulty': [(s) => { s.difficulty = 'god'; }, DIFFICULTY],
+    'prototype key as difficulty': [(s) => { s.difficulty = 'constructor'; }, DIFFICULTY],
+    'zero action state': [(s) => { s.actionRngState = 0; }, ACTION_STATE],
+    'oversized action state': [(s) => { s.actionRngState = 2 ** 32; }, ACTION_STATE],
+    'fractional action state': [(s) => { s.actionRngState = 1.5; }, ACTION_STATE],
+    'object instead of secrets list': [(s) => { s.secrets = {}; }, COLLECTIONS],
+    'string instead of hooks list': [(s) => { s.hooks = 'x'; }, COLLECTIONS],
+    'null relationships': [(s) => { s.relationships = null; }, COLLECTIONS],
+    'array as court staff': [(s) => { s.courtStaff = []; }, COLLECTIONS],
+    'unsupported extensions version': [(s) => { s.extensionsVersion = 2; }, VERSION],
+    'negative intrigue': [(s) => { s.people['person-0-0'].skills.intrigue = -1; }, SKILL],
+    'prowess above 20': [(s) => { s.people['person-1-1'].skills.prowess = 21; }, EXTENDED_SKILL],
+    'text as prowess': [(s) => { s.people['person-1-1'].skills.prowess = '12'; }, SKILL],
+    'null intrigue': [(s) => { s.people['person-2-3'].skills.intrigue = null; }, SKILL],
   };
-  for (const [name, forge] of Object.entries(forgeries)) {
+  for (const [name, [forge, message]] of Object.entries(forgeries)) {
     const raw = plain(createCharacterSystem({ seed: 321 })); forge(raw);
-    assert.throws(() => normalizeCharacterSystem(raw), Error, name);
+    assert.throws(() => normalizeCharacterSystem(raw), { name: 'Error', message }, name);
   }
+  // Direct calls reach every branch, including the `< 0` side of the range check that normalize never gets to.
   const bad = plain(createCharacterSystem({ seed: 321 }));
-  bad.people['person-1-1'].skills.prowess = 21;
-  assert.throws(() => validateCharacterExtensions(bad), /kampförmåga/);
+  bad.people['person-0-0'].skills.intrigue = -1;
+  assert.throws(() => validateCharacterExtensions(bad), { name: 'Error', message: EXTENDED_SKILL });
+  bad.people['person-0-0'].skills.intrigue = 4; bad.people['person-1-1'].skills.prowess = 21;
+  assert.throws(() => validateCharacterExtensions(bad), { name: 'Error', message: EXTENDED_SKILL });
   bad.people['person-1-1'].skills.prowess = 5; bad.difficulty = 'god';
-  assert.throws(() => validateCharacterExtensions(bad), /svårighetsgrad/);
+  assert.throws(() => validateCharacterExtensions(bad), { name: 'Error', message: DIFFICULTY });
   bad.difficulty = 'normal'; bad.secrets = {};
-  assert.throws(() => validateCharacterExtensions(bad), /samlingar/);
+  assert.throws(() => validateCharacterExtensions(bad), { name: 'Error', message: COLLECTIONS });
   bad.secrets = []; bad.actionRngState = 0;
-  assert.throws(() => validateCharacterExtensions(bad), /slumptillstånd/);
+  assert.throws(() => validateCharacterExtensions(bad), { name: 'Error', message: ACTION_STATE });
   bad.actionRngState = 1; bad.extensionsVersion = 0;
-  assert.throws(() => validateCharacterExtensions(bad), /version/);
+  assert.throws(() => validateCharacterExtensions(bad), { name: 'Error', message: VERSION });
 });
 
 test('ensureCharacterExtensions is idempotent and leaves a complete state untouched', () => {
