@@ -71,10 +71,10 @@ export function createRumor(state, fields) {
   return rumor;
 }
 
-// The one who listens: the spymaster at full intrigue, else the representative at half, rounded down. Nobody in prison listens (the office falls vacant on imprisonment, but the check is cheap).
-function listenerOf(state, hooks) {
+// The one who listens: the spymaster at full intrigue, else the representative at half, rounded down. Nobody in prison listens (the office falls vacant on imprisonment, but the check is cheap), and a spymaster does not listen to a plan of his own.
+function listenerOf(state, scheme, hooks) {
   const spymaster = spymasterOf(state);
-  if (spymaster && !isImprisoned(state, spymaster.id)) return { person: spymaster, intrigue: finite(spymaster.skills?.intrigue) };
+  if (spymaster && spymaster.id !== scheme.actorId && !isImprisoned(state, spymaster.id)) return { person: spymaster, intrigue: finite(spymaster.skills?.intrigue) };
   const representative = hooks.activeRepresentative();
   if (!representative || representative.diedAt || isImprisoned(state, representative.id)) return null;
   return { person: representative, intrigue: Math.floor(finite(representative.skills?.intrigue) / 2) };
@@ -93,15 +93,15 @@ function pickFalseName(state, scheme, actor, family) {
 }
 
 /**
- * Whether the controlled family hears of an active scheme of another house on this monthly check, and if so what. Returns the new rumor or null. The caller has already seen that the plan was not discovered on this check, and it must not call for a plan that the controlled family itself runs (the actor's family is checked here too).
+ * Whether the controlled family hears of an active scheme of another house on this monthly check, and if so what. Returns the new rumor or null. The caller has already seen that the plan was not discovered on this check. A scheme the player ordered (playerControlled, even when an office holder of another house is the actor) and one the controlled family's own member runs are never heard of, and nothing is drawn for them.
  * One draw decides the hearing (nothing is drawn when nobody listens or the scheme already has three rumors); a second decides whether the account is true; a third picks the wrong name when it is not, and none is drawn when no one qualifies. All come from plotRandom.
  * `hooks` need controlledFamily and activeRepresentative (actionHooks in index.js). Called from schemes.js on every check, so schemes that Task 7 adds for NPCs are heard automatically.
  */
 export function hearScheme(state, scheme, hooks) {
   const family = hooks.controlledFamily(), actor = personOf(state, scheme?.actorId);
-  if (!family || !actor || actor.familyId === family.id || scheme.status !== 'active') return null;
+  if (!family || !actor || actor.familyId === family.id || scheme.status !== 'active' || scheme.playerControlled === true) return null;
   if (schemeRumors(state, scheme.id).length >= MAX_PER_SCHEME) return null;
-  const listener = listenerOf(state, hooks);
+  const listener = listenerOf(state, scheme, hooks);
   if (!listener) return null;
   const chance = clamp(HEARING.base + listener.intrigue * HEARING.perIntrigue, HEARING.min, HEARING.max);
   if (plotRandom(state) * 100 >= chance) return null;
@@ -138,10 +138,11 @@ function checkIdentity(state, item, ids) {
   if (!canonical(item.date) || compareGameDates(item.date, state.date) > 0) fail(INVALID.date);
 }
 
-// A scheme rumor: about the scheme's target, on murder or plot, with the true actor named exactly when it is true, and heard by a family.
+// A scheme rumor: of a plan nobody in the controlled household ordered, about the scheme's target, on the topic the plan gives (murder for poison, else plot), dated within the plan's life, with the true actor named exactly when it is true, and heard by a family.
 function checkSchemeSource(state, item) {
   const scheme = Array.isArray(state.schemes) ? state.schemes.find((candidate) => candidate?.id === item.sourceId) : null;
-  if (!scheme || item.subjectId !== scheme.targetIds?.[0] || !['plot', 'murder'].includes(item.topic) || item.heardByFamilyId === EVERYONE) fail(INVALID.source);
+  if (!scheme || scheme.playerControlled === true || item.subjectId !== scheme.targetIds?.[0] || item.topic !== topicOf(scheme) || item.heardByFamilyId === EVERYONE) fail(INVALID.source);
+  if (compareGameDates(item.date, scheme.startedAt) < 0) fail(INVALID.date);
   if (item.truthful ? item.claimedActorId !== scheme.actorId : item.claimedActorId === scheme.actorId) fail(INVALID.source);
 }
 
@@ -153,7 +154,7 @@ function checkActionSource(state, item) {
   if (item.truthful || item.claimedActorId !== null || item.heardByFamilyId !== EVERYONE) fail(INVALID.source);
 }
 
-/** Validates state.rumors on load: ids `rumor-<n>` unique and within state.sequence, a known topic, reliability and source kind, existing people and family (or '*'), a canonical date not after today, and a source that matches: a scheme rumor names its actor exactly when it is true and a scheme has at most three; an action rumor is false, names nobody, is heard by everyone and is named by a rumor effect of its log entry. Throws a Swedish sentence about the rumors. Call after validateActionLog and validateSchemes. */
+/** Validates state.rumors on load: ids `rumor-<n>` unique and within state.sequence, a known topic, reliability and source kind, existing people and family (or '*'), a canonical date not after today, and a source that matches: a scheme rumor is of a plan the player did not order, has the topic and date the plan gives, names its actor exactly when it is true, and a scheme has at most three; an action rumor is false, names nobody, is heard by everyone and is named by a rumor effect of its log entry. Throws a Swedish sentence about the rumors. Call after validateActionLog and validateSchemes. */
 export function validateRumors(state) {
   if (!Array.isArray(state.rumors)) fail(INVALID.list);
   const ids = new Set(), perScheme = new Map();

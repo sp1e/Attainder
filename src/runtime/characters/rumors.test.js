@@ -413,6 +413,9 @@ test('the rumor list validates on load and refuses forged records', () => {
     'a truthful rumor naming someone else': (r) => { r[0].truthful = true; r[0].claimedActorId = NAMAR; },
     'a false rumor naming the real actor': (r) => { r[0].truthful = false; r[0].claimedActorId = BAREK; },
     'a scheme rumor about the wrong subject': (r) => { r[0].subjectId = SERA; },
+    'a scheme rumor on the wrong topic': (r) => { r[0].topic = 'murder'; },
+    'a scheme rumor older than its scheme': (r) => { r[0].date = addGameMonths(START, -1); },
+    'a rumor of a plan the player ordered': (r, s) => { s.schemes.find((item) => item.id === r[0].sourceId).playerControlled = true; },
     'a family that does not exist': (r) => { r[0].heardByFamilyId = 'family-nowhere'; },
     'an action rumor whose entry is missing': (r) => { r[0].sourceKind = 'action'; r[0].sourceId = 'resolution-99999'; },
     'an unknown key': (r) => { r[0].extra = 1; },
@@ -434,7 +437,7 @@ test('an action rumor must match its action log entry', () => {
   assert.throws(() => normalizeCharacterSystem(forged((s) => { s.rumors[0].truthful = true; })), INVALID, 'a made-up rumor is false');
   assert.throws(() => normalizeCharacterSystem(forged((s) => { s.rumors[0].claimedActorId = BAREK; })), INVALID, 'no claimed actor');
   assert.throws(() => normalizeCharacterSystem(forged((s) => { s.rumors[0].heardByFamilyId = ARELS; })), INVALID, 'everyone hears it');
-  assert.throws(() => normalizeCharacterSystem(forged((s) => { s.rumors[0].topic = 'affair'; })), INVALID, 'topic of the effect');
+  assert.throws(() => normalizeCharacterSystem(forged((s) => { s.rumors[0].topic = 'affair'; })), /handlingsloggen/i, 'topic of the effect');
   // The log side: the effect must name a rumor that exists.
   assert.throws(() => normalizeCharacterSystem(forged((s) => { s.actionLog.at(-1).effects[0].rumorId = 'rumor-99999'; })), /handlingsloggen/i);
   assert.throws(() => normalizeCharacterSystem(forged((s) => { s.actionLog.at(-1).effects[0].rumorId = null; })), /handlingsloggen/i);
@@ -448,4 +451,100 @@ test('an old save without rumors loads with an empty list', () => {
   assert.deepEqual(loaded.rumors, []);
   assert.deepEqual(presentRumors(loaded, ARELS), []);
   assert.deepEqual(getCharacterPresentation(loaded).rumors, []);
+});
+
+test('the player never hears rumors of a plan he ordered, even through an office holder of another house', () => {
+  const state = base();
+  state.offices.spymaster.holderId = SERA;
+  state.people[SERA].skills.intrigue = 18;
+  assert.equal(state.offices.chancellor.holderId, BAREK, 'the chancellor is of house Eshmun');
+  const order = { actionId: 'undermine', actorId: BAREK, targetIds: [NAMAR] };
+  // The order is obeyed (the first action draw is far above any refusal chance) and the monthly discovery draw is far above the chance.
+  const started = ok(run(withSeed(state, actionSeedWhere(2, ([a, b]) => a >= 99 && b >= 99)), 'attempt_action', order));
+  const scheme = started.schemes.at(-1);
+  assert.deepEqual([scheme.actorId, scheme.playerControlled, scheme.status], [BAREK, true, 'active']);
+  const plotSeed = plotSeedWhere(2, ([heard, accurate]) => heard < 5 && accurate < 40);
+  const after = advance(withPlot(started, plotSeed), MONTH);
+  assert.equal(after.schemes.find((item) => item.id === scheme.id).status, 'active', 'the plan went through its check');
+  assert.deepEqual(after.rumors, []);
+  assert.equal(after.plotRngState, plotSeed, 'no hearing draw for the own plan of the player');
+  assert.equal(hear(withPlot(started, plotSeed), scheme), null);
+});
+
+test('a spymaster does not listen to his own plan and gives it no discovery bonus', () => {
+  const stage = () => {
+    const { state, scheme } = watched(18);
+    state.offices.spymaster.holderId = BAREK;
+    state.people[BAREK].skills.intrigue = 18;
+    return { state, scheme };
+  };
+  // The representative (intrigue 4, half 2) hears with 9 percent; the spymaster of intrigue 18 would hear with 41.
+  const between = plotSeedWhere(1, ([d]) => d >= 15 && d < 30);
+  const own = stage();
+  const probe = withPlot(own.state, between);
+  assert.equal(hear(probe, own.scheme), null);
+  assert.equal(probe.plotRngState, plotRngAfter(between, 1), 'the representative drew once');
+  const small = plotSeedWhere(2, ([heard, accurate]) => heard < 9 && accurate < 60);
+  const rumor = hear(withPlot(own.state, small), own.scheme);
+  assert.equal(rumor.reliability, 'osäker', 'accuracy 46 is that of the representative');
+  const other = watched(18);
+  assert.ok(hear(withPlot(other.state, between), other.scheme), 'another spymaster of 18 does hear it');
+  // The bonus: Barek (intrigue 18) against Sera (17): 10 + 34 − 18 = 26 percent, and 35 with a bonus of 9.
+  const setup = stage().state;
+  setup.people[SERA].skills.intrigue = 17;
+  setup.schemes.at(-1).targetIds = [SERA];
+  const edge = Math.ceil((26 * 2 ** 32) / 100);
+  const status = (next) => advance(withSeed(setup, seedBefore(next)), MONTH).schemes.at(-1).status;
+  assert.equal(status(edge - 1), 'discovered');
+  assert.equal(status(edge), 'active', 'no bonus from the plotter himself');
+});
+
+test('a whole advance equals the same months in single steps with a save in between', () => {
+  const dom = (state) => ({ ...copy(state), revision: 0, appliedCommandIds: [] });
+  let rumors = 0;
+  for (const k of [1, 2, 3, 4, 5, 6]) {
+    const state = base();
+    state.offices.spymaster.holderId = SERA;
+    state.people[SERA].skills.intrigue = 18;
+    for (const [actorId, targetId, actionId] of [[BAREK, NAMAR, 'undermine'], ['person-1-1', REP, 'poison'], ['person-3-0', 'person-2-0', 'sway']]) {
+      plant(state, { actorId, targetIds: [targetId], actionId, dueAt: addGameMonths(state.date, 10) });
+    }
+    imprisonPerson(state, 'person-2-0', ARELS, [], actionHooks(state), { lawful: true });
+    state.plotRngState = Math.imul(k, 2654435761) >>> 0 || 1;
+    state.actionRngState = Math.imul(k + 99, 2246822519) >>> 0 || 1;
+    const start = normalizeCharacterSystem(copy(state));
+    const whole = advance(copy(start), addGameMonths(start.date, 14));
+    let split = copy(start);
+    for (let m = 1; m <= 14; m++) split = normalizeCharacterSystem(copy(advance(split, addGameMonths(start.date, m))));
+    assert.deepEqual(dom(split), dom(whole), `seed ${k}`);
+    rumors += whole.rumors.length;
+  }
+  assert.ok(rumors > 0, 'the comparison covered real rumors');
+});
+
+test('the action log and the rumor list must agree on who planted which rumor', () => {
+  let state = base();
+  for (const topic of ['plot', 'affair']) {
+    const intent = { actionId: 'spread_rumor', actorId: REP, targetIds: [NAMAR], means: { topic } };
+    const est = estimateCharacterAction(state, intent);
+    assert.equal(est.ok, true, est.reason);
+    const seed = actionSeedWhere(2, ([success, secrecy]) => tierFor(success, secrecy, est.success.value, est.secrecy.value) === 'clean_success');
+    state = ok(run(withSeed(state, seed), 'attempt_action', intent));
+  }
+  state.offices.spymaster.holderId = SERA;
+  const scheme = plant(state);
+  state.plotRngState = plotSeedWhere(2, ([heard, accurate]) => heard < 5 && accurate < 40);
+  const heard = hear(state, scheme);
+  assert.ok(heard);
+  assert.doesNotThrow(() => normalizeCharacterSystem(copy(state)));
+  const [first, second] = state.actionLog.slice(-2);
+  const forged = (change) => { const result = copy(state); change(result.actionLog.at(-2), result.actionLog.at(-1), result); return result; };
+  const cases = {
+    'an entry naming the rumor of another entry': (a, b) => { a.effects[0].rumorId = b.effects[0].rumorId; },
+    'an entry naming a rumor heard of a scheme': (a) => { a.effects[0].rumorId = heard.id; },
+    'the same rumor claimed twice in one entry': (a) => { a.effects.push({ ...a.effects[0] }); },
+    'a swap of the two rumors': (a, b) => { [a.effects[0].rumorId, b.effects[0].rumorId] = [b.effects[0].rumorId, a.effects[0].rumorId]; },
+  };
+  assert.notEqual(first.effects[0].rumorId, second.effects[0].rumorId);
+  for (const [name, change] of Object.entries(cases)) assert.throws(() => normalizeCharacterSystem(forged(change)), /handlingsloggen/i, name);
 });

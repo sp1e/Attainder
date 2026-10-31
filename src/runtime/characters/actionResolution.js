@@ -481,8 +481,13 @@ const EFFECT_CHECKS = Object.freeze({
   legitimacy: (state, effect) => (effect.applied === false ? Object.keys(effect).length === 2 : validRange(effect)),
   reveal: (state, effect, known) => effect.secretId === null || known.secrets.has(effect.secretId),
   hook_from_secret: (state, effect, known) => known.secrets.has(effect.secretId) && known.hooks.has(effect.hookId) && HOOK_STRENGTHS.includes(effect.strength) && typeof effect.exposed === 'boolean',
-  // The rumor the action planted must exist (validateRumors checks it against this entry). Phase 2 is unreleased, so no log carries the Task 4 stub's rumorId null.
-  rumor: (state, effect, known) => Object.keys(effect).sort().join() === 'kind,rumorId,topic' && ownKey(RUMOR_TOPICS, effect.topic) && known.rumors.has(effect.rumorId),
+  // The rumor must be an action rumor that this very entry planted, on the same topic, and no rumor is claimed twice (validateRumors checks the other direction). Phase 2 is unreleased, so no log carries the Task 4 stub's rumorId null.
+  rumor: (state, effect, known, entry) => {
+    const item = known.rumors.get(effect.rumorId);
+    const valid = Object.keys(effect).sort().join() === 'kind,rumorId,topic' && ownKey(RUMOR_TOPICS, effect.topic) && item?.sourceKind === 'action' && item.sourceId === entry.id && item.topic === effect.topic && !known.claimed.has(item.id);
+    if (valid) known.claimed.add(item.id);
+    return valid;
+  },
   // The record of an imprisonment names the prisoner; the bare record { kind, personId, applied: false } is a target who could no longer be taken.
   imprison: (state, effect, known) => isPerson(state, effect.personId) && (effect.applied === false ? Object.keys(effect).length === 3 : known.prisoners.has(effect.prisonerId)),
   // Exactly the four keys the applier writes; `applied` is the change the bound allowed, so it has the sign of `amount` and is no larger.
@@ -492,7 +497,7 @@ const EFFECT_CHECKS = Object.freeze({
 
 function checkEffects(state, entry, known) {
   if (!Array.isArray(entry.effects)) fail(LOG.effect);
-  for (const effect of entry.effects) if (!plainObject(effect) || !ownKey(EFFECT_CHECKS, effect.kind) || !EFFECT_CHECKS[effect.kind](state, effect, known)) fail(LOG.effect);
+  for (const effect of entry.effects) if (!plainObject(effect) || !ownKey(EFFECT_CHECKS, effect.kind) || !EFFECT_CHECKS[effect.kind](state, effect, known, entry)) fail(LOG.effect);
 }
 
 function checkNarrative(entry) {
@@ -505,7 +510,7 @@ function checkNarrative(entry) {
 /** Validates state.actionLog on load: ids `resolution-<n>` unique and within state.sequence, known actions and tiers, existing people, agents, memories, hooks and secrets, finite odds and rolls consistent with the refusal and the tier, ranged effects inside their stored ranges, and narratives within their limits. Throws a Swedish sentence naming the action log. */
 export function validateActionLog(state) {
   if (!Array.isArray(state.actionLog)) fail(LOG.list);
-  const known = { memories: idSet(state.memories), hooks: idSet(state.hooks), secrets: idSet(state.secrets), prisoners: idSet(state.prisoners), rumors: idSet(state.rumors) };
+  const known = { memories: idSet(state.memories), hooks: idSet(state.hooks), secrets: idSet(state.secrets), prisoners: idSet(state.prisoners), rumors: new Map((Array.isArray(state.rumors) ? state.rumors : []).filter((item) => typeof item?.id === 'string').map((item) => [item.id, item])), claimed: new Set() };
   const ids = new Set();
   for (const entry of state.actionLog) {
     if (!plainObject(entry)) fail(LOG.entry);

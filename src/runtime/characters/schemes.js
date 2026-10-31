@@ -117,10 +117,10 @@ function discover(state, scheme, actor, target, events, hooks) {
   hooks.opinionCause(target.id, actor.id, DISCOVERY_OPINION, 'Avslöjad intrig', memory.id);
 }
 
-// The spymaster's help in seeing through a plan against the controlled family: the added percent, or null when the plan is against anyone else or nobody holds the office (a prisoner cannot serve). Draws nothing.
-function spymasterWatch(state, target, hooks) {
+// The spymaster's help in seeing through a plan against the controlled family: the added percent, or null when the plan is against anyone else, nobody holds the office (a prisoner cannot serve) or the spymaster runs the plan himself. Draws nothing.
+function spymasterWatch(state, scheme, target, hooks) {
   const spymaster = spymasterOf(state);
-  if (!spymaster || isImprisoned(state, spymaster.id) || target.familyId !== hooks.controlledFamily()?.id) return null;
+  if (!spymaster || spymaster.id === scheme.actorId || isImprisoned(state, spymaster.id) || target.familyId !== hooks.controlledFamily()?.id) return null;
   return Math.floor(intrigueOf(spymaster) / 2);
 }
 
@@ -132,7 +132,7 @@ function checkScheme(state, scheme, events, hooks) {
   const due = compareGameDates(scheme.dueAt, state.date) <= 0;
   const estimate = due ? dueEstimate(state, scheme, hooks) : null;
   if (estimate && !estimate.ok) return collapse(state, scheme, `${MESSAGES.stopped} ${estimate.reason}`, events, hooks);
-  const watch = spymasterWatch(state, target, hooks);
+  const watch = spymasterWatch(state, scheme, target, hooks);
   const chance = clamp(DISCOVERY.base + intrigueOf(target) * DISCOVERY.perIntrigue - intrigueOf(actor) + (watch ?? 0), DISCOVERY.min, watch === null ? DISCOVERY.max : DISCOVERY.maxWatched);
   if (actionRandom(state) * 100 < chance) return discover(state, scheme, actor, target, events, hooks);
   hearScheme(state, scheme, hooks);
