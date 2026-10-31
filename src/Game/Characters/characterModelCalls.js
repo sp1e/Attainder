@@ -7,6 +7,7 @@ import { extractJsonPayload } from '../AI/jsonSalvage.js';
 const TITLE_MAX = 120;
 const NARRATIVE_MAX = 1500;
 const STATUSES = ['action', 'no_match', 'unknown_person'];
+const INTERPRET_FAILED = 'Texten kunde inte tolkas. Välj en handling i listan.';
 
 const INTERPRET_TOOL = Object.freeze({
   name: 'interpret_character_action',
@@ -179,7 +180,8 @@ export async function interpretCharacterAction({ text: playerText, view, callMod
   const { systemPrompt, userText } = interpretPrompt(view, String(playerText ?? ''));
   const result = await askWithRetry({ callModel, systemPrompt, userText, tool: INTERPRET_TOOL, callKind: 'interpret', validate: (answer) => validateInterpretation(view, answer) });
   if (result.unknownPerson !== undefined) return { ok: false, reason: result.unknownPerson ? `Personen finns inte i spelet: ${result.unknownPerson}.` : 'Personen finns inte i spelet.', fallback: 'menu' };
-  if (result.failed) return { ok: false, reason: result.reason, fallback: 'menu' };
+  // A transport or schema failure carries English diagnostics; they stay in `detail` for the log, and the player gets one Swedish sentence.
+  if (result.failed) return { ok: false, reason: INTERPRET_FAILED, fallback: 'menu', detail: result.reason };
   return result.value;
 }
 

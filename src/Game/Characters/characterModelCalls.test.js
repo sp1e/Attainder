@@ -117,10 +117,20 @@ test('interpret retries once with the validation error and then falls back', asy
 });
 
 test('a failing model call falls back to the menu without a retry', async () => {
-  const { callModel, calls } = fakeModel(new Error('Modellen svarar inte.'));
+  const { callModel, calls } = fakeModel(new Error('fetch failed'));
   const result = await interpretCharacterAction({ text: 'smickra', view: view(), callModel });
-  assert.deepEqual([result.ok, result.fallback, result.reason], [false, 'menu', 'Modellen svarar inte.']);
+  // The transport's own message is for the log; the player gets one Swedish sentence.
+  assert.deepEqual([result.ok, result.fallback, result.reason, result.detail], [false, 'menu', 'Texten kunde inte tolkas. Välj en handling i listan.', 'fetch failed']);
   assert.equal(calls.length, 1);
+});
+
+test('a schema failure after the retry gives the player a Swedish sentence and keeps the validator text as detail', async () => {
+  const wrong = { status: 'action', catalogId: 'no-such-action' };
+  const { callModel, calls } = fakeModel(wrong, wrong);
+  const result = await interpretCharacterAction({ text: 'smickra', view: view(), callModel });
+  assert.equal(calls.length, 2);
+  assert.equal(result.reason, 'Texten kunde inte tolkas. Välj en handling i listan.');
+  assert.match(result.detail, /no-such-action/);
 });
 
 test('the interpret prompt holds people, staff and catalog but no odds', async () => {

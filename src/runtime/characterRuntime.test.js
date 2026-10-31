@@ -158,7 +158,8 @@ test("estimateCharacterActionForView gives the odds of the visible state and wri
     const writesBefore = writes;
     const estimate = await estimateCharacterActionForView(intent);
     assert.equal(estimate.ok, true, estimate.reason);
-    assert.deepEqual(estimate, estimateCharacterAction(data.world.characterSystem, intent));
+    // The estimate names the revision it was made on, so a confirmation can be refused once the world has moved.
+    assert.deepEqual(estimate, { ...estimateCharacterAction(data.world.characterSystem, intent), revision: data.world.characterSystem.revision });
     assert.ok(estimate.success.modifiers.some((row) => row.label === "Svårighetsgrad: Svår" && row.value === -10));
     assert.equal(writes, writesBefore);
     assert.equal(JSON.stringify(data), before);

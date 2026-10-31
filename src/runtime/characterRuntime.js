@@ -55,11 +55,12 @@ export const readVisibleCharacterState = async ({ force = false } = {}) => {
 };
 
 // Odds for one contested intent on the state the player sees. Read-only: no randomness, no spending, no write.
-// Only the result's `display` is for the player; the true values stay for the engine.
+// Only the result's `display` is for the player; the true values stay for the engine. `revision` names the state
+// the odds belong to, so the roll can be sent with it and refused once the world has moved.
 export const estimateCharacterActionForView = async (intent) => {
   const state = await readVisibleCharacterState();
   if (!state) return { ok: false, reason: "Kampanjen saknar karaktärssystem." };
-  return estimateCharacterAction(state, intent);
+  return { ...estimateCharacterAction(state, intent), revision: state.revision };
 };
 
 // Shared by local decisions and the connected model's completed turn. The

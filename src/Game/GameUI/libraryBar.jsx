@@ -41,7 +41,7 @@ import {
 import { loadCountryNames, readJson, writeJson, JSON_URLS } from "../../runtime/assets.js";
 import { LABEL_FONT_SUGGESTIONS } from "../../runtime/mapSettings.js";
 import FactionCreator from "./FactionCreator.jsx";
-import DynastyStartCard from "../DynastyStartCard.jsx";
+import DynastyStartCard, { DYNASTY_DIFFICULTIES } from "../DynastyStartCard.jsx";
 import { startDynastyCampaign } from "../../runtime/startDynastyCampaign.js";
 import FeaturesSectionEditor from "./FeaturesSectionEditor.jsx";
 import StatsSheetEditor, { normalizeStatsEditorValue } from "./StatsSheetEditor.jsx";
@@ -1795,7 +1795,7 @@ const LibraryTopBar = () => {
     setMenuOpen(false);
     try {
       if (scenario.id?.startsWith("dynasties-hadara")) {
-        await startDynastyCampaign({ mode: dynastyMode, scenarioId: scenario.id, difficulty });
+        await startDynastyCampaign({ mode: dynastyMode, scenarioId: scenario.id, difficulty, characterDifficulty: dynastyDifficulty });
         return;
       }
       // gamePatch merges — a full `game` write would REPLACE game.json and wipe
@@ -2905,6 +2905,8 @@ const LibraryTopBar = () => {
   };
   const [countryPicker, setCountryPicker] = useState(null);
   const [dynastyMode, setDynastyMode] = useState("realm");
+  // The character engine's difficulty for a dynasty started from the scenario picker; the start card has its own select.
+  const [dynastyDifficulty, setDynastyDifficulty] = useState("normal");
   const [dynastyStartError, setDynastyStartError] = useState("");
   const startDynastyFromCard = async ({ mode, seed, difficulty }) => {
     setDynastyStartError("");
@@ -3429,6 +3431,11 @@ const LibraryTopBar = () => {
                   <legend>Vem följer du?</legend>
                   <label style={{ display: "block", padding: 6 }}><input type="radio" name="dynasty-mode" value="realm" checked={dynastyMode === "realm"} onChange={() => setDynastyMode("realm")} /> Riket genom nya dynastier</label>
                   <label style={{ display: "block", padding: 6 }}><input type="radio" name="dynasty-mode" value="family" checked={dynastyMode === "family"} onChange={() => setDynastyMode("family")} /> Familjen även efter tronförlust</label>
+                  <label htmlFor="dynasty-picker-difficulty" style={{ display: "block", padding: "10px 6px 4px", fontWeight: 600 }}>Svårighetsgrad för omstridda handlingar</label>
+                  <select id="dynasty-picker-difficulty" value={dynastyDifficulty} onChange={(event) => setDynastyDifficulty(event.target.value)} style={{ margin: "0 6px", padding: 8, font: "inherit", color: "#fff", colorScheme: "dark", background: "rgba(255,255,255,0.06)", border: "1px solid #8b7c58", borderRadius: 6 }}>
+                    {DYNASTY_DIFFICULTIES.map(([id, label]) => <option key={id} value={id}>{label}</option>)}
+                  </select>
+                  <div style={{ padding: "6px 6px 0", fontSize: "0.75rem", color: "rgba(255,255,255,0.65)" }}>Lätt ger dina omstridda handlingar 10 procentenheter högre chans och andras handlingar mot dig 10 lägre. Svår gör tvärtom.</div>
                 </fieldset>}
                 <div style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.75rem", margin: "0.15rem 0 0.7rem" }}>
                   How hard should the world fight back?

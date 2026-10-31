@@ -6,6 +6,8 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
 import { createCharacterSystem, estimateCharacterAction, getCharacterPresentation } from "../../runtime/characters/index.js";
+import { interpretCharacterAction } from "./characterModelCalls.js";
+import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testing/hookDriver.js";
 
 // Render the real JSX with supplied presentation data. Runtime and portrait
 // loading are stubs; these checks do not exercise the core or a browser.
@@ -22,18 +24,19 @@ function runModule(code, modules, globals = {}) {
   vm.runInNewContext(code, { module, exports: module.exports, require: (id) => {
     assert.ok(id in modules, `Unexpected import: ${id}`);
     return modules[id];
-  }, crypto: globalThis.crypto, ...globals });
+  }, crypto: globalThis.crypto, console, ...globals });
   return module.exports;
 }
 
 // The action box module with its runtime and model calls stubbed; `stubs` replaces any of them.
 function loadActionBox(stubs = {}) {
   const modules = {
-    react: { ...React, useEffect: () => {}, useCallback: (fn) => fn, useMemo: (fn) => fn(), useRef: (value) => ({ current: value }),
+    react: stubs.react || { ...React, useEffect: () => {}, useCallback: (fn) => fn, useMemo: (fn) => fn(), useRef: (value) => ({ current: value }),
       useState: (initial) => [typeof initial === "function" ? initial() : initial, () => {}] },
     "../../runtime/gameDates.js": { parseGameDate: () => null },
     "../../runtime/characters/index.js": { getCharacterPresentation: (state) => state },
     "../../runtime/characterRuntime.js": {
+      // Stubs for every runtime call; a test replaces the ones it watches.
       estimateCharacterActionForView: async () => ({ ok: false, reason: "Ingen uppskattning." }),
       recordCharacterNarrative: async () => ({ ok: true }),
       submitCharacterCommand: async () => ({ ok: true, events: [] }),
@@ -408,17 +411,29 @@ test("a command entry from interpret shows its display cost and the chosen field
   assert.doesNotMatch(html, /Chans att lyckas/);
 });
 
+const INTERPRET_FAILED = "Texten kunde inte tolkas. Välj en handling i listan.";
+// Runs `work` with console.warn captured, so a test can check what went to the log instead of the player.
+async function withWarnings(work) {
+  const original = console.warn;
+  const warnings = [];
+  console.warn = (...args) => warnings.push(args.map((arg) => arg instanceof Error ? arg.message : typeof arg === "string" ? arg : JSON.stringify(arg)).join(" "));
+  try { return { result: await work(), warnings }; } finally { console.warn = original; }
+}
+
 test("with no model the menu offers every catalog action", async () => {
   const box = loadActionBox();
   const { view } = engineCampaign();
-  const step = await box.prepareInterpretedAction({ text: "Jag smickrar Iset", view,
-    interpret: async () => ({ ok: false, reason: "Modellanropet misslyckades.", fallback: "menu" }), estimate: async () => assert.fail("no estimate without an answer") });
-  assert.deepEqual({ ...step }, { kind: "menu", reason: "Modellanropet misslyckades." });
+  const { result: step, warnings } = await withWarnings(() => box.prepareInterpretedAction({ text: "Jag smickrar Iset", view,
+    interpret: ({ text, view: seen }) => interpretCharacterAction({ text, view: seen, callModel: async () => { throw new Error("fetch failed"); } }),
+    estimate: async () => assert.fail("no estimate without an answer") }));
+  assert.deepEqual({ ...step }, { kind: "menu", reason: INTERPRET_FAILED });
+  assert.ok(warnings.some((line) => line.includes("fetch failed")), "the transport error goes to the log");
   const panel = loadPanel(view);
   const html = renderToStaticMarkup(React.createElement(box.ActionMenu, { view, reason: step.reason, CommandCard: panel.ActionCard, onPropose: () => {} }));
   const listed = [...html.matchAll(/data-catalog-id="([^"]+)"/g)].map((match) => match[1]);
   assert.deepEqual(listed.sort(), view.catalog.map((entry) => entry.catalogId).sort());
-  assert.match(html, /Modellanropet misslyckades\./);
+  assert.match(html, /Texten kunde inte tolkas\. Välj en handling i listan\./);
+  assert.doesNotMatch(html, /fetch failed/);
   assert.match(html, />Intrig</);
   assert.match(html, />Diplomati</);
   // A disabled entry stays listed, with its reason.
@@ -490,20 +505,241 @@ test("a command proposal submits its own command and calls no model", async () =
   assert.equal(outcome.ok, true);
 });
 
-test("the scheme list shows action, target and due date with an abort button", () => {
-  const box = loadActionBox();
+test("the scheme list shows action, target and due date, and asks before it aborts", async () => {
+  const driver = createHookDriver();
+  const box = loadActionBox({ react: driver.react });
   const aborted = [];
-  const schemes = [{ id: "scheme-4", actionLabel: "Undergräv", actorName: "Iset Arel", targetNames: ["Kamos Ptah"], dueAt: "-0299-04-01" }];
-  const tree = box.SchemeList({ schemes, onAbort: (id) => aborted.push(id), busy: false });
-  const html = renderToStaticMarkup(tree);
+  let emptied = 0;
+  const props = { schemes: [
+    { id: "scheme-4", actionLabel: "Undergräv", actorName: "Iset Arel", targetNames: ["Kamos Ptah"], dueAt: "-0299-04-01" },
+    { id: "scheme-5", actionLabel: "Sprid rykten", actorName: "Iset Arel", targetNames: ["Nebet"], dueAt: "-0299-07-01" },
+  ], onAbort: (id) => aborted.push(id), onEmpty: () => { emptied += 1; }, busy: false };
+  const draw = () => driver.render(React.createElement(box.SchemeList, props));
+  let tree = draw();
+  const html = textOf(tree);
   assert.match(html, /Undergräv/);
   assert.match(html, /Mål: Kamos Ptah/);
   assert.match(html, /Avgörs: -0299-04-01/);
-  const button = elements(tree).find((element) => element.type === "button");
-  assert.ok(renderToStaticMarkup(button).includes("Avbryt intrigen"));
-  button.props.onClick();
+  const first = () => findAll(tree, (node) => node.type === "li" && textOf(node).includes("Undergräv"))[0];
+  buttonNamed(first(), "Avbryt intrigen").props.onClick();
+  tree = draw();
+  assert.deepEqual(aborted, [], "the first click only asks");
+  assert.match(textOf(first()), /Vill du avbryta intrigen\? Silver och handling som redan lagts kommer inte tillbaka\./);
+  assert.equal(textOf(driver.focused.at(-1)), "Behåll intrigen");
+  buttonNamed(first(), "Behåll intrigen").props.onClick();
+  tree = draw();
+  assert.equal(driver.focused.at(-1), buttonNamed(first(), "Avbryt intrigen"), "focus returns to the scheme the player kept");
+  buttonNamed(first(), "Avbryt intrigen").props.onClick();
+  tree = draw();
+  buttonNamed(first(), "Ja, avbryt intrigen").props.onClick();
   assert.deepEqual(aborted, ["scheme-4"]);
-  assert.equal(box.SchemeList({ schemes: [], onAbort: () => {} }), null);
+  props.busy = true; tree = draw();
+  props.busy = false; props.schemes = props.schemes.slice(1); tree = draw();
+  assert.equal(driver.focused.at(-1), buttonNamed(tree, "Avbryt intrigen"), "focus moves to the next scheme");
+  buttonNamed(tree, "Avbryt intrigen").props.onClick(); tree = draw();
+  buttonNamed(tree, "Ja, avbryt intrigen").props.onClick();
+  props.schemes = []; tree = draw();
+  assert.equal(tree, null);
+  assert.equal(emptied, 1, "with no scheme left, the panel chooses where focus goes");
+});
+
+// The action box under the hook driver, with the panel's lock imitated: busy while the work runs.
+function mountBox({ view, runtime = {}, model = {}, CommandCard = null }) {
+  const driver = createHookDriver();
+  const box = loadActionBox({ react: driver.react, runtime, model });
+  const props = { view, busy: false, CommandCard };
+  let tree;
+  const draw = () => (tree = driver.render(React.createElement(box.default, props)));
+  props.runAction = async (work) => {
+    props.busy = true; draw();
+    try { return await work(); } finally { props.busy = false; }
+  };
+  draw();
+  const act = async (action) => { await action(); await settle(); return draw(); };
+  return { box, props, driver, draw, act, get tree() { return tree; } };
+}
+const formOf = (tree, className) => findAll(tree, (node) => node.type === "form" && node.props.className === className)[0];
+const typeAndInterpret = (mounted, text) => mounted.act(async () => {
+  findAll(mounted.tree, (node) => node.type === "textarea")[0].props.onChange({ target: { value: text } });
+  mounted.draw();
+  formOf(mounted.tree, "char-action-text").props.onSubmit({ preventDefault() {} });
+});
+const swayResolution = (overrides = {}) => ({ id: "resolution-9", tier: "clean_success", tierLabel: "Lyckat i det tysta", refused: false, actionLabel: "Påverka", effects: [], ...overrides });
+
+test("the action box saves the story through recordCharacterNarrative and rolls on the revision its odds came from", async () => {
+  const { state, view } = engineCampaign();
+  const submitted = [], recorded = [], estimated = [];
+  const mounted = mountBox({ view,
+    model: { interpretCharacterAction: async () => swayAnswer(view),
+      narrateCharacterResolution: async () => ({ ok: true, title: "Ett leende", narrative: "Iset log.", adjustments: [] }) },
+    runtime: {
+      estimateCharacterActionForView: async (intent) => { estimated.push(intent); return { ...estimateCharacterAction(state, intent), revision: view.revision + 1 }; },
+      submitCharacterCommand: async (command) => { submitted.push(command); return { ok: true, state: { recentResolutions: [swayResolution()], schemes: [] }, events: [{ title: "Påverka: lyckat i det tysta", description: "Standardtext." }] }; },
+      recordCharacterNarrative: async (payload) => { recorded.push(payload); return { ok: true }; },
+    } });
+  await typeAndInterpret(mounted, "Jag smickrar Iset");
+  assert.equal(estimated.length, 1);
+  await mounted.act(() => buttonNamed(mounted.tree, "Genomför").props.onClick());
+  assert.deepEqual(submitted.map((command) => [command.type, command.expectedRevision]), [["attempt_action", view.revision + 1]],
+    "the roll is made on the revision the odds came from, and the story is never sent as a player command");
+  assert.deepEqual(JSON.parse(JSON.stringify(recorded)), [{ resolutionId: "resolution-9", title: "Ett leende", narrative: "Iset log.", adjustments: [] }]);
+  assert.match(textOf(mounted.tree), /Lyckat i det tysta/);
+  assert.match(textOf(mounted.tree), /Ett leende/);
+});
+
+test("a refused story, a narrate that throws and a refused order never show a model story as saved", async () => {
+  const { state, view } = engineCampaign();
+  const cases = [
+    ["refused", { narrate: async () => ({ ok: true, title: "Modellens titel", narrative: "Modellens text." }), record: async () => ({ ok: false, error: "Berättelsen kan bara skrivas av berättarsteget." }) }],
+    ["throws", { narrate: async () => { throw new Error("socket hang up"); }, record: async () => assert.fail("nothing to save") }],
+  ];
+  for (const [name, { narrate, record }] of cases) {
+    const mounted = mountBox({ view, model: { interpretCharacterAction: async () => swayAnswer(view), narrateCharacterResolution: narrate },
+      runtime: { estimateCharacterActionForView: async (intent) => ({ ...estimateCharacterAction(state, intent), revision: view.revision }),
+        submitCharacterCommand: async () => ({ ok: true, state: { recentResolutions: [swayResolution({ tier: "exposed_failure" })], schemes: [] }, events: [{ title: "Påverka: misslyckat och avslöjat", description: "Iset såg igenom det." }] }),
+        recordCharacterNarrative: record } });
+    await withWarnings(async () => {
+      await typeAndInterpret(mounted, "Jag smickrar Iset");
+      await mounted.act(() => buttonNamed(mounted.tree, "Genomför").props.onClick());
+    });
+    const text = textOf(mounted.tree);
+    assert.match(text, /Misslyckat och avslöjat/, name);
+    assert.match(text, /Iset såg igenom det\./, name);
+    assert.match(text, /Berättelsen kunde inte skrivas; utfallet gäller\./, name);
+    assert.doesNotMatch(text, /Modellens/, name);
+  }
+  let narrated = 0;
+  const refusedOrder = mountBox({ view, model: { interpretCharacterAction: async () => swayAnswer(view), narrateCharacterResolution: async () => { narrated += 1; return { ok: false }; } },
+    runtime: { estimateCharacterActionForView: async (intent) => ({ ...estimateCharacterAction(state, intent), revision: view.revision }),
+      submitCharacterCommand: async () => ({ ok: true, state: { recentResolutions: [swayResolution({ refused: true, tier: null, tierLabel: "Ordern vägrades" })], schemes: [] }, events: [{ title: "Påverka: ordern vägrades", description: "Iset vägrade lyda." }] }) } });
+  await typeAndInterpret(refusedOrder, "Jag smickrar Iset");
+  await refusedOrder.act(() => buttonNamed(refusedOrder.tree, "Genomför").props.onClick());
+  assert.match(textOf(refusedOrder.tree), /Ordern vägrades/);
+  assert.match(textOf(refusedOrder.tree), /Iset vägrade lyda\./);
+  assert.equal(narrated, 0, "a refused order is not narrated");
+});
+
+test("a scheme start shows that the plan has begun and when it is decided", async () => {
+  const { state, view } = engineCampaign();
+  const undermine = view.catalog.find((entry) => entry.catalogId === "undermine");
+  const answer = { ok: true, mode: "contested", catalogId: "undermine", explanation: "", payload: { actionId: "undermine", actorId: view.representative.id, targetIds: [undermine.fields[0].options[0].value], means: { silver: 0, agentRoles: [] } } };
+  const mounted = mountBox({ view, model: { interpretCharacterAction: async () => answer, narrateCharacterResolution: async () => assert.fail("a scheme start is not narrated") },
+    runtime: { estimateCharacterActionForView: async (intent) => ({ ...estimateCharacterAction(state, intent), revision: view.revision }),
+      submitCharacterCommand: async () => ({ ok: true, state: { recentResolutions: [], schemes: [{ id: "scheme-1", actionLabel: "Undergräv", targetNames: ["Namar av Hadara"], dueAt: "-0300-04-01" }] }, events: [] }) } });
+  await typeAndInterpret(mounted, "Undergräv Namar");
+  await mounted.act(() => buttonNamed(mounted.tree, "Genomför").props.onClick());
+  const text = textOf(mounted.tree);
+  assert.match(text, /Intrigen har inletts/);
+  assert.match(text, /Undergräv: Namar av Hadara/);
+  assert.match(text, /Planen avgörs -0300-04-01\. Du kan avbryta den under Pågående intriger\./);
+});
+
+test("odds that the world has moved past are never rolled", async () => {
+  const { state, view } = engineCampaign();
+  let current = view.revision;
+  const submitted = [];
+  const engineSubmit = async (command) => {
+    submitted.push(command);
+    // The engine's own rule: a command for another revision is refused.
+    if (command.expectedRevision !== current) return { ok: false, state: null, events: [], error: "Världen har ändrats. Läs det senaste läget och försök igen." };
+    return { ok: true, state: { recentResolutions: [swayResolution()], schemes: [] }, events: [] };
+  };
+  let estimates = 0;
+  const mounted = mountBox({ view, model: { interpretCharacterAction: async () => swayAnswer(view), narrateCharacterResolution: async () => ({ ok: false }) },
+    runtime: { estimateCharacterActionForView: async (intent) => { estimates += 1; return { ...estimateCharacterAction(state, intent), revision: current }; }, submitCharacterCommand: engineSubmit } });
+  await typeAndInterpret(mounted, "Jag smickrar Iset");
+  // A year passes while the card is open; the panel reads the new revision.
+  current += 1;
+  mounted.props.view = { ...view, revision: current };
+  mounted.draw();
+  assert.equal(findAll(mounted.tree, (node) => node.type === "button" && textOf(node) === "Genomför").length, 0, "no roll on the old odds");
+  assert.match(textOf(mounted.tree), /Läget har ändrats sedan chansen beräknades\. Beräkna chansen igen innan du bestämmer dig\./);
+  await mounted.act(() => buttonNamed(mounted.tree, "Beräkna chansen igen").props.onClick());
+  assert.equal(estimates, 2);
+  assert.ok(buttonNamed(mounted.tree, "Genomför"));
+  // The world moves again before the panel has read it: the engine refuses the stale revision.
+  current += 1;
+  await withWarnings(() => mounted.act(() => buttonNamed(mounted.tree, "Genomför").props.onClick()));
+  assert.deepEqual(submitted.map((command) => command.expectedRevision), [view.revision + 1]);
+  assert.match(textOf(mounted.tree), /Världen har ändrats\. Läs det senaste läget och försök igen\./);
+  assert.doesNotMatch(textOf(mounted.tree), /Lyckat/);
+});
+
+test("an engine refusal reaches the player, an internal error becomes a Swedish sentence", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const proposal = { mode: "command", catalogId: "gift", entry: view.catalog.find((entry) => entry.catalogId === "gift"), payload: { targetId: "person-0-2" }, revision: view.revision };
+  const run = (error) => withWarnings(() => box.executeProposal({ proposal, view, submit: async () => ({ ok: false, error }), narrate: async () => assert.fail(), recordNarrative: async () => assert.fail(), present: (state) => state }));
+  const refused = await run("Familjekassan räcker inte till gåvan.");
+  assert.equal(refused.result.text, "Familjekassan räcker inte till gåvan.");
+  for (const internal of ["fetch failed", "Request failed with status 503.", "Unexpected token < in JSON at position 0", "NetworkError when attempting to fetch resource."]) {
+    const { result, warnings } = await run(internal);
+    assert.equal(result.text, "Handlingen kunde inte sparas. Försök igen om en stund.", internal);
+    assert.ok(warnings.some((line) => line.includes(internal)), `${internal} goes to the log`);
+  }
+});
+
+test("a schema failure from the model shows the Swedish sentence; a no-match explanation is shown as written", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const wrong = { toolInput: { status: "action", catalogId: "no-such-action" }, rawText: "" };
+  const { result: step, warnings } = await withWarnings(() => box.prepareInterpretedAction({ text: "Jag smickrar Iset", view,
+    interpret: ({ text, view: seen }) => interpretCharacterAction({ text, view: seen, callModel: async () => wrong }), estimate: async () => assert.fail() }));
+  assert.equal(step.reason, INTERPRET_FAILED);
+  assert.ok(warnings.some((line) => line.includes("no-such-action")));
+  const html = renderToStaticMarkup(React.createElement(box.ActionMenu, { view, reason: step.reason, onPropose: () => {} }));
+  assert.doesNotMatch(html, /catalogId|no-such-action/);
+  const noMatch = await box.prepareInterpretedAction({ text: "Jag flyger till månen", view,
+    interpret: ({ text, view: seen }) => interpretCharacterAction({ text, view: seen, callModel: async () => ({ toolInput: { status: "no_match", explanation: "Ingen handling låter dig flyga.", suggestions: [] } }) }), estimate: async () => assert.fail() });
+  assert.equal(noMatch.reason, "Ingen handling låter dig flyga.");
+});
+
+test("the menu form sends the representative, the chosen target, silver and at most two agents", async () => {
+  const { state, view } = engineCampaign();
+  const estimated = [];
+  const mounted = mountBox({ view, runtime: { estimateCharacterActionForView: async (intent) => { estimated.push(intent); return { ...estimateCharacterAction(state, intent), revision: view.revision }; } } });
+  await mounted.act(() => buttonNamed(mounted.tree, "Välj från listan").props.onClick());
+  const sway = view.catalog.find((entry) => entry.catalogId === "sway");
+  const item = () => findAll(mounted.tree, (node) => node.type === "li" && node.props["data-catalog-id"] === "sway")[0];
+  const target = sway.fields[0].options.at(-1).value;
+  findAll(item(), (node) => node.type === "select")[0].props.onChange({ target: { value: target } }); mounted.draw();
+  findAll(item(), (node) => node.type === "input" && node.props.type === "number")[0].props.onChange({ target: { value: "12" } }); mounted.draw();
+  const boxes = () => findAll(item(), (node) => node.type === "input" && node.props.type === "checkbox");
+  boxes()[0].props.onChange(); mounted.draw();
+  boxes()[1].props.onChange(); mounted.draw();
+  assert.deepEqual(boxes().map((input) => Boolean(input.props.disabled)), [false, false, true, true, true], "the third agent is locked");
+  boxes()[2].props.onChange(); mounted.draw();
+  await mounted.act(() => formOf(item(), "char-contested-form").props.onSubmit({ preventDefault() {} }));
+  const roles = sway.fields.find((field) => field.key === "agentRoles").options.slice(0, 2).map((option) => option.value);
+  assert.deepEqual(JSON.parse(JSON.stringify(estimated)), [{ actionId: "sway", actorId: view.representative.id, targetIds: [target], means: { silver: 12, agentRoles: roles } }]);
+  assert.match(textOf(mounted.tree), /Chans att lyckas/);
+});
+
+test("a contested entry outside the known categories is listed under Övrigt", () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const sway = view.catalog.find((entry) => entry.catalogId === "sway");
+  const odd = { ...view, catalog: [...view.catalog, { ...sway, catalogId: "omen", label: "Tyd ett omen", category: "mystery" }] };
+  const html = renderToStaticMarkup(React.createElement(box.ActionMenu, { view: odd, onPropose: () => {} }));
+  assert.ok(html.includes(">Övrigt<"));
+  assert.match(html.slice(html.indexOf(">Övrigt<")), /data-catalog-id="omen"/);
+});
+
+test("after each step focus lands on what the player needs next, not on the panel header", async () => {
+  const { state, view } = engineCampaign();
+  const mounted = mountBox({ view, model: { interpretCharacterAction: async () => swayAnswer(view), narrateCharacterResolution: async () => ({ ok: false }) },
+    runtime: { estimateCharacterActionForView: async (intent) => ({ ...estimateCharacterAction(state, intent), revision: view.revision }),
+      submitCharacterCommand: async () => ({ ok: true, state: { recentResolutions: [swayResolution()], schemes: [] }, events: [{ title: "Påverka: lyckat i det tysta", description: "Standardtext." }] }) } });
+  assert.equal(mounted.driver.focused.length, 0, "mounting takes no focus");
+  await typeAndInterpret(mounted, "Jag smickrar Iset");
+  assert.deepEqual([mounted.driver.focused.at(-1).type, textOf(mounted.driver.focused.at(-1))], ["h4", "Påverka"]);
+  await mounted.act(() => buttonNamed(mounted.tree, "Avbryt").props.onClick());
+  assert.equal(mounted.driver.focused.at(-1).type, "textarea");
+  await typeAndInterpret(mounted, "Jag smickrar Iset");
+  await withWarnings(() => mounted.act(() => buttonNamed(mounted.tree, "Genomför").props.onClick()));
+  assert.deepEqual([mounted.driver.focused.at(-1).type, textOf(mounted.driver.focused.at(-1))], ["h4", "Lyckat i det tysta"]);
+  await mounted.act(() => buttonNamed(mounted.tree, "Välj från listan").props.onClick());
+  assert.equal(mounted.driver.focused.at(-1).props["aria-label"], "Alla handlingar");
 });
 
 test("the panel header shows the difficulty and the footer counts model calls", () => {

@@ -192,7 +192,8 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, run
       <button className="char-button char-button--quiet" onClick={() => setTab("decisions")}>Planera nästa beslut <span aria-hidden="true">→</span></button>
     </section></div>
     {Array.isArray(view.catalog) && <ActionBox view={view} busy={busy} runAction={runAction} CommandCard={ActionCard} />}
-    <SchemeList schemes={view.schemes} busy={busy} onAbort={(schemeId) => onCommand("abort_scheme", { schemeId })} />
+    <SchemeList schemes={view.schemes} busy={busy} onAbort={(schemeId) => onCommand("abort_scheme", { schemeId })}
+      onEmpty={() => document.getElementById("char-action-text")?.focus()} />
     {pending.length > 0 && <section aria-label="Beslut som väntar"><div className="char-section-heading"><div><span className="char-eyebrow">Människorna bakom politiken</span><h3>{pending.length === 1 ? "Ett ärende kräver ditt beslut" : `${pending.length} ärenden kräver ditt beslut`}</h3></div></div>{pending.slice(0, 3).map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={onCommand} busy={busy} />)}{pending.length > 3 && <button className="char-button" onClick={() => setTab("decisions")}>Visa alla ärenden</button>}</section>}
     {waitingStories.length > 0 && <section><div className="char-section-heading"><div><span className="char-eyebrow">Beslut med framtida följder</span><h3>Åtaganden som består</h3></div></div><div className="char-cities">{waitingStories.map((story) => <article className="char-card" key={story.id}><h4>{story.title}</h4><p>{story.description}</p><span className="char-caption">{story.actorName}{story.dueAt ? ` · Återkommer ${dateLabel(story.dueAt)}` : ""}</span></article>)}</div></section>}
     <div className="char-section-heading"><div><span className="char-eyebrow">Förvaltning</span><h3>Städerna bär riket</h3></div></div>

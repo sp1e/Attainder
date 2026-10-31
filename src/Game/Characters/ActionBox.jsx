@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { parseGameDate } from "../../runtime/gameDates.js";
 import { getCharacterPresentation } from "../../runtime/characters/index.js";
 import { estimateCharacterActionForView, recordCharacterNarrative, submitCharacterCommand } from "../../runtime/characterRuntime.js";
@@ -18,7 +18,7 @@ export const TIER_HEADINGS = Object.freeze({
 });
 const NARRATE_FAILED = "Berättelsen kunde inte skrivas; utfallet gäller.";
 const INTERPRET_FAILED = "Texten kunde inte tolkas. Välj en handling i listan.";
-const ACTION_FAILED = "Handlingen kunde inte genomföras.";
+const ACTION_FAILED = "Handlingen kunde inte sparas. Försök igen om en stund.";
 const COMMAND_GROUP = ["command", "Förvaltning och hushåll"];
 const CATEGORY_LABELS = [["intrigue", "Intrig"], ["diplomacy", "Diplomati"], ["family", "Familj"], ["court", "Hovet"],
   ["military", "Krigföring"], ["religion", "Tro"], ["economy", "Ekonomi"], ["personal", "Personligt"]];
@@ -45,12 +45,17 @@ export function formatCost(cost) {
 const oddsText = (value) => typeof value === "number" ? `${value} %` : String(value ?? "—");
 const modifierText = (row) => `${row.label}: ${Object.hasOwn(row, "value") ? signedValue(row.value) : row.sign}`;
 
-/** Turns a catalog entry and its payload into a confirmation step. A contested entry needs the engine's odds first. */
-export async function proposalFor({ entry, payload, estimate, explanation = "" }) {
-  if (entry.mode !== "contested") return { kind: "confirm", proposal: { mode: "command", catalogId: entry.catalogId, entry, payload: payload || {}, explanation } };
+/**
+ * Turns a catalog entry and its payload into a confirmation step. A contested entry needs the engine's odds first.
+ * The proposal keeps two revisions: `viewRevision`, the view the player decided on (the card goes stale when the view
+ * moves), and `revision`, the state the odds were computed on, which the roll sends as expectedRevision.
+ */
+export async function proposalFor({ entry, payload, estimate, view, explanation = "" }) {
+  const viewRevision = view?.revision;
+  if (entry.mode !== "contested") return { kind: "confirm", proposal: { mode: "command", catalogId: entry.catalogId, entry, payload: payload || {}, explanation, revision: viewRevision, viewRevision } };
   const odds = await estimate(payload);
-  if (!odds?.ok) return { kind: "menu", reason: odds?.reason || "Chansen kunde inte beräknas." };
-  return { kind: "confirm", proposal: { mode: "contested", catalogId: entry.catalogId, entry, payload, estimate: odds, explanation } };
+  if (!odds?.ok) return { kind: "menu", reason: playerText(odds?.reason, "Chansen kunde inte beräknas.") };
+  return { kind: "confirm", proposal: { mode: "contested", catalogId: entry.catalogId, entry, payload, estimate: odds, explanation, revision: odds.revision ?? viewRevision, viewRevision } };
 }
 
 /** Interprets the player's text. Resolves to { kind: 'confirm', proposal } or { kind: 'menu', reason } when the menu should take over. */
@@ -62,13 +67,27 @@ export async function prepareInterpretedAction({ text, view, interpret, estimate
     console.warn("[character action] interpret threw for the player's text:", error);
     return { kind: "menu", reason: INTERPRET_FAILED };
   }
-  if (!answer?.ok) return { kind: "menu", reason: answer?.reason || INTERPRET_FAILED };
+  if (!answer?.ok) {
+    // interpretCharacterAction gives the player a Swedish reason and keeps a transport or schema error in `detail`.
+    if (answer?.detail) console.warn("[character action] interpret failed:", answer.detail);
+    return { kind: "menu", reason: answer?.reason || INTERPRET_FAILED };
+  }
   const entry = entries(view?.catalog).find((item) => item.catalogId === answer.catalogId);
   if (!entry) return { kind: "menu", reason: INTERPRET_FAILED };
-  return proposalFor({ entry, payload: answer.payload, estimate, explanation: answer.explanation || "" });
+  return proposalFor({ entry, payload: answer.payload, estimate, view, explanation: answer.explanation || "" });
 }
 
-const failedOutcome = (result) => ({ ok: false, heading: "Handlingen kunde inte genomföras", text: result?.error || ACTION_FAILED });
+// Engine refusals are Swedish sentences ending with a period. A transport or parser error is English and is not
+// for the player: it goes to the log and the player reads the fallback sentence.
+const ENGLISH_WORDS = /\b(the|was|failed|fetch|of|with|error|must|cannot|unexpected|invalid|there|that|object|undefined|null|network|request|response|json|http)\b/i;
+function playerText(message, fallback) {
+  const text = typeof message === "string" ? message.trim() : "";
+  if (text && /[.!?]$/.test(text) && !ENGLISH_WORDS.test(text)) return text;
+  if (text) console.warn("[character action] an internal error was kept from the player:", text);
+  return fallback;
+}
+
+const failedOutcome = (result) => ({ ok: false, heading: "Handlingen kunde inte genomföras", text: playerText(result?.error, ACTION_FAILED) });
 
 /**
  * Carries out a confirmed proposal. A command entry submits its own command. A contested entry submits attempt_action,
@@ -147,10 +166,10 @@ function ProposalFacts({ proposal, view }) {
   </>;
 }
 
-export function ConfirmationCard({ proposal, view, onConfirm, onCancel, busy = false }) {
+export function ConfirmationCard({ proposal, view, onConfirm, onCancel, busy = false, focusRef }) {
   return <section className="char-confirm" aria-label="Bekräfta handlingen">
     <span className="char-eyebrow">{proposal.mode === "contested" ? "Omstridd handling" : "Beslut"}</span>
-    <h4>{proposal.entry.label}</h4>
+    <h4 ref={focusRef} tabIndex={-1}>{proposal.entry.label}</h4>
     {proposal.explanation && <p className="char-caption">{proposal.explanation}</p>}
     <ProposalFacts proposal={proposal} view={view} />
     <div className="char-confirm-buttons">
@@ -169,7 +188,8 @@ export function ContestedForm({ entry, view, onPropose, busy = false }) {
   const maxAgents = agentField?.max ?? 2;
   const disabled = busy || Boolean(entry.disabledReason);
   const staffName = (role) => entries(view?.staff).find((member) => member.role === role)?.name;
-  const toggle = (role) => setRoles((current) => current.includes(role) ? current.filter((item) => item !== role) : [...current, role]);
+  const toggle = (role) => setRoles((current) => current.includes(role) ? current.filter((item) => item !== role)
+    : current.length >= maxAgents ? current : [...current, role]);
   const submit = (event) => {
     event.preventDefault();
     onPropose(entry, { actionId: entry.catalogId, actorId: view?.representative?.id ?? null, targetIds: [targetId], means: { silver: Number(silver) || 0, agentRoles: roles } });
@@ -201,14 +221,14 @@ function ContestedCard({ entry, view, onPropose, busy }) {
 }
 
 /** Every catalog entry, grouped by category. A disabled entry stays listed with its reason. */
-export function ActionMenu({ view, reason = "", CommandCard, onPropose, onClose, busy = false }) {
+export function ActionMenu({ view, reason = "", CommandCard, onPropose, onClose, busy = false, focusRef }) {
   const catalog = entries(view?.catalog);
   const groups = [COMMAND_GROUP, ...CATEGORY_LABELS].map(([key, label]) => [key, label,
     catalog.filter((entry) => key === "command" ? entry.mode !== "contested" : entry.mode === "contested" && entry.category === key)]);
   const known = new Set(CATEGORY_LABELS.map(([key]) => key));
   const other = catalog.filter((entry) => entry.mode === "contested" && !known.has(entry.category));
   if (other.length) groups.push(["other", "Övrigt", other]);
-  return <section className="char-action-menu" aria-label="Alla handlingar">
+  return <section className="char-action-menu" aria-label="Alla handlingar" ref={focusRef} tabIndex={-1}>
     {reason && <p className="char-reason" role="status">{reason}</p>}
     <div className="char-section-heading"><p className="char-caption">Välj en handling. Omstridda handlingar visar chansen innan du bestämmer dig.</p>{onClose && <button type="button" className="char-text-button" onClick={onClose}>Stäng listan</button>}</div>
     {groups.filter(([, , items]) => items.length).map(([key, label, items]) => <div className="char-action-group" key={key}>
@@ -222,11 +242,11 @@ export function ActionMenu({ view, reason = "", CommandCard, onPropose, onClose,
   </section>;
 }
 
-export function OutcomeCard({ outcome, onDone }) {
+export function OutcomeCard({ outcome, onDone, focusRef }) {
   const paragraphs = String(outcome.text || "").split(/\n{2,}/).map((part) => part.trim()).filter(Boolean);
   return <section className={`char-outcome${outcome.ok ? "" : " char-outcome--error"}`} role="status" aria-label="Utfall">
     <span className="char-eyebrow">Utfall</span>
-    <h4>{outcome.heading}</h4>
+    <h4 ref={focusRef} tabIndex={-1}>{outcome.heading}</h4>
     {outcome.title && <strong className="char-outcome-title">{outcome.title}</strong>}
     {paragraphs.map((part, index) => <p key={index}>{part}</p>)}
     {outcome.note && <p className="char-caption">{outcome.note}</p>}
@@ -235,77 +255,142 @@ export function OutcomeCard({ outcome, onDone }) {
   </section>;
 }
 
-/** The controlled family's active schemes, each with an abort button. Renders nothing without schemes. */
-export function SchemeList({ schemes, onAbort, busy = false }) {
+
+/**
+ * The controlled family's active schemes. "Avbryt intrigen" first asks, inside the scheme's own card; only the second
+ * button aborts. Focus follows the player: to the question, back to the kept scheme, or on to the next scheme. With
+ * no scheme left the list renders nothing and `onEmpty` decides where focus goes.
+ */
+export function SchemeList({ schemes, onAbort, onEmpty, busy = false }) {
   const list = entries(schemes);
+  const [confirming, setConfirming] = useState(null);
+  const [focusTarget, setFocusTarget] = useState(null);
+  const focusArmed = useRef(false);
+  const focusRef = useRef(null);
+  useEffect(() => {
+    if (!focusArmed.current || busy) return;
+    focusArmed.current = false;
+    if (focusTarget?.empty && !list.length) onEmpty?.();
+    else focusRef.current?.focus();
+  }, [focusTarget, busy, list.length, onEmpty]);
+  const focusNext = (target) => { focusArmed.current = true; setFocusTarget(target); };
+  const ask = (id) => { setConfirming(id); focusNext({ id, control: "keep" }); };
+  const keep = (id) => { setConfirming(null); focusNext({ id, control: "abort" }); };
+  const abort = (index) => {
+    const next = list[index + 1] ?? list[index - 1];
+    setConfirming(null);
+    focusNext(next ? { id: next.id, control: "abort" } : { empty: true });
+    onAbort(list[index].id);
+  };
+  const refFor = (id, control) => focusTarget?.id === id && focusTarget.control === control ? focusRef : undefined;
   if (!list.length) return null;
   return <section className="char-schemes" aria-label="Pågående intriger">
     <div className="char-section-heading"><div><span className="char-eyebrow">Planer i det fördolda</span><h3>Pågående intriger</h3></div></div>
-    <ul className="char-scheme-list">{list.map((scheme) => <li className="char-card char-scheme" key={scheme.id}>
+    <ul className="char-scheme-list">{list.map((scheme, index) => <li className="char-card char-scheme" key={scheme.id}>
       <strong>{scheme.actionLabel}</strong>
       <span>Mål: {entries(scheme.targetNames).join(", ") || "—"}</span>
       {scheme.actorName && <span>Utförs av: {scheme.actorName}</span>}
       <span>Avgörs: {dateLabel(scheme.dueAt)}</span>
-      <button type="button" className="char-button" disabled={busy} onClick={() => onAbort(scheme.id)}>Avbryt intrigen</button>
+      {confirming === scheme.id
+        ? <div className="char-scheme-confirm" role="group" aria-label="Bekräfta att intrigen avbryts">
+          <p>Vill du avbryta intrigen? Silver och handling som redan lagts kommer inte tillbaka.</p>
+          <div className="char-confirm-buttons">
+            <button type="button" className="char-button char-button--danger" disabled={busy} onClick={() => abort(index)}>Ja, avbryt intrigen</button>
+            <button type="button" className="char-button" ref={refFor(scheme.id, "keep")} onClick={() => keep(scheme.id)}>Behåll intrigen</button>
+          </div>
+        </div>
+        : <button type="button" className="char-button" ref={refFor(scheme.id, "abort")} disabled={busy} onClick={() => ask(scheme.id)}>Avbryt intrigen</button>}
     </li>)}</ul>
-    <p className="char-caption">En avbruten intrig ger inte tillbaka silver eller handling.</p>
   </section>;
 }
 
 const IDLE = Object.freeze({ kind: "idle" });
 
+/** The confirmation card once the view has moved past the odds: no roll, only a fresh estimate or a way out. */
+function StaleCard({ proposal, onRefresh, onCancel, busy = false, focusRef }) {
+  const contested = proposal.mode === "contested";
+  return <section className="char-confirm" aria-label="Bekräfta handlingen">
+    <span className="char-eyebrow">{contested ? "Omstridd handling" : "Beslut"}</span>
+    <h4 ref={focusRef} tabIndex={-1}>{proposal.entry.label}</h4>
+    <p className="char-reason" role="status">{contested
+      ? "Läget har ändrats sedan chansen beräknades. Beräkna chansen igen innan du bestämmer dig."
+      : "Läget har ändrats sedan beslutet förbereddes. Förbered det igen innan du bestämmer dig."}</p>
+    <div className="char-confirm-buttons">
+      <button type="button" className="char-button char-button--primary" disabled={busy} onClick={onRefresh}>{contested ? "Beräkna chansen igen" : "Förbered beslutet igen"}</button>
+      <button type="button" className="char-button" disabled={busy} onClick={onCancel}>Avbryt</button>
+    </div>
+  </section>;
+}
+
 export default function ActionBox({ view, busy = false, runAction, CommandCard }) {
   const [text, setText] = useState("");
   const [stage, setStage] = useState(IDLE);
+  // Focus follows the player's own steps: a handler arms it, and it lands once the panel is no longer busy.
+  const focusArmed = useRef(false);
+  const textRef = useRef(null), confirmRef = useRef(null), menuRef = useRef(null), outcomeRef = useRef(null);
+  useEffect(() => {
+    if (!focusArmed.current || busy) return;
+    const target = { idle: textRef, confirm: confirmRef, menu: menuRef, outcome: outcomeRef }[stage.kind];
+    if (!target?.current) return;
+    focusArmed.current = false;
+    target.current.focus();
+  }, [stage, busy]);
+  const go = (next) => { focusArmed.current = true; setStage(next); };
   const run = (work) => {
     const guarded = async () => {
       try {
         await work();
       } catch (error) {
         console.warn("[character action] the action flow failed:", error);
-        setStage({ kind: "outcome", outcome: { ok: false, heading: "Handlingen kunde inte genomföras", text: "Något gick fel. Försök igen eller välj en handling i listan." } });
+        go({ kind: "outcome", outcome: { ok: false, heading: "Handlingen kunde inte genomföras", text: "Något gick fel. Försök igen eller välj en handling i listan." } });
       }
     };
     return runAction ? runAction(guarded) : guarded();
   };
-  const show = (step) => setStage(step.kind === "confirm" ? { kind: "confirm", proposal: step.proposal } : { kind: "menu", reason: step.reason });
+  const show = (step) => go(step.kind === "confirm" ? { kind: "confirm", proposal: step.proposal } : { kind: "menu", reason: step.reason });
   const interpret = (event) => {
     event.preventDefault();
-    if (!text.trim()) return;
-    run(async () => {
+    if (!text.trim()) return undefined;
+    return run(async () => {
       setStage({ kind: "working", label: "Modellen tolkar din text…" });
       show(await prepareInterpretedAction({ text: text.trim(), view, interpret: interpretCharacterAction, estimate: estimateCharacterActionForView }));
     });
   };
-  const propose = (entry, payload) => {
-    if (entry.mode !== "contested") { setStage({ kind: "confirm", proposal: { mode: "command", catalogId: entry.catalogId, entry, payload, explanation: "" } }); return; }
-    run(async () => {
+  const propose = (entry, payload, explanation = "") => {
+    if (entry.mode !== "contested") return proposalFor({ entry, payload, view, explanation }).then(show);
+    return run(async () => {
       setStage({ kind: "working", label: "Chansen beräknas…" });
-      show(await proposalFor({ entry, payload, estimate: estimateCharacterActionForView }));
+      show(await proposalFor({ entry, payload, estimate: estimateCharacterActionForView, view, explanation }));
     });
   };
   const confirm = (proposal) => run(async () => {
     setStage({ kind: "working", label: "Handlingen genomförs…" });
-    const submit = (type, payload) => submitCharacterCommand({ type, payload, expectedRevision: view?.revision, id: `ui-${crypto.randomUUID()}` });
+    // The roll uses the revision the odds were computed on; the engine refuses it if the world has moved since.
+    const submit = (type, payload) => submitCharacterCommand({ type, payload, expectedRevision: proposal.revision, id: `ui-${crypto.randomUUID()}` });
     const outcome = await executeProposal({ proposal, view, submit, narrate: narrateCharacterResolution, recordNarrative: recordCharacterNarrative,
-      present: getCharacterPresentation, onProgress: (interim) => setStage({ kind: "outcome", outcome: interim }) });
-    setStage({ kind: "outcome", outcome });
+      present: getCharacterPresentation, onProgress: (interim) => go({ kind: "outcome", outcome: interim }) });
+    go({ kind: "outcome", outcome });
     if (outcome.ok) setText("");
   });
+  const stale = stage.kind === "confirm" && stage.proposal.viewRevision !== view?.revision;
   return <section className="char-card char-action-box" aria-label="Egen handling">
     <div className="char-section-heading"><div><span className="char-eyebrow">Din företrädares nästa drag</span><h3>Handla själv</h3></div></div>
     <form className="char-action-text" onSubmit={interpret}>
       <label htmlFor="char-action-text">Vad vill du göra?</label>
-      <textarea id="char-action-text" rows={3} maxLength={500} value={text} disabled={busy} placeholder="Till exempel: Jag vill vinna min kusins gunst med vänliga ord."
+      <textarea id="char-action-text" ref={textRef} rows={3} maxLength={500} value={text} disabled={busy} placeholder="Till exempel: Jag vill vinna min kusins gunst med vänliga ord."
         onChange={(event) => setText(event.target.value)} />
       <div className="char-action-text-controls">
         <button type="submit" className="char-button char-button--primary" disabled={busy || !text.trim()}>Tolka</button>
-        <button type="button" className="char-text-button" disabled={busy} onClick={() => setStage({ kind: "menu", reason: "" })}>Välj från listan</button>
+        <button type="button" className="char-text-button" disabled={busy} onClick={() => go({ kind: "menu", reason: "" })}>Välj från listan</button>
       </div>
     </form>
     {stage.kind === "working" && <p className="char-caption" role="status">{stage.label}</p>}
-    {stage.kind === "confirm" && <ConfirmationCard proposal={stage.proposal} view={view} busy={busy} onConfirm={() => confirm(stage.proposal)} onCancel={() => setStage(IDLE)} />}
-    {stage.kind === "menu" && <ActionMenu view={view} reason={stage.reason} CommandCard={CommandCard} busy={busy} onPropose={propose} onClose={() => setStage(IDLE)} />}
-    {stage.kind === "outcome" && <OutcomeCard outcome={stage.outcome} onDone={() => setStage(IDLE)} />}
+    {stale && <StaleCard proposal={stage.proposal} busy={busy} focusRef={confirmRef} onCancel={() => go(IDLE)}
+      onRefresh={() => propose(stage.proposal.entry, stage.proposal.payload, stage.proposal.explanation)} />}
+    {stage.kind === "confirm" && !stale && <ConfirmationCard proposal={stage.proposal} view={view} busy={busy} focusRef={confirmRef}
+      onConfirm={() => confirm(stage.proposal)} onCancel={() => go(IDLE)} />}
+    {stage.kind === "menu" && <ActionMenu view={view} reason={stage.reason} CommandCard={CommandCard} busy={busy} focusRef={menuRef}
+      onPropose={propose} onClose={() => go(IDLE)} />}
+    {stage.kind === "outcome" && <OutcomeCard outcome={stage.outcome} focusRef={outcomeRef} onDone={() => go(IDLE)} />}
   </section>;
 }

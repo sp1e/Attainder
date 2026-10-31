@@ -279,6 +279,10 @@
 .char-scheme { display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
 .char-scheme strong { color: var(--char-accent); font-size: 15px; }
 .char-scheme .char-button { align-self: flex-start; margin-top: 8px; }
+.char-scheme-confirm { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--char-border); }
+.char-scheme-confirm p { margin: 0 0 4px; }
+.char-scheme .char-confirm-buttons .char-button { margin-top: 0; }
+.char-button--danger { color: var(--char-danger); border-color: var(--char-danger); }
 @media (max-width: 950px) {
   .char-backdrop { padding: 10px; }
   .char-header, .char-campaign-strip, .char-footer { padding-left: 20px; padding-right: 20px; }
