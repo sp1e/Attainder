@@ -126,8 +126,8 @@ The repository holds no old save, and a save from a real game is private, so you
 3. Make a second copy of the project at the `main` branch, which has none of the Phase 1 changes. Put it in a short path outside OneDrive: the project folder sits in a long OneDrive path, and `npm ci` can fail on long paths there, and OneDrive would sync thousands of `node_modules` files. Run this in the same PowerShell window. It uses your own `origin` address.
 
    ```powershell
-   git -c core.longpaths=true clone --branch main --single-branch --depth 1 (git remote get-url origin) C:\devttainder-main
-   cd C:\devttainder-main
+   git -c core.longpaths=true clone --branch main --single-branch --depth 1 (git remote get-url origin) C:\dev\attainder-main
+   cd C:\dev\attainder-main
    git config core.longpaths true
    npm ci
    npm run build
@@ -141,7 +141,7 @@ The repository holds no old save, and a save from a real game is private, so you
 7. If a game opens, click `⌂ Exit Game` in the top bar. In the main menu, click the `Games` tab. You should see the campaign from the `main` build in the list. Click `Play` on it.
 8. Open `Rike & familjer`. You should see `Svårighetsgrad: Normal` in the strip, since old campaigns count as Normal. The card `Handla själv` is present.
 9. Click `Nästa år med modellen`. You should see the year's events and no error message.
-10. Clean up: stop the game as in step 1, leave the clone with `cd ..`, remove it with `Remove-Item -Recurse -Force C:\devttainder-main`, and delete `C:\tides-saves` if you no longer need it.
+10. Clean up: stop the game as in step 1, leave the clone with `cd ..`, remove it with `Remove-Item -Recurse -Force C:\dev\attainder-main`, and delete `C:\tides-saves` if you no longer need it.
 
 ## Report back
 
