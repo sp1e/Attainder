@@ -19,6 +19,9 @@ const idFor = (prefix) => `${prefix}:${globalThis.crypto?.randomUUID?.() ?? `${D
 const failure = (error) => ({ ok: false, state: null, events: [], error: error?.message || String(error) });
 
 const storageFor = (startedIn) => ({
+  // Throws on an invalid character system and leaves its input untouched. The
+  // commit writes `next.world` as given: every read normalizes it again.
+  validate: (state) => { normalizeWorldState(state.world); },
   assertCurrent: async () => assertCampaignUnchanged(startedIn, campaignId(), "karaktärsbeslut"),
   readSnapshots: async () => {
     const value = await readJson(JSON_URLS.snapshots, { defaultValue: [], force: true, clone: false });

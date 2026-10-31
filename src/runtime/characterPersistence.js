@@ -24,6 +24,9 @@ export const recoverCharacterTransaction = async (world, io) => {
 };
 
 export const commitCharacterTransaction = async ({ id, base, next, io }) => {
+  // An invalid world fails here, before the snapshot or the journal exists.
+  // Publishing after the final write is too late to keep it off disk.
+  await io.validate?.(next);
   await io.assertCurrent();
   const prior = await io.readSnapshots();
   const snapshot = {
@@ -44,7 +47,6 @@ export const commitCharacterTransaction = async ({ id, base, next, io }) => {
     }
     await io.assertCurrent();
     await io.write("world", { ...next.world, characterTransaction: null });
-    await io.publish?.(next);
   } catch (error) {
     // A campaign switch must not roll the old campaign into the newly opened
     // one. assertCurrent prevents that; the old journal remains recoverable.
@@ -54,6 +56,13 @@ export const commitCharacterTransaction = async ({ id, base, next, io }) => {
       error.recoveryError = recoveryError;
     }
     throw error;
+  }
+  // The turn is on disk and its journal is cleared. A failed in-memory refresh
+  // must not roll it back; the next read loads the committed documents.
+  try {
+    await io.publish?.(next);
+  } catch (error) {
+    console.error(`[characters] Commit ${id} is saved, but publishing it to open views failed.`, error);
   }
   return next;
 };

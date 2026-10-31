@@ -109,6 +109,33 @@ test("switching campaigns stops subsequent writes and does not restore into the 
   assert.deepEqual(store.data.game, base.game);
 });
 
+test("a publish failure after the final write keeps the committed turn", async (t) => {
+  const store = storage();
+  const logged = t.mock.method(console, "error", () => {});
+  const io = { ...store.io, publish: async () => { store.trace.push("publish"); throw new Error("publish failed"); } };
+  const result = await commitCharacterTransaction({ id: "turn-7", base, next, io });
+  assert.equal(result, next);
+  // One pass through the documents and no rollback writes after the publish.
+  assert.deepEqual(store.trace, ["snapshots", "world", "actions", "events", "game", "colors", "chat", "world", "publish"]);
+  assert.deepEqual(store.data, { ...next, world: { ...next.world, characterTransaction: null } });
+  assert.equal(logged.mock.callCount(), 1);
+  const [message, error] = logged.mock.calls[0].arguments;
+  assert.match(message, /turn-7/);
+  assert.equal(error.message, "publish failed");
+});
+
+test("an invalid next world is rejected before any write", async () => {
+  const store = storage();
+  let validated = null;
+  const io = { ...store.io, validate: (state) => { validated = state; throw new Error("Världen är ogiltig."); } };
+  await assert.rejects(commitCharacterTransaction({ id: "invalid", base, next, io }), /Världen är ogiltig/);
+  assert.equal(validated, next);
+  // No snapshot, no journal and no document write.
+  assert.deepEqual(store.trace, []);
+  assert.deepEqual(store.snapshots, []);
+  assert.deepEqual(store.data, base);
+});
+
 test("a missing restore point preserves the journal and fails clearly", async () => {
   const store = storage();
   await assert.rejects(recoverCharacterTransaction({ characterTransaction: { snapshotId: "missing" } }, store.io), /återställningspunkt/);

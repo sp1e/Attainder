@@ -3,7 +3,8 @@ import assert from "node:assert/strict";
 import { setRuntimeAssetEndpoints } from "./assets.js";
 import { getCharacterPresentation } from "./characters/index.js";
 import { initializeCampaignCharacters, advanceCharacterYear, submitCharacterCommand,
-  readVisibleCharacterState, getCharacterRuntimeStatus, revealLatestCharacterTurn } from "./characterRuntime.js";
+  readVisibleCharacterState, getCharacterRuntimeStatus, revealLatestCharacterTurn,
+  commitCharacterCampaign } from "./characterRuntime.js";
 
 test("runtime campaign start, command, date, shared save and failed-write recovery use the same world", async () => {
   const originalFetch = globalThis.fetch;
@@ -69,6 +70,28 @@ test("runtime campaign start, command, date, shared save and failed-write recove
     assert.equal(failed.ok, false);
     assert.deepEqual({ world: data.world, events: data.events, game: data.game }, preFailure);
     assert.equal(getCharacterRuntimeStatus().busy, false);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("a committed turn with an invalid character world is rejected before any write", async () => {
+  const originalFetch = globalThis.fetch;
+  const puts = [];
+  globalThis.fetch = async (url, options = {}) => {
+    const key = new URL(String(url), "http://runtime.test").pathname.split("/").at(-1);
+    if (options.method === "PUT") puts.push(key);
+    return new Response(key === "snapshots" ? "[]" : "{}", { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  setRuntimeAssetEndpoints({ token: "characters-runtime-invalid-world" });
+  try {
+    const base = { game: { country: "Hadara", gameDate: "-0300-01-01", round: 1 },
+      world: {}, events: [], actions: [], chat: [], colors: {} };
+    // The model-turn path edits the world after its last normalization.
+    const next = { ...base, game: { ...base.game, gameDate: "-0299-01-01", round: 2 },
+      world: { characterSystem: { schemaVersion: 99 } } };
+    await assert.rejects(commitCharacterCampaign({ id: "model-turn:2:-0299-01-01", base, next }), /nyare version/);
+    assert.deepEqual(puts, []);
   } finally {
     globalThis.fetch = originalFetch;
   }
