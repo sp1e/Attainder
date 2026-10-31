@@ -143,7 +143,7 @@ export const GameLoadingScreen = ({ gameName = "", scenarioName = "", countryNam
     >
       <div style={{ minWidth: 0 }}>
         <div style={{ fontSize: "1.35rem", fontWeight: 900, letterSpacing: "0.02em", textShadow }}>
-          {gameName || scenarioName || "Open Historia"}
+          {gameName || scenarioName || "Attainder"}
         </div>
         {(scenarioName || countryName) && (
           <div style={{ color: "rgba(255,255,255,0.72)", fontSize: "0.85rem", marginTop: "0.3rem", textShadow }}>

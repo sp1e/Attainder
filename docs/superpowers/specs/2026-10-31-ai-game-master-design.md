@@ -1,10 +1,10 @@
-# Tides of Time design: AI game master and living court
+# Attainder design: AI game master and living court
 
 Date: 31 October 2026. Written by Claude from an interview with Simon, the owner. Status: draft for Simon's approval.
 
 ## 1. Intent
 
-Simon wants Tides of Time to combine three things:
+Simon wants Attainder to combine three things:
 
 1. Open Historia's AI features, made smarter and more dynamic, with real power over the world.
 2. The character and court play of Crusader Kings III.

@@ -6,7 +6,9 @@ import { fileURLToPath } from 'node:url';
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 // Preserve the existing development saves; fresh clones keep data in the repo.
 const legacyRoot = path.dirname(repository);
-const root = process.env.TIDES_DATA_HOME ? path.resolve(process.env.TIDES_DATA_HOME)
+// ATTAINDER_DATA_HOME replaces TIDES_DATA_HOME; the old name still works.
+const dataHome = process.env.ATTAINDER_DATA_HOME || process.env.TIDES_DATA_HOME;
+const root = dataHome ? path.resolve(dataHome)
   : existsSync(path.join(legacyRoot, 'SPELA.md')) && existsSync(path.join(legacyRoot, 'play-data')) ? legacyRoot : repository;
 const origin = 'http://127.0.0.1:4167';
 const reports = path.join(root, 'reports', 'launcher');
@@ -52,7 +54,7 @@ if (!(await identify())) {
   if (!ready) throw new Error('Spelet kunde inte starta. Se reports/launcher/server-error.log.');
 }
 
-console.log(`Tides of Time is ready at ${origin}`);
+console.log(`Attainder is ready at ${origin}`);
 if (!process.argv.includes('--no-browser')) {
   if (process.platform === 'win32') {
     spawn('rundll32.exe', ['url.dll,FileProtocolHandler', origin], { detached: true, windowsHide: true, stdio: 'ignore' }).unref();

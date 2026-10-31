@@ -930,7 +930,7 @@ const ScenarioTopBar = () => {
           width: "2.65rem",
     }}
     >
-    <img alt="Open Historia" src="/logo.png" style={{ height: "1.7rem", width: "1.7rem" }} />
+    <img alt="Attainder" src="/logo.png" style={{ height: "1.7rem", width: "1.7rem" }} />
     </div>
     <div style={{ minWidth: 0 }}>
     <div style={{ color: "#fff", fontSize: "1rem", fontWeight: 800, letterSpacing: "-0.03em" }}>

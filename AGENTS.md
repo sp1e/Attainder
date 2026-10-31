@@ -1,6 +1,6 @@
-# Tides of Time contributor instructions
+# Attainder contributor instructions
 
-- The project repository is https://github.com/sp1e/Tides-of-Time. Publish tested project changes there at development milestones. Verify the remote commit after each push.
+- The project repository is https://github.com/sp1e/Attainder. Publish tested project changes there at development milestones. Verify the remote commit after each push.
 - Keep README and new public documentation in English. The current game interface includes Swedish text.
 - Preserve upstream attribution and AGPL notices. Do not publish credentials, account sessions, campaign saves, private reports or machine-specific paths.
 - Build each phase of the design in `docs/superpowers/specs/` from a written plan in `docs/superpowers/plans/`, with tests first and a review of each task.
