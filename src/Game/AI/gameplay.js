@@ -14271,7 +14271,7 @@ export const simulateTimelineJump = async ({ days, mode = "jump", onEvents, onPr
     historicalAnchorMaxItems: WORLD_SIMULATION_HISTORICAL_ANCHOR_MAX_ITEMS,
     targetDate,
   });
-  if (horizon.interruption) variables.characterContext += `\nThis request stops at ${targetDate} for a new health-care decision. Nothing beyond this date is part of the turn; leave the treatment choice to the player.`;
+  if (horizon.interruption) variables.characterContext += `\nThis request stops at ${targetDate} for a new ${horizon.interruption.type === 'health-care' ? 'health-care' : 'character story'} decision. Nothing beyond this date is part of the turn; leave the decision to the player.`;
   // Guarantee at least one event per queued action, so each planned action has a
   // slot to resolve into (bounded so a huge queue can't demand absurd counts).
   const plannedActionCount = normalizeActions(bundle.actions).filter((action) => action.status === "planned").length;

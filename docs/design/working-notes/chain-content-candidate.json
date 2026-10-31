@@ -1,0 +1,220 @@
+{
+  "candidateVersion": 1,
+  "status": "private_content_candidate_requires_main_review",
+  "language": "sv",
+  "schemaStatus": "Authoring descriptors only. Not the production engine schema; do not load into a campaign.",
+  "effectStatus": "All choices and numeric combinations are proposed, not implemented or approved. Familiar effect categories do not grant permission to bypass existing rules.",
+  "conventions": {
+    "delayMonths": "Delay before offering this stage, from chain trigger for stage 1 and from the preceding resolved stage otherwise. Revalidate after waiting; time is never blocked by this chain.",
+    "flags": "Chain-local immutable choice history. Each stage writes its own named flag once; variants read earlier flags. No flags transfer between chains or people.",
+    "variants": "Use the first matching variant as the whole prompt; otherwise use prompt. Conditions are descriptive authoring predicates, to be converted by Main.",
+    "roles": "Bind concrete IDs and display names at creation. Never silently replace a dead person, a former officeholder, mentor, family, city, religion or mandate episode with a successor.",
+    "actors": "family means the currently authorized actor for the bound payer family; public means the currently authorized royal actor for the bound realm. Resolve and revalidate at choice time. Historical participants are not automatically actors.",
+    "payer": "family points to the bound family treasury, public to the bound realm treasury; none debits nothing. Royal authority alone never grants family spending authority. Never use personal wealth implicitly.",
+    "effects": "Effect intents use stable role targets. opinion targets the named person's opinion of the actual decision actor unless toward is explicitly supplied. Main must reject self-opinion or unsupported target directions. Other intents are bounded by existing engine limits.",
+    "transactions": "Validate role, current actor, payer, balance and prior flags before applying any cost, effect or transition. Apply a stage once. A stale or invalid choice cannot partially spend or advance.",
+    "activeChoices": "Exactly two distinct active proposals per stage; they may be disabled by current authority, resources or explicit requires conditions. Never manufacture eligibility just to keep two buttons enabled.",
+    "close": "Every stage has a free close choice: no silver, action points, stress, relation penalty or automatic debt. It preserves past effects and history, closes this chain and does not change world mandates.",
+    "expiry": "If participants or required offices become invalid, close without cost. If only the decision actor is temporarily unavailable, retain free close and defer active offers under Main's calendar policy. No indefinite mandatory popup.",
+    "terminal": "nextStageId null closes after the chosen consequence. Terminal choices still have delayMonths because the final meeting occurs after the preceding stage.",
+    "ordinaryActionCosts": "Active-choice action point and actor stress costs are unresolved engine decisions. Main must choose and expose them before activation; consequence sentences here cover only the listed effect intents. Close always costs zero."
+  },
+  "chains": [
+    {
+      "id": "sickroom_seal",
+      "title": "Sigillet utanför sjukrummet",
+      "scope": "family",
+      "roles": {
+        "principal": "Living incapacitated principal of the bound family, under an actual adult-incapacity regency.",
+        "regent": "Living regent from the exact bound mandate episode; distinct from steward.",
+        "steward": "Living adult member of the bound family with an existing relationship to principal and stress at least 25; not the family decision actor at creation.",
+        "family": "Principal's controlled household; must be the family actually authorized for family choices.",
+        "mandateEpisode": "Exact historical incapacity episode; no generic latest-regent lookup."
+      },
+      "entryConditions": ["All bound people exist and are alive.", "The bound mandate episode currently has reason incapacity and the bound regent.", "Family authority and family resources are evaluated separately from the royal mandate."],
+      "lifecycle": "Principal death, steward death, regent death or replacement closes the chain. Recovery closes this sickroom chain with a neutral historical note; it does not trigger the last stage early. No treatment, health change, regent appointment or succession occurs here.",
+      "stages": [
+        {
+          "id": "door_list", "title": "Listan vid dörren", "delayMonths": 3,
+          "prompt": "{steward} har samlat dagens besök på en lista utanför {principal}:s rum. {regent} behöver besked, men hushållets arbete har blivit liggande.",
+          "choices": [
+            {"id":"hire_relief","label":"Bekosta hjälp i hushållet","consequence":"Familjen betalar 12 silver. {steward} får 20 mindre stress; ingen vård eller återhämtning utlovas.","scope":"family","payer":"family","costSilver":12,"effectIntents":[{"kind":"stress","target":"steward","delta":-20}],"setsFlags":{"opening":"relief"},"nextStageId":"message_route"},
+            {"id":"carry_message","label":"Låt hushållets ombud bära fram frågorna","consequence":"Ingen silverkostnad. Den beslutande aktören får 5 stress av uppgiften; {steward}s åsikt om aktören ökar med 5.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"stress","target":"decisionActor","delta":5},{"kind":"opinion","target":"steward","delta":5}],"setsFlags":{"opening":"personal_errand"},"nextStageId":"message_route"},
+            {"id":"close","label":"Låt ordinarie rutiner fortsätta","consequence":"Inga nya åtaganden görs. Ärendet avslutas utan kostnad; den pågående sjukdomen och mandatet följer sina vanliga regler.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"message_route","title":"Vem ska få hushållets frågor?","delayMonths":3,
+          "prompt":"{steward} har samlat hushållets frågor. De kan framföras till {regent} eller gås igenom inom familjen först.",
+          "priorFlagInfluences":[{"when":{"flag":"opening","equals":"relief"},"prompt":"Den betalda hjälpen gav {steward} tid att samla frågorna till {regent}. Vem ska få läsa dem först?"},{"when":{"flag":"opening","equals":"personal_errand"},"prompt":"Efter det förra besöket vill {steward} skilja hushållets egna bekymmer från frågorna till {regent}."}],
+          "choices":[
+            {"id":"send_questions","label":"Skicka frågorna till regenten","consequence":"{regent}s åsikt om hushållets beslutande aktör ökar med 3. Aktören får 3 stress av att framföra frågorna; inget svar garanteras.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"opinion","target":"regent","delta":3},{"kind":"stress","target":"decisionActor","delta":3}],"setsFlags":{"route":"regent"},"nextStageId":"waiting_work"},
+            {"id":"family_meeting","label":"Bekosta ett möte inom hushållet","consequence":"Familjen betalar 5 silver för mötet. {steward}s åsikt om den beslutande aktören ökar med 5; inget tal sker för regentens räkning.","scope":"family","payer":"family","costSilver":5,"effectIntents":[{"kind":"opinion","target":"steward","delta":5}],"setsFlags":{"route":"household"},"nextStageId":"waiting_work"},
+            {"id":"close","label":"Lägg frågorna åt sidan","consequence":"Frågorna arkiveras och kedjan avslutas utan ny kostnad eller relationsförlust.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"waiting_work","title":"Arbetet medan ni väntar","delayMonths":3,
+          "prompt":"Vardagen kring {principal} fortsätter. {steward} frågar om hushållet kan avsätta mer hjälp eller ombudets egen tid.",
+          "priorFlagInfluences":[{"when":{"flag":"route","equals":"regent"},"prompt":"Frågorna har skickats till {regent}. Medan hushållet väntar ber {steward} om hjälp med det dagliga arbetet."},{"when":{"flag":"route","equals":"household"},"prompt":"Mötet inom hushållet har hållits. {steward} vill nu veta vem som ska ta hand om det dagliga arbetet."}],
+          "choices":[
+            {"id":"fund_tasks","label":"Betala för praktisk avlastning","consequence":"Familjen betalar 8 silver och {steward}s stress minskar med 10. {principal}:s hälsotillstånd ändras inte av valet.","scope":"family","payer":"family","costSilver":8,"effectIntents":[{"kind":"stress","target":"steward","delta":-10}],"setsFlags":{"work":"paid"},"nextStageId":"household_record"},
+            {"id":"actor_tasks","label":"Låt ombudet ta den extra uppgiften","consequence":"Hushållets beslutande aktör får 6 stress och {steward} får 6 mindre stress. Ingen silverkostnad.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"stress","target":"decisionActor","delta":6},{"kind":"stress","target":"steward","delta":-6}],"setsFlags":{"work":"actor"},"nextStageId":"household_record"},
+            {"id":"close","label":"Gör inga fler åtaganden","consequence":"Kedjan avslutas. Tidigare hjälp består som historia; ingen ny kostnad eller hälsopåverkan tillkommer.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"household_record","title":"Vilka insatser ska nämnas?","delayMonths":3,
+          "prompt":"{steward} vill avsluta anteckningarna om hushållets arbete under {principal}:s frånvaro. Vems insats vill du lyfta fram?",
+          "priorFlagInfluences":[{"when":{"flag":"work","equals":"paid"},"prompt":"Utgifterna för avlastningen finns i hushållets anteckningar. {steward} ber att de berördas insatser också ska nämnas."},{"when":{"flag":"work","equals":"actor"},"prompt":"Anteckningarna beskriver hur hushållets ombud tog den extra uppgiften. {steward} frågar hur perioden ska sammanfattas."}],
+          "choices":[
+            {"id":"credit_steward","label":"Tacka den som skötte hushållet","consequence":"{steward}s åsikt om den beslutande aktören ökar med 5. Kedjan avslutas; inga mandat eller sjukdomsförlopp ändras.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"opinion","target":"steward","delta":5}],"setsFlags":{"ending":"steward_thanked"},"nextStageId":null},
+            {"id":"credit_regent","label":"Tacka regenten för uppdraget","consequence":"{regent}s åsikt om den beslutande aktören ökar med 3. Tacket ger inga nya rättigheter eller tillgångar; kedjan avslutas.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"opinion","target":"regent","delta":3}],"setsFlags":{"ending":"regent_thanked"},"nextStageId":null},
+            {"id":"close","label":"Bevara anteckningarna utan särskilt tack","consequence":"Historiken bevaras och kedjan avslutas utan ny effekt eller kostnad.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        }
+      ]
+    },
+    {
+      "id":"returned_seal","title":"Den tomma platsen bredvid rådsbordet","scope":"mixed",
+      "roles":{"principal":"Living ruler who actually recovered and resumed the bound royal mandate.","formerRegent":"Living former adult-incapacity regent from that exact ended episode, distinct from principal; already has an ambition or political interest.","family":"Controlled family whose actor may make private choices; never inferred from formerRegent.","realm":"Realm whose current authorized actor may make public choices.","mandateEpisode":"The completed adult-incapacity episode, fixed historical identity."},
+      "entryConditions":["Recovery and restoration already happened in the core.","Principal currently exercises the royal mandate.","Former regent and principal are distinct living people."],
+      "lifecycle":"Close if either historical person dies, principal ceases to exercise the royal mandate or principal relapses. No old regency is reopened. Former regent remains the former regent even if they gain another office; no appointment is performed by this chain.",
+      "stages":[
+        {
+          "id":"departure","title":"När sigillet är återlämnat","delayMonths":3,
+          "prompt":"{formerRegent} har lämnat tillbaka sigillet till {principal}. Vid nästa möte ber den förra regenten att insatsen ska få ett tydligt avslut.",
+          "choices":[
+            {"id":"public_thanks","label":"Tacka inför rådet","consequence":"{formerRegent}s åsikt om den kungliga beslutsaktören ökar med 5. Ingen lön, titel eller fortsatt regentmakt utlovas.","scope":"public","payer":"none","costSilver":0,"effectIntents":[{"kind":"opinion","target":"formerRegent","delta":5}],"setsFlags":{"departure":"public"},"nextStageId":"unfinished_notes"},
+            {"id":"private_gift","label":"Ge en gåva från hushållet","consequence":"Familjen betalar 12 silver för en privat gåva. {formerRegent}s åsikt om familjens beslutsaktör ökar med 10; statskassan berörs inte.","scope":"family","payer":"family","costSilver":12,"effectIntents":[{"kind":"opinion","target":"formerRegent","delta":10}],"setsFlags":{"departure":"private"},"nextStageId":"unfinished_notes"},
+            {"id":"close","label":"Avsluta uppdraget utan ceremoni","consequence":"Det redan avslutade regentskapet förblir avslutat. Ingen ny effekt eller kostnad tillkommer.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"unfinished_notes","title":"Anteckningarna som blev kvar","delayMonths":3,
+          "prompt":"{formerRegent} har kvar anteckningar från sin tid vid rådet. De kan gås igenom vid ett sista samtal eller lämnas till hushållet.",
+          "priorFlagInfluences":[{"when":{"flag":"departure","equals":"public"},"prompt":"Efter rådets tack ber {formerRegent} om ett sista samtal kring anteckningarna från regentperioden."},{"when":{"flag":"departure","equals":"private"},"prompt":"{formerRegent} tackar för hushållets gåva och erbjuder sig att förklara de kvarlämnade anteckningarna."}],
+          "choices":[
+            {"id":"hear_account","label":"Avsätt kunglig tid för genomgången","consequence":"Den kungliga aktören får 4 stress av genomgången. {formerRegent}s åsikt om aktören ökar med 5; inga ämbeten byter innehavare.","scope":"public","payer":"none","costSilver":0,"effectIntents":[{"kind":"stress","target":"decisionActor","delta":4},{"kind":"opinion","target":"formerRegent","delta":5}],"setsFlags":{"notes":"heard"},"nextStageId":"new_distance"},
+            {"id":"copy_notes","label":"Bekosta en kopia åt hushållet","consequence":"Familjen betalar 6 silver för en privat kopia. Familjens beslutsaktör får 4 mindre stress; kopian ger ingen offentlig beslutanderätt.","scope":"family","payer":"family","costSilver":6,"effectIntents":[{"kind":"stress","target":"decisionActor","delta":-4}],"setsFlags":{"notes":"copied"},"nextStageId":"new_distance"},
+            {"id":"close","label":"Avböj fortsatt genomgång","consequence":"Anteckningarna ger inga nya åtaganden. Kedjan avslutas utan kostnad eller förlust av tidigare effekter.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"new_distance","title":"En annan plats i samtalet","delayMonths":6,
+          "prompt":"{formerRegent} vill veta om kontakten ska fortsätta privat eller avslutas med ett offentligt erkännande.",
+          "priorFlagInfluences":[{"when":{"flag":"notes","equals":"heard"},"prompt":"Genomgången är avslutad. {formerRegent} vill att rådets ledamöter ska veta att redogörelsen blev hörd."},{"when":{"flag":"notes","equals":"copied"},"prompt":"Kopian ligger nu i hushållets arkiv. {formerRegent} ber om ett besked om hur kontakten ska fortsätta."}],
+          "choices":[
+            {"id":"acknowledge_account","label":"Bekräfta insatsen inför rådet","consequence":"{formerRegent}s åsikt om den kungliga aktören ökar med 3. Aktören får 3 stress; erkännandet ger ingen rätt till nästa ämbete.","scope":"public","payer":"none","costSilver":0,"effectIntents":[{"kind":"opinion","target":"formerRegent","delta":3},{"kind":"stress","target":"decisionActor","delta":3}],"setsFlags":{"contact":"public_acknowledgment"},"nextStageId":"closing_visit"},
+            {"id":"private_reception","label":"Bekosta ett privat besök","consequence":"Familjen betalar 8 silver. {formerRegent}s åsikt om hushållets beslutsaktör ökar med 6; besöket sker utanför det kungliga uppdraget.","scope":"family","payer":"family","costSilver":8,"effectIntents":[{"kind":"opinion","target":"formerRegent","delta":6}],"setsFlags":{"contact":"private_visit"},"nextStageId":"closing_visit"},
+            {"id":"close","label":"Låt den avslutade tjänsten vila","consequence":"Inga fler besök eller löften görs. Kedjan avslutas utan ny kostnad eller relationsförlust.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"closing_visit","title":"Det sista tackbrevet","delayMonths":6,
+          "prompt":"Ett sista brev från {formerRegent} ligger på bordet. Du kan lägga tid på ett svar eller låta hushållet ordna en avslutande gåva.",
+          "priorFlagInfluences":[{"when":{"flag":"contact","equals":"public_acknowledgment"},"prompt":"{formerRegent} nämner rådets erkännande i sitt sista brev. Ett svar kan avsluta kontakten utan fler offentliga åtaganden."},{"when":{"flag":"contact","equals":"private_visit"},"prompt":"{formerRegent} tackar för besöket hos hushållet. Nu återstår ett sista svar."}],
+          "choices":[
+            {"id":"personal_reply","label":"Låt hushållets ombud skriva svaret","consequence":"Familjens beslutsaktör får 3 stress; {formerRegent}s åsikt om aktören ökar med 4. Kedjan avslutas utan silverkostnad.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"stress","target":"decisionActor","delta":3},{"kind":"opinion","target":"formerRegent","delta":4}],"setsFlags":{"ending":"reply"},"nextStageId":null},
+            {"id":"farewell_gift","label":"Skicka en sista familjegåva","consequence":"Familjen betalar 10 silver och {formerRegent}s åsikt om familjens aktör ökar med 7. Kedjan avslutas utan löfte om framtida makt.","scope":"family","payer":"family","costSilver":10,"effectIntents":[{"kind":"opinion","target":"formerRegent","delta":7}],"setsFlags":{"ending":"gift"},"nextStageId":null},
+            {"id":"close","label":"Arkivera brevet","consequence":"Brevet bevaras som historia. Ingen ny kostnad, skuld eller mandatförändring uppstår.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        }
+      ]
+    },
+    {
+      "id":"heir_margin","title":"Arvingens första marginalanteckning","scope":"family",
+      "roles":{"child":"Living child aged at least 8 but below majority in the bound family; actual recognized heir at creation.","mentor":"The child's actual living adult mentor at creation; must remain the same for active stages.","family":"The controlled child's family, the sole treasury available in this chain."},
+      "entryConditions":["The child has a real mentor relationship and recorded education focus.","Mentor and child are distinct from the current family decision actor where an opinion effect would otherwise target self."],
+      "lifecycle":"Close if child or mentor dies, mentor changes, child reaches majority, child leaves the bound family or loses the recorded heir role. Preserve education history but never bind a new mentor or heir silently. This shortened candidate operates during childhood and never changes personality, heir rank or mentor identity.",
+      "stages":[
+        {
+          "id":"margin","title":"Ett annat svar i kanten","delayMonths":3,
+          "prompt":"{child} har skrivit ett annat svar i marginalen. {mentor} frågar om hushållet vill bekosta mer undervisning eller hjälpa till med den tid som redan finns.",
+          "choices":[
+            {"id":"extra_lessons","label":"Betala för extra undervisning","consequence":"Familjen betalar 18 silver. {child}s lärdom ökar med 1, inom färdighetens vanliga gräns; utbildningsinriktningen ändras inte.","scope":"family","payer":"family","costSilver":18,"effectIntents":[{"kind":"skill","target":"child","skill":"learning","delta":1}],"setsFlags":{"opening":"lessons"},"nextStageId":"lesson_time"},
+            {"id":"hear_question","label":"Låt ombudet lyssna på frågan","consequence":"Familjens beslutsaktör får 4 stress av den extra tiden. {child}s åsikt om aktören ökar med 6; ingen färdighetspoäng ges.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"stress","target":"decisionActor","delta":4},{"kind":"opinion","target":"child","delta":6}],"setsFlags":{"opening":"heard"},"nextStageId":"lesson_time"},
+            {"id":"close","label":"Låt den ordinarie utbildningen fortsätta","consequence":"Inga extra kostnader eller följder tillkommer. Den vanliga utbildningen fortsätter enligt kärnans regler.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"lesson_time","title":"Tid för nästa lektion","delayMonths":3,
+          "prompt":"{mentor} vill fortsätta arbetet med {child}, men ber hushållet välja vilket stöd som behövs mest.",
+          "priorFlagInfluences":[{"when":{"flag":"opening","equals":"lessons"},"prompt":"De extra lektionerna har gett {child} mer att arbeta med. {mentor} ber om tid att följa upp frågorna."},{"when":{"flag":"opening","equals":"heard"},"prompt":"{child} har återvänt till frågan som hushållets ombud lyssnade på. {mentor} vill ge nästa lektion mer arbetsro."}],
+          "choices":[
+            {"id":"relieve_mentor","label":"Bekosta avlastning för mentorn","consequence":"Familjen betalar 8 silver och {mentor}s stress minskar med 10. Valet byter inte mentor eller utbildningsmål.","scope":"family","payer":"family","costSilver":8,"effectIntents":[{"kind":"stress","target":"mentor","delta":-10}],"setsFlags":{"support":"mentor_relief"},"nextStageId":"student_account"},
+            {"id":"support_child","label":"Låt ombudet stötta barnet mellan lektionerna","consequence":"{child}s stress minskar med 5 och familjens beslutsaktör får 5 stress. Ingen silverkostnad eller extra lärdomspoäng.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"stress","target":"child","delta":-5},{"kind":"stress","target":"decisionActor","delta":5}],"setsFlags":{"support":"child_time"},"nextStageId":"student_account"},
+            {"id":"close","label":"Avsluta det extra stödet","consequence":"Kedjan avslutas utan ny kostnad. Redan vunnen lärdom och den vanliga mentorundervisningen påverkas inte.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"student_account","title":"Barnet vill visa sitt arbete","delayMonths":6,
+          "prompt":"{child} vill visa en färdig anteckning för familjen. {mentor} föreslår att arbetet antingen gås igenom noga eller får ett enkelt erkännande.",
+          "priorFlagInfluences":[{"when":{"flag":"support","equals":"mentor_relief"},"prompt":"Efter avlastningen har {mentor} hunnit följa {child}s arbete. Barnet vill nu visa anteckningen för hushållet."},{"when":{"flag":"support","equals":"child_time"},"prompt":"{child} vill visa vad arbetstiden med hushållets ombud har lett fram till. {mentor} tar med anteckningen till familjen."}],
+          "choices":[
+            {"id":"review_work","label":"Bekosta en fördjupad genomgång","consequence":"Familjen betalar 12 silver och {child}s lärdom ökar med 1 inom vanlig gräns. Ingen vuxen egenskap eller framtida arvsrätt bestäms.","scope":"family","payer":"family","costSilver":12,"effectIntents":[{"kind":"skill","target":"child","skill":"learning","delta":1}],"setsFlags":{"work":"reviewed"},"nextStageId":"thanks"},
+            {"id":"recognize_effort","label":"Låt barnet själv berätta för ombudet","consequence":"{child}s åsikt om familjens beslutsaktör ökar med 5. Aktören får 3 stress av den avsatta tiden; ingen extra lärdomspoäng.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"opinion","target":"child","delta":5},{"kind":"stress","target":"decisionActor","delta":3}],"setsFlags":{"work":"presented"},"nextStageId":"thanks"},
+            {"id":"close","label":"Spara anteckningen och avsluta uppföljningen","consequence":"Anteckningen bevaras utan ny effekt eller kostnad. Ordinarie utbildning fortsätter.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"thanks","title":"Ett tack för arbetet","delayMonths":3,
+          "prompt":"{child} och {mentor} lägger undan anteckningarna. Hushållet kan rikta sitt avslutande tack till eleven eller läraren.",
+          "priorFlagInfluences":[{"when":{"flag":"work","equals":"reviewed"},"prompt":"Den fördjupade genomgången är färdig. {child} och {mentor} väntar på hushållets sista besked om arbetet."},{"when":{"flag":"work","equals":"presented"},"prompt":"{child} har berättat om arbetet för hushållets ombud. Nu återstår ett avslutande tack."}],
+          "choices":[
+            {"id":"thank_child","label":"Uppmärksamma barnets ansträngning","consequence":"{child}s åsikt om familjens beslutsaktör ökar med 5. Kedjan avslutas utan att skapa en skyldighet att återgälda stödet.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"opinion","target":"child","delta":5}],"setsFlags":{"ending":"child"},"nextStageId":null},
+            {"id":"thank_mentor","label":"Uppmärksamma mentorns arbete","consequence":"{mentor}s åsikt om familjens beslutsaktör ökar med 5. Kedjan avslutas; mentorbandet ger ingen ny politisk rättighet.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"opinion","target":"mentor","delta":5}],"setsFlags":{"ending":"mentor"},"nextStageId":null},
+            {"id":"close","label":"Avsluta utan särskilt tack","consequence":"Utbildningshistoriken finns kvar. Ingen ny effekt, kostnad eller framtida skuld uppstår.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        }
+      ]
+    },
+    {
+      "id":"temple_steps","title":"Brunnen vid tempeltrappan","scope":"mixed",
+      "roles":{"governor":"Actual living governor of the bound city.","religiousLeader":"Actual living leader of a religion with verified presence in the city; distinct from governor.","city":"Existing city with unrest at least 15 at entry.","religion":"The bound leader's actual religion, with verified local presence.","family":"Controlled family whose private gifts are allowed only through household authority.","realm":"Realm governing the city, whose treasury requires royal authority."},
+      "entryConditions":["Governor and religiousLeader have a real negative relationship or documented opposing local positions.","City, office and local religion presence are verifiable. Do not fabricate a temple, conflict or locality association.","The well is descriptive setting for a proposed ordinary city improvement, not a new building entity."],
+      "lifecycle":"Close if governor or religious leader dies or leaves the bound role, city leaves the realm or verified local religion presence ceases. No successor inherits personal conflict. Already paid improvements remain. No disease, revolt, religion conversion or treasury ownership transfer is caused by the story.",
+      "stages":[
+        {
+          "id":"funding","title":"Vem ska stå för arbetet?","delayMonths":3,
+          "prompt":"{governor} vill förbättra platsen vid brunnen i {city}. {religiousLeader} ber i stället om stöd till samfundets verksamhet vid trappan. De två begärandena gäller olika kassor och olika resultat.",
+          "choices":[
+            {"id":"city_improvement","label":"Bekosta stadens förbättring","consequence":"Statskassan betalar 25 silver. Stadens oro minskar med 12 och infrastrukturen ökar med 1; detta är ett offentligt stadsarbete.","scope":"public","payer":"realm","costSilver":25,"effectIntents":[{"kind":"unrest","target":"city","delta":-12},{"kind":"infrastructure","target":"city","delta":1}],"setsFlags":{"funding":"city"},"nextStageId":"credit"},
+            {"id":"family_donation","label":"Ge samfundet en privat familjegåva","consequence":"Familjen betalar 20 silver. Samfundets stöd ökar med 5 och ledarens åsikt om familjens aktör ökar med 8; gåvan bygger inget i staden.","scope":"family","payer":"family","costSilver":20,"effectIntents":[{"kind":"religionSupport","target":"religion","delta":5},{"kind":"opinion","target":"religiousLeader","delta":8}],"setsFlags":{"funding":"religion"},"nextStageId":"credit"},
+            {"id":"close","label":"Avböj båda begärandena","consequence":"Inga pengar betalas och ingen ny effekt uppstår. Kedjan avslutas; staden följer sin vanliga utveckling.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"credit","title":"När hjälpen ska beskrivas","delayMonths":3,
+          "prompt":"{governor} och {religiousLeader} har olika önskemål om hur hjälpen ska beskrivas. Ett tack behöver inte ge någon ny bestämmanderätt.",
+          "priorFlagInfluences":[{"when":{"flag":"funding","equals":"city"},"prompt":"Stadsarbetet har bekostats offentligt. {governor} vill få arbetet erkänt; {religiousLeader} vill att samfundets närvaro också ska nämnas."},{"when":{"flag":"funding","equals":"religion"},"prompt":"Samfundet har fått familjens gåva, men inget stadsarbete betalades. {religiousLeader} vill framföra sitt tack; {governor} ber att offentlig och privat verksamhet hålls isär."}],
+          "choices":[
+            {"id":"recognize_governor","label":"Bekräfta guvernörens ansvar","consequence":"{governor}s åsikt om den kungliga beslutsaktören ökar med 5. Ingen extra infrastruktur eller samfundsbonus ges.","scope":"public","payer":"none","costSilver":0,"effectIntents":[{"kind":"opinion","target":"governor","delta":5}],"setsFlags":{"credit":"governor"},"nextStageId":"separate_meetings"},
+            {"id":"recognize_religion","label":"Framför hushållets tack till samfundet","consequence":"{religiousLeader}s åsikt om familjens beslutsaktör ökar med 5. Hushållets tack ändrar inte vem som styr staden.","scope":"family","payer":"none","costSilver":0,"effectIntents":[{"kind":"opinion","target":"religiousLeader","delta":5}],"setsFlags":{"credit":"religion"},"nextStageId":"separate_meetings"},
+            {"id":"close","label":"Avstå från ytterligare uttalanden","consequence":"Tidigare gåva eller stadsarbete består. Kedjan avslutas utan ny kostnad eller effekt.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"separate_meetings","title":"Två olika samtal","delayMonths":6,
+          "prompt":"Det finns fortfarande två personer med olika ansvar vid platsen. Du kan lägga kunglig tid på guvernören eller hushållets medel på ett möte med samfundsledaren.",
+          "priorFlagInfluences":[{"when":{"flag":"credit","equals":"governor"},"prompt":"Guvernörens ansvar har bekräftats. {religiousLeader} efterfrågar ett eget samtal, medan {governor} vill gå igenom stadens arbete."},{"when":{"flag":"credit","equals":"religion"},"prompt":"Hushållet har tackat samfundet. {governor} vill tala om den offentliga förvaltningen; {religiousLeader} erbjuder fortsatt privat kontakt."}],
+          "choices":[
+            {"id":"governor_meeting","label":"Avsätt kunglig tid för guvernören","consequence":"Den kungliga aktören får 5 stress och {governor}s åsikt om aktören ökar med 6. Ingen stadsoro tas bort genom samtalet.","scope":"public","payer":"none","costSilver":0,"effectIntents":[{"kind":"stress","target":"decisionActor","delta":5},{"kind":"opinion","target":"governor","delta":6}],"setsFlags":{"meeting":"governor"},"nextStageId":"closing_account"},
+            {"id":"religious_meeting","label":"Bekosta hushållets möte med samfundsledaren","consequence":"Familjen betalar 8 silver. {religiousLeader}s åsikt om familjens aktör ökar med 6; det löser inte automatiskt relationen mellan ledaren och guvernören.","scope":"family","payer":"family","costSilver":8,"effectIntents":[{"kind":"opinion","target":"religiousLeader","delta":6}],"setsFlags":{"meeting":"religion"},"nextStageId":"closing_account"},
+            {"id":"close","label":"Avsluta kontakterna i denna fråga","consequence":"Kedjan avslutas utan ny effekt. Personernas befintliga relation och roller lämnas åt kärnans vanliga regler.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        },
+        {
+          "id":"closing_account","title":"Den sista begäran vid trappan","delayMonths":6,
+          "prompt":"{governor} och {religiousLeader} vill avsluta kontakten om platsen vid trappan. Du kan rikta ett sista stöd till förvaltaren eller samfundet.",
+          "priorFlagInfluences":[{"when":{"flag":"meeting","equals":"governor"},"prompt":"Genomgången med {governor} är klar. Vid den sista avstämningen kan du stödja förvaltarens arbete eller ge samfundet en separat familjegåva."},{"when":{"flag":"meeting","equals":"religion"},"prompt":"Hushållets möte med {religiousLeader} är avslutat. Ett sista stöd kan gå till samfundet eller till guvernörens praktiska arbetsbörda."}],
+          "choices":[
+            {"id":"relieve_governor","label":"Bekosta avlastning i förvaltningen","consequence":"Statskassan betalar 10 silver och {governor}s stress minskar med 10. Ingen ny byggnad eller ämbetsförändring skapas; kedjan avslutas.","scope":"public","payer":"realm","costSilver":10,"effectIntents":[{"kind":"stress","target":"governor","delta":-10}],"setsFlags":{"ending":"administration"},"nextStageId":null},
+            {"id":"support_religion","label":"Ge ett sista privat bidrag till samfundet","consequence":"Familjen betalar 10 silver och samfundets stöd ökar med 2. Bidraget påverkar inte stadens infrastruktur eller guvernörens mandat; kedjan avslutas.","scope":"family","payer":"family","costSilver":10,"effectIntents":[{"kind":"religionSupport","target":"religion","delta":2}],"setsFlags":{"ending":"religion"},"nextStageId":null},
+            {"id":"close","label":"Avsluta utan ytterligare stöd","consequence":"Historiken och tidigare effekter bevaras. Ingen ny kostnad eller följd tillkommer.","scope":"none","payer":"none","costSilver":0,"effectIntents":[],"nextStageId":null}
+          ]
+        }
+      ]
+    }
+  ]
+}

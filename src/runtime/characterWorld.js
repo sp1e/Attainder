@@ -286,7 +286,7 @@ export const planCharacterAdvance = (world, targetDate, { id = "character-calend
   if (diffGameDays(state.date, target) > 366 * 500) throw new Error("Dela upp tidshopp som är längre än 500 år.");
   const events = [];
   const knownCare = new Set(state.stories.filter((story) => story.type === "health_care").map((story) => story.id));
-  const knownStories = new Set(state.stories.filter((story) => story.type === "character_event").map((story) => story.id));
+  const knownStories = new Set(state.stories.filter((story) => ["character_event", "event_chain"].includes(story.type)).map((story) => story.id));
   let checkpointBase = state;
   let steps = 0;
   while (compareGameDates(state.date, target) < 0) {
@@ -313,7 +313,7 @@ export const planCharacterAdvance = (world, targetDate, { id = "character-calend
         requestedDate: normalizeGameDate(requestedDate),
         message: "Turen stannade tidigare eftersom en ny sjukdom kräver ditt vårdbeslut. Välj vård i Rike & familjer innan du fortsätter." } };
     }
-    const newStories = state.stories.filter((story) => story.type === "character_event" && story.status === "open"
+    const newStories = state.stories.filter((story) => ["character_event", "event_chain"].includes(story.type) && story.status === "open"
       && !knownStories.has(story.id)).map((story) => story.id);
     if (pauseForCharacterDecisions && newStories.length && compareGameDates(state.date, requestedDate) < 0) {
       return { state, events, interruption: { type: "character-story", date: state.date, storyIds: newStories,
