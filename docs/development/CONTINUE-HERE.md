@@ -4,13 +4,14 @@ Updated on 31 October 2026.
 
 ## Branch state
 
-`claude/ai-game-master-design` was cut from `origin/main` at `728eaec` and holds six commits on top of it. The commits are not on `main`.
+`claude/ai-game-master-design` was cut from `origin/main` at `728eaec`. It holds Phase 0 and the first Phase 1 tasks, and none of its commits are on `main`. `git log 728eaec..HEAD` lists them.
 
 - `8ab75f8` adds the design in `docs/superpowers/specs/2026-10-31-ai-game-master-design.md`.
 - `dd787af` adds the Phase 0 and Phase 1 plans in `docs/superpowers/plans/`.
 - `cf0d4f3` closes four save-validation holes in `validateEventChains`. A load now rejects a forged origin-memory cause, a step whose `familyId` differs from its chain, an outcome memory with emptied participants, and an outcome memory whose visibility or `knownBy` list was changed. Regression tests are in `src/runtime/characters/eventChains.test.js`.
 - `26dc95e` tests rollback and journal recovery after a failed multi-document save in `src/runtime/characterPersistence.test.js`.
 - `3c0004f` and `8fd0e73` add `src/runtime/characters/eventChainIntegration.test.js` with five tests: command payment and replay, exact subannual host interruption, same-date health and chain decisions, whole versus split advances, and insufficient funds.
+- `d7ab1f8` and `c48db19` fix the findings of the whole-branch review of Phase 0. A character commit validates the next world before it writes the journal, and it publishes after the final write, outside the rollback. The chain tests cover the family letter origin cause and an outcome memory that lists a participant twice.
 
 ## Verification at `8fd0e73`
 
@@ -27,12 +28,12 @@ Phase 1 follows `docs/superpowers/plans/2026-10-31-phase-1-foundation.md`. A pla
 Event chains are not yet released. `main` holds the unaccepted checkpoint from merge `728eaec`, and the README does not describe them. Phase 0 did not cover these checks:
 
 1. Participant or mandate changes during a chain.
-2. JSON advances.
-3. More than 1,000 newer memories.
+2. JSON advances: an integration test that saves a chain to JSON between two `advanceCharacters` calls. The unit test "causality survives newer memories and JSON resume" in `eventChains.test.js` covers this for `refreshEventChains`.
+3. More than 1,000 newer memories: the same integration test through `advanceCharacters`. The unit test above covers this for `refreshEventChains`.
 4. Immutable historical roles and story/source uniqueness.
 5. The panel in both themes and narrow layouts, with one submitted public choice and one submitted private choice, each followed by a reload.
 
-After these checks, run an independent quality review, update the README and `docs/design/event-chains.md` with the final evidence, and publish the accepted feature to `main`.
+After these checks, run an independent quality review, update the README and `docs/design/event-chains.md` with the final evidence, and merge the accepted work to `main`.
 
 Two rules hold for every change. A normal read, validation or presentation call never chooses a branch, spends money or draws randomness. Model output never performs the player's chain choice.
 
