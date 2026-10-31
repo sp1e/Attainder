@@ -1,13 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameMonths } from '../gameDates.js';
-import { ACTION_CATALOG, EFFECT_KINDS, TIER_IDS, crime, kill } from './actionCatalog.js';
+import { ACTION_CATALOG, EFFECT_KINDS, TIER_IDS, crime, imprison, kill } from './actionCatalog.js';
 import { GUARDED_ACTIONS, REASONS, estimateAction } from './actionOdds.js';
 import { applyTierEffects, refusalChance, tierFor, validateActionLog } from './actionResolution.js';
 import { actionHooks, advanceCharacters, createCharacterSystem, estimateCharacterAction, executeCharacterCommand, getCatalogActions, getCharacterPresentation, getPersonalOpinion, normalizeCharacterSystem } from './index.js';
 import { actionRandom, plotRandom } from './extensions.js';
 import { createSecret, exposeSecret } from './secrets.js';
-import { IMPRISONED, RANSOM, closePrisoner, heldPrisoners, imprisonPerson, isImprisoned, presentPrisoners, prisonerOf } from './prisoners.js';
+import { IMPRISONED, RANSOM, closePrisoner, heldPrisoners, imprisonPerson, isImprisoned, presentPrisoners, prisonerOf, prisonerStep } from './prisoners.js';
 
 const REP = 'person-0-0';
 const SERA = 'person-0-2';
@@ -34,6 +34,23 @@ const causeOf = (state, fromId, toId, label) => state.relations[`${fromId}:${toI
 // Takes a person prisoner straight through the engine's hooks, the way a punish_crime or a plot would.
 function seize(state, personId, options) {
   return imprisonPerson(state, personId, ARELS, [], actionHooks(state), options);
+}
+
+// Writes a complete action log entry with the given effects applied, the way a resolved action leaves it, so the state still validates.
+function record(state, actorId, targetId, effects) {
+  const hooks = actionHooks(state);
+  const anchor = hooks.memory('action', 'Provminne', [actorId, targetId], { knownBy: [actorId] });
+  const resolution = { id: `resolution-${++state.sequence}`, commandId: null, actionId: 'imprison', actorId, targetIds: [targetId], agentIds: [], date: state.date, playerControlled: false, precision: 'exact', memoryId: anchor.id,
+    estimate: { success: 50, secrecy: 50, refusal: null }, rolls: { refusal: null, success: 10, secrecy: 10 }, tier: 'clean_success', effects: [], narrative: null, refused: false };
+  resolution.effects = applyTierEffects(state, resolution, { label: 'Prov', tiers: { clean_success: { effects } } }, hooks, []);
+  state.actionLog.push(resolution);
+  return resolution;
+}
+// A conviction: an exposed secret that the action log records as a crime (an attempted murder by this person), which is what makes an arrest lawful.
+function convict(state, personId) {
+  const resolution = record(state, personId, BAREK, [crime('attempted_murder', false)]);
+  exposeSecret(state, resolution.effects[0].secretId);
+  return state;
 }
 
 const draws = (seed, count) => { const dice = { actionRngState: seed }; return Array.from({ length: count }, () => actionRandom(dice) * 100); };
@@ -110,14 +127,23 @@ test('an unlawful imprisonment costs legitimacy and grievance, a lawful one does
   assert.equal(done.realm.legitimacy, before.realm.legitimacy - 5);
   // 8 for the lost office (the vacate path) and 8 more for the unlawful act.
   assert.equal(done.families[NAMARS].grievance, before.families[NAMARS].grievance - 16);
-  const lawful = imprisoned('exposed_success', (state) => {
-    const secret = createSecret(state, { type: 'murder', subjectId: KELAN, holderIds: [KELAN], evidence: 'strong' });
-    exposeSecret(state, secret.id);
-    return state;
-  });
+  const lawful = imprisoned('exposed_success', (state) => convict(state, KELAN));
   assert.equal(lawful.done.realm.legitimacy, lawful.before.realm.legitimacy);
   assert.equal(lawful.done.families[NAMARS].grievance, lawful.before.families[NAMARS].grievance - 8);
   assert.equal(isImprisoned(lawful.done, KELAN), true);
+  normalizeCharacterSystem(copy(lawful.done));
+});
+
+test('an exposed opposition plot secret does not make an arrest lawful', () => {
+  for (const [label, prepare] of Object.entries({
+    'an exposed plot secret from undermine': (state) => { const secret = createSecret(state, { type: 'plot', subjectId: KELAN, holderIds: [KELAN], evidence: 'strong' }); exposeSecret(state, secret.id); return state; },
+    'an exposed murder secret no action log records as a crime': (state) => { const secret = createSecret(state, { type: 'murder', subjectId: KELAN, holderIds: [KELAN], evidence: 'strong' }); exposeSecret(state, secret.id); return state; },
+    'a recorded crime that is still hidden': (state) => { record(state, KELAN, BAREK, [crime('attempted_murder', false)]); return state; },
+  })) {
+    const { before, done } = imprisoned('exposed_success', prepare);
+    assert.equal(done.realm.legitimacy, before.realm.legitimacy - 5, label);
+    assert.equal(done.families[NAMARS].grievance, before.families[NAMARS].grievance - 16, label);
+  }
 });
 
 test('the other tiers: nothing, an opinion hit, or a backfire that costs the ruler', () => {
@@ -233,6 +259,102 @@ test('a prisoner who inherits the throne is released', () => {
   normalizeCharacterSystem(copy(state));
 });
 
+// The crown passes to Namar when every Arel dies; the prisoners then belong to Namar.
+function crownToNamar() {
+  const state = base();
+  const records = { barek: seize(state, BAREK), safra: seize(state, 'person-3-2'), kelan: seize(state, KELAN), heir: seize(state, NAMAR) };
+  actionHooks(state).kill(Object.values(state.people).filter((person) => person.familyId === ARELS).map((person) => person.id), [], 'Sjukdom');
+  return { state, records };
+}
+
+test('prisoners belong to the crown: they pass to the new ruling family, and his own kin go free', () => {
+  const { state, records } = crownToNamar();
+  assert.equal(state.offices.ruler.holderId, NAMAR);
+  assert.deepEqual([records.heir.status, records.heir.reason], ['released', 'Ärvde tronen']);
+  assert.deepEqual([records.kelan.status, records.kelan.reason, records.kelan.closedAt], ['released', 'Hans ätt tog tronen', state.date]);
+  assert.equal(isImprisoned(state, KELAN), false);
+  for (const held of [records.barek, records.safra]) assert.deepEqual([held.status, held.captorFamilyId], ['held', NAMARS]);
+  assert.deepEqual(presentPrisoners(state, NAMARS).map((item) => item.personId).sort(), [BAREK, 'person-3-2']);
+  assert.deepEqual(presentPrisoners(state, ARELS), []);
+  assert.ok(state.log.some((event) => event.type === 'prisoner_released' && /Hans ätt tog tronen/.test(event.description)));
+  assert.deepEqual(getCharacterPresentation(state).prisoners, presentPrisoners(state, NAMARS));
+  normalizeCharacterSystem(copy(state));
+});
+
+test('the new ruling family can release, execute and ransom what the crown holds', () => {
+  const { state, records } = crownToNamar();
+  const released = ok(run(state, 'release_prisoner', { prisonerId: records.barek.id }));
+  assert.equal(released.prisoners.find((item) => item.id === records.barek.id).status, 'released');
+  assert.equal(released.actionPoints, state.actionPoints - 1);
+  const executed = ok(run(released, 'execute_prisoner', { prisonerId: records.safra.id }));
+  assert.equal(executed.prisoners.find((item) => item.id === records.safra.id).status, 'executed');
+  assert.equal(executed.people['person-3-2'].deathReason, 'Avrättad');
+  assert.equal(run(state, 'release_prisoner', { prisonerId: records.kelan.id }).ok, false, 'a released record is closed');
+  const held = copy(state);
+  held.plotRngState = OFFER;
+  held.families['family-eshmun'].treasury = 100;
+  const next = advance(held, held.nextAnnualDate);
+  assert.equal(next.status.ended, false);
+  const offer = next.stories.find((item) => item.type === 'ransom_offer');
+  assert.ok(offer, 'prisonerStep works for the new ruling family');
+  assert.deepEqual([offer.prisonerId, offer.familyId], [records.barek.id, 'family-eshmun']);
+  normalizeCharacterSystem(copy(executed));
+});
+
+test('the same family on the throne again moves nothing', () => {
+  const state = base();
+  const record = seize(state, KELAN);
+  actionHooks(state).kill([REP], [], 'Sjukdom');
+  assert.equal(state.offices.ruler.holderId, SERA);
+  assert.deepEqual([record.status, record.captorFamilyId], ['held', ARELS]);
+});
+
+test('an imprison effect on a target who is already imprisoned or dead records applied false', () => {
+  const state = base();
+  seize(state, SERA);
+  const second = record(state, REP, SERA, [imprison('target')]);
+  assert.deepEqual(second.effects, [{ kind: 'imprison', personId: SERA, applied: false }]);
+  assert.equal(state.prisoners.length, 1, 'no second record');
+  actionHooks(state).kill([KELAN], [], 'Sjukdom');
+  const dead = record(state, REP, KELAN, [imprison('target')]);
+  assert.deepEqual(dead.effects, [{ kind: 'imprison', personId: KELAN, applied: false }]);
+  assert.equal(state.prisoners.length, 1);
+  const fresh = record(state, REP, NAMAR, [imprison('target')]);
+  assert.equal(fresh.effects[0].prisonerId, state.prisoners.at(-1).id);
+  assert.equal(isImprisoned(state, NAMAR), true);
+  normalizeCharacterSystem(copy(state));
+  const forged = copy(state);
+  forged.actionLog.find((entry) => entry.id === second.id).effects[0].prisonerId = 'prisoner-1';
+  assert.throws(() => normalizeCharacterSystem(forged), /handlingsloggen/i);
+});
+
+test('the log validation refuses forged grievance records', () => {
+  const { done } = imprisoned('backfire');
+  const entry = done.actionLog.at(-1);
+  const index = entry.effects.findIndex((effect) => effect.kind === 'grievance');
+  assert.deepEqual(entry.effects[index], { kind: 'grievance', familyId: NAMARS, amount: -10, applied: -10 });
+  normalizeCharacterSystem(copy(done));
+  const half = copy(done);
+  half.actionLog.at(-1).effects[index].applied = -4;
+  normalizeCharacterSystem(half);
+  const cases = {
+    'an extra key': (effect) => { effect.value = -10; },
+    'a missing applied': (effect) => { delete effect.applied; },
+    'a fractional amount': (effect) => { effect.amount = -9.5; },
+    'a fractional applied': (effect) => { effect.applied = -9.5; },
+    'applied beyond the amount': (effect) => { effect.applied = -12; },
+    'applied against the amount': (effect) => { effect.applied = 3; },
+    'a text amount': (effect) => { effect.amount = '-10'; },
+    'an unknown family': (effect) => { effect.familyId = 'family-nobody'; },
+    'an inherited family key': (effect) => { effect.familyId = 'toString'; },
+  };
+  for (const [label, change] of Object.entries(cases)) {
+    const forged = copy(done);
+    change(forged.actionLog.at(-1).effects[index]);
+    assert.throws(() => normalizeCharacterSystem(forged), /handlingsloggen/i, label);
+  }
+});
+
 test('release_prisoner frees him and improves the opinion of him and his head', () => {
   const state = base();
   const record = seize(state, KELAN);
@@ -265,9 +387,7 @@ test('execute_prisoner kills him, turns his family against the ruler and costs l
   assert.equal(state.realm.legitimacy, 60, 'the unlawful imprisonment cost 5');
   assert.equal(done.realm.legitimacy, state.realm.legitimacy - 4, 'the execution of an unconvicted prisoner costs 4');
   assert.ok(done.people[REP].stress > state.people[REP].stress, 'cruelty stress');
-  const lawfulBase = base();
-  const secret = createSecret(lawfulBase, { type: 'murder', subjectId: KELAN, holderIds: [KELAN], evidence: 'strong' });
-  exposeSecret(lawfulBase, secret.id);
+  const lawfulBase = convict(base(), KELAN);
   const lawfulRecord = seize(lawfulBase, KELAN);
   const lawful = ok(run(lawfulBase, 'execute_prisoner', { prisonerId: lawfulRecord.id }));
   assert.equal(lawful.realm.legitimacy, lawfulBase.realm.legitimacy);
@@ -321,13 +441,53 @@ test('refusing the ransom keeps him and sours the head; the offer is not repeate
   assert.equal(done.realm.treasury, next.realm.treasury);
   assert.equal(causeOf(done, NAMAR, REP, 'Lösen avvisades').amount, -10);
   assert.equal(done.stories.find((item) => item.id === story.id).status, 'resolved');
-  // An open offer is not offered again and draws nothing.
-  const open = copy(next);
-  const stream = open.plotRngState;
-  const later = advance(open, open.nextAnnualDate);
-  assert.equal(later.stories.filter((item) => item.type === 'ransom_offer').length, 1);
-  assert.equal(later.plotRngState, stream);
-  assert.equal(causeOf(later, NAMAR, REP, 'Släkting i fångenskap'), undefined);
+});
+
+test('an open offer is not offered again and draws nothing', () => {
+  const state = heldYear({ plotSeed: OFFER });
+  const open = advance(state, state.nextAnnualDate);
+  const stream = open.plotRngState, events = [];
+  prisonerStep(open, events, actionHooks(open));
+  assert.equal(open.stories.filter((item) => item.type === 'ransom_offer').length, 1);
+  assert.equal(open.plotRngState, stream);
+  assert.deepEqual(events, []);
+});
+
+test('an unanswered offer lapses at its due date without touching opinion, and the family decides again', () => {
+  const state = heldYear({ plotSeed: OFFER });
+  const open = advance(state, state.nextAnnualDate);
+  const story = open.stories.find((item) => item.type === 'ransom_offer');
+  assert.equal(story.dueAt, open.nextAnnualDate);
+  const midway = advance(open, addGameMonths(open.date, 6));
+  assert.equal(midway.stories.find((item) => item.id === story.id).status, 'open', 'still open before the due date');
+  const result = advanceCharacters(open, open.nextAnnualDate);
+  assert.equal(result.ok, true, result.error);
+  const later = result.state;
+  const lapsed = later.stories.find((item) => item.id === story.id);
+  assert.equal(lapsed.status, 'closed');
+  assert.equal(lapsed.resolvedAt, later.date);
+  assert.match(lapsed.resolution, /förföll utan svar/);
+  assert.equal(causeOf(later, NAMAR, REP, 'Lösen avvisades'), undefined, 'a lapsed offer changes no opinion');
+  assert.equal(later.prisoners[0].status, 'held');
+  assert.notEqual(later.plotRngState, open.plotRngState, 'the family decided again the same year');
+  const decided = later.stories.some((item) => item.type === 'ransom_offer' && item.id !== story.id && item.status === 'open') || causeOf(later, NAMAR, REP, 'Släkting i fångenskap') !== undefined;
+  assert.equal(decided, true, 'a new offer or a revolt');
+});
+
+test('prisonerStep does nothing once the campaign has ended', () => {
+  const state = heldYear({ plotSeed: NO_OFFER });
+  const control = copy(state);
+  const ended = copy(state);
+  ended.status = { ended: true, reason: 'Riket saknar en giltig fortsättning.' };
+  const events = [];
+  prisonerStep(ended, events, actionHooks(ended));
+  assert.deepEqual(events, []);
+  assert.equal(ended.plotRngState, NO_OFFER);
+  assert.equal(ended.families[NAMARS].grievance, state.families[NAMARS].grievance);
+  assert.deepEqual(ended.stories, state.stories);
+  const live = [];
+  prisonerStep(control, live, actionHooks(control));
+  assert.equal(live.length > 0 && control.plotRngState !== NO_OFFER, true, 'the same state acts while the campaign runs');
 });
 
 test('the offer closes when the prisoner is no longer held', () => {

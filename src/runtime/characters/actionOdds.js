@@ -1,5 +1,5 @@
 import { canExerciseMandate, getCharacterAge } from './characterCapacity.js';
-import { ACTION_CATALOG, MAX_AGENTS, MAX_EXTRA_SILVER, RUMOR_TOPICS, requiresOf, usesOf } from './actionCatalog.js';
+import { ACTION_CATALOG, MAX_AGENTS, MAX_EXTRA_SILVER, RUMOR_TOPICS, actorOfficeRefusal, requiresOf, usesOf } from './actionCatalog.js';
 import { ADULT_AGE, SKILL_LABELS, TRAITS } from './content.js';
 import { DIFFICULTIES, normalizeDifficulty } from './extensions.js';
 import { STAFF_ROLES } from './courtStaff.js';
@@ -258,7 +258,8 @@ export function estimateAction(state, intent, ctx) {
   const actor = personOf(state, intent.actorId);
   const actorReason = actorRefusal(state, actor);
   if (actorReason) return refuse(actorReason);
-  if (entry.actorOffice && state.offices?.[entry.actorOffice.id]?.holderId !== actor.id) return refuse(entry.actorOffice.reason);
+  const office = actorOfficeRefusal(state, entry, actor.id);
+  if (office) return refuse(office);
   if (!ctx.canOrder(actor.id)) return refuse(REASONS.order);
   if (!Array.isArray(intent.targetIds) || intent.targetIds.length !== 1) return refuse(REASONS.targetCount);
   const target = personOf(state, intent.targetIds[0]);

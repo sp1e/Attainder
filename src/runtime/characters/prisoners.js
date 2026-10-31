@@ -1,4 +1,5 @@
 import { addGameMonths, compareGameDates, normalizeGameDate } from '../gameDates.js';
+import { crimeOfSecret } from './crimes.js';
 import { plotRandom } from './extensions.js';
 
 // Prisoners: persons the ruler holds. A record is { id: 'prisoner-<n>', personId, captorFamilyId, since, ransom, status, closedAt, reason } and lives in state.prisoners. While `status` is 'held' the person cannot act, holds no office and is no feast guest; every other status closes the record with a date and a reason.
@@ -66,9 +67,9 @@ export function heldPrisoners(state, captorFamilyId) {
 
 const heldById = (state, id) => list(state).find((record) => record.id === id && record.status === 'held') ?? null;
 
-/** Whether an imprisonment of this person is lawful: the person is the subject of an exposed murder or plot secret (the secrets a crime effect writes). */
+/** Whether an imprisonment of this person is lawful: the person is the subject of an exposed secret that records a crime (crimeOfSecret). An exposed opposition plot secret (undermine, a yearly plot) records no crime and does not count. */
 export function isLawfulSubject(state, personId) {
-  return (Array.isArray(state.secrets) ? state.secrets : []).some((secret) => secret.subjectId === personId && secret.exposed === true && ['murder', 'plot'].includes(secret.type));
+  return (Array.isArray(state.secrets) ? state.secrets : []).some((secret) => secret.subjectId === personId && secret.exposed === true && crimeOfSecret(state, secret.id) !== null);
 }
 
 /**
@@ -139,6 +140,21 @@ export function executePrisoner(state, payload, events, hooks) {
   return record;
 }
 
+/**
+ * The prisoners belong to the crown. When `newFamilyId` takes the throne, every held record of another captor moves to that family; a prisoner of the new ruling family itself is released instead (reason 'Hans ätt tog tronen'). The person who is crowned is closed by the caller as 'Ärvde tronen'. Draws no randomness. `hooks` need logEvent.
+ */
+export function passCrown(state, newFamilyId, events, hooks) {
+  for (const record of list(state).filter((item) => item.status === 'held' && item.captorFamilyId !== newFamilyId)) {
+    const person = state.people[record.personId];
+    if (person.familyId !== newFamilyId) {
+      record.captorFamilyId = newFamilyId;
+      continue;
+    }
+    closePrisoner(state, person.id, 'released', 'Hans ätt tog tronen');
+    hooks.logEvent(events, 'prisoner_released', `${person.name} friges`, 'Hans ätt tog tronen. Fängelset öppnas för honom.', [person.id]);
+  }
+}
+
 const openOffer = (state, record) => state.stories.some((story) => story.type === 'ransom_offer' && story.status === 'open' && story.prisonerId === record.id);
 
 function offerRansom(state, record, hooks) {
@@ -157,11 +173,11 @@ function prepareRevolt(state, record, events, hooks) {
 }
 
 /**
- * The yearly step for the prisoners the controlled family holds, last in annualStep. For each held prisoner without an open offer: when his family's treasury covers the ransom and plotRandom() < 0.6, a ransom_offer story opens; otherwise the family prepares a revolt (grievance −6, the head's opinion of the ruler −15, a public event). The draw happens only when the treasury covers the ransom. A prisoner held by his own family is left alone.
+ * The yearly step for the prisoners the controlled family holds, last in annualStep. It does nothing once the campaign has ended. For each held prisoner without an open offer: when his family's treasury covers the ransom and plotRandom() < 0.6, a ransom_offer story opens; otherwise the family prepares a revolt (grievance −6, the head's opinion of the ruler −15, a public event). The draw happens only when the treasury covers the ransom. A prisoner held by his own family is left alone.
  */
 export function prisonerStep(state, events, hooks) {
   const captor = hooks.controlledFamily(), ruler = hooks.ruler();
-  if (!captor || !ruler) return;
+  if (state.status?.ended || !captor || !ruler) return;
   for (const record of heldPrisoners(state, captor.id)) {
     const family = state.families[state.people[record.personId].familyId];
     if (family.id === captor.id || openOffer(state, record)) continue;

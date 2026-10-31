@@ -482,7 +482,9 @@ const EFFECT_CHECKS = Object.freeze({
   rumor: (state, effect) => ownKey(RUMOR_TOPICS, effect.topic) && (effect.rumorId === null || typeof effect.rumorId === 'string'),
   // The record of an imprisonment names the prisoner; the bare record { kind, personId, applied: false } is a target who could no longer be taken.
   imprison: (state, effect, known) => isPerson(state, effect.personId) && (effect.applied === false ? Object.keys(effect).length === 3 : known.prisoners.has(effect.prisonerId)),
-  grievance: (state, effect) => ownKey(state.families, effect.familyId) && Number.isFinite(effect.amount) && Number.isFinite(effect.applied),
+  // Exactly the four keys the applier writes; `applied` is the change the bound allowed, so it has the sign of `amount` and is no larger.
+  grievance: (state, effect) => Object.keys(effect).sort().join() === 'amount,applied,familyId,kind' && ownKey(state.families, effect.familyId) && Number.isInteger(effect.amount) && Number.isInteger(effect.applied)
+    && effect.applied * effect.amount >= 0 && Math.abs(effect.applied) <= Math.abs(effect.amount),
 });
 
 function checkEffects(state, entry, known) {

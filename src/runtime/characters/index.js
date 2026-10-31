@@ -16,7 +16,7 @@ import { STAFF_ROLES, staffOf } from './courtStaff.js';
 import { presentResolutions, presentSchemes, recordNarrative, resolveAttempt, validateActionLog } from './actionResolution.js';
 import { punishCrimeChoices, resolvePunishment } from './crimes.js';
 import { feastRefusal, feastRows, holdFeast, presentOccasions, validateOccasions } from './occasions.js';
-import { IMPRISONED, closePrisoner, executePrisoner, heldPrisoners, imprisonPerson, isImprisoned, presentPrisoners, prisonerStep, ransomChoices, releasePrisoner, resolveRansom, validatePrisoners } from './prisoners.js';
+import { IMPRISONED, closePrisoner, executePrisoner, heldPrisoners, imprisonPerson, isImprisoned, passCrown, presentPrisoners, prisonerStep, ransomChoices, releasePrisoner, resolveRansom, validatePrisoners } from './prisoners.js';
 import { abortScheme, advanceSchemes, getSchemeDates, reinforceScheme, validateSchemes } from './schemes.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
@@ -221,15 +221,15 @@ function refreshStories(state, events) {
       story.resolution = !alive(state.people[story.actorId]) ? 'Gärningspersonen har avlidit; ärendet faller.' : isImprisoned(state, story.actorId) ? 'Gärningspersonen sitter redan fängslad; ärendet faller.' : 'Ärendet förföll utan dom.';
       logEvent(state, events, 'story_closed', story.title, story.resolution, [story.actorId]);
     }
-    if (story.type === 'ransom_offer' && !isImprisoned(state, story.actorId)) {
-      story.status = 'closed'; story.resolvedAt = state.date; story.resolution = 'Fången sitter inte längre fängslad; erbjudandet förföll.';
+    if (story.type === 'ransom_offer' && (!isImprisoned(state, story.actorId) || compareGameDates(story.dueAt, state.date) <= 0)) {
+      story.status = 'closed'; story.resolvedAt = state.date; story.resolution = isImprisoned(state, story.actorId) ? 'Erbjudandet förföll utan svar.' : 'Fången sitter inte längre fängslad; erbjudandet förföll.';
       logEvent(state, events, 'story_closed', story.title, story.resolution, [story.actorId]);
     }
     if (story.type === 'stress_crisis' && !alive(state.people[story.actorId])) { story.status = 'closed'; story.resolvedAt = state.date; story.resolution = 'Personens liv har avslutats.'; }
   }
 }
 function suspendPersonalProjects(state, personId) { for (const project of state.projects.filter((p) => p.status === 'active' && p.ownerId === personId && p.personal)) project.status = 'ended'; }
-function crown(state, person, events, reason, legitimacy = 55, lawful = true) { const previous = ruler(state); registerAccession(state, { previousId: previous?.id, newId: person?.id, lawful, reason }); if (previous) suspendPersonalProjects(state, previous.id); state.offices.ruler.holderId = person?.id || null; state.offices.ruler.history.push({ personId: person?.id || null, date: state.date, reason }); state.realm.legitimacy = legitimacy; if (!person) { state.realm.alive = false; logEvent(state, events, 'interregnum', 'Rikets ledning upphör', 'Inga behöriga företrädare finns kvar.', []); } else { state.realm.alive = true; const event = logEvent(state, events, 'succession', `${person.name} tillträder`, `${reason}. Den nya ledarens arketyp är ${ARCHETYPES[person.archetype].name}.`, [previous?.id, person.id]); memory(state, 'succession', event.title, event.participants, { causeId: event.id }); for (const fam of values(state.families)) if (fam.id !== person.familyId) fam.grievance = clamp(fam.grievance - 2, -40, 40); if (closePrisoner(state, person.id, 'released', 'Ärvde tronen')) logEvent(state, events, 'prisoner_released', `${person.name} friges`, 'Ärvde tronen. Den nya härskaren lämnar fängelset.', [person.id]); } refreshMandates(state, events); }
+function crown(state, person, events, reason, legitimacy = 55, lawful = true) { const previous = ruler(state); registerAccession(state, { previousId: previous?.id, newId: person?.id, lawful, reason }); if (previous) suspendPersonalProjects(state, previous.id); state.offices.ruler.holderId = person?.id || null; state.offices.ruler.history.push({ personId: person?.id || null, date: state.date, reason }); state.realm.legitimacy = legitimacy; if (!person) { state.realm.alive = false; logEvent(state, events, 'interregnum', 'Rikets ledning upphör', 'Inga behöriga företrädare finns kvar.', []); } else { state.realm.alive = true; const event = logEvent(state, events, 'succession', `${person.name} tillträder`, `${reason}. Den nya ledarens arketyp är ${ARCHETYPES[person.archetype].name}.`, [previous?.id, person.id]); memory(state, 'succession', event.title, event.participants, { causeId: event.id }); for (const fam of values(state.families)) if (fam.id !== person.familyId) fam.grievance = clamp(fam.grievance - 2, -40, 40); if (closePrisoner(state, person.id, 'released', 'Ärvde tronen')) logEvent(state, events, 'prisoner_released', `${person.name} friges`, 'Ärvde tronen. Den nya härskaren lämnar fängelset.', [person.id]); passCrown(state, person.familyId, events, actionHooks(state)); } refreshMandates(state, events); }
 function killPeople(state, ids, events, reason = 'Ålder och hälsa') {
   const deceased = [...new Set(ids)].map((id) => state.people[id]).filter(alive);
   if (!deceased.length) return;

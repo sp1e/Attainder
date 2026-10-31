@@ -189,6 +189,11 @@ export function effectDefault(effect) {
   return Math.round((effect.min + effect.max) / 2);
 }
 
+/** The refusal of an entry that only the holder of an office may use (actorOffice), or '' when the actor holds it or the entry has no such rule. The catalog menu and the odds share it. */
+export function actorOfficeRefusal(state, entry, actorId) {
+  return entry.actorOffice && state.offices?.[entry.actorOffice.id]?.holderId !== actorId ? entry.actorOffice.reason : '';
+}
+
 const copy = (value) => JSON.parse(JSON.stringify(value));
 const person = (state, id) => typeof id === 'string' && Object.hasOwn(state.people, id) ? state.people[id] : null;
 const family = (state, id) => typeof id === 'string' && Object.hasOwn(state.families, id) ? state.families[id] : null;
@@ -205,7 +210,8 @@ function targetsFor(state, entry, actor) {
 function disabledReason(state, entry, actor, targets, context) {
   if (state.status?.ended) return state.status.reason || 'Kampanjen är avslutad.';
   if (!canExerciseMandate(actor, state.date)) return 'Familjen saknar en handlingsförmögen företrädare.';
-  if (entry.actorOffice && state.offices?.[entry.actorOffice.id]?.holderId !== actor.id) return entry.actorOffice.reason;
+  const office = actorOfficeRefusal(state, entry, actor.id);
+  if (office) return office;
   const wallet = walletOf(state, entry, context);
   if (!wallet) return entry.cost.wallet === 'realm' && context.realmAccess !== true ? 'Familjen saknar rätt att använda statskassan.' : 'Ingen behörig resursägare finns.';
   if (state.actionPoints < entry.cost.orders) return 'Årets handlingsutrymme är slut. För tiden framåt.';

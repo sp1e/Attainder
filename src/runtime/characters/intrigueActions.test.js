@@ -72,7 +72,8 @@ function poisoned(tier) {
 }
 
 test('the four intrigue actions carry the catalog values of the brief', () => {
-  assert.deepEqual(Object.keys(ACTION_CATALOG).slice(-5, -1), ['poison', 'investigate', 'blackmail', 'spread_rumor']);
+  const intrigue = ['poison', 'investigate', 'blackmail', 'spread_rumor'];
+  assert.deepEqual(Object.keys(ACTION_CATALOG).filter((id) => intrigue.includes(id)), intrigue, 'in this order');
   const table = {
     poison: ['Förgifta', 1, 1, 25, 'cruel', 30, 50, ['hook']],
     investigate: ['Snoka', 2, 1, 10, 'duty', 50, 65, []],
@@ -118,7 +119,8 @@ test('the tiers of the four actions list the effects of the brief', () => {
   assert.deepEqual(ACTION_CATALOG.poison.tiers.backfire.effects[1], { kind: 'hook', owner: 'target', over: 'actor', strength: 'strong' });
   assert.deepEqual(ACTION_CATALOG.investigate.tiers.backfire.effects[0], { kind: 'hook', owner: 'target', over: 'actor', strength: 'weak' });
   assert.equal(ACTION_CATALOG.poison.tiers.clean_success.effects[2].title, 'Giftet verkade');
-  assert.deepEqual(EFFECT_KINDS.slice(-5, -2), ['reveal', 'hook_from_secret', 'rumor']);
+  const added = ['reveal', 'hook_from_secret', 'rumor'];
+  assert.deepEqual(EFFECT_KINDS.filter((kind) => added.includes(kind)), added, 'in this order');
   assert.deepEqual([reveal('actor'), hookFromSecret(), hookFromSecret(true), rumor()], [{ kind: 'reveal', who: 'actor' }, { kind: 'hook_from_secret', exposed: false }, { kind: 'hook_from_secret', exposed: true }, { kind: 'rumor' }]);
   assert.deepEqual(Object.keys(RUMOR_TOPICS), ['plot', 'murder', 'affair', 'illegitimate']);
 });
