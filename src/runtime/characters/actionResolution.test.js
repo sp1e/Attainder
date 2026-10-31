@@ -574,7 +574,7 @@ test('a forged action log entry is rejected on load', () => {
     'id beyond the sequence': (s) => { s.actionLog[success].id = `resolution-${s.sequence + 1}`; },
     'id in another format': (s) => { s.actionLog[success].id = 'resolution-007'; },
     'duplicate id': (s) => { s.actionLog[refused].id = s.actionLog[success].id; },
-    'unknown action': (s) => { s.actionLog[success].actionId = 'poison'; },
+    'unknown action': (s) => { s.actionLog[success].actionId = 'assassinate'; },
     'inherited action name': (s) => { s.actionLog[success].actionId = 'toString'; },
     'unknown tier': (s) => { s.actionLog[success].tier = 'triumph'; },
     'tier the rolls do not give': (s) => { s.actionLog[success].tier = 'backfire'; },

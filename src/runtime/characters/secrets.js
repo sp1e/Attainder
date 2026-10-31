@@ -3,6 +3,8 @@ import { compareGameDates, normalizeGameDate } from '../gameDates.js';
 // Secrets, hooks and relationships are stored in the save (extensions version 1). Nothing here draws from a random stream: every function is a pure edit of the state it is given, and the only counter it spends is state.sequence for new ids.
 export const SECRET_TYPES = Object.freeze(['murder', 'affair', 'illegitimate_child', 'heresy', 'plot']);
 export const RELATIONSHIP_KINDS = Object.freeze(['friend', 'rival', 'lover', 'nemesis']);
+// What the menu calls each secret type.
+export const SECRET_LABELS = Object.freeze({ murder: 'Mord', affair: 'Otrohet', illegitimate_child: 'Oäkta barn', heresy: 'Kätteri', plot: 'Komplott' });
 export const EVIDENCE_LEVELS = Object.freeze(['weak', 'strong']);
 export const HOOK_STRENGTHS = Object.freeze(['weak', 'strong']);
 

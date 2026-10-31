@@ -20,6 +20,15 @@ const rounded = (value) => Math.round(value * 100) / 100;
 const clampLegitimacy = (value) => Math.max(0, Math.min(100, value));
 const livingAdults = (state, hooks, familyId) => Object.values(state.people).filter((person) => person.familyId === familyId && !person.diedAt && hooks.adult(person));
 
+/** The crime a secret records, as { crime, victimId }, or null when the secret came from nothing the action log knows as a crime. A crime effect creates its secret with the resolution's anchor memory as cause, so the memory leads back to the log entry; the victim is that entry's first target. */
+export function crimeOfSecret(state, secretId) {
+  const secret = state.secrets.find((entry) => entry.id === secretId);
+  if (!secret || secret.causeId === null) return null;
+  const entry = state.actionLog.find((item) => item.memoryId === secret.causeId);
+  const record = entry?.effects.find((effect) => effect.kind === 'crime' && effect.secretId === secretId);
+  return record ? { crime: record.crime, victimId: entry.targetIds[0] } : null;
+}
+
 /**
  * Makes a crime public: the secret is exposed once, the victim's family turns against the criminal, and the crown or the player's court reacts.
  * `crime` is the recorded kind (murder, kinslaying, attempted_murder, treason) and `victimId` the person it was aimed at. Exposing a secret that is already out does nothing, so no consequence is charged twice.

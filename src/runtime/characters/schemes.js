@@ -49,6 +49,10 @@ const isActive = (scheme) => plainObject(scheme) && scheme.status === 'active';
 // Ids are `scheme-<n>` with n from state.sequence, so the number is the creation order. As text, scheme-10 would sort before scheme-9.
 const numberOf = (id) => Number(/^scheme-([1-9]\d*)$/.exec(id)?.[1] ?? Number.NaN);
 
+// The secret, hook and rumor topic a scheme carries from its start to its due date (estimateAction has checked them against the actor and target).
+const CARRIED_MEANS = Object.freeze(['secretId', 'hookId', 'topic']);
+const carriedMeans = (means) => Object.fromEntries(CARRIED_MEANS.filter((key) => typeof means[key] === 'string').map((key) => [key, means[key]]));
+
 /**
  * Writes the scheme that a validated, paid and (if ordered) obeyed attempt starts, and returns it. `estimate` is the ok result of estimateAction, `intent` the attempt's payload. The first check comes a month after the start or on the due date, whichever is earlier. Draws no randomness and charges nothing: the caller pays through payForAction.
  * `playerControlled` comes from the engine's context in `hooks`; `commandId` is the command that started the scheme.
@@ -59,7 +63,7 @@ export function startScheme(state, intent, estimate, hooks, commandId = null) {
   const means = plainObject(intent?.means) ? intent.means : {};
   const scheme = {
     id: `scheme-${++state.sequence}`, actionId: estimate.actionId, actorId: estimate.actorId, targetIds: [...estimate.targetIds],
-    means: { silver: means.silver ?? 0, agentRoles: [...(means.agentRoles ?? [])], ...(estimate.occasionId ? { occasionId: estimate.occasionId } : {}) },
+    means: { silver: means.silver ?? 0, agentRoles: [...(means.agentRoles ?? [])], ...carriedMeans(means), ...(estimate.occasionId ? { occasionId: estimate.occasionId } : {}) },
     startedAt, dueAt, nextCheckAt: earlier(dueAt, addGameMonths(startedAt, 1)),
     status: 'active', discoveredAt: null, resolutionId: null,
     playerControlled: hooks.estimateContext().playerControlled === true, commandId,
@@ -180,6 +184,7 @@ function checkMeans(scheme) {
   if (!means.agentRoles.every((role) => ownKey(STAFF_ROLES, role)) || new Set(means.agentRoles).size !== means.agentRoles.length) fail(INVALID.means);
   // The feast the scheme was started at (occasions.js); the reference is checked by shape only.
   if (Object.hasOwn(means, 'occasionId') && (typeof means.occasionId !== 'string' || !/^occasion-[1-9]\d*$/.test(means.occasionId))) fail(INVALID.means);
+  if (CARRIED_MEANS.some((key) => Object.hasOwn(means, key) && !safeId(means[key]))) fail(INVALID.means);
 }
 
 function checkDates(state, scheme) {

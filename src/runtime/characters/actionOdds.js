@@ -1,8 +1,9 @@
 import { canExerciseMandate, getCharacterAge } from './characterCapacity.js';
-import { ACTION_CATALOG, MAX_AGENTS, MAX_EXTRA_SILVER } from './actionCatalog.js';
+import { ACTION_CATALOG, MAX_AGENTS, MAX_EXTRA_SILVER, RUMOR_TOPICS, requiresOf, usesOf } from './actionCatalog.js';
 import { ADULT_AGE, SKILL_LABELS, TRAITS } from './content.js';
 import { DIFFICULTIES, normalizeDifficulty } from './extensions.js';
 import { STAFF_ROLES } from './courtStaff.js';
+import { activeHooks } from './secrets.js';
 
 // Odds for the contested actions. An estimate is a pure function of the state and the engine's context: it draws no randomness, spends nothing, creates no staff and edits nothing. Task 6 rolls against the values computed here.
 // Both odds are integers from ODDS_MIN to ODDS_MAX. Every modifier is a row { label, value } with a Swedish label and a non-zero integer value, so the rows of one roll add up to its value. A cut at the bounds is a row of its own; it is shown at exact precision only (see CUT_ROWS).
@@ -29,6 +30,13 @@ const FRAIL_HEALTH = 50, FRAIL_PENALTY = 5;
 const SILVER_PER_POINT = 5, SILVER_CAP = 15;
 const AGENT_SUCCESS = 6, AGENT_SECRECY = 8;
 const DECEITFUL_SECRECY = 8, HONEST_SECRECY = 5;
+// Leverage and target rows (success only). The ids in GUARDED_ACTIONS are the ones a ruler or an office holder is hard to reach with (imprison joins in Task 5); poison alone reads the target's health.
+const HOOK_BONUS = 20, EVIDENCE_BONUS = Object.freeze({ strong: 25, weak: 10 });
+const RULER_PENALTY = 15, GUARD_PENALTY = 10, FRAIL_TARGET_HEALTH = 40, FRAIL_TARGET_BONUS = 10;
+export const GUARDED_ACTIONS = Object.freeze(['poison']);
+const FRAIL_TARGET_ACTIONS = Object.freeze(['poison']);
+const MEANS_KEYS = Object.freeze(['silver', 'agentRoles', 'occasionId', 'secretId', 'hookId', 'topic']);
+const MEANS_TEXT_KEYS = Object.freeze(['occasionId', 'secretId', 'hookId', 'topic']);
 // What the campaign difficulty adds to the player's own actions. An NPC acting against the player's representative gets the opposite sign.
 const DIFFICULTY_STEP = Object.freeze({ easy: 10, normal: 0, hard: -10 });
 
@@ -48,6 +56,10 @@ export const REASONS = Object.freeze({
   targetChild: 'Målpersonen är för ung för att vara mål.',
   targetFamily: 'Målpersonen tillhör samma familj som aktören.',
   means: 'Medlen är ogiltiga.',
+  secret: 'Hemligheten kan inte användas mot den här personen.',
+  secretNeeded: 'Utpressning kräver en hemlighet om målet.',
+  hook: 'Greppet går inte att använda.',
+  topic: 'Ett rykte kräver ett giltigt ämne.',
   silver: `Extra silver måste vara ett heltal från 0 till ${MAX_EXTRA_SILVER}.`,
   agentList: 'Agenterna måste anges som en lista.',
   agentUnknown: 'Okänd agentroll.',
@@ -100,10 +112,10 @@ function targetRefusal(state, entry, actor, target) {
   return entry.targetFamily === 'other' && target.familyId === actor.familyId ? REASONS.targetFamily : '';
 }
 
-// The means the player commits: extra silver and the roles of the agents. Roles are only counted here; the staff are created or found when the action runs. An occasionId is the feast a scheme was started at (schemes.js stores it); it is only read back, never trusted from the player (see estimateAction).
+// The means the player commits: extra silver, the roles of the agents and, for the actions that use them, a secret, a hook or a rumor topic (checked against the target in leverageOf). Roles are only counted here; the staff are created or found when the action runs. An occasionId is the feast a scheme was started at (schemes.js stores it); it is only read back, never trusted from the player (see estimateAction). Any other key is refused.
 function readMeans(means) {
   const given = means === undefined || means === null ? {} : means;
-  if (!plainObject(given)) return { reason: REASONS.means };
+  if (!plainObject(given) || Object.keys(given).some((key) => !MEANS_KEYS.includes(key))) return { reason: REASONS.means };
   const silver = given.silver === undefined ? 0 : given.silver;
   if (!Number.isInteger(silver) || silver < 0 || silver > MAX_EXTRA_SILVER) return { reason: REASONS.silver };
   const roles = given.agentRoles === undefined ? [] : given.agentRoles;
@@ -111,8 +123,42 @@ function readMeans(means) {
   if (roles.some((role) => typeof role !== 'string' || !Object.hasOwn(STAFF_ROLES, role))) return { reason: REASONS.agentUnknown };
   if (new Set(roles).size !== roles.length) return { reason: REASONS.agentRepeat };
   if (roles.length > MAX_AGENTS) return { reason: REASONS.agentCount };
-  if (given.occasionId !== undefined && typeof given.occasionId !== 'string') return { reason: REASONS.means };
-  return { silver, agents: roles.length, occasionId: given.occasionId };
+  if (MEANS_TEXT_KEYS.some((key) => given[key] !== undefined && typeof given[key] !== 'string')) return { reason: REASONS.means };
+  return { silver, agents: roles.length, occasionId: given.occasionId, secretId: given.secretId, hookId: given.hookId, topic: given.topic };
+}
+
+// The secret the actor may use against the target: unexposed, about the target and held by the actor.
+const usableSecret = (state, actor, target, id) => state.secrets.find((secret) => secret.id === id && !secret.exposed && secret.subjectId === target.id && secret.holderIds.includes(actor.id)) ?? null;
+
+// The secret, hook and topic in the means. An entry takes only what its `uses` names (anything else is invalid means), and refuses when a required one is missing or does not fit the actor and target. Returns the success rows they give or a refusal.
+function leverageOf(state, entry, actor, target, means) {
+  const uses = usesOf(entry);
+  const given = { secret: means.secretId, hook: means.hookId, topic: means.topic };
+  if (Object.entries(given).some(([use, value]) => value !== undefined && !uses.includes(use))) return { reason: REASONS.means };
+  const missing = requiresOf(entry).find((use) => given[use] === undefined);
+  if (missing) return { reason: missing === 'secret' ? REASONS.secretNeeded : REASONS.topic };
+  const rows = [];
+  if (given.secret !== undefined) {
+    const secret = usableSecret(state, actor, target, given.secret);
+    if (!secret) return { reason: REASONS.secret };
+    rows.push({ label: `Bevis: ${secret.evidence === 'strong' ? 'starkt' : 'svagt'}`, value: EVIDENCE_BONUS[secret.evidence] ?? 0 });
+  }
+  if (given.hook !== undefined) {
+    if (!activeHooks(state, actor.id, target.id).some((hook) => hook.id === given.hook)) return { reason: REASONS.hook };
+    rows.push({ label: 'Påtryckning genom ett grepp', value: HOOK_BONUS });
+  }
+  if (uses.includes('topic') && !Object.hasOwn(RUMOR_TOPICS, given.topic)) return { reason: REASONS.topic };
+  return { rows };
+}
+
+// What makes the target hard or easy to reach, whatever the player commits: a ruler has bodyguards and holds the crown, an office holder has bodyguards, a frail target falls ill more easily.
+function targetRows(state, entry, target) {
+  const rows = [];
+  const holdsOffice = Object.values(state.offices ?? {}).some((office) => office.holderId === target.id);
+  if (GUARDED_ACTIONS.includes(entry.id) && state.offices?.ruler?.holderId === target.id) rows.push({ label: 'Målet är härskare', value: -RULER_PENALTY });
+  if (GUARDED_ACTIONS.includes(entry.id) && holdsOffice) rows.push({ label: 'Målets livvakter', value: -GUARD_PENALTY });
+  if (FRAIL_TARGET_ACTIONS.includes(entry.id) && finite(target.health, 100) < FRAIL_TARGET_HEALTH) rows.push({ label: 'Målets svaga hälsa', value: FRAIL_TARGET_BONUS });
+  return rows;
 }
 
 // The cut rows that `bound` creates. A cut row says the roll sits exactly at 5 or 95 and its sign reads as a cause, so the band precisions leave it out of what the player sees (presentOdds). A WeakSet keeps the rows plain { label, value } data.
@@ -217,8 +263,10 @@ export function estimateAction(state, intent, ctx) {
   const price = entry.cost.silver + means.silver;
   const available = finite(ctx.wallet(entry.cost.wallet));
   if (price > available) return refuse(`Det behövs ${price} silver; tillgängligt ${Math.floor(available)}.`);
+  const leverage = leverageOf(state, entry, actor, target, means);
+  if (leverage.reason) return refuse(leverage.reason);
   const situation = situationOf(entry, actor, target, means, ctx);
-  const success = successOdds(state, entry, actor, target, means, ctx, situation.success);
+  const success = successOdds(state, entry, actor, target, means, ctx, [...leverage.rows, ...targetRows(state, entry, target), ...situation.success]);
   const secrecy = secrecyOdds(entry, actor, target, means, situation.secrecy);
   const precision = precisionFor(skillOf(actor, entry.skill));
   return {

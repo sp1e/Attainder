@@ -94,7 +94,7 @@ test('a wrong select value falls back to the menu', async () => {
   const twice = (answer) => fakeModel(answer, answer).callModel;
   const noTarget = await interpretCharacterAction({ text: 'smickra', view: view(), callModel: twice(swayAnswer({ targetIds: [] })) });
   assert.deepEqual([noTarget.ok, noTarget.fallback], [false, 'menu']);
-  for (const extra of [{ agentRoles: ['wizard'] }, { agentRoles: ['cook', 'physician', 'steward'] }, { catalogId: 'poison' }, { silver: 9999 }, { silver: 2.5 }]) {
+  for (const extra of [{ agentRoles: ['wizard'] }, { agentRoles: ['cook', 'physician', 'steward'] }, { catalogId: 'assassinate' }, { silver: 9999 }, { silver: 2.5 }]) {
     const result = await interpretCharacterAction({ text: 'smickra', view: view(), callModel: twice(swayAnswer(extra)) });
     assert.deepEqual([result.ok, result.fallback], [false, 'menu'], JSON.stringify(extra));
   }

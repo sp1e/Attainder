@@ -12,11 +12,13 @@ const fresh = () => createCharacterSystem({ seed: 321 });
 const contested = (list) => list.filter((entry) => entry.mode === 'contested');
 const find = (list, id) => list.find((entry) => entry.catalogId === id);
 const ROLES = ['actor', 'target'];
+// Memory titles carry å, ä or ö, except 'Giftet verkade', which the poison design fixes without one.
+const SWEDISH_TITLE = /[åäö]|^Giftet verkade$/i;
 const SWEDISH = /[åäöÅÄÖ]|silver|handling|företrädare|familj/i;
 const deepFrozen = (value) => value === null || typeof value !== 'object' || (Object.isFrozen(value) && Object.values(value).every(deepFrozen));
 
-test('the catalog holds exactly the two contested actions of Phase 1', () => {
-  assert.deepEqual(Object.keys(ACTION_CATALOG), ['sway', 'undermine']);
+test('the catalog holds the two contested actions of Phase 1 and the four intrigue actions', () => {
+  assert.deepEqual(Object.keys(ACTION_CATALOG), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor']);
   for (const [id, entry] of Object.entries(ACTION_CATALOG)) {
     assert.equal(entry.id, id);
     assert.equal(entry.mode, 'contested');
@@ -88,7 +90,7 @@ test('the outcome envelopes match the design tier by tier', () => {
 
 test('every contested entry has all five tiers and only well-formed, known effect kinds', () => {
   assert.deepEqual(TIER_IDS, ['clean_success', 'exposed_success', 'quiet_failure', 'exposed_failure', 'backfire']);
-  assert.deepEqual(EFFECT_KINDS, ['opinion', 'influence', 'stress', 'hook', 'secret', 'memory', 'kill', 'crime', 'legitimacy']);
+  assert.deepEqual(EFFECT_KINDS, ['opinion', 'influence', 'stress', 'hook', 'secret', 'memory', 'kill', 'crime', 'legitimacy', 'reveal', 'hook_from_secret', 'rumor']);
   for (const [id, entry] of Object.entries(ACTION_CATALOG)) {
     assert.deepEqual(Object.keys(entry.tiers), TIER_IDS, `${id}: tiers keyed by the five tier ids in order`);
     for (const tier of TIER_IDS) {
@@ -107,7 +109,7 @@ test('every contested entry has all five tiers and only well-formed, known effec
         if (effect.kind === 'stress') { assert.ok(ROLES.includes(effect.who), `${where}: who`); assert.ok(effect.min >= 0, `${where}: stress never relieves`); assert.deepEqual(Object.keys(effect), ['kind', 'who', 'min', 'max']); }
         if (effect.kind === 'hook') { assert.ok(ROLES.includes(effect.owner) && ROLES.includes(effect.over) && effect.owner !== effect.over, `${where}: owner and over`); assert.ok(HOOK_STRENGTHS.includes(effect.strength), `${where}: strength`); assert.deepEqual(Object.keys(effect), ['kind', 'owner', 'over', 'strength']); }
         if (effect.kind === 'secret') { assert.ok(SECRET_TYPES.includes(effect.type), `${where}: secret type`); assert.ok(ROLES.includes(effect.subject), `${where}: subject`); assert.ok(effect.holders.length > 0 && new Set(effect.holders).size === effect.holders.length && effect.holders.every((role) => ROLES.includes(role)), `${where}: holders`); assert.deepEqual(Object.keys(effect), ['kind', 'type', 'subject', 'holders']); }
-        if (effect.kind === 'memory') { assert.ok(['public', 'private'].includes(effect.visibility), `${where}: visibility`); assert.match(effect.title, /[åäö]/i, `${where}: Swedish title`); assert.deepEqual(Object.keys(effect), ['kind', 'visibility', 'title']); }
+        if (effect.kind === 'memory') { assert.ok(['public', 'private'].includes(effect.visibility), `${where}: visibility`); assert.match(effect.title, SWEDISH_TITLE, `${where}: Swedish title`); assert.deepEqual(Object.keys(effect), ['kind', 'visibility', 'title']); }
       }
     }
   }
@@ -133,12 +135,12 @@ test('effectDefault is the rounded midpoint of a ranged effect and null for the 
   }
 });
 
-test('getCatalogActions lists every command once, then sway and undermine', () => {
+test('getCatalogActions lists every command once, then the contested actions', () => {
   const state = fresh();
   const commands = getAvailableCharacterActions(state);
   assert.ok(commands.length > 5, 'the fixture offers real commands');
   const list = getCatalogActions(state);
-  assert.deepEqual(list.map((entry) => entry.catalogId), [...commands.map((action) => action.type), 'sway', 'undermine']);
+  assert.deepEqual(list.map((entry) => entry.catalogId), [...commands.map((action) => action.type), 'sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor']);
   assert.equal(new Set(list.map((entry) => entry.catalogId)).size, list.length, 'each catalog id appears once');
   list.slice(0, commands.length).forEach((entry, index) => {
     const { catalogId, mode, ...rest } = entry;
@@ -146,7 +148,7 @@ test('getCatalogActions lists every command once, then sway and undermine', () =
     assert.equal(mode, 'command');
     assert.deepEqual(rest, commands[index], 'a command entry is the command action plus catalogId and mode');
   });
-  assert.deepEqual(contested(list).map((entry) => entry.catalogId), ['sway', 'undermine']);
+  assert.deepEqual(contested(list).map((entry) => entry.catalogId), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor']);
 });
 
 test('a contested entry carries its rules and the target, silver and agent fields', () => {
@@ -234,7 +236,7 @@ test('with no capable representative the contested entries stay listed and say w
   state.people[state.families['family-arel'].headId].diedAt = state.date;
   assert.deepEqual(getAvailableCharacterActions(state), [], 'the command menu is empty without a representative');
   const list = getCatalogActions(state);
-  assert.deepEqual(list.map((entry) => entry.catalogId), ['sway', 'undermine']);
+  assert.deepEqual(list.map((entry) => entry.catalogId), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor']);
   for (const entry of list) assert.equal(entry.disabledReason, 'Familjen saknar en handlingsförmögen företrädare.');
 });
 
@@ -258,7 +260,7 @@ test('an ended campaign keeps the entries and gives the ending reason', () => {
   const state = fresh();
   state.status = { ended: true, reason: 'Riket saknar en giltig fortsättning.' };
   const list = getCatalogActions(state);
-  assert.deepEqual(list.map((entry) => entry.catalogId), ['sway', 'undermine']);
+  assert.deepEqual(list.map((entry) => entry.catalogId), ['sway', 'undermine', 'poison', 'investigate', 'blackmail', 'spread_rumor']);
   for (const entry of list) assert.equal(entry.disabledReason, 'Riket saknar en giltig fortsättning.');
   state.status = { ended: true, reason: '' };
   assert.equal(find(getCatalogActions(state), 'sway').disabledReason, 'Kampanjen är avslutad.');
@@ -293,9 +295,9 @@ test('the result does not alias the frozen catalog or the command list', () => {
 test('buildCatalogActions takes the representative from its context and refuses to guess', () => {
   const state = fresh();
   const given = buildCatalogActions(state, [], { representativeId: 'person-0-0', familyId: 'family-arel' });
-  assert.deepEqual(given.map((entry) => entry.disabledReason), ['', '']);
+  assert.deepEqual(given.map((entry) => entry.disabledReason), ['', '', '', '', '', '']);
   const without = buildCatalogActions(state, []);
-  assert.deepEqual(without.map((entry) => entry.disabledReason), ['Familjen saknar en handlingsförmögen företrädare.', 'Familjen saknar en handlingsförmögen företrädare.']);
+  assert.deepEqual(without.map((entry) => entry.disabledReason), Array(6).fill('Familjen saknar en handlingsförmögen företrädare.'));
   const child = buildCatalogActions(state, [], { representativeId: 'person-0-5', familyId: 'family-arel' });
   assert.equal(child[0].disabledReason, 'Familjen saknar en handlingsförmögen företrädare.', 'a child cannot exercise a mandate');
   const noFamily = buildCatalogActions(state, [], { representativeId: 'person-0-0', familyId: 'family-missing' });

@@ -4,6 +4,7 @@ import { addGameMonths } from '../gameDates.js';
 import { createCharacterSystem, getPersonalOpinion } from './index.js';
 import { ACTION_CATALOG } from './actionCatalog.js';
 import { bandFor, estimateAction, precisionFor } from './actionOdds.js';
+import { createSecret } from './secrets.js';
 
 const ACTOR = 'person-0-0';
 const TARGET = 'person-1-0';
@@ -18,6 +19,8 @@ function scene(edit = () => {}) {
   const state = createCharacterSystem({ seed: 321 });
   const actor = state.people[ACTOR], target = state.people[TARGET];
   for (const person of [actor, target]) Object.assign(person, { traits: [], stress: 0, health: 100, skills: { ...ALL_SKILLS } });
+  // No bodyguards: the target holds no office, so poison starts from its base too.
+  for (const office of Object.values(state.offices)) if (office.holderId === TARGET) office.holderId = null;
   edit({ state, actor, target });
   return state;
 }
@@ -33,6 +36,13 @@ function ctxOf(state, extra = {}) {
 }
 function estimate(state, actionId = 'sway', { means, intent = {}, ctx = {} } = {}) {
   return estimateAction(state, { actionId, actorId: ACTOR, targetIds: [TARGET], means, ...intent }, ctxOf(state, ctx));
+}
+// The means an action needs on top of `means`: blackmail a weak secret the actor holds about the target, a rumor a topic. Everything else needs nothing.
+function lever(state, actionId, means = {}) {
+  if (actionId === 'spread_rumor') return { ...means, topic: 'plot' };
+  if (actionId !== 'blackmail') return means;
+  const held = state.secrets.find((secret) => secret.subjectId === TARGET && secret.holderIds.includes(ACTOR)) ?? createSecret(state, { type: 'heresy', subjectId: TARGET, holderIds: [ACTOR], evidence: 'weak', causeId: null });
+  return { ...means, secretId: held.id };
 }
 const rows = (list) => Object.fromEntries(list.map((row) => [row.label, row.value]));
 const find = (list, pattern) => list.find((row) => pattern.test(row.label));
@@ -62,14 +72,16 @@ const S_AGENTS = /^Hemlighållning: anlitade agenter/;
 test('a neutral case gives the base odds and returns the documented shape', () => {
   const state = scene();
   for (const [id, entry] of Object.entries(ACTION_CATALOG)) {
-    const result = estimate(state, id);
+    const result = estimate(state, id, { means: lever(state, id) });
     assert.equal(result.ok, true);
+    // Blackmail starts from a weak secret, which is a row of its own.
+    const evidence = id === 'blackmail' ? [{ label: 'Bevis: svagt', value: 10 }] : [];
     assert.deepEqual(Object.keys(result), ['ok', 'actionId', 'actorId', 'targetIds', 'cost', 'success', 'secrecy', 'precision', 'display']);
     assert.equal(result.actionId, id);
     assert.equal(result.actorId, ACTOR);
     assert.deepEqual(result.targetIds, [TARGET]);
     assert.deepEqual(result.cost, { orders: entry.cost.orders, silver: entry.cost.silver, wallet: 'family', stressTag: entry.cost.stressTag });
-    assert.deepEqual(result.success, { value: entry.baseSuccess, modifiers: [{ label: 'Grundchans', value: entry.baseSuccess }] });
+    assert.deepEqual(result.success, { value: entry.baseSuccess + evidence.length * 10, modifiers: [{ label: 'Grundchans', value: entry.baseSuccess }, ...evidence] });
     assert.deepEqual(result.secrecy, { value: entry.baseSecrecy, modifiers: [{ label: 'Hemlighållning: grundnivå', value: entry.baseSecrecy }] });
     assert.deepEqual(Object.keys(result.display), ['success', 'secrecy', 'modifiers']);
   }
@@ -337,7 +349,8 @@ test('an unclamped result needs no cut row, and every value is an integer from 5
   assert.equal(sum(result.success.modifiers), result.success.value);
   assert.equal(find(result.success.modifiers, /Högsta|Lägsta/), undefined);
   for (const mine of [0, 5, 10, 20]) for (const theirs of [0, 8, 20]) for (const id of Object.keys(ACTION_CATALOG)) {
-    const r = estimate(scene(({ actor, target }) => { actor.skills.diplomacy = mine; actor.skills.intrigue = mine; target.skills.diplomacy = theirs; target.skills.intrigue = theirs; }), id, { means: { silver: 60, agentRoles: ['cook', 'steward'] } });
+    const built = scene(({ actor, target }) => { actor.skills.diplomacy = mine; actor.skills.intrigue = mine; target.skills.diplomacy = theirs; target.skills.intrigue = theirs; });
+    const r = estimate(built, id, { means: lever(built, id, { silver: 60, agentRoles: ['cook', 'steward'] }) });
     for (const roll of [r.success, r.secrecy]) {
       assert.ok(Number.isInteger(roll.value) && roll.value >= 5 && roll.value <= 95);
       assert.equal(sum(roll.modifiers), roll.value);
@@ -459,7 +472,7 @@ test('no label in any case contains a digit, so a hidden number cannot leak thro
     actor.stress = 100; actor.health = 10; actor.bornAt = addGameMonths(s.date, -70 * 12); s.difficulty = 'hard'; sentiment(s, TARGET, ACTOR, 90);
   });
   for (const id of Object.keys(ACTION_CATALOG)) {
-    const result = estimate(state, id, { means: { silver: 60, agentRoles: ['cook', 'steward'] } });
+    const result = estimate(state, id, { means: lever(state, id, { silver: 60, agentRoles: ['cook', 'steward'] }) });
     for (const row of [...result.success.modifiers, ...result.secrecy.modifiers]) assert.doesNotMatch(row.label, /\d/, row.label);
   }
 });
@@ -492,7 +505,7 @@ test('end to end, the shown band contains the true value of both rolls over a wi
   for (const [skill, table, precision] of [[9, FIVE, 'five'], [4, THREE, 'three']]) {
     for (const theirs of [0, 4, 8, 12, 16, 20]) for (const silver of [0, 15, 30, 60]) for (const agentRoles of [[], ['cook'], ['cook', 'steward']]) for (const id of Object.keys(ACTION_CATALOG)) {
       const state = scene(({ actor, target }) => { actor.skills.diplomacy = skill; actor.skills.intrigue = skill; target.skills.diplomacy = theirs; target.skills.intrigue = theirs; });
-      const result = estimate(state, id, { means: { silver, agentRoles } });
+      const result = estimate(state, id, { means: lever(state, id, { silver, agentRoles }) });
       assert.equal(result.precision, precision);
       assert.equal(result.display.success, bandOf(table, result.success.value));
       assert.equal(result.display.secrecy, bandOf(table, result.secrecy.value));
@@ -515,7 +528,7 @@ function refused(label, result, pattern) {
 
 test('an unknown action, a command id or an inherited name is refused', () => {
   const state = scene();
-  refused('unknown', estimate(state, 'poison'), /okänd|saknar odds/);
+  refused('unknown', estimate(state, 'assassinate'), /okänd|saknar odds/);
   refused('command', estimate(state, 'rest'), /okänd|saknar odds/);
   refused('inherited', estimate(state, 'toString'), /okänd|saknar odds/);
   refused('proto', estimate(state, '__proto__'), /okänd|saknar odds/);
@@ -605,7 +618,7 @@ test('every kind of refusal has its own Swedish sentence', () => {
   const state = scene();
   const poor = scene(({ state: s }) => { s.families['family-arel'].treasury = 1; });
   const reasons = [
-    estimate(state, 'poison'),
+    estimate(state, 'assassinate'),
     estimateAction(state, null, ctxOf(state)),
     estimate(state, 'sway', { intent: { actorId: 'person-9-9' } }),
     estimate(scene(({ state: s, actor }) => { actor.diedAt = s.date; })),
