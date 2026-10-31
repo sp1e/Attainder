@@ -100,7 +100,7 @@ function targetRefusal(state, entry, actor, target) {
   return entry.targetFamily === 'other' && target.familyId === actor.familyId ? REASONS.targetFamily : '';
 }
 
-// The means the player commits: extra silver and the roles of the agents. Roles are only counted here; the staff are created or found when the action runs.
+// The means the player commits: extra silver and the roles of the agents. Roles are only counted here; the staff are created or found when the action runs. An occasionId is the feast a scheme was started at (schemes.js stores it); it is only read back, never trusted from the player (see estimateAction).
 function readMeans(means) {
   const given = means === undefined || means === null ? {} : means;
   if (!plainObject(given)) return { reason: REASONS.means };
@@ -111,7 +111,8 @@ function readMeans(means) {
   if (roles.some((role) => typeof role !== 'string' || !Object.hasOwn(STAFF_ROLES, role))) return { reason: REASONS.agentUnknown };
   if (new Set(roles).size !== roles.length) return { reason: REASONS.agentRepeat };
   if (roles.length > MAX_AGENTS) return { reason: REASONS.agentCount };
-  return { silver, agents: roles.length };
+  if (given.occasionId !== undefined && typeof given.occasionId !== 'string') return { reason: REASONS.means };
+  return { silver, agents: roles.length, occasionId: given.occasionId };
 }
 
 // The cut rows that `bound` creates. A cut row says the roll sits exactly at 5 or 95 and its sign reads as a cause, so the band precisions leave it out of what the player sees (presentOdds). A WeakSet keeps the rows plain { label, value } data.
@@ -143,7 +144,7 @@ function difficultyRow(state, ctx, target) {
   return null;
 }
 
-function successOdds(state, entry, actor, target, means, ctx) {
+function successOdds(state, entry, actor, target, means, ctx, situational) {
   const rows = rowBuilder('Grundchans', entry.baseSuccess);
   const gap = skillOf(actor, entry.skill) - skillOf(target, entry.defenseSkill);
   rows.add(`Aktörens ${skillName(entry.skill)} mot målets ${skillName(entry.defenseSkill)}`, Math.round(clamp(gap * SKILL_STEP, -SKILL_CAP, SKILL_CAP)));
@@ -157,16 +158,18 @@ function successOdds(state, entry, actor, target, means, ctx) {
   rows.add('Anlitade agenter', AGENT_SUCCESS * means.agents);
   const difficulty = difficultyRow(state, ctx, target);
   if (difficulty) rows.add(difficulty.label, difficulty.value);
+  for (const item of situational) rows.add(item.label, item.value);
   return rows.bound('Högsta möjliga chans', 'Lägsta möjliga chans');
 }
 
-function secrecyOdds(entry, actor, target, means) {
+function secrecyOdds(entry, actor, target, means, situational) {
   const rows = rowBuilder('Hemlighållning: grundnivå', entry.baseSecrecy);
   const gap = skillOf(actor, entry.secrecySkill) - skillOf(target, 'intrigue');
   rows.add(`Hemlighållning: aktörens ${skillName(entry.secrecySkill)} mot målets intrig`, Math.round(clamp(gap * SECRECY_STEP, -SECRECY_CAP, SECRECY_CAP)));
   rows.add('Hemlighållning: anlitade agenter lämnar spår', -AGENT_SECRECY * means.agents);
   if (hasTrait(actor, 'deceitful')) rows.add(`Hemlighållning: aktören är ${traitName('deceitful')}`, DECEITFUL_SECRECY);
   if (hasTrait(actor, 'honest')) rows.add(`Hemlighållning: aktören är ${traitName('honest')}`, -HONEST_SECRECY);
+  for (const item of situational) rows.add(item.label, item.value);
   return rows.bound('Hemlighållning: högsta möjliga nivå', 'Hemlighållning: lägsta möjliga nivå');
 }
 
@@ -180,9 +183,18 @@ function presentOdds(precision, success, secrecy) {
 
 const refuse = (reason) => ({ ok: false, reason });
 
+const NO_SITUATION = Object.freeze({ success: Object.freeze([]), secrecy: Object.freeze([]), occasionId: null });
+// The rows the engine's occasions add (ctx.situation, optional). The player's own means.occasionId is dropped: only a scheme that carries its start (ctx.scheduled, set by schemes.js on the due date) may name an occasion.
+function situationOf(entry, actor, target, means, ctx) {
+  if (typeof ctx.situation !== 'function') return NO_SITUATION;
+  const carried = ctx.scheduled === true ? means.occasionId : undefined;
+  return ctx.situation(entry, actor, target, { ...means, occasionId: carried }) ?? NO_SITUATION;
+}
+
 /**
  * Odds for one contested action, or a Swedish refusal.
- * `intent` is { actionId, actorId, targetIds, means: { silver, agentRoles } } and `ctx` is { representativeId, playerControlled, canOrder(personId), wallet(walletKind), opinion(fromId, toId) }, which index.js builds so this module never reaches into private helpers.
+ * `intent` is { actionId, actorId, targetIds, means: { silver, agentRoles } } and `ctx` is { representativeId, playerControlled, canOrder(personId), wallet(walletKind), opinion(fromId, toId), situation?(entry, actor, target, means) }, which index.js builds so this module never reaches into private helpers.
+ * `ctx.situation` returns { success: row[], secrecy: row[], occasionId } with the rows an occasion adds (a feast gives intrigue actions access); the rows join the others before the bounds. When the occasion's rows counted the result carries its `occasionId`, which schemes store so the due-date estimate counts the same occasion.
  * Only contested catalog entries are accepted; a command id or an unknown id is refused. A ctx without its functions throws, because that is a bug in the caller and not a refusal.
  * The result carries the true values and rows (success, secrecy) for rolling, and `display` for the player: it follows `precision` and never carries a number at 'five' or 'three'.
  */
@@ -204,12 +216,14 @@ export function estimateAction(state, intent, ctx) {
   const price = entry.cost.silver + means.silver;
   const available = finite(ctx.wallet(entry.cost.wallet));
   if (price > available) return refuse(`Det behövs ${price} silver; tillgängligt ${Math.floor(available)}.`);
-  const success = successOdds(state, entry, actor, target, means, ctx);
-  const secrecy = secrecyOdds(entry, actor, target, means);
+  const situation = situationOf(entry, actor, target, means, ctx);
+  const success = successOdds(state, entry, actor, target, means, ctx, situation.success);
+  const secrecy = secrecyOdds(entry, actor, target, means, situation.secrecy);
   const precision = precisionFor(skillOf(actor, entry.skill));
   return {
     ok: true, actionId: entry.id, actorId: actor.id, targetIds: [target.id],
     cost: { orders: entry.cost.orders, silver: price, wallet: entry.cost.wallet, stressTag: entry.cost.stressTag },
     success, secrecy, precision, display: presentOdds(precision, success, secrecy),
+    ...(situation.occasionId ? { occasionId: situation.occasionId } : {}),
   };
 }

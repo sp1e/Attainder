@@ -59,7 +59,7 @@ export function startScheme(state, intent, estimate, hooks, commandId = null) {
   const means = plainObject(intent?.means) ? intent.means : {};
   const scheme = {
     id: `scheme-${++state.sequence}`, actionId: estimate.actionId, actorId: estimate.actorId, targetIds: [...estimate.targetIds],
-    means: { silver: means.silver ?? 0, agentRoles: [...(means.agentRoles ?? [])] },
+    means: { silver: means.silver ?? 0, agentRoles: [...(means.agentRoles ?? [])], ...(estimate.occasionId ? { occasionId: estimate.occasionId } : {}) },
     startedAt, dueAt, nextCheckAt: earlier(dueAt, addGameMonths(startedAt, 1)),
     status: 'active', discoveredAt: null, resolutionId: null,
     playerControlled: hooks.estimateContext().playerControlled === true, commandId,
@@ -92,7 +92,7 @@ function dueEstimate(state, scheme, hooks) {
   const own = scheme.playerControlled === true;
   const ctx = own ? hooks.estimateContext() : hooks.npcEstimateContext(scheme.actorId);
   const intent = { actionId: scheme.actionId, actorId: scheme.actorId, targetIds: scheme.targetIds, means: scheme.means };
-  return estimateAction(state, intent, { ...ctx, wallet: () => PAID });
+  return estimateAction(state, intent, { ...ctx, wallet: () => PAID, scheduled: true });
 }
 
 function collapse(state, scheme, reason, events, hooks) {
@@ -178,6 +178,8 @@ function checkMeans(scheme) {
   const { means } = scheme;
   if (!plainObject(means) || !Number.isInteger(means.silver) || means.silver < 0 || !Array.isArray(means.agentRoles)) fail(INVALID.means);
   if (!means.agentRoles.every((role) => ownKey(STAFF_ROLES, role)) || new Set(means.agentRoles).size !== means.agentRoles.length) fail(INVALID.means);
+  // The feast the scheme was started at (occasions.js); the reference is checked by shape only.
+  if (Object.hasOwn(means, 'occasionId') && (typeof means.occasionId !== 'string' || !/^occasion-[1-9]\d*$/.test(means.occasionId))) fail(INVALID.means);
 }
 
 function checkDates(state, scheme) {
