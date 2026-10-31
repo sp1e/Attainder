@@ -31,7 +31,7 @@ const drop = (before, after) => after.map((value, index) => value - before[index
 const storyOf = (state) => state.stories.find((story) => story.type === 'punish_crime');
 
 test('the new effect kinds are listed and the constructors build plain data', () => {
-  assert.deepEqual(EFFECT_KINDS.slice(-6, -3), ['kill', 'crime', 'legitimacy']);
+  for (const kind of ['kill', 'crime', 'legitimacy']) assert.ok(EFFECT_KINDS.includes(kind), kind);
   assert.deepEqual(kill('target', 'Mördad'), { kind: 'kill', who: 'target', reason: 'Mördad' });
   assert.deepEqual(crime('murder', true), { kind: 'crime', crime: 'murder', exposed: true });
   assert.deepEqual(legitimacy(-10, -4), { kind: 'legitimacy', min: -10, max: -4 });

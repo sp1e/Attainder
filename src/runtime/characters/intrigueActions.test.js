@@ -162,12 +162,14 @@ test('a poisoning at a feast reaches all five tiers', () => {
   const failure = results.exposed_failure;
   assert.equal(failure.done.people[TAREK].diedAt ?? null, null);
   assert.deepEqual([crimeRecord(failure.entry).crime, crimeRecord(failure.entry).exposed], ['attempted_murder', true]);
+  assert.equal(failure.done.secrets.find((item) => item.id === crimeRecord(failure.entry).secretId).exposed, true);
   const opinionEffect = failure.entry.effects.find((effect) => effect.kind === 'opinion');
   assert.deepEqual([opinionEffect.fromId, opinionEffect.toId, opinionEffect.value], [TAREK, SERA, -50]);
 
   const backfire = results.backfire;
   assert.equal(backfire.done.people[TAREK].diedAt ?? null, null);
   assert.deepEqual([crimeRecord(backfire.entry).crime, crimeRecord(backfire.entry).exposed], ['attempted_murder', true]);
+  assert.equal(backfire.done.secrets.find((item) => item.id === crimeRecord(backfire.entry).secretId).exposed, true);
   const hook = backfire.done.hooks.find((item) => item.ownerId === TAREK && item.targetId === SERA);
   assert.equal(hook.strength, 'strong');
   assert.equal(backfire.done.people[SERA].stress, backfire.before.people[SERA].stress + 15);
@@ -271,9 +273,13 @@ test('the new refusals', () => {
   for (const id of [foreign.id, elsewhere.id, spent.id, 'hook-99999']) assert.equal(heldReason('poison', REP, NAMAR, { hookId: id }), MESSAGES.hook, id);
   assert.equal(heldReason('sway', REP, NAMAR, { hookId: mine.id }), REASONS.means, 'sway takes no grip');
   assert.equal(heldReason('poison', REP, NAMAR, { hookId: 3 }), REASONS.means);
+  // A hook is usable only while its owner (the actor) and its subject (the target) live, and a dead actor or target is refused before the hook is read. So no hook-specific refusal exists for a dead party; the person refusals come first.
   const dead = copy(held);
   dead.people[NAMAR].diedAt = dead.date;
-  assert.equal(estimateCharacterAction(dead, intent('poison', REP, KELAN, { hookId: mine.id })).reason, MESSAGES.hook);
+  assert.equal(estimateCharacterAction(dead, intent('poison', REP, NAMAR, { hookId: mine.id })).reason, REASONS.targetDead);
+  const gone = copy(held);
+  gone.people[REP].diedAt = gone.date;
+  assert.equal(estimateCharacterAction(gone, intent('poison', REP, NAMAR, { hookId: mine.id })).reason, REASONS.actorDead);
 
   assert.equal(reason('spread_rumor', REP, NAMAR), REASONS.topic);
   assert.equal(reason('spread_rumor', REP, NAMAR, { topic: 'weather' }), REASONS.topic);

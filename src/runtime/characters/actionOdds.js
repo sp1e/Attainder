@@ -240,8 +240,9 @@ function situationOf(entry, actor, target, means, ctx) {
 
 /**
  * Odds for one contested action, or a Swedish refusal.
- * `intent` is { actionId, actorId, targetIds, means: { silver, agentRoles } } and `ctx` is { representativeId, playerControlled, canOrder(personId), wallet(walletKind), opinion(fromId, toId), situation?(entry, actor, target, means) }, which index.js builds so this module never reaches into private helpers.
+ * `intent` is { actionId, actorId, targetIds, means: { silver, agentRoles, secretId?, hookId?, topic? } } (a scheme also stores occasionId; any other key is refused) and `ctx` is { representativeId, playerControlled, canOrder(personId), wallet(walletKind), opinion(fromId, toId), situation?(entry, actor, target, means) }, which index.js builds so this module never reaches into private helpers.
  * `ctx.situation` returns { success: row[], secrecy: row[], occasionId } with the rows an occasion adds (a feast gives intrigue actions access); the rows join the others before the bounds. When the occasion's rows counted the result carries its `occasionId`, which schemes store so the due-date estimate counts the same occasion.
+ * `means.secretId` (blackmail), `means.hookId` (poison) and `means.topic` (spread_rumor) are accepted only for entries whose `uses` list them. A secret must be unexposed, about the target and held by the actor; a hook must be an active hook the actor owns over the target; a topic must be a key of RUMOR_TOPICS. A required one that is missing is refused.
  * Only contested catalog entries are accepted; a command id or an unknown id is refused. A ctx without its functions throws, because that is a bug in the caller and not a refusal.
  * The result carries the true values and rows (success, secrecy) for rolling, and `display` for the player: it follows `precision` and never carries a number at 'five' or 'three'.
  */
