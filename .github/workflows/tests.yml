@@ -17,6 +17,7 @@ on:
   push:
     branches:
       - beta
+      - main
   workflow_dispatch:
 
 permissions:
@@ -36,6 +37,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # The same step the installer workflows run before they build.
+      # Serial, as docs/development/CONTINUE-HERE.md runs it. Parallel runs have
+      # hit file races (EPERM in server/payloadUpdate.test.js).
       - name: Run the tests
-        run: npm test
+        run: node --test --test-concurrency=1 "server/**/*.test.js" "src/**/*.test.js"
+
+      - name: Build
+        run: npm run build
