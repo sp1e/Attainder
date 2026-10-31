@@ -129,6 +129,16 @@ export const submitCharacterCommand = (command = {}) => withCharacterMutation(as
     events: characterTransitionEvents(bundle.world.characterSystem, result, operationId) } : result;
 });
 
+// The narrate step's only entry: the one caller that sets origin "narrate", which record_action_narrative requires.
+export const recordCharacterNarrative = (payload = {}) => withCharacterMutation(async (bundle) => {
+  if (!bundle.world.characterSystem) return failure("Kampanjen saknar karaktärssystem.");
+  const operationId = idFor("character-narrative");
+  const result = executeCharacterWorldCommand(bundle.world, { id: operationId, type: "record_action_narrative", payload,
+    expectedRevision: bundle.world.characterSystem.revision, origin: "narrate" });
+  return result.ok ? { ...result, operationId,
+    events: characterTransitionEvents(bundle.world.characterSystem, result, operationId) } : result;
+});
+
 // Explicit deterministic progression for tests and development. The normal
 // campaign button uses the connected model below.
 export const advanceCharacterYear = () => withCharacterMutation(async (bundle) => {

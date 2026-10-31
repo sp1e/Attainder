@@ -26,7 +26,9 @@ let counter = 0;
 const run = (state, type, payload, id = `command-${++counter}`) => executeCharacterCommand(state, { id, expectedRevision: state.revision, type, payload });
 const swayIntent = (extra = {}) => ({ actionId: 'sway', actorId: REP, targetIds: [TARGET], ...extra });
 const attempt = (state, extra = {}, id) => run(state, 'attempt_action', swayIntent(extra), id);
-const narrate = (state, payload, id) => run(state, 'record_action_narrative', { title: 'En vänlig gest', narrative: 'Gåvorna togs emot med ett leende.', adjustments: [], ...payload }, id);
+const NARRATE_ONLY = 'Berättelsen kan bara skrivas av berättarsteget.';
+const narrateWith = (state, origin, payload, id = `command-${++counter}`) => executeCharacterCommand(state, { id, expectedRevision: state.revision, type: 'record_action_narrative', origin, payload: { title: 'En vänlig gest', narrative: 'Gåvorna togs emot med ett leende.', adjustments: [], ...payload } });
+const narrate = (state, payload, id) => narrateWith(state, 'narrate', payload, id);
 const draws = (seed, count) => { const dice = { actionRngState: seed }; return { values: Array.from({ length: count }, () => actionRandom(dice) * 100), after: dice.actionRngState }; };
 const lastResolution = (result) => result.state.actionLog.at(-1);
 function hostileMember(state) {
@@ -709,4 +711,17 @@ test('replay of the stored patch reproduces the resolution without rolling', () 
   const stored = applyCharacterOpsToWorld({ characterSystem: reseeded }, ops, { source: 'character-system' });
   assert.deepEqual(stored.characterSystem, result.state);
   assert.deepEqual(stored.characterSystem.actionLog.at(-1).rolls, lastResolution(result).rolls);
+});
+
+test('only the narrate step may record an action narrative', () => {
+  const acted = attempt(withSeed(base(), CLEAN_SEED));
+  const resolutionId = lastResolution(acted).id;
+  for (const origin of ['player', 'gate', undefined]) {
+    const result = narrateWith(acted.state, origin, { resolutionId });
+    assert.equal(result.ok, false);
+    assert.equal(result.error, NARRATE_ONLY);
+    assert.deepEqual(result.state, acted.state);
+    assert.equal(result.state.actionLog.at(-1).narrative, null);
+  }
+  assert.equal(narrateWith(acted.state, 'narrate', { resolutionId }).ok, true);
 });

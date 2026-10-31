@@ -1,9 +1,16 @@
+import { recordModelCall } from './modelCallCounter.js';
+
+// The model for interactive character calls on Claude Code. Codex keeps the player's own model so a Claude model name never reaches it.
+export const INTERACTIVE_CLAUDE_MODEL = 'claude-sonnet-5-5';
+
 // Local desktop transport. The server launches an installed, tool-disabled CLI
 // with its existing login; no credential is copied into the game or browser.
 export async function callLocalCli(provider, systemPrompt, history, options = {}) {
+  recordModelCall(options.callKind || 'year');
+  const model = options.interactive === true && provider === 'claude-cli' ? INTERACTIVE_CLAUDE_MODEL : options.entrySettings?.model || '';
   const response = await fetch('/api/local-models/generate', {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: options.signal,
-    body: JSON.stringify({ provider, model: options.entrySettings?.model || '', systemPrompt, history, schema: options.tool?.schema || null }),
+    body: JSON.stringify({ provider, model, effort: options.effort || 'medium', systemPrompt, history, schema: options.tool?.schema || null }),
   });
   options.onRequest?.(response.status);
   if (!response.ok) {

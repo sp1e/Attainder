@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { localModelArguments, parseLocalModelOutput, validateLocalModelRequest } from './localModelBridge.js';
+import { callLocalCli } from '../src/Game/AI/localCliProvider.js';
+import { getModelCallCounts } from '../src/Game/AI/modelCallCounter.js';
 
 test('local model input never supplies executable options or unbounded prompts', () => {
   const valid = { provider: 'codex-cli', systemPrompt: 'Game rules', history: [{ role: 'user', parts: [{ text: 'Hello' }] }] };
@@ -54,4 +56,58 @@ test('Codex strict transport unwraps optional game fields without changing their
   const result = parseLocalModelOutput('codex-cli', event, { unwrapGameResponse: true });
   assert.deepEqual(JSON.parse(result.text), game);
   assert.throws(() => parseLocalModelOutput('codex-cli', JSON.stringify({ type: 'item.completed', item: { type: 'agent_message', text: '{"gameResponse":null}' } }), { unwrapGameResponse: true }));
+});
+
+const effortRequest = { provider: 'claude-cli', systemPrompt: 'Game rules', history: [{ role: 'user', parts: [{ text: 'Hello' }] }] };
+
+test('the bridge validates the effort level and defaults it to medium', () => {
+  assert.equal(validateLocalModelRequest(effortRequest).effort, 'medium');
+  for (const effort of ['low', 'medium', 'high']) assert.equal(validateLocalModelRequest({ ...effortRequest, effort }).effort, effort);
+  for (const effort of ['max', 'LOW', '', 3, null, '--effort']) {
+    assert.throws(() => validateLocalModelRequest({ ...effortRequest, effort }), { message: 'Ogiltig ansträngningsnivå.' });
+  }
+});
+
+test('effort reaches the Claude and Codex arguments', () => {
+  const claude = localModelArguments('claude-cli', { effort: 'low' });
+  assert.equal(claude[claude.indexOf('--effort') + 1], 'low');
+  assert.equal(localModelArguments('claude-cli', {})[localModelArguments('claude-cli', {}).indexOf('--effort') + 1], 'medium');
+  const codex = localModelArguments('codex-cli', { directory: 'C:/isolated', effort: 'high' });
+  assert.equal(codex[codex.indexOf('model_reasoning_effort="high"') - 1], '-c');
+  assert.ok(localModelArguments('codex-cli', { directory: 'C:/isolated' }).includes('model_reasoning_effort="medium"'));
+});
+
+// Runs callLocalCli against a mocked fetch and returns the request body it sent.
+async function sentBody(provider, options) {
+  const realFetch = globalThis.fetch;
+  let body = null;
+  globalThis.fetch = async (_url, init) => {
+    body = JSON.parse(init.body);
+    const line = JSON.stringify({ type: 'result', text: 'ok' }) + '\n';
+    return { ok: true, status: 200, body: new ReadableStream({ start(controller) { controller.enqueue(new TextEncoder().encode(line)); controller.close(); } }) };
+  };
+  try { await callLocalCli(provider, 'system', [], options); } finally { globalThis.fetch = realFetch; }
+  return body;
+}
+
+test('callLocalCli sends effort and picks the model per provider', async () => {
+  assert.equal((await sentBody('claude-cli', { entrySettings: { model: 'sonnet' } })).effort, 'medium');
+  assert.equal((await sentBody('claude-cli', { entrySettings: { model: 'sonnet' } })).model, 'sonnet');
+  const interactiveClaude = await sentBody('claude-cli', { interactive: true, effort: 'low', entrySettings: { model: 'sonnet' } });
+  assert.equal(interactiveClaude.model, 'claude-sonnet-5-5');
+  assert.equal(interactiveClaude.effort, 'low');
+  const interactiveCodex = await sentBody('codex-cli', { interactive: true, effort: 'low', entrySettings: { model: 'gpt-5-codex' } });
+  assert.equal(interactiveCodex.model, 'gpt-5-codex');
+  assert.equal(interactiveCodex.effort, 'low');
+  assert.equal((await sentBody('claude-cli', { interactive: false, entrySettings: {} })).model, '');
+});
+
+test('callLocalCli counts every call by kind', async () => {
+  const before = getModelCallCounts();
+  await sentBody('claude-cli', { callKind: 'interpret' });
+  await sentBody('claude-cli', {});
+  const after = getModelCallCounts();
+  assert.equal(after.total - before.total, 2);
+  assert.equal((after.byKind.interpret || 0) - (before.byKind.interpret || 0), 1);
+  assert.equal((after.byKind.year || 0) - (before.byKind.year || 0), 1);
 });
