@@ -1,5 +1,6 @@
 import { ADULT_AGE } from './content.js';
 import { getCharacterAge } from './characterCapacity.js';
+import { validateCourtStaff } from './courtStaff.js';
 import { syncPlotSecrets, validateSecrets } from './secrets.js';
 
 export const EXTENSIONS_VERSION = 1;
@@ -56,6 +57,7 @@ export function validateCharacterExtensions(state) {
     if (['intrigue', 'prowess'].some((key) => !Number.isFinite(person?.skills?.[key]) || person.skills[key] < 0 || person.skills[key] > SKILL_MAX)) throw new Error('En person har ogiltig intrig eller kampförmåga.');
   }
   validateSecrets(state);
+  validateCourtStaff(state);
 }
 
 /** Separate xorshift stream for actions. Same algorithm as random() in index.js but it only ever touches state.actionRngState. */
