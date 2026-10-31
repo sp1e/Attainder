@@ -106,3 +106,20 @@ test('forged branch flags, broken causes and a missing cast are rejected on load
     (s) => { s.eventChains.records[0].nextAt = addGameMonths(s.date, 1); },
   ]) { const invalid = structuredClone(state); mutate(invalid); assert.throws(() => validateEventChains(invalid)); }
 });
+
+test('origin cause, step family and outcome memory are checked on load', () => {
+  const state = setup(), story = start(state); choose(state, story, 'extra_lessons');
+  const record = state.eventChains.records[0];
+  const stranger = state.memories.find((m) => m.id !== record.sourceMemoryId && m.id !== record.originMemoryId);
+  assert.ok(stranger, 'the fixture needs a memory that is neither the source nor the origin');
+  const outcome = (s) => s.memories.find((m) => m.id === story.outcomeMemoryId);
+  for (const [label, mutate] of [
+    ['step cause points at an unrelated memory', (s) => { s.stories.find((item) => item.id === story.id).causeId = stranger.id; }],
+    ['origin memory cause differs from the chain source', (s) => { s.memories.find((m) => m.id === record.originMemoryId).causeId = stranger.id; }],
+    ['step family differs from the chain owner', (s) => { s.stories.find((item) => item.id === story.id).familyId = 'family-namar'; }],
+    ['outcome participants were emptied', (s) => { outcome(s).participants = []; }],
+    ['outcome participants gained an outsider', (s) => { outcome(s).participants = [...outcome(s).participants, 'person-2-0']; }],
+    ['outcome memory was made private', (s) => { outcome(s).knownBy = [story.decisionActorId]; }],
+  ]) { const invalid = structuredClone(state); mutate(invalid); assert.throws(() => validateEventChains(invalid), Error, label); }
+  validateEventChains(structuredClone(state));
+});
