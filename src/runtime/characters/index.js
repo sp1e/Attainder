@@ -363,7 +363,8 @@ function actionContext(state) {
     return ruling && values(state.offices).some((office) => office.kind !== 'ruler' && office.holderId === person.id);
   };
   const wallet = (kind) => kind === 'family' ? family?.treasury ?? 0 : kind === 'realm' && ruling ? state.realm.treasury : 0;
-  return { representativeId: representative?.id || null, playerControlled: true, canOrder, wallet, opinion: (fromId, toId) => getPersonalOpinion(state, fromId, toId) };
+  // representativeId stays the household representative, who pays through charge(). activeRepresentativeId is the person the player acts through, who gives the orders: in realm mode the ruler or regent.
+  return { representativeId: representative?.id || null, activeRepresentativeId: activeRepresentative(state)?.id || null, playerControlled: true, canOrder, wallet, opinion: (fromId, toId) => getPersonalOpinion(state, fromId, toId) };
 }
 /** Odds for one contested action through the engine's own context, or a Swedish refusal. Pure: no randomness, no spending. The result carries the true values used for rolling; `display` is the only part to show the player. */
 export function estimateCharacterAction(state, intent) { return estimateAction(state, intent, actionContext(state)); }

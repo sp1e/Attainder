@@ -84,6 +84,8 @@ export function refusalChance(actor, opinionOfRepresentative) {
 
 // The people of the player's household who learn about a quiet outcome: the actor, the representative who gave the order and the representative the player sees through.
 const playerWitnesses = (resolution, hooks) => unique([resolution.actorId, hooks.householdRepresentative()?.id, hooks.activeRepresentative()?.id]);
+// The logEvent extra for a resolution's events. One the player may not see (resolutionVisible) is logged with public: false, which keeps it out of the presentation log and the world event stream (characterWorld.js).
+const playerEvent = (state, resolution, hooks) => ({ public: resolutionVisible(state, resolution, hooks.controlledFamily()?.id ?? null) });
 
 /**
  * Pays for an action, once. Every action in Phase 1 is the player's: the controlled household (or the realm, for a realm wallet) pays through charge(), which also spends the order points and adds the payer's stress for the action's tag. estimate.cost.silver already holds the catalog cost plus means.silver. A refused order spends its order points, no silver and no stress.
@@ -108,10 +110,11 @@ function openResolution(state, command, estimate, ctx) {
   };
 }
 
-// Orders exist only for the player. An actor other than the household representative draws the refusal roll first, before the success roll.
+// Orders exist only for the player and come from the active representative, the person the player acts through. Any other actor draws the refusal roll first, before the success roll; nobody refuses their own order.
 function drawRefusal(state, resolution, ctx) {
-  if (!resolution.playerControlled || resolution.actorId === ctx.representativeId) return false;
-  resolution.estimate.refusal = refusalChance(state.people[resolution.actorId], ctx.opinion(resolution.actorId, ctx.representativeId));
+  const giverId = ctx.activeRepresentativeId ?? ctx.representativeId;
+  if (!resolution.playerControlled || resolution.actorId === giverId) return false;
+  resolution.estimate.refusal = refusalChance(state.people[resolution.actorId], ctx.opinion(resolution.actorId, giverId));
   resolution.rolls.refusal = roll(state);
   return resolution.rolls.refusal < resolution.estimate.refusal;
 }
@@ -120,7 +123,7 @@ function refuseOrder(state, resolution, entry, estimate, events, hooks) {
   resolution.refused = true;
   payForAction(state, resolution, estimate, hooks);
   const actor = state.people[resolution.actorId], witnesses = playerWitnesses(resolution, hooks);
-  const event = hooks.logEvent(events, 'order_refused', `${entry.label}: ${REFUSED_TITLE.toLowerCase()}`, `${actor.name} vägrade att utföra ordern. Ordern är förbrukad, men inget silver betalades.`, witnesses);
+  const event = hooks.logEvent(events, 'order_refused', `${entry.label}: ${REFUSED_TITLE.toLowerCase()}`, `${actor.name} vägrade att utföra ordern. Ordern är förbrukad, men inget silver betalades.`, witnesses, playerEvent(state, resolution, hooks));
   resolution.memoryId = hooks.memory('order_refused', `${actor.name} vägrade en order`, witnesses, { causeId: event.id, knownBy: witnesses, resolutionId: resolution.id }).id;
   state.actionLog.push(resolution);
   return resolution;
@@ -145,7 +148,7 @@ export function completeResolution(state, resolution, entry, events, hooks) {
   resolution.rolls.secrecy = roll(state);
   resolution.tier = tierFor(resolution.rolls.success, resolution.rolls.secrecy, resolution.estimate.success, resolution.estimate.secrecy);
   const participants = [resolution.actorId, ...resolution.targetIds];
-  const event = hooks.logEvent(events, 'action_resolution', outcomeTitle(entry, resolution.tier), describeAttempt(state, resolution), participants);
+  const event = hooks.logEvent(events, 'action_resolution', outcomeTitle(entry, resolution.tier), describeAttempt(state, resolution), participants, playerEvent(state, resolution, hooks));
   const knownBy = PUBLIC_TIERS.has(resolution.tier) ? 'public' : resolution.playerControlled ? playerWitnesses(resolution, hooks) : [resolution.actorId];
   resolution.memoryId = hooks.memory('action', event.title, participants, { causeId: event.id, knownBy, resolutionId: resolution.id }).id;
   resolution.effects = applyTierEffects(state, resolution, entry, hooks);
@@ -174,8 +177,29 @@ export function resolveAttempt(state, command, events, hooks) {
   return completeResolution(state, resolution, entry, events, hooks);
 }
 
-// Effect appliers. Role words ('actor', 'target') resolve to the actor and the first target. A ranged effect is recorded with the value it applied and its envelope; the field it changes is clamped the way the engine clamps it.
-const rangedRecord = (effect) => { const value = effectDefault(effect); return { value, min: effect.min, max: effect.max, default: value }; };
+/**
+ * Moves a bounded field (influence 0..100, stress 0..200) by `value` and returns the new field and the change actually made. The field moves only in the direction of the value's sign and stops at the bound, so `applied` lies between 0 and `value`. A field the engine left beyond a bound (influence can pass 100 or drop below 0 elsewhere) is never pulled back by an effect that points the other way.
+ */
+function shiftField(base, value, max) {
+  const target = base + value;
+  const next = value >= 0 ? Math.max(base, Math.min(max, target)) : Math.min(base, Math.max(0, target));
+  return { next, applied: next === target ? value : next - base };
+}
+
+// Effect appliers. Role words ('actor', 'target') resolve to the actor and the first target. A ranged effect records `value` (the envelope value chosen, the default until a narrative moves it), `applied` (the change the field actually took) and its envelope.
+const rangedRecord = (effect) => { const value = effectDefault(effect); return { value, applied: value, min: effect.min, max: effect.max, default: value }; };
+const FIELDS = Object.freeze({
+  influence: { holder: (state, effect) => state.families[effect.familyId], key: 'influence', max: INFLUENCE_MAX },
+  stress: { holder: (state, effect) => state.people[effect.personId], key: 'stress', max: STRESS_MAX },
+});
+// Applies a bounded effect to its field from `base` (the field without this effect) and records the change it took.
+function settleField(state, record, base) {
+  const field = FIELDS[record.kind], holder = field.holder(state, record);
+  const { next, applied } = shiftField(base, record.value, field.max);
+  holder[field.key] = next;
+  record.applied = applied;
+  return record;
+}
 const APPLY = Object.freeze({
   opinion(state, effect, { roles, label, causeId, hooks }) {
     const record = { kind: 'opinion', fromId: roles[effect.from], toId: roles[effect.to], causeId, label, ...rangedRecord(effect) };
@@ -184,15 +208,11 @@ const APPLY = Object.freeze({
   },
   influence(state, effect, { roles }) {
     const record = { kind: 'influence', familyId: state.people[roles[effect.family]].familyId, ...rangedRecord(effect) };
-    const family = state.families[record.familyId];
-    family.influence = clamp(family.influence + record.value, 0, INFLUENCE_MAX);
-    return record;
+    return settleField(state, record, state.families[record.familyId].influence);
   },
   stress(state, effect, { roles }) {
     const record = { kind: 'stress', personId: roles[effect.who], ...rangedRecord(effect) };
-    const person = state.people[record.personId];
-    person.stress = clamp(person.stress + record.value, 0, STRESS_MAX);
-    return record;
+    return settleField(state, record, state.people[record.personId].stress);
   },
   hook(state, effect, { roles, causeId }) {
     const hook = grantHook(state, { ownerId: roles[effect.owner], targetId: roles[effect.over], strength: effect.strength, causeId });
@@ -229,21 +249,24 @@ function adjustableEffect(resolution, item, used) {
   return Number.isInteger(item.value) && item.value >= effect.min && item.value <= effect.max ? effect : null;
 }
 
-// Applies the difference between the chosen value and the value already applied (the default, since a narrative is recorded once) and clamps the field again.
+// The change an effect made. Entries written before `applied` existed count their value as applied.
+const appliedOf = (effect) => (Object.hasOwn(effect, 'applied') ? effect.applied : effect.value);
+
+// Takes back the change the effect actually made, applies the chosen value from there and stops at the bound again. An opinion cause is never cut at write time (getPersonalOpinion caps the sum), so its applied change is its amount.
 function adjustEffect(state, effect, value) {
-  const delta = value - effect.value;
   if (effect.kind === 'opinion') {
     const cause = state.relations[`${effect.fromId}:${effect.toId}`]?.causes?.find((item) => item.causeId === effect.causeId);
     if (!cause) return false;
-    cause.amount += delta;
-  } else if (effect.kind === 'influence') {
-    const family = state.families[effect.familyId];
-    family.influence = clamp(family.influence + delta, 0, INFLUENCE_MAX);
-  } else if (effect.kind === 'stress') {
-    const person = state.people[effect.personId];
-    person.stress = clamp(person.stress + delta, 0, STRESS_MAX);
-  } else return false;
+    cause.amount += value - appliedOf(effect);
+    Object.assign(effect, { value, applied: value });
+    return true;
+  }
+  if (!Object.hasOwn(FIELDS, effect.kind)) return false;
+  const field = FIELDS[effect.kind], holder = field.holder(state, effect);
+  if (!holder) return false;
+  const base = holder[field.key] - appliedOf(effect);
   effect.value = value;
+  settleField(state, effect, base);
   return true;
 }
 
@@ -275,7 +298,7 @@ export function recordNarrative(state, payload, hooks, events = []) {
   if (!text) throw new Error(MESSAGES.text);
   resolution.rejectedAdjustments = applyAdjustments(state, resolution, request.adjustments);
   resolution.narrative = { title, text };
-  hooks.logEvent(events, 'action_narrative', title, text, [resolution.actorId, ...resolution.targetIds]);
+  hooks.logEvent(events, 'action_narrative', title, text, [resolution.actorId, ...resolution.targetIds], playerEvent(state, resolution, hooks));
   return resolution;
 }
 
@@ -317,8 +340,14 @@ function checkDice(entry) {
   if (!TIER_IDS.includes(entry.tier) || tierFor(rolls.success, rolls.secrecy, estimate.success, estimate.secrecy) !== entry.tier) fail(LOG.tier);
 }
 
+// `applied` lies between 0 and `value`: a bound can shorten the change but never reverse or extend it. An entry without `applied` predates the field and counts its value as applied.
+const validApplied = (effect) => {
+  if (!Object.hasOwn(effect, 'applied')) return true;
+  const { applied, value } = effect;
+  return typeof applied === 'number' && Number.isFinite(applied) && (value >= 0 ? applied >= 0 && applied <= value : applied <= 0 && applied >= value);
+};
 const validRange = (effect) => [effect.min, effect.max, effect.default, effect.value].every(Number.isInteger)
-  && effect.min <= effect.default && effect.default <= effect.max && effect.min <= effect.value && effect.value <= effect.max;
+  && effect.min <= effect.default && effect.default <= effect.max && effect.min <= effect.value && effect.value <= effect.max && validApplied(effect);
 const EFFECT_CHECKS = Object.freeze({
   opinion: (state, effect) => isPerson(state, effect.fromId) && isPerson(state, effect.toId) && typeof effect.causeId === 'string' && typeof effect.label === 'string' && validRange(effect),
   influence: (state, effect) => ownKey(state.families, effect.familyId) && validRange(effect),
