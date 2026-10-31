@@ -9,11 +9,11 @@ import { transformSync } from "esbuild";
 // Render the real JSX with supplied presentation data. Runtime and portrait
 // loading are stubs; these checks do not exercise the core or a browser.
 const source = readFileSync(new URL("./CharactersPanel.jsx", import.meta.url), "utf8");
-const compiled = transformSync(`${source}\nexport { CouncilView, GovernanceSummary, ActionCard };`, {
+const compiled = transformSync(`${source}\nexport { CouncilView, GovernanceSummary, ActionCard, StoryCard, ChainHistory };`, {
   loader: "jsx", format: "cjs", jsx: "transform",
 }).code;
 
-function loadPanel(view, { busy = false, theme = "light", panelState = true } = {}) {
+function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council" } = {}) {
   let stateIndex = 0;
   const calls = [];
   const modules = {
@@ -21,7 +21,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true } = 
       useMemo: (fn) => fn(), useRef: (value) => ({ current: value }),
       useState: (initial) => {
         const index = stateIndex++;
-        const value = panelState && index === 0 ? view : panelState && index === 1 ? true : panelState && index === 4 ? busy : typeof initial === "function" ? initial() : initial;
+        const value = panelState && index === 0 ? view : panelState && index === 1 ? true : panelState && index === 2 ? tab : panelState && index === 4 ? busy : typeof initial === "function" ? initial() : initial;
         return [value, () => {}];
       } },
     "../../runtime/useRuntimeState.js": { useRuntimeState: () => null },
@@ -195,4 +195,103 @@ test("project effect status is taken only from the presentation, with a legacy f
   const html = council(view);
   assert.match(html, /Projekt: Pågår/);
   assert.doesNotMatch(html, /Effekten är aktiv|Effekten är inaktiv/);
+});
+
+const chainStory = () => ({
+  id: "step-2", type: "event_chain", chainId: "chain-1", chainTitle: "Sigillet utanför sjukrummet", stepNumber: 2,
+  status: "open", title: "Vem får frågorna?", description: "Hushållet väntar på ett besked.", dueAt: "0200-06-01",
+  deadlineText: "När svarstiden löper ut avslutas ärendet utan val eller betalning.", nextAt: null,
+  previousChoices: [{ title: "Listan vid dörren", choice: "Bekosta hjälp", date: "0200-03-01", actorName: "Dag" }],
+  choices: [
+    { id: "public", label: "Framför frågorna", description: "Regenten tar emot dem.", actorName: "Bertil", actorId: royalRegent.id, scope: "public", cost: "3 silver ur statskassan · 0 handlingar" },
+    { id: "family", label: "Samla familjen", description: "Hushållet betalar för mötet.", actorName: "Dag", actorId: familyRegent.id, scope: "family", cost: "5 familjesilver · 0 handlingar" },
+    { id: "close", label: "Avsluta uppföljningen", description: "Inget nytt åtagande.", actorName: null, actorId: null, scope: "none", cost: "0 silver · 0 handlingar" },
+  ],
+});
+
+test("chain story shows its title, step, previous decision actor/date and explicit expiry text", () => {
+  const { StoryCard } = loadPanel(baseView(), { panelState: false });
+  const story = chainStory();
+  story.fallbackDescription = "Äldre reservtext som inte ska ersätta kedjans tidsgräns.";
+  const html = renderToStaticMarkup(React.createElement(StoryCard, { story }));
+  assert.match(html, /Sigillet utanför sjukrummet · Steg 2/);
+  assert.match(html, /<details[^>]*><summary>Tidigare val \(1\)<\/summary><ol/);
+  assert.match(html, /Listan vid dörren/);
+  assert.match(html, /Val: Bekosta hjälp/);
+  assert.match(html, /0200-03-01 · Utfört av: Dag/);
+  assert.match(html, /Senast 0200-06-01/);
+  assert.match(html, /avslutas ärendet utan val eller betalning/);
+  assert.doesNotMatch(html, /Äldre reservtext|Nästa uppföljning/);
+});
+
+test("chain choices name their own actors and preserve purse text while free close has no actor warning", () => {
+  const { StoryCard } = loadPanel(baseView(), { panelState: false });
+  const story = chainStory();
+  const calls = [];
+  const tree = StoryCard({ story, onCommand: (...args) => calls.push(args), busy: false });
+  const buttons = elements(tree).filter((element) => element.type === "button");
+  assert.equal(buttons.length, 3);
+  const markup = buttons.map((button) => renderToStaticMarkup(button));
+  assert.match(markup[0], /Utförs av: Bertil/);
+  assert.match(markup[0], /3 silver ur statskassan · 0 handlingar/);
+  assert.match(markup[1], /Utförs av: Dag/);
+  assert.match(markup[1], /5 familjesilver · 0 handlingar/);
+  assert.doesNotMatch(markup[2], /Utförs av|Ingen behörig aktör|disabled=/);
+  buttons[2].props.onClick();
+  assert.equal(calls[0][0], "resolve_story");
+  assert.equal(calls[0][1].storyId, "step-2");
+  assert.equal(calls[0][1].choiceId, "close");
+});
+
+test("missing scoped actor remains blocked, while legacy story choices retain their original rendering", () => {
+  const { StoryCard } = loadPanel(baseView(), { panelState: false });
+  const story = chainStory();
+  story.choices[0] = { ...story.choices[0], actorName: null, actorId: null, disabledReason: "Kungligt ombud saknas." };
+  const html = renderToStaticMarkup(React.createElement(StoryCard, { story }));
+  assert.equal((html.match(/Ingen behörig aktör/g) || []).length, 1);
+  assert.match(html, /Kungligt ombud saknas/);
+  assert.equal((html.match(/disabled=""/g) || []).length, 1);
+  const legacy = renderToStaticMarkup(React.createElement(StoryCard, { story: {
+    id: "old", title: "Ett äldre ärende", description: "Vanlig berättelse", fallbackDescription: "Ingen ny åtgärd.",
+    choices: [{ id: "keep", label: "Behåll", cost: "0 silver" }],
+  } }));
+  assert.match(legacy, /Ett beslut väntar/);
+  assert.match(legacy, /Om du avstår till tidsgränsen: Ingen ny åtgärd/);
+  assert.doesNotMatch(legacy, /Tidigare val|Steg|Ingen behörig aktör|Utförs av/);
+});
+
+test("waiting and completed chain history uses core labels and has no playable choices", () => {
+  const { ChainHistory } = loadPanel(baseView(), { panelState: false });
+  const chains = [
+    { id: "waiting", title: "Ett framtida samtal", status: "waiting", statusLabel: "Inväntar uppföljning", nextAt: "0200-09-01", reason: "Besöket är planerat.", steps: chainStory().previousChoices, choices: chainStory().choices },
+    { id: "done", title: "Det avslutade brevet", status: "resolved", statusLabel: "Avslutad", nextAt: null, reason: "Familjen avstod.", steps: [{ title: "Sista brevet", choice: "Avsluta", date: "0200-04-01", actorName: null }] },
+  ];
+  const html = renderToStaticMarkup(React.createElement(ChainHistory, { chains }));
+  assert.equal((html.match(/<details/g) || []).length, 2);
+  assert.equal((html.match(/<summary>/g) || []).length, 2);
+  assert.match(html, /Inväntar uppföljning/);
+  assert.match(html, /Nästa uppföljning: 0200-09-01/);
+  assert.match(html, /Familjen avstod/);
+  assert.match(html, /Val: Avsluta/);
+  assert.doesNotMatch(html, /<button|resolve_story|Ingen behörig aktör|waiting|resolved/);
+  assert.equal(renderToStaticMarkup(React.createElement(ChainHistory, {})), "");
+});
+
+test("Decisions includes chain history in both themes and excludes waiting stories from playable cards", () => {
+  for (const theme of ["light", "dark"]) {
+    const view = baseView();
+    view.stories = [chainStory(), { ...chainStory(), id: "future", status: "waiting", title: "Inte ett spelbart steg", choices: [{ id: "future-choice", label: "Får inte visas som val" }] }];
+    view.chainHistory = [{ id: "chain-2", title: "En väntande kedja", status: "waiting", statusLabel: "Väntar", nextAt: "0201-01-01", steps: [] }];
+    const panel = loadPanel(view, { tab: "decisions", theme });
+    const html = renderToStaticMarkup(panel.default({ open: true, onClose: () => {} }));
+    assert.ok(html.includes(`data-char-theme="${theme}"`));
+    assert.match(html, /Sigillet utanför sjukrummet/);
+    assert.match(html, /Händelsekedjornas historik/);
+    assert.match(html, /En väntande kedja/);
+    assert.doesNotMatch(html, /Inte ett spelbart steg|Får inte visas som val/);
+  }
+  const legacy = loadPanel(baseView(), { tab: "decisions" });
+  const html = renderToStaticMarkup(legacy.default({ open: true, onClose: () => {} }));
+  assert.match(html, /Ärenden och handlingar/);
+  assert.doesNotMatch(html, /Händelsekedjornas historik/);
 });

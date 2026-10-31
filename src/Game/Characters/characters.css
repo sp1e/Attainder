@@ -159,6 +159,14 @@
 .char-explanation { font-size: 12px; color: var(--char-muted); margin-top: 16px; }
 .char-explanation summary { cursor: pointer; padding: 6px 0; color: var(--char-accent); }
 .char-explanation ul { padding-left: 17px; }
+.char-chain-history { margin-top: 28px; }
+.char-chain-history summary { overflow-wrap: anywhere; }
+.char-chain-history summary .char-badge { margin-left: 10px; }
+.char-chain-decisions { padding-left: 22px; margin: 12px 0; }
+.char-chain-decisions li { padding: 10px 0; border-bottom: 1px solid var(--char-border); overflow-wrap: anywhere; }
+.char-chain-decisions li:last-child { border-bottom: 0; }
+.char-chain-decisions p { margin: 4px 0; }
+.char-story-heading > span, .char-choice > small { min-width: 0; overflow-wrap: anywhere; }
 .char-offices { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 28px; }
 .char-office { display: flex; flex-direction: column; justify-content: space-between; }
 .char-office > div > p { font-size: 12px; color: var(--char-muted); }

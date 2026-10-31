@@ -133,15 +133,39 @@ function ActionCard({ action, onCommand, busy }) {
   </details>;
 }
 
+function ChainDecisions({ steps }) {
+  return <ol className="char-chain-decisions">{entries(steps).map((step, index) => <li key={`${step.date || "step"}-${index}`}>
+    <strong>{step.title}</strong>{step.choice && <p>Val: {step.choice}</p>}
+    <span className="char-caption">{[step.date && dateLabel(step.date), step.actorName && `Utfört av: ${step.actorName}`].filter(Boolean).join(" · ")}</span>
+  </li>)}</ol>;
+}
+
+function ChainHistory({ chains }) {
+  const history = entries(chains);
+  if (!history.length) return null;
+  return <section className="char-chain-history" aria-label="Händelsekedjornas historik">
+    <div className="char-section-heading"><div><span className="char-eyebrow">Tidigare val och uppföljningar</span><h3>Händelsekedjor</h3></div></div>
+    {history.map((chain) => <details className="char-card char-explanation" key={chain.id}>
+      <summary><strong>{chain.title}</strong>{chain.statusLabel && <span className="char-badge">{chain.statusLabel}</span>}</summary>
+      {chain.nextAt && <p className="char-caption">Nästa uppföljning: {dateLabel(chain.nextAt)}</p>}
+      {chain.reason && <p>{chain.reason}</p>}
+      {entries(chain.steps).length > 0 ? <ChainDecisions steps={chain.steps} /> : <p className="char-caption">Inga tidigare val att visa.</p>}
+    </details>)}
+  </section>;
+}
+
 function StoryCard({ story, person, onCommand, busy }) {
-  return <article className="char-story"><div className="char-story-heading"><span className="char-eyebrow">Ett beslut väntar</span><span>{story.dueAt ? `Senast ${dateLabel(story.dueAt)}` : dateLabel(story.createdAt)}</span></div>
+  const isChain = story.type === "event_chain";
+  return <article className="char-story"><div className="char-story-heading"><span className="char-eyebrow">{isChain ? <>{story.chainTitle || "Händelsekedja"}{Number.isInteger(story.stepNumber) && story.stepNumber > 0 ? ` · Steg ${story.stepNumber}` : ""}</> : "Ett beslut väntar"}</span><span>{story.dueAt ? `Senast ${dateLabel(story.dueAt)}` : dateLabel(story.createdAt)}</span></div>
     {person && <div className="char-office-holder"><Portrait person={person} size="small" /><strong>{person.name}</strong></div>}
     <h3>{story.title}</h3><p>{story.description}</p>
     {story.triggerDescription && <p className="char-caption">Bakgrund: {story.triggerDescription}</p>}
     {story.causeTitle && <p className="char-caption">Tidigare minne: {story.causeTitle}</p>}
-    {story.fallbackDescription && <p className="char-caption">Om du avstår till tidsgränsen: {story.fallbackDescription}</p>}
+    {isChain && entries(story.previousChoices).length > 0 && <details className="char-explanation"><summary>Tidigare val ({entries(story.previousChoices).length})</summary><ChainDecisions steps={story.previousChoices} /></details>}
+    {story.deadlineText ? <p className="char-caption">{story.deadlineText}</p> : story.fallbackDescription && <p className="char-caption">Om du avstår till tidsgränsen: {story.fallbackDescription}</p>}
+    {isChain && story.nextAt && <p className="char-caption">Nästa uppföljning: {dateLabel(story.nextAt)}</p>}
     <div className="char-story-choices">{(story.choices || []).map((choice) => <button key={choice.id} type="button" className="char-choice" disabled={busy || Boolean(choice.disabledReason)} onClick={() => onCommand("resolve_story", { storyId: story.id, choiceId: choice.id })}>
-      <strong>{choice.label}</strong><span>{choice.description}</span><small>{[choice.cost, stressLabel(choice.stress)].filter(Boolean).join(" · ")}</small>{choice.disabledReason && <em>{choice.disabledReason}</em>}
+      <strong>{choice.label}</strong><span>{choice.description}</span>{choice.scope !== "none" && (choice.actorName ? <small>Utförs av: {choice.actorName}</small> : choice.actorName === null && <small>Ingen behörig aktör</small>)}<small>{[choice.cost, stressLabel(choice.stress)].filter(Boolean).join(" · ")}</small>{choice.disabledReason && <em>{choice.disabledReason}</em>}
     </button>)}</div>
   </article>;
 }
@@ -393,7 +417,7 @@ export default function CharactersPanel({ open, onClose }) {
           {tab === "people" && <PeopleView view={view} selectedId={personId} selectPerson={setPersonId} />}
           {tab === "families" && <FamiliesView view={view} />}
           {tab === "offices" && <OfficesView view={view} setTab={setTab} />}
-           {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Olika personer kan företräda riket och hushållet. Varje handling följer den ansvariga aktörens mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}</>}
+           {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Olika personer kan företräda riket och hushållet. Varje handling följer den ansvariga aktörens mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}<ChainHistory chains={view.chainHistory} /></>}
           {tab === "chronicle" && <ChronicleView view={view} />}
         </>}
       </div>
