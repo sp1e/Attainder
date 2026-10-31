@@ -12,6 +12,8 @@ Saved on 31 October 2026 at the owner's request to preserve work before the week
 
 Current verification: 252 character/core/world tests pass, including eight new lifecycle tests and 44 content checks. The updated panel's 17 render tests and focused lint pass. These are separate from the baseline full-suite result. The event integration has not yet passed independent specification review, adversarial integration/persistence review, a new production build or browser acceptance. Do not describe this checkpoint as the final event release.
 
+An independent review reproduced malformed-save acceptance in `validateEventChains`: changing an origin memory's `causeId` to a nonexistent source, changing a step's `familyId`, emptying outcome-memory participants, or changing its visibility to private can each pass `normalizeCharacterSystem`. Fix these causal/ownership/visibility checks and add regression coverage before final acceptance. The review did not change code. These findings are preserved here because the owner requested synchronization followed by a development pause.
+
 ## Resume in this order
 
 1. Verify checkout, HEAD, remotes and working-tree ownership. Preserve any later work. Main owns architecture, engine changes, integration and Git publication. Worker 1 and Worker 2 have bounded UI/content/test/review roles.

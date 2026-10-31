@@ -1,0 +1,396 @@
+{
+  "verifiedAt": "2026-10-31",
+  "verifiedRemoteCommit": "dfa278458fad058fbe402ac9f995ab7c17563572",
+  "imageCount": 48,
+  "originalPortraits": 24,
+  "stateAtlases": 24,
+  "statesPerAtlas": 36,
+  "totalAtlasVariants": 864,
+  "totalBytes": 261702151,
+  "images": [
+    {
+      "path": "public/dynasties/portraits/person-0-0.png",
+      "bytes": 2390210,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "76f065ac1aadc65864d79adbfcb1c6ee1a82e4fc874e45ed64c8274d14e8c857",
+      "gitBlob": "f17e3c0ab2acd5fe3b3086f0493e898429af29ec"
+    },
+    {
+      "path": "public/dynasties/portraits/person-0-1.png",
+      "bytes": 2360468,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "cccb2a1ec09e28fa8ffba1ba26295ea39a0d756ff8f0b89ebd1540a5c0a12868",
+      "gitBlob": "d400d359b6f7f45b25c103241b20ba2e5dfa6576"
+    },
+    {
+      "path": "public/dynasties/portraits/person-0-2.png",
+      "bytes": 2253449,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "89abdb83122cf8290f0394d6b60013259f640429b0be7a69579ec7c59383b091",
+      "gitBlob": "4d7693323cc8892f6120e344b3af96068d22389e"
+    },
+    {
+      "path": "public/dynasties/portraits/person-0-3.png",
+      "bytes": 2280594,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "c9259fa268699d85c1abb2b10d93bb19d470e260c44f7dca25e2807b1eb8d487",
+      "gitBlob": "1f23ce5f10b69d46c7c13bab5d7baec8c9d5ac41"
+    },
+    {
+      "path": "public/dynasties/portraits/person-0-4.png",
+      "bytes": 2204601,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "7219dad463698cb4144063add21efa2aa46537044e5211c27e73ab20c549924e",
+      "gitBlob": "f5ecac092790ad0695403414a319cc29c0c241f5"
+    },
+    {
+      "path": "public/dynasties/portraits/person-0-5.png",
+      "bytes": 2235311,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "015c9815791124c774ad9dd9d387c4a15e28ffe40a5d4b71a842115ebd49f78b",
+      "gitBlob": "fcf373200ff443d8fcecdb0b7191f7107e3f7b84"
+    },
+    {
+      "path": "public/dynasties/portraits/person-1-0.png",
+      "bytes": 2254378,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "e170c5183eb99b730f5eed9ff4752179678270e61054580f25f2300670cbe26d",
+      "gitBlob": "f67f5bde53333434c04af7e1739efa5cdb0e3047"
+    },
+    {
+      "path": "public/dynasties/portraits/person-1-1.png",
+      "bytes": 2311237,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "11fcb383486d785cad75371581d74b35394aed36468db4c4e8dd6e86ea91cf98",
+      "gitBlob": "e38c757d71e26627df071aa1ee87d9f607e7bb90"
+    },
+    {
+      "path": "public/dynasties/portraits/person-1-2.png",
+      "bytes": 2382369,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "15e4acc5d699f7231dd7b5ba642bf09c422a4d4ae351e7ac15f80c2658b3678d",
+      "gitBlob": "e056cc68e98c31017ff7fe9add2df0e5e9a1dfd8"
+    },
+    {
+      "path": "public/dynasties/portraits/person-1-3.png",
+      "bytes": 2395034,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "e29c2527af7a29502126aa9dc2d0dc2b0bc614e69ee12490f5fb2661070b9e57",
+      "gitBlob": "f875c63219a76762ac310c7f10635683ef868b92"
+    },
+    {
+      "path": "public/dynasties/portraits/person-1-4.png",
+      "bytes": 2066489,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "d6d9141303ec6fc696b9abda0f05b8320711a9702372c05e4889e6f1d58411b1",
+      "gitBlob": "b9446834a53b84f6a6601ba4e0b696736413ea04"
+    },
+    {
+      "path": "public/dynasties/portraits/person-1-5.png",
+      "bytes": 2368903,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "088620db201c144d652db6df941b707591af63749ee7db41bca7c0a96ec2f59f",
+      "gitBlob": "73fa7c6823ceddbc1c72ef7ab8c281b61b226c7c"
+    },
+    {
+      "path": "public/dynasties/portraits/person-2-0.png",
+      "bytes": 2185156,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "d5569e0413584264021517281d2fc2d688fb6b0df9cae986eb5a8f0ecc912c1b",
+      "gitBlob": "a1137e2623ce9bb884bbd92e90b225f5cc7e4587"
+    },
+    {
+      "path": "public/dynasties/portraits/person-2-1.png",
+      "bytes": 2380327,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "e0c7e86960ba7703ee88942b66a91ad60c475ba7bc955374959a060582e23fc4",
+      "gitBlob": "7e5c07e2aa11f1e7ccdc5558518f438ef496d956"
+    },
+    {
+      "path": "public/dynasties/portraits/person-2-2.png",
+      "bytes": 2145090,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "54bf47b0a16746835f4ffc2d2155067444bdd1b2a5728d4ef2b02d26bacc1619",
+      "gitBlob": "1e23271fc9bf90294037c5695ef92abf1a3cdaef"
+    },
+    {
+      "path": "public/dynasties/portraits/person-2-3.png",
+      "bytes": 2256150,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "1169566ebee1ebe33873c6b578291ecdc32fefd6d35d1242745c0fde0e01d167",
+      "gitBlob": "9bb6aba57ebc931d5e0abc5dd152a57850c128fa"
+    },
+    {
+      "path": "public/dynasties/portraits/person-2-4.png",
+      "bytes": 2055524,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "fac71471e688ad4e1130a908380971984af8bfa30151f13a4eb7111e6640fe57",
+      "gitBlob": "1f21eb6e8d4efda366f16e317c1e99916b9e9077"
+    },
+    {
+      "path": "public/dynasties/portraits/person-2-5.png",
+      "bytes": 2276178,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "630b787082831222d4382b936450a160b56d148e89262a6dab516099febf8509",
+      "gitBlob": "c2c28940dd6fffba1e2178ee468ff2974bcde740"
+    },
+    {
+      "path": "public/dynasties/portraits/person-3-0.png",
+      "bytes": 2183671,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "b85fab244583f52d1e50613225fd6648bf7bae448632ec604e4baacfe1bff541",
+      "gitBlob": "705e27b861e8185b1b43f53c4c2fba180516c595"
+    },
+    {
+      "path": "public/dynasties/portraits/person-3-1.png",
+      "bytes": 2371574,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "69640e4276fe683dac065cdb31e48d0cc8d1e2e84247b8b018de5663e38cd468",
+      "gitBlob": "92d35cfc2c955b2f6c28cf3a09155fb232eb1e90"
+    },
+    {
+      "path": "public/dynasties/portraits/person-3-2.png",
+      "bytes": 2136225,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "0c360548ed33e9bb5b8ec39f68ebf744f4707ad9793e55152bece5d39a5129d0",
+      "gitBlob": "88ea463c9677b25086e7efd4a4d318fbabc94690"
+    },
+    {
+      "path": "public/dynasties/portraits/person-3-3.png",
+      "bytes": 2157622,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "a5fe6bec079d3d2e87f15533807fb3f13d627c1d0e99d6b8ad9524da694ca7b7",
+      "gitBlob": "e98c99b0173cd0441a81a640bdae0aa50acd7d68"
+    },
+    {
+      "path": "public/dynasties/portraits/person-3-4.png",
+      "bytes": 2213728,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "a20fc70c5428963b86c6281e59a1b7852bd77f8451778394306721c7be5eda72",
+      "gitBlob": "f093c654bbb3ec4d1dad2687cabe7371f2941b53"
+    },
+    {
+      "path": "public/dynasties/portraits/person-3-5.png",
+      "bytes": 2327600,
+      "width": 1008,
+      "height": 1344,
+      "sha256": "3549a0a5801fbb442fd4b5ee00b115a5a42e42cffa7cca250eded31c504ed96f",
+      "gitBlob": "9125561909e5808b184801c6b4cd6d4017624244"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-0-0.png",
+      "bytes": 8677985,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "e96682453bb65eca72630e0c1929228a263803b20ca91f989d1546c81d56a987",
+      "gitBlob": "b50c614ebf6f83b2d9be787d476f7ae73360faff"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-0-1.png",
+      "bytes": 8844830,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "90b1ddeda7690fce0374eb2f042090a401705183158a39664a293b282c50e8bd",
+      "gitBlob": "3c8c19f15687523c965d4d8e443af2fe1f852a4f"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-0-2.png",
+      "bytes": 8307073,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "44ae0eb0d5b5b3fc27fbdd6a43dfd0dfe5cba66c86825a2b675d0ca57f3ed9d0",
+      "gitBlob": "81205d7be0ffea247edd0cefae1132f39b44e1d2"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-0-3.png",
+      "bytes": 9002318,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "2276bbdcdf953756387331c111ceb49b8fe962274138cc2fd86a34ac28cf06cf",
+      "gitBlob": "edf157ac0c733b5e66d84a214d7fd55dc55d9d75"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-0-4.png",
+      "bytes": 9008209,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "962eb3fc5c2e0079d4917a7ebd1020166bacbd5bef4c942aadbcd21e74c917bf",
+      "gitBlob": "0c714b5d7fa0416f811ad3b817c57ea1df5e7dd4"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-0-5.png",
+      "bytes": 8184802,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "570b55c101b7a60b88f22fa2d849197af316a6a7251bfa0cd98118ac96ef6efc",
+      "gitBlob": "68cbf20850bc3d4083296cb8f6b38ca9f37dabf5"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-1-0.png",
+      "bytes": 8264198,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "4776909109d57c3c2406afa29ddc8cf90115e82574f03633a76e4bc03f53068c",
+      "gitBlob": "1d2f56e3d1dbad24d4e06042d772d0b258063c69"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-1-1.png",
+      "bytes": 8559226,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "61146cddeb954be8dbe0e374241c36045bd9ce79d18bd32329f1d0afcb2d5bef",
+      "gitBlob": "7460f02b2da378aa63b654f67c86bf2445aa3740"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-1-2.png",
+      "bytes": 8982782,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "73b8601be945a90a2c081581bbfe9db8dc6afe69c0bfc117a7aeefcafe0c64ba",
+      "gitBlob": "d2e42d2fc11b0a568872eb23ad4ca90f8ca87bd0"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-1-3.png",
+      "bytes": 8707619,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "e72154d65f352bf389d59726693980afbbaeefbf0af70d3a2d7d560fb4912f18",
+      "gitBlob": "53a214f29abc73c20d4b74148b98e000acaf9ec9"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-1-4.png",
+      "bytes": 8558760,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "05ed48570f3ff0213dff8db4b9176dd2a23ab2e49a05d94bac33b794765e51ab",
+      "gitBlob": "a88413b4a78a3cef75ae9e3ca5e9091eaeb20267"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-1-5.png",
+      "bytes": 8966914,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "485b8b2886bad9e80fe78ce49ace054e0a5ba0297a3281b2012ddcdb949f2156",
+      "gitBlob": "4f318f06b65ab5366075873f5c4d7e688a62d57e"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-2-0.png",
+      "bytes": 8269004,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "74d44766c1051b2c81d2c0f5b0849d659ffe828d3521a9406882b83c0ad6e9b1",
+      "gitBlob": "ea9abdcaf7dbd9ef6f7ddbd8108daa5afe486ae8"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-2-1.png",
+      "bytes": 8444655,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "e8e397ffe1366f94a85807b1a6f091f1a17133d679db3292df343ed5e00e8c67",
+      "gitBlob": "3ad032fe584946834be25ac3b130966493b22d2e"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-2-2.png",
+      "bytes": 8504389,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "c661fcd01f630e8498d7587ea63bdd374a81d0d1444ab8b5dfc2f6b32f27517a",
+      "gitBlob": "fed3dd5570826cb1b1bfc02dbb94145358014e3e"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-2-3.png",
+      "bytes": 8460616,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "55b8bcc347f60dc3b4be09bed6cc85159c28378e811104b3be68d486976eea8d",
+      "gitBlob": "8de82db5322fd347ea0280b89b1dc553693f4694"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-2-4.png",
+      "bytes": 8172894,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "088fc704d9e5031a8191d4d1c582473795991ad57dc5d0ffebacfa0dc0448d60",
+      "gitBlob": "94aa2ff5e51984b2e90a620e3690a59bd6ad4065"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-2-5.png",
+      "bytes": 8514019,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "97402c4b3401e1203b6a5134d12f1da6a6e51c5cd8621ad3808cc5fb7dda51e6",
+      "gitBlob": "31d753fdff8e8a8b48b510c9be309d64ee4a30b3"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-3-0.png",
+      "bytes": 8722925,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "47785e6b5446c27d2c47849b13a060f2c5853b19ce900e3a6e1da07cb367cf6d",
+      "gitBlob": "e6f2f893ac19f5dbfe5f01f283a426d687846d86"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-3-1.png",
+      "bytes": 8826828,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "423ad14a4a06b704b6cfebe9e3ebaa12c9ee1b54b20429334c2536a3769a2357",
+      "gitBlob": "61c0b1d33875e4921642a2d601e104e225de860c"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-3-2.png",
+      "bytes": 8810279,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "d4101e087eb69444a161f6554078da6833e80d10f8e3bc15e8fd664074afa538",
+      "gitBlob": "c0685f9ba67c3aa026a27794be30aa716d9ebcaf"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-3-3.png",
+      "bytes": 8586899,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "cd7909d3edfafc11070a24191f96e035abb167280c7b57b0ddc849e878d87204",
+      "gitBlob": "c9490fe4b58fe247f83905f00ace2f53f4a6216a"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-3-4.png",
+      "bytes": 9149032,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "1755f9f2deb64400783ecdeb3a21bb7414bc8113d77165379cb6be3e1819a229",
+      "gitBlob": "88838e4287ac0881b73fe438aaeea8dce99be3f8"
+    },
+    {
+      "path": "public/dynasties/portraits/variants/person-3-5.png",
+      "bytes": 8984007,
+      "width": 2016,
+      "height": 2688,
+      "sha256": "6e689d79a1b112d28fdafbbff8529eadc2626ebf831c629d18a1b1493098576a",
+      "gitBlob": "3bef15614d4aa7d346e9137ce82007fa1d888b5e"
+    }
+  ]
+}

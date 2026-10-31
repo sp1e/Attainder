@@ -1,0 +1,1392 @@
+{
+  "candidateVersion": 1,
+  "status": "private_content_candidate_requires_main_review",
+  "language": "sv",
+  "schemaStatus": "Authoring descriptors only. Not the production engine schema; do not load into a campaign.",
+  "effectStatus": "All choices and numeric combinations are proposed, not implemented or approved. Familiar effect categories do not grant permission to bypass existing rules.",
+  "conventions": {
+    "delayMonths": "Delay before offering this stage, from chain trigger for stage 1 and from the preceding resolved stage otherwise. Revalidate after waiting; time is never blocked by this chain.",
+    "flags": "Chain-local immutable choice history. Each stage writes its own named flag once; variants read earlier flags. No flags transfer between chains or people.",
+    "variants": "Use the first matching variant as the whole prompt; otherwise use prompt. Conditions are descriptive authoring predicates, to be converted by Main.",
+    "roles": "Bind concrete IDs and display names at creation. Never silently replace a dead person, a former officeholder, mentor, family, city, religion or mandate episode with a successor.",
+    "actors": "family means the currently authorized actor for the bound payer family; public means the currently authorized royal actor for the bound realm. Resolve and revalidate at choice time. Historical participants are not automatically actors.",
+    "payer": "family points to the bound family treasury, public to the bound realm treasury; none debits nothing. Royal authority alone never grants family spending authority. Never use personal wealth implicitly.",
+    "effects": "Effect intents use stable role targets. opinion targets the named person's opinion of the actual decision actor unless toward is explicitly supplied. Main must reject self-opinion or unsupported target directions. Other intents are bounded by existing engine limits.",
+    "transactions": "Validate role, current actor, payer, balance and prior flags before applying any cost, effect or transition. Apply a stage once. A stale or invalid choice cannot partially spend or advance.",
+    "activeChoices": "Exactly two distinct active proposals per stage; they may be disabled by current authority, resources or explicit requires conditions. Never manufacture eligibility just to keep two buttons enabled.",
+    "close": "Every stage has a free close choice: no silver, action points, stress, relation penalty or automatic debt. It preserves past effects and history, closes this chain and does not change world mandates.",
+    "expiry": "If participants or required offices become invalid, close without cost. If only the decision actor is temporarily unavailable, retain free close and defer active offers under Main's calendar policy. No indefinite mandatory popup.",
+    "terminal": "nextStageId null closes after the chosen consequence. Terminal choices still have delayMonths because the final meeting occurs after the preceding stage.",
+    "ordinaryActionCosts": "Active-choice action point and actor stress costs are unresolved engine decisions. Main must choose and expose them before activation; consequence sentences here cover only the listed effect intents. Close always costs zero.",
+    "conditionalAvailability": "requiresFlags uses AND over exact chain-local prior flag values. A false condition disables that active proposal with availabilityReason. The other active proposal and free close remain; never set flags to manufacture availability.",
+    "timing": "All delays are offer windows, not guaranteed future world events. Revalidate roles and factual circumstances when the window arrives."
+  },
+  "chains": [
+    {
+      "id": "veterans_honor",
+      "title": "Namnet på den slitna tjänstelistan",
+      "scope": "mixed",
+      "roles": {
+        "veteran": "Living adult with an actual public record of military service; not a generic family member relabeled as a veteran.",
+        "commander": "Living current general, distinct from veteran.",
+        "family": "Controlled household with a real family relationship to veteran; only this household treasury may fund family choices.",
+        "realm": "Realm of the current general and the recorded military service.",
+        "serviceMemory": "Actual public military service memory binding veteran and realm; immutable source ID."
+      },
+      "entryConditions": [
+        "Bind real service evidence, living participants and the current general office.",
+        "Veteran belongs to the controlled family; any opinion target must differ from the current scoped decision actor.",
+        "No unpaid wage claim or particular battle may be invented from mere membership in the army."
+      ],
+      "lifecycle": "Close on death of veteran or commander, commander leaving the bound general office, veteran leaving the household or realm dissolution. No relative inherits a wage claim. Recognition changes only the proposed effects and memory, never legal honor or military rank.",
+      "stages": [
+        {
+          "id": "list",
+          "title": "Ett namn på tjänstelistan",
+          "prompt": "{veteran} visar en sliten lista från den dokumenterade tjänsten. {commander} vill diskutera arméns behov; hushållet vill kunna ge sin släkting tid att berätta.",
+          "delayMonths": 3,
+          "choices": [
+            {
+              "id": "public_provision",
+              "label": "Bekosta förnödenheter till förbandet",
+              "consequence": "Statskassan betalar 10 silver och arméns styrka ökar med 2. Ingen personlig lön eller skuld betalas.",
+              "scope": "public",
+              "payer": "realm",
+              "costSilver": 10,
+              "effectIntents": [
+                {
+                  "kind": "armyStrength",
+                  "target": "realm",
+                  "delta": 2
+                }
+              ],
+              "setsFlags": {
+                "opening": "provision"
+              },
+              "nextStageId": "account"
+            },
+            {
+              "id": "family_rest",
+              "label": "Bekosta avlastning för veteranen",
+              "consequence": "Familjen betalar 6 silver och {veteran}s stress minskar med 8. Arméns styrka förändras inte.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 6,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "veteran",
+                  "delta": -8
+                }
+              ],
+              "setsFlags": {
+                "opening": "rest"
+              },
+              "nextStageId": "account"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ]
+        },
+        {
+          "id": "account",
+          "title": "Hur ska insatsen beskrivas?",
+          "prompt": "{veteran} vill att tjänstelistan ska få en kort förklaring. Den kan tas upp i ett kungligt samtal eller gås igenom inom hushållet.",
+          "delayMonths": 3,
+          "choices": [
+            {
+              "id": "council_account",
+              "label": "Låt det kungliga ombudet höra berättelsen",
+              "consequence": "Den kungliga beslutsaktören får 3 stress. {veteran}s åsikt om aktören ökar med 4; inget nytt militärt uppdrag ges.",
+              "scope": "public",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "decisionActor",
+                  "delta": 3
+                },
+                {
+                  "kind": "opinion",
+                  "target": "veteran",
+                  "delta": 4
+                }
+              ],
+              "setsFlags": {
+                "record": "public"
+              },
+              "nextStageId": "followup"
+            },
+            {
+              "id": "family_account",
+              "label": "Bekosta en genomgång med familjen",
+              "consequence": "Familjen betalar 4 silver och {veteran}s åsikt om familjens aktör ökar med 5. Berättelsen stannar i hushållets minne.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 4,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "veteran",
+                  "delta": 5
+                }
+              ],
+              "setsFlags": {
+                "record": "family"
+              },
+              "nextStageId": "followup"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "opening",
+                "equals": "rest"
+              },
+              "prompt": "Efter avlastningen vill {veteran} gå igenom den gamla tjänstelistan. Hushållet kan bekosta samtalet eller be det kungliga ombudet lyssna."
+            }
+          ]
+        },
+        {
+          "id": "followup",
+          "title": "Förbandets behov och familjens tid",
+          "prompt": "{commander} framför förbandets behov. Familjen kan i stället lägga sina egna resurser på veteranens vardag.",
+          "delayMonths": 6,
+          "choices": [
+            {
+              "id": "maintain_provision",
+              "label": "Följ upp den tidigare förnödenhetsinsatsen",
+              "consequence": "Statskassan betalar 8 silver och arméns styrka ökar med 1. Detta är ett nytt, separat bidrag till förbandet.",
+              "scope": "public",
+              "payer": "realm",
+              "costSilver": 8,
+              "effectIntents": [
+                {
+                  "kind": "armyStrength",
+                  "target": "realm",
+                  "delta": 1
+                }
+              ],
+              "setsFlags": {
+                "followup": "unit"
+              },
+              "requiresFlags": [
+                {
+                  "flag": "opening",
+                  "equals": "provision"
+                }
+              ],
+              "availabilityReason": "Kräver att förbandet fick förnödenheter i kedjans första steg.",
+              "nextStageId": "closing"
+            },
+            {
+              "id": "relieve_again",
+              "label": "Bekosta hjälp åt veteranen",
+              "consequence": "Familjen betalar 5 silver och {veteran}s stress minskar med 6. Ingen statlig ersättning eller ärftlig förmån skapas.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 5,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "veteran",
+                  "delta": -6
+                }
+              ],
+              "setsFlags": {
+                "followup": "household"
+              },
+              "nextStageId": "closing"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "record",
+                "equals": "public"
+              },
+              "prompt": "Den offentligt framförda berättelsen finns kvar. {commander} framför förbandets behov, medan hushållet överväger praktisk hjälp åt {veteran}."
+            }
+          ]
+        },
+        {
+          "id": "closing",
+          "title": "Vad ska familjen bära med sig?",
+          "prompt": "Tjänstelistan ska läggas undan. Familjen kan lyfta fram den offentligt erkända insatsen eller tacka {veteran} i ett eget samtal.",
+          "delayMonths": 6,
+          "choices": [
+            {
+              "id": "public_family_memory",
+              "label": "Knyt familjens namn till den hörda berättelsen",
+              "consequence": "Familjens aktör får 3 stress och familjens inflytande ökar med 2. Ingen titel, ersättningsrätt eller rang följer med erkännandet.",
+              "scope": "family",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "decisionActor",
+                  "delta": 3
+                },
+                {
+                  "kind": "familyInfluence",
+                  "target": "family",
+                  "delta": 2
+                }
+              ],
+              "setsFlags": {
+                "ending": "public_memory"
+              },
+              "requiresFlags": [
+                {
+                  "flag": "record",
+                  "equals": "public"
+                }
+              ],
+              "availabilityReason": "Kräver att berättelsen tidigare framfördes för det kungliga ombudet.",
+              "nextStageId": null
+            },
+            {
+              "id": "private_thanks",
+              "label": "Tacka veteranen inom hushållet",
+              "consequence": "{veteran}s åsikt om familjens beslutsaktör ökar med 4. Kedjan avslutas utan silverkostnad eller militär förändring.",
+              "scope": "family",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "veteran",
+                  "delta": 4
+                }
+              ],
+              "setsFlags": {
+                "ending": "private_thanks"
+              },
+              "nextStageId": null
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "followup",
+                "equals": "unit"
+              },
+              "prompt": "Förbandet har fått en andra förnödenhetsinsats. Nu återstår hur familjen vill minnas {veteran}s tidigare tjänst."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rival_office_grievance",
+      "title": "Utanför ämbetets dörr",
+      "scope": "mixed",
+      "roles": {
+        "petitioner": "Living adult of the rival family, bound historical petitioner; distinct from officeHolder.",
+        "officeHolder": "Actual living holder of the bound non-ruler office.",
+        "office": "Existing non-ruler office; identity and incumbent are fixed for this chain.",
+        "rivalFamily": "Existing non-exiled family of petitioner with a real negative relation toward the controlled household or its actor.",
+        "family": "Controlled household, sole payer of private meetings and gifts.",
+        "realm": "Realm containing the bound office."
+      },
+      "entryConditions": [
+        "Office, holder and petitioner exist; petitioner belongs to rivalFamily.",
+        "A real rivalry, rejection or negative relation supports the grievance; no rejected application is fabricated.",
+        "Petitioner and officeHolder are distinct; their opinions may not target themselves."
+      ],
+      "lifecycle": "Close if petitioner or officeHolder dies, the incumbent changes, office disappears, petitioner leaves rivalFamily or rivalFamily becomes exiled. Do not replace petitioner with an heir or promise an office. The current office assignment is unchanged by every choice.",
+      "stages": [
+        {
+          "id": "door",
+          "title": "Familjens begäran",
+          "prompt": "{petitioner} väntar utanför {office}. Ämbetet innehas redan av {officeHolder}, men rivalfamiljen vill bli hörd om sin ställning.",
+          "delayMonths": 3,
+          "choices": [
+            {
+              "id": "public_hearing",
+              "label": "Avsätt ett kungligt samtal",
+              "consequence": "Den kungliga aktören får 4 stress. {petitioner}s åsikt om aktören ökar med 5; ingen utnämning eller framtida plats utlovas.",
+              "scope": "public",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "decisionActor",
+                  "delta": 4
+                },
+                {
+                  "kind": "opinion",
+                  "target": "petitioner",
+                  "delta": 5
+                }
+              ],
+              "setsFlags": {
+                "opening": "hearing"
+              },
+              "nextStageId": "response"
+            },
+            {
+              "id": "private_reception",
+              "label": "Bekosta ett möte mellan hushållen",
+              "consequence": "Familjen betalar 8 silver och {petitioner}s åsikt om familjens aktör ökar med 5. Mötet ger ingen offentlig behörighet.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 8,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "petitioner",
+                  "delta": 5
+                }
+              ],
+              "setsFlags": {
+                "opening": "private"
+              },
+              "nextStageId": "response"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ]
+        },
+        {
+          "id": "response",
+          "title": "Den som redan bär ansvaret",
+          "prompt": "{officeHolder} vill få sitt nuvarande ansvar erkänt. {petitioner} vill veta om rivalfamiljens synpunkter har nått fram.",
+          "delayMonths": 3,
+          "choices": [
+            {
+              "id": "confirm_holder",
+              "label": "Bekräfta den nuvarande innehavarens arbete",
+              "consequence": "{officeHolder}s åsikt om den kungliga aktören ökar med 4. {petitioner}s åsikt om samma aktör minskar med 2; ämbetet ändras inte.",
+              "scope": "public",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "officeHolder",
+                  "delta": 4
+                },
+                {
+                  "kind": "opinion",
+                  "target": "petitioner",
+                  "delta": -2
+                }
+              ],
+              "setsFlags": {
+                "response": "holder"
+              },
+              "nextStageId": "record"
+            },
+            {
+              "id": "private_explanation",
+              "label": "Bekosta en privat förklaring till rivalfamiljen",
+              "consequence": "Familjen betalar 5 silver och {petitioner}s åsikt om familjens aktör ökar med 4. Förklaringen innehåller inget ämbetslöfte.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 5,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "petitioner",
+                  "delta": 4
+                }
+              ],
+              "setsFlags": {
+                "response": "explanation"
+              },
+              "nextStageId": "record"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "opening",
+                "equals": "hearing"
+              },
+              "prompt": "Efter det kungliga samtalet vill {petitioner} ha ett besked. {officeHolder} påminner om vem som fortfarande bär ansvaret för {office}."
+            }
+          ]
+        },
+        {
+          "id": "record",
+          "title": "Vad ska stå i redogörelsen?",
+          "prompt": "Rivalfamiljens begäran kan följas upp i ett offentligt besked om det hölls ett kungligt samtal. Annars återstår en privat sammanfattning.",
+          "delayMonths": 6,
+          "choices": [
+            {
+              "id": "public_record",
+              "label": "Sammanfatta det kungliga samtalet",
+              "consequence": "Den kungliga aktören får 3 stress och {petitioner}s åsikt om aktören ökar med 3. Redogörelsen skapar inget anspråk på ämbetet.",
+              "scope": "public",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "decisionActor",
+                  "delta": 3
+                },
+                {
+                  "kind": "opinion",
+                  "target": "petitioner",
+                  "delta": 3
+                }
+              ],
+              "setsFlags": {
+                "record": "public"
+              },
+              "requiresFlags": [
+                {
+                  "flag": "opening",
+                  "equals": "hearing"
+                }
+              ],
+              "availabilityReason": "Kräver att ett kungligt samtal hölls i det första steget.",
+              "nextStageId": "farewell"
+            },
+            {
+              "id": "household_record",
+              "label": "Samla hushållets argument",
+              "consequence": "Familjen betalar 4 silver. Familjens beslutsaktör får 1 mer diplomati inom färdighetens vanliga gräns; rivalfamiljens rättigheter ändras inte.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 4,
+              "effectIntents": [
+                {
+                  "kind": "skill",
+                  "target": "decisionActor",
+                  "delta": 1,
+                  "skill": "diplomacy"
+                }
+              ],
+              "setsFlags": {
+                "record": "household"
+              },
+              "nextStageId": "farewell"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "response",
+                "equals": "holder"
+              },
+              "prompt": "Den nuvarande ämbetsinnehavarens arbete har bekräftats. Uppföljningen ska återge vad som faktiskt sades, utan ett nytt löfte till rivalfamiljen."
+            }
+          ]
+        },
+        {
+          "id": "farewell",
+          "title": "Ett sista besked vid dörren",
+          "prompt": "{petitioner} ber om ett sista besked innan denna fråga läggs åt sidan. Ett privat försoningsmöte eller ett kungligt tack till ämbetsinnehavaren avslutar kontakten.",
+          "delayMonths": 6,
+          "choices": [
+            {
+              "id": "reconcile",
+              "label": "Följ upp den privata förklaringen",
+              "consequence": "Familjen betalar 6 silver och {petitioner}s åsikt om familjens aktör ökar med 6. Kedjan avslutas utan ämbetsbyte.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 6,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "petitioner",
+                  "delta": 6
+                }
+              ],
+              "setsFlags": {
+                "ending": "reconciled"
+              },
+              "requiresFlags": [
+                {
+                  "flag": "response",
+                  "equals": "explanation"
+                }
+              ],
+              "availabilityReason": "Kräver att hushållet tidigare gav rivalfamiljen en privat förklaring.",
+              "nextStageId": null
+            },
+            {
+              "id": "thank_holder",
+              "label": "Tacka den nuvarande ämbetsinnehavaren",
+              "consequence": "{officeHolder}s åsikt om den kungliga aktören ökar med 3. Kedjan avslutas; varken tjänstetid eller befogenheter utökas.",
+              "scope": "public",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "officeHolder",
+                  "delta": 3
+                }
+              ],
+              "setsFlags": {
+                "ending": "holder_thanked"
+              },
+              "nextStageId": null
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "record",
+                "equals": "public"
+              },
+              "prompt": "Det kungliga samtalet har sammanfattats. {petitioner} känner till beskedet; frågan kan nu avslutas utan nya löften."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exile_contacts",
+      "title": "Inbjudan hos värdfamiljen",
+      "scope": "family",
+      "roles": {
+        "envoy": "Living adult member of the controlled exiled family, with an actual relationship to hostHead; not the current household decision actor at entry.",
+        "hostHead": "Living current head of the accepted host family, fixed person identity.",
+        "hostFamily": "Actual accepted hostFamilyId; not a proposed or merely desired patron.",
+        "family": "Controlled exiled household, the only payer of all paid choices."
+      },
+      "entryConditions": [
+        "Family is exiled and has the bound accepted hostFamilyId.",
+        "Host family is not exiled and hostHead is its actual living head.",
+        "Envoy has an existing relation to hostHead; no third-party contacts or invitations from invented people are created."
+      ],
+      "lifecycle": "Close if accepted hostFamilyId changes, hostHead or envoy dies, hostHead leaves family leadership, envoy leaves the controlled family or the family returns from exile. No protection is granted, revoked or transferred by the chain; the host treasury is inaccessible.",
+      "stages": [
+        {
+          "id": "invitation",
+          "title": "Ett besök som kostar",
+          "prompt": "{envoy} har kontakt med {hostHead} hos den accepterade värdfamiljen. Hushållet kan bekosta ett besök eller låta sitt ombud förbereda ett brev.",
+          "delayMonths": 3,
+          "choices": [
+            {
+              "id": "fund_visit",
+              "label": "Bekosta sändebudets besök",
+              "consequence": "Familjen betalar 6 silver och familjens inflytande ökar med 2. Besöket ändrar inte beskyddare eller hemvist.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 6,
+              "effectIntents": [
+                {
+                  "kind": "familyInfluence",
+                  "target": "family",
+                  "delta": 2
+                }
+              ],
+              "setsFlags": {
+                "opening": "visit"
+              },
+              "nextStageId": "credit"
+            },
+            {
+              "id": "prepare_letter",
+              "label": "Låt ombudet förbereda ett brev",
+              "consequence": "Familjens beslutsaktör får 4 stress och {envoy}s åsikt om aktören ökar med 4. Inga silver betalas och inget nytt skydd utlovas.",
+              "scope": "family",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "decisionActor",
+                  "delta": 4
+                },
+                {
+                  "kind": "opinion",
+                  "target": "envoy",
+                  "delta": 4
+                }
+              ],
+              "setsFlags": {
+                "opening": "letter"
+              },
+              "nextStageId": "credit"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ]
+        },
+        {
+          "id": "credit",
+          "title": "Vem ska få tacket?",
+          "prompt": "{envoy} vill veta hur hushållet ska tala om värdfamiljens stöd. Ett tydligt tack till värden skiljer sig från att hålla arbetet inom den egna familjen.",
+          "delayMonths": 3,
+          "choices": [
+            {
+              "id": "thank_host",
+              "label": "Tacka värdfamiljens huvud",
+              "consequence": "{hostHead}s åsikt om familjens beslutsaktör ökar med 4. Tacket ger ingen ny juridisk eller ekonomisk förpliktelse.",
+              "scope": "family",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "hostHead",
+                  "delta": 4
+                }
+              ],
+              "setsFlags": {
+                "credit": "host"
+              },
+              "nextStageId": "followup"
+            },
+            {
+              "id": "relieve_envoy",
+              "label": "Bekosta avlastning för sändebudet",
+              "consequence": "Familjen betalar 4 silver och {envoy}s stress minskar med 6. Värdens stöd förändras inte.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 4,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "envoy",
+                  "delta": -6
+                }
+              ],
+              "setsFlags": {
+                "credit": "envoy"
+              },
+              "nextStageId": "followup"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "opening",
+                "equals": "visit"
+              },
+              "prompt": "Det betalda besöket är genomfört. {envoy} vill veta om hushållet ska tacka {hostHead} direkt eller lägga resurser på sändebudets fortsatta arbete."
+            }
+          ]
+        },
+        {
+          "id": "followup",
+          "title": "En kontakt att vårda",
+          "prompt": "Hushållet kan följa upp ett tidigare betalt besök eller arbeta vidare med det egna ombudets förmåga att föra familjens talan.",
+          "delayMonths": 6,
+          "choices": [
+            {
+              "id": "second_visit",
+              "label": "Följ upp det första besöket",
+              "consequence": "Familjen betalar 5 silver och familjens inflytande ökar med 2. Besöket sker hos samma accepterade värd, utan nytt beskyddaravtal.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 5,
+              "effectIntents": [
+                {
+                  "kind": "familyInfluence",
+                  "target": "family",
+                  "delta": 2
+                }
+              ],
+              "setsFlags": {
+                "followup": "visit"
+              },
+              "requiresFlags": [
+                {
+                  "flag": "opening",
+                  "equals": "visit"
+                }
+              ],
+              "availabilityReason": "Kräver att hushållet bekostade det första besöket.",
+              "nextStageId": "winter"
+            },
+            {
+              "id": "prepare_arguments",
+              "label": "Låt ombudet öva familjens framställan",
+              "consequence": "Familjens beslutsaktör får 4 stress och 1 mer diplomati inom vanlig gräns. Ingen värd lovar stöd genom valet.",
+              "scope": "family",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "decisionActor",
+                  "delta": 4
+                },
+                {
+                  "kind": "skill",
+                  "target": "decisionActor",
+                  "delta": 1,
+                  "skill": "diplomacy"
+                }
+              ],
+              "setsFlags": {
+                "followup": "practice"
+              },
+              "nextStageId": "winter"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "credit",
+                "equals": "host"
+              },
+              "prompt": "Tacket till {hostHead} är framfört. Hushållet överväger nu om ett tidigare besök ska följas upp eller om ombudet behöver bättre förberedelser."
+            }
+          ]
+        },
+        {
+          "id": "winter",
+          "title": "När kontakten ska få vila",
+          "prompt": "{envoy} ber om ett sista besked om kontakten med värdfamiljen. Hushållet kan följa upp sitt tidigare tack eller ge sändebudet ett eget erkännande.",
+          "delayMonths": 6,
+          "choices": [
+            {
+              "id": "host_gift",
+              "label": "Följ upp tacket med en liten familjegåva",
+              "consequence": "Familjen betalar 6 silver och {hostHead}s åsikt om familjens aktör ökar med 5. Gåvan köper varken ämbete eller skyddsgaranti.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 6,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "hostHead",
+                  "delta": 5
+                }
+              ],
+              "setsFlags": {
+                "ending": "host_gift"
+              },
+              "requiresFlags": [
+                {
+                  "flag": "credit",
+                  "equals": "host"
+                }
+              ],
+              "availabilityReason": "Kräver att hushållet redan tackade värdfamiljens huvud.",
+              "nextStageId": null
+            },
+            {
+              "id": "envoy_thanks",
+              "label": "Tacka sändebudet för arbetet",
+              "consequence": "{envoy}s åsikt om familjens aktör ökar med 4. Kedjan avslutas utan ny kostnad eller ändrad exilstatus.",
+              "scope": "family",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "envoy",
+                  "delta": 4
+                }
+              ],
+              "setsFlags": {
+                "ending": "envoy_thanks"
+              },
+              "nextStageId": null
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "followup",
+                "equals": "practice"
+              },
+              "prompt": "Familjens ombud har övat sin framställan. {envoy} frågar hur arbetet ska avslutas innan denna kontaktuppföljning läggs åt sidan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family_letter",
+      "title": "Brevet bland familjens papper",
+      "scope": "family",
+      "roles": {
+        "deceased": "Actually dead member of the controlled family, named in the bound public story_patronage memory.",
+        "participant": "Living actual participant in that same public memory, distinct from current household decision actor; original beneficiary or sponsor direction is preserved.",
+        "memory": "Existing public story_patronage memory with actual participants and knownBy public, not an invented debt, will or legal instrument.",
+        "family": "Controlled family of deceased, the only payer; no legal personal succession is required or inferred."
+      },
+      "entryConditions": [
+        "Memory.type is story_patronage and memory.knownBy is public; source and participants are verifiable.",
+        "Memory names deceased and participant; deceased is actually dead and participant actually alive.",
+        "The rendering may neutrally recall their contact but must not reverse who helped whom.",
+        "The letter is a narrative presentation of the public record, not a new world item or evidence of a will."
+      ],
+      "lifecycle": "Close if participant dies or the bound memory cannot be validated. Deceased remains the same historical person; never bind a new ancestor. Current family actor may change through normal authority rules, but a new actor must voluntarily authorize each new choice. No personal heir identity, inherited debt, claim or transfer of anyone else's wealth is created.",
+      "stages": [
+        {
+          "id": "letter",
+          "title": "Ett gammalt tack återfinns",
+          "prompt": "Bland familjens papper nämns den dokumenterade kontakten mellan {deceased} och {participant}. Hushållet kan fråga den levande deltagaren om minnet eller samla sin egen redogörelse.",
+          "delayMonths": 3,
+          "choices": [
+            {
+              "id": "contact_participant",
+              "label": "Låt ombudet fråga om det gamla minnet",
+              "consequence": "Familjens aktör får 3 stress och {participant}s åsikt om aktören ökar med 3. Frågan tar inte över någon av den avlidnes förpliktelser.",
+              "scope": "family",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "decisionActor",
+                  "delta": 3
+                },
+                {
+                  "kind": "opinion",
+                  "target": "participant",
+                  "delta": 3
+                }
+              ],
+              "setsFlags": {
+                "opening": "contact"
+              },
+              "nextStageId": "meaning"
+            },
+            {
+              "id": "collect_record",
+              "label": "Bekosta en genomgång av familjens uppgifter",
+              "consequence": "Familjen betalar 4 silver och familjens aktör får 1 mer lärdom inom vanlig gräns. Genomgången fastställer ingen arvinge eller ekonomisk skuld.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 4,
+              "effectIntents": [
+                {
+                  "kind": "skill",
+                  "target": "decisionActor",
+                  "delta": 1,
+                  "skill": "learning"
+                }
+              ],
+              "setsFlags": {
+                "opening": "record"
+              },
+              "nextStageId": "meaning"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ]
+        },
+        {
+          "id": "meaning",
+          "title": "Vad betyder minnet för oss?",
+          "prompt": "{participant} lever ännu, men {deceased}s tidigare handlingar binder inte dagens hushåll. Familjen kan rikta ett frivilligt erkännande till deltagaren eller arbeta med sin egen förståelse.",
+          "delayMonths": 3,
+          "choices": [
+            {
+              "id": "acknowledge",
+              "label": "Framför ett frivilligt erkännande",
+              "consequence": "{participant}s åsikt om familjens beslutsaktör ökar med 4. Erkännandet skapar ingen rätt till pengar eller framtida tjänster.",
+              "scope": "family",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "participant",
+                  "delta": 4
+                }
+              ],
+              "setsFlags": {
+                "response": "acknowledge"
+              },
+              "nextStageId": "revisit"
+            },
+            {
+              "id": "study_record",
+              "label": "Bekosta fortsatt läsning av uppgifterna",
+              "consequence": "Familjen betalar 3 silver och familjens aktör får 1 mer lärdom inom vanlig gräns. Inga relationer eller skyldigheter skrivs om.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 3,
+              "effectIntents": [
+                {
+                  "kind": "skill",
+                  "target": "decisionActor",
+                  "delta": 1,
+                  "skill": "learning"
+                }
+              ],
+              "setsFlags": {
+                "response": "study"
+              },
+              "nextStageId": "revisit"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "opening",
+                "equals": "contact"
+              },
+              "prompt": "Hushållet har redan tagit kontakt om det offentliga minnet. Du kan nu framföra ett frivilligt erkännande till {participant} eller låta familjen fortsätta sin egen genomgång."
+            }
+          ]
+        },
+        {
+          "id": "revisit",
+          "title": "Om ni vill tala vidare",
+          "prompt": "Det gamla minnet kan få en personlig uppföljning om hushållet tidigare tog kontakt. Annars återstår familjens eget arbete med berättelsen.",
+          "delayMonths": 6,
+          "choices": [
+            {
+              "id": "fund_visit",
+              "label": "Bekosta ett uppföljande besök",
+              "consequence": "Familjen betalar 6 silver och {participant}s åsikt om familjens aktör ökar med 5. Besöket reglerar ingen skuld och kräver ingen motgåva.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 6,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "participant",
+                  "delta": 5
+                }
+              ],
+              "setsFlags": {
+                "followup": "visit"
+              },
+              "requiresFlags": [
+                {
+                  "flag": "opening",
+                  "equals": "contact"
+                }
+              ],
+              "availabilityReason": "Kräver att hushållet tidigare tog kontakt om minnet.",
+              "nextStageId": "archive"
+            },
+            {
+              "id": "family_discussion",
+              "label": "Låt ombudet gå igenom berättelsen med familjen",
+              "consequence": "Familjens aktör får 3 stress och 1 mer diplomati inom vanlig gräns. Inget stöd eller silver tas från den levande deltagaren.",
+              "scope": "family",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "decisionActor",
+                  "delta": 3
+                },
+                {
+                  "kind": "skill",
+                  "target": "decisionActor",
+                  "delta": 1,
+                  "skill": "diplomacy"
+                }
+              ],
+              "setsFlags": {
+                "followup": "discussion"
+              },
+              "nextStageId": "archive"
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "response",
+                "equals": "acknowledge"
+              },
+              "prompt": "Det frivilliga erkännandet har framförts. Hushållet kan följa upp en tidigare kontakt med {participant} eller lägga tid på familjens egen berättelse."
+            }
+          ]
+        },
+        {
+          "id": "archive",
+          "title": "När brevet läggs tillbaka",
+          "prompt": "Det gamla minnet ska åter få sin plats bland familjens papper. Ett avslutande tack eller en ordnad sammanställning kan avsluta hushållets egen uppföljning.",
+          "delayMonths": 6,
+          "choices": [
+            {
+              "id": "closing_thanks",
+              "label": "Avsluta det tidigare erkännandet med ett tack",
+              "consequence": "{participant}s åsikt om familjens aktör ökar med 3. Tackbrevet avslutar kedjan utan ärftlig förpliktelse eller krav på återbetalning.",
+              "scope": "family",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [
+                {
+                  "kind": "opinion",
+                  "target": "participant",
+                  "delta": 3
+                }
+              ],
+              "setsFlags": {
+                "ending": "thanks"
+              },
+              "requiresFlags": [
+                {
+                  "flag": "response",
+                  "equals": "acknowledge"
+                }
+              ],
+              "availabilityReason": "Kräver att hushållet tidigare framförde ett frivilligt erkännande.",
+              "nextStageId": null
+            },
+            {
+              "id": "ordered_archive",
+              "label": "Bekosta en ordnad sammanställning",
+              "consequence": "Familjen betalar 3 silver och familjens beslutsaktör får 4 mindre stress. Sammanställningen ändrar inga rättigheter eller historiska deltagare.",
+              "scope": "family",
+              "payer": "family",
+              "costSilver": 3,
+              "effectIntents": [
+                {
+                  "kind": "stress",
+                  "target": "decisionActor",
+                  "delta": -4
+                }
+              ],
+              "setsFlags": {
+                "ending": "archive"
+              },
+              "nextStageId": null
+            },
+            {
+              "id": "close",
+              "label": "Avsluta denna uppföljning",
+              "consequence": "Kedjan avslutas utan ny kostnad, stress eller relationsförlust. Tidigare effekter och den faktiska historiken bevaras.",
+              "scope": "none",
+              "payer": "none",
+              "costSilver": 0,
+              "effectIntents": [],
+              "nextStageId": null
+            }
+          ],
+          "priorFlagInfluences": [
+            {
+              "when": {
+                "flag": "followup",
+                "equals": "visit"
+              },
+              "prompt": "Besöket hos {participant} är genomfört. Nu kan hushållet avsluta sitt frivilliga tack eller lägga tillbaka uppgifterna i ordnad form."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "effectRoleSummary": [
+    {
+      "chainId": "veterans_honor",
+      "roles": {
+        "veteran": "Living adult with an actual public record of military service; not a generic family member relabeled as a veteran.",
+        "commander": "Living current general, distinct from veteran.",
+        "family": "Controlled household with a real family relationship to veteran; only this household treasury may fund family choices.",
+        "realm": "Realm of the current general and the recorded military service.",
+        "serviceMemory": "Actual public military service memory binding veteran and realm; immutable source ID."
+      },
+      "effectTargets": [
+        "armyStrength:realm",
+        "familyInfluence:family",
+        "opinion:veteran",
+        "stress:decisionActor",
+        "stress:veteran"
+      ],
+      "conditionalOptions": [
+        {
+          "stageId": "followup",
+          "choiceId": "maintain_provision",
+          "requiresFlags": [
+            {
+              "flag": "opening",
+              "equals": "provision"
+            }
+          ]
+        },
+        {
+          "stageId": "closing",
+          "choiceId": "public_family_memory",
+          "requiresFlags": [
+            {
+              "flag": "record",
+              "equals": "public"
+            }
+          ]
+        }
+      ],
+      "scopeCostUpperBoundsSilver": {
+        "public": 18,
+        "family": 15
+      },
+      "costBoundNote": "Separate per-scope upper bounds; not a promise of simultaneous reachability. Every payment is voluntary and revalidated."
+    },
+    {
+      "chainId": "rival_office_grievance",
+      "roles": {
+        "petitioner": "Living adult of the rival family, bound historical petitioner; distinct from officeHolder.",
+        "officeHolder": "Actual living holder of the bound non-ruler office.",
+        "office": "Existing non-ruler office; identity and incumbent are fixed for this chain.",
+        "rivalFamily": "Existing non-exiled family of petitioner with a real negative relation toward the controlled household or its actor.",
+        "family": "Controlled household, sole payer of private meetings and gifts.",
+        "realm": "Realm containing the bound office."
+      },
+      "effectTargets": [
+        "opinion:officeHolder",
+        "opinion:petitioner",
+        "skill:decisionActor:diplomacy",
+        "stress:decisionActor"
+      ],
+      "conditionalOptions": [
+        {
+          "stageId": "record",
+          "choiceId": "public_record",
+          "requiresFlags": [
+            {
+              "flag": "opening",
+              "equals": "hearing"
+            }
+          ]
+        },
+        {
+          "stageId": "farewell",
+          "choiceId": "reconcile",
+          "requiresFlags": [
+            {
+              "flag": "response",
+              "equals": "explanation"
+            }
+          ]
+        }
+      ],
+      "scopeCostUpperBoundsSilver": {
+        "public": 0,
+        "family": 23
+      },
+      "costBoundNote": "Separate per-scope upper bounds; not a promise of simultaneous reachability. Every payment is voluntary and revalidated."
+    },
+    {
+      "chainId": "exile_contacts",
+      "roles": {
+        "envoy": "Living adult member of the controlled exiled family, with an actual relationship to hostHead; not the current household decision actor at entry.",
+        "hostHead": "Living current head of the accepted host family, fixed person identity.",
+        "hostFamily": "Actual accepted hostFamilyId; not a proposed or merely desired patron.",
+        "family": "Controlled exiled household, the only payer of all paid choices."
+      },
+      "effectTargets": [
+        "familyInfluence:family",
+        "opinion:envoy",
+        "opinion:hostHead",
+        "skill:decisionActor:diplomacy",
+        "stress:decisionActor",
+        "stress:envoy"
+      ],
+      "conditionalOptions": [
+        {
+          "stageId": "followup",
+          "choiceId": "second_visit",
+          "requiresFlags": [
+            {
+              "flag": "opening",
+              "equals": "visit"
+            }
+          ]
+        },
+        {
+          "stageId": "winter",
+          "choiceId": "host_gift",
+          "requiresFlags": [
+            {
+              "flag": "credit",
+              "equals": "host"
+            }
+          ]
+        }
+      ],
+      "scopeCostUpperBoundsSilver": {
+        "public": 0,
+        "family": 21
+      },
+      "costBoundNote": "Separate per-scope upper bounds; not a promise of simultaneous reachability. Every payment is voluntary and revalidated."
+    },
+    {
+      "chainId": "family_letter",
+      "roles": {
+        "deceased": "Actually dead member of the controlled family, named in the bound public story_patronage memory.",
+        "participant": "Living actual participant in that same public memory, distinct from current household decision actor; original beneficiary or sponsor direction is preserved.",
+        "memory": "Existing public story_patronage memory with actual participants and knownBy public, not an invented debt, will or legal instrument.",
+        "family": "Controlled family of deceased, the only payer; no legal personal succession is required or inferred."
+      },
+      "effectTargets": [
+        "opinion:participant",
+        "skill:decisionActor:diplomacy",
+        "skill:decisionActor:learning",
+        "stress:decisionActor"
+      ],
+      "conditionalOptions": [
+        {
+          "stageId": "revisit",
+          "choiceId": "fund_visit",
+          "requiresFlags": [
+            {
+              "flag": "opening",
+              "equals": "contact"
+            }
+          ]
+        },
+        {
+          "stageId": "archive",
+          "choiceId": "closing_thanks",
+          "requiresFlags": [
+            {
+              "flag": "response",
+              "equals": "acknowledge"
+            }
+          ]
+        }
+      ],
+      "scopeCostUpperBoundsSilver": {
+        "public": 0,
+        "family": 16
+      },
+      "costBoundNote": "Separate per-scope upper bounds; not a promise of simultaneous reachability. Every payment is voluntary and revalidated."
+    }
+  ]
+}
