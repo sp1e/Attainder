@@ -103,6 +103,8 @@ async function roundtripWorker() {
     state.offices.ruler.regentId = regent.id;
     state.regencies["office:ruler"] = { id: "office:ruler", principalId: principal.id, regentId: regent.id,
       phase: "minority", startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
+    // This deliberately hand-authored record exercises the legacy save path.
+    delete state.mandateVersion; delete state.mandateActivatedAt; delete state.mandateSequence;
     // Reproducible exposure from the real calendar, not a free disease command.
     state.healthRngState = 1;
     const before = normalizeWorldState({ ...world, ownerSchema: 4, characterSystem: state });

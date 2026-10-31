@@ -108,6 +108,10 @@ identity but has no current exercised ability in the forecast.
 See `docs/design/succession-forecast.md` and
 `src/runtime/characters/successionForecast.test.js` for scope and checks.
 
+## Temporary adult incapacity
+
+Severe active or recovering smallpox, fever and injury temporarily prevent an adult from exercising a mandate. `mandateVersion:1` adds stable episode and representative-term identifiers. Royal and household authority, actors and treasuries remain separate. Replacement invalidates the previous representative's consent; recovery changes neither nominal ownership nor lawful succession. Minority handover waits until a sick adult principal recovers. A contested handover retains its named claimant and supplies no executive authority. Personal bonuses pause without moving their owner or end date. See `docs/design/character-capacity.md` for the lifecycle, candidate rules and migration contract.
+
 ## Health, care and dated portraits
 
 The additive health module has `healthVersion:1`, `healthActivatedAt`, `healthRngState` and `healthSequence`. Its random stream and identifiers are separate from the existing annual stream. Normalization of older pre-release saves adds a neutral empty health history and stable portrait identities at the saved date. It does not invent historical illnesses, age people or draw random numbers. Unknown health versions and malformed condition references are refused. Existing schema/rules/content version numbers remain unchanged for this unreleased additive extension.

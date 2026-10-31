@@ -1,4 +1,6 @@
 import { addGameMonths, compareGameDates, normalizeGameDate } from '../gameDates.js';
+import { canExerciseMandate } from './characterCapacity.js';
+import { grantMatchesMandate, reconcileMandateEpisode } from './mandateEpisodes.js';
 
 const values = (map) => Object.values(map || {});
 const alive = (person) => Boolean(person && !person.diedAt);
@@ -72,6 +74,7 @@ export function familyRoyalClaim(state, familyId, excludedIds = []) {
 export function claimSupportPenalty(state, familyId, excludedIds = []) { return familyRoyalClaim(state, familyId, excludedIds) ? -12 : 0; }
 
 export function reconcileRegency(state, id, principalId, proposedRegentId, { isAdult, emit, events }) {
+  if (state.mandateVersion != null) return reconcileMandateEpisode(state, id, principalId, { emit, events });
   ensureGovernance(state);
   const principal = state.people[principalId];
   let record = state.regencies[id];
@@ -105,7 +108,8 @@ export function reconcileRegency(state, id, principalId, proposedRegentId, { isA
 
 function activeRegency(state, record, principalId, regentId) {
   return record && record.principalId === principalId && record.regentId === regentId &&
-    ['minority', 'contested'].includes(record.phase) && alive(state.people[principalId]) && alive(state.people[regentId]) ? record : null;
+    ['minority', 'incapacity', 'contested'].includes(record.phase) && alive(state.people[principalId]) &&
+    (regentId == null || alive(state.people[regentId])) ? record : null;
 }
 
 // This lookup follows the office, independently of the player's campaign mode.
@@ -130,7 +134,8 @@ export function regencyVetoForRecord(state, record, type) {
     const isFamilyAction = ['build_estate', 'adopt'].includes(type);
     if (record.id.startsWith('family:') !== isFamilyAction) return '';
     if (record.phase === 'contested') return 'Mandatöverlämningen är omstridd. Lös regentkonflikten först.';
-    if (record.grants.some((grant) => grant.actionType === type && !grant.usedAt && compareGameDates(grant.expiresAt, state.date) > 0)) return '';
+    if (!canExerciseMandate(state.people[record.regentId], state.date)) return 'Mandatet saknar en handlingsförmögen företrädare.';
+    if (record.grants.some((grant) => grant.actionType === type && !grant.usedAt && compareGameDates(grant.expiresAt, state.date) > 0 && (state.mandateVersion == null || grantMatchesMandate(record, grant)))) return '';
     const regent = state.people[record.regentId];
     const veto = (has(regent, 'cautious') && ['mobilize', 'banish', 'network'].includes(type)) ||
       (has(regent, 'dutiful') && ['banish', 'succession_law'].includes(type)) ||
@@ -152,7 +157,7 @@ export function consumeRegencyConsent(state, type, records = relevantRegencies(s
   if (!RESERVED.has(type)) return;
   for (const record of records) {
     if (record.id.startsWith('family:') !== ['build_estate', 'adopt'].includes(type)) continue;
-    const grant = record.grants.find((item) => item.actionType === type && !item.usedAt && compareGameDates(item.expiresAt, state.date) > 0);
+    const grant = record.grants.find((item) => item.actionType === type && !item.usedAt && compareGameDates(item.expiresAt, state.date) > 0 && (state.mandateVersion == null || grantMatchesMandate(record, item)));
     if (grant) grant.usedAt = state.date;
   }
 }
@@ -191,8 +196,9 @@ export function validateGovernance(state) {
     if (family.hostPolityId && !state.externalHosts.some((host) => host.id === family.hostPolityId)) throw new Error('Familjens skydd saknar en registrerad mottagare.');
   }
   for (const [id, record] of Object.entries(state.regencies)) {
-    if (record.id !== id || !state.people[record.principalId] || !state.people[record.regentId] || !['minority', 'contested', 'ended', 'closed'].includes(record.phase) || !Array.isArray(record.grants) || !record.requestAfter || typeof record.requestAfter !== 'object') throw new Error('Ett förmyndarmandat är ogiltigt.');
-    if (['minority', 'contested'].includes(record.phase) && (!alive(state.people[record.principalId]) || !alive(state.people[record.regentId]))) throw new Error('Ett aktivt förmyndarmandat hänvisar till en avliden person.');
+    if (record.phase === 'contested' && !record.regentId) throw new Error('Ett omstritt mandat saknar en namngiven anspråkshavare.');
+    if (record.id !== id || !state.people[record.principalId] || (record.regentId != null && !state.people[record.regentId]) || !['minority', 'incapacity', 'contested', 'ended', 'closed'].includes(record.phase) || !Array.isArray(record.grants) || !record.requestAfter || typeof record.requestAfter !== 'object') throw new Error('Ett förmyndarmandat är ogiltigt.');
+    if (['minority', 'incapacity', 'contested'].includes(record.phase) && (!alive(state.people[record.principalId]) || (record.regentId != null && !alive(state.people[record.regentId])))) throw new Error('Ett aktivt förmyndarmandat hänvisar till en avliden person.');
     for (const grant of record.grants) if (!RESERVED.has(grant.actionType) || !normalizeGameDate(grant.grantedAt) || !normalizeGameDate(grant.expiresAt) || (grant.usedAt && !normalizeGameDate(grant.usedAt))) throw new Error('Ett samtycke saknar giltiga beslut eller datum.');
   }
   const ids = new Set();

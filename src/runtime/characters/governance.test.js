@@ -23,6 +23,7 @@ function minority({ age = 10, traits = ['cautious'], loyalty = 30 } = {}) {
   state.offices.ruler.holderId = principal.id; state.offices.ruler.regentId = regent.id;
   state.realm.lawfulRulerId = principal.id;
   state.regencies['office:ruler'] = { id: 'office:ruler', principalId: principal.id, regentId: regent.id, phase: 'minority', startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
+  delete state.mandateVersion; delete state.mandateActivatedAt; delete state.mandateSequence;
   return command(state, 'livelihood');
 }
 function dissolved(mode = 'family', hosts = [{ id: 'Kesh', name: 'Kesh' }]) {

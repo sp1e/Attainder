@@ -66,6 +66,10 @@
 .char-person-summary p { color: var(--char-accent); margin: 5px 0; font-size: 13px; }
 .char-person-summary--compact { margin-bottom: 15px; gap: 14px; }
 .char-person-summary--compact h3 { font-size: 23px; }
+.char-authority { border-top: 1px solid var(--char-border); padding-top: 15px; margin-top: 15px; }
+.char-authority-people { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px 20px; }
+.char-authority-people > div, .char-authority .char-person-summary > div { min-width: 0; overflow-wrap: anywhere; }
+.char-authority .char-person-summary { margin-top: 8px; }
 .char-portrait { width: 74px; height: 85px; flex-shrink: 0; position: relative; color: var(--char-gold); border: 1px solid var(--char-border); border-radius: 6px; overflow: hidden; }
 .char-portrait svg { width: 100%; height: 100%; fill: var(--char-soft); stroke: var(--char-border); stroke-width: 1.2; }
 .char-portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; border-radius: 6px; z-index: 1; }
@@ -89,6 +93,7 @@
 .char-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
 .char-tags > span, .char-badge { border-radius: 4px; border: 1px solid var(--char-border); padding: 2px 8px; font-size: 11px; color: var(--char-muted); display: inline-block; }
 .char-badge--warning { color: var(--char-danger); }
+.char-cities .char-badge + .char-badge { margin-left: 6px; }
 .char-leader-measures { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
 .char-meter > div:first-child { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; margin-bottom: 6px; color: var(--char-muted); }
 .char-meter strong { color: var(--char-ink); font-size: 13px; }

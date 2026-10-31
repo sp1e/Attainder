@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameMonths } from '../gameDates.js';
+import { attachMandateGrant } from './mandateEpisodes.js';
 import { advanceCharacters, canCharacterDirectRealm, createCharacterSystem, executeCharacterCommand, getCharacterPresentation, getNextCharacterTransitionDate, normalizeCharacterSystem } from './index.js';
 
 let sequence = 0;
@@ -15,6 +16,8 @@ function minority(mode = 'realm', familyId = 'family-arel', traits = ['ambitious
   state.regencies['office:ruler'] = { id: 'office:ruler', principalId: principal.id, regentId: regent.id, phase: 'minority', startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
   state.offices.chancellor.holderId = null;
   state.stories = [];
+  // This fixture enters through the legacy-save activation path.
+  delete state.mandateVersion; delete state.mandateActivatedAt; delete state.mandateSequence;
   return normalizeCharacterSystem(state);
 }
 function promise(state, type = 'promise_due', officeId = 'chancellor') {
@@ -22,7 +25,8 @@ function promise(state, type = 'promise_due', officeId = 'chancellor') {
   state.stories.push(story); return story.id;
 }
 function grant(state, type = 'appoint', mandate = 'office:ruler') {
-  state.regencies[mandate].grants.push({ actionType: type, grantedAt: state.date, expiresAt: addGameMonths(state.date, 24), usedAt: null, approach: 'negotiate' });
+  const record = state.regencies[mandate];
+  record.grants.push(attachMandateGrant(record, { actionType: type, grantedAt: state.date, expiresAt: addGameMonths(state.date, 24), usedAt: null, approach: 'negotiate' }));
 }
 
 for (const mode of ['realm', 'family']) test(`annual NPC appointments do not compete with the player's royal regent in ${mode} mode`, () => {
@@ -173,6 +177,8 @@ test('NPC promise validation rolls back invalid candidates, offices and unafford
 
 test('missing executive offers free deferral and never charges for an unsupported decision', () => {
   const state = minority('family', 'family-namar');
+  // A vacancy is reconciled before commands; genuinely leave no eligible adult.
+  for (const person of Object.values(state.people)) person.bornAt = addGameMonths(state.date, -10 * 12);
   state.offices.ruler.regentId = null;
   delete state.regencies['office:ruler'];
   const id = promise(state, 'office_promise');

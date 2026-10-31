@@ -78,7 +78,7 @@ function Empty({ title, children }) {
 }
 
 function PersonSummary({ person, compact = false }) {
-  if (!person) return <Empty title="Ingen behörig företrädare">Följ den pågående successionsfrågan i Ämbeten & arv.</Empty>;
+  if (!person) return <Empty title="Ingen behörig företrädare">Ingen person kan företräda dig just nu. Läs mandatets status under Ämbeten & arv.</Empty>;
   return <div className={`char-person-summary${compact ? " char-person-summary--compact" : ""}`}>
     <Portrait person={person} size={compact ? "small" : "large"} />
     <div><span className="char-eyebrow">{person.familyName || "Familj"}{Number.isFinite(person.age) ? ` · ${person.age} år` : ""}</span>
@@ -89,12 +89,37 @@ function PersonSummary({ person, compact = false }) {
   </div>;
 }
 
+const authorityReasons = {
+  minority: "Förmyndarskap under omyndighet",
+  incapacity: "Tillfälligt ombud vid allvarlig sjukdom eller skada",
+  contested: "Omstridd överlämning",
+};
+
+function AuthoritySummary({ view }) {
+  const people = entries(view.people);
+  return <>{[["royal", "Rikets mandat", "Härskare"], ["household", "Familjens mandat", "Familjehuvud"]].map(([scope, label, principalLabel]) => {
+    const mandate = view.authority?.[scope];
+    if (!mandate || !(mandate.reason || mandate.blockedReason || (mandate.principalId && mandate.representativeId !== mandate.principalId))) return null;
+    const principal = people.find((person) => person.id === mandate.principalId);
+    const representative = people.find((person) => person.id === mandate.representativeId);
+    return <section className="char-authority" aria-label={label} key={scope}>
+      <h4>{label}</h4>
+      {mandate.reason && <p className="char-caption">{authorityReasons[mandate.reason] || "Särskild mandatordning"}</p>}
+      <div className="char-authority-people">
+        <div><span className="char-eyebrow">{principalLabel}</span>{principal ? <PersonSummary person={principal} compact /> : <p>Ingen innehavare.</p>}</div>
+        <div><span className="char-eyebrow">Handlande företrädare</span>{representative ? <PersonSummary person={representative} compact /> : <p>Ingen behörig företrädare finns just nu.</p>}</div>
+      </div>
+      {mandate.blockedReason && <p className="char-reason">{mandate.blockedReason}</p>}
+    </section>;
+  })}</>;
+}
+
 function ActionCard({ action, onCommand, busy }) {
   const fields = action.fields || [];
   const [values, setValues] = useState(() => Object.fromEntries(fields.map((field) => [field.key, field.options?.[0]?.value ?? ""])));
   const missing = fields.some((field) => !values[field.key]);
   return <details className={`char-action${action.disabledReason ? " char-action--unavailable" : ""}`}>
-    <summary><span><strong>{action.label}</strong><small>{action.cost || "Ingen myntkostnad"}{action.stress ? ` · ${stressLabel(action.stress)}` : ""}</small></span><span aria-hidden="true">＋</span></summary>
+    <summary><span><strong>{action.label}</strong><small>{action.cost || "Ingen myntkostnad"}{action.stress ? ` · ${stressLabel(action.stress)}` : ""}</small>{action.actorName ? <small>Utförs av: {action.actorName}</small> : action.actorName === null && <small>Ingen behörig aktör</small>}</span><span aria-hidden="true">＋</span></summary>
     <div className="char-action-body"><p>{action.description}</p>
       <form onSubmit={(event) => { event.preventDefault(); onCommand(action.type, values); }}>
         {fields.map((field) => <label key={field.key}>{field.label}<select value={values[field.key] ?? ""} onChange={(event) => setValues((current) => ({ ...current, [field.key]: event.target.value }))} disabled={busy || Boolean(action.disabledReason)} required>
@@ -123,15 +148,16 @@ function StoryCard({ story, person, onCommand, busy }) {
 
 function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson }) {
   const economy = view.economy || {};
-  const representative = view.representative || view.ruler;
+  const representative = view.representative;
+  const hasAuthorityDetail = Object.values(view.authority || {}).some((mandate) => mandate && (mandate.reason || mandate.blockedReason || (mandate.principalId && mandate.representativeId !== mandate.principalId)));
   const activeProjects = entries(view.projects).filter((project) => !["cancelled", "failed"].includes(project.status));
   const waitingStories = entries(view.stories).filter((story) => story.status === "waiting");
   return <>
     <div className="char-overview-grid"><section className="char-card char-leader-card"><div className="char-section-heading"><span className="char-eyebrow">{view.mode === "family" ? "Familjens företrädare" : "Rikets ledning"}</span><span className="char-seal" aria-hidden="true">◇</span></div>
-      <PersonSummary person={representative} />
-      <div className="char-leader-measures"><Meter label="Stress" value={representative?.stress || 0} danger /><Meter label="Legitimitet" value={economy.legitimacy ?? view.ruler?.legitimacy ?? 0} /></div>
+      {hasAuthorityDetail ? <AuthoritySummary view={view} /> : <PersonSummary person={representative} />}
+      <div className="char-leader-measures">{representative && <Meter label={`Stress · ${representative.name}`} value={representative.stress} danger />}<Meter label="Legitimitet" value={economy.legitimacy ?? view.ruler?.legitimacy ?? 0} /></div>
       {representative?.goalLabel && <p className="char-goal"><span>Personligt mål</span>{representative.goalLabel}</p>}
-      <button className="char-button char-button--quiet" onClick={() => { selectPerson(representative?.id); setTab("people"); }}>Lär känna {representative?.name || "företrädaren"}<span aria-hidden="true"> ↗</span></button>
+      {representative && <button className="char-button char-button--quiet" onClick={() => { selectPerson(representative.id); setTab("people"); }}>Lär känna {representative.name}<span aria-hidden="true"> ↗</span></button>}
     </section>
     <section className="char-card"><div className="char-section-heading"><div><span className="char-eyebrow">Makt och försörjning</span><h3>Rikets tillstånd</h3></div></div>
       <div className="char-metrics-grid"><Metric label="Statskassa" value={number(economy.treasury)} note="silver" /><Metric label="Årsintäkt" value={signed(economy.annualRevenue)} note="före årets beslut" /><Metric label="Handlingsutrymme" value={number(economy.actionPoints)} note="handlingar före nästa år" /><Metric label="Militär beredskap" value={`${number(economy.militaryReadiness)} %`} note="påverkas av befäl och stöd" /></div>
@@ -143,7 +169,7 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson }) {
     {waitingStories.length > 0 && <section><div className="char-section-heading"><div><span className="char-eyebrow">Beslut med framtida följder</span><h3>Åtaganden som består</h3></div></div><div className="char-cities">{waitingStories.map((story) => <article className="char-card" key={story.id}><h4>{story.title}</h4><p>{story.description}</p><span className="char-caption">{story.actorName}{story.dueAt ? ` · Återkommer ${dateLabel(story.dueAt)}` : ""}</span></article>)}</div></section>}
     <div className="char-section-heading"><div><span className="char-eyebrow">Förvaltning</span><h3>Städerna bär riket</h3></div></div>
     <div className="char-cities">{entries(view.cities).map((city) => <article className="char-city char-card" key={city.id}><span className="char-eyebrow">{city.familyName || view.families?.find((family) => family.id === city.familyId)?.name || "Förvaltning"}</span><h4>{city.name}</h4><p>{city.governorName ? `Guvernör: ${city.governorName}` : "Guvernörsämbetet är vakant"}</p><div className="char-inline-stats"><span>Skatt <strong>{number(city.taxIncome)}</strong></span><span>Produktion <strong>{number(Number(city.productionMultiplier ?? 1) * 100)} %</strong></span><span>Oro <strong>{number(city.unrest)}</strong></span></div></article>)}</div>
-    {activeProjects.length > 0 && <section><div className="char-section-heading"><div><span className="char-eyebrow">Beslut med varaktig följd</span><h3>Projekt och reformer</h3></div></div><div className="char-cities">{activeProjects.map((project) => <article className="char-card" key={project.id}><span className="char-badge">{humanize(project.status)}</span><h4>{project.title || project.name}</h4><p>{project.description || (project.personal ? "En personlig, tidsbegränsad förmåga. Den upphör om ledaren lämnar sitt mandat." : "Ett bestående resultat som kan följa riket eller familjen över generationsskiften.")}</p>{project.dueAt && <small>{project.personal ? "Gäller till" : "Planerat slut"}: {dateLabel(project.dueAt)}</small>}{project.progress != null && <Meter label="Framsteg" value={project.progress} />}</article>)}</div></section>}
+    {activeProjects.length > 0 && <section><div className="char-section-heading"><div><span className="char-eyebrow">Beslut med varaktig följd</span><h3>Projekt och reformer</h3></div></div><div className="char-cities">{activeProjects.map((project) => <article className="char-card" key={project.id}><span className="char-badge">Projekt: {humanize(project.status)}</span>{project.effectActive === false && <span className="char-badge char-badge--warning">Effekten är inaktiv</span>}{project.effectActive === true && <span className="char-badge">Effekten är aktiv</span>}<h4>{project.title || project.name}</h4><p>{project.description || (project.personal ? "Ett personligt projekt med begränsad löptid." : "Ett bestående resultat som kan följa riket eller familjen över generationsskiften.")}</p>{project.effectReason && <p className="char-reason">{project.effectReason}</p>}{project.dueAt && <small>{project.personal ? "Slutdatum" : "Planerat slut"}: {dateLabel(project.dueAt)}</small>}{project.progress != null && <Meter label="Framsteg" value={project.progress} />}</article>)}</div></section>}
   </>;
 }
 
@@ -189,11 +215,12 @@ function FamiliesView({ view }) {
 
 function GovernanceSummary({ view }) {
   const governance = view.governance || view.succession || {};
-  if (!governance.actualRulerName && governance.realmAlive !== false) return null;
+  if (!governance.actualRulerName && governance.realmAlive !== false) return <AuthoritySummary view={view} />;
   return <section className="char-card char-governance"><span className="char-eyebrow">Makt och rättsligt anspråk</span><h3>{governance.realmAlive === false ? "Riket är upplöst" : governance.contestedCrown ? "Tronen är omstridd" : "Härskarmakt och arvsrätt"}</h3>
     <dl className="char-facts"><div><dt>Faktisk härskare</dt><dd>{governance.actualRulerName || "Ingen härskare"}</dd></div><div><dt>Rättsligt erkänd härskare</dt><dd>{governance.lawfulRulerName || "Inte avgjort"}</dd></div><div><dt>Rättslig arvinge</dt><dd>{governance.legalHeirName || "Ingen fastställd arvinge"}</dd></div></dl>
     {governance.contestedCrown && <p className="char-caption">Den som utövar makten och den som har det rättsliga anspråket är olika personer. Ett maktskifte tar inte automatiskt bort familjens arvsrätt.</p>}
-    {entries(governance.regencies).map((regency) => <div className="char-goal" key={regency.id}><span>{regency.phase === "minority" ? "Förmyndarregering" : "Omstridd överlämning"}</span><strong>{regency.regentName}</strong> förvaltar makten för {regency.principalName}.{regency.vetoedActions?.length > 0 && <p>Regenten kan stoppa {regency.vetoedActions.length} typer av beslut. Begär samtycke under Beslut.</p>}{regency.grants?.length > 0 && <p>{regency.grants.length} samtycken har beviljats.</p>}</div>)}
+    <AuthoritySummary view={view} />
+    {entries(governance.regencies).map((regency) => <div className="char-goal" key={regency.id}><span>{authorityReasons[regency.phase] || "Regentskap"}</span>{regency.regentName ? regency.phase === "contested" ? <><strong>{regency.regentName}</strong> och {regency.principalName} har en olöst överlämning.</> : <><strong>{regency.regentName}</strong> förvaltar makten för {regency.principalName}.</> : <>Ingen behörig regent finns för {regency.principalName}.</>}{regency.regentName && regency.vetoedActions?.length > 0 && <p>Regenten kan stoppa {regency.vetoedActions.length} typer av beslut. Begär samtycke under Beslut.</p>}{regency.grants?.length > 0 && <p>{regency.grants.length} samtycken har beviljats.</p>}</div>)}
     {governance.claims?.length > 0 && <details className="char-explanation"><summary>Personer med tronanspråk</summary><ul>{governance.claims.map((claim, index) => <li key={`${claim.personId || claim.personName}-${index}`}><strong>{claim.personName}</strong>{claim.familyName ? ` · ${claim.familyName}` : ""}</li>)}</ul></details>}
   </section>;
 }
@@ -366,7 +393,7 @@ export default function CharactersPanel({ open, onClose }) {
           {tab === "people" && <PeopleView view={view} selectedId={personId} selectPerson={setPersonId} />}
           {tab === "families" && <FamiliesView view={view} />}
           {tab === "offices" && <OfficesView view={view} setTab={setTab} />}
-          {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Tillgängligheten följer din företrädares mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}</>}
+           {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Olika personer kan företräda riket och hushållet. Varje handling följer den ansvariga aktörens mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}</>}
           {tab === "chronicle" && <ChronicleView view={view} />}
         </>}
       </div>

@@ -1,9 +1,10 @@
 import { addGameMonths, compareGameDates, diffGameDays, normalizeGameDate } from '../gameDates.js';
 import { ADULT_AGE, ARCHETYPES, CONTENT_VERSION, FAMILY_SEEDS, NAME_POOL, RULE_PROVENANCE, RULES_VERSION, SCHEMA_VERSION, SKILL_LABELS, TRAITS } from './content.js';
-import { getCharacterAge, isAdultCharacter } from './characterCapacity.js';
+import { canExerciseMandate, getCharacterAge, getIncapacityCauseIds, isAdultCharacter } from './characterCapacity.js';
+import { attachMandateGrant, ensureMandateEpisodes, reconcileMandateEpisode, validateMandateEpisodes } from './mandateEpisodes.js';
 export { getCharacterAge } from './characterCapacity.js';
 
-import { ensureGovernance, refreshLegalClaims, registerAccession, familyRoyalClaim, claimSupportPenalty, reconcileRegency, relevantRegencies, royalRegency, regencyVeto, regencyVetoForRecord, consumeRegencyConsent, cleanHostCandidates, describeGovernance, validateGovernance } from './governance.js';
+import { ensureGovernance, refreshLegalClaims, registerAccession, familyRoyalClaim, claimSupportPenalty, relevantRegencies, royalRegency, regencyVeto, regencyVetoForRecord, consumeRegencyConsent, cleanHostCandidates, describeGovernance, validateGovernance } from './governance.js';
 import { ensurePortraitIdentity, freezeDeathAppearance, resolvePortraitState } from './portraitState.js';
 import { ensureHealthState, validateHealthState, runAnnualHealth, advanceHealthTransitions, getNextHealthTransitionDate, getTreatableConditions, treatCondition, recordBereavement, getConditionBurden, publicHealthConditions, HEALTH_CONDITION_LABELS } from './health.js';
 import { STORY_DIRECTOR_VERSION, ensureStoryDirector, validateStoryDirector, scheduleDirectedStory, directedStoryChoices, resolveDirectedStory, refreshDirectedStories } from './storyDirector.js';
@@ -25,14 +26,21 @@ const adult = (state, person) => isAdultCharacter(person, state.date);
 const ruler = (state) => state.people[state.offices.ruler?.holderId] || null;
 const familyMembers = (state, id) => living(state).filter((p) => p.familyId === id);
 const byAge = (state, people) => [...people].sort((a, b) => compareGameDates(a.bornAt, b.bornAt) || a.id.localeCompare(b.id));
-function activeRepresentative(state) { const nominal = state.identity.mode === 'realm' ? ruler(state) : state.people[state.families[state.identity.familyId]?.headId]; if (!alive(nominal)) return null; if (adult(state, nominal)) return nominal; const regentId = state.identity.mode === 'realm' ? state.offices.ruler.regentId : state.families[nominal.familyId].guardianId; return state.people[regentId] || nominal; }
+function householdRepresentative(state) {
+  const family = controlledFamily(state), principal = state.people[family?.headId];
+  if (!alive(principal)) return null;
+  if (canExerciseMandate(principal, state.date)) return principal;
+  const record = state.regencies?.[`family:${family.id}`], guardian = state.people[family.guardianId];
+  return record?.principalId === principal.id && record.regentId === guardian?.id && record.phase !== 'contested' && canExerciseMandate(guardian, state.date) ? guardian : null;
+}
+function activeRepresentative(state) { return state.identity.mode === 'realm' ? realmExecutive(state) || householdRepresentative(state) : householdRepresentative(state); }
 function controlledFamily(state) { return state.families[state.identity.mode === 'family' ? state.identity.familyId : ruler(state)?.familyId] || null; }
 function realmExecutive(state) {
   const principal = ruler(state), record = royalRegency(state);
   if (!state.realm.alive || !alive(principal) || record?.phase === 'contested') return null;
-  if (adult(state, principal)) return state.offices.ruler.regentId ? null : principal;
-  const regent = record?.phase === 'minority' ? state.people[record.regentId] : null;
-  return adult(state, regent) ? regent : null;
+  if (canExerciseMandate(principal, state.date) && !state.offices.ruler.regentId) return principal;
+  const regent = ['minority', 'incapacity'].includes(record?.phase) ? state.people[record.regentId] : null;
+  return canExerciseMandate(regent, state.date) ? regent : null;
 }
 function royalDecisionReason(state, type) {
   if (royalRegency(state)?.phase === 'contested') return 'Mandatöverlämningen är omstridd. Frågan kan tas upp igen när konflikten är löst.';
@@ -42,6 +50,10 @@ function royalDecisionReason(state, type) {
 }
 function consumeRoyalConsent(state, type) { const record = royalRegency(state); if (record) consumeRegencyConsent(state, type, [record]); }
 function canRule(state) { const actor = activeRepresentative(state); const executive = realmExecutive(state); const office = state.offices.ruler; if (state.identity.mode === 'family') { const ownHead = state.families[state.identity.familyId]?.headId; if (ownHead !== office.holderId && ownHead !== office.regentId) return false; } return Boolean(actor && executive && actor.id === executive.id); }
+const PUBLIC_COMMANDS = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'abdicate', 'recognize_claim', ...Object.values(ARCHETYPES).map((archetype) => archetype.action)]);
+function commandActor(state, type) {
+  return PUBLIC_COMMANDS.has(type) || (['patronize_faith', 'exercise_office'].includes(type) && canRule(state)) ? realmExecutive(state) : householdRepresentative(state);
+}
 function logEvent(state, events, type, title, description, participants = [], extra = {}) { const event = { id: nextId(state, 'event'), date: state.date, type, title, description, participants: participants.filter(Boolean), public: true, ...extra }; state.log.push(event); events.push(event); return event; }
 function memory(state, type, title, participants, options = {}) { const item = { id: nextId(state, 'memory'), date: state.date, type, title, participants: participants.filter(Boolean), causeId: options.causeId || null, knownBy: options.knownBy || 'public', familyIds: [...new Set(participants.map((id) => state.people[id]?.familyId).filter(Boolean))], ...options }; state.memories.push(item); return item; }
 function relation(state, fromId, toId) { const key = `${fromId}:${toId}`; if (!state.relations[key]) state.relations[key] = { fromId, toId, bonds: [], causes: [] }; return state.relations[key]; }
@@ -49,7 +61,7 @@ function opinionCause(state, fromId, toId, amount, label, causeId, years = 10) {
 export function getPersonalOpinion(state, fromId, toId) { if (fromId === toId) return 100; const rel = state.relations[`${fromId}:${toId}`]; const base = state.people[fromId]?.familyId === state.people[toId]?.familyId ? 8 : 0; return clamp(base + (rel?.causes || []).filter((c) => !c.expiresAt || compareGameDates(c.expiresAt, state.date) > 0).reduce((sum, c) => sum + c.amount, 0), -100, 100); }
 function addBond(state, a, b, kind) { for (const [from, to] of [[a, b], [b, a]]) { const rel = relation(state, from, to); if (!rel.bonds.includes(kind)) rel.bonds.push(kind); } }
 function visibleTo(state, item) { return item.knownBy === 'public' || item.public === true || (Array.isArray(item.knownBy) && item.knownBy.includes(activeRepresentative(state)?.id)); }
-function religiousSupport(state, id, excludedIds = []) { const exercisingId = state.offices.ruler.regentId || state.offices.ruler.holderId; const treaty = state.projects.some((p) => p.kind === 'sanctuary' && p.status === 'active' && !excludedIds.includes(p.ownerId) && p.ownerId === exercisingId && compareGameDates(p.dueAt, state.date) > 0); return clamp((state.religions[id]?.support || 50) + (treaty ? 15 : 0)); }
+function religiousSupport(state, id, excludedIds = []) { const exercisingId = realmExecutive(state)?.id; const treaty = state.projects.some((p) => p.kind === 'sanctuary' && p.status === 'active' && !excludedIds.includes(p.ownerId) && p.ownerId === exercisingId && compareGameDates(p.dueAt, state.date) > 0); return clamp((state.religions[id]?.support || 50) + (treaty ? 15 : 0)); }
 function familySupport(state, family, excludedIds = []) { const leader = ruler(state); if (!leader) return 30; const head = state.people[family.headId]; const seats = values(state.offices).filter((o) => !excludedIds.includes(o.holderId) && state.people[o.holderId]?.familyId === family.id && o.id !== 'ruler').length; const religious = religiousSupport(state, family.religionId, excludedIds); return clamp(40 + family.grievance + getPersonalOpinion(state, head?.id, leader.id) * 0.3 + seats * 6 + (religious - 50) * 0.2 + (family.id === leader.familyId ? 10 : 0) + claimSupportPenalty(state, family.id, excludedIds)); }
 function opinionReasons(state, fromId, toId) {
   if (fromId === toId) return [{ label: 'Egen person', value: 100 }];
@@ -63,7 +75,7 @@ function familySupportReasons(state, family) {
   return [{ label: 'Grundläggande samarbete', value: 40 }, { label: 'Familjens intressen och oförrätter', value: rounded(family.grievance) }, { label: 'Familjeledningens personliga åsikt', value: rounded(getPersonalOpinion(state, family.headId, leader.id) * 0.3) }, { label: 'Ämbetsrepresentation', value: seats * 6 }, { label: 'Religiöst stöd', value: rounded((religiousSupport(state, family.religionId) - 50) * 0.2) }, { label: 'Familjen innehar tronen', value: family.id === leader.familyId ? 10 : 0 }, { label: 'Ett rättsligt tronanspråk förbigås', value: claimSupportPenalty(state, family.id) }];
 }
 function stressFor(person, tag) { const costs = { cruel: (has(person, 'compassionate') ? 28 : 7) + (has(person, 'dutiful') ? 8 : 0), betrayal: (has(person, 'dutiful') ? 28 : 8) + (has(person, 'compassionate') ? 10 : 0), generous: has(person, 'greedy') ? 14 : 0, risky: has(person, 'cautious') ? 18 : 4, surrender: has(person, 'ambitious') ? 24 : 6, duty: has(person, 'dutiful') ? 0 : 3 }; return costs[tag] || 0; }
-function charge(state, amount, { publicFunds = false, orders = 1, tag = 'duty' } = {}) { const actor = activeRepresentative(state); if (!adult(state, actor)) throw new Error('En myndig företrädare eller behörig förmyndare krävs.'); const account = publicFunds ? state.realm : controlledFamily(state); if (!account) throw new Error('Ingen behörig resursägare finns.'); if (publicFunds && !canRule(state)) throw new Error('Familjen saknar rätt att använda statskassan.'); if (state.actionPoints < orders) throw new Error('Årets handlingsutrymme är slut. För tiden framåt.'); if (account.treasury < amount) throw new Error(`Det behövs ${amount} silver; tillgängligt ${Math.floor(account.treasury)}.`); account.treasury = rounded(account.treasury - amount); state.actionPoints -= orders; actor.stress = clamp(actor.stress + stressFor(actor, tag), 0, 200); return actor; }
+function charge(state, amount, { publicFunds = false, orders = 1, tag = 'duty' } = {}) { const actor = publicFunds ? realmExecutive(state) : householdRepresentative(state); if (!canExerciseMandate(actor, state.date)) throw new Error(publicFunds ? 'Riket saknar en handlingsförmögen företrädare.' : 'Familjen saknar en handlingsförmögen företrädare.'); const account = publicFunds ? state.realm : controlledFamily(state); if (!account) throw new Error('Ingen behörig resursägare finns.'); if (publicFunds && !canRule(state)) throw new Error('Familjen saknar rätt att använda statskassan.'); if (state.actionPoints < orders) throw new Error('Årets handlingsutrymme är slut. För tiden framåt.'); if (account.treasury < amount) throw new Error(`Det behövs ${amount} silver; tillgängligt ${Math.floor(account.treasury)}.`); account.treasury = rounded(account.treasury - amount); state.actionPoints -= orders; actor.stress = clamp(actor.stress + stressFor(actor, tag), 0, 200); return actor; }
 function requirePerson(state, id, { grown = false } = {}) { const person = state.people[id]; if (!alive(person) || (grown && !adult(state, person))) throw new Error(grown ? 'Välj en levande myndig person.' : 'Personen lever inte eller saknas.'); return person; }
 function requireRule(state) { if (!canRule(state)) throw new Error('Beslutet kräver härskarens eller regentens mandat.'); }
 function requireOwn(state, person) { if (person.familyId !== controlledFamily(state)?.id) throw new Error('Familjebandet ger inte kontroll över denna persons beslut.'); }
@@ -94,10 +106,10 @@ export function getSuccessionForecast(state) {
   const lawfulAfter = previous?.id === lawful?.id ? rulerCandidates(state, previous, excludedIds)[0] : lawful;
   const incoming = available ? selectDeathSuccessor(state, previous, state.realm.lawfulRulerId, lawfulAfter, excludedIds) : null;
   const regent = state.people[state.offices.ruler.regentId];
-  const exercising = available ? adult(state, regent) ? regent : adult(state, previous) ? previous : null : null;
+  const exercising = available ? royalRegency(state)?.phase === 'contested' && canExerciseMandate(regent, state.date) ? regent : realmExecutive(state) : null;
   const regency = state.regencies?.['office:ruler'];
   const contestedRegency = regency?.phase === 'contested' && regency.principalId === previous?.id;
-  const requiresRegency = Boolean(incoming && !adult(state, incoming));
+  const requiresRegency = Boolean(incoming && !canExerciseMandate(incoming, state.date));
   const current = successionPerson(state, exercising);
   const expected = successionPerson(state, incoming);
   const status = !state.realm.alive ? 'dissolved' : !alive(previous) ? 'vacant' : expected ? 'conditional' : 'no-successor';
@@ -110,13 +122,13 @@ export function getSuccessionForecast(state) {
     legalHeir: successionPerson(state, state.people[state.realm.legalHeirId]),
     expectedRuler: expected, currentExercising: current,
     contestedCrown: Boolean(available && alive(lawful) && previous.id !== lawful.id),
-    contestedRegency: Boolean(contestedRegency), currentUsesRegent: Boolean(available && adult(state, regent)),
+    contestedRegency: Boolean(contestedRegency), currentUsesRegent: Boolean(exercising && exercising.id === regent?.id),
     requiresRegency, abilityChanges: current && expected ? current.ability?.action !== expected.ability?.action : null,
     basis: 'Om bara den nuvarande härskaren avlider vid dagens datum och övriga förhållanden består. Senare dödsfall, nya lagar och maktkamper kan ändra utfallet.',
     authority: !available ? 'Inget aktivt härskarmandat att föra vidare.' : !expected ? 'Ingen levande kandidat finns i dagens successionsordning.' : requiresRegency
-      ? 'Efterträdaren är omyndig. En regent behöver utöva mandatet; barnets egen förmåga kan inte användas direkt. Regentens identitet och samtycke fastställs vid övergången.'
+      ? adult(state, incoming) ? 'Efterträdaren är svårt sjuk och behöver en behörig regent tills förmågan återkommer. Ämbetet och arvsrätten följer fortfarande efterträdaren.' : 'Efterträdaren är omyndig. En regent behöver utöva mandatet; barnets egen förmåga kan inte användas direkt. Regentens identitet och samtycke fastställs vid övergången.'
       : 'Efterträdarens egen förmåga hör till det nya mandatet. Tillgängliga beslut beror också på resurser, aktiva projekt och kampanjens behörighet.',
-    currentAuthority: !available ? 'Inget aktivt härskarmandat.' : !current ? 'Härskaren är omyndig och saknar en myndig företrädare. Ingen arketypförmåga kan utövas nu.' : contestedRegency ? 'Regenten håller kvar mandatet. Härskarens beslut är spärrade tills konflikten har lösts.' : adult(state, regent)
+    currentAuthority: !available ? 'Inget aktivt härskarmandat.' : contestedRegency ? 'Regenten håller kvar mandatet. Härskarens beslut är spärrade tills konflikten har lösts.' : !current ? adult(state, previous) ? 'Härskaren är svårt sjuk och saknar en handlingsförmögen företrädare. Kalendern kan fortsätta.' : 'Härskaren är omyndig och saknar en myndig företrädare. Ingen arketypförmåga kan utövas nu.' : exercising.id === regent?.id
       ? 'Regenten utövar mandatet. Vissa beslut kräver regentens samtycke.' : 'Den faktiska härskaren utövar mandatet.',
     identity: { mode: state.identity.mode, familyId: state.identity.mode === 'family' ? state.identity.familyId : expected?.familyId || null,
       familyKeepsThrone: state.identity.mode === 'family' && expected ? expected.familyId === state.identity.familyId : null,
@@ -143,31 +155,31 @@ function reconcileLegalPosition(state, events) {
     memory(state, 'inherited_claim', event.title, event.participants, { causeId: event.id });
   }
 }
+function refreshRepresentation(state, events = [], { silent = false } = {}) {
+  ensureGovernance(state); ensureMandateEpisodes(state);
+  const context = { emit: logEvent, events, silent };
+  for (const family of values(state.families).sort((a, b) => a.id.localeCompare(b.id))) {
+    family.guardianId = reconcileMandateEpisode(state, `family:${family.id}`, family.headId, context);
+  }
+  const office = state.offices.ruler, monarch = ruler(state), old = office.regentId;
+  const previousBasis = state.regencies['office:ruler']?.basis;
+  office.regentId = state.realm.alive ? reconcileMandateEpisode(state, 'office:ruler', monarch?.id, context) : null;
+  if (!silent && old && !office.regentId && canExerciseMandate(monarch, state.date)) {
+    if (previousBasis !== 'incapacity') suspendPersonalProjects(state, old);
+    logEvent(state, events, 'regency', 'Regentskapet upphör', monarch.name + ' tar över sitt fulla mandat.', [monarch.id, old]);
+    const regent = state.people[old];
+    if (previousBasis !== 'incapacity' && has(regent, 'ambitious')) { regent.stress = clamp(regent.stress + 15, 0, 200); opinionCause(state, old, monarch.id, -10, 'Förlorat regentmandat', 'mandate:' + monarch.id); }
+  }
+}
 function refreshMandates(state, events) {
   ensureGovernance(state);
-  const context = { isAdult: adult, emit: logEvent, events };
-  for (const family of values(state.families)) {
-    if (!alive(state.people[family.headId])) family.headId = byAge(state, familyMembers(state, family.id))[0]?.id || null;
-    const head = state.people[family.headId];
-    const proposed = head && !adult(state, head) ? chooseGuardian(state, family.id, head.id) : null;
-    family.guardianId = reconcileRegency(state, 'family:' + family.id, head?.id, proposed, context);
-  }
+  for (const family of values(state.families)) if (!alive(state.people[family.headId])) family.headId = byAge(state, familyMembers(state, family.id))[0]?.id || null;
   for (const faith of values(state.religions)) {
     const priest = state.people[state.offices.priest?.holderId];
     if (adult(state, priest) && priest.religionId === faith.id) faith.leaderId = priest.id;
     else if (!alive(state.people[faith.leaderId])) faith.leaderId = byAge(state, living(state).filter((person) => adult(state, person) && person.religionId === faith.id))[0]?.id || null;
   }
-  const office = state.offices.ruler;
-  const monarch = state.people[office.holderId];
-  const old = office.regentId;
-  const proposed = alive(monarch) && !adult(state, monarch) ? chooseGuardian(state, monarch.familyId, monarch.id) : null;
-  office.regentId = state.realm.alive ? reconcileRegency(state, 'office:ruler', monarch?.id, proposed, context) : null;
-  if (old && !office.regentId && alive(monarch)) {
-    suspendPersonalProjects(state, old);
-    logEvent(state, events, 'regency', 'Regentskapet upphör', monarch.name + ' tar över sitt fulla mandat.', [monarch.id, old]);
-    const regent = state.people[old];
-    if (has(regent, 'ambitious')) { regent.stress = clamp(regent.stress + 15, 0, 200); opinionCause(state, old, monarch.id, -10, 'Förlorat regentmandat', 'mandate:' + monarch.id); }
-  }
+  refreshRepresentation(state, events);
   reconcileLegalPosition(state, events);
 }
 function refreshStories(state, events) {
@@ -237,7 +249,7 @@ export function createCharacterSystem(options = {}) {
   const cityList = options.cities?.length ? options.cities : [{ id: 'hadara', name: 'Hadara' }, { id: 'narim', name: 'Narim' }, { id: 'selene', name: 'Selene' }];
   cityList.slice(0, 12).forEach((city, i) => { const id = String(city.id || `city-${i}`); state.cities[id] = { id, name: city.name || id, regionId: city.regionId || null, familyId: FAMILY_SEEDS[i % 4].id, baseRevenue: 18 + i * 2, infrastructure: 0, unrest: 12, governorOfficeId: `governor-${i}` }; state.offices[`governor-${i}`] = { id: `governor-${i}`, name: `Guvernör: ${city.name || id}`, kind: 'governor', holderId: `person-${i % 4}-${i === 0 ? 2 : 0}`, cityId: id, regentId: null, history: [], publicBudget: 30 }; });
   for (const [id, name, holderId] of [['ruler', 'Härskare', 'person-0-0'], ['general', 'Överbefälhavare', 'person-1-2'], ['chancellor', 'Kansler', 'person-2-2'], ['priest', 'Överstepräst', 'person-3-0']]) state.offices[id] = { id, name, kind: id, holderId, regentId: null, history: [{ personId: holderId, date, reason: 'Kampanjstart' }], publicBudget: 30 };
-  ensureGovernance(state); ensureHealthState(state); ensureStoryDirector(state); refreshLegalClaims(state, rulerCandidates);
+  ensureGovernance(state); ensureHealthState(state); ensureMandateEpisodes(state); ensureStoryDirector(state); refreshLegalClaims(state, rulerCandidates);
   const events = []; logEvent(state, events, 'foundation', 'En generation tar ansvar', `${state.realm.name} formas av fyra familjer. Du följer ${state.identity.mode === 'realm' ? 'riket genom dess ledare' : `familjen ${state.families[state.identity.familyId].name}`}.`, [ruler(state).id]);
   state.stories.push({ id: nextId(state, 'story'), type: 'office_promise', title: 'Ett löfte vid gränsen', description: 'Namar kräver ett framtida guvernörsämbete som erkännande för arméns tjänst. Ett löfte kan ge stöd nu och binda nästa generation.', actorId: 'person-1-2', targetId: ruler(state).id, familyId: 'family-namar', officeId: values(state.offices).find((o) => o.kind === 'governor' && o.holderId !== 'person-1-2')?.id, createdAt: date, dueAt: addGameMonths(date, 36), status: 'open', knownBy: 'public' });
   return state;
@@ -295,12 +307,15 @@ export function normalizeCharacterSystem(raw) {
   validateReferences(state);
   validateGovernance(state);
   ensureHealthState(state); validateHealthState(state);
+  ensureMandateEpisodes(state); validateMandateEpisodes(state);
+  refreshRepresentation(state, [], { silent: true });
+  validateMandateEpisodes(state);
   ensureStoryDirector(state); validateStoryDirector(state);
   return state;
 }
 
 export function getCharacterWorldEffects(state) {
-  const leader = ruler(state); const exercising = state.people[state.offices.ruler.regentId] || leader;
+  const leader = ruler(state); const exercising = realmExecutive(state);
   const personal = state.projects.filter((p) => p.status === 'active' && p.personal && p.ownerId === exercising?.id && compareGameDates(p.dueAt, state.date) > 0);
   const cityEffects = values(state.cities).map((city) => { const gov = state.people[state.offices[city.governorOfficeId]?.holderId]; const family = state.families[city.familyId]; const support = familySupport(state, family); const govEff = gov ? gov.skills.stewardship * 0.018 - Math.max(0, gov.stress - 60) * 0.002 - getConditionBurden(gov) : -0.12; const productionMultiplier = rounded(clamp(0.65 + support * 0.005 + govEff + city.infrastructure * 0.08 - city.unrest * 0.003 + (personal.some((p) => p.kind === 'reform') ? 0.15 : 0), 0.25, 2.5)); return { id: city.id, name: city.name, regionId: city.regionId, familyId: family.id, governorId: gov?.id || null, productionMultiplier, taxIncome: rounded(city.baseRevenue * productionMultiplier * (state.realm.taxPolicy === 'harsh' ? 1.25 : state.realm.taxPolicy === 'gentle' ? 0.8 : 1)), unrest: city.unrest }; });
   const general = state.people[state.offices.general.holderId]; const generalSupport = general ? familySupport(state, state.families[general.familyId]) : 25;
@@ -309,8 +324,12 @@ export function getCharacterWorldEffects(state) {
 }
 
 function assignOffice(state, office, candidate, events, reason = 'Utnämning') { const previous = state.people[office.holderId]; if (office.id === 'ruler') { crown(state, candidate, events, reason); return; } office.holderId = candidate?.id || null; office.history.push({ personId: candidate?.id || null, date: state.date, reason }); const event = logEvent(state, events, 'appointment', candidate ? `${candidate.name} blir ${office.name.toLowerCase()}` : `${office.name} blir vakant`, reason, [previous?.id, candidate?.id]); if (previous && previous.id !== candidate?.id) { const m = memory(state, 'dismissal', `Avsatt från ${office.name}`, [previous.id, ruler(state)?.id], { causeId: event.id }); opinionCause(state, previous.id, ruler(state)?.id, -20, 'Förlorat ämbete', m.id); state.families[previous.familyId].grievance = clamp(state.families[previous.familyId].grievance - 8, -40, 40); } if (candidate && candidate.id !== previous?.id) { const m = memory(state, 'appointment', `Utnämnd till ${office.name}`, [candidate.id, ruler(state)?.id], { causeId: event.id }); opinionCause(state, candidate.id, ruler(state)?.id, 15, 'Utnämning', m.id); state.families[candidate.familyId].grievance = clamp(state.families[candidate.familyId].grievance + 5, -40, 40); if (office.cityId) state.cities[office.cityId].familyId = candidate.familyId; } }
-function storyContext(state) { const actor = activeRepresentative(state); return { actor, family: controlledFamily(state), canRule: canRule(state), age: (person) => getCharacterAge(person, state.date), stress: (tag) => stressFor(actor, tag) }; }
-function rawStoryChoices(state, story) { const controller = canRule(state); const actor = activeRepresentative(state); const family = controlledFamily(state); const cost = (n, pub) => (pub ? !controller ? 'Kräver härskarmandat.' : state.realm.treasury < n ? 'Otillräcklig statskassa.' : '' : (family?.treasury || 0) < n ? 'Otillräcklig familjekassa.' : '');
+function storyContext(state, eventType = null) {
+  const actor = eventType == null ? activeRepresentative(state) : ['governor_audit', 'veteran_petition'].includes(eventType) ? realmExecutive(state) : householdRepresentative(state);
+  return { actor, family: controlledFamily(state), canRule: canRule(state), age: (person) => getCharacterAge(person, state.date), stress: (tag) => stressFor(actor, tag),
+    ...(eventType == null ? { forEvent: (type) => storyContext(state, type) } : {}) };
+}
+function rawStoryChoices(state, story) { const controller = canRule(state); const actor = activeRepresentative(state); const family = controlledFamily(state); const cost = (n, pub) => (pub ? !controller ? 'Kräver härskarmandat.' : state.realm.treasury < n ? 'Otillräcklig statskassa.' : '' : !householdRepresentative(state) ? 'Familjen saknar en handlingsförmögen företrädare.' : (family?.treasury || 0) < n ? 'Otillräcklig familjekassa.' : '');
   if (story.type === 'character_event') return directedStoryChoices(state, story, storyContext(state));
   if (story.type === 'health_care') return [{ id: 'physician', label: 'Anlita en läkekunnig', description: 'Omvårdnad underlättar återhämtningen och minskar risken för komplikationer. Ingen garanti mot ärr.', cost: '20 familjesilver', stress: String(stressFor(actor, 'generous')), disabledReason: cost(20, false) }, { id: 'rest', label: 'Ordna vila och avlastning', description: 'Lindra belastningen och ge tid för återhämtning.', cost: '5 familjesilver', stress: '0', disabledReason: cost(5, false) }, { id: 'watch', label: 'Avvakta tillståndets förlopp', description: 'Ingen ny vård ordnas. Tillståndet följer kalendern; ett senare beslut kan fortfarande fattas.', cost: '0 silver', stress: '0', disabledReason: '' }];
   if (story.type === 'office_promise') return controller ? [{ id: 'promise', label: 'Ge ett bindande löfte', description: 'Namar får stöd nu; ämbetskravet återkommer om tre år.', cost: '0 silver', stress: '0', disabledReason: '' }, { id: 'compensate', label: 'Betala för tjänsten', description: '30 silver ersätter ett framtida ämbete.', cost: '30 silver ur statskassan', stress: String(stressFor(actor, 'generous')), disabledReason: cost(30, true) }, { id: 'refuse', label: 'Avvisa kravet', description: 'Familjen minns förödmjukelsen och dess stöd sjunker.', cost: '0 silver', stress: String(stressFor(actor, 'cruel')), disabledReason: '' }] : [{ id: 'support', label: 'Stöd familjens krav', description: 'Bygg en politisk förbindelse och öka familjens inflytande.', cost: '10 silver', stress: '0', disabledReason: cost(10, false) }, { id: 'observe', label: 'Avvakta rådets beslut', description: 'Rikets ledning avgör frågan.', cost: '0 silver', stress: '0', disabledReason: '' }];
@@ -359,20 +378,20 @@ function storyChoices(state, story) {
 function resolveStory(state, story, choiceId, events, automatic = false) {
   if (story.status !== 'open') throw new Error('Frågan är redan avgjord.');
   const choices = storyChoices(state, story); const choice = choices.find((c) => c.id === choiceId); if (!choice || choice.disabledReason) throw new Error(choice?.disabledReason || 'Valet är inte giltigt.');
-  const actor = activeRepresentative(state); const leader = isOfficePromise(story) ? realmExecutive(state) : ruler(state); const fam = state.families[story.familyId];
+  const actor = story.type === 'character_event' ? storyContext(state, story.eventType).actor : story.type === 'health_care' ? householdRepresentative(state) : activeRepresentative(state); const leader = isOfficePromise(story) ? realmExecutive(state) : ruler(state); const fam = state.families[story.familyId];
   if (isOfficePromise(story) && choiceId === 'defer') {
     story.status = 'waiting'; story.dueAt = addGameMonths(state.date, 12);
     logEvent(state, events, 'story_deferred', story.title, choice.description, [story.actorId, actor?.id]);
     return;
   }
-  const spend = (n, pub, tag = 'duty') => { if (automatic) { const wallet = pub ? state.realm : controlledFamily(state); if (wallet.treasury < n) throw new Error('Otillräckliga medel.'); wallet.treasury -= n; return actor; } return charge(state, n, { publicFunds: pub, orders: 0, tag }); };
+  const spend = (n, pub, tag = 'duty') => { if (automatic) { const payingActor = pub ? realmExecutive(state) : householdRepresentative(state); if (!canExerciseMandate(payingActor, state.date)) throw new Error('Beslutet saknar en handlingsförmögen företrädare.'); const wallet = pub ? state.realm : controlledFamily(state); if (wallet.treasury < n) throw new Error('Otillräckliga medel.'); wallet.treasury -= n; return payingActor; } return charge(state, n, { publicFunds: pub, orders: 0, tag }); };
   if (story.type === 'character_event') {
     resolveDirectedStory(state, story, choiceId, storyContext(state), { spend,
       memory: (type, title, participants, options) => memory(state, type, title, participants, options),
       opinion: (from, to, amount, label, cause) => opinionCause(state, from, to, amount, label, cause) });
   } else if (story.type === 'health_care') {
     const patient = requirePerson(state, story.actorId); requireOwn(state, patient);
-    if (choiceId !== 'watch') { spend(choiceId === 'physician' ? 20 : 5, false, choiceId === 'physician' ? 'generous' : 'duty'); treatCondition(state, patient, story.conditionId, choiceId, actor.id, events); }
+    if (choiceId !== 'watch') { const carer = spend(choiceId === 'physician' ? 20 : 5, false, choiceId === 'physician' ? 'generous' : 'duty'); treatCondition(state, patient, story.conditionId, choiceId, carer.id, events); }
   } else if (story.type === 'office_promise') {
     const promiseSource = { ...story }; delete promiseSource.reopenedAt;
     if (choiceId === 'promise') { fam.grievance = clamp(fam.grievance + 10, -40, 40); const m = memory(state, 'promise', 'Löfte om guvernörsämbete', [leader?.id, story.actorId], { familyIds: [fam.id], officeId: story.officeId }); state.stories.push({ ...promiseSource, id: nextId(state, 'story'), type: 'promise_due', title: 'Ett ämbete har utlovats', description: 'Familjen väntar på att det bindande löftet ska infrias.', createdAt: state.date, dueAt: addGameMonths(state.date, 36), status: 'waiting', causeId: m.id }); opinionCause(state, story.actorId, leader?.id, 15, 'Ett bindande löfte', m.id); }
@@ -395,7 +414,7 @@ function resolveStory(state, story, choiceId, events, automatic = false) {
 
 function handleGovernanceCommand(state, command, events) {
   const p = command.payload || {};
-  const actor = activeRepresentative(state);
+  const actor = commandActor(state, command.type);
   const family = controlledFamily(state);
   if (command.type === 'seek_refuge') {
     if (state.realm.alive || !family?.exiled) throw new Error('Extern fristad söks efter rikets faktiska upplösning.');
@@ -418,7 +437,7 @@ function handleGovernanceCommand(state, command, events) {
     requireRule(state);
     const claimant = state.people[state.realm.lawfulRulerId];
     if (!alive(claimant) || claimant.id === state.offices.ruler.holderId) throw new Error('Det finns inget åsidosatt rättsligt anspråk att erkänna.');
-    charge(state, 0, { tag: 'surrender' });
+    charge(state, 0, { publicFunds: true, tag: 'surrender' });
     crown(state, claimant, events, 'Den faktiska härskaren erkänner den bestående rättsliga tronföljden', 65, true);
     return true;
   }
@@ -428,7 +447,7 @@ function handleGovernanceCommand(state, command, events) {
   const regent = requirePerson(state, record.regentId, { grown: true });
   const principal = requirePerson(state, record.principalId);
   if (command.type === 'request_regent_consent') {
-    if (record.phase !== 'minority') throw new Error('Efter myndighetsdagen måste själva mandatöverlämningen lösas.');
+    if (!['minority', 'incapacity'].includes(record.phase)) throw new Error('En omstridd mandatöverlämning måste lösas först.');
     if (!regencyVetoForRecord(state, record, p.actionType)) throw new Error('Regentens samtycke behövs inte för detta beslut.');
     if (!['negotiate', 'compensate', 'appeal'].includes(p.approach)) throw new Error('Välj förhandling, ersättning eller rådets prövning.');
     if (record.requestAfter[p.actionType] && compareGameDates(record.requestAfter[p.actionType], state.date) > 0) throw new Error('En ny samtyckesförhandling om samma beslut kan föras om ett år.');
@@ -441,7 +460,7 @@ function handleGovernanceCommand(state, command, events) {
     if (p.approach === 'appeal') family.influence -= 15;
     if (p.approach === 'compensate') regent.wealth += cost;
     record.requestAfter[p.actionType] = addGameMonths(state.date, 12);
-    if (accepted) record.grants.push({ actionType: p.actionType, grantedAt: state.date, expiresAt: addGameMonths(state.date, 12), usedAt: null, approach: p.approach });
+    if (accepted) record.grants.push(attachMandateGrant(record, { actionType: p.actionType, grantedAt: state.date, expiresAt: addGameMonths(state.date, 12), usedAt: null, approach: p.approach }));
     const event = logEvent(state, events, accepted ? 'regent_consent' : 'regent_veto', accepted ? 'Regentens veto hävs för ett beslut' : 'Regenten står fast vid sitt veto', `${regent.name}: samarbetsvilja ${Math.round(cooperation)}, rådsstöd ${Math.round(support)}. ${accepted ? 'Tillståndet gäller en lyckad handling inom ett år.' : 'Förhandlingen kostar resurser men ökar den personliga tilliten. Försök igen om ett år eller välj en annan politik.'}`, [principal.id, regent.id]);
     opinionCause(state, regent.id, principal.id, accepted ? 5 : 10, 'Förhandling om förmyndarmandat', event.id, 5);
     memory(state, event.type, event.title, event.participants, { causeId: event.id });
@@ -466,9 +485,10 @@ function handleGovernanceCommand(state, command, events) {
 }
 
 function handleCommand(state, command, events) {
-  const p = command.payload || {}; const type = command.type; const veto = regencyVeto(state, type); if (veto) throw new Error(veto); const actor = activeRepresentative(state); const ownFamily = controlledFamily(state);
+  const p = command.payload || {}; const type = command.type; const veto = regencyVeto(state, type); if (veto) throw new Error(veto); const actor = commandActor(state, type); const ownFamily = controlledFamily(state);
   if (handleGovernanceCommand(state, command, events)) { refreshMandates(state, events); refreshStories(state, events); updateStatus(state); return; }
   if (type === 'resolve_story') { const story = state.stories.find((s) => s.id === p.storyId && visibleTo(state, s)); if (!story || (story.status !== 'open')) throw new Error('Berättelsen är inte tillgänglig.'); resolveStory(state, story, p.choiceId, events); refreshMandates(state, events); refreshStories(state, events); updateStatus(state); return; }
+  if (!canExerciseMandate(actor, state.date)) throw new Error('Beslutet saknar en handlingsförmögen företrädare. Kalendern kan fortsätta.');
   if (type === 'provide_care') { const patient = requirePerson(state, p.personId); requireOwn(state, patient); if (!['physician', 'rest'].includes(p.care)) throw new Error('Välj vila eller en läkekunnig.'); if (!getTreatableConditions(patient).some((condition) => condition.id === p.conditionId)) throw new Error('Välj ett obehandlat pågående tillstånd.'); charge(state, p.care === 'physician' ? 20 : 5, { tag: p.care === 'physician' ? 'generous' : 'duty' }); treatCondition(state, patient, p.conditionId, p.care, actor.id, events); }
   else if (type === 'rest') { charge(state, 10, { orders: 1, tag: 'duty' }); actor.stress = Math.max(0, actor.stress - 30); actor.health = clamp(actor.health + 5); logEvent(state, events, 'rest', 'Tid för återhämtning', `${actor.name} återhämtar sig. Stress −30, hälsa +5.`, [actor.id]); }
   else if (type === 'gift') { const target = requirePerson(state, p.targetId, { grown: true }); if (target.id === actor.id) throw new Error('Välj en annan person.'); const cooldown = actor.cooldowns[`gift:${target.id}`]; if (cooldown && compareGameDates(cooldown, state.date) > 0) throw new Error('En ny gåva uppskattas först om ett år.'); charge(state, 15, { tag: 'generous' }); target.wealth += 15; const m = memory(state, 'gift', 'En personlig gåva', [actor.id, target.id]); opinionCause(state, target.id, actor.id, 15, 'En uppskattad gåva', m.id, 6); actor.cooldowns[`gift:${target.id}`] = addGameMonths(state.date, 12); logEvent(state, events, 'gift', 'En relation stärks', `${target.name} uppskattar gåvan från ${actor.name}.`, [actor.id, target.id]); }
@@ -480,7 +500,7 @@ function handleCommand(state, command, events) {
     if (office.publicBudget < 10) throw new Error('Ämbetets budget behöver fyllas på genom förvaltning över tid.');
     const key = 'office:' + office.id;
     if (actor.cooldowns[key] && compareGameDates(actor.cooldowns[key], state.date) > 0) throw new Error('Ett större ämbetsinitiativ per år är möjligt.');
-    charge(state, 0, { tag: p.policy === 'patronage' ? 'betrayal' : 'duty' });
+    charge(state, 0, { publicFunds: canRule(state), tag: p.policy === 'patronage' ? 'betrayal' : 'duty' });
     office.publicBudget -= 10;
     actor.cooldowns[key] = addGameMonths(state.date, 12);
     if (p.policy === 'service') {
@@ -513,7 +533,7 @@ function handleCommand(state, command, events) {
   else if (type === 'sell_estate') { if (ownFamily.estates < 1) throw new Error('Familjen saknar egendom att sälja.'); charge(state, 0); ownFamily.estates -= 1; ownFamily.treasury += ownFamily.exiled ? 20 : 35; logEvent(state, events, 'property', 'Familjen säljer egendom', 'Likvida medel ökar men framtida egendomsinkomster minskar.', [actor.id]); }
   else if (type === 'tax_policy') { requireRule(state); if (!['gentle', 'balanced', 'harsh'].includes(p.policy)) throw new Error('Ogiltig skattepolitik.'); if (state.realm.taxPolicy === p.policy) throw new Error('Politiken gäller redan.'); charge(state, 10, { publicFunds: true, tag: p.policy === 'harsh' ? 'cruel' : 'duty' }); state.realm.taxPolicy = p.policy; for (const family of values(state.families)) family.grievance = clamp(family.grievance + (p.policy === 'harsh' ? -8 : p.policy === 'gentle' ? 6 : 2), -40, 40); logEvent(state, events, 'policy', 'Skattepolitiken ändras', p.policy === 'harsh' ? 'Högre intäkter ökar familjernas missnöje och stadens oro.' : 'Skatterna anpassas och stödet räknas om.', [actor.id]); }
   else if (type === 'patronize_faith') { const faith = state.religions[p.religionId]; if (!faith) throw new Error('Välj ett religiöst samfund.'); charge(state, 20, { publicFunds: canRule(state), tag: 'generous' }); faith.support = clamp(faith.support + 12); ownFamily.influence = clamp(ownFamily.influence + 4); memory(state, 'religion', `Stöd till ${faith.name}`, [actor.id, faith.leaderId]); logEvent(state, events, 'religion', 'Ett religiöst samfund får stöd', `${faith.name} stärker sitt politiska stöd med 12.`, [actor.id, faith.leaderId]); }
-  else if (Object.values(ARCHETYPES).some((a) => a.action === type)) { requireRule(state); const archetype = ARCHETYPES[actor.archetype]; if (archetype.action !== type) throw new Error('Den aktiva ledaren saknar denna arketypförmåga.'); if (state.projects.some((project) => project.kind === type && project.status === 'active')) throw new Error('Förmågan är redan aktiv.'); if (actor.cooldowns[type] && compareGameDates(actor.cooldowns[type], state.date) > 0) throw new Error('Förmågan kan användas igen nästa år.'); if (type === 'academy' && state.realm.academy) throw new Error('Akademin finns redan.'); charge(state, archetype.cost, { publicFunds: true, tag: type === 'mobilize' ? 'risky' : 'duty' }); actor.cooldowns[type] = addGameMonths(state.date, 12);
+  else if (Object.values(ARCHETYPES).some((a) => a.action === type)) { requireRule(state); const archetype = ARCHETYPES[actor.archetype]; if (archetype.action !== type) throw new Error('Den aktiva ledaren saknar denna arketypförmåga.'); if (state.projects.some((project) => project.kind === type && project.status === 'active' && (!project.personal || project.ownerId === actor.id))) throw new Error('Förmågan är redan aktiv.'); if (actor.cooldowns[type] && compareGameDates(actor.cooldowns[type], state.date) > 0) throw new Error('Förmågan kan användas igen nästa år.'); if (type === 'academy' && state.realm.academy) throw new Error('Akademin finns redan.'); charge(state, archetype.cost, { publicFunds: true, tag: type === 'mobilize' ? 'risky' : 'duty' }); actor.cooldowns[type] = addGameMonths(state.date, 12);
     if (['mobilize', 'reform', 'sanctuary'].includes(type)) { state.projects.push({ id: nextId(state, 'project'), kind: type, title: archetype.ability, ownerId: actor.id, createdAt: state.date, dueAt: addGameMonths(state.date, 36), personal: true, status: 'active' });  }
     if (type === 'concord') { for (const f of values(state.families)) { f.grievance = clamp(f.grievance + 10, -40, 40); opinionCause(state, f.headId, actor.id, 8, 'Försoningsråd', `concord:${state.date}`); } }
     if (type === 'academy' || type === 'aqueduct') state.projects.push({ id: nextId(state, 'project'), kind: type, title: archetype.ability, ownerId: actor.id, createdAt: state.date, dueAt: addGameMonths(state.date, type === 'academy' ? 36 : 24), personal: false, status: 'active' });
@@ -530,11 +550,11 @@ export function executeCharacterCommand(original, command) {
   if (original.appliedCommandIds.includes(command.id)) return { ok: true, state: original, events: [], error: null, duplicate: true };
   if (command.expectedRevision !== original.revision) return { ok: false, state: original, events: [], error: 'Världen har ändrats. Läs det senaste läget och försök igen.' };
   if (original.status.ended) return { ok: false, state: original, events: [], error: original.status.reason };
-  try { const state = copy(original); ensureHealthState(state); const events = []; handleCommand(state, command, events); consumeRegencyConsent(state, command.type); state.appliedCommandIds.push(command.id); state.revision++; return { ok: true, state, events, error: null }; } catch (error) { return { ok: false, state: original, events: [], error: error.message }; }
+  try { const state = copy(original); ensureHealthState(state); const events = []; refreshRepresentation(state, events, { silent: original.mandateVersion == null }); handleCommand(state, command, events); consumeRegencyConsent(state, command.type); state.appliedCommandIds.push(command.id); state.revision++; return { ok: true, state, events, error: null }; } catch (error) { return { ok: false, state: original, events: [], error: error.message }; }
 }
 
 function closeKin(state, a, b) { if (a.familyId === b.familyId && (a.legalParentIds.length === 0 || b.legalParentIds.length === 0)) return true; const ancestors = (person) => new Set([...person.biologicalParentIds, ...person.legalParentIds, ...person.biologicalParentIds.flatMap((id) => state.people[id]?.biologicalParentIds || [])]); const aa = ancestors(a); const bb = ancestors(b); return aa.has(b.id) || bb.has(a.id) || [...aa].some((id) => bb.has(id)); }
-export function evaluateCharacterDecision(state, personId) { const person = state.people[personId]; if (!adult(state, person)) return { personId, choice: 'wait', reasons: ['Ingen myndig handlingsförmåga.'], scores: {} }; const family = state.families[person.familyId]; const leader = ruler(state); const holdsOffice = values(state.offices).some((o) => o.holderId === person.id); const support = familySupport(state, family); const opinion = getPersonalOpinion(state, person.id, leader?.id); const danger = (100 - person.health) / 100 + person.stress / 200; const scores = { serve: 20 + person.loyalty * 0.35 + (has(person, 'dutiful') ? 22 : 0) + (holdsOffice ? 10 : 0), seek_office: 12 + (has(person, 'ambitious') ? 35 : 0) + person.skills.diplomacy + (holdsOffice ? -35 : 8) - danger * 30, enrich: 12 + (has(person, 'greedy') ? 35 : 0) + person.skills.stewardship - danger * 15, reconcile: 12 + (has(person, 'compassionate') || has(person, 'gregarious') ? 30 : 0) + (support < 40 ? 12 : 0), plot: Math.max(0, -opinion * 0.4 + (50 - support) * 0.5) + (has(person, 'vengeful') ? 25 : 0) + (has(person, 'ambitious') ? 12 : 0) - (has(person, 'dutiful') ? 20 : 0) - (has(person, 'cautious') ? 18 : 0) - danger * 40 - person.fear * (has(person, 'cautious') ? 0.4 : 0.15), recover: 8 + person.stress * 0.65 + (has(person, 'cautious') ? 10 : 0) + (100 - person.health) * 0.35 };
+export function evaluateCharacterDecision(state, personId) { const person = state.people[personId]; if (!canExerciseMandate(person, state.date)) return { personId, choice: 'wait', reasons: ['Personen kan inte utöva ett mandat just nu.'], scores: {} }; const family = state.families[person.familyId]; const leader = ruler(state); const holdsOffice = values(state.offices).some((o) => o.holderId === person.id); const support = familySupport(state, family); const opinion = getPersonalOpinion(state, person.id, leader?.id); const danger = (100 - person.health) / 100 + person.stress / 200; const scores = { serve: 20 + person.loyalty * 0.35 + (has(person, 'dutiful') ? 22 : 0) + (holdsOffice ? 10 : 0), seek_office: 12 + (has(person, 'ambitious') ? 35 : 0) + person.skills.diplomacy + (holdsOffice ? -35 : 8) - danger * 30, enrich: 12 + (has(person, 'greedy') ? 35 : 0) + person.skills.stewardship - danger * 15, reconcile: 12 + (has(person, 'compassionate') || has(person, 'gregarious') ? 30 : 0) + (support < 40 ? 12 : 0), plot: Math.max(0, -opinion * 0.4 + (50 - support) * 0.5) + (has(person, 'vengeful') ? 25 : 0) + (has(person, 'ambitious') ? 12 : 0) - (has(person, 'dutiful') ? 20 : 0) - (has(person, 'cautious') ? 18 : 0) - danger * 40 - person.fear * (has(person, 'cautious') ? 0.4 : 0.15), recover: 8 + person.stress * 0.65 + (has(person, 'cautious') ? 10 : 0) + (100 - person.health) * 0.35 };
   if (person.goal?.type === 'office') scores.seek_office += 6; if (person.goal?.type === 'security') scores.recover += 5; if (person.lastDecision?.choice && scores[person.lastDecision.choice] !== undefined) scores[person.lastDecision.choice] += 4;
   if (person.id === leader?.id || family.influence < 25 || family.treasury < 5 || family.exiled) scores.plot = -Infinity;
   const choice = Object.keys(scores).sort((a, b) => scores[b] - scores[a] || a.localeCompare(b))[0];
@@ -585,16 +605,20 @@ export function advanceCharacters(original, targetDate, options = {}) {
   if (compareGameDates(date, original.date) < 0) return { ok: false, state: original, events: [], error: 'Tiden kan bara återställas genom en tidigare sparad värld.' };
   if (date === original.date || original.status.ended) return { ok: true, state: original, events: [], error: null };
   if (diffGameDays(original.date, date) > 366 * 500) return { ok: false, state: original, events: [], error: 'Dela upp tidshopp som är längre än 500 år.' };
+  try {
   const state = copy(original); ensureHealthState(state); const events = [];
+  refreshRepresentation(state, events, { silent: original.mandateVersion == null });
   for (let next = getNextCharacterTransitionDate(state, date); next; next = getNextCharacterTransitionDate(state, date)) {
     state.date = next;
     const fatalities = advanceHealthTransitions(state, events, { representativeId: activeRepresentative(state)?.id, playerFamilyId: controlledFamily(state)?.id, nominalId: state.identity.mode === 'realm' ? state.offices.ruler.holderId : state.families[state.identity.familyId]?.headId });
     killPeople(state, fatalities.map((fatality) => fatality.personId), events, Object.fromEntries(fatalities.map((fatality) => [fatality.personId, fatality.reason])));
+    refreshRepresentation(state, events);
     if (compareGameDates(state.nextAnnualDate, state.date) <= 0 && !state.status.ended) { annualStep(state, events); state.nextAnnualDate = addGameMonths(state.nextAnnualDate, 12); }
     refreshStories(state, events); updateStatus(state);
     if (state.status.ended) { if (compareGameDates(state.nextAnnualDate, state.date) <= 0) state.nextAnnualDate = addGameMonths(state.nextAnnualDate, 12); break; }
   }
   if (!state.status.ended) state.date = date; state.appliedCommandIds.push(id); state.revision++; return { ok: true, state, events, error: null };
+  } catch (error) { return { ok: false, state: original, events: [], error: error.message }; }
 }
 
 /** Earliest actual simulation boundary, including subannual health changes. */
@@ -602,46 +626,47 @@ export function getNextCharacterTransitionDate(state, targetDate) {
   const target = normalizeGameDate(targetDate);
   if (!state || state.status.ended || !target || compareGameDates(target, state.date) <= 0) return null;
   const storyDeadlines = state.stories.filter((story) => (story.type === 'character_event' && story.status === 'open') || (isOfficePromise(story) && story.status === 'waiting')).map((story) => story.dueAt);
-  const dates = [state.nextAnnualDate, getNextHealthTransitionDate(state), ...storyDeadlines, target].filter((date) => date && compareGameDates(date, state.date) > 0 && compareGameDates(date, target) <= 0);
+  const majorityDates = living(state).filter((person) => !adult(state, person)).map((person) => addGameMonths(person.bornAt, ADULT_AGE * 12));
+  const dates = [state.nextAnnualDate, getNextHealthTransitionDate(state), ...majorityDates, ...storyDeadlines, target].filter((date) => date && compareGameDates(date, state.date) > 0 && compareGameDates(date, target) <= 0);
   return dates.sort(compareGameDates)[0] || target;
 }
 
 const selectField = (key, label, items) => ({ key, label, type: 'select', options: items.map((item) => ({ value: item.id ?? item.value, label: item.name ?? item.label })) });
 export function getAvailableCharacterActions(state) {
-  const actor = activeRepresentative(state); const family = controlledFamily(state); if (!actor || state.status.ended) return [];
+  const actor = activeRepresentative(state); const householdActor = householdRepresentative(state); const family = controlledFamily(state); if (!actor || state.status.ended) return [];
   const publicRight = canRule(state); const people = living(state).filter((p) => adult(state, p)); const ownPeople = people.filter((p) => p.familyId === family?.id); const children = living(state).filter((p) => !adult(state, p)); const offices = values(state.offices).filter((o) => o.kind !== 'ruler'); const otherFamilies = values(state.families).filter((f) => f.id !== family?.id); const base = state.actionPoints < 1 ? 'Årets handlingar är slut. För tiden framåt.' : !adult(state, actor) ? 'Ingen myndig företrädare finns.' : '';
   const actions = [];
-  function add(type, label, description, amount, fields = [], pub = false, tag = 'duty', extraReason = '') { const wallet = pub ? state.realm : family; actions.push({ type, label, description, cost: `${amount} silver ur ${pub ? 'statskassan' : 'familjekassan'} · 1 handling`, stress: String(stressFor(actor, tag)), disabledReason: base || extraReason || regencyVeto(state, type) || (pub && !publicRight ? 'Kräver härskarmandat.' : wallet?.treasury < amount ? 'Otillräckligt med silver.' : fields.some((field) => !field.options.length) ? 'Ingen behörig deltagare finns.' : ''), fields }); }
+  function add(type, label, description, amount, fields = [], pub = false, tag = 'duty', extraReason = '') { const wallet = pub ? state.realm : family; const acting = commandActor(state, type); actions.push({ type, label, description, actorId: acting?.id || null, actorName: acting?.name || null, payer: { kind: pub ? 'realm' : 'family', id: pub ? state.realm.id : family?.id }, cost: `${amount} silver ur ${pub ? 'statskassan' : 'familjekassan'} · 1 handling`, stress: String(stressFor(acting, tag)), disabledReason: base || (!canExerciseMandate(acting, state.date) ? 'Mandatet saknar en handlingsförmögen företrädare.' : '') || extraReason || regencyVeto(state, type) || (pub && !publicRight ? 'Kräver härskarmandat.' : wallet?.treasury < amount ? 'Otillräckligt med silver.' : fields.some((field) => !field.options.length) ? 'Ingen behörig deltagare finns.' : ''), fields }); }
   const patients = familyMembers(state, family?.id).filter((person) => getTreatableConditions(person).length);
   if (patients.length) {
     add('provide_care', 'Ordna vård i hushållet', 'Välj ett pågående tillstånd. Omvårdnad och vila lindrar följderna; utgången avgörs av sparade regler och kalendern.', 5, [selectField('personId', 'Person', patients), selectField('conditionId', 'Tillstånd', patients.flatMap((person) => getTreatableConditions(person).map((condition) => ({ id: condition.id, name: person.name + ' · ' + HEALTH_CONDITION_LABELS[condition.kind] })))), selectField('care', 'Omvårdnad', [{ id: 'rest', name: 'Vila och avlastning · 5 silver' }, { id: 'physician', name: 'En läkekunnig · 20 silver' }])]);
     actions.at(-1).cost = 'Vila 5 eller läkekunnig 20 familjesilver · 1 handling';
   }
-  add('rest', 'Återhämta dig', 'Stress −30 och hälsa +5.', 10);
-  add('gift', 'Ge en personlig gåva', 'Förbättra en riktad relation. En gåva per mottagare och år.', 15, [selectField('targetId', 'Mottagare', people.filter((p) => p.id !== actor.id))], false, 'generous');
+  add('rest', 'Återhämta dig', `${householdActor?.name || 'Familjens företrädare'}: stress −30 och hälsa +5.`, 10);
+  add('gift', 'Ge en personlig gåva', 'Förbättra en riktad relation. En gåva per mottagare och år.', 15, [selectField('targetId', 'Mottagare', people.filter((p) => p.id !== householdActor?.id))], false, 'generous');
   add('build_estate', 'Utveckla familjens egendom', 'En bestående egendom färdigställs om två år och ger inkomster.', 45, [], false, 'duty', family?.exiled && !family.hostFamilyId && !family.hostPolityId ? 'Sök en beskyddare före jordköp.' : '');
   add('build_support', 'Bygg politiskt stöd', 'Förhandla med en annan familj. Inflytande +12 och en personlig förbindelse.', 15, [selectField('familyId', 'Familj', otherFamilies)], false, 'generous');
   if (state.realm.alive) add('seek_office', 'Sök ett ämbete', 'Rådet väger inflytande, diplomati och härskarens personliga inställning.', 15, [selectField('officeId', 'Ämbete', offices)], false, 'duty', family?.exiled ? 'Återvänd från exil först.' : '');
   add('educate', 'Utse en mentor', 'Styr utbildningen av ett barn i familjen. Personligheten förblir delvis osäker.', 15, [selectField('childId', 'Barn', children.filter((p) => p.familyId === family?.id)), selectField('mentorId', 'Mentor', people), selectField('focus', 'Utbildning', Object.entries(SKILL_LABELS).map(([id, name]) => ({ id, name })))]);
   add('marry', 'Förhandla om äktenskap', 'Två myndiga personer behöver vara fria och acceptera förbindelsen.', 20, [selectField('personId', 'Familjemedlem', ownPeople.filter((p) => !alive(state.people[p.spouseId]))), selectField('partnerId', 'Föreslagen partner', people.filter((p) => !alive(state.people[p.spouseId])))]);
-  add('adopt', 'Adoptera en arvinge', 'Skapar juridiskt föräldraskap; en annan familj behöver samtycka.', 25, [selectField('childId', 'Barn', children.filter((p) => !p.legalParentIds.includes(actor.id)))]);
+  add('adopt', 'Adoptera en arvinge', 'Skapar juridiskt föräldraskap; en annan familj behöver samtycka.', 25, [selectField('childId', 'Barn', children.filter((p) => !p.legalParentIds.includes(householdActor?.id)))]);
   add('patronize_faith', 'Stöd ett religiöst samfund', 'Samfundets politiska stöd ökar med 12.', 20, [selectField('religionId', 'Samfund', values(state.religions))], publicRight, 'generous');
-  add('livelihood', 'Sök försörjning', `Arbete och handel ger ${12 + actor.skills.stewardship} silver. Stress +4.`, 0);
+  add('livelihood', 'Sök försörjning', householdActor ? `Arbete och handel ger ${12 + householdActor.skills.stewardship} silver. Stress +4.` : 'En handlingsförmögen företrädare kan ordna arbete och handel för hushållet.', 0);
   add('sell_estate', 'Sälj familjeegendom', 'Likvida medel nu, lägre inkomster senare.', 0, [], false, 'duty', family?.estates < 1 ? 'Ingen egendom finns att sälja.' : '');
   const ownOffices = offices.filter((o) => o.holderId === actor.id);
   if (ownOffices.length) { add('exercise_office', 'Utöva ditt ämbete', 'Använd ämbetets avgränsade budget till offentlig tjänst eller familjens klienter. Valet påverkar verklig förvaltning och politik.', 0, [selectField('officeId', 'Ditt ämbete', ownOffices), selectField('policy', 'Inriktning', [{ id: 'service', name: 'Offentlig tjänst' }, { id: 'patronage', name: 'Familjens klienter' }])]); actions.at(-1).cost = '10 silver ur ämbetets budget · 1 handling'; actions.at(-1).stress = 'Tjänst: ' + stressFor(actor, 'duty') + ' · Klienter: ' + stressFor(actor, 'betrayal'); }
   const lawfulClaim = family && familyRoyalClaim(state, family.id);
   if (state.realm.alive && !publicRight && actor.id !== state.offices.ruler.holderId) add('press_claim', lawfulClaim ? 'Återupprätta familjens rättsliga anspråk' : 'Driv anspråket på tronen', lawfulClaim ? 'Den rättsliga pretendenten ' + lawfulClaim.name + ' får 20 extra maktstöd och behöver minst 45 inflytande.' : 'Inflytande och befäl vägs mot arméns beredskap och härskarens legitimitet.', 40, [], false, 'risky', family?.influence < (lawfulClaim ? 45 : 60) ? 'Familjen behöver mer inflytande.' : '');
   if (family?.exiled && state.realm.alive) { add('seek_patron', 'Sök skydd hos en familj', 'En beskyddare ger hemvist och tillgång till försörjning.', 10, [selectField('familyId', 'Beskyddare', otherFamilies.filter((f) => !f.exiled))]); add('return_exile', 'Förhandla om återkomst', 'Inflytande och härskarens inställning behöver tillsammans nå 65.', 30); }
-  if (publicRight) { add('appoint', 'Utse en ämbetsinnehavare', 'Offentliga rättigheter följer ämbetet. Förbigångna personer och familjer reagerar.', 15, [selectField('officeId', 'Ämbete', offices), selectField('personId', 'Kandidat', people)], true); add('dismiss', 'Avsätt en ämbetsinnehavare', 'Ämbetet blir vakant. Personens och familjens egna tillgångar består.', 5, [selectField('officeId', 'Ämbete', offices.filter((o) => o.holderId))], true, 'cruel'); add('tax_policy', 'Ändra skattepolitik', 'Intäkter, politiskt stöd och lokal oro förändras tillsammans.', 10, [selectField('policy', 'Skattenivå', [{ id: 'gentle', name: 'Låg' }, { id: 'balanced', name: 'Balanserad' }, { id: 'harsh', name: 'Hög' }])], true); add('banish', 'Förvisa en politisk familj', 'Förlorade ämbeten och åtkomst skapar bestående oförrätter. Legitimitet −15.', 30, [selectField('familyId', 'Familj', otherFamilies.filter((f) => !f.exiled))], true, 'cruel'); add('abdicate', 'Abdikera enligt successionsordningen', 'Nästa lagliga kandidat tar över. Personliga förmågor upphör och spelidentiteten följer kampanjvalet.', 0, [], true, 'surrender', state.offices.ruler.regentId ? 'Regenten kan inte avsäga sig barnets tron.' : ''); const a = ARCHETYPES[actor.archetype]; add(a.action, a.ability, a.description, a.cost, [], true, a.action === 'mobilize' ? 'risky' : 'duty', state.projects.some((p) => p.kind === a.action && p.status === 'active') ? 'Förmågan är redan aktiv.' : a.action === 'academy' && state.realm.academy ? 'Akademin finns redan.' : ''); }
+  if (publicRight) { add('appoint', 'Utse en ämbetsinnehavare', 'Offentliga rättigheter följer ämbetet. Förbigångna personer och familjer reagerar.', 15, [selectField('officeId', 'Ämbete', offices), selectField('personId', 'Kandidat', people)], true); add('dismiss', 'Avsätt en ämbetsinnehavare', 'Ämbetet blir vakant. Personens och familjens egna tillgångar består.', 5, [selectField('officeId', 'Ämbete', offices.filter((o) => o.holderId))], true, 'cruel'); add('tax_policy', 'Ändra skattepolitik', 'Intäkter, politiskt stöd och lokal oro förändras tillsammans.', 10, [selectField('policy', 'Skattenivå', [{ id: 'gentle', name: 'Låg' }, { id: 'balanced', name: 'Balanserad' }, { id: 'harsh', name: 'Hög' }])], true); add('banish', 'Förvisa en politisk familj', 'Förlorade ämbeten och åtkomst skapar bestående oförrätter. Legitimitet −15.', 30, [selectField('familyId', 'Familj', otherFamilies.filter((f) => !f.exiled))], true, 'cruel'); add('abdicate', 'Abdikera enligt successionsordningen', 'Nästa lagliga kandidat tar över. Personliga förmågor upphör och spelidentiteten följer kampanjvalet.', 0, [], true, 'surrender', state.offices.ruler.regentId ? 'Regenten kan inte avsäga sig barnets tron.' : ''); const a = ARCHETYPES[actor.archetype]; add(a.action, a.ability, a.description, a.cost, [], true, a.action === 'mobilize' ? 'risky' : 'duty', state.projects.some((p) => p.kind === a.action && p.status === 'active' && (!p.personal || p.ownerId === actor.id)) ? 'Förmågan är redan aktiv.' : a.action === 'academy' && state.realm.academy ? 'Akademin finns redan.' : ''); }
   if (family?.exiled && !state.realm.alive) {
     const hosts = state.externalHosts.filter((host) => host.id !== family.hostPolityId);
     add('seek_refuge', 'Förhandla om fristad i ett annat rike', 'Mottagaren måste acceptera. Inflytande + diplomati ×3 + mottagarens åsikt /2 prövas mot dess krav. Ingen stat skapas av förhandlingen.', 0, [selectField('polityId', 'Verklig mottagare', hosts.map((host) => ({ id: host.id, name: host.name + ' · ' + host.admissionCost + ' silver · krav ' + host.refugeThreshold })))], false, 'surrender');
     actions.at(-1).cost = 'Mottagarens kostnad (vanligen 20 familjesilver) · 1 handling';
   }
-  if (publicRight && state.realm.lawfulRulerId !== state.offices.ruler.holderId) add('recognize_claim', 'Erkänn det rättsliga tronanspråket', 'Lämna tronen till ' + state.people[state.realm.lawfulRulerId]?.name + '. Familjens privata tillgångar består.', 0, [], false, 'surrender');
+  if (publicRight && state.realm.lawfulRulerId !== state.offices.ruler.holderId) add('recognize_claim', 'Erkänn det rättsliga tronanspråket', 'Lämna tronen till ' + state.people[state.realm.lawfulRulerId]?.name + '. Familjens privata tillgångar består.', 0, [], true, 'surrender');
   const governance = describeGovernance(state);
-  const minority = governance.regencies.filter((record) => record.phase === 'minority' && record.vetoedActions.length);
+  const minority = governance.regencies.filter((record) => ['minority', 'incapacity'].includes(record.phase) && canExerciseMandate(state.people[record.regentId], state.date) && record.vetoedActions.length);
   if (minority.length) {
     const denied = [...new Set(minority.flatMap((record) => record.vetoedActions.filter((type) => actions.some((action) => action.type === type))))];
     add('request_regent_consent', 'Förhandla om regentens samtycke', 'Veto kan hävas för ett lyckat beslut inom ett år. Förhandling behöver 60 samarbetsvilja; ersättning ger +35; rådet behöver 65 stöd. Avslag förbrukar insatsen.', 0, [selectField('regencyId', 'Mandat', minority.map((record) => ({ id: record.id, name: record.regentName + (record.id.startsWith('office:') ? ' · rikets regent' : ' · familjens förmyndare') }))), selectField('actionType', 'Beslut', denied.map((id) => ({ id, name: actions.find((action) => action.type === id)?.label || ARCHETYPES[Object.keys(ARCHETYPES).find((key) => ARCHETYPES[key].action === id)]?.ability || id }))), selectField('approach', 'Väg', [{ id: 'negotiate', name: 'Förhandla · 10 familjesilver' }, { id: 'compensate', name: 'Ersätt regenten · 30 familjesilver' }, { id: 'appeal', name: 'Rådets prövning · 15 inflytande' }])]);
@@ -664,11 +689,28 @@ function presentStory(state, story) {
     fallbackDescription: fallback ? `${fallback.label}. ${fallback.description} Kostnad: 0 silver.` : null, choices };
 }
 
+function describeCharacterAuthority(state) {
+  const family = controlledFamily(state);
+  const describe = (scope) => {
+    const principalId = scope === 'royal' ? state.offices.ruler.holderId : family?.headId;
+    const principal = state.people[principalId];
+    const record = state.regencies[scope === 'royal' ? 'office:ruler' : `family:${family?.id}`];
+    const representative = scope === 'royal' ? realmExecutive(state) : householdRepresentative(state);
+    const contested = record?.principalId === principalId && record.phase === 'contested';
+    const reason = contested ? 'contested' : alive(principal) && !adult(state, principal) ? 'minority' : getIncapacityCauseIds(principal, state.date).length ? 'incapacity' : null;
+    const blockedReason = contested ? 'Mandatöverlämningen är omstridd. De reserverade besluten är spärrade tills konflikten är löst.' : !representative ?
+      scope === 'royal' && !state.realm.alive ? 'Riket har upplösts.' : 'Ingen handlingsförmögen företrädare finns just nu. Kalendern kan fortsätta.' : '';
+    return { principalId: principalId || null, representativeId: representative?.id || null, reason, blockedReason,
+      playerCanExercise: !state.status.ended && (scope === 'royal' ? canRule(state) : Boolean(representative)) };
+  };
+  return { royal: describe('royal'), household: describe('household') };
+}
+
 export function getCharacterPresentation(state) {
   if (!state) return null; const leader = ruler(state); const representative = activeRepresentative(state); const family = controlledFamily(state); const effects = getCharacterWorldEffects(state);
   const people = values(state.people).map((p) => ({ ...copy(p), healthConditions: publicHealthConditions(p, p.diedAt || state.date), portraitState: resolvePortraitState(p, state.date, { family: state.families[p.familyId] }), portraitId: p.portraitId && p.portraitSourceAgeGroup === portraitGroup(getCharacterAge(p, p.diedAt || state.date)) ? p.portraitId : `fallback-${p.sex}-${portraitGroup(getCharacterAge(p, p.diedAt || state.date))}`, portraitAgeGroup: portraitGroup(getCharacterAge(p, p.diedAt || state.date)), age: getCharacterAge(p, p.diedAt || state.date), alive: alive(p), familyName: state.families[p.familyId]?.name || '', archetypeLabel: ARCHETYPES[p.archetype]?.name || p.archetype, traitLabels: p.traits.map((t) => TRAITS[t]?.name || t), roleNames: values(state.offices).filter((o) => o.holderId === p.id).map((o) => o.name), opinion: representative ? getPersonalOpinion(state, p.id, representative.id) : 0, opinionReasons: representative ? opinionReasons(state, p.id, representative.id) : [], relations: values(state.relations).filter((r) => r.fromId === p.id && r.bonds.length).map((r) => ({ targetId: r.toId, targetName: state.people[r.toId]?.name || r.toId, types: [...r.bonds] })), stressLevel: p.stress >= 100 ? 'Kris' : p.stress >= 60 ? 'Belastad' : 'Samlad', goalLabel: ({ office: 'Söker inflytande och ämbete', security: 'Skyddar familjens trygghet', wealth: 'Bygger förmögenhet', education: 'Utbildas' })[p.goal?.type] || 'Fullgör sitt uppdrag', lastDecision: p.id === representative?.id ? copy(p.lastDecision) : null, cooldowns: undefined }));
   const families = values(state.families).map((f) => ({ ...copy(f), headName: state.people[f.headId]?.name || 'Ingen', guardianName: state.people[f.guardianId]?.name || null, support: Math.round(familySupport(state, f)), supportReasons: familySupportReasons(state, f), income: f.estates * (f.exiled ? (f.hostFamilyId || f.hostPolityId) ? 1 : 0 : 6), memberIds: familyMembers(state, f.id).map((p) => p.id), officeCount: values(state.offices).filter((o) => state.people[o.holderId]?.familyId === f.id).length, statusLabel: f.exiled ? f.hostPolityId ? 'Exil under ' + f.hostPolityName + 's accepterade skydd' : f.hostFamilyId ? `Exil under ${state.families[f.hostFamilyId]?.name}s skydd` : 'Skyddslöst hushåll' : 'Etablerad' }));
-  return { date: state.date, revision: state.revision, mode: state.identity.mode, identity: { ...state.identity, familyName: state.families[state.identity.familyId]?.name, realmName: state.realm.name }, ruler: people.find((p) => p.id === leader?.id) || null, representative: people.find((p) => p.id === representative?.id) || null, people, families, offices: values(state.offices).map((o) => ({ ...copy(o), holderName: state.people[o.holderId]?.name || 'Vakant', regentName: state.people[o.regentId]?.name || null })), cities: effects.cityEffects.map((c) => ({ ...c, familyName: state.families[c.familyId]?.name, governorName: state.people[c.governorId]?.name || 'Vakant' })), religions: values(state.religions).map((r) => ({ ...r, support: religiousSupport(state, r.id), leaderName: state.people[r.leaderId]?.name || 'Vakant' })), memories: state.memories.filter((m) => visibleTo(state, m)).map((m) => ({ ...copy(m), participantNames: m.participants.map((id) => state.people[id]?.name || id) })), stories: state.stories.filter((s) => visibleTo(state, s) && ['open', 'waiting'].includes(s.status)).map((s) => presentStory(state, s)), projects: copy(state.projects), actions: getAvailableCharacterActions(state), economy: { treasury: effects.treasury, annualRevenue: effects.annualRevenue, familyTreasury: rounded(family?.treasury || 0), familyIncome: rounded((family?.estates || 0) * (family?.exiled ? (family.hostFamilyId || family.hostPolityId) ? 1 : 0 : 6) - familyMembers(state, family?.id).length * 0.5 - (family?.exiled ? 4 : 0)), influence: Math.round(family?.influence || 0), legitimacy: effects.legitimacy, militaryReadiness: effects.militaryReadiness, productionMultiplier: effects.productionMultiplier, actionPoints: state.actionPoints, taxPolicy: state.realm.taxPolicy, academy: state.realm.academy }, governance: describeGovernance(state), succession: { ...describeGovernance(state), forecast: getSuccessionForecast(state), law: state.realm.successionLaw, lawLabel: state.realm.successionLaw === 'merit' ? 'Rådets meriterade utnämning' : 'Äldsta erkända barn, därefter familjen och rådet', candidates: rulerCandidates(state).slice(0, 8).map((p) => ({ id: p.id, name: p.name, familyName: state.families[p.familyId]?.name, age: getCharacterAge(p, state.date), archetypeLabel: ARCHETYPES[p.archetype]?.name })), regentName: state.people[state.offices.ruler.regentId]?.name || null, familyHeadName: state.people[family?.headId]?.name || null, propertyRule: 'Personlig egendom går till äldsta levande juridiska barn, annars en familjemedlem. Familjeegendom och statskassa behåller sina ägare.' }, log: state.log.filter((e) => e.public).slice(-120).reverse().map(copy), status: copy(state.status), versions: { schema: state.schemaVersion, rules: state.rulesVersion, content: state.contentVersion, health: state.healthVersion, stories: STORY_DIRECTOR_VERSION, provenance: RULE_PROVENANCE } };
+  return { authority: describeCharacterAuthority(state), date: state.date, revision: state.revision, mode: state.identity.mode, identity: { ...state.identity, familyName: state.families[state.identity.familyId]?.name, realmName: state.realm.name }, ruler: people.find((p) => p.id === leader?.id) || null, representative: people.find((p) => p.id === representative?.id) || null, people, families, offices: values(state.offices).map((o) => ({ ...copy(o), holderName: state.people[o.holderId]?.name || 'Vakant', regentName: state.people[o.regentId]?.name || null })), cities: effects.cityEffects.map((c) => ({ ...c, familyName: state.families[c.familyId]?.name, governorName: state.people[c.governorId]?.name || 'Vakant' })), religions: values(state.religions).map((r) => ({ ...r, support: religiousSupport(state, r.id), leaderName: state.people[r.leaderId]?.name || 'Vakant' })), memories: state.memories.filter((m) => visibleTo(state, m)).map((m) => ({ ...copy(m), participantNames: m.participants.map((id) => state.people[id]?.name || id) })), stories: state.stories.filter((s) => visibleTo(state, s) && ['open', 'waiting'].includes(s.status)).map((s) => presentStory(state, s)), projects: state.projects.map((project) => ({ ...copy(project), effectActive: project.status === 'active' && (!project.personal || (project.ownerId === realmExecutive(state)?.id && compareGameDates(project.dueAt, state.date) > 0)), effectReason: project.personal && project.status === 'active' && project.ownerId !== realmExecutive(state)?.id ? 'Den personliga effekten vilar utan ett aktivt härskarmandat. Slutdatumet ligger fast.' : '' })), actions: getAvailableCharacterActions(state), economy: { treasury: effects.treasury, annualRevenue: effects.annualRevenue, familyTreasury: rounded(family?.treasury || 0), familyIncome: rounded((family?.estates || 0) * (family?.exiled ? (family.hostFamilyId || family.hostPolityId) ? 1 : 0 : 6) - familyMembers(state, family?.id).length * 0.5 - (family?.exiled ? 4 : 0)), influence: Math.round(family?.influence || 0), legitimacy: effects.legitimacy, militaryReadiness: effects.militaryReadiness, productionMultiplier: effects.productionMultiplier, actionPoints: state.actionPoints, taxPolicy: state.realm.taxPolicy, academy: state.realm.academy }, governance: describeGovernance(state), succession: { ...describeGovernance(state), forecast: getSuccessionForecast(state), law: state.realm.successionLaw, lawLabel: state.realm.successionLaw === 'merit' ? 'Rådets meriterade utnämning' : 'Äldsta erkända barn, därefter familjen och rådet', candidates: rulerCandidates(state).slice(0, 8).map((p) => ({ id: p.id, name: p.name, familyName: state.families[p.familyId]?.name, age: getCharacterAge(p, state.date), archetypeLabel: ARCHETYPES[p.archetype]?.name })), regentName: state.people[state.offices.ruler.regentId]?.name || null, familyHeadName: state.people[family?.headId]?.name || null, propertyRule: 'Personlig egendom går till äldsta levande juridiska barn, annars en familjemedlem. Familjeegendom och statskassa behåller sina ägare.' }, log: state.log.filter((e) => e.public).slice(-120).reverse().map(copy), status: copy(state.status), versions: { schema: state.schemaVersion, rules: state.rulesVersion, content: state.contentVersion, health: state.healthVersion, stories: STORY_DIRECTOR_VERSION, provenance: RULE_PROVENANCE } };
 }
 
 // Host order authorization shares the exact family/regent mandate rules.

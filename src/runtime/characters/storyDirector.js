@@ -96,6 +96,7 @@ function acceptedHost(state, family) {
 }
 
 export function directedStoryInvalidReason(state, story, context) {
+  context = context.forEvent?.(story.eventType) || context;
   const person = state.people[story.actorId];
   if (!active(person)) return 'Den berörda personen har avlidit.';
   if (!active(context.actor) || context.age(context.actor) < ADULT_AGE) return 'En myndig företrädare saknas.';
@@ -122,6 +123,12 @@ function available(state, key) {
 // Each candidate names a real participant, a current trigger and, when
 // applicable, the memory that caused it. Never fabricate a cast for a template.
 export function getDirectedStoryCandidates(state, context) {
+  if (context.forEvent) {
+    const household = context.forEvent('household_tension'), royal = context.forEvent('governor_audit');
+    if (household.actor?.id === royal.actor?.id) return getDirectedStoryCandidates(state, household);
+    return [...getDirectedStoryCandidates(state, { ...household, canRule: false }),
+      ...getDirectedStoryCandidates(state, royal).filter((candidate) => publicAffairs.has(candidate.eventType))];
+  }
   if (state.status.ended || !active(context.actor) || !context.family || context.age(context.actor) < ADULT_AGE) return [];
   const candidates = [];
   const host = acceptedHost(state, context.family);
@@ -208,8 +215,8 @@ function options(story) {
     case 'household_tension': return [option('relieve', 'Bekosta avlastning', 'Personens stress −20; personlig åsikt +10. Stödet kan återgäldas senare.', 12, 'generous'), option('demand', 'Kräv fortsatt tjänst', 'Personens stress +10; personlig åsikt −10; familjens inflytande +3.', 0, 'cruel'), option('ignore', 'Låt frågan vila', 'Personens stress +5; personlig åsikt −3.')];
     case 'promising_student': return [option('teach', 'Betala för extra undervisning', 'Lärdom +1; personlig åsikt +10. Stödet kan återgäldas i vuxen ålder.', 18, 'generous'), option('ignore', 'Behåll nuvarande utbildning', 'Personlig åsikt −3. Den ordinarie utbildningen fortsätter.')];
     case 'temple_petition': return [option('donate', 'Ge en familjegåva', 'Samfundets grundstöd +5; personlig åsikt +12. Gåvan kan återgäldas senare.', 20, 'generous'), option('ignore', 'Avböj bidraget', 'Personlig åsikt −8.')];
-    case 'governor_audit': return [option('repair', 'Finansiera förbättringar', 'Stadens oro −12; infrastruktur +1; guvernörens åsikt +8.', 25, 'duty', true), option('censure', 'Tillrättavisa guvernören', 'Stadens oro −4; guvernörens åsikt −15; familjens stödorsak −4.', 0, 'cruel', true), option('ignore', 'Lämna förvaltningen orörd', 'Stadens oro +4.')];
-    case 'veteran_petition': return [option('pay', 'Betala veteranerna', 'Arméns grundstyrka +5; befälhavarens åsikt +10.', 22, 'generous', true), option('drill', 'Kräv ytterligare tjänst', 'Arméns grundstyrka +2; befälhavarens stress +8 och åsikt −8.', 0, 'risky', true), option('ignore', 'Avvisa kravet', 'Arméns grundstyrka −2; befälhavarens åsikt −5.')];
+    case 'governor_audit': return [option('repair', 'Finansiera förbättringar', 'Stadens oro −12; infrastruktur +1; guvernörens åsikt +8.', 25, 'duty', true), option('censure', 'Tillrättavisa guvernören', 'Stadens oro −4; guvernörens åsikt −15; familjens stödorsak −4.', 0, 'cruel', true), option('ignore', 'Lämna förvaltningen orörd', 'Stadens oro +4.', 0, 'neutral', true)];
+    case 'veteran_petition': return [option('pay', 'Betala veteranerna', 'Arméns grundstyrka +5; befälhavarens åsikt +10.', 22, 'generous', true), option('drill', 'Kräv ytterligare tjänst', 'Arméns grundstyrka +2; befälhavarens stress +8 och åsikt −8.', 0, 'risky', true), option('ignore', 'Avvisa kravet', 'Arméns grundstyrka −2; befälhavarens åsikt −5.', 0, 'neutral', true)];
     case 'reconciliation': return [option('reconcile', 'Sök försoning med en gåva', 'Personlig åsikt +18; den berörda familjens stödorsak +4. Det gamla minnet finns kvar.', 15, 'generous'), option('ignore', 'Avböj försoningen', 'Personlig åsikt −5.')];
     case 'exile_help': return [option('network', 'Bekosta besöken', 'Familjens inflytande +5; personlig åsikt +8. Beskyddaren och tronen förändras inte.', 10, 'duty'), option('ignore', 'Spara familjens resurser', 'Familjens inflytande −2.')];
     case 'returned_favor': return [option('silver', 'Ta emot tolv silver', '12 silver flyttas från givarens personliga förmögenhet till familjekassan.'), option('endorse', 'Be om ett offentligt stöd', 'Familjens inflytande +6; personlig åsikt +5.'), option('ignore', 'Lös personen från förpliktelsen', 'Personlig åsikt +4. Tjänsten räknas som återgäldad.')];
@@ -218,6 +225,7 @@ function options(story) {
 }
 
 export function directedStoryChoices(state, story, context) {
+  context = context.forEvent?.(story.eventType) || context;
   const invalid = directedStoryInvalidReason(state, story, context);
   return options(story).map((choice) => ({ id: choice.id, label: choice.label, description: choice.description,
     cost: choice.amount ? `${choice.amount} ${choice.publicFunds ? 'silver ur statskassan' : 'familjesilver'}` : '0 silver',
@@ -228,6 +236,7 @@ export function directedStoryChoices(state, story, context) {
 }
 
 export function resolveDirectedStory(state, story, choiceId, context, hooks) {
+  context = context.forEvent?.(story.eventType) || context;
   const choice = options(story).find((item) => item.id === choiceId);
   const descriptor = directedStoryChoices(state, story, context).find((item) => item.id === choiceId);
   if (!choice || !descriptor || descriptor.disabledReason) throw new Error(descriptor?.disabledReason || 'Valet är ogiltigt.');
