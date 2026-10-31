@@ -5,6 +5,9 @@ import { STAFF_ROLES } from './courtStaff.js';
 export const ACTION_CATEGORIES = Object.freeze(['intrigue', 'diplomacy', 'family', 'court', 'military', 'religion', 'economy', 'personal']);
 export const TIER_IDS = Object.freeze(['clean_success', 'exposed_success', 'quiet_failure', 'exposed_failure', 'backfire']);
 export const EFFECT_KINDS = Object.freeze(['opinion', 'influence', 'stress', 'hook', 'secret', 'memory']);
+// The most extra silver and the most agents a player can commit to one contested action. The target form and the odds validation share these.
+export const MAX_EXTRA_SILVER = 60;
+export const MAX_AGENTS = 2;
 
 // Effect constructors. `from`, `to`, `who`, `family`, `owner`, `over`, `subject` and `holders` name roles ('actor' or 'target'), never people. A ranged effect keeps min <= max.
 const opinion = (from, to, min, max) => ({ kind: 'opinion', from, to, min, max });
@@ -43,10 +46,10 @@ const UNDERMINE = {
   id: 'undermine', category: 'intrigue', mode: 'contested',
   label: 'Undergräv',
   description: 'Spinn en intrig mot en rival i tre månader för att försvaga personens familj. Avslöjas planen väntar ilska, och slår den tillbaka får motståndaren ett övertag över dig.',
-  actorScope: 'household', target: 'person',
+  actorScope: 'household', target: 'person', targetFamily: 'other',
   skill: 'intrigue', defenseSkill: 'intrigue', secrecySkill: 'intrigue',
   traitModifiers: { actor: { deceitful: 8, honest: -8 }, target: { paranoid: -10 } },
-  cost: { orders: 1, silver: 15, wallet: 'family', stressTag: 'betrayal' },
+  cost: { orders: 1, silver: 15, wallet: 'family', stressTag: 'risky' },
   durationMonths: 3, baseSuccess: 45, baseSecrecy: 60,
   tiers: {
     clean_success: tier(influence('target', -10, -4), memory('private', 'En intrig spinns i det fördolda'), secret('plot', 'actor', ['actor'])),
@@ -73,6 +76,11 @@ const family = (state, id) => typeof id === 'string' && Object.hasOwn(state.fami
 // Only the family wallet exists in Phase 1. Any other wallet kind has no known owner here and so disables the entry.
 const walletOf = (state, entry, familyId) => entry.cost.wallet === 'family' ? family(state, familyId) : null;
 
+// Targets an entry accepts: living adults other than the actor. An entry flagged targetFamily 'other' also leaves out the actor's own family.
+function targetsFor(state, entry, actor) {
+  return Object.values(state.people).filter((candidate) => isAdultCharacter(candidate, state.date) && candidate.id !== actor?.id && (entry.targetFamily !== 'other' || !actor || candidate.familyId !== actor.familyId));
+}
+
 // The same refusals, in the same order, that charge() in index.js applies to a family-paid action. Targets are people the player could pick.
 function disabledReason(state, entry, actor, targets, familyId) {
   if (state.status?.ended) return state.status.reason || 'Kampanjen är avslutad.';
@@ -89,8 +97,8 @@ function disabledReason(state, entry, actor, targets, familyId) {
 function contestedFields(targets) {
   return [
     { key: 'targetId', label: 'Mål', type: 'select', options: targets.map((target) => ({ value: target.id, label: target.name })) },
-    { key: 'silver', label: 'Extra silver', type: 'number', min: 0, max: 60, step: 1 },
-    { key: 'agentRoles', label: 'Agenter', type: 'multiselect', max: 2, options: Object.entries(STAFF_ROLES).map(([value, label]) => ({ value, label })) },
+    { key: 'silver', label: 'Extra silver', type: 'number', min: 0, max: MAX_EXTRA_SILVER, step: 1 },
+    { key: 'agentRoles', label: 'Agenter', type: 'multiselect', max: MAX_AGENTS, options: Object.entries(STAFF_ROLES).map(([value, label]) => ({ value, label })) },
   ];
 }
 
@@ -100,10 +108,10 @@ function contestedFields(targets) {
  */
 export function buildCatalogActions(state, commandActions, context = {}) {
   const actor = person(state, context.representativeId);
-  const targets = Object.values(state.people).filter((candidate) => isAdultCharacter(candidate, state.date) && candidate.id !== actor?.id);
   const commands = commandActions.map((action) => ({ ...copy(action), catalogId: action.type, mode: 'command' }));
-  const contested = Object.values(ACTION_CATALOG).map((entry) => ({
-    ...copy(entry), catalogId: entry.id, fields: contestedFields(targets), disabledReason: disabledReason(state, entry, actor, targets, context.familyId),
-  }));
+  const contested = Object.values(ACTION_CATALOG).map((entry) => {
+    const targets = targetsFor(state, entry, actor);
+    return { ...copy(entry), catalogId: entry.id, fields: contestedFields(targets), disabledReason: disabledReason(state, entry, actor, targets, context.familyId) };
+  });
   return [...commands, ...contested];
 }

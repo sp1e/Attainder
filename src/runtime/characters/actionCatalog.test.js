@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createCharacterSystem, getAvailableCharacterActions, getCatalogActions, getCharacterAge } from './index.js';
-import { ACTION_CATALOG, ACTION_CATEGORIES, EFFECT_KINDS, TIER_IDS, buildCatalogActions, effectDefault } from './actionCatalog.js';
+import { ACTION_CATALOG, ACTION_CATEGORIES, EFFECT_KINDS, MAX_AGENTS, MAX_EXTRA_SILVER, TIER_IDS, buildCatalogActions, effectDefault } from './actionCatalog.js';
 import { SKILL_LABELS, TRAITS } from './content.js';
 import { STAFF_ROLES } from './courtStaff.js';
 import { HOOK_STRENGTHS, SECRET_TYPES } from './secrets.js';
@@ -50,7 +50,7 @@ test('sway and undermine carry the exact values of the design', () => {
   assert.deepEqual(sway.cost, { orders: 1, silver: 5, wallet: 'family', stressTag: 'duty' });
   assert.deepEqual(sway.traitModifiers, { actor: { gregarious: 6, honest: 3 }, target: { paranoid: -8, trusting: 8 } });
   assert.deepEqual([undermine.category, undermine.skill, undermine.defenseSkill, undermine.secrecySkill, undermine.durationMonths, undermine.baseSuccess, undermine.baseSecrecy], ['intrigue', 'intrigue', 'intrigue', 'intrigue', 3, 45, 60]);
-  assert.deepEqual(undermine.cost, { orders: 1, silver: 15, wallet: 'family', stressTag: 'betrayal' });
+  assert.deepEqual(undermine.cost, { orders: 1, silver: 15, wallet: 'family', stressTag: 'risky' });
   assert.deepEqual(undermine.traitModifiers, { actor: { deceitful: 8, honest: -8 }, target: { paranoid: -10 } });
 });
 
@@ -167,7 +167,10 @@ test('a contested entry carries its rules and the target, silver and agent field
     assert.equal(target.label, 'Mål');
     assert.ok(target.options.length > 0);
     assert.ok(target.options.every((option) => option.value && option.label && option.value !== representative.id), 'the representative is never a target');
-    for (const person of adults) assert.ok(target.options.some((option) => option.value === person.id), `${person.id} can be a target`);
+    // Undermine never targets the actor's own family; sway may.
+    const eligible = adults.filter((person) => entry.targetFamily !== 'other' || person.familyId !== representative.familyId);
+    for (const person of eligible) assert.ok(target.options.some((option) => option.value === person.id), `${person.id} can be a target`);
+    assert.equal(target.options.length, eligible.length, `${id}: only eligible people are offered`);
     for (const option of target.options) { const person = state.people[option.value]; assert.ok(person && !person.diedAt, `${option.value} lives`); }
     assert.deepEqual([silver.label, silver.min, silver.max], ['Extra silver', 0, 60]);
     assert.deepEqual([agents.label, agents.max], ['Agenter', 2]);
@@ -297,4 +300,38 @@ test('buildCatalogActions takes the representative from its context and refuses 
   assert.equal(child[0].disabledReason, 'Familjen saknar en handlingsförmögen företrädare.', 'a child cannot exercise a mandate');
   const noFamily = buildCatalogActions(state, [], { representativeId: 'person-0-0', familyId: 'family-missing' });
   assert.equal(noFamily[0].disabledReason, 'Ingen behörig resursägare finns.');
+});
+
+test('undermine carries targetFamily other and sway carries none', () => {
+  assert.equal(ACTION_CATALOG.undermine.targetFamily, 'other');
+  assert.equal(Object.hasOwn(ACTION_CATALOG.sway, 'targetFamily'), false);
+  for (const entry of Object.values(ACTION_CATALOG)) if (Object.hasOwn(entry, 'targetFamily')) assert.equal(entry.targetFamily, 'other');
+  assert.equal(find(getCatalogActions(fresh()), 'undermine').targetFamily, 'other', 'the listed entry carries the flag');
+});
+
+test('the undermine target select leaves out the actor\'s own family while sway keeps it', () => {
+  const state = fresh();
+  const list = getCatalogActions(state);
+  const own = (option) => state.people[option.value].familyId === 'family-arel';
+  const undermine = find(list, 'undermine').fields[0].options;
+  const sway = find(list, 'sway').fields[0].options;
+  assert.ok(undermine.length > 0 && !undermine.some(own), 'no Arel member can be undermined by Arel');
+  assert.ok(undermine.some((option) => option.value === 'person-1-0'), 'other houses stay on the list');
+  assert.ok(sway.some(own), 'a household member can still be swayed');
+  assert.equal(find(list, 'undermine').disabledReason, '');
+});
+
+test('undermine is disabled when only the actor\'s own family has eligible people', () => {
+  const state = fresh();
+  for (const person of Object.values(state.people)) if (person.familyId !== 'family-arel') person.diedAt = state.date;
+  const list = getCatalogActions(state);
+  assert.equal(find(list, 'sway').disabledReason, '', 'sway still has household targets');
+  assert.equal(find(list, 'undermine').disabledReason, 'Ingen behörig deltagare finns.');
+  assert.deepEqual(find(list, 'undermine').fields[0].options, []);
+});
+
+test('the silver and agent limits of the fields are the exported constants', () => {
+  assert.deepEqual([MAX_EXTRA_SILVER, MAX_AGENTS], [60, 2]);
+  const [, silver, agents] = find(getCatalogActions(fresh()), 'sway').fields;
+  assert.deepEqual([silver.max, agents.max], [MAX_EXTRA_SILVER, MAX_AGENTS]);
 });
