@@ -10,6 +10,7 @@ import { ensureHealthState, validateHealthState, runAnnualHealth, advanceHealthT
 import { STORY_DIRECTOR_VERSION, ensureStoryDirector, validateStoryDirector, scheduleDirectedStory, directedStoryChoices, resolveDirectedStory, refreshDirectedStories } from './storyDirector.js';
 import { ensureCharacterExtensions, normalizeDifficulty, validateCharacterExtensions } from './extensions.js';
 import { addSecretHolders, exposeSecret, plotSecretFor, syncPlotSecrets } from './secrets.js';
+import { buildCatalogActions } from './actionCatalog.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
 export { PORTRAIT_STATES, PORTRAIT_AGE_GROUPS, resolvePortraitState } from './portraitState.js';
@@ -699,6 +700,11 @@ export function getAvailableCharacterActions(state) {
     actions.at(-1).cost = 'Vald insats · 1 handling';
   }
   return actions;
+}
+
+/** The command menu plus the contested actions of the action catalog, with the household representative and family that pay for them. Read-only: no randomness, no spending. */
+export function getCatalogActions(state) {
+  return buildCatalogActions(state, getAvailableCharacterActions(state), { representativeId: householdRepresentative(state)?.id || null, familyId: controlledFamily(state)?.id || null });
 }
 
 function presentStory(state, story) {
