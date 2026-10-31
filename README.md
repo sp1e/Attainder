@@ -36,13 +36,27 @@ The rules engine owns character outcomes. The model describes the world and can 
 
 Recurring decisions show why they appeared and when they expire. A longer turn stops at a new decision before the model narrates beyond it. If you continue without answering for twelve months, the stated free fallback applies. Events have participant and topic cooldowns to limit repetition.
 
+## Free-text actions and odds
+
+In the `Överblick` tab of the character panel, the card `Handla själv` takes a sentence such as `Jag försöker vinna Namars stöd med gåvor och smicker`. A low-effort model call maps the text to one action in the catalog. The engine then computes the odds, and a confirmation card shows them before anything is spent. `Välj från listan` opens every action as a menu, which also works when the model is disconnected or cannot read the text.
+
+- Two contested actions exist: `Påverka` (sway, instant) and `Undergräv` (undermine, a three-month scheme). Command actions such as appointments stay in the same menu.
+- Odds are integers from 5 to 95 for success and for secrecy, each with a list of labelled modifiers. How much of this the player sees depends on the actor's skill in the action: 12 or more shows the exact percentage, 7 to 11 shows one of five bands (`mycket låg` to `mycket hög`), and below 7 shows one of three (`osannolik`, `osäker`, `trolig`).
+- Two rolls on a separate random stream pick one of five tiers: `Lyckat i det tysta`, `Lyckat men avslöjat`, `Misslyckat i det tysta`, `Misslyckat och avslöjat` and `Det slog tillbaka`. The tier fixes the effects. A second low-effort model call writes the story and can move ranged effects inside their allowed range. If that call fails, the standard text stands.
+- A scheme is paid at the start, checked monthly for discovery, and resolved on its due date. `Pågående intriger` lists the family's schemes, and `Avbryt intrigen` asks for confirmation first.
+- Difficulty is `Lätt`, `Normal` or `Svår`, chosen on the start card or in the scenario picker. It moves the player's contested odds by +10, 0 or −10 percentage points, and in the opposite direction for NPC actions against the player's representative. Earlier campaigns count as `Normal`.
+- Model proposals pass a gate. A `realm_effect` or `npc_intent` runs only through the engine's rules, with at most 4 and 3 per model turn, and a refused proposal is listed in the timeline. Replay never calls the model.
+- The panel footer shows `Modellanrop denna session`. The count lives in the open page and is not saved.
+
+The contract is in `src/runtime/characters/CONTRACT.md`. [The Phase 1 play script](docs/play-scripts/phase-1.md) walks through each feature in the running game.
+
 ## Scenarios Are Released Under CC BY 4.0
 
 The upstream scenario-sharing rules remain in place. Scenarios posted or shared through the game are released under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/). Exported scenario files include the corresponding license record. Separately referenced maps, music and other third-party material retain their own terms.
 
 ## Development status
 
-This is a playable development version. The local serial suite passed 3,197 tests, with no failures, one skipped test and two TODOs. Regent authority checks cover both campaign modes, appointment consent, independent family guardians, exact promise deadlines and saved-state validation. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
+This is a playable development version. The local serial suite on 31 October 2026 ran 3,540 tests: 3,537 passed, none failed, one was skipped and two are TODOs. Phase 1 (free-text actions, odds, schemes, the model gate and the panel) has automated tests and a manual [play script](docs/play-scripts/phase-1.md); the play script has not been completed against a live model yet. Regent authority checks cover both campaign modes, appointment consent, independent family guardians, exact promise deadlines and saved-state validation. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
 
 The portrait component passed 864 rendered state/age combinations, including delayed and failed image loading. Its controls support light and dark themes and a narrow viewport.
 
