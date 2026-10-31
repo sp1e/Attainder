@@ -5,6 +5,7 @@ import { CRIME_LABELS, crimeOfSecret, exposeCrime } from './crimes.js';
 import { ensureStaff } from './courtStaff.js';
 import { actionRandom } from './extensions.js';
 import { imprisonPerson, isImprisoned } from './prisoners.js';
+import { spreadRumor } from './rumors.js';
 import { HOOK_STRENGTHS, SECRET_TYPES, addSecretHolders, createSecret, exposeSecret, grantHook, useHook } from './secrets.js';
 import { startScheme } from './schemes.js';
 
@@ -323,9 +324,10 @@ const APPLY = Object.freeze({
     family.grievance = next;
     return { kind: 'grievance', familyId, amount: effect.amount, applied };
   },
-  // Task 6 replaces this with createRumor and records the new rumor's id.
-  rumor(state, effect, { means }) {
-    return { kind: 'rumor', topic: means.topic, rumorId: null };
+  // A made-up rumor about the target on means.topic, heard by every family (rumors.js). The record names the rumor so that the log can be checked against state.rumors.
+  rumor(state, effect, { roles, means, resolutionId }) {
+    const item = spreadRumor(state, { topic: means.topic, subjectId: roles.target, resolutionId });
+    return { kind: 'rumor', topic: item.topic, rumorId: item.id };
   },
   memory(state, effect, { roles, causeId, hooks }) {
     const knownBy = effect.visibility === 'private' ? [roles.actor] : 'public';
@@ -336,7 +338,7 @@ const APPLY = Object.freeze({
 
 /** Applies every effect of the resolution's tier at its default and returns the applied effects. Opinions go through hooks.opinionCause with the anchor memory (resolution.memoryId) as cause; memories through hooks.memory. `events` is the command's event list, where a death or an exposed crime is chronicled. `means` are the attempt's means: the effects hook_from_secret and rumor read means.secretId and means.topic. Exported for Task 7. */
 export function applyTierEffects(state, resolution, entry, hooks, events = [], means = {}) {
-  const context = { roles: { actor: resolution.actorId, target: resolution.targetIds[0] }, label: outcomeTitle(entry, resolution.tier), causeId: resolution.memoryId, hooks, events, means: means ?? {} };
+  const context = { roles: { actor: resolution.actorId, target: resolution.targetIds[0] }, label: outcomeTitle(entry, resolution.tier), causeId: resolution.memoryId, resolutionId: resolution.id, hooks, events, means: means ?? {} };
   return entry.tiers[resolution.tier].effects.map((effect) => APPLY[effect.kind](state, effect, context));
 }
 
@@ -479,7 +481,8 @@ const EFFECT_CHECKS = Object.freeze({
   legitimacy: (state, effect) => (effect.applied === false ? Object.keys(effect).length === 2 : validRange(effect)),
   reveal: (state, effect, known) => effect.secretId === null || known.secrets.has(effect.secretId),
   hook_from_secret: (state, effect, known) => known.secrets.has(effect.secretId) && known.hooks.has(effect.hookId) && HOOK_STRENGTHS.includes(effect.strength) && typeof effect.exposed === 'boolean',
-  rumor: (state, effect) => ownKey(RUMOR_TOPICS, effect.topic) && (effect.rumorId === null || typeof effect.rumorId === 'string'),
+  // The rumor the action planted must exist (validateRumors checks it against this entry). Phase 2 is unreleased, so no log carries the Task 4 stub's rumorId null.
+  rumor: (state, effect, known) => Object.keys(effect).sort().join() === 'kind,rumorId,topic' && ownKey(RUMOR_TOPICS, effect.topic) && known.rumors.has(effect.rumorId),
   // The record of an imprisonment names the prisoner; the bare record { kind, personId, applied: false } is a target who could no longer be taken.
   imprison: (state, effect, known) => isPerson(state, effect.personId) && (effect.applied === false ? Object.keys(effect).length === 3 : known.prisoners.has(effect.prisonerId)),
   // Exactly the four keys the applier writes; `applied` is the change the bound allowed, so it has the sign of `amount` and is no larger.
@@ -502,7 +505,7 @@ function checkNarrative(entry) {
 /** Validates state.actionLog on load: ids `resolution-<n>` unique and within state.sequence, known actions and tiers, existing people, agents, memories, hooks and secrets, finite odds and rolls consistent with the refusal and the tier, ranged effects inside their stored ranges, and narratives within their limits. Throws a Swedish sentence naming the action log. */
 export function validateActionLog(state) {
   if (!Array.isArray(state.actionLog)) fail(LOG.list);
-  const known = { memories: idSet(state.memories), hooks: idSet(state.hooks), secrets: idSet(state.secrets), prisoners: idSet(state.prisoners) };
+  const known = { memories: idSet(state.memories), hooks: idSet(state.hooks), secrets: idSet(state.secrets), prisoners: idSet(state.prisoners), rumors: idSet(state.rumors) };
   const ids = new Set();
   for (const entry of state.actionLog) {
     if (!plainObject(entry)) fail(LOG.entry);

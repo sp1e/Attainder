@@ -3,15 +3,16 @@ import { ACTION_CATALOG, MAX_EXTRA_SILVER } from './actionCatalog.js';
 import { estimateAction } from './actionOdds.js';
 import { resolutionVisible, resolveScheme } from './actionResolution.js';
 import { STAFF_ROLES } from './courtStaff.js';
-import { actionRandom } from './extensions.js';
+import { actionRandom, spymasterOf } from './extensions.js';
 import { isImprisoned } from './prisoners.js';
+import { hearScheme } from './rumors.js';
 
 // Schemes: contested actions that take months. A scheme is paid and ordered when it starts, checked for discovery once a month, and rolled like any other action when its due date comes (actionResolution.js records that resolution).
 // Randomness comes only from actionRandom (state.actionRngState): one draw per discovery check, then the two rolls of the resolution. The main stream state.rngState is never touched.
 // actionResolution.js imports startScheme from here and this file imports from it, so nothing at the top level of either file may use the other's exports; they are only used inside functions.
 
-// Each check the target may see through the plan: chance = clamp(10 + target intrigue × 2 − actor intrigue, 3, 40) percent.
-const DISCOVERY = Object.freeze({ base: 10, perIntrigue: 2, min: 3, max: 40 });
+// Each check the target may see through the plan: chance = clamp(10 + target intrigue × 2 − actor intrigue, 3, 40) percent. When the target belongs to the controlled family and the family has a spymaster, the chance gains floor(spymaster intrigue / 2) before the clamp, which then reaches 55.
+const DISCOVERY = Object.freeze({ base: 10, perIntrigue: 2, min: 3, max: 40, maxWatched: 55 });
 const DISCOVERY_OPINION = -20;
 const SCHEME_STATUSES = Object.freeze(['active', 'discovered', 'aborted', 'failed', 'resolved']);
 // charge() prices stress per tag and gives 0 for a tag it does not know, so a reinforcement adds no stress.
@@ -116,6 +117,13 @@ function discover(state, scheme, actor, target, events, hooks) {
   hooks.opinionCause(target.id, actor.id, DISCOVERY_OPINION, 'Avslöjad intrig', memory.id);
 }
 
+// The spymaster's help in seeing through a plan against the controlled family: the added percent, or null when the plan is against anyone else or nobody holds the office (a prisoner cannot serve). Draws nothing.
+function spymasterWatch(state, target, hooks) {
+  const spymaster = spymasterOf(state);
+  if (!spymaster || isImprisoned(state, spymaster.id) || target.familyId !== hooks.controlledFamily()?.id) return null;
+  return Math.floor(intrigueOf(spymaster) / 2);
+}
+
 // One monthly check. A dead actor or target, or an imprisoned actor (who cannot act), ends the scheme before anything is drawn. On the due date the odds are estimated afresh and a scheme that can no longer run fails before any draw; otherwise the discovery roll comes first and, when the plan holds, the action is rolled and recorded like an instant one.
 function checkScheme(state, scheme, events, hooks) {
   const actor = personOf(state, scheme.actorId), target = personOf(state, scheme.targetIds[0]);
@@ -124,8 +132,10 @@ function checkScheme(state, scheme, events, hooks) {
   const due = compareGameDates(scheme.dueAt, state.date) <= 0;
   const estimate = due ? dueEstimate(state, scheme, hooks) : null;
   if (estimate && !estimate.ok) return collapse(state, scheme, `${MESSAGES.stopped} ${estimate.reason}`, events, hooks);
-  const chance = clamp(DISCOVERY.base + intrigueOf(target) * DISCOVERY.perIntrigue - intrigueOf(actor), DISCOVERY.min, DISCOVERY.max);
+  const watch = spymasterWatch(state, target, hooks);
+  const chance = clamp(DISCOVERY.base + intrigueOf(target) * DISCOVERY.perIntrigue - intrigueOf(actor) + (watch ?? 0), DISCOVERY.min, watch === null ? DISCOVERY.max : DISCOVERY.maxWatched);
   if (actionRandom(state) * 100 < chance) return discover(state, scheme, actor, target, events, hooks);
+  hearScheme(state, scheme, hooks);
   if (!due) {
     scheme.nextCheckAt = followingCheck(scheme);
     return;

@@ -437,7 +437,7 @@ test('reveal takes the strongest unexposed secret the actor lacks and skips expo
   assert.deepEqual(state.secrets.find((item) => item.id === other.id).holderIds, [KELAN]);
 });
 
-test('spread_rumor needs a topic and records the rumor stub with the topic', () => {
+test('spread_rumor needs a topic and records the rumor it plants with the topic', () => {
   const state = base();
   const rumorIntent = intent('spread_rumor', REP, NAMAR, { topic: 'affair' });
   const est = estimate(state, rumorIntent);
@@ -446,7 +446,7 @@ test('spread_rumor needs a topic and records the rumor stub with the topic', () 
   const after = ok(attempt(withSeed(state, seedForTier(0, est, 'clean_success')), rumorIntent));
   const entry = after.actionLog.at(-1);
   assert.equal(entry.tier, 'clean_success');
-  assert.deepEqual(entry.effects[0], { kind: 'rumor', topic: 'affair', rumorId: null });
+  assert.deepEqual(entry.effects[0], { kind: 'rumor', topic: 'affair', rumorId: after.rumors[0].id });
   const influence = entry.effects[1];
   assert.equal(influence.kind, 'influence');
   assert.equal(influence.familyId, 'family-namar');
