@@ -15,6 +15,8 @@ Updated on 31 October 2026.
 
 ## Verification at `b848d4a`
 
+The runs below were made at `b848d4a`. The later commits `62a90c7` and the documentation fix after it change documentation only.
+
 - Full serial suite on 31 October 2026: 3,540 tests, 3,537 pass, 0 fail, 1 skipped, 2 todo, in 127 seconds. The Phase 0 checkpoint had 3,265 tests, so Phase 1 added 275.
 - `npm run lint`: 18 errors and 71 warnings on this branch, and the same 18 errors and 71 warnings on `origin/main`. Phase 1 adds no lint finding. The `origin/main` count came from an unpacked archive linted with this branch's installed plugins, because the archive has no `node_modules`.
 - `npm run build`: exit code 0.
