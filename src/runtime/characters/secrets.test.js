@@ -6,11 +6,12 @@ import { validateCharacterExtensions } from './extensions.js';
 import { RELATIONSHIP_KINDS, SECRET_TYPES, activeHooks, addSecretHolders, createSecret, exposeSecret, grantHook, knownSecrets, plotSecretFor, setRelationship, syncPlotSecrets, useHook, validateSecrets } from './secrets.js';
 // svenska-guard: ok (the word "constructor" below is a JavaScript property name used as a forged value, not Swedish)
 
-// Captured at f0d6ea3, before annualStep called syncPlotSecrets: the plotting campaign below after 24 months.
-const PRE_CHANGE_PLOT_RUN = { rngState: 1348504830, sequence: 45, plotMemories: 4 };
+// Captured at f0d6ea3, before annualStep called syncPlotSecrets: the plotting campaign below after 24 months. The sequence is 46, not 45, because new campaigns now spend one number on the chancellor's seeded affair; the random streams are unchanged.
+const PRE_CHANGE_PLOT_RUN = { rngState: 1348504830, sequence: 46, plotMemories: 4 };
 const plain = (state) => JSON.parse(JSON.stringify(state));
 const streams = (state) => [state.rngState, state.actionRngState];
-const fresh = () => createCharacterSystem({ seed: 321 });
+// New campaigns start with the chancellor's seeded affair (Phase 2). These tests exercise the secrets API from an empty ledger, so they drop it; the sequence number it spent stays spent.
+const fresh = () => { const state = createCharacterSystem({ seed: 321 }); state.secrets = []; return state; };
 const plotMemory = (state, id, participants, knownBy) => { const memory = { id, date: state.date, type: 'plot', title: 'En dold plan', participants, knownBy, causeId: null, familyIds: [] }; state.memories.push(memory); return memory; };
 const msg = (text) => ({ name: 'Error', message: new RegExp(`^${text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`) });
 // One sentence per failure class, shared by the create functions and by validateSecrets.

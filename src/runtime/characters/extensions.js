@@ -3,10 +3,13 @@ import { getCharacterAge } from './characterCapacity.js';
 import { validateCourtStaff } from './courtStaff.js';
 import { syncPlotSecrets, validateSecrets } from './secrets.js';
 
-export const EXTENSIONS_VERSION = 1;
+export const EXTENSIONS_VERSION = 2;
 export const DIFFICULTIES = Object.freeze({ easy: 'Lätt', normal: 'Normal', hard: 'Svår' });
 export const DEFAULT_DIFFICULTY = 'normal';
-const CONTAINER_LISTS = ['secrets', 'hooks', 'relationships', 'schemes', 'actionLog'];
+const CONTAINER_LISTS = ['secrets', 'hooks', 'relationships', 'schemes', 'actionLog', 'occasions', 'prisoners', 'rumors', 'conversations'];
+// Version 2 adds the spymaster office. Vacant until the ruler appoints; kind 'council' keeps it out of the governor, general, chancellor and priest effects.
+const spymasterOffice = () => ({ id: 'spymaster', name: 'Spionmästare', kind: 'council', holderId: null, regentId: null, history: [], publicBudget: 0 });
+const validStream = (value) => Number.isInteger(value) && value >= 1 && value <= 0xffffffff;
 const SKILL_MAX = 20;
 const INTRIGUE_ARCHETYPES = { schemer: 5, diplomat: 2, legislator: 1 };
 const INTRIGUE_TRAITS = { ambitious: 1, vengeful: 1, dutiful: -1, compassionate: -1 };
@@ -31,13 +34,16 @@ export function deriveExtendedSkills(person, date = null) {
   return child ? { intrigue: Math.max(1, Math.round(intrigue / 2)), prowess: Math.max(1, Math.round(prowess / 2)) } : { intrigue, prowess };
 }
 
-/** Idempotent migration from a save without extensions. Fills only missing fields, never overwrites, and draws from no random stream. Private plot memories become plot secrets (syncPlotSecrets); that spends state.sequence for the new ids but no randomness. The action stream is seeded per campaign: polity, start date and the main stream's value at the moment it is first filled (the seed at creation, the save's current value on migration). */
+/** Idempotent migration from a save without extensions. Fills only missing fields, never overwrites, and draws from no random stream. Version 2 adds the plot stream (seeded like the action stream, with the suffix `plots`), four empty ledgers and a vacant spymaster office. Private plot memories become plot secrets (syncPlotSecrets); that spends state.sequence for the new ids but no randomness. The action stream is seeded per campaign: polity, start date and the main stream's value at the moment it is first filled (the seed at creation, the save's current value on migration). */
 export function ensureCharacterExtensions(state) {
   if (!Object.hasOwn(state, 'extensionsVersion')) state.extensionsVersion = EXTENSIONS_VERSION;
   if (!Object.hasOwn(state, 'difficulty')) state.difficulty = DEFAULT_DIFFICULTY;
   if (!Object.hasOwn(state, 'actionRngState')) state.actionRngState = seeded(`${state.identity?.polityId}|${state.startedAt}|${state.rngState}|actions`);
+  if (!Object.hasOwn(state, 'plotRngState')) state.plotRngState = seeded(`${state.identity?.polityId}|${state.startedAt}|${state.rngState}|plots`);
   for (const key of CONTAINER_LISTS) if (!Object.hasOwn(state, key)) state[key] = [];
   if (!Object.hasOwn(state, 'courtStaff')) state.courtStaff = {};
+  if (plainObject(state.offices) && !Object.hasOwn(state.offices, 'spymaster')) state.offices.spymaster = spymasterOffice();
+  if (state.extensionsVersion === 1) state.extensionsVersion = EXTENSIONS_VERSION; // any other version is left for validation to refuse
   for (const person of Object.values(state.people || {})) {
     if (!plainObject(person) || !plainObject(person.skills)) continue;
     const missing = ['intrigue', 'prowess'].filter((key) => !Object.hasOwn(person.skills, key));
@@ -51,7 +57,8 @@ export function ensureCharacterExtensions(state) {
 export function validateCharacterExtensions(state) {
   if (state.extensionsVersion !== EXTENSIONS_VERSION) throw new Error('Karaktärstilläggens version stöds inte.');
   if (typeof state.difficulty !== 'string' || !Object.hasOwn(DIFFICULTIES, state.difficulty)) throw new Error('Sparfilens svårighetsgrad är ogiltig.');
-  if (!Number.isInteger(state.actionRngState) || state.actionRngState < 1 || state.actionRngState > 0xffffffff) throw new Error('Handlingarnas slumptillstånd är ogiltigt.');
+  if (!validStream(state.actionRngState)) throw new Error('Handlingarnas slumptillstånd är ogiltigt.');
+  if (!validStream(state.plotRngState)) throw new Error('Intrigens slumptillstånd är ogiltigt.');
   if (CONTAINER_LISTS.some((key) => !Array.isArray(state[key])) || !plainObject(state.courtStaff)) throw new Error('Karaktärstilläggens samlingar är ogiltiga.');
   for (const person of Object.values(state.people || {})) {
     if (['intrigue', 'prowess'].some((key) => !Number.isFinite(person?.skills?.[key]) || person.skills[key] < 0 || person.skills[key] > SKILL_MAX)) throw new Error('En person har ogiltig intrig eller kampförmåga.');
@@ -62,3 +69,9 @@ export function validateCharacterExtensions(state) {
 
 /** Separate xorshift stream for actions. Same algorithm as random() in index.js but it only ever touches state.actionRngState. */
 export function actionRandom(state) { let n = state.actionRngState | 0; n ^= n << 13; n ^= n >>> 17; n ^= n << 5; state.actionRngState = n >>> 0 || 1; return state.actionRngState / 4294967296; }
+
+/** Separate xorshift stream for plots. Same algorithm as actionRandom but it only ever touches state.plotRngState. */
+export function plotRandom(state) { let n = state.plotRngState | 0; n ^= n << 13; n ^= n >>> 17; n ^= n << 5; state.plotRngState = n >>> 0 || 1; return state.plotRngState / 4294967296; }
+
+/** The living holder of the spymaster office, else null. */
+export function spymasterOf(state) { const person = state.people?.[state.offices?.spymaster?.holderId]; return person && !person.diedAt ? person : null; }
