@@ -8,6 +8,7 @@ import { ensureGovernance, refreshLegalClaims, registerAccession, familyRoyalCla
 import { ensurePortraitIdentity, freezeDeathAppearance, resolvePortraitState } from './portraitState.js';
 import { ensureHealthState, validateHealthState, runAnnualHealth, advanceHealthTransitions, getNextHealthTransitionDate, getTreatableConditions, treatCondition, recordBereavement, getConditionBurden, publicHealthConditions, HEALTH_CONDITION_LABELS } from './health.js';
 import { STORY_DIRECTOR_VERSION, ensureStoryDirector, validateStoryDirector, scheduleDirectedStory, directedStoryChoices, resolveDirectedStory, refreshDirectedStories } from './storyDirector.js';
+import { ensureCharacterExtensions, normalizeDifficulty, validateCharacterExtensions } from './extensions.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
 export { PORTRAIT_STATES, PORTRAIT_AGE_GROUPS, resolvePortraitState } from './portraitState.js';
@@ -251,7 +252,7 @@ export function createCharacterSystem(options = {}) {
   const cityList = options.cities?.length ? options.cities : [{ id: 'hadara', name: 'Hadara' }, { id: 'narim', name: 'Narim' }, { id: 'selene', name: 'Selene' }];
   cityList.slice(0, 12).forEach((city, i) => { const id = String(city.id || `city-${i}`); state.cities[id] = { id, name: city.name || id, regionId: city.regionId || null, familyId: FAMILY_SEEDS[i % 4].id, baseRevenue: 18 + i * 2, infrastructure: 0, unrest: 12, governorOfficeId: `governor-${i}` }; state.offices[`governor-${i}`] = { id: `governor-${i}`, name: `Guvernör: ${city.name || id}`, kind: 'governor', holderId: `person-${i % 4}-${i === 0 ? 2 : 0}`, cityId: id, regentId: null, history: [], publicBudget: 30 }; });
   for (const [id, name, holderId] of [['ruler', 'Härskare', 'person-0-0'], ['general', 'Överbefälhavare', 'person-1-2'], ['chancellor', 'Kansler', 'person-2-2'], ['priest', 'Överstepräst', 'person-3-0']]) state.offices[id] = { id, name, kind: id, holderId, regentId: null, history: [{ personId: holderId, date, reason: 'Kampanjstart' }], publicBudget: 30 };
-  ensureGovernance(state); ensureHealthState(state); ensureMandateEpisodes(state); ensureStoryDirector(state); ensureEventChains(state); refreshLegalClaims(state, rulerCandidates);
+  ensureGovernance(state); ensureHealthState(state); ensureMandateEpisodes(state); ensureStoryDirector(state); ensureEventChains(state); state.difficulty = normalizeDifficulty(options.difficulty); ensureCharacterExtensions(state); refreshLegalClaims(state, rulerCandidates);
   const events = []; logEvent(state, events, 'foundation', 'En generation tar ansvar', `${state.realm.name} formas av fyra familjer. Du följer ${state.identity.mode === 'realm' ? 'riket genom dess ledare' : `familjen ${state.families[state.identity.familyId].name}`}.`, [ruler(state).id]);
   state.stories.push({ id: nextId(state, 'story'), type: 'office_promise', title: 'Ett löfte vid gränsen', description: 'Namar kräver ett framtida guvernörsämbete som erkännande för arméns tjänst. Ett löfte kan ge stöd nu och binda nästa generation.', actorId: 'person-1-2', targetId: ruler(state).id, familyId: 'family-namar', officeId: values(state.offices).find((o) => o.kind === 'governor' && o.holderId !== 'person-1-2')?.id, createdAt: date, dueAt: addGameMonths(date, 36), status: 'open', knownBy: 'public' });
   return state;
@@ -302,7 +303,7 @@ export function normalizeCharacterSystem(raw) {
   for (const key of ['memories', 'stories', 'projects', 'log', 'appliedCommandIds']) if (!Array.isArray(state[key])) throw new Error(`Sparfilen saknar ${key}.`);
   if (!normalizeGameDate(state.date) || !normalizeGameDate(state.nextAnnualDate)) throw new Error('Sparfilens kalender är ogiltig.');
   if (!['realm', 'family'].includes(state.identity?.mode) || !state.families[state.identity.familyId] || !state.realm || !state.offices.ruler) throw new Error('Sparfilens kampanjidentitet är ogiltig.');
-  ensureGovernance(state);
+  ensureGovernance(state); ensureCharacterExtensions(state);
   for (const person of values(state.people)) if (!state.families[person.familyId] || !normalizeGameDate(person.bornAt) || !ARCHETYPES[person.archetype] || !Number.isFinite(person.health)) throw new Error(`Ogiltig person: ${person.id}.`);
   for (const office of values(state.offices)) if (office.holderId && !alive(state.people[office.holderId])) throw new Error(`Ämbetet ${office.name} har en ogiltig innehavare.`);
   if (!Number.isFinite(state.revision) || !Number.isFinite(state.rngState) || !Number.isFinite(state.realm.treasury)) throw new Error('Sparfilen innehåller ogiltiga tal.');
@@ -314,6 +315,7 @@ export function normalizeCharacterSystem(raw) {
   validateMandateEpisodes(state);
   ensureStoryDirector(state); validateStoryDirector(state);
   ensureEventChains(state); validateEventChains(state);
+  validateCharacterExtensions(state);
   return state;
 }
 
@@ -566,7 +568,7 @@ export function executeCharacterCommand(original, command) {
   if (original.appliedCommandIds.includes(command.id)) return { ok: true, state: original, events: [], error: null, duplicate: true };
   if (command.expectedRevision !== original.revision) return { ok: false, state: original, events: [], error: 'Världen har ändrats. Läs det senaste läget och försök igen.' };
   if (original.status.ended) return { ok: false, state: original, events: [], error: original.status.reason };
-  try { const state = copy(original); ensureHealthState(state); ensureEventChains(state); const events = []; refreshRepresentation(state, events, { silent: original.mandateVersion == null }); handleCommand(state, command, events); consumeRegencyConsent(state, command.type); state.appliedCommandIds.push(command.id); state.revision++; return { ok: true, state, events, error: null }; } catch (error) { return { ok: false, state: original, events: [], error: error.message }; }
+  try { const state = copy(original); ensureHealthState(state); ensureEventChains(state); ensureCharacterExtensions(state); const events = []; refreshRepresentation(state, events, { silent: original.mandateVersion == null }); handleCommand(state, command, events); consumeRegencyConsent(state, command.type); state.appliedCommandIds.push(command.id); state.revision++; return { ok: true, state, events, error: null }; } catch (error) { return { ok: false, state: original, events: [], error: error.message }; }
 }
 
 function closeKin(state, a, b) { if (a.familyId === b.familyId && (a.legalParentIds.length === 0 || b.legalParentIds.length === 0)) return true; const ancestors = (person) => new Set([...person.biologicalParentIds, ...person.legalParentIds, ...person.biologicalParentIds.flatMap((id) => state.people[id]?.biologicalParentIds || [])]); const aa = ancestors(a); const bb = ancestors(b); return aa.has(b.id) || bb.has(a.id) || [...aa].some((id) => bb.has(id)); }
@@ -588,7 +590,7 @@ function aiAnnual(state, events) { const player = activeRepresentative(state); c
     }
   }
 }
-function newChild(state, mother, father, events) { const id = nextId(state, 'person'); const familyId = mother.familyId; const nameIndex = Math.floor(random(state) * NAME_POOL.length); const sex = random(state) < 0.5 ? 'female' : 'male'; const child = { id, name: `${NAME_POOL[nameIndex]} ${state.families[familyId].name}`, familyId, bornAt: state.date, diedAt: null, sex, culture: mother.culture, religionId: mother.religionId, traits: [mother.traits[0], father.traits[0]].filter((t, i, list) => list.indexOf(t) === i), archetype: 'scholar', skills: { command: 1, stewardship: 1, diplomacy: 1, learning: 1 }, stress: 0, health: 100, wealth: 0, loyalty: 60, fear: 0, biologicalParentIds: [mother.id, father.id], legalParentIds: [mother.id, father.id], spouseId: null, mentorId: mother.id, education: 'learning', goal: { type: 'education', since: state.date, progress: 0 }, lastBirthAt: null, lastDecision: null, cooldowns: {} }; child.healthConditions = []; ensurePortraitIdentity(child, state.people); state.people[id] = child; mother.lastBirthAt = state.date; const event = logEvent(state, events, 'birth', `${child.name} föds`, `Barn till ${mother.name} och ${father.name}.`, [id, mother.id, father.id]); memory(state, 'birth', event.title, event.participants, { causeId: event.id }); }
+function newChild(state, mother, father, events) { const id = nextId(state, 'person'); const familyId = mother.familyId; const nameIndex = Math.floor(random(state) * NAME_POOL.length); const sex = random(state) < 0.5 ? 'female' : 'male'; const child = { id, name: `${NAME_POOL[nameIndex]} ${state.families[familyId].name}`, familyId, bornAt: state.date, diedAt: null, sex, culture: mother.culture, religionId: mother.religionId, traits: [mother.traits[0], father.traits[0]].filter((t, i, list) => list.indexOf(t) === i), archetype: 'scholar', skills: { command: 1, stewardship: 1, diplomacy: 1, learning: 1, intrigue: 1, prowess: 1 }, stress: 0, health: 100, wealth: 0, loyalty: 60, fear: 0, biologicalParentIds: [mother.id, father.id], legalParentIds: [mother.id, father.id], spouseId: null, mentorId: mother.id, education: 'learning', goal: { type: 'education', since: state.date, progress: 0 }, lastBirthAt: null, lastDecision: null, cooldowns: {} }; child.healthConditions = []; ensurePortraitIdentity(child, state.people); state.people[id] = child; mother.lastBirthAt = state.date; const event = logEvent(state, events, 'birth', `${child.name} föds`, `Barn till ${mother.name} och ${father.name}.`, [id, mother.id, father.id]); memory(state, 'birth', event.title, event.participants, { causeId: event.id }); }
 function annualStep(state, events) {
   const effects = getCharacterWorldEffects(state); state.realm.treasury = rounded(Math.max(0, state.realm.treasury + effects.annualRevenue)); state.actionPoints = 4;
   for (const office of values(state.offices)) if (state.realm.alive && office.kind !== 'ruler' && office.holderId) office.publicBudget = Math.min(30, office.publicBudget + 5);
@@ -623,7 +625,7 @@ export function advanceCharacters(original, targetDate, options = {}) {
   if (date === original.date || original.status.ended) return { ok: true, state: original, events: [], error: null };
   if (diffGameDays(original.date, date) > 366 * 500) return { ok: false, state: original, events: [], error: 'Dela upp tidshopp som är längre än 500 år.' };
   try {
-  const state = copy(original); ensureHealthState(state); ensureEventChains(state); const events = [];
+  const state = copy(original); ensureHealthState(state); ensureEventChains(state); ensureCharacterExtensions(state); const events = [];
   refreshRepresentation(state, events, { silent: original.mandateVersion == null });
   for (let next = getNextCharacterTransitionDate(state, date); next; next = getNextCharacterTransitionDate(state, date)) {
     state.date = next;
