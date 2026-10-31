@@ -46,7 +46,7 @@ In the `Överblick` tab of the character panel, the card `Handla själv` takes a
 - A scheme is paid at the start, checked monthly for discovery, and resolved on its due date. `Pågående intriger` lists the family's schemes, and `Avbryt intrigen` asks for confirmation first.
 - Difficulty is `Lätt`, `Normal` or `Svår`, chosen on the start card or in the scenario picker. It moves the player's contested odds by +10, 0 or −10 percentage points, and in the opposite direction for NPC actions against the player's representative. Earlier campaigns count as `Normal`.
 - Model proposals pass a gate. A `realm_effect` or `npc_intent` runs only through the engine's rules, with at most 4 and 3 per model turn, and a refused proposal is listed in the timeline. Replay never calls the model.
-- The panel footer shows `Modellanrop denna session`. The count lives in the open page and is not saved.
+- The panel footer shows `Modellanrop denna session`. The count lives in the open page and is not saved. It counts calls made through the local CLI only; calls through API-key providers are not counted.
 
 The contract is in `src/runtime/characters/CONTRACT.md`. [The Phase 1 play script](docs/play-scripts/phase-1.md) walks through each feature in the running game.
 
@@ -56,7 +56,7 @@ The upstream scenario-sharing rules remain in place. Scenarios posted or shared 
 
 ## Development status
 
-This is a playable development version. The local serial suite on 31 October 2026 ran 3,540 tests: 3,537 passed, none failed, one was skipped and two are TODOs. Phase 1 (free-text actions, odds, schemes, the model gate and the panel) has automated tests and a manual [play script](docs/play-scripts/phase-1.md); the play script has not been completed against a live model yet. Regent authority checks cover both campaign modes, appointment consent, independent family guardians, exact promise deadlines and saved-state validation. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
+This is a playable development version. The local serial suite on 31 October 2026 ran 3,543 tests: 3,540 passed, none failed, one was skipped and two are TODOs. Phase 1 (free-text actions, odds, schemes, the model gate and the panel) has automated tests and a manual [play script](docs/play-scripts/phase-1.md); the play script has not been completed against a live model yet. Regent authority checks cover both campaign modes, appointment consent, independent family guardians, exact promise deadlines and saved-state validation. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
 
 The portrait component passed 864 rendered state/age combinations, including delayed and failed image loading. Its controls support light and dark themes and a narrow viewport.
 

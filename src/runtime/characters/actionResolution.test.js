@@ -640,7 +640,7 @@ test('the presentation carries the catalog, the difficulty, visible recent resol
   assert.equal(recent.at(-1).id, 'resolution-extra-11');
 
   state.schemes = [
-    { id: 'scheme-1', actionId: 'undermine', actorId: MEMBER, targetIds: [TARGET], status: 'active' },
+    { id: 'scheme-1', actionId: 'undermine', actorId: MEMBER, targetIds: [TARGET], status: 'active', playerControlled: true },
     { id: 'scheme-2', actionId: 'undermine', actorId: OUTSIDER, targetIds: [REP], status: 'active' },
     { id: 'scheme-3', actionId: 'undermine', actorId: REP, targetIds: [TARGET], status: 'aborted' },
   ];

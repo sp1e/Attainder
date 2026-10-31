@@ -135,11 +135,11 @@ export function advanceSchemes(state, events, hooks) {
   }
 }
 
-// Abort and reinforce are for the controlled family's own active schemes. Any other id gets the same refusal, so the player cannot probe for other houses' plans.
+// Abort and reinforce are for the controlled family's own active schemes that the player started. Any other id gets the same refusal, so the player cannot probe for other houses' plans.
 function ownActiveScheme(state, payload, hooks) {
   const id = plainObject(payload) ? payload.schemeId : null, familyId = hooks.controlledFamily()?.id ?? null;
   const scheme = typeof id === 'string' ? state.schemes.find((item) => item.id === id) : null;
-  if (!isActive(scheme) || familyId == null || personOf(state, scheme.actorId)?.familyId !== familyId) throw new Error(MESSAGES.unknown);
+  if (!isActive(scheme) || scheme.playerControlled !== true || familyId == null || personOf(state, scheme.actorId)?.familyId !== familyId) throw new Error(MESSAGES.unknown);
   return scheme;
 }
 

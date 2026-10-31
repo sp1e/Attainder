@@ -698,6 +698,24 @@ test("a schema failure from the model shows the Swedish sentence; a no-match exp
   assert.equal(noMatch.reason, "Ingen handling låter dig flyga.");
 });
 
+test("an English no-match reason and an English explanation never reach the player", async () => {
+  const box = loadActionBox();
+  const { state, view } = engineCampaign();
+  const { result: noMatch, warnings } = await withWarnings(() => box.prepareInterpretedAction({ text: "Jag flyger till månen", view,
+    interpret: async () => ({ ok: false, reason: "The model failed to match the text", fallback: "menu" }), estimate: async () => assert.fail() }));
+  assert.equal(noMatch.reason, INTERPRET_FAILED);
+  assert.ok(warnings.some((line) => line.includes("failed to match")));
+  const { result: step } = await withWarnings(() => box.prepareInterpretedAction({ text: "Jag smickrar Iset", view,
+    interpret: async () => ({ ...swayAnswer(view), explanation: "The request was parsed with an error" }), estimate: async (intent) => estimateCharacterAction(state, intent) }));
+  assert.equal(step.kind, "confirm");
+  assert.equal(step.proposal.explanation, "");
+  const html = renderToStaticMarkup(React.createElement(box.ConfirmationCard, { proposal: step.proposal, view, onConfirm: () => {}, onCancel: () => {} }));
+  assert.doesNotMatch(html, /parsed with an error/);
+  const kept = await box.prepareInterpretedAction({ text: "Jag smickrar Iset", view,
+    interpret: async () => ({ ...swayAnswer(view), explanation: "Du vinner Isets gunst." }), estimate: async (intent) => estimateCharacterAction(state, intent) });
+  assert.equal(kept.proposal.explanation, "Du vinner Isets gunst.");
+});
+
 test("the menu form sends the representative, the chosen target, silver and at most two agents", async () => {
   const { state, view } = engineCampaign();
   const estimated = [];
@@ -844,4 +862,6 @@ test("in the panel a refused abort leaves the scheme with its refusal and focus 
   assert.deepEqual(submitted.map((command) => [command.type, command.payload.schemeId]), [["abort_scheme", "scheme-4"]]);
   assert.match(textOf(scheme()), /Intrigen kan inte längre avbrytas\./);
   assert.equal(driver.focused.at(-1), buttonNamed(scheme(), "Avbryt intrigen"));
+  const banner = findAll(tree, (node) => node.props?.role === "alert");
+  assert.equal(banner.length, 0, "the refusal shows once, under the scheme, not in the panel banner");
 });

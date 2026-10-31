@@ -271,6 +271,24 @@ test('abort and reinforce accept only an active scheme of the controlled family'
   assert.deepEqual(planted, snapshot);
 });
 
+test('an NPC scheme stays hidden and out of reach when its actor later joins the controlled family', () => {
+  const planted = copy(begin(withSeed(base(), RESOLVE_SEED)));
+  const npc = plant(planted, { actorId: MEMBER, targetIds: [TARGET], playerControlled: false });
+  const own = plant(planted, { actorId: MEMBER, targetIds: [TARGET], playerControlled: true });
+  assert.equal(planted.people[MEMBER].familyId, FAMILY, 'the actor belongs to the controlled family');
+  const listed = getCharacterPresentation(planted).schemes.map((scheme) => scheme.id);
+  assert.ok(listed.includes(own.id));
+  assert.ok(!listed.includes(npc.id), 'the NPC scheme is not listed');
+  const snapshot = copy(planted);
+  for (const type of ['abort_scheme', 'reinforce_scheme']) {
+    const result = run(planted, type, { schemeId: npc.id, silver: 5 });
+    assert.equal(result.ok, false, type);
+    assert.equal(result.error, UNKNOWN_SCHEME, type);
+  }
+  assert.deepEqual(planted, snapshot);
+  assert.equal(run(planted, 'abort_scheme', { schemeId: own.id }).ok, true);
+});
+
 test('reinforcing a scheme charges the silver, adds it to the means and raises the success estimate at resolution', () => {
   // A representative who is not dutiful would pay 3 stress for a duty-tagged charge.
   const setup = withSeed(base(), RESOLVE_SEED);

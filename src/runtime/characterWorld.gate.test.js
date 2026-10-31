@@ -336,3 +336,11 @@ test("the prompt describes the gate commands and the contested catalog", () => {
   const context = buildCharacterPromptContext(start().characterSystem);
   for (const text of ["realm_effect", "npc_intent", "-80", "+40", "-15", "+10", "sway", "undermine", ACTION_CATALOG.sway.label, "At most 4 per turn", "At most 3 per turn"]) assert.ok(context.includes(text), text);
 });
+
+test("a gate patch in a world without a character system is skipped", () => {
+  const world = normalizeWorldState({});
+  assert.equal(world.characterSystem ?? null, null);
+  const patch = { id: "gate-1", kind: "patch", gate: true, fromRevision: 3, toRevision: 4, changes: [] };
+  const result = applyEventImpactsToWorld({ world, events: [{ id: "model-1", date: DATE, title: "Modellens år", source: "ai", impacts: { characterOps: [patch] } }] }).world;
+  assert.equal(result.characterSystem ?? null, null);
+});

@@ -245,6 +245,8 @@ export const applyCharacterOpsToWorld = (world, operations, { source = "" } = {}
   for (const op of normalizeCharacterOps(operations)) {
     if (op.kind === "patch") {
       if (source !== "character-system" && op.gate !== true) continue;
+      // A gate patch belongs to a character system; a world without one has nothing to patch.
+      if (op.gate === true && !next.characterSystem) continue;
       const revision = next.characterSystem?.revision ?? -1;
       if (revision >= op.toRevision) continue;
       if (revision !== op.fromRevision) throw new Error("Karaktärshändelsen bygger på en annan världsversion.");

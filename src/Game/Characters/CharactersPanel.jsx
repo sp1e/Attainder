@@ -372,7 +372,7 @@ export default function CharactersPanel({ open, onClose }) {
   }, [open, busy]);
   const view = useMemo(() => state ? getCharacterPresentation(state) : null, [state]);
   const pending = entries(view?.stories).filter((story) => ["open", "pending", "active"].includes(story.status));
-  const perform = useCallback(async (operation, annual = false, withModel = annual) => {
+  const perform = useCallback(async (operation, annual = false, withModel = annual, quiet = false) => {
     if (busyRef.current) return undefined;
     busyRef.current = true;
     setBusy(true); setAnnualBusy(withModel); setError(""); setNotice("");
@@ -380,7 +380,7 @@ export default function CharactersPanel({ open, onClose }) {
     let result;
     try {
       result = await operation();
-      if (!result?.ok) setError(result?.error || "Handlingen kunde inte genomföras.");
+      if (!result?.ok) { if (!quiet) setError(result?.error || "Handlingen kunde inte genomföras."); }
       else {
         setNotice(result.events?.length ? result.events.slice(-2).map((event) => event.title).join(" · ") : "Beslutet har sparats i kampanjen.");
         if (annual) {
@@ -392,7 +392,7 @@ export default function CharactersPanel({ open, onClose }) {
       await refresh();
     } catch (reason) {
       result = { ok: false, error: reason?.message || "Handlingen kunde inte sparas. Försök igen." };
-      setError(result.error);
+      if (!quiet) setError(result.error);
     } finally { busyRef.current = false; setBusy(false); setAnnualBusy(false); }
     return result;
   }, [refresh]);
@@ -405,7 +405,7 @@ export default function CharactersPanel({ open, onClose }) {
     catch (reason) { setError(reason?.message || "Handlingen kunde inte genomföras. Försök igen."); return undefined; }
     finally { busyRef.current = false; setBusy(false); await refresh(); }
   }, [refresh]);
-  const command = (type, payload) => perform(() => submitCharacterCommand({ type, payload, expectedRevision: view?.revision, id: `ui-${crypto.randomUUID()}` }));
+  const command = (type, payload) => perform(() => submitCharacterCommand({ type, payload, expectedRevision: view?.revision, id: `ui-${crypto.randomUUID()}` }), false, false, type === "abort_scheme");
   const onKeyDown = (event) => {
     event.stopPropagation();
     if (event.key === "Escape") { event.preventDefault(); onClose(); }

@@ -71,11 +71,11 @@ export async function prepareInterpretedAction({ text, view, interpret, estimate
   if (!answer?.ok) {
     // interpretCharacterAction gives the player a Swedish reason and keeps a transport or schema error in `detail`.
     if (answer?.detail) console.warn("[character action] interpret failed:", answer.detail);
-    return { kind: "menu", reason: answer?.reason || INTERPRET_FAILED };
+    return { kind: "menu", reason: playerText(answer?.reason, INTERPRET_FAILED) };
   }
   const entry = entries(view?.catalog).find((item) => item.catalogId === answer.catalogId);
   if (!entry) return { kind: "menu", reason: INTERPRET_FAILED };
-  return proposalFor({ entry, payload: answer.payload, estimate, view, explanation: answer.explanation || "" });
+  return proposalFor({ entry, payload: answer.payload, estimate, view, explanation: playerText(answer.explanation, "") });
 }
 
 // Engine refusals are Swedish sentences ending with a period. A transport or parser error is English and is not

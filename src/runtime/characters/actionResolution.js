@@ -459,10 +459,10 @@ export function presentResolutions(state, familyId) {
   return (state.actionLog || []).filter((entry) => resolutionVisible(state, entry, familyId)).slice(-RECENT_LIMIT).map((entry) => presentResolution(state, entry, familyId));
 }
 
-/** Active schemes whose actor belongs to the controlled family. Only named fields are passed on, so a scheme's stored odds never reach the player. */
+/** Active schemes the player started whose actor belongs to the controlled family (an NPC scheme stays hidden even if its actor later joins the family). Only named fields are passed on, so a scheme's stored odds never reach the player. */
 export function presentSchemes(state, familyId) {
   if (familyId == null || !Array.isArray(state.schemes)) return [];
-  return state.schemes.filter((scheme) => plainObject(scheme) && scheme.status === 'active' && actorFamilyId(state, scheme) === familyId).map((scheme) => {
+  return state.schemes.filter((scheme) => plainObject(scheme) && scheme.status === 'active' && scheme.playerControlled === true && actorFamilyId(state, scheme) === familyId).map((scheme) => {
     const targetIds = Array.isArray(scheme.targetIds) ? [...scheme.targetIds] : [];
     const dates = Object.fromEntries(SCHEME_FIELDS.filter((key) => typeof scheme[key] === 'string').map((key) => [key, scheme[key]]));
     return { id: scheme.id, actionId: scheme.actionId, actionLabel: ownKey(ACTION_CATALOG, scheme.actionId) ? ACTION_CATALOG[scheme.actionId].label : scheme.actionId,

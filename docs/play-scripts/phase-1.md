@@ -52,7 +52,7 @@ Each step says where to click, what to type, and what you should see. If a step 
 4. Click `Tolka`.
 5. You should see `Modellen tolkar din text…` for a few seconds. Then a card appears with the small heading `Omstridd handling` and the title `Påverka`. Keyboard focus moves to that title.
 6. Read the card. It lists `Utförs av:` (your representative), `Mål:` (a person from the Namar family; if the card names someone from another family, note it and go on), `Extra silver:`, `Agenter:` and `Kostnad:`. Two lines follow: `Chans att lyckas:` and `Chans att hållas hemlig:`. Each shows a percentage between 5 % and 95 %, or a word such as `jämn` or `hög`, depending on the skill of the actor.
-7. Click `Vad påverkar chansen?`. You should see a list of reasons, each with a label and a signed number such as `+10` or `−5`.
+7. Click `Vad påverkar chansen?`. You should see a list of reasons. At exact precision each row has a label and a signed number, such as `Grundchans: +60` or `Svårighetsgrad: Svår: −10`. At the band precisions (the actor's main skill below 12, which includes Arel with diplomacy 4) each row shows only a sign, such as `Grundchans: +`, and the chances are words such as `jämn` instead of percentages.
 8. Look at the footer of the panel. It reads `Modellanrop denna session:` followed by a number. Note it.
 
 ## Part 4: Confirm and read the outcome
@@ -65,7 +65,7 @@ Each step says where to click, what to type, and what you should see. If a step 
    - `Misslyckat och avslöjat`
    - `Det slog tillbaka`
 3. After a few seconds the card shows a story title and one or more paragraphs of Swedish text. Note the title and the heading.
-4. Check the footer. `Modellanrop denna session:` has gone up by 2 since Part 3, step 8: one call to read your text, one to write the story.
+4. Check the footer. `Modellanrop denna session:` has gone up by at least 1 since Part 3, step 8. The counter at step 8 already includes the call that read your text, so the story call adds 1. It rises further if the model retried or a background call ran.
 5. If the card instead shows the line `Berättelsen kunde inte skrivas; utfallet gäller.`, the outcome still counts, and the card shows the game's standard text. Note this and continue.
 6. Click `Ny handling`. You should see the text box again, empty.
 
@@ -90,7 +90,7 @@ Each step says where to click, what to type, and what you should see. If a step 
 9. Click `Ny handling`. Under the action box, a section `Pågående intriger` now lists the scheme with `Mål:`, `Utförs av:`, `Avgörs:` and the button `Avbryt intrigen`.
 10. At the top of the panel, click `Nästa år med modellen`. The button reads `Bearbetar…` while the model writes the year. This is the slowest step of the script.
 11. When it finishes, you should see the year's events. If the year stops at a decision or a care case, answer it in the tab `Beslut` and click `Nästa år med modellen` again.
-12. The scheme falls due after three months, so it resolves in this year. Open `Krönikan` and `Årskrönika`: you should see an entry for the outcome of `Undergräv`. Return to `Överblick`: the section `Pågående intriger` is gone.
+12. The scheme falls due after three months, so it resolves in this year. Open `Krönikan` and `Årskrönika`: you should see one of two entries for `Undergräv`: the outcome of the scheme, or `Undergräv: planen avslöjades` if the target found out. Return to `Överblick`: the section `Pågående intriger` is gone.
 
 ## Part 7: Abort a scheme
 
