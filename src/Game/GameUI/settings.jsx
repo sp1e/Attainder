@@ -2292,7 +2292,7 @@ const QuickMenuPanel = ({ title, description, children }) => (
 
 const ContextSummaryCard = ({ context }) => {
     const rows = [
-        { label: "Scenario", value: context?.scenarioName || context?.gameName || "Open Historia" },
+        { label: "Scenario", value: context?.scenarioName || context?.gameName || "Attainder" },
         { label: "Playing as", value: context?.countryName || "—" },
         { label: "Date", value: context?.date || "—" },
     ];
@@ -2559,10 +2559,10 @@ const SettingsMenu = ({
         }}
         >
             <div style={{ alignItems: "center", borderBottom: "1px solid rgba(255,255,255,0.07)", display: "flex", gap: "0.75rem", margin: "-0.1rem -0.1rem 0.75rem", padding: "0 0.1rem 0.7rem" }}>
-                <img alt="Open Historia" src="/logo.png" style={{ borderRadius: "8px", flexShrink: 0, height: "2.25rem", width: "2.25rem" }} />
+                <img alt="Attainder" src="/logo.png" style={{ borderRadius: "8px", flexShrink: 0, height: "2.25rem", width: "2.25rem" }} />
                 <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ alignItems: "baseline", display: "flex", flexWrap: "wrap", gap: "0.35rem 0.55rem" }}>
-                        <span style={{ color: "#f8fafc", fontSize: "0.92rem", fontWeight: 900 }}>{context?.scenarioName || context?.gameName || "Open Historia"}</span>
+                        <span style={{ color: "#f8fafc", fontSize: "0.92rem", fontWeight: 900 }}>{context?.scenarioName || context?.gameName || "Attainder"}</span>
                     </div>
                     <div style={{ color: "rgba(255,255,255,0.34)", fontSize: "0.61rem", marginTop: "0.15rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                         {[context?.countryName ? `Playing as ${context.countryName}` : "", context?.date || ""].filter(Boolean).join(" · ") || "Game menu"}

@@ -23,7 +23,7 @@ Each step says where to click, what to type, and what you should see. If a step 
    node scripts/launch-dynasties.mjs
    ```
 
-   On Windows you can double-click `Start-Tides-of-Time.cmd` in the project folder instead. You should see the line `Tides of Time is ready at http://127.0.0.1:4167`, and your browser opens that address. If the browser does not open, open http://127.0.0.1:4167 yourself.
+   On Windows you can double-click `Start-Attainder.cmd` in the project folder instead. You should see the line `Attainder is ready at http://127.0.0.1:4167`, and your browser opens that address. If the browser does not open, open http://127.0.0.1:4167 yourself.
 4. Find the start card. At the top of the page, above the list of games, a card with the heading `Vem för du vidare?` appears. If you see a game instead, click `⌂ Exit Game` in the top bar to reach the main menu, where `Games` is one of the tabs.
 
 ## Part 1: Connect the model
@@ -114,34 +114,35 @@ Each step says where to click, what to type, and what you should see. If a step 
 
 ## Part 9: Load a campaign saved before Phase 1
 
-The repository holds no old save, and a save from a real game is private, so you create one with a build from before Phase 1. Saves live in the folder `play-data/` inside the project folder, or in `play-data/` under the folder named by the environment variable `TIDES_DATA_HOME` when you set it. The steps below set it, so that both builds share one folder.
+The repository holds no old save, and a save from a real game is private, so you create one with a build from before Phase 1. Saves live in the folder `play-data/` inside the project folder, or in `play-data/` under the folder named by the environment variable `ATTAINDER_DATA_HOME` when you set it. The build from before Phase 1 reads only the older name `TIDES_DATA_HOME`, and the current build reads both, so the steps below set `TIDES_DATA_HOME` and both builds share one folder.
 
 1. Stop the running game. Open `reports/launcher/server-process.json`, in the project folder or, if a file `SPELA.md` sits in the project's parent folder, in that parent folder. Read the number after `"pid"` and run `Stop-Process -Id <number>` in PowerShell. Alternatively free port 4167: run `Get-NetTCPConnection -LocalPort 4167`, then `Stop-Process -Id <OwningProcess>` with the number in the `OwningProcess` column.
-2. Choose a folder for the saves, for example `C:\tides-saves`, and set it in the terminal for both runs below. In PowerShell:
+2. Choose a folder for the saves, for example `C:\attainder-saves`, and set it in the terminal for both runs below. In PowerShell:
 
    ```powershell
-   $env:TIDES_DATA_HOME = "C:\tides-saves"
+   $env:TIDES_DATA_HOME = "C:\attainder-saves"
    ```
 
-3. Make a second copy of the project at the `main` branch, which has none of the Phase 1 changes. Put it in a short path outside OneDrive: the project folder sits in a long OneDrive path, and `npm ci` can fail on long paths there, and OneDrive would sync thousands of `node_modules` files. Run this in the same PowerShell window. It uses your own `origin` address.
+3. Make a second copy of the project at commit `728eaec`, the last commit before Phase 1. Put it in a short path outside OneDrive: the project folder sits in a long OneDrive path, `npm ci` can fail on long paths there, and OneDrive would sync thousands of `node_modules` files. Run this in the same PowerShell window. It uses your own `origin` address.
 
    ```powershell
-   git -c core.longpaths=true clone --branch main --single-branch --depth 1 (git remote get-url origin) C:\dev\attainder-main
-   cd C:\dev\attainder-main
+   git -c core.longpaths=true clone (git remote get-url origin) C:\dev\attainder-pre1
+   cd C:\dev\attainder-pre1
    git config core.longpaths true
+   git checkout --detach 728eaec
    npm ci
    npm run build
    node scripts/launch-dynasties.mjs
    ```
 
-   Before the last line, run `git log -1 --format=%h`. It should print the `main` commit. In the Phase 1 project folder, `git rev-parse --short origin/main` prints the commit your last fetch saw (`728eaec` at the time of writing). If `main` has moved since, the two differ and either is fine, as long as the clone has no Phase 1 files: `docs/play-scripts/phase-1.md` must be missing. The last command should print `Tides of Time is ready at http://127.0.0.1:4167`.
+   Before the last line, run `git log -1 --format=%h`. It should print `728eaec`, and the file `docs/play-scripts/phase-1.md` must be missing. The old build still carries the old name, so the last command prints `Tides of Time is ready at http://127.0.0.1:4167`.
 4. In the game, connect the model and start a campaign as in Parts 1 and 2. Open `Rike & familjer` and click `Nästa år med modellen` once. Close the browser tab.
-5. Stop that game as in step 1. Its process file is now under `C:\tides-saves\reports\launcher\server-process.json`.
+5. Stop that game as in step 1. Its process file is now under `C:\attainder-saves\reports\launcher\server-process.json`.
 6. Run `cd` to your Phase 1 project folder in the same PowerShell window, so that `TIDES_DATA_HOME` is still set, and start the game with `node scripts/launch-dynasties.mjs`.
-7. If a game opens, click `⌂ Exit Game` in the top bar. In the main menu, click the `Games` tab. You should see the campaign from the `main` build in the list. Click `Play` on it.
+7. If a game opens, click `⌂ Exit Game` in the top bar. In the main menu, click the `Games` tab. You should see the campaign from the old build in the list. Click `Play` on it.
 8. Open `Rike & familjer`. You should see `Svårighetsgrad: Normal` in the strip, since old campaigns count as Normal. The card `Handla själv` is present.
 9. Click `Nästa år med modellen`. You should see the year's events and no error message.
-10. Clean up: stop the game as in step 1, leave the clone with `cd ..`, remove it with `Remove-Item -Recurse -Force C:\dev\attainder-main`, and delete `C:\tides-saves` if you no longer need it.
+10. Clean up: stop the game as in step 1, leave the clone with `cd ..`, remove it with `Remove-Item -Recurse -Force C:\dev\attainder-pre1`, and delete `C:\attainder-saves` if you no longer need it.
 
 ## Report back
 

@@ -1,4 +1,4 @@
-# Tides of Time
+# Attainder
 
 An ancient empire strategy game built on [Open Historia](https://github.com/Open-Historia/open-historia). Choose whether your campaign follows the state through successive rulers or a family that can survive losing power.
 
@@ -9,16 +9,16 @@ The playable prototype starts in fictional Hadara in 300 BCE with four political
 Use Node.js 24, npm, and an installed, authenticated Codex CLI or Claude Code. The game uses the CLI's existing login. Model requests count toward that account's usage limits.
 
 ```sh
-git clone https://github.com/sp1e/Tides-of-Time.git
-cd Tides-of-Time
+git clone https://github.com/sp1e/Attainder.git
+cd Attainder
 npm ci
 npm run build
 node scripts/launch-dynasties.mjs
 ```
 
-On Windows, after the first build, double-click `Start-Tides-of-Time.cmd`. The launcher opens http://127.0.0.1:4167. Select Claude or Codex, then choose the state or family campaign mode. Expand the campaign seed control to set a starting seed. An empty field uses 104729. Seed 293 reproduces the starting conditions used in the smallpox gameplay check. Model narration can vary between runs.
+On Windows, after the first build, double-click `Start-Attainder.cmd`. The launcher opens http://127.0.0.1:4167. Select Claude or Codex, then choose the state or family campaign mode. Expand the campaign seed control to set a starting seed. An empty field uses 104729. Seed 293 reproduces the starting conditions used in the smallpox gameplay check. Model narration can vary between runs.
 
-Fresh clones store campaigns in `play-data/` and launcher logs in `reports/launcher/`. Both are ignored by Git. Set `TIDES_DATA_HOME` to use another data directory. The original development installation retains its existing sibling data directory automatically.
+Fresh clones store campaigns in `play-data/` and launcher logs in `reports/launcher/`. Both are ignored by Git. Set `ATTAINDER_DATA_HOME` to use another data directory. The older name `TIDES_DATA_HOME` still works. The original development installation retains its existing sibling data directory automatically.
 
 ## Character systems
 
@@ -77,4 +77,4 @@ See [the original documentation](UPSTREAM-README.md) for upstream features and [
 
 ## License and attribution
 
-The code retains Open Historia's AGPL-3.0-or-later license and copyright notices. See [LICENSE](LICENSE). Tides of Time is an independent derivative project. Generated artwork is documented separately and remains subject to the applicable provider terms.
+The code retains Open Historia's AGPL-3.0-or-later license and copyright notices. See [LICENSE](LICENSE). Attainder is an independent derivative project. Generated artwork is documented separately and remains subject to the applicable provider terms.
