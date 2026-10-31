@@ -1,5 +1,7 @@
-import { addGameMonths, compareGameDates, diffGameDays, normalizeGameDate, parseGameDate, astronomicalYear } from '../gameDates.js';
+import { addGameMonths, compareGameDates, diffGameDays, normalizeGameDate } from '../gameDates.js';
 import { ADULT_AGE, ARCHETYPES, CONTENT_VERSION, FAMILY_SEEDS, NAME_POOL, RULE_PROVENANCE, RULES_VERSION, SCHEMA_VERSION, SKILL_LABELS, TRAITS } from './content.js';
+import { getCharacterAge, isAdultCharacter } from './characterCapacity.js';
+export { getCharacterAge } from './characterCapacity.js';
 
 import { ensureGovernance, refreshLegalClaims, registerAccession, familyRoyalClaim, claimSupportPenalty, reconcileRegency, relevantRegencies, royalRegency, regencyVeto, regencyVetoForRecord, consumeRegencyConsent, cleanHostCandidates, describeGovernance, validateGovernance } from './governance.js';
 import { ensurePortraitIdentity, freezeDeathAppearance, resolvePortraitState } from './portraitState.js';
@@ -19,8 +21,7 @@ const safeId = (id) => typeof id === 'string' && /^[a-zA-Z0-9_:.-]{1,160}$/.test
 const nextId = (state, prefix) => `${prefix}-${++state.sequence}`;
 function random(state) { let n = state.rngState | 0; n ^= n << 13; n ^= n >>> 17; n ^= n << 5; state.rngState = n >>> 0 || 1; return state.rngState / 4294967296; }
 function seedNumber(seed) { if (Number.isFinite(Number(seed)) && Number(seed)) return Number(seed) >>> 0 || 1; let n = 2166136261; for (const c of String(seed)) n = Math.imul(n ^ c.charCodeAt(0), 16777619); return n >>> 0 || 1; }
-export function getCharacterAge(person, date) { const birth = parseGameDate(person?.bornAt); const now = parseGameDate(date); if (!birth || !now) return 0; return Math.max(0, astronomicalYear(now.year) - astronomicalYear(birth.year) - (now.month < birth.month || (now.month === birth.month && now.day < birth.day) ? 1 : 0)); }
-const adult = (state, person) => alive(person) && getCharacterAge(person, state.date) >= ADULT_AGE;
+const adult = (state, person) => isAdultCharacter(person, state.date);
 const ruler = (state) => state.people[state.offices.ruler?.holderId] || null;
 const familyMembers = (state, id) => living(state).filter((p) => p.familyId === id);
 const byAge = (state, people) => [...people].sort((a, b) => compareGameDates(a.bornAt, b.bornAt) || a.id.localeCompare(b.id));
