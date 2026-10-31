@@ -300,6 +300,8 @@ export function validateEventChains(state) {
         if (!choice || (choice.requires || []).some((rule) => flags[rule.flag] !== rule.equals) || !m || m.type !== 'chain_choice' || m.storyId !== story.id || m.chainId !== record.id || m.causeId !== story.causeId ||
             m.date !== story.resolvedAt || m.choiceId !== story.choiceId || m.decisionActorId !== story.decisionActorId || (choice.id !== 'close' && !state.people[story.decisionActorId])) throw new Error('Kedjevalets orsak eller beslutande person är ogiltig.');
         if (!Array.isArray(m.participants) || castKey(m.participants) !== castKey([...Object.values(record.roles), story.decisionActorId].filter(Boolean))) throw new Error('Kedjevalets minne har fel deltagare.');
+        // castKey drops repeats, so a repeated id passes the cast check above. resolveEventChain writes each participant once.
+        if (new Set(m.participants).size !== m.participants.length) throw new Error('Kedjevalets minne nämner samma deltagare mer än en gång.');
         if (m.knownBy !== 'public') throw new Error('Kedjevalets minne är inte offentligt.');
         Object.assign(flags, choice.flags);
       }

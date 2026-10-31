@@ -113,13 +113,36 @@ test('origin cause, step family and outcome memory are checked on load', () => {
   const stranger = state.memories.find((m) => m.id !== record.sourceMemoryId && m.id !== record.originMemoryId);
   assert.ok(stranger, 'the fixture needs a memory that is neither the source nor the origin');
   const outcome = (s) => s.memories.find((m) => m.id === story.outcomeMemoryId);
-  for (const [label, mutate] of [
-    ['step cause points at an unrelated memory', (s) => { s.stories.find((item) => item.id === story.id).causeId = stranger.id; }],
-    ['origin memory cause differs from the chain source', (s) => { s.memories.find((m) => m.id === record.originMemoryId).causeId = stranger.id; }],
-    ['step family differs from the chain owner', (s) => { s.stories.find((item) => item.id === story.id).familyId = 'family-namar'; }],
-    ['outcome participants were emptied', (s) => { outcome(s).participants = []; }],
-    ['outcome participants gained an outsider', (s) => { outcome(s).participants = [...outcome(s).participants, 'person-2-0']; }],
-    ['outcome memory was made private', (s) => { outcome(s).knownBy = [story.decisionActorId]; }],
-  ]) { const invalid = structuredClone(state); mutate(invalid); assert.throws(() => validateEventChains(invalid), Error, label); }
+  for (const [label, mutate, message] of [
+    ['step cause points at an unrelated memory', (s) => { s.stories.find((item) => item.id === story.id).causeId = stranger.id; }, /stegordning eller tidpunkt är ogiltig/],
+    ['origin memory cause differs from the chain source', (s) => { s.memories.find((m) => m.id === record.originMemoryId).causeId = stranger.id; }, /ursprungsminne pekar på en annan orsak/],
+    ['step family differs from the chain owner', (s) => { s.stories.find((item) => item.id === story.id).familyId = 'family-namar'; }, /tillhör inte kedjans ägarfamilj/],
+    ['outcome participants were emptied', (s) => { outcome(s).participants = []; }, /minne har fel deltagare/],
+    ['outcome participants gained an outsider', (s) => { outcome(s).participants = [...outcome(s).participants, 'person-2-0']; }, /minne har fel deltagare/],
+    ['outcome participants repeat a cast member', (s) => { outcome(s).participants = [...outcome(s).participants, outcome(s).participants[0]]; }, /samma deltagare mer än en gång/],
+    ['outcome memory was made private', (s) => { outcome(s).knownBy = [story.decisionActorId]; }, /minne är inte offentligt/],
+  ]) { const invalid = structuredClone(state); mutate(invalid); assert.throws(() => validateEventChains(invalid), { name: 'Error', message }, label); }
   validateEventChains(structuredClone(state));
+});
+
+test('a family letter origin must name its patronage memory as cause', () => {
+  // family_letter is the only template with a source memory, so only it reaches a non-null origin cause.
+  const state = createCharacterSystem({ seed: 321 }); ensureEventChains(state);
+  for (const city of Object.values(state.cities)) city.unrest = 0;
+  assert.equal(state.families['family-arel'].headId, 'person-0-0');
+  state.people['person-0-1'].diedAt = state.date;
+  state.memories.push({ id: 'memory-patronage', type: 'story_patronage', title: 'Templets beskydd', participants: ['person-0-1', 'person-0-2'],
+    date: state.date, causeId: null, knownBy: 'public' });
+  // heir_margin is a candidate too (person-0-4 keeps the default mentor). The seeded draw picks the letter; the next assertion pins it.
+  assert.ok(scheduleEventChain(state, [], context(state), hooks(state)));
+  const record = state.eventChains.records[0];
+  assert.equal(record.templateId, 'family_letter');
+  assert.equal(record.sourceMemoryId, 'memory-patronage');
+  assert.equal(state.memories.find((m) => m.id === record.originMemoryId).causeId, 'memory-patronage');
+  validateEventChains(state);
+  for (const [label, cause] of [['no cause', null], ['the origin itself', record.originMemoryId], ['a missing memory', 'memory-missing']]) {
+    const invalid = structuredClone(state);
+    invalid.memories.find((m) => m.id === record.originMemoryId).causeId = cause;
+    assert.throws(() => validateEventChains(invalid), { name: 'Error', message: /ursprungsminne/ }, label);
+  }
 });
