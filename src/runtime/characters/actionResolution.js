@@ -252,7 +252,17 @@ function adjustableEffect(resolution, item, used) {
 // The change an effect made. Entries written before `applied` existed count their value as applied.
 const appliedOf = (effect) => (Object.hasOwn(effect, 'applied') ? effect.applied : effect.value);
 
-// Takes back the change the effect actually made, applies the chosen value from there and stops at the bound again. An opinion cause is never cut at write time (getPersonalOpinion caps the sum), so its applied change is its amount.
+/**
+ * The field without this effect: the current field minus the change the effect made. The field can move between the attempt and its narrative (a rest lowers stress, the year changes influence), which can put that difference beyond a bound. On each side where the current field is inside its range, the base stays inside it too. On a side where the engine left the field beyond the bound, the raw base stands, as shiftField left it.
+ * Limit: when the effect itself brought the field into the range (influence 105, −10 gives 95), this case looks the same as a field that moved later. A milder value then leaves the field where it is (95, not 100).
+ */
+function adjustmentBase(current, applied, max) {
+  const raw = current - applied;
+  const floored = current >= 0 ? Math.max(0, raw) : raw;
+  return current <= max ? Math.min(max, floored) : floored;
+}
+
+// Takes back the change the effect made, applies the chosen value from there and stops at the bound again. The field then moves only in the direction of the adjustment (value − applied) and at most by that much, so a milder effect never pushes the field further and a stronger one never pulls it back. An opinion cause is never cut at write time (getPersonalOpinion caps the sum), so its applied change is its amount.
 function adjustEffect(state, effect, value) {
   if (effect.kind === 'opinion') {
     const cause = state.relations[`${effect.fromId}:${effect.toId}`]?.causes?.find((item) => item.causeId === effect.causeId);
@@ -264,9 +274,11 @@ function adjustEffect(state, effect, value) {
   if (!Object.hasOwn(FIELDS, effect.kind)) return false;
   const field = FIELDS[effect.kind], holder = field.holder(state, effect);
   if (!holder) return false;
-  const base = holder[field.key] - appliedOf(effect);
-  effect.value = value;
-  settleField(state, effect, base);
+  const current = holder[field.key], before = appliedOf(effect), delta = value - before;
+  const base = adjustmentBase(current, before, field.max);
+  const next = clamp(shiftField(base, value, field.max).next, Math.min(current, current + delta), Math.max(current, current + delta));
+  holder[field.key] = next;
+  Object.assign(effect, { value, applied: next === base + value ? value : next - base });
   return true;
 }
 

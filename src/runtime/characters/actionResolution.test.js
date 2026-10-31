@@ -411,6 +411,38 @@ test('influence at 100 and beyond: an undermine adjustment moves the field down 
   }
 });
 
+test('stress that fell between the attempt and its narrative stays at 0 or above, and the adjustment moves it only its own way', () => {
+  // Stress 2, backfire +8 gives 10; a rest brings it to 0 before the narrative. [adjusted value, stress after, change the value took]
+  for (const [value, stress, applied] of [[5, 0, 0], [10, 2, 2]]) {
+    const start = withSeed(base(), BACKFIRE_SEED);
+    start.people[REP].stress = 2;
+    const acted = attempt(start);
+    const resolution = lastResolution(acted);
+    assert.equal(resolution.tier, 'backfire');
+    assert.deepEqual([acted.state.people[REP].stress, resolution.effects[1].value, resolution.effects[1].applied], [10, 8, 8]);
+    acted.state.people[REP].stress = 0;
+    const result = narrate(acted.state, { resolutionId: resolution.id, adjustments: [{ effectIndex: 1, value }] });
+    assert.equal(result.ok, true, result.error);
+    assert.equal(lastResolution(result).rejectedAdjustments, 0);
+    assert.equal(result.state.people[REP].stress, stress, `adjusted to ${value}`);
+    assert.deepEqual([lastResolution(result).effects[1].value, lastResolution(result).effects[1].applied], [value, applied]);
+    assert.doesNotThrow(() => normalizeCharacterSystem(copy(result.state)), `adjusted to ${value}`);
+  }
+});
+
+test('influence that rose between the attempt and its narrative stays at 100 or below, and the adjustment moves it only its own way', () => {
+  // Influence 100, backfire -5 gives 95; the family regains 5 before the narrative. [adjusted value, influence after, change the value took]
+  for (const [value, influence, applied] of [[-3, 100, 0], [-8, 97, -3]]) {
+    const state = base();
+    state.families[FAMILY].influence = 100;
+    const resolution = undermineResolution(state, 'backfire');
+    assert.deepEqual([state.families[FAMILY].influence, resolution.effects[0].applied], [95, -5]);
+    state.families[FAMILY].influence = 100;
+    const after = influenceAfter(state, resolution, value);
+    assert.deepEqual([after.influence, after.effect.value, after.effect.applied], [influence, value, applied], `adjusted to ${value}`);
+  }
+});
+
 test('a narrative can be recorded once', () => {
   const acted = attempt(withSeed(base(), CLEAN_SEED));
   const resolutionId = lastResolution(acted).id;
@@ -627,25 +659,38 @@ const engineHooks = (state) => ({
   controlledFamily: () => state.families[FAMILY], householdRepresentative: () => state.people[REP], activeRepresentative: () => state.people[REP],
 });
 
+// A sway the player did not order (playerControlled false), rolled to `tier` and narrated, and where the player and the world can see it.
+function unorderedSway(actorId, tier) {
+  const before = withSeed(base(), seedForOdds(45, 60, tier));
+  const state = copy(before), events = [], hooks = engineHooks(state);
+  const resolution = { id: `resolution-${++state.sequence}`, commandId: null, actionId: 'sway', actorId, targetIds: [TARGET], agentIds: [], date: state.date,
+    playerControlled: false, precision: 'three', memoryId: null, estimate: { success: 45, secrecy: 60, refusal: null }, rolls: { refusal: null, success: null, secrecy: null },
+    tier: null, effects: [], narrative: null, refused: false };
+  completeResolution(state, resolution, ACTION_CATALOG.sway, events, hooks);
+  assert.equal(resolution.tier, tier);
+  recordNarrative(state, { resolutionId: resolution.id, title: 'Ett samtal i trädgården', narrative: 'Ingen utanför huset fick veta något.' }, hooks, events);
+  assert.doesNotThrow(() => normalizeCharacterSystem(copy(state)), tier);
+  const view = getCharacterPresentation(state);
+  const world = characterTransitionEvents(before, { ok: true, state, events }, `npc-${actorId}-${tier}`);
+  return {
+    events: events.map((event) => [event.type, event.public]),
+    log: view.log.some((event) => events.some((own) => own.id === event.id)),
+    recentResolutions: view.recentResolutions.some((entry) => entry.id === resolution.id),
+    memory: view.memories.some((memory) => memory.id === resolution.memoryId),
+    world: world.some((event) => events.some((own) => own.title === event.title)),
+  };
+}
+
 test('a resolution of another family reaches the log and the world only when its tier exposed it', () => {
   for (const [tier, shown] of [['quiet_failure', false], ['clean_success', false], ['exposed_failure', true]]) {
-    const before = withSeed(base(), seedForOdds(45, 60, tier));
-    const state = copy(before), events = [], hooks = engineHooks(state);
-    const resolution = { id: `resolution-${++state.sequence}`, commandId: null, actionId: 'sway', actorId: OUTSIDER, targetIds: [TARGET], agentIds: [], date: state.date,
-      playerControlled: false, precision: 'three', memoryId: null, estimate: { success: 45, secrecy: 60, refusal: null }, rolls: { refusal: null, success: null, secrecy: null },
-      tier: null, effects: [], narrative: null, refused: false };
-    completeResolution(state, resolution, ACTION_CATALOG.sway, events, hooks);
-    assert.equal(resolution.tier, tier);
-    recordNarrative(state, { resolutionId: resolution.id, title: 'Ett samtal i trädgården', narrative: 'Ingen utanför huset fick veta något.' }, hooks, events);
-    assert.deepEqual(events.map((event) => [event.type, event.public]), [['action_resolution', shown], ['action_narrative', shown]], tier);
-    assert.doesNotThrow(() => normalizeCharacterSystem(copy(state)), tier);
-    const view = getCharacterPresentation(state);
-    assert.equal(view.log.some((event) => events.some((own) => own.id === event.id)), shown, `${tier}: presentation log`);
-    assert.equal(view.recentResolutions.some((entry) => entry.id === resolution.id), shown, `${tier}: recent resolutions`);
-    assert.equal(view.memories.some((memory) => memory.id === resolution.memoryId), shown, `${tier}: anchor memory`);
-    const world = characterTransitionEvents(before, { ok: true, state, events }, `npc-${tier}`);
-    assert.equal(world.some((event) => events.some((own) => own.title === event.title)), shown, `${tier}: world stream`);
+    assert.deepEqual(unorderedSway(OUTSIDER, tier), { events: [['action_resolution', shown], ['action_narrative', shown]], log: shown, recentResolutions: shown, memory: shown, world: shown }, tier);
   }
+});
+
+test('a quiet resolution by a member of the controlled family stays visible to the player though the player did not order it', () => {
+  const seen = unorderedSway(MEMBER, 'quiet_failure');
+  assert.deepEqual(seen.events, [['action_resolution', true], ['action_narrative', true]]);
+  assert.deepEqual([seen.log, seen.recentResolutions, seen.world], [true, true, true]);
 });
 
 test('replay of the stored patch reproduces the resolution without rolling', () => {
