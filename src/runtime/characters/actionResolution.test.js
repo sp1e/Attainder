@@ -1,0 +1,517 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { createCharacterSystem, estimateCharacterAction, executeCharacterCommand, getAvailableCharacterActions, getCatalogActions, getCharacterPresentation, getPersonalOpinion, normalizeCharacterSystem } from './index.js';
+import { ACTION_CATALOG, TIER_IDS, effectDefault } from './actionCatalog.js';
+import { actionRandom } from './extensions.js';
+import { TIER_TITLES, applyTierEffects, tierFor, validateActionLog } from './actionResolution.js';
+import { applyCharacterOpsToWorld, characterTransitionEvents } from '../characterWorld.js';
+
+const REP = 'person-0-0';
+const TARGET = 'person-1-0';
+const MEMBER = 'person-0-2';
+const OUTSIDER = 'person-2-1';
+const FAMILY = 'family-arel';
+// Action stream seeds for the base scene below (sway by the representative against TARGET: success 46, secrecy 46).
+const CLEAN_SEED = 2027808452;
+const BACKFIRE_SEED = 3668339987;
+// First draw 31.71: below the refusal chance of a hostile member (70), above that of a loyal one (10).
+const LOW_FIRST_DRAW = 2654435761;
+const COMMAND_MESSAGE = 'Den här handlingen utförs med sitt vanliga kommando.';
+const SCHEME_MESSAGE = 'Planer som tar tid kan inte inledas ännu.';
+const LOG_ERROR = /handlingsloggen/i;
+
+const copy = (value) => JSON.parse(JSON.stringify(value));
+const base = () => createCharacterSystem({ seed: 321 });
+const withSeed = (state, seed) => Object.assign(copy(state), { actionRngState: seed });
+let counter = 0;
+const run = (state, type, payload, id = `command-${++counter}`) => executeCharacterCommand(state, { id, expectedRevision: state.revision, type, payload });
+const swayIntent = (extra = {}) => ({ actionId: 'sway', actorId: REP, targetIds: [TARGET], ...extra });
+const attempt = (state, extra = {}, id) => run(state, 'attempt_action', swayIntent(extra), id);
+const narrate = (state, payload, id) => run(state, 'record_action_narrative', { title: 'En vänlig gest', narrative: 'Gåvorna togs emot med ett leende.', adjustments: [], ...payload }, id);
+const draws = (seed, count) => { const dice = { actionRngState: seed }; return { values: Array.from({ length: count }, () => actionRandom(dice) * 100), after: dice.actionRngState }; };
+const lastResolution = (result) => result.state.actionLog.at(-1);
+function hostileMember(state) {
+  state.people[MEMBER].loyalty = 0;
+  state.relations[`${MEMBER}:${REP}`] = { fromId: MEMBER, toId: REP, bonds: [], causes: [{ id: 'fixture', amount: -150, label: 'Provvärde', causeId: 'fixture', startAt: state.date, expiresAt: null }] };
+  return state;
+}
+// The tier a seed gives for an intent, predicted from the estimate and the first two draws. Test setup only.
+function seedFor(state, intent, tier) {
+  const estimate = estimateCharacterAction(state, intent);
+  for (let k = 1; k < 5000; k++) {
+    const seed = Math.imul(k, 2654435761) >>> 0 || 1;
+    const [success, secrecy] = draws(seed, 2).values;
+    if (tierFor(success, secrecy, estimate.success.value, estimate.secrecy.value) === tier) return seed;
+  }
+  throw new Error(`No seed for ${tier}.`);
+}
+
+test('tierFor: success below the odds, backfire in the top tenth of failures, exposure when the secrecy roll reaches the secrecy odds', () => {
+  assert.equal(tierFor(45.99, 69.99, 46, 70), 'clean_success');
+  assert.equal(tierFor(45.99, 70, 46, 70), 'exposed_success');
+  assert.equal(tierFor(46, 10, 46, 70), 'quiet_failure');
+  assert.equal(tierFor(94.5, 70, 46, 70), 'exposed_failure');
+  assert.equal(tierFor(94.6, 10, 46, 70), 'backfire');
+  assert.equal(tierFor(99.99, 99.99, 46, 70), 'backfire');
+  assert.equal(tierFor(95, 0, 50, 70), 'backfire');
+  assert.equal(tierFor(94.99, 0, 50, 70), 'quiet_failure');
+});
+
+test('a contested action charges, rolls once and applies its tier defaults', () => {
+  const state = withSeed(base(), CLEAN_SEED);
+  const before = { treasury: state.families[FAMILY].treasury, orders: state.actionPoints, opinion: getPersonalOpinion(state, TARGET, REP), rng: state.rngState, stress: state.people[REP].stress, sequence: state.sequence };
+  const estimate = estimateCharacterAction(state, swayIntent());
+  const result = attempt(state, {}, 'sway-once');
+  assert.equal(result.ok, true, result.error);
+  const after = result.state, resolution = lastResolution(result);
+  const dice = draws(CLEAN_SEED, 2);
+  assert.equal(resolution.tier, 'clean_success');
+  assert.deepEqual(resolution.rolls, { refusal: null, success: dice.values[0], secrecy: dice.values[1] });
+  assert.equal(after.actionRngState, dice.after, 'exactly two draws: success, then secrecy');
+  assert.deepEqual(resolution.estimate, { success: estimate.success.value, secrecy: estimate.secrecy.value, refusal: null });
+  assert.equal(after.families[FAMILY].treasury, before.treasury - ACTION_CATALOG.sway.cost.silver);
+  assert.equal(after.actionPoints, before.orders - 1);
+  const swing = effectDefault(ACTION_CATALOG.sway.tiers.clean_success.effects[0]);
+  assert.equal(swing, 18);
+  assert.equal(getPersonalOpinion(after, TARGET, REP), before.opinion + swing);
+  assert.equal(after.rngState, before.rng);
+  assert.equal(after.people[REP].stress, before.stress, 'a dutiful actor pays no stress for a duty action');
+  assert.deepEqual(resolution.effects, [{ kind: 'opinion', fromId: TARGET, toId: REP, causeId: resolution.memoryId, label: 'Påverka: lyckat i det tysta', value: 18, min: 10, max: 25, default: 18 }]);
+  assert.equal(after.actionLog.length, 1);
+  assert.equal(resolution.id, `resolution-${before.sequence + 1}`);
+  assert.equal(resolution.commandId, 'sway-once');
+  assert.equal(resolution.actionId, 'sway');
+  assert.equal(resolution.actorId, REP);
+  assert.deepEqual(resolution.targetIds, [TARGET]);
+  assert.deepEqual(resolution.agentIds, []);
+  assert.equal(resolution.date, state.date);
+  assert.equal(resolution.narrative, null);
+  assert.equal(resolution.refused, false);
+  assert.equal(resolution.playerControlled, true);
+  assert.equal(resolution.precision, estimate.precision);
+  const cause = after.relations[`${TARGET}:${REP}`].causes.find((item) => item.causeId === resolution.memoryId);
+  assert.equal(cause.amount, 18);
+  const memory = after.memories.find((item) => item.id === resolution.memoryId);
+  assert.equal(memory.type, 'action');
+  assert.deepEqual(memory.knownBy, [REP], 'a quiet tier is known by the actor only');
+  const event = result.events.find((item) => item.type === 'action_resolution');
+  assert.equal(event.title, 'Påverka: lyckat i det tysta');
+  assert.equal(event.public, true);
+  assert.doesNotMatch(event.description, /\d/, 'the chronicle shows no odds');
+});
+
+test('each tier is reachable', () => {
+  const start = base();
+  const seen = new Map();
+  for (let k = 1; k <= 500 && seen.size < TIER_IDS.length; k++) {
+    const seed = Math.imul(k, 2654435761) >>> 0 || 1;
+    const result = attempt(withSeed(start, seed));
+    assert.equal(result.ok, true, result.error);
+    const resolution = lastResolution(result);
+    if (!seen.has(resolution.tier)) seen.set(resolution.tier, result);
+  }
+  assert.deepEqual([...seen.keys()].sort(), [...TIER_IDS].sort());
+  const opinionBefore = getPersonalOpinion(start, TARGET, REP);
+  for (const [tier, result] of seen) {
+    const resolution = lastResolution(result), envelope = ACTION_CATALOG.sway.tiers[tier].effects;
+    assert.equal(resolution.effects.length, envelope.length, tier);
+    resolution.effects.forEach((applied, index) => {
+      assert.equal(applied.kind, envelope[index].kind);
+      assert.equal(applied.value, effectDefault(envelope[index]));
+      assert.equal(applied.default, effectDefault(envelope[index]));
+    });
+    const opinion = envelope.find((effect) => effect.kind === 'opinion');
+    assert.equal(getPersonalOpinion(result.state, TARGET, REP), opinionBefore + (opinion ? effectDefault(opinion) : 0), tier);
+    const stress = envelope.find((effect) => effect.kind === 'stress');
+    assert.equal(result.state.people[REP].stress, start.people[REP].stress + (stress ? effectDefault(stress) : 0), tier);
+    const memory = result.state.memories.find((item) => item.id === resolution.memoryId);
+    assert.equal(memory.knownBy === 'public', ['exposed_success', 'exposed_failure', 'backfire'].includes(tier), tier);
+    assert.equal(result.events.find((item) => item.type === 'action_resolution').title, `Påverka: ${TIER_TITLES[tier].toLowerCase()}`);
+  }
+});
+
+test('a repeated command id neither charges nor rolls twice', () => {
+  const first = attempt(withSeed(base(), CLEAN_SEED), {}, 'double-click');
+  assert.equal(first.ok, true, first.error);
+  const snapshot = copy(first.state);
+  const second = executeCharacterCommand(first.state, { id: 'double-click', expectedRevision: first.state.revision, type: 'attempt_action', payload: swayIntent() });
+  assert.equal(second.ok, true);
+  assert.equal(second.duplicate, true);
+  assert.equal(second.state, first.state);
+  assert.deepEqual(second.events, []);
+  assert.deepEqual(first.state, snapshot);
+  assert.equal(second.state.actionLog.length, 1);
+  assert.equal(second.state.families[FAMILY].treasury, base().families[FAMILY].treasury - 5);
+});
+
+test('a dead or missing target is refused before any charge', () => {
+  const dead = withSeed(base(), CLEAN_SEED);
+  dead.people[TARGET].diedAt = dead.date;
+  const snapshot = copy(dead);
+  const refused = attempt(dead);
+  assert.equal(refused.ok, false);
+  assert.equal(refused.error, 'Målpersonen är död.');
+  assert.equal(refused.state, dead);
+  assert.deepEqual(dead, snapshot);
+  const missing = attempt(withSeed(base(), CLEAN_SEED), { targetIds: ['person-9-9'] });
+  assert.equal(missing.ok, false);
+  assert.equal(missing.error, 'Målet finns inte.');
+});
+
+test('a command id is refused with a pointer to its own command, before any charge', () => {
+  const state = base();
+  const types = getAvailableCharacterActions(state).map((action) => action.type);
+  assert.ok(types.includes('rest') && types.includes('appoint'));
+  for (const type of types) {
+    const result = run(state, 'attempt_action', { actionId: type, actorId: REP, targetIds: [TARGET] });
+    assert.equal(result.ok, false, type);
+    assert.equal(result.error, COMMAND_MESSAGE, type);
+    assert.equal(result.state, state);
+  }
+  assert.equal(run(state, 'attempt_action', { actionId: 'toString', actorId: REP, targetIds: [TARGET] }).error, 'Handlingen är okänd eller saknar odds.');
+});
+
+test('a scheme action is refused before anything is rolled, paid or created', () => {
+  const state = withSeed(base(), CLEAN_SEED);
+  const snapshot = copy(state);
+  const result = run(state, 'attempt_action', { actionId: 'undermine', actorId: REP, targetIds: [TARGET], means: { agentRoles: ['cook'] } });
+  assert.equal(result.ok, false);
+  assert.equal(result.error, SCHEME_MESSAGE);
+  assert.equal(result.state, state);
+  assert.deepEqual(state, snapshot);
+});
+
+test('an ordered household member can refuse', () => {
+  const state = hostileMember(withSeed(base(), LOW_FIRST_DRAW));
+  assert.equal(getPersonalOpinion(state, MEMBER, REP), -100);
+  const before = { treasury: state.families[FAMILY].treasury, orders: state.actionPoints, stress: state.people[REP].stress, opinion: getPersonalOpinion(state, TARGET, MEMBER), staff: copy(state.courtStaff) };
+  const result = attempt(state, { actorId: MEMBER, means: { silver: 10, agentRoles: ['cook'] } });
+  assert.equal(result.ok, true, result.error);
+  const resolution = lastResolution(result), dice = draws(LOW_FIRST_DRAW, 1);
+  assert.equal(resolution.refused, true);
+  assert.equal(resolution.estimate.refusal, 70);
+  assert.deepEqual(resolution.rolls, { refusal: dice.values[0], success: null, secrecy: null });
+  assert.ok(resolution.rolls.refusal < 70);
+  assert.equal(result.state.actionRngState, dice.after, 'a refusal draws once and rolls no tier');
+  assert.equal(resolution.tier, null);
+  assert.deepEqual(resolution.effects, []);
+  assert.deepEqual(resolution.agentIds, []);
+  assert.equal(result.state.actionPoints, before.orders - 1, 'the order point is spent');
+  assert.equal(result.state.families[FAMILY].treasury, before.treasury, 'no silver is spent');
+  assert.equal(result.state.people[REP].stress, before.stress, 'a refused order costs the representative no stress');
+  assert.equal(getPersonalOpinion(result.state, TARGET, MEMBER), before.opinion);
+  assert.deepEqual(result.state.courtStaff, before.staff, 'no agent is hired for an action that never runs');
+  const memory = result.state.memories.find((item) => item.id === resolution.memoryId);
+  assert.equal(memory.type, 'order_refused');
+  assert.deepEqual(memory.knownBy, [MEMBER, REP]);
+  assert.equal(result.events.find((item) => item.type === 'order_refused').title, 'Påverka: ordern vägrades');
+});
+
+test('a loyal ordered member draws the refusal roll first, then success and secrecy', () => {
+  const state = withSeed(base(), LOW_FIRST_DRAW);
+  const estimate = estimateCharacterAction(state, swayIntent({ actorId: MEMBER }));
+  assert.equal(estimate.ok, true, estimate.reason);
+  const result = attempt(state, { actorId: MEMBER });
+  assert.equal(result.ok, true, result.error);
+  const resolution = lastResolution(result), dice = draws(LOW_FIRST_DRAW, 3);
+  assert.equal(resolution.refused, false);
+  assert.equal(resolution.estimate.refusal, 10);
+  assert.deepEqual(resolution.rolls, { refusal: dice.values[0], success: dice.values[1], secrecy: dice.values[2] });
+  assert.equal(resolution.tier, tierFor(dice.values[1], dice.values[2], estimate.success.value, estimate.secrecy.value));
+  assert.equal(result.state.actionRngState, dice.after);
+  assert.equal(result.state.families[FAMILY].treasury, state.families[FAMILY].treasury - 5);
+});
+
+test('only the representative, household adults and office holders under a ruling representative can be ordered', () => {
+  const realm = base();
+  assert.equal(estimateCharacterAction(realm, swayIntent({ actorId: OUTSIDER })).reason, 'Aktören står inte under din order.');
+  assert.equal(estimateCharacterAction(realm, swayIntent({ actorId: 'person-2-2' })).ok, true, 'the chancellor serves a ruling representative');
+  assert.equal(run(realm, 'attempt_action', swayIntent({ actorId: OUTSIDER })).error, 'Aktören står inte under din order.');
+  const family = createCharacterSystem({ seed: 321, mode: 'family', familyId: 'family-eshmun' });
+  assert.equal(estimateCharacterAction(family, { actionId: 'sway', actorId: 'person-1-2', targetIds: [REP] }).reason, 'Aktören står inte under din order.', 'the general does not serve a family that does not rule');
+  assert.equal(estimateCharacterAction(family, { actionId: 'sway', actorId: 'person-2-1', targetIds: [REP] }).ok, true);
+});
+
+test('an estimate through the engine context is pure and reads the family wallet', () => {
+  const state = base();
+  const snapshot = copy(state);
+  const estimate = estimateCharacterAction(state, swayIntent({ means: { silver: 60 } }));
+  assert.equal(estimate.ok, true);
+  assert.equal(estimate.cost.silver, 65);
+  assert.deepEqual(state, snapshot);
+  state.families[FAMILY].treasury = 64;
+  assert.equal(estimateCharacterAction(state, swayIntent({ means: { silver: 60 } })).reason, 'Det behövs 65 silver; tillgängligt 64.');
+});
+
+test('agents are created when the action runs and reused by the next action', () => {
+  const first = attempt(withSeed(base(), CLEAN_SEED), { means: { silver: 10, agentRoles: ['cook', 'guard_captain'] } });
+  assert.equal(first.ok, true, first.error);
+  const resolution = lastResolution(first);
+  assert.equal(resolution.agentIds.length, 2);
+  assert.deepEqual(resolution.agentIds.map((id) => first.state.courtStaff[id].role), ['cook', 'guard_captain']);
+  assert.ok(resolution.agentIds.every((id) => first.state.courtStaff[id].familyId === FAMILY));
+  assert.equal(first.state.families[FAMILY].treasury, base().families[FAMILY].treasury - 15);
+  const second = attempt(first.state, { means: { agentRoles: ['cook'] } });
+  assert.equal(second.ok, true, second.error);
+  assert.deepEqual(lastResolution(second).agentIds, [resolution.agentIds[0]]);
+});
+
+test('out-of-envelope adjustments are dropped and the narrative is kept', () => {
+  const acted = attempt(withSeed(base(), BACKFIRE_SEED));
+  const resolution = lastResolution(acted);
+  assert.equal(resolution.tier, 'backfire');
+  assert.deepEqual(resolution.effects.map((effect) => [effect.kind, effect.value, effect.min, effect.max]), [['opinion', -22, -30, -15], ['stress', 8, 5, 10]]);
+  const opinion = getPersonalOpinion(acted.state, TARGET, REP), stress = acted.state.people[REP].stress;
+  const result = narrate(acted.state, { resolutionId: resolution.id, adjustments: [
+    { effectIndex: 1, value: 10 },
+    { effectIndex: 0, value: -50 },
+    { effectIndex: 0, value: -20.5 },
+    { effectIndex: 2, value: 0 },
+    { effectIndex: 1, value: 6 },
+    { effectIndex: '0', value: -16 },
+    'junk',
+    null,
+  ] });
+  assert.equal(result.ok, true, result.error);
+  const saved = lastResolution(result);
+  assert.deepEqual(saved.narrative, { title: 'En vänlig gest', text: 'Gåvorna togs emot med ett leende.' });
+  assert.equal(saved.rejectedAdjustments, 7);
+  assert.equal(saved.effects[1].value, 10);
+  assert.equal(saved.effects[1].default, 8);
+  assert.equal(saved.effects[0].value, -22);
+  assert.equal(result.state.people[REP].stress, stress + 2);
+  assert.equal(getPersonalOpinion(result.state, TARGET, REP), opinion);
+  assert.equal(result.state.actionRngState, acted.state.actionRngState, 'a narrative never rolls');
+  const event = result.events.find((item) => item.type === 'action_narrative');
+  assert.equal(event.title, 'En vänlig gest');
+  assert.equal(event.description, 'Gåvorna togs emot med ett leende.');
+  const dropped = narrate(attempt(withSeed(base(), BACKFIRE_SEED)).state, { resolutionId: resolution.id, adjustments: [{ effectIndex: 0, value: 99 }] });
+  assert.equal(dropped.ok, true, dropped.error);
+  assert.equal(lastResolution(dropped).rejectedAdjustments, 1);
+  assert.equal(lastResolution(dropped).narrative.title, 'En vänlig gest');
+});
+
+test('an adjustment inside the envelope applies its difference from the default and re-clamps the field', () => {
+  const start = withSeed(base(), BACKFIRE_SEED);
+  start.people[REP].stress = 195;
+  const acted = attempt(start);
+  const resolution = lastResolution(acted);
+  assert.equal(acted.state.people[REP].stress, 200, 'stress clamps at 200');
+  const opinion = getPersonalOpinion(acted.state, TARGET, REP);
+  const result = narrate(acted.state, { resolutionId: resolution.id, adjustments: [{ effectIndex: 0, value: -30 }, { effectIndex: 1, value: 5 }] });
+  assert.equal(result.ok, true, result.error);
+  assert.equal(lastResolution(result).rejectedAdjustments, 0);
+  assert.equal(getPersonalOpinion(result.state, TARGET, REP), opinion - 8);
+  assert.equal(result.state.relations[`${TARGET}:${REP}`].causes.find((item) => item.causeId === resolution.memoryId).amount, -30);
+  assert.equal(result.state.people[REP].stress, 197, 'the difference is applied to the clamped value and clamped again');
+  assert.deepEqual(lastResolution(result).effects.map((effect) => effect.value), [-30, 5]);
+});
+
+test('a narrative can be recorded once', () => {
+  const acted = attempt(withSeed(base(), CLEAN_SEED));
+  const resolutionId = lastResolution(acted).id;
+  const first = narrate(acted.state, { resolutionId });
+  assert.equal(first.ok, true, first.error);
+  const second = narrate(first.state, { resolutionId, title: 'En andra version' });
+  assert.equal(second.ok, false);
+  assert.equal(second.error, 'Utfallet har redan en berättelse.');
+  assert.equal(second.state, first.state);
+  assert.equal(narrate(acted.state, { resolutionId: 'resolution-99999' }).error, 'Utfallet finns inte.');
+  assert.equal(narrate(acted.state, { resolutionId, title: 'x'.repeat(121) }).error, 'Rubriken måste vara en text på 1 till 120 tecken.');
+  assert.equal(narrate(acted.state, { resolutionId, title: '   ' }).error, 'Rubriken måste vara en text på 1 till 120 tecken.');
+  assert.equal(narrate(acted.state, { resolutionId, narrative: 'x'.repeat(1501) }).error, 'Berättelsen måste vara en text på 1 till 1 500 tecken.');
+  assert.equal(narrate(acted.state, { resolutionId, narrative: 42 }).error, 'Berättelsen måste vara en text på 1 till 1 500 tecken.');
+  assert.equal(narrate(acted.state, { resolutionId, title: 'x'.repeat(120), narrative: 'y'.repeat(1500) }).ok, true);
+  const refused = attempt(hostileMember(withSeed(base(), LOW_FIRST_DRAW)), { actorId: MEMBER });
+  assert.equal(narrate(refused.state, { resolutionId: lastResolution(refused).id }).error, 'En vägrad order har inget utfall att berätta om.');
+});
+
+const testHooks = (state) => ({
+  memory: (type, title, participants, options = {}) => {
+    const item = { id: `memory-${++state.sequence}`, date: state.date, type, title, participants, causeId: options.causeId ?? null, knownBy: options.knownBy ?? 'public', familyIds: [], ...options };
+    state.memories.push(item);
+    return item;
+  },
+  opinionCause: (fromId, toId, amount, label, causeId) => {
+    const key = `${fromId}:${toId}`;
+    state.relations[key] ??= { fromId, toId, bonds: [], causes: [] };
+    state.relations[key].causes.push({ id: `opinion-${++state.sequence}`, amount, label, causeId, startAt: state.date, expiresAt: null });
+  },
+});
+// Rolls that land on each tier for an estimate of 45 / 60, so a hand-built entry is consistent with its tier.
+const ROLLS_FOR = { clean_success: [10, 10], exposed_success: [10, 70], quiet_failure: [50, 10], exposed_failure: [50, 70], backfire: [99, 10] };
+
+test('applyTierEffects applies every undermine envelope at its defaults, and the result validates', () => {
+  const entry = ACTION_CATALOG.undermine;
+  for (const tier of TIER_IDS) {
+    const state = base();
+    const hooks = testHooks(state);
+    const anchor = hooks.memory('action', 'Provminne', [REP, TARGET], { knownBy: [REP] });
+    const influence = { actor: state.families[FAMILY].influence, target: state.families['family-namar'].influence };
+    const resolution = { id: `resolution-${++state.sequence}`, commandId: null, actionId: 'undermine', actorId: REP, targetIds: [TARGET], date: state.date,
+      estimate: { success: 45, secrecy: 60, refusal: null }, rolls: { refusal: null, success: ROLLS_FOR[tier][0], secrecy: ROLLS_FOR[tier][1] }, tier,
+      effects: [], narrative: null, refused: false, agentIds: [], playerControlled: true, precision: 'three', memoryId: anchor.id };
+    assert.equal(tierFor(resolution.rolls.success, resolution.rolls.secrecy, 45, 60), tier);
+    resolution.effects = applyTierEffects(state, resolution, entry, hooks);
+    const envelope = entry.tiers[tier].effects;
+    assert.deepEqual(resolution.effects.map((effect) => effect.kind), envelope.map((effect) => effect.kind), tier);
+    for (const [index, effect] of envelope.entries()) {
+      const applied = resolution.effects[index];
+      if (effect.kind === 'influence') {
+        assert.equal(applied.familyId, effect.family === 'actor' ? FAMILY : 'family-namar');
+        assert.equal(state.families[applied.familyId].influence, influence[effect.family] + effectDefault(effect));
+      }
+      if (effect.kind === 'opinion') assert.equal(getPersonalOpinion(state, TARGET, REP), effectDefault(effect));
+      if (effect.kind === 'memory') {
+        const memory = state.memories.find((item) => item.id === applied.memoryId);
+        assert.equal(memory.title, effect.title);
+        assert.deepEqual(memory.knownBy, effect.visibility === 'private' ? [REP] : 'public');
+        assert.equal(memory.causeId, anchor.id);
+      }
+      if (effect.kind === 'secret') {
+        const secret = state.secrets.find((item) => item.id === applied.secretId);
+        assert.equal(secret.type, 'plot');
+        assert.equal(secret.subjectId, REP);
+        assert.deepEqual(secret.holderIds, effect.holders.map((role) => (role === 'actor' ? REP : TARGET)));
+        assert.equal(secret.causeId, anchor.id);
+      }
+      if (effect.kind === 'hook') {
+        const hook = state.hooks.find((item) => item.id === applied.hookId);
+        assert.deepEqual([hook.ownerId, hook.targetId, hook.strength, hook.causeId], [TARGET, REP, 'weak', anchor.id]);
+      }
+    }
+    state.actionLog.push(resolution);
+    assert.doesNotThrow(() => validateActionLog(state), tier);
+    assert.doesNotThrow(() => normalizeCharacterSystem(copy(state)), tier);
+  }
+});
+
+test('no tier of the catalog names the same opinion pair twice, so one cause per pair and resolution suffices', () => {
+  for (const entry of Object.values(ACTION_CATALOG)) for (const tier of TIER_IDS) {
+    const pairs = entry.tiers[tier].effects.filter((effect) => effect.kind === 'opinion').map((effect) => `${effect.from}>${effect.to}`);
+    assert.equal(new Set(pairs).size, pairs.length, `${entry.id} ${tier}`);
+  }
+});
+
+function playedState() {
+  let state = withSeed(base(), CLEAN_SEED);
+  const steps = [
+    (s) => attempt(s, { means: { silver: 5, agentRoles: ['steward'] } }),
+    (s) => narrate(s, { resolutionId: s.actionLog.at(-1).id, adjustments: [{ effectIndex: 0, value: 25 }, { effectIndex: 0, value: 99 }] }),
+    (s) => attempt(hostileMember(Object.assign(copy(s), { actionRngState: LOW_FIRST_DRAW })), { actorId: MEMBER }),
+    (s) => attempt(Object.assign(copy(s), { actionRngState: BACKFIRE_SEED })),
+    (s) => attempt(s, { actorId: 'person-0-3', targetIds: ['person-2-0'] }),
+  ];
+  for (const step of steps) { const result = step(state); assert.equal(result.ok, true, result.error); state = result.state; }
+  return state;
+}
+
+test('a log produced by play validates after several actions and a JSON round trip', () => {
+  const state = playedState();
+  assert.equal(state.actionLog.length, 4);
+  assert.ok(state.actionLog.some((entry) => entry.refused));
+  assert.ok(state.actionLog.some((entry) => entry.narrative));
+  const restored = normalizeCharacterSystem(JSON.parse(JSON.stringify(state)));
+  assert.deepEqual(restored.actionLog, state.actionLog);
+  assert.deepEqual(restored, state);
+});
+
+test('a forged action log entry is rejected on load', () => {
+  const state = playedState();
+  const success = state.actionLog.findIndex((entry) => !entry.refused && entry.narrative);
+  const refused = state.actionLog.findIndex((entry) => entry.refused);
+  const forgeries = {
+    'id beyond the sequence': (s) => { s.actionLog[success].id = `resolution-${s.sequence + 1}`; },
+    'id in another format': (s) => { s.actionLog[success].id = 'resolution-007'; },
+    'duplicate id': (s) => { s.actionLog[refused].id = s.actionLog[success].id; },
+    'unknown action': (s) => { s.actionLog[success].actionId = 'poison'; },
+    'inherited action name': (s) => { s.actionLog[success].actionId = 'toString'; },
+    'unknown tier': (s) => { s.actionLog[success].tier = 'triumph'; },
+    'tier the rolls do not give': (s) => { s.actionLog[success].tier = 'backfire'; },
+    'missing actor': (s) => { s.actionLog[success].actorId = 'person-9-9'; },
+    'missing target': (s) => { s.actionLog[success].targetIds = ['person-9-9']; },
+    'missing agent': (s) => { s.actionLog[success].agentIds = ['staff-99999']; },
+    'missing memory': (s) => { s.actionLog[success].memoryId = 'memory-99999'; },
+    'roll as text': (s) => { s.actionLog[success].rolls.success = '12'; },
+    'roll out of range': (s) => { s.actionLog[success].rolls.secrecy = 100; },
+    'odds out of range': (s) => { s.actionLog[success].estimate.success = 99; },
+    'future date': (s) => { s.actionLog[success].date = '0100-01-01'; },
+    'narrative title too long': (s) => { s.actionLog[success].narrative.title = 'x'.repeat(121); },
+    'narrative text too long': (s) => { s.actionLog[success].narrative.text = 'x'.repeat(1501); },
+    'narrative with another shape': (s) => { s.actionLog[success].narrative = 'En berättelse'; },
+    'unknown effect kind': (s) => { s.actionLog[success].effects[0].kind = 'gold'; },
+    'effect value outside its range': (s) => { s.actionLog[success].effects[0].value = 26; },
+    'effect on a missing person': (s) => { s.actionLog[success].effects[0].fromId = 'person-9-9'; },
+    'refused entry with a tier': (s) => { s.actionLog[refused].tier = 'clean_success'; },
+    'refused entry above its refusal chance': (s) => { s.actionLog[refused].rolls.refusal = 80; },
+    'refused entry with effects': (s) => { s.actionLog[refused].effects = copy(s.actionLog[success].effects); },
+    'narrative on a refused entry': (s) => { s.actionLog[refused].narrative = { title: 'Ja', text: 'Nej' }; },
+    'rejected count without a narrative': (s) => { s.actionLog[refused].rejectedAdjustments = 0; },
+    'entry that is not an object': (s) => { s.actionLog.push('resolution'); },
+  };
+  for (const [name, forge] of Object.entries(forgeries)) {
+    const forged = copy(state);
+    forge(forged);
+    assert.throws(() => normalizeCharacterSystem(forged), LOG_ERROR, name);
+  }
+});
+
+test('the presentation carries the catalog, the difficulty, visible recent resolutions and the family schemes', () => {
+  const played = playedState();
+  const view = getCharacterPresentation(played);
+  assert.deepEqual(view.catalog, getCatalogActions(played));
+  assert.deepEqual(view.difficulty, { id: 'normal', label: 'Normal' });
+  assert.deepEqual(getCharacterPresentation(createCharacterSystem({ seed: 321, difficulty: 'hard' })).difficulty, { id: 'hard', label: 'Svår' });
+  assert.deepEqual(view.recentResolutions.map((entry) => entry.id), played.actionLog.map((entry) => entry.id));
+  const own = view.recentResolutions[0];
+  assert.equal(own.actionLabel, 'Påverka');
+  assert.equal(own.actorName, played.people[REP].name);
+  assert.deepEqual(own.targetNames, [played.people[TARGET].name]);
+  assert.equal(own.tierLabel, TIER_TITLES[own.tier]);
+  assert.equal(own.precision, undefined);
+  assert.equal(own.rolls, undefined, 'the dice would bound the hidden odds');
+  assert.deepEqual(own.odds, { success: 'osäker', secrecy: 'osäker' }, 'three-band precision shows bands, never numbers');
+  assert.equal(view.recentResolutions.find((entry) => entry.refused).tierLabel, 'Ordern vägrades');
+
+  const state = copy(played);
+  const template = state.actionLog[0];
+  const npc = (tier, id) => ({ ...copy(template), id, commandId: null, actorId: OUTSIDER, playerControlled: false, tier });
+  state.actionLog.push(npc('clean_success', 'resolution-hidden-1'), npc('quiet_failure', 'resolution-hidden-2'), npc('exposed_failure', 'resolution-shown'));
+  const mixed = getCharacterPresentation(state).recentResolutions;
+  assert.ok(!mixed.some((entry) => entry.id.startsWith('resolution-hidden')), 'quiet tiers by others stay hidden');
+  const exposed = mixed.find((entry) => entry.id === 'resolution-shown');
+  assert.equal(exposed.odds, null, 'the odds of another family are not shown');
+  for (let i = 0; i < 12; i++) state.actionLog.push({ ...copy(template), id: `resolution-extra-${i}` });
+  const recent = getCharacterPresentation(state).recentResolutions;
+  assert.equal(recent.length, 10);
+  assert.equal(recent.at(-1).id, 'resolution-extra-11');
+
+  state.schemes = [
+    { id: 'scheme-1', actionId: 'undermine', actorId: MEMBER, targetIds: [TARGET], status: 'active' },
+    { id: 'scheme-2', actionId: 'undermine', actorId: OUTSIDER, targetIds: [REP], status: 'active' },
+    { id: 'scheme-3', actionId: 'undermine', actorId: REP, targetIds: [TARGET], status: 'aborted' },
+  ];
+  const schemes = getCharacterPresentation(state).schemes;
+  assert.deepEqual(schemes.map((scheme) => scheme.id), ['scheme-1']);
+  assert.equal(schemes[0].actionLabel, 'Undergräv');
+  assert.deepEqual(schemes[0].targetNames, [state.people[TARGET].name]);
+});
+
+test('replay of the stored patch reproduces the resolution without rolling', () => {
+  const before = withSeed(base(), seedFor(base(), swayIntent(), 'exposed_failure'));
+  const result = attempt(before);
+  assert.equal(result.ok, true, result.error);
+  assert.equal(lastResolution(result).tier, 'exposed_failure');
+  const events = characterTransitionEvents(before, result, 'attempt-replay');
+  const ops = events.at(-1).impacts.characterOps;
+  assert.equal(ops.length, 1);
+  assert.equal(ops[0].kind, 'patch');
+  const replay = applyCharacterOpsToWorld({ characterSystem: before }, ops, { source: 'character-system' });
+  assert.deepEqual(replay.characterSystem, result.state);
+  // A base with another action stream proves the replay applies the stored result: rolling again would land elsewhere.
+  const reseeded = Object.assign(copy(before), { actionRngState: CLEAN_SEED });
+  assert.notEqual(lastResolution(attempt(reseeded)).tier, 'exposed_failure');
+  const stored = applyCharacterOpsToWorld({ characterSystem: reseeded }, ops, { source: 'character-system' });
+  assert.deepEqual(stored.characterSystem, result.state);
+  assert.deepEqual(stored.characterSystem.actionLog.at(-1).rolls, lastResolution(result).rolls);
+});
