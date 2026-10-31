@@ -23,6 +23,7 @@ Fresh clones store campaigns in `play-data/` and launcher logs in `reports/launc
 ## Character systems
 
 - A ruler's archetype determines available abilities. Succession changes those abilities.
+- Offices & inheritance shows a read-only succession forecast: expected actual ruler, lawful claims, ability changes, regency limits and project continuity. It describes a single ruler's death at today's date; later events can change the result.
 - Personality affects stress and changes how characters make decisions. Personal opinion, family support and religious affiliation remain separate.
 - Memories connect decisions to later stories. Offices, family property, legal claims and actual political power can pass to different people.
 - Eight recurring event types cover household pressure, education, temple donations, troubled cities, veterans, reconciliation, exile and returned favors. Participants and selection weights depend on the current campaign. Choices change resources, relationships and public administration; past support can return through a family successor.
@@ -39,7 +40,7 @@ The upstream scenario-sharing rules remain in place. Scenarios posted or shared 
 
 ## Development status
 
-This is a playable development version. The latest local suite passed 3,104 tests, with no failures, one skipped test and two TODOs. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
+This is a playable development version. The local serial suite passed 3,117 tests, with no failures, one skipped test and two TODOs. A subsequent read-only forecast correction for a minor without an adult representative passed all 170 affected character tests. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
 
 The portrait component passed 864 rendered state/age combinations, including delayed and failed image loading. Its controls support light and dark themes and a narrow viewport.
 

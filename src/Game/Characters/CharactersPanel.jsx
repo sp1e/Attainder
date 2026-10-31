@@ -198,13 +198,42 @@ function GovernanceSummary({ view }) {
   </section>;
 }
 
+function SuccessionForecast({ forecast }) {
+  if (!forecast) return null;
+  const personSummary = (person) => person ? <><strong>{person.name}</strong><p>{person.familyName} · {person.age} år · {person.archetypeLabel}</p><p>Förmåga: <strong>{person.ability?.label || 'Ingen angiven'}</strong></p><p className="char-caption">{person.ability?.description}</p></> : <p>Ingen levande innehavare.</p>;
+  const projects = forecast.projects;
+  const projectList = (items) => items.length ? <ul>{items.map((project) => <li key={project.id}><strong>{project.title}</strong> · Uppdragsgivare: {project.ownerName}{project.familyName ? ` · Ägare: ${project.familyName}` : ''}</li>)}</ul> : <p className="char-caption">Inga aktiva projekt i denna kategori.</p>;
+  return <section className="char-card char-succession char-succession-forecast" aria-labelledby="succession-forecast-heading">
+    <span className="char-eyebrow">Prognos från dagens läge</span>
+    <h3 id="succession-forecast-heading">Om härskaren avlider</h3>
+    <p>{forecast.basis}</p>
+    <p>Faktisk härskare: <strong>{forecast.actualRuler?.name || 'Ingen'}</strong>. Rättslig pretendent: <strong>{forecast.lawfulRuler?.name || 'Ingen'}</strong>. Rättslig arvinge: <strong>{forecast.legalHeir?.name || 'Ingen'}</strong>.</p>
+    {forecast.contestedCrown && <p className="char-badge char-badge--warning">Tronen är omstridd. Den rättsliga arvingen behöver inte bli faktisk härskare.</p>}
+    <div className="char-succession-grid">
+      <div><h4>{forecast.currentUsesRegent ? 'Nuvarande regent och förmåga' : 'Nuvarande härskare och förmåga'}</h4>{forecast.currentExercising ? personSummary(forecast.currentExercising) : <p>Ingen myndig person utövar mandatet.</p>}<p>{forecast.currentAuthority}</p></div>
+      <div><h4>Väntad faktisk efterträdare</h4>{personSummary(forecast.expectedRuler)}<p>{forecast.authority}</p>
+        {forecast.expectedRuler && <p>{forecast.requiresRegency ? 'Barnets arketyp visas som personuppgift, inte som regentens förmåga.' : forecast.abilityChanges ? 'Mandatet byter arketypförmåga.' : 'Mandatet behåller samma arketypförmåga.'}</p>}
+      </div>
+    </div>
+    <p>{forecast.identity.description}</p>
+    {forecast.identity.mode === 'family' && forecast.identity.familyKeepsThrone === false && <p className="char-badge char-badge--warning">Den väntade härskaren tillhör en annan familj. Din familj får inte automatiskt härskarmandat.</p>}
+    <h4>Projekt vid härskarens död</h4>
+    <div className="char-succession-grid">
+      <div><h4>Personliga effekter som upphör</h4><p>Den avlidna härskarens egna tidsbundna effekter avslutas.</p>{projectList(projects.ending)}</div>
+      <div><h4>Andra personers effekter</h4><p>Dessa tillhör en annan person. Härskarens död avslutar dem inte i sig. En regents effekt kan upphöra när regentmandatet upphör och ger bara stöd med rätt aktiv innehavare.</p>{projectList(projects.otherPersonal)}</div>
+      <div><h4>Offentliga byggen fortsätter</h4><p>Akademier och vattenledningar behåller sitt byggschema vid ett personligt tronskifte. Ett upplöst rike kan inte fortsätta offentliga uppdrag.</p>{projectList(projects.publicConstruction)}{projects.academyEstablished && <p>Den färdiga akademin består vid ett tronskifte.</p>}</div>
+      <div><h4>Familjens byggen fortsätter</h4><p>Familjeegendom behåller sin familjeägare och sitt byggschema.</p>{projectList(projects.familyEstates)}</div>
+    </div>
+  </section>;
+}
+
 function OfficesView({ view, setTab }) {
   const people = Object.fromEntries(entries(view.people).map((person) => [person.id, person]));
   const succession = view.succession || {};
   return <><div className="char-section-heading"><div><span className="char-eyebrow">Befogenheter följer ämbetet</span><h3>Vem förvaltar makten?</h3></div><button className="char-button" onClick={() => setTab("decisions")}>Utnämningar och beslut →</button></div><div className="char-offices">{entries(view.offices).map((office) => {
     const holder = people[office.holderId || office.personId];
     return <article className="char-card char-office" key={office.id}><div><span className="char-eyebrow">{office.typeLabel || humanize(office.type || "Ämbete")}</span><h4>{office.name || office.title}</h4><p>{office.description || office.mandate || "Ämbetet har egna befogenheter och skyldigheter."}</p></div><div className="char-office-holder">{holder ? <><Portrait person={holder} size="small" /><span><strong>{holder.name}</strong><small>{holder.familyName}</small></span></> : <span className="char-badge char-badge--warning">Vakant</span>}</div>{office.regentId && <p>Regent: <strong>{people[office.regentId]?.name}</strong></p>}</article>;
-  })}</div><GovernanceSummary view={view} />
+  })}</div><GovernanceSummary view={view} /><SuccessionForecast forecast={succession.forecast} />
   <section className="char-card char-succession"><span className="char-eyebrow">Nästa generation</span><h3>Succession och familjens framtid</h3><p>{succession.description || succession.lawLabel || "Härskarämbete, familjeledning och personlig egendom följer egna regler. Familjens gemensamma tillgångar består vid ett personligt arv."}</p><div className="char-succession-grid"><div><h4>Tronföljd</h4>{succession.heirName || succession.heirId ? <p>{succession.heirName || people[succession.heirId]?.name}</p> : <p className="char-caption">Kandidaternas behörighet och stöd avgör övergången.</p>}{entries(succession.candidates).map((candidate, index) => <div className="char-candidate" key={candidate.id || candidate.personId || index}><strong>{candidate.name || people[candidate.personId || candidate.id]?.name}</strong><span>{candidate.reason || candidate.description || [candidate.familyName, candidate.age != null ? `${candidate.age} år` : null, candidate.archetypeLabel].filter(Boolean).join(" · ")}</span></div>)}</div><div><h4>Familjeledning</h4><p>{view.mode === "family" ? "Du fortsätter följa samma familj även om den förlorar tronen. Ämbetets offentliga medel stannar i riket." : "Du fortsätter styra riket även när en ny familj tar makten. Den nya ledningens personlighet och förmågor gäller."}</p>{succession.familyHeadName && <p>Familjens nuvarande företrädare: <strong>{succession.familyHeadName}</strong></p>}{succession.regentName && <p>Regent: <strong>{succession.regentName}</strong></p>}<p className="char-caption">Personligt arv överför den avlidnes egendom och skulder. Det överför inte statens eller familjens gemensamma kassa.</p></div></div></section>
   </>;
 }

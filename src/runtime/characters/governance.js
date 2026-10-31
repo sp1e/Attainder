@@ -64,12 +64,12 @@ export function registerAccession(state, { previousId, newId, lawful = true, rea
   state.realm.claimHistory.push({ date: state.date, type: restored && previousId !== newId ? 'restoration' : lawful ? 'lawful_accession' : 'seizure', fromId: previousId || null, toId: newId || null, lawfulRulerId: state.realm.lawfulRulerId, reason });
 }
 
-export function familyRoyalClaim(state, familyId) {
+export function familyRoyalClaim(state, familyId, excludedIds = []) {
   const claimant = state.people[state.realm.lawfulRulerId];
-  return state.realm.alive && alive(claimant) && claimant.familyId === familyId && claimant.id !== state.offices.ruler.holderId ? claimant : null;
+  return state.realm.alive && alive(claimant) && !excludedIds.includes(claimant.id) && claimant.familyId === familyId && claimant.id !== state.offices.ruler.holderId ? claimant : null;
 }
 
-export function claimSupportPenalty(state, familyId) { return familyRoyalClaim(state, familyId) ? -12 : 0; }
+export function claimSupportPenalty(state, familyId, excludedIds = []) { return familyRoyalClaim(state, familyId, excludedIds) ? -12 : 0; }
 
 export function reconcileRegency(state, id, principalId, proposedRegentId, { isAdult, emit, events }) {
   ensureGovernance(state);

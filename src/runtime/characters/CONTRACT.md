@@ -75,6 +75,29 @@ Host candidates are actual existing external polities supplied by the runtime: `
 
 Validation: `node --test src/runtime/characters/characters.test.js src/runtime/characters/governance.test.js src/runtime/characters/health.test.js`. The governance file covers separate lawful/actual succession, three distinct political/private recipients, consent/veto, contested adulthood, dissolution, external acceptance/refusal, alias preservation, lost protection, bounded host lists and malformed saved references.
 
+## Read-only succession forecast
+
+`getSuccessionForecast(state)` returns the same serializable value exposed as
+`presentation.succession.forecast`. It contains actual and lawful identities,
+the expected actual successor, current exercised and incoming abilities,
+authority limits, campaign identity implications and project continuity by
+owner. No forecast fields are persisted.
+
+The forecast is conditional on only the current ruler dying at today's date.
+It shares the death-successor branch and candidate ranking with the runtime.
+Optional candidate exclusions remove the departing person's office seats,
+personal sanctuary support and claim penalty from merit scores. Viewing does
+not simulate a transition, change state or consume RNG. Minor successors
+require regency; their own ability is not immediately exercisable. A deceased
+legal fallback is rejected by the shared selector so an exhausted population
+reaches the existing interregnum path.
+
+A minor without a living adult representative retains the nominal ruler
+identity but has no current exercised ability in the forecast.
+
+See `docs/design/succession-forecast.md` and
+`src/runtime/characters/successionForecast.test.js` for scope and checks.
+
 ## Health, care and dated portraits
 
 The additive health module has `healthVersion:1`, `healthActivatedAt`, `healthRngState` and `healthSequence`. Its random stream and identifiers are separate from the existing annual stream. Normalization of older pre-release saves adds a neutral empty health history and stable portrait identities at the saved date. It does not invent historical illnesses, age people or draw random numbers. Unknown health versions and malformed condition references are refused. Existing schema/rules/content version numbers remain unchanged for this unreleased additive extension.
