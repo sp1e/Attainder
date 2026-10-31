@@ -4,7 +4,7 @@ import { setRuntimeAssetEndpoints } from "./assets.js";
 import { getCharacterPresentation } from "./characters/index.js";
 import { initializeCampaignCharacters, advanceCharacterYear, submitCharacterCommand,
   readVisibleCharacterState, getCharacterRuntimeStatus, revealLatestCharacterTurn,
-  commitCharacterCampaign } from "./characterRuntime.js";
+  commitCharacterCampaign, recordCharacterNarrative } from "./characterRuntime.js";
 
 test("runtime campaign start, command, date, shared save and failed-write recovery use the same world", async () => {
   const originalFetch = globalThis.fetch;
@@ -92,6 +92,42 @@ test("a committed turn with an invalid character world is rejected before any wr
       world: { characterSystem: { schemaVersion: 99 } } };
     await assert.rejects(commitCharacterCampaign({ id: "model-turn:2:-0299-01-01", base, next }), /nyare version/);
     assert.deepEqual(puts, []);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("a narrative is recorded only through recordCharacterNarrative, never through a player command", async () => {
+  const originalFetch = globalThis.fetch;
+  const data = {
+    world: { units: [] },
+    game: { country: "Hadara", gameDate: "-0300-01-01", startDate: "-0300-01-01", round: 1 },
+    events: [], actions: [], chat: [], colors: { Hadara: "#789abc" }, snapshots: [],
+  };
+  globalThis.fetch = async (url, options = {}) => {
+    const key = new URL(String(url), "http://runtime.test").pathname.split("/").at(-1);
+    if (options.method === "PUT") data[key] = JSON.parse(options.body);
+    return new Response(JSON.stringify(data[key] ?? {}), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  setRuntimeAssetEndpoints({ token: "characters-narrative-test" });
+  try {
+    const init = await initializeCampaignCharacters({ mode: "family", seed: 41 });
+    assert.equal(init.ok, true, init.error);
+    const view = getCharacterPresentation(init.state);
+    const sway = view.catalog.find((entry) => entry.catalogId === "sway");
+    const attempt = await submitCharacterCommand({ id: "narrative-attempt", expectedRevision: init.state.revision, type: "attempt_action",
+      payload: { actionId: "sway", actorId: view.representative.id, targetIds: [sway.fields[0].options[0].value], means: { silver: 0, agentRoles: [] } } });
+    assert.equal(attempt.ok, true, attempt.error);
+    const resolution = attempt.state.actionLog.at(-1);
+    assert.equal(resolution.narrative, null);
+    const payload = { resolutionId: resolution.id, title: "En vänlig gest", narrative: "Gåvorna togs emot med ett leende.", adjustments: [] };
+    const refused = await submitCharacterCommand({ id: "narrative-player", expectedRevision: attempt.state.revision, type: "record_action_narrative", payload });
+    assert.equal(refused.ok, false);
+    assert.equal(refused.error, "Berättelsen kan bara skrivas av berättarsteget.");
+    assert.equal(data.world.characterSystem.actionLog.at(-1).narrative, null);
+    const recorded = await recordCharacterNarrative(payload);
+    assert.equal(recorded.ok, true, recorded.error);
+    assert.equal(data.world.characterSystem.actionLog.at(-1).narrative.title, "En vänlig gest");
   } finally {
     globalThis.fetch = originalFetch;
   }

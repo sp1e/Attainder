@@ -111,3 +111,11 @@ test('callLocalCli counts every call by kind', async () => {
   assert.equal((after.byKind.interpret || 0) - (before.byKind.interpret || 0), 1);
   assert.equal((after.byKind.year || 0) - (before.byKind.year || 0), 1);
 });
+
+test('localModelArguments refuses an effort outside the whitelist', () => {
+  for (const provider of ['claude-cli', 'codex-cli']) {
+    for (const effort of ['max', 'LOW', '', null, 3, 'low"; rm -rf /']) {
+      assert.throws(() => localModelArguments(provider, { directory: 'C:/isolated', effort }), { message: 'Ogiltig ansträngningsnivå.' });
+    }
+  }
+});

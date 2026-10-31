@@ -74,6 +74,7 @@ export function validateLocalModelRequest(body) {
 }
 
 export function localModelArguments(provider, { model = '', effort = 'medium', directory, schemaFile } = {}) {
+  if (typeof effort !== 'string' || !EFFORTS.has(effort)) throw new Error('Ogiltig ansträngningsnivå.');
   if (provider === 'claude-cli') return [
     '--print', '--output-format', 'stream-json', '--verbose', '--effort', effort, '--no-session-persistence',
     '--restricted', '--strict-mcp-config', '--tools', '',
