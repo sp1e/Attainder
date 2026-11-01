@@ -6,7 +6,8 @@ import { ensureStaff } from './courtStaff.js';
 import { actionRandom } from './extensions.js';
 import { imprisonPerson, isImprisoned } from './prisoners.js';
 import { spreadRumor } from './rumors.js';
-import { HOOK_STRENGTHS, SECRET_TYPES, addSecretHolders, createSecret, exposeSecret, grantHook, useHook } from './secrets.js';
+// useHook is imported as consumeHook: the react-hooks lint rule reads the name as a React hook.
+import { HOOK_STRENGTHS, SECRET_TYPES, addSecretHolders, createSecret, exposeSecret, grantHook, useHook as consumeHook } from './secrets.js';
 import { startScheme } from './schemes.js';
 
 // Resolution of contested actions. The engine decides: an attempt is validated by estimateAction, paid, rolled twice on the action stream (success, then secrecy) and lands on one of five tiers whose effect envelope is applied at its defaults. A later narrative may move a ranged effect inside its envelope and never outside it.
@@ -175,7 +176,7 @@ function describeAttempt(state, resolution) {
 // A hook named in the means is used once, whatever the tier (a weak hook is spent, a strong one stays). The estimate has already checked that it can be used; the log entry records which hook was used.
 function spendHook(state, resolution, means) {
   if (typeof means?.hookId !== 'string') return;
-  useHook(state, means.hookId);
+  consumeHook(state, means.hookId);
   resolution.hookId = means.hookId;
 }
 

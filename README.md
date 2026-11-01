@@ -40,7 +40,7 @@ Recurring decisions show why they appeared and when they expire. A longer turn s
 
 In the `Överblick` tab of the character panel, the card `Handla själv` takes a sentence such as `Jag försöker vinna Namars stöd med gåvor och smicker`. A low-effort model call maps the text to one action in the catalog. The engine then computes the odds, and a confirmation card shows them before anything is spent. `Välj från listan` opens every action as a menu, which also works when the model is disconnected or cannot read the text.
 
-- Two contested actions exist: `Påverka` (sway, instant) and `Undergräv` (undermine, a three-month scheme). Command actions such as appointments stay in the same menu.
+- Seven contested actions exist. Phase 1 added `Påverka` (sway, instant) and `Undergräv` (undermine, a three-month scheme); Phase 2 added the five listed under Intrigue below. Command actions such as appointments stay in the same menu.
 - Odds are integers from 5 to 95 for success and for secrecy, each with a list of labelled modifiers. How much of this the player sees depends on the actor's skill in the action: 12 or more shows the exact percentage, 7 to 11 shows one of five bands (`mycket låg` to `mycket hög`), and below 7 shows one of three (`osannolik`, `osäker`, `trolig`).
 - Two rolls on a separate random stream pick one of five tiers: `Lyckat i det tysta`, `Lyckat men avslöjat`, `Misslyckat i det tysta`, `Misslyckat och avslöjat` and `Det slog tillbaka`. The tier fixes the effects. A second low-effort model call writes the story and can move ranged effects inside their allowed range. If that call fails, the standard text stands.
 - A scheme is paid at the start, checked monthly for discovery, and resolved on its due date. `Pågående intriger` lists the family's schemes, and `Avbryt intrigen` asks for confirmation first.
@@ -50,13 +50,29 @@ In the `Överblick` tab of the character panel, the card `Handla själv` takes a
 
 The contract is in `src/runtime/characters/CONTRACT.md`. [The Phase 1 play script](docs/play-scripts/phase-1.md) walks through each feature in the running game.
 
+## Intrigue
+
+Phase 2 adds secrets, plots and prisoners on top of the Phase 1 action engine. All of it is rules code; the model reads your text and writes the story, and never decides an outcome.
+
+- Five more contested actions: `Förgifta` (poison, a one-month scheme that kills the target on success), `Snoka` (investigate, two months, reveals the target's strongest secret), `Utpressa` (blackmail, instant, needs a secret you hold about the target), `Sprida rykte` (spread a rumor on a chosen topic) and `Fängsla` (imprison, ruler only, 10 realm silver). `Förgifta` can also use a grip over the target.
+- Secrets and grips. A crime, an affair or a plot is a secret with a holder list and weak or strong evidence. A grip (`Grepp`) over a person makes your odds against that person better; a weak grip is spent when you use it, a strong one is not. The tab `Intriger` lists the secrets you know, your grips, the prisoners you hold, the rumors you have heard and your running schemes.
+- The spymaster. The office `Spionmästare` starts vacant and the realm never fills it; the ruler appoints it with `Utse en ämbetsinnehavare`. A spymaster hears more rumors about other houses' plans and adds to the monthly chance of seeing through a plan against your family.
+- Feasts. `Håll gästabud` costs 30 silver and one order, runs one month and can be held once a year. While it runs, intrigue actions against a guest gain 15 points of success chance and lose 5 points of secrecy chance, and the odds card lists both rows.
+- Prisoners. A jailed person loses every office and cannot act. You can free (`Frige`) or execute (`Avrätta`) a prisoner, or wait for the yearly step: the prisoner's family either offers a 40 silver ransom (`Lösen för …`, answered with `Ta emot lösen` or `Avvisa erbjudandet`) or prepares a revolt.
+- Rumors. The family hears about other houses' plans through a monthly check, and a rumor states its reliability as `osäker`, `trolig` or `säker`. A rumor you start with `Sprida rykte` is always false. Which rumors are true never reaches the screen or any model prompt.
+- Plots against you. Each year, people outside your family may start an `Undergräv` or `Förgifta` against your ruler or representative, and rival houses may feud with each other. The difficulty `Svår` raises their chance and `Lätt` lowers it. A plot against you that is seen through opens the decision `Komplott avslöjad: …` with four answers: `Fängsla komplottmakaren`, `Avslöja komplotten`, `Behåll kunskapen som grepp` and `Låt det vara`.
+- Court conversations. The button `Samtala` on a person in the `Personer` tab opens a conversation with a household member or an office holder. The model reads what you say and reports whether you ask for support, a secret or a pledge, with an offer of silver and the arguments you give. The engine checks that each argument is real, shows the odds, rolls once and fixes the answer before the person replies in character.
+- Three random streams keep the draws apart: the main stream, the action stream (rolls and scheme checks) and the plot stream (NPC plots, rumor hearing, ransom offers). Estimates and presentations draw nothing, and replay never calls the model.
+
+[The Phase 2 play script](docs/play-scripts/phase-2.md) walks through each feature in the running game. Known limits are listed in `docs/development/CONTINUE-HERE.md`.
+
 ## Scenarios Are Released Under CC BY 4.0
 
 The upstream scenario-sharing rules remain in place. Scenarios posted or shared through the game are released under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/). Exported scenario files include the corresponding license record. Separately referenced maps, music and other third-party material retain their own terms.
 
 ## Development status
 
-This is a playable development version. The local serial suite on 31 October 2026 ran 3,543 tests: 3,540 passed, none failed, one was skipped and two are TODOs. Phase 1 (free-text actions, odds, schemes, the model gate and the panel) has automated tests and a manual [play script](docs/play-scripts/phase-1.md); the play script has not been completed against a live model yet. Regent authority checks cover both campaign modes, appointment consent, independent family guardians, exact promise deadlines and saved-state validation. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
+This is a playable development version. The local serial suite on 1 November 2026 ran 3,790 tests: 3,787 passed, none failed, one was skipped and two are TODOs. Phase 1 (free-text actions, odds, schemes, the model gate and the panel) and Phase 2 (intrigue) have automated tests and manual play scripts, [Phase 1](docs/play-scripts/phase-1.md) and [Phase 2](docs/play-scripts/phase-2.md); neither play script has been completed against a live model yet. Regent authority checks cover both campaign modes, appointment consent, independent family guardians, exact promise deadlines and saved-state validation. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
 
 The portrait component passed 864 rendered state/age combinations, including delayed and failed image loading. Its controls support light and dark themes and a narrow viewport.
 

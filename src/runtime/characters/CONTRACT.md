@@ -154,6 +154,39 @@ Once a year, in `annualStep` after `prisonerStep` (`npcPlotStep`, npcPlots.js), 
 
 A scheme is started through `resolveAttempt` with the NPC context (no order, paid by the plotter's family, `means` empty, command id `npc-plot:<date>:<n>`, `playerControlled: false`). It stores `secretId`, a weak `plot` secret about the plotter that only he holds; this is not `means.secretId`, which is blackmail leverage, and `validateSchemes` requires it to name a secret whose subject is the actor. When such a scheme is discovered and its target belongs to the controlled family, the secret gains the target and the representative as holders with strong evidence and the story `plot_uncovered` opens (public, due after 12 months, closed earlier if the plotter dies or is imprisoned). Its choices: `imprison` (lawful, disabled unless the representative is the ruler), `expose` (`treason` when the target was the ruler at discovery (`targetWasRuler`), `attempted_murder` for a poisoning, else the plot secret goes public), `hook` (the representative gains a strong hook over the plotter) and `ignore`. The model's `npc_intent` list leaves out entries that need an office or the realm treasury (`imprison`).
 
+## Phase 2 state, streams and commands
+
+`state.extensionsVersion` is 2. `ensureCharacterExtensions` migrates a version 1 state additively and idempotently on every load and command, draws no randomness, and refuses any other version through validation. Version 2 adds `plotRngState`, the ledgers `occasions`, `prisoners`, `rumors` and `conversations` next to the version 1 ones (`secrets`, `hooks`, `relationships`, `schemes`, `actionLog`), and the office `spymaster` (`Spionmästare`, kind `council`, vacant). The ruler fills it with `appoint`; the yearly auto-fill of vacant offices skips it, because filling it would shift the main stream.
+
+Three random streams, none shared:
+
+- `state.rngState`: the main stream of the annual simulation. Phase 2 leaves the order of its draws in `annualStep` as it was in Phase 1.
+- `state.actionRngState`: action and scheme rolls, refusals, the monthly discovery check and the one roll of a conversation request.
+- `state.plotRngState`: an xorshift state that is never 0, seeded once by ensure as the FNV-1a hash of `` `${polityId}|${startedAt}|${rngState}|plots` `` (`>>> 0 || 1`). `plotRandom(state)` in `extensions.js` draws from it for NPC plot choice (`npcPlotStep`), rumor hearing, rumor accuracy and the false-name pick (`rumors.js`), and ransom offers (`prisonerStep`). Nothing else uses it.
+
+Estimates, presentations, prompt building, migration and validation draw no randomness and spend nothing.
+
+A secret is `{ id, type, subjectId, holderIds, evidence, causeId, exposed, createdAt }` with `type` one of `murder`, `affair`, `illegitimate_child`, `heresy`, `plot` (`SECRET_LABELS` gives the Swedish names) and `evidence` `weak` or `strong`. A hook is `{ id, ownerId, targetId, strength, causeId, createdAt, usedAt }`: a weak hook gets `usedAt` on its first use, a strong one stays usable. The representative's presentation lists `knownSecrets` (type label, subject name, evidence label, `exposed`) and `ownHooks`; who else holds a secret never leaves the engine. `crimes.js` turns an exposed crime secret into a public event, opinion loss in the victim's family, legitimacy loss when the criminal is the ruler and, for another criminal under a ruling player, a `punish_crime` decision.
+
+Occasions (`occasions.js`): `hold_feast` (payload `{}`) charges 30 family silver and one order, refuses a second feast within twelve months with `Familjen höll gästabud för mindre än ett år sedan.`, and pushes `{ id: 'occasion-<n>', kind: 'feast', hostFamilyId, hostId, startedAt, endsAt, guestIds }` that runs for one month. The guests are every living adult who is not in prison; each guest family's head thinks 5 better of the host for three years. While a feast runs, an intrigue-category action of the host family against a guest gains the odds rows `Gästabudet ger tillträde` (+15 success) and `Hemlighållning: många vittnen på gästabudet` (−5 secrecy). A scheme stores the feast it started under in `means.occasionId`; only a scheme's due-date estimate (`means.scheduled`) honours it, and a `means.occasionId` sent by a player is ignored. `presentOccasions` lists the feasts the controlled family hosts today.
+
+Conversations (`conversation.js`): `converse_request` (payload `{ personId, kind, offerSilver, hookId, arguments, argumentScore }`, `kind` one of `support`, `reveal_secret`, `pledge`) is an engine-only command. `handleCommand` accepts it only with `command.origin === 'converse'`, which `submitConversationRequest` in `characterRuntime.js` is the only caller to set, and refuses any other origin with `Samtalsförfrågningar kan bara göras i samtalssteget.`. `estimateConversation` is pure: the base chance per kind plus labelled rows (opinion, loyalty, offer, traits, hook, `Övertygande argument`), cut to 5 to 95, shown at the representative's diplomacy precision. An argument (`offer`, `shared_enemy`, `shared_memory`, `hook`) counts only when it refers to something real in the state, and the model's claimed `argumentScore` is capped at 10 again. Resolution draws one `actionRandom`, pays the offer from the family wallet without an order, spends a weak hook, writes a memory and a `conversations` entry `{ id: 'conversation-<n>', personId, kind, date, value, roll, accepted, effects }`, and applies the effect: support +10 opinion, a secret shared, or a hook granted. A person is asked once per twelve months. `getConversationBrief` is engine-side input for the model and is never part of the presentation.
+
+Presentation fields added in Phase 2: `catalog` (entries with `fields`, `disabledReason`), `schemes`, `recentResolutions`, `staff`, `difficulty`, `occasions`, `prisoners`, `rumors`, `knownSecrets`, `ownHooks` and `conversationTargets`.
+
+Commands added in Phase 2 and their origins:
+
+| Command | Origin | Notes |
+| --- | --- | --- |
+| `attempt_action` | player | Now also `poison`, `investigate`, `blackmail`, `spread_rumor` and `imprison`. |
+| `abort_scheme`, `reinforce_scheme` | player | Own active schemes only. |
+| `hold_feast` | player | Public command. |
+| `release_prisoner`, `execute_prisoner` | player | `{ prisonerId }`, one order each. |
+| `resolve_story` | player | Also for `plot_uncovered`, `ransom_offer` and `punish_crime`. |
+| `converse_request` | `converse` only | Sent by `submitConversationRequest`. |
+| `record_action_narrative` | `narrate` only | Unchanged from Phase 1. |
+| `realm_effect`, `npc_intent` | `gate` only | Unchanged from Phase 1. |
+
 ## Model proposals and the gate
 
 A model never changes character state directly. Its `impacts.characterOps` reach the state only through `prepareCharacterTimeline`:

@@ -3,7 +3,8 @@ import { ODDS_MAX, ODDS_MIN, bandFor, precisionFor } from './actionOdds.js';
 import { TRAITS } from './content.js';
 import { actionRandom } from './extensions.js';
 import { IMPRISONED, isImprisoned } from './prisoners.js';
-import { SECRET_LABELS, activeHooks, addSecretHolders, grantHook, knownSecrets, useHook } from './secrets.js';
+// useHook is imported as consumeHook: the react-hooks lint rule reads the name as a React hook.
+import { SECRET_LABELS, activeHooks, addSecretHolders, grantHook, knownSecrets, useHook as consumeHook } from './secrets.js';
 
 // Conversation requests: the representative asks one person for support, a secret or a pledge. The model (Task 9) may only claim a score for the arguments; the engine grounds each argument in the state, caps the score again, draws one action roll and applies the outcome.
 // The estimate is a pure function of the state. Resolution draws exactly one actionRandom and never touches the main or the plot stream. `hooks` are the engine's (actionHooks in index.js).
@@ -228,8 +229,8 @@ export function converse(state, request, events, hooks) {
   if (!estimate.ok) throw new Error(estimate.reason);
   const representative = hooks.activeRepresentative(), speaker = state.people[estimate.personId];
   const { offerSilver: offer, hookId } = estimate, effects = [];
-  // useHook spends a weak hook; a strong one stays usable, so only a spent hook is recorded.
-  if (hookId !== null && useHook(state, hookId).usedAt !== null) effects.push({ kind: 'hook_spent', hookId });
+  // consumeHook spends a weak hook; a strong one stays usable, so only a spent hook is recorded.
+  if (hookId !== null && consumeHook(state, hookId).usedAt !== null) effects.push({ kind: 'hook_spent', hookId });
   const roll = actionRandom(state) * 100, accepted = roll < estimate.value;
   if (accepted && offer > 0) { hooks.charge(offer, { orders: 0, tag: PAID_TAG }); effects.push({ kind: 'silver', amount: offer }); }
   const empty = accepted && estimate.kind === 'reveal_secret' && !strongestSecret(state, speaker, representative);
