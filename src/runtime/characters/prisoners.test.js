@@ -795,3 +795,15 @@ test('imprisonPerson refuses the ruler, the acting regent and the household repr
   const effect = record(base(), 'person-1-2', REP, [imprison('target')]);
   assert.deepEqual(effect.effects, [{ kind: 'imprison', personId: REP, applied: false }], 'the imprison effect records applied false');
 });
+
+// M1: the Intriger tab reads why the prisoner commands are closed from these entries.
+test('the prisoner commands are listed with their reason when the player cannot rule', () => {
+  const state = createCharacterSystem({ seed: 321, mode: 'family', familyId: ARELS });
+  seize(state, KELAN);
+  actionHooks(state).kill([REP], [], 'Sjukdom');
+  assert.equal(state.offices.ruler.holderId, SERA);
+  assert.notEqual(state.families[ARELS].headId, SERA, 'the family head is not the ruler, so the family cannot rule');
+  const entries = getCharacterPresentation(state).actions.filter((action) => ['release_prisoner', 'execute_prisoner'].includes(action.type));
+  assert.deepEqual(entries.map((action) => [action.type, action.disabledReason]), [['release_prisoner', 'Kräver härskarmandat.'], ['execute_prisoner', 'Kräver härskarmandat.']]);
+  assert.equal(run(state, 'release_prisoner', { prisonerId: state.prisoners[0].id }).ok, false);
+});

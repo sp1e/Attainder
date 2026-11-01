@@ -5,7 +5,7 @@ import { resolveAttempt } from './actionResolution.js';
 import { CRIME_LABELS, exposeCrime } from './crimes.js';
 import { normalizeDifficulty, plotRandom } from './extensions.js';
 import { imprisonPerson, isImprisoned } from './prisoners.js';
-import { addSecretHolders, createSecret, exposeSecret, grantHook, strengthenSecret } from './secrets.js';
+import { activeHooks, addSecretHolders, createSecret, exposeSecret, grantHook, strengthenSecret } from './secrets.js';
 
 // NPC plots: once a year, people outside the controlled family plot against the throne and against each other, and unfaithful spouses leave an affair secret behind. The yearly step draws only from the plot stream (plotRandom); the schemes it starts draw from the action stream like any other scheme.
 // Draw order inside one step: the plot against the player (one draw when a candidate qualifies), the feud between two NPCs (one draw when a pair qualifies), then one draw per unfaithful spouse in id order. No check is drawn before everything else that could stop the plot has been checked, so a plot that cannot start costs no draw.
@@ -30,6 +30,7 @@ const MESSAGES = Object.freeze({
   gone: 'Komplotten kan inte längre mötas på det här sättet.',
   exposed: 'Komplotten är redan avslöjad.',
   nobody: 'Det finns ingen företrädare som kan använda greppet.',
+  hooked: 'Du har redan ett grepp över personen.',
 });
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
@@ -139,12 +140,13 @@ export function npcPlotStep(state, events, hooks) {
 }
 
 /**
- * Called when a scheme is discovered. A plot of an NPC outside the controlled family against a member of it makes its secret known to the target and the representative with strong evidence and opens the story plot_uncovered. Anything else (the player's own schemes, plots against other houses, schemes without a plot secret) does nothing. Draws no randomness. Returns the story or null. `memory` is the discovery memory.
+ * Called when a scheme is discovered. A plot of an NPC outside the controlled family against a member of it makes its secret known to the target and the representative with strong evidence and opens the story plot_uncovered. A scheme without a plot secret (one an NPC started through npc_intent) first gets a weak plot secret about the actor, held by him, as npcPlotStep gives its own plots. Anything else (the player's own schemes, plots against other houses) does nothing. Draws no randomness. Returns the story or null. `memory` is the discovery memory.
  */
 export function uncoverPlot(state, scheme, memory, hooks) {
   const controlled = hooks.controlledFamily()?.id ?? null;
   const actor = state.people[scheme.actorId], target = state.people[scheme.targetIds[0]];
-  if (typeof scheme.secretId !== 'string' || scheme.playerControlled !== false || !controlled || target.familyId !== controlled || actor.familyId === controlled) return null;
+  if (scheme.playerControlled !== false || !controlled || target.familyId !== controlled || actor.familyId === controlled) return null;
+  if (typeof scheme.secretId !== 'string') scheme.secretId = createSecret(state, { type: 'plot', subjectId: actor.id, holderIds: [actor.id], evidence: 'weak' }).id;
   const representative = hooks.activeRepresentative();
   addSecretHolders(state, scheme.secretId, [target.id, representative?.id].filter(Boolean));
   strengthenSecret(state, scheme.secretId);
@@ -154,10 +156,17 @@ export function uncoverPlot(state, scheme, memory, hooks) {
     schemeId: scheme.id, secretId: scheme.secretId, plotAction: scheme.actionId, targetWasRuler: target.id === hooks.ruler()?.id, causeId: memory.id });
 }
 
+// Why the representative cannot take a hook over the plotter: there is no representative, or he already holds an active hook over him.
+function hookRefusal(state, story, hooks) {
+  const representative = hooks.activeRepresentative();
+  if (!representative) return MESSAGES.nobody;
+  return activeHooks(state, representative.id, story.actorId).length ? MESSAGES.hooked : '';
+}
+
 // targetWasRuler is fixed when the plot is uncovered, so a ruler who dies before the choice does not change the charge.
 const crimeFor = (story) => (story.targetWasRuler === true ? 'treason' : story.plotAction === 'poison' ? 'attempted_murder' : null);
 
-/** The four answers to an uncovered plot. `imprison` is open to a representative who is the ruler; `expose` and `hook` need a plot that is not already public. */
+/** The four answers to an uncovered plot. `imprison` is open to a representative who is the ruler; `expose` and `hook` need a plot that is not already public, and `hook` a representative who holds no active hook over the plotter yet. */
 export function plotUncoveredChoices(state, story, hooks) {
   const secret = state.secrets.find((item) => item.id === story.secretId);
   const plotter = state.people[story.actorId];
@@ -170,7 +179,7 @@ export function plotUncoveredChoices(state, story, hooks) {
   return [
     { id: 'imprison', label: 'Fängsla komplottmakaren', description: `${name} förs i fängelse efter ett lagligt beslut. Ingen legitimitet går förlorad.`, cost: '0 silver', stress: '0', disabledReason: gone || rulerOnly || (isImprisoned(state, story.actorId) ? 'Personen sitter redan fängslad.' : '') },
     { id: 'expose', label: 'Avslöja komplotten', description: crime ? `Planen görs offentlig som ${CRIME_LABELS[crime].toLowerCase()}. Offrets släkt vänder sig mot ${name}.` : 'Planen görs offentlig.', cost: '0 silver', stress: '0', disabledReason: out },
-    { id: 'hook', label: 'Behåll kunskapen som grepp', description: `Du får ett starkt grepp över ${name} som kan användas i en senare handling.`, cost: '0 silver', stress: '0', disabledReason: gone || (hooks.activeRepresentative() ? '' : MESSAGES.nobody) },
+    { id: 'hook', label: 'Behåll kunskapen som grepp', description: `Du får ett starkt grepp över ${name} som kan användas i en senare handling.`, cost: '0 silver', stress: '0', disabledReason: gone || hookRefusal(state, story, hooks) },
     { id: 'ignore', label: 'Låt det vara', description: 'Inget görs. Komplotten är känd men förblir en hemlighet.', cost: '0 silver', stress: '0', disabledReason: '' },
   ];
 }

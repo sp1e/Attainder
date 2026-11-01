@@ -38,6 +38,7 @@ const REASONS = Object.freeze({
   score: 'Argumentens poäng måste vara ett heltal, noll eller mer.',
   arguments: 'Argumenten är ogiltiga.',
   hook: 'Övertaget finns inte, är förbrukat eller gäller inte denna person.',
+  reserved: 'Övertaget är bundet till en pågående plan.',
 });
 const INVALID = Object.freeze({
   list: 'Samtalen i sparfilen är ogiltiga.',
@@ -155,9 +156,13 @@ function presentChance(precision, value, rows, modifiers) {
 /**
  * Odds for one conversation request, or a Swedish refusal. `request` is { personId, kind, offerSilver, hookId, arguments: [{ kind, refId }], argumentScore }. Pure: no randomness, no spending, no edit.
  * Rows: Grundchans (by kind), the speaker's opinion of the representative (round(op / 4), ±20), loyalty (round((loyalty − 50) / 5)), the offer (floor(silver / 4), at most 15), greedy +8 with any offer, honest −10 for a secret, paranoid −8, trusting +6, a hook +20, and `Övertygande argument` = min(10, argumentScore) when at least one argument is grounded. The value is cut to 5 to 95; the cut is a row of its own.
- * An argument counts only when it refers to something real: an offer needs silver, a shared enemy a living person both hold at −20 or lower, a shared memory one both took part in and know, a hook an active hook of the representative over the speaker named by hookId.
+ * An argument counts only when it refers to something real: an offer needs silver, a shared enemy a living person both hold at −20 or lower, a shared memory one both took part in and know, a hook an active hook of the representative over the speaker named by hookId. A hook an active scheme holds in its means is refused.
  * The result carries the true `value` and `modifiers` for rolling and `display`, which follows `precision` (the representative's diplomacy, as for Phase 1's odds) and never carries a number at 'five' or 'three'.
  */
+// Hooks an active scheme names in its means are spent when it falls due (schemes.js), so a conversation may neither use nor offer them.
+const reservedHookIds = (state) => new Set((Array.isArray(state.schemes) ? state.schemes : []).filter((scheme) => scheme.status === 'active' && typeof scheme.means?.hookId === 'string').map((scheme) => scheme.means.hookId));
+const conversationHooks = (state, ownerId, targetId) => { const reserved = reservedHookIds(state); return activeHooks(state, ownerId, targetId).filter((hook) => !reserved.has(hook.id)); };
+
 export function estimateConversation(state, request, hooks) {
   const read = readRequest(request);
   if (read.reason) return { ok: false, reason: read.reason };
@@ -170,6 +175,7 @@ export function estimateConversation(state, request, hooks) {
   const purse = hooks.controlledFamily()?.treasury ?? 0;
   if (read.offer > purse) return { ok: false, reason: `Det behövs ${read.offer} silver; tillgängligt ${Math.floor(purse)}.` };
   if (read.hookId !== null && !activeHooks(state, representative.id, speaker.id).some((hook) => hook.id === read.hookId)) return { ok: false, reason: REASONS.hook };
+  if (read.hookId !== null && reservedHookIds(state).has(read.hookId)) return { ok: false, reason: REASONS.reserved };
   const ctx = { representative, speaker, offer: read.offer, hookId: read.hookId, hooks };
   const grounding = groundedArguments(state, read.given, ctx);
   const rows = buildRows(read, speaker, representative, ctx, grounding, hooks);
@@ -246,7 +252,7 @@ const BRIEF_MEMORIES = 12;
 const knownTo = (memory, personId) => memory.knownBy === 'public' || memory.public === true || (Array.isArray(memory.knownBy) && memory.knownBy.includes(personId));
 
 /**
- * What the model may know to speak as one person: name, traits, offices, the opinion of the representative with its reasons, up to twelve memories that involve the speaker or the representative and that both the speaker and the representative know (the presentation's visibility rule: public or known by the representative; newest first, with ids), the secrets the speaker and the representative both hold as a type label and a subject name only (no id, no evidence, no other holder), and the representative's active hooks over the speaker. A private memory or a secret only the speaker holds never reaches the model, so the reply cannot leak it. Pure: no randomness, no edit. Null when the person or the representative is missing. `hooks` need activeRepresentative, getPersonalOpinion and opinionReasons (actionHooks in index.js).
+ * What the model may know to speak as one person: name, traits, offices, the opinion of the representative with its reasons, up to twelve memories that involve the speaker or the representative and that both the speaker and the representative know (the presentation's visibility rule: public or known by the representative; newest first, with ids), the secrets the speaker and the representative both hold as a type label and a subject name only (no id, no evidence, no other holder), and the representative's active hooks over the speaker that no active scheme holds in its means. A private memory or a secret only the speaker holds never reaches the model, so the reply cannot leak it. Pure: no randomness, no edit. Null when the person or the representative is missing. `hooks` need activeRepresentative, getPersonalOpinion and opinionReasons (actionHooks in index.js).
  */
 export function conversationBrief(state, personId, hooks) {
   const speaker = personOf(state, personId), representative = hooks.activeRepresentative();
@@ -265,7 +271,7 @@ export function conversationBrief(state, personId, hooks) {
     opinion: hooks.getPersonalOpinion(speaker.id, representative.id),
     opinionReasons: hooks.opinionReasons(speaker.id, representative.id).map(({ label, value }) => ({ label, value })),
     memories, secrets,
-    hooks: activeHooks(state, representative.id, speaker.id).map((hook) => ({ id: hook.id, strength: hook.strength, strengthLabel: STRENGTH_LABELS[hook.strength] })),
+    hooks: conversationHooks(state, representative.id, speaker.id).map((hook) => ({ id: hook.id, strength: hook.strength, strengthLabel: STRENGTH_LABELS[hook.strength] })),
   };
 }
 

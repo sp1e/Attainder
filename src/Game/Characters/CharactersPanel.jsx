@@ -83,12 +83,13 @@ function Empty({ title, children }) {
   return <div className="char-empty"><strong>{title}</strong><p>{children}</p></div>;
 }
 
-function PersonSummary({ person, compact = false }) {
+// `headingRef` makes the name heading a focus target (tabIndex -1) for PeopleView.
+function PersonSummary({ person, compact = false, headingRef }) {
   if (!person) return <Empty title="Ingen behörig företrädare">Ingen person kan företräda dig just nu. Läs mandatets status under Ämbeten & arv.</Empty>;
   return <div className={`char-person-summary${compact ? " char-person-summary--compact" : ""}`}>
     <Portrait person={person} size={compact ? "small" : "large"} />
     <div><span className="char-eyebrow">{person.familyName || "Familj"}{Number.isFinite(person.age) ? ` · ${person.age} år` : ""}</span>
-      <h3>{person.name}</h3><p>{person.archetypeLabel || humanize(person.archetype)}{!isAlive(person) ? " · Avliden" : ""}</p>
+      <h3 ref={headingRef} tabIndex={headingRef ? -1 : undefined}>{person.name}</h3><p>{person.archetypeLabel || humanize(person.archetype)}{!isAlive(person) ? " · Avliden" : ""}</p>
       {person.portraitState?.visualState !== "healthy" && person.portraitState?.reasons?.length > 0 && <p className="char-health-summary">{person.portraitState.reasons.filter((reason) => reason.key !== "healthy").map((reason) => reason.label).join(" · ")}</p>}
       <div className="char-tags">{entries(person.traitLabels || person.traits || person.personality).map((trait, index) => <span key={text(trait, index)}>{humanize(text(trait))}</span>)}</div>
     </div>
@@ -211,14 +212,12 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, run
 function PeopleView({ view, selectedId, selectPerson, busy = false, runAction, talks = {}, setTalk, onHold }) {
   const [query, setQuery] = useState("");
   const [talkingTo, setTalkingTo] = useState(null);
-  // Closing a conversation takes its field with it; focus goes to the person's Samtala button instead of the page.
+  // Closing a conversation takes its field with it; focus goes to the person's Samtala button instead of the page, or, when the
+  // person can no longer be asked (a decided request), to the person's heading, and without a person to the search field.
   const talkButton = useRef(null);
+  const personHeading = useRef(null);
+  const searchField = useRef(null);
   const refocusTalk = useRef(false);
-  useEffect(() => {
-    if (talkingTo !== null || !refocusTalk.current) return;
-    refocusTalk.current = false;
-    talkButton.current?.focus();
-  }, [talkingTo]);
   const closeTalk = () => { refocusTalk.current = true; setTalkingTo(null); };
   const [includeDead, setIncludeDead] = useState(false);
   const people = entries(view.people);
@@ -229,11 +228,16 @@ function PeopleView({ view, selectedId, selectPerson, busy = false, runAction, t
   const roles = entries(view.offices).filter((office) => (office.holderId || office.personId) === person?.id);
   // A person who was just asked drops out of the list for a year; the conversation already open stays open.
   const canTalk = Boolean(person) && (talkingTo === person.id || entries(view.conversationTargets).some((target) => target.id === person.id));
+  useEffect(() => {
+    if (talkingTo !== null || !refocusTalk.current) return;
+    refocusTalk.current = false;
+    (canTalk ? talkButton.current : person ? personHeading.current : searchField.current)?.focus();
+  }, [talkingTo, canTalk, person]);
   return <><div className="char-section-heading"><div><span className="char-eyebrow">Liv, vilja och erfarenhet</span><h3>Människorna i din värld</h3></div><span className="char-count">{people.filter(isAlive).length} levande</span></div>
-    <div className="char-person-layout"><div className="char-person-index"><label className="char-search-label">Sök person eller familj<input type="search" placeholder="Namn eller familj…" value={query} onChange={(event) => setQuery(event.target.value)} /></label><label className="char-checkbox"><input type="checkbox" checked={includeDead} onChange={(event) => setIncludeDead(event.target.checked)} />Visa även avlidna</label>
+    <div className="char-person-layout"><div className="char-person-index"><label className="char-search-label">Sök person eller familj<input type="search" ref={searchField} placeholder="Namn eller familj…" value={query} onChange={(event) => setQuery(event.target.value)} /></label><label className="char-checkbox"><input type="checkbox" checked={includeDead} onChange={(event) => setIncludeDead(event.target.checked)} />Visa även avlidna</label>
       <div className="char-person-list">{filtered.map((candidate) => <button type="button" key={candidate.id} className={`char-person-row${person?.id === candidate.id ? " is-selected" : ""}`} aria-pressed={person?.id === candidate.id} onClick={() => selectPerson(candidate.id)}><Portrait person={candidate} size="tiny" /><span><strong>{candidate.name}</strong><small>{candidate.familyName}{candidate.age != null ? ` · ${candidate.age} år` : ""}{!isAlive(candidate) ? " · Avliden" : ""}</small></span></button>)}{!filtered.length && <p className="char-caption">Ingen person matchar sökningen.</p>}</div>
     </div>
-    {person ? <article className="char-card char-person-detail"><PersonSummary person={person} />
+    {person ? <article className="char-card char-person-detail"><PersonSummary person={person} headingRef={personHeading} />
       {canTalk && (talkingTo === person.id
         ? <ConversationView person={person} turns={talks[person.id] || []} setTurns={setTalk(person.id)} busy={busy} runAction={runAction} onClose={closeTalk} onHold={onHold} />
         : <button type="button" className="char-button" ref={talkButton} aria-label={`Samtala med ${person.name}`} disabled={busy} onClick={() => setTalkingTo(person.id)}>Samtala</button>)}

@@ -6,6 +6,7 @@ import { SchemeList, dateLabel, playerText } from "./ActionBox.jsx";
 // schemes); the true source of a rumor and who else holds a secret never reach it. All text is rendered as React text.
 
 const PRISONER_FAILED = "Handlingen kunde inte genomföras. Försök igen om en stund.";
+const NO_DECISION = "Ingen kan besluta om fångarna just nu.";
 const HEADING_ID = "char-intrigue-heading";
 
 const entries = (value) => Array.isArray(value) ? value : Object.values(value || {});
@@ -53,13 +54,26 @@ function RumorList({ rumors }) {
   </Section>;
 }
 
+// The reason the engine gives on its release_prisoner or execute_prisoner entry, or NO_DECISION when it lists no such entry (no one can act).
+const blockedBy = (actions, type) => { const entry = entries(actions).find((action) => action.type === type); return entry ? entry.disabledReason || "" : NO_DECISION; };
+
+// The reasons shown before the prisoner list, once when both commands share one, and the id each button points to.
+function prisonerBlocks(actions) {
+  const release = blockedBy(actions, "release_prisoner"), execute = blockedBy(actions, "execute_prisoner");
+  if (release && release === execute) return { lines: [{ id: "char-prisoner-blocked", text: release }], release: "char-prisoner-blocked", execute: "char-prisoner-blocked" };
+  const lines = [release && { id: "char-prisoner-blocked-release", text: `Frige: ${release}` }, execute && { id: "char-prisoner-blocked-execute", text: `Avrätta: ${execute}` }].filter(Boolean);
+  return { lines, release: release ? "char-prisoner-blocked-release" : "", execute: execute ? "char-prisoner-blocked-execute" : "" };
+}
+const describedBy = (...ids) => ids.filter(Boolean).join(" ") || undefined;
+
 /**
  * The controlled family's prisoners. "Frige" acts at once; "Avrätta" first asks, inside the prisoner's own card, and only
  * the second button executes. Focus follows the player the way the scheme list does: to the question, back to the kept
  * prisoner, on to the next one, or to `onEmpty` when none is left. `onRelease` and `onExecute` resolve to the engine's
- * result; a refusal stays under the prisoner and keeps focus on the control that was refused.
+ * result; a refusal stays under the prisoner and keeps focus on the control that was refused. `blocks` (prisonerBlocks) disables a
+ * command the engine refuses and shows its reason before the list.
  */
-function PrisonerList({ prisoners, onRelease, onExecute, onEmpty, busy = false }) {
+function PrisonerList({ prisoners, onRelease, onExecute, onEmpty, busy = false, blocks = prisonerBlocks([]) }) {
   const list = entries(prisoners);
   const [confirming, setConfirming] = useState(null);
   const [refusals, setRefusals] = useState({});
@@ -97,7 +111,8 @@ function PrisonerList({ prisoners, onRelease, onExecute, onEmpty, busy = false }
   };
   const refFor = (id, control) => focusTarget?.id === id && focusTarget.control === control ? focusRef : undefined;
   return <Section label="Fångar" eyebrow="Hållna i ert fängelse" title="Fångar">
-    {list.length ? <ul className="char-intrigue-list">{list.map((prisoner, index) => <li className="char-card char-prisoner" key={prisoner.id}>
+    {list.length ? <>{blocks.lines.map((line) => <p className="char-reason" id={line.id} key={line.id}>{line.text}</p>)}
+    <ul className="char-intrigue-list">{list.map((prisoner, index) => <li className="char-card char-prisoner" key={prisoner.id}>
       <strong>{prisoner.name}</strong>
       {prisoner.familyName && <span className="char-caption">{prisoner.familyName}</span>}
       <span>Fånge sedan {dateLabel(prisoner.since)}</span>
@@ -106,20 +121,20 @@ function PrisonerList({ prisoners, onRelease, onExecute, onEmpty, busy = false }
         ? <div className="char-scheme-confirm" role="group" aria-label={`Bekräfta att ${prisoner.name} avrättas`}>
           <p>Vill du avrätta {prisoner.name}? Det går inte att ångra.</p>
           <div className="char-confirm-buttons">
-            <button type="button" className="char-button char-button--danger" disabled={busy} onClick={() => act(index, "execute", (prisonerId) => onExecute(prisonerId))}>Ja, avrätta</button>
+            <button type="button" className="char-button char-button--danger" disabled={busy || Boolean(blocks.execute)} onClick={() => act(index, "execute", (prisonerId) => onExecute(prisonerId))}>Ja, avrätta</button>
             <button type="button" className="char-button" ref={refFor(prisoner.id, "keep")} onClick={() => keep(prisoner.id)}>Behåll fången</button>
           </div>
         </div>
         : <>
           {refusals[prisoner.id] && <p className="char-reason" id={`char-prisoner-refusal-${prisoner.id}`}>{refusals[prisoner.id]}</p>}
           <div className="char-confirm-buttons">
-            <button type="button" className="char-button" ref={refFor(prisoner.id, "release")} disabled={busy} onClick={() => act(index, "release", (prisonerId) => onRelease(prisonerId))}
-              aria-describedby={refusals[prisoner.id] ? `char-prisoner-refusal-${prisoner.id}` : undefined}>Frige</button>
-            <button type="button" className="char-button" ref={refFor(prisoner.id, "execute")} disabled={busy} onClick={() => ask(prisoner.id)}
-              aria-describedby={refusals[prisoner.id] ? `char-prisoner-refusal-${prisoner.id}` : undefined}>Avrätta</button>
+            <button type="button" className="char-button" ref={refFor(prisoner.id, "release")} disabled={busy || Boolean(blocks.release)} onClick={() => act(index, "release", (prisonerId) => onRelease(prisonerId))}
+              aria-describedby={describedBy(blocks.release, refusals[prisoner.id] && `char-prisoner-refusal-${prisoner.id}`)}>Frige</button>
+            <button type="button" className="char-button" ref={refFor(prisoner.id, "execute")} disabled={busy || Boolean(blocks.execute)} onClick={() => ask(prisoner.id)}
+              aria-describedby={describedBy(blocks.execute, refusals[prisoner.id] && `char-prisoner-refusal-${prisoner.id}`)}>Avrätta</button>
           </div>
         </>}
-    </li>)}</ul> : <p className="char-caption">Inga fångar hålls just nu.</p>}
+    </li>)}</ul></> : <p className="char-caption">Inga fångar hålls just nu.</p>}
   </Section>;
 }
 
@@ -132,7 +147,7 @@ export default function IntrigueView({ view, busy = false, onCommand, onEmpty = 
     <p className="char-intro">Det du vet, det du kan pressa med och det du har hört. Hemligheter och grepp använder du när du handlar under Överblick.</p>
     <SecretList secrets={view.knownSecrets} />
     <HookList hooks={view.ownHooks} />
-    <PrisonerList prisoners={view.prisoners} busy={busy} onEmpty={onEmpty}
+    <PrisonerList prisoners={view.prisoners} busy={busy} onEmpty={onEmpty} blocks={prisonerBlocks(view.actions)}
       onRelease={(prisonerId) => onCommand("release_prisoner", { prisonerId })} onExecute={(prisonerId) => onCommand("execute_prisoner", { prisonerId })} />
     <RumorList rumors={view.rumors} />
     <SchemeList schemes={view.schemes} busy={busy} onAbort={(schemeId) => onCommand("abort_scheme", { schemeId })} onEmpty={onEmpty} />

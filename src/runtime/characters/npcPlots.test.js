@@ -8,7 +8,7 @@ import { actionHooks, advanceCharacters, createCharacterSystem, estimateCharacte
 import { actionRandom, plotRandom } from './extensions.js';
 import { npcPlotStep, plotUncoveredChoices } from './npcPlots.js';
 import { imprisonPerson, isImprisoned, isLawfulSubject } from './prisoners.js';
-import { activeHooks, createSecret, exposeSecret } from './secrets.js';
+import { activeHooks, createSecret, exposeSecret, grantHook } from './secrets.js';
 
 const REP = 'person-0-0';
 const SERA = 'person-0-2';
@@ -559,11 +559,9 @@ test('the story lapses after a year, and when the plotter dies or is jailed', ()
 test('a discovery that does not concern the controlled family opens no story', () => {
   const otherHouse = createCharacterSystem({ seed: 321 });
   plant(otherHouse, { actorId: BAREK, targetIds: [NAMAR] });
-  const own = createCharacterSystem({ seed: 321 });
-  plant(own, { actorId: NAMAR, targetIds: [REP], secretId: null });
   const player = createCharacterSystem({ seed: 321 });
   plant(player, { actorId: TAREK, targetIds: [NAMAR], playerControlled: true });
-  for (const [name, state] of [['a plot against another house', otherHouse], ['a scheme with no plot secret', own], ['the player\'s own scheme', player]]) {
+  for (const [name, state] of [['a plot against another house', otherHouse], ['the player\'s own scheme', player]]) {
     const found = advance(withSeed(state, actionSeedWhere(1, ([draw]) => draw < 3)), MONTH);
     assert.equal(found.schemes[0].status, 'discovered', name);
     assert.equal(found.stories.some((item) => item.type === 'plot_uncovered'), false, name);
@@ -640,4 +638,28 @@ test('an open plot_uncovered and its crime case close when the plotter takes the
   actionHooks(exposed).kill(arels(exposed), [], 'Sjukdom');
   assert.deepEqual([crimeCase().status, crimeCase().resolution], ['closed', 'Gärningspersonen har själv fått makten; ärendet faller.']);
   assert.equal(isImprisoned(exposed, NAMAR), false);
+});
+
+// A model-started plot (npc_intent) carries no plot secret; discovery writes one, as an engine plot has.
+test('a discovered NPC scheme without a plot secret gets one and opens plot_uncovered', () => {
+  const state = createCharacterSystem({ seed: 321 });
+  const scheme = plant(state, { actorId: NAMAR, targetIds: [REP], secretId: null });
+  const found = advance(withSeed(state, actionSeedWhere(1, ([draw]) => draw < 3)), MONTH);
+  const after = found.schemes.find((item) => item.id === scheme.id);
+  assert.equal(after.status, 'discovered');
+  const secret = found.secrets.find((item) => item.id === after.secretId);
+  assert.ok(secret, 'the scheme names its new plot secret');
+  assert.deepEqual([secret.type, secret.subjectId, secret.evidence, secret.holderIds], ['plot', NAMAR, 'strong', [NAMAR, REP]]);
+  assert.deepEqual([storyOf(found)?.actorId, storyOf(found)?.secretId], [NAMAR, secret.id]);
+  assert.doesNotThrow(() => normalizeCharacterSystem(copy(found)));
+});
+
+test('the hook choice is disabled while the representative already holds an active hook over the plotter', () => {
+  const found = uncovered({ actionId: 'poison', actorId: NAMAR, targetId: REP });
+  grantHook(found, { ownerId: REP, targetId: NAMAR, strength: 'weak', causeId: null });
+  const story = storyOf(found);
+  const hook = getCharacterPresentation(found).stories.find((item) => item.id === story.id).choices.find((choice) => choice.id === 'hook');
+  assert.equal(hook.disabledReason, 'Du har redan ett grepp över personen.');
+  assert.equal(run(found, 'resolve_story', { storyId: story.id, choiceId: 'hook' }).ok, false);
+  assert.equal(activeHooks(found, REP, NAMAR).length, 1);
 });

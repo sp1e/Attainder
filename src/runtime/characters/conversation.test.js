@@ -616,3 +616,21 @@ test('the brief holds the memories the representative can see and only the secre
   assert.deepEqual(brief.secrets, [{ typeLabel: 'Kätteri', subjectName: state.people[SERA].name }], 'only the secret both hold; the plot and the opening affair secret stay out');
   assert.equal(state.secrets.some((secret) => secret.id === plotSecret.id), true);
 });
+
+// M2: a hook an active scheme holds in its means is spent when the scheme falls due, so a conversation may not spend it first.
+test('a hook reserved by an active scheme is no conversation hook and not in the brief', () => {
+  const state = plain();
+  const reserved = grantHook(state, { ownerId: REP, targetId: NAMAR, strength: 'weak' });
+  const free = grantHook(state, { ownerId: REP, targetId: NAMAR, strength: 'strong' });
+  state.schemes.push({ id: `scheme-${++state.sequence}`, actionId: 'blackmail', actorId: REP, targetIds: [NAMAR], means: { silver: 0, agentRoles: [], hookId: reserved.id },
+    startedAt: state.date, dueAt: addGameMonths(state.date, 3), nextCheckAt: addGameMonths(state.date, 1), status: 'active', discoveredAt: null, resolutionId: null, playerControlled: true, commandId: null });
+  const refused = estimateConversation(state, ask({ hookId: reserved.id }));
+  assert.equal(refused.ok, false);
+  assert.equal(refused.reason, 'Övertaget är bundet till en pågående plan.');
+  assert.equal(converse(state, ask({ hookId: reserved.id })).ok, false);
+  assert.equal(estimateConversation(state, ask({ hookId: free.id })).ok, true);
+  assert.deepEqual(getConversationBrief(state, NAMAR).hooks.map((hook) => hook.id), [free.id]);
+  state.schemes.at(-1).status = 'failed';
+  assert.equal(estimateConversation(state, ask({ hookId: reserved.id })).ok, true, 'a scheme that ended reserves nothing');
+  assert.deepEqual(getConversationBrief(state, NAMAR).hooks.map((hook) => hook.id).sort(), [reserved.id, free.id].sort());
+});

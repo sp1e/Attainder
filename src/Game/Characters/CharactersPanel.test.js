@@ -907,6 +907,8 @@ const intrigueView = () => ({
     { id: "rumor-2", date: "0200-04-11", topic: "plot", topicLabel: "Komplott", subjectId: "p-barek", subjectName: "Barek Eshmun", claimedActorId: "p-kelan", claimedActorName: "Kelan Namar", reliability: "osäker" },
   ],
   schemes: [{ id: "scheme-4", actionLabel: "Undergräv", actorName: "Iset Arel", targetNames: ["Kamos Ptah"], dueAt: "0200-09-01" }],
+  // The engine lists both entries while prisoners are held; their disabledReason decides the prisoner buttons.
+  actions: [{ type: "release_prisoner", label: "Frige en fånge", disabledReason: "", fields: [] }, { type: "execute_prisoner", label: "Avrätta en fånge", disabledReason: "", fields: [] }],
 });
 
 test("the Intriger tab follows Beslut and shows secrets, hooks, prisoners, rumors and schemes", () => {
@@ -1525,4 +1527,42 @@ test("after a successful release, focus moves to the next prisoner's first butto
   mounted.props.view = { ...view, prisoners: view.prisoners.slice(1) };
   mounted.draw();
   assert.equal(mounted.driver.focused.at(-1), buttonNamed(prisonerItem(mounted.tree, "Nebet"), "Frige"));
+});
+
+// M1: the prisoner buttons follow the engine's release_prisoner and execute_prisoner entries.
+test("Frige and Avrätta are disabled with the engine's reason shown before the prisoners", () => {
+  const blocked = (reasons) => ({ ...intrigueView(), actions: intrigueView().actions.map((action) => ({ ...action, disabledReason: reasons[action.type] ?? "" })) });
+  const mounted = mountIntrigue({ view: blocked({ release_prisoner: "Kräver härskarmandat.", execute_prisoner: "Kräver härskarmandat." }) });
+  const section = findAll(mounted.tree, (node) => node.type === "section" && node.props["aria-label"] === "Fångar")[0];
+  const reasons = findAll(section, (node) => node.type === "p" && node.props.className === "char-reason");
+  assert.deepEqual(reasons.map(textOf), ["Kräver härskarmandat."], "one reason, shown once before the list");
+  for (const name of ["Kamos Ptah", "Nebet"]) {
+    for (const label of ["Frige", "Avrätta"]) {
+      const button = buttonNamed(prisonerItem(mounted.tree, name), label);
+      assert.equal(button.props.disabled, true, `${label} for ${name}`);
+      assert.equal(button.props["aria-describedby"], reasons[0].props.id);
+    }
+  }
+  const executeOnly = mountIntrigue({ view: blocked({ execute_prisoner: "Regenten har inte samtyckt till avrättningar." }) });
+  assert.equal(buttonNamed(prisonerItem(executeOnly.tree, "Nebet"), "Frige").props.disabled, false);
+  assert.equal(buttonNamed(prisonerItem(executeOnly.tree, "Nebet"), "Avrätta").props.disabled, true);
+  assert.match(textOf(findAll(executeOnly.tree, (node) => node.type === "section" && node.props["aria-label"] === "Fångar")[0]), /Avrätta: Regenten har inte samtyckt till avrättningar\./);
+  const none = mountIntrigue({ view: { ...intrigueView(), actions: [] } });
+  assert.equal(buttonNamed(prisonerItem(none.tree, "Nebet"), "Frige").props.disabled, true, "no entry means no decision can be made");
+});
+
+// After a decided request the person leaves conversationTargets, so no Samtala button comes back; focus goes to the person's heading.
+test("closing a conversation with someone who can no longer be asked moves focus to the person's heading", () => {
+  const mounted = mountPeople({ selectedId: "person-0-2" });
+  talkButtons(mounted.tree)[0].props.onClick();
+  mounted.draw();
+  mounted.props.view = { ...mounted.props.view, conversationTargets: (mounted.props.view.conversationTargets || []).filter((target) => target.id !== "person-0-2") };
+  mounted.draw();
+  buttonNamed(mounted.tree, "Avsluta samtalet").props.onClick();
+  mounted.draw();
+  assert.equal(talkButtons(mounted.tree).length, 0, "no Samtala button comes back");
+  const heading = mounted.driver.focused.at(-1);
+  assert.equal(heading?.type, "h3");
+  assert.equal(heading.props.tabIndex, -1);
+  assert.equal(textOf(heading), "Sera Arel");
 });
