@@ -9,7 +9,7 @@ import {
 } from "./gameState.js";
 import { beginSimulation, endSimulation, isSimulationBusy } from "../Game/AI/simulationStatus.js";
 import { unseenEvents, latestTurnEventIds } from "./unseenEvents.js";
-import { createCharacterSystem, estimateCharacterAction, estimateConversation } from "./characters/index.js";
+import { createCharacterSystem, estimateCharacterAction, estimateConversation, getCharacterPresentation, getConversationBrief } from "./characters/index.js";
 import { characterTransitionEvents, executeCharacterWorldCommand, planCharacterAdvance } from "./characterWorld.js";
 import { commitCharacterTransaction, recoverCharacterTransaction } from "./characterPersistence.js";
 
@@ -69,6 +69,14 @@ export const estimateConversationForView = async (request) => {
   const state = await readVisibleCharacterState();
   if (!state) return { ok: false, reason: "Kampanjen saknar karaktärssystem." };
   return { ...estimateConversation(state, request), revision: state.revision };
+};
+
+// The presentation plus the engine's brief on one person, as the conversation model calls read it (extractConversationRequest, replyAsCharacter).
+// Read-only; the brief holds the speaker's secrets as labels, so it goes to the model and never into a stored or displayed view.
+export const getConversationViewForModel = async (personId) => {
+  const state = await readVisibleCharacterState();
+  if (!state) return null;
+  return { ...getCharacterPresentation(state), conversationBrief: getConversationBrief(state, personId) };
 };
 
 // Shared by local decisions and the connected model's completed turn. The

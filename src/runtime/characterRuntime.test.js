@@ -7,7 +7,7 @@ import { estimateCharacterAction, estimateConversation, getCharacterPresentation
 import { initializeCampaignCharacters, advanceCharacterYear, submitCharacterCommand,
   readVisibleCharacterState, getCharacterRuntimeStatus, revealLatestCharacterTurn,
   commitCharacterCampaign, recordCharacterNarrative, estimateCharacterActionForView,
-  estimateConversationForView, submitConversationRequest } from "./characterRuntime.js";
+  estimateConversationForView, submitConversationRequest, getConversationViewForModel } from "./characterRuntime.js";
 
 test("runtime campaign start, command, date, shared save and failed-write recovery use the same world", async () => {
   const originalFetch = globalThis.fetch;
@@ -201,6 +201,10 @@ test("a conversation is held only through submitConversationRequest, never throu
     assert.deepEqual(estimate, { ...estimateConversation(data.world.characterSystem, request), revision: data.world.characterSystem.revision });
     assert.equal(writes, writesBefore);
     assert.equal((await estimateConversationForView({ ...request, kind: "bribe" })).ok, false);
+    // The model view carries the engine's brief on the person and writes nothing.
+    const modelView = await getConversationViewForModel(request.personId);
+    assert.equal(modelView.conversationBrief.personId, request.personId);
+    assert.equal(writes, writesBefore);
     // A player command with the same payload is refused and nothing is written.
     const refused = await submitCharacterCommand({ id: "converse-player", expectedRevision: init.state.revision, type: "converse_request", payload: request });
     assert.equal(refused.ok, false);

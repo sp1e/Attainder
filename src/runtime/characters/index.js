@@ -18,7 +18,7 @@ import { punishCrimeChoices, resolvePunishment } from './crimes.js';
 import { feastRefusal, feastRows, holdFeast, presentOccasions, validateOccasions } from './occasions.js';
 import { npcPlotStep, plotUncoveredChoices, resolvePlotUncovered } from './npcPlots.js';
 import { presentRumors, validateRumors } from './rumors.js';
-import { converse, estimateConversation as estimateConversationRequest, presentConversation, validateConversations } from './conversation.js';
+import { conversationBrief, converse, estimateConversation as estimateConversationRequest, presentConversation, validateConversations } from './conversation.js';
 import { IMPRISONED, closePrisoner, executePrisoner, heldPrisoners, imprisonPerson, isImprisoned, passCrown, presentPrisoners, prisonerStep, ransomChoices, releasePrisoner, resolveRansom, validatePrisoners } from './prisoners.js';
 import { abortScheme, advanceSchemes, getSchemeDates, reinforceScheme, validateSchemes } from './schemes.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
@@ -409,6 +409,8 @@ function npcActionContext(state, actorId) {
 export function estimateCharacterAction(state, intent) { return estimateAction(state, intent, actionContext(state)); }
 /** Odds for one conversation request through the engine's own hooks, or a Swedish refusal. Pure: no randomness, no spending. Like estimateCharacterAction, the result carries the true values for rolling and `display` for the player. */
 export function estimateConversation(state, request) { return estimateConversationRequest(state, request, actionHooks(state)); }
+/** What the model may know to speak as one person (conversation.js). Engine-side only: it holds the speaker's secrets as labels, so it is not part of the presentation. */
+export function getConversationBrief(state, personId) { return conversationBrief(state, personId, actionHooks(state)); }
 // Spouse, parent, child, sibling or the same family. Relatives by marriage count through the spouse bond only.
 function kin(state, aId, bId) {
   const a = state.people[aId], b = state.people[bId];
@@ -427,7 +429,7 @@ export function actionHooks(state) {
     vacate: (office, events, reason) => assignOffice(state, office, null, events, reason),
     imprison: (personId, story, events = []) => imprisonPerson(state, personId, ruler(state)?.familyId, events, actionHooks(state), { lawful: true }),
     activeRepresentative: () => activeRepresentative(state), householdRepresentative: () => householdRepresentative(state), controlledFamily: () => controlledFamily(state),
-    getPersonalOpinion: (fromId, toId) => getPersonalOpinion(state, fromId, toId), canExerciseMandate: (person) => canExerciseMandate(person, state.date), adult: (person) => adult(state, person),
+    getPersonalOpinion: (fromId, toId) => getPersonalOpinion(state, fromId, toId), opinionReasons: (fromId, toId) => opinionReasons(state, fromId, toId), canExerciseMandate: (person) => canExerciseMandate(person, state.date), adult: (person) => adult(state, person),
     estimateContext: () => actionContext(state), npcEstimateContext: (actorId) => npcActionContext(state, actorId), isCommandAction: (id) => COMMAND_TYPES.has(id) };
 }
 function rawStoryChoices(state, story) { const controller = canRule(state); const actor = activeRepresentative(state); const family = controlledFamily(state); const cost = (n, pub) => (pub ? !controller ? 'Kräver härskarmandat.' : state.realm.treasury < n ? 'Otillräcklig statskassa.' : '' : !householdRepresentative(state) ? 'Familjen saknar en handlingsförmögen företrädare.' : (family?.treasury || 0) < n ? 'Otillräcklig familjekassa.' : '');

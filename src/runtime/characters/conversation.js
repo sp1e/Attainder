@@ -25,7 +25,7 @@ const HOOK_BONUS = 20;
 const ARGUMENT_CAP = 10;
 const ENEMY_OPINION = -20;
 const SUPPORT_OPINION = 10;
-const MAX_ARGUMENTS = 8;
+export const MAX_ARGUMENTS = 8;
 
 const REASONS = Object.freeze({
   request: 'Samtalsförfrågan är ogiltig.',
@@ -239,6 +239,33 @@ export function converse(state, request, events, hooks) {
   effects.push({ kind: 'memory', memoryId: note.id });
   if (accepted) effects.push(...APPLY[estimate.kind](state, { representative, speaker, note }, hooks));
   state.conversations.push({ id: `conversation-${++state.sequence}`, personId: speaker.id, kind: estimate.kind, date: state.date, value: estimate.value, roll, accepted, effects });
+}
+
+const BRIEF_MEMORIES = 12;
+const knownTo = (memory, personId) => memory.knownBy === 'public' || memory.public === true || (Array.isArray(memory.knownBy) && memory.knownBy.includes(personId));
+
+/**
+ * What the model may know to speak as one person: name, traits, offices, the opinion of the representative with its reasons, up to twelve memories the speaker knows that involve the speaker or the representative (newest first, with ids), the secrets the speaker holds as a type label and a subject name only (no id, no evidence, no other holder), and the representative's active hooks over the speaker. Pure: no randomness, no edit. Null when the person or the representative is missing. `hooks` need activeRepresentative, getPersonalOpinion and opinionReasons (actionHooks in index.js).
+ */
+export function conversationBrief(state, personId, hooks) {
+  const speaker = personOf(state, personId), representative = hooks.activeRepresentative();
+  if (!speaker || !representative) return null;
+  const name = (id) => personOf(state, id)?.name ?? id;
+  const memories = (Array.isArray(state.memories) ? state.memories : [])
+    .filter((memory) => knownTo(memory, speaker.id) && Array.isArray(memory.participants) && (memory.participants.includes(speaker.id) || memory.participants.includes(representative.id)))
+    .reverse().slice(0, BRIEF_MEMORIES)
+    .map((memory) => ({ id: memory.id, date: memory.date, title: memory.title, participantNames: memory.participants.map(name) }));
+  const secrets = (Array.isArray(state.secrets) ? state.secrets : []).filter((secret) => secret.holderIds.includes(speaker.id))
+    .map((secret) => ({ typeLabel: SECRET_LABELS[secret.type], subjectName: name(secret.subjectId) }));
+  return {
+    personId: speaker.id, name: speaker.name, familyName: state.families?.[speaker.familyId]?.name ?? '',
+    traits: (speaker.traits ?? []).map((trait) => TRAITS[trait]?.name ?? trait),
+    offices: Object.values(state.offices ?? {}).filter((office) => office.holderId === speaker.id).map((office) => office.name),
+    opinion: hooks.getPersonalOpinion(speaker.id, representative.id),
+    opinionReasons: hooks.opinionReasons(speaker.id, representative.id).map(({ label, value }) => ({ label, value })),
+    memories, secrets,
+    hooks: activeHooks(state, representative.id, speaker.id).map((hook) => ({ id: hook.id, strength: hook.strength, strengthLabel: STRENGTH_LABELS[hook.strength] })),
+  };
 }
 
 /** What the player sees of the conversation tools: who may be asked now, the representative's own unspent hooks and the secrets the representative knows. Names and type labels only; who else holds a secret never leaves the engine. */
