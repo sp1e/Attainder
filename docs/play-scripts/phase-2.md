@@ -64,8 +64,8 @@ If the card is disabled, the reason shows under the form, for example `Kräver h
 
 2. Click `Tolka`. You should see `Modellen tolkar din text…` for a few seconds.
 3. A card appears with the small heading `Omstridd handling` and the title `Förgifta`. It lists `Utförs av:` (Arel av Hadara), `Mål:` (Tarek Arel), `Extra silver:` 0, `Agenter:` inga and `Kostnad:` `25 silver ur familjekassan · 1 handling`. If the card names another person as the target, cancel with `Avbryt` and use `Välj från listan` > `Intrig` > `Förgifta` to choose `Tarek Arel` in the select `Mål`.
-4. Read the two lines `Chans att lyckas:` and `Chans att hållas hemlig:`. Each shows a percentage between 5 % and 95 % or a word. Arel's intrigue skill decides which: 12 or more gives exact percentages, 7 to 11 gives one of five bands (`mycket låg` to `mycket hög`), and below 7 one of three (`osannolik`, `osäker`, `trolig`).
-5. Click `Vad påverkar chansen?`. Find the two feast rows. At exact precision they read `Gästabudet ger tillträde: +15` and `Hemlighållning: många vittnen på gästabudet: −5`. At the band precisions each row shows only a sign, such as `Gästabudet ger tillträde: +`. Other rows you may see are `Grundchans`, `Svårighetsgrad: Normal` and `Målets svaga hälsa` if Tarek is frail.
+4. Read the two lines `Chans att lyckas:` and `Chans att hållas hemlig:`. Each shows a percentage between 5 % and 95 % or a word. Arel's intrigue skill decides which: 12 or more gives exact percentages, 7 to 11 gives one of five bands (`mycket låg` to `mycket hög`), and below 7 one of three (`osannolik`, `osäker`, `trolig`). Arel starts with intrigue 4, so expect one of the three words.
+5. Click `Vad påverkar chansen?`. Find the two feast rows. At Arel's precision each row shows only a sign: `Gästabudet ger tillträde: +` and `Hemlighållning: många vittnen på gästabudet: −`. Other rows you may see are `Grundchans` and `Målets svaga hälsa` if Tarek is frail.
 6. Click `Avbryt`, open `Välj från listan` > `Intrig` > `Förgifta`, choose `Tarek Arel` in `Mål`, click `Visa chansen`, and read the card again. It must show the same feast rows as in step 5, since the target and the feast are the same.
 
 ## Part 5: Confirm and follow the scheme to its outcome
@@ -77,12 +77,12 @@ If the card is disabled, the reason shows under the form, for example `Kräver h
 5. Open `Krönikan` and `Årskrönika`. Find the entry for the scheme. It is one of these:
    - `Förgifta: lyckat i det tysta`, `Förgifta: lyckat men avslöjat`, `Förgifta: misslyckat i det tysta`, `Förgifta: misslyckat och avslöjat` or `Förgifta: det slog tillbaka`
    - `Förgifta: planen avslöjades`, when Tarek saw through the plan during the month
-6. After a success, open `Personer`. Tarek Arel is marked `Avliden`. After `lyckat men avslöjat` the same chronicle also holds an entry titled `Mord avslöjat` (or `Släktmord avslöjat`, when the game counts the victim as kin of the killer). After `misslyckat och avslöjat` or `det slog tillbaka` it holds `Mordförsök avslöjat`. Note what you got.
+6. After a success, open `Personer`. Tarek Arel is marked `Avliden`. After `lyckat men avslöjat` the same chronicle also holds an entry titled `Släktmord avslöjat`, since Tarek is kin of Arel (`Mord avslöjat` when the victim is not kin). After `misslyckat och avslöjat` or `det slog tillbaka` it holds `Mordförsök avslöjat`. Note what you got.
 
 ## Part 6: Read secrets and rumors in the Intriger tab
 
 1. Open the tab `Intriger`. The heading is `Intriger och hemligheter`, followed by a short sentence on what the tab holds.
-2. Read the section `Hemligheter du känner till`. Each card shows a type (`Mord`, `Otrohet`, `Oäkta barn`, `Kätteri` or `Komplott`), `Gäller:` with a name and `Bevis:`. After a poisoning that succeeded or was exposed, expect a `Mord` card with `Gäller: Arel av Hadara`, since you are the one who acted. With nothing to show, the section reads `Du känner inga hemligheter ännu.`
+2. Read the section `Hemligheter du känner till`. Each card shows a type (`Mord`, `Otrohet`, `Oäkta barn`, `Kätteri` or `Komplott`), `Gäller:` with a name and `Bevis:`. After a successful poisoning, expect a `Mord` card with `Gäller: Arel av Hadara`, since you are the one who acted. After a failed attempt that was exposed (`misslyckat och avslöjat` or `det slog tillbaka`), the card is `Komplott` with the same name. A quiet failure leaves no card. With nothing to show, the section reads `Du känner inga hemligheter ännu.`
 3. Read the section `Grepp`. A card reads `Grepp över` followed by a name, with `Styrka: svagt` or `Styrka: starkt`. Otherwise the section reads `Du har inga grepp över någon.`
 4. Read the section `Fångar`. It reads `Inga fångar hålls just nu.` Part 8 fills it.
 5. Read the section `Rykten`. Each card shows a topic and a name (for example `Mordplaner: Tarek Arel`), a date, `Påstådd aktör:` and `Tillförlitlighet:` with the value `osäker`, `trolig` or `säker`. With no rumor heard, the section reads `Du har inte hört några rykten.`
@@ -101,10 +101,10 @@ If the card is disabled, the reason shows under the form, for example `Kräver h
 
    Click `Säg det`. The offer is a grounded argument: it names real silver from your family treasury.
 5. A card appears with the small heading `Förfrågan till Sera Arel` and the title `Ge sitt stöd`. It lists `Till: Sera Arel` and `Erbjuden gåva: 20 silver ur familjekassan`, then `Chans att få ja:`.
-6. Click `Vad påverkar chansen?`. Find `Grundchans`, `Erbjuden gåva` and, when the model credited your reason, `Övertygande argument`. Other rows may be `Personens åsikt om dig` and `Personens lojalitet`.
+6. Click `Vad påverkar chansen?`. Find `Grundchans`, `Erbjuden gåva` and, when the model credited your reason, `Övertygande argument`. Other rows may be `Personens åsikt om dig` and `Personens lojalitet`. Arel's diplomacy is 4, so the chance is a word (`osannolik`, `osäker` or `trolig`) and each row shows only a sign, such as `Erbjuden gåva: +`.
 7. Click `Fråga`. You should see `Du ställer din fråga…`, then one of two notes in the log: `Sera Arel ger sitt stöd.` followed by `20 silver betalades ur familjekassan.`, or `Sera Arel avvisar förfrågan.` Sera then answers in character. An answer that contradicts the note is a bug; note it. If the reply cannot be written you see `Svaret kunde inte skrivas; utfallet gäller.`
-8. Type another request to Sera, for example `Sera, jag ber dig om ditt stöd en gång till.`, and click `Säg det`. A line that asks for nothing does not trigger the check. Within twelve months of the first one, you should see `Ni talade om detta nyss. Personen vill inte bli tillfrågad igen än.`
-9. Click `Avsluta samtalet`. The conversation card closes. Note where the keyboard focus ends up (it should be the `Samtala` button of the person; a known limit after a decided request is that focus can stay on the page body).
+8. Type another request to Sera, for example `Sera, jag ber dig om ditt stöd en gång till.`, and click `Säg det`. The model should read the line as a second support request. Within twelve months of the first one, the engine refuses it before any odds card, and you should see `Ni talade om detta nyss. Personen vill inte bli tillfrågad igen än.` If Sera only answers, note that the model read the line as small talk, and try again with `Sera, jag ber dig om ditt stöd i rådet. Jag erbjuder dig 10 silver.`
+9. Click `Avsluta samtalet`. The conversation card closes. Keyboard focus should land on the person's `Samtala` button, or on the person's name heading when `Samtala` is no longer shown. Note where it ends up.
 10. Open `Krönikan` and `Årskrönika`. The conversation appears as an entry titled `Sera Arel ger sitt stöd` or `Sera Arel avvisar förfrågan`.
 
 ## Part 8: Imprison a rival
@@ -121,9 +121,10 @@ Do this in the same campaign. If a new year has begun, you have four orders agai
 ## Part 9: Answer the ransom offer
 
 1. At the top of the panel, click `Nästa år med modellen`. If the year stops at a decision, answer it and click again.
-2. The prisoner's family answers once a year. With a 60 % chance, and only when the family can pay 40 silver, a decision titled `Lösen för Kelan Namar` opens in `Beslut`. Otherwise `Krönikan` shows the entry `Namar rustar mot kronan` and the family's opinion of you falls. If you got the revolt, advance another year until the offer comes, up to three years.
+2. The prisoner's family answers once a year. With a 60 % chance, and only when the family can pay 40 silver, a decision titled `Lösen för Kelan Namar` opens in `Beslut`. Otherwise `Krönikan` shows the entry `Namar rustar mot kronan` and the family's opinion of you falls. If you got the revolt, advance another year until the offer comes, up to three years. If no offer has come after three years, write down the number of years you waited and go on to Part 10.
 3. Open `Beslut`. The card `Lösen för Kelan Namar` reads `Namar erbjuder 40 silver för att Kelan Namar ska friges.` It has two choices: `Ta emot lösen` and `Avvisa erbjudandet`.
 4. Click `Ta emot lösen`. Open `Intriger`: `Fångar` reads `Inga fångar hålls just nu.` and `Krönikan` shows the entry `Kelan Namar löses ut`. If you click `Avvisa erbjudandet` instead, the prisoner stays and the family head's opinion of you falls. Try both in two separate runs if you have time.
+5. The other direction: when another family holds the crown and imprisons someone of your family, the captor may demand a ransom once a year. A decision titled `Lösen för <name>` then reads `<family> kräver 40 silver för att <name> ska friges.` with the choices `Betala lösen` (paid from your family treasury, disabled with `Familjekassan räcker inte till lösen.` when it holds less) and `Avstå`. This needs a family campaign and an NPC ruler, so this script does not set it up. If you see it in another run, note what you chose and whether the prisoner was freed.
 
 ## Part 10: A name that is not in the game
 
@@ -156,7 +157,7 @@ Difficulty is chosen when a campaign starts, so this part uses a second campaign
    - `Avslöja komplotten`: the plot is made public. A poisoning is charged as a murder attempt (`Mordförsök`) and a plot against the ruler as treason (`Förräderi`).
    - `Behåll kunskapen som grepp`: you gain a strong grip over the plotter.
    - `Låt det vara`: nothing happens.
-9. Choose one and check the result. After `Fängsla komplottmakaren`, `Intriger` lists the plotter under `Fångar`. After `Behåll kunskapen som grepp`, the section `Grepp` shows `Grepp över` the plotter with `Styrka: starkt`. After `Avslöja komplotten`, `Krönikan` shows the charge. The decision card disappears from `Beslut` in each case.
+9. Choose one and check the result. After `Fängsla komplottmakaren`, `Intriger` lists the plotter under `Fångar`. After `Behåll kunskapen som grepp`, the section `Grepp` shows `Grepp över` the plotter with `Styrka: starkt`. After `Avslöja komplotten`, `Krönikan` shows the charge, and in this realm campaign a new decision opens in `Beslut`, titled `Förräderi:` or `Mordförsök:` followed by the plotter's name, with the choices `Fängsla gärningspersonen`, `Bötfäll familjen` and `Benåda gärningspersonen`. The `Komplott avslöjad:` card disappears from `Beslut` in each case.
 
 ## Part 12: Reload
 

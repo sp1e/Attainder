@@ -18,7 +18,7 @@ Updated on 1 November 2026.
 
 ## Verification
 
-- Full serial suite on 1 November 2026: 3,790 tests, 3,787 pass, 0 fail, 1 skipped, 2 todo, in 207 seconds. Phase 1 ended at 3,543 tests, so Phase 2 added 247. A later run of the same command after a rename of one import showed one failure, an `EPERM` rename in `server/payloadUpdate.test.js`, a known Windows flake; that file passed 17 of 17 when run alone.
+- Full serial suite on 1 November 2026 at commit `bb9d5c7`, after the final review fixes: 3,808 tests, 3,805 pass, 0 fail, 1 skipped, 2 todo, in 189 seconds. Phase 1 ended at 3,543 tests, so Phase 2 added 265. `server/payloadUpdate.test.js` can fail on Windows with an `EPERM` rename; it passed in this run.
 - `npm run lint`: 18 errors and 71 warnings, the same as `origin/main`. Phase 2 adds no lint finding. An earlier run showed 20 errors, because the name `useHook` in `secrets.js` made the React hooks rule fire in `actionResolution.js` and `conversation.js`; both files now import it as `consumeHook`.
 - `npm run build`: exit code 0.
 
@@ -31,12 +31,10 @@ After the play scripts pass, run an independent whole-branch review, then merge 
 ## Known Phase 2 limitations
 
 - A player can infer that a rumor is fabricated. A rumor about `Otrohet` or `Oäkta börd` can only come from `Sprida rykte`, and one without a claimant is shown as `osäker`.
-- Schemes that NPCs start on their own intent (the model's `npc_intent`) carry no `secretId`, so seeing through one opens no `Komplott avslöjad` decision.
-- After a conversation request has been decided, closing the conversation with `Avsluta samtalet` leaves keyboard focus on the page body instead of the `Samtala` button.
 
 ## Still open
 
-Event chains, Phase 1 and Phase 2 are not yet released. Phase 0 did not cover these checks:
+Event chains, Phase 1 and Phase 2 are not yet played through. Phase 0 did not cover these checks:
 
 1. Participant or mandate changes during a chain.
 2. JSON advances: an integration test that saves a chain to JSON between two `advanceCharacters` calls.
