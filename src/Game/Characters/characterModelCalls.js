@@ -307,7 +307,7 @@ function speakerBrief(view, personId) {
 
 // The reply needs no ids; the extraction needs memory, hook and person ids to point at.
 const withoutIds = ({ hooksKnown, ...brief }) => ({ ...brief, memories: brief.memories.map(({ id, ...memory }) => memory), hooks: brief.hooks.map(({ id, ...hook }) => hook) });
-// The extraction does not use the speaker's secrets, so they stay out of its prompt; the reply keeps them for the voice of the speaker.
+// The extraction does not use the speaker's secrets, so they stay out of its prompt. The reply keeps the ones the engine's brief lists, which are only secrets the representative also holds.
 const forExtraction = ({ hooksKnown, secrets, ...brief }) => brief;
 
 function extractPrompt(brief, view, playerText, history) {

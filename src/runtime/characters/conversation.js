@@ -246,17 +246,17 @@ const BRIEF_MEMORIES = 12;
 const knownTo = (memory, personId) => memory.knownBy === 'public' || memory.public === true || (Array.isArray(memory.knownBy) && memory.knownBy.includes(personId));
 
 /**
- * What the model may know to speak as one person: name, traits, offices, the opinion of the representative with its reasons, up to twelve memories the speaker knows that involve the speaker or the representative (newest first, with ids), the secrets the speaker holds as a type label and a subject name only (no id, no evidence, no other holder), and the representative's active hooks over the speaker. Pure: no randomness, no edit. Null when the person or the representative is missing. `hooks` need activeRepresentative, getPersonalOpinion and opinionReasons (actionHooks in index.js).
+ * What the model may know to speak as one person: name, traits, offices, the opinion of the representative with its reasons, up to twelve memories that involve the speaker or the representative and that both the speaker and the representative know (the presentation's visibility rule: public or known by the representative; newest first, with ids), the secrets the speaker and the representative both hold as a type label and a subject name only (no id, no evidence, no other holder), and the representative's active hooks over the speaker. A private memory or a secret only the speaker holds never reaches the model, so the reply cannot leak it. Pure: no randomness, no edit. Null when the person or the representative is missing. `hooks` need activeRepresentative, getPersonalOpinion and opinionReasons (actionHooks in index.js).
  */
 export function conversationBrief(state, personId, hooks) {
   const speaker = personOf(state, personId), representative = hooks.activeRepresentative();
   if (!speaker || !representative) return null;
   const name = (id) => personOf(state, id)?.name ?? id;
   const memories = (Array.isArray(state.memories) ? state.memories : [])
-    .filter((memory) => knownTo(memory, speaker.id) && Array.isArray(memory.participants) && (memory.participants.includes(speaker.id) || memory.participants.includes(representative.id)))
+    .filter((memory) => knownTo(memory, speaker.id) && knownTo(memory, representative.id) && Array.isArray(memory.participants) && (memory.participants.includes(speaker.id) || memory.participants.includes(representative.id)))
     .reverse().slice(0, BRIEF_MEMORIES)
     .map((memory) => ({ id: memory.id, date: memory.date, title: memory.title, participantNames: memory.participants.map(name) }));
-  const secrets = (Array.isArray(state.secrets) ? state.secrets : []).filter((secret) => secret.holderIds.includes(speaker.id))
+  const secrets = (Array.isArray(state.secrets) ? state.secrets : []).filter((secret) => secret.holderIds.includes(speaker.id) && secret.holderIds.includes(representative.id))
     .map((secret) => ({ typeLabel: SECRET_LABELS[secret.type], subjectName: name(secret.subjectId) }));
   return {
     personId: speaker.id, name: speaker.name, familyName: state.families?.[speaker.familyId]?.name ?? '',

@@ -541,7 +541,7 @@ test('the conversation prompt holds the speaker, the opinion with reasons, memor
     assert.ok(!prompt.includes('Okänt för Namar') && !prompt.includes('Främlingars sak'), 'memories the speaker does not know or that involve neither');
     assert.ok(/starkt/.test(prompt), 'the hook over him');
   }
-  assert.ok(promptOf(calls[0]).includes('Otrohet') && promptOf(calls[0]).includes(state.people[BAREK].name), 'the reply prompt shows a held secret as type and subject name');
+  assert.ok(!promptOf(calls[0]).includes('Otrohet'), 'the reply prompt leaves out a secret only the speaker holds');
   assert.ok(!promptOf(calls[1]).includes('Otrohet') && !promptOf(calls[1]).includes('"secrets"'), 'the extract prompt does not use the speaker\'s secrets');
   assert.ok(promptOf(calls[1]).includes(hook.id), 'the extract prompt names the hook id so the request can use it');
   assert.ok(!promptOf(calls[0]).includes(hook.id), 'the reply prompt needs no ids');
@@ -554,6 +554,24 @@ test('the brief is read from the engine and lists no secret the speaker lacks', 
   assert.deepEqual(brief.secrets, []);
   assert.equal(brief.personId, TARGET);
   assert.equal(getConversationBrief(state, 'person-9-9'), null);
+});
+
+test('the reply prompt carries no private plot memory or plot secret of the speaker, only what the representative can see', async () => {
+  const state = createCharacterSystem({ seed: 321 });
+  const hooks = actionHooks(state);
+  // An office holder of another family builds a secret opposition: the yearly decision writes a private memory with the ruler as participant, and the plot step adds a plot secret only he holds.
+  const plot = hooks.memory('plot', 'Barek Eshmun bygger en hemlig opposition', [BAREK, REP], { knownBy: [BAREK] });
+  createSecret(state, { type: 'plot', subjectId: BAREK, holderIds: [BAREK], causeId: plot.id });
+  hooks.memory('talk', 'Ett samtal i rådet', [BAREK, REP], { knownBy: [BAREK, REP] });
+  createSecret(state, { type: 'heresy', subjectId: SERA, holderIds: [BAREK, REP] });
+  const { callModel, calls } = fakeModel({ reply: 'Ja.' });
+  await replyAsCharacter({ personId: BAREK, text: 'Hej.', history: [], view: talkView(state, BAREK), outcome: null, callModel });
+  const prompt = promptOf(calls[0]);
+  assert.ok(!prompt.includes('hemlig opposition'), 'the private plot memory is absent');
+  assert.ok(!prompt.includes('Komplott'), 'the plot secret only the speaker holds is absent');
+  assert.ok(!prompt.includes('Otrohet'), 'the affair secret only the speaker holds is absent');
+  assert.ok(prompt.includes('Ett samtal i rådet'), 'a memory the representative knows is present');
+  assert.ok(prompt.includes('Kätteri') && prompt.includes(state.people[SERA].name), 'a secret both hold is present');
 });
 
 // --- Fix round 1 ---------------------------------------------------------------------------------------

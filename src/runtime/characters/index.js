@@ -409,7 +409,7 @@ function npcActionContext(state, actorId) {
 export function estimateCharacterAction(state, intent) { return estimateAction(state, intent, actionContext(state)); }
 /** Odds for one conversation request through the engine's own hooks, or a Swedish refusal. Pure: no randomness, no spending. Like estimateCharacterAction, the result carries the true values for rolling and `display` for the player. */
 export function estimateConversation(state, request) { return estimateConversationRequest(state, request, actionHooks(state)); }
-/** What the model may know to speak as one person (conversation.js). Engine-side only: it holds the speaker's secrets as labels, so it is not part of the presentation. */
+/** What the model may know to speak as one person (conversation.js). Engine-side only: it holds the speaker's view of the representative and the secrets both share as labels, so it is not part of the presentation. */
 export function getConversationBrief(state, personId) { return conversationBrief(state, personId, actionHooks(state)); }
 // Spouse, parent, child, sibling or the same family. Relatives by marriage count through the spouse bond only.
 function kin(state, aId, bId) {

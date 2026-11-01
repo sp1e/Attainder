@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { addGameMonths } from '../gameDates.js';
 import { PRECISION_BANDS } from './actionOdds.js';
 import { CONVERSATION_REQUESTS, CONVERSATION_MONTHS, RECENT_REFUSAL } from './conversation.js';
-import { actionHooks, createCharacterSystem, estimateConversation, executeCharacterCommand, getCharacterPresentation, getPersonalOpinion, normalizeCharacterSystem } from './index.js';
+import { actionHooks, createCharacterSystem, estimateConversation, executeCharacterCommand, getCharacterPresentation, getConversationBrief, getPersonalOpinion, normalizeCharacterSystem } from './index.js';
 import { actionRandom } from './extensions.js';
 import { imprisonPerson } from './prisoners.js';
 import { createSecret, exposeSecret, grantHook } from './secrets.js';
@@ -596,4 +596,23 @@ test('the chronicle reads naturally and an empty reveal says so', () => {
   const told = titles(ACCEPT, 'reveal_secret', (state) => createSecret(state, { type: 'affair', subjectId: BAREK, holderIds: [NAMAR] }));
   assert.equal(told.title, `${name} anförtror sig`);
   assert.equal(told.text, `${rep} bad ${name} att berätta en hemlighet och fick ja.`);
+});
+
+// --- Final fix round ---
+
+test('the brief holds the memories the representative can see and only the secrets both hold', () => {
+  const state = base();
+  const hooks = actionHooks(state);
+  // The yearly decision of an office holder outside the family: a private memory with the ruler as participant, and a plot secret only he holds.
+  const plot = hooks.memory('plot', 'Barek Eshmun bygger en hemlig opposition', [BAREK, REP], { knownBy: [BAREK] });
+  const plotSecret = createSecret(state, { type: 'plot', subjectId: BAREK, holderIds: [BAREK], causeId: plot.id });
+  const shared = hooks.memory('talk', 'Ett samtal i rådet', [BAREK, REP], { knownBy: [BAREK, REP] });
+  const seen = hooks.memory('talk', 'En offentlig strid', [BAREK, NAMAR], { knownBy: 'public' });
+  createSecret(state, { type: 'heresy', subjectId: SERA, holderIds: [BAREK, REP] });
+  const brief = getConversationBrief(state, BAREK);
+  const ids = brief.memories.map((memory) => memory.id);
+  assert.ok(!ids.includes(plot.id), 'a memory only the speaker knows stays out');
+  assert.ok(ids.includes(shared.id) && ids.includes(seen.id), 'memories the representative can see stay in');
+  assert.deepEqual(brief.secrets, [{ typeLabel: 'Kätteri', subjectName: state.people[SERA].name }], 'only the secret both hold; the plot and the opening affair secret stay out');
+  assert.equal(state.secrets.some((secret) => secret.id === plotSecret.id), true);
 });
