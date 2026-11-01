@@ -779,3 +779,19 @@ test('a stranded prisoner is ransomed in a full year without touching the main s
   assert.equal(a.rngState, b.rngState);
   assert.equal(a.actionRngState, b.actionRngState);
 });
+
+// I4: the ruler and the person the player acts through cannot be imprisoned.
+test('imprisonPerson refuses the ruler, the acting regent and the household representative', () => {
+  const state = base();
+  assert.throws(() => seize(state, REP), /^Error: Härskaren kan inte fängslas\.$/);
+  const regency = base();
+  actionHooks(regency).kill(['person-0-0', 'person-0-1', 'person-0-2', 'person-0-3'], [], 'Sjukdom');
+  assert.equal(regency.offices.ruler.regentId, NAMAR);
+  assert.throws(() => seize(regency, NAMAR), /^Error: Den som företräder familjen eller riket kan inte fängslas\.$/);
+  assert.throws(() => seize(regency, 'person-0-4'), /Härskaren/, 'nor the minor on the throne');
+  const family = createCharacterSystem({ seed: 321, mode: 'family', familyId: NAMARS });
+  assert.throws(() => seize(family, NAMAR), /företräder/);
+  for (const held of [state, regency, family]) assert.deepEqual(held.prisoners, []);
+  const effect = record(base(), 'person-1-2', REP, [imprison('target')]);
+  assert.deepEqual(effect.effects, [{ kind: 'imprison', personId: REP, applied: false }], 'the imprison effect records applied false');
+});

@@ -27,6 +27,8 @@ const NO_MANDATE = 'Kräver härskarmandat.';
 
 const MESSAGES = Object.freeze({
   person: 'Personen lever inte eller saknas.',
+  ruler: 'Härskaren kan inte fängslas.',
+  representative: 'Den som företräder familjen eller riket kan inte fängslas.',
   family: 'Fängslande familj saknas.',
   unknown: 'Fången finns inte bland dem du håller.',
   cannotPay: 'Familjen kan inte längre betala lösen.',
@@ -75,14 +77,22 @@ export function isLawfulSubject(state, personId) {
   return convicted || (Array.isArray(state.memories) ? state.memories : []).some((memory) => memory.type === 'crime' && memory.participants?.[0] === personId);
 }
 
+/** Why this person can never be imprisoned, or '': the ruler, and the person the player acts through (the active or the household representative), so the crown and the household always keep someone who can act. `hooks` need ruler, activeRepresentative and householdRepresentative. */
+export function imprisonRefusal(personId, hooks) {
+  if (hooks.ruler()?.id === personId) return MESSAGES.ruler;
+  return [hooks.activeRepresentative?.(), hooks.householdRepresentative?.()].some((person) => person?.id === personId) ? MESSAGES.representative : '';
+}
+
 /**
- * Puts a living person in prison and returns the record. The person's non-ruler offices fall vacant through the engine's own vacate path, and a public event and a memory record it. An unlawful imprisonment (not the subject of an exposed crime secret unless `lawful` says so) costs the realm 5 legitimacy and the person's family 8 grievance. Draws no randomness.
- * `hooks` need logEvent, memory, vacate and ruler.
+ * Puts a living person in prison and returns the record. It refuses the ruler and the representatives (imprisonRefusal). The person's non-ruler offices fall vacant through the engine's own vacate path, and a public event and a memory record it. An unlawful imprisonment (not the subject of an exposed crime secret unless `lawful` says so) costs the realm 5 legitimacy and the person's family 8 grievance. Draws no randomness.
+ * `hooks` need logEvent, memory, vacate, ruler, activeRepresentative and householdRepresentative.
  */
 export function imprisonPerson(state, personId, captorFamilyId, events, hooks, { lawful = isLawfulSubject(state, personId) } = {}) {
   const person = ownKey(state.people, personId) ? state.people[personId] : null;
   if (!person || person.diedAt) throw new Error(MESSAGES.person);
   if (isImprisoned(state, personId)) throw new Error(IMPRISONED);
+  const refusal = imprisonRefusal(personId, hooks);
+  if (refusal) throw new Error(refusal);
   if (!ownKey(state.families, captorFamilyId)) throw new Error(MESSAGES.family);
   const record = { id: `prisoner-${++state.sequence}`, personId, captorFamilyId, since: state.date, ransom: RANSOM, status: 'held', closedAt: null, reason: null };
   state.prisoners.push(record);

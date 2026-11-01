@@ -4,7 +4,7 @@ import { ODDS_MAX, ODDS_MIN, bandFor, estimateAction } from './actionOdds.js';
 import { CRIME_LABELS, crimeOfSecret, exposeCrime } from './crimes.js';
 import { ensureStaff } from './courtStaff.js';
 import { actionRandom } from './extensions.js';
-import { imprisonPerson, isImprisoned } from './prisoners.js';
+import { imprisonPerson, imprisonRefusal, isImprisoned } from './prisoners.js';
 import { spreadRumor } from './rumors.js';
 // useHook is imported as consumeHook: the react-hooks lint rule reads the name as a React hook.
 import { HOOK_STRENGTHS, SECRET_TYPES, addSecretHolders, createSecret, exposeSecret, grantHook, useHook as consumeHook } from './secrets.js';
@@ -311,10 +311,10 @@ const APPLY = Object.freeze({
     if (effect.exposed) exposeHeldSecret(state, secret, events, hooks);
     return { kind: 'hook_from_secret', secretId: secret.id, hookId: hook.id, strength: hook.strength, exposed: effect.exposed === true };
   },
-  // The target goes to prison, held by the actor's family (prisoners.js). A target who died or already sits in prison since the estimate gives the bare record with applied false, as a second kill does.
+  // The target goes to prison, held by the actor's family (prisoners.js). A target who died, already sits in prison or now holds the crown or the representation (imprisonRefusal) gives the bare record with applied false, as a second kill does.
   imprison(state, effect, { roles, hooks, events }) {
     const personId = roles[effect.who], person = personOf(state, personId), record = { kind: 'imprison', personId };
-    if (!person || person.diedAt || isImprisoned(state, personId)) return { ...record, applied: false };
+    if (!person || person.diedAt || isImprisoned(state, personId) || imprisonRefusal(personId, hooks)) return { ...record, applied: false };
     return { ...record, prisonerId: imprisonPerson(state, personId, state.people[roles.actor].familyId, events, hooks).id };
   },
   // A fixed change to a family's grievance, kept inside its bounds. `applied` is the change the bound allowed.

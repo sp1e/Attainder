@@ -204,6 +204,9 @@ function refreshMandates(state, events) {
 function refreshStories(state, events) {
   refreshEventChains(state, events, chainContext(state), chainHooks(state));
   refreshDirectedStories(state, events, storyContext(state), { emit: logEvent, resolve: (story, choice) => resolveStory(state, story, choice, events, true) });
+  // A crime case or an uncovered plot cannot be answered against the ruler or the person the player acts through (imprisonPerson refuses them), so the story falls when its actor gains that power.
+  const empowered = new Set([state.offices.ruler.holderId, activeRepresentative(state)?.id, householdRepresentative(state)?.id].filter(Boolean));
+  const ownFamilyId = controlledFamily(state)?.id;
   for (const story of state.stories.filter((item) => ['open', 'waiting'].includes(item.status))) {
     if (story.type === 'coup' && (!alive(state.people[story.actorId]) || story.actorId === state.offices.ruler.holderId)) {
       story.status = 'closed'; story.resolvedAt = state.date;
@@ -221,18 +224,20 @@ function refreshStories(state, events) {
       }
     }
     if (story.type === 'health_care') { const patient = state.people[story.actorId]; const condition = patient?.healthConditions?.find((item) => item.id === story.conditionId); if (!alive(patient) || !condition || !['active', 'recovering'].includes(condition.stage) || condition.treatment || patient.familyId !== controlledFamily(state)?.id) { story.status = 'closed'; story.resolvedAt = state.date; story.resolution = 'Detta vårdbeslut är inte längre giltigt för ditt hushåll.'; } }
-    if (story.type === 'punish_crime' && (!alive(state.people[story.actorId]) || isImprisoned(state, story.actorId) || compareGameDates(story.dueAt, state.date) <= 0)) {
+    if (story.type === 'punish_crime' && (!alive(state.people[story.actorId]) || isImprisoned(state, story.actorId) || empowered.has(story.actorId) || compareGameDates(story.dueAt, state.date) <= 0)) {
       story.status = 'closed'; story.resolvedAt = state.date;
-      story.resolution = !alive(state.people[story.actorId]) ? 'Gärningspersonen har avlidit; ärendet faller.' : isImprisoned(state, story.actorId) ? 'Gärningspersonen sitter redan fängslad; ärendet faller.' : 'Ärendet förföll utan dom.';
+      story.resolution = !alive(state.people[story.actorId]) ? 'Gärningspersonen har avlidit; ärendet faller.' : isImprisoned(state, story.actorId) ? 'Gärningspersonen sitter redan fängslad; ärendet faller.' : empowered.has(story.actorId) ? 'Gärningspersonen har själv fått makten; ärendet faller.' : 'Ärendet förföll utan dom.';
       logEvent(state, events, 'story_closed', story.title, story.resolution, [story.actorId]);
     }
     if (story.type === 'ransom_offer' && (!isImprisoned(state, story.actorId) || compareGameDates(story.dueAt, state.date) <= 0)) {
       story.status = 'closed'; story.resolvedAt = state.date; story.resolution = isImprisoned(state, story.actorId) ? 'Erbjudandet förföll utan svar.' : 'Fången sitter inte längre fängslad; erbjudandet förföll.';
       logEvent(state, events, 'story_closed', story.title, story.resolution, [story.actorId]);
     }
-    if (story.type === 'plot_uncovered' && (!alive(state.people[story.actorId]) || isImprisoned(state, story.actorId) || compareGameDates(story.dueAt, state.date) <= 0)) {
+    // plot_uncovered opens only for a plotter outside the controlled family, so a plotter inside it got there by a change of crown.
+    const plotterInPower = story.type === 'plot_uncovered' && (empowered.has(story.actorId) || state.people[story.actorId]?.familyId === ownFamilyId);
+    if (story.type === 'plot_uncovered' && (!alive(state.people[story.actorId]) || isImprisoned(state, story.actorId) || plotterInPower || compareGameDates(story.dueAt, state.date) <= 0)) {
       story.status = 'closed'; story.resolvedAt = state.date;
-      story.resolution = !alive(state.people[story.actorId]) ? 'Komplottmakaren har avlidit; ärendet faller.' : isImprisoned(state, story.actorId) ? 'Komplottmakaren sitter fängslad; ärendet faller.' : 'Ärendet förföll utan beslut.';
+      story.resolution = !alive(state.people[story.actorId]) ? 'Komplottmakaren har avlidit; ärendet faller.' : isImprisoned(state, story.actorId) ? 'Komplottmakaren sitter fängslad; ärendet faller.' : plotterInPower ? 'Komplottmakaren har själv fått makten eller hör till din ätt; ärendet faller.' : 'Ärendet förföll utan beslut.';
       logEvent(state, events, 'story_closed', story.title, story.resolution, [story.actorId]);
     }
     if (story.type === 'stress_crisis' && !alive(state.people[story.actorId])) { story.status = 'closed'; story.resolvedAt = state.date; story.resolution = 'Personens liv har avslutats.'; }

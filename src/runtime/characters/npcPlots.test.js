@@ -625,3 +625,19 @@ test('the model is offered no contested action that an NPC cannot take', () => {
   assert.deepEqual(listed, Object.values(ACTION_CATALOG).filter((entry) => !entry.actorOffice && entry.cost.wallet !== 'realm' && !requiresOf(entry).length).map((entry) => entry.id));
   assert.ok(listed.includes('poison') && listed.includes('undermine'));
 });
+
+// I4: when the plotter takes the throne, neither the plot story nor the crime case can be answered against him.
+test('an open plot_uncovered and its crime case close when the plotter takes the throne', () => {
+  const arels = (state) => Object.values(state.people).filter((person) => person.familyId === ARELS).map((person) => person.id);
+  const found = uncovered({ actionId: 'undermine', actorId: NAMAR, targetId: REP });
+  const crowned = copy(found);
+  actionHooks(crowned).kill(arels(crowned), [], 'Sjukdom');
+  assert.equal(crowned.offices.ruler.holderId, NAMAR);
+  assert.deepEqual([storyOf(crowned).status, storyOf(crowned).resolution], ['closed', 'Komplottmakaren har själv fått makten eller hör till din ätt; ärendet faller.']);
+  const exposed = choose(found, 'expose');
+  const crimeCase = () => exposed.stories.find((item) => item.type === 'punish_crime');
+  assert.equal(crimeCase().status, 'open');
+  actionHooks(exposed).kill(arels(exposed), [], 'Sjukdom');
+  assert.deepEqual([crimeCase().status, crimeCase().resolution], ['closed', 'Gärningspersonen har själv fått makten; ärendet faller.']);
+  assert.equal(isImprisoned(exposed, NAMAR), false);
+});
