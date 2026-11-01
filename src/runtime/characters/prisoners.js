@@ -31,6 +31,7 @@ const MESSAGES = Object.freeze({
   unknown: 'Fången finns inte bland dem du håller.',
   cannotPay: 'Familjen kan inte längre betala lösen.',
   gone: 'Fången sitter inte längre fängslad.',
+  cannotAfford: 'Familjekassan räcker inte till lösen.',
 });
 const INVALID = Object.freeze({
   list: 'Fångarna i sparfilen är ogiltiga.',
@@ -165,6 +166,27 @@ function offerRansom(state, record, hooks) {
     actorId: person.id, targetId: ruler.id, familyId: family.id, prisonerId: record.id, createdAt: state.date, dueAt: addGameMonths(state.date, OFFER_MONTHS), knownBy: 'public' });
 }
 
+// The captor's silver: a crown captor is paid into the realm treasury, any other captor into its family treasury.
+const payee = (state, record, hooks) => (hooks.ruler()?.familyId === record.captorFamilyId ? state.realm : state.families[record.captorFamilyId]);
+
+// A captor other than the controlled family demands a ransom for a prisoner of the controlled family. The story names the captor in familyId, which tells ransomChoices that the player pays.
+function demandRansom(state, record, hooks) {
+  const person = state.people[record.personId], captor = state.families[record.captorFamilyId];
+  hooks.openStory({ type: 'ransom_offer', title: `Lösen för ${person.name}`, description: `${captor.name} kräver ${record.ransom} silver för att ${person.name} ska friges.`,
+    actorId: person.id, targetId: captor.headId, familyId: captor.id, prisonerId: record.id, createdAt: state.date, dueAt: addGameMonths(state.date, OFFER_MONTHS), knownBy: 'public' });
+}
+
+// Moves the ransom from the prisoner's family to the captor and closes the record as ransomed, with a public event and a memory.
+function payRansom(state, record, events, hooks) {
+  const person = state.people[record.personId], family = state.families[person.familyId], captor = state.families[record.captorFamilyId];
+  const wallet = payee(state, record, hooks);
+  family.treasury = rounded(family.treasury - record.ransom);
+  wallet.treasury = rounded(wallet.treasury + record.ransom);
+  closePrisoner(state, person.id, 'ransomed', 'Lösen betald');
+  const event = hooks.logEvent(events, 'prisoner_ransomed', `${person.name} löses ut`, `${family.name} betalar ${record.ransom} silver till ${captor.name} och ${person.name} friges.`, [person.id, captor.headId]);
+  hooks.memory('ransom_accepted', event.title, [person.id, captor.headId], { causeId: event.id });
+}
+
 function prepareRevolt(state, record, events, hooks) {
   const person = state.people[record.personId], family = state.families[person.familyId], ruler = hooks.ruler();
   family.grievance = clamp(family.grievance + REVOLT_GRIEVANCE, -40, 40);
@@ -175,22 +197,44 @@ function prepareRevolt(state, record, events, hooks) {
 }
 
 /**
- * The yearly step for the prisoners the controlled family holds, last in annualStep. It does nothing once the campaign has ended. For each held prisoner without an open offer: when his family's treasury covers the ransom and plotRandom() < 0.6, a ransom_offer story opens; otherwise the family prepares a revolt (grievance −6, the head's opinion of the ruler −15, a public event). The draw happens only when the treasury covers the ransom. A prisoner held by his own family is left alone.
+ * The yearly step for the prisoners, in annualStep after aiAnnual and before npcPlotStep. It does nothing once the campaign has ended. A prisoner held by his own family is left alone, and so is a record with an open offer.
+ * Prisoners the controlled family holds (needs a ruler): when his family's treasury covers the ransom and plotRandom() < 0.6, a ransom_offer story opens; otherwise the family prepares a revolt (grievance −6, the head's opinion of the ruler −15, a public event). The draw happens only when the treasury covers the ransom.
+ * Prisoners another family holds (in family mode the crown can pass to an NPC family): one plotRandom() draw per record and year. Below 0.6 the captor demands a ransom from the controlled family when the prisoner is its kin (a ransom_offer the player can pay), and otherwise frees him when his family's treasury covers the ransom (payRansom).
  */
 export function prisonerStep(state, events, hooks) {
-  const captor = hooks.controlledFamily(), ruler = hooks.ruler();
-  if (state.status?.ended || !captor || !ruler) return;
-  for (const record of heldPrisoners(state, captor.id)) {
+  if (state.status?.ended) return;
+  const controlled = hooks.controlledFamily(), ruler = hooks.ruler();
+  if (controlled && ruler) {
+    for (const record of heldPrisoners(state, controlled.id)) {
+      const family = state.families[state.people[record.personId].familyId];
+      if (family.id === controlled.id || openOffer(state, record)) continue;
+      if (family.treasury >= record.ransom && plotRandom(state) < PAY_CHANCE) offerRansom(state, record, hooks);
+      else prepareRevolt(state, record, events, hooks);
+    }
+  }
+  for (const record of list(state).filter((item) => item.status === 'held' && item.captorFamilyId !== controlled?.id)) {
     const family = state.families[state.people[record.personId].familyId];
-    if (family.id === captor.id || openOffer(state, record)) continue;
-    if (family.treasury >= record.ransom && plotRandom(state) < PAY_CHANCE) offerRansom(state, record, hooks);
-    else prepareRevolt(state, record, events, hooks);
+    if (family.id === record.captorFamilyId || openOffer(state, record)) continue;
+    const pays = plotRandom(state) < PAY_CHANCE;
+    if (family.id === controlled?.id) { if (pays) demandRansom(state, record, hooks); }
+    else if (pays && family.treasury >= record.ransom) payRansom(state, record, events, hooks);
   }
 }
 
-/** The two answers to a ransom offer. `context.controller` tells whether the player holds the mandate. */
+// A ransom_offer whose familyId names the captor (demandRansom) is paid by the player's family, not offered to the crown.
+const demanded = (state, story, record) => Boolean(record) && story.familyId === record.captorFamilyId && state.people[record.personId]?.familyId !== record.captorFamilyId;
+
+/** The two answers to a ransom offer. `context.controller` tells whether the player holds the mandate. A demand from another captor (demandRansom) is paid from the prisoner's family treasury and needs no mandate, so a family whose head sits in prison can still buy him free. */
 export function ransomChoices(state, story, { controller }) {
   const record = heldById(state, story.prisonerId);
+  if (demanded(state, story, record)) {
+    const person = state.people[record.personId], family = state.families[person.familyId], captor = state.families[record.captorFamilyId];
+    return [
+      { id: 'accept', label: 'Betala lösen', description: `${family.name} betalar ${record.ransom} silver till ${captor.name} och ${person.name} friges.`, cost: `${record.ransom} familjesilver`, stress: '0',
+        disabledReason: family.treasury >= record.ransom ? '' : MESSAGES.cannotAfford },
+      { id: 'refuse', label: 'Avstå', description: `${person.name} sitter kvar i fängelset.`, cost: '0 silver', stress: '0', disabledReason: '' },
+    ];
+  }
   const person = state.people[story.actorId], family = state.families[story.familyId];
   const mandate = controller ? '' : NO_MANDATE;
   const ransom = record?.ransom ?? RANSOM;
@@ -205,6 +249,12 @@ export function ransomChoices(state, story, { controller }) {
 export function resolveRansom(state, story, choiceId, hooks, events = []) {
   const record = heldById(state, story.prisonerId);
   if (!record) throw new Error(MESSAGES.gone);
+  if (demanded(state, story, record)) {
+    if (choiceId !== 'accept') return;
+    if (state.families[state.people[record.personId].familyId].treasury < record.ransom) throw new Error(MESSAGES.cannotAfford);
+    payRansom(state, record, events, hooks);
+    return;
+  }
   const person = state.people[record.personId], family = state.families[person.familyId], ruler = hooks.ruler();
   const head = state.people[family.headId];
   const opinion = (amount, label, note) => { if (ruler && head && !head.diedAt) hooks.opinionCause(head.id, ruler.id, amount, label, note.id); };

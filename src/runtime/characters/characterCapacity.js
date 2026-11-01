@@ -30,11 +30,12 @@ export function canExerciseMandate(person, date) {
 
 // Selection proposes a representative; it does not transfer office or property.
 // Existing minority access rules remain unchanged apart from capacity.
-export function selectMandateRegent(state, { principalId, scope, basis }) {
+// `excluded(person)` removes people the caller rules out, such as prisoners (this module has no view of them).
+export function selectMandateRegent(state, { principalId, scope, basis, excluded = () => false }) {
   const principal = state.people[principalId];
   if (!principal || principal.diedAt || !['royal', 'family'].includes(scope) || !['minority', 'incapacity'].includes(basis)) return null;
   const candidates = Object.values(state.people).filter((person) => {
-    if (person.id === principalId || !canExerciseMandate(person, state.date)) return false;
+    if (person.id === principalId || !canExerciseMandate(person, state.date) || excluded(person)) return false;
     const family = state.families[person.familyId];
     if (!family) return false;
     if (basis === 'minority') return true;

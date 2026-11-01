@@ -41,21 +41,22 @@ const adult = (state, person) => isAdultCharacter(person, state.date);
 const ruler = (state) => state.people[state.offices.ruler?.holderId] || null;
 const familyMembers = (state, id) => living(state).filter((p) => p.familyId === id);
 const byAge = (state, people) => [...people].sort((a, b) => compareGameDates(a.bornAt, b.bornAt) || a.id.localeCompare(b.id));
+// A prisoner never acts for a family or the realm (Phase 2): an imprisoned head or guardian leaves the household without a representative.
 function householdRepresentative(state) {
   const family = controlledFamily(state), principal = state.people[family?.headId];
-  if (!alive(principal)) return null;
+  if (!alive(principal) || isImprisoned(state, principal.id)) return null;
   if (canExerciseMandate(principal, state.date)) return principal;
   const record = state.regencies?.[`family:${family.id}`], guardian = state.people[family.guardianId];
-  return record?.principalId === principal.id && record.regentId === guardian?.id && record.phase !== 'contested' && canExerciseMandate(guardian, state.date) ? guardian : null;
+  return record?.principalId === principal.id && record.regentId === guardian?.id && record.phase !== 'contested' && canExerciseMandate(guardian, state.date) && !isImprisoned(state, guardian.id) ? guardian : null;
 }
 function activeRepresentative(state) { return state.identity.mode === 'realm' ? realmExecutive(state) || householdRepresentative(state) : householdRepresentative(state); }
 function controlledFamily(state) { return state.families[state.identity.mode === 'family' ? state.identity.familyId : ruler(state)?.familyId] || null; }
 function realmExecutive(state) {
   const principal = ruler(state), record = royalRegency(state);
   if (!state.realm.alive || !alive(principal) || record?.phase === 'contested') return null;
-  if (canExerciseMandate(principal, state.date) && !state.offices.ruler.regentId) return principal;
+  if (canExerciseMandate(principal, state.date) && !state.offices.ruler.regentId) return isImprisoned(state, principal.id) ? null : principal;
   const regent = ['minority', 'incapacity'].includes(record?.phase) ? state.people[record.regentId] : null;
-  return canExerciseMandate(regent, state.date) ? regent : null;
+  return canExerciseMandate(regent, state.date) && !isImprisoned(state, regent.id) ? regent : null;
 }
 function royalDecisionReason(state, type) {
   if (royalRegency(state)?.phase === 'contested') return 'Mandatöverlämningen är omstridd. Frågan kan tas upp igen när konflikten är löst.';
@@ -174,7 +175,7 @@ function reconcileLegalPosition(state, events) {
 }
 function refreshRepresentation(state, events = [], { silent = false } = {}) {
   ensureGovernance(state); ensureMandateEpisodes(state);
-  const context = { emit: logEvent, events, silent };
+  const context = { emit: logEvent, events, silent, excluded: (person) => isImprisoned(state, person.id) };
   for (const family of values(state.families).sort((a, b) => a.id.localeCompare(b.id))) {
     family.guardianId = reconcileMandateEpisode(state, `family:${family.id}`, family.headId, context);
   }
@@ -190,7 +191,8 @@ function refreshRepresentation(state, events = [], { silent = false } = {}) {
 }
 function refreshMandates(state, events) {
   ensureGovernance(state);
-  for (const family of values(state.families)) if (!alive(state.people[family.headId])) family.headId = byAge(state, familyMembers(state, family.id))[0]?.id || null;
+  // A new head is the eldest living member outside prison; only when all sit in prison does the eldest prisoner take the place.
+  for (const family of values(state.families)) if (!alive(state.people[family.headId])) { const members = byAge(state, familyMembers(state, family.id)); family.headId = (members.find((person) => !isImprisoned(state, person.id)) || members[0])?.id || null; }
   for (const faith of values(state.religions)) {
     const priest = state.people[state.offices.priest?.holderId];
     if (adult(state, priest) && priest.religionId === faith.id) faith.leaderId = priest.id;

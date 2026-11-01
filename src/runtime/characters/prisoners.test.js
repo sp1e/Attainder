@@ -675,3 +675,107 @@ test('estimates, presentations and validation draw nothing for prisoners', () =>
   normalizeCharacterSystem(copy(state));
   assert.equal(JSON.stringify(state), before);
 });
+
+// I2 (a): an imprisoned person is never chosen to act for a family or the realm.
+test('an imprisoned eldest adult is skipped as regent; the next capable adult is chosen', () => {
+  const state = base();
+  seize(state, NAMAR);
+  actionHooks(state).kill(['person-0-0', 'person-0-1', 'person-0-2', 'person-0-3'], [], 'Sjukdom');
+  assert.equal(state.offices.ruler.holderId, 'person-0-4', 'the minor Mira takes the crown');
+  assert.equal(state.offices.ruler.regentId, 'person-2-0', 'Namar is the eldest adult but sits in prison');
+  assert.equal(state.regencies['office:ruler'].regentId, 'person-2-0');
+  assert.equal(isImprisoned(state, getCharacterPresentation(state).representative?.id ?? state.offices.ruler.regentId), false);
+  normalizeCharacterSystem(copy(state));
+});
+
+test('a sitting regent found in prison (an older save) is replaced at the next mandate check', () => {
+  const state = base();
+  actionHooks(state).kill(['person-0-0', 'person-0-1', 'person-0-2', 'person-0-3'], [], 'Sjukdom');
+  assert.equal(state.offices.ruler.regentId, NAMAR);
+  seize(state, 'person-2-0');
+  // imprisonPerson refuses the acting regent, so the record is written the way a save could hold it.
+  state.prisoners.push({ id: `prisoner-${++state.sequence}`, personId: NAMAR, captorFamilyId: ARELS, since: state.date, ransom: RANSOM, status: 'held', closedAt: null, reason: null });
+  const next = advance(state, addGameMonths(state.date, 1));
+  assert.equal(next.offices.ruler.regentId, 'person-3-0');
+});
+
+test('an imprisoned eldest is skipped when a family chooses a new head', () => {
+  const state = base();
+  seize(state, 'person-1-1');
+  actionHooks(state).kill([NAMAR], [], 'Sjukdom');
+  assert.equal(state.families[NAMARS].headId, KELAN, 'Dara is eldest but sits in prison');
+  normalizeCharacterSystem(copy(state));
+});
+
+// I2 (b): a record whose captor is not the controlled family has a yearly way out.
+// Family mode follows Namar; the NPC crown (Arel) holds the prisoner.
+function npcCaptor(personId, plotSeed) {
+  const state = createCharacterSystem({ seed: 321, mode: 'family', familyId: NAMARS });
+  const record = seize(state, personId);
+  state.plotRngState = plotSeed;
+  return { state, record };
+}
+
+test('a prisoner of the controlled family held by an NPC crown gets a ransom demand the player can pay', () => {
+  const { state, record } = npcCaptor(KELAN, OFFER);
+  const events = [];
+  const before = { rng: state.rngState, action: state.actionRngState };
+  prisonerStep(state, events, actionHooks(state));
+  assert.equal(state.plotRngState, (() => { const dice = { plotRngState: OFFER }; plotRandom(dice); return dice.plotRngState; })(), 'one plot draw for the record');
+  assert.deepEqual([state.rngState, state.actionRngState], [before.rng, before.action]);
+  const story = state.stories.find((item) => item.type === 'ransom_offer');
+  assert.ok(story, 'the captor demands a ransom');
+  assert.deepEqual([story.prisonerId, story.actorId, story.familyId], [record.id, KELAN, ARELS]);
+  const view = getCharacterPresentation(state).stories.find((item) => item.id === story.id);
+  assert.deepEqual(view.choices.map((choice) => [choice.id, choice.disabledReason]), [['accept', ''], ['refuse', '']]);
+  const done = ok(run(state, 'resolve_story', { storyId: story.id, choiceId: 'accept' }));
+  assert.equal(done.families[NAMARS].treasury, state.families[NAMARS].treasury - RANSOM);
+  assert.equal(done.realm.treasury, state.realm.treasury + RANSOM, 'Arel holds the crown, so the silver goes to the realm');
+  assert.deepEqual([done.prisoners[0].status, done.prisoners[0].reason], ['ransomed', 'Lösen betald']);
+  assert.equal(isImprisoned(done, KELAN), false);
+  normalizeCharacterSystem(copy(done));
+});
+
+test('the player cannot pay a demand the family treasury does not cover; above the chance no demand opens', () => {
+  const { state } = npcCaptor(KELAN, OFFER);
+  state.families[NAMARS].treasury = 10;
+  prisonerStep(state, [], actionHooks(state));
+  const story = state.stories.find((item) => item.type === 'ransom_offer');
+  const view = getCharacterPresentation(state).stories.find((item) => item.id === story.id);
+  assert.notEqual(view.choices.find((choice) => choice.id === 'accept').disabledReason, '');
+  assert.equal(run(state, 'resolve_story', { storyId: story.id, choiceId: 'accept' }).ok, false);
+  const quiet = npcCaptor(KELAN, NO_OFFER).state;
+  prisonerStep(quiet, [], actionHooks(quiet));
+  assert.equal(quiet.stories.some((item) => item.type === 'ransom_offer'), false);
+  assert.notEqual(quiet.plotRngState, NO_OFFER, 'the draw was made');
+});
+
+test('an NPC captor accepts a ransom the prisoner\'s family can pay, with one plot draw and no main draw', () => {
+  const { state, record } = npcCaptor(BAREK, OFFER);
+  const events = [];
+  const before = { rng: state.rngState, action: state.actionRngState, eshmun: state.families['family-eshmun'].treasury, realm: state.realm.treasury };
+  prisonerStep(state, events, actionHooks(state));
+  assert.deepEqual([record.status, record.reason], ['ransomed', 'Lösen betald']);
+  assert.equal(state.families['family-eshmun'].treasury, before.eshmun - RANSOM);
+  assert.equal(state.realm.treasury, before.realm + RANSOM);
+  assert.ok(events.some((event) => event.type === 'prisoner_ransomed' && event.public === true));
+  assert.deepEqual([state.rngState, state.actionRngState], [before.rng, before.action]);
+  assert.equal(state.stories.some((item) => item.type === 'ransom_offer'), false, 'the player is not asked');
+  normalizeCharacterSystem(copy(state));
+  const poor = npcCaptor(BAREK, OFFER).state;
+  poor.families['family-eshmun'].treasury = 10;
+  prisonerStep(poor, [], actionHooks(poor));
+  assert.equal(poor.prisoners[0].status, 'held', 'a family that cannot pay stays without its kin');
+  assert.notEqual(poor.plotRngState, OFFER, 'one draw per record per year all the same');
+});
+
+test('a stranded prisoner is ransomed in a full year without touching the main stream', () => {
+  const { state } = npcCaptor(BAREK, OFFER);
+  const free = copy(state);
+  free.prisoners = [];
+  free.offices.chancellor.holderId = BAREK;
+  const a = advance(state, state.nextAnnualDate), b = advance(free, free.nextAnnualDate);
+  assert.equal(a.prisoners[0].status, 'ransomed');
+  assert.equal(a.rngState, b.rngState);
+  assert.equal(a.actionRngState, b.actionRngState);
+});
