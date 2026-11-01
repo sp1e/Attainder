@@ -32,6 +32,7 @@ const REASONS = Object.freeze({
   kind: 'Välj vad du vill be om.',
   person: 'Personen kan inte tillfrågas.',
   mandate: 'Ingen handlingsförmögen företrädare kan föra samtalet.',
+  payer: 'Familjen saknar en handlingsförmögen företrädare som kan betala gåvan.',
   offer: 'Gåvan måste vara ett helt antal silver, noll eller mer.',
   score: 'Argumentens poäng måste vara ett heltal, noll eller mer.',
   arguments: 'Argumenten är ogiltiga.',
@@ -46,6 +47,8 @@ const INVALID = Object.freeze({
   effects: 'Ett samtals följder stämmer inte med utgången.',
 });
 const KEYS = Object.freeze(['id', 'personId', 'kind', 'date', 'value', 'roll', 'accepted', 'effects']);
+// charge() prices stress per tag and gives 0 for a tag it does not know, so paying an offer costs the representative no stress.
+const PAID_TAG = 'conversation_offer';
 const STRENGTH_LABELS = Object.freeze({ weak: 'svagt', strong: 'starkt' });
 
 const plainObject = (value) => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
@@ -161,6 +164,8 @@ export function estimateConversation(state, request, hooks) {
   if (!representative) return { ok: false, reason: REASONS.mandate };
   const reason = personRefusal(state, speaker, representative, hooks);
   if (reason) return { ok: false, reason };
+  const payer = hooks.householdRepresentative();
+  if (read.offer > 0 && !(payer && !payer.diedAt && hooks.canExerciseMandate(payer))) return { ok: false, reason: REASONS.payer };
   const purse = hooks.controlledFamily()?.treasury ?? 0;
   if (read.offer > purse) return { ok: false, reason: `Det behövs ${read.offer} silver; tillgängligt ${Math.floor(purse)}.` };
   if (read.hookId !== null && !activeHooks(state, representative.id, speaker.id).some((hook) => hook.id === read.hookId)) return { ok: false, reason: REASONS.hook };
@@ -170,7 +175,7 @@ export function estimateConversation(state, request, hooks) {
   const raw = rows.reduce((total, row) => total + row.value, 0), value = clamp(raw, ODDS_MIN, ODDS_MAX);
   const modifiers = value === raw ? rows : [...rows, { label: value < raw ? 'Högsta möjliga chans' : 'Lägsta möjliga chans', value: value - raw }];
   const precision = precisionFor(representative.skills?.diplomacy);
-  return { ok: true, personId: speaker.id, kind: read.kind, value, modifiers, precision, display: presentChance(precision, value, rows, modifiers), groundedArguments: grounding };
+  return { ok: true, personId: speaker.id, kind: read.kind, offerSilver: read.offer, hookId: read.hookId, value, modifiers, precision, display: presentChance(precision, value, rows, modifiers), groundedArguments: grounding };
 }
 
 // The secret the speaker holds and the representative lacks, strongest evidence first and the lowest id among equals; exposed secrets are no longer secret.
@@ -201,11 +206,17 @@ const APPLY = {
   },
 };
 
-function describe(representative, speaker, kind, accepted) {
-  const asked = `${representative.name} ber ${speaker.name} om detta: ${CONVERSATION_REQUESTS[kind].label.toLowerCase()}.`;
-  if (!accepted) return { title: `${speaker.name} avvisar förfrågan`, text: `${asked} Svaret blir nej.` };
-  if (kind === 'reveal_secret') return { title: `${speaker.name} anförtror sig`, text: `${asked} Svaret blir ja.` };
-  return { title: kind === 'support' ? `${speaker.name} ger sitt stöd` : `${speaker.name} ger ett löfte`, text: `${asked} Svaret blir ja.` };
+// What the request asks for, as it reads after "bad <person>".
+const ASKED = Object.freeze({ support: 'om stöd', reveal_secret: 'att berätta en hemlighet', pledge: 'om ett löfte' });
+
+// Title and text of the chronicle event. `empty` marks a reveal that was accepted but had no secret to give.
+function describe(representative, speaker, kind, accepted, empty) {
+  const asked = `${representative.name} bad ${speaker.name} ${ASKED[kind]}`;
+  if (!accepted) return { title: `${speaker.name} avvisar förfrågan`, text: `${asked} men fick nej.` };
+  if (kind === 'support') return { title: `${speaker.name} ger sitt stöd`, text: `${asked} och fick ja.` };
+  if (kind === 'pledge') return { title: `${speaker.name} ger ett löfte`, text: `${asked} och fick ja.` };
+  if (empty) return { title: `${speaker.name} har inget att berätta`, text: `${asked}, men ${speaker.name} hade inget att berätta.` };
+  return { title: `${speaker.name} anförtror sig`, text: `${asked} och fick ja.` };
 }
 
 /**
@@ -216,11 +227,13 @@ export function converse(state, request, events, hooks) {
   const estimate = estimateConversation(state, request, hooks);
   if (!estimate.ok) throw new Error(estimate.reason);
   const representative = hooks.activeRepresentative(), speaker = state.people[estimate.personId];
-  const offer = request.offerSilver ?? 0, effects = [];
-  if (request.hookId != null) { useHook(state, request.hookId); effects.push({ kind: 'hook_spent', hookId: request.hookId }); }
+  const { offerSilver: offer, hookId } = estimate, effects = [];
+  // useHook spends a weak hook; a strong one stays usable, so only a spent hook is recorded.
+  if (hookId !== null && useHook(state, hookId).usedAt !== null) effects.push({ kind: 'hook_spent', hookId });
   const roll = actionRandom(state) * 100, accepted = roll < estimate.value;
-  if (accepted && offer > 0) { hooks.charge(offer, { orders: 0 }); effects.push({ kind: 'silver', amount: offer }); }
-  const outcome = describe(representative, speaker, estimate.kind, accepted);
+  if (accepted && offer > 0) { hooks.charge(offer, { orders: 0, tag: PAID_TAG }); effects.push({ kind: 'silver', amount: offer }); }
+  const empty = accepted && estimate.kind === 'reveal_secret' && !strongestSecret(state, speaker, representative);
+  const outcome = describe(representative, speaker, estimate.kind, accepted, empty);
   const event = hooks.logEvent(events, 'conversation', outcome.title, outcome.text, [representative.id, speaker.id]);
   const note = hooks.memory('conversation', outcome.title, [representative.id, speaker.id], { causeId: event.id, knownBy: [representative.id, speaker.id] });
   effects.push({ kind: 'memory', memoryId: note.id });
@@ -250,7 +263,7 @@ function checkEffect(state, entry, effect) {
   if (!plainObject(effect)) fail(INVALID.effects);
   const exists = (collection, id) => Array.isArray(state[collection]) && state[collection].some((item) => item?.id === id);
   if (effect.kind === 'memory') return exists('memories', effect.memoryId) || fail(INVALID.effects);
-  if (effect.kind === 'hook_spent') return exists('hooks', effect.hookId) || fail(INVALID.effects);
+  if (effect.kind === 'hook_spent') return state.hooks?.some((hook) => hook?.id === effect.hookId && hook.strength === 'weak' && hook.usedAt !== null) || fail(INVALID.effects);
   if (!entry.accepted || !OUTCOME_KINDS.includes(effect.kind)) fail(INVALID.effects);
   if (effect.kind === 'silver') return (Number.isInteger(effect.amount) && effect.amount > 0) || fail(INVALID.effects);
   if (effect.kind === 'opinion') return (effect.fromId === entry.personId && personOf(state, effect.toId) && effect.amount === SUPPORT_OPINION) || fail(INVALID.effects);

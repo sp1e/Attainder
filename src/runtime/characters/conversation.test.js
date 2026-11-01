@@ -527,3 +527,73 @@ test('a save without the conversation list gets an empty one on load', () => {
   delete state.conversations;
   assert.deepEqual(normalizeCharacterSystem(state).conversations, []);
 });
+
+// Fix round 1.
+test('only a hook that was really spent is recorded as spent', () => {
+  for (const strength of ['weak', 'strong']) {
+    const state = withAction(plain(), ACCEPT);
+    const hook = grantHook(state, { ownerId: REP, targetId: NAMAR, strength });
+    const done = ok(converse(state, ask({ hookId: hook.id })));
+    const spent = done.conversations[0].effects.filter((effect) => effect.kind === 'hook_spent');
+    assert.deepEqual(spent, strength === 'weak' ? [{ kind: 'hook_spent', hookId: hook.id }] : [], strength);
+    assert.equal(done.hooks.find((item) => item.id === hook.id).usedAt, strength === 'weak' ? state.date : null, strength);
+    assert.doesNotThrow(() => normalizeCharacterSystem(copy(done)), strength);
+    // The same holds when the request is refused.
+    const refused = ok(converse(withAction(state, REFUSE), ask({ hookId: hook.id })));
+    assert.equal(refused.conversations[0].effects.some((effect) => effect.kind === 'hook_spent'), strength === 'weak', strength);
+  }
+  const state = withAction(plain(), ACCEPT);
+  const strong = grantHook(state, { ownerId: REP, targetId: NAMAR, strength: 'strong' });
+  const done = ok(converse(state, ask({ hookId: strong.id })));
+  const forged = copy(done); forged.conversations[0].effects.push({ kind: 'hook_spent', hookId: strong.id });
+  assert.throws(() => normalizeCharacterSystem(forged), /samtal/i, 'a strong hook cannot be recorded as spent');
+  const unspent = copy(done); unspent.conversations[0].effects.push({ kind: 'hook_spent', hookId: grantHook(unspent, { ownerId: REP, targetId: BAREK, strength: 'weak' }).id });
+  assert.throws(() => normalizeCharacterSystem(unspent), /samtal/i, 'a weak hook that is not spent');
+});
+
+test('paying an offer costs the representative no stress', () => {
+  const state = withAction(plain(), ACCEPT);
+  state.people[REP].traits = [];
+  const done = ok(converse(state, ask({ offerSilver: 20 })));
+  assert.equal(done.families[ARELS].treasury, state.families[ARELS].treasury - 20);
+  assert.equal(done.people[REP].stress, state.people[REP].stress);
+});
+
+test('an offer is refused up front when the household cannot pay it', () => {
+  const state = plain();
+  state.families[ARELS].headId = SERA;
+  state.people[SERA].diedAt = state.date;
+  const refused = estimateConversation(state, ask({ offerSilver: 10 }));
+  assert.equal(refused.ok, false);
+  assert.equal(refused.reason, 'Familjen saknar en handlingsförmögen företrädare som kan betala gåvan.');
+  assert.equal(estimateConversation(state, ask({ offerSilver: 0 })).ok, true, 'a talk without silver needs no payer');
+  const command = converse(withAction(state, ACCEPT), ask({ offerSilver: 10 }));
+  assert.equal(command.ok, false);
+  assert.equal(command.state.actionRngState, ACCEPT, 'nothing is drawn');
+});
+
+test('the estimate returns the normalized offer and hook, and the command uses them', () => {
+  const state = withAction(plain(), ACCEPT);
+  const bare = estimate(state, { personId: NAMAR, kind: 'support' });
+  assert.deepEqual([bare.offerSilver, bare.hookId], [0, null]);
+  const hook = grantHook(state, { ownerId: REP, targetId: NAMAR, strength: 'weak' });
+  const named = estimate(state, { personId: NAMAR, kind: 'support', offerSilver: 8, hookId: hook.id });
+  assert.deepEqual([named.offerSilver, named.hookId], [8, hook.id]);
+  const done = ok(converse(state, { personId: NAMAR, kind: 'support', hookId: undefined }));
+  assert.equal(done.conversations[0].accepted, true);
+});
+
+test('the chronicle reads naturally and an empty reveal says so', () => {
+  const rep = base().people[REP].name, name = base().people[NAMAR].name;
+  const titles = (seed, kind, prepare = () => {}) => { const state = withAction(plain(), seed); prepare(state); const done = ok(converse(state, ask({ kind }))); return { title: done.log.at(-1).title, text: done.log.at(-1).description, memory: done.memories.at(-1).title }; };
+  assert.deepEqual(titles(ACCEPT, 'support'), { title: `${name} ger sitt stöd`, text: `${rep} bad ${name} om stöd och fick ja.`, memory: `${name} ger sitt stöd` });
+  assert.equal(titles(ACCEPT, 'pledge').title, `${name} ger ett löfte`);
+  assert.equal(titles(REFUSE, 'pledge').text, `${rep} bad ${name} om ett löfte men fick nej.`);
+  assert.equal(titles(REFUSE, 'reveal_secret').title, `${name} avvisar förfrågan`);
+  const empty = titles(ACCEPT, 'reveal_secret');
+  assert.equal(empty.title, `${name} har inget att berätta`);
+  assert.equal(empty.text, `${rep} bad ${name} att berätta en hemlighet, men ${name} hade inget att berätta.`);
+  const told = titles(ACCEPT, 'reveal_secret', (state) => createSecret(state, { type: 'affair', subjectId: BAREK, holderIds: [NAMAR] }));
+  assert.equal(told.title, `${name} anförtror sig`);
+  assert.equal(told.text, `${rep} bad ${name} att berätta en hemlighet och fick ja.`);
+});
