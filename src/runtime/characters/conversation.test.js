@@ -482,7 +482,7 @@ test('a request is answered by presentation lists of names and labels only', () 
   assert.deepEqual(labels, ['Komplott', 'Kätteri', 'Mord'], 'the secrets the representative holds, plus those already out');
   assert.ok(!labels.includes('Otrohet'), 'a secret others hold stays hidden');
   const first = view.knownSecrets.find((item) => item.id === shown.id);
-  assert.deepEqual(first, { id: shown.id, type: 'heresy', typeLabel: 'Kätteri', subjectId: SERA, subjectName: state.people[SERA].name, exposed: false });
+  assert.deepEqual(first, { id: shown.id, type: 'heresy', typeLabel: 'Kätteri', subjectId: SERA, subjectName: state.people[SERA].name, evidence: 'weak', evidenceLabel: 'svagt', exposed: false });
   assert.ok(!JSON.stringify(view.knownSecrets).includes('holderIds'));
   const jailed = copy(state);
   imprisonPerson(jailed, SERA, ARELS, [], actionHooks(jailed), { lawful: true });

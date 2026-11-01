@@ -268,7 +268,7 @@ export function conversationBrief(state, personId, hooks) {
   };
 }
 
-/** What the player sees of the conversation tools: who may be asked now, the representative's own unspent hooks and the secrets the representative knows. Names and type labels only; who else holds a secret never leaves the engine. */
+/** What the player sees of the conversation tools: who may be asked now, the representative's own unspent hooks and the secrets the representative knows. Names, type labels and the strength of the evidence only; who else holds a secret never leaves the engine. */
 export function presentConversation(state, hooks) {
   const representative = speakerFor(state, hooks);
   const name = (id) => personOf(state, id)?.name ?? id;
@@ -278,7 +278,7 @@ export function presentConversation(state, hooks) {
   return {
     conversationTargets: targets,
     ownHooks: own.map((hook) => ({ id: hook.id, targetId: hook.targetId, targetName: name(hook.targetId), strength: hook.strength, strengthLabel: STRENGTH_LABELS[hook.strength] })),
-    knownSecrets: secrets.map((secret) => ({ id: secret.id, type: secret.type, typeLabel: SECRET_LABELS[secret.type], subjectId: secret.subjectId, subjectName: name(secret.subjectId), exposed: secret.exposed })),
+    knownSecrets: secrets.map((secret) => ({ id: secret.id, type: secret.type, typeLabel: SECRET_LABELS[secret.type], subjectId: secret.subjectId, subjectName: name(secret.subjectId), evidence: secret.evidence, evidenceLabel: STRENGTH_LABELS[secret.evidence], exposed: secret.exposed })),
   };
 }
 

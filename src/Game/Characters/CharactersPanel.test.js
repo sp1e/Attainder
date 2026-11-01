@@ -5,20 +5,25 @@ import vm from "node:vm";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
-import { createCharacterSystem, estimateCharacterAction, getCharacterPresentation } from "../../runtime/characters/index.js";
+import { createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getCharacterPresentation } from "../../runtime/characters/index.js";
 import { REASONS as ODDS_REASONS } from "../../runtime/characters/actionOdds.js";
+import { CONVERSATION_REQUESTS } from "../../runtime/characters/conversation.js";
+import { createSecret, grantHook } from "../../runtime/characters/secrets.js";
 import { interpretCharacterAction } from "./characterModelCalls.js";
 import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testing/hookDriver.js";
 
 // Render the real JSX with supplied presentation data. Runtime and portrait
 // loading are stubs; these checks do not exercise the core or a browser.
 const source = readFileSync(new URL("./CharactersPanel.jsx", import.meta.url), "utf8");
-const compiled = transformSync(`${source}\nexport { CouncilView, GovernanceSummary, ActionCard, StoryCard, ChainHistory };`, {
+const compiled = transformSync(`${source}\nexport { CouncilView, PeopleView, GovernanceSummary, ActionCard, StoryCard, ChainHistory };`, {
   loader: "jsx", format: "cjs", jsx: "transform",
 }).code;
-const actionBoxCompiled = transformSync(readFileSync(new URL("./ActionBox.jsx", import.meta.url), "utf8"), {
+const compileFile = (name) => transformSync(readFileSync(new URL(`./${name}`, import.meta.url), "utf8"), {
   loader: "jsx", format: "cjs", jsx: "transform",
 }).code;
+const actionBoxCompiled = compileFile("ActionBox.jsx");
+const intrigueCompiled = compileFile("IntrigueView.jsx");
+const conversationCompiled = compileFile("ConversationView.jsx");
 
 function runModule(code, modules, globals = {}) {
   const module = { exports: {} };
@@ -52,7 +57,20 @@ function loadActionBox(stubs = {}) {
   return runModule(actionBoxCompiled, modules);
 }
 
-function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council", modelCalls = 0, react = null, runtime = {}, globals = {} } = {}) {
+// The conversation calls every module that renders a conversation reaches for; a test replaces the ones it watches.
+const conversationRuntime = (overrides = {}) => ({
+  estimateConversationForView: async () => ({ ok: false, reason: "Ingen uppskattning." }),
+  getConversationViewForModel: async () => null,
+  submitConversationRequest: async () => ({ ok: true, state: { conversations: [] }, events: [] }),
+  ...overrides,
+});
+const conversationModel = (overrides = {}) => ({
+  extractConversationRequest: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
+  replyAsCharacter: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
+  ...overrides,
+});
+
+function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council", modelCalls = 0, react = null, runtime = {}, model = {}, globals = {} } = {}) {
   let stateIndex = 0;
   const calls = [];
   const modules = {
@@ -72,20 +90,25 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
       estimateCharacterActionForView: async () => ({ ok: false, reason: "Ingen uppskattning." }),
       recordCharacterNarrative: async () => ({ ok: true }),
       submitCharacterCommand: async () => ({ ok: true, events: [] }),
+      ...conversationRuntime(),
       ...runtime,
     },
+    "../../runtime/characters/conversation.js": { CONVERSATION_REQUESTS },
     "../AI/modelCallCounter.js": { getModelCallCounts: () => ({ total: modelCalls, byKind: {} }), subscribeModelCalls: () => () => {} },
     "./characterModelCalls.js": {
       interpretCharacterAction: async () => ({ ok: false, reason: "Ingen modell är ansluten.", fallback: "menu" }),
       narrateCharacterResolution: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
+      ...conversationModel(model),
     },
     "./characters.css": {},
     "./LocalModelConnect.jsx": { default: () => null, __esModule: true },
     "./Portrait.jsx": { default: ({ person }) => React.createElement("span", { "data-portrait-person": person.id }), __esModule: true },
   };
   modules["./ActionBox.jsx"] = runModule(actionBoxCompiled, modules);
+  modules["./IntrigueView.jsx"] = runModule(intrigueCompiled, modules);
+  modules["./ConversationView.jsx"] = runModule(conversationCompiled, modules);
   const exports = runModule(compiled, modules, { window: { matchMedia: () => ({ matches: theme === "dark" }) }, localStorage: { getItem: () => "system" }, ...globals });
-  return { ...exports, calls };
+  return { ...exports, IntrigueView: modules["./IntrigueView.jsx"].default, ConversationView: modules["./ConversationView.jsx"].default, calls };
 }
 
 const principal = { id: "ruler", name: "Astrid", age: 42, alive: true, stress: 19 };
@@ -864,4 +887,508 @@ test("in the panel a refused abort leaves the scheme with its refusal and focus 
   assert.equal(driver.focused.at(-1), buttonNamed(scheme(), "Avbryt intrigen"));
   const banner = findAll(tree, (node) => node.props?.role === "alert");
   assert.equal(banner.length, 0, "the refusal shows once, under the scheme, not in the panel banner");
+});
+
+// --- Phase 2: the intrigue tab, the feast, prisoners and the means selects ---
+
+const intrigueView = () => ({
+  ...baseView(),
+  knownSecrets: [
+    { id: "secret-1", type: "murder", typeLabel: "Mord", subjectId: "p-namar", subjectName: "Namar av Hadara", evidence: "strong", evidenceLabel: "starkt", exposed: false },
+    { id: "secret-2", type: "heresy", typeLabel: "Kätteri", subjectId: "p-sera", subjectName: "Sera Arel", evidence: "weak", evidenceLabel: "svagt", exposed: true },
+  ],
+  ownHooks: [{ id: "hook-1", targetId: "p-namar", targetName: "Namar av Hadara", strength: "strong", strengthLabel: "starkt" },
+    { id: "hook-2", targetId: "p-barek", targetName: "Barek Eshmun", strength: "weak", strengthLabel: "svagt" }],
+  prisoners: [{ id: "prisoner-1", personId: "p-kamos", name: "Kamos Ptah", familyId: "f-ptah", familyName: "Ptah", since: "0200-03-01", ransom: 25 },
+    { id: "prisoner-2", personId: "p-nebet", name: "Nebet", familyId: "f-ptah", familyName: "Ptah", since: "0200-05-01", ransom: 40 }],
+  rumors: [
+    { id: "rumor-1", date: "0200-05-02", topic: "murder", topicLabel: "Mord", subjectId: "p-sera", subjectName: "Sera Arel", claimedActorId: null, claimedActorName: null, reliability: "trolig" },
+    { id: "rumor-2", date: "0200-04-11", topic: "plot", topicLabel: "Komplott", subjectId: "p-barek", subjectName: "Barek Eshmun", claimedActorId: "p-kelan", claimedActorName: "Kelan Namar", reliability: "osäker" },
+  ],
+  schemes: [{ id: "scheme-4", actionLabel: "Undergräv", actorName: "Iset Arel", targetNames: ["Kamos Ptah"], dueAt: "0200-09-01" }],
+});
+
+test("the Intriger tab follows Beslut and shows secrets, hooks, prisoners, rumors and schemes", () => {
+  const html = renderToStaticMarkup(loadPanel(intrigueView(), { tab: "intrigue" }).default({ open: true, onClose: () => {} }));
+  assert.match(html, /Beslut<\/button><button[^>]*>Intriger</);
+  const section = (name) => html.slice(html.indexOf(`aria-label="${name}"`));
+  const between = (name, next) => { const from = section(name); return from.slice(0, from.indexOf(`aria-label="${next}"`)); };
+  for (const name of ["Hemligheter du känner till", "Grepp", "Fångar", "Rykten", "Pågående intriger"]) assert.ok(html.includes(`aria-label="${name}"`), name);
+  const secrets = between("Hemligheter du känner till", "Grepp");
+  assert.match(secrets, /Mord/);
+  assert.match(secrets, /Namar av Hadara/);
+  assert.match(secrets, /Bevis: starkt/);
+  assert.match(secrets, /Bevis: svagt/);
+  assert.equal((secrets.match(/avslöjad/g) || []).length, 1, "only the exposed secret is marked");
+  const hooks = between("Grepp", "Fångar");
+  assert.match(hooks, /Namar av Hadara/);
+  assert.match(hooks, /Styrka: starkt/);
+  assert.match(hooks, /Styrka: svagt/);
+  const prisoners = between("Fångar", "Rykten");
+  assert.match(prisoners, /Kamos Ptah/);
+  assert.match(prisoners, /Fånge sedan 0200-03-01/);
+  assert.match(prisoners, /Lösensumma: 25 silver/);
+  assert.equal((prisoners.match(/>Frige</g) || []).length, 2);
+  assert.equal((prisoners.match(/>Avrätta</g) || []).length, 2);
+  const rumors = between("Rykten", "Pågående intriger");
+  assert.match(rumors, /0200-05-02/);
+  assert.match(rumors, /Mord/);
+  assert.match(rumors, /Påstådd aktör: okänd/);
+  assert.match(rumors, /Påstådd aktör: Kelan Namar/);
+  assert.match(rumors, /Tillförlitlighet: trolig/);
+  assert.match(rumors, /Tillförlitlighet: osäker/);
+  assert.match(section("Pågående intriger"), /Undergräv/);
+});
+
+test("an Intriger tab without secrets, hooks, prisoners or rumors says so instead of staying blank", () => {
+  const html = renderToStaticMarkup(loadPanel(baseView(), { tab: "intrigue" }).default({ open: true, onClose: () => {} }));
+  assert.match(html, /Du känner inga hemligheter ännu\./);
+  assert.match(html, /Du har inga grepp över någon\./);
+  assert.match(html, /Inga fångar hålls just nu\./);
+  assert.match(html, /Du har inte hört några rykten\./);
+});
+
+// The intrigue tab under the hook driver.
+function mountIntrigue({ view = intrigueView(), onCommand = async () => ({ ok: true }), onEmpty = () => {} } = {}) {
+  const driver = createHookDriver();
+  const panel = loadPanel(view, { react: driver.react });
+  const props = { view, busy: false, onCommand, onEmpty };
+  let tree;
+  const draw = () => (tree = driver.render(React.createElement(panel.IntrigueView, props)));
+  draw();
+  return { props, driver, draw, get tree() { return tree; } };
+}
+const prisonerItem = (tree, name) => findAll(tree, (node) => node.type === "li" && node.props.className === "char-card char-prisoner" && textOf(node).includes(name))[0];
+
+test("Avrätta asks first, names the prisoner and submits only on the second button", () => {
+  const sent = [];
+  const mounted = mountIntrigue({ onCommand: async (type, payload) => { sent.push([type, payload]); return { ok: true }; } });
+  buttonNamed(prisonerItem(mounted.tree, "Kamos Ptah"), "Avrätta").props.onClick();
+  mounted.draw();
+  assert.deepEqual(sent, [], "the first click only asks");
+  assert.match(textOf(prisonerItem(mounted.tree, "Kamos Ptah")), /Vill du avrätta Kamos Ptah\? Det går inte att ångra\./);
+  assert.equal(textOf(mounted.driver.focused.at(-1)), "Behåll fången", "focus follows the question");
+  buttonNamed(prisonerItem(mounted.tree, "Kamos Ptah"), "Behåll fången").props.onClick();
+  mounted.draw();
+  assert.deepEqual(sent, []);
+  assert.equal(mounted.driver.focused.at(-1), buttonNamed(prisonerItem(mounted.tree, "Kamos Ptah"), "Avrätta"), "focus returns to the prisoner the player kept");
+  buttonNamed(prisonerItem(mounted.tree, "Kamos Ptah"), "Avrätta").props.onClick();
+  mounted.draw();
+  buttonNamed(prisonerItem(mounted.tree, "Kamos Ptah"), "Ja, avrätta").props.onClick();
+  assert.deepEqual(JSON.parse(JSON.stringify(sent)), [["execute_prisoner", { prisonerId: "prisoner-1" }]]);
+});
+
+test("Frige submits release_prisoner without a question and a refusal stays under the prisoner", async () => {
+  const sent = [];
+  let answer = { ok: false, error: "Fången är redan frigiven." };
+  const mounted = mountIntrigue({ onCommand: async (type, payload) => { sent.push([type, payload]); return answer; } });
+  buttonNamed(prisonerItem(mounted.tree, "Nebet"), "Frige").props.onClick();
+  await settle();
+  mounted.draw();
+  assert.deepEqual(JSON.parse(JSON.stringify(sent)), [["release_prisoner", { prisonerId: "prisoner-2" }]]);
+  assert.match(textOf(prisonerItem(mounted.tree, "Nebet")), /Fången är redan frigiven\./);
+  assert.equal(mounted.driver.focused.at(-1), buttonNamed(prisonerItem(mounted.tree, "Nebet"), "Frige"), "focus stays on the control that was refused");
+  answer = { ok: false, error: "fetch failed" };
+  buttonNamed(prisonerItem(mounted.tree, "Nebet"), "Frige").props.onClick();
+  await withWarnings(settle);
+  mounted.draw();
+  assert.match(textOf(prisonerItem(mounted.tree, "Nebet")), /Handlingen kunde inte genomföras\. Försök igen om en stund\./);
+  assert.doesNotMatch(textOf(prisonerItem(mounted.tree, "Nebet")), /fetch failed/);
+});
+
+test("the last prisoner released hands focus to the tab heading", async () => {
+  let emptied = 0;
+  const view = { ...intrigueView(), prisoners: [intrigueView().prisoners[0]] };
+  const mounted = mountIntrigue({ view, onEmpty: () => { emptied += 1; } });
+  buttonNamed(prisonerItem(mounted.tree, "Kamos Ptah"), "Frige").props.onClick();
+  await settle();
+  mounted.props.view = { ...view, prisoners: [] };
+  mounted.draw();
+  assert.equal(emptied, 1);
+});
+
+test("in the panel a refused execution shows once under the prisoner, not in the banner", async () => {
+  const driver = createHookDriver();
+  const submitted = [];
+  const { default: Panel } = loadPanel(intrigueView(), { react: driver.react, globals: {
+    window: { matchMedia: () => ({ matches: false }), addEventListener() {}, removeEventListener() {} }, document: { activeElement: null } },
+  runtime: { submitCharacterCommand: async (command) => { submitted.push(command); return { ok: false, state: null, events: [], error: "Fången kan inte avrättas just nu." }; } } });
+  const draw = () => driver.render(React.createElement(Panel, { open: true, onClose: () => {} }));
+  let tree = draw();
+  await settle();
+  tree = draw();
+  buttonNamed(findAll(tree, (node) => node.type === "nav")[0], "Intriger").props.onClick();
+  tree = draw();
+  buttonNamed(prisonerItem(tree, "Kamos Ptah"), "Avrätta").props.onClick();
+  tree = draw();
+  buttonNamed(prisonerItem(tree, "Kamos Ptah"), "Ja, avrätta").props.onClick();
+  await settle();
+  tree = draw();
+  assert.deepEqual(submitted.map((command) => [command.type, command.payload.prisonerId]), [["execute_prisoner", "prisoner-1"]]);
+  assert.match(textOf(prisonerItem(tree, "Kamos Ptah")), /Fången kan inte avrättas just nu\./);
+  assert.equal(findAll(tree, (node) => node.props?.role === "alert").length, 0);
+});
+
+test("the council shows a running feast with its end date, and nothing without one", () => {
+  const view = baseView();
+  assert.doesNotMatch(council(view), /Gästabud pågår/);
+  view.occasions = [{ id: "occasion-3", kind: "feast", label: "Gästabud", endsAt: "0200-07-01", guestCount: 14 }];
+  const html = council(view);
+  assert.match(html, /Gästabud pågår till 0200-07-01/);
+  assert.match(html, /14 gäster/);
+});
+
+test("Håll gästabud is offered through the catalog menu like any command entry", () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const panel = loadPanel(view);
+  const html = renderToStaticMarkup(React.createElement(box.ActionMenu, { view, CommandCard: panel.ActionCard, onPropose: () => {} }));
+  assert.match(html, /data-catalog-id="hold_feast"/);
+  assert.match(html.slice(html.indexOf('data-catalog-id="hold_feast"')), /Håll gästabud/);
+});
+
+// A family campaign where the representative holds a secret and a hook, so the menu form has something to choose from.
+function campaignWithLeverage() {
+  const { state } = engineCampaign();
+  const representativeId = getCharacterPresentation(state).representative.id;
+  const secret = createSecret(state, { type: "murder", subjectId: "person-1-0", holderIds: [representativeId], evidence: "strong" });
+  const hook = grantHook(state, { ownerId: representativeId, targetId: "person-1-0", strength: "strong" });
+  return { state, secret, hook, view: getCharacterPresentation(state) };
+}
+const entryOf = (view, id) => view.catalog.find((entry) => entry.catalogId === id);
+const selectFor = (tree, label) => findAll(tree, (node) => node.type === "label" && textOf(node).startsWith(label)).map((node) => findAll(node, (inner) => inner.type === "select")[0]).find(Boolean);
+function mountForm(entry, view, { onPropose = () => {} } = {}) {
+  const driver = createHookDriver();
+  const box = loadActionBox({ react: driver.react });
+  const props = { entry, view, onPropose, busy: false };
+  let tree;
+  const draw = () => (tree = driver.render(React.createElement(box.ContestedForm, props)));
+  draw();
+  return { driver, draw, get tree() { return tree; } };
+}
+const submitForm = (mounted) => formOf(mounted.tree, "char-contested-form").props.onSubmit({ preventDefault() {} });
+const submitButton = (mounted) => findAll(mounted.tree, (node) => node.type === "button" && textOf(node) === "Visa chansen")[0];
+
+test("the blackmail form offers the secrets about the chosen target and sends the chosen secret as a means", () => {
+  const { view, secret } = campaignWithLeverage();
+  const proposals = [];
+  const mounted = mountForm(entryOf(view, "blackmail"), view, { onPropose: (entry, payload) => proposals.push(payload) });
+  assert.ok(selectFor(mounted.tree, "Hemlighet"), "the secret select is rendered from the entry's fields");
+  // The first target has no secret about them: nothing to send, and the form says why.
+  assert.notEqual(selectFor(mounted.tree, "Mål").props.value, "person-1-0");
+  assert.match(textOf(mounted.tree), /Du känner ingen hemlighet om /);
+  assert.equal(submitButton(mounted).props.disabled, true);
+  selectFor(mounted.tree, "Mål").props.onChange({ target: { value: "person-1-0" } });
+  mounted.draw();
+  const options = findAll(selectFor(mounted.tree, "Hemlighet"), (node) => node.type === "option");
+  assert.deepEqual(options.map((option) => option.props.value), [secret.id]);
+  assert.match(textOf(options[0]), /Mord: Namar av Hadara/);
+  assert.equal(submitButton(mounted).props.disabled, false);
+  submitForm(mounted);
+  assert.equal(proposals.length, 1);
+  assert.deepEqual(JSON.parse(JSON.stringify(proposals[0].means)), { silver: 0, agentRoles: [], secretId: secret.id });
+  assert.deepEqual(JSON.parse(JSON.stringify(proposals[0].targetIds)), ["person-1-0"]);
+});
+
+test("a required select with nothing to choose disables the form with a Swedish reason", () => {
+  const { view } = engineCampaign();
+  const proposals = [];
+  const mounted = mountForm(entryOf(view, "blackmail"), view, { onPropose: (...args) => proposals.push(args) });
+  assert.match(textOf(mounted.tree), /Du känner ingen hemlighet som går att använda\./);
+  assert.equal(submitButton(mounted).props.disabled, true);
+  assert.equal(selectFor(mounted.tree, "Hemlighet").props.disabled, true);
+  submitForm(mounted);
+  assert.deepEqual(proposals, [], "an offer the engine always refuses is never sent");
+});
+
+test("an optional hook select starts on Ingen and an empty choice is omitted from the means", () => {
+  const { view, hook } = campaignWithLeverage();
+  const proposals = [];
+  const mounted = mountForm(entryOf(view, "poison"), view, { onPropose: (entry, payload) => proposals.push(payload) });
+  const hookSelect = () => selectFor(mounted.tree, "Grepp");
+  assert.deepEqual(findAll(hookSelect(), (node) => node.type === "option").map((option) => textOf(option)), ["Ingen", "Starkt grepp över Namar av Hadara"]);
+  assert.equal(hookSelect().props.value, "");
+  submitForm(mounted);
+  assert.deepEqual(Object.keys(JSON.parse(JSON.stringify(proposals[0].means))).sort(), ["agentRoles", "silver"], "no hookId: '' is sent");
+  hookSelect().props.onChange({ target: { value: hook.id } });
+  mounted.draw();
+  submitForm(mounted);
+  assert.equal(proposals[1].means.hookId, hook.id);
+  hookSelect().props.onChange({ target: { value: "" } });
+  mounted.draw();
+  submitForm(mounted);
+  assert.equal(Object.hasOwn(proposals[2].means, "hookId"), false);
+});
+
+test("the rumor form sends the chosen topic and only entries with the field show a select", () => {
+  const { view } = engineCampaign();
+  const proposals = [];
+  const topics = entryOf(view, "spread_rumor").fields.find((field) => field.key === "topic").options;
+  const mounted = mountForm(entryOf(view, "spread_rumor"), view, { onPropose: (entry, payload) => proposals.push(payload) });
+  const topicSelect = () => selectFor(mounted.tree, "Ämne");
+  assert.equal(findAll(topicSelect(), (node) => node.type === "option").length, topics.length);
+  topicSelect().props.onChange({ target: { value: topics[2].value } });
+  mounted.draw();
+  submitForm(mounted);
+  assert.equal(proposals[0].means.topic, topics[2].value);
+  assert.equal(Object.hasOwn(proposals[0].means, "secretId"), false);
+  const sway = mountForm(entryOf(view, "sway"), view);
+  for (const label of ["Ämne", "Hemlighet", "Grepp"]) assert.equal(selectFor(sway.tree, label), undefined, label);
+});
+
+test("the confirmation card names the means and the estimate and the command receive them unchanged", async () => {
+  const box = loadActionBox();
+  const { state, view, secret } = campaignWithLeverage();
+  const payload = { actionId: "blackmail", actorId: view.representative.id, targetIds: ["person-1-0"], means: { silver: 0, agentRoles: [], secretId: secret.id } };
+  const estimated = [];
+  const step = await box.prepareInterpretedAction({ text: "Utpressa Namar", view,
+    interpret: async () => ({ ok: true, mode: "contested", catalogId: "blackmail", explanation: "", payload }),
+    estimate: async (intent) => { estimated.push(intent); return estimateCharacterAction(state, intent); } });
+  assert.equal(step.kind, "confirm", step.reason);
+  assert.equal(estimated[0].means.secretId, secret.id);
+  const html = renderToStaticMarkup(React.createElement(box.ConfirmationCard, { proposal: step.proposal, view, onConfirm: () => {}, onCancel: () => {} }));
+  assert.match(html, /Hemlighet: Mord: Namar av Hadara/);
+  const submitted = [];
+  await box.executeProposal({ proposal: step.proposal, view, submit: async (type, body) => { submitted.push([type, body]); return { ok: true, state: { recentResolutions: [], schemes: [] }, events: [] }; },
+    narrate: async () => assert.fail(), recordNarrative: async () => assert.fail(), present: (value) => value });
+  assert.equal(submitted[0][1].means.secretId, secret.id);
+});
+
+// --- Court conversations ---
+
+// The conversation view under the hook driver with the engine's real estimate behind it. `turns` lives in the test, as it does in the panel.
+function mountTalk({ diplomacy, runtime = {}, model = {}, person = null } = {}) {
+  const { state, view } = engineCampaign(diplomacy);
+  const speaker = person ?? view.conversationTargets.find((target) => target.id === "person-0-2");
+  const driver = createHookDriver();
+  const panel = loadPanel(view, { react: driver.react, model, runtime: conversationRuntime({
+    getConversationViewForModel: async (id) => ({ ...view, conversationBrief: { personId: id } }),
+    estimateConversationForView: async (request) => ({ ...estimateConversation(state, request), revision: state.revision }),
+    ...runtime }) });
+  const props = { person: speaker, view, turns: [], busy: false, onClose: () => {} };
+  props.setTurns = (update) => { props.turns = typeof update === "function" ? update(props.turns) : update; };
+  let tree;
+  const draw = () => (tree = driver.render(React.createElement(panel.ConversationView, props)));
+  props.runAction = async (work) => {
+    props.busy = true; draw();
+    try { return await work(); } finally { props.busy = false; }
+  };
+  draw();
+  const act = async (action) => { await action(); await settle(); return draw(); };
+  const say = (text) => act(async () => {
+    findAll(tree, (node) => node.type === "textarea")[0].props.onChange({ target: { value: text } });
+    draw();
+    formOf(tree, "char-talk-form").props.onSubmit({ preventDefault() {} });
+  });
+  return { state, view, speaker, driver, props, draw, act, say, get tree() { return tree; } };
+}
+const supportRequest = (personId = "person-0-2") => ({ personId, kind: "support", offerSilver: 0, hookId: null, arguments: [], argumentScore: 0 });
+const decided = (accepted, extra = {}) => ({ id: "conversation-9", personId: "person-0-2", kind: "support", date: "0200-01-01", value: 63, roll: accepted ? 12.5 : 80.5, accepted, effects: [], ...extra });
+const answerWith = (entry) => async () => ({ ok: true, state: { conversations: [entry] }, events: [] });
+const askSupport = () => ({ extractConversationRequest: async () => ({ ok: true, request: supportRequest() }) });
+const requestCard = (tree) => findAll(tree, (node) => node.type === "section" && node.props["aria-label"] === "Bekräfta förfrågan")[0];
+
+test("the conversation view asks Vad säger du? and shows bands for a low-diplomacy representative, numbers for a high one", async () => {
+  for (const [diplomacy, exact] of [[3, false], [14, true]]) {
+    const mounted = mountTalk({ diplomacy, model: askSupport() });
+    assert.match(textOf(mounted.tree), /Vad säger du\?/);
+    assert.ok(buttonNamed(mounted.tree, "Säg det"));
+    await mounted.say("Kan jag räkna med ditt stöd?");
+    const card = requestCard(mounted.tree);
+    assert.ok(card, "a request opens the confirmation card");
+    const shown = textOf(card);
+    const estimate = estimateConversation(mounted.state, supportRequest());
+    assert.equal(estimate.precision === "exact", exact);
+    assert.match(shown, /Ge sitt stöd/);
+    assert.match(shown, /Sera Arel/);
+    assert.match(shown, /Vad påverkar chansen\?/);
+    assert.ok(buttonNamed(card, "Fråga") && buttonNamed(card, "Avbryt"));
+    if (exact) {
+      assert.match(shown, new RegExp(`Chans att få ja: ${estimate.display.chance} %`));
+      assert.match(shown, /Grundchans: \+45/);
+    } else {
+      assert.match(shown, new RegExp(`Chans att få ja: ${estimate.display.chance}`));
+      assert.doesNotMatch(shown, /\d\s?%/, "a band precision shows no percentage");
+      assert.doesNotMatch(shown, new RegExp(`\\b${estimate.value}\\b`), "the true value does not reach the card");
+      assert.doesNotMatch(shown, /Grundchans: \+\d/, "band rows carry a sign only");
+    }
+  }
+});
+
+test("a refusal by the dice shows the refusal and the character's reply, and the reply is told the outcome", async () => {
+  const replies = [];
+  const mounted = mountTalk({ diplomacy: 14,
+    model: { ...askSupport(), replyAsCharacter: async (call) => { replies.push(call); return { ok: true, reply: "Nej, det kan jag inte lova." }; } },
+    runtime: { submitConversationRequest: answerWith(decided(false)) } });
+  await mounted.say("Kan jag räkna med ditt stöd?");
+  await mounted.act(() => buttonNamed(mounted.tree, "Fråga").props.onClick());
+  const shown = textOf(mounted.tree);
+  assert.match(shown, /Sera Arel avvisar förfrågan\./);
+  assert.match(shown, /Nej, det kan jag inte lova\./);
+  assert.deepEqual(JSON.parse(JSON.stringify(replies[0].outcome)), { kind: "support", accepted: false });
+  assert.doesNotMatch(shown, /63|12\.5|80\.5/, "neither the true chance nor the roll is shown");
+  assert.equal(mounted.props.turns.filter((turn) => turn.from === "player").length, 1);
+});
+
+test("an accepted request submits the engine's request on the estimate's revision and the reply gets the accepted outcome", async () => {
+  const submitted = [], replies = [];
+  const mounted = mountTalk({ diplomacy: 14,
+    model: { ...askSupport(), replyAsCharacter: async (call) => { replies.push(call); return { ok: true, reply: "Du har mitt stöd." }; } },
+    runtime: { submitConversationRequest: async (request, options) => { submitted.push([request, options]); return answerWith(decided(true))(); } } });
+  await mounted.say("Kan jag räkna med ditt stöd?");
+  await mounted.act(() => buttonNamed(mounted.tree, "Fråga").props.onClick());
+  assert.deepEqual(JSON.parse(JSON.stringify(submitted)), [[supportRequest(), { expectedRevision: mounted.state.revision }]]);
+  assert.deepEqual(JSON.parse(JSON.stringify(replies[0].outcome)), { kind: "support", accepted: true });
+  assert.match(textOf(mounted.tree), /Sera Arel ger sitt stöd\./);
+  assert.match(textOf(mounted.tree), /Du har mitt stöd\./);
+  assert.equal(replies[0].text, "Kan jag räkna med ditt stöd?");
+  assert.deepEqual(replies[0].history, [], "the first turn has no earlier turns");
+});
+
+test("every model call is preceded by a fresh view with the speaker's brief", async () => {
+  const order = [];
+  const mounted = mountTalk({ diplomacy: 14,
+    runtime: { getConversationViewForModel: async (id) => { order.push(`view:${id}`); return { ...engineCampaign().view, conversationBrief: { personId: id } }; }, submitConversationRequest: answerWith(decided(true)) },
+    model: { extractConversationRequest: async (call) => { order.push(`extract:${call.view.conversationBrief.personId}`); return { ok: true, request: supportRequest() }; },
+      replyAsCharacter: async (call) => { order.push(`reply:${call.view.conversationBrief.personId}`); return { ok: true, reply: "Ja." }; } } });
+  await mounted.say("Stöd mig.");
+  await mounted.act(() => buttonNamed(mounted.tree, "Fråga").props.onClick());
+  assert.deepEqual(order, ["view:person-0-2", "extract:person-0-2", "view:person-0-2", "reply:person-0-2"]);
+});
+
+test("small talk is answered directly: no odds, no submit, an outcome of null", async () => {
+  const replies = [];
+  const mounted = mountTalk({
+    model: { extractConversationRequest: async () => ({ ok: true, request: null }), replyAsCharacter: async (call) => { replies.push(call); return { ok: true, reply: "Vädret är milt." }; } },
+    runtime: { estimateConversationForView: async () => assert.fail("no estimate without a request"), submitConversationRequest: async () => assert.fail("nothing to submit") } });
+  await mounted.say("Hur står det till?");
+  assert.equal(replies[0].outcome, null);
+  assert.match(textOf(mounted.tree), /Hur står det till\?/);
+  assert.match(textOf(mounted.tree), /Vädret är milt\./);
+  assert.equal(requestCard(mounted.tree), undefined);
+});
+
+test("a failed reply keeps the outcome and says that the outcome stands", async () => {
+  for (const reply of [async () => ({ ok: false, reason: "Personen kunde inte svara just nu. Försök igen." }), async () => { throw new Error("socket hang up"); }]) {
+    const mounted = mountTalk({ diplomacy: 14, model: { ...askSupport(), replyAsCharacter: reply },
+      runtime: { submitConversationRequest: answerWith(decided(true)) } });
+    await mounted.say("Stöd mig.");
+    await withWarnings(() => mounted.act(() => buttonNamed(mounted.tree, "Fråga").props.onClick()));
+    const shown = textOf(mounted.tree);
+    assert.match(shown, /Sera Arel ger sitt stöd\./, "the outcome stays");
+    assert.match(shown, /Svaret kunde inte skrivas; utfallet gäller\./);
+    assert.doesNotMatch(shown, /socket hang up/);
+  }
+});
+
+test("an engine refusal shows its reason alone: no reply, no player turn, the text is kept", async () => {
+  let replied = 0;
+  const mounted = mountTalk({ diplomacy: 14,
+    model: { ...askSupport(), replyAsCharacter: async () => { replied += 1; return { ok: true, reply: "?" }; } },
+    runtime: { submitConversationRequest: async () => ({ ok: false, error: "Världen har ändrats. Läs det senaste läget och försök igen." }) } });
+  await mounted.say("Stöd mig.");
+  await mounted.act(() => buttonNamed(mounted.tree, "Fråga").props.onClick());
+  assert.match(textOf(mounted.tree), /Världen har ändrats\. Läs det senaste läget och försök igen\./);
+  assert.equal(replied, 0, "the person has decided nothing, so nobody answers as if they had");
+  assert.deepEqual(mounted.props.turns, []);
+  assert.equal(findAll(mounted.tree, (node) => node.type === "textarea")[0].props.value, "Stöd mig.");
+  const internal = mountTalk({ diplomacy: 14, model: askSupport(), runtime: { submitConversationRequest: async () => ({ ok: false, error: "fetch failed" }) } });
+  await internal.say("Stöd mig.");
+  await withWarnings(() => internal.act(() => buttonNamed(internal.tree, "Fråga").props.onClick()));
+  assert.match(textOf(internal.tree), /Förfrågan kunde inte sparas\. Försök igen om en stund\./);
+  assert.doesNotMatch(textOf(internal.tree), /fetch failed/);
+});
+
+test("a refused estimate and a failed extraction show a Swedish reason and open no card", async () => {
+  const refused = mountTalk({ diplomacy: 14, model: askSupport(),
+    runtime: { estimateConversationForView: async () => ({ ok: false, reason: "Ni talade om detta nyss. Personen vill inte bli tillfrågad igen än." }) } });
+  await refused.say("Stöd mig.");
+  assert.match(textOf(refused.tree), /Ni talade om detta nyss\./);
+  assert.equal(requestCard(refused.tree), undefined);
+  const failed = mountTalk({ model: { extractConversationRequest: async () => ({ ok: false, reason: "Samtalet kunde inte tolkas. Försök formulera dig på nytt.", detail: "The answer was not a JSON object." }) } });
+  const { warnings } = await withWarnings(() => failed.say("Stöd mig."));
+  assert.match(textOf(failed.tree), /Samtalet kunde inte tolkas\./);
+  assert.doesNotMatch(textOf(failed.tree), /JSON object/);
+  assert.ok(warnings.some((line) => line.includes("JSON object")), "the technical detail goes to the log");
+});
+
+test("an accepted reveal with nothing to tell says so, and an offer shows what it cost", async () => {
+  const request = { ...supportRequest(), kind: "reveal_secret", offerSilver: 12 };
+  const mounted = mountTalk({ diplomacy: 14,
+    model: { extractConversationRequest: async () => ({ ok: true, request }), replyAsCharacter: async () => ({ ok: true, reply: "Jag har inget att säga." }) },
+    runtime: { submitConversationRequest: answerWith(decided(true, { kind: "reveal_secret", effects: [{ kind: "silver", amount: 12 }, { kind: "memory", memoryId: "memory-3" }, { kind: "secret", secretId: null }] })) } });
+  await mounted.say("Berätta något åt mig, jag betalar.");
+  assert.match(textOf(requestCard(mounted.tree)), /Erbjuden gåva: 12 silver/);
+  await mounted.act(() => buttonNamed(mounted.tree, "Fråga").props.onClick());
+  assert.match(textOf(mounted.tree), /Sera Arel hade inget att berätta\./);
+  assert.match(textOf(mounted.tree), /12 silver betalades ur familjekassan\./);
+});
+
+test("focus follows the conversation: the field on opening, the card on a request, the field again on Avbryt", async () => {
+  const mounted = mountTalk({ diplomacy: 14, model: askSupport() });
+  assert.equal(mounted.driver.focused.at(-1).type, "textarea", "opening the conversation puts the cursor in the field");
+  await mounted.say("Stöd mig.");
+  assert.deepEqual([mounted.driver.focused.at(-1).type, textOf(mounted.driver.focused.at(-1))], ["h4", "Ge sitt stöd"]);
+  await mounted.act(() => buttonNamed(mounted.tree, "Avbryt").props.onClick());
+  assert.equal(mounted.driver.focused.at(-1).type, "textarea");
+  assert.equal(findAll(mounted.tree, (node) => node.type === "textarea")[0].props.value, "Stöd mig.", "the text stays for another try");
+});
+
+test("model text is rendered as text and the transcript is never stored", () => {
+  const { ConversationView } = loadPanel(baseView());
+  const html = renderToStaticMarkup(React.createElement(ConversationView, {
+    person: { id: "person-0-2", name: "Sera Arel" }, view: baseView(), busy: false, onClose: () => {}, setTurns: () => {},
+    turns: [{ from: "player", text: "Hej <b>du</b>" }, { from: "speaker", text: "<img src=x onerror=alert(1)>" }, { from: "note", text: "<script>x</script>" }] }));
+  assert.match(html, /&lt;img src=x onerror=alert\(1\)&gt;/);
+  assert.doesNotMatch(html, /<img|<script|<b>/);
+  for (const file of ["ConversationView.jsx", "IntrigueView.jsx", "CharactersPanel.jsx", "ActionBox.jsx"]) {
+    assert.doesNotMatch(readFileSync(new URL(`./${file}`, import.meta.url), "utf8"), /dangerouslySetInnerHTML/, file);
+  }
+  assert.doesNotMatch(readFileSync(new URL("./ConversationView.jsx", import.meta.url), "utf8"), /localStorage|sessionStorage|indexedDB/, "the transcript is session memory only");
+});
+
+test("a request answered by the real engine is read from the newest conversation entry", async () => {
+  const { state, view } = engineCampaign(14);
+  const replies = [];
+  const real = (request, { expectedRevision }) => executeCharacterCommand(state, { id: "converse-ui-1", expectedRevision, type: "converse_request", payload: request, origin: "converse" });
+  const mounted = mountTalk({ diplomacy: 14,
+    model: { ...askSupport(), replyAsCharacter: async (call) => { replies.push(call); return { ok: true, reply: "Svar." }; } },
+    runtime: { submitConversationRequest: async (request, options) => real(request, options) } });
+  assert.equal(mounted.state.revision, state.revision);
+  await mounted.say("Stöd mig.");
+  await mounted.act(() => buttonNamed(mounted.tree, "Fråga").props.onClick());
+  const entry = real(supportRequest(), { expectedRevision: view.revision }).state.conversations.at(-1);
+  assert.equal(replies[0].outcome.accepted, entry.accepted, "the reply is told what the engine decided");
+  assert.match(textOf(mounted.tree), entry.accepted ? /Sera Arel ger sitt stöd\./ : /Sera Arel avvisar förfrågan\./);
+});
+
+// --- Personer tab ---
+
+function mountPeople({ selectedId, view = engineCampaign().view } = {}) {
+  const driver = createHookDriver();
+  const panel = loadPanel(view, { react: driver.react });
+  const props = { view, selectedId, selectPerson: () => {}, busy: false, talks: {}, setTalk: () => () => {} };
+  let tree;
+  const draw = () => (tree = driver.render(React.createElement(panel.PeopleView, props)));
+  draw();
+  return { driver, props, draw, get tree() { return tree; } };
+}
+const talkButtons = (tree) => findAll(tree, (node) => node.type === "button" && textOf(node) === "Samtala");
+
+test("only people in conversationTargets get a Samtala button, and it opens the conversation view", () => {
+  const talkable = mountPeople({ selectedId: "person-0-2" });
+  assert.equal(talkButtons(talkable.tree).length, 1);
+  assert.equal(findAll(talkable.tree, (node) => node.type === "textarea" && node.props.id === "char-talk-text").length, 0);
+  talkButtons(talkable.tree)[0].props.onClick();
+  talkable.draw();
+  assert.equal(findAll(talkable.tree, (node) => node.type === "textarea" && node.props.id === "char-talk-text").length, 1);
+  assert.ok(buttonNamed(talkable.tree, "Säg det"));
+  assert.equal(talkButtons(mountPeople({ selectedId: "person-0-0" }).tree).length, 0, "the representative does not talk to themselves");
+  const none = { ...engineCampaign().view, conversationTargets: [] };
+  assert.equal(talkButtons(mountPeople({ selectedId: "person-0-2", view: none }).tree).length, 0);
+});
+
+test("the footer counts model calls, conversation calls included", () => {
+  const html = renderToStaticMarkup(loadPanel(baseView(), { modelCalls: 5 }).default({ open: true, onClose: () => {} }));
+  assert.match(html, /Modellanrop denna session: 5/);
 });

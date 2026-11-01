@@ -11,14 +11,18 @@ import {
 import { getModelCallCounts, subscribeModelCalls } from "../AI/modelCallCounter.js";
 import "./characters.css";
 import ActionBox, { SchemeList } from "./ActionBox.jsx";
+import ConversationView from "./ConversationView.jsx";
+import IntrigueView from "./IntrigueView.jsx";
 import LocalModelConnect from "./LocalModelConnect.jsx";
 import Portrait from "./Portrait.jsx";
 
 const THEME_KEY = "oh:characters:theme";
 const TABS = [
   ["council", "Överblick"], ["people", "Personer"], ["families", "Familjer"],
-  ["offices", "Ämbeten & arv"], ["decisions", "Beslut"], ["chronicle", "Krönikan"],
+  ["offices", "Ämbeten & arv"], ["decisions", "Beslut"], ["intrigue", "Intriger"], ["chronicle", "Krönikan"],
 ];
+// Commands whose refusal is shown under their own card, so the panel banner stays quiet.
+const INLINE_REFUSALS = ["abort_scheme", "release_prisoner", "execute_prisoner"];
 const number = (value) => Number.isFinite(Number(value)) ? new Intl.NumberFormat("sv-SE", { maximumFractionDigits: 1 }).format(Number(value)) : "—";
 const entries = (value) => Array.isArray(value) ? value : Object.values(value || {});
 const text = (value, fallback = "—") => typeof value === "string" || typeof value === "number" ? String(value) : value?.label || value?.name || value?.title || fallback;
@@ -178,6 +182,7 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, run
   const hasAuthorityDetail = Object.values(view.authority || {}).some((mandate) => mandate && (mandate.reason || mandate.blockedReason || (mandate.principalId && mandate.representativeId !== mandate.principalId)));
   const activeProjects = entries(view.projects).filter((project) => !["cancelled", "failed"].includes(project.status));
   const waitingStories = entries(view.stories).filter((story) => story.status === "waiting");
+  const feasts = entries(view.occasions).filter((occasion) => occasion.kind === "feast");
   return <>
     <div className="char-overview-grid"><section className="char-card char-leader-card"><div className="char-section-heading"><span className="char-eyebrow">{view.mode === "family" ? "Familjens företrädare" : "Rikets ledning"}</span><span className="char-seal" aria-hidden="true">◇</span></div>
       {hasAuthorityDetail ? <AuthoritySummary view={view} /> : <PersonSummary person={representative} />}
@@ -191,6 +196,7 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, run
       <p className="char-caption">Familjernas stöd, ämbetsinnehavarnas förmåga och härskarens arbetssätt påverkar utfallet.</p>
       <button className="char-button char-button--quiet" onClick={() => setTab("decisions")}>Planera nästa beslut <span aria-hidden="true">→</span></button>
     </section></div>
+    {feasts.map((feast) => <section className="char-card char-feast" aria-label="Gästabud" key={feast.id}><span className="char-eyebrow">{feast.label || "Gästabud"}</span><h4>Gästabud pågår till {dateLabel(feast.endsAt)}</h4>{feast.guestCount > 0 && <p className="char-caption">{feast.guestCount} gäster är inbjudna.</p>}</section>)}
     {Array.isArray(view.catalog) && <ActionBox view={view} busy={busy} runAction={runAction} CommandCard={ActionCard} />}
     <SchemeList schemes={view.schemes} busy={busy} onAbort={(schemeId) => onCommand("abort_scheme", { schemeId })}
       onEmpty={() => document.getElementById("char-action-text")?.focus()} />
@@ -202,8 +208,9 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, run
   </>;
 }
 
-function PeopleView({ view, selectedId, selectPerson }) {
+function PeopleView({ view, selectedId, selectPerson, busy = false, runAction, talks = {}, setTalk }) {
   const [query, setQuery] = useState("");
+  const [talkingTo, setTalkingTo] = useState(null);
   const [includeDead, setIncludeDead] = useState(false);
   const people = entries(view.people);
   const peopleById = Object.fromEntries(people.map((person) => [person.id, person]));
@@ -211,11 +218,17 @@ function PeopleView({ view, selectedId, selectPerson }) {
   const person = peopleById[selectedId] || filtered[0];
   const memories = entries(view.memories).filter((memory) => memory.personId === person?.id || memory.ownerId === person?.id || memory.participants?.includes(person?.id));
   const roles = entries(view.offices).filter((office) => (office.holderId || office.personId) === person?.id);
+  // A person who was just asked drops out of the list for a year; the conversation already open stays open.
+  const canTalk = Boolean(person) && (talkingTo === person.id || entries(view.conversationTargets).some((target) => target.id === person.id));
   return <><div className="char-section-heading"><div><span className="char-eyebrow">Liv, vilja och erfarenhet</span><h3>Människorna i din värld</h3></div><span className="char-count">{people.filter(isAlive).length} levande</span></div>
     <div className="char-person-layout"><div className="char-person-index"><label className="char-search-label">Sök person eller familj<input type="search" placeholder="Namn eller familj…" value={query} onChange={(event) => setQuery(event.target.value)} /></label><label className="char-checkbox"><input type="checkbox" checked={includeDead} onChange={(event) => setIncludeDead(event.target.checked)} />Visa även avlidna</label>
       <div className="char-person-list">{filtered.map((candidate) => <button type="button" key={candidate.id} className={`char-person-row${person?.id === candidate.id ? " is-selected" : ""}`} aria-pressed={person?.id === candidate.id} onClick={() => selectPerson(candidate.id)}><Portrait person={candidate} size="tiny" /><span><strong>{candidate.name}</strong><small>{candidate.familyName}{candidate.age != null ? ` · ${candidate.age} år` : ""}{!isAlive(candidate) ? " · Avliden" : ""}</small></span></button>)}{!filtered.length && <p className="char-caption">Ingen person matchar sökningen.</p>}</div>
     </div>
-    {person ? <article className="char-card char-person-detail"><PersonSummary person={person} /><div className="char-tags">{roles.map((role) => <span key={role.id}>{role.name || role.title}</span>)}</div>
+    {person ? <article className="char-card char-person-detail"><PersonSummary person={person} />
+      {canTalk && (talkingTo === person.id
+        ? <ConversationView person={person} turns={talks[person.id] || []} setTurns={setTalk(person.id)} busy={busy} runAction={runAction} onClose={() => setTalkingTo(null)} />
+        : <button type="button" className="char-button" aria-label={`Samtala med ${person.name}`} disabled={busy} onClick={() => setTalkingTo(person.id)}>Samtala</button>)}
+      <div className="char-tags">{roles.map((role) => <span key={role.id}>{role.name || role.title}</span>)}</div>
       <div className="char-skills">{Object.entries(person.skills || {}).map(([skill, value]) => <Metric key={skill} label={humanize(skill)} value={number(value)} />)}</div>
       <div className="char-leader-measures"><Meter label="Stress" value={person.stress} danger /><Meter label="Tjänstelojalitet" value={person.loyalty ?? person.serviceLoyalty} /></div>
       <dl className="char-facts"><div><dt>Åsikt om din företrädare</dt><dd>{signed(person.opinion)}</dd></div><div><dt>Tro</dt><dd>{person.religionName || view.religions?.find((religion) => religion.id === person.religionId)?.name || "Okänd"}</dd></div><div><dt>Född</dt><dd>{dateLabel(person.bornAt)}</dd></div>{!isAlive(person) && <div><dt>Avliden</dt><dd>{dateLabel(person.diedAt)}</dd></div>}<div><dt>Personlig egendom</dt><dd>{number(person.wealth)} silver</dd></div><div><dt>Hälsa</dt><dd>{number(person.health)} / 100</dd></div><div><dt>Rädsla</dt><dd>{number(person.fear)} / 100</dd></div></dl>
@@ -326,6 +339,8 @@ export default function CharactersPanel({ open, onClose }) {
   const [interruption, setInterruption] = useState(null);
   const [modelConnectOpen, setModelConnectOpen] = useState(false);
   const [modelCalls, setModelCalls] = useState(() => getModelCallCounts().total);
+  // The court conversations, per person. Session memory only: kept while the panel exists, never saved.
+  const [talks, setTalks] = useState({});
   const busyRef = useRef(false);
   const readSequence = useRef(0);
   const panelRef = useRef(null);
@@ -405,12 +420,13 @@ export default function CharactersPanel({ open, onClose }) {
     catch (reason) { setError(reason?.message || "Handlingen kunde inte genomföras. Försök igen."); return undefined; }
     finally { busyRef.current = false; setBusy(false); await refresh(); }
   }, [refresh]);
-  const command = (type, payload) => perform(() => submitCharacterCommand({ type, payload, expectedRevision: view?.revision, id: `ui-${crypto.randomUUID()}` }), false, false, type === "abort_scheme");
+  const command = (type, payload) => perform(() => submitCharacterCommand({ type, payload, expectedRevision: view?.revision, id: `ui-${crypto.randomUUID()}` }), false, false, INLINE_REFUSALS.includes(type));
+  const setTalk = (id) => (update) => setTalks((current) => ({ ...current, [id]: typeof update === "function" ? update(current[id] || []) : update }));
   const onKeyDown = (event) => {
     event.stopPropagation();
     if (event.key === "Escape") { event.preventDefault(); onClose(); }
     if (event.key !== "Tab") return;
-    const focusable = [...panelRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), summary, [tabindex="0"]')].filter((element) => element.getClientRects().length);
+    const focusable = [...panelRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), summary, [tabindex="0"]')].filter((element) => element.getClientRects().length);
     const first = focusable[0]; const last = focusable.at(-1);
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
@@ -435,10 +451,11 @@ export default function CharactersPanel({ open, onClose }) {
           {view.governance?.realmAlive === false && !view.status?.ended && <div className="char-feedback"><strong>Riket har upplösts</strong><span>Familjen består, men de gamla riksämbetena ger ingen makt. Sök en fristad under Beslut och följ familjens tillgångar och beskyddare under Familjer.</span></div>}
           {(view.status?.ended || view.status === "ended") && <div className="char-feedback char-feedback--error"><strong>Kampanjen är avslutad</strong><span>{view.status?.reason || "Kampanjens fortsättningsvillkor är inte längre uppfyllda."}</span></div>}
           {tab === "council" && <CouncilView view={view} pending={pending} onCommand={command} busy={busy} setTab={setTab} selectPerson={setPersonId} runAction={runAction} />}
-          {tab === "people" && <PeopleView view={view} selectedId={personId} selectPerson={setPersonId} />}
+          {tab === "people" && <PeopleView view={view} selectedId={personId} selectPerson={setPersonId} busy={busy} runAction={runAction} talks={talks} setTalk={setTalk} />}
           {tab === "families" && <FamiliesView view={view} />}
           {tab === "offices" && <OfficesView view={view} setTab={setTab} />}
            {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Olika personer kan företräda riket och hushållet. Varje handling följer den ansvariga aktörens mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}<ChainHistory chains={view.chainHistory} /></>}
+          {tab === "intrigue" && <IntrigueView view={view} busy={busy} onCommand={command} />}
           {tab === "chronicle" && <ChronicleView view={view} />}
         </>}
       </div>

@@ -283,6 +283,25 @@
 .char-scheme-confirm p { margin: 0 0 4px; }
 .char-scheme .char-confirm-buttons .char-button { margin-top: 0; }
 .char-button--danger { color: var(--char-danger); border-color: var(--char-danger); }
+/* Phase 2: the Intriger tab, a running feast and court conversations. */
+.char-intrigue-section { margin-bottom: 26px; }
+.char-intrigue-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.char-secret, .char-hook, .char-prisoner, .char-rumor { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; font-size: 13px; }
+.char-secret strong, .char-hook strong, .char-prisoner strong, .char-rumor strong { color: var(--char-accent); font-size: 15px; }
+.char-prisoner .char-confirm-buttons { margin-top: 8px; }
+.char-prisoner .char-scheme-confirm { align-self: stretch; }
+.char-feast { border-left: 3px solid var(--char-gold); margin-top: 22px; }
+.char-feast h4 { font-size: 19px; margin: 4px 0; }
+.char-talk { margin: 16px 0; border-top: 3px solid var(--char-accent); }
+.char-talk-log { list-style: none; padding: 0; margin: 0 0 14px; display: flex; flex-direction: column; gap: 10px; max-height: 360px; overflow-y: auto; }
+.char-talk-turn { max-width: 640px; padding: 8px 12px; border: 1px solid var(--char-border); border-radius: 6px; background: var(--char-bg); }
+.char-talk-turn p { margin: 2px 0 0; font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.char-talk-turn strong { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--char-muted); }
+.char-talk-turn--player { align-self: flex-end; border-color: var(--char-accent); }
+.char-talk-note { align-self: center; font-size: 12px; color: var(--char-muted); padding: 2px 10px; border-left: 3px solid var(--char-gold); }
+.char-talk-form { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.char-talk-form > label { font-size: 13px; font-weight: 600; }
+.char-talk-form .char-button { align-self: flex-start; }
 @media (max-width: 950px) {
   .char-backdrop { padding: 10px; }
   .char-header, .char-campaign-strip, .char-footer { padding-left: 20px; padding-right: 20px; }
