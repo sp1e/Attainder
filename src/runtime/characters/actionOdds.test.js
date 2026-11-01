@@ -694,3 +694,10 @@ test('the same inputs give the same result, and the result is plain data that al
   assert.equal(estimate(state, 'sway', { means }).cost.silver, 15);
   assert.deepEqual(estimate(state, 'sway', { means }).targetIds, [TARGET]);
 });
+
+// The engine never imprisons the ruler or a representative (prisoners.js imprisonRefusal), so the estimate refuses them before the player pays.
+test('imprison refuses a target who represents the family or the realm', () => {
+  const state = scene();
+  const refused = estimate(state, 'imprison', { ctx: { representativeId: TARGET, activeRepresentativeId: ACTOR } });
+  assert.deepEqual([refused.ok, refused.reason], [false, 'Den som företräder familjen eller riket kan inte fängslas.']);
+});

@@ -636,7 +636,7 @@ test('an open plot_uncovered and its crime case close when the plotter takes the
   const crimeCase = () => exposed.stories.find((item) => item.type === 'punish_crime');
   assert.equal(crimeCase().status, 'open');
   actionHooks(exposed).kill(arels(exposed), [], 'Sjukdom');
-  assert.deepEqual([crimeCase().status, crimeCase().resolution], ['closed', 'Gärningspersonen har själv fått makten; ärendet faller.']);
+  assert.deepEqual([crimeCase().status, crimeCase().resolution], ['closed', 'Gärningspersonen företräder familjen eller riket; ärendet faller.']);
   assert.equal(isImprisoned(exposed, NAMAR), false);
 });
 

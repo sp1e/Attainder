@@ -807,3 +807,13 @@ test('the prisoner commands are listed with their reason when the player cannot 
   assert.deepEqual(entries.map((action) => [action.type, action.disabledReason]), [['release_prisoner', 'Kräver härskarmandat.'], ['execute_prisoner', 'Kräver härskarmandat.']]);
   assert.equal(run(state, 'release_prisoner', { prisonerId: state.prisoners[0].id }).ok, false);
 });
+
+test('a free guardian still acts for a household whose minor head sits in prison', () => {
+  const state = createCharacterSystem({ seed: 321, mode: 'family', familyId: ARELS });
+  const family = state.families[ARELS];
+  family.headId = 'person-0-4'; family.guardianId = 'person-0-1';
+  state.regencies[`family:${ARELS}`] = { id: `family:${ARELS}`, principalId: 'person-0-4', regentId: 'person-0-1', phase: 'minority', startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
+  assert.equal(getCharacterPresentation(state).representative?.id, 'person-0-1');
+  state.prisoners.push({ id: `prisoner-${++state.sequence}`, personId: 'person-0-4', captorFamilyId: NAMARS, since: state.date, ransom: RANSOM, status: 'held', closedAt: null, reason: null });
+  assert.equal(getCharacterPresentation(state).representative?.id, 'person-0-1');
+});

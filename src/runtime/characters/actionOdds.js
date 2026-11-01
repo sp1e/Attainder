@@ -3,7 +3,7 @@ import { ACTION_CATALOG, MAX_AGENTS, MAX_EXTRA_SILVER, RUMOR_TOPICS, actorOffice
 import { ADULT_AGE, SKILL_LABELS, TRAITS } from './content.js';
 import { DIFFICULTIES, normalizeDifficulty } from './extensions.js';
 import { STAFF_ROLES } from './courtStaff.js';
-import { IMPRISONED, isImprisoned } from './prisoners.js';
+import { IMPRISONED, imprisonRefusal, isImprisoned } from './prisoners.js';
 import { activeHooks } from './secrets.js';
 
 // Odds for the contested actions. An estimate is a pure function of the state and the engine's context: it draws no randomness, spends nothing, creates no staff and edits nothing. Task 6 rolls against the values computed here.
@@ -107,12 +107,17 @@ function actorRefusal(state, actor) {
   return canExerciseMandate(actor, state.date) ? '' : REASONS.actorIncapacitated;
 }
 
-function targetRefusal(state, entry, actor, target) {
+function targetRefusal(state, entry, actor, target, ctx) {
   if (!target) return REASONS.targetMissing;
   if (target.id === actor.id) return REASONS.targetSelf;
   if (target.diedAt) return REASONS.targetDead;
   if (getCharacterAge(target, state.date) < ADULT_AGE) return REASONS.targetChild;
   if (entry.id === 'imprison' && isImprisoned(state, target.id)) return REASONS.imprisoned;
+  // The engine never imprisons the ruler or the person the player acts through (imprisonRefusal), so the player is not asked to pay for an order that cannot land.
+  if (entry.id === 'imprison') {
+    const refusal = imprisonRefusal(target.id, { ruler: () => personOf(state, state.offices?.ruler?.holderId), activeRepresentative: () => personOf(state, ctx.activeRepresentativeId), householdRepresentative: () => personOf(state, ctx.representativeId) });
+    if (refusal) return refusal;
+  }
   return entry.targetFamily === 'other' && target.familyId === actor.familyId ? REASONS.targetFamily : '';
 }
 
@@ -263,7 +268,7 @@ export function estimateAction(state, intent, ctx) {
   if (!ctx.canOrder(actor.id)) return refuse(REASONS.order);
   if (!Array.isArray(intent.targetIds) || intent.targetIds.length !== 1) return refuse(REASONS.targetCount);
   const target = personOf(state, intent.targetIds[0]);
-  const targetReason = targetRefusal(state, entry, actor, target);
+  const targetReason = targetRefusal(state, entry, actor, target, ctx);
   if (targetReason) return refuse(targetReason);
   const means = readMeans(intent.means);
   if (means.reason) return refuse(means.reason);

@@ -338,3 +338,12 @@ test('the silver and agent limits of the fields are the exported constants', () 
   const [, silver, agents] = find(getCatalogActions(fresh()), 'sway').fields;
   assert.deepEqual([silver.max, agents.max], [MAX_EXTRA_SILVER, MAX_AGENTS]);
 });
+
+test('the imprison target list leaves out the ruler and both representatives', () => {
+  const state = fresh();
+  const targets = (context) => find(buildCatalogActions(state, [], { familyId: 'family-arel', realmAccess: true, ...context }), 'imprison').fields[0].options.map((option) => option.value);
+  const all = targets({ representativeId: 'person-0-0' });
+  assert.ok(all.includes('person-1-0'));
+  assert.ok(!targets({ representativeId: 'person-0-0', shieldedIds: ['person-1-0'] }).includes('person-1-0'));
+  assert.ok(targets({ representativeId: 'person-0-0', shieldedIds: ['person-1-0'] }).includes('person-1-1'), 'only the shielded person leaves the list');
+});

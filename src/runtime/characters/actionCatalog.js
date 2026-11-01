@@ -201,9 +201,9 @@ const family = (state, id) => typeof id === 'string' && Object.hasOwn(state.fami
 // The family wallet is the controlled family's treasury; the realm wallet is the realm's, open only to a player who rules (context.realmAccess, the same right charge() asks for with public funds). Any other wallet kind has no known owner here and so disables the entry.
 const walletOf = (state, entry, context) => entry.cost.wallet === 'family' ? family(state, context.familyId) : entry.cost.wallet === 'realm' && context.realmAccess === true ? state.realm : null;
 
-// Targets an entry accepts: living adults other than the actor. An entry flagged targetFamily 'other' also leaves out the actor's own family.
-function targetsFor(state, entry, actor) {
-  return Object.values(state.people).filter((candidate) => isAdultCharacter(candidate, state.date) && candidate.id !== actor?.id && (entry.targetFamily !== 'other' || !actor || candidate.familyId !== actor.familyId) && (entry.id !== 'imprison' || !isImprisoned(state, candidate.id)));
+// Targets an entry accepts: living adults other than the actor. An entry flagged targetFamily 'other' also leaves out the actor's own family. Imprison also leaves out prisoners and the shielded people (context.shieldedIds: the ruler and both representatives, whom the engine never imprisons).
+function targetsFor(state, entry, actor, shieldedIds = []) {
+  return Object.values(state.people).filter((candidate) => isAdultCharacter(candidate, state.date) && candidate.id !== actor?.id && (entry.targetFamily !== 'other' || !actor || candidate.familyId !== actor.familyId) && (entry.id !== 'imprison' || (!isImprisoned(state, candidate.id) && !shieldedIds.includes(candidate.id))));
 }
 
 // The same refusals, in the same order, that charge() in index.js applies to a family-paid action. Targets are people the player could pick.
@@ -257,13 +257,13 @@ function contestedFields(state, entry, targets, representativeId) {
 
 /**
  * Every command action (catalogId = its type, mode 'command') followed by the contested entries. A contested entry is always listed; disabledReason is '' when the active representative can act and the controlled family can pay, otherwise one Swedish sentence.
- * `context` is { representativeId, familyId, realmAccess }: the active representative, the person the player acts through and who gives the orders, the family whose silver pays and whether the player may spend the realm's silver, as index.js resolves them. Without a context there is no representative and every contested entry is disabled.
+ * `context` is { representativeId, familyId, realmAccess, shieldedIds }: the active representative, the person the player acts through and who gives the orders, the family whose silver pays whether the player may spend the realm's silver and the people imprison may not target, as index.js resolves them. Without a context there is no representative and every contested entry is disabled.
  */
 export function buildCatalogActions(state, commandActions, context = {}) {
   const actor = person(state, context.representativeId);
   const commands = commandActions.map((action) => ({ ...copy(action), catalogId: action.type, mode: 'command' }));
   const contested = Object.values(ACTION_CATALOG).map((entry) => {
-    const targets = targetsFor(state, entry, actor);
+    const targets = targetsFor(state, entry, actor, Array.isArray(context.shieldedIds) ? context.shieldedIds : []);
     return { ...copy(entry), catalogId: entry.id, fields: contestedFields(state, entry, targets, actor?.id ?? null), disabledReason: disabledReason(state, entry, actor, targets, context) };
   });
   return [...commands, ...contested];

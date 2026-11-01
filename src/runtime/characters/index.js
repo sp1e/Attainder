@@ -41,11 +41,11 @@ const adult = (state, person) => isAdultCharacter(person, state.date);
 const ruler = (state) => state.people[state.offices.ruler?.holderId] || null;
 const familyMembers = (state, id) => living(state).filter((p) => p.familyId === id);
 const byAge = (state, people) => [...people].sort((a, b) => compareGameDates(a.bornAt, b.bornAt) || a.id.localeCompare(b.id));
-// A prisoner never acts for a family or the realm (Phase 2): an imprisoned head or guardian leaves the household without a representative.
+// A prisoner never acts for a family or the realm (Phase 2): an imprisoned capable head leaves the household without a representative, while a free guardian still acts for a head who could not act anyway.
 function householdRepresentative(state) {
   const family = controlledFamily(state), principal = state.people[family?.headId];
-  if (!alive(principal) || isImprisoned(state, principal.id)) return null;
-  if (canExerciseMandate(principal, state.date)) return principal;
+  if (!alive(principal)) return null;
+  if (canExerciseMandate(principal, state.date)) return isImprisoned(state, principal.id) ? null : principal;
   const record = state.regencies?.[`family:${family.id}`], guardian = state.people[family.guardianId];
   return record?.principalId === principal.id && record.regentId === guardian?.id && record.phase !== 'contested' && canExerciseMandate(guardian, state.date) && !isImprisoned(state, guardian.id) ? guardian : null;
 }
@@ -226,7 +226,7 @@ function refreshStories(state, events) {
     if (story.type === 'health_care') { const patient = state.people[story.actorId]; const condition = patient?.healthConditions?.find((item) => item.id === story.conditionId); if (!alive(patient) || !condition || !['active', 'recovering'].includes(condition.stage) || condition.treatment || patient.familyId !== controlledFamily(state)?.id) { story.status = 'closed'; story.resolvedAt = state.date; story.resolution = 'Detta vårdbeslut är inte längre giltigt för ditt hushåll.'; } }
     if (story.type === 'punish_crime' && (!alive(state.people[story.actorId]) || isImprisoned(state, story.actorId) || empowered.has(story.actorId) || compareGameDates(story.dueAt, state.date) <= 0)) {
       story.status = 'closed'; story.resolvedAt = state.date;
-      story.resolution = !alive(state.people[story.actorId]) ? 'Gärningspersonen har avlidit; ärendet faller.' : isImprisoned(state, story.actorId) ? 'Gärningspersonen sitter redan fängslad; ärendet faller.' : empowered.has(story.actorId) ? 'Gärningspersonen har själv fått makten; ärendet faller.' : 'Ärendet förföll utan dom.';
+      story.resolution = !alive(state.people[story.actorId]) ? 'Gärningspersonen har avlidit; ärendet faller.' : isImprisoned(state, story.actorId) ? 'Gärningspersonen sitter redan fängslad; ärendet faller.' : empowered.has(story.actorId) ? 'Gärningspersonen företräder familjen eller riket; ärendet faller.' : 'Ärendet förföll utan dom.';
       logEvent(state, events, 'story_closed', story.title, story.resolution, [story.actorId]);
     }
     if (story.type === 'ransom_offer' && (!isImprisoned(state, story.actorId) || compareGameDates(story.dueAt, state.date) <= 0)) {
@@ -873,7 +873,8 @@ export function getAvailableCharacterActions(state) {
 /** The command menu plus the contested actions of the action catalog, with the household representative and family that pay for them. Read-only: no randomness, no spending. */
 export function getCatalogActions(state) { return catalogFrom(state, getAvailableCharacterActions(state)); }
 // The acting person is the active representative, who gives the orders (drawOrder in actionResolution.js); the controlled family pays.
-const catalogFrom = (state, actions) => buildCatalogActions(state, actions, { representativeId: activeRepresentative(state)?.id || null, familyId: controlledFamily(state)?.id || null, realmAccess: canRule(state) });
+const catalogFrom = (state, actions) => buildCatalogActions(state, actions, { representativeId: activeRepresentative(state)?.id || null, familyId: controlledFamily(state)?.id || null, realmAccess: canRule(state),
+  shieldedIds: [state.offices.ruler?.holderId, activeRepresentative(state)?.id, householdRepresentative(state)?.id].filter(Boolean) });
 
 function presentStory(state, story) {
   const choices = story.status === 'open' ? storyChoices(state, story) : [];
