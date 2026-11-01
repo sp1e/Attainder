@@ -398,14 +398,15 @@ function actionContext(state) {
   const wallet = (kind) => kind === 'family' ? family?.treasury ?? 0 : kind === 'realm' && ruling ? state.realm.treasury : 0;
   // representativeId stays the household representative, who pays through charge(). activeRepresentativeId is the person the player acts through, who gives the orders: in realm mode the ruler or regent.
   return { representativeId: representative?.id || null, activeRepresentativeId: activeRepresentative(state)?.id || null, playerControlled: true, canOrder, wallet, opinion: (fromId, toId) => getPersonalOpinion(state, fromId, toId),
-    situation: (entry, actor, target, means) => feastRows(state, entry, actor, target, means) };
+    situation: (entry, actor, target, means) => feastRows(state, entry, actor, target, means, family?.id ?? null) };
 }
 // npc_intent: an NPC acts on its own account. It orders only itself, pays from its own family's treasury and is never under the player's orders (no refusal draw). The difficulty row compares targets with the person the player acts through.
 function npcActionContext(state, actorId) {
   const actor = Object.hasOwn(state.people, actorId) ? state.people[actorId] : null;
   const family = actor && Object.hasOwn(state.families, actor.familyId) ? state.families[actor.familyId] : null;
   return { ...actionContext(state), representativeId: activeRepresentative(state)?.id || null, playerControlled: false,
-    canOrder: (id) => id === actorId, wallet: (kind) => kind === 'family' ? family?.treasury ?? 0 : 0 };
+    canOrder: (id) => id === actorId, wallet: (kind) => kind === 'family' ? family?.treasury ?? 0 : 0,
+    situation: (entry, person, target, means) => feastRows(state, entry, person, target, means) };
 }
 /** Odds for one contested action through the engine's own context, or a Swedish refusal. Pure: no randomness, no spending. The result carries the true values used for rolling; `display` is the only part to show the player. */
 export function estimateCharacterAction(state, intent) { return estimateAction(state, intent, actionContext(state)); }

@@ -199,7 +199,7 @@ test('validateOccasions refuses corrupt occasions on load', () => {
     'an id beyond the sequence': (o) => { o.id = 'occasion-99999'; },
     'an unknown kind': (o) => { o.kind = 'wedding'; },
     'an unknown host family': (o) => { o.hostFamilyId = 'family-nowhere'; },
-    'a host from another family': (o) => { o.hostId = 'person-1-0'; },
+    'a host who does not exist': (o) => { o.hostId = 'person-9-9'; },
     'a bad date': (o) => { o.startedAt = 'igår'; },
     'an end that is not a month later': (o) => { o.endsAt = addGameMonths(o.startedAt, 2); },
     'a start in the future': (o, s) => { o.startedAt = addGameMonths(s.date, 1); o.endsAt = addGameMonths(s.date, 2); },
@@ -262,4 +262,21 @@ test('a stored occasion id counts only for an actor of the family that hosted it
   const stranger = due('person-1-1', actionHooks(later).npcEstimateContext('person-1-1'));
   assert.equal(stranger.ok, true, stranger.reason);
   assert.equal(stranger.occasionId, undefined);
+});
+
+// I3: when every adult Arel dies, the minor Mira inherits and Namar, eldest of the realm, becomes her guardian and regent. The household pays through him.
+test('a feast held by a guardian from another family loads and gives the player its rows', () => {
+  const state = base();
+  actionHooks(state).kill(['person-0-0', 'person-0-1', 'person-0-2', 'person-0-3'], [], 'Sjukdom');
+  assert.equal(state.families[FAMILY].guardianId, TARGET, 'Namar is the household guardian');
+  const held = feast(state);
+  const [occasion] = held.occasions;
+  assert.deepEqual([occasion.hostFamilyId, occasion.hostId], [FAMILY, TARGET]);
+  const loaded = normalizeCharacterSystem(copy(held));
+  assert.deepEqual(loaded.occasions, held.occasions);
+  const intent = { actionId: 'undermine', actorId: TARGET, targetIds: ['person-2-0'] };
+  const est = estimateCharacterAction(loaded, intent);
+  assert.equal(est.ok, true, est.reason);
+  assert.equal(est.occasionId, occasion.id);
+  assert.ok(row(est.success.modifiers, SUCCESS_ROW) && row(est.secrecy.modifiers, SECRECY_ROW));
 });

@@ -76,22 +76,23 @@ export function holdFeast(state, events, hooks) {
 
 /**
  * The situational rows the odds take from occasions (ctx.situation in actionOdds.js): { success: row[], secrecy: row[], occasionId }.
- * An intrigue-category action gains the feast rows when the actor's family hosts a feast that runs now and the target is on its guest list. On a scheme's due date (`means.scheduled`) only the feast the scheme stored in `means.occasionId` counts, and only if the actor's family hosted it; the feast running that day is never looked at. Otherwise the rows are empty and occasionId is null.
+ * `hostFamilyId` is the family whose feast counts: the player's context passes the controlled family, so a guardian from another family who acts for it uses its feast; an NPC context passes the actor's own family (the default).
+ * An intrigue-category action gains the feast rows when that family hosts a feast that runs now and the target is on its guest list. On a scheme's due date (`means.scheduled`) only the feast the scheme stored in `means.occasionId` counts, and only if that family hosted it; the feast running that day is never looked at. Otherwise the rows are empty and occasionId is null.
  */
-export function feastRows(state, entry, actor, target, means) {
+export function feastRows(state, entry, actor, target, means, hostFamilyId = actor.familyId) {
   const none = { success: [], secrecy: [], occasionId: null };
   if (entry.category !== 'intrigue') return none;
-  const occasion = means?.scheduled === true ? storedFeast(state, actor, means.occasionId) : guestFeast(state, actor, target);
+  const occasion = means?.scheduled === true ? storedFeast(state, hostFamilyId, means.occasionId) : guestFeast(state, hostFamilyId, target);
   return occasion ? { success: [{ ...FEAST_ROWS.success }], secrecy: [{ ...FEAST_ROWS.secrecy }], occasionId: occasion.id } : none;
 }
 
-function storedFeast(state, actor, id) {
+function storedFeast(state, hostFamilyId, id) {
   const named = typeof id === 'string' ? list(state).find((occasion) => occasion.id === id) : null;
-  return named?.kind === 'feast' && named.hostFamilyId === actor.familyId ? named : null;
+  return named?.kind === 'feast' && named.hostFamilyId === hostFamilyId ? named : null;
 }
 
-function guestFeast(state, actor, target) {
-  const feast = activeOccasion(state, actor.familyId);
+function guestFeast(state, hostFamilyId, target) {
+  const feast = activeOccasion(state, hostFamilyId);
   return feast && feast.guestIds.includes(target.id) ? feast : null;
 }
 
@@ -108,15 +109,15 @@ function checkOccasion(state, occasion, ids) {
   const number = numberOf(occasion.id);
   if (!Number.isInteger(number) || number > state.sequence || ids.has(occasion.id)) fail(INVALID.id);
   if (!OCCASION_KINDS.includes(occasion.kind)) fail(INVALID.entry);
-  const host = ownKey(state.people, occasion.hostId) ? state.people[occasion.hostId] : null;
-  if (!ownKey(state.families, occasion.hostFamilyId) || !host || host.familyId !== occasion.hostFamilyId) fail(INVALID.family);
+  // The host is the person who paid (the household representative), who may be a guardian from another family, so only existence is checked.
+  if (!ownKey(state.families, occasion.hostFamilyId) || !ownKey(state.people, occasion.hostId)) fail(INVALID.family);
   const { startedAt, endsAt } = occasion;
   if (![startedAt, endsAt].every(canonical) || compareGameDates(startedAt, state.date) > 0 || endsAt !== addGameMonths(startedAt, FEAST.months)) fail(INVALID.date);
   const guests = occasion.guestIds;
   if (!Array.isArray(guests) || new Set(guests).size !== guests.length || !guests.every((id) => ownKey(state.people, id))) fail(INVALID.guests);
 }
 
-/** Validates state.occasions on load: unique ids `occasion-<n>` within state.sequence, a known kind, an existing host family and host from it, canonical dates with the end one month after the start and no start in the future, and a duplicate-free guest list of existing people. Throws a Swedish sentence about the occasions. */
+/** Validates state.occasions on load: unique ids `occasion-<n>` within state.sequence, a known kind, an existing host family and host person, canonical dates with the end one month after the start and no start in the future, and a duplicate-free guest list of existing people. Throws a Swedish sentence about the occasions. */
 export function validateOccasions(state) {
   if (!Array.isArray(state.occasions)) fail(INVALID.list);
   const ids = new Set();
