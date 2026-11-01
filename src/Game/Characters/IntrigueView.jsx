@@ -85,6 +85,8 @@ function PrisonerList({ prisoners, onRelease, onExecute, onEmpty, busy = false }
     } catch (error) {
       result = { ok: false, error: error?.message };
     }
+    // No answer means the panel was locked and ignored the click (a double click); the first click decides.
+    if (result === undefined) return;
     setConfirming(null);
     if (result?.ok) {
       focusNext(next ? { id: next.id, control: "release" } : { empty: true });

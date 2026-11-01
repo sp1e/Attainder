@@ -66,7 +66,7 @@ function Transcript({ turns, person }) {
     : <li className={`char-talk-turn char-talk-turn--${turn.from}`} key={index}><strong>{turn.from === "player" ? "Du" : person.name}</strong><p>{turn.text}</p></li>)}</ol>;
 }
 
-export default function ConversationView({ person, turns = [], setTurns, busy = false, runAction, onClose }) {
+export default function ConversationView({ person, turns = [], setTurns, busy = false, runAction, onClose, onHold }) {
   const [text, setText] = useState("");
   const [stage, setStage] = useState(IDLE);
   const [problem, setProblem] = useState("");
@@ -74,6 +74,10 @@ export default function ConversationView({ person, turns = [], setTurns, busy = 
   const focusArmed = useRef(false);
   const textRef = useRef(null), cardRef = useRef(null);
   useEffect(() => { textRef.current?.focus(); }, []);
+  // An open confirmation card holds the panel's clock: its odds belong to one revision, and the panel passes the hold on.
+  const holding = stage.kind === "confirm";
+  useEffect(() => { onHold?.(holding); }, [holding, onHold]);
+  useEffect(() => () => onHold?.(false), [onHold]);
   useEffect(() => {
     if (!focusArmed.current || busy) return;
     const target = stage.kind === "confirm" ? cardRef : stage.kind === "idle" ? textRef : null;
@@ -147,6 +151,7 @@ export default function ConversationView({ person, turns = [], setTurns, busy = 
     if (!entry) return go(IDLE);
     setStage({ kind: "working", label: `${person.name} svarar…` });
     const answer = await reply(card.said, { kind: card.request.kind, accepted: entry.accepted }, card.history);
+    if (!answer?.ok && answer?.detail) console.warn("[court conversation] the reply failed:", answer.detail);
     append(answer?.ok ? { from: "speaker", text: answer.reply } : { from: "note", text: REPLY_NOTE });
     return go(IDLE);
   });

@@ -8,6 +8,7 @@ import { transformSync } from "esbuild";
 import { createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getCharacterPresentation } from "../../runtime/characters/index.js";
 import { REASONS as ODDS_REASONS } from "../../runtime/characters/actionOdds.js";
 import { CONVERSATION_REQUESTS } from "../../runtime/characters/conversation.js";
+import * as realCounter from "../AI/modelCallCounter.js";
 import { createSecret, grantHook } from "../../runtime/characters/secrets.js";
 import { interpretCharacterAction } from "./characterModelCalls.js";
 import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testing/hookDriver.js";
@@ -70,7 +71,7 @@ const conversationModel = (overrides = {}) => ({
   ...overrides,
 });
 
-function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council", modelCalls = 0, react = null, runtime = {}, model = {}, globals = {} } = {}) {
+function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council", modelCalls = 0, counter = null, react = null, runtime = {}, model = {}, globals = {} } = {}) {
   let stateIndex = 0;
   const calls = [];
   const modules = {
@@ -94,7 +95,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
       ...runtime,
     },
     "../../runtime/characters/conversation.js": { CONVERSATION_REQUESTS },
-    "../AI/modelCallCounter.js": { getModelCallCounts: () => ({ total: modelCalls, byKind: {} }), subscribeModelCalls: () => () => {} },
+    "../AI/modelCallCounter.js": counter || { getModelCallCounts: () => ({ total: modelCalls, byKind: {} }), subscribeModelCalls: () => () => {} },
     "./characterModelCalls.js": {
       interpretCharacterAction: async () => ({ ok: false, reason: "Ingen modell är ansluten.", fallback: "menu" }),
       narrateCharacterResolution: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
@@ -1106,6 +1107,8 @@ test("an optional hook select starts on Ingen and an empty choice is omitted fro
   const proposals = [];
   const mounted = mountForm(entryOf(view, "poison"), view, { onPropose: (entry, payload) => proposals.push(payload) });
   const hookSelect = () => selectFor(mounted.tree, "Grepp");
+  selectFor(mounted.tree, "Mål").props.onChange({ target: { value: "person-1-0" } });
+  mounted.draw();
   assert.deepEqual(findAll(hookSelect(), (node) => node.type === "option").map((option) => textOf(option)), ["Ingen", "Starkt grepp över Namar av Hadara"]);
   assert.equal(hookSelect().props.value, "");
   submitForm(mounted);
@@ -1388,7 +1391,138 @@ test("only people in conversationTargets get a Samtala button, and it opens the 
   assert.equal(talkButtons(mountPeople({ selectedId: "person-0-2", view: none }).tree).length, 0);
 });
 
-test("the footer counts model calls, conversation calls included", () => {
-  const html = renderToStaticMarkup(loadPanel(baseView(), { modelCalls: 5 }).default({ open: true, onClose: () => {} }));
-  assert.match(html, /Modellanrop denna session: 5/);
+test("the footer rises when a conversation call is recorded through the real counter", () => {
+  const driver = createHookDriver();
+  const { default: Panel } = loadPanel(baseView(), { react: driver.react, counter: realCounter, globals: {
+    window: { matchMedia: () => ({ matches: false }), addEventListener() {}, removeEventListener() {} }, document: { activeElement: null } } });
+  const draw = () => driver.render(React.createElement(Panel, { open: true, onClose: () => {} }));
+  const before = realCounter.getModelCallCounts();
+  const footer = (tree) => textOf(findAll(tree, (node) => node.type === "footer")[0]);
+  assert.match(footer(draw()), new RegExp(`Modellanrop denna session: ${before.total}(?!\\d)`));
+  realCounter.recordModelCall("converse");
+  const after = realCounter.getModelCallCounts();
+  assert.equal(after.total, before.total + 1);
+  assert.equal(after.byKind.converse, (before.byKind.converse || 0) + 1);
+  assert.match(footer(draw()), new RegExp(`Modellanrop denna session: ${before.total + 1}(?!\\d)`));
+});
+
+// --- Fix round 1 ---
+
+test("a hook over another person is not offered, and the list follows the chosen target", () => {
+  const { state, view, hook } = campaignWithLeverage();
+  const other = grantHook(state, { ownerId: view.representative.id, targetId: "person-2-0", strength: "weak" });
+  const fresh = getCharacterPresentation(state);
+  const proposals = [];
+  const mounted = mountForm(entryOf(fresh, "poison"), fresh, { onPropose: (entry, payload) => proposals.push(payload) });
+  const values = () => findAll(selectFor(mounted.tree, "Grepp"), (node) => node.type === "option").map((option) => option.props.value);
+  const first = selectFor(mounted.tree, "Mål").props.value;
+  assert.deepEqual(values(), [""].concat(first === "person-2-0" ? [other.id] : []), "only a hook over the chosen target (or Ingen)");
+  selectFor(mounted.tree, "Mål").props.onChange({ target: { value: "person-1-0" } });
+  mounted.draw();
+  assert.deepEqual(values(), ["", hook.id]);
+  assert.ok(!values().includes(other.id));
+  selectFor(mounted.tree, "Grepp").props.onChange({ target: { value: hook.id } });
+  mounted.draw();
+  selectFor(mounted.tree, "Mål").props.onChange({ target: { value: "person-2-0" } });
+  mounted.draw();
+  assert.equal(selectFor(mounted.tree, "Grepp").props.value, "", "a chosen hook that no longer fits falls back to Ingen");
+  submitForm(mounted);
+  assert.equal(Object.hasOwn(proposals[0].means, "hookId"), false);
+});
+
+test("a reply failure in the request flow logs its detail", async () => {
+  const mounted = mountTalk({ diplomacy: 14,
+    model: { ...askSupport(), replyAsCharacter: async () => ({ ok: false, reason: "Personen kunde inte svara just nu. Försök igen.", detail: "The answer was not a JSON object." }) },
+    runtime: { submitConversationRequest: answerWith(decided(true)) } });
+  await mounted.say("Stöd mig.");
+  const { warnings } = await withWarnings(() => mounted.act(() => buttonNamed(mounted.tree, "Fråga").props.onClick()));
+  assert.ok(warnings.some((line) => line.includes("JSON object")));
+  assert.match(textOf(mounted.tree), /Svaret kunde inte skrivas; utfallet gäller\./);
+});
+
+test("closing a conversation moves focus to that person's Samtala button", () => {
+  const mounted = mountPeople({ selectedId: "person-0-2" });
+  talkButtons(mounted.tree)[0].props.onClick();
+  mounted.draw();
+  const before = mounted.driver.focused.length;
+  buttonNamed(mounted.tree, "Avsluta samtalet").props.onClick();
+  mounted.draw();
+  assert.ok(mounted.driver.focused.length > before);
+  assert.equal(mounted.driver.focused.at(-1), talkButtons(mounted.tree)[0]);
+});
+
+test("an open confirmation card holds the clock: Nästa år med modellen is disabled until it is answered", async () => {
+  const driver = createHookDriver();
+  const { state, view } = engineCampaign(14);
+  const { default: Panel } = loadPanel(view, { react: driver.react, globals: {
+    window: { matchMedia: () => ({ matches: false }), addEventListener() {}, removeEventListener() {} }, document: { activeElement: null } },
+  model: { extractConversationRequest: async () => ({ ok: true, request: supportRequest() }) },
+  runtime: conversationRuntime({ getConversationViewForModel: async (id) => ({ ...view, conversationBrief: { personId: id } }),
+    estimateConversationForView: async (request) => ({ ...estimateConversation(state, request), revision: state.revision }) }) });
+  const draw = () => driver.render(React.createElement(Panel, { open: true, onClose: () => {} }));
+  const advance = (tree) => findAll(tree, (node) => node.type === "button" && node.props.className === "char-button char-button--advance")[0];
+  let tree = draw();
+  await settle();
+  tree = draw();
+  buttonNamed(findAll(tree, (node) => node.type === "nav")[0], "Personer").props.onClick();
+  tree = draw();
+  findAll(tree, (node) => node.type === "button" && String(node.props.className).startsWith("char-person-row") && textOf(node).includes("Sera Arel"))[0].props.onClick();
+  tree = draw();
+  talkButtons(tree)[0].props.onClick();
+  tree = draw();
+  assert.equal(advance(tree).props.disabled, false);
+  findAll(tree, (node) => node.type === "textarea" && node.props.id === "char-talk-text")[0].props.onChange({ target: { value: "Stöd mig." } });
+  tree = draw();
+  formOf(tree, "char-talk-form").props.onSubmit({ preventDefault() {} });
+  await settle();
+  tree = draw();
+  tree = draw();
+  assert.ok(requestCard(tree), "the card is open");
+  assert.equal(advance(tree).props.disabled, true);
+  buttonNamed(requestCard(tree), "Avbryt").props.onClick();
+  tree = draw();
+  tree = draw();
+  assert.equal(advance(tree).props.disabled, false);
+});
+
+test("a double click on Frige or Ja, avrätta is ignored, not recorded as a refusal", async () => {
+  let calls = 0;
+  const mounted = mountIntrigue({ onCommand: async () => { calls += 1; return undefined; } });
+  const refusals = (name) => findAll(prisonerItem(mounted.tree, name), (node) => node.props?.className === "char-reason").length;
+  buttonNamed(prisonerItem(mounted.tree, "Nebet"), "Frige").props.onClick();
+  await settle();
+  mounted.draw();
+  assert.equal(calls, 1);
+  assert.equal(refusals("Nebet"), 0);
+  buttonNamed(prisonerItem(mounted.tree, "Kamos Ptah"), "Avrätta").props.onClick();
+  mounted.draw();
+  buttonNamed(prisonerItem(mounted.tree, "Kamos Ptah"), "Ja, avrätta").props.onClick();
+  await settle();
+  mounted.draw();
+  assert.equal(refusals("Kamos Ptah"), 0);
+  assert.match(textOf(prisonerItem(mounted.tree, "Kamos Ptah")), /Vill du avrätta Kamos Ptah\?/, "the question stays for the click that is being handled");
+});
+
+test("a double click on Ja, avbryt intrigen is ignored, not recorded as a refusal", async () => {
+  const driver = createHookDriver();
+  const box = loadActionBox({ react: driver.react });
+  const props = { schemes: [{ id: "scheme-4", actionLabel: "Undergräv", actorName: "Iset Arel", targetNames: ["Kamos Ptah"], dueAt: "-0299-04-01" }], onAbort: async () => undefined, busy: false };
+  let tree = driver.render(React.createElement(box.SchemeList, props));
+  buttonNamed(tree, "Avbryt intrigen").props.onClick();
+  tree = driver.render(React.createElement(box.SchemeList, props));
+  buttonNamed(tree, "Ja, avbryt intrigen").props.onClick();
+  await settle();
+  tree = driver.render(React.createElement(box.SchemeList, props));
+  assert.equal(findAll(tree, (node) => node.props?.className === "char-reason").length, 0);
+  assert.ok(buttonNamed(tree, "Ja, avbryt intrigen"), "the question is still there for the click being handled");
+});
+
+test("after a successful release, focus moves to the next prisoner's first button", async () => {
+  const view = intrigueView();
+  const mounted = mountIntrigue({ view });
+  buttonNamed(prisonerItem(mounted.tree, "Kamos Ptah"), "Frige").props.onClick();
+  await settle();
+  mounted.props.view = { ...view, prisoners: view.prisoners.slice(1) };
+  mounted.draw();
+  assert.equal(mounted.driver.focused.at(-1), buttonNamed(prisonerItem(mounted.tree, "Nebet"), "Frige"));
 });

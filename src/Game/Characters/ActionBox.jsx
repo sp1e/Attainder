@@ -205,13 +205,16 @@ export function ContestedForm({ entry, view, onPropose, busy = false }) {
   const staffName = (role) => entries(view?.staff).find((member) => member.role === role)?.name;
   const toggle = (role) => setRoles((current) => current.includes(role) ? current.filter((item) => item !== role)
     : current.length >= maxAgents ? current : [...current, role]);
-  // Blackmail can only use a secret about its target, so the secret list follows the chosen target. A choice that no
-  // longer fits falls back to the first option of a required select and to Ingen on an optional one.
+  // The engine accepts a secret only when its subject is the target and a hook only when it is held over the target,
+  // so both lists follow the chosen target. A choice that no longer fits falls back to the first option of a required
+  // select and to Ingen on an optional one.
   const optionsOf = (item) => {
     const options = entries(item.options);
-    if (item.key !== "secretId" || !Array.isArray(view?.knownSecrets)) return options;
-    const about = new Set(view.knownSecrets.filter((secret) => secret.subjectId === targetId).map((secret) => secret.id));
-    return options.filter((option) => option.value === "" || about.has(option.value));
+    const source = { secretId: view?.knownSecrets, hookId: view?.ownHooks }[item.key];
+    if (!Array.isArray(source)) return options;
+    const field = item.key === "secretId" ? "subjectId" : "targetId";
+    const fits = new Set(source.filter((record) => record[field] === targetId).map((record) => record.id));
+    return options.filter((option) => option.value === "" || fits.has(option.value));
   };
   const valueOf = (item) => {
     const options = optionsOf(item);
@@ -219,7 +222,9 @@ export function ContestedForm({ entry, view, onPropose, busy = false }) {
     return item.required ? options[0]?.value ?? "" : "";
   };
   const blockedBy = leverageFields.find((item) => item.required && !valueOf(item));
-  const blockedReason = !blockedBy ? "" : entries(blockedBy.options).length ? `Du känner ingen hemlighet om ${entries(targetField?.options).find((option) => option.value === targetId)?.label || "den personen"}. Välj ett mål som du har något på.` : NOTHING_TO_CHOOSE[blockedBy.key] || "Det finns inget att välja.";
+  const targetLabel = entries(targetField?.options).find((option) => option.value === targetId)?.label || "den personen";
+  const aboutTarget = { secretId: `Du känner ingen hemlighet om ${targetLabel}. Välj ett mål som du har något på.`, hookId: `Du har inget grepp över ${targetLabel}. Välj ett mål som du har ett grepp över.` };
+  const blockedReason = !blockedBy ? "" : entries(blockedBy.options).length ? aboutTarget[blockedBy.key] || "Det finns inget att välja." : NOTHING_TO_CHOOSE[blockedBy.key] || "Det finns inget att välja.";
   const formDisabled = disabled || Boolean(blockedBy);
   const submit = (event) => {
     event.preventDefault();
@@ -326,6 +331,8 @@ export function SchemeList({ schemes, onAbort, onEmpty, busy = false }) {
     } catch (error) {
       result = { ok: false, error: error?.message };
     }
+    // No answer means the panel was locked and ignored the click (a double click); the first click decides.
+    if (result === undefined) return;
     setConfirming(null);
     if (result?.ok) {
       focusNext(next ? { id: next.id, control: "abort" } : { empty: true });
