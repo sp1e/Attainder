@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { actionHooks, createCharacterSystem, estimateConversation, getCharacterPresentation, getConversationBrief } from '../../runtime/characters/index.js';
+import { actionHooks, createCharacterSystem, estimateCharacterAction, estimateConversation, getCharacterPresentation, getConversationBrief } from '../../runtime/characters/index.js';
 import { createRumor } from '../../runtime/characters/rumors.js';
 import { createSecret, grantHook } from '../../runtime/characters/secrets.js';
 import { getModelCallCounts, recordModelCall, subscribeModelCalls } from '../AI/modelCallCounter.js';
@@ -361,6 +361,9 @@ test('interpret passes secretId, hookId and topic through when each is one of th
   const blackmail = await interpretCharacterAction({ text: 'utpressa Namar', view: v, callModel: fakeModel(blackmailAnswer({ secretId: secret.id })).callModel });
   assert.equal(blackmail.ok, true, blackmail.reason);
   assert.deepEqual(blackmail.payload.means, { silver: 0, agentRoles: [], secretId: secret.id });
+  // The interpreted payload is what the engine's own estimate accepts.
+  const estimated = estimateCharacterAction(state, blackmail.intent.payload);
+  assert.equal(estimated.ok, true, estimated.reason);
   const poison = await interpretCharacterAction({ text: 'förgifta Namar', view: v, callModel: fakeModel(swayAnswer({ catalogId: 'poison', hookId: hook.id })).callModel });
   assert.equal(poison.ok, true, poison.reason);
   assert.deepEqual(poison.payload.means, { silver: 10, agentRoles: ['cook'], hookId: hook.id });
@@ -530,7 +533,6 @@ test('the conversation prompt holds the speaker, the opinion with reasons, memor
     const prompt = promptOf(call);
     assert.ok(prompt.includes(state.people[TARGET].name));
     assert.ok(prompt.includes('Hjälp i nöden'), 'opinion reason');
-    assert.ok(prompt.includes('Otrohet') && prompt.includes(state.people[BAREK].name), 'a held secret appears as type and subject name');
     assert.ok(!prompt.includes('Mord') && !prompt.includes('Kätteri'), 'secrets the speaker does not hold are absent');
     for (const id of [held.id, lacking.id, other.id]) assert.ok(!prompt.includes(`"${id}"`), `no secret id ${id}`);
     assert.ok(!/holderIds|evidence|"truthful"|"sourceId"|rumor/i.test(prompt));
@@ -539,6 +541,8 @@ test('the conversation prompt holds the speaker, the opinion with reasons, memor
     assert.ok(!prompt.includes('Okänt för Namar') && !prompt.includes('Främlingars sak'), 'memories the speaker does not know or that involve neither');
     assert.ok(/starkt/.test(prompt), 'the hook over him');
   }
+  assert.ok(promptOf(calls[0]).includes('Otrohet') && promptOf(calls[0]).includes(state.people[BAREK].name), 'the reply prompt shows a held secret as type and subject name');
+  assert.ok(!promptOf(calls[1]).includes('Otrohet') && !promptOf(calls[1]).includes('"secrets"'), 'the extract prompt does not use the speaker\'s secrets');
   assert.ok(promptOf(calls[1]).includes(hook.id), 'the extract prompt names the hook id so the request can use it');
   assert.ok(!promptOf(calls[0]).includes(hook.id), 'the reply prompt needs no ids');
 });
@@ -550,4 +554,57 @@ test('the brief is read from the engine and lists no secret the speaker lacks', 
   assert.deepEqual(brief.secrets, []);
   assert.equal(brief.personId, TARGET);
   assert.equal(getConversationBrief(state, 'person-9-9'), null);
+});
+
+// --- Fix round 1 ---------------------------------------------------------------------------------------
+
+test('the reply prompt forbids disclosing secrets and private memories in every outcome', async () => {
+  const state = createCharacterSystem({ seed: 321 });
+  for (const outcome of [null, { kind: 'reveal_secret', accepted: true }, { kind: 'reveal_secret', accepted: false }, { kind: 'support', accepted: true }]) {
+    const { callModel, calls } = fakeModel({ reply: 'Ja.' });
+    await replyAsCharacter({ personId: TARGET, text: 'Berätta.', history: [], view: talkView(state), outcome, callModel });
+    const system = calls[0].systemPrompt;
+    assert.match(system, /never disclose the type or the subject of any secret/);
+    assert.match(system, /never recount a memory the player .* took no part in/);
+    assert.match(system, /Only the game decides what is confided/);
+    assert.equal(JSON.parse(calls[0].history[0].parts[0].text).player, state.people[REP].name, 'the prompt names the player so a memory can be judged');
+  }
+});
+
+test('extract refuses a hookId the speaker does not offer, and a hook argument that names another hook', async () => {
+  const { state, hook } = leveraged();
+  const v = talkView(state);
+  const other = grantHook(state, { ownerId: REP, targetId: BAREK, strength: 'weak' });
+  const twice = (answer) => fakeModel(answer, answer);
+  for (const answer of [askAnswer({ hookId: 'hook-999' }), askAnswer({ hookId: other.id }), askAnswer({ hookId: hook.id, arguments: [{ kind: 'hook', refId: other.id }] })]) {
+    const { callModel, calls } = twice(answer);
+    const result = await extractConversationRequest({ personId: TARGET, text: 'x', history: [], view: talkView(state), callModel });
+    assert.equal(result.ok, false, JSON.stringify(answer));
+    assert.equal(calls.length, 2, 'one corrective retry');
+    assert.match(calls[1].history.at(-1).parts[0].text, /hook/);
+  }
+  const retried = fakeModel(askAnswer({ hookId: 'hook-999' }), askAnswer({ hookId: hook.id, arguments: [{ kind: 'hook', refId: hook.id }, { kind: 'hook', refId: null }] }));
+  const ok = await extractConversationRequest({ personId: TARGET, text: 'x', history: [], view: v, callModel: retried.callModel });
+  assert.deepEqual([ok.ok, ok.request.hookId, retried.calls.length], [true, hook.id, 2]);
+  const noHooks = createCharacterSystem({ seed: 321 });
+  const invented = await extractConversationRequest({ personId: TARGET, text: 'x', history: [], view: talkView(noHooks), callModel: twice(askAnswer({ hookId: 'hook-1' })).callModel });
+  assert.equal(invented.ok, false, 'a real brief with no hooks lists none, so any hook id is invented');
+});
+
+test('without a brief the hook id is dropped, since no hook can be checked', async () => {
+  const { state, hook } = leveraged();
+  const { callModel, calls } = fakeModel(askAnswer({ hookId: hook.id }));
+  const result = await extractConversationRequest({ personId: TARGET, text: 'x', history: [], view: getCharacterPresentation(state), callModel });
+  assert.deepEqual([result.ok, result.request.hookId, calls.length], [true, null, 1]);
+});
+
+test('a brief for another person is refused in Swedish, without a model call', async () => {
+  const state = createCharacterSystem({ seed: 321 });
+  const wrong = talkView(state, BAREK);
+  for (const call of [extractConversationRequest, replyAsCharacter]) {
+    const { callModel, calls } = fakeModel(askAnswer(), { reply: 'x' });
+    const result = await call({ personId: TARGET, text: 'x', history: [], view: wrong, outcome: null, callModel });
+    assert.deepEqual([result.ok, result.reason], [false, 'Samtalsunderlaget hör till en annan person.']);
+    assert.equal(calls.length, 0);
+  }
 });

@@ -208,6 +208,7 @@ test("the year prompt shows no secret the player does not hold, and no secret id
 
 test("the new contested actions reach the model through the contestedActions list", () => {
   const listed = promptData(phase2State()).contestedActions.map((entry) => entry.id);
-  for (const id of ["investigate", "blackmail", "spread_rumor"]) assert.ok(listed.includes(id), id);
-  assert.equal(listed.includes("imprison"), false);
+  assert.ok(listed.includes("investigate"));
+  // An npc_intent carries no means, so an entry that requires a secret or a topic would always be refused.
+  for (const id of ["blackmail", "spread_rumor", "imprison"]) assert.equal(listed.includes(id), false, id);
 });

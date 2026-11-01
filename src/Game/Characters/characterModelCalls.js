@@ -4,7 +4,7 @@ import { ADULT_AGE } from '../../runtime/characters/content.js';
 import { ARGUMENT_KINDS, CONVERSATION_REQUESTS, MAX_ARGUMENTS } from '../../runtime/characters/conversation.js';
 import { extractJsonPayload } from '../AI/jsonSalvage.js';
 
-// Low-effort model calls for the character panel: interpret the player's free text as one catalog action, and narrate what an action's outcome looked like. The model never sets odds and never writes state; its answers are validated here, and the engine validates them again when they arrive as commands.
+// Low-effort model calls for the character panel: interpret the player's free text as one catalog action, narrate what an action's outcome looked like, and hold a conversation (read what the player asks of one person, and reply in that person's voice; callKind 'converse'). The model never sets odds and never writes state; its answers are validated here, and the engine validates them again when they arrive as commands.
 const TITLE_MAX = 120;
 const NARRATIVE_MAX = 1500;
 const STATUSES = ['action', 'no_match', 'unknown_person'];
@@ -292,16 +292,23 @@ function turnsOf(history) {
 }
 
 // The engine's brief when the view carries one for this person (view.conversationBrief, from getConversationBrief); otherwise what the presentation itself shows: name, traits, offices and the opinion with its reasons, without memories, secrets or hooks.
+const WRONG_BRIEF = 'Samtalsunderlaget hör till en annan person.';
+const UNKNOWN_PERSON = 'Personen finns inte i spelet.';
+// A brief for another person is refused, not replaced: speaking as the wrong person would use that person's secrets. `hooksKnown` is false for the fallback, which cannot tell which hooks exist.
 function speakerBrief(view, personId) {
-  if (view?.conversationBrief?.personId === personId) return view.conversationBrief;
+  const given = view?.conversationBrief;
+  if (given && given.personId === personId) return { brief: { ...given, hooksKnown: true } };
+  if (given) return { reason: WRONG_BRIEF };
   const person = (view?.people || []).find((item) => item.id === personId);
-  if (!person) return null;
-  return { personId, name: person.name, familyName: person.familyName || '', traits: person.traitLabels || [], offices: person.roleNames || [],
-    opinion: person.opinion ?? 0, opinionReasons: (person.opinionReasons || []).map(({ label, value }) => ({ label, value })), memories: [], secrets: [], hooks: [] };
+  if (!person) return { reason: UNKNOWN_PERSON };
+  return { brief: { personId, name: person.name, familyName: person.familyName || '', traits: person.traitLabels || [], offices: person.roleNames || [], hooksKnown: false,
+    opinion: person.opinion ?? 0, opinionReasons: (person.opinionReasons || []).map(({ label, value }) => ({ label, value })), memories: [], secrets: [], hooks: [] } };
 }
 
 // The reply needs no ids; the extraction needs memory, hook and person ids to point at.
-const withoutIds = (brief) => ({ ...brief, memories: brief.memories.map(({ id, ...memory }) => memory), hooks: brief.hooks.map(({ id, ...hook }) => hook) });
+const withoutIds = ({ hooksKnown, ...brief }) => ({ ...brief, memories: brief.memories.map(({ id, ...memory }) => memory), hooks: brief.hooks.map(({ id, ...hook }) => hook) });
+// The extraction does not use the speaker's secrets, so they stay out of its prompt; the reply keeps them for the voice of the speaker.
+const forExtraction = ({ hooksKnown, secrets, ...brief }) => brief;
 
 function extractPrompt(brief, view, playerText, history) {
   const people = livingAdults(view).filter((person) => person.id !== brief.personId && person.id !== view?.representative?.id).map((person) => ({ id: person.id, name: person.name }));
@@ -312,18 +319,19 @@ function extractPrompt(brief, view, playerText, history) {
       'List in arguments only the reasons the player actually gives, each as { kind, refId }: "offer" (silver offered), "shared_enemy" (refId is the person id of a common enemy from the people list), "shared_memory" (refId is the id of one of the speaker\'s memories), "hook" (refId is the hook id). argumentScore is how convincing the reasons are, 0 to ' + SCORE_MAX + '; the game caps it again.',
       DATA_NOTE,
     ].join('\n'),
-    userText: JSON.stringify({ playerText, speaker: brief, people, conversation: turnsOf(history) }),
+    userText: JSON.stringify({ playerText, speaker: forExtraction(brief), people, conversation: turnsOf(history) }),
   };
 }
 
-function replyPrompt(brief, playerText, history, outcome) {
+function replyPrompt(brief, playerName, playerText, history, outcome) {
   return {
     systemPrompt: [
       'You speak as ' + brief.name + ' in a medieval dynasty game. Write the Swedish reply of one person in first person, in character, of at most ' + REPLY_MAX + ' characters. The speaker data below shows what you know, how you feel about the player and what you hold; stay within it.',
-      'The outcome of the player\'s request is already decided by the game and is fixed. If outcome is null the player made no request: answer in character and promise, grant or confide nothing. If accepted is true you agree to what was asked; if false you refuse. Never contradict the outcome, never mention odds, dice or the game, and name no secret, person or event beyond the data. When you agree to confide a secret, say that you will, but not what it is.',
+      'The outcome of the player\'s request is already decided by the game and is fixed. If outcome is null the player made no request: answer in character and promise, grant or confide nothing. If accepted is true you agree to what was asked; if false you refuse. Never contradict the outcome, never mention odds, dice or the game, and name no person or event beyond the data.',
+      'Whatever the outcome, never disclose the type or the subject of any secret in the speaker data, and never recount a memory the player (named in player) took no part in. Only the game decides what is confided: when you agree to confide a secret, say that you will, but not what it is.',
       DATA_NOTE,
     ].join('\n'),
-    userText: JSON.stringify({ playerText, speaker: withoutIds(brief), conversation: turnsOf(history), outcome }),
+    userText: JSON.stringify({ player: playerName, playerText, speaker: withoutIds(brief), conversation: turnsOf(history), outcome }),
   };
 }
 
@@ -341,10 +349,20 @@ function sanitizeRequest(personId, answer) {
     hookId: typeof answer.hookId === 'string' ? answer.hookId.trim() || null : null, arguments: argumentsList, argumentScore: Math.max(0, Math.min(SCORE_MAX, score)) };
 }
 
-function validateRequest(personId, answer) {
+// With a real brief a hook id must be one of the listed hooks and a hook argument must name it. Without one (the fallback) no hook can be checked, so none is used.
+function checkHooks(brief, request) {
+  if (!brief.hooksKnown) return { ...request, hookId: null };
+  const listed = brief.hooks.map((hook) => hook.id);
+  if (request.hookId !== null && !listed.includes(request.hookId)) throw new Rejection(`hookId "${request.hookId}" is not one of the speaker's hooks (${listed.join(', ') || 'none'}); leave it empty.`);
+  const stray = request.arguments.find((item) => item.kind === 'hook' && item.refId !== null && item.refId !== request.hookId);
+  if (stray) throw new Rejection(`The hook argument names "${stray.refId}", which is not the hookId you gave.`);
+  return request;
+}
+
+function validateRequest(brief, personId, answer) {
   if (answer.kind === 'none') return { ok: true, request: null };
   if (!Object.hasOwn(CONVERSATION_REQUESTS, answer.kind)) throw new Rejection(`kind "${answer.kind}" is not one of none, ${Object.keys(CONVERSATION_REQUESTS).join(', ')}.`);
-  return { ok: true, request: sanitizeRequest(personId, answer) };
+  return { ok: true, request: checkHooks(brief, sanitizeRequest(personId, answer)) };
 }
 
 // The player gets one Swedish sentence; the validator or transport text stays in `detail` for the log.
@@ -354,10 +372,10 @@ const failedResult = (result, reason) => ({ ok: false, reason, detail: result.re
  * Reads what the player said to one person. Resolves to { ok: true, request } where request is { personId, kind, offerSilver, hookId, arguments, argumentScore } that passes the engine's shape check, or null for small talk, or to { ok: false, reason, detail }. `view` is the presentation, ideally with `conversationBrief` (getConversationBrief) for the person. The model sets no odds; one corrective retry follows a schema or JSON failure.
  */
 export async function extractConversationRequest({ personId, text: playerText, history = [], view, callModel = defaultCallModel }) {
-  const brief = speakerBrief(view, personId);
-  if (!brief) return { ok: false, reason: 'Personen finns inte i spelet.' };
+  const { brief, reason } = speakerBrief(view, personId);
+  if (!brief) return { ok: false, reason };
   const { systemPrompt, userText } = extractPrompt(brief, view, String(playerText ?? ''), history);
-  const result = await askWithRetry({ callModel, systemPrompt, userText, tool: EXTRACT_TOOL, callKind: 'converse', validate: (answer) => validateRequest(personId, answer) });
+  const result = await askWithRetry({ callModel, systemPrompt, userText, tool: EXTRACT_TOOL, callKind: 'converse', validate: (answer) => validateRequest(brief, personId, answer) });
   if (result.failed) return failedResult(result, REQUEST_FAILED);
   return result.value;
 }
@@ -378,11 +396,11 @@ const readOutcome = (outcome) => {
  * Writes what one person answers, in character. `outcome` is null for small talk or { kind, accepted }, which the game has already decided: the prompt states it as fixed and forbids a reply that contradicts it. Resolves to { ok: true, reply } or { ok: false, reason, detail }; a reply over 800 characters is rejected and asked for once more.
  */
 export async function replyAsCharacter({ personId, text: playerText, history = [], view, outcome = null, callModel = defaultCallModel }) {
-  const brief = speakerBrief(view, personId);
-  if (!brief) return { ok: false, reason: 'Personen finns inte i spelet.' };
+  const { brief, reason } = speakerBrief(view, personId);
+  if (!brief) return { ok: false, reason };
   const fixed = readOutcome(outcome);
   if (fixed.invalid) return { ok: false, reason: 'Utfallet av förfrågan är ogiltigt.' };
-  const { systemPrompt, userText } = replyPrompt(brief, String(playerText ?? ''), history, fixed.value);
+  const { systemPrompt, userText } = replyPrompt(brief, view?.representative?.name ?? '', String(playerText ?? ''), history, fixed.value);
   const result = await askWithRetry({ callModel, systemPrompt, userText, tool: REPLY_TOOL, callKind: 'converse', validate: validateReply });
   if (result.failed) return failedResult(result, REPLY_FAILED);
   return result.value;

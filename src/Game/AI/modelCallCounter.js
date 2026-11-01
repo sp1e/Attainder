@@ -1,4 +1,4 @@
-// Session-only count of model calls by kind ('year', 'interpret', 'narrate'). Nothing is stored in the save.
+// Session-only count of model calls by kind ('year', 'interpret', 'narrate', 'converse'). Nothing is stored in the save.
 const counts = new Map();
 const listeners = new Set();
 let total = 0;

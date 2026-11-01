@@ -11,7 +11,7 @@ import {
   normalizeCharacterSystem,
   reconcileExternalHosts,
 } from "./characters/index.js";
-import { ACTION_CATALOG } from "./characters/actionCatalog.js";
+import { ACTION_CATALOG, requiresOf } from "./characters/actionCatalog.js";
 import { compareGameDates, diffGameDays, normalizeGameDate } from "./gameDates.js";
 import { buildOwnerAliasMap, createOwnerResolver } from "./ownerNames.js";
 
@@ -373,8 +373,8 @@ export const getCharacterEventBudget = (fromDate, targetDate) => {
 
 // Model proposals the engine runs itself, with their caps per model turn.
 const GATE_LIMITS = Object.freeze({ realm_effect: 4, npc_intent: 3 });
-// An NPC acts for its own family: an entry only an office holder may use (actorOffice) or that is paid from the realm treasury is never offered as an npc_intent, since npcActionContext always refuses it.
-const npcMayUse = (entry) => !entry.actorOffice && entry.cost.wallet !== "realm";
+// An NPC acts for its own family: an entry only an office holder may use (actorOffice), one paid from the realm treasury, or one that requires a secret or a topic (an npc_intent carries no means) is never offered as an npc_intent, since the engine always refuses it.
+const npcMayUse = (entry) => !entry.actorOffice && entry.cost.wallet !== "realm" && !requiresOf(entry).length;
 const GATE_LABELS = Object.freeze({ realm_effect: "Förändring av rikets läge", npc_intent: "Egen handling av en annan familjs person" });
 // An npc_intent refusal names no actor, action or amount: its reason could reveal another family's plans.
 const NPC_INTENT_REFUSAL = "Ett förslag om en annan familjs handling avvisades.";

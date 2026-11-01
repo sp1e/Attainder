@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameMonths, compareGameDates } from '../gameDates.js';
 import { buildCharacterPromptContext } from '../characterWorld.js';
-import { ACTION_CATALOG } from './actionCatalog.js';
+import { ACTION_CATALOG, requiresOf } from './actionCatalog.js';
 import { tierFor } from './actionResolution.js';
 import { actionHooks, advanceCharacters, createCharacterSystem, estimateCharacterAction, executeCharacterCommand, getCharacterPresentation, getNextCharacterTransitionDate, normalizeCharacterSystem } from './index.js';
 import { actionRandom, plotRandom } from './extensions.js';
@@ -622,6 +622,6 @@ test('the model is offered no contested action that an NPC cannot take', () => {
   const prompt = buildCharacterPromptContext(base());
   const listed = JSON.parse(/"contestedActions":(\[.*?\])\}/s.exec(prompt)[1]).map((entry) => entry.id);
   assert.equal(listed.includes('imprison'), false, 'imprison needs the ruler and the realm treasury');
-  assert.deepEqual(listed, Object.values(ACTION_CATALOG).filter((entry) => !entry.actorOffice && entry.cost.wallet !== 'realm').map((entry) => entry.id));
+  assert.deepEqual(listed, Object.values(ACTION_CATALOG).filter((entry) => !entry.actorOffice && entry.cost.wallet !== 'realm' && !requiresOf(entry).length).map((entry) => entry.id));
   assert.ok(listed.includes('poison') && listed.includes('undermine'));
 });
