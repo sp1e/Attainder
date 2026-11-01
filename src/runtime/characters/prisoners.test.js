@@ -538,7 +538,10 @@ test('a prisoner held by his own family is neither ransomed nor avenged', () => 
   seize(state, SERA);
   state.plotRngState = OFFER;
   const next = advance(state, state.nextAnnualDate);
-  assert.equal(next.plotRngState, OFFER);
+  // The yearly NPC plots (npcPlots.js) also draw from the plot stream, so the prisoner step is measured against the same year without the prisoner.
+  const free = base();
+  free.plotRngState = OFFER;
+  assert.equal(next.plotRngState, advance(free, free.nextAnnualDate).plotRngState);
   assert.equal(next.stories.some((item) => item.type === 'ransom_offer'), false);
 });
 

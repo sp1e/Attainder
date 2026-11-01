@@ -4,6 +4,7 @@ import { estimateAction } from './actionOdds.js';
 import { resolutionVisible, resolveScheme } from './actionResolution.js';
 import { STAFF_ROLES } from './courtStaff.js';
 import { actionRandom, spymasterOf } from './extensions.js';
+import { uncoverPlot } from './npcPlots.js';
 import { isImprisoned } from './prisoners.js';
 import { hearScheme } from './rumors.js';
 
@@ -38,6 +39,7 @@ const INVALID = Object.freeze({
   date: 'En plan har ett ogiltigt datum.',
   discovery: 'En plans avslöjande stämmer inte med dess status.',
   outcome: 'En plans utfall stämmer inte med handlingsloggen.',
+  secret: 'En plans hemlighet saknas eller gäller inte utföraren.',
 });
 
 const plainObject = (value) => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
@@ -115,6 +117,7 @@ function discover(state, scheme, actor, target, events, hooks) {
   const knownBy = [actor.id, target.id];
   const memory = hooks.memory('scheme_discovered', event.title, knownBy, { causeId: event.id, knownBy, schemeId: scheme.id });
   hooks.opinionCause(target.id, actor.id, DISCOVERY_OPINION, 'Avslöjad intrig', memory.id);
+  uncoverPlot(state, scheme, memory, hooks);
 }
 
 // The spymaster's help in seeing through a plan against the controlled family: the added percent, or null when the plan is against anyone else, nobody holds the office (a prisoner cannot serve) or the spymaster runs the plan himself. Draws nothing.
@@ -200,6 +203,13 @@ function checkMeans(scheme) {
   if (CARRIED_MEANS.some((key) => Object.hasOwn(means, key) && !safeId(means[key]))) fail(INVALID.means);
 }
 
+// The plot secret of an NPC scheme (npcPlots.js): an existing secret about the actor. It is not means.secretId, which is blackmail leverage.
+function checkSecret(state, scheme) {
+  if (!Object.hasOwn(scheme, 'secretId')) return;
+  const secret = typeof scheme.secretId === 'string' && Array.isArray(state.secrets) ? state.secrets.find((item) => item.id === scheme.secretId) : null;
+  if (!secret || secret.subjectId !== scheme.actorId) fail(INVALID.secret);
+}
+
 function checkDates(state, scheme) {
   const { startedAt, dueAt, nextCheckAt } = scheme;
   if (![startedAt, dueAt, nextCheckAt].every(canonical) || compareGameDates(startedAt, state.date) > 0) fail(INVALID.date);
@@ -218,7 +228,7 @@ function checkOutcome(state, scheme) {
   if (!entry || entry.actionId !== scheme.actionId || entry.actorId !== scheme.actorId) fail(INVALID.outcome);
 }
 
-/** Validates state.schemes on load: ids `scheme-<n>` unique and within state.sequence, a known action, existing people, valid means, canonical dates in order, a discovery date only on a discovered scheme and a resolution only on a resolved one. Throws a Swedish sentence about the scheme list. Call after validateActionLog. */
+/** Validates state.schemes on load: ids `scheme-<n>` unique and within state.sequence, a known action, existing people, valid means, an optional `secretId` naming a secret about the actor, canonical dates in order, a discovery date only on a discovered scheme and a resolution only on a resolved one. Throws a Swedish sentence about the scheme list. Call after validateActionLog. */
 export function validateSchemes(state) {
   if (!Array.isArray(state.schemes)) fail(INVALID.list);
   const ids = new Set();
@@ -226,6 +236,7 @@ export function validateSchemes(state) {
     if (!plainObject(scheme)) fail(INVALID.entry);
     checkIdentity(state, scheme, ids);
     checkMeans(scheme);
+    checkSecret(state, scheme);
     checkDates(state, scheme);
     checkOutcome(state, scheme);
     ids.add(scheme.id);

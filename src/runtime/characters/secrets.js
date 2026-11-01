@@ -104,6 +104,13 @@ function mergeHolders(state, secret, personIds) {
 
 export function addSecretHolders(state, secretId, personIds) { return mergeHolders(state, findSecret(state, secretId), personIds); }
 
+/** Raises a secret's evidence to strong; a secret that is already strong is unchanged. */
+export function strengthenSecret(state, secretId) {
+  const secret = findSecret(state, secretId);
+  secret.evidence = 'strong';
+  return secret;
+}
+
 /** Exposing is idempotent: a secret that is already out keeps its first exposedAt. */
 export function exposeSecret(state, secretId) {
   const secret = findSecret(state, secretId);

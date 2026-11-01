@@ -285,7 +285,8 @@ test('staff in the world leave the number of draws from the main stream unchange
     const result = advanceCharacters(state, addGameMonths(state.date, months), { id: `years-${months}` });
     assert.equal(result.ok, true, result.error);
     assert.equal(result.state.rngState, expected);
-    assert.equal(result.state.actionRngState, actionAtStart);
+    // NPC plots (npcPlots.js) start schemes that draw from the action stream, so it moves exactly when a scheme exists.
+    assert.equal(result.state.actionRngState === actionAtStart, result.state.schemes.length === 0);
     assert.equal(Object.keys(result.state.courtStaff).length, 4);
   }
   assert.equal(state.rngState, rngAtStart, 'the input state is not mutated');

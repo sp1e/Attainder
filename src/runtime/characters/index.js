@@ -16,6 +16,7 @@ import { STAFF_ROLES, staffOf } from './courtStaff.js';
 import { presentResolutions, presentSchemes, recordNarrative, resolveAttempt, validateActionLog } from './actionResolution.js';
 import { punishCrimeChoices, resolvePunishment } from './crimes.js';
 import { feastRefusal, feastRows, holdFeast, presentOccasions, validateOccasions } from './occasions.js';
+import { npcPlotStep, plotUncoveredChoices, resolvePlotUncovered } from './npcPlots.js';
 import { presentRumors, validateRumors } from './rumors.js';
 import { IMPRISONED, closePrisoner, executePrisoner, heldPrisoners, imprisonPerson, isImprisoned, passCrown, presentPrisoners, prisonerStep, ransomChoices, releasePrisoner, resolveRansom, validatePrisoners } from './prisoners.js';
 import { abortScheme, advanceSchemes, getSchemeDates, reinforceScheme, validateSchemes } from './schemes.js';
@@ -226,6 +227,11 @@ function refreshStories(state, events) {
       story.status = 'closed'; story.resolvedAt = state.date; story.resolution = isImprisoned(state, story.actorId) ? 'Erbjudandet förföll utan svar.' : 'Fången sitter inte längre fängslad; erbjudandet förföll.';
       logEvent(state, events, 'story_closed', story.title, story.resolution, [story.actorId]);
     }
+    if (story.type === 'plot_uncovered' && (!alive(state.people[story.actorId]) || isImprisoned(state, story.actorId) || compareGameDates(story.dueAt, state.date) <= 0)) {
+      story.status = 'closed'; story.resolvedAt = state.date;
+      story.resolution = !alive(state.people[story.actorId]) ? 'Komplottmakaren har avlidit; ärendet faller.' : isImprisoned(state, story.actorId) ? 'Komplottmakaren sitter fängslad; ärendet faller.' : 'Ärendet förföll utan beslut.';
+      logEvent(state, events, 'story_closed', story.title, story.resolution, [story.actorId]);
+    }
     if (story.type === 'stress_crisis' && !alive(state.people[story.actorId])) { story.status = 'closed'; story.resolvedAt = state.date; story.resolution = 'Personens liv har avslutats.'; }
   }
 }
@@ -431,6 +437,7 @@ function rawStoryChoices(state, story) { const controller = canRule(state); cons
   if (story.type === 'discovery') return [{ id: 'expose', label: 'Avslöja planen', description: 'Planens mål får veta vem som agerat och reagerar på sanningen.', cost: '0 silver', stress: '0', disabledReason: '' }, { id: 'keep', label: 'Behåll kunskapen', description: 'Hemligheten förblir känd endast av de invigda.', cost: '0 silver', stress: '0', disabledReason: '' }];
   if (story.type === 'punish_crime') return punishCrimeChoices(state, story, { controller });
   if (story.type === 'ransom_offer') return ransomChoices(state, story, { controller });
+  if (story.type === 'plot_uncovered') return plotUncoveredChoices(state, story, actionHooks(state));
   return [{ id: 'acknowledge', label: 'Noterat', description: 'Följden läggs till i historiken.', cost: '0 silver', stress: '0', disabledReason: '' }];
 }
 
@@ -505,6 +512,7 @@ function resolveStory(state, story, choiceId, events, automatic = false) {
   else if (story.type === 'discovery' && choiceId === 'expose') { const hidden = state.memories.find((m) => m.id === story.causeId); if (hidden) { hidden.knownBy = 'public'; const plot = plotSecretFor(state, hidden.id); if (plot) exposeSecret(state, plot.id); opinionCause(state, hidden.participants[1], hidden.participants[0], -25, 'Avslöjad plan', hidden.id); memory(state, 'discovery', 'En hemlig plan avslöjades', hidden.participants, { causeId: hidden.id }); } }
   else if (story.type === 'punish_crime') resolvePunishment(state, story, choiceId, actionHooks(state), events);
   else if (story.type === 'ransom_offer') resolveRansom(state, story, choiceId, actionHooks(state), events);
+  else if (story.type === 'plot_uncovered') resolvePlotUncovered(state, story, choiceId, actionHooks(state), events);
   story.status = 'resolved'; story.choiceId = choiceId; story.resolvedAt = state.date;
   logEvent(state, events, 'choice', story.title, `${choice.label}. ${choice.description}`, [story.actorId, actor?.id]);
 }
@@ -747,6 +755,7 @@ function annualStep(state, events) {
   updateStatus(state); logEvent(state, events, 'year', 'Årets förvaltning är avslutad', `Statskassan förändras med ${effects.annualRevenue.toFixed(1)} silver. Nya personliga beslut, ålder och politiska förhållanden har behandlats.`, []);
   syncPlotSecrets(state);
   prisonerStep(state, events, actionHooks(state));
+  npcPlotStep(state, events, actionHooks(state));
 }
 
 export function advanceCharacters(original, targetDate, options = {}) {
@@ -778,7 +787,8 @@ export function advanceCharacters(original, targetDate, options = {}) {
 export function getNextCharacterTransitionDate(state, targetDate) {
   const target = normalizeGameDate(targetDate);
   if (!state || state.status.ended || !target || compareGameDates(target, state.date) <= 0) return null;
-  const storyDeadlines = state.stories.filter((story) => (story.type === 'character_event' && story.status === 'open') || (isOfficePromise(story) && story.status === 'waiting')).map((story) => story.dueAt);
+  // An uncovered plot lapses on its due date, so that date is a step of its own and a long jump closes it on the same day as monthly stepping.
+  const storyDeadlines = state.stories.filter((story) => ((story.type === 'character_event' || story.type === 'plot_uncovered') && story.status === 'open') || (isOfficePromise(story) && story.status === 'waiting')).map((story) => story.dueAt);
   const majorityDates = living(state).filter((person) => !adult(state, person)).map((person) => addGameMonths(person.bornAt, ADULT_AGE * 12));
   const dates = [state.nextAnnualDate, getNextHealthTransitionDate(state), ...getEventChainDates(state), ...getSchemeDates(state), ...majorityDates, ...storyDeadlines, target].filter((date) => date && compareGameDates(date, state.date) > 0 && compareGameDates(date, target) <= 0);
   return dates.sort(compareGameDates)[0] || target;

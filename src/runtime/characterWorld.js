@@ -373,6 +373,8 @@ export const getCharacterEventBudget = (fromDate, targetDate) => {
 
 // Model proposals the engine runs itself, with their caps per model turn.
 const GATE_LIMITS = Object.freeze({ realm_effect: 4, npc_intent: 3 });
+// An NPC acts for its own family: an entry only an office holder may use (actorOffice) or that is paid from the realm treasury is never offered as an npc_intent, since npcActionContext always refuses it.
+const npcMayUse = (entry) => !entry.actorOffice && entry.cost.wallet !== "realm";
 const GATE_LABELS = Object.freeze({ realm_effect: "Förändring av rikets läge", npc_intent: "Egen handling av en annan familjs person" });
 // An npc_intent refusal names no actor, action or amount: its reason could reveal another family's plans.
 const NPC_INTENT_REFUSAL = "Ett förslag om en annan familjs handling avvisades.";
@@ -528,7 +530,7 @@ export const buildCharacterPromptContext = (state, { targetDate = "" } = {}) => 
       representative: view.representative, economy: view.economy, succession: view.succession,
       families: view.families, offices: view.offices, people: view.people,
       actions: view.actions, stories: view.stories, memories: view.memories?.slice(-16),
-      contestedActions: Object.values(ACTION_CATALOG).map((entry) => ({ id: entry.id, label: entry.label, durationMonths: entry.durationMonths,
+      contestedActions: Object.values(ACTION_CATALOG).filter(npcMayUse).map((entry) => ({ id: entry.id, label: entry.label, durationMonths: entry.durationMonths,
         target: `exactly one living adult other than the actor${entry.targetFamily === "other" ? ", outside the actor's family" : ""}` })) }),
   ];
   if (targetDate && compareGameDates(targetDate, state.date) > 0) {

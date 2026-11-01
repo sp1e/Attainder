@@ -35,7 +35,8 @@ test('new campaigns carry extensions and keep the main random stream', () => {
     const result = advanceCharacters(state, addGameMonths(state.date, months), { id: `y${months}` });
     assert.equal(result.ok, true, result.error);
     assert.equal(result.state.rngState, expected);
-    assert.equal(result.state.actionRngState, state.actionRngState);
+    // NPC plots (npcPlots.js) start schemes that draw from the action stream, so it moves exactly when a scheme exists. The main stream pin above is untouched by them.
+    assert.equal(result.state.actionRngState === state.actionRngState, result.state.schemes.length === 0);
   }
 });
 
