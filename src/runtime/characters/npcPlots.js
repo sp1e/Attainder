@@ -149,12 +149,13 @@ export function uncoverPlot(state, scheme, memory, hooks) {
   addSecretHolders(state, scheme.secretId, [target.id, representative?.id].filter(Boolean));
   strengthenSecret(state, scheme.secretId);
   const label = ACTION_CATALOG[scheme.actionId].label.toLowerCase();
-  return hooks.openStory({ type: 'plot_uncovered', title: `Komplott avslöjat: ${actor.name}`, description: `${actor.name} ligger bakom en plan (${label}) mot ${target.name}. Du avgör hur komplotten ska mötas.`,
+  return hooks.openStory({ type: 'plot_uncovered', title: `Komplott avslöjad: ${actor.name}`, description: `${actor.name} ligger bakom en plan (${label}) mot ${target.name}. Du avgör hur komplotten ska mötas.`,
     actorId: actor.id, targetId: target.id, familyId: actor.familyId, createdAt: state.date, dueAt: addGameMonths(state.date, STORY_MONTHS), knownBy: 'public',
-    schemeId: scheme.id, secretId: scheme.secretId, plotAction: scheme.actionId, causeId: memory.id });
+    schemeId: scheme.id, secretId: scheme.secretId, plotAction: scheme.actionId, targetWasRuler: target.id === hooks.ruler()?.id, causeId: memory.id });
 }
 
-const crimeFor = (story, hooks) => (story.targetId === hooks.ruler()?.id ? 'treason' : story.plotAction === 'poison' ? 'attempted_murder' : null);
+// targetWasRuler is fixed when the plot is uncovered, so a ruler who dies before the choice does not change the charge.
+const crimeFor = (story) => (story.targetWasRuler === true ? 'treason' : story.plotAction === 'poison' ? 'attempted_murder' : null);
 
 /** The four answers to an uncovered plot. `imprison` is open to a representative who is the ruler; `expose` and `hook` need a plot that is not already public. */
 export function plotUncoveredChoices(state, story, hooks) {
@@ -165,7 +166,7 @@ export function plotUncoveredChoices(state, story, hooks) {
   const gone = !plotter || plotter.diedAt || !secret ? MESSAGES.gone : '';
   const out = gone || (secret.exposed ? MESSAGES.exposed : '');
   const name = plotter?.name ?? 'Komplottmakaren';
-  const crime = crimeFor(story, hooks);
+  const crime = crimeFor(story);
   return [
     { id: 'imprison', label: 'Fängsla komplottmakaren', description: `${name} förs i fängelse efter ett lagligt beslut. Ingen legitimitet går förlorad.`, cost: '0 silver', stress: '0', disabledReason: gone || rulerOnly || (isImprisoned(state, story.actorId) ? 'Personen sitter redan fängslad.' : '') },
     { id: 'expose', label: 'Avslöja komplotten', description: crime ? `Planen görs offentlig som ${CRIME_LABELS[crime].toLowerCase()}. Offrets släkt vänder sig mot ${name}.` : 'Planen görs offentlig.', cost: '0 silver', stress: '0', disabledReason: out },
@@ -178,7 +179,7 @@ export function plotUncoveredChoices(state, story, hooks) {
 export function resolvePlotUncovered(state, story, choiceId, hooks, events = []) {
   if (choiceId === 'imprison') imprisonPerson(state, story.actorId, hooks.ruler().familyId, events, hooks, { lawful: true });
   else if (choiceId === 'expose') {
-    const crime = crimeFor(story, hooks);
+    const crime = crimeFor(story);
     if (crime) exposeCrime(state, { secretId: story.secretId, crime, victimId: story.targetId }, events, hooks);
     else exposeSecret(state, story.secretId);
   } else if (choiceId === 'hook') grantHook(state, { ownerId: hooks.activeRepresentative().id, targetId: story.actorId, strength: 'strong', causeId: story.causeId });

@@ -3,10 +3,11 @@ import assert from 'node:assert/strict';
 import { addGameMonths, compareGameDates } from '../gameDates.js';
 import { buildCharacterPromptContext } from '../characterWorld.js';
 import { ACTION_CATALOG } from './actionCatalog.js';
-import { actionHooks, advanceCharacters, createCharacterSystem, executeCharacterCommand, getCharacterPresentation, getNextCharacterTransitionDate, normalizeCharacterSystem } from './index.js';
+import { tierFor } from './actionResolution.js';
+import { actionHooks, advanceCharacters, createCharacterSystem, estimateCharacterAction, executeCharacterCommand, getCharacterPresentation, getNextCharacterTransitionDate, normalizeCharacterSystem } from './index.js';
 import { actionRandom, plotRandom } from './extensions.js';
 import { npcPlotStep, plotUncoveredChoices } from './npcPlots.js';
-import { imprisonPerson, isImprisoned } from './prisoners.js';
+import { imprisonPerson, isImprisoned, isLawfulSubject } from './prisoners.js';
 import { activeHooks, createSecret, exposeSecret } from './secrets.js';
 
 const REP = 'person-0-0';
@@ -461,6 +462,67 @@ test('expose of an undermine against someone other than the ruler makes the secr
   assert.equal(after.stories.some((item) => item.type === 'punish_crime'), false);
 });
 
+// The ruler jails Namar through the catalog entry at a seed that lets it succeed.
+function jail(state) {
+  const intent = { actionId: 'imprison', actorId: REP, targetIds: [NAMAR] };
+  const est = estimateCharacterAction(state, intent);
+  assert.equal(est.ok, true, est.reason);
+  const seed = actionSeedWhere(2, ([success, secrecy]) => ['clean_success', 'exposed_success'].includes(tierFor(success, secrecy, est.success.value, est.secrecy.value)));
+  return ok(run(withSeed(state, seed), 'attempt_action', intent));
+}
+
+test('a plot exposed as treason makes the later arrest lawful, and a bare suspect stays unlawful', () => {
+  const found = uncovered({ actionId: 'undermine', actorId: NAMAR, targetId: REP });
+  const control = jail(found);
+  assert.equal(isImprisoned(control, NAMAR), true);
+  assert.equal(control.realm.legitimacy, found.realm.legitimacy - 5, 'an arrest on suspicion alone costs legitimacy');
+  const exposed = choose(found, 'expose');
+  assert.equal(isLawfulSubject(exposed, NAMAR), true);
+  const jailed = jail(exposed);
+  assert.equal(isImprisoned(jailed, NAMAR), true);
+  assert.equal(jailed.realm.legitimacy, exposed.realm.legitimacy, 'a traitor exposed in public is jailed lawfully');
+  assert.match(jailed.log.findLast((item) => item.type === 'imprisonment').description, /efter ett avslöjat brott/);
+});
+
+test('an exposed poisoning makes the poisoner, not the victim, a lawful subject', () => {
+  const found = uncovered({ actionId: 'poison', actorId: NAMAR, targetId: REP });
+  const exposed = choose(found, 'expose');
+  assert.equal(exposed.memories.some((item) => item.type === 'crime' && item.participants[0] === NAMAR && item.participants[1] === REP), true);
+  assert.equal(isLawfulSubject(exposed, NAMAR), true);
+  assert.equal(isLawfulSubject(exposed, REP), false, 'the victim is the second participant of the crime memory');
+  assert.equal(isLawfulSubject(found, NAMAR), false, 'nothing is public before the choice');
+});
+
+test('the charge is fixed when the plot is uncovered, even if the ruler dies before the choice', () => {
+  const found = uncovered({ actionId: 'undermine', actorId: NAMAR, targetId: REP });
+  assert.equal(storyOf(found).targetWasRuler, true);
+  const dead = copy(found);
+  actionHooks(dead).kill([REP], [], 'Sjukdom');
+  assert.notEqual(dead.offices.ruler.holderId, REP, 'the crown has passed');
+  const after = choose(dead, 'expose');
+  assert.equal(after.log.find((item) => item.type === 'crime_exposed').title, 'Förräderi avslöjat');
+  const family = uncovered({ mode: 'family', familyId: NAMARS, actionId: 'undermine', actorId: TAREK, targetId: 'person-1-0' });
+  assert.equal(storyOf(family).targetWasRuler, false);
+});
+
+test('a crime case opened mid-month lapses on the same day in a long jump and in monthly stepping', () => {
+  const dom = (state) => ({ ...copy(state), revision: 0, appliedCommandIds: [] });
+  let found = uncovered({ actionId: 'undermine', actorId: NAMAR, targetId: REP });
+  found = advance(found, '-0300-02-15');
+  found = choose(found, 'expose');
+  const crimeCase = found.stories.find((item) => item.type === 'punish_crime');
+  assert.ok(crimeCase, 'the exposed treason opens a case');
+  const end = addGameMonths(found.date, 30);
+  const whole = advance(copy(found), end);
+  let split = copy(found);
+  for (let m = 1; m <= 30; m++) split = normalizeCharacterSystem(copy(advance(split, addGameMonths(found.date, m))));
+  const closed = (state) => state.stories.find((item) => item.id === crimeCase.id);
+  assert.equal(closed(whole).status, 'closed');
+  assert.equal(closed(whole).resolvedAt, closed(split).resolvedAt);
+  assert.deepEqual(dom(split), dom(whole));
+  assert.equal(closed(whole).resolvedAt, crimeCase.dueAt, 'closed on its due date');
+});
+
 test('hook gives the representative a strong hook over the plotter that an action can use', () => {
   const found = uncovered({ actionId: 'poison', actorId: NAMAR, targetId: REP });
   const after = choose(found, 'hook');
@@ -512,7 +574,7 @@ test('a discovery that does not concern the controlled family opens no story', (
 
 test('a whole advance equals the same months in single steps with a save in between', () => {
   const dom = (state) => ({ ...copy(state), revision: 0, appliedCommandIds: [] });
-  let plots = 0, stories = 0, affairs = 0;
+  let plots = 0, stories = 0, affairs = 0, resolved = 0;
   for (const k of [1, 2, 3, 4, 5, 6, 7, 8]) {
     const state = hostile(base(), NAMAR, -10);
     opinionOf(state, BAREK, DANEL, -80);
@@ -527,10 +589,12 @@ test('a whole advance equals the same months in single steps with a save in betw
     for (let m = 1; m <= 38; m++) split = normalizeCharacterSystem(copy(advance(split, addGameMonths(start.date, m))));
     assert.deepEqual(dom(split), dom(whole), `seed ${k}`);
     plots += whole.schemes.filter((scheme) => scheme.commandId?.startsWith('npc-plot:')).length;
+    resolved += whole.schemes.filter((scheme) => scheme.commandId?.startsWith('npc-plot:') && scheme.status === 'resolved').length;
     stories += whole.stories.filter((item) => item.type === 'plot_uncovered').length;
     affairs += whole.secrets.filter((item) => item.type === 'affair' && item.subjectId === NAMAR).length;
   }
   assert.ok(plots > 0, 'the comparison covered real NPC plots');
+  assert.ok(resolved > 0, 'and a resolved one, so the due-date resolution is covered');
   assert.ok(stories > 0, 'and an uncovered one');
   assert.ok(affairs > 0, 'and an affair');
 });

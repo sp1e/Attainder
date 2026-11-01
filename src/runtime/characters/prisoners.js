@@ -67,9 +67,11 @@ export function heldPrisoners(state, captorFamilyId) {
 
 const heldById = (state, id) => list(state).find((record) => record.id === id && record.status === 'held') ?? null;
 
-/** Whether an imprisonment of this person is lawful: the person is the subject of an exposed secret that records a crime (crimeOfSecret). An exposed opposition plot secret (undermine, a yearly plot) records no crime and does not count. */
+/** Whether an imprisonment of this person is lawful: the person is the subject of an exposed secret that records a crime (crimeOfSecret), or the criminal of a 'crime' memory that exposeCrime wrote. An exposed opposition plot secret (undermine, a yearly plot) records no crime and does not count. */
 export function isLawfulSubject(state, personId) {
-  return (Array.isArray(state.secrets) ? state.secrets : []).some((secret) => secret.subjectId === personId && secret.exposed === true && crimeOfSecret(state, secret.id) !== null);
+  const convicted = (Array.isArray(state.secrets) ? state.secrets : []).some((secret) => secret.subjectId === personId && secret.exposed === true && crimeOfSecret(state, secret.id) !== null);
+  // exposeCrime writes a 'crime' memory whose first participant is the criminal (the second is the victim). That covers a plot exposed as treason or attempted murder, whose secret has no action log entry for crimeOfSecret to read.
+  return convicted || (Array.isArray(state.memories) ? state.memories : []).some((memory) => memory.type === 'crime' && memory.participants?.[0] === personId);
 }
 
 /**

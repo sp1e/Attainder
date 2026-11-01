@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { addGameMonths } from '../gameDates.js';
+import { addGameMonths, compareGameDates } from '../gameDates.js';
 import { advanceCharacters, createCharacterSystem, getCharacterAge, normalizeCharacterSystem } from './index.js';
 import { validateCharacterExtensions } from './extensions.js';
 import { NAME_POOL, SKILL_LABELS, TRAITS } from './content.js';
@@ -285,8 +285,9 @@ test('staff in the world leave the number of draws from the main stream unchange
     const result = advanceCharacters(state, addGameMonths(state.date, months), { id: `years-${months}` });
     assert.equal(result.ok, true, result.error);
     assert.equal(result.state.rngState, expected);
-    // NPC plots (npcPlots.js) start schemes that draw from the action stream, so it moves exactly when a scheme exists.
-    assert.equal(result.state.actionRngState === actionAtStart, result.state.schemes.length === 0);
+    // NPC plots (npcPlots.js) start schemes whose monthly checks draw from the action stream, so it moves exactly when some scheme has had its first check (a month after its start).
+    const checked = result.state.schemes.some((scheme) => compareGameDates(addGameMonths(scheme.startedAt, 1), result.state.date) <= 0);
+    assert.equal(result.state.actionRngState === actionAtStart, !checked);
     assert.equal(Object.keys(result.state.courtStaff).length, 4);
   }
   assert.equal(state.rngState, rngAtStart, 'the input state is not mutated');

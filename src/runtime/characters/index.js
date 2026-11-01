@@ -787,8 +787,8 @@ export function advanceCharacters(original, targetDate, options = {}) {
 export function getNextCharacterTransitionDate(state, targetDate) {
   const target = normalizeGameDate(targetDate);
   if (!state || state.status.ended || !target || compareGameDates(target, state.date) <= 0) return null;
-  // An uncovered plot lapses on its due date, so that date is a step of its own and a long jump closes it on the same day as monthly stepping.
-  const storyDeadlines = state.stories.filter((story) => ((story.type === 'character_event' || story.type === 'plot_uncovered') && story.status === 'open') || (isOfficePromise(story) && story.status === 'waiting')).map((story) => story.dueAt);
+  // A plot, a crime case and a ransom offer lapse on their due date, so that date is a step of its own and a long jump closes them on the same day as monthly stepping.
+  const storyDeadlines = state.stories.filter((story) => ((['character_event', 'plot_uncovered', 'punish_crime', 'ransom_offer'].includes(story.type)) && story.status === 'open') || (isOfficePromise(story) && story.status === 'waiting')).map((story) => story.dueAt);
   const majorityDates = living(state).filter((person) => !adult(state, person)).map((person) => addGameMonths(person.bornAt, ADULT_AGE * 12));
   const dates = [state.nextAnnualDate, getNextHealthTransitionDate(state), ...getEventChainDates(state), ...getSchemeDates(state), ...majorityDates, ...storyDeadlines, target].filter((date) => date && compareGameDates(date, state.date) > 0 && compareGameDates(date, target) <= 0);
   return dates.sort(compareGameDates)[0] || target;
