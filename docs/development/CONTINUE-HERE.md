@@ -18,7 +18,7 @@ Updated on 1 November 2026.
 
 ## Verification
 
-- Full serial suite on 1 November 2026 at commit `bb9d5c7`, after the final review fixes: 3,808 tests, 3,805 pass, 0 fail, 1 skipped, 2 todo, in 189 seconds. Phase 1 ended at 3,543 tests, so Phase 2 added 265. `server/payloadUpdate.test.js` can fail on Windows with an `EPERM` rename; it passed in this run.
+- Full serial suite on 3 November 2026 at commit `ce1e63e`, after the final review fixes: 3,811 tests, 3,808 pass, 0 fail, 1 skipped, 2 todo, in 172 seconds. Phase 1 ended at 3,543 tests, so Phase 2 added 268. `server/payloadUpdate.test.js` can fail on Windows with an `EPERM` rename; it passed in this run.
 - `npm run lint`: 18 errors and 71 warnings, the same as `origin/main`. Phase 2 adds no lint finding. An earlier run showed 20 errors, because the name `useHook` in `secrets.js` made the React hooks rule fire in `actionResolution.js` and `conversation.js`; both files now import it as `consumeHook`.
 - `npm run build`: exit code 0.
 
