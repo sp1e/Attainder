@@ -1,10 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readdirSync, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { setRuntimeAssetEndpoints } from "./assets.js";
-import { estimateCharacterAction, getCharacterPresentation } from "./characters/index.js";
+import { estimateCharacterAction, estimateConversation, getCharacterPresentation } from "./characters/index.js";
 import { initializeCampaignCharacters, advanceCharacterYear, submitCharacterCommand,
   readVisibleCharacterState, getCharacterRuntimeStatus, revealLatestCharacterTurn,
-  commitCharacterCampaign, recordCharacterNarrative, estimateCharacterActionForView } from "./characterRuntime.js";
+  commitCharacterCampaign, recordCharacterNarrative, estimateCharacterActionForView,
+  estimateConversationForView, submitConversationRequest, getConversationViewForModel } from "./characterRuntime.js";
 
 test("runtime campaign start, command, date, shared save and failed-write recovery use the same world", async () => {
   const originalFetch = globalThis.fetch;
@@ -169,4 +172,69 @@ test("estimateCharacterActionForView gives the odds of the visible state and wri
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+test("a conversation is held only through submitConversationRequest, never through a player command", async () => {
+  const originalFetch = globalThis.fetch;
+  const data = {
+    world: { units: [] },
+    game: { country: "Hadara", gameDate: "-0300-01-01", startDate: "-0300-01-01", round: 1 },
+    events: [], actions: [], chat: [], colors: { Hadara: "#789abc" }, snapshots: [],
+  };
+  let writes = 0;
+  globalThis.fetch = async (url, options = {}) => {
+    const key = new URL(String(url), "http://runtime.test").pathname.split("/").at(-1);
+    if (options.method === "PUT") { writes += 1; data[key] = JSON.parse(options.body); }
+    return new Response(JSON.stringify(data[key] ?? {}), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  setRuntimeAssetEndpoints({ token: "characters-conversation-test" });
+  try {
+    const init = await initializeCampaignCharacters({ mode: "family", seed: 41 });
+    assert.equal(init.ok, true, init.error);
+    const view = getCharacterPresentation(init.state);
+    assert.ok(view.conversationTargets.length > 0);
+    const request = { personId: view.conversationTargets[0].id, kind: "support", offerSilver: 0, hookId: null, arguments: [], argumentScore: 0 };
+    // The estimate reads the visible state, writes nothing and names its revision.
+    const writesBefore = writes;
+    const estimate = await estimateConversationForView(request);
+    assert.equal(estimate.ok, true, estimate.reason);
+    assert.deepEqual(estimate, { ...estimateConversation(data.world.characterSystem, request), revision: data.world.characterSystem.revision });
+    assert.equal(writes, writesBefore);
+    assert.equal((await estimateConversationForView({ ...request, kind: "bribe" })).ok, false);
+    // The model view carries the engine's brief on the person and writes nothing.
+    const modelView = await getConversationViewForModel(request.personId);
+    assert.equal(modelView.conversationBrief.personId, request.personId);
+    assert.equal(writes, writesBefore);
+    // A player command with the same payload is refused and nothing is written.
+    const refused = await submitCharacterCommand({ id: "converse-player", expectedRevision: init.state.revision, type: "converse_request", payload: request });
+    assert.equal(refused.ok, false);
+    assert.equal(refused.error, "Samtalsförfrågningar kan bara göras i samtalssteget.");
+    assert.equal(data.world.characterSystem.conversations.length, 0);
+    // The conversation step is accepted and the exchange is stored.
+    const held = await submitConversationRequest(request, { expectedRevision: estimate.revision });
+    assert.equal(held.ok, true, held.error);
+    assert.equal(data.world.characterSystem.conversations.length, 1);
+    assert.equal(data.world.characterSystem.conversations[0].personId, request.personId);
+    // The estimate's revision is honoured: a stale one is refused.
+    const stale = await submitConversationRequest({ ...request, personId: view.conversationTargets[1].id }, { expectedRevision: estimate.revision });
+    assert.equal(stale.ok, false);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("origin converse is set in exactly one place in the source", () => {
+  const roots = [".", "../Game"].map((path) => fileURLToPath(new URL(path, import.meta.url)).replace(/[\\/]$/, ""));
+  const found = [];
+  const walk = (dir) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = `${dir}/${entry.name}`;
+      if (entry.isDirectory()) { if (entry.name !== "node_modules") walk(path); continue; }
+      if (!/\.(js|jsx|mjs)$/.test(entry.name) || /\.test\./.test(entry.name)) continue;
+      const hits = readFileSync(path, "utf8").match(/origin\s*[:=]\s*["']converse["']/g);
+      if (hits) found.push([entry.name, hits.length]);
+    }
+  };
+  roots.forEach(walk);
+  assert.deepEqual(found, [["characterRuntime.js", 1]]);
 });

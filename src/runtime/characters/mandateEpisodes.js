@@ -39,15 +39,16 @@ function newTerm(state, record, regentId) {
   record.requestAfter = {};
 }
 
-function eligible(state, principal, regent, scope, basis) {
-  if (!regent || regent.id === principal.id || !canExerciseMandate(regent, state.date)) return false;
+function eligible(state, principal, regent, scope, basis, excluded) {
+  if (!regent || regent.id === principal.id || !canExerciseMandate(regent, state.date) || excluded(regent)) return false;
   const family = state.families[regent.familyId];
   return Boolean(family && (basis === 'minority' || !family.exiled || (scope === 'family' && regent.familyId === principal.familyId)));
 }
 
 // Only representation changes here. Succession, ownership, money and RNG remain
 // with their existing systems. A contested handover stays contested while ill.
-export function reconcileMandateEpisode(state, id, principalId, { emit = () => {}, events = [], silent = false } = {}) {
+// `excluded(person)` rules a person out as regent (the engine passes its prisoners); a sitting regent it rules out is replaced.
+export function reconcileMandateEpisode(state, id, principalId, { emit = () => {}, events = [], silent = false, excluded = () => false } = {}) {
   ensureMandateEpisodes(state);
   state.regencies ||= {};
   const principal = state.people[principalId];
@@ -82,13 +83,13 @@ export function reconcileMandateEpisode(state, id, principalId, { emit = () => {
     const basis = grown ? 'incapacity' : 'minority';
     record = { id, principalId, regentId: null, basis, phase: basis, episodeId: `mandate-episode-${++state.mandateSequence}`,
       startedAt: state.date, handoverDueAt: null, grants: [], requestAfter: {}, causeConditionIds: causes };
-    newTerm(state, record, selectMandateRegent(state, { principalId, scope, basis }));
+    newTerm(state, record, selectMandateRegent(state, { principalId, scope, basis, excluded }));
     state.regencies[id] = record;
     if (!silent && basis === 'incapacity') emit(state, events, 'incapacity_regency', 'Ett tillfälligt mandat behövs',
       record.regentId ? `${principal.name} kan inte utöva sitt mandat under den svåra sjukdomen. ${state.people[record.regentId].name} företräder personen tills förmågan återkommer.` :
         `${principal.name} kan inte utöva sitt mandat under den svåra sjukdomen. Ingen behörig företrädare finns just nu.`, [principalId, record.regentId]);
-  } else if (!eligible(state, principal, state.people[record.regentId], scope, record.basis)) {
-    const replacement = selectMandateRegent(state, { principalId, scope, basis: record.basis });
+  } else if (!eligible(state, principal, state.people[record.regentId], scope, record.basis, excluded)) {
+    const replacement = selectMandateRegent(state, { principalId, scope, basis: record.basis, excluded });
     if (replacement !== record.regentId) newTerm(state, record, replacement);
   }
   record.causeConditionIds = causes;

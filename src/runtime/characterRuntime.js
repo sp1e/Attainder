@@ -9,7 +9,7 @@ import {
 } from "./gameState.js";
 import { beginSimulation, endSimulation, isSimulationBusy } from "../Game/AI/simulationStatus.js";
 import { unseenEvents, latestTurnEventIds } from "./unseenEvents.js";
-import { createCharacterSystem, estimateCharacterAction } from "./characters/index.js";
+import { createCharacterSystem, estimateCharacterAction, estimateConversation, getCharacterPresentation, getConversationBrief } from "./characters/index.js";
 import { characterTransitionEvents, executeCharacterWorldCommand, planCharacterAdvance } from "./characterWorld.js";
 import { commitCharacterTransaction, recoverCharacterTransaction } from "./characterPersistence.js";
 
@@ -61,6 +61,22 @@ export const estimateCharacterActionForView = async (intent) => {
   const state = await readVisibleCharacterState();
   if (!state) return { ok: false, reason: "Kampanjen saknar karaktärssystem." };
   return { ...estimateCharacterAction(state, intent), revision: state.revision };
+};
+
+// Odds for one conversation request on the state the player sees. Read-only like the action estimate above:
+// only `display` is for the player, and `revision` names the state the odds belong to.
+export const estimateConversationForView = async (request) => {
+  const state = await readVisibleCharacterState();
+  if (!state) return { ok: false, reason: "Kampanjen saknar karaktärssystem." };
+  return { ...estimateConversation(state, request), revision: state.revision };
+};
+
+// The presentation plus the engine's brief on one person, as the conversation model calls read it (extractConversationRequest, replyAsCharacter).
+// Read-only; the brief holds the speaker's secrets as labels, so it goes to the model and never into a stored or displayed view.
+export const getConversationViewForModel = async (personId) => {
+  const state = await readVisibleCharacterState();
+  if (!state) return null;
+  return { ...getCharacterPresentation(state), conversationBrief: getConversationBrief(state, personId) };
 };
 
 // Shared by local decisions and the connected model's completed turn. The
@@ -144,6 +160,17 @@ export const recordCharacterNarrative = (payload = {}) => withCharacterMutation(
   const operationId = idFor("character-narrative");
   const result = executeCharacterWorldCommand(bundle.world, { id: operationId, type: "record_action_narrative", payload,
     expectedRevision: bundle.world.characterSystem.revision, origin: "narrate" });
+  return result.ok ? { ...result, operationId,
+    events: characterTransitionEvents(bundle.world.characterSystem, result, operationId) } : result;
+});
+
+// The conversation step's only entry: the one caller that sets origin "converse", which converse_request requires.
+// `expectedRevision` is the revision the estimate was made on; without it the current revision is used.
+export const submitConversationRequest = (request = {}, { id, expectedRevision } = {}) => withCharacterMutation(async (bundle) => {
+  if (!bundle.world.characterSystem) return failure("Kampanjen saknar karaktärssystem.");
+  const operationId = id || idFor("character-conversation");
+  const result = executeCharacterWorldCommand(bundle.world, { id: operationId, type: "converse_request", payload: request,
+    expectedRevision: expectedRevision ?? bundle.world.characterSystem.revision, origin: "converse" });
   return result.ok ? { ...result, operationId,
     events: characterTransitionEvents(bundle.world.characterSystem, result, operationId) } : result;
 });

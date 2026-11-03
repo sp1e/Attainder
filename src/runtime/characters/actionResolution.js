@@ -1,9 +1,13 @@
 import { compareGameDates, normalizeGameDate } from '../gameDates.js';
-import { ACTION_CATALOG, TIER_IDS, effectDefault } from './actionCatalog.js';
+import { ACTION_CATALOG, RUMOR_TOPICS, TIER_IDS, effectDefault } from './actionCatalog.js';
 import { ODDS_MAX, ODDS_MIN, bandFor, estimateAction } from './actionOdds.js';
+import { CRIME_LABELS, crimeOfSecret, exposeCrime } from './crimes.js';
 import { ensureStaff } from './courtStaff.js';
 import { actionRandom } from './extensions.js';
-import { HOOK_STRENGTHS, SECRET_TYPES, createSecret, grantHook } from './secrets.js';
+import { imprisonPerson, imprisonRefusal, isImprisoned } from './prisoners.js';
+import { spreadRumor } from './rumors.js';
+// useHook is imported as consumeHook: the react-hooks lint rule reads the name as a React hook.
+import { HOOK_STRENGTHS, SECRET_TYPES, addSecretHolders, createSecret, exposeSecret, grantHook, useHook as consumeHook } from './secrets.js';
 import { startScheme } from './schemes.js';
 
 // Resolution of contested actions. The engine decides: an attempt is validated by estimateAction, paid, rolled twice on the action stream (success, then secrecy) and lands on one of five tiers whose effect envelope is applied at its defaults. A later narrative may move a ranged effect inside its envelope and never outside it.
@@ -25,7 +29,8 @@ const REFUSAL = Object.freeze({ base: 40, loyalty: 0.4, opinion: 0.3, ambitious:
 // A failed roll in the top tenth of the failure range backfires.
 const BACKFIRE_SHARE = 0.9;
 const TITLE_MAX = 120, TEXT_MAX = 1500;
-const INFLUENCE_MAX = 100, STRESS_MAX = 200;
+const INFLUENCE_MAX = 100, STRESS_MAX = 200, LEGITIMACY_MAX = 100;
+const GRIEVANCE_MIN = -40, GRIEVANCE_MAX = 40;
 const RECENT_LIMIT = 10;
 const PRECISIONS = new Set(['exact', 'five', 'three']);
 // charge() prices stress per tag (stressFor in index.js) and gives 0 for a tag it does not know. A refused order passes this tag, so the representative pays no stress for an order that never ran.
@@ -168,16 +173,24 @@ function describeAttempt(state, resolution) {
   return `Utförare: ${names([resolution.actorId], state.people)}. Mål: ${names(resolution.targetIds, state.people)}.${agents}`;
 }
 
-/** Rolls success, then secrecy, picks the tier, writes one chronicle event and the anchor memory, applies the tier's envelope at its defaults and appends the entry to state.actionLog. Used by resolveAttempt and, on a scheme's due date, by resolveScheme. */
-export function completeResolution(state, resolution, entry, events, hooks) {
+// A hook named in the means is used once, whatever the tier (a weak hook is spent, a strong one stays). The estimate has already checked that it can be used; the log entry records which hook was used.
+function spendHook(state, resolution, means) {
+  if (typeof means?.hookId !== 'string') return;
+  consumeHook(state, means.hookId);
+  resolution.hookId = means.hookId;
+}
+
+/** Rolls success, then secrecy, picks the tier, writes one chronicle event and the anchor memory, applies the tier's envelope at its defaults and appends the entry to state.actionLog. Used by resolveAttempt and, on a scheme's due date, by resolveScheme. `means` are the attempt's means (secretId, hookId and topic matter here); a hook in them is used once, whatever the tier. */
+export function completeResolution(state, resolution, entry, events, hooks, means = {}) {
   resolution.rolls.success = roll(state);
   resolution.rolls.secrecy = roll(state);
   resolution.tier = tierFor(resolution.rolls.success, resolution.rolls.secrecy, resolution.estimate.success, resolution.estimate.secrecy);
+  spendHook(state, resolution, means);
   const participants = [resolution.actorId, ...resolution.targetIds];
   const event = hooks.logEvent(events, 'action_resolution', outcomeTitle(entry, resolution.tier), describeAttempt(state, resolution), participants, playerEvent(state, resolution, hooks));
   const knownBy = PUBLIC_TIERS.has(resolution.tier) ? 'public' : resolution.playerControlled ? playerWitnesses(resolution, hooks) : [resolution.actorId];
   resolution.memoryId = hooks.memory('action', event.title, participants, { causeId: event.id, knownBy, resolutionId: resolution.id }).id;
-  resolution.effects = applyTierEffects(state, resolution, entry, hooks);
+  resolution.effects = applyTierEffects(state, resolution, entry, hooks, events, means);
   state.actionLog.push(resolution);
   return resolution;
 }
@@ -193,7 +206,7 @@ function refuseCommandIds(intent, hooks) {
 export function resolveScheme(state, scheme, estimate, events, hooks) {
   const resolution = openResolution(state, { id: scheme.commandId }, estimate, scheme);
   resolution.agentIds = hireAgents(state, resolution, scheme.means, hooks);
-  return completeResolution(state, resolution, ACTION_CATALOG[scheme.actionId], events, hooks);
+  return completeResolution(state, resolution, ACTION_CATALOG[scheme.actionId], events, hooks, scheme.means);
 }
 
 /** Runs the command attempt_action (payload = intent). Throws a Swedish sentence when the attempt is refused before any charge. Returns the resolution entry it appended to state.actionLog, or, for an action that takes months, the scheme it started. */
@@ -209,7 +222,7 @@ export function resolveAttempt(state, command, events, hooks) {
   if (drawRefusal(state, resolution, ctx)) return refuseOrder(state, resolution, entry, estimate, events, hooks);
   payForAction(state, resolution, estimate, hooks);
   resolution.agentIds = hireAgents(state, resolution, intent.means, hooks);
-  return completeResolution(state, resolution, entry, events, hooks);
+  return completeResolution(state, resolution, entry, events, hooks, intent.means);
 }
 
 /**
@@ -226,6 +239,7 @@ const rangedRecord = (effect) => { const value = effectDefault(effect); return {
 const FIELDS = Object.freeze({
   influence: { holder: (state, effect) => state.families[effect.familyId], key: 'influence', max: INFLUENCE_MAX },
   stress: { holder: (state, effect) => state.people[effect.personId], key: 'stress', max: STRESS_MAX },
+  legitimacy: { holder: (state) => state.realm, key: 'legitimacy', max: LEGITIMACY_MAX },
 });
 // Applies a bounded effect to its field from `base` (the field without this effect) and records the change it took.
 function settleField(state, record, base) {
@@ -235,6 +249,13 @@ function settleField(state, record, base) {
   record.applied = applied;
   return record;
 }
+// Makes a secret public: through exposeCrime when it records a crime (so the consequences of the crime follow), else just as a secret.
+function exposeHeldSecret(state, secret, events, hooks) {
+  const found = crimeOfSecret(state, secret.id);
+  if (found) exposeCrime(state, { secretId: secret.id, crime: found.crime, victimId: found.victimId }, events, hooks);
+  else exposeSecret(state, secret.id);
+}
+
 const APPLY = Object.freeze({
   opinion(state, effect, { roles, label, causeId, hooks }) {
     const record = { kind: 'opinion', fromId: roles[effect.from], toId: roles[effect.to], causeId, label, ...rangedRecord(effect) };
@@ -257,6 +278,58 @@ const APPLY = Object.freeze({
     const secret = createSecret(state, { type: effect.type, subjectId: roles[effect.subject], holderIds: effect.holders.map((role) => roles[role]), evidence: 'weak', causeId });
     return { kind: 'secret', type: secret.type, subjectId: secret.subjectId, holderIds: [...secret.holderIds], secretId: secret.id };
   },
+  kill(state, effect, { roles, hooks, events }) {
+    const personId = roles[effect.who], record = { kind: 'kill', personId, reason: effect.reason };
+    if (personOf(state, personId)?.diedAt) return { ...record, applied: false };
+    hooks.kill([personId], events, effect.reason);
+    return record;
+  },
+  // Secret first, then the exposure (which needs the secret): a murder of kin is recorded as kinslaying. The agents are court staff, not people, so the actor is the only holder.
+  crime(state, effect, { roles, causeId, hooks, events }) {
+    const crime = effect.crime === 'murder' && hooks.related(roles.actor, roles.target) ? 'kinslaying' : effect.crime;
+    const secret = createSecret(state, { type: effect.crime === 'murder' ? 'murder' : 'plot', subjectId: roles.actor, holderIds: [roles.actor], evidence: effect.exposed ? 'strong' : 'weak', causeId });
+    if (effect.exposed) exposeCrime(state, { secretId: secret.id, crime, victimId: roles.target }, events, hooks);
+    return { kind: 'crime', crime, secretId: secret.id, exposed: effect.exposed };
+  },
+  legitimacy(state, effect, { roles, hooks }) {
+    if (roles.actor !== hooks.ruler()?.id) return { kind: 'legitimacy', applied: false };
+    return settleField(state, { kind: 'legitimacy', ...rangedRecord(effect) }, state.realm.legitimacy);
+  },
+  // The learner takes the strongest unexposed secret about the target that they do not hold yet (the earlier secret on a tie). Nothing to learn gives secretId null.
+  reveal(state, effect, { roles }) {
+    const learnerId = roles[effect.who];
+    const lacking = state.secrets.filter((secret) => secret.subjectId === roles.target && !secret.exposed && !secret.holderIds.includes(learnerId));
+    const secret = lacking.find((item) => item.evidence === 'strong') ?? lacking[0] ?? null;
+    if (secret) addSecretHolders(state, secret.id, [learnerId]);
+    return { kind: 'reveal', secretId: secret ? secret.id : null };
+  },
+  // The hook is as strong as the secret's evidence. When the blackmail is exposed the secret goes public too, as a crime when the action log knows it as one.
+  hook_from_secret(state, effect, { roles, causeId, hooks, events, means }) {
+    const secret = state.secrets.find((item) => item.id === means.secretId);
+    if (!secret) throw new Error('Hemligheten finns inte.');
+    const hook = grantHook(state, { ownerId: roles.actor, targetId: roles.target, strength: secret.evidence, causeId });
+    if (effect.exposed) exposeHeldSecret(state, secret, events, hooks);
+    return { kind: 'hook_from_secret', secretId: secret.id, hookId: hook.id, strength: hook.strength, exposed: effect.exposed === true };
+  },
+  // The target goes to prison, held by the actor's family (prisoners.js). A target who died, already sits in prison or now holds the crown or the representation (imprisonRefusal) gives the bare record with applied false, as a second kill does.
+  imprison(state, effect, { roles, hooks, events }) {
+    const personId = roles[effect.who], person = personOf(state, personId), record = { kind: 'imprison', personId };
+    if (!person || person.diedAt || isImprisoned(state, personId) || imprisonRefusal(personId, hooks)) return { ...record, applied: false };
+    return { ...record, prisonerId: imprisonPerson(state, personId, state.people[roles.actor].familyId, events, hooks).id };
+  },
+  // A fixed change to a family's grievance, kept inside its bounds. `applied` is the change the bound allowed.
+  grievance(state, effect, { roles }) {
+    const familyId = state.people[roles[effect.family]].familyId, family = state.families[familyId];
+    const next = clamp(family.grievance + effect.amount, GRIEVANCE_MIN, GRIEVANCE_MAX);
+    const applied = next - family.grievance;
+    family.grievance = next;
+    return { kind: 'grievance', familyId, amount: effect.amount, applied };
+  },
+  // A made-up rumor about the target on means.topic, heard by every family (rumors.js). The record names the rumor so that the log can be checked against state.rumors.
+  rumor(state, effect, { roles, means, resolutionId }) {
+    const item = spreadRumor(state, { topic: means.topic, subjectId: roles.target, resolutionId });
+    return { kind: 'rumor', topic: item.topic, rumorId: item.id };
+  },
   memory(state, effect, { roles, causeId, hooks }) {
     const knownBy = effect.visibility === 'private' ? [roles.actor] : 'public';
     const item = hooks.memory('action', effect.title, [roles.actor, roles.target], { causeId, knownBy });
@@ -264,9 +337,9 @@ const APPLY = Object.freeze({
   },
 });
 
-/** Applies every effect of the resolution's tier at its default and returns the applied effects. Opinions go through hooks.opinionCause with the anchor memory (resolution.memoryId) as cause; memories through hooks.memory. Exported for Task 7. */
-export function applyTierEffects(state, resolution, entry, hooks) {
-  const context = { roles: { actor: resolution.actorId, target: resolution.targetIds[0] }, label: outcomeTitle(entry, resolution.tier), causeId: resolution.memoryId, hooks };
+/** Applies every effect of the resolution's tier at its default and returns the applied effects. Opinions go through hooks.opinionCause with the anchor memory (resolution.memoryId) as cause; memories through hooks.memory. `events` is the command's event list, where a death or an exposed crime is chronicled. `means` are the attempt's means: the effects hook_from_secret and rumor read means.secretId and means.topic. Exported for Task 7. */
+export function applyTierEffects(state, resolution, entry, hooks, events = [], means = {}) {
+  const context = { roles: { actor: resolution.actorId, target: resolution.targetIds[0] }, label: outcomeTitle(entry, resolution.tier), causeId: resolution.memoryId, resolutionId: resolution.id, hooks, events, means: means ?? {} };
   return entry.tiers[resolution.tier].effects.map((effect) => APPLY[effect.kind](state, effect, context));
 }
 
@@ -369,6 +442,7 @@ function checkIdentity(state, entry, known) {
   if (!canonicalPast(entry.date, state.date)) fail(LOG.date);
   if (typeof entry.playerControlled !== 'boolean' || typeof entry.refused !== 'boolean' || !PRECISIONS.has(entry.precision)) fail(LOG.entry);
   if (!known.memories.has(entry.memoryId)) fail(LOG.memory);
+  if (Object.hasOwn(entry, 'hookId') && !known.hooks.has(entry.hookId)) fail(LOG.effect);
 }
 
 // The refusal draw exists exactly when estimate.refusal is set; the entry is refused exactly when that draw fell below the chance. An entry that ran carries two rolls and the tier they give.
@@ -402,11 +476,29 @@ const EFFECT_CHECKS = Object.freeze({
   hook: (state, effect, known) => known.hooks.has(effect.hookId) && isPerson(state, effect.ownerId) && isPerson(state, effect.targetId) && HOOK_STRENGTHS.includes(effect.strength),
   secret: (state, effect, known) => known.secrets.has(effect.secretId) && SECRET_TYPES.includes(effect.type) && isPerson(state, effect.subjectId) && Array.isArray(effect.holderIds) && effect.holderIds.every((id) => isPerson(state, id)),
   memory: (state, effect, known) => known.memories.has(effect.memoryId) && ['private', 'public'].includes(effect.visibility) && typeof effect.title === 'string',
+  kill: (state, effect) => isPerson(state, effect.personId) && typeof effect.reason === 'string' && (!Object.hasOwn(effect, 'applied') || effect.applied === false),
+  crime: (state, effect, known) => known.secrets.has(effect.secretId) && ownKey(CRIME_LABELS, effect.crime) && typeof effect.exposed === 'boolean',
+  // A legitimacy effect the actor could not use is the bare record { kind, applied: false }.
+  legitimacy: (state, effect) => (effect.applied === false ? Object.keys(effect).length === 2 : validRange(effect)),
+  reveal: (state, effect, known) => effect.secretId === null || known.secrets.has(effect.secretId),
+  hook_from_secret: (state, effect, known) => known.secrets.has(effect.secretId) && known.hooks.has(effect.hookId) && HOOK_STRENGTHS.includes(effect.strength) && typeof effect.exposed === 'boolean',
+  // The rumor must be an action rumor that this very entry planted, on the same topic, and no rumor is claimed twice (validateRumors checks the other direction). Phase 2 is unreleased, so no log carries the Task 4 stub's rumorId null.
+  rumor: (state, effect, known, entry) => {
+    const item = known.rumors.get(effect.rumorId);
+    const valid = Object.keys(effect).sort().join() === 'kind,rumorId,topic' && ownKey(RUMOR_TOPICS, effect.topic) && item?.sourceKind === 'action' && item.sourceId === entry.id && item.topic === effect.topic && !known.claimed.has(item.id);
+    if (valid) known.claimed.add(item.id);
+    return valid;
+  },
+  // The record of an imprisonment names the prisoner; the bare record { kind, personId, applied: false } is a target who could no longer be taken.
+  imprison: (state, effect, known) => isPerson(state, effect.personId) && (effect.applied === false ? Object.keys(effect).length === 3 : known.prisoners.has(effect.prisonerId)),
+  // Exactly the four keys the applier writes; `applied` is the change the bound allowed, so it has the sign of `amount` and is no larger.
+  grievance: (state, effect) => Object.keys(effect).sort().join() === 'amount,applied,familyId,kind' && ownKey(state.families, effect.familyId) && Number.isInteger(effect.amount) && Number.isInteger(effect.applied)
+    && effect.applied * effect.amount >= 0 && Math.abs(effect.applied) <= Math.abs(effect.amount),
 });
 
 function checkEffects(state, entry, known) {
   if (!Array.isArray(entry.effects)) fail(LOG.effect);
-  for (const effect of entry.effects) if (!plainObject(effect) || !ownKey(EFFECT_CHECKS, effect.kind) || !EFFECT_CHECKS[effect.kind](state, effect, known)) fail(LOG.effect);
+  for (const effect of entry.effects) if (!plainObject(effect) || !ownKey(EFFECT_CHECKS, effect.kind) || !EFFECT_CHECKS[effect.kind](state, effect, known, entry)) fail(LOG.effect);
 }
 
 function checkNarrative(entry) {
@@ -419,7 +511,7 @@ function checkNarrative(entry) {
 /** Validates state.actionLog on load: ids `resolution-<n>` unique and within state.sequence, known actions and tiers, existing people, agents, memories, hooks and secrets, finite odds and rolls consistent with the refusal and the tier, ranged effects inside their stored ranges, and narratives within their limits. Throws a Swedish sentence naming the action log. */
 export function validateActionLog(state) {
   if (!Array.isArray(state.actionLog)) fail(LOG.list);
-  const known = { memories: idSet(state.memories), hooks: idSet(state.hooks), secrets: idSet(state.secrets) };
+  const known = { memories: idSet(state.memories), hooks: idSet(state.hooks), secrets: idSet(state.secrets), prisoners: idSet(state.prisoners), rumors: new Map((Array.isArray(state.rumors) ? state.rumors : []).filter((item) => typeof item?.id === 'string').map((item) => [item.id, item])), claimed: new Set() };
   const ids = new Set();
   for (const entry of state.actionLog) {
     if (!plainObject(entry)) fail(LOG.entry);

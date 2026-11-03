@@ -24,9 +24,16 @@ const COMMAND_GROUP = ["command", "Förvaltning och hushåll"];
 const CATEGORY_LABELS = [["intrigue", "Intrig"], ["diplomacy", "Diplomati"], ["family", "Familj"], ["court", "Hovet"],
   ["military", "Krigföring"], ["religion", "Tro"], ["economy", "Ekonomi"], ["personal", "Personligt"]];
 const MINUS = "−";
+// The extra selects a contested entry may carry in its fields, with the sentence shown when a required one has nothing to choose.
+const LEVERAGE_KEYS = ["secretId", "hookId", "topic"];
+const NOTHING_TO_CHOOSE = {
+  secretId: "Du känner ingen hemlighet som går att använda.",
+  hookId: "Du har inget grepp att använda.",
+  topic: "Det finns inget ämne att välja.",
+};
 
 const entries = (value) => Array.isArray(value) ? value : Object.values(value || {});
-const dateLabel = (value) => {
+export const dateLabel = (value) => {
   const date = parseGameDate(value);
   return date ? `${date.day}/${date.month} ${Math.abs(date.year)}${date.year < 0 ? " f.Kr." : " e.Kr."}` : String(value ?? "—");
 };
@@ -43,8 +50,8 @@ export function formatCost(cost) {
 }
 
 // Exact precision gives numbers; five and three give band labels. Neither is rebuilt here: `display` is final.
-const oddsText = (value) => typeof value === "number" ? `${value} %` : String(value ?? "—");
-const modifierText = (row) => `${row.label}: ${Object.hasOwn(row, "value") ? signedValue(row.value) : row.sign}`;
+export const oddsText = (value) => typeof value === "number" ? `${value} %` : String(value ?? "—");
+export const modifierText = (row) => `${row.label}: ${Object.hasOwn(row, "value") ? signedValue(row.value) : row.sign}`;
 
 /**
  * Turns a catalog entry and its payload into a confirmation step. A contested entry needs the engine's odds first.
@@ -82,7 +89,7 @@ export async function prepareInterpretedAction({ text, view, interpret, estimate
 // for the player: it goes to the log and the player reads the fallback sentence. A word counts only between two
 // non-letters; `\b` treats å, ä and ö as boundaries and would find "of" in "oförmögen".
 const ENGLISH_WORDS = /(?<!\p{L})(the|was|failed|fetch|of|with|error|must|cannot|unexpected|invalid|there|that|object|undefined|null|network|request|response|json|http)(?!\p{L})/iu;
-function playerText(message, fallback) {
+export function playerText(message, fallback) {
   const text = typeof message === "string" ? message.trim() : "";
   if (text && /[.!?]$/.test(text) && !ENGLISH_WORDS.test(text)) return text;
   if (text) console.warn("[character action] an internal error was kept from the player:", text);
@@ -156,6 +163,10 @@ function ProposalFacts({ proposal, view }) {
       <li>Mål: {entries(payload.targetIds).map((id) => nameOf(view, id)).join(", ")}</li>
       <li>Extra silver: {Number(payload.means?.silver) || 0}</li>
       <li>Agenter: {roles.length ? roles.join(", ") : "inga"}</li>
+      {LEVERAGE_KEYS.filter((key) => payload.means?.[key]).map((key) => {
+        const field = entries(entry.fields).find((item) => item.key === key);
+        return <li key={key}>{field?.label || key}: {field?.options?.find((option) => option.value === payload.means[key])?.label ?? String(payload.means[key])}</li>;
+      })}
       <li>Kostnad: {formatCost(proposal.estimate.cost ?? entry.cost)}</li>
     </ul>
     <ul className="char-confirm-odds">
@@ -184,17 +195,43 @@ export function ConfirmationCard({ proposal, view, onConfirm, onCancel, busy = f
 export function ContestedForm({ entry, view, onPropose, busy = false }) {
   const field = (key) => entries(entry.fields).find((item) => item.key === key);
   const targetField = field("targetId"), silverField = field("silver"), agentField = field("agentRoles");
+  const leverageFields = LEVERAGE_KEYS.map(field).filter(Boolean);
   const [targetId, setTargetId] = useState(() => targetField?.options?.[0]?.value ?? "");
   const [silver, setSilver] = useState("0");
   const [roles, setRoles] = useState([]);
+  const [chosen, setChosen] = useState({});
   const maxAgents = agentField?.max ?? 2;
   const disabled = busy || Boolean(entry.disabledReason);
   const staffName = (role) => entries(view?.staff).find((member) => member.role === role)?.name;
   const toggle = (role) => setRoles((current) => current.includes(role) ? current.filter((item) => item !== role)
     : current.length >= maxAgents ? current : [...current, role]);
+  // The engine accepts a secret only when its subject is the target and a hook only when it is held over the target,
+  // so both lists follow the chosen target. A choice that no longer fits falls back to the first option of a required
+  // select and to Ingen on an optional one.
+  const optionsOf = (item) => {
+    const options = entries(item.options);
+    const source = { secretId: view?.knownSecrets, hookId: view?.ownHooks }[item.key];
+    if (!Array.isArray(source)) return options;
+    const field = item.key === "secretId" ? "subjectId" : "targetId";
+    const fits = new Set(source.filter((record) => record[field] === targetId).map((record) => record.id));
+    return options.filter((option) => option.value === "" || fits.has(option.value));
+  };
+  const valueOf = (item) => {
+    const options = optionsOf(item);
+    if (options.some((option) => option.value === chosen[item.key])) return chosen[item.key];
+    return item.required ? options[0]?.value ?? "" : "";
+  };
+  const blockedBy = leverageFields.find((item) => item.required && !valueOf(item));
+  const targetLabel = entries(targetField?.options).find((option) => option.value === targetId)?.label || "den personen";
+  const aboutTarget = { secretId: `Du känner ingen hemlighet om ${targetLabel}. Välj ett mål som du har något på.`, hookId: `Du har inget grepp över ${targetLabel}. Välj ett mål som du har ett grepp över.` };
+  const blockedReason = !blockedBy ? "" : entries(blockedBy.options).length ? aboutTarget[blockedBy.key] || "Det finns inget att välja." : NOTHING_TO_CHOOSE[blockedBy.key] || "Det finns inget att välja.";
+  const formDisabled = disabled || Boolean(blockedBy);
   const submit = (event) => {
     event.preventDefault();
-    onPropose(entry, { actionId: entry.catalogId, actorId: view?.representative?.id ?? null, targetIds: [targetId], means: { silver: Number(silver) || 0, agentRoles: roles } });
+    if (formDisabled) return;
+    // An empty choice is left out of the means: the engine reads a present key as chosen.
+    const leverage = Object.fromEntries(leverageFields.map((item) => [item.key, valueOf(item)]).filter(([, value]) => value !== ""));
+    onPropose(entry, { actionId: entry.catalogId, actorId: view?.representative?.id ?? null, targetIds: [targetId], means: { silver: Number(silver) || 0, agentRoles: roles, ...leverage } });
   };
   return <form className="char-contested-form" onSubmit={submit}>
     <label>{targetField?.label || "Mål"}<select value={targetId} onChange={(event) => setTargetId(event.target.value)} disabled={disabled} required>
@@ -210,8 +247,12 @@ export function ContestedForm({ entry, view, onPropose, busy = false }) {
         return <label className="char-checkbox" key={option.value}><input type="checkbox" checked={checked} disabled={!checked && roles.length >= maxAgents} onChange={() => toggle(option.value)} />{name ? `${option.label} · ${name}` : option.label}</label>;
       })}
     </fieldset>
+    {leverageFields.map((item) => <label key={item.key}>{item.label}<select value={valueOf(item)} onChange={(event) => setChosen((current) => ({ ...current, [item.key]: event.target.value }))} disabled={disabled || !optionsOf(item).length} required={Boolean(item.required)}>
+      {optionsOf(item).map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+    </select></label>)}
     {entry.disabledReason && <p className="char-reason">{entry.disabledReason}</p>}
-    <button type="submit" className="char-button char-button--primary" disabled={disabled || !targetId}>Visa chansen</button>
+    {!entry.disabledReason && blockedReason && <p className="char-reason">{blockedReason}</p>}
+    <button type="submit" className="char-button char-button--primary" disabled={formDisabled || !targetId}>Visa chansen</button>
   </form>;
 }
 
@@ -290,6 +331,8 @@ export function SchemeList({ schemes, onAbort, onEmpty, busy = false }) {
     } catch (error) {
       result = { ok: false, error: error?.message };
     }
+    // No answer means the panel was locked and ignored the click (a double click); the first click decides.
+    if (result === undefined) return;
     setConfirming(null);
     if (result?.ok) {
       focusNext(next ? { id: next.id, control: "abort" } : { empty: true });

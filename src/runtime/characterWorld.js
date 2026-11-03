@@ -11,7 +11,7 @@ import {
   normalizeCharacterSystem,
   reconcileExternalHosts,
 } from "./characters/index.js";
-import { ACTION_CATALOG } from "./characters/actionCatalog.js";
+import { ACTION_CATALOG, requiresOf } from "./characters/actionCatalog.js";
 import { compareGameDates, diffGameDays, normalizeGameDate } from "./gameDates.js";
 import { buildOwnerAliasMap, createOwnerResolver } from "./ownerNames.js";
 
@@ -373,6 +373,8 @@ export const getCharacterEventBudget = (fromDate, targetDate) => {
 
 // Model proposals the engine runs itself, with their caps per model turn.
 const GATE_LIMITS = Object.freeze({ realm_effect: 4, npc_intent: 3 });
+// An NPC acts for its own family: an entry only an office holder may use (actorOffice), one paid from the realm treasury, or one that requires a secret or a topic (an npc_intent carries no means) is never offered as an npc_intent, since the engine always refuses it.
+const npcMayUse = (entry) => !entry.actorOffice && entry.cost.wallet !== "realm" && !requiresOf(entry).length;
 const GATE_LABELS = Object.freeze({ realm_effect: "Förändring av rikets läge", npc_intent: "Egen handling av en annan familjs person" });
 // An npc_intent refusal names no actor, action or amount: its reason could reveal another family's plans.
 const NPC_INTENT_REFUSAL = "Ett förslag om en annan familjs handling avvisades.";
@@ -510,6 +512,9 @@ export const prepareCharacterTimeline = (world, events, targetDate, { applyHostE
   return output;
 };
 
+// A story may point at a secret (an uncovered plot, a punished crime). The model needs the story, never the secret's id.
+const withoutSecretId = ({ secretId, ...story }) => story;
+
 export const buildCharacterPromptContext = (state, { targetDate = "" } = {}) => {
   if (!state) return "";
   const view = getCharacterPresentation(state);
@@ -519,6 +524,7 @@ export const buildCharacterPromptContext = (state, { targetDate = "" } = {}) => 
     "Health conditions, recovery, lasting scars and portrait appearance are also canonical engine facts. Describe the actual dated health events supplied in the calendar forecast and their wider consequences; do not invent an infection, injury, cure, scar or health score. Medical care remains a player choice in the character panel. There is no free-form health mutation or model-executed care action. Appearance reflects the condition's current phase, not its later outcome.",
     "The player chooses and executes personal political actions directly in the character panel before a simulation turn. Do not spend the player's treasury or family wealth, resolve their stories, marry their representative, change their offices or issue their character commands. The model never acts for the player's own characters.",
     "impacts.characterOps may carry two engine-gated proposals. The engine validates each one, rolls where the rules roll, and may refuse it; a refusal is shown to the player. (1) realm_effect payload {treasury, legitimacy, armyStrength, reason}: integer changes, each optional, at least one non-zero, within treasury -80…+40, legitimacy -10…+5, armyStrength -15…+10. A value outside its range refuses the whole proposal; the realm's fields stop at their bounds. reason is a Swedish sentence of at most 200 characters. At most 4 per turn. (2) npc_intent payload {actorId, actionId, targetIds}: a living adult who is neither the player's representative nor a member of the player's family attempts one contested catalog action listed below, with the engine's odds for that NPC. The NPC's own family pays; targets may include the player's people. At most 3 per turn. Give each proposal an id that is unique within the turn; the engine refuses a repeated id across the whole turn.",
+    "Held prisoners, hosted occasions (a feast) and the rumors the family has heard are engine facts too. A rumor is hearsay with a stated reliability: it may be false or name the wrong person, and you must not confirm or deny it. Do not release, ransom, execute or imprison anyone, hold a feast or start a rumor in prose; those are the player's or the engine's decisions.",
     "All other command types in impacts.characterOps are advisory proposals only and are NEVER executed automatically, even with a claimed player action ID. Keep them out normally; describe such an action as a proposal awaiting the player's decision. Calendar progression itself handles autonomous NPC characters, births, death and succession.",
     "The player's polity ends only through an event that settles its mapped territory: it held a region before the event and holds none after it. A bare dissolve of that polity is refused.",
     "Realm mode follows the government. Family mode follows its own family, which has no right to issue state orders after losing the governing role. Independent relatives do not confer direct state control. Unknown facts are unavailable.",
@@ -527,8 +533,9 @@ export const buildCharacterPromptContext = (state, { targetDate = "" } = {}) => 
       realmExists: state.realm.alive, status: state.status, externalHosts: state.externalHosts,
       representative: view.representative, economy: view.economy, succession: view.succession,
       families: view.families, offices: view.offices, people: view.people,
-      actions: view.actions, stories: view.stories, memories: view.memories?.slice(-16),
-      contestedActions: Object.values(ACTION_CATALOG).map((entry) => ({ id: entry.id, label: entry.label, durationMonths: entry.durationMonths,
+      actions: view.actions, stories: view.stories?.map(withoutSecretId), memories: view.memories?.slice(-16),
+      prisoners: view.prisoners, occasions: view.occasions, rumors: view.rumors,
+      contestedActions: Object.values(ACTION_CATALOG).filter(npcMayUse).map((entry) => ({ id: entry.id, label: entry.label, durationMonths: entry.durationMonths,
         target: `exactly one living adult other than the actor${entry.targetFamily === "other" ? ", outside the actor's family" : ""}` })) }),
   ];
   if (targetDate && compareGameDates(targetDate, state.date) > 0) {

@@ -1,6 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createCharacterSystem, getCharacterPresentation } from "./characters/index.js";
+import { actionHooks, createCharacterSystem, executeCharacterCommand, getCharacterPresentation } from "./characters/index.js";
+import { createRumor, presentRumors } from "./characters/rumors.js";
+import { createSecret } from "./characters/secrets.js";
+import { imprisonPerson } from "./characters/prisoners.js";
 import { applyEventImpactsToWorld, normalizeEvents, normalizeWorldState, viewAsSeen } from "./gameState.js";
 import { buildCharacterPromptContext, characterTransitionEvents, normalizeCharacterOps, planCharacterAdvance, prepareCharacterTimeline, projectCharacterWorld } from "./characterWorld.js";
 
@@ -161,4 +164,51 @@ test("prompt context includes available commands and stable character IDs", () =
   assert.ok(forecast.includes("-0299-01-01"));
   assert.equal(JSON.stringify(world.characterSystem), original, "a model forecast never mutates the campaign or draws live randomness");
   assert.equal(context.includes("Calendar forecast"), false, "ordinary conversations see no future forecast");
+});
+
+// --- Phase 2 facts in the year prompt -------------------------------------------------------------
+
+const promptData = (state) => JSON.parse(buildCharacterPromptContext(state).split("\n").find((line) => line.startsWith('{"date"')));
+const phase2State = () => createCharacterSystem({ seed: 321 });
+
+test("the year prompt carries prisoners, active occasions and presented rumors", () => {
+  const state = phase2State();
+  imprisonPerson(state, "person-1-2", "family-arel", [], actionHooks(state), { lawful: true });
+  const feast = executeCharacterCommand(state, { id: "feast-1", expectedRevision: state.revision, type: "hold_feast", payload: {} });
+  assert.equal(feast.ok, true, feast.error);
+  const next = feast.state;
+  createRumor(next, { topic: "plot", subjectId: "person-1-0", claimedActorId: "person-2-2", truthful: true, reliability: "trolig", sourceKind: "scheme", sourceId: "scheme-77", heardByFamilyId: "family-arel" });
+  const data = promptData(next);
+  const view = getCharacterPresentation(next);
+  assert.deepEqual(data.prisoners, view.prisoners);
+  assert.equal(data.prisoners.length, 1);
+  assert.deepEqual(data.occasions, view.occasions);
+  assert.equal(data.occasions[0].kind, "feast");
+  assert.deepEqual(data.rumors, presentRumors(next, "family-arel"));
+  assert.equal(data.rumors[0].topicLabel, "Sammansvärjning");
+  const text = buildCharacterPromptContext(next);
+  assert.doesNotMatch(text, /"truthful"/);
+  assert.doesNotMatch(text, /"sourceId"/);
+  assert.doesNotMatch(text, /scheme-77/);
+});
+
+test("the year prompt shows no secret the player does not hold, and no secret id on a story", () => {
+  const state = phase2State();
+  const hidden = createSecret(state, { type: "murder", subjectId: "person-0-2", holderIds: ["person-2-2"] });
+  const held = createSecret(state, { type: "affair", subjectId: "person-1-0", holderIds: ["person-0-0"] });
+  state.stories.push({ id: "story-secret", type: "stress_crisis", status: "open", title: "Prov", description: "Prov", actorId: "person-0-0", familyId: "family-arel",
+    createdAt: state.date, dueAt: state.date, knownBy: "public", secretId: hidden.id });
+  const text = buildCharacterPromptContext(state);
+  assert.equal(text.includes(hidden.id), false, "an unheld secret id never reaches the prompt");
+  assert.doesNotMatch(text, /"secretId"/);
+  assert.doesNotMatch(text, /holderIds/);
+  assert.equal(text.includes(held.id), false, "the year prompt lists no secrets at all");
+  assert.ok(text.includes("story-secret"), "the story itself is still listed");
+});
+
+test("the new contested actions reach the model through the contestedActions list", () => {
+  const listed = promptData(phase2State()).contestedActions.map((entry) => entry.id);
+  assert.ok(listed.includes("investigate"));
+  // An npc_intent carries no means, so an entry that requires a secret or a topic would always be refused.
+  for (const id of ["blackmail", "spread_rumor", "imprison"]) assert.equal(listed.includes(id), false, id);
 });

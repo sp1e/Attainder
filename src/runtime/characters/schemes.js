@@ -3,14 +3,17 @@ import { ACTION_CATALOG, MAX_EXTRA_SILVER } from './actionCatalog.js';
 import { estimateAction } from './actionOdds.js';
 import { resolutionVisible, resolveScheme } from './actionResolution.js';
 import { STAFF_ROLES } from './courtStaff.js';
-import { actionRandom } from './extensions.js';
+import { actionRandom, spymasterOf } from './extensions.js';
+import { uncoverPlot } from './npcPlots.js';
+import { isImprisoned } from './prisoners.js';
+import { hearScheme } from './rumors.js';
 
 // Schemes: contested actions that take months. A scheme is paid and ordered when it starts, checked for discovery once a month, and rolled like any other action when its due date comes (actionResolution.js records that resolution).
 // Randomness comes only from actionRandom (state.actionRngState): one draw per discovery check, then the two rolls of the resolution. The main stream state.rngState is never touched.
 // actionResolution.js imports startScheme from here and this file imports from it, so nothing at the top level of either file may use the other's exports; they are only used inside functions.
 
-// Each check the target may see through the plan: chance = clamp(10 + target intrigue × 2 − actor intrigue, 3, 40) percent.
-const DISCOVERY = Object.freeze({ base: 10, perIntrigue: 2, min: 3, max: 40 });
+// Each check the target may see through the plan: chance = clamp(10 + target intrigue × 2 − actor intrigue, 3, 40) percent. When the target belongs to the controlled family and the family has a spymaster, the chance gains floor(spymaster intrigue / 2) before the clamp, which then reaches 55.
+const DISCOVERY = Object.freeze({ base: 10, perIntrigue: 2, min: 3, max: 40, maxWatched: 55 });
 const DISCOVERY_OPINION = -20;
 const SCHEME_STATUSES = Object.freeze(['active', 'discovered', 'aborted', 'failed', 'resolved']);
 // charge() prices stress per tag and gives 0 for a tag it does not know, so a reinforcement adds no stress.
@@ -23,6 +26,7 @@ const MESSAGES = Object.freeze({
   silver: 'Extra silver måste vara ett positivt heltal.',
   cap: `En plan kan få högst ${MAX_EXTRA_SILVER} extra silver sammanlagt.`,
   dead: 'Utföraren eller målet har dött, så planen kunde aldrig fullföljas.',
+  imprisoned: 'Utföraren sitter fängslad, så planen kunde aldrig fullföljas.',
   stopped: 'Planen kunde inte genomföras.',
 });
 const INVALID = Object.freeze({
@@ -35,6 +39,7 @@ const INVALID = Object.freeze({
   date: 'En plan har ett ogiltigt datum.',
   discovery: 'En plans avslöjande stämmer inte med dess status.',
   outcome: 'En plans utfall stämmer inte med handlingsloggen.',
+  secret: 'En plans hemlighet saknas eller gäller inte utföraren.',
 });
 
 const plainObject = (value) => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
@@ -49,6 +54,10 @@ const isActive = (scheme) => plainObject(scheme) && scheme.status === 'active';
 // Ids are `scheme-<n>` with n from state.sequence, so the number is the creation order. As text, scheme-10 would sort before scheme-9.
 const numberOf = (id) => Number(/^scheme-([1-9]\d*)$/.exec(id)?.[1] ?? Number.NaN);
 
+// The secret, hook and rumor topic a scheme carries from its start to its due date (estimateAction has checked them against the actor and target).
+const CARRIED_MEANS = Object.freeze(['secretId', 'hookId', 'topic']);
+const carriedMeans = (means) => Object.fromEntries(CARRIED_MEANS.filter((key) => typeof means[key] === 'string').map((key) => [key, means[key]]));
+
 /**
  * Writes the scheme that a validated, paid and (if ordered) obeyed attempt starts, and returns it. `estimate` is the ok result of estimateAction, `intent` the attempt's payload. The first check comes a month after the start or on the due date, whichever is earlier. Draws no randomness and charges nothing: the caller pays through payForAction.
  * `playerControlled` comes from the engine's context in `hooks`; `commandId` is the command that started the scheme.
@@ -59,7 +68,7 @@ export function startScheme(state, intent, estimate, hooks, commandId = null) {
   const means = plainObject(intent?.means) ? intent.means : {};
   const scheme = {
     id: `scheme-${++state.sequence}`, actionId: estimate.actionId, actorId: estimate.actorId, targetIds: [...estimate.targetIds],
-    means: { silver: means.silver ?? 0, agentRoles: [...(means.agentRoles ?? [])] },
+    means: { silver: means.silver ?? 0, agentRoles: [...(means.agentRoles ?? [])], ...carriedMeans(means), ...(estimate.occasionId ? { occasionId: estimate.occasionId } : {}) },
     startedAt, dueAt, nextCheckAt: earlier(dueAt, addGameMonths(startedAt, 1)),
     status: 'active', discoveredAt: null, resolutionId: null,
     playerControlled: hooks.estimateContext().playerControlled === true, commandId,
@@ -92,7 +101,7 @@ function dueEstimate(state, scheme, hooks) {
   const own = scheme.playerControlled === true;
   const ctx = own ? hooks.estimateContext() : hooks.npcEstimateContext(scheme.actorId);
   const intent = { actionId: scheme.actionId, actorId: scheme.actorId, targetIds: scheme.targetIds, means: scheme.means };
-  return estimateAction(state, intent, { ...ctx, wallet: () => PAID });
+  return estimateAction(state, intent, { ...ctx, wallet: () => PAID, scheduled: true });
 }
 
 function collapse(state, scheme, reason, events, hooks) {
@@ -108,17 +117,28 @@ function discover(state, scheme, actor, target, events, hooks) {
   const knownBy = [actor.id, target.id];
   const memory = hooks.memory('scheme_discovered', event.title, knownBy, { causeId: event.id, knownBy, schemeId: scheme.id });
   hooks.opinionCause(target.id, actor.id, DISCOVERY_OPINION, 'Avslöjad intrig', memory.id);
+  uncoverPlot(state, scheme, memory, hooks);
 }
 
-// One monthly check. A dead actor or target ends the scheme before anything is drawn. On the due date the odds are estimated afresh and a scheme that can no longer run fails before any draw; otherwise the discovery roll comes first and, when the plan holds, the action is rolled and recorded like an instant one.
+// The spymaster's help in seeing through a plan against the controlled family: the added percent, or null when the plan is against anyone else, nobody holds the office (a prisoner cannot serve) or the spymaster runs the plan himself. Draws nothing.
+function spymasterWatch(state, scheme, target, hooks) {
+  const spymaster = spymasterOf(state);
+  if (!spymaster || spymaster.id === scheme.actorId || isImprisoned(state, spymaster.id) || target.familyId !== hooks.controlledFamily()?.id) return null;
+  return Math.floor(intrigueOf(spymaster) / 2);
+}
+
+// One monthly check. A dead actor or target, or an imprisoned actor (who cannot act), ends the scheme before anything is drawn. On the due date the odds are estimated afresh and a scheme that can no longer run fails before any draw; otherwise the discovery roll comes first and, when the plan holds, the action is rolled and recorded like an instant one.
 function checkScheme(state, scheme, events, hooks) {
   const actor = personOf(state, scheme.actorId), target = personOf(state, scheme.targetIds[0]);
   if (![actor, ...scheme.targetIds.map((id) => personOf(state, id))].every(alive)) return collapse(state, scheme, MESSAGES.dead, events, hooks);
+  if (isImprisoned(state, scheme.actorId)) return collapse(state, scheme, MESSAGES.imprisoned, events, hooks);
   const due = compareGameDates(scheme.dueAt, state.date) <= 0;
   const estimate = due ? dueEstimate(state, scheme, hooks) : null;
   if (estimate && !estimate.ok) return collapse(state, scheme, `${MESSAGES.stopped} ${estimate.reason}`, events, hooks);
-  const chance = clamp(DISCOVERY.base + intrigueOf(target) * DISCOVERY.perIntrigue - intrigueOf(actor), DISCOVERY.min, DISCOVERY.max);
+  const watch = spymasterWatch(state, scheme, target, hooks);
+  const chance = clamp(DISCOVERY.base + intrigueOf(target) * DISCOVERY.perIntrigue - intrigueOf(actor) + (watch ?? 0), DISCOVERY.min, watch === null ? DISCOVERY.max : DISCOVERY.maxWatched);
   if (actionRandom(state) * 100 < chance) return discover(state, scheme, actor, target, events, hooks);
+  hearScheme(state, scheme, hooks);
   if (!due) {
     scheme.nextCheckAt = followingCheck(scheme);
     return;
@@ -178,6 +198,16 @@ function checkMeans(scheme) {
   const { means } = scheme;
   if (!plainObject(means) || !Number.isInteger(means.silver) || means.silver < 0 || !Array.isArray(means.agentRoles)) fail(INVALID.means);
   if (!means.agentRoles.every((role) => ownKey(STAFF_ROLES, role)) || new Set(means.agentRoles).size !== means.agentRoles.length) fail(INVALID.means);
+  // The feast the scheme was started at (occasions.js); the reference is checked by shape only.
+  if (Object.hasOwn(means, 'occasionId') && (typeof means.occasionId !== 'string' || !/^occasion-[1-9]\d*$/.test(means.occasionId))) fail(INVALID.means);
+  if (CARRIED_MEANS.some((key) => Object.hasOwn(means, key) && !safeId(means[key]))) fail(INVALID.means);
+}
+
+// The plot secret of an NPC scheme (npcPlots.js): an existing secret about the actor. It is not means.secretId, which is blackmail leverage.
+function checkSecret(state, scheme) {
+  if (!Object.hasOwn(scheme, 'secretId')) return;
+  const secret = typeof scheme.secretId === 'string' && Array.isArray(state.secrets) ? state.secrets.find((item) => item.id === scheme.secretId) : null;
+  if (!secret || secret.subjectId !== scheme.actorId) fail(INVALID.secret);
 }
 
 function checkDates(state, scheme) {
@@ -198,7 +228,7 @@ function checkOutcome(state, scheme) {
   if (!entry || entry.actionId !== scheme.actionId || entry.actorId !== scheme.actorId) fail(INVALID.outcome);
 }
 
-/** Validates state.schemes on load: ids `scheme-<n>` unique and within state.sequence, a known action, existing people, valid means, canonical dates in order, a discovery date only on a discovered scheme and a resolution only on a resolved one. Throws a Swedish sentence about the scheme list. Call after validateActionLog. */
+/** Validates state.schemes on load: ids `scheme-<n>` unique and within state.sequence, a known action, existing people, valid means, an optional `secretId` naming a secret about the actor, canonical dates in order, a discovery date only on a discovered scheme and a resolution only on a resolved one. Throws a Swedish sentence about the scheme list. Call after validateActionLog. */
 export function validateSchemes(state) {
   if (!Array.isArray(state.schemes)) fail(INVALID.list);
   const ids = new Set();
@@ -206,6 +236,7 @@ export function validateSchemes(state) {
     if (!plainObject(scheme)) fail(INVALID.entry);
     checkIdentity(state, scheme, ids);
     checkMeans(scheme);
+    checkSecret(state, scheme);
     checkDates(state, scheme);
     checkOutcome(state, scheme);
     ids.add(scheme.id);

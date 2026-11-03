@@ -11,14 +11,18 @@ import {
 import { getModelCallCounts, subscribeModelCalls } from "../AI/modelCallCounter.js";
 import "./characters.css";
 import ActionBox, { SchemeList } from "./ActionBox.jsx";
+import ConversationView from "./ConversationView.jsx";
+import IntrigueView from "./IntrigueView.jsx";
 import LocalModelConnect from "./LocalModelConnect.jsx";
 import Portrait from "./Portrait.jsx";
 
 const THEME_KEY = "oh:characters:theme";
 const TABS = [
   ["council", "Överblick"], ["people", "Personer"], ["families", "Familjer"],
-  ["offices", "Ämbeten & arv"], ["decisions", "Beslut"], ["chronicle", "Krönikan"],
+  ["offices", "Ämbeten & arv"], ["decisions", "Beslut"], ["intrigue", "Intriger"], ["chronicle", "Krönikan"],
 ];
+// Commands whose refusal is shown under their own card, so the panel banner stays quiet.
+const INLINE_REFUSALS = ["abort_scheme", "release_prisoner", "execute_prisoner"];
 const number = (value) => Number.isFinite(Number(value)) ? new Intl.NumberFormat("sv-SE", { maximumFractionDigits: 1 }).format(Number(value)) : "—";
 const entries = (value) => Array.isArray(value) ? value : Object.values(value || {});
 const text = (value, fallback = "—") => typeof value === "string" || typeof value === "number" ? String(value) : value?.label || value?.name || value?.title || fallback;
@@ -79,12 +83,13 @@ function Empty({ title, children }) {
   return <div className="char-empty"><strong>{title}</strong><p>{children}</p></div>;
 }
 
-function PersonSummary({ person, compact = false }) {
+// `headingRef` makes the name heading a focus target (tabIndex -1) for PeopleView.
+function PersonSummary({ person, compact = false, headingRef }) {
   if (!person) return <Empty title="Ingen behörig företrädare">Ingen person kan företräda dig just nu. Läs mandatets status under Ämbeten & arv.</Empty>;
   return <div className={`char-person-summary${compact ? " char-person-summary--compact" : ""}`}>
     <Portrait person={person} size={compact ? "small" : "large"} />
     <div><span className="char-eyebrow">{person.familyName || "Familj"}{Number.isFinite(person.age) ? ` · ${person.age} år` : ""}</span>
-      <h3>{person.name}</h3><p>{person.archetypeLabel || humanize(person.archetype)}{!isAlive(person) ? " · Avliden" : ""}</p>
+      <h3 ref={headingRef} tabIndex={headingRef ? -1 : undefined}>{person.name}</h3><p>{person.archetypeLabel || humanize(person.archetype)}{!isAlive(person) ? " · Avliden" : ""}</p>
       {person.portraitState?.visualState !== "healthy" && person.portraitState?.reasons?.length > 0 && <p className="char-health-summary">{person.portraitState.reasons.filter((reason) => reason.key !== "healthy").map((reason) => reason.label).join(" · ")}</p>}
       <div className="char-tags">{entries(person.traitLabels || person.traits || person.personality).map((trait, index) => <span key={text(trait, index)}>{humanize(text(trait))}</span>)}</div>
     </div>
@@ -178,6 +183,7 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, run
   const hasAuthorityDetail = Object.values(view.authority || {}).some((mandate) => mandate && (mandate.reason || mandate.blockedReason || (mandate.principalId && mandate.representativeId !== mandate.principalId)));
   const activeProjects = entries(view.projects).filter((project) => !["cancelled", "failed"].includes(project.status));
   const waitingStories = entries(view.stories).filter((story) => story.status === "waiting");
+  const feasts = entries(view.occasions).filter((occasion) => occasion.kind === "feast");
   return <>
     <div className="char-overview-grid"><section className="char-card char-leader-card"><div className="char-section-heading"><span className="char-eyebrow">{view.mode === "family" ? "Familjens företrädare" : "Rikets ledning"}</span><span className="char-seal" aria-hidden="true">◇</span></div>
       {hasAuthorityDetail ? <AuthoritySummary view={view} /> : <PersonSummary person={representative} />}
@@ -191,6 +197,7 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, run
       <p className="char-caption">Familjernas stöd, ämbetsinnehavarnas förmåga och härskarens arbetssätt påverkar utfallet.</p>
       <button className="char-button char-button--quiet" onClick={() => setTab("decisions")}>Planera nästa beslut <span aria-hidden="true">→</span></button>
     </section></div>
+    {feasts.map((feast) => <section className="char-card char-feast" aria-label="Gästabud" key={feast.id}><span className="char-eyebrow">{feast.label || "Gästabud"}</span><h4>Gästabud pågår till {dateLabel(feast.endsAt)}</h4>{feast.guestCount > 0 && <p className="char-caption">{feast.guestCount} gäster är inbjudna.</p>}</section>)}
     {Array.isArray(view.catalog) && <ActionBox view={view} busy={busy} runAction={runAction} CommandCard={ActionCard} />}
     <SchemeList schemes={view.schemes} busy={busy} onAbort={(schemeId) => onCommand("abort_scheme", { schemeId })}
       onEmpty={() => document.getElementById("char-action-text")?.focus()} />
@@ -202,8 +209,16 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, run
   </>;
 }
 
-function PeopleView({ view, selectedId, selectPerson }) {
+function PeopleView({ view, selectedId, selectPerson, busy = false, runAction, talks = {}, setTalk, onHold }) {
   const [query, setQuery] = useState("");
+  const [talkingTo, setTalkingTo] = useState(null);
+  // Closing a conversation takes its field with it; focus goes to the person's Samtala button instead of the page, or, when the
+  // person can no longer be asked (a decided request), to the person's heading, and without a person to the search field.
+  const talkButton = useRef(null);
+  const personHeading = useRef(null);
+  const searchField = useRef(null);
+  const refocusTalk = useRef(false);
+  const closeTalk = () => { refocusTalk.current = true; setTalkingTo(null); };
   const [includeDead, setIncludeDead] = useState(false);
   const people = entries(view.people);
   const peopleById = Object.fromEntries(people.map((person) => [person.id, person]));
@@ -211,11 +226,22 @@ function PeopleView({ view, selectedId, selectPerson }) {
   const person = peopleById[selectedId] || filtered[0];
   const memories = entries(view.memories).filter((memory) => memory.personId === person?.id || memory.ownerId === person?.id || memory.participants?.includes(person?.id));
   const roles = entries(view.offices).filter((office) => (office.holderId || office.personId) === person?.id);
+  // A person who was just asked drops out of the list for a year; the conversation already open stays open.
+  const canTalk = Boolean(person) && (talkingTo === person.id || entries(view.conversationTargets).some((target) => target.id === person.id));
+  useEffect(() => {
+    if (talkingTo !== null || !refocusTalk.current) return;
+    refocusTalk.current = false;
+    (canTalk ? talkButton.current : person ? personHeading.current : searchField.current)?.focus();
+  }, [talkingTo, canTalk, person]);
   return <><div className="char-section-heading"><div><span className="char-eyebrow">Liv, vilja och erfarenhet</span><h3>Människorna i din värld</h3></div><span className="char-count">{people.filter(isAlive).length} levande</span></div>
-    <div className="char-person-layout"><div className="char-person-index"><label className="char-search-label">Sök person eller familj<input type="search" placeholder="Namn eller familj…" value={query} onChange={(event) => setQuery(event.target.value)} /></label><label className="char-checkbox"><input type="checkbox" checked={includeDead} onChange={(event) => setIncludeDead(event.target.checked)} />Visa även avlidna</label>
+    <div className="char-person-layout"><div className="char-person-index"><label className="char-search-label">Sök person eller familj<input type="search" ref={searchField} placeholder="Namn eller familj…" value={query} onChange={(event) => setQuery(event.target.value)} /></label><label className="char-checkbox"><input type="checkbox" checked={includeDead} onChange={(event) => setIncludeDead(event.target.checked)} />Visa även avlidna</label>
       <div className="char-person-list">{filtered.map((candidate) => <button type="button" key={candidate.id} className={`char-person-row${person?.id === candidate.id ? " is-selected" : ""}`} aria-pressed={person?.id === candidate.id} onClick={() => selectPerson(candidate.id)}><Portrait person={candidate} size="tiny" /><span><strong>{candidate.name}</strong><small>{candidate.familyName}{candidate.age != null ? ` · ${candidate.age} år` : ""}{!isAlive(candidate) ? " · Avliden" : ""}</small></span></button>)}{!filtered.length && <p className="char-caption">Ingen person matchar sökningen.</p>}</div>
     </div>
-    {person ? <article className="char-card char-person-detail"><PersonSummary person={person} /><div className="char-tags">{roles.map((role) => <span key={role.id}>{role.name || role.title}</span>)}</div>
+    {person ? <article className="char-card char-person-detail"><PersonSummary person={person} headingRef={personHeading} />
+      {canTalk && (talkingTo === person.id
+        ? <ConversationView person={person} turns={talks[person.id] || []} setTurns={setTalk(person.id)} busy={busy} runAction={runAction} onClose={closeTalk} onHold={onHold} />
+        : <button type="button" className="char-button" ref={talkButton} aria-label={`Samtala med ${person.name}`} disabled={busy} onClick={() => setTalkingTo(person.id)}>Samtala</button>)}
+      <div className="char-tags">{roles.map((role) => <span key={role.id}>{role.name || role.title}</span>)}</div>
       <div className="char-skills">{Object.entries(person.skills || {}).map(([skill, value]) => <Metric key={skill} label={humanize(skill)} value={number(value)} />)}</div>
       <div className="char-leader-measures"><Meter label="Stress" value={person.stress} danger /><Meter label="Tjänstelojalitet" value={person.loyalty ?? person.serviceLoyalty} /></div>
       <dl className="char-facts"><div><dt>Åsikt om din företrädare</dt><dd>{signed(person.opinion)}</dd></div><div><dt>Tro</dt><dd>{person.religionName || view.religions?.find((religion) => religion.id === person.religionId)?.name || "Okänd"}</dd></div><div><dt>Född</dt><dd>{dateLabel(person.bornAt)}</dd></div>{!isAlive(person) && <div><dt>Avliden</dt><dd>{dateLabel(person.diedAt)}</dd></div>}<div><dt>Personlig egendom</dt><dd>{number(person.wealth)} silver</dd></div><div><dt>Hälsa</dt><dd>{number(person.health)} / 100</dd></div><div><dt>Rädsla</dt><dd>{number(person.fear)} / 100</dd></div></dl>
@@ -326,6 +352,10 @@ export default function CharactersPanel({ open, onClose }) {
   const [interruption, setInterruption] = useState(null);
   const [modelConnectOpen, setModelConnectOpen] = useState(false);
   const [modelCalls, setModelCalls] = useState(() => getModelCallCounts().total);
+  // The court conversations, per person. Session memory only: kept while the panel exists, never saved.
+  const [talks, setTalks] = useState({});
+  // True while a conversation's confirmation card is open: time stays put so its odds cannot go stale.
+  const [talkHold, setTalkHold] = useState(false);
   const busyRef = useRef(false);
   const readSequence = useRef(0);
   const panelRef = useRef(null);
@@ -405,12 +435,13 @@ export default function CharactersPanel({ open, onClose }) {
     catch (reason) { setError(reason?.message || "Handlingen kunde inte genomföras. Försök igen."); return undefined; }
     finally { busyRef.current = false; setBusy(false); await refresh(); }
   }, [refresh]);
-  const command = (type, payload) => perform(() => submitCharacterCommand({ type, payload, expectedRevision: view?.revision, id: `ui-${crypto.randomUUID()}` }), false, false, type === "abort_scheme");
+  const command = (type, payload) => perform(() => submitCharacterCommand({ type, payload, expectedRevision: view?.revision, id: `ui-${crypto.randomUUID()}` }), false, false, INLINE_REFUSALS.includes(type));
+  const setTalk = (id) => (update) => setTalks((current) => ({ ...current, [id]: typeof update === "function" ? update(current[id] || []) : update }));
   const onKeyDown = (event) => {
     event.stopPropagation();
     if (event.key === "Escape") { event.preventDefault(); onClose(); }
     if (event.key !== "Tab") return;
-    const focusable = [...panelRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), summary, [tabindex="0"]')].filter((element) => element.getClientRects().length);
+    const focusable = [...panelRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), summary, [tabindex="0"]')].filter((element) => element.getClientRects().length);
     const first = focusable[0]; const last = focusable.at(-1);
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
@@ -419,7 +450,7 @@ export default function CharactersPanel({ open, onClose }) {
   return <div className="char-backdrop" data-char-theme={theme} onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
     <section className="char-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="characters-title" onKeyDown={onKeyDown}>
       <header className="char-header"><div className="char-brand"><span className="char-brand-mark"><CivicMark /></span><div><span className="char-eyebrow">Open Historia · Dynastier</span><h2 id="characters-title">Rike & familjer</h2></div></div><div className="char-header-controls"><button type="button" className="char-button char-connect-model" aria-expanded={modelConnectOpen} onClick={() => setModelConnectOpen((current) => !current)}>Anslut modell</button><button type="button" className="char-icon-button" onClick={() => choose(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? "Byt till ljust läge" : "Byt till mörkt läge"} title={theme === "dark" ? "Ljust läge" : "Mörkt läge"}>{theme === "dark" ? "☀" : "☾"}</button><button type="button" className="char-theme-system" aria-pressed={choice === "system"} onClick={() => choose("system")}>Systemtema</button><button type="button" className="char-icon-button char-close" onClick={onClose} aria-label="Stäng Rike & familjer">×</button></div></header>
-      {view && <div className="char-campaign-strip"><div><span className="char-mode">{view.mode === "family" ? "FÖLJ FAMILJEN" : "FÖLJ RIKET"}</span><strong>{view.mode === "family" ? view.families.find((family) => family.id === view.identity?.familyId)?.name : (view.identity?.realmName || view.economy?.polityName || "Riket")}</strong><span className="char-date">{dateLabel(view.date)}</span>{view.difficulty?.label && <span className="char-difficulty">Svårighetsgrad: {view.difficulty.label}</span>}</div><button type="button" className="char-button char-button--advance" disabled={busy || view.status?.ended || view.status === "ended"} onClick={() => perform(() => advanceCharacterYearWithModel(), true)}>{busy ? "Bearbetar…" : "Nästa år med modellen"}<span aria-hidden="true"> →</span></button></div>}
+      {view && <div className="char-campaign-strip"><div><span className="char-mode">{view.mode === "family" ? "FÖLJ FAMILJEN" : "FÖLJ RIKET"}</span><strong>{view.mode === "family" ? view.families.find((family) => family.id === view.identity?.familyId)?.name : (view.identity?.realmName || view.economy?.polityName || "Riket")}</strong><span className="char-date">{dateLabel(view.date)}</span>{view.difficulty?.label && <span className="char-difficulty">Svårighetsgrad: {view.difficulty.label}</span>}</div><button type="button" className="char-button char-button--advance" disabled={busy || talkHold || view.status?.ended || view.status === "ended"} title={talkHold ? "Besvara eller avbryt förfrågan i samtalet först" : undefined} onClick={() => perform(() => advanceCharacterYearWithModel(), true)}>{busy ? "Bearbetar…" : "Nästa år med modellen"}<span aria-hidden="true"> →</span></button></div>}
       <nav className="char-nav" aria-label="Rike och familjer">{TABS.map(([id, label]) => <button key={id} type="button" aria-current={tab === id ? "page" : undefined} className={tab === id ? "is-active" : ""} onClick={() => setTab(id)}>{label}{id === "decisions" && pending.length > 0 && <span className="char-tab-count">{pending.length}</span>}</button>)}</nav>
       <div className="char-content" aria-busy={busy}>
         {modelConnectOpen && <LocalModelConnect onAdvanced={() => window.dispatchEvent(new Event("oh:open-character-model-settings"))} />}
@@ -435,10 +466,11 @@ export default function CharactersPanel({ open, onClose }) {
           {view.governance?.realmAlive === false && !view.status?.ended && <div className="char-feedback"><strong>Riket har upplösts</strong><span>Familjen består, men de gamla riksämbetena ger ingen makt. Sök en fristad under Beslut och följ familjens tillgångar och beskyddare under Familjer.</span></div>}
           {(view.status?.ended || view.status === "ended") && <div className="char-feedback char-feedback--error"><strong>Kampanjen är avslutad</strong><span>{view.status?.reason || "Kampanjens fortsättningsvillkor är inte längre uppfyllda."}</span></div>}
           {tab === "council" && <CouncilView view={view} pending={pending} onCommand={command} busy={busy} setTab={setTab} selectPerson={setPersonId} runAction={runAction} />}
-          {tab === "people" && <PeopleView view={view} selectedId={personId} selectPerson={setPersonId} />}
+          {tab === "people" && <PeopleView view={view} selectedId={personId} selectPerson={setPersonId} busy={busy} runAction={runAction} talks={talks} setTalk={setTalk} onHold={setTalkHold} />}
           {tab === "families" && <FamiliesView view={view} />}
           {tab === "offices" && <OfficesView view={view} setTab={setTab} />}
            {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Olika personer kan företräda riket och hushållet. Varje handling följer den ansvariga aktörens mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}<ChainHistory chains={view.chainHistory} /></>}
+          {tab === "intrigue" && <IntrigueView view={view} busy={busy} onCommand={command} />}
           {tab === "chronicle" && <ChronicleView view={view} />}
         </>}
       </div>
