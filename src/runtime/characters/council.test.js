@@ -172,6 +172,31 @@ test('service follows loyalty, opinion and personality', () => {
   assert.equal(serviceOf(state, 'spymaster', hooks), null);
 });
 
+test('a crowned councillor keeps the seat at no opinion of herself and cannot reward herself', () => {
+  const state = plain(base());
+  state.offices.spymaster.holderId = SERA;
+  assert.equal(serviceOf(state, 'spymaster', actionHooks(state)), 70);
+  const crowned = ok(run(state, 'abdicate', {}));
+  assert.equal(crowned.offices.ruler.holderId, SERA);
+  assert.equal(crowned.offices.spymaster.holderId, SERA);
+  assert.equal(serviceOf(crowned, 'spymaster', actionHooks(crowned)), crowned.people[SERA].loyalty);
+  const refused = run(crowned, 'reward_councillor', { officeId: 'spymaster' });
+  assert.equal(refused.ok, false);
+  assert.equal(refused.error, 'Härskaren kan inte belöna sig själv.');
+  // Her own opinion moves no drift either.
+  const { loyalty } = crowned.people[SERA];
+  loyaltyDriftStep(crowned, actionHooks(crowned));
+  assert.equal(crowned.people[SERA].loyalty, loyalty);
+});
+
+test('a sitting ruler wants no throne', () => {
+  const state = plain(base()), hooks = actionHooks(state);
+  state.people[REP].traits = ['ambitious'];
+  assert.ok(state.families[state.people[REP].familyId].influence >= 50);
+  assert.equal(hooks.ruler().id, REP);
+  assert.notEqual(ambitionOf(state, state.people[REP], hooks), 'throne');
+});
+
 test('service reads as four tiers', () => {
   assert.deepEqual([100, 70, 69, 50, 49, 30, 29, 0].map(serviceTier), ['trogen', 'trogen', 'pålitlig', 'pålitlig', 'motvillig', 'motvillig', 'opålitlig', 'opålitlig']);
 });
@@ -286,6 +311,18 @@ test('no prompt carries a true loyalty', () => {
   assert.match(prompt, /"loyaltyReading":\{"label":"oviss","precision":"three"\}/);
 });
 
+test('a new representative\'s last decision keeps loyalty out of the view and the prompt', () => {
+  const fresh = base(), state = ok(run(ok(advanceCharacters(fresh, addGameMonths(fresh.date, 12))), 'abdicate', {}));
+  const saved = state.people[SERA].lastDecision;
+  assert.match(saved.reasons.join(' '), /Tjänstelojalitet/, 'the control: the saved record holds the number');
+  const view = getCharacterPresentation(state);
+  assert.equal(view.representative.id, SERA);
+  assert.deepEqual(view.representative.lastDecision, { choice: saved.choice, date: saved.date });
+  // The bare word stays in view.versions.provenance, a source credit with no number.
+  assert.doesNotMatch(JSON.stringify(view), /Tjänstelojalitet \d|"scores"/);
+  assert.doesNotMatch(buildCharacterPromptContext(state), /Tjänstelojalitet \d|"scores"/);
+});
+
 test('presenting the council and the readings draws nothing and spends nothing', () => {
   const state = plain(base());
   seat(state, 'spymaster', TALIA, { loyalty: 40, intrigue: 12 });
@@ -325,8 +362,31 @@ test('conversation odds never show more than the loyalty precision', () => {
   representative.skills.diplomacy = 4;
   assert.equal(estimate().precision, 'three');
   // The rolled value stays the same at every precision.
-  representative.skills.diplomacy = 14;
   assert.equal(exact.value, banded.value);
+});
+
+test('the loyalty row shows only at exact precision and still counts in the odds', () => {
+  const state = plain(base()), speaker = state.people[NAMAR], ROW = 'Personens lojalitet';
+  speaker.traits = [];
+  state.people[REP].skills.diplomacy = 14;
+  const request = { personId: NAMAR, kind: 'support', offerSilver: 0, hookId: null, arguments: [], argumentScore: 0 };
+  const at = (loyalty) => { speaker.loyalty = loyalty; return estimateConversation(state, request); };
+
+  // Below exact the rows read the same at any loyalty, so neither a sign nor a zero row left out sorts loyalty into buckets.
+  for (const [intrigue, precision] of [[null, 'three'], [7, 'five']]) {
+    if (intrigue !== null) seat(state, 'spymaster', TALIA, { loyalty: 60, intrigue });
+    const estimates = [20, 49, 50, 52, 80].map(at);
+    for (const estimate of estimates) {
+      assert.equal(estimate.precision, precision);
+      assert.deepEqual(estimate.display.modifiers, estimates[0].display.modifiers);
+      assert.ok(estimate.display.modifiers.every((row) => row.label !== ROW));
+    }
+    assert.equal(estimates[4].value - estimates[0].value, 12, 'the loyalty row moves the odds from −6 to +6');
+    assert.equal(estimates[4].modifiers.find((row) => row.label === ROW).value, 6);
+  }
+
+  seat(state, 'spymaster', TALIA, { loyalty: 60, intrigue: 12 });
+  assert.deepEqual(at(80).display.modifiers.find((row) => row.label === ROW), { label: ROW, value: 6 });
 });
 
 test('loyalty drifts with opinion and grievance', () => {
@@ -398,6 +458,9 @@ test('reward_councillor raises loyalty once a year and refuses a vacant seat', (
 
   const rewarded = ok(run(state, 'reward_councillor', { officeId: 'chancellor' }));
   assert.equal(rewarded.people[BAREK].loyalty, 68);
+  const logged = (after) => after.log.find((event) => event.title === `${state.people[BAREK].name} belönades`);
+  assert.equal(logged(rewarded).public, true);
+  assert.doesNotMatch(`${logged(rewarded).title} ${logged(rewarded).description}`, /\d|lojal/i);
   assert.equal(rewarded.realm.treasury, treasury - 20);
   assert.equal(rewarded.actionPoints, actionPoints - 1);
   assert.equal(rewarded.reign.deeds.generous, state.reign.deeds.generous + 1);
@@ -418,10 +481,12 @@ test('reward_councillor raises loyalty once a year and refuses a vacant seat', (
   assert.equal(run(state, 'reward_councillor', { officeId: 'priest' }).ok, false, 'the priest is outside the council');
   assert.equal(run(state, 'reward_councillor', { officeId: 'ruler' }).ok, false);
 
-  // Loyalty stays within 100.
+  // Loyalty stays within 100, and the log reads the same at any loyalty.
   const loyal = plain(state);
   loyal.people[BAREK].loyalty = 95;
-  assert.equal(ok(run(loyal, 'reward_councillor', { officeId: 'chancellor' })).people[BAREK].loyalty, 100);
+  const crowded = ok(run(loyal, 'reward_councillor', { officeId: 'chancellor' }));
+  assert.equal(crowded.people[BAREK].loyalty, 100);
+  assert.equal(logged(crowded).description, logged(rewarded).description);
 
   // The silver comes from the realm, so a house without the crown has no such command.
   refused(run(base({ mode: 'family', familyId: NAMARS }), 'reward_councillor', { officeId: 'chancellor' }), 'Beslutet kräver härskarens eller regentens mandat.');

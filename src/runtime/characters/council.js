@@ -21,7 +21,7 @@ const LOYALTY_LABELS = Object.freeze({
   three: Object.freeze(['svag', 'oviss', 'stark']),
 });
 const AMBITION_LABELS = Object.freeze({ throne: 'Tronen', office: 'Ett ämbete', city: 'En stad', wealth: 'Rikedom', security: 'Trygghet' });
-const REFUSALS = Object.freeze({ seat: 'Välj ett av rådets ämbeten.', vacant: 'Ämbetet är vakant.', recent: 'Rådsmedlemmen belönades nyligen.' });
+const REFUSALS = Object.freeze({ seat: 'Välj ett av rådets ämbeten.', vacant: 'Ämbetet är vakant.', ruler: 'Härskaren kan inte belöna sig själv.', recent: 'Rådsmedlemmen belönades nyligen.' });
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 const finite = (value) => (Number.isFinite(value) ? value : 0);
@@ -33,9 +33,12 @@ function seatHolder(state, officeId) {
   return person && !person.diedAt ? person : null;
 }
 
+const isRuler = (person, hooks) => person.id === hooks.ruler()?.id;
+
+// A crowned councillor keeps the seat. The engine's opinion of oneself is 100, which says nothing of how she serves, so the ruler counts 0.
 function opinionOfRuler(person, hooks) {
   const ruler = hooks.ruler();
-  return ruler ? hooks.getPersonalOpinion(person.id, ruler.id) : 0;
+  return ruler && !isRuler(person, hooks) ? hooks.getPersonalOpinion(person.id, ruler.id) : 0;
 }
 
 /** How well a seat's holder serves, 0..100, or null when the seat is vacant. */
@@ -104,7 +107,7 @@ function holdsFewerCities(state, family) {
 /** What a person wants most, as an id of AMBITION_LABELS: the first match of throne, office, city, wealth and security. Derived on every read. */
 export function ambitionOf(state, person, hooks) {
   const family = state.families[person.familyId], ambitious = hasTrait(person, 'ambitious');
-  if (ambitious && finite(family?.influence) >= THRONE_INFLUENCE && opinionOfRuler(person, hooks) <= 0) return 'throne';
+  if (ambitious && !isRuler(person, hooks) && finite(family?.influence) >= THRONE_INFLUENCE && opinionOfRuler(person, hooks) <= 0) return 'throne';
   const holdsOffice = Object.values(state.offices).some((office) => office.holderId === person.id);
   if (!holdsOffice && (ambitious || person.goal?.type === 'office')) return 'office';
   if (family?.headId === person.id && holdsFewerCities(state, family)) return 'city';
@@ -134,16 +137,18 @@ export function chancellorStep(state, hooks) {
   state.realm.treasury = Math.round(Math.max(0, state.realm.treasury + chancellorYield(state, hooks)) * 100) / 100;
 }
 
-/** The reward_councillor command: realm silver for loyalty, once a year per councillor. The caller has checked the mandate. */
-export function rewardCouncillor(state, officeId, hooks) {
+/** The reward_councillor command: realm silver for loyalty, once a year per councillor. The caller has checked the mandate. The public event names the councillor and nothing of the loyalty. */
+export function rewardCouncillor(state, officeId, events, hooks) {
   if (!COUNCIL_SEATS.includes(officeId)) throw new Error(REFUSALS.seat);
   const person = seatHolder(state, officeId);
   if (!person) throw new Error(REFUSALS.vacant);
+  if (isRuler(person, hooks)) throw new Error(REFUSALS.ruler);
   const cooldown = person.cooldowns.council_reward;
   if (cooldown && compareGameDates(cooldown, state.date) > 0) throw new Error(REFUSALS.recent);
   hooks.charge(REWARD.silver, { publicFunds: true, orders: REWARD.orders, tag: REWARD.tag });
   person.loyalty = clamp(person.loyalty + REWARD.loyalty, 0, 100);
   person.cooldowns.council_reward = addGameMonths(state.date, REWARD.months);
+  hooks.logEvent(events, 'councillor_rewarded', `${person.name} belönades`, `${person.name} fick en belöning ur statskassan.`, [person.id, hooks.ruler()?.id]);
 }
 
 /** The filled seats as `{ id, name }`, for the reward command's office field. */

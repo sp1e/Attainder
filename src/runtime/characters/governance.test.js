@@ -112,6 +112,24 @@ test('council consent is saved, used once by a successful order and expires on t
   assert.match(attempt(expired, 'mobilize').error, /samtycker inte/);
 });
 
+test('the log of a regency dispute reads the same at any regent loyalty', () => {
+  const veto = (loyalty) => command(minority({ loyalty }), 'request_regent_consent', { regencyId: 'office:ruler', actionType: 'mobilize', approach: 'negotiate' }).log.findLast((event) => event.type === 'regent_veto');
+  assert.equal(veto(30).description, veto(41).description);
+  assert.match(veto(30).description, /rådsstöd/);
+
+  const resisted = (loyalty) => {
+    const state = minority({ age: 17, traits: ['ambitious'], loyalty });
+    state.families['family-arel'].influence = 80;
+    const contested = advance(state);
+    assert.equal(contested.regencies['office:ruler'].phase, 'contested');
+    contested.people['person-0-4'].skills.diplomacy = 0;
+    contested.families['family-arel'].influence = 20;
+    return command(contested, 'resolve_regency', { regencyId: 'office:ruler', approach: 'council' }).log.findLast((event) => event.type === 'regency_resisted');
+  };
+  assert.equal(resisted(20).description, resisted(30).description);
+  assert.match(resisted(20).description, /stöd/);
+});
+
 test('ambitious regent contests adulthood, council can fail and pension restores the real mandate', () => {
   let state = minority({ age: 17, traits: ['ambitious'], loyalty: 20 });
   state.families['family-arel'].influence = 80;

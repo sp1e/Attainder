@@ -21,6 +21,7 @@ export const RECENT_REFUSAL = 'Ni talade om detta nyss. Personen vill inte bli t
 
 const OPINION_DIVISOR = 4, OPINION_CAP = 20;
 const LOYALTY_DIVISOR = 5;
+const LOYALTY_ROW = 'Personens lojalitet';
 const OFFER_DIVISOR = 4, OFFER_CAP = 15;
 const GREEDY_BONUS = 8, HONEST_PENALTY = 10, PARANOID_PENALTY = 8, TRUSTING_BONUS = 6;
 const HOOK_BONUS = 20;
@@ -140,7 +141,7 @@ function buildRows(read, speaker, representative, ctx, grounding, hooks) {
   const rows = [{ label: 'Grundchans', value: CONVERSATION_REQUESTS[read.kind].base }];
   const add = (label, value) => { if (value !== 0) rows.push({ label, value }); };
   add('Personens åsikt om dig', clamp(Math.round(hooks.getPersonalOpinion(speaker.id, representative.id) / OPINION_DIVISOR), -OPINION_CAP, OPINION_CAP));
-  add('Personens lojalitet', Math.round(((Number.isFinite(speaker.loyalty) ? speaker.loyalty : 50) - 50) / LOYALTY_DIVISOR));
+  add(LOYALTY_ROW, Math.round(((Number.isFinite(speaker.loyalty) ? speaker.loyalty : 50) - 50) / LOYALTY_DIVISOR));
   add('Erbjuden gåva', giftPoints(read.offer));
   if (read.offer > 0 && hasTrait(speaker, 'greedy')) add(traitLabel('greedy'), GREEDY_BONUS);
   if (read.kind === 'reveal_secret' && hasTrait(speaker, 'honest')) add(traitLabel('honest'), -HONEST_PENALTY);
@@ -151,10 +152,10 @@ function buildRows(read, speaker, representative, ctx, grounding, hooks) {
   return rows;
 }
 
-// What the player may read: exact shows every row with its value, the band precisions only the label and sign of each cause. The cut row stays out of a band display because it would reveal that the chance sits exactly at a bound.
+// What the player may read: exact shows every row with its value, the band precisions only the label and sign of each cause. The cut row stays out of a band display because it would reveal that the chance sits exactly at a bound. So does the loyalty row, which still counts in the odds: its sign, or its absence at zero, would sort a hidden loyalty into buckets.
 function presentChance(precision, value, rows, modifiers) {
   if (precision === 'exact') return { chance: value, modifiers: modifiers.map(({ label, value: amount }) => ({ label, value: amount })) };
-  return { chance: bandFor(value, precision), modifiers: rows.map(({ label, value: amount }) => ({ label, sign: amount > 0 ? '+' : '−' })) };
+  return { chance: bandFor(value, precision), modifiers: rows.filter(({ label }) => label !== LOYALTY_ROW).map(({ label, value: amount }) => ({ label, sign: amount > 0 ? '+' : '−' })) };
 }
 
 /**
