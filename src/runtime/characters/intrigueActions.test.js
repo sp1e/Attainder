@@ -7,7 +7,7 @@ import { applyTierEffects, refusalChance, tierFor, validateActionLog } from './a
 import { crimeOfSecret } from './crimes.js';
 import { actionHooks, advanceCharacters, createCharacterSystem, estimateCharacterAction, executeCharacterCommand, getCatalogActions, getPersonalOpinion, normalizeCharacterSystem } from './index.js';
 import { actionRandom } from './extensions.js';
-import { addSecretHolders, createSecret, grantHook, useHook } from './secrets.js';
+import { HOOK_RESERVED, addSecretHolders, createSecret, grantHook, useHook } from './secrets.js';
 
 const REP = 'person-0-0';
 const SERA = 'person-0-2';
@@ -313,6 +313,39 @@ test('blackmail with a strong secret grants a strong hook, a weak one grants a w
   }
 });
 
+test('a secret that already gave its actor a hook cannot be used by that actor again', () => {
+  const state = base();
+  const secret = AFFAIR(state);
+  addSecretHolders(state, secret.id, [REP, SERA]);
+  const blackmail = intent('blackmail', REP, BAREK, { secretId: secret.id });
+  const before = estimate(state, blackmail);
+  const offered = (current) => getCatalogActions(current).find((entry) => entry.catalogId === 'blackmail').fields.find((field) => field.key === 'secretId').options.map((option) => option.value);
+  assert.ok(offered(state).includes(secret.id));
+  const after = ok(attempt(withSeed(state, seedForTier(0, before, 'clean_success')), blackmail));
+
+  assert.equal(after.secrets.find((item) => item.id === secret.id).exposed, false);
+  assert.equal(estimate(after, blackmail).reason, MESSAGES.secret);
+  assert.equal(attempt(after, blackmail).error, MESSAGES.secret);
+  assert.equal(offered(after).includes(secret.id), false);
+  const hookId = after.actionLog.at(-1).effects.find((effect) => effect.kind === 'hook_from_secret').hookId;
+  const spent = copy(after);
+  useHook(spent, hookId);
+  assert.equal(estimate(spent, blackmail).reason, MESSAGES.secret, 'a spent hook does not refill the secret');
+
+  assert.equal(estimate(after, intent('blackmail', SERA, BAREK, { secretId: secret.id })).ok, true, 'another holder has gained nothing from it yet');
+  assert.doesNotThrow(() => normalizeCharacterSystem(copy(after)), 'the log carries the fact, so the save needs no new field');
+});
+
+test('a blackmail that gave no hook leaves the secret usable', () => {
+  const state = base();
+  const secret = AFFAIR(state);
+  addSecretHolders(state, secret.id, [REP]);
+  const blackmail = intent('blackmail', REP, BAREK, { secretId: secret.id });
+  const failed = ok(attempt(withSeed(state, seedForTier(0, estimate(state, blackmail), 'quiet_failure')), blackmail));
+  assert.equal(failed.actionLog.at(-1).tier, 'quiet_failure');
+  assert.equal(estimate(failed, blackmail).ok, true);
+});
+
 test('blackmail on a non-crime secret exposes the secret on an exposed success and holds a hook on the exposed failure backfire', () => {
   const state = base();
   const secret = AFFAIR(state);
@@ -364,6 +397,32 @@ test('the grip is spent whatever the tier', () => {
     assert.equal(done.actionLog.at(-1).tier, tier);
     assert.equal(done.hooks.find((item) => item.id === hook.id).usedAt, done.date, tier);
   }
+});
+
+test('a grip an active scheme holds starts no second plan and leaves the menu until the scheme ends', () => {
+  const quiet = seedWhere(3, ([discovery]) => discovery >= 40);
+  const state = base();
+  const hook = grantHook(state, { ownerId: REP, targetId: NAMAR, strength: 'weak' });
+  const poison = intent('poison', REP, NAMAR, { hookId: hook.id });
+  const offered = (current) => getCatalogActions(current).find((entry) => entry.catalogId === 'poison').fields.find((field) => field.key === 'hookId').options.map((option) => option.value);
+  assert.ok(offered(state).includes(hook.id));
+  const started = ok(attempt(withSeed(state, quiet), poison));
+  const scheme = started.schemes.at(-1);
+
+  assert.equal(estimate(started, poison).reason, HOOK_RESERVED);
+  const second = attempt(started, poison);
+  assert.equal(second.ok, false);
+  assert.equal(second.error, HOOK_RESERVED);
+  assert.equal(second.state, started, 'nothing is charged');
+  assert.equal(offered(started).includes(hook.id), false);
+
+  const done = advance(started, scheme.dueAt);
+  assert.equal(done.schemes.at(-1).status, 'resolved', 'the scheme is not stopped by its own reservation');
+  assert.equal(done.hooks.find((item) => item.id === hook.id).usedAt, scheme.dueAt);
+
+  const aborted = ok(run(started, 'abort_scheme', { schemeId: scheme.id }));
+  assert.equal(estimate(aborted, poison).ok, true, 'a scheme that ended reserves nothing');
+  assert.ok(offered(aborted).includes(hook.id));
 });
 
 test('a refused order spends no grip and a grip spent before the due date collapses the scheme', () => {

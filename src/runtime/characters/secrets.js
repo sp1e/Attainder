@@ -137,6 +137,18 @@ export function useHook(state, hookId) {
 /** Hooks that useHook would accept: unused, and both people alive. Without a target, every target counts. */
 export const activeHooks = (state, ownerId, targetId = null) => state.hooks.filter((hook) => hook.ownerId === ownerId && (targetId == null || hook.targetId === targetId) && hook.usedAt === null && hookUsable(state, hook));
 
+/** The secret already gave this actor a hook. The action log keeps every hook_from_secret effect, so the fact needs no field of its own and an older save answers the same way. */
+export const secretGaveHook = (state, actorId, secretId) => (Array.isArray(state.actionLog) ? state.actionLog : []).some((entry) => entry.actorId === actorId && Array.isArray(entry.effects) && entry.effects.some((effect) => effect.kind === 'hook_from_secret' && effect.secretId === secretId));
+
+/** The refusal for a hook an active scheme holds; the odds and a conversation give the same sentence. */
+export const HOOK_RESERVED = 'Övertaget är bundet till en pågående plan.';
+
+/** Hooks an active scheme names in its means are spent when it falls due (schemes.js), so nothing else may use or offer them. */
+export const reservedHookIds = (state) => new Set((Array.isArray(state.schemes) ? state.schemes : []).filter((scheme) => scheme.status === 'active' && typeof scheme.means?.hookId === 'string').map((scheme) => scheme.means.hookId));
+
+/** The active hooks no active scheme holds. */
+export const unreservedHooks = (state, ownerId, targetId = null) => { const reserved = reservedHookIds(state); return activeHooks(state, ownerId, targetId).filter((hook) => !reserved.has(hook.id)); };
+
 /** One record per unordered pair and kind. An existing record is returned as it is; a non-null causeId replaces its cause, a null one never erases it. */
 export function setRelationship(state, { kind, aId, bId, causeId = null } = {}) {
   const candidate = { id: `relationship-${state.sequence + 1}`, kind, aId, bId, causeId, createdAt: state.date };

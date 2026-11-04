@@ -4,7 +4,7 @@ import { TRAITS } from './content.js';
 import { actionRandom } from './extensions.js';
 import { IMPRISONED, isImprisoned } from './prisoners.js';
 // useHook is imported as consumeHook: the react-hooks lint rule reads the name as a React hook.
-import { SECRET_LABELS, activeHooks, addSecretHolders, grantHook, knownSecrets, useHook as consumeHook } from './secrets.js';
+import { HOOK_RESERVED, SECRET_LABELS, activeHooks, addSecretHolders, grantHook, knownSecrets, reservedHookIds, unreservedHooks, useHook as consumeHook } from './secrets.js';
 
 // Conversation requests: the representative asks one person for support, a secret or a pledge. The model (Task 9) may only claim a score for the arguments; the engine grounds each argument in the state, caps the score again, draws one action roll and applies the outcome.
 // The estimate is a pure function of the state. Resolution draws exactly one actionRandom and never touches the main or the plot stream. `hooks` are the engine's (actionHooks in index.js).
@@ -38,7 +38,7 @@ const REASONS = Object.freeze({
   score: 'Argumentens poäng måste vara ett heltal, noll eller mer.',
   arguments: 'Argumenten är ogiltiga.',
   hook: 'Övertaget finns inte, är förbrukat eller gäller inte denna person.',
-  reserved: 'Övertaget är bundet till en pågående plan.',
+  reserved: HOOK_RESERVED,
 });
 const INVALID = Object.freeze({
   list: 'Samtalen i sparfilen är ogiltiga.',
@@ -159,10 +159,6 @@ function presentChance(precision, value, rows, modifiers) {
  * An argument counts only when it refers to something real: an offer needs silver, a shared enemy a living person both hold at −20 or lower, a shared memory one both took part in and know, a hook an active hook of the representative over the speaker named by hookId. A hook an active scheme holds in its means is refused.
  * The result carries the true `value` and `modifiers` for rolling and `display`, which follows `precision` (the representative's diplomacy, as for Phase 1's odds) and never carries a number at 'five' or 'three'.
  */
-// Hooks an active scheme names in its means are spent when it falls due (schemes.js), so a conversation may neither use nor offer them.
-const reservedHookIds = (state) => new Set((Array.isArray(state.schemes) ? state.schemes : []).filter((scheme) => scheme.status === 'active' && typeof scheme.means?.hookId === 'string').map((scheme) => scheme.means.hookId));
-const conversationHooks = (state, ownerId, targetId) => { const reserved = reservedHookIds(state); return activeHooks(state, ownerId, targetId).filter((hook) => !reserved.has(hook.id)); };
-
 export function estimateConversation(state, request, hooks) {
   const read = readRequest(request);
   if (read.reason) return { ok: false, reason: read.reason };
@@ -271,7 +267,7 @@ export function conversationBrief(state, personId, hooks) {
     opinion: hooks.getPersonalOpinion(speaker.id, representative.id),
     opinionReasons: hooks.opinionReasons(speaker.id, representative.id).map(({ label, value }) => ({ label, value })),
     memories, secrets,
-    hooks: conversationHooks(state, representative.id, speaker.id).map((hook) => ({ id: hook.id, strength: hook.strength, strengthLabel: STRENGTH_LABELS[hook.strength] })),
+    hooks: unreservedHooks(state, representative.id, speaker.id).map((hook) => ({ id: hook.id, strength: hook.strength, strengthLabel: STRENGTH_LABELS[hook.strength] })),
   };
 }
 

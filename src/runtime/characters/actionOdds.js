@@ -4,7 +4,7 @@ import { ADULT_AGE, SKILL_LABELS, TRAITS } from './content.js';
 import { DIFFICULTIES, normalizeDifficulty } from './extensions.js';
 import { STAFF_ROLES } from './courtStaff.js';
 import { IMPRISONED, imprisonRefusal, isImprisoned } from './prisoners.js';
-import { activeHooks } from './secrets.js';
+import { HOOK_RESERVED, activeHooks, reservedHookIds, secretGaveHook } from './secrets.js';
 
 // Odds for the contested actions. An estimate is a pure function of the state and the engine's context: it draws no randomness, spends nothing, creates no staff and edits nothing. Task 6 rolls against the values computed here.
 // Both odds are integers from ODDS_MIN to ODDS_MAX. Every modifier is a row { label, value } with a Swedish label and a non-zero integer value, so the rows of one roll add up to its value. A cut at the bounds is a row of its own; it is shown at exact precision only (see CUT_ROWS).
@@ -136,11 +136,11 @@ function readMeans(means) {
   return { silver, agents: roles.length, occasionId: given.occasionId, secretId: given.secretId, hookId: given.hookId, topic: given.topic };
 }
 
-// The secret the actor may use against the target: unexposed, about the target and held by the actor.
-const usableSecret = (state, actor, target, id) => state.secrets.find((secret) => secret.id === id && !secret.exposed && secret.subjectId === target.id && secret.holderIds.includes(actor.id)) ?? null;
+// The secret the actor may use against the target: unexposed, about the target, held by the actor and not yet turned into a hook by that actor.
+const usableSecret = (state, actor, target, id) => state.secrets.find((secret) => secret.id === id && !secret.exposed && secret.subjectId === target.id && secret.holderIds.includes(actor.id) && !secretGaveHook(state, actor.id, id)) ?? null;
 
 // The secret, hook and topic in the means. An entry takes only what its `uses` names (anything else is invalid means), and refuses when a required one is missing or does not fit the actor and target. Returns the success rows they give or a refusal.
-function leverageOf(state, entry, actor, target, means) {
+function leverageOf(state, entry, actor, target, means, ctx) {
   const uses = usesOf(entry);
   const given = { secret: means.secretId, hook: means.hookId, topic: means.topic };
   if (Object.entries(given).some(([use, value]) => value !== undefined && !uses.includes(use))) return { reason: REASONS.means };
@@ -154,6 +154,8 @@ function leverageOf(state, entry, actor, target, means) {
   }
   if (given.hook !== undefined) {
     if (!activeHooks(state, actor.id, target.id).some((hook) => hook.id === given.hook)) return { reason: REASONS.hook };
+    // On its due date a scheme meets its own reservation (ctx.scheduled, set by schemes.js); only a new attempt is refused.
+    if (ctx.scheduled !== true && reservedHookIds(state).has(given.hook)) return { reason: HOOK_RESERVED };
     rows.push({ label: 'Påtryckning genom ett grepp', value: HOOK_BONUS });
   }
   if (uses.includes('topic') && !Object.hasOwn(RUMOR_TOPICS, given.topic)) return { reason: REASONS.topic };
@@ -275,7 +277,7 @@ export function estimateAction(state, intent, ctx) {
   const price = entry.cost.silver + means.silver;
   const available = finite(ctx.wallet(entry.cost.wallet));
   if (price > available) return refuse(`Det behövs ${price} silver; tillgängligt ${Math.floor(available)}.`);
-  const leverage = leverageOf(state, entry, actor, target, means);
+  const leverage = leverageOf(state, entry, actor, target, means, ctx);
   if (leverage.reason) return refuse(leverage.reason);
   const situation = situationOf(entry, actor, target, means, ctx);
   const success = successOdds(state, entry, actor, target, means, ctx, [...leverage.rows, ...targetRows(state, entry, target), ...situation.success]);

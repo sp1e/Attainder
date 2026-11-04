@@ -1,7 +1,7 @@
 import { canExerciseMandate, isAdultCharacter } from './characterCapacity.js';
 import { STAFF_ROLES } from './courtStaff.js';
 import { isImprisoned } from './prisoners.js';
-import { SECRET_LABELS, activeHooks } from './secrets.js';
+import { SECRET_LABELS, secretGaveHook, unreservedHooks } from './secrets.js';
 
 // The action catalog: the contested actions of Phase 1 as data, and the menu that puts them next to the existing commands. Nothing here draws from a random stream, spends silver or edits the state it reads; later tasks compute odds from these entries, resolve them and let the game master pick from them.
 export const ACTION_CATEGORIES = Object.freeze(['intrigue', 'diplomacy', 'family', 'court', 'military', 'religion', 'economy', 'personal']);
@@ -227,12 +227,12 @@ const strengthLabel = (strength) => (strength === 'strong' ? 'Starkt' : 'Svagt')
 // The secrets the representative holds about a living adult that are still hidden: the ones estimateAction accepts as leverage. The target must be the subject, so the person in the label is the one to pick as the target.
 function secretOptions(state, representativeId) {
   return (Array.isArray(state.secrets) ? state.secrets : [])
-    .filter((secret) => !secret.exposed && secret.holderIds.includes(representativeId) && secret.subjectId !== representativeId && isAdultCharacter(person(state, secret.subjectId), state.date))
+    .filter((secret) => !secret.exposed && secret.holderIds.includes(representativeId) && secret.subjectId !== representativeId && isAdultCharacter(person(state, secret.subjectId), state.date) && !secretGaveHook(state, representativeId, secret.id))
     .map((secret) => ({ value: secret.id, label: `${SECRET_LABELS[secret.type] ?? secret.type}: ${person(state, secret.subjectId).name}` }));
 }
 
 function hookOptions(state, representativeId) {
-  return activeHooks(state, representativeId).map((hook) => ({ value: hook.id, label: `${strengthLabel(hook.strength)} grepp över ${person(state, hook.targetId)?.name ?? hook.targetId}` }));
+  return unreservedHooks(state, representativeId).map((hook) => ({ value: hook.id, label: `${strengthLabel(hook.strength)} grepp över ${person(state, hook.targetId)?.name ?? hook.targetId}` }));
 }
 
 // The extra selects an entry's `uses` asks for. An optional select starts with the empty option; a required one (entry.requires) does not.
