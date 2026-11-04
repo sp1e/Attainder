@@ -51,3 +51,9 @@ test("hiding the video still works, and showing it again starts from the button"
     // TutorialVideo is unmounted while hidden, so its "playing" does not survive.
     assert.match(prompt, /\{showTutorial \? \(/);
 });
+
+test("a dynasty campaign never opens the provider prompt: its panel connects Claude or Codex", () => {
+    const main = fs.readFileSync(new URL("./main.jsx", import.meta.url), "utf8");
+    const at = main.indexOf("const showApiPrompt = ");
+    assert.match(main.slice(at, main.indexOf(";", at)), /!hasCharacters/);
+});

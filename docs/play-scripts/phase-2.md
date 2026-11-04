@@ -162,7 +162,7 @@ Difficulty is chosen when a campaign starts, so this part uses a second campaign
 
 ## Part 12: Reload
 
-1. Reload the browser page (press F5) and click `Rike & familjer`.
+1. Reload the browser page (press F5). In the main menu, click `Current`, then click `Rike & familjer`.
 2. Open `Intriger`. The secrets, grips, prisoners and rumors from the previous parts are still there, and `Modellanrop denna session:` in the footer shows 0 again.
 
 ## Report back

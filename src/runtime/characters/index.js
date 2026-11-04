@@ -770,7 +770,7 @@ function annualStep(state, events) {
   scheduleEventChain(state, events, chainContext(state), chainHooks(state));
   const actor = activeRepresentative(state); if (actor?.stress >= 80 && !state.stories.some((s) => s.type === 'stress_crisis' && s.status === 'open' && s.actorId === actor.id)) state.stories.push({ id: nextId(state, 'story'), type: 'stress_crisis', title: 'Ansvaret börjar tära', description: `${actor.name} behöver hantera sin belastning.`, actorId: actor.id, createdAt: state.date, dueAt: addGameMonths(state.date, 12), status: 'open', knownBy: [actor.id] });
   if (state.realm.alive && state.realm.treasury === 0) state.realm.legitimacy = clamp(state.realm.legitimacy - 8); else if (state.realm.alive) state.realm.legitimacy = clamp(state.realm.legitimacy + 0.5);
-  updateStatus(state); logEvent(state, events, 'year', 'Årets förvaltning är avslutad', `Statskassan förändras med ${effects.annualRevenue.toFixed(1)} silver. Nya personliga beslut, ålder och politiska förhållanden har behandlats.`, []);
+  updateStatus(state); logEvent(state, events, 'year', 'Årets förvaltning är avslutad', `Statskassan förändras med ${effects.annualRevenue.toFixed(1).replace('.', ',').replace('-', '−')} silver. Nya personliga beslut, ålder och politiska förhållanden har behandlats.`, []);
   syncPlotSecrets(state);
   prisonerStep(state, events, actionHooks(state));
   npcPlotStep(state, events, actionHooks(state));

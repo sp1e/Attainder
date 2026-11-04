@@ -73,7 +73,7 @@ Each step says where to click, what to type, and what you should see. If a step 
 ## Part 5: Find the result after a reload
 
 1. Reload the browser page (press F5).
-2. The panel stays closed after a reload. Click `Rike & familjer` at the left of the screen.
+2. A reload returns you to the main menu. Click `Current` to reopen the game, then click `Rike & familjer` at the left of the screen.
 3. Open the tab `Krönikan`, then click `Årskrönika`.
 4. You should see an entry with the story title you noted in Part 4, step 3, with the date of your action. If you saw the standard text in Part 4, step 5, look for the entry whose title starts with `Påverka:`.
 5. Open `Överblick` and check the footer. `Modellanrop denna session:` shows 0 again, because the counter lives only in the open page. The save itself keeps the result.

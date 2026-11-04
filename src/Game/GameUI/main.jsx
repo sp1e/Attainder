@@ -280,7 +280,8 @@ const Main = ({
     setApiPromptAnsweredFor(id);
     try { sessionStorage.setItem("oh:api-setup-answered", id); } catch { /* the prompt just shows again next time */ }
   };
-  const showApiPrompt = loaded && Boolean(activeGame?.id) && !mainMenuOpen && !providerReady
+  // A dynasty campaign connects Claude or Codex from its own panel, in Swedish.
+  const showApiPrompt = loaded && Boolean(activeGame?.id) && !mainMenuOpen && !providerReady && !hasCharacters
     && apiPromptAnsweredFor !== String(activeGame?.id) && !isSettingsOpen && !showGameLoading;
 
   // Asked again while the warning is up. WebGL is refused for a moment while

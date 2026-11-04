@@ -37,6 +37,8 @@ export const dateLabel = (value) => {
   const date = parseGameDate(value);
   return date ? `${date.day}/${date.month} ${Math.abs(date.year)}${date.year < 0 ? " f.Kr." : " e.Kr."}` : String(value ?? "—");
 };
+/** A date label ends in "f.Kr." or "e.Kr."; the sentence must not add a second period. */
+export const endSentence = (text) => text.endsWith(".") ? text : `${text}.`;
 const signedValue = (value) => value > 0 ? `+${value}` : value < 0 ? `${MINUS}${Math.abs(value)}` : "0";
 const nameOf = (view, id) => entries(view?.people).find((person) => person.id === id)?.name || "Okänd person";
 
@@ -124,7 +126,7 @@ export async function executeProposal({ proposal, view, submit, narrate, recordN
     const scheme = entries(after?.schemes).find((item) => !seenSchemes.has(item.id));
     if (!scheme) return { ok: true, heading: proposal.entry?.label || "Handlingen är genomförd", ...standard };
     return { ok: true, heading: "Intrigen har inletts", title: `${scheme.actionLabel}: ${entries(scheme.targetNames).join(", ")}`,
-      text: `Planen avgörs ${dateLabel(scheme.dueAt)}. Du kan avbryta den under Pågående intriger.` };
+      text: `${endSentence(`Planen avgörs ${dateLabel(scheme.dueAt)}`)} Du kan avbryta den under Pågående intriger.` };
   }
   if (resolution.refused) return { ok: true, heading: resolution.tierLabel || "Ordern vägrades", ...standard };
   const heading = TIER_HEADINGS[resolution.tier] || resolution.tierLabel || "Utfall";

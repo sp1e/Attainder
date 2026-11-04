@@ -18,17 +18,59 @@ Phases 0, 1 and 2 are on `main`. PR #4 squash-merged Phase 2 as `ef0ab7c` on 3 N
 
 ## Verification
 
+- After the play scripts and their fixes on 4 November 2026: 3,821 tests, 3,818 pass, 0 fail, 1 skipped, 2 todo, in 96 seconds. `npm run lint`: 18 errors and 71 warnings, unchanged. `npm run build`: exit code 0.
 - Fresh clone on 4 November 2026, Node 24, with the Claude Code detection fix: 3,812 tests, 3,809 pass, 0 fail, 1 skipped, 2 todo, in 91 seconds. `npm run lint`: 18 errors and 71 warnings, unchanged. `npm run build`: exit code 0.
 - Live smoke check on the same day: Claude Code read `Jag försöker vinna Namars stöd med gåvor och smicker` in one model call, and the game showed the odds card for `Påverka` against Namar. I cancelled the action, so nothing resolved. The browser console showed no errors once the map files were in place. This check covers one card of Part 3 in the Phase 1 play script.
 - Full serial suite on 3 November 2026 at commit `ce1e63e`, after the final review fixes: 3,811 tests, 3,808 pass, 0 fail, 1 skipped, 2 todo, in 172 seconds. Phase 1 ended at 3,543 tests, so Phase 2 added 268. `server/payloadUpdate.test.js` can fail on Windows with an `EPERM` rename; it passed in this run.
 - `npm run lint`: 18 errors and 71 warnings, the same as `origin/main`. Phase 2 adds no lint finding. An earlier run showed 20 errors, because the name `useHook` in `secrets.js` made the React hooks rule fire in `actionResolution.js` and `conversation.js`; both files now import it as `consumeHook`.
 - `npm run build`: exit code 0.
 
+## Play scripts
+
+Both scripts ran against Claude Code on 4 November 2026, driven through a browser. Every part passed.
+
+**Phase 1**
+
+| Part | Result | Notes |
+|---|---|---|
+| 1, 2 | Pass | |
+| 3 | Pass | `Påverka` against Namar av Hadara. Success `osäker`, secrecy `osäker`. The model read the text in 4.4 seconds. |
+| 4 | Pass | Tier `Misslyckat och avslöjat`, story `Arels ord faller till marken`. |
+| 5 | Pass | The script said the game stays open after a reload. A reload returns to the main menu, so the script now says to click `Current`. |
+| 6 | Pass | `Undergräv` against Dara Namar at `osannolik`. The target found out, so the chronicle shows `Undergräv: planen avslöjades`. The model year took 118 seconds. |
+| 7 | Pass | |
+| 8 | Pass | After `Clear list` an English modal about Gemini opened. Dynasty campaigns no longer show it. |
+| 9 | Pass | The pre-Phase 1 save from `728eaec` loaded as `Normal`, and a model year ran in 125 seconds. The old build needed two local patches to reach Claude and to finish its year: the Claude detection and the `sold` guard below. |
+
+**Phase 2**
+
+| Part | Result | Notes |
+|---|---|---|
+| 1 to 3 | Pass | |
+| 4 | Pass | Poison against Tarek Arel: success `osäker`, secrecy `osäker`. `Gästabudet ger tillträde: +` and `Hemlighållning: många vittnen på gästabudet: −` showed in both the free-text and the menu card. |
+| 5 | Pass | Tier `Förgifta: misslyckat i det tysta`. Tarek lived. The model year took 182 seconds. |
+| 6 | Pass | The spymaster heard `Sammansvärjning: Sera Arel`, named culprit Danel Safra, reliability `trolig`. A rumor about Talia Namar succeeded and shows `Påstådd aktör: okänd`. |
+| 7 | Pass | A support request with 20 silver at `osäker` ended in `Sera Arel avvisar förfrågan.` The reply agreed with the note, and the repeat was refused. Focus landed on the person's heading, because a decided request hides `Samtala`. |
+| 8 | Pass | `Fängsla` against Kelan Namar: success `jämn`, secrecy `mycket låg`, tier `Lyckat men avslöjat`. |
+| 9 | Pass | The offer `Lösen för Kelan Namar` came after one year. `Ta emot lösen` freed the prisoner. |
+| 10 | Pass | `Personen finns inte i spelet: Zorbas.` |
+| 11 | Pass | On `Svår` a rumor came after one year and `Komplott avslöjad: Kelan Namar` after two. `Behåll kunskapen som grepp` gave `Grepp över Kelan Namar`, `Styrka: starkt`. |
+| 12 | Pass | |
+
+The play scripts reached four of the five tiers. `Det slog tillbaka` did not come up, and unit tests cover it.
+
+**Bugs the scripts found, all fixed**
+
+- A Claude Code installed through npm was reported as missing, because the bridge looked for `claude.exe` only in `~/.local/bin` and on `PATH`.
+- `LEGAL_TRANSFER_LANGUAGE` matched the Swedish word `sold` (a soldier's pay). A character campaign treats its final attempt as strict, so the whole year was lost after 158 seconds. The check now needs `sold to`.
+- Codex older than the flags the bridge sends read `Inloggad och tillgänglig` and then failed on every call. Codex 0.117.0 lacks `--ignore-user-config`; 0.166.0 has it. The status now reads `Behöver uppdateras` with the update command. A real Codex call has not run on this computer.
+- `Planen avgörs 1/4 300 f.Kr..` had two periods, `Statskassan förändras med 30.1 silver.` used a decimal point, and the skill list showed `prowess` in English.
+- A failed year showed the model call's English error. The panel now shows a Swedish sentence and logs the original.
+- The panel header still read `Open Historia · Dynastier`.
+
 ## Next step
 
-Run the manual checks in `docs/play-scripts/phase-1.md` and `docs/play-scripts/phase-2.md` against a live model, and record pass or fail per part in this file. They cover what unit tests cannot: the model reading a Swedish sentence, the odds card with the feast rows, a poisoning that resolves in a model year, a conversation that ends in a roll and an in-character reply, a plot against the ruler, a ransom offer, and the message for a name that is not in the game.
-
-Phase 2 reached `main` before these checks ran. After the play scripts pass, run an independent review of Phase 2 as merged, then write the Phase 3 plan (court and power) in `docs/superpowers/plans/`.
+Review Phase 2 as merged, then write the Phase 3 plan (court and power) in `docs/superpowers/plans/`.
 
 ## Known Phase 2 limitations
 
@@ -36,7 +78,7 @@ Phase 2 reached `main` before these checks ran. After the play scripts pass, run
 
 ## Still open
 
-Event chains, Phase 1 and Phase 2 are not yet played through. Phase 0 did not cover these checks:
+Phase 0 did not cover these checks:
 
 1. Participant or mandate changes during a chain.
 2. JSON advances: an integration test that saves a chain to JSON between two `advanceCharacters` calls.
@@ -44,7 +86,7 @@ Event chains, Phase 1 and Phase 2 are not yet played through. Phase 0 did not co
 4. Immutable historical roles and story/source uniqueness.
 5. The panel in both themes and narrow layouts, with one submitted public choice and one submitted private choice, each followed by a reload.
 
-The play scripts have not been run by a person yet.
+Claude ran the play scripts through a browser. A person has not played them yet.
 
 Two rules hold for every change. A normal read, validation or presentation call never chooses a branch, spends money or draws randomness. Model output never performs the player's decision: it reaches the save only through a command, and replay never calls the model.
 
