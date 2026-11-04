@@ -899,7 +899,7 @@ function describeCharacterAuthority(state) {
     const principal = state.people[principalId];
     const record = state.regencies[scope === 'royal' ? 'office:ruler' : `family:${family?.id}`];
     const representative = scope === 'royal' ? realmExecutive(state) : householdRepresentative(state);
-    const contested = record?.principalId === principalId && record.phase === 'contested';
+    const contested = record?.phase === 'contested' && record.principalId === principalId;
     const reason = contested ? 'contested' : alive(principal) && !adult(state, principal) ? 'minority' : getIncapacityCauseIds(principal, state.date).length ? 'incapacity' : null;
     const blockedReason = contested ? 'Mandatöverlämningen är omstridd. De reserverade besluten är spärrade tills konflikten är löst.' : !representative ?
       scope === 'royal' && !state.realm.alive ? 'Riket har upplösts.' : 'Ingen handlingsförmögen företrädare finns just nu. Kalendern kan fortsätta.' : '';

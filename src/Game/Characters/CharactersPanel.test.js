@@ -5,7 +5,7 @@ import vm from "node:vm";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
-import { createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getCharacterPresentation } from "../../runtime/characters/index.js";
+import { applyRealmDissolution, createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getCharacterPresentation } from "../../runtime/characters/index.js";
 import { REASONS as ODDS_REASONS } from "../../runtime/characters/actionOdds.js";
 import { CONVERSATION_REQUESTS } from "../../runtime/characters/conversation.js";
 import * as realCounter from "../AI/modelCallCounter.js";
@@ -184,6 +184,16 @@ function elements(tree) {
   if (!tree || typeof tree !== "object") return [];
   return [tree, ...React.Children.toArray(tree.props?.children).flatMap(elements)];
 }
+
+test("every tab renders the real view of a realm campaign ended by dissolution", () => {
+  const state = createCharacterSystem({ mode: "realm", polityId: "Hadara", seed: 321 });
+  const view = getCharacterPresentation(applyRealmDissolution(state, { id: "annexed", date: state.date, reason: "Riket annekterades.", hostCandidates: [] }).state);
+  for (const tab of ["council", "people", "families", "offices", "decisions", "intrigue", "chronicle"]) {
+    const html = renderToStaticMarkup(loadPanel(view, { tab }).default({ open: true, onClose: () => {} }));
+    assert.match(html, /Kampanjen är avslutad/, tab);
+  }
+  assert.match(renderToStaticMarkup(loadPanel(view).default({ open: true, onClose: () => {} })), /Riket har upplösts\./);
+});
 
 test("a blocked mandate leaves the time button enabled and wired to advance", async () => {
   const view = baseView();
