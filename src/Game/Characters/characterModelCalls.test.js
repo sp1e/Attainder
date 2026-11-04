@@ -479,6 +479,25 @@ test('extract refuses a person who is not in the game without asking the model',
   assert.equal(calls.length, 0);
 });
 
+test('a reply that agreed to reveal with nothing to tell is told so and may promise nothing', async () => {
+  const state = createCharacterSystem({ seed: 321 });
+  const model = fakeModel({ reply: 'Jag vet inget.' });
+  await replyAsCharacter({ personId: TARGET, text: 'Berätta.', history: [], view: talkView(state), outcome: { kind: 'reveal_secret', accepted: true, nothingToTell: true }, callModel: model.callModel });
+  const prompt = promptOf(model.calls[0]);
+  assert.match(prompt, /"outcome":\{"kind":"reveal_secret","accepted":true,"nothingToTell":true\}/);
+  assert.match(prompt, /If outcome\.nothingToTell is true you agreed but have nothing to tell: say so, and promise no secret\./);
+});
+
+test('nothingToTell reaches the prompt only as true on an accepted reveal', async () => {
+  const state = createCharacterSystem({ seed: 321 });
+  const cases = [[{ kind: 'support', accepted: true, nothingToTell: true }, '{"kind":"support","accepted":true}'], [{ kind: 'reveal_secret', accepted: false, nothingToTell: true }, '{"kind":"reveal_secret","accepted":false}'], [{ kind: 'reveal_secret', accepted: true, nothingToTell: 'yes' }, '{"kind":"reveal_secret","accepted":true}']];
+  for (const [outcome, expected] of cases) {
+    const model = fakeModel({ reply: 'Väl.' });
+    await replyAsCharacter({ personId: TARGET, text: 'Berätta.', history: [], view: talkView(state), outcome, callModel: model.callModel });
+    assert.ok(promptOf(model.calls[0]).includes('"outcome":' + expected), JSON.stringify(outcome));
+  }
+});
+
 test('reply is passed the outcome as a fixed fact', async () => {
   const state = createCharacterSystem({ seed: 321 });
   const accepted = fakeModel({ reply: 'Du har mitt stöd.' });

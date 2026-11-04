@@ -23,6 +23,12 @@ function decidedEntry(result, request) {
   return entry && entry.personId === request.personId && entry.kind === request.kind && typeof entry.accepted === "boolean" ? entry : null;
 }
 
+// The ledger's mark of a speaker who agreed to reveal and had nothing to tell: its secret effect names no secret.
+const nothingToTell = (entry) => Array.isArray(entry.effects) && entry.effects.some((effect) => effect.kind === "secret" && effect.secretId === null);
+
+// What the reply hears of the decision, from the engine's entry, so the speaker cannot promise a secret that does not exist.
+const replyOutcome = (entry) => ({ kind: entry.kind, accepted: entry.accepted, ...(entry.accepted && nothingToTell(entry) ? { nothingToTell: true } : {}) });
+
 // What happened, in the player's words. Built from the engine's entry, never from the model.
 function outcomeNotes(entry, name) {
   const effects = Array.isArray(entry.effects) ? entry.effects : [];
@@ -31,7 +37,7 @@ function outcomeNotes(entry, name) {
   if (!entry.accepted) notes.push(`${name} avvisar förfrågan.`);
   else if (entry.kind === "support") notes.push(`${name} ger sitt stöd.`);
   else if (entry.kind === "pledge") notes.push(`${name} ger ett löfte. Du har nu ett grepp över ${name}.`);
-  else if (effects.some((effect) => effect.kind === "secret" && effect.secretId === null)) notes.push(`${name} hade inget att berätta.`);
+  else if (nothingToTell(entry)) notes.push(`${name} hade inget att berätta.`);
   else notes.push(`${name} anförtror dig en hemlighet. Du hittar den under Intriger.`);
   if (paid) notes.push(`${paid.amount} silver betalades ur familjekassan.`);
   return notes;
@@ -150,7 +156,7 @@ export default function ConversationView({ person, turns = [], setTurns, busy = 
     setText("");
     if (!entry) return go(IDLE);
     setStage({ kind: "working", label: `${person.name} svarar…` });
-    const answer = await reply(card.said, { kind: card.request.kind, accepted: entry.accepted }, card.history);
+    const answer = await reply(card.said, replyOutcome(entry), card.history);
     if (!answer?.ok && answer?.detail) console.warn("[court conversation] the reply failed:", answer.detail);
     append(answer?.ok ? { from: "speaker", text: answer.reply } : { from: "note", text: REPLY_NOTE });
     return go(IDLE);

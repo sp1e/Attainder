@@ -1320,15 +1320,26 @@ test("a refused estimate and a failed extraction show a Swedish reason and open 
 });
 
 test("an accepted reveal with nothing to tell says so, and an offer shows what it cost", async () => {
-  const request = { ...supportRequest(), kind: "reveal_secret", offerSilver: 12 };
+  const request = { ...supportRequest(), kind: "reveal_secret", offerSilver: 12 }, replies = [];
   const mounted = mountTalk({ diplomacy: 14,
-    model: { extractConversationRequest: async () => ({ ok: true, request }), replyAsCharacter: async () => ({ ok: true, reply: "Jag har inget att säga." }) },
+    model: { extractConversationRequest: async () => ({ ok: true, request }), replyAsCharacter: async (call) => { replies.push(call); return { ok: true, reply: "Jag har inget att säga." }; } },
     runtime: { submitConversationRequest: answerWith(decided(true, { kind: "reveal_secret", effects: [{ kind: "silver", amount: 12 }, { kind: "memory", memoryId: "memory-3" }, { kind: "secret", secretId: null }] })) } });
   await mounted.say("Berätta något åt mig, jag betalar.");
   assert.match(textOf(requestCard(mounted.tree)), /Erbjuden gåva: 12 silver/);
   await mounted.act(() => buttonNamed(mounted.tree, "Fråga").props.onClick());
   assert.match(textOf(mounted.tree), /Sera Arel hade inget att berätta\./);
   assert.match(textOf(mounted.tree), /12 silver betalades ur familjekassan\./);
+  assert.deepEqual(JSON.parse(JSON.stringify(replies[0].outcome)), { kind: "reveal_secret", accepted: true, nothingToTell: true }, "the reply hears what the ledger says");
+});
+
+test("an accepted reveal that confides a secret gives the reply the plain outcome", async () => {
+  const request = { ...supportRequest(), kind: "reveal_secret" }, replies = [];
+  const mounted = mountTalk({ diplomacy: 14,
+    model: { extractConversationRequest: async () => ({ ok: true, request }), replyAsCharacter: async (call) => { replies.push(call); return { ok: true, reply: "Lyssna noga." }; } },
+    runtime: { submitConversationRequest: answerWith(decided(true, { kind: "reveal_secret", effects: [{ kind: "memory", memoryId: "memory-3" }, { kind: "secret", secretId: "secret-4" }] })) } });
+  await mounted.say("Berätta något åt mig.");
+  await mounted.act(() => buttonNamed(mounted.tree, "Fråga").props.onClick());
+  assert.deepEqual(JSON.parse(JSON.stringify(replies[0].outcome)), { kind: "reveal_secret", accepted: true });
 });
 
 test("focus follows the conversation: the field on opening, the card on a request, the field again on Avbryt", async () => {
