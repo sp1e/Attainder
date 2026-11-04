@@ -18,6 +18,17 @@ const stageFor = (record, stageId) => EVENT_CHAIN_TEMPLATES[record.templateId]?.
 const castKey = (ids) => JSON.stringify([...new Set(ids)].sort());
 const lastStep = (state, record) => state.stories.find((story) => story.id === record.stepIds.at(-1));
 const sourceUsed = (state, key) => state.eventChains.records.some((record) => record.sourceKey === key);
+// The key each template casts under. A stored key must match its own binding, or a renamed key would free a spent source.
+const SOURCE_KEYS = Object.freeze({
+  sickroom_seal: ({ refs }) => `sickroom:${refs.episodeId}`,
+  returned_seal: ({ refs }) => `return:${refs.episodeId}`,
+  heir_margin: ({ roles }) => `education:${roles.child}:${roles.mentor}`,
+  temple_steps: ({ roles, refs }) => `temple:${refs.cityId}:${roles.governor}:${roles.religiousLeader}`,
+  veterans_honor: ({ roles, refs }) => `service:${roles.veteran}:${refs.serviceDate}`,
+  rival_office_grievance: ({ roles, refs }) => `rival:${refs.rivalFamilyId}:${refs.officeId}:${roles.officeHolder}`,
+  exile_contacts: ({ roles, refs, ownerFamilyId }) => `exile:${ownerFamilyId}:${refs.hostFamilyId}:${roles.envoy}`,
+  family_letter: ({ sourceMemoryId }) => `letter:${sourceMemoryId}`,
+});
 const peopleIn = (state, familyId) => Object.values(state.people).filter((person) => active(person) && person.familyId === familyId).sort((a, b) => a.id.localeCompare(b.id));
 function seeded(value) { let n = 2166136261; for (const c of value) n = Math.imul(n ^ c.charCodeAt(0), 16777619); return n >>> 0 || 1; }
 function draw(director) { let n = director.rngState | 0; n ^= n << 13; n ^= n >>> 17; n ^= n << 5; director.rngState = n >>> 0 || 1; return director.rngState / 4294967296; }
@@ -260,6 +271,7 @@ export function validateEventChains(state) {
       (d.lastScheduledAt !== null && (!canonical(d.lastScheduledAt) || compareGameDates(d.lastScheduledAt, state.date) > 0))) throw new Error('Kedjedirektorns version eller sparade tillstånd är ogiltigt.');
   for (const [template, date] of Object.entries(d.cooldowns)) if (!EVENT_CHAIN_TEMPLATES[template] || !canonical(date) || compareGameDates(date, addGameMonths(state.date, 60)) > 0) throw new Error('En kedjas återhämtningstid är ogiltig.');
   const recordIds = new Set(), stepIds = new Set(), sources = new Set();
+  let decisions = 0;
   for (const record of d.records) {
     const template = EVENT_CHAIN_TEMPLATES[record.templateId];
     if (!template || !/^chain-[1-9]\d*$/.test(record.id) || Number(record.id.slice(6)) > d.sequence || recordIds.has(record.id) ||
@@ -278,23 +290,28 @@ export function validateEventChains(state) {
     if ((requiredRefs[record.templateId] || []).some((key) => typeof record.refs[key] !== 'string' || !record.refs[key])) throw new Error('Kedjans institutionella ursprung saknas.');
     const source = record.sourceMemoryId && state.memories.find((m) => m.id === record.sourceMemoryId);
     if ((record.templateId === 'family_letter' && !source) || (record.sourceMemoryId && (!source || source.knownBy !== 'public' || source.type !== 'story_patronage' || !source.participants.includes(record.roles.deceased) || !source.participants.includes(record.roles.participant)))) throw new Error('Kedjans orsaksminne är ogiltigt.');
-    const origin = state.memories.find((m) => m.id === record.originMemoryId);
+    const origin = state.memories.find((m) => m.id === record.originMemoryId), cast = EVENT_CHAIN_ROLES[record.templateId];
     if (!origin || origin.type !== 'chain_origin' || origin.chainId !== record.id || origin.sourceKey !== record.sourceKey || origin.date !== record.createdAt || origin.knownBy !== 'public' ||
-        JSON.stringify([...origin.participants].sort()) !== JSON.stringify(Object.values(record.roles).sort())) throw new Error('Kedjans ursprung saknas.');
+        JSON.stringify(origin.participants) !== JSON.stringify(cast.map((role) => record.roles[role]))) throw new Error('Kedjans ursprung saknas.');
+    if (JSON.stringify(origin.familyIds) !== JSON.stringify([...new Set(cast.map((role) => record.roleFamilies[role]))])) throw new Error('En kedjeroll har bytt sin historiska familj.');
+    if (record.sourceKey !== SOURCE_KEYS[record.templateId](record)) throw new Error('Kedjans källa stämmer inte med dess bindning.');
     if (origin.causeId !== (record.sourceMemoryId ?? null)) throw new Error('Kedjans ursprungsminne pekar på en annan orsak än kedjans källa.');
     const flags = {}; let previous = null;
     for (const [i, id] of record.stepIds.entries()) {
       const story = state.stories.find((item) => item.id === id), stage = stageFor(record, story?.stageId);
       const previousChoice = previous && stageFor(record, previous.stageId).choices.find((choice) => choice.id === previous.choiceId);
+      if (state.stories.filter((item) => item.id === id).length > 1) throw new Error('Ett kedjesteg förekommer mer än en gång.');
       if (!story || !stage || !isStep(story) || story.chainId !== record.id || id !== `${record.id}-step-${i + 1}` || stepIds.has(id) ||
           !canonical(story.createdAt) || compareGameDates(story.createdAt, state.date) > 0 || story.dueAt !== addGameMonths(story.createdAt, 12) || story.knownBy !== 'public' ||
           story.causeId !== (previous?.outcomeMemoryId || record.originMemoryId) ||
           (!previous ? stage.id !== template.stages[0].id || story.createdAt !== record.createdAt : previous.status !== 'resolved' || previousChoice?.next !== stage.id || story.createdAt !== addGameMonths(previous.resolvedAt, stageFor(record, previous.stageId).delayMonths)) ||
           !['open', 'resolved', 'closed'].includes(story.status) || (story.status === 'open' && compareGameDates(story.dueAt, state.date) <= 0)) throw new Error('Kedjans stegordning eller tidpunkt är ogiltig.');
       if (story.familyId !== record.ownerFamilyId) throw new Error('Ett kedjesteg tillhör inte kedjans ägarfamilj.');
+      if (!Object.values(record.roles).includes(story.actorId)) throw new Error('Ett kedjesteg nämner en aktör utanför rollbesättningen.');
       stepIds.add(id);
       if (story.status !== 'open' && (!canonical(story.resolvedAt) || compareGameDates(story.resolvedAt, story.createdAt) < 0 || compareGameDates(story.resolvedAt, state.date) > 0)) throw new Error('Kedjestegets avslutningsdatum är ogiltigt.');
       if (story.status === 'resolved') {
+        decisions++;
         const choice = stage.choices.find((item) => item.id === story.choiceId);
         const m = state.memories.find((item) => item.id === story.outcomeMemoryId);
         if (!choice || (choice.requires || []).some((rule) => flags[rule.flag] !== rule.equals) || !m || m.type !== 'chain_choice' || m.storyId !== story.id || m.chainId !== record.id || m.causeId !== story.causeId ||
@@ -315,5 +332,9 @@ export function validateEventChains(state) {
     if (['resolved', 'closed'].includes(record.status) && (!canonical(record.closedAt) || compareGameDates(record.closedAt, record.createdAt) < 0 || compareGameDates(record.closedAt, state.date) > 0 || previous.status === 'open')) throw new Error('Kedjans avslut är ogiltigt.');
     if (record.status === 'resolved' && (previous.status !== 'resolved' || choice?.next || choice?.id === 'close')) throw new Error('Kedjan saknar ett giltigt slutval.');
   }
+  // Records are never removed, and each one holds one origin memory and each decided step one choice memory.
+  if (d.records.length !== d.sequence) throw new Error('En händelsekedja saknas i historiken.');
+  const stored = (type) => state.memories.filter((m) => m.type === type).length;
+  if (stored('chain_origin') !== d.records.length || stored('chain_choice') !== decisions) throw new Error('Ett kedjeminne saknar sin kedja eller förekommer mer än en gång.');
   if (state.stories.filter(isStep).some((story) => !stepIds.has(story.id)) || d.records.filter((record) => ['open', 'waiting'].includes(record.status)).length > 2) throw new Error('Ett kedjesteg saknar kedja eller för många kedjor är aktiva.');
 }

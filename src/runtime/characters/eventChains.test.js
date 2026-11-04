@@ -19,7 +19,8 @@ function context(state) {
 }
 function hooks(state) {
   return { emit: () => {}, memory: (type, title, participants, options) => {
-    const m = { id: `chain-test-memory-${++state.sequence}`, type, title, participants, date: state.date, knownBy: 'public', ...options };
+    const m = { id: `chain-test-memory-${++state.sequence}`, type, title, participants, date: state.date, knownBy: 'public',
+      familyIds: [...new Set(participants.map((id) => state.people[id]?.familyId).filter(Boolean))], ...options };
     state.memories.push(m); return m;
   }, opinion: (from, to, amount, title, causeId) => {
     const key = `${from}:${to}`; state.relations[key] ||= { fromId: from, toId: to, bonds: [], causes: [] };
