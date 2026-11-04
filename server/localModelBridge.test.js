@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { localModelArguments, parseLocalModelOutput, validateLocalModelRequest } from './localModelBridge.js';
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { localModelArguments, parseLocalModelOutput, resolveLocalModel, validateLocalModelRequest } from './localModelBridge.js';
 import { callLocalCli } from '../src/Game/AI/localCliProvider.js';
 import { getModelCallCounts } from '../src/Game/AI/modelCallCounter.js';
 
@@ -13,6 +16,21 @@ test('local model input never supplies executable options or unbounded prompts',
   const request = validateLocalModelRequest({ ...valid, executable: 'evil.exe', cwd: 'C:/', args: ['--tools', 'all'] });
   assert.equal(request.executable, undefined);
   assert.equal(request.args, undefined);
+});
+
+test('an npm install of Claude Code is found under APPDATA and in a PATH directory', async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'attainder-claude-'));
+  try {
+    const binary = path.join(root, 'npm', 'node_modules', '@anthropic-ai', 'claude-code', 'bin', 'claude.exe');
+    await mkdir(path.dirname(binary), { recursive: true });
+    await writeFile(binary, '');
+    const empty = path.join(root, 'empty');
+    assert.deepEqual(await resolveLocalModel('claude-cli', { USERPROFILE: empty, APPDATA: root, PATH: '' }), { file: binary, prefix: [] });
+    assert.deepEqual(await resolveLocalModel('claude-cli', { USERPROFILE: empty, PATH: path.join(root, 'npm') }), { file: binary, prefix: [] });
+    await assert.rejects(resolveLocalModel('claude-cli', { USERPROFILE: empty, APPDATA: empty, PATH: '' }), /Claude Code hittades inte/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });
 
 test('CLI invocations disable computer tools and keep existing authentication separate', () => {
