@@ -301,6 +301,27 @@ test('the spymaster raises the discovery chance of a plan against the controlled
   assert.equal(status(stage(12, elsewhere), edge(15)), 'active');
 });
 
+test('a spymaster who adds nothing to the check leaves its ceiling at 40', () => {
+  const stage = (intrigue) => {
+    const state = base();
+    state.offices.spymaster.holderId = REP; state.people[REP].skills.intrigue = intrigue;
+    state.people[BAREK].skills.intrigue = 0;
+    state.people[SERA].skills.intrigue = 20;
+    plant(state, { targetIds: [SERA] });
+    return state;
+  };
+  const status = (state, next) => advance(withSeed(state, seedBefore(next)), MONTH).schemes.at(-1).status;
+  const edge = (chance) => Math.ceil((chance * 2 ** 32) / 100);
+  // 10 + 20 × 2 − 0 = 50 before the clamp. Intrigue 0 and 1 add floor(intrigue / 2) = 0.
+  for (const intrigue of [0, 1]) {
+    assert.equal(status(stage(intrigue), edge(40) - 1), 'discovered', `intrigue ${intrigue}`);
+    assert.equal(status(stage(intrigue), edge(40)), 'active', `intrigue ${intrigue}`);
+  }
+  // Intrigue 2 adds 1, so the check is 51 under the ceiling of 55.
+  assert.equal(status(stage(2), edge(51) - 1), 'discovered');
+  assert.equal(status(stage(2), edge(51)), 'active');
+});
+
 test('a discovery check still draws exactly once from the action stream', () => {
   const state = base();
   state.offices.spymaster.holderId = REP;

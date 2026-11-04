@@ -4,7 +4,7 @@ import { TRAITS } from './content.js';
 import { actionRandom } from './extensions.js';
 import { IMPRISONED, isImprisoned } from './prisoners.js';
 // useHook is imported as consumeHook: the react-hooks lint rule reads the name as a React hook.
-import { SECRET_LABELS, activeHooks, addSecretHolders, grantHook, knownSecrets, useHook as consumeHook } from './secrets.js';
+import { HOOK_RESERVED, SECRET_LABELS, activeHooks, addSecretHolders, grantHook, knownSecrets, reservedHookIds, unreservedHooks, useHook as consumeHook } from './secrets.js';
 
 // Conversation requests: the representative asks one person for support, a secret or a pledge. The model (Task 9) may only claim a score for the arguments; the engine grounds each argument in the state, caps the score again, draws one action roll and applies the outcome.
 // The estimate is a pure function of the state. Resolution draws exactly one actionRandom and never touches the main or the plot stream. `hooks` are the engine's (actionHooks in index.js).
@@ -24,6 +24,9 @@ const OFFER_DIVISOR = 4, OFFER_CAP = 15;
 const GREEDY_BONUS = 8, HONEST_PENALTY = 10, PARANOID_PENALTY = 8, TRUSTING_BONUS = 6;
 const HOOK_BONUS = 20;
 const ARGUMENT_CAP = 10;
+// An offer grounds an argument once its own gift row is worth half of what the argument can add: 5 points, so 20 silver. Below that a gift still earns its row, but a token sum cannot unlock the whole argument score.
+const OFFER_GROUND_POINTS = ARGUMENT_CAP / 2;
+const giftPoints = (silver) => Math.min(OFFER_CAP, Math.floor(silver / OFFER_DIVISOR));
 const ENEMY_OPINION = -20;
 const SUPPORT_OPINION = 10;
 export const MAX_ARGUMENTS = 8;
@@ -38,7 +41,7 @@ const REASONS = Object.freeze({
   score: 'Argumentens poäng måste vara ett heltal, noll eller mer.',
   arguments: 'Argumenten är ogiltiga.',
   hook: 'Övertaget finns inte, är förbrukat eller gäller inte denna person.',
-  reserved: 'Övertaget är bundet till en pågående plan.',
+  reserved: HOOK_RESERVED,
 });
 const INVALID = Object.freeze({
   list: 'Samtalen i sparfilen är ogiltiga.',
@@ -110,7 +113,7 @@ const knownByBoth = (memory, aId, bId) => memory.knownBy === 'public' || memory.
 // Whether one argument refers to something that exists in the state. A claim without a basis earns nothing.
 function grounded(state, argument, ctx) {
   const { representative, speaker, offer, hookId, hooks } = ctx;
-  if (argument.kind === 'offer') return offer > 0;
+  if (argument.kind === 'offer') return giftPoints(offer) >= OFFER_GROUND_POINTS;
   if (argument.kind === 'hook') return hookId !== null && (argument.refId === null || argument.refId === hookId);
   if (argument.kind === 'shared_memory') {
     const memory = Array.isArray(state.memories) ? state.memories.find((item) => item?.id === argument.refId) : null;
@@ -137,7 +140,7 @@ function buildRows(read, speaker, representative, ctx, grounding, hooks) {
   const add = (label, value) => { if (value !== 0) rows.push({ label, value }); };
   add('Personens åsikt om dig', clamp(Math.round(hooks.getPersonalOpinion(speaker.id, representative.id) / OPINION_DIVISOR), -OPINION_CAP, OPINION_CAP));
   add('Personens lojalitet', Math.round(((Number.isFinite(speaker.loyalty) ? speaker.loyalty : 50) - 50) / LOYALTY_DIVISOR));
-  add('Erbjuden gåva', Math.min(OFFER_CAP, Math.floor(read.offer / OFFER_DIVISOR)));
+  add('Erbjuden gåva', giftPoints(read.offer));
   if (read.offer > 0 && hasTrait(speaker, 'greedy')) add(traitLabel('greedy'), GREEDY_BONUS);
   if (read.kind === 'reveal_secret' && hasTrait(speaker, 'honest')) add(traitLabel('honest'), -HONEST_PENALTY);
   if (hasTrait(speaker, 'paranoid')) add(traitLabel('paranoid'), -PARANOID_PENALTY);
@@ -156,13 +159,9 @@ function presentChance(precision, value, rows, modifiers) {
 /**
  * Odds for one conversation request, or a Swedish refusal. `request` is { personId, kind, offerSilver, hookId, arguments: [{ kind, refId }], argumentScore }. Pure: no randomness, no spending, no edit.
  * Rows: Grundchans (by kind), the speaker's opinion of the representative (round(op / 4), ±20), loyalty (round((loyalty − 50) / 5)), the offer (floor(silver / 4), at most 15), greedy +8 with any offer, honest −10 for a secret, paranoid −8, trusting +6, a hook +20, and `Övertygande argument` = min(10, argumentScore) when at least one argument is grounded. The value is cut to 5 to 95; the cut is a row of its own.
- * An argument counts only when it refers to something real: an offer needs silver, a shared enemy a living person both hold at −20 or lower, a shared memory one both took part in and know, a hook an active hook of the representative over the speaker named by hookId. A hook an active scheme holds in its means is refused.
+ * An argument counts only when it refers to something real: an offer needs 20 silver, a shared enemy a living person both hold at −20 or lower, a shared memory one both took part in and know, a hook an active hook of the representative over the speaker named by hookId. A hook an active scheme holds in its means is refused.
  * The result carries the true `value` and `modifiers` for rolling and `display`, which follows `precision` (the representative's diplomacy, as for Phase 1's odds) and never carries a number at 'five' or 'three'.
  */
-// Hooks an active scheme names in its means are spent when it falls due (schemes.js), so a conversation may neither use nor offer them.
-const reservedHookIds = (state) => new Set((Array.isArray(state.schemes) ? state.schemes : []).filter((scheme) => scheme.status === 'active' && typeof scheme.means?.hookId === 'string').map((scheme) => scheme.means.hookId));
-const conversationHooks = (state, ownerId, targetId) => { const reserved = reservedHookIds(state); return activeHooks(state, ownerId, targetId).filter((hook) => !reserved.has(hook.id)); };
-
 export function estimateConversation(state, request, hooks) {
   const read = readRequest(request);
   if (read.reason) return { ok: false, reason: read.reason };
@@ -271,7 +270,7 @@ export function conversationBrief(state, personId, hooks) {
     opinion: hooks.getPersonalOpinion(speaker.id, representative.id),
     opinionReasons: hooks.opinionReasons(speaker.id, representative.id).map(({ label, value }) => ({ label, value })),
     memories, secrets,
-    hooks: conversationHooks(state, representative.id, speaker.id).map((hook) => ({ id: hook.id, strength: hook.strength, strengthLabel: STRENGTH_LABELS[hook.strength] })),
+    hooks: unreservedHooks(state, representative.id, speaker.id).map((hook) => ({ id: hook.id, strength: hook.strength, strengthLabel: STRENGTH_LABELS[hook.strength] })),
   };
 }
 

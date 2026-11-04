@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameMonths } from '../gameDates.js';
-import { createCharacterSystem, getCharacterPresentation, canCharacterDirectRealm } from './index.js';
-import { ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain } from './eventChains.js';
+import { actionHooks, createCharacterSystem, getCharacterPresentation, canCharacterDirectRealm } from './index.js';
+import { ensureEventChains, getEventChainCandidates, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain } from './eventChains.js';
+import { imprisonPerson } from './prisoners.js';
 
 function setup() {
   const state = createCharacterSystem({ seed: 321 }); ensureEventChains(state);
@@ -146,4 +147,37 @@ test('a family letter origin must name its patronage memory as cause', () => {
     invalid.memories.find((m) => m.id === record.originMemoryId).causeId = cause;
     assert.throws(() => validateEventChains(invalid), { name: 'Error', message: /ursprungsminne/ }, label);
   }
+});
+
+const jail = (state, personId) => imprisonPerson(state, personId, 'family-namar', [], actionHooks(state));
+
+test('a prisoner fills no role of a new chain', () => {
+  const state = setup();
+  const mentor = 'person-1-1';
+  const bound = () => getEventChainCandidates(state, context(state)).flatMap((candidate) => Object.values(candidate.roles));
+  assert.ok(bound().includes(mentor), 'fixture: the mentor of the heir_margin chain');
+  jail(state, mentor);
+  assert.equal(bound().includes(mentor), false);
+});
+
+test('a prisoner does not keep a free relative from being the envoy of an exile chain', () => {
+  const state = setup();
+  Object.assign(state.families['family-arel'], { exiled: true, hostFamilyId: 'family-namar' });
+  const related = { ...context(state), related: () => true };
+  const envoy = () => getEventChainCandidates(state, related).find((candidate) => candidate.templateId === 'exile_contacts')?.roles.envoy;
+  const first = envoy();
+  assert.ok(first, 'fixture: an envoy without any prisoner');
+  jail(state, first);
+  assert.ok(envoy(), 'another adult of the family takes the role');
+  assert.notEqual(envoy(), first);
+});
+
+test('a prisoner does not keep a free participant out of a family letter', () => {
+  const state = setup();
+  const [deceased, prisoner, free] = ['person-0-3', 'person-1-1', 'person-1-2'];
+  state.people[deceased].diedAt = state.date;
+  state.memories.push({ id: 'memory-letter', type: 'story_patronage', title: 'Ett brev', participants: [deceased, prisoner, free], date: state.date, knownBy: 'public', causeId: null });
+  jail(state, prisoner);
+  const letter = getEventChainCandidates(state, context(state)).find((candidate) => candidate.templateId === 'family_letter');
+  assert.equal(letter?.roles.participant, free);
 });

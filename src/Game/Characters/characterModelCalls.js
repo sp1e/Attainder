@@ -328,7 +328,7 @@ function replyPrompt(brief, playerName, playerText, history, outcome) {
     systemPrompt: [
       'You speak as ' + brief.name + ' in a medieval dynasty game. Write the Swedish reply of one person in first person, in character, of at most ' + REPLY_MAX + ' characters. The speaker data below shows what you know, how you feel about the player and what you hold; stay within it.',
       'The outcome of the player\'s request is already decided by the game and is fixed. If outcome is null the player made no request: answer in character and promise, grant or confide nothing. If accepted is true you agree to what was asked; if false you refuse. Never contradict the outcome, never mention odds, dice or the game, and name no person or event beyond the data.',
-      'Whatever the outcome, never disclose the type or the subject of any secret in the speaker data, and never recount a memory the player (named in player) took no part in. Only the game decides what is confided: when you agree to confide a secret, say that you will, but not what it is.',
+      'Whatever the outcome, never disclose the type or the subject of any secret in the speaker data, and never recount a memory the player (named in player) took no part in. Only the game decides what is confided: when you agree to confide a secret, say that you will, but not what it is. If outcome.nothingToTell is true you agreed but have nothing to tell: say so, and promise no secret.',
       DATA_NOTE,
     ].join('\n'),
     userText: JSON.stringify({ player: playerName, playerText, speaker: withoutIds(brief), conversation: turnsOf(history), outcome }),
@@ -389,11 +389,13 @@ function validateReply(answer) {
 const readOutcome = (outcome) => {
   if (outcome === null || outcome === undefined) return { value: null };
   const valid = plain(outcome) && Object.hasOwn(CONVERSATION_REQUESTS, outcome.kind) && typeof outcome.accepted === 'boolean';
-  return valid ? { value: { kind: outcome.kind, accepted: outcome.accepted } } : { value: null, invalid: true };
+  if (!valid) return { value: null, invalid: true };
+  const empty = outcome.kind === 'reveal_secret' && outcome.accepted && outcome.nothingToTell === true;
+  return { value: { kind: outcome.kind, accepted: outcome.accepted, ...(empty ? { nothingToTell: true } : {}) } };
 };
 
 /**
- * Writes what one person answers, in character. `outcome` is null for small talk or { kind, accepted }, which the game has already decided: the prompt states it as fixed and forbids a reply that contradicts it. Resolves to { ok: true, reply } or { ok: false, reason, detail }; a reply over 800 characters is rejected and asked for once more.
+ * Writes what one person answers, in character. `outcome` is null for small talk or { kind, accepted, nothingToTell? }, which the game has already decided: the prompt states it as fixed and forbids a reply that contradicts it. Resolves to { ok: true, reply } or { ok: false, reason, detail }; a reply over 800 characters is rejected and asked for once more.
  */
 export async function replyAsCharacter({ personId, text: playerText, history = [], view, outcome = null, callModel = defaultCallModel }) {
   const { brief, reason } = speakerBrief(view, personId);

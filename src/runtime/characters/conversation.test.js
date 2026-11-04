@@ -200,10 +200,22 @@ test('a hook argument needs a hook the representative holds over the speaker', (
 test('the model\'s score is capped again at 10 and counts only with a grounded argument', () => {
   const state = plain();
   const grounded = { kind: 'offer', refId: null };
-  assert.equal(estimate(state, ask({ offerSilver: 10, arguments: [grounded], argumentScore: 40 })).value, 45 + 2 + 10);
-  assert.equal(estimate(state, ask({ offerSilver: 10, arguments: [grounded], argumentScore: 10 })).value, 45 + 2 + 10);
-  assert.equal(estimate(state, ask({ offerSilver: 10, arguments: [grounded], argumentScore: 3 })).value, 45 + 2 + 3);
-  assert.equal(estimate(state, ask({ offerSilver: 10, arguments: [], argumentScore: 9 })).value, 45 + 2);
+  assert.equal(estimate(state, ask({ offerSilver: 20, arguments: [grounded], argumentScore: 40 })).value, 45 + 5 + 10);
+  assert.equal(estimate(state, ask({ offerSilver: 20, arguments: [grounded], argumentScore: 10 })).value, 45 + 5 + 10);
+  assert.equal(estimate(state, ask({ offerSilver: 20, arguments: [grounded], argumentScore: 3 })).value, 45 + 5 + 3);
+  assert.equal(estimate(state, ask({ offerSilver: 20, arguments: [], argumentScore: 9 })).value, 45 + 5);
+});
+
+test('a token offer keeps its gift row but grounds no argument below 20 silver', () => {
+  const state = plain();
+  const offer = { kind: 'offer', refId: null };
+  const asked = (offerSilver) => estimate(state, ask({ offerSilver, arguments: [offer], argumentScore: 10 }));
+  assert.equal(asked(1).value, 45);
+  assert.deepEqual(asked(1).groundedArguments, []);
+  assert.equal(asked(19).value, 45 + 4, 'floor(19 / 4) is one point short of half the argument cap');
+  assert.deepEqual(asked(19).groundedArguments, []);
+  assert.equal(asked(20).value, 45 + 5 + 10);
+  assert.equal(asked(20).groundedArguments.length, 1);
 });
 
 test('a malformed request is refused with a reason', () => {

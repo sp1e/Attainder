@@ -12,7 +12,7 @@ import { hearScheme } from './rumors.js';
 // Randomness comes only from actionRandom (state.actionRngState): one draw per discovery check, then the two rolls of the resolution. The main stream state.rngState is never touched.
 // actionResolution.js imports startScheme from here and this file imports from it, so nothing at the top level of either file may use the other's exports; they are only used inside functions.
 
-// Each check the target may see through the plan: chance = clamp(10 + target intrigue × 2 − actor intrigue, 3, 40) percent. When the target belongs to the controlled family and the family has a spymaster, the chance gains floor(spymaster intrigue / 2) before the clamp, which then reaches 55.
+// Each check the target may see through the plan: chance = clamp(10 + target intrigue × 2 − actor intrigue, 3, 40) percent. When the target belongs to the controlled family and the family has a spymaster, the chance gains floor(spymaster intrigue / 2) before the clamp, which reaches 55 once that bonus is above 0.
 const DISCOVERY = Object.freeze({ base: 10, perIntrigue: 2, min: 3, max: 40, maxWatched: 55 });
 const DISCOVERY_OPINION = -20;
 const SCHEME_STATUSES = Object.freeze(['active', 'discovered', 'aborted', 'failed', 'resolved']);
@@ -89,11 +89,13 @@ function followingCheck(scheme) {
   return earlier(next, scheme.dueAt);
 }
 
-// A scheme belongs to the player's side when the player ordered or owns it, or its target is the person they play through. Only then may its events reach the player.
+// The player ordered the scheme or its actor is in the controlled family. resolutionVisible reads playerControlled and the actor's family, which a scheme carries like an action log entry.
+const ownScheme = (state, scheme, hooks) => resolutionVisible(state, scheme, hooks.controlledFamily()?.id ?? null);
+
+// A scheme belongs to the player's side when it is their own or its target is the person they play through. Only then may its discovery reach the player.
 function playerSide(state, scheme, hooks) {
   const representatives = [hooks.householdRepresentative()?.id, hooks.activeRepresentative()?.id];
-  // resolutionVisible reads playerControlled and the actor's family, which a scheme carries like an action log entry.
-  return resolutionVisible(state, scheme, hooks.controlledFamily()?.id ?? null) || representatives.includes(scheme.targetIds[0]);
+  return ownScheme(state, scheme, hooks) || representatives.includes(scheme.targetIds[0]);
 }
 
 // The odds as they stand on the due date for the same actor, target and means. The silver was paid at the start. An NPC scheme uses the NPC context of npc_intent (index.js), which orders only its own actor: the NPC rules were checked when the intent was accepted, and the plan stays the NPC's own even if its family later comes under the player.
@@ -104,10 +106,11 @@ function dueEstimate(state, scheme, hooks) {
   return estimateAction(state, intent, { ...ctx, wallet: () => PAID, scheduled: true });
 }
 
+// Only an active scheme collapses, so nobody has seen through it: a target outside the player's own schemes never learns it existed.
 function collapse(state, scheme, reason, events, hooks) {
   scheme.status = 'failed';
   const name = (id) => personOf(state, id)?.name ?? id;
-  hooks.logEvent(events, 'scheme_failed', `${ACTION_CATALOG[scheme.actionId].label}: planen föll samman`, `${reason} Utförare: ${name(scheme.actorId)}. Mål: ${scheme.targetIds.map(name).join(', ')}.`, [scheme.actorId, ...scheme.targetIds], { public: playerSide(state, scheme, hooks) });
+  hooks.logEvent(events, 'scheme_failed', `${ACTION_CATALOG[scheme.actionId].label}: planen föll samman`, `${reason} Utförare: ${name(scheme.actorId)}. Mål: ${scheme.targetIds.map(name).join(', ')}.`, [scheme.actorId, ...scheme.targetIds], { public: ownScheme(state, scheme, hooks) });
 }
 
 function discover(state, scheme, actor, target, events, hooks) {
@@ -120,11 +123,12 @@ function discover(state, scheme, actor, target, events, hooks) {
   uncoverPlot(state, scheme, memory, hooks);
 }
 
-// The spymaster's help in seeing through a plan against the controlled family: the added percent, or null when the plan is against anyone else, nobody holds the office (a prisoner cannot serve) or the spymaster runs the plan himself. Draws nothing.
+// The spymaster's help in seeing through a plan against the controlled family: the added percent, or null when the plan is against anyone else, nobody holds the office (a prisoner cannot serve) the spymaster runs the plan himself or his intrigue is too low to add a point. Draws nothing.
 function spymasterWatch(state, scheme, target, hooks) {
   const spymaster = spymasterOf(state);
   if (!spymaster || spymaster.id === scheme.actorId || isImprisoned(state, spymaster.id) || target.familyId !== hooks.controlledFamily()?.id) return null;
-  return Math.floor(intrigueOf(spymaster) / 2);
+  const bonus = Math.floor(intrigueOf(spymaster) / 2);
+  return bonus > 0 ? bonus : null;
 }
 
 // One monthly check. A dead actor or target, or an imprisoned actor (who cannot act), ends the scheme before anything is drawn. On the due date the odds are estimated afresh and a scheme that can no longer run fails before any draw; otherwise the discovery roll comes first and, when the plan holds, the action is rolled and recorded like an instant one.

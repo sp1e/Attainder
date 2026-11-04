@@ -1,6 +1,7 @@
 import content from './eventChainContent.js';
 import { addGameMonths, compareGameDates, normalizeGameDate, parseGameDate } from '../gameDates.js';
 import { canExerciseMandate, getCharacterAge } from './characterCapacity.js';
+import { isImprisoned } from './prisoners.js';
 
 export const EVENT_CHAIN_VERSION = 1;
 export const EVENT_CHAIN_TEMPLATES = Object.freeze(Object.fromEntries(content.map((entry) => [entry.id, entry])));
@@ -57,10 +58,11 @@ export function getEventChainCandidates(state, context) {
   const family = context.forScope('family').family;
   if (!family) return [];
   const household = context.forScope('family').actor, royal = context.forScope('public').actor;
-  const own = peopleIn(state, family.id), adults = own.filter((p) => canExerciseMandate(p, state.date));
+  const own = peopleIn(state, family.id), adults = own.filter((p) => canExerciseMandate(p, state.date) && !isImprisoned(state, p.id));
   const result = [];
+  // A prisoner fills no role. Without prisoners the list is the same, so the chain stream draws as before.
   const add = (templateId, roles, refs, sourceKey, weight = 1, sourceMemoryId = null) => {
-    if (!EVENT_CHAIN_TEMPLATES[templateId] || sourceUsed(state, sourceKey) ||
+    if (!EVENT_CHAIN_TEMPLATES[templateId] || sourceUsed(state, sourceKey) || Object.values(roles).some((id) => isImprisoned(state, id)) ||
         (state.eventChains.cooldowns[templateId] && compareGameDates(state.eventChains.cooldowns[templateId], state.date) > 0)) return;
     if (state.eventChains.records.some((record) => ['open', 'waiting'].includes(record.status) &&
       Object.values(record.roles).some((id) => Object.values(roles).includes(id)))) return;
@@ -109,7 +111,7 @@ export function getEventChainCandidates(state, context) {
   }
   if (household) for (const m of state.memories.filter((item) => item.type === 'story_patronage' && item.knownBy === 'public')) {
     const deceased = m.participants.map((id) => state.people[id]).find((p) => p?.diedAt && p.familyId === family.id);
-    const participant = m.participants.map((id) => state.people[id]).find((p) => active(p) && p.id !== household.id);
+    const participant = m.participants.map((id) => state.people[id]).find((p) => active(p) && p.id !== household.id && !isImprisoned(state, p.id));
     if (deceased && participant) add('family_letter', { deceased: deceased.id, participant: participant.id }, {}, `letter:${m.id}`, 2, m.id);
   }
   return result;
