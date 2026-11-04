@@ -18,6 +18,8 @@ Phases 0, 1 and 2 are on `main`. PR #4 squash-merged Phase 2 as `ef0ab7c` on 3 N
 
 ## Verification
 
+- Phase 0 gaps on 4 November 2026, branch `test/phase-0-gaps`: 93 tests cover participant and mandate changes during a chain (50), JSON saves between two `advanceCharacters` calls (6), more than 1,000 newer memories (5), and immutable historical roles with story and source uniqueness (32). The last group found a real bug: `validateEventChains` loaded forged saves with swapped roles, rewritten role families, renamed source keys, rewritten city references, repeated steps, step actors outside the cast, deleted chains and spare chain memories. `eventChains.js` now rejects each of them. Full suite after merging main: 3,934 tests, 3,931 pass, 0 fail, 1 skipped, 2 todo.
+- Codex on 4 November 2026: a local Codex 0.166.0 answered through `generateWithLocalModel` in plain text in 8 seconds and with a schema in 5 seconds, using the existing ChatGPT login. The global Codex 0.117.0 on this computer stays as it is, and the game shows `Behöver uppdateras` for it. A full model year through Codex has not run.
 - Phase 2 review on 4 November 2026, branch `fix/phase-2-review`: an independent reviewer reported nine findings against main, and I confirmed all nine in the code. The fixes hide a collapsed plan from a target who never saw it, lift the spymaster's discovery cap only when his bonus is above 0, tell the reply prompt when a speaker has nothing to tell, refuse a hook an active scheme holds, keep prisoners out of new directed stories and event chains, refuse saves with a held prisoner on the throne or in an office, move an open ransom demand to the new captor, stop an actor reusing a secret that already gave a hook, and require 20 silver before an offer grounds an argument. Against main, 24 prisoner-free campaigns over 960 campaign years kept every saved stream and the whole state. The 32 saved states in this checkout that have a prisoner list load on both engines. Serial suite: 3,841 tests, 3,838 pass, 0 fail, 1 skipped, 2 todo, in 102 seconds. `npm run lint`: 18 errors and 71 warnings, unchanged. Still open: a directed story or chain that is already open stays open when its actor goes to prison later.
 - After the play scripts and their fixes on 4 November 2026: 3,821 tests, 3,818 pass, 0 fail, 1 skipped, 2 todo, in 96 seconds. `npm run lint`: 18 errors and 71 warnings, unchanged. `npm run build`: exit code 0.
 - Fresh clone on 4 November 2026, Node 24, with the Claude Code detection fix: 3,812 tests, 3,809 pass, 0 fail, 1 skipped, 2 todo, in 91 seconds. `npm run lint`: 18 errors and 71 warnings, unchanged. `npm run build`: exit code 0.
@@ -79,13 +81,7 @@ Review Phase 2 as merged, then write the Phase 3 plan (court and power) in `docs
 
 ## Still open
 
-Phase 0 did not cover these checks:
-
-1. Participant or mandate changes during a chain.
-2. JSON advances: an integration test that saves a chain to JSON between two `advanceCharacters` calls.
-3. More than 1,000 newer memories through `advanceCharacters`.
-4. Immutable historical roles and story/source uniqueness.
-5. The panel in both themes and narrow layouts, with one submitted public choice and one submitted private choice, each followed by a reload.
+One Phase 0 check remains: the panel in both themes and narrow layouts, with one submitted public choice and one submitted private choice, each followed by a reload.
 
 Claude ran the play scripts through a browser. A person has not played them yet.
 
