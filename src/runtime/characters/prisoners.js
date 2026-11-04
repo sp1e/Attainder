@@ -42,6 +42,8 @@ const INVALID = Object.freeze({
   person: 'En fånge hänvisar till en saknad person eller familj.',
   date: 'En fånge har ogiltiga datum.',
   status: 'En fånges status stämmer inte med dess avslut.',
+  ruler: 'En fånge står som härskare.',
+  office: 'En fånge innehar ett ämbete.',
 });
 
 const plainObject = (value) => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
@@ -153,14 +155,26 @@ export function executePrisoner(state, payload, events, hooks) {
   return record;
 }
 
+// A ransom_offer whose familyId names the captor (demandRansom) is paid by the player's family, not offered to the crown.
+const demanded = (state, story, record) => Boolean(record) && story.familyId === record.captorFamilyId && state.people[record.personId]?.familyId !== record.captorFamilyId;
+
+// What a demand says about its captor. It is rewritten when the crown takes the record over.
+function demandParties(state, record) {
+  const person = state.people[record.personId], captor = state.families[record.captorFamilyId];
+  return { description: `${captor.name} kräver ${record.ransom} silver för att ${person.name} ska friges.`, targetId: captor.headId, familyId: captor.id };
+}
+
 /**
- * The prisoners belong to the crown. When `newFamilyId` takes the throne, every held record of another captor moves to that family; a prisoner of the new ruling family itself is released instead (reason 'Hans ätt tog tronen'). The person who is crowned is closed by the caller as 'Ärvde tronen'. Draws no randomness. `hooks` need logEvent.
+ * The prisoners belong to the crown. When `newFamilyId` takes the throne, every held record of another captor moves to that family, and an open ransom demand moves with it; a prisoner of the new ruling family itself is released instead (reason 'Hans ätt tog tronen'). The person who is crowned is closed by the caller as 'Ärvde tronen'. Draws no randomness. `hooks` need logEvent.
  */
 export function passCrown(state, newFamilyId, events, hooks) {
   for (const record of list(state).filter((item) => item.status === 'held' && item.captorFamilyId !== newFamilyId)) {
     const person = state.people[record.personId];
     if (person.familyId !== newFamilyId) {
+      // Found before the captor changes, while the story still names the old one.
+      const demand = state.stories.find((story) => story.type === 'ransom_offer' && story.status === 'open' && story.prisonerId === record.id && demanded(state, story, record));
       record.captorFamilyId = newFamilyId;
+      if (demand) Object.assign(demand, demandParties(state, record));
       continue;
     }
     closePrisoner(state, person.id, 'released', 'Hans ätt tog tronen');
@@ -181,9 +195,9 @@ const payee = (state, record, hooks) => (hooks.ruler()?.familyId === record.capt
 
 // A captor other than the controlled family demands a ransom for a prisoner of the controlled family. The story names the captor in familyId, which tells ransomChoices that the player pays.
 function demandRansom(state, record, hooks) {
-  const person = state.people[record.personId], captor = state.families[record.captorFamilyId];
-  hooks.openStory({ type: 'ransom_offer', title: `Lösen för ${person.name}`, description: `${captor.name} kräver ${record.ransom} silver för att ${person.name} ska friges.`,
-    actorId: person.id, targetId: captor.headId, familyId: captor.id, prisonerId: record.id, createdAt: state.date, dueAt: addGameMonths(state.date, OFFER_MONTHS), knownBy: 'public' });
+  const person = state.people[record.personId];
+  hooks.openStory({ type: 'ransom_offer', title: `Lösen för ${person.name}`, ...demandParties(state, record),
+    actorId: person.id, prisonerId: record.id, createdAt: state.date, dueAt: addGameMonths(state.date, OFFER_MONTHS), knownBy: 'public' });
 }
 
 // Moves the ransom from the prisoner's family to the captor and closes the record as ransomed, with a public event and a memory.
@@ -230,9 +244,6 @@ export function prisonerStep(state, events, hooks) {
     else if (pays && family.treasury >= record.ransom) payRansom(state, record, events, hooks);
   }
 }
-
-// A ransom_offer whose familyId names the captor (demandRansom) is paid by the player's family, not offered to the crown.
-const demanded = (state, story, record) => Boolean(record) && story.familyId === record.captorFamilyId && state.people[record.personId]?.familyId !== record.captorFamilyId;
 
 /** The two answers to a ransom offer. `context.controller` tells whether the player holds the mandate. A demand from another captor (demandRansom) is paid from the prisoner's family treasury and needs no mandate, so a family whose head sits in prison can still buy him free. */
 export function ransomChoices(state, story, { controller }) {
@@ -301,6 +312,10 @@ function checkRecord(state, record, ids) {
   if (!PRISONER_STATUSES.includes(record.status)) fail(INVALID.status);
   if (record.status === 'held') {
     if (record.closedAt !== null || record.reason !== null || state.people[record.personId].diedAt) fail(INVALID.status);
+    // imprisonPerson refuses the ruler and vacates every other office, and the crown closes an heir's record as 'Ärvde tronen' before he takes the throne.
+    const seats = Object.values(state.offices ?? {}).filter((office) => office?.holderId === record.personId);
+    if (seats.some((office) => office.kind === 'ruler')) fail(INVALID.ruler);
+    if (seats.length) fail(INVALID.office);
     return;
   }
   const closed = canonical(record.closedAt) && compareGameDates(record.closedAt, record.since) >= 0 && compareGameDates(record.closedAt, state.date) <= 0;
@@ -308,7 +323,7 @@ function checkRecord(state, record, ids) {
   if (typeof record.reason !== 'string' || !record.reason.trim() || record.reason.length > REASON_MAX) fail(INVALID.status);
 }
 
-/** Validates state.prisoners on load: ids `prisoner-<n>` unique and within state.sequence, existing person and family, canonical dates, a known status, an open record without closing date and reason and with a living person, a closed record with both, and at most one held record per person. Throws a Swedish sentence about the prisoners. */
+/** Validates state.prisoners on load: ids `prisoner-<n>` unique and within state.sequence, existing person and family, canonical dates, a known status, an open record without closing date and reason and with a living person who neither rules nor holds an office, a closed record with both, and at most one held record per person. Throws a Swedish sentence about the prisoners. */
 export function validatePrisoners(state) {
   if (!Array.isArray(state.prisoners)) fail(INVALID.list);
   const ids = new Set(), held = new Set();

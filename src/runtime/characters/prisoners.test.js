@@ -699,6 +699,30 @@ test('a sitting regent found in prison (an older save) is replaced at the next m
   assert.equal(next.offices.ruler.regentId, 'person-3-0');
 });
 
+test('a save with a held prisoner on the throne or in an office does not load', () => {
+  const heldRecord = (state, personId) => ({ id: `prisoner-${++state.sequence}`, personId, captorFamilyId: NAMARS, since: state.date, ransom: RANSOM, status: 'held', closedAt: null, reason: null });
+  const throne = base();
+  throne.prisoners.push(heldRecord(throne, throne.offices.ruler.holderId));
+  assert.throws(() => normalizeCharacterSystem(copy(throne)), { message: 'En fånge står som härskare.' });
+  const seat = base();
+  const office = Object.values(seat.offices).find((item) => item.kind !== 'ruler' && item.holderId);
+  seat.prisoners.push(heldRecord(seat, office.holderId));
+  assert.throws(() => normalizeCharacterSystem(copy(seat)), { message: 'En fånge innehar ett ämbete.' });
+});
+
+test('a closed record does not stop its person from ruling or holding an office', () => {
+  const { state, records } = crownToNamar();
+  assert.deepEqual([state.offices.ruler.holderId, records.heir.status, records.heir.reason], [NAMAR, 'released', 'Ärvde tronen']);
+  normalizeCharacterSystem(copy(state));
+  const freed = base();
+  const office = Object.values(freed.offices).find((item) => item.kind !== 'ruler' && item.holderId);
+  const holder = office.holderId;
+  seize(freed, holder);
+  closePrisoner(freed, holder, 'released', 'Benådad');
+  office.holderId = holder;
+  normalizeCharacterSystem(copy(freed));
+});
+
 test('an imprisoned eldest is skipped when a family chooses a new head', () => {
   const state = base();
   seize(state, 'person-1-1');
@@ -733,6 +757,28 @@ test('a prisoner of the controlled family held by an NPC crown gets a ransom dem
   assert.equal(done.realm.treasury, state.realm.treasury + RANSOM, 'Arel holds the crown, so the silver goes to the realm');
   assert.deepEqual([done.prisoners[0].status, done.prisoners[0].reason], ['ransomed', 'Lösen betald']);
   assert.equal(isImprisoned(done, KELAN), false);
+  normalizeCharacterSystem(copy(done));
+});
+
+test('a ransom demand moves with the prisoner when the crown passes from one NPC house to another', () => {
+  const familyId = base().people[BAREK].familyId;
+  const state = createCharacterSystem({ seed: 321, mode: 'family', familyId });
+  const record = seize(state, BAREK);
+  state.plotRngState = OFFER;
+  prisonerStep(state, [], actionHooks(state));
+  const story = state.stories.find((item) => item.type === 'ransom_offer');
+  assert.equal(story.familyId, ARELS);
+  actionHooks(state).kill(Object.values(state.people).filter((person) => person.familyId === ARELS).map((person) => person.id), [], 'Sjukdom');
+  assert.equal(state.offices.ruler.holderId, NAMAR);
+  assert.equal(record.captorFamilyId, NAMARS);
+  assert.deepEqual([story.status, story.familyId, story.targetId], ['open', NAMARS, state.families[NAMARS].headId]);
+  assert.ok(story.description.startsWith(state.families[NAMARS].name), story.description);
+  const view = getCharacterPresentation(state).stories.find((item) => item.id === story.id);
+  assert.deepEqual(view.choices.map((choice) => [choice.id, choice.disabledReason]), [['accept', ''], ['refuse', '']]);
+  const done = ok(run(state, 'resolve_story', { storyId: story.id, choiceId: 'accept' }));
+  assert.equal(done.families[familyId].treasury, state.families[familyId].treasury - RANSOM);
+  assert.equal(done.realm.treasury, state.realm.treasury + RANSOM);
+  assert.equal(isImprisoned(done, BAREK), false);
   normalizeCharacterSystem(copy(done));
 });
 
