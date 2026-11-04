@@ -21,7 +21,7 @@ const LOYALTY_LABELS = Object.freeze({
   three: Object.freeze(['svag', 'oviss', 'stark']),
 });
 const AMBITION_LABELS = Object.freeze({ throne: 'Tronen', office: 'Ett ämbete', city: 'En stad', wealth: 'Rikedom', security: 'Trygghet' });
-const REFUSALS = Object.freeze({ seat: 'Välj ett av rådets ämbeten.', vacant: 'Ämbetet är vakant.', ruler: 'Härskaren kan inte belöna sig själv.', self: 'Du kan inte belöna dig själv.', recent: 'Rådsmedlemmen belönades nyligen.' });
+const REFUSALS = Object.freeze({ seat: 'Välj ett av rådets ämbeten.', vacant: 'Ämbetet är vakant.', ruler: 'Härskarens ämbete kan inte belönas.', self: 'Du kan inte belöna dig själv.', recent: 'Rådsmedlemmen belönades nyligen.', noSeat: 'Inget av rådets ämbeten kan belönas.' });
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 const finite = (value) => (Number.isFinite(value) ? value : 0);
@@ -34,7 +34,12 @@ function seatHolder(state, officeId) {
 }
 
 const isRuler = (person, hooks) => person.id === hooks.ruler()?.id;
-const isActing = (person, hooks) => person.id === hooks.activeRepresentative()?.id;
+
+// Why a seat's holder cannot be rewarded, or '' when she can. rewardCouncillor and filledSeats share this, so the command and the menu agree.
+function rewardBar(person, hooks) {
+  if (person.id === hooks.activeRepresentative()?.id) return REFUSALS.self;
+  return isRuler(person, hooks) ? REFUSALS.ruler : '';
+}
 
 // A crowned councillor keeps the seat. The engine's opinion of oneself is 100, which says nothing of how she serves, so the ruler counts 0.
 function opinionOfRuler(person, hooks) {
@@ -143,7 +148,8 @@ export function rewardCouncillor(state, officeId, events, hooks) {
   if (!COUNCIL_SEATS.includes(officeId)) throw new Error(REFUSALS.seat);
   const person = seatHolder(state, officeId);
   if (!person) throw new Error(REFUSALS.vacant);
-  if (isActing(person, hooks)) throw new Error(isRuler(person, hooks) ? REFUSALS.ruler : REFUSALS.self);
+  const bar = rewardBar(person, hooks);
+  if (bar) throw new Error(bar);
   const cooldown = person.cooldowns.council_reward;
   if (cooldown && compareGameDates(cooldown, state.date) > 0) throw new Error(REFUSALS.recent);
   hooks.charge(REWARD.silver, { publicFunds: true, orders: REWARD.orders, tag: REWARD.tag });
@@ -154,9 +160,12 @@ export function rewardCouncillor(state, officeId, events, hooks) {
 
 /** The seats the reward command's office field offers, as `{ id, name }`: filled, and held by neither the ruler nor the person acting. */
 export function filledSeats(state, hooks) {
-  const open = COUNCIL_SEATS.filter((id) => { const holder = seatHolder(state, id); return holder && !isRuler(holder, hooks) && !isActing(holder, hooks); });
+  const open = COUNCIL_SEATS.filter((id) => { const holder = seatHolder(state, id); return holder && !rewardBar(holder, hooks); });
   return open.map((id) => ({ id, name: `${state.offices[id].name} · ${seatHolder(state, id).name}` }));
 }
+
+/** Why the reward action is closed, given the seats filledSeats offers: '' while one is open. */
+export const rewardClosedReason = (seats) => (seats.length ? '' : REFUSALS.noSeat);
 
 function presentSeat(state, officeId, precision, hooks) {
   const holder = seatHolder(state, officeId);

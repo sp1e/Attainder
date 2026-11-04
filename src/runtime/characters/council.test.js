@@ -182,7 +182,7 @@ test('a crowned councillor keeps the seat at no opinion of herself and cannot re
   assert.equal(serviceOf(crowned, 'spymaster', actionHooks(crowned)), crowned.people[SERA].loyalty);
   const refused = run(crowned, 'reward_councillor', { officeId: 'spymaster' });
   assert.equal(refused.ok, false);
-  assert.equal(refused.error, 'Härskaren kan inte belöna sig själv.');
+  assert.equal(refused.error, 'Du kan inte belöna dig själv.');
   // Her own opinion moves no drift either.
   const { loyalty } = crowned.people[SERA];
   loyaltyDriftStep(crowned, actionHooks(crowned));
@@ -222,6 +222,28 @@ test('a regent in a seat cannot reward herself', () => {
   assert.equal(refused.error, 'Du kan inte belöna dig själv.');
   assert.deepEqual(rewardSeats(state), ['chancellor'], 'neither her own seat nor the child ruler\'s');
   ok(run(state, 'reward_councillor', { officeId: 'chancellor' }));
+});
+
+test('a regent cannot reward the seat the ruler holds', () => {
+  const state = regency({ general: MIRA });
+  const { treasury } = state.realm, { loyalty } = state.people[MIRA], { actionPoints } = state;
+  const refused = run(state, 'reward_councillor', { officeId: 'general' });
+  // A refused command hands the input back, so these read the state the command would have changed.
+  assert.equal(refused.state.realm.treasury, treasury);
+  assert.equal(refused.state.people[MIRA].loyalty, loyalty);
+  assert.equal(refused.state.actionPoints, actionPoints);
+  assert.equal(refused.ok, false);
+  assert.equal(refused.error, 'Härskarens ämbete kan inte belönas.');
+});
+
+test('the reward action closes with a reason when no seat can be rewarded', () => {
+  const rewardAction = (state) => getAvailableCharacterActions(state).find((item) => item.type === 'reward_councillor');
+  const closed = regency({ spymaster: REP, general: MIRA, chancellor: null });
+  assert.deepEqual(rewardSeats(closed), []);
+  assert.equal(rewardAction(closed).disabledReason, 'Inget av rådets ämbeten kan belönas.');
+  const vacant = regency({ spymaster: null, general: null, chancellor: null });
+  assert.equal(rewardAction(vacant).disabledReason, 'Inget av rådets ämbeten kan belönas.');
+  assert.equal(rewardAction(regency({ spymaster: REP, general: MIRA })).disabledReason, '', 'one open seat keeps the action open');
 });
 
 test('a sitting ruler wants no throne', () => {

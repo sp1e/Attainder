@@ -33,17 +33,17 @@ export function cowNobles(state, amount, hooks) {
   for (const person of nobles(state, hooks)) raiseFear(person, amount);
 }
 
-/** What an execution does to the court. executePrisoner calls it after the execution's memory and before the death. The victim's family adults fear more, also those in prison, and the vengeful and the brave among them become the ruler's nemesis. The ruler is left out when the victim is her own kin. */
+/** What an execution does to the court. executePrisoner calls it after the execution's memory and before the death. The victim's family adults fear more, also those in prison, and the vengeful and the brave among them become the ruler's nemesis. The ruler and the person who ordered the death are left out of that kin. The deed counts only when the ruler ordered it, the rule charge uses. */
 export function onExecution(state, person, noteId, hooks) {
-  const ruler = hooks.ruler();
+  const ruler = hooks.ruler(), acting = hooks.activeRepresentative();
   cowNobles(state, EXECUTION.fear, hooks);
   for (const kin of livingAdults(state, hooks, person.familyId, person.id)) {
-    if (kin.id === ruler?.id) continue;
+    if (kin.id === ruler?.id || kin.id === acting?.id) continue;
     raiseFear(kin, EXECUTION.kinFear);
     if (ruler && EXECUTION.enemyTraits.some((trait) => hasTrait(kin, trait))) setRelationship(state, { kind: 'nemesis', aId: kin.id, bId: ruler.id, causeId: noteId });
   }
   moveGrievance(state.families[person.familyId], EXECUTION.grievance);
-  recordDeed(state, 'executions');
+  if (acting?.id === state.reign.rulerId) recordDeed(state, 'executions');
 }
 
 /** The success row a frightened target gives the player's sway, blackmail and imprison. Empty for any other action and below fear 10, because a row is never 0. */

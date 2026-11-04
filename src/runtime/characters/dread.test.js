@@ -13,6 +13,7 @@ import { createSecret } from './secrets.js';
 const REP = 'person-0-0';
 const SERA = 'person-0-2';
 const TAREK = 'person-0-3';
+const CHILD = 'person-0-4';
 const NAMAR = 'person-1-0';
 const DARA = 'person-1-1';
 const KELAN = 'person-1-2';
@@ -134,6 +135,38 @@ test('an execution in the ruler\'s own family makes no enemy of the ruler and no
   assert.equal(done.people[SERA].fear, 15, 'her kin outside the dread still fear her');
   assert.equal(done.people[NAMAR].fear, 20, 'the other families are cowed as ever');
   normalizeCharacterSystem(plain(done));
+});
+
+// A child on the throne and the old ruler as her regent, as in regencyAuthority.test.js. The reign is the child's, as crown leaves it.
+function regency() {
+  const state = plain(base());
+  Object.assign(state.offices.ruler, { holderId: CHILD, regentId: REP });
+  state.reign.rulerId = CHILD;
+  state.realm.lawfulRulerId = CHILD;
+  state.regencies['office:ruler'] = { id: 'office:ruler', principalId: CHILD, regentId: REP, phase: 'minority', startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
+  state.stories = [];
+  delete state.mandateVersion; delete state.mandateActivatedAt; delete state.mandateSequence;
+  return normalizeCharacterSystem(state);
+}
+
+test('a regent who orders her kin\'s death neither fears herself nor turns on the ruler', () => {
+  const state = regency();
+  state.people[REP].traits = ['vengeful'];
+  state.people[SERA].traits = ['brave'];
+  state.people['person-0-1'].traits = ['calm'];
+  const done = execute(state, TAREK);
+  assert.equal(done.people[REP].fear, 0);
+  assert.equal(done.people[SERA].fear, 15, 'the rest of the kin still fear');
+  assert.deepEqual(nemeses(done).map(([aId, bId]) => [aId, bId]), [[SERA, CHILD]], 'the rest of the kin still turn on the ruler');
+});
+
+test('an execution counts as a deed only when the ruler orders it herself', () => {
+  const regent = execute(regency(), KELAN);
+  assert.equal(regent.reign.deeds.executions, 0);
+  assert.equal(regent.reign.deeds.cruel, 0, 'charge holds the regent\'s cruelty to the same rule');
+  const ruler = execute(base(), KELAN);
+  assert.equal(ruler.reign.deeds.executions, 1);
+  assert.equal(ruler.reign.deeds.cruel, 1);
 });
 
 test('the court learns of an execution after its memory and before the death', () => {

@@ -24,7 +24,7 @@ export const TIER_TITLES = Object.freeze({
 export const REFUSED_TITLE = 'Ordern vägrades';
 // Tiers the world learns about. Their anchor memory is public, and such an action by another family reaches the player's list.
 const PUBLIC_TIERS = new Set(['exposed_success', 'exposed_failure', 'backfire']);
-// Spec 5.8: refusal = clamp(40 − loyalty × 0.4 − opinion(actor → representative) × 0.3 + 10 if ambitious − 15 if dutiful, 0, 90), rounded to an integer.
+// Spec 5.8: refusal = clamp(40 − loyalty × 0.4 − opinion(actor → representative) × 0.3 − fear × 0.2 + 10 if ambitious − 15 if dutiful, 0, 90), rounded to an integer.
 const REFUSAL = Object.freeze({ base: 40, loyalty: 0.4, opinion: 0.3, fear: 0.2, ambitious: 10, dutiful: 15, max: 90 });
 // A failed roll in the top tenth of the failure range backfires.
 const BACKFIRE_SHARE = 0.9;
