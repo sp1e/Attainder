@@ -12,9 +12,12 @@ Use Node.js 24, npm, and an installed, authenticated Codex CLI or Claude Code. T
 git clone https://github.com/sp1e/Attainder.git
 cd Attainder
 npm ci
+node scripts/fetch-map-assets.mjs --ensure
 npm run build
 node scripts/launch-dynasties.mjs
 ```
+
+`fetch-map-assets.mjs` downloads about 290 MB of map files from the upstream `map-data` release. Run it before the build, because the build copies them into `dist/`; without them the map requests return 404. The game finds Claude Code from a native install in `~/.local/bin`, from `PATH` or from an npm install.
 
 On Windows, after the first build, double-click `Start-Attainder.cmd`. The launcher opens http://127.0.0.1:4167. Select Claude or Codex, then choose the state or family campaign mode. Expand the campaign seed control to set a starting seed. An empty field uses 104729. Seed 293 reproduces the starting conditions used in the smallpox gameplay check. Model narration can vary between runs.
 
@@ -72,7 +75,7 @@ The upstream scenario-sharing rules remain in place. Scenarios posted or shared 
 
 ## Development status
 
-This is a playable development version. The local serial suite on 3 November 2026 ran 3,811 tests: 3,808 passed, none failed, one was skipped and two are TODOs. Phase 1 (free-text actions, odds, schemes, the model gate and the panel) and Phase 2 (intrigue) have automated tests and manual play scripts, [Phase 1](docs/play-scripts/phase-1.md) and [Phase 2](docs/play-scripts/phase-2.md); neither play script has been completed against a live model yet. Regent authority checks cover both campaign modes, appointment consent, independent family guardians, exact promise deadlines and saved-state validation. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
+This is a playable development version. The local serial suite on 4 November 2026 ran 3,812 tests: 3,809 passed, none failed, one was skipped and two are TODOs. Phase 1 (free-text actions, odds, schemes, the model gate and the panel) and Phase 2 (intrigue) have automated tests and manual play scripts, [Phase 1](docs/play-scripts/phase-1.md) and [Phase 2](docs/play-scripts/phase-2.md); neither play script has been completed against a live model yet. Regent authority checks cover both campaign modes, appointment consent, independent family guardians, exact promise deadlines and saved-state validation. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
 
 The portrait component passed 864 rendered state/age combinations, including delayed and failed image loading. Its controls support light and dark themes and a narrow viewport.
 
