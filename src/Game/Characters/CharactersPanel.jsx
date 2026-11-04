@@ -10,13 +10,15 @@ import {
 } from "../../runtime/characterRuntime.js";
 import { getModelCallCounts, subscribeModelCalls } from "../AI/modelCallCounter.js";
 import "./characters.css";
-import ActionBox, { SchemeList } from "./ActionBox.jsx";
+import ActionBox, { SchemeList, playerText } from "./ActionBox.jsx";
 import ConversationView from "./ConversationView.jsx";
 import IntrigueView from "./IntrigueView.jsx";
 import LocalModelConnect from "./LocalModelConnect.jsx";
 import Portrait from "./Portrait.jsx";
 
 const THEME_KEY = "oh:characters:theme";
+const ACTION_FAILED = "Handlingen kunde inte genomföras.";
+const YEAR_FAILED = "Modellen kunde inte skriva året. Försök igen.";
 const TABS = [
   ["council", "Överblick"], ["people", "Personer"], ["families", "Familjer"],
   ["offices", "Ämbeten & arv"], ["decisions", "Beslut"], ["intrigue", "Intriger"], ["chronicle", "Krönikan"],
@@ -35,7 +37,7 @@ const isAlive = (person) => person.alive !== false && !person.deathDate && !pers
 const signed = (value) => Number(value) > 0 ? `+${number(value)}` : number(value);
 const stressLabel = (value) => /^-?\d+(\.\d+)?$/.test(String(value)) ? `Stress ${signed(value)}` : value;
 const humanize = (value) => ({
-  administration: "Förvaltning", diplomacy: "Diplomati", military: "Krigskonst", intrigue: "Intrig", command: "Befäl",
+  administration: "Förvaltning", diplomacy: "Diplomati", military: "Krigskonst", intrigue: "Intrig", prowess: "Kampförmåga", command: "Befäl",
   learning: "Lärdom", stewardship: "Förvaltning", martial: "Krigskonst", wisdom: "Visdom",
   ambitious: "Ambitiös", cautious: "Försiktig", compassionate: "Medkännande", greedy: "Girig",
   dutiful: "Plikttrogen", loyal: "Lojal", brave: "Modig", proud: "Stolt", patient: "Tålmodig",
@@ -369,7 +371,7 @@ export default function CharactersPanel({ open, onClose }) {
       setLoaded(true);
     } catch (reason) {
       if (sequence !== readSequence.current) return;
-      setError(reason?.message || "Kampanjen kunde inte läsas.");
+      setError(playerText(reason?.message, "Kampanjen kunde inte läsas."));
       setLoaded(true);
     }
   }, []);
@@ -410,7 +412,7 @@ export default function CharactersPanel({ open, onClose }) {
     let result;
     try {
       result = await operation();
-      if (!result?.ok) { if (!quiet) setError(result?.error || "Handlingen kunde inte genomföras."); }
+      if (!result?.ok) { if (!quiet) setError(playerText(result?.error, withModel ? YEAR_FAILED : ACTION_FAILED)); }
       else {
         setNotice(result.events?.length ? result.events.slice(-2).map((event) => event.title).join(" · ") : "Beslutet har sparats i kampanjen.");
         if (annual) {
@@ -421,7 +423,7 @@ export default function CharactersPanel({ open, onClose }) {
       }
       await refresh();
     } catch (reason) {
-      result = { ok: false, error: reason?.message || "Handlingen kunde inte sparas. Försök igen." };
+      result = { ok: false, error: playerText(reason?.message, withModel ? YEAR_FAILED : "Handlingen kunde inte sparas. Försök igen.") };
       if (!quiet) setError(result.error);
     } finally { busyRef.current = false; setBusy(false); setAnnualBusy(false); }
     return result;
@@ -432,7 +434,7 @@ export default function CharactersPanel({ open, onClose }) {
     busyRef.current = true;
     setBusy(true); setError(""); setNotice("");
     try { return await work(); }
-    catch (reason) { setError(reason?.message || "Handlingen kunde inte genomföras. Försök igen."); return undefined; }
+    catch (reason) { setError(playerText(reason?.message, "Handlingen kunde inte genomföras. Försök igen.")); return undefined; }
     finally { busyRef.current = false; setBusy(false); await refresh(); }
   }, [refresh]);
   const command = (type, payload) => perform(() => submitCharacterCommand({ type, payload, expectedRevision: view?.revision, id: `ui-${crypto.randomUUID()}` }), false, false, INLINE_REFUSALS.includes(type));
@@ -449,7 +451,7 @@ export default function CharactersPanel({ open, onClose }) {
   if (!open) return null;
   return <div className="char-backdrop" data-char-theme={theme} onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
     <section className="char-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="characters-title" onKeyDown={onKeyDown}>
-      <header className="char-header"><div className="char-brand"><span className="char-brand-mark"><CivicMark /></span><div><span className="char-eyebrow">Open Historia · Dynastier</span><h2 id="characters-title">Rike & familjer</h2></div></div><div className="char-header-controls"><button type="button" className="char-button char-connect-model" aria-expanded={modelConnectOpen} onClick={() => setModelConnectOpen((current) => !current)}>Anslut modell</button><button type="button" className="char-icon-button" onClick={() => choose(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? "Byt till ljust läge" : "Byt till mörkt läge"} title={theme === "dark" ? "Ljust läge" : "Mörkt läge"}>{theme === "dark" ? "☀" : "☾"}</button><button type="button" className="char-theme-system" aria-pressed={choice === "system"} onClick={() => choose("system")}>Systemtema</button><button type="button" className="char-icon-button char-close" onClick={onClose} aria-label="Stäng Rike & familjer">×</button></div></header>
+      <header className="char-header"><div className="char-brand"><span className="char-brand-mark"><CivicMark /></span><div><span className="char-eyebrow">Attainder · Dynastier</span><h2 id="characters-title">Rike & familjer</h2></div></div><div className="char-header-controls"><button type="button" className="char-button char-connect-model" aria-expanded={modelConnectOpen} onClick={() => setModelConnectOpen((current) => !current)}>Anslut modell</button><button type="button" className="char-icon-button" onClick={() => choose(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? "Byt till ljust läge" : "Byt till mörkt läge"} title={theme === "dark" ? "Ljust läge" : "Mörkt läge"}>{theme === "dark" ? "☀" : "☾"}</button><button type="button" className="char-theme-system" aria-pressed={choice === "system"} onClick={() => choose("system")}>Systemtema</button><button type="button" className="char-icon-button char-close" onClick={onClose} aria-label="Stäng Rike & familjer">×</button></div></header>
       {view && <div className="char-campaign-strip"><div><span className="char-mode">{view.mode === "family" ? "FÖLJ FAMILJEN" : "FÖLJ RIKET"}</span><strong>{view.mode === "family" ? view.families.find((family) => family.id === view.identity?.familyId)?.name : (view.identity?.realmName || view.economy?.polityName || "Riket")}</strong><span className="char-date">{dateLabel(view.date)}</span>{view.difficulty?.label && <span className="char-difficulty">Svårighetsgrad: {view.difficulty.label}</span>}</div><button type="button" className="char-button char-button--advance" disabled={busy || talkHold || view.status?.ended || view.status === "ended"} title={talkHold ? "Besvara eller avbryt förfrågan i samtalet först" : undefined} onClick={() => perform(() => advanceCharacterYearWithModel(), true)}>{busy ? "Bearbetar…" : "Nästa år med modellen"}<span aria-hidden="true"> →</span></button></div>}
       <nav className="char-nav" aria-label="Rike och familjer">{TABS.map(([id, label]) => <button key={id} type="button" aria-current={tab === id ? "page" : undefined} className={tab === id ? "is-active" : ""} onClick={() => setTab(id)}>{label}{id === "decisions" && pending.length > 0 && <span className="char-tab-count">{pending.length}</span>}</button>)}</nav>
       <div className="char-content" aria-busy={busy}>

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { localModelArguments, parseLocalModelOutput, resolveLocalModel, validateLocalModelRequest } from './localModelBridge.js';
+import { codexMissingFlag, localModelArguments, parseLocalModelOutput, resolveLocalModel, validateLocalModelRequest } from './localModelBridge.js';
 import { callLocalCli } from '../src/Game/AI/localCliProvider.js';
 import { getModelCallCounts } from '../src/Game/AI/modelCallCounter.js';
 
@@ -50,6 +50,11 @@ test('CLI invocations disable computer tools and keep existing authentication se
   assert.equal(claude[claude.indexOf('--output-format') + 1], 'stream-json');
   assert.equal(claude[claude.indexOf('--effort') + 1], 'medium');
   assert.ok(!claude.includes('--bare'), 'bare skips the existing OAuth login');
+});
+
+test('a Codex without the flags the bridge sends counts as outdated', () => {
+  assert.equal(codexMissingFlag('Usage: codex exec [OPTIONS]\n  --ephemeral\n  --ignore-user-config\n  --skip-git-repo-check\n  --output-schema <FILE>'), '');
+  assert.equal(codexMissingFlag('Usage: codex exec [OPTIONS]\n  --ephemeral\n  --skip-git-repo-check\n  --output-schema <FILE>'), '--ignore-user-config');
 });
 
 test('only final model text is returned, never reasoning or process diagnostics', () => {

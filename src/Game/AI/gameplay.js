@@ -6,6 +6,7 @@ import { assertCharacterModelGeneration, assertCharacterTurnHorizon, buildCharac
 import { commitCharacterCampaign } from "../../runtime/characterRuntime.js";
 import { NATIVE_GAME_MASTER_PROMPT, normalizePromptPack } from "./gameplayPrompts.js";
 import { collectFoundedPolities, foundingPolityChange } from "../../runtime/polityFounding.js";
+import { CONTROL_CHANGE_LANGUAGE, LEGAL_TRANSFER_LANGUAGE } from "./territoryLanguage.js";
 import { describeBasisAction, screenTerritoryBasis } from "../../runtime/territoryBasis.js";
 import { describeGroupsForPrompt, normalizeGroupOp } from "../../runtime/groups.js";
 
@@ -6732,12 +6733,6 @@ const validateChatOpener = (chatLike, path) => {
   return "";
 };
 
-// Event text that claims control changed hands (capture verbs) or that legal
-// sovereignty moved (cession, annexation, treaty). Word-boundary anchored so
-// "preoccupied" never matches; deliberately narrow so a defensive battle that
-// moved no borders never trips the reluctance guards below.
-const CONTROL_CHANGE_LANGUAGE = /\b(captur\w*|seiz\w*|conquer\w*|occup(?:y|ies|ied|ation)|overr[au]n|liberat\w*|retak\w*|retaken|recaptur\w*|fell to|falls? to|takes? control|assumes? control)\b/i;
-const LEGAL_TRANSFER_LANGUAGE = /\b(annex\w*|cedes?|ceded|ceding|cession|sovereignty (?:passes|transfers?|is transferred)|treaty transfer|formal(?:ly)? transfer(?:red)?|incorporat\w*|unification|territorial award|sold|sale of territory)\b/i;
 
 // A capture an event tells of and does not carry is put on the map, where the
 // event's own operations show who took what (narratedCapture.js). Seen in a

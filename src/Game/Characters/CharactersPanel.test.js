@@ -794,6 +794,8 @@ test("the panel header shows the difficulty and the footer counts model calls", 
   const html = renderToStaticMarkup(loadPanel(view, { modelCalls: 3 }).default({ open: true, onClose: () => {} }));
   assert.match(html, /Svårighetsgrad: Svår/);
   assert.match(html, /Modellanrop denna session: 3/);
+  assert.match(html, /Attainder · Dynastier/);
+  assert.doesNotMatch(html, /Open Historia/);
 });
 
 test("every odds reason from the engine reaches the player unchanged, å, ä and ö included", async () => {
@@ -1367,6 +1369,37 @@ test("a request answered by the real engine is read from the newest conversation
   assert.match(textOf(mounted.tree), entry.accepted ? /Sera Arel ger sitt stöd\./ : /Sera Arel avvisar förfrågan\./);
 });
 
+test("a date ending in f.Kr. closes its sentence with one period", () => {
+  const { endSentence } = loadActionBox();
+  assert.equal(endSentence("Planen avgörs 1/2 300 f.Kr."), "Planen avgörs 1/2 300 f.Kr.");
+  assert.equal(endSentence("Planen avgörs -0300-04-01"), "Planen avgörs -0300-04-01.");
+});
+
+test("a year that fails shows a Swedish sentence, never the model call's English error", async () => {
+  const warnings = [];
+  const realWarn = console.warn;
+  console.warn = (...args) => warnings.push(args.join(" "));
+  try {
+    const driver = createHookDriver();
+    const view = engineCampaign().view;
+    const english = 'AI task "jumpForward" failed: Your events describe a legal territorial settlement but the payload contains ZERO impacts.regionTransfers.';
+    const { default: Panel } = loadPanel(view, { react: driver.react, globals: {
+      window: { matchMedia: () => ({ matches: false }), addEventListener() {}, removeEventListener() {} }, document: { activeElement: null } },
+    runtime: { advanceCharacterYearWithModel: async () => ({ ok: false, error: english }) } });
+    const draw = () => driver.render(React.createElement(Panel, { open: true, onClose: () => {} }));
+    let tree = draw();
+    await settle();
+    tree = draw();
+    await findAll(tree, (node) => node.props?.className === "char-button char-button--advance")[0].props.onClick();
+    await settle();
+    tree = draw();
+    const banner = findAll(tree, (node) => node.props?.role === "alert").map(textOf).join(" ");
+    assert.match(banner, /Modellen kunde inte skriva året\. Försök igen\./);
+    assert.doesNotMatch(banner, /jumpForward|impacts\.regionTransfers/);
+    assert.ok(warnings.some((line) => line.includes("jumpForward")), "the English text goes to the log");
+  } finally { console.warn = realWarn; }
+});
+
 // --- Personer tab ---
 
 function mountPeople({ selectedId, view = engineCampaign().view } = {}) {
@@ -1379,6 +1412,12 @@ function mountPeople({ selectedId, view = engineCampaign().view } = {}) {
   return { driver, props, draw, get tree() { return tree; } };
 }
 const talkButtons = (tree) => findAll(tree, (node) => node.type === "button" && textOf(node) === "Samtala");
+
+test("a person's skills carry Swedish labels, prowess included", () => {
+  const text = textOf(mountPeople({ selectedId: "person-0-2" }).tree);
+  assert.match(text, /Kampförmåga/);
+  assert.doesNotMatch(text, /prowess/i);
+});
 
 test("only people in conversationTargets get a Samtala button, and it opens the conversation view", () => {
   const talkable = mountPeople({ selectedId: "person-0-2" });

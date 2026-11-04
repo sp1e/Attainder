@@ -37,6 +37,13 @@ test('unknown save versions reject without changing source state', () => {
   assert.throws(() => normalizeCharacterSystem(rules), /regel-/);
 });
 
+test('the yearly summary writes silver with a decimal comma', () => {
+  const state = createCharacterSystem({ seed: 'decimal-comma' });
+  const result = advanceCharacters(state, addGameMonths(state.date, 12));
+  const summary = result.events.find((event) => event.title === 'Årets förvaltning är avslutad');
+  assert.match(summary.description, /Statskassan förändras med [−+]?\d+,\d silver\./);
+});
+
 test('same date does not age people, generate deaths or consume randomness', () => {
   const state = createCharacterSystem();
   assert.equal(advanceCharacters(state, state.date).state, state);

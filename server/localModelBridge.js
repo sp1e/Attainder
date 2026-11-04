@@ -96,6 +96,10 @@ export function localModelArguments(provider, { model = '', effort = 'medium', d
     ...(schemaFile ? ['--output-schema', schemaFile] : []), ...(model ? ['--model', model] : []), '-'];
 }
 
+// An older Codex exits at once on a flag it does not know, so `exec --help` decides whether it is usable.
+const CODEX_REQUIRED_FLAGS = ['--ignore-user-config', '--ephemeral', '--skip-git-repo-check', '--output-schema'];
+export const codexMissingFlag = (helpText) => CODEX_REQUIRED_FLAGS.find(flag => !helpText.includes(flag)) || '';
+
 export function parseLocalModelOutput(provider, output, { unwrapGameResponse = false } = {}) {
   if (provider === 'claude-cli') {
     let result;
@@ -186,6 +190,10 @@ async function probeLocalModelStatus(provider) {
     let authenticated;
     if (provider === 'codex-cli') authenticated = /logged in using ChatGPT/i.test(result.output + result.diagnostic);
     else { try { authenticated = JSON.parse(result.output).loggedIn === true; } catch { authenticated = false; } }
+    if (provider === 'codex-cli' && authenticated) {
+      const help = await runProcess(executable, ['exec', '--help'], { timeout: 15000 });
+      if (codexMissingFlag(help.output + help.diagnostic)) return { provider, available: true, authenticated, outdated: true, message: 'Codex är för gammal för spelet. Uppdatera och kontrollera igen.' };
+    }
     return { provider, available: true, authenticated, message: authenticated ? 'Befintlig inloggning hittad' : 'Logga in i terminalprogrammet och kontrollera igen' };
   } catch (error) { return { provider, available: false, authenticated: false, message: error.message }; }
 }
