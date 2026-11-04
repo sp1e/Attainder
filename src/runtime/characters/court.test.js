@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameMonths } from '../gameDates.js';
 import { actionHooks, advanceCharacters, createCharacterSystem, canCharacterDirectRealm, getCharacterPresentation, getCharacterWorldEffects, normalizeCharacterSystem } from './index.js';
+import { presentCouncil } from './council.js';
 import { courtAnnualStep, onAccession, presentCourt, validateCourt } from './court.js';
 
 const HEIR = 'person-0-2';
@@ -54,6 +55,7 @@ test('presentCourt draws nothing and spends nothing', () => {
     reign: { rulerId: 'person-0-0', startedAt: state.date, lawful: true },
     legitimacy: { value: 65, sources: [{ label: 'Tronföljd', value: 65 }] },
     prestige: 10,
+    council: presentCouncil(state, actionHooks(state)),
   });
   assert.deepEqual(plain(state), before);
   const view = getCharacterPresentation(state);

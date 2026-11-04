@@ -492,7 +492,7 @@ test('after an abdication the new ruler pays public choices and the old head pay
   assert.deepEqual(Object.fromEntries(choicesOf(abdicated, story).map((choice) => [choice.id, choice.actorId])),
     { public_provision: 'person-0-2', family_rest: 'person-0-0', close: null });
   const paid = answer(abdicated, story.id, 'public_provision').state;
-  assert.equal(paid.realm.treasury, treasury - 10);
+  assert.equal(paid.realm.treasury, Math.round((treasury - 10) * 100) / 100);
   assert.equal(outcomeOf(paid, story).decisionActorId, 'person-0-2');
 });
 

@@ -376,11 +376,17 @@ test("Decisions includes chain history in both themes and excludes waiting stori
   assert.doesNotMatch(html, /Händelsekedjornas historik/);
 });
 
-// A real family campaign from the engine, so the catalog, staff and odds are the ones the player meets.
-function engineCampaign(diplomacy) {
+// A real family campaign from the engine, so the catalog, staff and odds are the ones the player meets. `spymaster` seats one who reads loyalty exactly, so the diplomacy alone sets the precision of the odds.
+function engineCampaign(diplomacy, { spymaster = false } = {}) {
   const state = createCharacterSystem({ mode: "family", seed: 41 });
   const representativeId = getCharacterPresentation(state).representative.id;
   if (diplomacy !== undefined) state.people[representativeId].skills.diplomacy = diplomacy;
+  if (spymaster) {
+    const reader = state.people["person-1-3"];
+    state.offices.spymaster.holderId = reader.id;
+    reader.loyalty = 80;
+    reader.skills.intrigue = 12;
+  }
   return { state, view: getCharacterPresentation(state) };
 }
 const swayAnswer = (view) => ({ ok: true, mode: "contested", catalogId: "sway", explanation: "Du vill vinna Isets gunst.",
@@ -1174,8 +1180,8 @@ test("the confirmation card names the means and the estimate and the command rec
 // --- Court conversations ---
 
 // The conversation view under the hook driver with the engine's real estimate behind it. `turns` lives in the test, as it does in the panel.
-function mountTalk({ diplomacy, runtime = {}, model = {}, person = null } = {}) {
-  const { state, view } = engineCampaign(diplomacy);
+function mountTalk({ diplomacy, runtime = {}, model = {}, person = null, spymaster = false } = {}) {
+  const { state, view } = engineCampaign(diplomacy, { spymaster });
   const speaker = person ?? view.conversationTargets.find((target) => target.id === "person-0-2");
   const driver = createHookDriver();
   const panel = loadPanel(view, { react: driver.react, model, runtime: conversationRuntime({
@@ -1207,7 +1213,7 @@ const requestCard = (tree) => findAll(tree, (node) => node.type === "section" &&
 
 test("the conversation view asks Vad säger du? and shows bands for a low-diplomacy representative, numbers for a high one", async () => {
   for (const [diplomacy, exact] of [[3, false], [14, true]]) {
-    const mounted = mountTalk({ diplomacy, model: askSupport() });
+    const mounted = mountTalk({ diplomacy, model: askSupport(), spymaster: true });
     assert.match(textOf(mounted.tree), /Vad säger du\?/);
     assert.ok(buttonNamed(mounted.tree, "Säg det"));
     await mounted.say("Kan jag räkna med ditt stöd?");
