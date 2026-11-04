@@ -42,7 +42,12 @@ export async function resolveLocalModel(provider, env = process.env) {
   const name = provider === 'claude-cli' ? 'claude' : 'codex';
   const candidates = [path.join(home, '.local/bin', process.platform === 'win32' ? `${name}.exe` : name),
     ...String(env.PATH || '').split(path.delimiter).map(dir => path.join(dir, process.platform === 'win32' ? `${name}.exe` : name))];
-  for (const candidate of candidates) if (await exists(candidate)) return { file: candidate, prefix: [] };
+  // npm leaves only claude.cmd on PATH, which spawn cannot start without a shell.
+  if (provider === 'claude-cli') {
+    candidates.push(...[env.APPDATA && path.join(env.APPDATA, 'npm'), ...String(env.PATH || '').split(path.delimiter)]
+      .filter(Boolean).map(dir => path.join(dir, 'node_modules/@anthropic-ai/claude-code/bin/claude.exe')));
+  }
+  for (const candidate of candidates) if (await exists(candidate)) return { file: path.normalize(candidate), prefix: [] };
   throw new Error(`${name === 'claude' ? 'Claude Code' : 'Codex'} hittades inte. Installera och logga in i dess vanliga terminalprogram först.`);
 }
 

@@ -13,6 +13,7 @@ Each step says where to click, what to type, and what you should see. If a step 
 
    ```sh
    npm ci
+   node scripts/fetch-map-assets.mjs --ensure
    npm run build
    ```
 
