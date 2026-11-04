@@ -1,14 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameMonths, compareGameDates } from '../gameDates.js';
-import { advanceCharacters, createCharacterSystem, executeCharacterCommand, normalizeCharacterSystem } from './index.js';
+import { actionHooks, advanceCharacters, createCharacterSystem, executeCharacterCommand, normalizeCharacterSystem } from './index.js';
 import { DIFFICULTIES, EXTENSIONS_VERSION, actionRandom, deriveExtendedSkills, ensureCharacterExtensions, normalizeDifficulty, plotRandom, spymasterOf, validateCharacterExtensions } from './extensions.js';
 import { OPPOSITE_TRAITS, SKILL_LABELS, TRAITS } from './content.js';
+import { imprisonPerson } from './prisoners.js';
 // svenska-guard: ok (the word "constructor" below is a JavaScript property name, not Swedish)
 
 // Captured with the code before this task: createCharacterSystem({ seed: 321 }).rngState and the main stream after advancing 12 and 60 months.
 const PRE_CHANGE_RNG = { created: 321, after12Months: 2318062802, after60Months: 3162113386 };
-const EXTENSION_FIELDS = ['extensionsVersion', 'difficulty', 'actionRngState', 'secrets', 'hooks', 'relationships', 'schemes', 'actionLog', 'courtStaff', 'occasions', 'prisoners', 'rumors', 'conversations', 'plotRngState'];
+const COURT_FIELDS = ['reign', 'nicknames', 'familyDemands', 'factions'];
+const EXTENSION_FIELDS = ['extensionsVersion', 'difficulty', 'actionRngState', 'secrets', 'hooks', 'relationships', 'schemes', 'actionLog', 'courtStaff', 'occasions', 'prisoners', 'rumors', 'conversations', 'plotRngState', ...COURT_FIELDS];
 const plain = (state) => JSON.parse(JSON.stringify(state));
 function stripExtensions(state) {
   for (const key of EXTENSION_FIELDS) delete state[key];
@@ -20,8 +22,8 @@ const adult = (archetype, extra = {}) => ({ archetype, traits: [], skills: { com
 
 test('new campaigns carry extensions and keep the main random stream', () => {
   const state = createCharacterSystem({ seed: 321 });
-  assert.equal(EXTENSIONS_VERSION, 2);
-  assert.equal(state.extensionsVersion, 2);
+  assert.equal(EXTENSIONS_VERSION, 3);
+  assert.equal(state.extensionsVersion, 3);
   assert.equal(state.difficulty, 'normal');
   assert.equal(state.rngState, PRE_CHANGE_RNG.created);
   for (const person of Object.values(state.people)) for (const key of ['intrigue', 'prowess']) assert.ok(Number.isFinite(person.skills[key]), `${person.id} ${key}`);
@@ -85,7 +87,7 @@ test('a 1.0 save migrates once and replays identically', () => {
   const rngBefore = old.rngState;
   const migrated = normalizeCharacterSystem(old);
   assert.equal(migrated.rngState, rngBefore);
-  assert.equal(migrated.extensionsVersion, 2);
+  assert.equal(migrated.extensionsVersion, 3);
   assert.equal(migrated.difficulty, 'normal');
   assert.deepEqual(migrated, normalizeCharacterSystem(migrated));
   assert.deepEqual(migrated, normalizeCharacterSystem(plain(migrated)));
@@ -121,7 +123,7 @@ test('commands and time steps on an old save add the extensions without drawing 
   const advanced = advanceCharacters(old, addGameMonths(old.date, 12), { id: 'y1' });
   assert.equal(advanced.ok, true, advanced.error);
   for (const result of [command, advanced]) {
-    assert.equal(result.state.extensionsVersion, 2);
+    assert.equal(result.state.extensionsVersion, 3);
     assert.equal(result.state.difficulty, 'normal');
     validateCharacterExtensions(result.state);
     for (const person of Object.values(result.state.people)) assert.ok(Number.isFinite(person.skills.intrigue) && Number.isFinite(person.skills.prowess));
@@ -234,7 +236,7 @@ test('forged extensions are rejected', () => {
     'string instead of hooks list': [(s) => { s.hooks = 'x'; }, COLLECTIONS],
     'null relationships': [(s) => { s.relationships = null; }, COLLECTIONS],
     'array as court staff': [(s) => { s.courtStaff = []; }, COLLECTIONS],
-    'unsupported extensions version': [(s) => { s.extensionsVersion = 3; }, VERSION],
+    'unsupported extensions version': [(s) => { s.extensionsVersion = 4; }, VERSION],
     'negative intrigue': [(s) => { s.people['person-0-0'].skills.intrigue = -1; }, SKILL],
     'prowess above 20': [(s) => { s.people['person-1-1'].skills.prowess = 21; }, EXTENDED_SKILL],
     'text as prowess': [(s) => { s.people['person-1-1'].skills.prowess = '12'; }, SKILL],
@@ -270,9 +272,71 @@ const fnv = (text) => { let n = 2166136261; for (let i = 0; i < text.length; i++
 const execute = (state, id, type, payload) => executeCharacterCommand(state, { id, expectedRevision: state.revision, type, payload });
 const SPYMASTER = { id: 'spymaster', name: 'Spionmästare', kind: 'council', holderId: null, regentId: null, history: [], publicBudget: 0 };
 
-test('new campaigns are on extensions version 2 with an empty intrigue ledger', () => {
+const COURT_LISTS = COURT_FIELDS.filter((key) => key !== 'reign');
+const NO_DEEDS = { cruel: 0, betrayal: 0, generous: 0, risky: 0, surrender: 0, executions: 0, breakdowns: 0, goalsMet: 0 };
+const migratedReign = (save) => ({ rulerId: save.offices.ruler.holderId, startedAt: save.date, lawful: true, deeds: NO_DEEDS, goals: [], sources: { accession: save.realm.legitimacy, goals: 0, prestige: 0 }, lostOrders: 0 });
+const streams = ({ rngState, actionRngState, plotRngState }) => ({ rngState, actionRngState, plotRngState });
+const withoutCourt = (state) => { const rest = plain(state); for (const key of [...COURT_FIELDS, 'extensionsVersion']) delete rest[key]; return rest; };
+
+test('new campaigns are on extensions version 3 with an empty court ledger', () => {
   const state = createCharacterSystem({ seed: 321 });
-  assert.equal(state.extensionsVersion, 2);
+  assert.equal(EXTENSIONS_VERSION, 3);
+  assert.equal(state.extensionsVersion, 3);
+  for (const key of COURT_LISTS) assert.deepEqual(state[key], [], key);
+  assert.deepEqual(state.reign, { rulerId: 'person-0-0', startedAt: '-0300-01-01', lawful: true, deeds: NO_DEEDS, goals: [], sources: { accession: 65, goals: 0, prestige: 0 }, lostOrders: 0 });
+  assert.equal(state.realm.prestige, 10);
+  assert.equal(state.rngState, PRE_CHANGE_RNG.created);
+  validateCharacterExtensions(state);
+});
+
+// A year into a campaign, with what Phase 2 can leave in flight: the open office promise, an active scheme and a prisoner.
+function midCampaignSave() {
+  const year = advanceCharacters(createCharacterSystem({ seed: 321 }), addGameMonths('-0300-01-01', 12), { id: 'first-year' });
+  assert.equal(year.ok, true, year.error);
+  const started = execute(year.state, 'mid-scheme', 'attempt_action', { actionId: 'undermine', actorId: 'person-0-0', targetIds: ['person-1-0'] });
+  assert.equal(started.ok, true, started.error);
+  const state = started.state;
+  imprisonPerson(state, 'person-1-1', 'family-arel', [], actionHooks(state), { lawful: true });
+  assert.ok(state.stories.some((story) => story.status === 'open'), 'an open story');
+  assert.ok(state.schemes.some((scheme) => scheme.status === 'active'), 'an active scheme');
+  assert.ok(state.prisoners.some((record) => record.status === 'held'), 'a prisoner');
+  return state;
+}
+
+test('a version-2 save migrates once to version 3 and replays a year identically', () => {
+  const live = midCampaignSave(), old = plain(live);
+  for (const key of COURT_FIELDS) delete old[key];
+  old.extensionsVersion = 2;
+  const once = normalizeCharacterSystem(plain(old)), twice = normalizeCharacterSystem(plain(once)), viaJson = normalizeCharacterSystem(JSON.parse(JSON.stringify(old)));
+  assert.deepEqual(twice, once);
+  assert.deepEqual(viaJson, once);
+  for (const migrated of [once, twice, viaJson]) assert.deepEqual(streams(migrated), streams(old));
+  assert.equal(once.extensionsVersion, 3);
+  assert.deepEqual(once.reign, migratedReign(old));
+  for (const key of COURT_LISTS) assert.deepEqual(once[key], [], key);
+  // The migration adds the four fields and changes nothing else in the save.
+  assert.deepEqual(withoutCourt(once), withoutCourt(old));
+  const target = addGameMonths(once.date, 12);
+  const replay = (save) => { const result = advanceCharacters(save, target, { id: 'replayed-year' }); assert.equal(result.ok, true, result.error); return result.state; };
+  const direct = replay(once);
+  assert.deepEqual(replay(twice), direct);
+  assert.deepEqual(replay(viaJson), direct);
+  assert.deepEqual(replay(JSON.parse(JSON.stringify(once))), direct);
+  // The main stream of a migrated save follows the same year as the save that was never stripped.
+  assert.equal(direct.rngState, replay(live).rngState);
+});
+
+test('a version outside 1 to 3 stays refused', () => {
+  for (const version of [0, 4, '2']) {
+    const raw = plain(createCharacterSystem({ seed: 321 }));
+    raw.extensionsVersion = version;
+    assert.throws(() => normalizeCharacterSystem(raw), { name: 'Error', message: /^Karaktärstilläggens version stöds inte\.$/ }, String(version));
+  }
+});
+
+test('new campaigns are on extensions version 3 with an empty intrigue ledger', () => {
+  const state = createCharacterSystem({ seed: 321 });
+  assert.equal(state.extensionsVersion, 3);
   for (const key of ['occasions', 'prisoners', 'rumors', 'conversations']) assert.deepEqual(state[key], [], key);
   assert.equal(state.plotRngState, fnv('hadara|-0300-01-01|321|plots'));
   assert.ok(state.plotRngState >= 1 && state.plotRngState <= 0xffffffff);
@@ -290,16 +354,17 @@ test('new campaigns are on extensions version 2 with an empty intrigue ledger', 
 
 test('a version-1 save migrates once', () => {
   const old = plain(createCharacterSystem({ seed: 321 }));
-  for (const key of ['occasions', 'prisoners', 'rumors', 'conversations', 'plotRngState']) delete old[key];
+  for (const key of ['occasions', 'prisoners', 'rumors', 'conversations', 'plotRngState', ...COURT_FIELDS]) delete old[key];
   delete old.offices.spymaster; old.extensionsVersion = 1;
   const rngBefore = old.rngState, actionBefore = old.actionRngState, secretsBefore = plain(old.secrets);
   const once = normalizeCharacterSystem(plain(old)), twice = normalizeCharacterSystem(plain(once));
   assert.deepEqual(twice, once);
-  assert.equal(once.extensionsVersion, 2);
+  assert.equal(once.extensionsVersion, 3);
   assert.equal(once.rngState, rngBefore);
   assert.equal(once.actionRngState, actionBefore);
   assert.equal(once.plotRngState, fnv(`hadara|-0300-01-01|${rngBefore}|plots`));
   assert.deepEqual(once.offices.spymaster, SPYMASTER);
+  assert.deepEqual(once.reign, migratedReign(old));
   // Migration seeds no affair and spends no sequence number.
   assert.deepEqual(once.secrets, secretsBefore);
   assert.equal(once.sequence, old.sequence);
@@ -348,6 +413,9 @@ test('forged version-2 fields are rejected', () => {
     'object instead of prisoners': [(s) => { s.prisoners = {}; }, COLLECTIONS],
     'text instead of rumors': [(s) => { s.rumors = 'x'; }, COLLECTIONS],
     'null occasions': [(s) => { s.occasions = null; }, COLLECTIONS],
+    'object instead of nicknames': [(s) => { s.nicknames = {}; }, COLLECTIONS],
+    'text instead of family demands': [(s) => { s.familyDemands = 'x'; }, COLLECTIONS],
+    'null factions': [(s) => { s.factions = null; }, COLLECTIONS],
     'number instead of conversations': [(s) => { s.conversations = 7; }, COLLECTIONS],
   };
   for (const [name, [forge, message]] of Object.entries(forgeries)) {
