@@ -1,5 +1,6 @@
 import { addGameMonths, compareGameDates, normalizeGameDate, parseGameDate } from '../gameDates.js';
 import { ADULT_AGE } from './content.js';
+import { isImprisoned } from './prisoners.js';
 
 export const STORY_DIRECTOR_VERSION = 1;
 export const CHARACTER_EVENT_TYPES = Object.freeze([
@@ -139,7 +140,8 @@ export function getDirectedStoryCandidates(state, context) {
       familyId: person.familyId, weight, title, description, triggerDescription: why, ...extra });
   };
   for (const person of Object.values(state.people).filter(active).sort((a, b) => a.id.localeCompare(b.id))) {
-    if (person.id === context.actor.id) continue;
+    // A prisoner brings no petition. Without prisoners the list is the same, so the director's stream draws as before.
+    if (person.id === context.actor.id || isImprisoned(state, person.id)) continue;
     const age = context.age(person); const own = person.familyId === context.family.id;
     if (own && age >= ADULT_AGE && person.stress >= 25) add('household_tension', person, 2 + person.stress / 20 + (has(person, 'ambitious') ? 2 : 0),
       'Hushållets plikter väger tungt', `${person.name} ber om avlastning. Familjen behöver tjänsterna, men pressen skadar er relation.`,

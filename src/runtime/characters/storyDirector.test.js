@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameMonths, compareGameDates } from '../gameDates.js';
-import { advanceCharacters, applyRealmDissolution, canCharacterDirectRealm, createCharacterSystem, executeCharacterCommand,
+import { actionHooks, advanceCharacters, applyRealmDissolution, canCharacterDirectRealm, createCharacterSystem, executeCharacterCommand,
   getCharacterAge, getCharacterPresentation, getPersonalOpinion, normalizeCharacterSystem, reconcileExternalHosts } from './index.js';
+import { imprisonPerson } from './prisoners.js';
 import { CHARACTER_EVENT_TYPES, getDirectedStoryCandidates, scheduleDirectedStory } from './storyDirector.js';
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -557,4 +558,13 @@ test('a long jump equals monthly stepping and JSON reloads over more than sixty 
   }
   assert.deepEqual(stripCommands(once), stripCommands(split));
   assert.deepEqual(normalizeCharacterSystem(clone(once)), once);
+});
+
+test('a prisoner brings no directed story', () => {
+  const state = fresh();
+  const prisoner = 'person-0-2';
+  const actors = () => getDirectedStoryCandidates(state, context(state)).map((story) => story.actorId);
+  assert.ok(actors().includes(prisoner), 'fixture: the household tension of the stressed member');
+  imprisonPerson(state, prisoner, 'family-namar', [], actionHooks(state));
+  assert.equal(actors().includes(prisoner), false);
 });
