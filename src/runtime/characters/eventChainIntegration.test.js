@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import { addGameMonths, compareGameDates } from '../gameDates.js';
 import { normalizeWorldState } from '../gameState.js';
 import { applyCharacterOpsToWorld, characterTransitionEvents, planCharacterAdvance } from '../characterWorld.js';
-import { advanceCharacters, applyRealmDissolution, createCharacterSystem, executeCharacterCommand, getCharacterPresentation, getNextCharacterTransitionDate, normalizeCharacterSystem } from './index.js';
+import { advanceCharacters, applyRealmDissolution, createCharacterSystem, executeCharacterCommand, getCharacterAge, getCharacterPresentation, getNextCharacterTransitionDate, normalizeCharacterSystem } from './index.js';
 import { ensureEventChains, validateEventChains } from './eventChains.js';
+import { getDirectedStoryCandidates } from './storyDirector.js';
 
 // These tests drive the heir_margin chain only through public engine entry
 // points: advanceCharacters opens it, resolve_story answers it, and the host
@@ -666,18 +667,105 @@ test('a decided step stays decided after a JSON load', () => {
   assert.equal(again.state.families[FAMILY].treasury, silver);
 });
 
+const POLITY = { hadara: { name: 'Hadara', status: 'active' } };
+const load = (world) => normalizeWorldState(JSON.parse(JSON.stringify(world)));
+const replay = (world, events) => events.reduce((next, event) => applyCharacterOpsToWorld(next, event.impacts.characterOps ?? [], { source: 'character-system' }), world);
+
 test('stored events replayed onto a world loaded from JSON rebuild the chain', () => {
   const { state, record } = afterPaidChoice();
-  const load = (world) => normalizeWorldState(JSON.parse(JSON.stringify(world)));
-  const start = load({ characterSystem: state, polityOverrides: { hadara: { name: 'Hadara', status: 'active' } } });
+  const start = load({ characterSystem: state, polityOverrides: POLITY });
   const target = addGameMonths(record.nextAt, 6);
   const first = planCharacterAdvance(start, record.nextAt, { id: 'first' });
   const second = planCharacterAdvance(load({ ...start, characterSystem: first.state }), target, { id: 'second' });
   assert.equal(second.state.date, target);
   assert.equal(second.state.eventChains.records[0].stepIds.length, 2);
   const stored = JSON.parse(JSON.stringify([...first.events, ...second.events]));
-  const rebuilt = stored.reduce((world, event) => applyCharacterOpsToWorld(world, event.impacts.characterOps ?? [], { source: 'character-system' }), start);
+  const rebuilt = replay(start, stored);
   assert.deepEqual(rebuilt.characterSystem, second.state);
-  const replayedTwice = stored.reduce((world, event) => applyCharacterOpsToWorld(world, event.impacts.characterOps ?? [], { source: 'character-system' }), rebuilt);
-  assert.deepEqual(replayedTwice.characterSystem, second.state);
+  assert.deepEqual(replay(rebuilt, stored).characterSystem, second.state);
+});
+
+// ---- More than 1,000 newer memories ----
+// docs/design/event-chains.md: the active chain never depends on the rolling
+// recent-memory window. storyDirector.js reads the last 1,000 memories, so 1,001
+// newer ones push everything a chain refers to out of that window.
+function withNewerMemories(state, count = 1001) {
+  const next = structuredClone(state);
+  for (let index = 0; index < count; index++) {
+    next.memories.push({ id: `newer-${++sequence}`, date: state.date, type: 'note', title: 'Senare anteckning', participants: [], causeId: null, knownBy: 'public', familyIds: [] });
+  }
+  return next;
+}
+const withoutNewer = (state) => ({ ...state, memories: state.memories.filter((memory) => memory.type !== 'note') });
+const inRecentWindow = (state, id) => state.memories.slice(-1000).some((memory) => memory.id === id);
+const BENEFICIARY = 'person-0-2';
+// A real patronage memory: a household tension relieved through the command path.
+function patronage(state) {
+  state.people[BENEFICIARY].stress = 65;
+  const context = { actor: state.people['person-0-0'], family: state.families[FAMILY], canRule: true, age: (person) => getCharacterAge(person, state.date), stress: () => 0 };
+  const { weight: _weight, ...details } = getDirectedStoryCandidates(state, context).find((story) => story.eventType === 'household_tension');
+  const story = { ...details, id: `character-story-${++state.storyDirector.sequence}`, type: 'character_event', status: 'open', createdAt: state.date, dueAt: addGameMonths(state.date, 12), knownBy: 'public' };
+  state.stories.push(story);
+  return command(state, 'resolve_story', { storyId: story.id, choiceId: 'relieve' });
+}
+// The head who gave the patronage dies at the anniversary that casts the letter.
+const letterChain = () => openTemplate('family_letter', (state) => withNewerMemories(fatal(patronage(state), 'person-0-0')));
+
+test('a continuation behind 1,001 newer memories matches a world without them', () => {
+  for (const calendar of CALENDARS) {
+    const { label } = calendar;
+    const { state, record } = continuation(calendar);
+    const outcomeId = state.stories.find((item) => item.id === record.stepIds[0]).outcomeMemoryId;
+    const newer = advance(withNewerMemories(state), record.nextAt, 'continue');
+    assert.deepEqual(withoutNewer(newer), advance(state, record.nextAt, 'continue'), label);
+    assert.equal(newer.stories.find((item) => item.id === `${record.id}-step-2`).causeId, outcomeId, label);
+    assert.equal(inRecentWindow(newer, outcomeId), false, `${label}: the cause lies outside the window`);
+    assert.equal(inRecentWindow(newer, record.originMemoryId), false, `${label}: the origin lies outside the window`);
+  }
+});
+
+test('all four stages match a world without 1,001 newer memories before every save', () => {
+  for (const calendar of CALENDARS) {
+    const { label } = calendar;
+    const { state } = continuation(calendar);
+    const plain = walkChain(state, (next) => next);
+    const newer = walkChain(state, (next) => reload(withNewerMemories(next)));
+    assert.equal(newer.length, plain.length, label);
+    for (const [index, snapshot] of newer.entries()) assert.deepEqual(withoutNewer(snapshot), plain[index], `${label}: save ${index}`);
+    const last = newer.at(-1), [, ...steps] = last.eventChains.records[0].stepIds.map((id) => last.stories.find((item) => item.id === id));
+    assert.equal(steps.length, 3, label);
+    for (const story of steps) {
+      assert.equal(last.memories.find((memory) => memory.id === story.causeId).type, 'chain_choice', label);
+      assert.equal(inRecentWindow(last, story.causeId), false, label);
+    }
+  }
+});
+
+test('a stored patch keeps every chain memory behind 1,001 newer ones', () => {
+  const { state, record } = afterPaidChoice();
+  const world = load({ characterSystem: withNewerMemories(state), polityOverrides: POLITY });
+  const plan = planCharacterAdvance(world, record.nextAt, { id: 'newer-patch' });
+  assert.equal(plan.state.eventChains.records[0].stepIds.length, 2);
+  assert.deepEqual(replay(world, JSON.parse(JSON.stringify(plan.events))).characterSystem, plan.state);
+});
+
+test('a family letter starts from a patronage memory behind 1,001 newer ones', () => {
+  const state = letterChain(), record = state.eventChains.records[0], source = state.memories.find((memory) => memory.id === record.sourceMemoryId);
+  assert.equal(source.type, 'story_patronage');
+  assert.equal(inRecentWindow(state, source.id), false);
+  assert.deepEqual(record.roles, { deceased: 'person-0-0', participant: BENEFICIARY });
+  assert.equal(state.memories.find((memory) => memory.id === record.originMemoryId).causeId, source.id);
+  const presented = getCharacterPresentation(state).stories.find((item) => item.id === record.stepIds[0]);
+  assert.equal(presented.causeTitle, source.title);
+  assert.deepEqual(reload(state), state);
+});
+
+test('a family letter behind newer memories does not start again from its spent source', () => {
+  const opened = letterChain(), record = opened.eventChains.records[0];
+  const closed = structuredClone(answer(opened, record.stepIds[0], 'close').state);
+  assert.equal(closed.eventChains.records[0].status, 'closed');
+  // With the cooldown gone, only the spent source stands in the way of a new letter.
+  delete closed.eventChains.cooldowns.family_letter;
+  const later = months(withNewerMemories(closed), 12);
+  assert.deepEqual(later.eventChains.records.map((item) => item.id), [record.id]);
 });
