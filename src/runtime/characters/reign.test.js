@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameMonths } from '../gameDates.js';
-import { actionHooks, advanceCharacters, createCharacterSystem, executeCharacterCommand, normalizeCharacterSystem } from './index.js';
+import { actionHooks, advanceCharacters, applyRealmDissolution, createCharacterSystem, executeCharacterCommand, getCharacterPresentation, normalizeCharacterSystem } from './index.js';
 import { DEED_KEYS, addPrestige, defaultReign, grantLegitimacy, legitimacySources, recordDeed, reignMonths, validateReign } from './reign.js';
 
 const RULER = 'person-0-0';
@@ -16,6 +16,7 @@ const run = (state, type, payload = {}, origin) => executeCharacterCommand(state
 const ok = (result) => { assert.equal(result.ok, true, result.error); return result.state; };
 const year = (state) => ok(advanceCharacters(state, addGameMonths(state.date, 12), { id: `year-${++counter}` }));
 const total = (rows) => rows.reduce((sum, row) => sum + row.value, 0);
+const dissolve = (state) => ok(applyRealmDissolution(state, { id: `dissolution-${++counter}`, date: state.date, reason: 'Ett prov.', hostCandidates: [] }));
 
 test('DEED_KEYS lists every deed the reign counts', () => {
   assert.deepEqual([...DEED_KEYS], ['cruel', 'betrayal', 'generous', 'risky', 'surrender', 'executions', 'breakdowns', 'goalsMet']);
@@ -212,6 +213,35 @@ test('a ruler who dies is followed by a new reign on the date of the death', () 
   assert.equal(after.reign.sources.accession, 55);
   assert.equal(reignMonths(after), 0);
   assert.deepEqual(plain(normalizeCharacterSystem(plain(after))).reign, after.reign);
+});
+
+test('dissolution closes the reign without moving legitimacy', () => {
+  for (const mode of ['realm', 'family']) {
+    const state = base({ mode });
+    recordDeed(state, 'cruel'); grantLegitimacy(state, 'goals', 6); state.reign.lawful = false;
+    state.reign.goals.push({ id: 'goal-1', type: 'fill_treasury', status: 'active', closedAt: null });
+    const after = dissolve(state);
+    assert.equal(after.offices.ruler.holderId, null, mode);
+    assert.deepEqual(after.reign, { rulerId: null, startedAt: state.date, lawful: false, deeds: NO_DEEDS, goals: [], sources: { accession: 71, goals: 0, prestige: 0 }, lostOrders: 0 }, mode);
+    assert.equal(after.realm.legitimacy, 71, mode);
+    assert.equal(total(legitimacySources(after)), 71, mode);
+    assert.deepEqual(normalizeCharacterSystem(plain(after)), after, mode);
+  }
+});
+
+test('the former ruler of a dissolved realm records no deed as head of the family', () => {
+  const after = dissolve(base({ mode: 'family' }));
+  assert.equal(after.families['family-arel'].headId, RULER);
+  actionHooks(after).charge(0, { orders: 0, tag: 'generous' });
+  assert.deepEqual(after.reign.deeds, NO_DEEDS);
+  const view = getCharacterPresentation(after);
+  assert.equal(view.ruler, null);
+  assert.equal(view.court.reign.rulerId, null);
+  // The family plays on, and the closed reign stays closed through a year.
+  const later = year(after);
+  assert.equal(later.reign.rulerId, null);
+  assert.deepEqual(later.reign.deeds, NO_DEEDS);
+  assert.deepEqual(normalizeCharacterSystem(plain(later)), later);
 });
 
 test('charge records a deed only for the reigning ruler', () => {

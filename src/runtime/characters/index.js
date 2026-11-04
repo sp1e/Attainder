@@ -951,6 +951,7 @@ export function applyRealmDissolution(original, operation) {
       if (office.holderId) office.history.push({ personId: office.holderId, date: state.date, reason: 'Ämbetet upphör när riket upplöses.' });
       office.holderId = null; office.regentId = null; office.publicBudget = 0;
     }
+    onAccession(state, null, { lawful: state.reign.lawful, legitimacy: state.realm.legitimacy });
     for (const record of values(state.regencies)) if (record.id.startsWith('office:')) { record.phase = 'closed'; record.endedAt = state.date; }
     for (const project of state.projects) if (project.status === 'active' && project.kind !== 'estate') { project.status = 'ended'; project.endedAt = state.date; project.endReason = 'Den offentliga uppdragsgivaren har upphört.'; }
     if (family) {
