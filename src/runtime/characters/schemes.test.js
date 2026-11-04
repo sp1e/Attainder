@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameMonths, compareGameDates } from '../gameDates.js';
-import { advanceCharacters, createCharacterSystem, estimateCharacterAction, executeCharacterCommand, getCharacterPresentation, getNextCharacterTransitionDate, getPersonalOpinion, normalizeCharacterSystem } from './index.js';
+import { actionHooks, advanceCharacters, createCharacterSystem, estimateCharacterAction, executeCharacterCommand, getCharacterPresentation, getNextCharacterTransitionDate, getPersonalOpinion, normalizeCharacterSystem } from './index.js';
 import { ACTION_CATALOG, MAX_EXTRA_SILVER } from './actionCatalog.js';
 import { actionRandom } from './extensions.js';
 import { tierFor } from './actionResolution.js';
+import { imprisonPerson } from './prisoners.js';
 import { getSchemeDates } from './schemes.js';
 
 const REP = 'person-0-0';
@@ -382,6 +383,42 @@ test('a scheme that can no longer run at its due date closes as failed with no d
   assert.equal(failed.actionRngState, draws(RESOLVE_SEED, 2).after, 'the fresh estimate refuses before any roll at the due date');
   const event = result.events.find((item) => item.type === 'scheme_failed');
   assert.match(event.description, /Målpersonen tillhör samma familj som aktören\./);
+});
+
+// An NPC poison plan against the representative that nobody has seen through. Each entry ends it a different way at the first check.
+const UNSEEN_PLAN = { actionId: 'poison', actorId: RIVAL, targetIds: [REP], playerControlled: false };
+const UNSEEN_COLLAPSES = {
+  'its plotter dies': (state) => { plant(state, { ...UNSEEN_PLAN, means: { silver: 0, agentRoles: [], hookId: 'hook-404' } }); state.people[RIVAL].diedAt = state.date; },
+  'its plotter is imprisoned': (state) => { plant(state, { ...UNSEEN_PLAN, means: { silver: 0, agentRoles: [], hookId: 'hook-404' } }); imprisonPerson(state, RIVAL, FAMILY, [], actionHooks(state)); },
+  'it cannot run at its due date': (state) => { plant(state, { ...UNSEEN_PLAN, dueAt: M1, means: { silver: 0, agentRoles: [], hookId: 'hook-404' } }); },
+};
+for (const [name, end] of Object.entries(UNSEEN_COLLAPSES)) test(`an unseen plan against the player that collapses because ${name} stays hidden from the player`, () => {
+  const state = copy(base());
+  end(state);
+  const result = step(state, M1);
+  assert.equal(schemeOf(result.state).status, 'failed');
+  const event = result.events.find((item) => item.type === 'scheme_failed');
+  assert.equal(event.public, false);
+  assert.equal(getCharacterPresentation(result.state).log.some((item) => item.id === event.id), false);
+});
+
+test('a plan of a member of the controlled family that collapses is shown, though the player did not order it', () => {
+  const state = copy(base());
+  plant(state, { actorId: MEMBER, targetIds: [TARGET], playerControlled: false });
+  state.people[MEMBER].diedAt = state.date;
+  const result = step(state, M1);
+  const event = result.events.find((item) => item.type === 'scheme_failed');
+  assert.equal(event.public, true);
+  assert.equal(getCharacterPresentation(result.state).log.some((item) => item.id === event.id), true);
+});
+
+test('a discovered plan against the player still announces itself', () => {
+  const state = withSeed(base(), seedWhere((d) => d < 3));
+  plant(state, { ...UNSEEN_PLAN, means: { silver: 0, agentRoles: [], hookId: 'hook-404' } });
+  state.people[RIVAL].skills.intrigue = 0;
+  const result = step(state, M1);
+  assert.equal(schemeOf(result.state).status, 'discovered');
+  assert.equal(result.events.find((item) => item.type === 'scheme_discovered').public, true);
 });
 
 test('the silver was paid when the scheme started, so an empty treasury does not stop it at the due date', () => {
