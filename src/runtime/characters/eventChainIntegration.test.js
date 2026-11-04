@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { addGameMonths, compareGameDates } from '../gameDates.js';
+import { normalizeWorldState } from '../gameState.js';
 import { applyCharacterOpsToWorld, characterTransitionEvents, planCharacterAdvance } from '../characterWorld.js';
 import { advanceCharacters, applyRealmDissolution, createCharacterSystem, executeCharacterCommand, getCharacterPresentation, getNextCharacterTransitionDate, normalizeCharacterSystem } from './index.js';
 import { ensureEventChains, validateEventChains } from './eventChains.js';
@@ -575,4 +576,108 @@ test('with nobody able to act every paid choice is refused and the free close st
   assert.equal(closed.stories.find((item) => item.id === story.id).decisionActorId, null);
   assert.equal(closed.families[FAMILY].treasury, blocked.families[FAMILY].treasury);
   assert.deepEqual(reload(closed), closed);
+});
+
+// ---- JSON saves between advances ----
+// `reload` is what a campaign gets back from a save file. Whole-state equality
+// covers every random stream, the revision and the applied command ids.
+function walkChain(start, save) {
+  let state = save(start);
+  const saves = [state];
+  const keep = (next) => { state = save(next); saves.push(state); };
+  for (const [index, choiceId] of ['support_child', 'recognize_effort', 'thank_child'].entries()) {
+    const nextAt = state.eventChains.records[0].nextAt;
+    keep(advance(state, addGameMonths(nextAt, -1), `walk-${index}-before`));
+    keep(advance(state, nextAt, `walk-${index}-step`));
+    const result = executeCharacterCommand(state, { id: `walk-${index}-answer`, type: 'resolve_story', expectedRevision: state.revision,
+      payload: { storyId: state.eventChains.records[0].stepIds.at(-1), choiceId } });
+    assert.equal(result.ok, true, result.error);
+    keep(result.state);
+  }
+  return saves;
+}
+
+test('a chain saved to JSON between two advances continues as if it never left memory', () => {
+  for (const calendar of CALENDARS) {
+    const { label } = calendar;
+    const { state, record } = continuation(calendar);
+    const target = addGameMonths(state.date, 12);
+    const unsaved = advance(state, record.nextAt, 'first');
+    const saved = reload(unsaved);
+    assert.deepEqual(saved, unsaved, `${label}: loading changes nothing`);
+    assert.equal(openStories(saved, 'event_chain').length, 1, `${label}: the saved chain has an open step`);
+    assert.deepEqual(advance(saved, target, 'second'), advance(unsaved, target, 'second'), label);
+  }
+});
+
+test('a waiting chain saved to JSON opens its step on the saved date', () => {
+  for (const calendar of CALENDARS) {
+    const { label } = calendar;
+    const { state, record } = continuation(calendar);
+    const saved = reload(advance(state, addGameMonths(record.nextAt, -1), 'first'));
+    assert.equal(saved.eventChains.records[0].status, 'waiting', label);
+    assert.equal(saved.eventChains.records[0].nextAt, record.nextAt, label);
+    assert.equal(getNextCharacterTransitionDate(saved, addGameMonths(record.nextAt, 6)), record.nextAt, label);
+    const resumed = advance(saved, addGameMonths(record.nextAt, 6), 'second');
+    const step = resumed.stories.find((item) => item.id === `${record.id}-step-2`);
+    assert.equal(step.createdAt, record.nextAt, label);
+    assert.equal(step.status, 'open', label);
+  }
+});
+
+test('a chain saved to JSON after every call walks all four stages unchanged', () => {
+  for (const calendar of CALENDARS) {
+    const { label } = calendar;
+    const { state, record } = continuation(calendar);
+    const unsaved = walkChain(state, (next) => next);
+    const saved = walkChain(state, reload);
+    assert.equal(saved.length, unsaved.length, label);
+    for (const [index, snapshot] of saved.entries()) assert.deepEqual(snapshot, unsaved[index], `${label}: save ${index}`);
+    const finished = saved.at(-1).eventChains.records[0];
+    assert.equal(finished.id, record.id, label);
+    assert.equal(finished.status, 'resolved', label);
+    assert.equal(finished.stepIds.length, 4, label);
+    assert.deepEqual(finished.flags, { opening: 'lessons', support: 'child_time', work: 'presented', ending: 'child' }, label);
+    assert.equal(saved.at(-1).eventChains.rngState, state.eventChains.rngState, `${label}: continuations draw nothing`);
+  }
+});
+
+test('a repeated advance after a JSON load adds nothing', () => {
+  const { state, record } = afterPaidChoice();
+  const first = advanceCharacters(state, record.nextAt, { id: 'repeat' });
+  assert.equal(first.ok, true, first.error);
+  const loaded = reload(first.state);
+  for (const date of [record.nextAt, addGameMonths(record.nextAt, 3)]) {
+    const repeated = advanceCharacters(loaded, date, { id: 'repeat' });
+    assert.equal(repeated.duplicate, true);
+    assert.deepEqual(repeated.events, []);
+    assert.strictEqual(repeated.state, loaded);
+  }
+  assert.equal(chainStories(loaded).length, 2);
+});
+
+test('a decided step stays decided after a JSON load', () => {
+  const { state, story } = afterPaidChoice();
+  const loaded = reload(state), silver = loaded.families[FAMILY].treasury;
+  const again = resolve(loaded, story.id, 'hear_question');
+  assert.equal(again.ok, false);
+  assert.equal(again.error, 'Berättelsen är inte tillgänglig.');
+  assert.strictEqual(again.state, loaded);
+  assert.equal(again.state.families[FAMILY].treasury, silver);
+});
+
+test('stored events replayed onto a world loaded from JSON rebuild the chain', () => {
+  const { state, record } = afterPaidChoice();
+  const load = (world) => normalizeWorldState(JSON.parse(JSON.stringify(world)));
+  const start = load({ characterSystem: state, polityOverrides: { hadara: { name: 'Hadara', status: 'active' } } });
+  const target = addGameMonths(record.nextAt, 6);
+  const first = planCharacterAdvance(start, record.nextAt, { id: 'first' });
+  const second = planCharacterAdvance(load({ ...start, characterSystem: first.state }), target, { id: 'second' });
+  assert.equal(second.state.date, target);
+  assert.equal(second.state.eventChains.records[0].stepIds.length, 2);
+  const stored = JSON.parse(JSON.stringify([...first.events, ...second.events]));
+  const rebuilt = stored.reduce((world, event) => applyCharacterOpsToWorld(world, event.impacts.characterOps ?? [], { source: 'character-system' }), start);
+  assert.deepEqual(rebuilt.characterSystem, second.state);
+  const replayedTwice = stored.reduce((world, event) => applyCharacterOpsToWorld(world, event.impacts.characterOps ?? [], { source: 'character-system' }), rebuilt);
+  assert.deepEqual(replayedTwice.characterSystem, second.state);
 });
