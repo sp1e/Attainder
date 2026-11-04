@@ -23,6 +23,7 @@ import { IMPRISONED, closePrisoner, executePrisoner, heldPrisoners, imprisonPers
 import { abortScheme, advanceSchemes, getSchemeDates, reinforceScheme, validateSchemes } from './schemes.js';
 import { filledSeats, presentLoyalty, rewardCouncillor } from './council.js';
 import { courtAnnualStep, onAccession, presentCourt, validateCourt } from './court.js';
+import { dreadRows } from './dread.js';
 import { recordDeed } from './reign.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
@@ -407,7 +408,7 @@ function actionContext(state) {
   const wallet = (kind) => kind === 'family' ? family?.treasury ?? 0 : kind === 'realm' && ruling ? state.realm.treasury : 0;
   // representativeId stays the household representative, who pays through charge(). activeRepresentativeId is the person the player acts through, who gives the orders: in realm mode the ruler or regent.
   return { representativeId: representative?.id || null, activeRepresentativeId: activeRepresentative(state)?.id || null, playerControlled: true, canOrder, wallet, opinion: (fromId, toId) => getPersonalOpinion(state, fromId, toId),
-    situation: (entry, actor, target, means) => feastRows(state, entry, actor, target, means, family?.id ?? null) };
+    situation: (entry, actor, target, means) => { const feast = feastRows(state, entry, actor, target, means, family?.id ?? null); return { ...feast, success: [...feast.success, ...dreadRows(entry, target)] }; } };
 }
 // npc_intent: an NPC acts on its own account. It orders only itself, pays from its own family's treasury and is never under the player's orders (no refusal draw). The difficulty row compares targets with the person the player acts through.
 function npcActionContext(state, actorId) {
