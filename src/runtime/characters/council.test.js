@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { addGameMonths } from '../gameDates.js';
 import { buildCharacterPromptContext } from '../characterWorld.js';
-import { actionHooks, advanceCharacters, createCharacterSystem, estimateConversation, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation, getCharacterWorldEffects } from './index.js';
+import { actionHooks, advanceCharacters, createCharacterSystem, estimateConversation, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation, getCharacterWorldEffects, normalizeCharacterSystem } from './index.js';
 import { COUNCIL_SEATS, ambitionOf, capPrecision, chancellorStep, chancellorYield, effectiveIntrigue, loyaltyDriftStep, loyaltyLabel, loyaltyPrecision, presentCouncil, presentLoyalty, readerIntrigue, serviceOf, serviceTier } from './council.js';
 import { courtAnnualStep } from './court.js';
 import { hearScheme } from './rumors.js';
@@ -187,6 +187,41 @@ test('a crowned councillor keeps the seat at no opinion of herself and cannot re
   const { loyalty } = crowned.people[SERA];
   loyaltyDriftStep(crowned, actionHooks(crowned));
   assert.equal(crowned.people[SERA].loyalty, loyalty);
+});
+
+const rewardSeats = (state) => getAvailableCharacterActions(state).find((item) => item.type === 'reward_councillor').fields.find((item) => item.key === 'officeId').options.map((item) => item.value);
+
+// A child on the throne and the old ruler as her regent, as in regencyAuthority.test.js.
+function regency(seats) {
+  const state = plain(base());
+  Object.assign(state.offices.ruler, { holderId: MIRA, regentId: REP });
+  state.realm.lawfulRulerId = MIRA;
+  state.regencies['office:ruler'] = { id: 'office:ruler', principalId: MIRA, regentId: REP, phase: 'minority', startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
+  state.stories = [];
+  for (const [officeId, holderId] of Object.entries(seats)) state.offices[officeId].holderId = holderId;
+  delete state.mandateVersion; delete state.mandateActivatedAt; delete state.mandateSequence;
+  return normalizeCharacterSystem(state);
+}
+
+test('the reward menu leaves out the ruler\'s own seat', () => {
+  const state = plain(base());
+  state.offices.spymaster.holderId = SERA;
+  assert.deepEqual(rewardSeats(state), ['chancellor', 'general', 'spymaster']);
+  const crowned = ok(run(state, 'abdicate', {}));
+  assert.equal(crowned.offices.spymaster.holderId, SERA);
+  assert.deepEqual(rewardSeats(crowned), ['chancellor', 'general']);
+});
+
+test('a regent in a seat cannot reward herself', () => {
+  const state = regency({ spymaster: REP, general: MIRA });
+  const hooks = actionHooks(state);
+  assert.equal(hooks.ruler().id, MIRA);
+  assert.equal(hooks.activeRepresentative().id, REP);
+  const refused = run(state, 'reward_councillor', { officeId: 'spymaster' });
+  assert.equal(refused.ok, false);
+  assert.equal(refused.error, 'Du kan inte belöna dig själv.');
+  assert.deepEqual(rewardSeats(state), ['chancellor'], 'neither her own seat nor the child ruler\'s');
+  ok(run(state, 'reward_councillor', { officeId: 'chancellor' }));
 });
 
 test('a sitting ruler wants no throne', () => {

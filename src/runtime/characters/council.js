@@ -21,7 +21,7 @@ const LOYALTY_LABELS = Object.freeze({
   three: Object.freeze(['svag', 'oviss', 'stark']),
 });
 const AMBITION_LABELS = Object.freeze({ throne: 'Tronen', office: 'Ett ämbete', city: 'En stad', wealth: 'Rikedom', security: 'Trygghet' });
-const REFUSALS = Object.freeze({ seat: 'Välj ett av rådets ämbeten.', vacant: 'Ämbetet är vakant.', ruler: 'Härskaren kan inte belöna sig själv.', recent: 'Rådsmedlemmen belönades nyligen.' });
+const REFUSALS = Object.freeze({ seat: 'Välj ett av rådets ämbeten.', vacant: 'Ämbetet är vakant.', ruler: 'Härskaren kan inte belöna sig själv.', self: 'Du kan inte belöna dig själv.', recent: 'Rådsmedlemmen belönades nyligen.' });
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 const finite = (value) => (Number.isFinite(value) ? value : 0);
@@ -34,6 +34,7 @@ function seatHolder(state, officeId) {
 }
 
 const isRuler = (person, hooks) => person.id === hooks.ruler()?.id;
+const isActing = (person, hooks) => person.id === hooks.activeRepresentative()?.id;
 
 // A crowned councillor keeps the seat. The engine's opinion of oneself is 100, which says nothing of how she serves, so the ruler counts 0.
 function opinionOfRuler(person, hooks) {
@@ -142,7 +143,7 @@ export function rewardCouncillor(state, officeId, events, hooks) {
   if (!COUNCIL_SEATS.includes(officeId)) throw new Error(REFUSALS.seat);
   const person = seatHolder(state, officeId);
   if (!person) throw new Error(REFUSALS.vacant);
-  if (isRuler(person, hooks)) throw new Error(REFUSALS.ruler);
+  if (isActing(person, hooks)) throw new Error(isRuler(person, hooks) ? REFUSALS.ruler : REFUSALS.self);
   const cooldown = person.cooldowns.council_reward;
   if (cooldown && compareGameDates(cooldown, state.date) > 0) throw new Error(REFUSALS.recent);
   hooks.charge(REWARD.silver, { publicFunds: true, orders: REWARD.orders, tag: REWARD.tag });
@@ -151,9 +152,10 @@ export function rewardCouncillor(state, officeId, events, hooks) {
   hooks.logEvent(events, 'councillor_rewarded', `${person.name} belönades`, `${person.name} fick en belöning ur statskassan.`, [person.id, hooks.ruler()?.id]);
 }
 
-/** The filled seats as `{ id, name }`, for the reward command's office field. */
-export function filledSeats(state) {
-  return COUNCIL_SEATS.filter((id) => seatHolder(state, id)).map((id) => ({ id, name: `${state.offices[id].name} · ${seatHolder(state, id).name}` }));
+/** The seats the reward command's office field offers, as `{ id, name }`: filled, and held by neither the ruler nor the person acting. */
+export function filledSeats(state, hooks) {
+  const open = COUNCIL_SEATS.filter((id) => { const holder = seatHolder(state, id); return holder && !isRuler(holder, hooks) && !isActing(holder, hooks); });
+  return open.map((id) => ({ id, name: `${state.offices[id].name} · ${seatHolder(state, id).name}` }));
 }
 
 function presentSeat(state, officeId, precision, hooks) {
