@@ -4,7 +4,7 @@ Implementation plan, 5 November 2026.
 
 ## Current status
 
-Tasks 1–4 are accepted through `5e3f515`. Task 5 is locally tested and awaits independent review. Task 6 browser verification remains open; the annual historical-events research and popup are separate backlog work.
+Tasks 1–5 are accepted through `1addf27`; Task 5 integrated historical defaults, start guards, save restoration and UI, and its blocking reviews are closed. The controller accepted Task 6 browser evidence with the limits recorded in the play script. The final unresolved-scenario fixes passed scoped review and were pushed as `7b62791`; the polar-render repairs passed scoped review, most recently at `2066a55`. [PR #13](https://github.com/sp1e/Attainder/pull/13) tracks the branch and its merge state; [CI run 42102593161](https://github.com/sp1e/Attainder/actions/runs/42102593161) passed. Final documentation and publication review remain open. The [play script](../../play-scripts/historical-foundation.md) records observations by build and adapter. The annual 4,500-year research and turn-end popup remain separate pending work.
 
 ## Goal and completion boundary
 
@@ -82,7 +82,7 @@ The owner added a research and gameplay requirement on 5 November: research nota
 | Version compatibility | `src/runtime/characters/content.js` sets `RULES_VERSION` and `CONTENT_VERSION` to `hadara-1.0.0`. `normalizeCharacterSystem` rejects any other values. `getCharacterPresentation` copies person data. | Keep existing versions accepted without reseeding; establish historical content identity separately or add an explicit supported-content registry. Public provenance must contain no hidden gameplay facts. |
 | Prompt construction | `src/runtime/characterWorld.js`, `buildCharacterPromptContext`, uses visible character presentation; `src/Game/AI/gameplay.js` adds it to prompt variables and simulation prompts. `src/Game/Characters/characterModelCalls.js`: `interpretPrompt`, `narratePrompt`, `extractPrompt`, `replyPrompt`; interpretation currently says medieval dynasty game. | Supply selected date, authored context and documented/generated identity through a bounded visible projection. Preserve engine authority, hidden information and stored-patch replay. |
 
-Reusable historical **content** is not yet demonstrated: only Modern Day is bundled under `server/seed`; the generic bundle/editor/hub infrastructure can carry historical scenarios, but code comments naming Rome or the Second Punic War are not evidence of a researched distributable world snapshot. Do not download a community scenario and assume it satisfies attribution or accuracy requirements.
+At planning time, reusable historical **content** had not yet been demonstrated: only Modern Day was bundled under `server/seed`; the generic bundle/editor/hub infrastructure can carry historical scenarios, but code comments naming Rome or the Second Punic War are not evidence of a researched distributable world snapshot. Do not download a community scenario and assume it satisfies attribution or accuracy requirements.
 
 ## Narrow rulings and shared contracts
 
@@ -265,7 +265,9 @@ Research 4,500 calendar years: 3300 BC through 1 BC, then AD 1 through AD 1200. 
 
 The separate feature will show sourced historical reference alongside dynamic events at turn completion, labeled for example `I verklighetens historia`, with uncertainty/source details and a browsable record of dismissed cards. It will look up researched data without a model call or live research and will not force campaign outcomes. Its plan must decide multi-year turns, deduplication and reload/replay handling before code. Later acceptance requires BC/AD, uncertain dates, empty/incomplete coverage, multiple-event and reload tests, plus a browser turn showing sourced cards beside dynamic events without duplicate notification or another replay model call.
 
-## Remaining risks before implementation
+## Risks recorded before implementation
+
+The following list records the original planning risks. Tasks 1–5 have since passed their task reviews; Task 6 still tests browser behavior and release evidence.
 
 - Neither historical bookmark has a researched, verified content release yet. Source availability, dating uncertainty and redistribution terms may determine the schedule. Task 2 cannot pass with placeholders.
 - The character engine assumes fixture families, religions and relationships. Task 3 may expose additional narrow coupling; reproduce and test each dependency before changing it.
@@ -275,6 +277,6 @@ The separate feature will show sourced historical reference alongside dynamic ev
 
 ## Task 4 implementation ruling, 5 November 2026
 
-Ruling: validated historical character context replaces the complete named `[Real History Is the Default]` section at jump prompt assembly, including edits inside that section in frozen/custom templates. Match section boundaries and retain adjacent author instructions. Campaigns without historical character context keep their existing template bytes and history directive. The cost is that historical-mode authors lose edits inside that named section. Arbitrary contradictory author instructions elsewhere remain an explicit custom-content limit; do not delete them by heuristic. A missing named section receives the historical guidance through the existing live character context. Capture both jump modes with loaded, edited and missing-section templates and legacy controls. Task 4 is locally tested and pending independent review; Tasks 5–6 remain open.
+Ruling: validated historical character context replaces the complete named `[Real History Is the Default]` section at jump prompt assembly, including edits inside that section in frozen/custom templates. Match section boundaries and retain adjacent author instructions. Campaigns without historical character context keep their existing template bytes and history directive. The cost is that historical-mode authors lose edits inside that named section. Arbitrary contradictory author instructions elsewhere remain an explicit custom-content limit; do not delete them by heuristic. A missing named section receives the historical guidance through the existing live character context. Capture both jump modes with loaded, edited and missing-section templates and legacy controls. Task 4 subsequently passed independent review; Task 5 and the Task 6 browser evidence are also accepted. Final documentation and publication review remain open.
 
 Task 4 ruling extension: historical mode also replaces three exact shipped sentences outside that named section: the real-history default in the authority list, the automatic jump requirement that unprevented real events still happen, and the event-writing instruction to retain real historical details. Their replacements refer to the sourced starting context, current campaign records and the player's response to campaign events. Surrounding authority and pacing rules stay in place. The cost applies to authors who retained those exact shipped sentences; other custom wording remains the author's responsibility. Nonhistorical final prompts retain the original wording.
