@@ -1,6 +1,7 @@
+import { buildPromptRegionCatalog } from "./promptRegionCatalog.js";
 import dayjs from "dayjs";
 import { ASSETS_BASE } from "../../runtime/assetsBase.js";
-import { JSON_URLS, getNationTags, loadRegionCatalog, readJson } from "../../runtime/assets.js";
+import { JSON_URLS, getNationTags, readJson } from "../../runtime/assets.js";
 import { resolveAllCountryTags, resolveCountryTags } from "../../runtime/countryTags.js";
 import { buildOwnerAliasMap, canonicalOwnerName, toCountryName } from "../../runtime/ownerNames.js";
 import {
@@ -1403,7 +1404,7 @@ export const buildCityCatalogText = async (world) => {
   }
 };
 
-const loadRegions = async () => loadRegionCatalog().catch(() => []);
+const loadRegions = async (world) => buildPromptRegionCatalog(world).catch(() => []);
 
 // The land the player's polity holds — or an explicit statement that it holds none.
 // A landless player is a deliberate scenario, not missing data (a government in
@@ -1431,7 +1432,7 @@ export const buildPlayerPolityRegionsText = async (bundle, regionCatalog = null)
       ? LANDLESS_PLAYER_TEXT
       : "No explicit player region override list is currently recorded.";
   }
-  const regions = regionCatalog ?? await loadRegions();
+  const regions = regionCatalog ?? await loadRegions(world);
   const lookup = new Map(regions.map((region) => [region.id, region]));
   const names = entries
     .filter(([, ownerCode]) => normalizeString(ownerCode).toLowerCase() === playerCode.toLowerCase())
@@ -1450,8 +1451,9 @@ const isStockRegionId = (id) => STOCK_REGION_ID.test(String(id ?? ""));
 // still reached the prompt as province names and ids that exist nowhere, and
 // inflated every power's region count. Stock rows the world DOES list (a
 // hybrid map, a re-ownership preset) stay.
-export const filterToRenderedRegions = (regions, world) => {
+export const filterToRenderedRegions = (regions, world, { scenarioOnly = false } = {}) => {
   const list = normalizeArray(regions);
+  if (scenarioOnly && world?.historicalScenario?.kind === "historical") return list;
   if (!world?.customRegions) return list;
   const overrides = world.regionOwnershipOverrides ?? {};
   if (!list.some((region) => !isStockRegionId(region?.id))) return list;
@@ -1515,7 +1517,7 @@ export const rankFocusPowers = (regions, world, bundle, { playerName, actorNames
 // region names and ids to find_region / list_regions / map_around.
 export const buildWorldSummary = async (bundle, regionCatalog = null, { regionListsViaTools = false } = {}) => {
   const world = normalizeWorldState(bundle.world);
-  const regions = filterToRenderedRegions(regionCatalog ?? await loadRegions(), world);
+  const regions = filterToRenderedRegions(regionCatalog ?? await loadRegions(world), world, { scenarioOnly: Boolean(world.historicalScenario) });
   const regionLookup = new Map(regions.map((region) => [region.id, region]));
   // Only overrides that CHANGE an owner are changes: on a hand-drawn world every
   // region carries an override equal to its baked owner, and listing sixty of
@@ -1689,7 +1691,7 @@ export const buildPromptContext = async (bundle, {
     "playerPolityRegions",
     "numberOfRegions",
   );
-  const regionCatalog = needsRegionCatalog ? await loadRegions() : [];
+  const regionCatalog = needsRegionCatalog ? await loadRegions(bundle.world) : [];
 
   let worldSummary = "";
   if (wants("worldSummary", "worldSummaryNoCity")) {

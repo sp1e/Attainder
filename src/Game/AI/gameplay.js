@@ -1,3 +1,4 @@
+import { buildPromptRegionCatalog } from "./promptRegionCatalog.js";
 /*! Open Historia — portions (briefing dossiers + timeout/fallback hardening) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 import { callAI, providerSupportsBatch, retrieveAIBatch, sendDiplomaticMessageOnceOff, submitAIBatch } from "./main.jsx";
 import { jumpDayStep, jumpTargetDate } from "../../runtime/jumpDates.js";
@@ -1421,7 +1422,7 @@ const perfNow = () =>
 
 const buildTerritorialControlContext = async (worldLike, { maxRows = 80, viaLookups = false } = {}) => {
   const world = normalizeWorldState(worldLike);
-  const catalog = await loadRegionCatalog().catch(() => []);
+  const catalog = await buildPromptRegionCatalog(world).catch(() => []);
   const byId = new Map(catalog.map((region) => [region.id, region]));
   const ids = new Set([
     ...Object.keys(world.regionOwnershipOverrides || {}),
@@ -1470,7 +1471,7 @@ const buildGroupsContext = async (worldLike) => {
   const world = normalizeWorldState(worldLike);
   const count = Object.keys(world.groups).length;
   if (!count) return "";
-  const catalog = await loadRegionCatalog().catch(() => []);
+  const catalog = await buildPromptRegionCatalog(world).catch(() => []);
   const names = new Map(catalog.map((region) => [region.id, region.name]));
   return describeGroupsForPrompt(world, {
     regionName: (id) => names.get(id) || id,
@@ -1807,7 +1808,7 @@ function lazyLookupContext(bundle, { audience = SIMULATION_AUDIENCE } = {}) {
         // rather than cloned) adds the polygons that place cities and, failing
         // declared adjacencies, find neighbours.
         const [catalogRows, renderedGeojson, citiesGeojson] = await Promise.all([
-          loadRegionCatalog().catch(() => []),
+          buildPromptRegionCatalog(world).catch(() => []),
           readJson(JSON_URLS.regionsGeojson, { defaultValue: null, clone: false }).catch(() => null),
           readJson(JSON_URLS.citiesGeojson, { defaultValue: null }).catch(() => null),
         ]);
@@ -1817,7 +1818,7 @@ function lazyLookupContext(bundle, { audience = SIMULATION_AUDIENCE } = {}) {
           const id = normalizeString(props.id ?? props.GID_1 ?? props.gid_1 ?? props.HASC_1 ?? feature?.id);
           if (id && feature?.geometry) geometryById.set(id, feature.geometry);
         }
-        const catalog = filterToRenderedRegions(catalogRows, world).map((region) => (
+        const catalog = filterToRenderedRegions(catalogRows, world, { scenarioOnly: Boolean(world.historicalScenario) }).map((region) => (
           geometryById.has(region.id) ? { ...region, geometry: geometryById.get(region.id) } : region
         ));
         const cities = normalizeArray(citiesGeojson?.features).map((feature) => {
@@ -16365,7 +16366,10 @@ export const maybeGeneratePregameHistory = async () => {
   // finally, which is what makes holding the lock across them safe.
   beginSimulation();
   try {
+    const campaignId = activeCampaignId();
+    if (!campaignId) return null;
     const bundle = await readGameStateBundle({ force: true });
+    if (activeCampaignId() !== campaignId) return null;
     // Character scenarios already have an authored founding state, people,
     // promises and history. A second asynchronous bootstrap both invents a
     // competing past and locks out the player's first character decision.
@@ -16388,6 +16392,7 @@ export const maybeGeneratePregameHistory = async () => {
         ? canonicalPolities.map((name) => `- ${name}`).join("\n")
         : "No current polity vocabulary was available.",
     };
+    if (activeCampaignId() !== campaignId) return null;
     const { payload } = await runJsonTask("pregameHistory", {
       lookups: buildTaskLookups(bundle),
       // Asked once per campaign, and every ledger the campaign runs on is seeded
@@ -16410,11 +16415,13 @@ export const maybeGeneratePregameHistory = async () => {
     // The player may have switched games while this generated — the runtime
     // endpoints follow the ACTIVE game, so re-verify the same fresh game is
     // still there before writing anything.
+    if (activeCampaignId() !== campaignId) return null;
     const [eventsNow, worldNow, gameNow] = await Promise.all([
       readEventsState({ force: true }),
       readWorldState({ force: true }),
       readGameData({ force: true }),
     ]);
+    if (activeCampaignId() !== campaignId || worldNow?.characterSystem) return null;
     if (normalizeEvents(eventsNow).length > 0) return null;
     const currentWorld = normalizeWorldState(worldNow);
     if ((currentWorld.simulationHistory ?? []).length > 0) return null;
