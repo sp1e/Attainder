@@ -1899,6 +1899,16 @@ test("the odds block is grouped under the name of its own button, and a choice w
   assert.equal((html.match(/role="group"/g) || []).length, 1);
 });
 
+test("a choice with odds shows its chance once, and a choice without odds keeps its description", () => {
+  const html = storyHtml(ultimatumStory());
+  assert.equal((html.match(/Chans att lyckas/g) || []).length, 1);
+  assert.ok(html.indexOf("Chans att lyckas") > html.indexOf('class="char-choice-odds"'), "the one line is the odds block's");
+  const [concede, crush] = choiceButtons(html);
+  assert.match(concede, /Adeln väntar\./);
+  assert.match(crush, /Slå ned faktionen/);
+  assert.doesNotMatch(crush, /Chans att lyckas/);
+});
+
 test("a choice with a disabledReason stays disabled and still explains its chance", () => {
   const html = storyHtml(ultimatumStory({ disabledReason: "Ingen kan besluta just nu." }));
   const crush = choiceButtons(html).find((button) => button.includes("Slå ned faktionen"));

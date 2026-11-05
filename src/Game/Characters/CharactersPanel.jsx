@@ -175,7 +175,7 @@ function StoryCard({ story, person, onCommand, busy }) {
     {story.deadlineText ? <p className="char-caption">{story.deadlineText}</p> : story.fallbackDescription && <p className="char-caption">Om du avstår till tidsgränsen: {story.fallbackDescription}</p>}
     {isChain && story.nextAt && <p className="char-caption">Nästa uppföljning: {dateLabel(story.nextAt)}</p>}
     <div className="char-story-choices">{(story.choices || []).map((choice) => <div className="char-choice-slot" key={choice.id} role={choice.odds ? "group" : undefined} aria-labelledby={choice.odds ? `char-choice-${story.id}-${choice.id}` : undefined}><button type="button" id={`char-choice-${story.id}-${choice.id}`} className="char-choice" disabled={busy || Boolean(choice.disabledReason)} onClick={() => onCommand("resolve_story", { storyId: story.id, choiceId: choice.id })}>
-      <strong>{choice.label}</strong><span>{choice.description}</span>{choice.scope !== "none" && (choice.actorName ? <small>Utförs av: {choice.actorName}</small> : choice.actorName === null && <small>Ingen behörig aktör</small>)}<small>{[choice.cost, stressLabel(choice.stress)].filter(Boolean).join(" · ")}</small>{choice.disabledReason && <em>{choice.disabledReason}</em>}
+      <strong>{choice.label}</strong>{!choice.odds && <span>{choice.description}</span>}{choice.scope !== "none" && (choice.actorName ? <small>Utförs av: {choice.actorName}</small> : choice.actorName === null && <small>Ingen behörig aktör</small>)}<small>{[choice.cost, stressLabel(choice.stress)].filter(Boolean).join(" · ")}</small>{choice.disabledReason && <em>{choice.disabledReason}</em>}
     </button><ChoiceOdds odds={choice.odds} /></div>)}</div>
   </article>;
 }
