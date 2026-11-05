@@ -56,6 +56,7 @@ async function roundtripWorker() {
   const seed = createDynastyScenarioBundle();
   seed.data.world.ownerSchema = 4;
   const generated = {
+    "historicalBookmarks.js": "export default [];",
     "countryNames.js": "export default {};",
     "fallbackColors.js": "export default {Hadara:'#b99755'};",
     "defaultScenarioMeta.js": "export const builtInMap='test-map'; export const builtInRevision=1; export const regionsUrl=''; export const earlierMaps={};",

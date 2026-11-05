@@ -46,7 +46,7 @@ for(const bookmark of ['egypt-3000bc','john-1200']) test(`${bookmark} retains An
   assert.equal(rendered.properties.id,original.properties.id);
 });
 
-test('Mercator clipping preserves holes, multipart and antimeridian identities without mutating globe data',async()=>{
+test('shared tiler clipping preserves holes, multipart and antimeridian identities without mutating source data',async()=>{
   const ring=(x0,y0,x1,y1)=>[[x0,y0],[x1,y0],[x1,y1],[x0,y1],[x0,y0]];
   const geometry={type:'MultiPolygon',coordinates:[
     [ring(170,-89,179,-75),ring(172,-82,175,-78).reverse()],
@@ -64,11 +64,12 @@ test('Mercator clipping preserves holes, multipart and antimeridian identities w
   assert.deepEqual(clipping.xor(polygons,expected),[]);
   assert.equal(polygons.length,2); assert.ok(polygons.some(p=>p.length===2),'interior hole remains');
   const globe=await buildRegionRenderRepair(input,{projection:'globe'});
-  assert.equal(globe.repairedIds.includes('polar-edge'),false);
+  assert.deepEqual(globe.data,flat.data);
+  assert.deepEqual(globe.repairedIds,flat.repairedIds);
   assert.equal(JSON.stringify(input),before);
 });
 
-test('worker publishes projection-specific repair and switches back to authored globe geometry',async()=>{
+test('worker keeps shared tiler repairs across flat and globe projection epochs',async()=>{
   const messages=[]; globalThis.self={postMessage:message=>messages.push(message)};
   try {
     await import(`./polityBoundariesWorker.js?polar=${Date.now()}`);
@@ -85,19 +86,22 @@ test('worker publishes projection-specific repair and switches back to authored 
     assert.equal(flat.repairData.features[0].properties.id,'polar-zone');
     assert.ok(flat.repairData.features[0].geometry.coordinates.flat(3).every(Number.isFinite));
     const globe=await request('globe','globe');
-    assert.deepEqual(globe.repairedIds,[]);
+    assert.deepEqual(globe.repairedIds,flat.repairedIds);
+    assert.deepEqual(globe.repairData,flat.repairData);
     assert.equal(feature.geometry.coordinates[0][0][1],-89);
   } finally { delete globalThis.self; }
 });
 
-test('a region fully beyond Mercator is suppressed on flat view and retained on globe',async()=>{
+test('a region fully beyond the shared tiler band is suppressed in both views with its source retained',async()=>{
   const polar={type:'Feature',properties:{id:'south-cap',owner:'A'},geometry:{type:'Polygon',coordinates:[[[10,-89],[20,-89],[20,-87],[10,-87],[10,-89]]]}};
   const input={type:'FeatureCollection',features:[polar]};
   const flat=await buildRegionRenderRepair(input,{projection:'mercator'});
   assert.deepEqual(flat.repairedIds,['south-cap']);
   assert.deepEqual(flat.data.features[0].geometry,{type:'MultiPolygon',coordinates:[]});
   const globe=await buildRegionRenderRepair(input,{projection:'globe'});
-  assert.deepEqual(globe.repairedIds,[]); assert.equal(polar.geometry.coordinates[0][0][1],-89);
+  assert.deepEqual(globe.repairedIds,flat.repairedIds);
+  assert.deepEqual(globe.data,flat.data);
+  assert.equal(polar.geometry.coordinates[0][0][1],-89);
 });
 
 test('Nations uses the projection-scoped repair source for fills, outlines and hit tests',()=>{

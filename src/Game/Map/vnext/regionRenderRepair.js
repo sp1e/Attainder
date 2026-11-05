@@ -7,8 +7,10 @@ const DEFAULT_MAX_AREA_DRIFT_RATIO = 0.0025;
 const DEFAULT_DETACHED_AREA_RATIO = 0.001;
 const DEFAULT_DETACHED_FILL_RATIO = 0.002;
 const DEFAULT_YIELD_EVERY = 48;
-// MapLibre's Mercator tiler clamps each vertex independently. Intersecting the
-// polygon first preserves topology at the projection boundary.
+// MapLibre uses its Mercator tiler for both flat and globe rendering and clamps
+// each vertex independently. Intersect first to preserve topology. Globe then
+// extends boundary edges to the poles; authored detail beyond this band cannot
+// be represented by that renderer, though the source geometry stays intact.
 const MERCATOR_LIMIT = 85.0511287798066;
 const mercatorBandFor = (polygons) => {
   let minX = Infinity, maxX = -Infinity;
@@ -543,7 +545,7 @@ export const buildRegionRenderRepair = async (featureCollection, {
     const stripped = stripDegenerateDetachedPolygons(subject);
     const precision = simplifyPrecisionHazards(stripped.geometry);
     const invalidRing = precision.geometry.some((polygon) => polygonHasInvalidRing(polygon));
-    const polarClip = projection === "mercator" && exceedsMercatorBand(subject);
+    const polarClip = (projection === "mercator" || projection === "globe") && exceedsMercatorBand(subject);
     if (!stripped.changed && !precision.changed && !invalidRing && !polarClip) {
       if (scannedFeatureCount % Math.max(1, Number(yieldEvery) || DEFAULT_YIELD_EVERY) === 0) await yieldTask();
       continue;
@@ -600,8 +602,9 @@ export const buildRegionRenderRepair = async (featureCollection, {
         continue;
       }
     }
-    // Entirely out-of-band shapes deliberately render empty in Mercator. The
-    // ID still suppresses the canonical source and keeps selection consistent.
+    // Entirely out-of-band shapes render empty in both projections: the shared
+    // tiler cannot represent isolated caps. The ID suppresses the canonical
+    // source and keeps fill, local outline and selection on the same geometry.
     const geometry = multiPolygonToGeometry(repaired) ?? { type: "MultiPolygon", coordinates: [] };
     const id = featureId(feature, index);
     repairedIds.push(id);
