@@ -44,8 +44,9 @@ const NO_ORDERS = 'Årets handlingsutrymme är slut. För tiden framåt.';
 const NO_FUNDS = 'Otillräcklig statskassa.';
 const ABDICATION = Object.freeze({ reason: 'Abdikation under tryck från adeln', legitimacyLoss: 10, legitimacyFloor: 30, prestige: -8 });
 const CONCESSION = Object.freeze({ silver: 60, perConcession: 40, legitimacy: -5, quietMonths: 36 });
-const CRUSHED = Object.freeze({ fear: 15, opinion: -15, opinionLabel: 'Faktionen slogs ned', legitimacy: -3, title: 'Faktionen slås ned' });
-const DEPOSITION = Object.freeze({ reason: 'Adeln tvingar fram en abdikation', title: 'Adeln tvingar härskaren från tronen', legitimacy: 35, prestige: -15, influence: -15, stress: 30, stressMax: 200, grievance: 10, opinion: 10, opinionLabel: 'Hjälpte härskaren till tronen', chancellorReason: 'Faktionen belönar sin ledare' });
+// A prompt reads opinion rows, and a hidden member has one of these, so the labels name no faction.
+const CRUSHED = Object.freeze({ fear: 15, opinion: -15, opinionLabel: 'Kronans hårda hand mot adeln', legitimacy: -3, title: 'Faktionen slås ned' });
+const DEPOSITION = Object.freeze({ reason: 'Adeln tvingar fram en abdikation', title: 'Adeln tvingar härskaren från tronen', legitimacy: 35, prestige: -15, influence: -15, stress: 30, stressMax: 200, grievance: 10, opinion: 10, opinionLabel: 'Stöder det nya styret', chancellorReason: 'Faktionen belönar sin ledare' });
 const ODDS = Object.freeze({ base: 50, readinessBase: 55, readinessPer: 2, legitimacyBase: 50, legitimacyPer: 3, strengthBase: 50, strengthPer: 2, dreadPer: 5, dreadMax: 10 });
 const GENERAL_ROW = 'Överbefälhavarens tjänst';
 // By serviceTier. A vacant seat has no service and lands in the lowest tier.

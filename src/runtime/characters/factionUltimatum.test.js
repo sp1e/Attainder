@@ -363,7 +363,7 @@ test('crush draws once from the action stream and leaves plotRngState and rngSta
   assert.equal(after.realm.legitimacy, 37, 'a lawful arrest costs nothing more');
   assert.equal(after.people[BAREK].fear, fear + 15);
   assert.deepEqual(others.map((id) => getPersonalOpinion(after, id, AREL)), before.map((value) => value - 15));
-  assert.equal(after.relations[`${NAMAR}:${AREL}`].causes.find((cause) => cause.label === 'Faktionen slogs ned').amount, -15, 'the leader also loses his offices');
+  assert.equal(after.relations[`${NAMAR}:${AREL}`].causes.find((cause) => cause.label === 'Kronans hårda hand mot adeln').amount, -15, 'the leader also loses his offices');
   assert.deepEqual({ status: after.factions[0].status, outcome: after.factions[0].outcome }, { status: 'closed', outcome: 'crushed' });
   assert.equal(storyOf(after, story.id).status, 'resolved');
   loads(after);
@@ -372,11 +372,19 @@ test('crush draws once from the action stream and leaves plotRngState and rngSta
 test('a crushed faction names none of its hidden members', () => {
   const { state, story } = opened();
   state.actionRngState = CERTAIN;
-  const { events } = answer(state, story, 'crush');
+  const result = answer(state, story, 'crush'), { events } = result;
   for (const id of [DARA, KELAN, TALIA]) {
     assert.ok(!JSON.stringify(events).includes(id), id);
     assert.ok(!JSON.stringify(events).includes(state.people[id].name), id);
+    assert.ok(!actionHooks(result.state).opinionReasons(id, AREL).some(({ label }) => /faktion/i.test(label)), 'a prompt reads these rows');
   }
+});
+
+test('a house that won names no faction in its opinion of the new ruler', () => {
+  const { state, story } = opened();
+  const after = advance(state, story.dueAt);
+  assert.ok(!actionHooks(after).opinionReasons(NAMAR, SERA).some(({ label }) => /faktion|tronen/i.test(label)), 'a prompt reads these rows');
+  assert.ok(actionHooks(after).opinionReasons(NAMAR, SERA).some(({ label }) => label === 'Stöder det nya styret'));
 });
 
 test('a crushed leader who speaks for the realm stays free', () => {
