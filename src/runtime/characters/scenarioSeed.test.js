@@ -158,6 +158,43 @@ test('normalization checks optional historical metadata without changing save co
   assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
 });
 
+test('schema-valid person-4 court is refused before a generated birth can overwrite its identity', () => {
+  const data = load('egypt-3000bc'), options = { ...optionsFor(data), seed: 1 };
+  const h = options.historicalScenario, court = h.courtSeeds[options.polityId];
+  const remap = id => id === 'generated-courtier-3' ? 'person-4' : id;
+  for (const person of court.people) {
+    person.id = remap(person.id);
+    person.legalParentIds = person.legalParentIds.map(remap);
+    person.spouseIds = person.spouseIds.map(remap);
+  }
+  for (const family of court.families) family.headId = remap(family.headId);
+  for (const religion of court.religions) religion.leaderId = remap(religion.leaderId);
+  for (const office of court.offices) office.holderId = remap(office.holderId);
+  const regions = JSON.parse(readFileSync(new URL('../../../server/seed/historical/egypt-3000bc/regions.geojson', import.meta.url), 'utf8'));
+  assert.equal(validateHistoricalScenario({ ...data, regions, assetManifest: h.assetManifest }, options).ok, true);
+  const before = clone(options);
+  assert.throws(() => createHistoricalCharacterSystem(options), /Det historiska hovets uppgifter.*\./);
+  assert.deepEqual(options, before);
+});
+
+test('malformed optional historical coverage is rejected on JSON load before presentation', () => {
+  const state = createHistoricalCharacterSystem({ ...optionsFor(load('egypt-3000bc')), seed: 1 });
+  const valid = clone(state);
+  assert.deepEqual(normalizeCharacterSystem(valid), state);
+  assert.ok(getCharacterPresentation(normalizeCharacterSystem(valid)).historicalOrigin.coverage.length);
+  for (const coverage of [[null], [false], [[]], [{}], { area: 'Africa' }, [{ ...state.historicalOrigin.coverage[0], sourceIds: [null] }]]) {
+    const malformed = clone(state);
+    malformed.historicalOrigin.coverage = coverage;
+    const before = clone(malformed);
+    assert.throws(() => normalizeCharacterSystem(clone(malformed)), /Sparfilens historiska ursprungsuppgifter är ogiltiga\./);
+    assert.deepEqual(malformed, before);
+  }
+  const absent = clone(state);
+  delete absent.historicalOrigin.coverage;
+  assert.deepEqual(normalizeCharacterSystem(absent), absent);
+  assert.ok(getCharacterPresentation(normalizeCharacterSystem(absent)).ruler);
+});
+
 test('a BC/AD transition uses the generic no-year-zero calendar with complete split-advance parity', () => {
   const options = optionsFor(load('egypt-3000bc')), h = options.historicalScenario;
   options.date = h.bookmarkDate = '-0001-12-31';

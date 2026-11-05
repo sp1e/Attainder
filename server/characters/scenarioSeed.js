@@ -14,7 +14,9 @@ function validateEngineSeed(court, familyId) {
   }
   if (familyId && !court.families.some(family => family.id === familyId)) throw refusal();
   for (const person of court.people) {
-    if (typeof person.name !== 'string' || !person.name.trim() || person.spouseIds.length > 1
+    // The unchanged runtime allocator owns person-<number>; authored identities
+    // must not be overwritten by a later birth using the shared sequence.
+    if (/^person-\d+$/.test(person.id) || typeof person.name !== 'string' || !person.name.trim() || person.spouseIds.length > 1
       || (person.sex !== undefined && !['female', 'male'].includes(person.sex))) throw refusal();
     const mechanics = person.mechanics;
     if (mechanics !== undefined && (!mechanics || !ARCHETYPES[mechanics.archetype]

@@ -293,3 +293,35 @@ test('existing modern character save loads unchanged without a historical start-
     assert.deepEqual(puts, []);
   } finally { globalThis.fetch = originalFetch; }
 });
+
+test('historical initialization refuses the reserved generated-person namespace before any write', async () => {
+  const originalFetch = globalThis.fetch;
+  const base = new URL('../../server/seed/historical/egypt-3000bc/', import.meta.url);
+  const data = JSON.parse(readFileSync(new URL('scenario.json', base), 'utf8')).data;
+  data.regionsGeojson = JSON.parse(readFileSync(new URL('regions.geojson', base), 'utf8'));
+  Object.assign(data, { events: [], actions: [], chat: [], colors: {}, snapshots: [] });
+  const court = data.world.historicalScenario.courtSeeds['egypt-early-dynastic'];
+  const remap = id => id === 'generated-courtier-3' ? 'person-4' : id;
+  for (const person of court.people) {
+    person.id = remap(person.id);
+    person.legalParentIds = person.legalParentIds.map(remap);
+    person.spouseIds = person.spouseIds.map(remap);
+  }
+  for (const family of court.families) family.headId = remap(family.headId);
+  for (const religion of court.religions) religion.leaderId = remap(religion.leaderId);
+  for (const office of court.offices) office.holderId = remap(office.holderId);
+  const before = JSON.parse(JSON.stringify(data)), puts = [];
+  globalThis.fetch = async (url, options = {}) => {
+    const key = new URL(String(url), 'http://runtime.test').pathname.split('/').at(-1);
+    if (options.method === 'PUT') puts.push(key);
+    return new Response(JSON.stringify(data[key] ?? {}), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  };
+  setRuntimeAssetEndpoints({ token: 'historical-reserved-person-id' });
+  try {
+    const result = await initializeCampaignCharacters({ seed: 1 });
+    assert.equal(result.ok, false);
+    assert.match(result.error, /Det historiska hovets uppgifter.*\./);
+    assert.deepEqual(puts, []);
+    assert.deepEqual(data, before);
+  } finally { globalThis.fetch = originalFetch; }
+});

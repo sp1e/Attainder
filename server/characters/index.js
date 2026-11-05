@@ -365,7 +365,11 @@ export function normalizeCharacterSystem(raw) {
     if (typeof origin !== 'object' || Array.isArray(origin)
       || origin.calendar !== 'proleptic-gregorian-no-year-zero'
       || !['contentId', 'contentVersion', 'eraLabelSv'].every(key => typeof origin[key] === 'string' && origin[key].trim())
-      || !origin.bookmarkDate || normalizeGameDate(origin.bookmarkDate) !== origin.bookmarkDate) {
+      || !origin.bookmarkDate || normalizeGameDate(origin.bookmarkDate) !== origin.bookmarkDate
+      || (origin.coverage !== undefined && (!Array.isArray(origin.coverage) || !origin.coverage.every(entry =>
+        entry && typeof entry === 'object' && !Array.isArray(entry)
+        && ['area', 'status', 'noteSv'].every(key => typeof entry[key] === 'string' && entry[key].trim())
+        && Array.isArray(entry.sourceIds) && entry.sourceIds.every(id => typeof id === 'string' && id.trim()))))) {
       throw new Error('Sparfilens historiska ursprungsuppgifter är ogiltiga.');
     }
   }
