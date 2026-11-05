@@ -132,6 +132,83 @@ test('a real year turn runs the court step and pays the chancellor\'s yield', ()
   assert.equal(after.realm.treasury, expected);
 });
 
+const roundedSilver = (value) => Math.round(value * 100) / 100;
+const loggedRevenue = (event) => Number(event.description.match(/med ([\d,\u2212-]+) silver/)[1].replace(',', '.').replace('\u2212', '-'));
+const accountingYear = (loyalty) => {
+  const state = plain(base());
+  if (loyalty === null) state.offices.chancellor.holderId = null;
+  else seat(state, 'chancellor', BAREK, { loyalty, stewardship: 4 });
+  return state;
+};
+
+test('the year event accounts for positive, negative and vacant chancellor yields in its aggregate', () => {
+  for (const [loyalty, contribution] of [[0, -8], [25, -4], [50, 0], [75, 4], [100, 8], [null, 0]]) {
+    const state = accountingYear(loyalty), baseRevenue = getCharacterWorldEffects(state).annualRevenue;
+    const result = advanceCharacters(state, state.nextAnnualDate), after = ok(result);
+    const event = result.events.find((entry) => entry.type === 'year');
+    assert.equal(after.realm.treasury, roundedSilver(state.realm.treasury + baseRevenue + contribution), `payment at loyalty ${loyalty}`);
+    const paid = roundedSilver(after.realm.treasury - state.realm.treasury);
+    assert.equal(loggedRevenue(event), Number(paid.toFixed(1)), `aggregate at loyalty ${loyalty}`);
+    assert.deepEqual(after.log.find((entry) => entry.id === event.id), event);
+    assert.deepEqual(Object.keys(event).sort(), ['date', 'description', 'id', 'participants', 'public', 'title', 'type']);
+    assert.deepEqual(event.participants, []);
+    assert.doesNotMatch(event.description, /chancellor|kansler|lojal|service|contribution/i);
+  }
+});
+
+test('the year aggregate counts only silver paid at the treasury floor', () => {
+  for (const emptyBase of [false, true]) {
+    const state = accountingYear(0);
+    state.realm.treasury = 1.13;
+    state.realm.taxPolicy = 'gentle';
+    if (emptyBase) for (const city of Object.values(state.cities)) city.baseRevenue = 0;
+    const result = advanceCharacters(state, state.nextAnnualDate), after = ok(result);
+    assert.equal(after.realm.treasury, 0);
+    assert.equal(loggedRevenue(result.events.find((event) => event.type === 'year')), -1.1);
+  }
+});
+
+test('annual accounting survives JSON loading and whole versus monthly advance without new public fields', () => {
+  for (const loyalty of [0, 75, null]) {
+    const state = accountingYear(loyalty);
+    const whole = advanceCharacters(state, state.nextAnnualDate), after = ok(whole);
+    const loaded = ok(advanceCharacters(normalizeCharacterSystem(plain(state)), state.nextAnnualDate));
+    assert.deepEqual(loaded, after, `JSON load at loyalty ${loyalty}`);
+    assert.deepEqual(normalizeCharacterSystem(plain(after)), plain(after));
+    let split = state;
+    const events = [];
+    for (let month = 1; month <= 12; month++) {
+      const result = advanceCharacters(split, addGameMonths(state.date, month));
+      split = ok(result); events.push(...result.events);
+    }
+    const simulation = ({ revision, appliedCommandIds, ...rest }) => rest;
+    assert.deepEqual(simulation(split), simulation(after));
+    assert.deepEqual(events, whole.events);
+    const beforeRead = plain(after), view = getCharacterPresentation(after), prompt = buildCharacterPromptContext(after);
+    const event = whole.events.find((entry) => entry.type === 'year');
+    assert.deepEqual(view.log.find((entry) => entry.id === event.id), event);
+    const beforeForecast = plain(state), forecastPrompt = buildCharacterPromptContext(state, { targetDate: state.nextAnnualDate });
+    assert.ok(forecastPrompt.includes(event.description));
+    assert.deepEqual(state, beforeForecast);
+    const exposed = JSON.stringify({ view, prompt, forecastPrompt });
+    assert.doesNotMatch(exposed, /"(?:loyalty|service|chancellorYield|chancellorContribution|annualContribution)"/);
+    assert.deepEqual(plain(after), beforeRead);
+  }
+});
+
+test('the chancellor step returns the paid delta after clamping and rounding', () => {
+  for (const [loyalty, treasury, expected, paid] of [[75, 1.13, 5.13, 4], [0, 1.13, 0, -1.13], [0, 0, 0, 0], [null, 1.13, 1.13, 0]]) {
+    const state = accountingYear(loyalty), before = streams(state);
+    state.realm.treasury = treasury;
+    assert.equal(chancellorStep(state, actionHooks(state)), paid);
+    assert.equal(state.realm.treasury, expected);
+    assert.deepEqual(streams(state), before);
+  }
+  const state = accountingYear(0);
+  state.realm.alive = false;
+  assert.equal(courtAnnualStep(state, [], actionHooks(state)), 0);
+});
+
 test('the court step stops at once in a dissolved realm', () => {
   const state = plain(base());
   seat(state, 'chancellor', BAREK, { loyalty: 100, stewardship: 10 });

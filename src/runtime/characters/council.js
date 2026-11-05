@@ -138,9 +138,11 @@ export function chancellorYield(state, hooks) {
   return clamp(amount, -YIELD.max, YIELD.max) + 0; // `+ 0` turns the −0 of a small loss into 0
 }
 
-/** Pays the yield into the realm treasury with no event, so no log line reveals its sign. */
+/** Pays the yield with no separate event and returns the actual treasury delta for annual accounting. */
 export function chancellorStep(state, hooks) {
+  const before = state.realm.treasury;
   state.realm.treasury = Math.round(Math.max(0, state.realm.treasury + chancellorYield(state, hooks)) * 100) / 100;
+  return Math.round((state.realm.treasury - before) * 100) / 100;
 }
 
 /** The reward_councillor command: realm silver for loyalty, once a year per councillor. The caller has checked the mandate. The public event names the councillor and nothing of the loyalty. */
