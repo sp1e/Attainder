@@ -87,15 +87,17 @@ test('a head outside the faction keeps the reward of his house and joins no list
 });
 
 const QUIET_ENDS = {
-  'a concession': { close: ({ state, story }) => ok(answer(state, story, 'concede')), status: 'appeased', outcome: null },
-  'an abdication under pressure': { close: ({ state, story }) => ok(answer(state, story, 'abdicate')), status: 'closed', outcome: 'abdicated' },
-  'a faction that falls apart': { close: ({ state }) => { actionHooks(state).kill([DARA, KELAN, TALIA], [], 'Provfall'); refreshCourtStories(state, [], actionHooks(state)); return state; }, status: 'closed', outcome: 'dissolved' },
-  'a change of reign': { close: ({ state }) => ok(command(state, 'abdicate', {})), status: 'closed', outcome: 'void' },
+  'a concession': { close: ({ state, story }) => ok(answer(state, story, 'concede')), status: 'appeased', outcome: null, known: [NAMAR] },
+  'an abdication under pressure': { close: ({ state, story }) => ok(answer(state, story, 'abdicate')), status: 'closed', outcome: 'abdicated', known: [NAMAR] },
+  // The known leader dies with two others, and Dara ends the faction as its last hidden member.
+  'a faction that falls apart': { close: ({ state }) => { actionHooks(state).kill([NAMAR, KELAN, TALIA], [], 'Provfall'); refreshCourtStories(state, [], actionHooks(state)); return state; }, status: 'closed', outcome: 'dissolved', known: [] },
+  'a change of reign': { close: ({ state }) => ok(command(state, 'abdicate', {})), status: 'closed', outcome: 'void', known: [NAMAR] },
 };
-for (const [name, { close, status, outcome }] of Object.entries(QUIET_ENDS)) test(`${name} reveals nobody`, () => {
+for (const [name, { close, status, outcome, known }] of Object.entries(QUIET_ENDS)) test(`${name} reveals nobody`, () => {
   const after = close(opened()), [faction] = after.factions;
   assert.deepEqual({ status: faction.status, outcome: faction.outcome }, { status, outcome });
-  assert.deepEqual(faction.knownMemberIds, [NAMAR]);
+  assert.deepEqual(faction.knownMemberIds, known);
+  assert.ok(faction.memberIds.length > known.length, 'a member is left to reveal');
   assert.deepEqual(rowHolders(after, faction.id), []);
 });
 
