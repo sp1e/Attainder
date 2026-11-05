@@ -2,8 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { setRuntimeAssetEndpoints } from "./assets.js";
-import { estimateCharacterAction, estimateConversation, getCharacterPresentation } from "./characters/index.js";
+import { JSON_URLS, readJson, setRuntimeAssetEndpoints } from "./assets.js";
+import { createCharacterSystem, estimateCharacterAction, estimateConversation, getCharacterPresentation } from "./characters/index.js";
 import { initializeCampaignCharacters, advanceCharacterYear, submitCharacterCommand,
   readVisibleCharacterState, getCharacterRuntimeStatus, revealLatestCharacterTurn,
   commitCharacterCampaign, recordCharacterNarrative, estimateCharacterActionForView,
@@ -237,4 +237,59 @@ test("origin converse is set in exactly one place in the source", () => {
   };
   roots.forEach(walk);
   assert.deepEqual(found, [["characterRuntime.js", 1]]);
+});
+
+for (const bookmark of ['egypt-3000bc', 'john-1200']) test(`historical initialization opts in to ${bookmark}, preserves existing people and fails before writes`, async () => {
+  const originalFetch = globalThis.fetch;
+  const base = new URL(`../../server/seed/historical/${bookmark}/`, import.meta.url);
+  const authored = JSON.parse(readFileSync(new URL('scenario.json', base), 'utf8')).data;
+  const regions = JSON.parse(readFileSync(new URL('regions.geojson', base), 'utf8'));
+  const data = { ...authored, regionsGeojson: regions, events: [], actions: [], chat: [], colors: {}, snapshots: [] };
+  const puts = [];
+  globalThis.fetch = async (url, options = {}) => {
+    const key = new URL(String(url), 'http://runtime.test').pathname.split('/').at(-1);
+    if (options.method === 'PUT') { puts.push(key); data[key] = JSON.parse(options.body); }
+    return new Response(JSON.stringify(data[key] ?? {}), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  };
+  setRuntimeAssetEndpoints({ token: `historical-runtime-${bookmark}` });
+  try {
+    assert.deepEqual(await readJson(JSON_URLS.regionsGeojson, { force: true }), regions);
+    const initialized = await initializeCampaignCharacters({ seed: 321 });
+    assert.equal(initialized.ok, true, initialized.error);
+    assert.equal(initialized.state.historicalOrigin.contentId, bookmark);
+    assert.equal(initialized.state.identity.polityId, authored.game.country);
+    const saved = JSON.parse(JSON.stringify(data.world.characterSystem));
+    // Existing records win even when the stored authored package is now unusable.
+    data.world.historicalScenario.courtSeeds = {};
+    puts.length = 0;
+    const resumed = await initializeCampaignCharacters({ seed: 999 });
+    assert.equal(resumed.ok, true, resumed.error);
+    assert.deepEqual(resumed.state, saved);
+    assert.deepEqual(puts, []);
+    delete data.world.characterSystem;
+    const refused = await initializeCampaignCharacters();
+    assert.equal(refused.ok, false);
+    assert.match(refused.error, /historiska/);
+    assert.deepEqual(puts, []);
+    assert.equal(data.world.characterSystem, undefined);
+  } finally { globalThis.fetch = originalFetch; }
+});
+
+test('existing modern character save loads unchanged without a historical start-range check', async () => {
+  const originalFetch = globalThis.fetch;
+  const state = createCharacterSystem({ date: '2026-11-05', seed: 41 });
+  const data = { game: { country: 'hadara', gameDate: state.date, startDate: state.date }, world: { characterSystem: state }, events: [], actions: [], chat: [] };
+  const puts = [];
+  globalThis.fetch = async (url, options = {}) => {
+    if (options.method === 'PUT') puts.push(url);
+    const key = new URL(String(url), 'http://runtime.test').pathname.split('/').at(-1);
+    return new Response(JSON.stringify(data[key] ?? {}), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  };
+  setRuntimeAssetEndpoints({ token: 'modern-save-compatibility' });
+  try {
+    const result = await initializeCampaignCharacters({ seed: 999 });
+    assert.equal(result.ok, true, result.error);
+    assert.deepEqual(result.state, state);
+    assert.deepEqual(puts, []);
+  } finally { globalThis.fetch = originalFetch; }
 });

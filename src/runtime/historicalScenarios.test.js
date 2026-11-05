@@ -10,10 +10,10 @@ import { validateHistoricalScenario, historicalGeometryCenter } from './historic
 
 // Synthetic schema fixture. Never packaged as playable historical content.
 export function syntheticScenario() {
-  const claim = { status: 'generated', sourceIds: [], noteSv: 'Syntetiskt testvÃ¤rde.' };
+  const claim = { status: 'generated', sourceIds: [], noteSv: 'Syntetiskt testvärde.' };
   const source = { title: 'Synthetic evidence', institution: 'Test', url: 'https://example.org/test', locator: 'fixture', retrievedAt: '2026-11-05', license: 'CC0-1.0', chronology: '1200', uncertainty: 'Synthetic', review: 'synthetic' };
   const person = { id: 'person', name: 'Test', identityOrigin: 'generated', originLabelSv: 'Genererad testperson', familyId: 'family', religionId: 'religion', legalParentIds: [], spouseIds: [], claims: { identity: claim, biography: claim, mechanics: claim } };
-  const h = { schemaVersion: 1, kind: 'historical', contentId: 'synthetic', contentVersion: '1', calendar: 'proleptic-gregorian-no-year-zero', bookmarkDate: '1200-12-31', eraLabelSv: '1200 e.Kr.', contextSv: 'Syntetiskt schemaexempel.', coverageNoteSv: 'Syntetiskt test.', sources: { test: source }, polities: [{ id: 'polity', nameSv: 'Test', sourceIds: ['test'], boundary: 'approximate' }], playablePolityIds: ['polity'], settlements: [{ id: 'city', nameSv: 'Teststad', coordinates: [1, 1], polityId: 'polity', regionId: 'region', placement: 'inside', sourceIds: ['test'], noteSv: 'Syntetisk placering.' }], coverage: ['Africa','Asia','Europe','Americas','Oceania','Antarctica'].map(area => ({ area, status: 'unresolved', sourceIds: ['test'], noteSv: 'Syntetiskt, okÃ¤nd kontroll.' })), courtSeeds: { polity: { polityId: 'polity', rulerId: 'person', seatId: 'city', people: [person], families: [{ id: 'family', headId: 'person', claims: { identity: claim } }], religions: [{ id: 'religion', claims: { identity: claim } }], offices: [{ id: 'ruler', holderId: 'person', claims: { identity: claim } }], cities: [{ id: 'city', settlementId: 'city', regionId: 'region', familyId: 'family', claims: { mechanics: claim } }], mechanics: { status: 'generated', noteSv: 'Testregler.' } } } };
+  const h = { schemaVersion: 1, kind: 'historical', contentId: 'synthetic', contentVersion: '1', calendar: 'proleptic-gregorian-no-year-zero', bookmarkDate: '1200-12-31', eraLabelSv: '1200 e.Kr.', contextSv: 'Syntetiskt schemaexempel.', coverageNoteSv: 'Syntetiskt test.', sources: { test: source }, polities: [{ id: 'polity', nameSv: 'Test', sourceIds: ['test'], boundary: 'approximate' }], playablePolityIds: ['polity'], settlements: [{ id: 'city', nameSv: 'Teststad', coordinates: [1, 1], polityId: 'polity', regionId: 'region', placement: 'inside', sourceIds: ['test'], noteSv: 'Syntetisk placering.' }], coverage: ['Africa','Asia','Europe','Americas','Oceania','Antarctica'].map(area => ({ area, status: 'unresolved', sourceIds: ['test'], noteSv: 'Syntetiskt, okänd kontroll.' })), courtSeeds: { polity: { polityId: 'polity', rulerId: 'person', seatId: 'city', people: [person], families: [{ id: 'family', headId: 'person', claims: { identity: claim } }], religions: [{ id: 'religion', claims: { identity: claim } }], offices: [{ id: 'ruler', holderId: 'person', claims: { identity: claim } }], cities: [{ id: 'city', settlementId: 'city', regionId: 'region', familyId: 'family', claims: { mechanics: claim } }], mechanics: { status: 'generated', noteSv: 'Testregler.' } } } };
   return { game: { startDate: h.bookmarkDate, currentDate: h.bookmarkDate }, world: { historicalScenario: h, polityOverrides: { polity: { name: 'Test' } } }, regions: { type: 'FeatureCollection', features: [{ type: 'Feature', properties: { id: 'region', owner: 'polity', historical: { status: 'owned', boundary: 'approximate', sourceIds: ['test'] } }, geometry: { type: 'Polygon', coordinates: [[[0,0],[2,0],[2,2],[0,2],[0,0]]] } }] }, assetManifest: { schemaVersion: 1, contentId: h.contentId, contentVersion: h.contentVersion, assets: ['regionsGeojson','citiesGeojson'].map(id => ({ id, sourceIds: ['test'], crs: 'OGC:CRS84', revision: 'fixture', sha256: '0'.repeat(64), license: 'CC0-1.0', transformations: ['synthetic'] })) } };
 }
 const validate = input => validateHistoricalScenario(input, { date: '1200-12-31', polityId: 'polity' });
@@ -45,7 +45,7 @@ for (const [name, mutate] of [
 test('contested frontier requires explicit competing polities, provenance and note', () => {
   const input = syntheticScenario(), h = input.world.historicalScenario;
   h.polities.push({ id: 'other', nameSv: 'Andra', sourceIds: ['test'], boundary: 'approximate' });
-  h.settlements.push({ id: 'frontier', nameSv: 'GrÃ¤nsort', coordinates: [2.01,1], polityId: null, regionId: 'region', placement: 'contested', candidatePolityIds: ['polity','other'], sourceIds: ['test'], noteSv: 'LÃ¤get och kontrollen Ã¤r omstridda.' });
+  h.settlements.push({ id: 'frontier', nameSv: 'Gränsort', coordinates: [2.01,1], polityId: null, regionId: 'region', placement: 'contested', candidatePolityIds: ['polity','other'], sourceIds: ['test'], noteSv: 'Läget och kontrollen är omstridda.' });
   assert.equal(validate(input).ok, true);
   delete h.settlements[1].candidatePolityIds;
   assert.equal(validate(input).ok, false);
@@ -90,7 +90,7 @@ test('person birthdays can precede the 3300 BC campaign boundary',() => {
   const input = syntheticScenario(), h = input.world.historicalScenario;
   h.bookmarkDate = input.game.startDate = input.game.currentDate = '-3300-01-01';
   h.courtSeeds.polity.people[0].bornAt = '-3336-01-01';
-  h.courtSeeds.polity.people[0].claims.bornAt = { status: 'generated',sourceIds: [],noteSv: 'Syntetiskt fÃ¶delsedatum fÃ¶re startintervallet.' };
+  h.courtSeeds.polity.people[0].claims.bornAt = { status: 'generated',sourceIds: [],noteSv: 'Syntetiskt födelsedatum före startintervallet.' };
   assert.equal(validateBookmark(input).ok,true);
 });
 for (const [name,mutate] of [

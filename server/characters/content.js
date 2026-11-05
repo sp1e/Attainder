@@ -2,6 +2,30 @@ export const SCHEMA_VERSION = 1;
 export const RULES_VERSION = 'hadara-1.0.0';
 export const CONTENT_VERSION = 'hadara-1.0.0';
 export const ADULT_AGE = 18;
+
+// Explicit public projections: authored or saved metadata never inherits private
+// runtime stores or arbitrary nested properties through object spreading.
+const publicText = (value, keys) => Object.fromEntries(keys.filter(key => typeof value?.[key] === 'string').map(key => [key, value[key]]));
+const publicSourceIds = value => Array.isArray(value) ? value.filter(id => typeof id === 'string') : [];
+export function publicHistoricalOrigin(value) {
+  if (!value || typeof value !== 'object') return undefined;
+  const result = publicText(value, ['contentId', 'contentVersion', 'calendar', 'bookmarkDate', 'eraLabelSv', 'contextSv', 'calendarNoteSv', 'coverageNoteSv', 'polityNoteSv', 'mechanicsNoteSv']);
+  if (Array.isArray(value.coverage)) result.coverage = value.coverage.map(entry => ({ ...publicText(entry, ['area', 'status', 'noteSv']), sourceIds: publicSourceIds(entry.sourceIds) }));
+  if (value.sources && typeof value.sources === 'object') result.sources = Object.fromEntries(Object.entries(value.sources).map(([id, source]) => [id,
+    publicText(source, ['title', 'institution', 'url', 'locator', 'retrievedAt', 'license', 'chronology', 'uncertainty', 'review'])]));
+  return result;
+}
+export function publicPersonOrigin(value) {
+  if (!value || typeof value !== 'object') return undefined;
+  const claims = {};
+  for (const key of ['identity', 'bornAt', 'sex', 'legalParentIds', 'spouseIds', 'kinship', 'mechanics', 'culture']) {
+    const claim = value.claims?.[key];
+    if (claim && ['sourced', 'uncertain', 'generated'].includes(claim.status)) claims[key] = {
+      ...publicText(claim, ['status', 'noteSv']), sourceIds: publicSourceIds(claim.sourceIds),
+    };
+  }
+  return { ...publicText(value, ['identityOrigin', 'originLabelSv']), claims };
+}
 export const ARCHETYPES = {
   commander: { name: 'Fältherren', ability: 'Samordnad mobilisering', action: 'mobilize', description: 'Stärk arméns beredskap under tre år. Kräver aktivt härskarmandat.', cost: 35 },
   steward: { name: 'Förvaltaren', ability: 'Förvaltningsreform', action: 'reform', description: 'Reformera skatteförvaltningen i tre år. Familjerna kräver inflytande.', cost: 30 },

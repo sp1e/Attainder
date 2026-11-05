@@ -34,7 +34,7 @@ test('client compatibility entries preserve the entire shared export surface and
   }
 });
 
-test('installed layout imports the actual shared engine, policy and schema without src', () => {
+test('installed layout validates and constructs both historical courts with no src tree', () => {
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'attainder-installed-'));
   try {
     fs.mkdirSync(path.join(fixture, 'server'));
@@ -43,14 +43,31 @@ test('installed layout imports the actual shared engine, policy and schema witho
     // Production dependency resolution only; no checkout source tree is linked.
     fs.symlinkSync(path.resolve('node_modules'), path.join(fixture, 'node_modules'), 'junction');
     assert.equal(fs.existsSync(path.join(fixture, 'src')), false);
+    for (const id of ['egypt-3000bc', 'john-1200']) {
+      const directory = path.join(fixture, 'server', 'seed', 'historical', id);
+      fs.mkdirSync(directory, { recursive: true });
+      for (const name of ['scenario.json', 'regions.geojson', 'manifest.json']) fs.copyFileSync(new URL(`./seed/historical/${id}/${name}`, import.meta.url), path.join(directory, name));
+    }
     const entry = path.join(fixture, 'smoke.mjs');
     fs.writeFileSync(entry, `import assert from 'node:assert/strict';
 import { createCharacterSystem } from './server/characters/index.js';
+import { createHistoricalCharacterSystem } from './server/characters/scenarioSeed.js';
 import { validateHistoricalStartDate } from './server/historicalStarts.js';
 import { validateHistoricalScenario } from './server/historicalScenarios.js';
+import fs from 'node:fs';
 assert.equal(typeof validateHistoricalScenario, 'function');
 assert.equal(validateHistoricalStartDate('1200-12-31').ok, true);
-assert.equal(createCharacterSystem().realm.id, 'hadara');`);
+assert.equal(createCharacterSystem().realm.id, 'hadara');
+for (const id of ['egypt-3000bc', 'john-1200']) {
+  const load = name => JSON.parse(fs.readFileSync(new URL('./server/seed/historical/' + id + '/' + name, import.meta.url), 'utf8'));
+  const { data } = load('scenario.json');
+  const { historicalScenario } = data.world;
+  const options = { historicalScenario, date: data.game.startDate, polityId: data.game.country };
+  assert.equal(validateHistoricalScenario({ ...data, regions: load('regions.geojson'), assetManifest: load('manifest.json') }, options).ok, true);
+  const state = createHistoricalCharacterSystem(options);
+  assert.equal(state.historicalOrigin.contentId, id);
+  assert.equal(state.offices.ruler.holderId, historicalScenario.courtSeeds[options.polityId].rulerId);
+}`);
     assert.equal(execFileSync(process.execPath, [entry], { encoding: 'utf8' }), '');
   } finally { fs.rmSync(fixture, { recursive: true, force: true }); }
 });

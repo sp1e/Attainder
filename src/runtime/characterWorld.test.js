@@ -9,6 +9,16 @@ import { applyEventImpactsToWorld, normalizeEvents, normalizeWorldState, viewAsS
 import { buildCharacterPromptContext, characterTransitionEvents, normalizeCharacterOps, planCharacterAdvance, prepareCharacterTimeline, projectCharacterWorld } from "./characterWorld.js";
 import { addGameMonths } from "./gameDates.js";
 
+test('legacy display-name migration still runs for ordinary worlds', () => {
+  const result = applyEventImpactsToWorld({ world: {
+    polityOverrides: { oldKey: { name: 'New Realm', aliases: [], status: 'active' } },
+    regionOwnershipOverrides: { region: 'oldKey' },
+  }, events: [] });
+  assert.ok(result.world.polityOverrides['New Realm']);
+  assert.equal(result.world.polityOverrides.oldKey, undefined);
+  assert.equal(result.world.regionOwnershipOverrides.region, 'New Realm');
+});
+
 const start = () => normalizeWorldState({
   characterSystem: createCharacterSystem({ polityId: "Hadara", polityName: "Hadara", date: "-0300-01-01", seed: 17 }),
   polityOverrides: { Hadara: { code: "Hadara", name: "Hadara" } },

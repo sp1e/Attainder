@@ -87,6 +87,28 @@ function validSettlements(h, regionMap) {
   });
 }
 
+// Pure court boundary for callers that already validated the scenario assets.
+// Geometry and redistribution checks still belong to validateHistoricalScenario.
+export function validateHistoricalCourt(h, { date, polityId } = {}) {
+  try {
+    if (!record(h) || h.schemaVersion !== 1 || h.kind !== 'historical'
+      || h.calendar !== 'proleptic-gregorian-no-year-zero'
+      || !['contentId', 'contentVersion', 'eraLabelSv', 'contextSv', 'coverageNoteSv'].every(k => text(h[k]))
+      || !validSources(h.sources)) return failure('invalidContent');
+    for (const value of [date, h.bookmarkDate, ...(h.validFrom || h.validTo ? [h.validFrom, h.validTo] : [])]) {
+      const checked = validateHistoricalStartDate(value);
+      if (!checked.ok || checked.date !== value) return failure('invalidDate');
+    }
+    if (h.validFrom || h.validTo) {
+      if (!sourceRefs(h.dateSourceIds, h.sources) || compareGameDates(h.validFrom, h.validTo) > 0
+        || compareGameDates(date, h.validFrom) < 0 || compareGameDates(date, h.validTo) > 0) return failure('unsupportedDate');
+    } else if (date !== h.bookmarkDate) return failure('unsupportedDate');
+    if (!h.playablePolityIds?.includes(polityId) || !h.polities?.some(p => p.id === polityId && text(p.nameSv))) return failure('invalidPolity');
+    if (!validCourt(h.courtSeeds?.[polityId], polityId, h, date)) return failure('invalidCourt');
+    return { ok: true, contentId: h.contentId, contentVersion: h.contentVersion, date, polityId };
+  } catch { return failure('invalidContent'); }
+}
+
 /** Structural validation only. Human source review lives beside the authored data. */
 export function validateHistoricalScenario(input, options = {}) {
   try {

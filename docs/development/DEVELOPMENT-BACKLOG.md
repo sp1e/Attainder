@@ -5,8 +5,8 @@ Updated 5 November 2026. The owner's current requests take precedence over the e
 | Order | Work | State |
 | --- | --- | --- |
 | 1 | Merge the reviewed Phase 3 fixes. | Complete: [PR #12](https://github.com/sp1e/Attainder/pull/12) merged; final review `08d3518..55283dc` approved with no new Critical, Important or Minor findings; required test/build CI passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295); remote `main` verified as `6f4f7c0`. Retained remote branch `fix/phase-3-review`: `55283dc`. |
-| 2 | Replace the playable fictional world and modern default with real-world historical campaign starts, from the Bronze Age through about AD 1200; offer no modern starts. | Current: written plan `docs/superpowers/plans/2026-11-05-historical-campaign-foundation.md` prepared; begin Task 1. Follow six tasks: campaign-start policy, historical content, initializer, prompts, combined guards/defaults/UI, browser evidence. Foundation implementation remains pending. |
-| 3 | Research historical events year by year and add an end-turn historical-events popup. | Added at the owner's request; research and implementation pending. |
+| 2 | Replace the playable fictional world and modern default with real-world historical campaign starts, from the Bronze Age through about AD 1200; offer no modern starts. | Tasks 1–2 accepted: pure start policy and sourced Egypt/AD 1200 content. Task 3 implemented and locally tested: shared engine, pure historical court factory and opt-in initialization; final review pending. Tasks 4–6 remain open: prompts, combined guards/defaults/UI, and browser evidence. The existing start flow remains active until Task 5. |
+| 3 | Research historical events year by year and add an end-turn historical-events popup. | Private research pilot and independent checking have begun. No release-approved events, reviewed whole year or popup implementation yet. |
 | 4 | Continue family/succession, life/events, diplomacy/war and religion phases against the historical setting. | Replan after the historical foundation. |
 
 ## Historical events at turn end

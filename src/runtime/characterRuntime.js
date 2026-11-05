@@ -12,6 +12,8 @@ import { unseenEvents, latestTurnEventIds } from "./unseenEvents.js";
 import { createCharacterSystem, estimateCharacterAction, estimateConversation, getCharacterPresentation, getConversationBrief } from "./characters/index.js";
 import { characterTransitionEvents, executeCharacterWorldCommand, planCharacterAdvance } from "./characterWorld.js";
 import { commitCharacterTransaction, recoverCharacterTransaction } from "./characterPersistence.js";
+import { createHistoricalCharacterSystem } from "./characters/scenarioSeed.js";
+import { validateHistoricalScenario } from "./historicalScenarios.js";
 
 let localBusy = false;
 const campaignId = () => String(getLibraryState()?.activeGameId ?? "");
@@ -139,8 +141,22 @@ const withCharacterMutation = async (work) => {
 export const initializeCampaignCharacters = (options = {}) => withCharacterMutation(async (bundle) => {
   if (bundle.world.characterSystem) return { ok: true, state: bundle.world.characterSystem, events: [], error: "" };
   const operationId = idFor("characters-init");
-  const state = createCharacterSystem({ date: bundle.game.gameDate || bundle.game.startDate,
-    polityId: bundle.game.country, polityName: bundle.game.country, ...options });
+  let state;
+  if (bundle.world.historicalScenario != null) {
+    const date = bundle.game.gameDate || bundle.game.startDate, polityId = bundle.game.country;
+    if ((options.date !== undefined && options.date !== date) || (options.polityId !== undefined && options.polityId !== polityId)) {
+      throw new Error("Det historiska hovets datum och rike måste stämma med kampanjen.");
+    }
+    const regions = await readJson(JSON_URLS.regionsGeojson, { defaultValue: null, force: true });
+    const checked = validateHistoricalScenario({ game: bundle.game, world: bundle.world, regions,
+      assetManifest: bundle.world.historicalScenario.assetManifest }, { date, polityId });
+    if (!checked.ok) throw new Error(checked.error);
+    state = createHistoricalCharacterSystem({ historicalScenario: bundle.world.historicalScenario, date, polityId,
+      mode: options.mode, familyId: options.familyId, seed: options.seed, difficulty: options.difficulty ?? bundle.game.difficulty });
+  } else {
+    state = createCharacterSystem({ date: bundle.game.gameDate || bundle.game.startDate,
+      polityId: bundle.game.country, polityName: bundle.game.country, ...options });
+  }
   const result = { ok: true, state, events: [], error: "" };
   return { ...result, operationId, events: characterTransitionEvents(null, result, operationId) };
 });

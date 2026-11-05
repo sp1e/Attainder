@@ -702,7 +702,7 @@ const fetchWithPersistence = async (
     // The Android app has no Cache Storage (an http origin is not a secure
     // context) and its archives come from inside the APK: nothing to keep a
     // second copy of in the WebView's HTTP cache.
-    cache: bypassPersistentCache || import.meta.env.VITE_OH_NATIVE ? "no-store" : "force-cache",
+    cache: bypassPersistentCache || BUILD_ENV.VITE_OH_NATIVE ? "no-store" : "force-cache",
     signal,
   });
   if (!response.ok) {

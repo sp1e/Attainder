@@ -4580,7 +4580,11 @@ export const applyEventImpactsToWorld = ({
   // after it see one name for one country.
   const renamedPolities = [];
   const characterEvents = [];
-  for (const { from, to } of displayNameMigrations(nextWorld, { isReserved: isRealCountryName })) {
+  // Authored historical packages use stable polity IDs. Their display labels
+  // are not legacy renames; explicit later polity changes still run below.
+  const legacyNameMigrations = nextWorld.historicalScenario?.kind === "historical"
+    ? [] : displayNameMigrations(nextWorld, { isReserved: isRealCountryName });
+  for (const { from, to } of legacyNameMigrations) {
     try {
       const result = renamePolityInWorld(nextWorld, from, to);
       Object.assign(nextWorld, result.world);
