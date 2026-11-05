@@ -404,6 +404,10 @@ function heldYear({ treasury = 100, plotSeed }) {
   if (plotSeed) state.plotRngState = plotSeed;
   return state;
 }
+// A demand from today keeps every house quiet through the year turn, so what the plot stream shows is the prisoner step alone.
+function hushDemands(state) {
+  state.familyDemands = Object.keys(state.families).map((familyId) => ({ id: `demand-${familyId}`, familyId, kind: 'office', targetId: 'chancellor', storyId: 'story-none', openedAt: state.date, dueAt: addGameMonths(state.date, 12), status: 'void', closedAt: state.date }));
+}
 const OFFER = plotSeedWhere((value) => value < 0.6);
 const NO_OFFER = plotSeedWhere((value) => value >= 0.6);
 
@@ -516,6 +520,7 @@ test('the revolt branch: family grievance, head opinion and a public event', () 
 
 test('a family that cannot pay prepares a revolt without a draw', () => {
   const state = heldYear({ treasury: 10, plotSeed: OFFER });
+  hushDemands(state);
   const next = advance(state, state.nextAnnualDate);
   assert.equal(next.stories.some((item) => item.type === 'ransom_offer'), false);
   assert.equal(next.plotRngState, OFFER, 'no draw when the treasury cannot cover the ransom');

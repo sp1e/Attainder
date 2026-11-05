@@ -57,6 +57,7 @@ test('presentCourt draws nothing and spends nothing', () => {
     prestige: 10,
     council: presentCouncil(state, actionHooks(state)),
     dread: { value: 0, label: 'Ingen fruktar kronan' },
+    demands: [],
   });
   assert.deepEqual(plain(state), before);
   const view = getCharacterPresentation(state);

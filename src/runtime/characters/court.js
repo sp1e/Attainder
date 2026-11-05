@@ -2,6 +2,7 @@ import { compareGameDates } from '../gameDates.js';
 import { BREAKDOWN_EXPIRY, breakdownChoices, breakdownClosedReason, breakdownStep, lostOrdersStep, resolveBreakdown, stressPressureStep } from './breakdowns.js';
 import { chancellorStep, loyaltyDriftStep, presentCouncil } from './council.js';
 import { dreadYearStep, presentDread } from './dread.js';
+import { DEMAND_EXPIRY, demandChoices, demandClosedReason, demandStep, presentDemands, resolveDemand, validateFamilyDemands, voidDemand, voidOpenDemands } from './familyDemands.js';
 import { nicknameStep, validateNicknames } from './nicknames.js';
 import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, validateReign } from './reign.js';
 
@@ -10,10 +11,11 @@ import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, va
 
 export const COURT_STORY_TYPES = Object.freeze(['stress_breakdown', 'family_demand', 'faction_ultimatum']);
 
-// One row per court story that exists. Tasks 6 and 8 add `family_demand` and `faction_ultimatum`.
-// `expiry` is what a story past its due date resolves to; `closedReason` gives the text of a story that fell away, or ''.
+// One row per court story that exists. Task 8 adds `faction_ultimatum`.
+// `expiry` is what a story past its due date resolves to; `closedReason` gives the text of a story that fell away, or ''; `onClose` is what such a story leaves behind.
 const COURT_STORIES = Object.freeze({
   stress_breakdown: Object.freeze({ choices: breakdownChoices, resolve: resolveBreakdown, expiry: BREAKDOWN_EXPIRY, closedReason: breakdownClosedReason }),
+  family_demand: Object.freeze({ choices: demandChoices, resolve: resolveDemand, expiry: DEMAND_EXPIRY, closedReason: demandClosedReason, onClose: voidDemand }),
 });
 
 /** Runs once a year, after npcPlotStep, so the draws of the earlier systems keep their order within the year. It stops at once in a dissolved realm. */
@@ -26,6 +28,7 @@ export function courtAnnualStep(state, events, hooks) {
   goalStep(state, events, hooks);
   prestigeStep(state);
   nicknameStep(state, events, hooks);
+  demandStep(state, events, hooks);
   stressPressureStep(state, hooks);
   breakdownStep(state, events, hooks);
 }
@@ -48,8 +51,9 @@ function expireStory(state, story, row, events, hooks) {
   hooks.logEvent(events, 'story_expired', story.title, text, [story.actorId]);
 }
 
-function closeStory(state, story, resolution, events, hooks) {
+function closeStory(state, story, row, resolution, events, hooks) {
   Object.assign(story, { status: 'closed', resolvedAt: state.date, resolution });
+  row.onClose?.(state, story);
   hooks.logEvent(events, 'story_closed', story.title, resolution, [story.actorId]);
 }
 
@@ -57,7 +61,7 @@ function closeStory(state, story, resolution, events, hooks) {
 export function refreshCourtStories(state, events, hooks) {
   for (const story of state.stories.filter((item) => item.status === 'open' && Object.hasOwn(COURT_STORIES, item.type))) {
     const row = COURT_STORIES[story.type], resolution = row.closedReason(state, story, hooks);
-    if (resolution) closeStory(state, story, resolution, events, hooks);
+    if (resolution) closeStory(state, story, row, resolution, events, hooks);
     else if (compareGameDates(story.dueAt, state.date) <= 0) expireStory(state, story, row, events, hooks);
   }
 }
@@ -65,15 +69,17 @@ export function refreshCourtStories(state, events, hooks) {
 /** Every change of reign ends here: called last by crown, and by applyRealmDissolution with `person` null. */
 export function onAccession(state, person, { lawful, legitimacy }) {
   beginReign(state, person, { lawful, legitimacy });
+  voidOpenDemands(state);
 }
 
 /** The court as the player sees it. Reads only: draws nothing and spends nothing. */
 export function presentCourt(state, hooks) {
-  return { reign: presentReign(state, hooks), legitimacy: { value: Math.round(state.realm.legitimacy), sources: legitimacySources(state) }, prestige: state.realm.prestige, council: presentCouncil(state, hooks), dread: presentDread(state, hooks) };
+  return { reign: presentReign(state, hooks), legitimacy: { value: Math.round(state.realm.legitimacy), sources: legitimacySources(state) }, prestige: state.realm.prestige, council: presentCouncil(state, hooks), dread: presentDread(state, hooks), demands: presentDemands(state) };
 }
 
 /** Refuses forged court records. Called beside validatePrisoners when a save loads. */
 export function validateCourt(state) {
   validateReign(state);
   validateNicknames(state);
+  validateFamilyDemands(state);
 }

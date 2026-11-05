@@ -38,11 +38,18 @@ function answer(state, storyId, choiceId) {
 // To replace a seed that no longer does: loop healthRng through openChain, print
 // person-0-0's healthConditions (kind, severity, nextTransitionAt), and keep one
 // with smallpox of severity 1 or 2 and an open health_care story.
+// The plot stream is found: on it no house makes a demand in the two years these
+// tests cross. A lapsed demand costs 15 of the head's opinion, and below -10 he can
+// open a second chain, whose draw is no continuation. To replace it: loop
+// plotRngState through walkChain and keep one that leaves familyDemands empty on
+// both CALENDARS.
+const QUIET_PLOT_STREAM = 123821063;
 function openChain({ healthRng = null } = {}) {
   const initial = createCharacterSystem({ seed: 321 }); ensureEventChains(initial);
   for (const city of Object.values(initial.cities)) city.unrest = 0;
   initial.people['person-0-4'].mentorId = 'person-1-1';
   if (healthRng) initial.healthRngState = healthRng;
+  initial.plotRngState = QUIET_PLOT_STREAM;
   const state = advance(initial, addGameMonths(initial.date, 12), 'open-chain');
   const story = state.stories.find((item) => item.type === 'event_chain' && item.status === 'open');
   assert.ok(story, 'the first annual step opens a chain');

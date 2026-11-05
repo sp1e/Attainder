@@ -12,7 +12,7 @@ import { activeHooks, addSecretHolders, createSecret, exposeSecret, grantHook, s
 // actionResolution.js imports schemes.js, which imports this file, so nothing at the top level may use the exports of actionResolution.js; they are only used inside functions.
 
 // How much more or less often the court plots by difficulty.
-const AGGRESSION = Object.freeze({ easy: 0.5, normal: 1, hard: 1.5 });
+export const AGGRESSION = Object.freeze({ easy: 0.5, normal: 1, hard: 1.5 });
 // Plot against the player: score = −opinion(candidate → target) + 15 × ambitious + 15 × vengeful + intrigue − fear × 0.4 (cautious or craven) or 0.15 (anyone else), the fear weights of evaluateCharacterDecision. The best candidate plots at a score of 20 or more, with chance clamp(score / 2, 0, 40) percent × aggression, and poisons at 60 or more.
 const MIN_SCORE = 20;
 const POISON_SCORE = 60;

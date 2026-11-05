@@ -12,8 +12,11 @@ const PRE_CHANGE_RNG = { created: 321, after12Months: 2318062802, after60Months:
 const COURT_FIELDS = ['reign', 'nicknames', 'familyDemands', 'factions'];
 const EXTENSION_FIELDS = ['extensionsVersion', 'difficulty', 'actionRngState', 'secrets', 'hooks', 'relationships', 'schemes', 'actionLog', 'courtStaff', 'occasions', 'prisoners', 'rumors', 'conversations', 'plotRngState', ...COURT_FIELDS];
 const plain = (state) => JSON.parse(JSON.stringify(state));
+// A save from before the court has no demand, so it has no demand story either.
+const dropDemandStories = (state) => { state.stories = state.stories.filter((story) => story.type !== 'family_demand'); };
 function stripExtensions(state) {
   for (const key of EXTENSION_FIELDS) delete state[key];
+  dropDemandStories(state);
   delete state.offices.spymaster;
   for (const person of Object.values(state.people)) { delete person.skills.intrigue; delete person.skills.prowess; }
   return state;
@@ -306,6 +309,7 @@ function midCampaignSave() {
 test('a version-2 save migrates once to version 3 and replays a year identically', () => {
   const live = midCampaignSave(), old = plain(live);
   for (const key of COURT_FIELDS) delete old[key];
+  dropDemandStories(old);
   old.extensionsVersion = 2;
   const once = normalizeCharacterSystem(plain(old)), twice = normalizeCharacterSystem(plain(once)), viaJson = normalizeCharacterSystem(JSON.parse(JSON.stringify(old)));
   assert.deepEqual(twice, once);

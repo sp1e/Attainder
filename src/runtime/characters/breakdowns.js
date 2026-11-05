@@ -66,7 +66,7 @@ export function breakdownDue(state, actor) {
   return actor.stress >= CRISIS_STRESS && state.stories.some((story) => isCrisisOf(story, actor) && story.status === 'resolved' && crisisRemembered(state, story));
 }
 
-// Task 6 fills this list with its demand records.
+// Each demand refused or lapsed this year weighs on the representative.
 function demandPressure(state) {
   return (state.familyDemands ?? []).filter((demand) => (demand.status === 'refused' && refusedThisYear(state, demand.closedAt)) || (demand.status === 'lapsed' && closedThisYear(state, demand.closedAt))).length * PRESSURE.demand;
 }

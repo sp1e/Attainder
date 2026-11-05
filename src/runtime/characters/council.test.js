@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import { addGameMonths } from '../gameDates.js';
 import { buildCharacterPromptContext } from '../characterWorld.js';
 import { actionHooks, advanceCharacters, createCharacterSystem, estimateConversation, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation, getCharacterWorldEffects, normalizeCharacterSystem } from './index.js';
 import { COUNCIL_SEATS, ambitionOf, capPrecision, chancellorStep, chancellorYield, effectiveIntrigue, loyaltyDriftStep, loyaltyLabel, loyaltyPrecision, presentCouncil, presentLoyalty, readerIntrigue, serviceOf, serviceTier } from './council.js';
 import { courtAnnualStep } from './court.js';
+import { plotRandom } from './extensions.js';
 import { hearScheme } from './rumors.js';
 import { advanceSchemes } from './schemes.js';
 
@@ -20,6 +20,8 @@ const SAFRA = 'person-3-0';
 const SAFRA_KIN = 'person-3-2';
 const MIRA = 'person-0-4';
 const NAMARS = 'family-namar';
+const ESHMUNS = 'family-eshmun';
+const SAFRAS = 'family-safra';
 
 const plain = (value) => JSON.parse(JSON.stringify(value));
 const base = (options = {}) => createCharacterSystem({ seed: 321, ...options });
@@ -99,15 +101,27 @@ function drifted(opinion, grievance, loyalty = 50) {
   return state.people[KELAN].loyalty;
 }
 
-// annualStep is not exported, and no game run can show this order yet: the court step draws nothing and logs nothing in this task, and npcPlotStep reads neither loyalty nor the realm treasury. So the test reads the source.
-test('annualStep runs the court step once, after npcPlotStep', () => {
-  const source = readFileSync(new URL('./index.js', import.meta.url), 'utf8');
-  const start = source.indexOf('function annualStep('), end = source.indexOf('export function advanceCharacters(');
-  assert.ok(start > 0 && end > start);
-  const body = source.slice(start, end);
-  assert.equal(body.match(/\bcourtAnnualStep\(/g)?.length, 1);
-  assert.equal(body.match(/\bnpcPlotStep\(/g)?.length, 1);
-  assert.ok(body.indexOf('npcPlotStep(') < body.indexOf('courtAnnualStep('));
+// The court step rolls a family's demand on the plot stream, so the stream shows where the step runs in the year turn. On this stream the first draw misses Namar's chance of 40 and the draw after the plots hits it.
+const ORDER_STREAM = 123615169;
+const NAMARS_CHANCE = 40;
+// A demand from today keeps its family quiet for 24 months and reaches nothing else in a year turn.
+const yearOnStream = (quietFamilies) => {
+  const state = plain(base());
+  state.plotRngState = ORDER_STREAM;
+  state.familyDemands = quietFamilies.map((familyId) => ({ id: `demand-${familyId}`, familyId, kind: 'office', targetId: 'chancellor', storyId: 'story-none', openedAt: state.date, dueAt: addGameMonths(state.date, 12), status: 'void', closedAt: state.date }));
+  return ok(advanceCharacters(state, state.nextAnnualDate));
+};
+
+test('a year turn rolls the court step on the stream npcPlotStep leaves behind', () => {
+  const afterPlots = yearOnStream([ESHMUNS, NAMARS, SAFRAS]).plotRngState;
+  assert.notEqual(afterPlots, ORDER_STREAM);
+  assert.ok(plotRandom({ plotRngState: ORDER_STREAM }) * 100 >= NAMARS_CHANCE);
+  const next = { plotRngState: afterPlots };
+  assert.ok(plotRandom(next) * 100 < NAMARS_CHANCE);
+
+  const live = yearOnStream([ESHMUNS, SAFRAS]);
+  assert.deepEqual(live.familyDemands.filter((demand) => demand.status === 'open').map((demand) => demand.familyId), [NAMARS]);
+  assert.equal(live.plotRngState, next.plotRngState);
 });
 
 test('a real year turn runs the court step and pays the chancellor\'s yield', () => {
