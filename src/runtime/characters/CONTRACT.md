@@ -187,6 +187,16 @@ Commands added in Phase 2 and their origins:
 | `record_action_narrative` | `narrate` only | Unchanged from Phase 1. |
 | `realm_effect`, `npc_intent` | `gate` only | Unchanged from Phase 1. |
 
+## Phase 3 state, streams and commands
+
+`EXTENSIONS_VERSION` is 3. Saves migrate additively. `state.reign` holds the ruler, the start date, goals, deeds, prestige sources and `lostOrders`. `state.nicknames`, `state.familyDemands` and `state.factions` are lists.
+
+Commands: `set_reign_goal` and `reward_councillor`. Story types: `stress_breakdown`, `family_demand` and `faction_ultimatum`, all dispatched through `COURT_STORY_TYPES` in `court.js`.
+
+Streams: `demandStep` and `factionStep` draw from `plotRngState`, after `npcPlotStep`. `crush` draws once from `actionRngState`, inside `resolveUltimatum`. Reads, odds and the expiry of a story draw nothing.
+
+Presentation: `court` is new, and `people[].loyalty` is gone. `people[].loyaltyReading` gives a label at the reader's precision. `presentFactions` is the only reader that names faction members, and it names only `knownMemberIds`. A crush or a deposition puts every member into `knownMemberIds`. A dissolved or voided faction reveals nobody. The year prompt receives `view.court` and nothing else from these systems.
+
 ## Model proposals and the gate
 
 A model never changes character state directly. Its `impacts.characterOps` reach the state only through `prepareCharacterTimeline`:
