@@ -1,8 +1,16 @@
-# Development checkpoint: Phase 2 of the AI game master
+# Development checkpoint: Phase 3 of the AI game master
 
-Updated on 4 November 2026.
+Updated on 5 November 2026.
 
 ## Branch state
+
+Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The final whole-branch review and a browser run have not happened, and the Phase 3 play script does not exist yet.
+
+- Phase 3, engine: `reign.js`, `court.js`, `council.js`, `dread.js`, `nicknames.js`, `breakdowns.js`, `familyDemands.js`, `factions.js`.
+- Phase 3, model boundary: `buildCharacterPromptContext` adds `court: view.court` and one rule paragraph.
+- Phase 3, panel: `CourtSections.jsx`, with the reign card, `Rådet`, `Krav från familjerna` and `Faktioner`.
+- Tuned constants: `DISCONTENT_THRESHOLD` 15, demand base chance 34. On eight seeds over ten years every system fires, and an ultimatum fires on seven.
+- Phase 3 limitations: a forced abdication does not end a realm campaign; a player can infer an NPC's ambition from traits; `general.loyalty` stays in `militaryReadiness`; an NPC accession wipes a family head's `lostOrders`; a ruler keeps a council seat after accession; no opening ruler has a sibling, so the spec's "ruler's brother" appears once Mira reigns with Neri alive.
 
 Phases 0, 1 and 2 are on `main`. PR #4 squash-merged Phase 2 as `ef0ab7c` on 3 November 2026, and `phase-2/intrigue` keeps its 28 individual commits. Development moved to the owner's private desktop on 4 November 2026. Campaign saves from the earlier computer stayed there.
 
@@ -18,6 +26,7 @@ Phases 0, 1 and 2 are on `main`. PR #4 squash-merged Phase 2 as `ef0ab7c` on 3 N
 
 ## Verification
 
+- Phase 3 on 5 November 2026: `npm test` at `1698e61` ran 4,370 pass, 0 fail. The runtime suite at `62c7bd4` ran 2,280 of 2,280. Panel tests at `054d46a` ran 106 of 106. CI `test` passed on PR #9.
 - Phase 0 gaps on 4 November 2026, branch `test/phase-0-gaps`: 93 tests cover participant and mandate changes during a chain (50), JSON saves between two `advanceCharacters` calls (6), more than 1,000 newer memories (5), and immutable historical roles with story and source uniqueness (32). The last group found a real bug: `validateEventChains` loaded forged saves with swapped roles, rewritten role families, renamed source keys, rewritten city references, repeated steps, step actors outside the cast, deleted chains and spare chain memories. `eventChains.js` now rejects each of them. Full suite after merging main: 3,934 tests, 3,931 pass, 0 fail, 1 skipped, 2 todo.
 - Codex on 4 November 2026: a local Codex 0.166.0 answered through `generateWithLocalModel` in plain text in 8 seconds and with a schema in 5 seconds, using the existing ChatGPT login. The global Codex 0.117.0 on this computer stays as it is, and the game shows `Behöver uppdateras` for it. A full model year through Codex has not run.
 - Phase 2 review on 4 November 2026, branch `fix/phase-2-review`: an independent reviewer reported nine findings against main, and I confirmed all nine in the code. The fixes hide a collapsed plan from a target who never saw it, lift the spymaster's discovery cap only when his bonus is above 0, tell the reply prompt when a speaker has nothing to tell, refuse a hook an active scheme holds, keep prisoners out of new directed stories and event chains, refuse saves with a held prisoner on the throne or in an office, move an open ransom demand to the new captor, stop an actor reusing a secret that already gave a hook, and require 20 silver before an offer grounds an argument. Against main, 24 prisoner-free campaigns over 960 campaign years kept every saved stream and the whole state. The 32 saved states in this checkout that have a prisoner list load on both engines. Serial suite: 3,841 tests, 3,838 pass, 0 fail, 1 skipped, 2 todo, in 102 seconds. `npm run lint`: 18 errors and 71 warnings, unchanged. Still open: a directed story or chain that is already open stays open when its actor goes to prison later.
@@ -73,7 +82,7 @@ The play scripts reached four of the five tiers. `Det slog tillbaka` did not com
 
 ## Next step
 
-Review Phase 2 as merged, then write the Phase 3 plan (court and power) in `docs/superpowers/plans/`.
+Finish Phase 3: write `docs/play-scripts/phase-3.md` from Task 11 of the plan, run a whole-branch review of `e735a5b..9a780f7`, and run the script in a browser. Then write the Phase 4 plan (moments 5, 6, 8, 9 and 10).
 
 ## Known Phase 2 limitations
 

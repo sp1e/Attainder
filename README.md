@@ -69,6 +69,10 @@ Phase 2 adds secrets, plots and prisoners on top of the Phase 1 action engine. A
 
 [The Phase 2 play script](docs/play-scripts/phase-2.md) walks through each feature in the running game. Known limits are listed in `docs/development/CONTINUE-HERE.md`.
 
+## Court and power
+
+A reign now has goals, prestige and earned nicknames. Legitimacy shows its sources. Council members serve according to loyalty you can only read as well as your spymaster can. Dread holds some nobles back and turns others into enemies. Sustained stress ends in a breakdown with a real cost. Great families demand cities and offices. Discontented nobles form hidden factions, and a strong faction sends a dated ultimatum: abdicate, concede, try to crush it, or lose the throne when the date comes. The engine decides every outcome, and the model sees the court only as far as you know it.
+
 ## Scenarios Are Released Under CC BY 4.0
 
 The upstream scenario-sharing rules remain in place. Scenarios posted or shared through the game are released under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/). Exported scenario files include the corresponding license record. Separately referenced maps, music and other third-party material retain their own terms.
