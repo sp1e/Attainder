@@ -369,14 +369,13 @@ test('crush draws once from the action stream and leaves plotRngState and rngSta
   loads(after);
 });
 
-test('a crushed faction names none of its hidden members', () => {
+test('the crush event names the leader alone', () => {
   const { state, story } = opened();
   state.actionRngState = CERTAIN;
-  const result = answer(state, story, 'crush'), { events } = result;
+  const { events } = answer(state, story, 'crush');
   for (const id of [DARA, KELAN, TALIA]) {
     assert.ok(!JSON.stringify(events).includes(id), id);
     assert.ok(!JSON.stringify(events).includes(state.people[id].name), id);
-    assert.ok(!actionHooks(result.state).opinionReasons(id, AREL).some(({ label }) => /faktion/i.test(label)), 'a prompt reads these rows');
   }
 });
 
@@ -430,8 +429,8 @@ test('an expiry leaves a ruler of the claimant\'s own family free', () => {
   assert.equal(after.realm.legitimacy, 35);
 });
 
-test('an ignored ultimatum forces abdication on its date, the same for whole and split advances', () => {
-  const { state, story } = opened({}, { claimantId: BAREK });
+for (const [mode, options] of Object.entries(MODES)) test(`an ignored ultimatum forces abdication on its date, the same for whole and split advances in ${mode} mode`, () => {
+  const { state, story } = opened(options, { claimantId: BAREK });
   const eve = advance(state, addGameMonths(state.date, 5));
   assert.equal(eve.offices.ruler.holderId, AREL);
   assert.equal(ultimatumOf(eve).id, story.id);
@@ -445,8 +444,8 @@ test('an ignored ultimatum forces abdication on its date, the same for whole and
   assert.deepEqual(content(plain(split)), content(plain(whole)));
 });
 
-test('a story the new ruler ends falls on the date of the abdication, the same for whole and split advances', () => {
-  const { state, story } = opened({}, { claimantId: BAREK });
+for (const [mode, options] of Object.entries(MODES)) test(`a story the new ruler ends falls on the date of the abdication, the same for whole and split advances in ${mode} mode`, () => {
+  const { state, story } = opened(options, { claimantId: BAREK });
   state.stories.push({ id: 'story-coup', type: 'coup', status: 'open', title: 'Kupp', description: 'Prov', actorId: BAREK, familyId: ESHMUNS, createdAt: state.date, dueAt: addGameMonths(state.date, 24), knownBy: 'public' });
   const target = addGameMonths(story.dueAt, 4);
   const whole = ok(advanceCharacters(state, target, { id: 'whole' }));

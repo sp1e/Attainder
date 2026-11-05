@@ -1,5 +1,5 @@
 import { addGameMonths, compareGameDates, normalizeGameDate } from '../gameDates.js';
-import { ODDS_MAX, ODDS_MIN, bandFor, precisionFor } from './actionOdds.js';
+import { bandFor, chanceFromRows, precisionFor } from './actionOdds.js';
 import { COUNCIL_SEATS, ambitionOf, capPrecision, loyaltyPrecision, readerIntrigue, serviceOf, serviceTier } from './council.js';
 import { cowNobles } from './dread.js';
 import { actionRandom, normalizeDifficulty, plotRandom, spymasterOf } from './extensions.js';
@@ -8,8 +8,8 @@ import { imprisonPerson, imprisonRefusal, isImprisoned } from './prisoners.js';
 import { addPrestige, reignMonths } from './reign.js';
 
 // Factions: discontented nobles gather against the ruler in secret, and the spymaster uncovers them a person at a time. A record is { id: 'faction-<n>', targetRulerId, leaderId, claimantId, memberIds, knownMemberIds, formedAt, status, outcome, quietUntil, ultimatumAt, dueAt, storyId, concessions, closedAt } and lives in state.factions. memberIds and knownMemberIds stay sorted, every known member is a member, and one faction lives at a time.
-// Silence is a hard rule. A forecast passes event text to the model, so forming, joining, leaving and dissolving write no event, no memory and no log line. A discovery logs and its text names nobody. presentFactions is the only reader that reveals names, and only known ones.
-// At strength 50 a faction comes out with a dated ultimatum, and its leader with it. The ruler abdicates, concedes or tries to crush it, and an unanswered ultimatum or a failed crush deposes the ruler. A concession buys 36 months, after which the faction goes back to work in the dark. An open ultimatum is public, so its story names the people behind it, and settleFaction retells it when one is replaced.
+// Silence is a hard rule. A forecast passes event text to the model, so forming, joining, leaving and dissolving write no event, no memory and no log line. A discovery logs and its text names nobody. While a faction lives, presentFactions is the only reader that reveals names, and only known ones.
+// At strength 50 a faction comes out with a dated ultimatum, and its leader with it. The ruler abdicates, concedes or tries to crush it, and an unanswered ultimatum or a failed crush deposes the ruler. A concession buys 36 months, after which the faction goes back to work in the dark. An open ultimatum is public, so its story names the people behind it, and settleFaction retells it when one is replaced. A crush or a deposition brings the whole faction into the open: both copy memberIds to knownMemberIds before they write a row, so a member outside knownMemberIds never reaches the view or a prompt. A concession, an abdication, a dissolved faction and a voided one reveal nobody.
 // The yearly step runs only while the player holds the crown as an adult. It draws only from the plot stream (plotRandom), and only after every other check passed. The one other draw is the crush, from the action stream (actionRandom).
 // `hooks` are the engine's (actionHooks in index.js). actionResolution.js, npcPlots.js and schemes.js import each other in a cycle, so AGGRESSION is read only inside a function here.
 
@@ -42,10 +42,11 @@ const ANSWER_ORDERS = 1;
 const NO_MANDATE = 'Kräver härskarmandat.';
 const NO_ORDERS = 'Årets handlingsutrymme är slut. För tiden framåt.';
 const NO_FUNDS = 'Otillräcklig statskassa.';
+const NO_REGENT = 'En regent kan inte avsäga sig härskarens tron.';
 const ABDICATION = Object.freeze({ reason: 'Abdikation under tryck från adeln', legitimacyLoss: 10, legitimacyFloor: 30, prestige: -8 });
 const CONCESSION = Object.freeze({ silver: 60, perConcession: 40, legitimacy: -5, quietMonths: 36 });
-// A prompt reads opinion rows, and a hidden member has one of these, so the labels name no faction.
 const CRUSHED = Object.freeze({ fear: 15, opinion: -15, opinionLabel: 'Kronans hårda hand mot adeln', legitimacy: -3, title: 'Faktionen slås ned' });
+// A head outside the faction earns this row too, so its label names no faction.
 const DEPOSITION = Object.freeze({ reason: 'Adeln tvingar fram en abdikation', title: 'Adeln tvingar härskaren från tronen', legitimacy: 35, prestige: -15, influence: -15, stress: 30, stressMax: 200, grievance: 10, opinion: 10, opinionLabel: 'Stöder det nya styret', chancellorReason: 'Faktionen belönar sin ledare' });
 const ODDS = Object.freeze({ base: 50, readinessBase: 55, readinessPer: 2, legitimacyBase: 50, legitimacyPer: 3, strengthBase: 50, strengthPer: 2, dreadPer: 5, dreadMax: 10 });
 const GENERAL_ROW = 'Överbefälhavarens tjänst';
@@ -70,6 +71,8 @@ const isAtLarge = (state, person) => !state.families[person.familyId].exiled && 
 // hooks.adult is false for the dead and for a person who is missing.
 const isFree = (state, person, hooks) => hooks.adult(person) && isAtLarge(state, person);
 const closeFaction = (state, faction, outcome) => { Object.assign(faction, { status: 'closed', outcome, closedAt: state.date }); };
+// The opinion rows of a crush and a deposition carry the faction's id into the view, so the whole faction counts as known before the first row.
+const closeInTheOpen = (state, faction, outcome) => { closeFaction(state, faction, outcome); faction.knownMemberIds = [...faction.memberIds]; };
 const factionOf = (state, story) => state.factions.find((faction) => faction.id === story.factionId);
 const ultimatumStory = (state, faction) => state.stories.find((story) => story.id === faction.storyId);
 const moveLegitimacy = (state, amount) => { state.realm.legitimacy = clamp(state.realm.legitimacy + amount, 0, 100); };
@@ -265,18 +268,11 @@ function crushPrecision(state, hooks) {
   return capPrecision(precisionFor(state.people[state.offices.general.holderId].skills.command), loyaltyPrecision(state, hooks));
 }
 
-// As presentChance in conversation.js: a band hides the cut, which would show that the chance sits at a bound, and the general's row, which would read loyalty.
-function presentCrush(precision, value, rows, modifiers) {
-  if (precision === 'exact') return { chance: value, modifiers: modifiers.map(({ label, value: amount }) => ({ label, value: amount })) };
-  return { chance: bandFor(value, precision), modifiers: rows.filter(({ label }) => label !== GENERAL_ROW).map(({ label, value: amount }) => ({ label, sign: amount > 0 ? '+' : '−' })) };
-}
-
-/** The chance to crush the faction, 5 to 95. Reads only. `rows` add up to `value`, with the cut at a bound as a row of its own, and `display` is what the player may read of them. */
+/** The chance to crush the faction, 5 to 95. Reads only. `rows` add up to `value`, with the cut at a bound as a row of its own, and `display` is what the player may read of them. A band hides the general's row, which would read loyalty. */
 export function crushOdds(state, faction, hooks) {
-  const rows = crushRows(state, faction, hooks), raw = rows.reduce((total, row) => total + row.value, 0), value = clamp(raw, ODDS_MIN, ODDS_MAX);
-  const modifiers = value === raw ? rows : [...rows, { label: value < raw ? 'Högsta möjliga chans' : 'Lägsta möjliga chans', value: value - raw }];
   const precision = crushPrecision(state, hooks);
-  return { value, precision, rows: modifiers, display: presentCrush(precision, value, rows, modifiers) };
+  const { value, modifiers, display } = chanceFromRows(crushRows(state, faction, hooks), precision, GENERAL_ROW);
+  return { value, precision, rows: modifiers, display };
 }
 
 function answerBar(state, hooks) {
@@ -292,7 +288,7 @@ export function ultimatumChoices(state, story, hooks) {
   const bar = answerBar(state, hooks), silver = concessionCost(faction), cost = '1 handling';
   const stress = (tag) => String(hooks.stressFor(hooks.activeRepresentative(), tag));
   return [
-    { id: 'abdicate', label: `Abdikera till förmån för ${state.people[faction.claimantId].name}`, description: `Tronen går lagligt vidare. Riket tappar ${ABDICATION.legitimacyLoss} i legitimitet, till lägst ${ABDICATION.legitimacyFloor}, och ${-ABDICATION.prestige} i ryktbarhet.`, tag: 'surrender', cost, stress: stress('surrender'), disabledReason: bar },
+    { id: 'abdicate', label: `Abdikera till förmån för ${state.people[faction.claimantId].name}`, description: `Tronen går lagligt vidare. Riket tappar ${ABDICATION.legitimacyLoss} i legitimitet, till lägst ${ABDICATION.legitimacyFloor}, och ${-ABDICATION.prestige} i ryktbarhet.`, tag: 'surrender', cost, stress: stress('surrender'), disabledReason: state.offices.ruler.regentId ? NO_REGENT : bar },
     { id: 'concede', label: 'Ge efter för adeln', description: `Adeln väntar i ${CONCESSION.quietMonths} månader, men faktionen består. Riket tappar ${-CONCESSION.legitimacy} i legitimitet.`, cost: `${silver} silver ur statskassan och 1 handling`, stress: stress('duty'), disabledReason: bar || (state.realm.treasury < silver ? NO_FUNDS : '') },
     { id: 'crush', label: 'Slå ned faktionen', description: `Chans att lyckas: ${bandFor(value, precision)}`, tag: 'risky', odds: display, cost, stress: stress('risky'), disabledReason: bar },
   ];
@@ -316,10 +312,10 @@ function jailIfAllowed(state, person, captorFamilyId, events, hooks, lawful) {
   if (!imprisonRefusal(person.id, hooks)) imprisonPerson(state, person.id, captorFamilyId, events, hooks, { lawful });
 }
 
-// The crown holds. The event names the leader only: the other members stay hidden, also now.
+// The crown holds. The public event names the leader alone, and the opinion rows name the rest.
 function breakFaction(state, faction, events, hooks) {
   const ruler = hooks.ruler(), leader = state.people[faction.leaderId];
-  closeFaction(state, faction, 'crushed');
+  closeInTheOpen(state, faction, 'crushed');
   jailIfAllowed(state, leader, ruler.familyId, events, hooks, true);
   cowNobles(state, CRUSHED.fear, hooks);
   for (const id of faction.memberIds) hooks.opinionCause(id, ruler.id, CRUSHED.opinion, CRUSHED.opinionLabel, faction.id);
@@ -339,7 +335,7 @@ function rewardHouses(state, faction, ruler, hooks) {
 // The expiry runs this with no player present, so nothing here reads a story or spends an order. The faction closes first, so that crown leaves its outcome alone.
 function depose(state, faction, events, hooks, { confine = false } = {}) {
   const old = hooks.ruler(), claimant = state.people[faction.claimantId], leader = state.people[faction.leaderId], family = state.families[old.familyId];
-  closeFaction(state, faction, 'deposed');
+  closeInTheOpen(state, faction, 'deposed');
   hooks.crown(claimant, events, DEPOSITION.reason, DEPOSITION.legitimacy, false);
   addPrestige(state, DEPOSITION.prestige);
   family.influence = Math.max(0, family.influence + DEPOSITION.influence);

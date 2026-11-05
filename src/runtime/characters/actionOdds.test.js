@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { addGameMonths } from '../gameDates.js';
 import { createCharacterSystem, getPersonalOpinion } from './index.js';
 import { ACTION_CATALOG } from './actionCatalog.js';
-import { bandFor, estimateAction, precisionFor } from './actionOdds.js';
+import { bandFor, chanceFromRows, estimateAction, precisionFor } from './actionOdds.js';
 import { createSecret } from './secrets.js';
 
 const ACTOR = 'person-0-0';
@@ -700,4 +700,22 @@ test('imprison refuses a target who represents the family or the realm', () => {
   const state = scene();
   const refused = estimate(state, 'imprison', { ctx: { representativeId: TARGET, activeRepresentativeId: ACTOR } });
   assert.deepEqual([refused.ok, refused.reason], [false, 'Den som företräder familjen eller riket kan inte fängslas.']);
+});
+
+test('chanceFromRows cuts at the bounds and leaves the rows it was given alone', () => {
+  const rows = [{ label: 'Grundchans', value: 50 }, { label: 'Dold rad', value: 60 }], before = structuredClone(rows);
+  const { value, modifiers } = chanceFromRows(rows, 'exact', 'Dold rad');
+  assert.equal(value, 95);
+  assert.deepEqual(modifiers, [...before, { label: 'Högsta möjliga chans', value: -15 }]);
+  assert.deepEqual(rows, before);
+  const low = chanceFromRows([{ label: 'Grundchans', value: 10 }, { label: 'Straff', value: -30 }], 'exact', 'Dold rad');
+  assert.deepEqual({ value: low.value, cut: low.modifiers.at(-1) }, { value: 5, cut: { label: 'Lägsta möjliga chans', value: 25 } });
+  assert.deepEqual(chanceFromRows([{ label: 'Grundchans', value: 50 }], 'exact', 'Dold rad').modifiers, [{ label: 'Grundchans', value: 50 }]);
+});
+
+test('chanceFromRows shows exact rows in full and a band only the sign of the rows it may show', () => {
+  const rows = [{ label: 'Grundchans', value: 50 }, { label: 'Straff', value: -5 }, { label: 'Dold rad', value: 60 }];
+  const exact = chanceFromRows(rows, 'exact', 'Dold rad');
+  assert.deepEqual(exact.display, { chance: 95, modifiers: exact.modifiers });
+  assert.deepEqual(chanceFromRows(rows, 'five', 'Dold rad').display, { chance: bandFor(95, 'five'), modifiers: [{ label: 'Grundchans', sign: '+' }, { label: 'Straff', sign: '−' }] });
 });

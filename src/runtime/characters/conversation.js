@@ -1,5 +1,5 @@
 import { addGameMonths, compareGameDates, normalizeGameDate } from '../gameDates.js';
-import { ODDS_MAX, ODDS_MIN, bandFor, precisionFor } from './actionOdds.js';
+import { ODDS_MAX, ODDS_MIN, chanceFromRows, precisionFor } from './actionOdds.js';
 import { TRAITS } from './content.js';
 import { capPrecision, loyaltyPrecision } from './council.js';
 import { actionRandom } from './extensions.js';
@@ -152,12 +152,6 @@ function buildRows(read, speaker, representative, ctx, grounding, hooks) {
   return rows;
 }
 
-// What the player may read: exact shows every row with its value, the band precisions only the label and sign of each cause. The cut row stays out of a band display because it would reveal that the chance sits exactly at a bound. So does the loyalty row, which still counts in the odds: its sign, or its absence at zero, would sort a hidden loyalty into buckets.
-function presentChance(precision, value, rows, modifiers) {
-  if (precision === 'exact') return { chance: value, modifiers: modifiers.map(({ label, value: amount }) => ({ label, value: amount })) };
-  return { chance: bandFor(value, precision), modifiers: rows.filter(({ label }) => label !== LOYALTY_ROW).map(({ label, value: amount }) => ({ label, sign: amount > 0 ? '+' : '−' })) };
-}
-
 /**
  * Odds for one conversation request, or a Swedish refusal. `request` is { personId, kind, offerSilver, hookId, arguments: [{ kind, refId }], argumentScore }. Pure: no randomness, no spending, no edit.
  * Rows: Grundchans (by kind), the speaker's opinion of the representative (round(op / 4), ±20), loyalty (round((loyalty − 50) / 5)), the offer (floor(silver / 4), at most 15), greedy +8 with any offer, honest −10 for a secret, paranoid −8, trusting +6, a hook +20, and `Övertygande argument` = min(10, argumentScore) when at least one argument is grounded. The value is cut to 5 to 95; the cut is a row of its own.
@@ -180,10 +174,9 @@ export function estimateConversation(state, request, hooks) {
   const ctx = { representative, speaker, offer: read.offer, hookId: read.hookId, hooks };
   const grounding = groundedArguments(state, read.given, ctx);
   const rows = buildRows(read, speaker, representative, ctx, grounding, hooks);
-  const raw = rows.reduce((total, row) => total + row.value, 0), value = clamp(raw, ODDS_MIN, ODDS_MAX);
-  const modifiers = value === raw ? rows : [...rows, { label: value < raw ? 'Högsta möjliga chans' : 'Lägsta möjliga chans', value: value - raw }];
   const precision = capPrecision(precisionFor(representative.skills?.diplomacy), loyaltyPrecision(state, hooks));
-  return { ok: true, personId: speaker.id, kind: read.kind, offerSilver: read.offer, hookId: read.hookId, value, modifiers, precision, display: presentChance(precision, value, rows, modifiers), groundedArguments: grounding };
+  const { value, modifiers, display } = chanceFromRows(rows, precision, LOYALTY_ROW);
+  return { ok: true, personId: speaker.id, kind: read.kind, offerSilver: read.offer, hookId: read.hookId, value, modifiers, precision, display, groundedArguments: grounding };
 }
 
 // The secret the speaker holds and the representative lacks, strongest evidence first and the lowest id among equals; exposed secrets are no longer secret.
