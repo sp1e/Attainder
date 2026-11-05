@@ -568,3 +568,66 @@ test('snapshot export does not migrate an unresolved game before its map is boun
   assert.deepEqual(ok(await games('GET',`${game.game.id}/snapshots`)),points);
   assert.equal(db.get('games').get(game.game.id).json.world.ownerSchema,1);
 });
+
+test('unresolved web game cannot write a colliding scenario or read its stats', async () => {
+  for (const [hasOriginal,savedStats] of [[true,{savedDefinition:'original'}],[true,undefined],[false,{savedDefinition:'original'}],[false,undefined]]) {
+    await reset();
+    const legacy={schema:'open-historia-game-bundle/1',game:{name:'Legacy'},...(hasOriginal ? {scenarioRef:{scenarioId:'old-map'}} : {}),
+      data:{game:{gameDate:'2016-01-01'},world:{ownerSchema:4},events:[],...(savedStats ? {stats:savedStats} : {})}};
+    const imported=ok(await games('POST','import',legacy));
+    assert.equal(imported.game.scenarioMissing,true);
+    const reserved=imported.game.scenarioId;
+    const unrelated=structuredClone(HISTORICAL); unrelated.scenario.id=reserved;
+    unrelated.assets.stats={mode:'embedded',data:{foreignDefinition:'unrelated'}};
+    assert.equal(ok(await scenarios('POST','import',unrelated)).scenario.id,reserved);
+    ok(await games('PUT','active',{gameId:imported.game.id}));
+    const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;
+    for(const [key,body] of [
+      ['regionsGeojson',REGIONS],['citiesGeojson',CITIES],['backgroundData',{kind:'image',opacity:0.123}],
+    ]) {
+      const response=await store.handleRuntimeJson({method:'PUT',segments:['json',key],body});
+      assert.equal(response.status,400,key);
+      assert.deepEqual(db,before,key); assert.equal(globalThis.__ohWebStoreWrites,writes,key);
+    }
+    const response=await store.handleRuntimeJson({method:'GET',segments:['json','stats']});
+    assert.equal(response.status,200); assert.deepEqual(await response.json(),savedStats ?? {});
+    assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes);
+  }
+});
+
+test('bound game and no-active-game editor retain runtime map writes and scenario stats', async () => {
+  await reset();
+  const runtime=(method,key,body) => store.handleRuntimeJson({method,segments:['json',key],body});
+  const authored=structuredClone(HISTORICAL); authored.assets.stats={mode:'embedded',data:{scenarioDefinition:'bound'}};
+  const scenarioId=ok(await scenarios('POST','import',authored)).scenario.id;
+  // The generic test seed is intentionally legacy-only; install a valid default
+  // scenario so this positive control tests the editor rather than start policy.
+  const valid=structuredClone(db.get('scenarios').get(scenarioId)); valid.id='default'; valid.meta.id='default';
+  db.get('scenarios').set('default',valid);
+  const editor=await runtime('PUT','backgroundData',{kind:'image',opacity:0.25});
+  assert.equal(editor.status,200,'scenario editor works without an active game');
+  ok(await games('POST','',{scenarioId,setActive:true}));
+  const stats=await runtime('GET','stats'); assert.deepEqual(await stats.json(),{scenarioDefinition:'bound'});
+  for(const [key,body] of [['regionsGeojson',REGIONS],['citiesGeojson',CITIES],['backgroundData',{kind:'image',opacity:0.5}]]) {
+    const response=await runtime('PUT',key,body); assert.equal(response.status,200,key);
+    assert.deepEqual(await response.json(),body,key);
+  }
+});
+
+
+test('unresolved saved stats never come from a colliding scenario', async () => {
+  for (const savedStats of [{savedDefinition:'original'},undefined]) {
+    await reset();
+    const legacy={schema:'open-historia-game-bundle/1',game:{name:'Stats legacy'},scenarioRef:{scenarioId:'old-map'},
+      data:{game:{gameDate:'2016-01-01'},world:{ownerSchema:4},events:[],...(savedStats ? {stats:savedStats} : {})}};
+    const game=ok(await games('POST','import',legacy));
+    const other=structuredClone(HISTORICAL); other.scenario.id=game.game.scenarioId;
+    other.assets.stats={mode:'embedded',data:{foreignDefinition:'unrelated'}};
+    assert.equal(ok(await scenarios('POST','import',other)).scenario.id,game.game.scenarioId);
+    ok(await games('PUT','active',{gameId:game.game.id}));
+    const before=structuredClone(db),writes=globalThis.__ohWebStoreWrites;
+    const result=await store.handleRuntimeJson({method:'GET',segments:['json','stats']});
+    assert.equal(result.status,200); assert.deepEqual(await result.json(),savedStats ?? {});
+    assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes);
+  }
+});

@@ -641,8 +641,7 @@ const readRuntimeJsonAsset = async (assetKey) => {
   // Keep a game-level stats snapshot only as a fallback for imported/orphaned
   // campaigns whose source scenario is genuinely unavailable.
   if (assetKey === "stats" && activeGame) {
-    const scenarioId = readGameMeta(activeGame.id, activeGame.meta ?? {}).scenarioId;
-    const exactScenario = scenarioId ? await getScenario(scenarioId) : null;
+    const exactScenario = await getActiveRuntimeScenarioRecord();
     if (exactScenario) {
       const scenarioValue = runtimeValueFromRecord(exactScenario, assetKey, /*scenarioScope*/ true);
       return scenarioValue === undefined ? {} : coerceRuntimeValue(assetKey, scenarioValue);
@@ -725,14 +724,13 @@ const writeRuntimeJsonAsset = (assetKey, value) =>
 
 const writeRuntimeJsonAssetLocked = async (assetKey, value) => {
   if (SCENARIO_GEOJSON_ASSET_KEYS.includes(assetKey)) {
-    const activeGame = await getActiveGameRecord();
-    const scenarioId = activeGame ? readGameMeta(activeGame.id,activeGame.meta).scenarioId : DEFAULT_SCENARIO_ID;
-    if (!(await getScenario(scenarioId))) throw new Error("Scenariot saknas.");
+    const scenario = await getActiveRuntimeScenarioRecord();
+    if (!scenario) throw new Error("Scenariot saknas.");
     if (!value || typeof value !== 'object' || Array.isArray(value)
       || (['regionsGeojson','citiesGeojson'].includes(assetKey) && (value.type !== 'FeatureCollection' || !Array.isArray(value.features)))) {
       throw new Error("Kartfilen måste innehålla giltig GeoJSON.");
     }
-    await uploadScenarioAsset(scenarioId,assetKey,new TextEncoder().encode(JSON.stringify(value)),"application/json");
+    await uploadScenarioAsset(scenario.id,assetKey,new TextEncoder().encode(JSON.stringify(value)),"application/json");
     return value;
   }
   if (!JSON_ASSET_KEYS.includes(assetKey) && !OPTIONAL_JSON_ASSET_KEYS.includes(assetKey) && !RUNTIME_ONLY_JSON_ASSET_KEYS.includes(assetKey)) {
