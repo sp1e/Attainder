@@ -509,6 +509,46 @@ test('lasting_work needs someone who can give the build order, or a work still u
     project(inherited, { kind, status, dueAt: addGameMonths(inherited.date, months) });
     assert.equal(refusal(inherited), answer, `${kind} ${status} ${months}`);
   }
+  // An active work decides alone, also for a ruler of the right archetype: its command stays closed while the work stands. [archetype, kind, status, months to its date, answer]
+  for (const [archetype, kind, status, months, answer] of [['scholar', 'academy', 'active', -1, NO_BUILDER], ['builder', 'aqueduct', 'active', -1, NO_BUILDER], ['scholar', 'aqueduct', 'active', -1, NO_BUILDER], ['scholar', 'academy', 'active', 0, ''], ['builder', 'aqueduct', 'active', 0, ''], ['scholar', 'aqueduct', 'completed', -1, ''], ['builder', 'aqueduct', 'completed', -1, '']]) {
+    const overdue = base();
+    overdue.people[RULER].archetype = archetype;
+    project(overdue, { kind, status, dueAt: addGameMonths(overdue.date, months) });
+    assert.equal(refusal(overdue), answer, `${archetype} ${kind} ${status} ${months}`);
+  }
+  // One work that can still finish is enough, also beside an overdue one.
+  const mixed = base();
+  project(mixed, { kind: 'aqueduct', status: 'active', dueAt: addGameMonths(mixed.date, -1) });
+  project(mixed, { kind: 'academy', status: 'active', dueAt: addGameMonths(mixed.date, 12) });
+  assert.equal(refusal(mixed), '');
+});
+
+test('reconcile_houses needs another house in the realm', () => {
+  const NO_HOUSES = 'Det finns inga andra hus att försona.';
+  const refusal = (state) => goalRefusal(state, 'reconcile_houses', actionHooks(state));
+  const offered = (state) => getAvailableCharacterActions(state).find((item) => item.type === 'set_reign_goal').fields[0].options.map((option) => option.value);
+  const state = base();
+  assert.equal(refusal(state), '');
+  combine(exile(NAMARS), extinct('family-safra'))(state);
+  assert.equal(refusal(state), '', 'one house left is enough');
+  assert.ok(offered(state).includes('reconcile_houses'));
+  // The ruler's own house is no other house, and it stays the only one here.
+  exile('family-eshmun')(state);
+  assert.equal(refusal(state), NO_HOUSES, 'exiled and extinct');
+  assert.equal(goalRefusal(state, 'strong_army', actionHooks(state)), '', 'the other goals stay open');
+  assert.equal(offered(state).includes('reconcile_houses'), false);
+  assert.throws(() => setReignGoal(state, 'reconcile_houses', actionHooks(state)), { message: NO_HOUSES });
+  const empty = base();
+  combine(extinct(NAMARS), extinct('family-safra'), extinct('family-eshmun'))(empty);
+  assert.equal(refusal(empty), NO_HOUSES, 'all extinct');
+  assert.equal(run(empty, 'set_reign_goal', { goalType: 'reconcile_houses' }).error, NO_HOUSES);
+  // A full list and a goal already tried speak first.
+  const full = setGoal(setGoal(base(), 'strong_army'), 'fill_treasury');
+  combine(exile(NAMARS), exile('family-safra'), exile('family-eshmun'))(full);
+  assert.equal(refusal(full), 'Två mål är redan utlysta.');
+  const tried = setGoal(base(), 'reconcile_houses');
+  combine(exile(NAMARS), exile('family-safra'), exile('family-eshmun'))(tried);
+  assert.equal(refusal(tried), 'Målet har redan prövats under denna regering.');
 });
 
 test('a real build closes lasting_work as met in the year it finishes', () => {

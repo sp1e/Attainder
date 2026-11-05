@@ -20,6 +20,7 @@ const GOAL_REFUSALS = Object.freeze({
   full: 'Två mål är redan utlysta.',
   tried: 'Målet har redan prövats under denna regering.',
   noBuilder: 'Härskaren kan inte bygga ett sådant verk.',
+  noHouses: 'Det finns inga andra hus att försona.',
 });
 const STATUS_LABELS = Object.freeze({ active: 'Pågår', met: 'Uppnått', failed: 'Förfelat' });
 const GOAL_KEYS = Object.freeze(['id', 'type', 'baseline', 'setAt', 'dueAt', 'status', 'closedAt']);
@@ -37,11 +38,16 @@ const canonical = (date) => typeof date === 'string' && normalizeGameDate(date) 
 const count = (value) => Number.isInteger(value) && value >= 0;
 const exactKeys = (value, keys) => plainObject(value) && Object.keys(value).length === keys.length && keys.every((key) => Object.hasOwn(value, key));
 
-// Counts the other houses still in the realm with someone alive. A realm with none of them has nobody to reconcile, so the goal stays open.
-function housesReconciled(state, goal, hooks) {
+// The houses besides the ruler's that are in the realm and have someone alive.
+function otherHouses(state) {
   const own = state.people[state.reign.rulerId]?.familyId;
   const peopled = new Set(Object.values(state.people).filter((person) => !person.diedAt).map((person) => person.familyId));
-  const others = Object.values(state.families).filter((family) => family.id !== own && !family.exiled && peopled.has(family.id));
+  return Object.values(state.families).filter((family) => family.id !== own && !family.exiled && peopled.has(family.id));
+}
+
+// Houses can die out or leave after the goal is set, and a realm with none left has nobody to reconcile, so the goal then stays open.
+function housesReconciled(state, goal, hooks) {
+  const others = otherHouses(state);
   return others.length > 0 && others.every((family) => hooks.familySupport(family) >= 55);
 }
 
@@ -112,11 +118,12 @@ export function legitimacySources(state) {
   return [...rows, { label: OTHER_SOURCES_LABEL, value: Math.round(state.realm.legitimacy) - explained }].filter((row) => row.value !== 0);
 }
 
-// The active representative gives the build order, so a regent's archetype counts over the ruler's. A work under way must still be able to finish on or after the day the goal is set.
+// An active work decides alone. Its own command stays closed while it stands, so the goal needs a work that finishes on or after the day it is set. With none active, the active representative gives the build order, so a regent's archetype counts over the ruler's.
 function canBuildWork(state, hooks) {
+  const works = state.projects.filter((project) => isWork(project) && project.status === 'active');
+  if (works.length) return works.some((project) => compareGameDates(project.dueAt, state.date) >= 0);
   const action = ARCHETYPES[hooks.activeRepresentative()?.archetype]?.action;
-  const buildable = action === 'academy' ? !state.realm.academy : LASTING_WORKS.includes(action);
-  return buildable || state.projects.some((project) => isWork(project) && project.status === 'active' && compareGameDates(project.dueAt, state.date) >= 0);
+  return action === 'academy' ? !state.realm.academy : LASTING_WORKS.includes(action);
 }
 
 /** Why `goalType` cannot be set now, or '' when it can. */
@@ -125,6 +132,7 @@ export function goalRefusal(state, goalType, hooks) {
   if (!goalRow(goalType)) return GOAL_REFUSALS.unknown;
   if (goals.filter(isActive).length >= MAX_ACTIVE_GOALS) return GOAL_REFUSALS.full;
   if (goals.some((goal) => goal.type === goalType)) return GOAL_REFUSALS.tried;
+  if (goalType === 'reconcile_houses' && !otherHouses(state).length) return GOAL_REFUSALS.noHouses;
   return goalType === 'lasting_work' && !canBuildWork(state, hooks) ? GOAL_REFUSALS.noBuilder : '';
 }
 
