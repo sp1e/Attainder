@@ -185,11 +185,7 @@ test('reignMonths counts whole months on the game calendar', () => {
 test('crown opens a new reign with no goals', () => {
   const state = base(), hooks = actionHooks(state);
   recordDeed(state, 'cruel'); grantLegitimacy(state, 'goals', 6); state.reign.lostOrders = 2;
-  const active = { id: 'goal-1', type: 'fill_treasury', status: 'active', closedAt: null };
-  const met = { id: 'goal-2', type: 'strong_army', status: 'met', closedAt: '-0301-01-01' };
-  state.reign.goals.push(active, met);
   hooks.crown(state.people[HEIR], [], 'Ett prov', 40, false);
-  assert.deepEqual(met, { id: 'goal-2', type: 'strong_army', status: 'met', closedAt: '-0301-01-01' });
   assert.deepEqual(state.reign, { rulerId: HEIR, startedAt: state.date, lawful: false, deeds: NO_DEEDS, goals: [], sources: { accession: 40, goals: 0, prestige: 0 }, lostOrders: 0 });
   assert.equal(state.realm.legitimacy, 40);
   assert.deepEqual(legitimacySources(state), [{ label: 'Tronföljd', value: 40 }]);
@@ -279,6 +275,8 @@ const army = (value) => (state) => { state.realm.armyStrength = value; };
 const grievance = (familyId, value) => (state) => { state.families[familyId].grievance = value; };
 const everyHouse = (value) => (state) => { for (const family of Object.values(state.families)) family.grievance = value; };
 const combine = (...steps) => (state) => { for (const arrange of steps) arrange(state); };
+const exile = (familyId) => (state) => { state.families[familyId].exiled = true; };
+const extinct = (familyId) => (state) => { for (const person of Object.values(state.people)) if (person.familyId === familyId) person.diedAt = state.date; };
 const project = (state, fields) => state.projects.push({ id: `project-test-${++counter}`, kind: 'aqueduct', title: 'Ett prov', ownerId: RULER, createdAt: state.date, dueAt: state.date, personal: false, status: 'completed', ...fields });
 const builder = (state) => { state.people[RULER].archetype = 'builder'; };
 const fear = (value) => (state) => { for (const person of Object.values(state.people)) if (person.familyId !== ARELS) person.fear = value; };
@@ -301,6 +299,9 @@ const GOAL_CASES = [
   ['reconcile_houses', 'every other house at 55', null, everyHouse(40), combine(everyHouse(40), grievance(NAMARS, -40)), 10, 60],
   ['reconcile_houses', 'a house in exile does not count', null, combine(everyHouse(40), grievance(NAMARS, -40), (state) => { state.families[NAMARS].exiled = true; }), combine(everyHouse(40), grievance('family-safra', -40), (state) => { state.families[NAMARS].exiled = true; }), 10, 60],
   ['reconcile_houses', "the ruler's own house does not count", null, combine(everyHouse(40), grievance(ARELS, -40)), everyHouse(-40), 10, 60],
+  ['reconcile_houses', 'a house with no living member does not count', null, combine(everyHouse(40), grievance(NAMARS, -40), extinct(NAMARS)), combine(everyHouse(40), grievance('family-safra', -40), extinct(NAMARS)), 10, 60],
+  ['reconcile_houses', 'one other house left is enough', null, combine(everyHouse(40), exile(NAMARS), extinct('family-safra')), combine(everyHouse(-40), exile(NAMARS), extinct('family-safra')), 10, 60],
+  ['reconcile_houses', 'no other house left means nobody to reconcile', null, combine(everyHouse(40), exile(NAMARS), extinct('family-safra')), combine(everyHouse(40), exile(NAMARS), extinct('family-safra'), exile('family-eshmun')), 10, 60],
   ['lasting_work', 'a finished aqueduct', builder, (state) => project(state, {}), (state) => project(state, { status: 'active' }), 8, 72],
   ['lasting_work', 'a finished academy', builder, (state) => project(state, { kind: 'academy' }), (state) => project(state, { kind: 'estate' }), 8, 72],
   ['lasting_work', 'finished before the goal was set', builder, (state) => project(state, {}), (state) => project(state, { dueAt: addGameMonths(state.date, -1) }), 8, 72],
@@ -475,7 +476,7 @@ test('goal refusals', () => {
   assert.equal(refusal(missed, 'strong_army'), REPEAT, 'failed');
 });
 
-test('lasting_work needs a ruler who can build, or a work already under way', () => {
+test('lasting_work needs someone who can give the build order, or a work still under way', () => {
   const NO_BUILDER = 'Härskaren kan inte bygga ett sådant verk.';
   const refusal = (state) => goalRefusal(state, 'lasting_work', actionHooks(state));
   const state = base();
@@ -487,10 +488,44 @@ test('lasting_work needs a ruler who can build, or a work already under way', ()
     able.people[RULER].archetype = archetype;
     assert.equal(refusal(able), '', archetype);
   }
-  for (const [kind, status, answer] of [['aqueduct', 'active', ''], ['academy', 'active', ''], ['aqueduct', 'completed', NO_BUILDER], ['estate', 'active', NO_BUILDER]]) {
+  // The realm has room for one academy, and aqueducts go on being built.
+  const scholar = base();
+  scholar.people[RULER].archetype = 'scholar'; scholar.realm.academy = true;
+  assert.equal(refusal(scholar), NO_BUILDER);
+  assert.equal(run(scholar, 'set_reign_goal', { goalType: 'lasting_work' }).error, NO_BUILDER);
+  const mason = base();
+  mason.people[RULER].archetype = 'builder'; mason.realm.academy = true;
+  assert.equal(refusal(mason), '');
+  // The regent gives the build order, so the regent's archetype decides.
+  const unableRegent = regency();
+  unableRegent.people[CHILD].archetype = 'builder';
+  assert.equal(refusal(unableRegent), NO_BUILDER);
+  const ableRegent = regency();
+  ableRegent.people[CHILD].archetype = 'commander'; ableRegent.people[RULER].archetype = 'builder';
+  assert.equal(refusal(ableRegent), '');
+  // A work counts while it can still finish after the goal is set. [kind, status, months to its date, answer]
+  for (const [kind, status, months, answer] of [['aqueduct', 'active', 0, ''], ['academy', 'active', 0, ''], ['aqueduct', 'active', 12, ''], ['aqueduct', 'active', -1, NO_BUILDER], ['academy', 'active', -1, NO_BUILDER], ['aqueduct', 'completed', 0, NO_BUILDER], ['estate', 'active', 0, NO_BUILDER]]) {
     const inherited = base();
-    project(inherited, { kind, status });
-    assert.equal(refusal(inherited), answer, `${kind} ${status}`);
+    project(inherited, { kind, status, dueAt: addGameMonths(inherited.date, months) });
+    assert.equal(refusal(inherited), answer, `${kind} ${status} ${months}`);
+  }
+});
+
+test('a real build closes lasting_work as met in the year it finishes', () => {
+  for (const [archetype, kind, years] of [['builder', 'aqueduct', 2], ['scholar', 'academy', 3]]) {
+    const start = base();
+    start.people[RULER].archetype = archetype;
+    let state = ok(run(setGoal(start, 'lasting_work'), kind));
+    const { id } = state.projects.at(-1);
+    for (let passed = 1; passed < years; passed++) {
+      state = year(state);
+      assert.equal(state.reign.goals[0].status, 'active', `${kind} after ${passed} years`);
+    }
+    state = year(state);
+    assert.equal(state.projects.find((item) => item.id === id).status, 'completed', kind);
+    assert.deepEqual([state.reign.goals[0].status, state.reign.goals[0].closedAt], ['met', state.date], kind);
+    assert.equal(state.reign.deeds.goalsMet, 1, kind);
+    assert.ok(state.log.some((entry) => entry.title === 'Regeringsmålet uppnått: Lämna ett bestående verk'), kind);
   }
 });
 

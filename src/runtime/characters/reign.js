@@ -37,9 +37,12 @@ const canonical = (date) => typeof date === 'string' && normalizeGameDate(date) 
 const count = (value) => Number.isInteger(value) && value >= 0;
 const exactKeys = (value, keys) => plainObject(value) && Object.keys(value).length === keys.length && keys.every((key) => Object.hasOwn(value, key));
 
+// Counts the other houses still in the realm with someone alive. A realm with none of them has nobody to reconcile, so the goal stays open.
 function housesReconciled(state, goal, hooks) {
   const own = state.people[state.reign.rulerId]?.familyId;
-  return Object.values(state.families).filter((family) => family.id !== own && !family.exiled).every((family) => hooks.familySupport(family) >= 55);
+  const peopled = new Set(Object.values(state.people).filter((person) => !person.diedAt).map((person) => person.familyId));
+  const others = Object.values(state.families).filter((family) => family.id !== own && !family.exiled && peopled.has(family.id));
+  return others.length > 0 && others.every((family) => hooks.familySupport(family) >= 55);
 }
 
 const isWork = (project) => LASTING_WORKS.includes(project.kind);
@@ -109,9 +112,11 @@ export function legitimacySources(state) {
   return [...rows, { label: OTHER_SOURCES_LABEL, value: Math.round(state.realm.legitimacy) - explained }].filter((row) => row.value !== 0);
 }
 
+// The active representative gives the build order, so a regent's archetype counts over the ruler's. A work under way must still be able to finish on or after the day the goal is set.
 function canBuildWork(state, hooks) {
-  const action = ARCHETYPES[hooks.ruler()?.archetype]?.action;
-  return LASTING_WORKS.includes(action) || state.projects.some((project) => isWork(project) && project.status === 'active');
+  const action = ARCHETYPES[hooks.activeRepresentative()?.archetype]?.action;
+  const buildable = action === 'academy' ? !state.realm.academy : LASTING_WORKS.includes(action);
+  return buildable || state.projects.some((project) => isWork(project) && project.status === 'active' && compareGameDates(project.dueAt, state.date) >= 0);
 }
 
 /** Why `goalType` cannot be set now, or '' when it can. */
