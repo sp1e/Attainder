@@ -22,7 +22,7 @@ import { conversationBrief, converse, estimateConversation as estimateConversati
 import { IMPRISONED, closePrisoner, executePrisoner, heldPrisoners, imprisonPerson, isImprisoned, passCrown, presentPrisoners, prisonerStep, ransomChoices, releasePrisoner, resolveRansom, validatePrisoners } from './prisoners.js';
 import { abortScheme, advanceSchemes, getSchemeDates, reinforceScheme, validateSchemes } from './schemes.js';
 import { COUNCIL_SEATS, filledSeats, presentLoyalty, rewardClosedReason, rewardCouncillor, serviceOf } from './council.js';
-import { COURT_STORY_TYPES, courtAnnualStep, courtStoryChoices, onAccession, presentCourt, refreshCourtStories, resolveCourtStory, validateCourt } from './court.js';
+import { COURT_STORY_TYPES, courtAnnualStep, courtDeadlineText, courtStoryChoices, onAccession, presentCourt, refreshCourtStories, resolveCourtStory, validateCourt } from './court.js';
 import { breakdownDue, fitsNature, natureStress } from './breakdowns.js';
 import { dreadOf, dreadRows } from './dread.js';
 import { seatReaction } from './familyDemands.js';
@@ -901,7 +901,8 @@ function presentStory(state, story) {
   const choices = story.status === 'open' ? storyChoices(state, story) : [];
   const fallback = story.type === 'character_event' ? choices.find((choice) => choice.id === 'ignore') : null;
   const cause = state.memories.find((item) => item.id === story.causeId && visibleTo(state, item));
-  return { ...copy(story), actorName: state.people[story.actorId]?.name || state.families[story.familyId]?.name || '',
+  const caption = story.status === 'open' && COURT_STORY_TYPES.includes(story.type) ? { deadlineText: courtDeadlineText(story, actionHooks(state)) } : {};
+  return { ...copy(story), ...caption, actorName: state.people[story.actorId]?.name || state.families[story.familyId]?.name || '',
     causeTitle: cause?.title || null,
     fallbackDescription: fallback ? `${fallback.label}. ${fallback.description} Kostnad: 0 silver.` : null, choices,
     ...(story.type === 'event_chain' ? presentEventChain(state, story) : {}) };

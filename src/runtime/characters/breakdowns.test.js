@@ -12,6 +12,8 @@ const HEAD = 'person-1-0';
 const CHILD = 'person-0-4';
 const NAMARS = 'family-namar';
 const OWN = 'family-arel';
+const REALM_CAPTION = 'Utan ett val kostar sammanbrottet 20 hälsa, 8 legitimitet och årets alla handlingar.';
+const HOUSEHOLD_CAPTION = 'Utan ett val kostar sammanbrottet 20 hälsa och årets alla handlingar.';
 
 const plain = (value) => JSON.parse(JSON.stringify(value));
 const base = (options = {}) => createCharacterSystem({ seed: 321, ...options });
@@ -22,6 +24,7 @@ const resolve = (state, storyId, choiceId) => ok(executeCharacterCommand(state, 
 const storiesOf = (state, type) => state.stories.filter((story) => story.type === type);
 const openOf = (state, type) => storiesOf(state, type).filter((story) => story.status === 'open');
 const rngOf = ({ rngState, actionRngState, plotRngState }) => ({ rngState, actionRngState, plotRngState });
+const captionOf = (state, story) => getCharacterPresentation(state).stories.find((item) => item.id === story.id).deadlineText;
 
 // The representative's breakdown stands open, six months from its due date and twelve from the year turn. High stress draws illness at a real year turn, so the step runs alone here and the costs stay exact.
 function broken(options) {
@@ -161,7 +164,7 @@ test('a breakdown opens as the public story and event the court reads', () => {
   assert.equal(story.knownBy, 'public');
   assert.equal(story.createdAt, state.date);
   assert.equal(story.dueAt, addGameMonths(state.date, 6));
-  assert.equal(story.deadlineText, 'Utan ett val kostar sammanbrottet 20 hälsa, 8 legitimitet och årets alla handlingar.');
+  assert.equal(Object.hasOwn(story, 'deadlineText'), false, 'the presentation writes the caption, so no save freezes it');
   const entry = state.log.find((item) => item.title === 'Sammanbrott vid hovet');
   assert.equal(entry.public, true);
   assert.deepEqual(entry.participants, [REP]);
@@ -170,7 +173,7 @@ test('a breakdown opens as the public story and event the court reads', () => {
     ['withdraw', 'Dra dig undan hovet', '−50', ''], ['rage', 'Släpp lös vreden', '−40', ''], ['vice', 'Sök tröst i vinet', '−35', ''],
   ]);
   assert.ok(shown.choices.every((choice) => choice.description && choice.cost));
-  assert.equal(shown.deadlineText, story.deadlineText);
+  assert.equal(shown.deadlineText, REALM_CAPTION);
   assert.ok(normalizeCharacterSystem(plain(state)));
 });
 
@@ -363,9 +366,8 @@ test('every path costs a family head under an NPC ruler something', () => {
 
 test('the texts of a breakdown under an NPC ruler name only what the path charges', () => {
   const { state, story } = underNpc();
-  assert.equal(story.deadlineText, 'Utan ett val kostar sammanbrottet 20 hälsa och årets alla handlingar.');
   const shown = getCharacterPresentation(state).stories.find((item) => item.id === story.id);
-  assert.equal(shown.deadlineText, story.deadlineText);
+  assert.equal(shown.deadlineText, HOUSEHOLD_CAPTION);
   assert.deepEqual(shown.choices.map(({ id, cost }) => [id, cost]), [
     ['withdraw', 'Årets handlingar och 2 handlingar nästa år'],
     ['rage', '15 i åsikt hos de andra familjernas huvudmän'],
@@ -379,7 +381,7 @@ test('the texts of a breakdown under an NPC ruler name only what the path charge
 test('a family head who holds the crown and a regent both speak for the realm', () => {
   const crowned = broken({ mode: 'family', familyId: OWN });
   assert.equal(actionHooks(crowned.state).canRule(), true);
-  assert.equal(crowned.story.deadlineText, 'Utan ett val kostar sammanbrottet 20 hälsa, 8 legitimitet och årets alla handlingar.');
+  assert.equal(captionOf(crowned.state, crowned.story), REALM_CAPTION);
   const before = ledger(crowned.state), after = ledger(resolve(crowned.state, crowned.story.id, 'rage'));
   assert.deepEqual(after, { ...before, stress: before.stress - 40, legitimacy: before.legitimacy - 2, prestige: before.prestige - 5, deeds: 1 });
 
@@ -389,8 +391,33 @@ test('a family head who holds the crown and a regent both speak for the realm', 
   state.people[REP].stress = 120;
   breakdownStep(state, [], hooks);
   const [story] = openOf(state, 'stress_breakdown'), reigning = ledger(state);
-  assert.equal(story.deadlineText, 'Utan ett val kostar sammanbrottet 20 hälsa, 8 legitimitet och årets alla handlingar.');
+  assert.equal(captionOf(state, story), REALM_CAPTION);
   assert.deepEqual(ledger(resolve(state, story.id, 'withdraw')), { ...reigning, stress: reigning.stress - 50, orders: 0, lostOrders: 2, legitimacy: reigning.legitimacy - 4, prestige: reigning.prestige - 5 }, 'the deed stays the ruler\'s, and a regent is not the ruler');
+});
+
+test('the caption of an open breakdown follows the crown, and the collapse charges what it says', () => {
+  // A head who gives up the crown keeps the house, so the breakdown stands and the realm no longer pays.
+  const crowned = broken({ mode: 'family', familyId: OWN });
+  assert.equal(captionOf(crowned.state, crowned.story), REALM_CAPTION);
+  const deposed = ok(executeCharacterCommand(crowned.state, { id: 'abdicate', expectedRevision: crowned.state.revision, type: 'abdicate', payload: {} }));
+  assert.equal(actionHooks(deposed).canRule(), false);
+  assert.equal(openOf(deposed, 'stress_breakdown').length, 1);
+  assert.equal(captionOf(deposed, crowned.story), HOUSEHOLD_CAPTION);
+  assert.equal(ok(advanceCharacters(deposed, crowned.story.dueAt, { id: 'collapse-deposed' })).realm.legitimacy, deposed.realm.legitimacy);
+
+  // The head of another house who takes the crown answers for the realm from that day.
+  const { state, story } = underNpc();
+  assert.equal(captionOf(state, story), HOUSEHOLD_CAPTION);
+  actionHooks(state).crown(state.people[HEAD], [], 'Testet kröner henne.');
+  assert.equal(actionHooks(state).canRule(), true);
+  assert.equal(openOf(state, 'stress_breakdown').length, 1);
+  assert.equal(captionOf(state, story), REALM_CAPTION);
+  assert.equal(ok(advanceCharacters(state, story.dueAt, { id: 'collapse-crowned' })).realm.legitimacy, state.realm.legitimacy - 8);
+
+  // A save from before this rule carries the frozen text, and it loads and reads the same.
+  const saved = plain(state);
+  saved.stories.find((item) => item.id === story.id).deadlineText = HOUSEHOLD_CAPTION;
+  assert.equal(captionOf(normalizeCharacterSystem(saved), story), REALM_CAPTION);
 });
 
 test('the choices, the pressure and the opening draw nothing', () => {

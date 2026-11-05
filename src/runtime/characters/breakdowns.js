@@ -54,6 +54,8 @@ const HOUSEHOLD_EXPIRY_TEXT = 'Ingen valde i tid. Sammanbrottet kostade 20 häls
 
 /** What the expiry's log line says it cost. */
 export const breakdownExpiryText = (hooks) => (hooks.canRule() ? BREAKDOWN_EXPIRY.text : HOUSEHOLD_EXPIRY_TEXT);
+/** The caption of an open breakdown. The crown can change hands while one stands, so the presentation reads it live and no save carries it. */
+export const breakdownDeadlineText = (hooks) => (hooks.canRule() ? DEADLINE_TEXT : HOUSEHOLD_DEADLINE_TEXT);
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 const has = (person, trait) => Boolean(person?.traits?.includes(trait));
@@ -114,7 +116,7 @@ export function breakdownStep(state, events, hooks) {
   const actor = hooks.activeRepresentative();
   if (!actor || !breakdownDue(state, actor)) return;
   if (state.stories.some((story) => (story.type === 'stress_breakdown' && story.status === 'open') || (isCrisisOf(story, actor) && story.createdAt === state.date))) return;
-  hooks.openStory({ type: 'stress_breakdown', title: `${actor.name} bryter samman`, description: `${actor.name} orkar inte bära ansvaret längre, och hela hovet ser det.`, actorId: actor.id, createdAt: state.date, dueAt: addGameMonths(state.date, DUE_MONTHS), knownBy: 'public', deadlineText: hooks.canRule() ? DEADLINE_TEXT : HOUSEHOLD_DEADLINE_TEXT });
+  hooks.openStory({ type: 'stress_breakdown', title: `${actor.name} bryter samman`, description: `${actor.name} orkar inte bära ansvaret längre, och hela hovet ser det.`, actorId: actor.id, createdAt: state.date, dueAt: addGameMonths(state.date, DUE_MONTHS), knownBy: 'public' });
   hooks.logEvent(events, 'stress_breakdown', 'Sammanbrott vid hovet', `${actor.name} bryter samman inför hovet.`, [actor.id]);
 }
 

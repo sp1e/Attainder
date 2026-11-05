@@ -1,5 +1,5 @@
 import { compareGameDates } from '../gameDates.js';
-import { BREAKDOWN_EXPIRY, breakdownChoices, breakdownClosedReason, breakdownExpiryText, breakdownStep, lostOrdersStep, resolveBreakdown, stressPressureStep } from './breakdowns.js';
+import { BREAKDOWN_EXPIRY, breakdownChoices, breakdownClosedReason, breakdownDeadlineText, breakdownExpiryText, breakdownStep, lostOrdersStep, resolveBreakdown, stressPressureStep } from './breakdowns.js';
 import { chancellorStep, loyaltyDriftStep, presentCouncil } from './council.js';
 import { dreadYearStep, presentDread } from './dread.js';
 import { DEMAND_EXPIRY, demandChoices, demandClosedReason, demandStep, presentDemands, resolveDemand, validateFamilyDemands, voidDemand, voidOpenDemands } from './familyDemands.js';
@@ -13,9 +13,9 @@ import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, va
 export const COURT_STORY_TYPES = Object.freeze(['stress_breakdown', 'family_demand', 'faction_ultimatum']);
 
 // One row per court story.
-// `expiry` is what a story past its due date resolves to, and `expiryText` replaces its log line where the cost depends on who is acting; `closedReason` gives the text of a story that fell away, or ''; `onClose` is what such a story leaves behind.
+// `expiry` is what a story past its due date resolves to, and `expiryText` replaces its log line where the cost depends on who is acting, as `deadlineText` replaces its caption; `closedReason` gives the text of a story that fell away, or ''; `onClose` is what such a story leaves behind.
 const COURT_STORIES = Object.freeze({
-  stress_breakdown: Object.freeze({ choices: breakdownChoices, resolve: resolveBreakdown, expiry: BREAKDOWN_EXPIRY, expiryText: breakdownExpiryText, closedReason: breakdownClosedReason }),
+  stress_breakdown: Object.freeze({ choices: breakdownChoices, resolve: resolveBreakdown, expiry: BREAKDOWN_EXPIRY, expiryText: breakdownExpiryText, deadlineText: breakdownDeadlineText, closedReason: breakdownClosedReason }),
   family_demand: Object.freeze({ choices: demandChoices, resolve: resolveDemand, expiry: DEMAND_EXPIRY, closedReason: demandClosedReason, onClose: voidDemand }),
   faction_ultimatum: Object.freeze({ choices: ultimatumChoices, resolve: resolveUltimatum, expiry: ULTIMATUM_EXPIRY, closedReason: ultimatumClosedReason }),
 });
@@ -39,6 +39,11 @@ export function courtAnnualStep(state, events, hooks) {
 /** The choices of a court story, for rawStoryChoices. Reads only. */
 export function courtStoryChoices(state, story, hooks) {
   return COURT_STORIES[story.type]?.choices(state, story, hooks) ?? [];
+}
+
+/** The caption of an open court story: the live one where the row has it, the story's own elsewhere. Reads only. */
+export function courtDeadlineText(story, hooks) {
+  return COURT_STORIES[story.type]?.deadlineText?.(hooks) ?? story.deadlineText;
 }
 
 /** Applies a choice resolveStory has already checked. resolveStory closes the story. */
