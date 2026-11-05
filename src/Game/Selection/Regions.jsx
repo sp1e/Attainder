@@ -677,7 +677,7 @@ const RegionPopup = () => {
         <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#3b82f6", flexShrink: 0, boxShadow: "0 0 6px rgba(59,130,246,0.6)" }} />
         <span style={{ color: "rgba(255,255,255,0.95)", fontWeight: 600, fontSize: "13px", lineHeight: 1.3, wordBreak: "break-word" }}>
         {displayCountry}
-        {worldState?.historicalScenario?.kind === "historical" && <small style={{ display: "block", fontWeight: 400, fontSize: "11px" }}>{isUnclaimed ? "Underlag saknas för kontrollen; området är inte markerat som ledigt." : "Ungefärlig historisk rekonstruktion"}</small>}
+        {worldState?.historicalScenario?.kind === "historical" && <small style={{ display: "block", fontWeight: 400, fontSize: "11px" }}>{isUnclaimed ? "Underlag saknas för kontrollen; området är inte markerat som ledigt." : worldState.historicalScenario.polities?.find(p => p.id === controllerCode)?.noteSv || "Ungefärlig historisk rekonstruktion"}</small>}
         </span>
         </div>
         <div style={{ display: "flex", gap: "4px", flexShrink: 0 }}>

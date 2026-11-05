@@ -1,7 +1,7 @@
 /*! Attainder historical content schema. AGPL-3.0-or-later (see LICENSE). */
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { validateHistoricalStartDate } from './historicalStarts.js';
-import { compareGameDates } from './gameDates.js';
+import { compareGameDates, parseGameDate, formatGameDate } from './gameDates.js';
 
 export const HISTORICAL_SCHEMA_VERSION = 1;
 export const isHistoricalWorld = world => world?.historicalScenario?.kind === 'historical';
@@ -50,7 +50,10 @@ function validClaims(claims, sources) {
     record(c) && ['sourced','uncertain','generated'].includes(c.status) && text(c.noteSv)
     && sourceRefs(c.sourceIds, sources, c.status === 'generated'));
 }
-function validCourt(court, polityId, h) {
+// Biography uses the shared calendar, not the permitted new-campaign year range.
+const validBirth = (value,date) => typeof value === 'string' && /^-?\d{1,6}-\d{2}-\d{2}$/.test(value)
+  && formatGameDate(parseGameDate(value)) === value && compareGameDates(value,date) <= 0;
+function validCourt(court, polityId, h, date) {
   if (!record(court) || court.polityId !== polityId || !h.settlements.some(s => s.id === court.seatId && s.polityId === polityId)) return false;
   if (!['people','families','religions','offices','cities'].every(k => validIds(court[k]))) return false;
   const people = new Map(court.people.map(p => [p.id,p]));
@@ -60,11 +63,16 @@ function validCourt(court, polityId, h) {
     && families.has(p.familyId) && religions.has(p.religionId) && validClaims(p.claims, h.sources)
     && p.claims.identity?.status === (p.identityOrigin === 'generated' ? 'generated' : 'sourced')
     && p.claims.mechanics?.status === 'generated'
-    && ['legalParentIds','spouseIds'].every(k => Array.isArray(p[k]) && p[k].every(id => id !== p.id && people.has(id))))) return false;
-  if (!court.families.every(f => people.has(f.headId) && validClaims(f.claims, h.sources))) return false;
+    && (!Object.hasOwn(p,'bornAt') || (Object.hasOwn(p.claims,'bornAt') && validBirth(p.bornAt,date)))
+    && ['legalParentIds','spouseIds'].every(k => Array.isArray(p[k]) && unique(p[k])
+      && (!p[k].length || Object.hasOwn(p.claims,k)) && p[k].every(id => id !== p.id && people.has(id)))
+    && p.spouseIds.every(id => list(people.get(id).spouseIds).includes(p.id)))) return false;
+  if (!court.families.every(f => people.get(f.headId)?.familyId === f.id
+    && (f.religionId === undefined || religions.has(f.religionId)) && validClaims(f.claims, h.sources))) return false;
   if (!court.offices.every(o => (o.holderId === null || people.has(o.holderId)) && validClaims(o.claims, h.sources))) return false;
-  if (!court.religions.every(r => validClaims(r.claims, h.sources))) return false;
-  if (!court.cities.every(c => h.settlements.some(s => s.id === c.settlementId) && validClaims(c.claims, h.sources))) return false;
+  if (!court.religions.every(r => (r.leaderId == null || people.has(r.leaderId)) && validClaims(r.claims, h.sources))) return false;
+  if (!court.cities.every(c => h.settlements.some(s => s.id === c.settlementId && s.regionId === c.regionId && s.polityId === polityId)
+    && families.has(c.familyId) && validClaims(c.claims, h.sources))) return false;
   return court.mechanics?.status === 'generated' && text(court.mechanics.noteSv);
 }
 function validSettlements(h, regionMap) {
@@ -119,11 +127,13 @@ export function validateHistoricalScenario(input, options = {}) {
     }
     if (!h.playablePolityIds.every(id => regions.features.some(f => f.properties.owner === id) && record(world.polityOverrides?.[id]))) return failure('missingMapPolity');
     if (!validSettlements(h,regionMap)) return failure('invalidSettlement');
-    if (!h.playablePolityIds.every(id => validCourt(h.courtSeeds?.[id],id,h))) return failure('invalidCourt');
+    if (!h.playablePolityIds.every(id => validCourt(h.courtSeeds?.[id],id,h,date))) return failure('invalidCourt');
     const areas = ['Africa','Asia','Europe','Americas','Oceania','Antarctica'];
     if (!Array.isArray(h.coverage) || !unique(h.coverage.map(c => c.area)) || !areas.every(area => h.coverage.some(c => c.area === area))
       || !h.coverage.every(c => ['partial','unresolved','non-state'].includes(c.status) && text(c.noteSv) && sourceRefs(c.sourceIds,h.sources))) return failure('invalidCoverage');
-    if (!validIds(assetManifest?.assets) || !assetManifest.assets.every(a => sourceRefs(a.sourceIds,h.sources)
+    if (assetManifest?.schemaVersion !== 1 || assetManifest.contentId !== h.contentId || assetManifest.contentVersion !== h.contentVersion
+      || !validIds(assetManifest.assets) || !['regionsGeojson','citiesGeojson'].every(id => assetManifest.assets.some(a => a.id === id))
+      || !assetManifest.assets.every(a => sourceRefs(a.sourceIds,h.sources)
       && a.crs === 'OGC:CRS84' && text(a.revision) && /^[a-f0-9]{64}$/.test(a.sha256) && text(a.license)
       && Array.isArray(a.transformations) && a.transformations.length > 0)) return failure('invalidAssets');
     return { ok: true, contentId: h.contentId, contentVersion: h.contentVersion, date, polityId };

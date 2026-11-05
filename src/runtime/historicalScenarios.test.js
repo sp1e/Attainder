@@ -10,11 +10,11 @@ import { validateHistoricalScenario, historicalGeometryCenter } from './historic
 
 // Synthetic schema fixture. Never packaged as playable historical content.
 export function syntheticScenario() {
-  const claim = { status: 'generated', sourceIds: [], noteSv: 'Syntetiskt testvärde.' };
+  const claim = { status: 'generated', sourceIds: [], noteSv: 'Syntetiskt testvÃ¤rde.' };
   const source = { title: 'Synthetic evidence', institution: 'Test', url: 'https://example.org/test', locator: 'fixture', retrievedAt: '2026-11-05', license: 'CC0-1.0', chronology: '1200', uncertainty: 'Synthetic', review: 'synthetic' };
   const person = { id: 'person', name: 'Test', identityOrigin: 'generated', originLabelSv: 'Genererad testperson', familyId: 'family', religionId: 'religion', legalParentIds: [], spouseIds: [], claims: { identity: claim, biography: claim, mechanics: claim } };
-  const h = { schemaVersion: 1, kind: 'historical', contentId: 'synthetic', contentVersion: '1', calendar: 'proleptic-gregorian-no-year-zero', bookmarkDate: '1200-12-31', eraLabelSv: '1200 e.Kr.', contextSv: 'Syntetiskt schemaexempel.', coverageNoteSv: 'Syntetiskt test.', sources: { test: source }, polities: [{ id: 'polity', nameSv: 'Test', sourceIds: ['test'], boundary: 'approximate' }], playablePolityIds: ['polity'], settlements: [{ id: 'city', nameSv: 'Teststad', coordinates: [1, 1], polityId: 'polity', regionId: 'region', placement: 'inside', sourceIds: ['test'], noteSv: 'Syntetisk placering.' }], coverage: ['Africa','Asia','Europe','Americas','Oceania','Antarctica'].map(area => ({ area, status: 'unresolved', sourceIds: ['test'], noteSv: 'Syntetiskt, okänd kontroll.' })), courtSeeds: { polity: { polityId: 'polity', rulerId: 'person', seatId: 'city', people: [person], families: [{ id: 'family', headId: 'person', claims: { identity: claim } }], religions: [{ id: 'religion', claims: { identity: claim } }], offices: [{ id: 'ruler', holderId: 'person', claims: { identity: claim } }], cities: [{ id: 'city', settlementId: 'city', claims: { mechanics: claim } }], mechanics: { status: 'generated', noteSv: 'Testregler.' } } } };
-  return { game: { startDate: h.bookmarkDate, currentDate: h.bookmarkDate }, world: { historicalScenario: h, polityOverrides: { polity: { name: 'Test' } } }, regions: { type: 'FeatureCollection', features: [{ type: 'Feature', properties: { id: 'region', owner: 'polity', historical: { status: 'owned', boundary: 'approximate', sourceIds: ['test'] } }, geometry: { type: 'Polygon', coordinates: [[[0,0],[2,0],[2,2],[0,2],[0,0]]] } }] }, assetManifest: { assets: [{ id: 'regionsGeojson', sourceIds: ['test'], crs: 'OGC:CRS84', revision: 'fixture', sha256: '0'.repeat(64), license: 'CC0-1.0', transformations: ['synthetic'] }] } };
+  const h = { schemaVersion: 1, kind: 'historical', contentId: 'synthetic', contentVersion: '1', calendar: 'proleptic-gregorian-no-year-zero', bookmarkDate: '1200-12-31', eraLabelSv: '1200 e.Kr.', contextSv: 'Syntetiskt schemaexempel.', coverageNoteSv: 'Syntetiskt test.', sources: { test: source }, polities: [{ id: 'polity', nameSv: 'Test', sourceIds: ['test'], boundary: 'approximate' }], playablePolityIds: ['polity'], settlements: [{ id: 'city', nameSv: 'Teststad', coordinates: [1, 1], polityId: 'polity', regionId: 'region', placement: 'inside', sourceIds: ['test'], noteSv: 'Syntetisk placering.' }], coverage: ['Africa','Asia','Europe','Americas','Oceania','Antarctica'].map(area => ({ area, status: 'unresolved', sourceIds: ['test'], noteSv: 'Syntetiskt, okÃ¤nd kontroll.' })), courtSeeds: { polity: { polityId: 'polity', rulerId: 'person', seatId: 'city', people: [person], families: [{ id: 'family', headId: 'person', claims: { identity: claim } }], religions: [{ id: 'religion', claims: { identity: claim } }], offices: [{ id: 'ruler', holderId: 'person', claims: { identity: claim } }], cities: [{ id: 'city', settlementId: 'city', regionId: 'region', familyId: 'family', claims: { mechanics: claim } }], mechanics: { status: 'generated', noteSv: 'Testregler.' } } } };
+  return { game: { startDate: h.bookmarkDate, currentDate: h.bookmarkDate }, world: { historicalScenario: h, polityOverrides: { polity: { name: 'Test' } } }, regions: { type: 'FeatureCollection', features: [{ type: 'Feature', properties: { id: 'region', owner: 'polity', historical: { status: 'owned', boundary: 'approximate', sourceIds: ['test'] } }, geometry: { type: 'Polygon', coordinates: [[[0,0],[2,0],[2,2],[0,2],[0,0]]] } }] }, assetManifest: { schemaVersion: 1, contentId: h.contentId, contentVersion: h.contentVersion, assets: ['regionsGeojson','citiesGeojson'].map(id => ({ id, sourceIds: ['test'], crs: 'OGC:CRS84', revision: 'fixture', sha256: '0'.repeat(64), license: 'CC0-1.0', transformations: ['synthetic'] })) } };
 }
 const validate = input => validateHistoricalScenario(input, { date: '1200-12-31', polityId: 'polity' });
 test('synthetic fixture validates without mutation', () => {
@@ -40,12 +40,12 @@ for (const [name, mutate] of [
   ['conflicting runtime owner', x => { x.world.regionOwnershipOverrides = { region: 'other' }; }],
   ['unreviewed runtime polity', x => { x.world.polityOverrides.modern = { name: 'Modern country' }; }],
   ['conflicting game calendar fields', x => { x.game.gameDate = '1200-01-01'; }],
-  ['nonreciprocal spouse claim', x => { x.world.historicalScenario.courtSeeds.polity.people[0].spouseIds = ['person']; }],
+  ['self-spouse claim', x => { x.world.historicalScenario.courtSeeds.polity.people[0].spouseIds = ['person']; }],
 ]) test(`rejects ${name}`, () => { const input = syntheticScenario(); mutate(input); assert.equal(validate(input).ok, false); });
 test('contested frontier requires explicit competing polities, provenance and note', () => {
   const input = syntheticScenario(), h = input.world.historicalScenario;
   h.polities.push({ id: 'other', nameSv: 'Andra', sourceIds: ['test'], boundary: 'approximate' });
-  h.settlements.push({ id: 'frontier', nameSv: 'Gränsort', coordinates: [2.01,1], polityId: null, regionId: 'region', placement: 'contested', candidatePolityIds: ['polity','other'], sourceIds: ['test'], noteSv: 'Läget och kontrollen är omstridda.' });
+  h.settlements.push({ id: 'frontier', nameSv: 'GrÃ¤nsort', coordinates: [2.01,1], polityId: null, regionId: 'region', placement: 'contested', candidatePolityIds: ['polity','other'], sourceIds: ['test'], noteSv: 'LÃ¤get och kontrollen Ã¤r omstridda.' });
   assert.equal(validate(input).ok, true);
   delete h.settlements[1].candidatePolityIds;
   assert.equal(validate(input).ok, false);
@@ -60,6 +60,71 @@ const loadBookmark = async id => {
   const [bundle,regions,assetManifest] = await Promise.all(['scenario.json','regions.geojson','manifest.json'].map(async file => JSON.parse(await readFile(new URL(file,root),'utf8'))));
   return { bundle,game: bundle.data.game,world: bundle.data.world,regions,assetManifest,root };
 };
+const validateBookmark = input => {
+  const h = input.world.historicalScenario;
+  return validateHistoricalScenario(input,{ date: h.bookmarkDate,polityId: h.playablePolityIds[0] });
+};
+for (const [name,mutate] of [
+  ['missing birthday claim', c => { delete c.people[0].claims.bornAt; }],
+  ['missing spouse claim', c => { delete c.people[0].claims.spouseIds; }],
+  ['future birth', c => { c.people[0].bornAt = '1500-01-01'; }],
+  ['nonreciprocal spouse', c => { c.people[1].spouseIds = []; }],
+  ['dangling city region and family', c => { c.cities[0].regionId = c.cities[0].familyId = 'missing'; }],
+  ['dangling city region', c => { c.cities[0].regionId = 'missing'; }],
+  ['dangling city family', c => { c.cities[0].familyId = 'missing'; }],
+  ['dangling religion leader', c => { c.religions[0].leaderId = 'missing'; }],
+  ['missing parent claim', c => { c.people[1].legalParentIds = [c.people[2].id]; }],
+  ['duplicate spouse', c => { c.people[0].spouseIds.push(c.people[0].spouseIds[0]); }],
+  ['dangling family religion', c => { c.families[0].religionId = 'missing'; }],
+]) test(`real court rejects ${name}`,async () => {
+  const input = await loadBookmark('john-1200');
+  mutate(input.world.historicalScenario.courtSeeds['johns-realms']);
+  assert.equal(validateBookmark(input).code,'invalidCourt');
+});
+for (const bornAt of ['0000-01-01','-0000-01-01','1167-02-30','1167-12-24 BC','1167-12-24T00:00:00Z',null,1167]) test(`rejects invalid authored birth ${bornAt}`,async () => {
+  const input = await loadBookmark('john-1200');
+  input.world.historicalScenario.courtSeeds['johns-realms'].people[0].bornAt = bornAt;
+  assert.equal(validateBookmark(input).code,'invalidCourt');
+});
+test('person birthdays can precede the 3300 BC campaign boundary',() => {
+  const input = syntheticScenario(), h = input.world.historicalScenario;
+  h.bookmarkDate = input.game.startDate = input.game.currentDate = '-3300-01-01';
+  h.courtSeeds.polity.people[0].bornAt = '-3336-01-01';
+  h.courtSeeds.polity.people[0].claims.bornAt = { status: 'generated',sourceIds: [],noteSv: 'Syntetiskt fÃ¶delsedatum fÃ¶re startintervallet.' };
+  assert.equal(validateBookmark(input).ok,true);
+});
+for (const [name,mutate] of [
+  ['missing schema', m => { delete m.schemaVersion; }],
+  ['wrong schema', m => { m.schemaVersion = 2; }],
+  ['missing identity', m => { delete m.contentId; }],
+  ['wrong identity', m => { m.contentId = 'unrelated'; }],
+  ['missing version', m => { delete m.contentVersion; }],
+  ['wrong version', m => { m.contentVersion = 'unrelated'; }],
+  ['missing geometry', m => { m.assets = m.assets.filter(a => a.id !== 'regionsGeojson'); }],
+  ['missing cities', m => { m.assets = m.assets.filter(a => a.id !== 'citiesGeojson'); }],
+  ['unrelated partial manifest', m => { m.contentId = 'unrelated'; m.assets = m.assets.filter(a => a.id !== 'regionsGeojson'); }],
+]) test(`real package rejects ${name} manifest`,async () => {
+  const input = await loadBookmark('john-1200');
+  mutate(input.assetManifest);
+  assert.equal(validateBookmark(input).code,'invalidAssets');
+});
+test('Egypt selective core leaves the disputed southern reach unresolved',async () => {
+  const { regions,world } = await loadBookmark('egypt-3000bc');
+  for (const point of [[31.283,21.917],[30.967,21.492],[30.333,20.433]]) {
+    const hits = regions.features.filter(f => pointInGeometry(point,f.geometry));
+    assert.ok(hits.length > 0,'excluded Nubian land remains visible');
+    assert.ok(hits.every(f => f.properties.owner === '' && f.properties.historical.status === 'unresolved'));
+  }
+  assert.equal(world.historicalScenario.regionReview[19].boundaryDecision,'developer-authored-selective-core');
+  const h = world.historicalScenario, core = regions.features.find(f => f.properties.owner === 'egypt-early-dynastic');
+  assert.deepEqual(core.properties.historical.geometryTransform.maskBbox,[-180,24.2,180,90]);
+  assert.equal(core.properties.historical.geometryTransform.authorship,'developer');
+  assert.equal(h.polities[0].coverage,'selective-core');
+  assert.ok(h.contextSv.includes(h.polities[0].noteSv));
+  assert.ok(h.coverageNoteSv.includes(h.polities[0].noteSv));
+  assert.equal(core.properties.historical.noteSv,h.polities[0].noteSv);
+  assert.ok(h.assetManifest.assets.find(a => a.id === 'regionsGeojson').transformations.some(t => t.includes('[-180,24.2,180,90]')));
+});
 for (const id of ['egypt-3000bc','john-1200']) test(`source-backed ${id} package validates with complete hashed assets and review`,async () => {
   const input = await loadBookmark(id), h = input.world.historicalScenario;
   assert.equal(validateHistoricalScenario(input,{ date: h.bookmarkDate,polityId: h.playablePolityIds[0] }).ok,true);

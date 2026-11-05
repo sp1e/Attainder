@@ -145,7 +145,7 @@
       "sourceFeatureIndex": 19,
       "sourceName": "Egypt",
       "status": "accept-approx-setting",
-      "evidence": "[Egyptian Ministry, Early Dynastic Period](https://egymonuments.gov.eg/historical-periods/early-dynastic-period/), date heading and first paragraphs, gives about **3100–2686 BC**, gradual unification and Memphis as capital. [NMEC timeline](https://nmec.gov.eg/historical-timeline/), Archaic Period, corroborates the state/capital.",
+      "evidence": "[Egyptian Ministry, Early Dynastic Period](https://egymonuments.gov.eg/historical-periods/early-dynastic-period/), date heading and first paragraphs, gives about **3100–2686 BC**, gradual unification and Memphis as capital. [NMEC timeline](https://nmec.gov.eg/historical-timeline/), Archaic Period, corroborates the state/capital. Extent-specific reassessment: Met dates first-to-third-cataract domination ca. 2800–2200 BC; MPI places Egyptian settlements around 3100 BC; UCL places A-Group end about 3000 BC and labels following Lower Nubian evidence unknown. Moeller chapter 4 sections 4.1/4.2.6 supports the Nile Valley/Delta and Elephantine frontier-region context, not clipping vertices.",
       "references": [
         {
           "title": "Egyptian Ministry, Early Dynastic Period",
@@ -154,9 +154,25 @@
         {
           "title": "NMEC timeline",
           "url": "https://nmec.gov.eg/historical-timeline/"
+        },
+        {
+          "title": "Nadine Moeller, The Origins of Urban Society, chapter 4 sections 4.1 and 4.2.6",
+          "url": "https://www.cambridge.org/core/books/archaeology-of-urbanism-in-ancient-egypt/origins-of-urban-society/7827A646AACBAEEEFCC7CF442E904D2B"
+        },
+        {
+          "title": "Met, Sudan 8000–2000 BC, Lower Nubia and Key Events",
+          "url": "https://www.metmuseum.org/pt/toah/ht/02/afs.html"
+        },
+        {
+          "title": "MPI, Nubian Rock Art archive, opening two paragraphs",
+          "url": "https://nubianrockart.mpiwg-berlin.mpg.de/nubia/history_archaeology/overview.html"
+        },
+        {
+          "title": "UCL, Nubia timeline, rows about 3000 BC and 2800–2200 BC",
+          "url": "https://www.ucl.ac.uk/museums-static/digitalegypt/nubia/timeline.html"
         }
       ],
-      "decision": "Recommended playable state around 3000 BC with a generated household. Use the disclosed approximate upstream frontier and the companion report's qualified Memphis marker. No exact-year king or exact frontier approved here.",
+      "decision": "Playable Egyptian setting with a generated household and developer-authored selective core: intersect source feature 19 with bbox [-180,24.2,180,90]. The artificial crop omits the Elephantine/First Cataract frontier region and Nubian south conservatively; it is not an attested frontier or proof that excluded land was empty or non-Egyptian. Original outer edges remain publisher approximations. Ministry and Moeller support regional Nile Valley/Delta context; conflicting Met/MPI/UCL chronology does not establish continuous southern control in 3000 BC.",
       "ownerPolityId": null
     },
     {

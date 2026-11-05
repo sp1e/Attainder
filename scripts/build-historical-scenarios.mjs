@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import polygonClipping from 'polygon-clipping';
-import { authoredScenario, SOURCE_REVISION } from '../server/seed/historical/authored-scenarios.mjs';
+import { authoredScenario, SOURCE_REVISION, EGYPT_CORE_NOTE_SV, EGYPT_CORE_SOURCE_IDS, EGYPT_CORE_TRANSFORM } from '../server/seed/historical/authored-scenarios.mjs';
 import { historicalGeometryCenter, validateHistoricalScenario } from '../src/runtime/historicalScenarios.js';
 import { withScenarioLicense } from '../src/runtime/scenarioLicense.js';
 
@@ -73,9 +73,17 @@ export async function buildHistoricalScenarios({ check = false } = {}) {
     addRegionalSources(h,review,ancient);
     h.coverage = coverage(h,ancient);
     h.mapPolicy = { geometryAuthority: 'scenario-at-all-zooms',modernPolityFallback: false,modernCityFallback: false,modernFlagFallback: false,unknownControlLabelSv: 'Okänd historisk kontroll',physicalCoastline: 'generalized-present-day' };
-    const mappings = [{ index: ancient ? 19 : 275,polityId: h.playablePolityIds[0],nameSv: h.polities[0].nameSv,sourceIds: ancient ? ['egypt','hbm'] : ['john','angevin','angevinJurisdiction','brittany','hbm'],noteSv: h.polities[0].noteSv },...(!ancient ? review.mapMappings.map(m => ({ ...m,sourceIds: ['hbm',...m.sourceIds.map(id => `regional-${id}`)] })) : [])];
+    const mappings = [{ index: ancient ? 19 : 275,polityId: h.playablePolityIds[0],nameSv: h.polities[0].nameSv,sourceIds: ancient ? EGYPT_CORE_SOURCE_IDS : ['john','angevin','angevinJurisdiction','brittany','hbm'],noteSv: h.polities[0].noteSv },...(!ancient ? review.mapMappings.map(m => ({ ...m,sourceIds: ['hbm',...m.sourceIds.map(id => `regional-${id}`)] })) : [])];
     for (const m of mappings.slice(1)) h.polities.push({ id: m.polityId,nameSv: m.nameSv,sourceIds: m.sourceIds,boundary: 'approximate',noteSv: m.noteSv });
     const owned = mappings.map(m => feature(`hbm-${key}-${m.index}`,source.features[m.index].geometry,m.polityId,m.sourceIds,m.noteSv));
+    if (ancient) {
+      const [west,south,east,north] = EGYPT_CORE_TRANSFORM.maskBbox;
+      const mask = [[[west,south],[east,south],[east,north],[west,north],[west,south]]];
+      owned[0].geometry = { type: 'MultiPolygon',coordinates: polygonClipping.intersection(geometryCoordinates(owned[0].geometry),mask) };
+      owned[0].properties.center = historicalGeometryCenter(owned[0].geometry);
+      Object.assign(owned[0].properties.historical,{ coverage: 'selective-core',geometryTransform: EGYPT_CORE_TRANSFORM });
+      h.coverage[0].noteSv = `${EGYPT_CORE_NOTE_SV} ${h.coverage[0].noteSv}`;
+    }
     if (!ancient) {
       owned[0].properties.historical.controlBasis = 'composite-simulation';
       owned[0].properties.historical.noteSv += ' Bretagne omfattar Arthurs vasallförhållande till Johan; direkt enhetlig förvaltning påstås inte. Irland saknas i denna rekonstruktion.';
@@ -97,12 +105,13 @@ export async function buildHistoricalScenarios({ check = false } = {}) {
       return { sourceIndex: index,sourceName: f.properties.NAME ?? null,sourceProperties: f.properties,geometrySha256: sha(JSON.stringify(f.geometry)),
         classification: r?.status ?? 'unresolved',ownerPolityId: m?.polityId ?? null,
         sourceIds: m?.sourceIds ?? (ancient ? (r?.references ?? []).map((_,i) => `regional-${index}-${i}`) : (r?.sourceEvidenceIds ?? []).map(id => `regional-${id}`)),
-        boundaryDecision: m ? 'accepted-world-scale-approximation' : 'withheld-control',
+        boundaryDecision: m ? (ancient ? 'developer-authored-selective-core' : 'accepted-world-scale-approximation') : 'withheld-control',
+        ...(ancient && m ? { geometryTransform: EGYPT_CORE_TRANSFORM } : {}),
         note: r?.decision ?? r?.notes?.join(' ') ?? 'No supported ownership assignment.',
         ...(index === 214 && !ancient ? { geometryStatus: 'quarantined-self-intersection' } : index === 240 && !ancient ? { geometryStatus: 'quarantined-degenerate' } : {}),
       };
     });
-    const transformations = ['Preserve accepted source coordinates and component structure; assign stable historical IDs.',
+    const transformations = [ancient ? `Intersect Egypt feature19 with developer mask bbox ${JSON.stringify(EGYPT_CORE_TRANSFORM.maskBbox)}; selective partial core, not an attested boundary; retain original source/hash.` : 'Preserve accepted source coordinates and component structure; assign stable historical IDs.',
       'Withhold unreviewed and rejected political ownership; retain original labels and hashes in regionReview.',
       'Quarantine AD1200 source features214 and240; no unsupported repair or owner assignment.',
       'Natural Earth physical land minus accepted political polygons forms unknown-control computational pieces; hide their internal borders.',
