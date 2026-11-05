@@ -31,7 +31,7 @@ import {
 } from "./unitMotion.js";
 import { compareGameDates, normalizeGameDate } from "./gameDates.js";
 import { normalizeCharacterSystem } from "./characters/index.js";
-import { applyCharacterOpsToWorld, migrateLegacyCharacterReplayEvents, normalizeCharacterOps, projectCharacterWorld, reconcileCharacterPolity, synchronizeCharacterEventDate } from "./characterWorld.js";
+import { applyCharacterOpsToWorld, createLegacyCharacterReplay, normalizeCharacterOps, projectCharacterWorld, reconcileCharacterPolity, synchronizeCharacterEventDate } from "./characterWorld.js";
 
 export const GAME_DEFAULTS = {
   country: "",
@@ -4569,7 +4569,7 @@ export const applyEventImpactsToWorld = ({
   colors = {}, events = [], world, motion = null, round = 0, boardOnlyEventIds = [],
 }) => {
   const boardOnly = new Set(normalizeArray(boardOnlyEventIds).map(normalizeOptionalString).filter(Boolean));
-  const replayEvents = migrateLegacyCharacterReplayEvents(world?.characterSystem, normalizeArray(events));
+  const migrateLegacyEvent = createLegacyCharacterReplay(world?.characterSystem);
   let nextColors = cloneValue(colors) ?? {};
   const nextWorld = normalizeWorldState(world);
   let cursorDate = motion ? normalizeOptionalString(motion.originDate) : "";
@@ -4599,7 +4599,7 @@ export const applyEventImpactsToWorld = ({
   // one event is a name the next event can already be using.
   let resolveOwner = createOwnerResolver(buildOwnerAliasMap(nextWorld.polityOverrides));
 
-  for (const event of normalizeEvents(replayEvents)) {
+  for (const event of normalizeEvents(events)) {
     if (nextWorld.characterSystem) {
       const synchronized = synchronizeCharacterEventDate(nextWorld, event);
       Object.assign(nextWorld, synchronized.world);
@@ -4759,8 +4759,9 @@ export const applyEventImpactsToWorld = ({
       Object.assign(nextWorld, reconciled.world);
       characterEvents.push(...reconciled.events);
     }
-    if (event.impacts.characterOps?.length) {
-      Object.assign(nextWorld, applyCharacterOpsToWorld(nextWorld, event.impacts.characterOps, { source: event.source }));
+    const replayEvent = migrateLegacyEvent(event, nextWorld.characterSystem);
+    if (replayEvent.impacts.characterOps?.length) {
+      Object.assign(nextWorld, applyCharacterOpsToWorld(nextWorld, replayEvent.impacts.characterOps, { source: replayEvent.source }));
     }
   }
 

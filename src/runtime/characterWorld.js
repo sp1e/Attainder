@@ -178,11 +178,20 @@ const needsReignMigration = (state) => state && !Object.hasOwn(state, "reign")
 // checkpoint first, then migrate it: migrating the base alone invents a reign
 // which an old succession patch could not update. Keep this provenance local
 // to one replay; current-version patches still go through strict validation.
-export const migrateLegacyCharacterReplayEvents = (initial, events) => {
-  if (!needsReignMigration(initial)) return events;
-  let raw = copy(initial);
-  return events.map((event) => {
-    if (!raw || !Array.isArray(event?.impacts?.characterOps)) return event;
+export const createLegacyCharacterReplay = (initial) => {
+  let raw = needsReignMigration(initial) ? copy(initial) : null;
+  let previous = raw ? normalizeCharacterSystem(raw) : null;
+  return (event, current) => {
+    if (!raw) return event;
+    // Mirror the adapter's actual date synchronization and host reconciliation.
+    // This copies their results without simulating the calendar a second time.
+    const progress = diffCharacterState(previous, current).filter((change) => change.path[0] !== "reign");
+    for (const { path: [key] } of progress) {
+      if (!Object.hasOwn(raw, key) && Object.hasOwn(previous, key)) raw[key] = copy(previous[key]);
+    }
+    raw = patchCharacterData(raw, progress);
+    previous = current;
+    if (!Array.isArray(event?.impacts?.characterOps)) return event;
     const characterOps = event.impacts.characterOps.map((input) => {
       if (!raw) return input;
       const [op] = normalizeCharacterOps([input]);
@@ -190,15 +199,17 @@ export const migrateLegacyCharacterReplayEvents = (initial, events) => {
       if (op.kind === "checkpoint" && event.source === "character-system") {
         if (raw.revision === op.fromRevision && raw.revision < op.state.revision) {
           raw = needsReignMigration(input.state) ? copy(input.state) : null;
+          previous = normalizeCharacterSystem(op.state);
         }
       } else if (op.kind === "patch" && (event.source === "character-system" || op.gate === true)) {
         if (raw.revision >= op.toRevision) return input;
         if (raw.revision !== op.fromRevision) throw new Error("Karaktärshändelsen bygger på en annan världsversion.");
-        const before = normalizeCharacterSystem(raw);
+        const before = previous;
         raw = patchCharacterData(raw, op.changes);
         const after = normalizeCharacterSystem(raw);
         if (after.revision !== op.toRevision) throw new Error("Karaktärshistorikens revision stämmer inte.");
         if (!needsReignMigration(raw)) raw = null;
+        previous = after;
         return { ...op, changes: diffCharacterState(before, after) };
       } else if (op.kind === "command" && COMMAND_SOURCES.has(event.source)) {
         // Commands resume the migrated engine; only stored outcomes use the raw base.
@@ -207,7 +218,7 @@ export const migrateLegacyCharacterReplayEvents = (initial, events) => {
       return input;
     });
     return { ...event, impacts: { ...event.impacts, characterOps } };
-  });
+  };
 };
 
 // The only writer of the character polity's leader, stability, treasury and

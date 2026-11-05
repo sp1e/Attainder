@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { advanceCharacters, createCharacterSystem, executeCharacterCommand, getCharacterPresentation, normalizeCharacterSystem } from "./characters/index.js";
-import { diffCharacterState, migrateLegacyCharacterReplayEvents } from "./characterWorld.js";
+import { createLegacyCharacterReplay, diffCharacterState, synchronizeCharacterEventDate } from "./characterWorld.js";
 import { applyEventImpactsToWorld, normalizeEvents, normalizeWorldState, viewAsSeen } from "./gameState.js";
 import { setRuntimeAssetEndpoints } from "./assets.js";
 
@@ -113,9 +113,9 @@ test("legacy replay retains source trust, revision checks and gate metadata", ()
   gate.source = "ai";
   gate.date = world.characterSystem.date;
   gate.impacts.characterOps[0].gate = true;
-  const migrated = migrateLegacyCharacterReplayEvents(world.characterSystem, [gate]);
-  assert.equal(migrated[0].impacts.characterOps[0].gate, true);
-  assert.equal(migrated[0].impacts.characterOps[0].id, gate.impacts.characterOps[0].id);
+  const migrated = createLegacyCharacterReplay(world.characterSystem)(gate, normalizeCharacterSystem(world.characterSystem));
+  assert.equal(migrated.impacts.characterOps[0].gate, true);
+  assert.equal(migrated.impacts.characterOps[0].id, gate.impacts.characterOps[0].id);
   assert.deepEqual(stage(world, [gate]).characterSystem, stage(world, [events[0]]).characterSystem);
 });
 
@@ -142,4 +142,54 @@ test("legacy full checkpoints can precede patches and current checkpoints end co
   const forged = plain(currentCheckpoint);
   forged.impacts.characterOps[0].state.reign.rulerId = states[2].offices.ruler.holderId;
   assert.throws(() => normalizeEvents([forged]), /Regeringens uppgifter/);
+});
+
+test("legacy succession replay follows an intervening model event's date synchronization", async () => {
+  const initial = createCharacterSystem({ polityId: "Hadara", date: "-0300-01-01", seed: 17 });
+  const february = advanceCharacters(initial, "-0300-02-01").state;
+  const modelEvent = { id: "interleaved-model", title: "Synthetic dated event", source: "ai", date: "-0300-02-15", impacts: {} };
+  const synced = synchronizeCharacterEventDate({ characterSystem: february }, modelEvent).world.characterSystem;
+  const succession = executeCharacterCommand(synced, { id: "interleaved-abdication", expectedRevision: synced.revision, type: "abdicate", payload: {} });
+  assert.equal(succession.ok, true, succession.error);
+  const final = advanceCharacters(succession.state, "-0300-03-01").state;
+  assert.deepEqual([initial.revision, february.revision, synced.revision, succession.state.revision], [0, 1, 2, 3]);
+  const patch = (before, after, id) => ({ id, title: "Synthetic saved outcome", source: "character-system", date: after.date,
+    impacts: { characterOps: [{ id: `${id}-patch`, kind: "patch", fromRevision: before.revision, toRevision: after.revision,
+      changes: diffCharacterState(before, after) }] } });
+  const currentEvents = [patch(initial, february, "interleaved-first"), modelEvent,
+    patch(synced, succession.state, "interleaved-succession"), patch(succession.state, final, "interleaved-last")];
+  const events = [patch(legacy(initial), legacy(february), "interleaved-first"), modelEvent,
+    patch(legacy(synced), legacy(succession.state), "interleaved-succession"), patch(legacy(succession.state), legacy(final), "interleaved-last")];
+  const world = { characterSystem: legacy(initial) };
+  const saved = plain({ world, events });
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify([{ fromDate: initial.date, toDate: final.date, state: { world } }]),
+    { status: 200, headers: { "Content-Type": "application/json" } });
+  setRuntimeAssetEndpoints({ token: "legacy-interleaved-date-sync" });
+  try {
+    const checkpoint = { ...events[0], impacts: { characterOps: [{ id: "interleaved-full", kind: "checkpoint",
+      fromRevision: initial.revision, state: legacy(february) }] } };
+    const variants = [normalizeEvents(events), normalizeEvents([checkpoint, ...events.slice(1)])];
+    for (const loaded of variants) for (let count = 1; count <= events.length; count++) {
+      const control = stage({ characterSystem: initial }, currentEvents.slice(0, count));
+      const replay = stage(world, loaded.slice(0, count));
+      assert.deepEqual(withoutReign(replay.characterSystem), withoutReign(control.characterSystem));
+      assert.equal(replay.characterSystem.reign.rulerId, control.characterSystem.reign.rulerId);
+      assert.deepEqual(streams(replay.characterSystem), streams(control.characterSystem));
+      assert.deepEqual(stage(replay, loaded.slice(0, count)).characterSystem, replay.characterSystem);
+    }
+    const invalid = plain(events);
+    invalid[2].impacts.characterOps[0].fromRevision = 0;
+    assert.throws(() => stage(world, invalid), /annan världsversion/, "date synchronization must not bypass a mismatched revision");
+    const finalWorld = normalizeWorldState({ characterSystem: legacy(final),
+      simulationHistory: [{ fromDate: initial.date, toDate: final.date, eventIds: events.map(({ id }) => id) }] });
+    const seen = await viewAsSeen({ world: finalWorld, events: normalizeEvents(events), game: { gameDate: final.date } },
+      { unseen: new Set([events.at(-1).id]) });
+    assert.ok(seen.world.characterSystem, "partial reveal retains the panel after the interleaved succession");
+    assert.equal(seen.world.characterSystem.revision, 3);
+    assert.equal(seen.world.characterSystem.reign.rulerId, "person-0-2");
+    assert.equal(seen.game.gameDate, modelEvent.date);
+    assert.deepEqual(streams(seen.world.characterSystem), streams(succession.state));
+    assert.deepEqual({ world, events }, saved);
+  } finally { globalThis.fetch = originalFetch; }
 });
