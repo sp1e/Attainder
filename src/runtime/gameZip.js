@@ -126,8 +126,8 @@ export const readGameZip = async (buffer) => {
   if (!bundleText) throw new Error("That .zip is missing game.json — is it a scenario export?");
 
   const scenarioText = await zip.text(GAME_ZIP_SCENARIO);
-  let scenarioBundle = null;
-  if (scenarioText) {
+  let scenarioBundle;
+  if (scenarioText !== null) {
     scenarioBundle = await restoreBundleFiles(JSON.parse(scenarioText), zip);
     // A carried map is its sender's own, never a copy of a hub post: only a
     // download of the game's own stamps that link (hubPosts.js

@@ -572,8 +572,9 @@ const ensureOwnerSchema = (record, kind) => {
     if (regions) record.geojson.regionsGeojson = migrateRegions(regions, renames);
     // Roll-back points hold a full nested copy of every owner-keyed structure and
     // are blind-written back over live state, with no marker to catch a stale one.
-    if (record.snapshots) {
+    if (record.snapshots !== undefined || record.json.snapshots !== undefined) {
       delete record.snapshots;
+      delete record.json.snapshots;
       warn("discarded roll-back snapshots — they predate the owner rename");
     }
     // World last: it carries the marker, so a failure leaves the record unmarked
@@ -682,13 +683,18 @@ const readRuntimeJsonAsset = async (assetKey) => {
 };
 
 // The stored value for a runtime key on a record, or undefined if "no file".
+// Older snapshot imports used the nested slot. The top-level slot is canonical,
+// including an explicit empty list, so a stale nested copy cannot reappear.
+const gameSnapshotList = (record) => Array.isArray(record?.snapshots)
+  ? record.snapshots : Array.isArray(record?.json?.snapshots) ? record.json.snapshots : [];
+
 const runtimeValueFromRecord = (record, assetKey, scenarioScope = false) => {
   if (OPTIONAL_JSON_ASSET_KEYS.includes(assetKey)) return record[assetKey];
-  if (assetKey === "snapshots") return scenarioScope ? undefined : record.snapshots; // snapshots are game-only
+  if (assetKey === "snapshots") return scenarioScope ? undefined : gameSnapshotList(record); // snapshots are game-only
   // Derived, read-only: the same projection the desktop server keeps on disk.
   if (assetKey === "snapshotsIndex") {
     if (scenarioScope) return undefined;
-    const list = Array.isArray(record.snapshots) ? record.snapshots : [];
+    const list = gameSnapshotList(record);
     return {
       entries: list.map((snap) => ({
         id: snap?.id ?? "",
@@ -741,7 +747,10 @@ const writeRuntimeJsonAssetLocked = async (assetKey, value) => {
   else if (assetKey === "colors") canonical = canonicalizeColorKeys(value, activeGame.json?.world ?? null);
 
   if (OPTIONAL_JSON_ASSET_KEYS.includes(assetKey)) activeGame[assetKey] = canonical;
-  else if (assetKey === "snapshots") activeGame.snapshots = canonical;
+  else if (assetKey === "snapshots") {
+    activeGame.snapshots = canonical;
+    if (activeGame.json) delete activeGame.json.snapshots;
+  }
   else activeGame.json = { ...activeGame.json, [assetKey]: canonical };
   writeGameMeta(activeGame, {});
   await putGame(activeGame);
@@ -1727,19 +1736,25 @@ const restoreScenarioForGame = async (id,bundle) => {
   return getGameDetails(id);
 };
 
-const readGameSnapshots = async (id) => {
+const readGameSnapshots = (id) => serializeWrite(async () => {
   const record = await getGame(id);
   if (!record) throw new Error(`Game not found: ${id}`);
-  return jsonAsset(record, "snapshots");
-};
+  // A game-only import is unbound until its own map is validated. Do not
+  // migrate or discard its opaque history against an unrelated local map.
+  const bound = !record.meta?.importedOriginalScenarioId && !record.meta?.importedScenarioUnbound
+    && await getScenario(record.meta?.scenarioId);
+  if (bound && ensureOwnerSchema(record, "game")) await putGame(record);
+  return gameSnapshotList(record);
+});
 
-const writeGameSnapshots = async (id, snapshots) => {
+const writeGameSnapshots = (id, snapshots) => serializeWrite(async () => {
   const record = await getGame(id);
   if (!record) throw new Error(`Game not found: ${id}`);
-  record.json = { ...record.json, snapshots: Array.isArray(snapshots) ? snapshots : [] };
+  record.snapshots = Array.isArray(snapshots) ? snapshots : [];
+  if (record.json) delete record.json.snapshots;
   await putGame(record);
   return { ok: true };
-};
+});
 
 export const handleGames = async ({ method, segments, body, rawBody, contentType, rangeHeader }) => {
   const id = segments[0] ? decodeURIComponent(segments[0]) : null;

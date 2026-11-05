@@ -244,7 +244,18 @@ test('historical web starts create a complete court and invalid requests make no
       const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;
       assert.equal((await run()).status,400); assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes);
     }
-    const created = ok(await games('POST','',{scenarioId}));
+    const { buildPromptContext } = await import('../../Game/AI/promptContext.js');
+    const { renderTemplateCached } = await import('../../Game/AI/promptLayout.js');
+    const prompts=JSON.parse(await readFile(new URL('../../Game/AI/defaultPrompts.json',import.meta.url),'utf8'));
+    const checkLanguage = async (game, expected) => {
+      assert.equal(game.data.game.language,expected); assert.equal(game.data.world.language,expected);
+      const context=await buildPromptContext(game.data,{requiredKeys:['language']}); assert.equal(context.language,expected);
+      assert.ok(renderTemplateCached(prompts.tasks.jumpForward,context).text.includes('Write everything the player reads in '+expected));
+    };
+    const created = ok(await games('POST','',{scenarioId,gamePatch:{language:'Swedish'}}));
+    await checkLanguage(created,'Swedish');
+    await checkLanguage(ok(await games('POST','',{scenarioId})),'Svenska');
+    await checkLanguage(ok(await games('POST','',{scenarioId,gamePatch:{language:'French'}})),'French');
     assert.equal(created.data.world.characterSystem.date,bundle.data.game.gameDate);
     assert.equal(created.data.world.characterSystem.people.sentinel,undefined);
     assert.equal(created.data.world.simulationHistory,undefined); assert.deepEqual(created.data.events,[]);
@@ -276,7 +287,7 @@ test('historical web starts create a complete court and invalid requests make no
 test('game-bound restore preserves legacy state, isolates colliding maps and refuses wrong companions', async () => {
   await reset();
   const legacy = { schema:'open-historia-game-bundle/1', game:{name:'Legacy'},
-    scenarioRef:{scenarioId:'default'}, data:{game:{country:'Testland',gameDate:'2032-11-15'},world:{characterSystem:{people:{a:{name:'A'}}}},events:[{patch:{value:7}}]} };
+    scenarioRef:{scenarioId:'default'}, data:{game:{country:'Testland',gameDate:'2032-11-15',language:'French'},world:{language:'German',characterSystem:{people:{a:{name:'A'}}}},events:[{patch:{value:7}}]} };
   const companion = scenarioBundle('Old map'); companion.scenario.id='default';
   const before=structuredClone(db);
   const wrong=structuredClone(companion); wrong.scenario.id='other';
@@ -455,4 +466,105 @@ test('scenario export size includes embedded tile archives before ZIP download',
   const game=ok(await games('POST','',{scenarioId:id}));
   const ref=ok(await games('GET',`${game.game.id}/export`)).scenarioRef;
   assert.ok(ref.scenarioBytes > 32*1024*1024,'the ZIP ceiling must see the embedded archive');
+});
+/*! Runtime snapshots travel through the UI ZIP and remain opaque. */
+test('runtime snapshots survive UI ZIP export, import and active runtime reads', async () => {
+  await reset();
+  const scenarioId=ok(await scenarios('POST','import',structuredClone(HISTORICAL))).scenario.id;
+  const created=ok(await games('POST','',{scenarioId,setActive:true}));
+  const original=[{id:'snap-1',state:{world:{characterSystem:{rngState:123,opaque:{unknown:['x',9]}}}},turn:{events:[{id:'event-1',date:'1200-12-31',impacts:{opaque:'unchanged'}}]}}];
+  const putRuntime = async (key,body) => {
+    const reply=await store.handleRuntimeJson({method:'PUT',segments:['json',key],body});
+    assert.equal(reply.status,200);
+  };
+  const getRuntime = async key => (await (await store.handleRuntimeJson({method:'GET',segments:['json',key]})).json());
+  await putRuntime('snapshots',original);
+  assert.deepEqual(await getRuntime('snapshots'),original);
+  const previousFetch=globalThis.fetch;
+  globalThis.fetch=async (input,options={}) => {
+    const url=new URL(String(input),'http://localhost');
+    const segments=url.pathname.split('/').filter(Boolean);
+    const handler=segments[1] === 'games' ? store.handleGames : segments[1] === 'scenarios' ? store.handleScenarios : null;
+    if (!handler) return previousFetch(input,options);
+    return handler({method:options.method ?? 'GET',segments:segments.slice(2),body:options.body ? JSON.parse(options.body) : undefined,query:url.searchParams});
+  };
+  try {
+    const { buildGameZipBlob, readGameZip }=await import('../gameZip.js');
+    const { writeGameSnapshotsText }=await import('../library.js');
+    const zip=await buildGameZipBlob(created.game.id);
+    const decoded=await readGameZip(await zip.blob.arrayBuffer());
+    assert.ok(decoded.snapshotsText,'UI ZIP contains snapshots.json');
+    assert.deepEqual(JSON.parse(decoded.snapshotsText),original);
+    const restored=ok(await games('POST','restore',{bundle:decoded.bundle,scenarioBundle:decoded.scenarioBundle}));
+    await writeGameSnapshotsText(restored.game.id,decoded.snapshotsText);
+    ok(await games('PUT','active',{gameId:restored.game.id}));
+    assert.deepEqual(await getRuntime('snapshots'),original);
+    const copied=ok(await games('POST','',{seedGameId:restored.game.id,setActive:true}));
+    assert.deepEqual(await getRuntime('snapshots'),original);
+    const newGame={...copied.data.game,language:'French'};
+    await Promise.all([writeGameSnapshotsText(copied.game.id,JSON.stringify(original)),putRuntime('game',newGame)]);
+    assert.deepEqual(await getRuntime('snapshots'),original);
+    assert.equal((await getRuntime('game')).language,'French');
+    const stored=db.get('games').get(copied.game.id);
+    stored.json.snapshots=structuredClone(original); delete stored.snapshots;
+    assert.deepEqual(await getRuntime('snapshots'),original,'old nested snapshots remain readable');
+    assert.deepEqual(ok(await games('GET',`${copied.game.id}/snapshots`)),original);
+    await writeGameSnapshotsText(copied.game.id,'[]');
+    assert.deepEqual(await getRuntime('snapshots'),[],'an explicit empty top-level list wins over stale nested data');
+  } finally { globalThis.fetch=previousFetch; }
+});
+
+test('game-only UI ZIP restores unresolved without changing the active game', async () => {
+  await reset();
+  const scenarioId=ok(await scenarios('POST','import',structuredClone(HISTORICAL))).scenario.id;
+  const active=ok(await games('POST','',{scenarioId,setActive:true}));
+  const legacy={schema:'open-historia-game-bundle/1',game:{name:'Legacy'},scenarioRef:{scenarioId},data:{game:{gameDate:'2032-11-15',language:'French'},world:{language:'German'},events:[]}};
+  const {readGameZip}=await import('../gameZip.js');
+  const decoded=await readGameZip(await (await zipBundle({'game.json':JSON.stringify(legacy)})).arrayBuffer());
+  const request=JSON.parse(JSON.stringify({bundle:decoded.bundle,scenarioBundle:decoded.scenarioBundle}));
+  const restored=ok(await games('POST','restore',request));
+  assert.equal(restored.game.scenarioMissing,true); assert.equal(ok(await games('GET','')).activeGameId,active.game.id);
+  assert.equal(restored.data.world.language,'German'); assert.equal(restored.data.game.language,'French');
+  assert.equal((await games('POST','restore',{bundle:legacy,scenarioBundle:null})).status,400);
+  const bad=await readGameZip(await (await zipBundle({'game.json':JSON.stringify(legacy),'scenario.json':'null'})).arrayBuffer());
+  assert.equal((await games('POST','restore',{bundle:bad.bundle,scenarioBundle:bad.scenarioBundle})).status,400);
+  await assert.rejects(readGameZip(await (await zipBundle({'game.json':JSON.stringify(legacy),'scenario.json':''})).arrayBuffer()));
+});
+
+test('owner migration discards nested and top-level stale snapshots, while canonical empty wins normally', async () => {
+  await reset();
+  const scenarioId=ok(await scenarios('POST','import',structuredClone(HISTORICAL))).scenario.id;
+  for (const [id,top] of [['migration-nested',undefined],['migration-both',[{id:'top-old'}]],['migration-empty',[]]]) {
+    const created=ok(await games('POST','',{id,scenarioId,setActive:true}));
+    const record=db.get('games').get(created.game.id);
+    record.json.world={ownerSchema:1,polityOverrides:{USA:{name:'United States'}}};
+    record.json.game={...record.json.game,country:'USA'};
+    record.json.snapshots=[{id:'nested-old'}];
+    if(top === undefined) delete record.snapshots; else record.snapshots=top;
+    assert.deepEqual(ok(await games('GET',`${created.game.id}/snapshots`)),[],`${id} export endpoint`);
+    const response=await store.handleRuntimeJson({method:'GET',segments:['json','snapshots']});
+    assert.deepEqual(await response.json(),[],id);
+    const saved=db.get('games').get(created.game.id);
+    assert.equal(saved.json.world.ownerSchema,4);
+    assert.equal(Object.hasOwn(saved.json,'snapshots'),false);
+    assert.equal(Object.hasOwn(saved,'snapshots'),false);
+  }
+  const current=ok(await games('POST','',{id:'migration-current',scenarioId,setActive:true}));
+  const record=db.get('games').get(current.game.id);
+  record.snapshots=[]; record.json.snapshots=[{id:'stale-nested'}];
+  const response=await store.handleRuntimeJson({method:'GET',segments:['json','snapshots']});
+  assert.deepEqual(await response.json(),[]);
+});
+
+test('snapshot export does not migrate an unresolved game before its map is bound', async () => {
+  await reset();
+  const scenarioId=ok(await scenarios('POST','import',structuredClone(HISTORICAL))).scenario.id;
+  const legacy={schema:'open-historia-game-bundle/1',game:{name:'Legacy pending map'},scenarioRef:{scenarioId},
+    data:{game:{gameDate:'2032-11-15',country:'USA'},world:{ownerSchema:1,polityOverrides:{USA:{name:'United States'}}},events:[]}};
+  const game=ok(await games('POST','import',legacy));
+  assert.equal(game.game.scenarioMissing,true);
+  const points=[{id:'opaque-before-map',state:{world:{country:'USA'}}}];
+  ok(await games('PUT',`${game.game.id}/snapshots`,points));
+  assert.deepEqual(ok(await games('GET',`${game.game.id}/snapshots`)),points);
+  assert.equal(db.get('games').get(game.game.id).json.world.ownerSchema,1);
 });

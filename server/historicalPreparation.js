@@ -85,6 +85,14 @@ export function prepareHistoricalCampaignStart({ request = {}, sourceGame = null
   game.difficulty = difficulty === 'normal' ? 'standard' : difficulty;
   const dates = validateHistoricalStartDates(game);
   if (!dates.ok) return dates;
+  // A new historical campaign has one selected narration language. Existing
+  // saves and copies do not pass through this initialization branch.
+  const language = typeof game.language === 'string' && game.language.trim()
+    ? game.language.trim() : (typeof data.world.language === 'string' ? data.world.language.trim() : '');
+  if (language) {
+    game.language = language;
+    data.world.language = language;
+  }
   data.game = { ...game, startDate: dates.startDate, gameDate: dates.gameDate, characterMode: mode, characterSeed: options.seed ?? 104729 };
   if (Object.hasOwn(game,'currentDate')) data.game.currentDate = dates.gameDate;
   for (const key of WORLD_RUNTIME_KEYS) delete data.world[key];

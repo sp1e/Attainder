@@ -7394,6 +7394,7 @@ const captureRollbackSnapshot = async ({ round, fromDate, toDate, game, world, e
       cloneResult: false,
       echo: false,
     });
+    if (typeof window !== "undefined") window.dispatchEvent(new Event("oh:rollback-snapshots-updated"));
   } catch (error) {
     console.warn("[rollback] snapshot capture failed:", error);
   }

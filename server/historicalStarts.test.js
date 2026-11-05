@@ -39,7 +39,16 @@ test('server prepares both historical courts and refuses invalid requests withou
         ()=>store.importScenarioBundle(invalidBundle),()=>store.importScenarioBundle(invalidScenarioCover),()=>store.importScenarioBundle(forged),()=>store.updateScenarioFromBundle('default',invalidBundle)]) {
         const before=snapshot(); assert.throws(run); assert.deepEqual(snapshot(),before);
       }
-      const a=store.createGame({}); assert.equal(a.data.game.gameDate,'1200-12-31'); assert.equal(a.data.world.characterSystem.date,'1200-12-31');
+      const { buildPromptContext } = await import(${JSON.stringify(new URL('../src/Game/AI/promptContext.js',import.meta.url).href)});
+      const { renderTemplateCached } = await import(${JSON.stringify(new URL('../src/Game/AI/promptLayout.js',import.meta.url).href)});
+      const prompts=JSON.parse(fs.readFileSync(${JSON.stringify(fileURLToPath(new URL('../src/Game/AI/defaultPrompts.json',import.meta.url)))},'utf8'));
+      const checkLanguage = async (created, expected) => {
+        assert.equal(created.data.game.language,expected); assert.equal(created.data.world.language,expected);
+        const context=await buildPromptContext(created.data,{requiredKeys:['language']}); assert.equal(context.language,expected);
+        assert.ok(renderTemplateCached(prompts.tasks.jumpForward,context).text.includes('Write everything the player reads in '+expected));
+      };
+      const a=store.createGame({gamePatch:{language:'Swedish'}}); assert.equal(a.data.game.gameDate,'1200-12-31'); assert.equal(a.data.world.characterSystem.date,'1200-12-31');
+      await checkLanguage(a,'Swedish'); await checkLanguage(store.createGame({}),'Svenska'); await checkLanguage(store.createGame({gamePatch:{language:'French'}}),'French');
       const b=store.createGame({scenarioId:'egypt-3000bc'}); assert.equal(b.data.world.characterSystem.date,'-3000-01-01');
       const snapshotScenario=store.createScenario({name:'Snapshot seed'});
       store.updateScenario(snapshotScenario.scenario.id,{worldPatch:{characterSystem:{people:{sentinel:{id:'sentinel'}}},simulationHistory:[{id:'old'}]},storage:{events:[{id:'old'}]}});
@@ -60,7 +69,7 @@ test('server prepares both historical courts and refuses invalid requests withou
         const before=snapshot(); assert.throws(run); assert.deepEqual(snapshot(),before);
       }
       { const before=snapshot(); assert.throws(()=>store.writeRuntimeJsonAsset('citiesGeojson',{type:'FeatureCollection',features:[]})); assert.deepEqual(snapshot(),before); }
-      const legacy={schema:'open-historia-game-bundle/1',game:{name:'Legacy'},scenarioRef:{scenarioId:'default'},data:{game:{gameDate:'2032-11-15'},world:{characterSystem:{people:{a:{name:'A'}}}},events:[{patch:{value:7}}]}};
+      const legacy={schema:'open-historia-game-bundle/1',game:{name:'Legacy'},scenarioRef:{scenarioId:'default'},data:{game:{gameDate:'2032-11-15',language:'French'},world:{language:'German',characterSystem:{people:{a:{name:'A'}}}},events:[{patch:{value:7}}]}};
       const companion=JSON.parse(fs.readFileSync(${JSON.stringify(fileURLToPath(new URL('./seed/historical/john-1200/scenario.json',import.meta.url)))},'utf8')); companion.scenario.id='default';
       const hashSave=structuredClone(legacy); hashSave.data.world.assetProvenance={regionsGeojson:{hashScope:'authored-release',sha256:'f'.repeat(64)}};
       const hashWaiting=store.importGameBundle(hashSave);
