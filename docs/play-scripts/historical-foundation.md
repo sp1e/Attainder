@@ -1,6 +1,6 @@
 # Historical campaign foundation: browser play script
 
-Status: **browser acceptance recorded; final documentation and publication review pending**. The controller accepted the foundation browser evidence with the limits below. The branch is not yet merged or deployed. Record the build commit, browser, adapter, viewport, theme, fixture and actual result for each run. A build or automated test does not establish browser or gameplay acceptance. Use disposable data and public-source synthetic saves; preserve untouched inputs and keep saves, screenshots, request extracts and provider sessions out of published documentation.
+Status: **Task 6 and final documentation review accepted with the limits below**. [PR #13](https://github.com/sp1e/Attainder/pull/13) tracks merge state; its current head must pass CI before merge. Merge does not deploy the game. Record the build commit, browser, adapter, viewport, theme, fixture and actual result for each run. A build or automated test does not establish browser or gameplay acceptance. Use disposable data and public-source synthetic saves; preserve untouched inputs and keep saves, screenshots, request extracts and provider sessions out of published documentation.
 
 ## Observations to date
 
@@ -122,4 +122,4 @@ Desktop was 1280 × 720; narrow was requested at 390 × 844 with an observed inn
 
 ## Closure
 
-The controller accepted the browser evidence and recorded CI success at `2066a55`. Final documentation and publication review remain open. Preserve source attribution and licenses, and exclude private material from publication. The annual 3300 BC–AD 1200 historical-reference research and turn-end popup remain a separate pending milestone.
+The controller accepted Task 6 with the documented limits, and final documentation review approved publication subject to current-head CI. CI passed at `2066a55`; the PR tracks the current head and merge state. Preserve source attribution and licenses, and exclude private material from publication. The annual 3300 BC–AD 1200 historical-reference research and turn-end popup remain a separate pending milestone.

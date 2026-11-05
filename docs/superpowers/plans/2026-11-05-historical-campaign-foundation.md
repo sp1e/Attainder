@@ -4,7 +4,7 @@ Implementation plan, 5 November 2026.
 
 ## Current status
 
-Tasks 1–5 are accepted through `1addf27`; Task 5 integrated historical defaults, start guards, save restoration and UI, and its blocking reviews are closed. The controller accepted Task 6 browser evidence with the limits recorded in the play script. The final unresolved-scenario fixes passed scoped review and were pushed as `7b62791`; the polar-render repairs passed scoped review, most recently at `2066a55`. [PR #13](https://github.com/sp1e/Attainder/pull/13) tracks the branch and its merge state; [CI run 42102593161](https://github.com/sp1e/Attainder/actions/runs/42102593161) passed. Final documentation and publication review remain open. The [play script](../../play-scripts/historical-foundation.md) records observations by build and adapter. The annual 4,500-year research and turn-end popup remain separate pending work.
+Tasks 1–5 are accepted through `1addf27`; Task 5 integrated historical defaults, start guards, save restoration and UI, and its blocking reviews are closed. Task 6 and final documentation review are accepted with the limits recorded in the play script. The final unresolved-scenario fixes passed scoped review and were pushed as `7b62791`; the polar-render repairs passed scoped review, most recently at `2066a55`. [PR #13](https://github.com/sp1e/Attainder/pull/13) tracks the branch and its merge state; [CI run 42102593161](https://github.com/sp1e/Attainder/actions/runs/42102593161) passed. Final review approved publication subject to current-head CI. The [play script](../../play-scripts/historical-foundation.md) records observations by build and adapter. The annual 4,500-year research and turn-end popup remain separate pending work.
 
 ## Goal and completion boundary
 
@@ -12,7 +12,7 @@ Replace the player-facing Hadara and Modern Day defaults with historical campaig
 
 Complete six tasks in numbered order. Tasks 1–4 prepare and test the foundation without changing the current start flow. Task 5 enables guards, historical defaults and start UI together, after content and court work passes review. Task 6 verifies both builds in a browser and records release evidence. Each task has a deliverable that can pass its own tests and review; no task waits for a later task to finish its acceptance checks. Keep preparation on the feature branch until the combined integration passes.
 
-The release must include a sourced Bronze Age bookmark and a sourced AD 1200 bookmark. The two bookmark content packages passed Task 2 review; browser release verification remains open. The Bronze Age bookmark uses Egypt around 3000 BC. Do not fabricate a ruler, court, frontier or date to satisfy the schedule.
+The release must include a sourced Bronze Age bookmark and a sourced AD 1200 bookmark. The two bookmark content packages passed Task 2 review; Task 6 browser evidence is accepted with documented limits. The Bronze Age bookmark uses Egypt around 3000 BC. Do not fabricate a ruler, court, frontier or date to satisfy the schedule.
 
 Expose authored bookmarks, plus any date intervals whose content research supports them. Keep the entire policy range available to valid authored/imported scenarios. A validator accepting 3300 BC does not establish a researched world snapshot for that day. Do not move one court and map through 4,500 annual starts with a date slider.
 
@@ -267,7 +267,7 @@ The separate feature will show sourced historical reference alongside dynamic ev
 
 ## Risks recorded before implementation
 
-The following list records the original planning risks. Tasks 1–5 have since passed their task reviews; Task 6 still tests browser behavior and release evidence.
+The following list records the original planning risks. Tasks 1–5 and Task 6 browser evidence have since passed review with documented limits.
 
 - Neither historical bookmark has a researched, verified content release yet. Source availability, dating uncertainty and redistribution terms may determine the schedule. Task 2 cannot pass with placeholders.
 - The character engine assumes fixture families, religions and relationships. Task 3 may expose additional narrow coupling; reproduce and test each dependency before changing it.
@@ -277,6 +277,6 @@ The following list records the original planning risks. Tasks 1–5 have since p
 
 ## Task 4 implementation ruling, 5 November 2026
 
-Ruling: validated historical character context replaces the complete named `[Real History Is the Default]` section at jump prompt assembly, including edits inside that section in frozen/custom templates. Match section boundaries and retain adjacent author instructions. Campaigns without historical character context keep their existing template bytes and history directive. The cost is that historical-mode authors lose edits inside that named section. Arbitrary contradictory author instructions elsewhere remain an explicit custom-content limit; do not delete them by heuristic. A missing named section receives the historical guidance through the existing live character context. Capture both jump modes with loaded, edited and missing-section templates and legacy controls. Task 4 subsequently passed independent review; Task 5 and the Task 6 browser evidence are also accepted. Final documentation and publication review remain open.
+Ruling: validated historical character context replaces the complete named `[Real History Is the Default]` section at jump prompt assembly, including edits inside that section in frozen/custom templates. Match section boundaries and retain adjacent author instructions. Campaigns without historical character context keep their existing template bytes and history directive. The cost is that historical-mode authors lose edits inside that named section. Arbitrary contradictory author instructions elsewhere remain an explicit custom-content limit; do not delete them by heuristic. A missing named section receives the historical guidance through the existing live character context. Capture both jump modes with loaded, edited and missing-section templates and legacy controls. Task 4 subsequently passed independent review; Task 5, Task 6 and final documentation review are also accepted with documented limits.
 
 Task 4 ruling extension: historical mode also replaces three exact shipped sentences outside that named section: the real-history default in the authority list, the automatic jump requirement that unprevented real events still happen, and the event-writing instruction to retain real historical details. Their replacements refer to the sourced starting context, current campaign records and the player's response to campaign events. Surrounding authority and pacing rules stay in place. The cost applies to authors who retained those exact shipped sentences; other custom wording remains the author's responsibility. Nonhistorical final prompts retain the original wording.

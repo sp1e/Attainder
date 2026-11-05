@@ -1,6 +1,6 @@
 # Historical scenario content
 
-The first two authored packages cover Egypt around 3000 BC and John of England on the game's chosen day of 31 December 1200. They live under `server/seed/historical/`. Task 2 supplied content, provenance, validation and map behavior; Task 5 integrated historical defaults and the new-game flow. The controller accepted browser evidence with the limits recorded in the play script; final publication review remains open. A source citation establishes only the claim described beside it.
+The first two authored packages cover Egypt around 3000 BC and John of England on the game's chosen day of 31 December 1200. They live under `server/seed/historical/`. Task 2 supplied content, provenance, validation and map behavior; Task 5 integrated historical defaults and the new-game flow. Task 6 and final documentation review are accepted with the limits recorded in the play script; current-head CI is required before merge. A source citation establishes only the claim described beside it.
 
 | Content ID | Game bookmark | Playable polity | Household |
 | --- | --- | --- | --- |
@@ -58,7 +58,7 @@ Both flat and globe presentation intersect polar geometry with the approximately
 
 Historical geometry remains authoritative at close zoom, even if an imported region ID matches a modern tile. Historical map rendering, flag resolution, country-list assembly and place search suppress modern fallback. A missing historical city asset leaves an empty city layer. Modern saves retain their existing behavior. The map selection card labels unknown control and marks accepted regions as approximate.
 
-The conversion quarantines AD 1200 features 214 (Goryeo, self-intersection) and 240 (degenerate unnamed geometry). It assigns no replacement ownership. Natural Earth keeps the land visible. The generated release has valid polygons under an independent Shapely audit; runtime tests also cover holes, closed rings, dateline component handling and source-based placement. The [play script](../play-scripts/historical-foundation.md) records the accepted browser observations and their limits. Final documentation and publication review remain open.
+The conversion quarantines AD 1200 features 214 (Goryeo, self-intersection) and 240 (degenerate unnamed geometry). It assigns no replacement ownership. Natural Earth keeps the land visible. The generated release has valid polygons under an independent Shapely audit; runtime tests also cover holes, closed rings, dateline component handling and source-based placement. The [play script](../play-scripts/historical-foundation.md) records the accepted browser observations and their limits. Final review approved publication subject to current-head CI.
 
 ## Schema and court contract
 
