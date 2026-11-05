@@ -29,10 +29,14 @@ test('server prepares both historical courts and refuses invalid requests withou
       const world=store.getScenarioDetails('default').data.world;
       { const before=snapshot(); assert.throws(()=>store.createScenario({worldPatch:{polityOverrides:{...world.polityOverrides,modern:{name:'Modern'}}}})); assert.deepEqual(snapshot(),before); }
       const authored=JSON.parse(fs.readFileSync(${JSON.stringify(fileURLToPath(new URL('./seed/historical/john-1200/scenario.json',import.meta.url)))},'utf8'));
+      const ownExport=store.exportScenarioBundle('default');
+      assert.equal(ownExport.assets.cover.contentType,'image/jpeg');
+      assert.ok(store.importScenarioBundle(ownExport,{setSelected:false}).scenario.id);
       const invalidBundle=structuredClone(authored); invalidBundle.data.game.gameDate=null;
+      const invalidScenarioCover=structuredClone(authored); invalidScenarioCover.assets.cover={mode:'embedded',encoding:'base64',data:'@@@'};
       const forged=structuredClone(authored); forged.data.game.startDate=forged.data.game.gameDate='2016-01-01'; forged.restoreOnly=true; forged.skipValidation=true;
       for (const run of [()=>store.createScenario({gamePatch:{gameDate:null}}),()=>store.updateScenario('default',{gamePatch:{startDate:'1201-01-01'}}),
-        ()=>store.importScenarioBundle(invalidBundle),()=>store.importScenarioBundle(forged),()=>store.updateScenarioFromBundle('default',invalidBundle)]) {
+        ()=>store.importScenarioBundle(invalidBundle),()=>store.importScenarioBundle(invalidScenarioCover),()=>store.importScenarioBundle(forged),()=>store.updateScenarioFromBundle('default',invalidBundle)]) {
         const before=snapshot(); assert.throws(run); assert.deepEqual(snapshot(),before);
       }
       const a=store.createGame({}); assert.equal(a.data.game.gameDate,'1200-12-31'); assert.equal(a.data.world.characterSystem.date,'1200-12-31');
@@ -58,6 +62,9 @@ test('server prepares both historical courts and refuses invalid requests withou
       { const before=snapshot(); assert.throws(()=>store.writeRuntimeJsonAsset('citiesGeojson',{type:'FeatureCollection',features:[]})); assert.deepEqual(snapshot(),before); }
       const legacy={schema:'open-historia-game-bundle/1',game:{name:'Legacy'},scenarioRef:{scenarioId:'default'},data:{game:{gameDate:'2032-11-15'},world:{characterSystem:{people:{a:{name:'A'}}}},events:[{patch:{value:7}}]}};
       const companion=JSON.parse(fs.readFileSync(${JSON.stringify(fileURLToPath(new URL('./seed/historical/john-1200/scenario.json',import.meta.url)))},'utf8')); companion.scenario.id='default';
+      const hashSave=structuredClone(legacy); hashSave.data.world.assetProvenance={regionsGeojson:{hashScope:'authored-release',sha256:'f'.repeat(64)}};
+      const hashWaiting=store.importGameBundle(hashSave);
+      { const before=snapshot(); assert.throws(()=>store.restoreGameBundle({bundle:hashSave,scenarioBundle:companion})); assert.throws(()=>store.restoreScenarioForGame(hashWaiting.game.id,companion)); assert.deepEqual(snapshot(),before); }
       fs.mkdirSync(path.join(process.env.OH_DATA_DIR,'games','hollow'),{recursive:true});
       fs.writeFileSync(path.join(process.env.OH_DATA_DIR,'games','hollow','game-instance.json'),JSON.stringify({id:'hollow',scenarioId:'default'}));
       fs.writeFileSync(path.join(process.env.OH_DATA_DIR,'games','hollow','game.json'),'{}');
@@ -75,13 +82,58 @@ test('server prepares both historical courts and refuses invalid requests withou
       assert.equal(omitted.game.scenarioMissing,true,'an unstamped old default must not acquire the new historical map');
       const oldDefault=store.importGameBundle(legacy);
       assert.equal(oldDefault.game.scenarioMissing,true);
+      const sameStamp=structuredClone(legacy); sameStamp.data.world.builtInMap='historical-john-1200-v1';
+      sameStamp.data.world.assetProvenance={regionsGeojson:{currentAssetStatus:'modified'}};
+      assert.equal(store.importGameBundle(sameStamp).game.scenarioMissing,true,'a retained built-in marker does not establish current map identity');
       const oldCopy=store.createGame({seedGameId:oldDefault.game.id});
       assert.equal(oldCopy.game.scenarioMissing,true); assert.equal(store.exportGameBundle(oldCopy.game.id).scenarioRef.scenarioId,'default');
       const associated=store.restoreScenarioForGame(oldCopy.game.id,companion);
       assert.notEqual(associated.game.scenarioId,'default'); assert.deepEqual(associated.data.world,legacy.data.world);
       const missing=store.importGameBundle({...legacy,scenarioRef:{scenarioId:'long-gone'}});
       const copy=store.createGame({seedGameId:missing.game.id});
-      assert.equal(copy.game.scenarioId,'long-gone'); assert.deepEqual(copy.data.world,legacy.data.world); assert.deepEqual(copy.data.events,legacy.data.events);
+      assert.equal(copy.game.scenarioMissing,true); assert.equal(store.exportGameBundle(copy.game.id).scenarioRef.scenarioId,'long-gone'); assert.deepEqual(copy.data.world,legacy.data.world); assert.deepEqual(copy.data.events,legacy.data.events);
+      const arriving=structuredClone(authored); arriving.scenario.id='long-gone'; store.importScenarioBundle(arriving,{setSelected:false});
+      assert.equal(store.getGameDetails(missing.game.id).game.scenarioMissing,true,'later original-ID installation must not bind the old game');
+      const collision=store.importGameBundle({...legacy,scenarioRef:{scenarioId:'egypt-3000bc'}});
+      assert.equal(collision.game.scenarioMissing,true,'same non-default ID alone does not prove map identity');
+      assert.equal(store.exportGameBundle(collision.game.id).scenarioRef.scenarioId,'egypt-3000bc');
+      const placeholder=structuredClone(authored); placeholder.scenario.id=collision.game.scenarioId;
+      store.importScenarioBundle(placeholder,{setSelected:false});
+      assert.equal(store.getGameDetails(collision.game.id).game.scenarioMissing,true,'later placeholder collision must stay unresolved');
+      assert.equal(store.exportGameBundle(collision.game.id).scenarioRef.scenarioId,'egypt-3000bc');
+      store.setActiveGame(collision.game.id);
+      const beforeRead=store.getGameDetails(collision.game.id).data.world;
+      assert.deepEqual(store.readRuntimeJsonAsset('regionsGeojson').data,{type:'FeatureCollection',features:[]});
+      assert.throws(()=>store.resolveRuntimeBinaryAsset('regions'));
+      assert.deepEqual(store.getGameDetails(collision.game.id).data.world,beforeRead);
+      store.setActiveGame(a.game.id);
+      const missingMap=structuredClone(authored); missingMap.scenario.id='long-gone'; delete missingMap.assets.regionsGeojson;
+      const invalidMap=structuredClone(missingMap); invalidMap.assets.regionsGeojson={mode:'embedded',data:{type:'FeatureCollection',features:[]}};
+      const invalidEncoded=structuredClone(missingMap); invalidEncoded.assets.regionsGeojson={mode:'embedded',encoding:'base64',data:'@@@'};
+      const invalidCover=structuredClone(authored); invalidCover.scenario.id='long-gone'; invalidCover.assets.cover={mode:'embedded',data:'@@@',encoding:'base64',contentType:'application/octet-stream'};
+      for (const map of [missingMap,invalidMap,invalidEncoded,invalidCover]) {
+        const before=snapshot(); assert.throws(()=>store.restoreGameBundle({bundle:{...legacy,scenarioRef:{scenarioId:'long-gone'}},scenarioBundle:map}));
+        assert.throws(()=>store.restoreScenarioForGame(missing.game.id,map)); assert.deepEqual(snapshot(),before);
+      }
+      const stamped=structuredClone(missingMap); stamped.data.world={builtInMap:'modern-day-world-2026-10-v1'};
+      const stampedSave={...legacy,scenarioRef:{scenarioId:'long-gone'},data:{...legacy.data,world:{...legacy.data.world,builtInMap:'modern-day-world-2026-10-v1'}}};
+      const registryRestore=store.restoreGameBundle({bundle:stampedSave,scenarioBundle:stamped});
+      assert.ok(store.getScenarioDetails(registryRestore.game.scenarioId).assetStatus.regionsGeojson);
+      assert.equal(store.exportScenarioBundle(registryRestore.game.scenarioId).assets.regionsGeojson.data.features.length,3662);
+      const waiting=store.importGameBundle(stampedSave); const linked=store.restoreScenarioForGame(waiting.game.id,stamped);
+      assert.ok(store.getScenarioDetails(linked.game.scenarioId).assetStatus.regionsGeojson);
+      const conflicting=structuredClone(stamped); conflicting.assets.regionsGeojson={mode:'embedded',data:{type:'FeatureCollection',features:[]}};
+      const waitingConflict=store.importGameBundle(stampedSave);
+      { const before=snapshot(); assert.throws(()=>store.restoreGameBundle({bundle:stampedSave,scenarioBundle:conflicting})); assert.throws(()=>store.restoreScenarioForGame(waitingConflict.game.id,conflicting)); assert.deepEqual(snapshot(),before); }
+      const missingEdited=structuredClone(stamped); missingEdited.data.world.assetProvenance={regionsGeojson:{currentAssetStatus:'modified'}};
+      { const before=snapshot(); assert.throws(()=>store.restoreGameBundle({bundle:stampedSave,scenarioBundle:missingEdited})); assert.throws(()=>store.restoreScenarioForGame(waitingConflict.game.id,missingEdited)); assert.deepEqual(snapshot(),before); }
+      const unknown=structuredClone(stamped); unknown.data.world.builtInMap='unknown-map';
+      const unknownSave={...stampedSave,data:{...stampedSave.data,world:{...stampedSave.data.world,builtInMap:'unknown-map'}}};
+      const unknownWaiting=store.importGameBundle(unknownSave);
+      { const before=snapshot(); assert.throws(()=>store.restoreGameBundle({bundle:unknownSave,scenarioBundle:unknown})); assert.throws(()=>store.restoreScenarioForGame(unknownWaiting.game.id,unknown)); assert.deepEqual(snapshot(),before); }
+      const encoded=structuredClone(authored); encoded.scenario.id='long-gone'; encoded.assets.regionsGeojson.data=Buffer.from(JSON.stringify(encoded.assets.regionsGeojson.data)).toString('base64'); encoded.assets.regionsGeojson.encoding='base64';
+      assert.ok(store.restoreGameBundle({bundle:{...legacy,scenarioRef:{scenarioId:'long-gone'}},scenarioBundle:encoded}).game.id);
+      assert.equal(store.getGameCatalog().activeGameId,a.game.id);
     `], { env: { ...process.env, OH_DATA_DIR: root }, stdio: 'pipe', encoding: 'utf8' });
   } finally { rmSync(root,{recursive:true,force:true}); }
   assert.ok(true);

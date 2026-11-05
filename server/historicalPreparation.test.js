@@ -53,5 +53,27 @@ test('companion identity and recorded hub edition bind without requiring a ZIP h
     {...companion,hubOrigin:{...origin,bundleUrl:'https://example.invalid/new.zip'}},
     {...companion,hubOrigin:{...origin,release:'https://example.invalid/new-release.zip'}},
   ]) assert.equal(validateCompanion(saved,changed).ok,false);
+  const withHash=structuredClone(saved);
+  withHash.data.world={assetProvenance:{regionsGeojson:{hashScope:'authored-release',sha256:'f'.repeat(64)}}};
+  assert.equal(validateCompanion(withHash,companion).ok,false,'different recorded authored releases cannot bind');
+  withHash.data.world.assetProvenance.regionsGeojson={...companion.data.world.assetProvenance.regionsGeojson,currentAssetStatus:'modified'};
+  assert.equal(validateCompanion(withHash,companion).ok,true,'a release digest remains a release digest even when current assets are modified');
+  const descriptorOnly=structuredClone(companion);
+  delete descriptorOnly.data.world.assetProvenance;
+  descriptorOnly.assets.regionsGeojson.provenance={...companion.data.world.assetProvenance.regionsGeojson,sha256:'e'.repeat(64)};
+  assert.equal(validateCompanion(withHash,descriptorOnly).ok,false,'descriptor-only release evidence must also match');
   assert.equal(validateCompanion({schema:saved.schema,data:{}},companion).ok,false);
+});
+
+test('a matching companion without usable map geometry is refused', () => {
+  const companion=read('john-1200');
+  const saved={schema:'open-historia-game-bundle/1',scenarioRef:{scenarioId:companion.scenario.id},data:{game:{gameDate:'2032-11-15'}}};
+  for (const map of [undefined,{mode:'embedded',data:{type:'FeatureCollection',features:[]}},{mode:'embedded',data:'not-base64',encoding:'base64'}]) {
+    const candidate=structuredClone(companion);
+    if (map === undefined) delete candidate.assets.regionsGeojson; else candidate.assets.regionsGeojson=map;
+    assert.equal(validateCompanion(saved,candidate).ok,false);
+  }
+  const absent=structuredClone(companion); delete absent.assets.regionsGeojson;
+  const modified=structuredClone(saved); modified.data.world={assetProvenance:{regionsGeojson:{currentAssetStatus:'modified'}}};
+  assert.equal(validateCompanion(modified,absent,{fallbackRegions:companion.assets.regionsGeojson.data}).ok,false);
 });

@@ -25,6 +25,8 @@ On Windows, after the first build, double-click `Start-Attainder.cmd`. The launc
 
 Fresh clones store campaigns in `play-data/` and launcher logs in `reports/launcher/`. Both are ignored by Git. Set `ATTAINDER_DATA_HOME` to use another data directory. The older name `TIDES_DATA_HOME` still works. The original development installation retains its existing sibling data directory automatically.
 
+Game ZIP exports include the available scenario map, including built-in maps, when it fits the size limit. If the map is missing, invalid or too large, the export reports its omission. Game-only imports keep their scenario reference unresolved until the matching map is restored, even when a local scenario has the same ID. A game-bound restore accepts a companion with usable map geometry or an identified map bundled with the installation. Older companions that relied on an unidentified stock-map fallback need a map source. The saved people and replay stay with the campaign.
+
 ## Character systems
 
 - A ruler's archetype determines available abilities. Succession changes those abilities.

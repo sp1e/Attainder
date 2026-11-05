@@ -1633,9 +1633,9 @@ const DiagnosticsPanel = () => {
             // be a file that says nothing, and the button above already says the
             // same thing by being dimmed. Just the game, and the label says so.
             if (enabled) await saveDebugLogFile();
-            const { blob } = await buildGameZipBlob(gameId);
+            const { blob, oversizeScenario, omittedScenario } = await buildGameZipBlob(gameId);
             saveGameZipToDisk(blob, `${gameId}-game.zip`);
-            setAttachState({ kind: "saved", name, size: formatZipSize(blob.size) });
+            setAttachState({ kind: oversizeScenario || omittedScenario ? "saved-without-map" : "saved", name, size: formatZipSize(blob.size) });
         } catch (error) {
             logDebugEvent("diagnostics", "Saving the game failed.", { error: error?.message || String(error) });
             setAttachState({ kind: "failed" });
@@ -1689,6 +1689,8 @@ const DiagnosticsPanel = () => {
             ? "No game open"
             : attachState.kind === "failed"
             ? "Couldn't save the game"
+            : attachState.kind === "saved-without-map"
+            ? `✓ Saved “${shortGameName(attachState.name)}” — map not included`
             : attachState.kind === "saved"
             ? `✓ Saved ${enabled ? "log + " : ""}“${shortGameName(attachState.name)}” (${attachState.size})`
             : enabled ? "💾 Save log file + game" : "💾 Save game"}

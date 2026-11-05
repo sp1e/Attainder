@@ -1,4 +1,4 @@
-import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, requirePrepared, sameJson, savedDefaultMatchesInstalled } from "../../../server/historicalPreparation.js";
+import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "../../../server/historicalPreparation.js";
 import { withScenarioLicense, preserveComponentProvenance } from "../scenarioLicense.js";
 /*! Open Historia — web-mode library/scenario/game/runtime store © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 // Browser (IndexedDB) port of server/libraryStore.js. Backs /api/library,
@@ -18,6 +18,7 @@ import {
 } from "./util.js";
 import FALLBACK_COLORS from "./generated/fallbackColors.js";
 import { builtInMap as BUILT_IN_MAP, builtInRevision as BUILT_IN_REVISION, earlierMaps as EARLIER_BUILT_IN_MAPS, regionsUrl as BUILT_IN_REGIONS_URL } from "./generated/defaultScenarioMeta.js";
+import * as BUILT_IN_META from "./generated/defaultScenarioMeta.js";
 import {
   DEFAULT_SCENARIO_ID, DEFAULT_GAME_ID, EMPTY_FEATURE_COLLECTION, COVER_IMAGE_ASSET_KEY,
   JSON_ASSET_KEYS, STORAGE_JSON_ASSET_KEYS, OPTIONAL_JSON_ASSET_KEYS, RUNTIME_ONLY_JSON_ASSET_KEYS,
@@ -293,7 +294,8 @@ const getGameCatalog = async (scenarioCatalog, gameMetas) => {
     if (!proj) return null;
     const meta = readGameMeta(id, proj.meta ?? {});
     const assetStatus = proj.assetStatus ?? {};
-    const scenario = scenarioLookup.get(meta.scenarioId) ?? { ...readScenarioMeta(meta.scenarioId, {}), missing: true, name: meta.scenarioId };
+    let scenario = scenarioLookup.get(meta.scenarioId) ?? { ...readScenarioMeta(meta.scenarioId, {}), missing: true, name: meta.scenarioId };
+    if (meta.importedOriginalScenarioId || meta.importedScenarioUnbound) scenario = { ...scenario, missing:true };
     const cacheToken = `${id}-${meta.updatedAt}`;
     const ownCoverImageUrl = assetStatus.cover ? coverObjectUrl(`game:${id}`, cacheToken, proj.cover) : null;
     return {
@@ -412,7 +414,8 @@ const getGameDetails = async (id) => {
   // Mirrors the server store: a game whose scenario is gone still opens in the
   // editor (getGameScenarioSummary) instead of a 404 that the Edit button
   // swallows into nothing.
-  const scenario = await getGameScenarioSummary(meta.scenarioId);
+  const linked = await getGameScenarioSummary(meta.scenarioId);
+  const scenario = meta.importedOriginalScenarioId || meta.importedScenarioUnbound ? { ...linked, missing:true } : linked;
   return { assetStatus: getGameAssetStatus(record), data: jsonDataBundle(record), game: await getGameSummary(id), scenario };
 };
 
@@ -429,6 +432,7 @@ const getSelectedScenarioRecord = async () => {
 };
 const getActiveRuntimeScenarioRecord = async () => {
   const activeGame = await getActiveGameRecord();
+  if (activeGame?.meta?.importedOriginalScenarioId || activeGame?.meta?.importedScenarioUnbound) return null;
   const scenarioId = activeGame ? readGameMeta(activeGame.id, activeGame.meta).scenarioId : DEFAULT_SCENARIO_ID;
   return getScenario(scenarioId);
 };
@@ -589,7 +593,8 @@ const readRuntimeJsonAsset = async (assetKey) => {
   // Above the geojson branch: it returns before anything else runs, and it is the
   // branch that serves the file `owner` physically lives in.
   const activeForMigration = await getActiveGameRecord();
-  if (activeForMigration && ensureOwnerSchema(activeForMigration, "game")) {
+  const activeScenario = activeForMigration ? await getActiveRuntimeScenarioRecord() : null;
+  if (activeForMigration && activeScenario && ensureOwnerSchema(activeForMigration, "game")) {
     await idbPut(STORES.games, activeForMigration);
   }
   if (SCENARIO_GEOJSON_ASSET_KEYS.includes(assetKey)) {
@@ -803,6 +808,9 @@ const scenarioCandidate = async record => ({ meta: { ...record?.meta, id: record
   cities: parseJsonValue(record?.geojson?.citiesGeojson,null) });
 const bundleScenarioRecord = (bundle,id) => {
   if (!bundle || !isScenarioBundleSchema(bundle.schema)) throw new Error("Scenariots filformat stöds inte.");
+  const coverType=companionCoverType(bundle);
+  if (coverType === '') throw new Error("Scenariots omslagsbild är ogiltig.");
+  if (coverType) { bundle=cloneJson(bundle); bundle.assets.cover.contentType=coverType; }
   for (const key of ["regionsGeojson","citiesGeojson"]) {
     const a=bundle.assets?.[key]?.provenance,b=bundle.data?.world?.assetProvenance?.[key];
     if (a && b && !sameJson(a,b)) throw new Error("Scenariots kartproveniens stämmer inte.");
@@ -1231,6 +1239,10 @@ const exportScenarioBundle = async (id) => {
       ? { contentType: "application/json", data: parseJsonValue(record.geojson[key], null), fileName, mode: "embedded" }
       : { fileName, mode: "default" };
   }
+  if (assets.regionsGeojson.mode !== "embedded" && record.json?.world?.assetProvenance?.regionsGeojson?.currentAssetStatus !== 'modified' && bundledMapUrlOf(record)) {
+    const regions=await fetchBuiltInRegionsGeojson(bundledMapUrlOf(record));
+    if (regions) assets.regionsGeojson={contentType:"application/json",data:regions,fileName:"regions.geojson",mode:"embedded"};
+  }
   for (const [key, fileName] of [["cities", "cities.pmtiles"], ["countries", "countries.pmtiles"], ["regions", "regions.pmtiles"]]) {
     assets[key] = record.pmtiles?.[key] !== undefined
       ? { contentType: "application/octet-stream", data: bytesToBase64(record.pmtiles[key]), encoding: "base64", fileName, mode: "embedded" }
@@ -1298,6 +1310,7 @@ const updateScenarioFromBundle = async (id,bundle) => {
 export const getScenarioPmtilesOverride = async (key, rangeHeader) => {
   if (!PMTILES_ASSET_KEYS.includes(key)) return null;
   const scenario = await getActiveRuntimeScenarioRecord();
+  if (!scenario && await getActiveGameRecord()) throw new Error("Den sparade kampanjens karta saknas.");
   const bytes = scenario?.pmtiles?.[key];
   if (bytes === undefined) return null;
   return binaryResponse(bytes, "application/octet-stream", rangeHeader);
@@ -1528,12 +1541,15 @@ const scenarioBundleBytes = async (scenarioId) => {
   const record = await getScenario(scenarioId);
   if (!record) return 0;
   let total = 0;
-  try { total += JSON.stringify(record.json ?? {}).length; } catch { /* unserialisable */ }
-  for (const asset of Object.values(record.assets ?? {})) {
-    const bytes = asset?.bytes;
-    if (bytes && typeof bytes.byteLength === "number") total += Math.round(bytes.byteLength * 1.34);
-  }
+  const sizeJson = value => { try { return new TextEncoder().encode(JSON.stringify(value)).byteLength; } catch { return 0; } };
+  total += sizeJson(record.json ?? {}) + sizeJson(record.geojson ?? {});
+  for (const key of OPTIONAL_JSON_ASSET_KEYS) if (record[key] !== undefined) total += sizeJson(record[key]);
+  for (const bytes of Object.values(record.pmtiles ?? {})) if (bytes && typeof bytes.byteLength === "number") total += Math.round(bytes.byteLength * 1.34);
   if (record.cover?.bytes?.byteLength) total += Math.round(record.cover.bytes.byteLength * 1.34);
+  if (record.geojson?.regionsGeojson === undefined && bundledMapUrlOf(record)) {
+    const size=BUILT_IN_META.bundledRegionSizes?.[record.json?.world?.builtInMap];
+    total += Number.isFinite(size) && size > 0 ? Math.round(size * 1.34) : 33 * 1024 * 1024;
+  }
   return total;
 };
 
@@ -1543,7 +1559,8 @@ const exportGameBundle = async (id) => {
 
   const game = await getGameSummary(id);
   const meta = readGameMeta(id, record.meta ?? {});
-  const scenario = await getGameScenarioSummary(meta.scenarioId);
+  const linked = await getGameScenarioSummary(meta.scenarioId);
+  const scenario = meta.importedOriginalScenarioId || meta.importedScenarioUnbound ? { ...linked, missing:true } : linked;
   const data = {};
 
   for (const key of GAME_BUNDLE_DATA_KEYS) data[key] = jsonAsset(record, key);
@@ -1553,7 +1570,7 @@ const exportGameBundle = async (id) => {
   // fallback and must not freeze an older Scenario Editor definition into an
   // export.
   const scenarioRecord = await getScenario(meta.scenarioId);
-  if (scenarioRecord) {
+  if (scenarioRecord && !scenario.missing) {
     if (scenarioRecord.stats !== undefined) data.stats = parseJsonValue(scenarioRecord.stats, {});
     else delete data.stats;
   }
@@ -1585,7 +1602,7 @@ const exportGameBundle = async (id) => {
       // Server twin. This store holds the scenario as an object rather than files,
       // so measure what a bundle of it would serialise to.
       scenarioBytes:
-        scenario?.missing || BUILT_IN_SCENARIO_IDS.has(meta.scenarioId) || fetchableHubOrigin(scenario?.hubOrigin)
+        scenario?.missing
           ? 0
           : await scenarioBundleBytes(meta.scenarioId),
       // Server twin: a map's name must not decay to an id when a game carrying no
@@ -1618,7 +1635,7 @@ const uniqueGameName = async (requested) => {
 // Not createGame: that seeds from a scenario and throws on an unknown id, and an
 // imported game brings its own data and may name a scenario this browser has
 // never held. Never activates, for the same reason the server twin does not.
-const importGameBundle = async (bundle) => {
+const persistImportedGameBundle = async (bundle, trustedScenarioId = null) => {
   if (!bundle || typeof bundle !== "object") throw new Error("Game bundle must be a JSON object.");
   if (!ACCEPTED_GAME_BUNDLE_SCHEMAS.has(bundle.schema)) throw new Error("Unsupported game bundle schema.");
   requirePrepared(validateSavedGameBundle(bundle));
@@ -1627,9 +1644,8 @@ const importGameBundle = async (bundle) => {
   const data = bundle.data && typeof bundle.data === "object" ? bundle.data : {};
   const ref = bundle.scenarioRef && typeof bundle.scenarioRef === "object" ? bundle.scenarioRef : {};
   const originalScenarioId = trimmed(ref.scenarioId);
-  const defaultScenario = await getScenario(DEFAULT_SCENARIO_ID);
-  const unresolvedDefault = !originalScenarioId || (originalScenarioId === DEFAULT_SCENARIO_ID && !savedDefaultMatchesInstalled(data.world,defaultScenario?.json?.world));
-  const scenarioId = unresolvedDefault ? await ensureUniqueId('unresolved-default','scenario') : originalScenarioId;
+  const unresolved = !trustedScenarioId;
+  const scenarioId = unresolved ? await ensureUniqueId('unresolved-map','scenario') : originalScenarioId;
 
   const id = await ensureUniqueId(metaIn.name || scenarioId || "game", "game");
   const record = emptyGameRecord(id);
@@ -1656,7 +1672,7 @@ const importGameBundle = async (bundle) => {
     heroTitle: trimmed(metaIn.heroTitle) || DEFAULT_GAME_META.heroTitle,
     id,
     importedScenarioName: trimmed(ref.scenarioName) || null,
-    importedOriginalScenarioId: unresolvedDefault ? originalScenarioId || null : null,
+    importedOriginalScenarioId: unresolved ? originalScenarioId || null : null,
     importedScenarioUnbound: !originalScenarioId,
     importedScenarioOrigin: normalizeHubOrigin(ref.hubOrigin),
     importedAt: arrivedAt,
@@ -1674,26 +1690,38 @@ const importGameBundle = async (bundle) => {
   return getGameDetails(id);
 };
 
+const importGameBundle = bundle => persistImportedGameBundle(bundle);
+
+const prepareRestoredCompanion = async (bundle,scenarioBundle) => {
+  const stamp=scenarioBundle?.data?.world?.builtInMap;
+  const url = stamp === BUILT_IN_MAP ? BUILT_IN_REGIONS_URL
+    : typeof stamp === 'string' && Object.hasOwn(EARLIER_BUILT_IN_MAPS ?? {},stamp) ? EARLIER_BUILT_IN_MAPS[stamp] : null;
+  const fallbackRegions = scenarioBundle?.assets?.regionsGeojson?.mode !== 'embedded' && url ? await fetchBuiltInRegionsGeojson(url) : null;
+  requirePrepared(validateCompanion(bundle,scenarioBundle,{fallbackRegions}));
+  const normalized=cloneJson(scenarioBundle), coverType=companionCoverType(scenarioBundle);
+  if (coverType) normalized.assets.cover.contentType=coverType;
+  const record=bundleScenarioRecord(normalized,await ensureUniqueId(scenarioBundle.scenario.id,'scenario'));
+  if (scenarioBundle?.assets?.regionsGeojson?.mode !== 'embedded') record.geojson.regionsGeojson=requirePrepared(companionMap(scenarioBundle,fallbackRegions)).regions;
+  record.meta.restoreOnly=true;
+  return record;
+};
+
 const restoreGameBundle = async ({bundle,scenarioBundle} = {}) => {
   requirePrepared(validateSavedGameBundle(bundle));
   let record;
   if (scenarioBundle !== undefined) {
-    requirePrepared(validateCompanion(bundle,scenarioBundle));
-    record=bundleScenarioRecord(scenarioBundle,await ensureUniqueId(scenarioBundle.scenario.id,"scenario"));
-    record.meta.restoreOnly=true;
+    record=await prepareRestoredCompanion(bundle,scenarioBundle);
   }
   const restored=cloneJson(bundle);
   if (record) restored.scenarioRef.scenarioId=await persistScenarioRecord(record);
-  return importGameBundle(restored);
+  return persistImportedGameBundle(restored,record ? restored.scenarioRef.scenarioId : null);
 };
 const restoreScenarioForGame = async (id,bundle) => {
   const game=await getGame(id);
   if (!game) throw new Error("Den sparade kampanjen saknas.");
   if (game.meta.importedScenarioUnbound) throw new Error("Den sparade kampanjen saknar scenariots identitet.");
   const saved={schema:GAME_BUNDLE_SCHEMA,data:game.json,scenarioRef:{scenarioId:game.meta.importedOriginalScenarioId || game.meta.scenarioId,hubOrigin:game.meta.importedScenarioOrigin}};
-  requirePrepared(validateCompanion(saved,bundle));
-  const record=bundleScenarioRecord(bundle,await ensureUniqueId(bundle.scenario.id,"scenario"));
-  record.meta.restoreOnly=true;
+  const record=await prepareRestoredCompanion(saved,bundle);
   const scenarioId=await persistScenarioRecord(record);
   writeGameMeta(game,{scenarioId,importedOriginalScenarioId:null,importedScenarioUnbound:false}); await putGame(game);
   return getGameDetails(id);

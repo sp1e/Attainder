@@ -20,7 +20,7 @@
 // import time, so one process only ever sees one data directory.
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync, truncateSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import url from "node:url";
@@ -273,7 +273,7 @@ test("a game whose scenario this install lacks still imports, and remembers what
   `);
 
   assert.equal(result.scenarioMissing, true, "the card has to be able to say the map is not here");
-  assert.equal(result.scenarioId, "someone-elses-map");
+  assert.notEqual(result.scenarioId, "someone-elses-map", "the local unresolved reference is distinct from the sender's id");
   assert.equal(
     result.importedScenarioName,
     "Someone Else's Map",
@@ -396,7 +396,7 @@ test("the bundle reports what the map would weigh, and only when that matters", 
   const builtIn = runStore(buildDataDir({ scenarioId: "default" }), `
     ${report(`store.exportGameBundle("test-campaign").scenarioRef`)}
   `);
-  assert.equal(builtIn.scenarioBytes, 0, "the built-in map never travels, so it is not weighed");
+  assert.ok(builtIn.scenarioBytes > 0, "the built-in map is weighed before it travels");
 
   const fromHub = runStore(
     buildDataDir({
@@ -405,7 +405,13 @@ test("the bundle reports what the map would weigh, and only when that matters", 
     }),
     `${report(`store.exportGameBundle("test-campaign").scenarioRef`)}`,
   );
-  assert.equal(fromHub.scenarioBytes, 0, "a map that can be re-downloaded never travels either");
+  assert.ok(fromHub.scenarioBytes > 0, "a hub-linked map is weighed before it travels");
+
+  const largeRoot=buildDataDir({scenarioId:"large-map"});
+  const archive=path.join(largeRoot,"scenarios","large-map","regions.pmtiles");
+  writeFileSync(archive,""); truncateSync(archive,26*1024*1024);
+  const large=runStore(largeRoot,`${report(`store.exportGameBundle("test-campaign").scenarioRef`)}`);
+  assert.ok(large.scenarioBytes > 32*1024*1024,"the estimate covers the embedded archive before download");
 
   const gone = runStore(buildDataDir({ scenarioId: "long-gone", scenarioExists: false }), `
     ${report(`store.exportGameBundle("test-campaign").scenarioRef`)}

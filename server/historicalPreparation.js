@@ -1,6 +1,6 @@
 /*! Attainder historical start preparation. AGPL-3.0-or-later (see LICENSE). */
 import { classifyCampaignCreation, validateHistoricalStartDate, validateHistoricalStartDates } from './historicalStarts.js';
-import { validateHistoricalScenario } from './historicalScenarios.js';
+import { validateHistoricalScenario, validHistoricalGeometry } from './historicalScenarios.js';
 import { parseGameDate } from './gameDates.js';
 import { createHistoricalCharacterSystem } from './characters/scenarioSeed.js';
 import { projectPreparedCharacterWorld } from './characterProjection.js';
@@ -15,13 +15,6 @@ export const sameJson = (a, b) => {
   if (Array.isArray(a) || Array.isArray(b)) return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((x,i) => sameJson(x,b[i]));
   return record(a) && record(b) && Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(k => Object.hasOwn(b,k) && sameJson(a[k],b[k]));
 };
-
-// A local default id can refer to a different edition than the sender's map.
-export function savedDefaultMatchesInstalled(savedWorld, installedWorld) {
-  return typeof savedWorld?.builtInMap === 'string' && savedWorld.builtInMap.length > 0
-    && savedWorld.builtInMap === installedWorld?.builtInMap
-    && (savedWorld.builtInRevision === undefined || savedWorld.builtInRevision === installedWorld?.builtInRevision);
-}
 
 export function validateRawStartFields(...values) {
   for (const value of values) {
@@ -120,7 +113,47 @@ export function validateSavedGameBundle(bundle) {
   return { ok: true };
 }
 
-export function validateCompanion(bundle, companion) {
+export function companionMap(companion, fallbackRegions = null) {
+  const asset = companion?.assets?.regionsGeojson;
+  if (asset?.mode !== 'embedded' && companion?.data?.world?.assetProvenance?.regionsGeojson?.currentAssetStatus === 'modified') {
+    return fail('missingMap', 'Scenariot saknar en giltig karta för den sparade kampanjen.');
+  }
+  let regions = fallbackRegions;
+  if (asset?.mode === 'embedded') {
+    regions = asset.data;
+    if (asset.encoding === 'base64' || typeof regions === 'string') {
+      try {
+        const bytes = Uint8Array.from(atob(regions), character => character.charCodeAt(0));
+        regions = JSON.parse(new TextDecoder().decode(bytes));
+      } catch { regions = null; }
+    }
+  } else if (asset && asset.mode !== 'default') regions = null;
+  if (regions?.type !== 'FeatureCollection' || !Array.isArray(regions.features)
+    || !regions.features.some(feature => feature?.type === 'Feature' && validHistoricalGeometry(feature.geometry))) {
+    return fail('missingMap', 'Scenariot saknar en giltig karta för den sparade kampanjen.');
+  }
+  return { ok: true, regions };
+}
+
+export function companionCoverType(companion) {
+  const cover=companion?.assets?.cover;
+  if (!cover || cover.mode === 'default') return null;
+  if (cover.mode !== 'embedded' || typeof cover.data !== 'string') return '';
+  let bytes;
+  try { bytes=Uint8Array.from(atob(cover.data),character=>character.charCodeAt(0)); } catch { return ''; }
+  if (!bytes.length) return '';
+  const declared=String(cover.contentType ?? '').split(';')[0].trim().toLowerCase();
+  if (['image/avif','image/gif','image/jpeg','image/png','image/webp'].includes(declared)) return declared;
+  if (bytes[0]===0xff && bytes[1]===0xd8 && bytes[2]===0xff) return 'image/jpeg';
+  if ([137,80,78,71,13,10,26,10].every((value,index)=>bytes[index]===value)) return 'image/png';
+  const prefix=String.fromCharCode(...bytes.slice(0,12));
+  if (prefix.startsWith('GIF87a') || prefix.startsWith('GIF89a')) return 'image/gif';
+  if (prefix.startsWith('RIFF') && prefix.slice(8,12)==='WEBP') return 'image/webp';
+  if (prefix.slice(4,8)==='ftyp' && ['avif','avis'].includes(prefix.slice(8,12))) return 'image/avif';
+  return '';
+}
+
+export function validateCompanion(bundle, companion, { fallbackRegions = null } = {}) {
   const checked = validateSavedGameBundle(bundle);
   if (!checked.ok) return checked;
   const ref = bundle.scenarioRef;
@@ -130,5 +163,15 @@ export function validateCompanion(bundle, companion) {
   const expected = ref.hubOrigin, supplied = companion.hubOrigin;
   if (supplied && expected && ['postId','bundleUrl','release'].some(k => expected[k] !== undefined && !sameJson(expected[k],supplied[k]))) return fail('wrongEdition', 'Scenariots utgåva stämmer inte med den sparade kampanjen.');
   for (const key of ['builtInMap','builtInRevision']) if (bundle.data.world?.[key] !== undefined && companion.data.world[key] !== bundle.data.world[key]) return fail('wrongEdition', 'Scenariots utgåva stämmer inte med den sparade kampanjen.');
+  const savedAsset=bundle.data.world?.assetProvenance?.regionsGeojson;
+  const worldAsset=companion.data.world?.assetProvenance?.regionsGeojson, descriptorAsset=companion.assets?.regionsGeojson?.provenance;
+  if (companion.assets?.regionsGeojson?.mode !== 'embedded' && savedAsset?.currentAssetStatus === 'modified') return fail('missingMap', 'Scenariot saknar en giltig karta för den sparade kampanjen.');
+  if (worldAsset && descriptorAsset && !sameJson(worldAsset,descriptorAsset)) return fail('wrongEdition', 'Scenariots utgåva stämmer inte med den sparade kampanjen.');
+  const incomingAsset=worldAsset ?? descriptorAsset;
+  if (savedAsset?.hashScope === 'authored-release' && incomingAsset?.hashScope === 'authored-release'
+    && savedAsset.sha256 && incomingAsset.sha256 && savedAsset.sha256 !== incomingAsset.sha256) return fail('wrongEdition', 'Scenariots utgåva stämmer inte med den sparade kampanjen.');
+  const map=companionMap(companion,fallbackRegions);
+  if (!map.ok) return map;
+  if (companionCoverType(companion) === '') return fail('invalidCover', 'Scenariots omslagsbild är ogiltig.');
   return { ok: true };
 }

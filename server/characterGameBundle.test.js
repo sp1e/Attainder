@@ -79,6 +79,18 @@ async function roundtripWorker() {
   };
   const active = await webCall("games", "POST", "import", { schema:"open-historia-game-bundle/1", game:{name:"Unrelated isolated campaign"}, data:{game:{gameDate:"2032-11-15"}} });
   await webCall("games", "PUT", "active", {gameId:active.game.id});
+  const historical=store.createGame({name:'Default historical'});
+  const historicalZip=await buildGameZipBlob(historical.game.id);
+  assert.equal(historicalZip.carriesScenario,true,'default historical map must travel');
+  const historicalDecoded=await readGameZip(new Uint8Array(await historicalZip.blob.arrayBuffer()));
+  const historicalWeb=await webCall('games','POST','restore',{bundle:historicalDecoded.bundle,scenarioBundle:historicalDecoded.scenarioBundle});
+  assert.deepEqual(historicalWeb.data.world.characterSystem,historical.data.world.characterSystem);
+  transport='web';
+  const backZip=await buildGameZipBlob(historicalWeb.game.id);
+  const backDecoded=await readGameZip(new Uint8Array(await backZip.blob.arrayBuffer()));
+  const historicalBack=store.restoreGameBundle({bundle:backDecoded.bundle,scenarioBundle:backDecoded.scenarioBundle});
+  assert.deepEqual(historicalBack.data.world.characterSystem,historical.data.world.characterSystem);
+  transport='desktop';
   const summaries = [];
   for (const mode of ["realm", "family"]) {
     transport = "desktop";

@@ -38,6 +38,8 @@ export const kvGet = async (key, fallback = null) => { const record = table("kv"
 export const kvPut = (key, value) => idbPut("kv", { key, value });
 `;
 
+const BUNDLED_TEST_REGIONS={type:'FeatureCollection',features:[{type:'Feature',properties:{id:'old'},geometry:{type:'Polygon',coordinates:[[[0,0],[1,0],[1,1],[0,0]]]}}]};
+
 const GENERATED = {
   "countryNames.js": `export default { USA: "United States", RUS: "Russia" };`,
   "defaultScenario.js": `export default ${JSON.stringify({
@@ -50,7 +52,7 @@ const GENERATED = {
     colors: { Testland: [1, 2, 3] },
   })};`,
   // An empty regionsUrl keeps usesBuiltInMap false, so nothing is fetched.
-  "defaultScenarioMeta.js": `export const builtInMap = "test-map"; export const builtInRevision = 2; export const regionsUrl = ""; export const earlierMaps = {};`,
+  "defaultScenarioMeta.js": `export const builtInMap = "test-map"; export const builtInRevision = 2; export const regionsUrl = ${JSON.stringify('data:application/json,'+encodeURIComponent(JSON.stringify(BUNDLED_TEST_REGIONS)))}; export const earlierMaps = {};`,
   "fallbackColors.js": `export default { Palette: [9, 9, 9] };`,
 };
 const moduleUrl = (source) => `data:text/javascript,${encodeURIComponent(source)}`;
@@ -234,9 +236,10 @@ test('historical web starts create a complete court and invalid requests make no
     const scenarioId = ok(await scenarios('POST','import',bundle)).scenario.id;
     ok(await scenarios('PUT',scenarioId,{worldPatch:{characterSystem:{people:{sentinel:{id:'sentinel'}}},simulationHistory:[{id:'old'}]},storage:{events:[{id:'old'}]}}));
     const malformed=structuredClone(bundle); malformed.data.game.gameDate=null;
+    const badCover=structuredClone(bundle); badCover.assets.cover={mode:'embedded',encoding:'base64',data:'@@@'};
     const forged=structuredClone(bundle); forged.data.game.startDate=forged.data.game.gameDate='2016-01-01'; forged.restoreOnly=true; forged.skipValidation=true;
     for (const run of [()=>scenarios('POST','',{gamePatch:{gameDate:null}}),()=>scenarios('PUT',scenarioId,{gamePatch:{startDate:'1201-01-01'}}),
-      ()=>scenarios('POST','import',malformed),()=>scenarios('POST','import',forged),()=>scenarios('PUT',`${scenarioId}/import`,malformed),
+      ()=>scenarios('POST','import',malformed),()=>scenarios('POST','import',badCover),()=>scenarios('POST','import',forged),()=>scenarios('PUT',`${scenarioId}/import`,malformed),
       ()=>store.handleScenarios({method:'DELETE',segments:[scenarioId,'assets','citiesGeojson'],query:new URLSearchParams()})]) {
       const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;
       assert.equal((await run()).status,400); assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes);
@@ -296,6 +299,8 @@ test('old default game-only import remains unresolved through copy and accepts i
   const companion=scenarioBundle('Old map'); companion.scenario.id='default';
   const imported=ok(await games('POST','import',bundle));
   assert.equal(imported.game.scenarioMissing,true);
+  const stamped=structuredClone(bundle); stamped.data.world.builtInMap='test-map'; stamped.data.world.assetProvenance={regionsGeojson:{currentAssetStatus:'modified'}};
+  assert.equal(ok(await games('POST','import',stamped)).game.scenarioMissing,true);
   const copy=ok(await games('POST','',{seedGameId:imported.game.id}));
   assert.equal(copy.game.scenarioMissing,true);
   assert.equal(ok(await games('GET',`${copy.game.id}/export`)).scenarioRef.scenarioId,'default');
@@ -356,4 +361,95 @@ test('runtime map edits validate before writes and retain a valid historical cit
   assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes);
   const result=await put(CITIES); assert.equal(result.status,200);
   assert.deepEqual(await result.json(),CITIES);
+});
+
+test('non-default map collisions remain unresolved and empty companions cannot restore', async () => {
+  await reset();
+  const futureBundle={schema:'open-historia-game-bundle/1',scenarioRef:{scenarioId:'future-map'},data:{game:{gameDate:'2032-11-15'}}};
+  const futureGame=ok(await games('POST','import',futureBundle));
+  const arriving=structuredClone(HISTORICAL); arriving.scenario.id='future-map'; ok(await scenarios('POST','import',arriving));
+  assert.equal(ok(await games('GET',futureGame.game.id)).game.scenarioMissing,true,'later original-ID installation must not bind the old game');
+  const installed=ok(await scenarios('POST','import',HISTORICAL)).scenario.id;
+  const bundle={schema:'open-historia-game-bundle/1',game:{name:'Collision'},scenarioRef:{scenarioId:installed},data:{game:{gameDate:'2032-11-15'},world:{characterSystem:{people:{a:{name:'A'}}}},events:[{patch:{n:1}}]}};
+  const existingMap=await scenarioAsset(installed,'regionsGeojson');
+  const imported=ok(await games('POST','import',bundle));
+  assert.equal(imported.game.scenarioMissing,true);
+  assert.equal(ok(await games('GET',`${imported.game.id}/export`)).scenarioRef.scenarioId,installed);
+  const placeholder=structuredClone(HISTORICAL); placeholder.scenario.id=imported.game.scenarioId;
+  ok(await scenarios('POST','import',placeholder));
+  assert.equal(ok(await games('GET',imported.game.id)).game.scenarioMissing,true);
+  assert.equal(ok(await games('GET',`${imported.game.id}/export`)).scenarioRef.scenarioId,installed);
+  const previous=ok(await games('GET','')).activeGameId;
+  ok(await games('PUT','active',{gameId:imported.game.id}));
+  const worldBefore=structuredClone(db.get('games').get(imported.game.id).json.world);
+  const emptyRegions=await store.handleRuntimeJson({method:'GET',segments:['json','regionsGeojson']});
+  assert.deepEqual(await emptyRegions.json(),{type:'FeatureCollection',features:[]});
+  await assert.rejects(store.getScenarioPmtilesOverride('regions'));
+  assert.deepEqual(db.get('games').get(imported.game.id).json.world,worldBefore);
+  ok(await games('PUT','active',{gameId:previous}));
+  const companion=structuredClone(HISTORICAL); companion.scenario.id=installed; delete companion.assets.regionsGeojson;
+  const hashCompanion=structuredClone(HISTORICAL); hashCompanion.scenario.id=installed;
+  const hashSave=structuredClone(bundle); hashSave.data.world.assetProvenance={regionsGeojson:{hashScope:'authored-release',sha256:'f'.repeat(64)}};
+  const hashWaiting=ok(await games('POST','import',hashSave));
+  { const before=structuredClone(db),writes=globalThis.__ohWebStoreWrites;
+    assert.equal((await games('POST','restore',{bundle:hashSave,scenarioBundle:hashCompanion})).status,400);
+    assert.equal((await games('POST',`${hashWaiting.game.id}/scenario/restore`,hashCompanion)).status,400);
+    assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes); }
+  const empty=structuredClone(companion); empty.assets.regionsGeojson={mode:'embedded',data:{type:'FeatureCollection',features:[]}};
+  const invalidEncoded=structuredClone(companion); invalidEncoded.assets.regionsGeojson={mode:'embedded',encoding:'base64',data:'@@@'};
+  const invalidCover=structuredClone(HISTORICAL); invalidCover.scenario.id=installed; invalidCover.assets.cover={mode:'embedded',data:'@@@',encoding:'base64',contentType:'application/octet-stream'};
+  for (const map of [companion,empty,invalidEncoded,invalidCover]) {
+    const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;
+    assert.equal((await games('POST','restore',{bundle,scenarioBundle:map})).status,400);
+    assert.equal((await games('POST',`${imported.game.id}/scenario/restore`,map)).status,400);
+    assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes);
+  }
+  assert.deepEqual(await scenarioAsset(installed,'regionsGeojson'),existingMap);
+});
+
+test('identified bundled maps and base64 geometry restore actual map assets', async () => {
+  await reset();
+  const active=ok(await games('POST','import',{schema:'open-historia-game-bundle/1',data:{game:{gameDate:'2032-11-15'}}}));
+  ok(await games('PUT','active',{gameId:active.game.id}));
+  const saved={schema:'open-historia-game-bundle/1',game:{name:'Bundled'},scenarioRef:{scenarioId:'legacy-known-map'},data:{game:{gameDate:'2032-11-15'},world:{builtInMap:'test-map'},events:[{patch:{n:1}}]}};
+  const companion={schema:'open-historia-scenario-bundle/2',scenario:{id:'legacy-known-map'},data:{game:{},world:{builtInMap:'test-map'}},assets:{}};
+  const first=ok(await games('POST','restore',{bundle:saved,scenarioBundle:companion}));
+  assert.deepEqual(await scenarioAsset(first.game.scenarioId,'regionsGeojson'),BUNDLED_TEST_REGIONS);
+  const waiting=ok(await games('POST','import',saved));
+  const linked=ok(await games('POST',`${waiting.game.id}/scenario/restore`,companion));
+  assert.deepEqual(await scenarioAsset(linked.game.scenarioId,'regionsGeojson'),BUNDLED_TEST_REGIONS);
+  const conflict=structuredClone(companion); conflict.assets.regionsGeojson={mode:'embedded',data:{type:'FeatureCollection',features:[]}};
+  const conflictWaiting=ok(await games('POST','import',saved));
+  {const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;
+    assert.equal((await games('POST','restore',{bundle:saved,scenarioBundle:conflict})).status,400);
+    assert.equal((await games('POST',`${conflictWaiting.game.id}/scenario/restore`,conflict)).status,400);
+    assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes);}
+  const missingEdited=structuredClone(companion); missingEdited.data.world.assetProvenance={regionsGeojson:{currentAssetStatus:'modified'}};
+  {const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;
+    assert.equal((await games('POST','restore',{bundle:saved,scenarioBundle:missingEdited})).status,400);
+    assert.equal((await games('POST',`${conflictWaiting.game.id}/scenario/restore`,missingEdited)).status,400);
+    assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes);}
+  const unknown=structuredClone(companion); unknown.data.world.builtInMap='unknown-map';
+  const unknownSave=structuredClone(saved); unknownSave.data.world.builtInMap='unknown-map';
+  const unknownWaiting=ok(await games('POST','import',unknownSave));
+  {const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;
+    assert.equal((await games('POST','restore',{bundle:unknownSave,scenarioBundle:unknown})).status,400);
+    assert.equal((await games('POST',`${unknownWaiting.game.id}/scenario/restore`,unknown)).status,400);
+    assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes);}
+  const encoded=structuredClone(HISTORICAL); encoded.scenario.id='legacy-known-map';
+  encoded.assets.regionsGeojson.data=Buffer.from(JSON.stringify(encoded.assets.regionsGeojson.data)).toString('base64');
+  encoded.assets.regionsGeojson.encoding='base64';
+  const plain=structuredClone(saved); plain.data.world={};
+  assert.ok(ok(await games('POST','restore',{bundle:plain,scenarioBundle:encoded})).game.id);
+  assert.equal(ok(await games('GET','')).activeGameId,active.game.id);
+});
+
+test('scenario export size includes embedded tile archives before ZIP download', async () => {
+  await reset();
+  const id=ok(await scenarios('POST','import',HISTORICAL)).scenario.id;
+  const record=db.get('scenarios').get(id);
+  record.pmtiles={regions:new Uint8Array(26*1024*1024)};
+  const game=ok(await games('POST','',{scenarioId:id}));
+  const ref=ok(await games('GET',`${game.game.id}/export`)).scenarioRef;
+  assert.ok(ref.scenarioBytes > 32*1024*1024,'the ZIP ceiling must see the embedded archive');
 });

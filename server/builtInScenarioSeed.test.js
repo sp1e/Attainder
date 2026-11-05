@@ -222,9 +222,13 @@ test("a scenario without a map of its own renders on the stock world, never on t
   writeJson(path.join(preset, "scenario.json"), { id: "hub-preset", name: "WWII", createdAt: "2026-06-01T00:00:00.000Z", updatedAt: "2026-06-01T00:00:00.000Z" });
   writeJson(path.join(preset, "world.json"), { ownerSchema: OWNER_SCHEMA, customRegions: true, regionOwnershipOverrides: { "POL.1_1": "Germany" } });
   writeJson(path.join(preset, "game.json"), { country: "Germany", startDate: "1939-09-01", gameDate: "1939-09-01" });
+  const gameDir = path.join(root, "games", "blitz");
+  writeJson(path.join(gameDir, "game-instance.json"), { id:"blitz", name:"Blitz", scenarioId:"hub-preset" });
+  writeJson(path.join(gameDir, "game.json"), { country:"Germany", gameDate:"1939-09-01" });
+  writeJson(path.join(gameDir, "world.json"), { ownerSchema:OWNER_SCHEMA });
   const result = runStore(root, `
     store.ensureScenarioStore();
-    const onPreset = store.importGameBundle({schema:"open-historia-game-bundle/1",game:{name:"Blitz"},scenarioRef:{scenarioId:"hub-preset"},data:{game:{country:"Germany",gameDate:"1939-09-01"},world:{}}});
+    const onPreset = store.getGameDetails("blitz");
     store.setActiveGame(onPreset.game.id);
     const presetSource = store.readRuntimeJsonAsset("regionsGeojson").sourcePath;
     const onBuiltIn = store.createGame({ name: "Modern", scenarioId: "default", setActive: true });

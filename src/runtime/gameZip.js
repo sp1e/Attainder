@@ -12,6 +12,7 @@ import { buildSettingsReport } from "./debugLog.js";
 import { zipBundle, unzipBundle } from "./bundleZip.js";
 import { restoreBundleFiles, splitBundleFiles } from "./bundleFiles.js";
 import { saveBlobToDisk } from "./saveFile.js";
+import { validateCompanion } from "../../server/historicalPreparation.js";
 import {
   splitScenarioBundleImage,
   embedScenarioBundleImage,
@@ -46,16 +47,10 @@ export const formatZipSize = (bytes) => {
 // the scenario separately rather than handed a browser crash.
 const MAX_EMBEDDED_SCENARIO_BYTES = 32 * 1024 * 1024;
 
-// An exported Game carries its map only when we do NOT know where that map can
-// be fetched from. A built-in scenario is on every install; a hub scenario still
-// as its post has it can be downloaded again (the stores hand on hubOrigin only
-// while the copy is unedited: server/hubProvenance.js fetchableHubOrigin);
-// `missing` means this install has no copy to embed, which is
-// the ordinary state of a game imported without its map. Anything else — made in
-// the editor, or a hub map since edited — has no other home, so it travels, if it
-// is small enough to travel at all.
+// Carry every available map. A built-in or hub ID alone cannot establish that
+// the recipient has the same edition; missing maps stay unresolved.
 const gameZipNeedsScenario = (scenarioRef) =>
-  Boolean(scenarioRef) && !scenarioRef.builtIn && !scenarioRef.hubOrigin && !scenarioRef.missing;
+  Boolean(scenarioRef?.scenarioId) && !scenarioRef.missing;
 
 const scenarioFitsInZip = (scenarioRef) =>
   !(Number(scenarioRef?.scenarioBytes) > MAX_EMBEDDED_SCENARIO_BYTES);
@@ -78,6 +73,7 @@ export const buildGameZipBlob = async (gameId, { confirmCarryingScenario } = {})
 
   let carriesScenario = false;
   let oversizeScenario = null;
+  let omittedScenario = scenarioRef.missing || !scenarioRef.scenarioId ? { name:scenarioRef.scenarioName || scenarioRef.scenarioId || "Scenario", reason:"missing" } : null;
   if (gameZipNeedsScenario(scenarioRef) && !scenarioFitsInZip(scenarioRef)) {
     // Deliberately before the fetch: downloading a 297 MB bundle to discover it is
     // too big is the crash we are avoiding.
@@ -86,29 +82,29 @@ export const buildGameZipBlob = async (gameId, { confirmCarryingScenario } = {})
       name: scenarioRef.scenarioName || scenarioRef.scenarioId,
     };
   } else if (gameZipNeedsScenario(scenarioRef)) {
-    if (confirmCarryingScenario) {
+    if (confirmCarryingScenario && !scenarioRef.builtIn && !scenarioRef.hubOrigin) {
       const carryOn = await confirmCarryingScenario({
         bytes: Number(scenarioRef.scenarioBytes) || 0,
         name: scenarioRef.scenarioName || scenarioRef.scenarioId,
       });
       if (!carryOn) return null;
     }
-    const scenarioBundle = await exportScenarioBundle(scenarioRef.scenarioId);
-    // The same split the scenario export does: a custom basemap rides as real
-    // bytes rather than a base64 data URL ~33% larger.
-    const split = await splitScenarioBundleImage(scenarioBundle).catch(() => null);
-    if (split) {
-      delete scenarioBundle.assets.backgroundData;
-      files[split.imageName] = split.imageBytes;
-      if (split.previewBytes) files[split.previewName] = split.previewBytes;
+    const scenarioBundle = await exportScenarioBundle(scenarioRef.scenarioId).catch(() => null);
+    if (!validateCompanion(bundle,scenarioBundle).ok) {
+      omittedScenario={name:scenarioRef.scenarioName || scenarioRef.scenarioId,reason:"invalidMap"};
+    } else {
+      // A custom basemap and large map assets ride as separate zip entries.
+      const split = await splitScenarioBundleImage(scenarioBundle).catch(() => null);
+      if (split) {
+        delete scenarioBundle.assets.backgroundData;
+        files[split.imageName] = split.imageBytes;
+        if (split.previewBytes) files[split.previewName] = split.previewBytes;
+      }
+      const lifted = splitBundleFiles(scenarioBundle);
+      Object.assign(files, lifted.files);
+      files[GAME_ZIP_SCENARIO] = JSON.stringify(lifted.bundle);
+      carriesScenario = true;
     }
-    // And the same lift: the map's geometry and any tile archive become real
-    // entries, so what rides inside the game is a compressed map rather than one
-    // enormous JSON string (bundleFiles.js).
-    const lifted = splitBundleFiles(scenarioBundle);
-    Object.assign(files, lifted.files);
-    files[GAME_ZIP_SCENARIO] = JSON.stringify(lifted.bundle);
-    carriesScenario = true;
   }
 
   bundle.scenarioRef = { ...scenarioRef, embedded: carriesScenario };
@@ -118,7 +114,7 @@ export const buildGameZipBlob = async (gameId, { confirmCarryingScenario } = {})
   }
   if (settingsText) files[GAME_ZIP_SETTINGS] = settingsText;
 
-  return { blob: await zipBundle(files), carriesScenario, oversizeScenario };
+  return { blob: await zipBundle(files), carriesScenario, oversizeScenario, omittedScenario };
 };
 
 // Resolves to the imported game's details, or throws with something a player can

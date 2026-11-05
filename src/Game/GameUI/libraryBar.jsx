@@ -2291,13 +2291,12 @@ const LibraryTopBar = () => {
       const result = await buildGameZipBlob(game.id, {
         confirmCarryingScenario: ({ bytes, name }) =>
           window.confirm(
-            `“${name}” isn't a scenario the other machine can download, so the map has to travel ` +
-            `inside this file — about ${formatZipSize(bytes)} before it is compressed.\n\nExport it?`,
+            `“${name}” will travel with the campaign — about ${formatZipSize(bytes)} before compression.\n\nExport it?`,
           ),
       });
       if (!result) return; // the player backed out
 
-      const { blob, oversizeScenario } = result;
+      const { blob, oversizeScenario, omittedScenario } = result;
       if (oversizeScenario) {
         // Saved anyway: a game without its map still opens for anyone who has the
         // map, and is still the thing a maintainer needs. Refusing would leave the
@@ -2307,6 +2306,7 @@ const LibraryTopBar = () => {
           `so this export carries everything except the map. Send the scenario separately from the Scenarios tab.`,
         );
       }
+      if (omittedScenario) setEditorError(`“${omittedScenario.name}” has no usable map to include. Restore the matching scenario before sharing the campaign.`);
       // The deferred-revoke saver, NOT the saveBlobToDisk defined above: that one
       // revokes the object URL in the same task as the click, which Firefox treats
       // as a cancelled download.
@@ -3576,6 +3576,12 @@ const LibraryTopBar = () => {
             zIndex: 10046,
           }}
         >
+          {editorError && (
+            <div role="alert" style={{ background: "#5a2525", padding: "0.7rem 1rem", display: "flex", justifyContent: "space-between", gap: "1rem" }}>
+              <span>{editorError}</span>
+              <button type="button" onClick={() => setEditorError(null)}>Stäng</button>
+            </div>
+          )}
           <div
             style={{
               alignItems: "center",
