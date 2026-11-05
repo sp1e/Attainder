@@ -39,7 +39,7 @@ const cancelRenderRepairBuild = () => {
   renderRepairGeneration += 1;
 };
 
-const scheduleRegionRenderRepair = ({ requestId, geometryEpoch, regions }) => {
+const scheduleRegionRenderRepair = ({ requestId, geometryEpoch, regions, projection }) => {
   const generation = ++renderRepairGeneration;
   const sourceRegions = regions;
 
@@ -48,6 +48,7 @@ const scheduleRegionRenderRepair = ({ requestId, geometryEpoch, regions }) => {
   // and clean features never enter the repair collection at all.
   Promise.resolve().then(async () => {
     const result = await buildRegionRenderRepair(sourceRegions, {
+      projection,
       shouldCancel: () => generation !== renderRepairGeneration,
     });
     if (generation !== renderRepairGeneration || result?.cancelled || !result?.data) return;
@@ -964,6 +965,7 @@ self.onmessage = async ({ data: message }) => {
     affectedOwners = [],
     changedRegionIds = [],
     geometryEpoch = "",
+    projection = "globe",
     forceFullSnapshot = false,
   } = message ?? {};
   if (!requestId) return;
@@ -1140,6 +1142,7 @@ self.onmessage = async ({ data: message }) => {
         requestId,
         geometryEpoch,
         regions: cachedRegions,
+        projection,
       });
     }
   } catch (error) {

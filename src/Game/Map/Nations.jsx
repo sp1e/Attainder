@@ -658,7 +658,7 @@ const WorldMap = ({ isGlobe = false }) => {
   // The runtime URL above stays the identity for epochs, catalog keys and
   // readiness.
   const regionsGeojsonFetchUrl = useWorkerFetchableUrl(regionsGeojsonUrl);
-  const activeGeometryEpoch = String(regionsGeojsonUrl || "custom-regions");
+  const activeGeometryEpoch = `${regionsGeojsonUrl || "custom-regions"}|${isGlobe ? "globe" : "mercator"}`;
   const activeRegionRenderRepair = regionRenderRepair.geometryEpoch === activeGeometryEpoch
     ? regionRenderRepair
     : EMPTY_REGION_RENDER_REPAIR;
@@ -2035,6 +2035,7 @@ const WorldMap = ({ isGlobe = false }) => {
     scheduler.enqueue({
       type: "initialize",
       regionsUrl: regionsGeojsonFetchUrl,
+      projection: isGlobe ? "globe" : "mercator",
       ownershipOverrides,
       regionClaimants: claimants,
       labelNames,
