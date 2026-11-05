@@ -12,6 +12,7 @@ import { getModelCallCounts, subscribeModelCalls } from "../AI/modelCallCounter.
 import "./characters.css";
 import ActionBox, { SchemeList, playerText } from "./ActionBox.jsx";
 import ConversationView from "./ConversationView.jsx";
+import { ChoiceOdds, CouncilSeats, DemandList, ReignCard } from "./CourtSections.jsx";
 import IntrigueView from "./IntrigueView.jsx";
 import LocalModelConnect from "./LocalModelConnect.jsx";
 import Portrait from "./Portrait.jsx";
@@ -91,7 +92,7 @@ function PersonSummary({ person, compact = false, headingRef }) {
   return <div className={`char-person-summary${compact ? " char-person-summary--compact" : ""}`}>
     <Portrait person={person} size={compact ? "small" : "large"} />
     <div><span className="char-eyebrow">{person.familyName || "Familj"}{Number.isFinite(person.age) ? ` · ${person.age} år` : ""}</span>
-      <h3 ref={headingRef} tabIndex={headingRef ? -1 : undefined}>{person.name}</h3><p>{person.archetypeLabel || humanize(person.archetype)}{!isAlive(person) ? " · Avliden" : ""}</p>
+      <h3 ref={headingRef} tabIndex={headingRef ? -1 : undefined}>{person.name}{person.nickname ? ` ${person.nickname}` : ""}</h3><p>{person.archetypeLabel || humanize(person.archetype)}{!isAlive(person) ? " · Avliden" : ""}</p>
       {person.portraitState?.visualState !== "healthy" && person.portraitState?.reasons?.length > 0 && <p className="char-health-summary">{person.portraitState.reasons.filter((reason) => reason.key !== "healthy").map((reason) => reason.label).join(" · ")}</p>}
       <div className="char-tags">{entries(person.traitLabels || person.traits || person.personality).map((trait, index) => <span key={text(trait, index)}>{humanize(text(trait))}</span>)}</div>
     </div>
@@ -173,9 +174,9 @@ function StoryCard({ story, person, onCommand, busy }) {
     {isChain && entries(story.previousChoices).length > 0 && <details className="char-explanation"><summary>Tidigare val ({entries(story.previousChoices).length})</summary><ChainDecisions steps={story.previousChoices} /></details>}
     {story.deadlineText ? <p className="char-caption">{story.deadlineText}</p> : story.fallbackDescription && <p className="char-caption">Om du avstår till tidsgränsen: {story.fallbackDescription}</p>}
     {isChain && story.nextAt && <p className="char-caption">Nästa uppföljning: {dateLabel(story.nextAt)}</p>}
-    <div className="char-story-choices">{(story.choices || []).map((choice) => <button key={choice.id} type="button" className="char-choice" disabled={busy || Boolean(choice.disabledReason)} onClick={() => onCommand("resolve_story", { storyId: story.id, choiceId: choice.id })}>
+    <div className="char-story-choices">{(story.choices || []).map((choice) => <div className="char-choice-slot" key={choice.id}><button type="button" className="char-choice" disabled={busy || Boolean(choice.disabledReason)} onClick={() => onCommand("resolve_story", { storyId: story.id, choiceId: choice.id })}>
       <strong>{choice.label}</strong><span>{choice.description}</span>{choice.scope !== "none" && (choice.actorName ? <small>Utförs av: {choice.actorName}</small> : choice.actorName === null && <small>Ingen behörig aktör</small>)}<small>{[choice.cost, stressLabel(choice.stress)].filter(Boolean).join(" · ")}</small>{choice.disabledReason && <em>{choice.disabledReason}</em>}
-    </button>)}</div>
+    </button><ChoiceOdds odds={choice.odds} /></div>)}</div>
   </article>;
 }
 
@@ -191,6 +192,7 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, run
       {hasAuthorityDetail ? <AuthoritySummary view={view} /> : <PersonSummary person={representative} />}
       <div className="char-leader-measures">{representative && <Meter label={`Stress · ${representative.name}`} value={representative.stress} danger />}<Meter label="Legitimitet" value={economy.legitimacy ?? view.ruler?.legitimacy ?? 0} /></div>
       {representative?.goalLabel && <p className="char-goal"><span>Personligt mål</span>{representative.goalLabel}</p>}
+      <ReignCard court={view.court} Meter={Meter} />
       {representative && <button className="char-button char-button--quiet" onClick={() => { selectPerson(representative.id); setTab("people"); }}>Lär känna {representative.name}<span aria-hidden="true"> ↗</span></button>}
     </section>
     <section className="char-card"><div className="char-section-heading"><div><span className="char-eyebrow">Makt och försörjning</span><h3>Rikets tillstånd</h3></div></div>
@@ -245,8 +247,8 @@ function PeopleView({ view, selectedId, selectPerson, busy = false, runAction, t
         : <button type="button" className="char-button" ref={talkButton} aria-label={`Samtala med ${person.name}`} disabled={busy} onClick={() => setTalkingTo(person.id)}>Samtala</button>)}
       <div className="char-tags">{roles.map((role) => <span key={role.id}>{role.name || role.title}</span>)}</div>
       <div className="char-skills">{Object.entries(person.skills || {}).map(([skill, value]) => <Metric key={skill} label={humanize(skill)} value={number(value)} />)}</div>
-      <div className="char-leader-measures"><Meter label="Stress" value={person.stress} danger /><Meter label="Tjänstelojalitet" value={person.loyalty ?? person.serviceLoyalty} /></div>
-      <dl className="char-facts"><div><dt>Åsikt om din företrädare</dt><dd>{signed(person.opinion)}</dd></div><div><dt>Tro</dt><dd>{person.religionName || view.religions?.find((religion) => religion.id === person.religionId)?.name || "Okänd"}</dd></div><div><dt>Född</dt><dd>{dateLabel(person.bornAt)}</dd></div>{!isAlive(person) && <div><dt>Avliden</dt><dd>{dateLabel(person.diedAt)}</dd></div>}<div><dt>Personlig egendom</dt><dd>{number(person.wealth)} silver</dd></div><div><dt>Hälsa</dt><dd>{number(person.health)} / 100</dd></div><div><dt>Rädsla</dt><dd>{number(person.fear)} / 100</dd></div></dl>
+      <div className="char-leader-measures"><Meter label="Stress" value={person.stress} danger /></div>
+      <dl className="char-facts"><div><dt>Åsikt om din företrädare</dt><dd>{signed(person.opinion)}</dd></div>{person.loyaltyReading && <div><dt>Tjänstelojalitet</dt><dd>{person.loyaltyReading.label}</dd></div>}<div><dt>Tro</dt><dd>{person.religionName || view.religions?.find((religion) => religion.id === person.religionId)?.name || "Okänd"}</dd></div><div><dt>Född</dt><dd>{dateLabel(person.bornAt)}</dd></div>{!isAlive(person) && <div><dt>Avliden</dt><dd>{dateLabel(person.diedAt)}</dd></div>}<div><dt>Personlig egendom</dt><dd>{number(person.wealth)} silver</dd></div><div><dt>Hälsa</dt><dd>{number(person.health)} / 100</dd></div><div><dt>Rädsla</dt><dd>{number(person.fear)} / 100</dd></div></dl>
       {person.healthConditions?.length > 0 && <section className="char-health-record"><h4>Hälsa och återhämtning</h4><ul>{person.healthConditions.map((condition) => <li key={condition.id}><strong>{condition.label}</strong><span>{condition.stageLabel}</span>{condition.startedAt && <small>Sedan {dateLabel(condition.startedAt)}</small>}</li>)}</ul></section>}
       {person.opinionReasons?.length > 0 && <details className="char-explanation"><summary>Varför denna åsikt?</summary><ul>{person.opinionReasons.map((reason, index) => <li key={index}>{text(reason)}{reason.value != null ? `: ${signed(reason.value)}` : ""}</li>)}</ul></details>}
       {person.goalLabel && <div className="char-goal"><span>Mål och drivkrafter</span><p>{person.goalLabel}</p></div>}
@@ -266,6 +268,7 @@ function FamiliesView({ view }) {
       <div className="char-family-members">{entries(view.people).filter((person) => person.familyId === family.id && isAlive(person)).map((person) => <span key={person.id}>{person.name}{person.age != null ? ` (${person.age})` : ""}</span>)}</div>
       {family.supportReasons?.length > 0 && <details className="char-explanation"><summary>Varför detta stöd?</summary><ul>{family.supportReasons.map((reason, index) => <li key={index}>{text(reason)}{reason.value != null ? `: ${signed(reason.value)}` : ""}</li>)}</ul></details>}
     </article>)}</div>
+    <DemandList demands={view.court?.demands} />
     <div className="char-section-heading"><div><span className="char-eyebrow">Tro och institutioner</span><h3>Religiösa samfund</h3></div></div><div className="char-family-grid">{entries(view.religions).map((religion) => <article className="char-card" key={religion.id}><h4>{religion.name}</h4><p>{religion.description || "Samfundets politiska stöd påverkar rikets sammanhållning."}</p><div className="char-inline-stats"><span>Stöd <strong>{signed(religion.support)}</strong></span>{religion.leaderId && <span>Ledare <strong>{people[religion.leaderId]?.name || "Okänd"}</strong></span>}</div></article>)}</div>
   </>;
 }
@@ -317,7 +320,7 @@ function OfficesView({ view, setTab }) {
   return <><div className="char-section-heading"><div><span className="char-eyebrow">Befogenheter följer ämbetet</span><h3>Vem förvaltar makten?</h3></div><button className="char-button" onClick={() => setTab("decisions")}>Utnämningar och beslut →</button></div><div className="char-offices">{entries(view.offices).map((office) => {
     const holder = people[office.holderId || office.personId];
     return <article className="char-card char-office" key={office.id}><div><span className="char-eyebrow">{office.typeLabel || humanize(office.type || "Ämbete")}</span><h4>{office.name || office.title}</h4><p>{office.description || office.mandate || "Ämbetet har egna befogenheter och skyldigheter."}</p></div><div className="char-office-holder">{holder ? <><Portrait person={holder} size="small" /><span><strong>{holder.name}</strong><small>{holder.familyName}</small></span></> : <span className="char-badge char-badge--warning">Vakant</span>}</div>{office.regentId && <p>Regent: <strong>{people[office.regentId]?.name}</strong></p>}</article>;
-  })}</div><GovernanceSummary view={view} /><SuccessionForecast forecast={succession.forecast} />
+  })}</div><CouncilSeats council={view.court?.council} /><GovernanceSummary view={view} /><SuccessionForecast forecast={succession.forecast} />
   <section className="char-card char-succession"><span className="char-eyebrow">Nästa generation</span><h3>Succession och familjens framtid</h3><p>{succession.description || succession.lawLabel || "Härskarämbete, familjeledning och personlig egendom följer egna regler. Familjens gemensamma tillgångar består vid ett personligt arv."}</p><div className="char-succession-grid"><div><h4>Tronföljd</h4>{succession.heirName || succession.heirId ? <p>{succession.heirName || people[succession.heirId]?.name}</p> : <p className="char-caption">Kandidaternas behörighet och stöd avgör övergången.</p>}{entries(succession.candidates).map((candidate, index) => <div className="char-candidate" key={candidate.id || candidate.personId || index}><strong>{candidate.name || people[candidate.personId || candidate.id]?.name}</strong><span>{candidate.reason || candidate.description || [candidate.familyName, candidate.age != null ? `${candidate.age} år` : null, candidate.archetypeLabel].filter(Boolean).join(" · ")}</span></div>)}</div><div><h4>Familjeledning</h4><p>{view.mode === "family" ? "Du fortsätter följa samma familj även om den förlorar tronen. Ämbetets offentliga medel stannar i riket." : "Du fortsätter styra riket även när en ny familj tar makten. Den nya ledningens personlighet och förmågor gäller."}</p>{succession.familyHeadName && <p>Familjens nuvarande företrädare: <strong>{succession.familyHeadName}</strong></p>}{succession.regentName && <p>Regent: <strong>{succession.regentName}</strong></p>}<p className="char-caption">Personligt arv överför den avlidnes egendom och skulder. Det överför inte statens eller familjens gemensamma kassa.</p></div></div></section>
   </>;
 }

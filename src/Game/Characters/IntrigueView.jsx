@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { SchemeList, dateLabel, playerText } from "./ActionBox.jsx";
+import { FactionList, Section } from "./CourtSections.jsx";
 
-// The Intriger tab: the secrets and grips the representative holds, the prisoners of the controlled family, the rumors it has
-// heard, and the running schemes. Everything shown comes from the presentation (knownSecrets, ownHooks, prisoners, rumors,
-// schemes); the true source of a rumor and who else holds a secret never reach it. All text is rendered as React text.
+// The Intriger tab: the secrets and grips the representative holds, the prisoners of the controlled family, the factions it knows
+// of, the rumors it has heard, and the running schemes. Everything shown comes from the presentation (knownSecrets, ownHooks,
+// prisoners, court.factions, rumors, schemes); the true source of a rumor and who else holds a secret never reach it. All text is rendered as React text.
 
 const PRISONER_FAILED = "Handlingen kunde inte genomföras. Försök igen om en stund.";
 const NO_DECISION = "Ingen kan besluta om fångarna just nu.";
@@ -11,13 +12,6 @@ const HEADING_ID = "char-intrigue-heading";
 
 const entries = (value) => Array.isArray(value) ? value : Object.values(value || {});
 const silver = (value) => Number.isFinite(Number(value)) ? new Intl.NumberFormat("sv-SE", { maximumFractionDigits: 1 }).format(Number(value)) : "—";
-
-function Section({ label, eyebrow, title, children }) {
-  return <section className="char-intrigue-section" aria-label={label}>
-    <div className="char-section-heading"><div><span className="char-eyebrow">{eyebrow}</span><h3>{title}</h3></div></div>
-    {children}
-  </section>;
-}
 
 function SecretList({ secrets }) {
   const list = entries(secrets);
@@ -149,6 +143,7 @@ export default function IntrigueView({ view, busy = false, onCommand, onEmpty = 
     <HookList hooks={view.ownHooks} />
     <PrisonerList prisoners={view.prisoners} busy={busy} onEmpty={onEmpty} blocks={prisonerBlocks(view.actions)}
       onRelease={(prisonerId) => onCommand("release_prisoner", { prisonerId })} onExecute={(prisonerId) => onCommand("execute_prisoner", { prisonerId })} />
+    <FactionList factions={view.court?.factions} />
     <RumorList rumors={view.rumors} />
     <SchemeList schemes={view.schemes} busy={busy} onAbort={(schemeId) => onCommand("abort_scheme", { schemeId })} onEmpty={onEmpty} />
   </>;
