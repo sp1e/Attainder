@@ -22,7 +22,8 @@ import { conversationBrief, converse, estimateConversation as estimateConversati
 import { IMPRISONED, closePrisoner, executePrisoner, heldPrisoners, imprisonPerson, isImprisoned, passCrown, presentPrisoners, prisonerStep, ransomChoices, releasePrisoner, resolveRansom, validatePrisoners } from './prisoners.js';
 import { abortScheme, advanceSchemes, getSchemeDates, reinforceScheme, validateSchemes } from './schemes.js';
 import { COUNCIL_SEATS, filledSeats, presentLoyalty, rewardClosedReason, rewardCouncillor, serviceOf } from './council.js';
-import { courtAnnualStep, onAccession, presentCourt, validateCourt } from './court.js';
+import { COURT_STORY_TYPES, courtAnnualStep, courtStoryChoices, onAccession, presentCourt, refreshCourtStories, resolveCourtStory, validateCourt } from './court.js';
+import { breakdownDue, fitsNature, natureStress } from './breakdowns.js';
 import { dreadOf, dreadRows } from './dread.js';
 import { goalClosedReason, openGoals, recordDeed, setReignGoal } from './reign.js';
 import { nicknameOf } from './nicknames.js';
@@ -97,7 +98,7 @@ function familySupportReasons(state, family) {
   const seats = values(state.offices).filter((o) => o.id !== 'ruler' && state.people[o.holderId]?.familyId === family.id).length;
   return [{ label: 'Grundläggande samarbete', value: 40 }, { label: 'Familjens intressen och oförrätter', value: rounded(family.grievance) }, { label: 'Familjeledningens personliga åsikt', value: rounded(getPersonalOpinion(state, family.headId, leader.id) * 0.3) }, { label: 'Ämbetsrepresentation', value: seats * 6 }, { label: 'Religiöst stöd', value: rounded((religiousSupport(state, family.religionId) - 50) * 0.2) }, { label: 'Familjen innehar tronen', value: family.id === leader.familyId ? 10 : 0 }, { label: 'Ett rättsligt tronanspråk förbigås', value: claimSupportPenalty(state, family.id) }];
 }
-function stressFor(person, tag) { const costs = { cruel: (has(person, 'compassionate') ? 28 : 7) + (has(person, 'dutiful') ? 8 : 0), betrayal: (has(person, 'dutiful') ? 28 : 8) + (has(person, 'compassionate') ? 10 : 0), generous: has(person, 'greedy') ? 14 : 0, risky: has(person, 'cautious') ? 18 : 4, surrender: has(person, 'ambitious') ? 24 : 6, duty: has(person, 'dutiful') ? 0 : 3 }; return costs[tag] || 0; }
+function stressFor(person, tag) { const costs = { cruel: (has(person, 'compassionate') ? 28 : 7) + (has(person, 'dutiful') ? 8 : 0), betrayal: (has(person, 'dutiful') ? 28 : 8) + (has(person, 'compassionate') ? 10 : 0), generous: has(person, 'greedy') ? 14 : 0, risky: has(person, 'cautious') ? 18 : 4, surrender: has(person, 'ambitious') ? 24 : 6, duty: has(person, 'dutiful') ? 0 : 3 }; return fitsNature(person, tag) ? 0 : (costs[tag] || 0) + natureStress(person, tag); }
 function charge(state, amount, { publicFunds = false, orders = 1, tag = 'duty' } = {}) { const actor = publicFunds ? realmExecutive(state) : householdRepresentative(state); if (!canExerciseMandate(actor, state.date)) throw new Error(publicFunds ? 'Riket saknar en handlingsförmögen företrädare.' : 'Familjen saknar en handlingsförmögen företrädare.'); const account = publicFunds ? state.realm : controlledFamily(state); if (!account) throw new Error('Ingen behörig resursägare finns.'); if (publicFunds && !canRule(state)) throw new Error('Familjen saknar rätt att använda statskassan.'); if (state.actionPoints < orders) throw new Error('Årets handlingsutrymme är slut. För tiden framåt.'); if (account.treasury < amount) throw new Error(`Det behövs ${amount} silver; tillgängligt ${Math.floor(account.treasury)}.`); account.treasury = rounded(account.treasury - amount); state.actionPoints -= orders; actor.stress = clamp(actor.stress + stressFor(actor, tag), 0, 200); if (actor.id === state.reign.rulerId) recordDeed(state, tag); return actor; }
 function requirePerson(state, id, { grown = false } = {}) { const person = state.people[id]; if (!alive(person) || (grown && !adult(state, person))) throw new Error(grown ? 'Välj en levande myndig person.' : 'Personen lever inte eller saknas.'); return person; }
 function requireRule(state) { if (!canRule(state)) throw new Error('Beslutet kräver härskarens eller regentens mandat.'); }
@@ -247,6 +248,7 @@ function refreshStories(state, events) {
     }
     if (story.type === 'stress_crisis' && !alive(state.people[story.actorId])) { story.status = 'closed'; story.resolvedAt = state.date; story.resolution = 'Personens liv har avslutats.'; }
   }
+  refreshCourtStories(state, events, actionHooks(state));
 }
 function suspendPersonalProjects(state, personId) { for (const project of state.projects.filter((p) => p.status === 'active' && p.ownerId === personId && p.personal)) project.status = 'ended'; }
 function crown(state, person, events, reason, legitimacy = 55, lawful = true) { const previous = ruler(state); registerAccession(state, { previousId: previous?.id, newId: person?.id, lawful, reason }); if (previous) suspendPersonalProjects(state, previous.id); state.offices.ruler.holderId = person?.id || null; state.offices.ruler.history.push({ personId: person?.id || null, date: state.date, reason }); state.realm.legitimacy = legitimacy; if (!person) { state.realm.alive = false; logEvent(state, events, 'interregnum', 'Rikets ledning upphör', 'Inga behöriga företrädare finns kvar.', []); } else { state.realm.alive = true; const event = logEvent(state, events, 'succession', `${person.name} tillträder`, `${reason}. Den nya ledarens arketyp är ${ARCHETYPES[person.archetype].name}.`, [previous?.id, person.id]); memory(state, 'succession', event.title, event.participants, { causeId: event.id }); for (const fam of values(state.families)) if (fam.id !== person.familyId) fam.grievance = clamp(fam.grievance - 2, -40, 40); if (closePrisoner(state, person.id, 'released', 'Ärvde tronen')) logEvent(state, events, 'prisoner_released', `${person.name} friges`, 'Ärvde tronen. Den nya härskaren lämnar fängelset.', [person.id]); passCrown(state, person.familyId, events, actionHooks(state)); } refreshMandates(state, events); onAccession(state, person, { lawful, legitimacy }); }
@@ -460,6 +462,7 @@ function rawStoryChoices(state, story) { const controller = canRule(state); cons
   if (story.type === 'punish_crime') return punishCrimeChoices(state, story, { controller });
   if (story.type === 'ransom_offer') return ransomChoices(state, story, { controller });
   if (story.type === 'plot_uncovered') return plotUncoveredChoices(state, story, actionHooks(state));
+  if (COURT_STORY_TYPES.includes(story.type)) return courtStoryChoices(state, story, actionHooks(state));
   return [{ id: 'acknowledge', label: 'Noterat', description: 'Följden läggs till i historiken.', cost: '0 silver', stress: '0', disabledReason: '' }];
 }
 
@@ -535,6 +538,7 @@ function resolveStory(state, story, choiceId, events, automatic = false) {
   else if (story.type === 'punish_crime') resolvePunishment(state, story, choiceId, actionHooks(state), events);
   else if (story.type === 'ransom_offer') resolveRansom(state, story, choiceId, actionHooks(state), events);
   else if (story.type === 'plot_uncovered') resolvePlotUncovered(state, story, choiceId, actionHooks(state), events);
+  else if (COURT_STORY_TYPES.includes(story.type)) resolveCourtStory(state, story, choiceId, events, actionHooks(state));
   story.status = 'resolved'; story.choiceId = choiceId; story.resolvedAt = state.date;
   logEvent(state, events, 'choice', story.title, `${choice.label}. ${choice.description}`, [story.actorId, actor?.id]);
 }
@@ -778,7 +782,7 @@ function annualStep(state, events) {
   refreshStories(state, events);
   scheduleDirectedStory(state, events, storyContext(state), logEvent);
   scheduleEventChain(state, events, chainContext(state), chainHooks(state));
-  const actor = activeRepresentative(state); if (actor?.stress >= 80 && !state.stories.some((s) => s.type === 'stress_crisis' && s.status === 'open' && s.actorId === actor.id)) state.stories.push({ id: nextId(state, 'story'), type: 'stress_crisis', title: 'Ansvaret börjar tära', description: `${actor.name} behöver hantera sin belastning.`, actorId: actor.id, createdAt: state.date, dueAt: addGameMonths(state.date, 12), status: 'open', knownBy: [actor.id] });
+  const actor = activeRepresentative(state); if (actor?.stress >= 80 && !breakdownDue(state, actor) && !state.stories.some((s) => s.type === 'stress_crisis' && s.status === 'open' && s.actorId === actor.id)) state.stories.push({ id: nextId(state, 'story'), type: 'stress_crisis', title: 'Ansvaret börjar tära', description: `${actor.name} behöver hantera sin belastning.`, actorId: actor.id, createdAt: state.date, dueAt: addGameMonths(state.date, 12), status: 'open', knownBy: [actor.id] });
   if (state.realm.alive && state.realm.treasury === 0) state.realm.legitimacy = clamp(state.realm.legitimacy - 8); else if (state.realm.alive) state.realm.legitimacy = clamp(state.realm.legitimacy + 0.5);
   updateStatus(state); logEvent(state, events, 'year', 'Årets förvaltning är avslutad', `Statskassan förändras med ${effects.annualRevenue.toFixed(1).replace('.', ',').replace('-', '−')} silver. Nya personliga beslut, ålder och politiska förhållanden har behandlats.`, []);
   syncPlotSecrets(state);
@@ -816,8 +820,8 @@ export function advanceCharacters(original, targetDate, options = {}) {
 export function getNextCharacterTransitionDate(state, targetDate) {
   const target = normalizeGameDate(targetDate);
   if (!state || state.status.ended || !target || compareGameDates(target, state.date) <= 0) return null;
-  // A plot, a crime case and a ransom offer lapse on their due date, so that date is a step of its own and a long jump closes them on the same day as monthly stepping.
-  const storyDeadlines = state.stories.filter((story) => ((['character_event', 'plot_uncovered', 'punish_crime', 'ransom_offer'].includes(story.type)) && story.status === 'open') || (isOfficePromise(story) && story.status === 'waiting')).map((story) => story.dueAt);
+  // A plot, a crime case, a ransom offer and a court story lapse on their due date, so that date is a step of its own and a long jump closes them on the same day as monthly stepping.
+  const storyDeadlines = state.stories.filter((story) => ((['character_event', 'plot_uncovered', 'punish_crime', 'ransom_offer', ...COURT_STORY_TYPES].includes(story.type)) && story.status === 'open') || (isOfficePromise(story) && story.status === 'waiting')).map((story) => story.dueAt);
   const majorityDates = living(state).filter((person) => !adult(state, person)).map((person) => addGameMonths(person.bornAt, ADULT_AGE * 12));
   const dates = [state.nextAnnualDate, getNextHealthTransitionDate(state), ...getEventChainDates(state), ...getSchemeDates(state), ...majorityDates, ...storyDeadlines, target].filter((date) => date && compareGameDates(date, state.date) > 0 && compareGameDates(date, target) <= 0);
   return dates.sort(compareGameDates)[0] || target;

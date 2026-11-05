@@ -13,6 +13,20 @@ const start = () => normalizeWorldState({
   units: [{ id: "army", ownerCode: "Hadara", name: "Gränsarmén", lng: 36, lat: 35, strength: 90 }],
 });
 
+test("a new court story stops a longer advance", () => {
+  const world = { ...start(), characterSystem: createCharacterSystem({ polityId: "Hadara", polityName: "Hadara", date: "-0300-01-01", seed: 321 }) };
+  const rep = actionHooks(world.characterSystem).activeRepresentative().id;
+  world.characterSystem.people[rep].stress = 120;
+  const turn = planCharacterAdvance(world, "-0296-01-01", { pauseForCharacterDecisions: true });
+  const story = turn.state.stories.find((item) => item.type === "stress_breakdown");
+  assert.equal(turn.state.date, "-0299-01-01");
+  assert.equal(turn.interruption?.type, "character-story");
+  assert.ok(turn.interruption.storyIds.includes(story.id));
+  const onward = planCharacterAdvance({ ...world, characterSystem: turn.state }, "-0299-04-01", { pauseForCharacterDecisions: true });
+  assert.equal(onward.state.date, "-0299-04-01", "a story the player already knows does not stop the next turn");
+  assert.equal(onward.interruption, undefined);
+});
+
 test("canonical character state and projections survive normalizer and JSON round trip", () => {
   const world = start();
   const restored = normalizeWorldState(JSON.parse(JSON.stringify(world)));

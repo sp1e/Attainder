@@ -12,6 +12,7 @@ import {
   reconcileExternalHosts,
 } from "./characters/index.js";
 import { ACTION_CATALOG, requiresOf } from "./characters/actionCatalog.js";
+import { COURT_STORY_TYPES } from "./characters/court.js";
 import { compareGameDates, diffGameDays, normalizeGameDate } from "./gameDates.js";
 import { buildOwnerAliasMap, createOwnerResolver } from "./ownerNames.js";
 
@@ -294,6 +295,9 @@ export const characterTransitionEvents = (before, result, operationId) => {
   return events;
 };
 
+// A new open story of these types stops a longer advance.
+const DECISION_STORY_TYPES = ["character_event", "event_chain", ...COURT_STORY_TYPES];
+
 export const planCharacterAdvance = (world, targetDate, { id = "character-calendar", quietDateSync = false,
   pauseForHealthDecisions = false, pauseForCharacterDecisions = false, requestedDate = targetDate } = {}) => {
   if (!world?.characterSystem) return { state: null, events: [] };
@@ -304,7 +308,7 @@ export const planCharacterAdvance = (world, targetDate, { id = "character-calend
   if (diffGameDays(state.date, target) > 366 * 500) throw new Error("Dela upp tidshopp som är längre än 500 år.");
   const events = [];
   const knownCare = new Set(state.stories.filter((story) => story.type === "health_care").map((story) => story.id));
-  const knownStories = new Set(state.stories.filter((story) => ["character_event", "event_chain"].includes(story.type)).map((story) => story.id));
+  const knownStories = new Set(state.stories.filter((story) => DECISION_STORY_TYPES.includes(story.type)).map((story) => story.id));
   let checkpointBase = state;
   let steps = 0;
   while (compareGameDates(state.date, target) < 0) {
@@ -331,7 +335,7 @@ export const planCharacterAdvance = (world, targetDate, { id = "character-calend
         requestedDate: normalizeGameDate(requestedDate),
         message: "Turen stannade tidigare eftersom en ny sjukdom kräver ditt vårdbeslut. Välj vård i Rike & familjer innan du fortsätter." } };
     }
-    const newStories = state.stories.filter((story) => ["character_event", "event_chain"].includes(story.type) && story.status === "open"
+    const newStories = state.stories.filter((story) => DECISION_STORY_TYPES.includes(story.type) && story.status === "open"
       && !knownStories.has(story.id)).map((story) => story.id);
     if (pauseForCharacterDecisions && newStories.length && compareGameDates(state.date, requestedDate) < 0) {
       return { state, events, interruption: { type: "character-story", date: state.date, storyIds: newStories,
