@@ -195,6 +195,7 @@ const rewardSeats = (state) => getAvailableCharacterActions(state).find((item) =
 function regency(seats) {
   const state = plain(base());
   Object.assign(state.offices.ruler, { holderId: MIRA, regentId: REP });
+  state.reign.rulerId = MIRA;
   state.realm.lawfulRulerId = MIRA;
   state.regencies['office:ruler'] = { id: 'office:ruler', principalId: MIRA, regentId: REP, phase: 'minority', startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
   state.stories = [];

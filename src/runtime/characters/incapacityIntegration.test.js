@@ -138,7 +138,7 @@ test('health story treatment is attributed to the person who can spend household
 test('the exact birthday during illness preserves the episode and recovery considers handover once', () => {
   let state = createCharacterSystem({ seed: 321 });
   const child = state.people['person-0-4']; child.bornAt = '-0318-04-01';
-  state.offices.ruler.holderId = child.id; state.families['family-arel'].headId = child.id; state.realm.lawfulRulerId = child.id;
+  state.offices.ruler.holderId = child.id; state.reign.rulerId = child.id; state.families['family-arel'].headId = child.id; state.realm.lawfulRulerId = child.id;
   illness(state, child.id, 'smallpox'); state = normalizeCharacterSystem(state);
   const record = state.regencies['office:ruler'], episode = record.episodeId, term = record.termId;
   const regent = state.people[record.regentId]; regent.traits = ['ambitious']; regent.loyalty = 20; state.families[regent.familyId].influence = 80;

@@ -20,7 +20,7 @@ function minority({ age = 10, traits = ['cautious'], loyalty = 30 } = {}) {
   principal.health = 100;
   regent.bornAt = addGameMonths(state.date, -30 * 12);
   regent.health = 100; regent.traits = traits; regent.loyalty = loyalty; regent.archetype = 'commander';
-  state.offices.ruler.holderId = principal.id; state.offices.ruler.regentId = regent.id;
+  state.offices.ruler.holderId = principal.id; state.offices.ruler.regentId = regent.id; state.reign.rulerId = principal.id;
   state.realm.lawfulRulerId = principal.id;
   state.regencies['office:ruler'] = { id: 'office:ruler', principalId: principal.id, regentId: regent.id, phase: 'minority', startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
   delete state.mandateVersion; delete state.mandateActivatedAt; delete state.mandateSequence;

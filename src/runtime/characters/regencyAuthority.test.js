@@ -11,7 +11,7 @@ function minority(mode = 'realm', familyId = 'family-arel', traits = ['ambitious
   const state = createCharacterSystem({ seed: 321, mode, familyId });
   const principal = state.people['person-0-4'], regent = state.people['person-0-0'];
   principal.traits = ['dutiful']; regent.traits = traits; regent.loyalty = 90;
-  state.offices.ruler.holderId = principal.id; state.offices.ruler.regentId = regent.id;
+  state.offices.ruler.holderId = principal.id; state.offices.ruler.regentId = regent.id; state.reign.rulerId = principal.id;
   state.realm.lawfulRulerId = principal.id;
   state.regencies['office:ruler'] = { id: 'office:ruler', principalId: principal.id, regentId: regent.id, phase: 'minority', startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
   state.offices.chancellor.holderId = null;
