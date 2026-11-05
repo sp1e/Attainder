@@ -13,7 +13,7 @@
 //     files/background.json a suggested basemap, when there is one
 
 import { zipBundle, unzipBundle, looksLikeZip } from "./bundleZip.js";
-import { SCENARIO_LICENSE_FILE, SCENARIO_LICENSE_TEXT, scenarioLicense } from "./scenarioLicense.js";
+import { SCENARIO_LICENSE_FILE, SCENARIO_LICENSE_TEXT, scenarioLicense, componentLicenseFiles } from "./scenarioLicense.js";
 import { countChanges, summarizeChangesForComment } from "./scenarioChanges.js";
 import { SUGGESTION_MARKER } from "./hubPosts.js";
 
@@ -88,10 +88,11 @@ export const normalizeSuggestion = (raw) => {
     by: clean(raw.by, MAX_BY),
     note: clean(raw.note, MAX_NOTE),
     changes,
+    ...(Array.isArray(raw.componentLicenses) ? { componentLicenses: raw.componentLicenses, assetProvenance: raw.assetProvenance ?? {} } : {}),
   };
 };
 
-export const buildSuggestion = ({ changes, scenario, origin, by = "", note = "" }) => normalizeSuggestion({
+export const buildSuggestion = ({ changes, scenario, origin, sourceBundle, by = "", note = "" }) => normalizeSuggestion({
   schema: SUGGESTION_SCHEMA,
   id: newSuggestionId(),
   createdAt: new Date().toISOString(),
@@ -104,6 +105,8 @@ export const buildSuggestion = ({ changes, scenario, origin, by = "", note = "" 
   by,
   note,
   changes,
+  componentLicenses: sourceBundle?.componentLicenses ?? sourceBundle?.data?.world?.componentLicenses,
+  assetProvenance: sourceBundle?.data?.world?.assetProvenance,
 });
 
 const base64ToBytes = (base64) => {
@@ -137,6 +140,10 @@ export const buildSuggestionZip = async (suggestion) => {
   // for (scenarioLicense.js), and the file says so.
   files["suggestion.json"] = JSON.stringify({ ...suggestion, changes, license: scenarioLicense() });
   files[SCENARIO_LICENSE_FILE] = SCENARIO_LICENSE_TEXT;
+  Object.assign(files, componentLicenseFiles(suggestion));
+  if (suggestion.componentLicenses?.length) {
+    files["suggestion.json"] = JSON.stringify({ ...suggestion, changes, license: { ...scenarioLicense(), scope: 'authored-content', componentTerms: 'componentLicenses' } });
+  }
   return zipBundle(files);
 };
 

@@ -436,6 +436,7 @@ export const SuggestChangesDialog = ({ scenario, onClose, onUpdate = null }) => 
   const [phase, setPhase] = useState("loading"); // loading | ready | empty | outdated | error | sent
   const [error, setError] = useState("");
   const [changes, setChanges] = useState([]);
+  const [sourceBundle, setSourceBundle] = useState(null);
   const [by, setBy] = useState("");
   const [note, setNote] = useState("");
   const [sent, setSent] = useState(null); // { fileName, comment, copied }
@@ -462,6 +463,7 @@ export const SuggestChangesDialog = ({ scenario, onClose, onUpdate = null }) => 
         const found = diffScenarioBundles(base, current);
         if (!alive) return;
         setChanges(found);
+        setSourceBundle(current);
         setPhase(found.length ? "ready" : "empty");
       } catch (nextError) {
         if (!alive) return;
@@ -481,7 +483,7 @@ export const SuggestChangesDialog = ({ scenario, onClose, onUpdate = null }) => 
 
   const send = async ({ openPost }) => {
     try {
-      const suggestion = buildSuggestion({ changes, scenario, origin, by, note });
+      const suggestion = buildSuggestion({ changes, scenario, origin, sourceBundle, by, note });
       const fileName = suggestionFileName(scenario.name);
       const comment = buildSuggestionComment(suggestion, { fileName });
       // The page first, while the click still counts as the player's: a browser

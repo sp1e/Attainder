@@ -16,6 +16,15 @@ import { readFileSync } from "node:fs";
 import defaultPrompts from "./defaultPrompts.json" with { type: "json" };
 import { PROMPT_GUIDANCE, locateSegment } from "./promptGuidance.js";
 import { STATIC_PROMPT_KEYS } from "./promptLayout.js";
+import { renderTemplateCached } from './promptLayout.js';
+import { resolveHelperValues } from './promptContext.js';
+import { collapseRepeatedWorldContext } from './promptDedupe.js';
+import { resolveTemplateVariableDemand } from './contextDiagnostics.js';
+import * as historyBoundary from './futureHistoryBoundary.js';
+import { buildCharacterPromptContext, buildHistoricalPromptContext, getCharacterEventBudget } from '../../runtime/characterWorld.js';
+import { createHistoricalCharacterSystem } from '../../runtime/characters/scenarioSeed.js';
+import { advanceCharacters, getCharacterPresentation } from '../../runtime/characters/index.js';
+import { normalizeWorldState, viewAsSeen } from '../../runtime/gameState.js';
 
 const JUMP_TASKS = ["jumpForward", "autoJumpForward"];
 const EDITABLE = {
@@ -32,6 +41,92 @@ const LIVE_STATE = "${JUMP_LIVE_STATE}";
 
 const template = (task) => defaultPrompts.tasks[task];
 const gameplaySource = readFileSync(new URL("./gameplay.js", import.meta.url), "utf8");
+
+// Execute both production assembly functions with the loaded catalog, real
+// render/context/history helpers and stubbed unrelated live services. This
+// captures assembled request text without importing the JSX app or a provider.
+const assembledJump = (catalog, data) => {
+  const deps = {
+    loadPromptCatalog: async () => catalog,
+    STAT_INDEX_CONTEXT_TASKS: new Set(), JUMP_TASK_KEYS: new Set(JUMP_TASKS),
+    PLAYER_GOAL_TASKS: new Set(), GM_REMINDER_TASKS: new Set(),
+    normalizeArray: v => Array.isArray(v) ? v : [], normalizeString: v => String(v ?? '').trim(),
+    resolveTemplateVariableDemand, resolveHelperValues, renderTemplateCached, collapseRepeatedWorldContext,
+    buildRealHistoryDirective: historyBoundary.buildRealHistoryDirective,
+    historicalJumpTemplate: historyBoundary.historicalJumpTemplate,
+    readWorldState: async () => data.world, readGameData: async () => data.game, normalizeWorldState,
+    isActiveFeatureEnabled: () => false, JUMP_LIVE_STATE_BANNER: '[Live records]', JUMP_LEVERS: '',
+    buildJumpGroupsBlock: () => '', buildWarLedgerDirective: () => '', buildDiplomaticLedgerDirective: () => '',
+    describeWarsWithoutFormations: () => '', describeTravelPace: () => '', buildJumpProjectsDirective: () => '',
+    describeReportsForPrompt: () => '', playerGoalBlock: async () => '', getActiveWorldDirection: () => null,
+    buildWorldDirectionDirective: () => '', computeSimulatedDays: () => 30, jumpDifficultyDirective: () => '',
+    gmRemindersBlock: async () => '',
+  };
+  const start = gameplaySource.indexOf('const buildJumpLiveState =');
+  const end = gameplaySource.indexOf('// Who is shown the reminders.', start);
+  assert.ok(start >= 0 && end > start);
+  return new Function(...Object.keys(deps), `${gameplaySource.slice(start, end)}\nreturn buildTaskSystemPrompt;`)(...Object.values(deps));
+};
+
+test('template variables derive historical mode from the visible snapshot, never the raw future world', async () => {
+  const data = JSON.parse(readFileSync(new URL('../../../server/seed/historical/john-1200/scenario.json', import.meta.url), 'utf8')).data;
+  const state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 });
+  const deps = { perfNow: () => 0, normalizeString: v => String(v ?? '').trim(), normalizeArray: v => Array.isArray(v) ? v : [],
+    lookupFunctionsEnabled: () => false, buildPromptContext: async () => ({}), buildGroupsContext: async () => '',
+    viewAsSeen: bundle => viewAsSeen(bundle, { unseen: new Set(bundle.events.map(e => e.id)) }),
+    buildCharacterPromptContext, buildHistoricalPromptContext, getCharacterPresentation, getCharacterEventBudget,
+    isContextDiagnosticsEnabled: () => false,
+  };
+  const start = gameplaySource.indexOf('const buildTemplateVariables =');
+  const end = gameplaySource.indexOf('// Give the AI real time:', start);
+  const build = new Function(...Object.keys(deps), `${gameplaySource.slice(start, end)}\nreturn buildTemplateVariables;`)(...Object.values(deps));
+  const bundle = { ...data, world: { ...data.world, characterSystem: state }, events: [], chats: [] };
+  const before = JSON.stringify(bundle);
+  const current = await build(bundle, { requiredKeys: [], taskKey: 'jumpForward', targetDate: '1201-09-01' });
+  assert.equal(current.historicalContext.currentDate, state.date);
+  assert.equal(current.historicalContext.bookmarkDate, state.historicalOrigin.bookmarkDate);
+  assert.equal(JSON.stringify(bundle), before);
+  bundle.world.simulationHistory = [{ fromDate: state.date, toDate: '1201-09-01', eventIds: ['unseen'] }];
+  bundle.events = [{ id: 'unseen', date: '1201-09-01', title: 'Future' }];
+  bundle.game.gameDate = '1201-09-01';
+  const hidden = await build(bundle, { requiredKeys: [], taskKey: 'jumpForward', targetDate: '1202-01-01' });
+  assert.equal(hidden.historicalContext, undefined);
+  assert.equal(hidden.characterContext, '');
+});
+
+for (const id of ['egypt-3000bc', 'john-1200']) test(`${id}: assembled jump requests replace future-history prescriptions in loaded and frozen templates`, async () => {
+  const data = JSON.parse(readFileSync(new URL(`../../../server/seed/historical/${id}/scenario.json`, import.meta.url), 'utf8')).data;
+  let state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 });
+  if (id === 'john-1200') state = advanceCharacters(state, '1201-09-01', { id: 'progress' }).state;
+  data.world.characterSystem = state;
+  data.game.gameDate = state.date;
+  const historicalContext = buildHistoricalPromptContext(getCharacterPresentation(state));
+  const variables = { historicalContext, characterContext: buildCharacterPromptContext(state), playerPolity: state.realm.name,
+    simulationRules: data.world.simulationRules, startingTimelineText: data.world.startingTimelineText };
+  for (const task of JUMP_TASKS) {
+    for (const variant of ['loaded', 'edited', 'missing']) {
+      const catalog = structuredClone(defaultPrompts);
+      if (variant === 'edited') catalog.tasks[task] = catalog.tasks[task].replace(section(catalog.tasks[task], EDITABLE.history), '[Real History Is the Default]\nAUTHOR_MANDATORY_FUTURE\n');
+      if (variant === 'missing') catalog.tasks[task] = catalog.tasks[task].replace(section(catalog.tasks[task], EDITABLE.history), '');
+      catalog.tasks[task] += '\n[Author appendix]\nKEEP_AUTHOR_INSTRUCTION';
+      const captured = await assembledJump(catalog, data)(task, { variables, reminders: false });
+      assert.match(captured.systemPrompt, /alternate outcomes/);
+      assert.match(captured.systemPrompt, /KEEP_AUTHOR_INSTRUCTION/);
+      assert.match(captured.systemPrompt, /local rule engine controls/);
+      assert.ok(captured.systemPrompt.includes(state.date));
+      assert.ok(captured.systemPrompt.includes(data.game.startDate));
+      assert.ok(captured.systemPrompt.includes(state.realm.name));
+      assert.doesNotMatch(captured.systemPrompt, /AUTHOR_MANDATORY_FUTURE|elections are held on their dates and won by the people who won them|The game diverges only where the game has diverged|the real events of this period happen|Real historical events that nobody in this game has prevented still happen|Real history and the world before round 1: the default|A real historical event keeps its real details|Hadara|Modern Day/);
+      if (id === 'egypt-3000bc') assert.match(captured.systemPrompt, /utvecklarna.*beskurit/);
+      // Same frozen/custom catalog without historical character context follows
+      // its exact original history section and the legacy live directive.
+      const legacy = await assembledJump(catalog, data)(task, { variables: {}, reminders: false });
+      assert.equal(legacy.promptTemplate, catalog.tasks[task]);
+      assert.match(legacy.systemPrompt, /the real events of this period happen/);
+      if (variant === 'edited') assert.match(legacy.systemPrompt, /AUTHOR_MANDATORY_FUTURE/);
+    }
+  }
+});
 const once = (text, needle) => text.split(needle).length - 1 === 1;
 const section = (text, header) => {
   const at = text.indexOf(header);

@@ -106,7 +106,7 @@ test("both stores seed a fresh game from the same scenario world keys", () => {
   );
 });
 
-test("both stores agree on which scenarios never need to travel", () => {
+test("both stores agree on built-in scenario IDs in exported metadata", () => {
   const server = serverStringList("BUILT_IN_SCENARIO_IDS");
   // The server names them by constant (DEFAULT_SCENARIO_ID, CLASSIC_SCENARIO_ID),
   // so resolve those to their values before comparing.
@@ -188,6 +188,7 @@ test("Export and Save-log-with-game are offered on every build, the Android app 
   const settings = readSource("Game", "GameUI", "settings.jsx");
   assert.doesNotMatch(settings, /isNativeApp/, "settings.jsx no longer consults the native-app gate");
   assert.match(settings, /handleAttachGame/, "and the log-plus-game button is still there");
+  assert.match(settings, /oversizeScenario \|\| omittedScenario \? "saved-without-map"/, "diagnostic exports report omitted maps");
 });
 
 test("settings.txt can never carry a key or a whole endpoint", () => {

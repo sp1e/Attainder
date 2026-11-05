@@ -8,7 +8,8 @@
  * not count as identity evidence. If exact identity cannot be proved, canonical
  * scenario geometry remains responsible for rendering and hit-testing.
  */
-export const hasExactRegionTileIdentity = (records = [], tileRegionIds = new Set()) => {
+export const hasExactRegionTileIdentity = (records = [], tileRegionIds = new Set(), { historical = false } = {}) => {
+  if (historical) return false;
   let stockLikeCount = 0;
   for (const record of records ?? []) {
     if (!record || record.authored === true) continue;

@@ -28,6 +28,8 @@ const put = (key, body, headers = {}) =>
 before(async () => {
   ({ httpServer } = await import("./server.js"));
   base = `http://127.0.0.1:${process.env.PORT}`;
+  const { createGame } = await import("./libraryStore.js");
+  createGame({ setActive: true });
 });
 
 after(() => {

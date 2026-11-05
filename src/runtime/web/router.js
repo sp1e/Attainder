@@ -191,7 +191,16 @@ export const installWebApiRouter = () => {
       return originalFetch(input, init);
     }
 
-    const request = new Request(input, init);
+    // A local same-origin host may mount the existing guarded CLI bridge.
+    // Static deployments still route these requests to the ordinary 404.
+    const method = String(init?.method ?? input?.method ?? 'GET').toUpperCase();
+    const localHost = ['127.0.0.1', 'localhost', '[::1]'].includes(url.hostname);
+    if (localHost && ['http:', 'https:'].includes(url.protocol)
+      && ((method === 'GET' && ['/api/local-models/info','/api/local-models/status'].includes(url.pathname))
+        || (method === 'POST' && url.pathname === '/api/local-models/generate'))) {
+      return originalFetch(input, init);
+    }
+    const request = new Request(typeof input === 'string' ? url.href : input, init);
     try {
       return await route(request, url);
     } catch (error) {

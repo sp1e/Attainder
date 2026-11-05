@@ -4,8 +4,7 @@
 // A scenario bundle used to base64 every asset, including the ones that are
 // already JSON. On a real hub map that made the region geometry 17.1 MB of an
 // 18.1 MB file — a third of the download for nothing. Geometry now travels as
-// JSON, and a bundle written the old way still imports, because seven of them
-// are already on the community hub.
+// JSON, while retaining import support for the older base64 encoding.
 //
 // Each case runs in its own child process because OH_DATA_DIR is read once, at
 // import time.
@@ -97,7 +96,7 @@ test("a bundle written either way imports to the same map on disk", () => {
   const root = buildDataDir();
   const result = runStore(root, `
     const fs = await import("node:fs");
-    const bundle = store.exportScenarioBundle("hand-drawn");
+    const bundle = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(SERVER_DIR,"seed/historical/john-1200/scenario.json"))}, "utf8"));
     const asBase64 = JSON.parse(JSON.stringify(bundle));
     asBase64.assets.regionsGeojson = {
       ...asBase64.assets.regionsGeojson,
@@ -115,8 +114,8 @@ test("a bundle written either way imports to the same map on disk", () => {
       firstName: read(fresh.scenario.id).features[0].properties.name,
     }`)}
   `);
-  assert.equal(result.fresh, 500);
-  assert.equal(result.legacy, 500, "the seven bundles already on the hub still import");
+  assert.equal(result.fresh, 1425);
+  assert.equal(result.legacy, 1425, "the John scenario still imports with base64 geometry");
   assert.equal(result.same, true);
-  assert.equal(result.firstName, "Region 0");
+  assert.equal(result.firstName, "Okänd historisk kontroll");
 });

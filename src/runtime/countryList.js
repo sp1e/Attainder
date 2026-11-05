@@ -99,8 +99,17 @@ export const mergeCountryOverrides = (countries, polityOverrides) => {
 export const mergeStockAndDeclaredPolities = (
   countries,
   world,
-  { resolvePolityIdentity, resolveStockCountryCode } = {},
+  { resolvePolityIdentity, resolveStockCountryCode, includeRuntimePolities = false } = {},
 ) => {
+  if (world?.historicalScenario?.kind === 'historical') {
+    const polities = Array.isArray(world.historicalScenario.polities) ? world.historicalScenario.polities : [];
+    const entries = new Map(polities.map((polity) => [clean(polity?.id), clean(polity?.nameSv)]).filter(([id, name]) => id && name));
+    if (includeRuntimePolities) for (const [id, polity] of Object.entries(world.polityOverrides ?? {})) {
+      const name = clean(polity?.name);
+      if (clean(id) && name) entries.set(clean(id), name);
+    }
+    return dedupeByName([...entries].map(([code, name]) => ({ code, name }))).sort((left, right) => left.name.localeCompare(right.name));
+  }
   const overrides = world?.polityOverrides && typeof world.polityOverrides === "object"
     ? world.polityOverrides
     : {};

@@ -2,7 +2,7 @@
 
 Written by Claude on 5 November 2026 at `main` = `b655e2b`. Codex develops Attainder on the owner's private desktop until the owner's weekly Claude tokens reset. Read this file from top to bottom before you change anything.
 
-Updated by Codex on 5 November 2026: the Phase 3 review fixes are tested and pushed on `fix/phase-3-review` through `cfa225238c5065441e4642481ab507629e498e73`. PR review, CI and merge remain publication steps. The owner now prioritizes the historical campaign foundation; see the current work queue below.
+Updated by Codex on 5 November 2026: [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the Phase 3 review fixes after the final branch review and required test/build CI passed. The remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`; the retained remote branch `fix/phase-3-review` ends at `55283dc`. The historical campaign foundation was implemented on `codex/historical-campaign-foundation`. Tasks 1–5 are accepted through `1addf27`; Task 5 integrated historical defaults, start guards, save restoration and UI, and its blocking reviews are closed. Task 6 and final documentation review are accepted with documented limits; final review approved publication subject to current-head CI. The [play script](../play-scripts/historical-foundation.md) records observed results and remaining checks. The scoped review accepted the second browser-fix round and the polar-render repairs, most recently at `2066a55`. [PR #13](https://github.com/sp1e/Attainder/pull/13) tracks the branch and its merge state. [CI run 42102593161](https://github.com/sp1e/Attainder/actions/runs/42102593161) passed 4,654 tests, with no failures and two TODOs; the build passed. The current PR head must pass CI before merge. The annual 4,500-year research and turn-end popup remain separate pending work.
 
 **On this computer, read `HANDOVER.local.md` in the repository root next.** Git ignores it. It holds the machine-specific paths this public repository must not contain: where the newer Codex lives, the writing rules, the Swedish character sweep and the cleanup list.
 
@@ -32,7 +32,7 @@ The owner said on 4 November 2026: continue development without pausing and with
 | 0 | Stable base | Merged. One panel check open (work item 6) |
 | 1 | Free-text actions, odds, schemes, model gate | Merged. Play script passed |
 | 2 | Intrigue, moments 1 to 4, 28, 29 | Merged. Play script passed |
-| 3 | Court and power, moments 11 to 17 | Merged as `9a780f7` (PR #9). Review findings fixed through `cfa2252`; follow-up merge pending. Original browser script deferred |
+| 3 | Court and power, moments 11 to 17 | Merged as `9a780f7` (PR #9). Review fixes merged as `6f4f7c0` (PR #12); final branch review and required CI passed. Original browser script deferred |
 | 4 | Family and succession, moments 5, 6, 8, 9, 10 | Not started. No plan |
 | 5 | Events and life, moments 20 to 23 | Not started. No plan |
 | 6 | World, diplomacy and war, moments 7, 24 to 27 | Not started. No plan |
@@ -40,7 +40,7 @@ The owner said on 4 November 2026: continue development without pausing and with
 
 13 of 29 moments are built. Phases 0 and 1 carry no moments of their own.
 
-Latest measurement: the full serial suite at `cfa225238c5065441e4642481ab507629e498e73` ran 4,410 tests: 4,407 pass, 0 fail, 1 skipped, 2 todo, in 111,035.0005 ms. The build passed in 33.08 seconds with the inherited chunk-size warning. Full lint retains 18 errors and 71 warnings; targeted ESLint for the replay changes reports none. These are local code checks, not browser verification or CI for the follow-up PR.
+Latest full local serial measurement, before the polar-render fix, at `7b62791`: 4,647 total, 4,644 pass, 0 fail, 1 skipped and 2 TODO in 228,052.191 ms. Scoped review approved the unresolved-scenario fixes; the commit was pushed and the remote SHA verified. Earlier Task 5 measurements: the full serial suite at `c7c6dbc` ran 4,625 tests, with 4,622 pass, 0 fail, 1 skipped and 2 todo, in 179,246.1685 ms. The final fix at `1addf27` passed 27 focused tests in 53,692.0687 ms and targeted lint. Desktop and web builds passed in 30.69 and 33.32 seconds. The full lint run reported 18 errors and 71 warnings, matching the earlier aggregate; build warnings remain. The generator check and map asset ensure passed. The earlier Phase 3 baseline at `cfa225238c5065441e4642481ab507629e498e73` had 4,410 tests and retained 18 lint errors and 71 warnings in the full lint run. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295). The deferred browser checks remain open.
 
 Earlier measurements: `npm test` at `1698e61` gave 4,370 pass, 0 fail. The runtime suite at `62c7bd4` gave 2,280 of 2,280. Panel tests at `054d46a` gave 106 of 106. CI `test` passed on PRs #9 and #10.
 
@@ -50,9 +50,9 @@ Phase 3 task 12 was cut short because the token limit was close. Tasks 1 to 10 e
 
 Do these in order.
 
-### 1. Publish the Phase 3 review follow-up
+### 1. Completed: publish the Phase 3 review follow-up
 
-The whole-branch review of `e735a5b..9a780f7` is complete. The two reproduced findings now have fixes, regressions and approved task reviews on `fix/phase-3-review`. Finish documentation review, whole-branch follow-up review, required CI and the PR merge. Verify the remote merge commit. See "Phase 3 review status" below for the rulings and measurements.
+The whole-branch review of `e735a5b..9a780f7` found two reproduced issues. Both have fixes, regressions and approved task reviews. The final follow-up review of `08d3518..55283dc` approved the branch with no new Critical, Important or Minor findings. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295). [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the fixes, and the remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`. See "Phase 3 review status" below for the rulings and measurements.
 
 Retain these review checks for future changes:
 
@@ -63,11 +63,15 @@ Retain these review checks for future changes:
 
 Reproduce new findings before fixing them and write the failing test first.
 
-### 2. Build the historical campaign foundation
+### 2. Historical foundation: implementation and review accepted
 
-Follow `docs/superpowers/specs/2026-11-05-historical-world-direction.md`: real geography and historical polities, new starts from the Bronze Age through about AD 1200, and no modern starts. Write and review the implementation plan before code changes. Preserve existing campaigns. Then address the year-by-year research for approximately 3300 BC through AD 1200 and the turn-end historical-reference popup in `docs/development/DEVELOPMENT-BACKLOG.md`. Research and implementation remain pending.
+Follow `docs/superpowers/specs/2026-11-05-historical-world-direction.md`: real geography and historical polities, new starts from the Bronze Age through about AD 1200, and no modern starts. The written plan `docs/superpowers/plans/2026-11-05-historical-campaign-foundation.md` is prepared. Tasks 1–5 are accepted through `1addf27`. Task 6 and final documentation review are accepted with the limits in the play script. Final review approved publication subject to current-head CI; PR #13 tracks merge state. The six ordered tasks cover: campaign-start policy, historical content, initializer, prompts, combined guards/defaults/UI, then browser evidence. Preserve existing campaigns. Year-by-year research for approximately 3300 BC through AD 1200 and the turn-end historical-reference popup are the next separate pending milestone in `docs/development/DEVELOPMENT-BACKLOG.md`.
 
-### 3. Deferred: run `docs/play-scripts/phase-3.md` in a browser
+### 3. Next: annual historical reference
+
+Write a separate research and implementation plan for the 4,500-year coverage and turn-end reference popup in `docs/development/DEVELOPMENT-BACKLOG.md`. No year is fully reviewed for release, no event is release-approved and the popup is not implemented.
+
+### 4. Deferred: run `docs/play-scripts/phase-3.md` in a browser
 
 The owner moved the historical foundation ahead of this Hadara script. Adapt its setting-dependent fixtures after the new start flow exists. No Phase 3 browser pass is recorded.
 
@@ -75,7 +79,7 @@ It takes about 90 minutes and about 35 model calls. Use the Codex connection in 
 
 Never commit `play-data/` or `reports/`.
 
-### 4. Small corrections
+### 5. Small corrections
 
 Put these on one branch.
 
@@ -83,7 +87,7 @@ Put these on one branch.
 - `docs/superpowers/plans/2026-11-04-phase-3-court-and-power.md` line 38 says Tarek Arel is the brother the moment names once Sera Arel reigns. Tarek is Sera's spouse and his `legalParentIds` is empty, so the sibling branch needs Mira and Neri.
 - Plan lines 68 and 164 still name the removed status `abandoned`.
 
-### 5. Deferred minors
+### 6. Deferred minors
 
 `docs/development/phase-3-decisions.md` lists them. Some were resolved by later tasks, so check the code before you act. Fix the ones that change behaviour:
 
@@ -91,11 +95,11 @@ Put these on one branch.
 - `validateFamilyDemands` does not compare `story.actorId` with `family.headId`.
 - `reign.js` gives a builder with an overdue aqueduct the refusal `noBuilder`, which misstates the reason.
 
-### 6. The open Phase 0 check
+### 7. The open Phase 0 check
 
 The panel in both themes and narrow layouts, with one submitted public choice and one submitted private choice, each followed by a reload.
 
-### 7. Phase 4, then 5, 6 and 7
+### 8. Phase 4, then 5, 6 and 7
 
 For each phase:
 
@@ -190,10 +194,10 @@ Leave `CONTINUE-HERE.md` current after every merge: branch state, measurements, 
 The whole-branch review of `e735a5b..9a780f7` completed on 5 November 2026, including an 18-seed, 50-year JSON round-trip probe. It left two reproduced findings. The follow-up plan is `docs/superpowers/plans/2026-11-05-phase-3-review-follow-up.md`.
 
 - Annual accounting, `e5358ac`: include the actual chancellor payment in the existing year's aggregate after loyalty drift and court processing. Preserve payment formulas, event identity/order and saved random streams. Focused tests: 51 of 51; complete-state parity: 24 scenarios. Full serial suite: 4,404 total, 4,401 pass, 0 fail, 1 skipped, 2 todo. Independent task review approved the fix.
-- Legacy replay, `063fa87` and `cfa2252`: reconstruct legacy stored patches before migrating checkpoints, retain raw validated legacy checkpoint payloads, and follow the adapter's actual per-event date synchronization and reconciliation. A first review reproduced an interleaved model-date failure; `cfa2252` fixes it and passes scoped re-review with no open Critical or Important findings. Focused tests: 186 of 186. Final full serial suite and build are recorded above. The remote branch head matches `cfa225238c5065441e4642481ab507629e498e73`.
+- Legacy replay, `063fa87` and `cfa2252`: reconstruct legacy stored patches before migrating checkpoints, retain raw validated legacy checkpoint payloads, and follow the adapter's actual per-event date synchronization and reconciliation. A first review reproduced an interleaved model-date failure; `cfa2252` fixes it and passes scoped re-review with no open Critical or Important findings. Focused tests: 186 of 186. Final full serial suite and build are recorded above. The tested production code remains `cfa225238c5065441e4642481ab507629e498e73`; later documentation commits brought the retained remote branch head to `55283dc`.
 
 Ruling: annual reporting uses actual paid deltas, including treasury clamps and rounding; the existing event keeps its one-decimal sentence and exposes no separate service or loyalty number. This fixes accounting without changing payments; a broader financial ledger would need a separate design.
 
 Ruling: legacy compatibility runs at the replay boundary after each event's calendar and host progress. Current-version reign/office mismatches remain invalid, and source/gate/revision checks remain strict. Replay consumes stored outcomes without extra random draws, model calls or persistent provenance. An unsupported legacy shape needs a separate compatibility case and regression.
 
-The original Phase 3 browser script and Phase 0 panel check remain open. The owner deferred the Hadara script behind the historical campaign foundation. Local checks and task reviews do not replace the follow-up branch review, CI or merge.
+The original Phase 3 browser script and Phase 0 panel check remain open. The owner deferred the Hadara script behind the historical campaign foundation. The final follow-up branch review of `08d3518..55283dc` approved the changes with no new Critical, Important or Minor findings. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295), and [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the fixes as the verified remote `main` commit `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`.

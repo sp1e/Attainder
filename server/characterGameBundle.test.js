@@ -3,10 +3,11 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync } from "node:fs";
 import path from "node:path";
+import os from "node:os";
 import { fileURLToPath } from "node:url";
 
 const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const artifacts = path.resolve(repository, "../reports/test-artifacts");
+const artifacts = path.join(os.tmpdir(), "attainder-character-bundle-tests");
 
 // A fresh process is essential: OH_DATA_DIR is captured at module import. No
 // live library, HTTP server, browser profile or installed application is used.
@@ -55,6 +56,7 @@ async function roundtripWorker() {
   const seed = createDynastyScenarioBundle();
   seed.data.world.ownerSchema = 4;
   const generated = {
+    "historicalBookmarks.js": "export default [];",
     "countryNames.js": "export default {};",
     "fallbackColors.js": "export default {Hadara:'#b99755'};",
     "defaultScenarioMeta.js": "export const builtInMap='test-map'; export const builtInRevision=1; export const regionsUrl=''; export const earlierMaps={};",
@@ -76,12 +78,26 @@ async function roundtripWorker() {
     assert.ok(reply.ok, `Web ${resource}/${route}: ${JSON.stringify(data)}`);
     return data;
   };
-  await webCall("games", "POST", "", { name: "Unrelated isolated campaign", scenarioId: "default", setActive: true });
+  const active = await webCall("games", "POST", "import", { schema:"open-historia-game-bundle/1", game:{name:"Unrelated isolated campaign"}, data:{game:{gameDate:"2032-11-15"}} });
+  await webCall("games", "PUT", "active", {gameId:active.game.id});
+  const historical=store.createGame({name:'Default historical'});
+  const historicalZip=await buildGameZipBlob(historical.game.id);
+  assert.equal(historicalZip.carriesScenario,true,'default historical map must travel');
+  const historicalDecoded=await readGameZip(new Uint8Array(await historicalZip.blob.arrayBuffer()));
+  const historicalWeb=await webCall('games','POST','restore',{bundle:historicalDecoded.bundle,scenarioBundle:historicalDecoded.scenarioBundle});
+  assert.deepEqual(historicalWeb.data.world.characterSystem,historical.data.world.characterSystem);
+  transport='web';
+  const backZip=await buildGameZipBlob(historicalWeb.game.id);
+  const backDecoded=await readGameZip(new Uint8Array(await backZip.blob.arrayBuffer()));
+  const historicalBack=store.restoreGameBundle({bundle:backDecoded.bundle,scenarioBundle:backDecoded.scenarioBundle});
+  assert.deepEqual(historicalBack.data.world.characterSystem,historical.data.world.characterSystem);
+  transport='desktop';
   const summaries = [];
   for (const mode of ["realm", "family"]) {
     transport = "desktop";
-    const scenario = store.importScenarioBundle(createDynastyScenarioBundle(), { setSelected: false });
-    const campaign = store.createGame({ id: `portable-${mode}`, name: `Portable ${mode}`, scenarioId: scenario.scenario.id, setActive: true });
+    const companion = createDynastyScenarioBundle();
+    const campaign = store.restoreGameBundle({ bundle: { schema:"open-historia-game-bundle/1", game:{name:`Portable ${mode}`}, scenarioRef:{scenarioId:companion.scenario.id}, data:{game:companion.data.game,world:createDynastyWorld({mode,seed:321})} }, scenarioBundle:companion });
+    store.setActiveGame(campaign.game.id);
     const id = campaign.game.id;
     let world = createDynastyWorld({ mode, seed: 321 });
     let state = world.characterSystem;
@@ -143,19 +159,14 @@ async function roundtripWorker() {
     assert.deepEqual(decoded.bundle.data.world.characterSystem, state);
     assert.deepEqual(JSON.parse(decoded.snapshotsText), snapshots);
     assert.ok(decoded.scenarioBundle.assets.regionsGeojson);
-    const importedScenario = store.importScenarioBundle(decoded.scenarioBundle, { setSelected: false });
-    decoded.bundle.scenarioRef.scenarioId = importedScenario.scenario.id;
-    const zipImport = store.importGameBundle(decoded.bundle);
+    const zipImport = store.restoreGameBundle({bundle:decoded.bundle,scenarioBundle:decoded.scenarioBundle});
     store.writeGameSnapshots(zipImport.game.id, JSON.parse(decoded.snapshotsText));
     assert.deepEqual(store.exportGameBundle(zipImport.game.id).data.world.characterSystem, state);
     assert.deepEqual(store.readGameSnapshots(zipImport.game.id), snapshots);
     assert.equal(store.getGameCatalog().activeGameId, id);
 
     const webActiveBefore = (await webCall("games", "GET", "")).activeGameId;
-    const webScenario = await webCall("scenarios", "POST", "import", decoded.scenarioBundle);
-    const webBundle = clone(decoded.bundle);
-    webBundle.scenarioRef.scenarioId = webScenario.scenario.id;
-    const webImported = await webCall("games", "POST", "import", webBundle);
+    const webImported = await webCall("games", "POST", "restore", {bundle:clone(decoded.bundle),scenarioBundle:decoded.scenarioBundle});
     await webCall("games", "PUT", `${webImported.game.id}/snapshots`, JSON.parse(decoded.snapshotsText));
     const webExported = await webCall("games", "GET", `${webImported.game.id}/export`);
     assert.deepEqual(webExported.data.world.characterSystem, state);
@@ -169,9 +180,7 @@ async function roundtripWorker() {
     const webDecoded = await readGameZip(webBytes);
     assert.deepEqual(webDecoded.bundle.data.world.characterSystem, state);
     assert.deepEqual(JSON.parse(webDecoded.snapshotsText), snapshots);
-    const returnedScenario = store.importScenarioBundle(webDecoded.scenarioBundle, { setSelected: false });
-    webDecoded.bundle.scenarioRef.scenarioId = returnedScenario.scenario.id;
-    const backOnDesktop = store.importGameBundle(webDecoded.bundle);
+    const backOnDesktop = store.restoreGameBundle({bundle:webDecoded.bundle,scenarioBundle:webDecoded.scenarioBundle});
     store.writeGameSnapshots(backOnDesktop.game.id, JSON.parse(webDecoded.snapshotsText));
     assert.deepEqual(backOnDesktop.data.world.characterSystem, state);
     assert.equal(store.getGameCatalog().activeGameId, id);

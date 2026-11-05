@@ -702,7 +702,7 @@ const fetchWithPersistence = async (
     // The Android app has no Cache Storage (an http origin is not a secure
     // context) and its archives come from inside the APK: nothing to keep a
     // second copy of in the WebView's HTTP cache.
-    cache: bypassPersistentCache || import.meta.env.VITE_OH_NATIVE ? "no-store" : "force-cache",
+    cache: bypassPersistentCache || BUILD_ENV.VITE_OH_NATIVE ? "no-store" : "force-cache",
     signal,
   });
   if (!response.ok) {
@@ -1426,6 +1426,11 @@ export const loadCountryNames = async ({ force = false } = {}) => {
   countryNamesPromiseKey = cacheKey;
   const promise = (async () => {
     try {
+      const scenarioWorld = await readJson(JSON_URLS.world, { defaultValue: {}, force });
+      if (scenarioWorld?.historicalScenario?.kind === 'historical') {
+        return mergeStockAndDeclaredPolities([], scenarioWorld, { includeRuntimePolities: Boolean(scenarioWorld.characterSystem) });
+      }
+
       // The STOCK world's countries, from the tile archive — one of two sources,
       // and the optional one. This used to return an empty catalog the moment the
       // archive could not be read, before the world's own polities below had been

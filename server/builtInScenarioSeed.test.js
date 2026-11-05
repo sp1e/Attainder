@@ -97,6 +97,7 @@ const runStore = (root, body, { seed = null } = {}) => {
   const script = `const store = await import(${JSON.stringify(STORE_URL)});\n${body}`;
   const out = execFileSync(process.execPath, ["--input-type=module", "-e", script], {
     encoding: "utf-8",
+    maxBuffer: 20 * 1024 * 1024,
     env: { ...process.env, OH_DATA_DIR: root, ...(seed ? { OH_BUILT_IN_SEED_DIR: seed } : {}) },
     stdio: ["ignore", "pipe", "pipe"],
   });
@@ -112,8 +113,8 @@ test("the seed is a complete scenario whose world matches its map", () => {
   assert.ok(STAMP, "world.json carries a builtInMap stamp");
   const regions = readJson(path.join(SEED_DIR, "regions.geojson"));
   const cities = readJson(path.join(SEED_DIR, "cities.geojson"));
-  assert.ok(regions.features.length > 3000, `regions: ${regions.features.length}`);
-  assert.ok(cities.features.length > 2000, `cities: ${cities.features.length}`);
+  assert.equal(regions.features.length, 1425);
+  assert.equal(cities.features.length, 1);
   assert.ok(seedRegionsBytes < 20 * 1024 * 1024, "the map has to stay small enough to ship in the app and on the website");
   const owners = new Set(regions.features.map((feature) => feature.properties.owner).filter(Boolean));
   const overrides = seedWorld.regionOwnershipOverrides;
@@ -122,7 +123,7 @@ test("the seed is a complete scenario whose world matches its map", () => {
     if (owner) assert.equal(overrides[id], owner, `region ${id} is owned by ${owner} in both files`);
   }
   for (const owner of owners) {
-    assert.ok(seedWorld.ownerCodes.includes(owner), `${owner} is a playable faction`);
+    assert.ok(seedWorld.historicalScenario.polities.some((polity) => polity.id === owner), `${owner} has historical content`);
     assert.ok(seedWorld.polityOverrides[owner], `${owner} has a polity record`);
   }
   assert.equal(seedWorld.customRegions, true);
@@ -136,7 +137,7 @@ test("the seed is a complete scenario whose world matches its map", () => {
 test("a fresh data directory gets the whole seed", () => {
   const root = freshRoot();
   const result = runStore(root, `store.ensureScenarioStore(); ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id) }")}`);
-  assert.deepEqual(result.catalog, ["default"]);
+  assert.deepEqual(result.catalog, ["default", "egypt-3000bc"]);
   const dir = path.join(root, "scenarios", "default");
   assert.equal(readJson(path.join(dir, "world.json")).builtInMap, STAMP);
   assert.equal(statSync(path.join(dir, "regions.geojson")).size, seedRegionsBytes);
@@ -155,7 +156,7 @@ test("an older install keeps its campaigns on the previous map and moves the sto
     const runtime = store.readRuntimeJsonAsset("regionsGeojson");
     ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id), runtimeSource: runtime.sourcePath }")}
   `);
-  assert.deepEqual([...result.catalog].sort(), ["default", "modern-day-classic"]);
+  assert.deepEqual([...result.catalog].sort(), ["default", "egypt-3000bc", "modern-day-classic"]);
   assert.equal(readJson(path.join(root, "games", "old-campaign", "game-instance.json")).scenarioId, "modern-day-classic");
 
   const classic = path.join(root, "scenarios", "modern-day-classic");
@@ -171,19 +172,19 @@ test("an older install keeps its campaigns on the previous map and moves the sto
   const dir = path.join(root, "scenarios", "default");
   assert.equal(readJson(path.join(dir, "world.json")).builtInMap, STAMP);
   assert.equal(statSync(path.join(dir, "regions.geojson")).size, seedRegionsBytes);
-  assert.deepEqual(readJson(path.join(root, "scenario-manifest.json")).order, ["default", "modern-day-classic"]);
+  assert.deepEqual(readJson(path.join(root, "scenario-manifest.json")).order, ["default", "modern-day-classic", "egypt-3000bc"]);
 });
 
 test("a copy the player edited is kept as the classic scenario even without campaigns", () => {
   const root = legacyRoot({ touched: true });
   const result = runStore(root, `store.ensureScenarioStore(); ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id) }")}`);
-  assert.deepEqual([...result.catalog].sort(), ["default", "modern-day-classic"]);
+  assert.deepEqual([...result.catalog].sort(), ["default", "egypt-3000bc", "modern-day-classic"]);
 });
 
 test("an untouched older install with no campaigns is simply reset", () => {
   const root = legacyRoot();
   const result = runStore(root, `store.ensureScenarioStore(); ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id) }")}`);
-  assert.deepEqual(result.catalog, ["default"]);
+  assert.deepEqual(result.catalog, ["default", "egypt-3000bc"]);
   assert.equal(statSync(path.join(root, "stock", "regions.geojson")).size, STOCK_BYTES);
   const dir = path.join(root, "scenarios", "default");
   assert.equal(readJson(path.join(dir, "world.json")).builtInMap, STAMP);
@@ -221,9 +222,14 @@ test("a scenario without a map of its own renders on the stock world, never on t
   writeJson(path.join(preset, "scenario.json"), { id: "hub-preset", name: "WWII", createdAt: "2026-06-01T00:00:00.000Z", updatedAt: "2026-06-01T00:00:00.000Z" });
   writeJson(path.join(preset, "world.json"), { ownerSchema: OWNER_SCHEMA, customRegions: true, regionOwnershipOverrides: { "POL.1_1": "Germany" } });
   writeJson(path.join(preset, "game.json"), { country: "Germany", startDate: "1939-09-01", gameDate: "1939-09-01" });
+  const gameDir = path.join(root, "games", "blitz");
+  writeJson(path.join(gameDir, "game-instance.json"), { id:"blitz", name:"Blitz", scenarioId:"hub-preset" });
+  writeJson(path.join(gameDir, "game.json"), { country:"Germany", gameDate:"1939-09-01" });
+  writeJson(path.join(gameDir, "world.json"), { ownerSchema:OWNER_SCHEMA });
   const result = runStore(root, `
     store.ensureScenarioStore();
-    const onPreset = store.createGame({ name: "Blitz", scenarioId: "hub-preset", setActive: true });
+    const onPreset = store.getGameDetails("blitz");
+    store.setActiveGame(onPreset.game.id);
     const presetSource = store.readRuntimeJsonAsset("regionsGeojson").sourcePath;
     const onBuiltIn = store.createGame({ name: "Modern", scenarioId: "default", setActive: true });
     const builtInSource = store.readRuntimeJsonAsset("regionsGeojson").sourcePath;
@@ -249,10 +255,10 @@ test("a built-in that already holds the seed's map but lost its record is comple
   writeJson(path.join(root, "game-manifest.json"), { activeGameId: "new-campaign", order: ["new-campaign"], version: 2 });
 
   const result = runStore(root, `store.ensureScenarioStore(); ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id), world: store.getScenarioDetails('default').data.world }")}`);
-  assert.deepEqual(result.catalog, ["default"], "no classic fork: the map was already the seed's");
+  assert.deepEqual(result.catalog, ["default", "egypt-3000bc"], "no classic fork: the map was already the seed's");
   assert.equal(result.world.builtInMap, STAMP);
   assert.equal(result.world.customRegions, true);
-  assert.ok(result.world.ownerCodes.length > 100, "the world came back with its owners");
+  assert.deepEqual(result.world.historicalScenario.polities, seedWorld.historicalScenario.polities, "the world came back with its historical polities");
   assert.equal(readJson(path.join(gameDir, "game-instance.json")).scenarioId, "default", "the campaign stays on the built-in");
   assert.ok(existsSync(path.join(dir, "colors.json")));
   assert.equal(readJson(path.join(dir, "cities.geojson")).features.length, readJson(path.join(SEED_DIR, "cities.geojson")).features.length);
@@ -277,7 +283,7 @@ test("a packaged install from before the redraw — meta and the stock map, no w
     const runtime = store.readRuntimeJsonAsset("regionsGeojson");
     ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id), runtimeSource: runtime.sourcePath }")}
   `);
-  assert.deepEqual([...result.catalog].sort(), ["default", "modern-day-classic"]);
+  assert.deepEqual([...result.catalog].sort(), ["default", "egypt-3000bc", "modern-day-classic"]);
   assert.equal(readJson(path.join(gameDir, "game-instance.json")).scenarioId, "modern-day-classic");
   assert.equal(path.resolve(result.runtimeSource), path.resolve(path.join(root, "stock", "regions.geojson")));
   assert.equal(readJson(path.join(dir, "world.json")).builtInMap, STAMP);
@@ -293,7 +299,7 @@ test("a running server whose built-in loses its record completes it on the next 
     store.ensureScenarioStore();
     ${report("{ world: store.getScenarioDetails('default').data.world, catalog: store.getScenarioCatalog().scenarios.map((s) => s.id) }")}
   `);
-  assert.deepEqual(result.catalog, ["default"]);
+  assert.deepEqual(result.catalog, ["default", "egypt-3000bc"]);
   assert.equal(result.world.builtInMap, STAMP);
   assert.equal(result.world.customRegions, true);
   assert.ok(existsSync(path.join(root, "scenarios", "default", "colors.json")));
@@ -344,7 +350,7 @@ test("newer content on the same map refreshes the built-in in place, and its cam
   const world = readJson(path.join(dir, "world.json"));
   assert.equal(world.builtInMap, STAMP);
   assert.equal(world.builtInRevision, 2);
-  assert.ok(world.polityOverrides.Spain, "the built-in has the seed's names");
+  assert.deepEqual(world.polityOverrides, seedWorld.polityOverrides, "the built-in has the seed's polities");
   assert.equal(world.polityOverrides["Kingdom of Spain"], undefined);
   assert.deepEqual(readJson(path.join(dir, "colors.json")), readJson(path.join(SEED_DIR, "colors.json")));
   assert.ok(!existsSync(path.join(dir, "flags.json")), "the seed has no flags file");
@@ -372,7 +378,7 @@ test("a copy the player edited is kept with its campaigns before the content is 
   }
   const world = readJson(path.join(root, "scenarios", "default", "world.json"));
   assert.equal(world.builtInRevision, 2);
-  assert.ok(world.polityOverrides.Spain);
+  assert.deepEqual(world.polityOverrides, seedWorld.polityOverrides);
   assert.deepEqual(readJson(path.join(root, "scenario-manifest.json")).order, ["default", "modern-day-edited"]);
 });
 

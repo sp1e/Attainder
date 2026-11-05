@@ -66,7 +66,8 @@ export const customCityFeatureCount = (value) =>
   Array.isArray(value?.features) ? value.features.length : 0;
 
 // A failed read is served the same empty collection as a deliberately emptied one.
-export const resolveCityLayerSource = ({ customCities, collection, readSucceeded }) => {
+export const resolveCityLayerSource = ({ customCities, collection, readSucceeded, historical = false }) => {
+  if (historical) return collection == null ? "loading" : "custom";
   if (!customCities) return "stock";
   if (collection === null || collection === undefined) return "loading";
   return readSucceeded ? "custom" : "stock";

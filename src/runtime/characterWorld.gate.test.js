@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from 'node:fs';
+import { createHistoricalCharacterSystem } from './characters/scenarioSeed.js';
 import { advanceCharacters, createCharacterSystem, estimateCharacterAction, executeCharacterCommand, getCatalogActions, getCharacterPresentation,
   getPersonalOpinion, normalizeCharacterSystem } from "./characters/index.js";
 import { estimateAction } from "./characters/actionOdds.js";
@@ -38,6 +40,35 @@ function plan(world, events) {
 }
 const replay = (world, events) => applyEventImpactsToWorld({ world, events }).world;
 const notices = (events) => events.filter((event) => event.title === REFUSED_TITLE);
+
+for (const id of ['egypt-3000bc', 'john-1200']) test(`${id}: historical gates retain refusals and replay accepted stored outcomes without RNG`, () => {
+  const data = JSON.parse(readFileSync(new URL(`../../server/seed/historical/${id}/scenario.json`, import.meta.url), 'utf8')).data;
+  const initial = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 });
+  const world = normalizeWorldState({ ...data.world, characterSystem: initial });
+  const before = copy(world.characterSystem);
+  let final;
+  const operations = [
+    command('refuse-envelope', 'realm_effect', { treasury: 41, reason: 'För mycket silver.' }),
+    command('refuse-player', 'npc_intent', { actorId: getCharacterPresentation(before).representative.id, actionId: 'sway', targetIds: ['generated-courtier-2'] }),
+    command('accept-effect', 'realm_effect', { treasury: 20, reason: 'En handelsavgift fyller kassan.' }),
+  ];
+  const stored = prepareCharacterTimeline(world, [modelEvent(operations, { date: initial.date })], initial.date, { onComplete: state => { final = state; } });
+  assert.equal(notices(stored).length, 1, 'one notice groups the refused proposals');
+  assert.ok(notices(stored)[0].description.includes(NPC_REFUSAL));
+  assert.match(notices(stored)[0].description, /avvisade 2.*heltal från −80 till \+40/);
+  assert.equal(final.realm.treasury, before.realm.treasury + 20);
+  assert.deepEqual(final.people, before.people);
+  for (const key of ['rngState', 'actionRngState', 'plotRngState']) assert.deepEqual(final[key], before[key]);
+  const priorRandom = Math.random;
+  let once;
+  try {
+    Math.random = () => { throw new Error('replay must not draw randomness'); };
+    once = replay(world, JSON.parse(JSON.stringify(stored)));
+    assert.deepEqual(once.characterSystem, final);
+    assert.deepEqual(replay(once, stored).characterSystem, final);
+  } finally { Math.random = priorRandom; }
+  assert.deepEqual(world.characterSystem, before);
+});
 
 test("a model event cannot dissolve the character polity", () => {
   const world = start();

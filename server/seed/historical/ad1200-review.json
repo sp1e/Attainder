@@ -1,0 +1,4367 @@
+{
+  "schema": "attainder-ad1200-regional-source-status-v1",
+  "status": "authored-review-input",
+  "sourceMapCommit": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+  "sourceFile": "world_1200.geojson",
+  "sourceSha256": "2d6913ecedb38e269e41d249c87874d81e3e8d7351754821f57e627442d91525",
+  "meaningOfAccept": "Name and period review; only the explicit mapMappings array authorizes approximate gameplay geometry.",
+  "default": "Unverified names and extents remain unresolved. Cultural labels do not establish sovereign rulers or researched occupancy.",
+  "conditionalApproximationRecommendation": {
+    "scope": "Research recommendation to retain six upstream shapes as explicitly approximate partial polity regions after implementation review. Institutional sources support period and broad regional fit; no claim of independently verified boundary vertices or complete sovereign authority.",
+    "detailReport": "docs/research/historical-scenarios.md#worldwide-political-coverage",
+    "features": [
+      {
+        "sourceFeatureIndex": 22,
+        "name": "Xixia",
+        "conditions": "Retain northwest-China reconstruction with approximate western fringe; corroborating institutional source dates Xixia 1038-1227.",
+        "additionalSource": "https://whc.unesco.org/en/list/1736/",
+        "sourceLocator": "Description and Brief synthesis"
+      },
+      {
+        "sourceFeatureIndex": 214,
+        "name": "Goryeo",
+        "conditions": "Review repair of existing self-intersection; retain approximate peninsular region and northern frontier.",
+        "sourceEvidenceIds": [
+          "goryeo"
+        ]
+      },
+      {
+        "sourceFeatureIndex": 217,
+        "name": "Khmer",
+        "conditions": "Retain coarse mainland reconstruction around Angkor; no uniform control claim at each fringe.",
+        "additionalSource": "https://mcfa.gov.kh/world-heritage/angkor/",
+        "sourceLocator": "Opening historical paragraphs",
+        "sourceEvidenceIds": [
+          "khmer"
+        ]
+      },
+      {
+        "sourceFeatureIndex": 271,
+        "name": "Almohad",
+        "conditions": "Partial approximate Maghrib/Iberian coverage. Do not inherit Fatimid geometry or call the east edge the full realm frontier.",
+        "sourceEvidenceIds": [
+          "almohad"
+        ]
+      },
+      {
+        "sourceFeatureIndex": 277,
+        "name": "France",
+        "conditions": "Coarse feudal-realm abstraction under Philip II. Preserve vassal jurisdictions; no automatic approval of Brittany feature 274 or direct crown control over Toulouse.",
+        "sourceEvidenceIds": [
+          "france"
+        ]
+      },
+      {
+        "sourceFeatureIndex": 59,
+        "name": "Chimú",
+        "conditions": "Approximate core region around sourced Chan Chan reference; no exact AD 1200 maximum-territory claim.",
+        "sourceEvidenceIds": [
+          "chimu"
+        ]
+      }
+    ],
+    "implementationMustRecordFinalDecision": true,
+    "unchangedApprovedOwnerPolityIds": "Remain null in this research manifest; implementation has its own authored mapping."
+  },
+  "allFeatures": [
+    {
+      "sourceFeatureIndex": 0,
+      "sourceName": "Cyprus",
+      "sourceCandidateRegionId": "hbm-ad1200-f0000",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 1,
+      "sourceName": "Imperial Japan (Fujiwara)",
+      "sourceCandidateRegionId": "hbm-ad1200-f0001",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "japan"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Fujiwara qualifier and court/shogunate authority need review; Japan itself continues."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 2,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0002",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 3,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0003",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 4,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0004",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 5,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0005",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 6,
+      "sourceName": "Madagascar",
+      "sourceCandidateRegionId": "hbm-ad1200-f0006",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 7,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0007",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 8,
+      "sourceName": "Norway",
+      "sourceCandidateRegionId": "hbm-ad1200-f0008",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 9,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0009",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 10,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0010",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 11,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0011",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 12,
+      "sourceName": "Merina Kingdom",
+      "sourceCandidateRegionId": "hbm-ad1200-f0012",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "merina"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Merina chronology unsupported by the reviewed source."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 13,
+      "sourceName": "Ainu",
+      "sourceCandidateRegionId": "hbm-ad1200-f0013",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 14,
+      "sourceName": "Sardinia",
+      "sourceCandidateRegionId": "hbm-ad1200-f0014",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 15,
+      "sourceName": "Hainan",
+      "sourceCandidateRegionId": "hbm-ad1200-f0015",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 16,
+      "sourceName": "Great Zimbabwe",
+      "sourceCandidateRegionId": "hbm-ad1200-f0016",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Great Zimbabwe",
+      "sourceEvidenceIds": [
+        "zimbabwe"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 17,
+      "sourceName": "Islamic city-states",
+      "sourceCandidateRegionId": "hbm-ad1200-f0017",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 18,
+      "sourceName": "Hungary",
+      "sourceCandidateRegionId": "hbm-ad1200-f0018",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 19,
+      "sourceName": "Venice",
+      "sourceCandidateRegionId": "hbm-ad1200-f0019",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 20,
+      "sourceName": "Corsica",
+      "sourceCandidateRegionId": "hbm-ad1200-f0020",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 21,
+      "sourceName": "East Java",
+      "sourceCandidateRegionId": "hbm-ad1200-f0021",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 22,
+      "sourceName": "Xixia",
+      "sourceCandidateRegionId": "hbm-ad1200-f0022",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Western Xia / Xixia",
+      "sourceEvidenceIds": [
+        "china"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 23,
+      "sourceName": "Chola Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0023",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Chola polity",
+      "sourceEvidenceIds": [
+        "chola"
+      ],
+      "polygonPoliticalStatus": "known-regional-control-conflict",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment.",
+        "Valid polity label but source polygon contains control inconsistent with reviewed regional chronology; see report."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 24,
+      "sourceName": "Tibet",
+      "sourceCandidateRegionId": "hbm-ad1200-f0024",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 25,
+      "sourceName": "Song Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0025",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Southern Song",
+      "sourceEvidenceIds": [
+        "china"
+      ],
+      "polygonPoliticalStatus": "known-regional-control-conflict",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment.",
+        "Valid polity label but source polygon contains control inconsistent with reviewed regional chronology; see report."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 26,
+      "sourceName": "Nan Chao",
+      "sourceCandidateRegionId": "hbm-ad1200-f0026",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "nanzhao"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 27,
+      "sourceName": "Đại Việt",
+      "sourceCandidateRegionId": "hbm-ad1200-f0027",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 28,
+      "sourceName": "Champa City States",
+      "sourceCandidateRegionId": "hbm-ad1200-f0028",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 29,
+      "sourceName": "Mon state",
+      "sourceCandidateRegionId": "hbm-ad1200-f0029",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Mon state is not a uniquely identified dated polity."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 30,
+      "sourceName": "Harapunchai",
+      "sourceCandidateRegionId": "hbm-ad1200-f0030",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 31,
+      "sourceName": "Pyu state",
+      "sourceCandidateRegionId": "hbm-ad1200-f0031",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "pyu"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 32,
+      "sourceName": "Papuans",
+      "sourceCandidateRegionId": "hbm-ad1200-f0032",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 33,
+      "sourceName": "Liao",
+      "sourceCandidateRegionId": "hbm-ad1200-f0033",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "china"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 34,
+      "sourceName": "minor Hindu and Buddhist states",
+      "sourceCandidateRegionId": "hbm-ad1200-f0034",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 35,
+      "sourceName": "Yemen",
+      "sourceCandidateRegionId": "hbm-ad1200-f0035",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 36,
+      "sourceName": "Hadramaut",
+      "sourceCandidateRegionId": "hbm-ad1200-f0036",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 37,
+      "sourceName": "Muscat",
+      "sourceCandidateRegionId": "hbm-ad1200-f0037",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 38,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0038",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 39,
+      "sourceName": "Khwarazmian dynasty",
+      "sourceCandidateRegionId": "hbm-ad1200-f0039",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Khwarazmshahs",
+      "sourceEvidenceIds": [
+        "khwarazm"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment.",
+        "Source bounding box63.60-71.40E,23.68-32.53N omits Khwarazm core; do not map dynasty to this entire geometry."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 40,
+      "sourceName": "Ghaznavid Emirate",
+      "sourceCandidateRegionId": "hbm-ad1200-f0040",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "ghaznavid",
+        "ghurid"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 41,
+      "sourceName": "Georgia",
+      "sourceCandidateRegionId": "hbm-ad1200-f0041",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 42,
+      "sourceName": "Armenia",
+      "sourceCandidateRegionId": "hbm-ad1200-f0042",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 43,
+      "sourceName": "Buwayhid Emirates",
+      "sourceCandidateRegionId": "hbm-ad1200-f0043",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "buyid"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 44,
+      "sourceName": "Byzantine Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0044",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Byzantine Empire",
+      "sourceEvidenceIds": [
+        "byzantium"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 45,
+      "sourceName": "Duchy of Benevento",
+      "sourceCandidateRegionId": "hbm-ad1200-f0045",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Benevento political status and surviving duchy chronology require review."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 46,
+      "sourceName": "Fatimid Caliphate",
+      "sourceCandidateRegionId": "hbm-ad1200-f0046",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "fatimid",
+        "ayyubid",
+        "almohad"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 47,
+      "sourceName": "Burgandy",
+      "sourceCandidateRegionId": "hbm-ad1200-f0047",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 48,
+      "sourceName": "Croatia",
+      "sourceCandidateRegionId": "hbm-ad1200-f0048",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Croatia royal and Hungarian relationships need review; no automatic independent state."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 49,
+      "sourceName": "Bulgar Khanate",
+      "sourceCandidateRegionId": "hbm-ad1200-f0049",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Bulgar Khanate label needs distinction from later Bulgarian political forms."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 50,
+      "sourceName": "Other Rus Principalities",
+      "sourceCandidateRegionId": "hbm-ad1200-f0050",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 51,
+      "sourceName": "Poland",
+      "sourceCandidateRegionId": "hbm-ad1200-f0051",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 52,
+      "sourceName": "Kanem",
+      "sourceCandidateRegionId": "hbm-ad1200-f0052",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 53,
+      "sourceName": "Makkura",
+      "sourceCandidateRegionId": "hbm-ad1200-f0053",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 54,
+      "sourceName": "Alwa",
+      "sourceCandidateRegionId": "hbm-ad1200-f0054",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 55,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0055",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 56,
+      "sourceName": "Takrur",
+      "sourceCandidateRegionId": "hbm-ad1200-f0056",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 57,
+      "sourceName": "Ghana",
+      "sourceCandidateRegionId": "hbm-ad1200-f0057",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 58,
+      "sourceName": "Mali",
+      "sourceCandidateRegionId": "hbm-ad1200-f0058",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Mali date and political scale need review; do not infer the later empire."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 59,
+      "sourceName": "Chimú Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0059",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Chimu polity",
+      "sourceEvidenceIds": [
+        "chimu"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 60,
+      "sourceName": "Huari Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0060",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "wari"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 61,
+      "sourceName": "Tiahuanaco Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0061",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "tiwanaku"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 62,
+      "sourceName": "Maya city-states",
+      "sourceCandidateRegionId": "hbm-ad1200-f0062",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 63,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0063",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 64,
+      "sourceName": "Mesoamerican city-states and chiefdoms",
+      "sourceCandidateRegionId": "hbm-ad1200-f0064",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 65,
+      "sourceName": "Toltec Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0065",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "toltec"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 66,
+      "sourceName": "Celtic kingdoms",
+      "sourceCandidateRegionId": "hbm-ad1200-f0066",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 67,
+      "sourceName": "Scotland",
+      "sourceCandidateRegionId": "hbm-ad1200-f0067",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 68,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0068",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 69,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0069",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 70,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0070",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 71,
+      "sourceName": "Sweden",
+      "sourceCandidateRegionId": "hbm-ad1200-f0071",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 72,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0072",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 73,
+      "sourceName": "Denmark",
+      "sourceCandidateRegionId": "hbm-ad1200-f0073",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 74,
+      "sourceName": "Holy Roman Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0074",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 75,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0075",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 76,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0076",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 77,
+      "sourceName": "Guanches",
+      "sourceCandidateRegionId": "hbm-ad1200-f0077",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 78,
+      "sourceName": "Sweden",
+      "sourceCandidateRegionId": "hbm-ad1200-f0078",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 79,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0079",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 80,
+      "sourceName": "Arawaks",
+      "sourceCandidateRegionId": "hbm-ad1200-f0080",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 81,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0081",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 82,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0082",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 83,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0083",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 84,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0084",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 85,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0085",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 86,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0086",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 87,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0087",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 88,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0088",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 89,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0089",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 90,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0090",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 91,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0091",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 92,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0092",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 93,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0093",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 94,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0094",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 95,
+      "sourceName": "Boethuk",
+      "sourceCandidateRegionId": "hbm-ad1200-f0095",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 96,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0096",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 97,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0097",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 98,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0098",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 99,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0099",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 100,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0100",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 101,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0101",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 102,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0102",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 103,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0103",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 104,
+      "sourceName": "Polynesians",
+      "sourceCandidateRegionId": "hbm-ad1200-f0104",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 105,
+      "sourceName": "Innu",
+      "sourceCandidateRegionId": "hbm-ad1200-f0105",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 106,
+      "sourceName": "Navarre",
+      "sourceCandidateRegionId": "hbm-ad1200-f0106",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 107,
+      "sourceName": "Castilla",
+      "sourceCandidateRegionId": "hbm-ad1200-f0107",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 108,
+      "sourceName": "Australian aboriginal hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0108",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 109,
+      "sourceName": "Tasmanian hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0109",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 110,
+      "sourceName": "Paleo-Siberian hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0110",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 111,
+      "sourceName": "Sámi",
+      "sourceCandidateRegionId": "hbm-ad1200-f0111",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 112,
+      "sourceName": "Guanahatabeyes",
+      "sourceCandidateRegionId": "hbm-ad1200-f0112",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 113,
+      "sourceName": "Taino",
+      "sourceCandidateRegionId": "hbm-ad1200-f0113",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 114,
+      "sourceName": "Arctic marine mammal hunters",
+      "sourceCandidateRegionId": "hbm-ad1200-f0114",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 115,
+      "sourceName": "Dorset",
+      "sourceCandidateRegionId": "hbm-ad1200-f0115",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 116,
+      "sourceName": "Thule",
+      "sourceCandidateRegionId": "hbm-ad1200-f0116",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 117,
+      "sourceName": "Athabaskan",
+      "sourceCandidateRegionId": "hbm-ad1200-f0117",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 118,
+      "sourceName": "Subarctic forest hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0118",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 119,
+      "sourceName": "Savanna hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0119",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 120,
+      "sourceName": "Patagonian shellfish and marine mammal hunters",
+      "sourceCandidateRegionId": "hbm-ad1200-f0120",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 121,
+      "sourceName": "Andean hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0121",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 122,
+      "sourceName": "Amazon hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0122",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 123,
+      "sourceName": "Caribbean hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0123",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 124,
+      "sourceName": "Pampas cultures",
+      "sourceCandidateRegionId": "hbm-ad1200-f0124",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 125,
+      "sourceName": "North American Pacific foraging, hunting and fishing peoples",
+      "sourceCandidateRegionId": "hbm-ad1200-f0125",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 126,
+      "sourceName": "Plain bison hunters",
+      "sourceCandidateRegionId": "hbm-ad1200-f0126",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 127,
+      "sourceName": "Plateau fichers and hunter gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0127",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 128,
+      "sourceName": "Desert hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0128",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 129,
+      "sourceName": "West African cereal farmers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0129",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 130,
+      "sourceName": "Khoisan",
+      "sourceCandidateRegionId": "hbm-ad1200-f0130",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 131,
+      "sourceName": "Eastern North American hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0131",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 132,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0132",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 133,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0133",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 134,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0134",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 135,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0135",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 136,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0136",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 137,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0137",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 138,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0138",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 139,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0139",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 140,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0140",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 141,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0141",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 142,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0142",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 143,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0143",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 144,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0144",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 145,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0145",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 146,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0146",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 147,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0147",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 148,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0148",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 149,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0149",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 150,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0150",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 151,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0151",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 152,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0152",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 153,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0153",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 154,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0154",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 155,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0155",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 156,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0156",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 157,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0157",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 158,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0158",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 159,
+      "sourceName": "Britany",
+      "sourceCandidateRegionId": "hbm-ad1200-f0159",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 160,
+      "sourceName": "Bantu peoples",
+      "sourceCandidateRegionId": "hbm-ad1200-f0160",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 161,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0161",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 162,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0162",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 163,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0163",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 164,
+      "sourceName": "Caloosahatchee culture",
+      "sourceCandidateRegionId": "hbm-ad1200-f0164",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 165,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0165",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 166,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0166",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 167,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0167",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 168,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0168",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 169,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0169",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 170,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0170",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 171,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0171",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 172,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0172",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 173,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0173",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 174,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0174",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 175,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0175",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 176,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0176",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 177,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0177",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 178,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0178",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 179,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0179",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 180,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0180",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 181,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0181",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 182,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0182",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 183,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0183",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 184,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0184",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 185,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0185",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 186,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0186",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 187,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0187",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 188,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0188",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 189,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0189",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 190,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0190",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 191,
+      "sourceName": "Taiwanese Tribes",
+      "sourceCandidateRegionId": "hbm-ad1200-f0191",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 192,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0192",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 193,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0193",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 194,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0194",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 195,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0195",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 196,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0196",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 197,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0197",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 198,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0198",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 199,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0199",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 200,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0200",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 201,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0201",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 202,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0202",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 203,
+      "sourceName": "Principality of Galicia-Volhynia",
+      "sourceCandidateRegionId": "hbm-ad1200-f0203",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 204,
+      "sourceName": "Principality of Kyiv",
+      "sourceCandidateRegionId": "hbm-ad1200-f0204",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 205,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0205",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 206,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0206",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 207,
+      "sourceName": "Buyid dynasty",
+      "sourceCandidateRegionId": "hbm-ad1200-f0207",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "buyid"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 208,
+      "sourceName": "Principality of Novgorod",
+      "sourceCandidateRegionId": "hbm-ad1200-f0208",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 209,
+      "sourceName": "Finno-Ugric taiga hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0209",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 210,
+      "sourceName": "Principality of Vladimir-Suzdal",
+      "sourceCandidateRegionId": "hbm-ad1200-f0210",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 211,
+      "sourceName": "Cuman Khanates",
+      "sourceCandidateRegionId": "hbm-ad1200-f0211",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 212,
+      "sourceName": "Volga Bulgars",
+      "sourceCandidateRegionId": "hbm-ad1200-f0212",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 213,
+      "sourceName": "Mongol Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0213",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "mongol"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 214,
+      "sourceName": "Goryeo",
+      "sourceCandidateRegionId": "hbm-ad1200-f0214",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Goryeo",
+      "sourceEvidenceIds": [
+        "goryeo"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment.",
+        "Original geometry invalid:self-intersection; repair review required."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 215,
+      "sourceName": "Tungusic Tribes",
+      "sourceCandidateRegionId": "hbm-ad1200-f0215",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 216,
+      "sourceName": "Kamarupa",
+      "sourceCandidateRegionId": "hbm-ad1200-f0216",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Kamarupa unity and successor polities require review."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 217,
+      "sourceName": "Khmer Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0217",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Khmer / Angkor polity",
+      "sourceEvidenceIds": [
+        "khmer"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 218,
+      "sourceName": "Bagan",
+      "sourceCandidateRegionId": "hbm-ad1200-f0218",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Bagan",
+      "sourceEvidenceIds": [
+        "bagan"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment.",
+        "Rounded Bagan reference falls in stale Pyu31; extents require local review before ownership."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 219,
+      "sourceName": "minor Hindu and Buddhist states",
+      "sourceCandidateRegionId": "hbm-ad1200-f0219",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 220,
+      "sourceName": "Srivijaya Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0220",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 221,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0221",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 222,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0222",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 223,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0223",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 224,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0224",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 225,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0225",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 226,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0226",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 227,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0227",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 228,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0228",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 229,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0229",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 230,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0230",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 231,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0231",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 232,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0232",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 233,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0233",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 234,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0234",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 235,
+      "sourceName": "Malays",
+      "sourceCandidateRegionId": "hbm-ad1200-f0235",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 236,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0236",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 237,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0237",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 238,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0238",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 239,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0239",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 240,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0240",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 241,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0241",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 242,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0242",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 243,
+      "sourceName": "Berber Tribes",
+      "sourceCandidateRegionId": "hbm-ad1200-f0243",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 244,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0244",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 245,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0245",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 246,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0246",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 247,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0247",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 248,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0248",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 249,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0249",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 250,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0250",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 251,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0251",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 252,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0252",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 253,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0253",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 254,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0254",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 255,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0255",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 256,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0256",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 257,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0257",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 258,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0258",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 259,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0259",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 260,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0260",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 261,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0261",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 262,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0262",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 263,
+      "sourceName": null,
+      "sourceCandidateRegionId": "hbm-ad1200-f0263",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 264,
+      "sourceName": "Ifat",
+      "sourceCandidateRegionId": "hbm-ad1200-f0264",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Ifat date, predecessors and regional extent require review."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 265,
+      "sourceName": "Ibadites",
+      "sourceCandidateRegionId": "hbm-ad1200-f0265",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 266,
+      "sourceName": "Tuareg Nomadic Tribes",
+      "sourceCandidateRegionId": "hbm-ad1200-f0266",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 267,
+      "sourceName": "Tuareg Nomadic Tribes",
+      "sourceCandidateRegionId": "hbm-ad1200-f0267",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 268,
+      "sourceName": "Finno-Ugric taiga hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0268",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 269,
+      "sourceName": "Finno-Ugric taiga hunter-gatherers",
+      "sourceCandidateRegionId": "hbm-ad1200-f0269",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 270,
+      "sourceName": "Papal States",
+      "sourceCandidateRegionId": "hbm-ad1200-f0270",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 271,
+      "sourceName": "Almohad Caliphate",
+      "sourceCandidateRegionId": "hbm-ad1200-f0271",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Almohad polity",
+      "sourceEvidenceIds": [
+        "almohad"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 272,
+      "sourceName": "León",
+      "sourceCandidateRegionId": "hbm-ad1200-f0272",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 273,
+      "sourceName": "Portugal",
+      "sourceCandidateRegionId": "hbm-ad1200-f0273",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Kingdom of Portugal",
+      "sourceEvidenceIds": [
+        "portugal"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 274,
+      "sourceName": "Kingdom of France",
+      "sourceCandidateRegionId": "hbm-ad1200-f0274",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Kingdom of France",
+      "sourceEvidenceIds": [
+        "france"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 275,
+      "sourceName": "Angevin Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0275",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 276,
+      "sourceName": "Comté de Toulouse",
+      "sourceCandidateRegionId": "hbm-ad1200-f0276",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 277,
+      "sourceName": "Kingdom of France",
+      "sourceCandidateRegionId": "hbm-ad1200-f0277",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Kingdom of France",
+      "sourceEvidenceIds": [
+        "france"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 278,
+      "sourceName": "Aragón",
+      "sourceCandidateRegionId": "hbm-ad1200-f0278",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 279,
+      "sourceName": "Nepal",
+      "sourceCandidateRegionId": "hbm-ad1200-f0279",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 280,
+      "sourceName": "Kara Khitai Khaganate",
+      "sourceCandidateRegionId": "hbm-ad1200-f0280",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Qara Khitai",
+      "sourceEvidenceIds": [
+        "qarakhitai"
+      ],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 281,
+      "sourceName": "Bhutan",
+      "sourceCandidateRegionId": "hbm-ad1200-f0281",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Bhutan label does not establish one sovereign polity in1200."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 282,
+      "sourceName": "Sultanate of Delhi",
+      "sourceCandidateRegionId": "hbm-ad1200-f0282",
+      "status": "reject-for1200",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "source-backed-chronology-conflict",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [
+        "delhi",
+        "ghurid"
+      ],
+      "polygonPoliticalStatus": "reject-current-political-owner",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Retain physical geography and unknown control until replacement mapping is sourced; no wholesale rename."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 283,
+      "sourceName": "Rajput kingdoms",
+      "sourceCandidateRegionId": "hbm-ad1200-f0283",
+      "status": "unresolved",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "unreviewed",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": []
+    },
+    {
+      "sourceFeatureIndex": 284,
+      "sourceName": "Tuʻi Tonga Empire",
+      "sourceCandidateRegionId": "hbm-ad1200-f0284",
+      "status": "accept-as-approximate-polity",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "supported-polity-identity-and-period-only",
+      "supportedPolityLabel": "Tu i Tonga chiefly polity",
+      "sourceEvidenceIds": [
+        "tonga",
+        "tonga_tradition"
+      ],
+      "polygonPoliticalStatus": "influence-not-proven-sovereign-territory",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Accept polity label/period as a reconstruction candidate. This is not approval of all supplied polygon extent or a ruler assignment.",
+        "Prefer chiefly polity wording. Source supports broad influence; no claim every Fiji/Samoa island was sovereign territory in1200."
+      ]
+    },
+    {
+      "sourceFeatureIndex": 285,
+      "sourceName": "Polynesians",
+      "sourceCandidateRegionId": "hbm-ad1200-f0285",
+      "status": "cultural-or-nonstate",
+      "statusScope": "polity-label-chronology-or-label-semantics; polygon approval is separate",
+      "certainty": "high-for-label-semantics-only",
+      "supportedPolityLabel": null,
+      "sourceEvidenceIds": [],
+      "polygonPoliticalStatus": "unresolved",
+      "approvedOwnerPolityId": null,
+      "notes": [
+        "Population/culture/religion/subsistence label; no collective sovereign and no verified1200population footprint."
+      ]
+    }
+  ],
+  "counts": {
+    "unresolved": 214,
+    "cultural-or-nonstate": 44,
+    "accept-as-approximate-polity": 16,
+    "reject-for1200": 12
+  },
+  "sources": {
+    "fatimid": {
+      "url": "https://www.metmuseum.org/it/essays/the-art-of-the-fatimid-period-909-1171",
+      "locator": "Title and opening paragraph",
+      "scopedClaim": "Fatimid dynasty ended before AD 1200.",
+      "sourceDateWording": "909-1171",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "ayyubid": {
+      "url": "https://www.metmuseum.org/de/essays/the-art-of-the-ayyubid-period-ca-1171-1260",
+      "locator": "Opening paragraph",
+      "scopedClaim": "Ayyubid rule arose in Egypt and extended into Yemen and Syria. This does not establish the old Fatimid polygon.",
+      "sourceDateWording": "ca. 1171-1260; Yemen1174; Syria1180s",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "almohad": {
+      "url": "https://www.metmuseum.org/pt/toah/ht/07/afw",
+      "locator": "Timeline WEST/EAST; Key Events1147-1269",
+      "scopedClaim": "Almohad authority included the Maghrib and Islamic Spain during the period containing1200.",
+      "sourceDateWording": "WEST1147-1269; EAST1152-1229",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "mongol": {
+      "url": "https://rubinmuseum.org/projecthimalayanart/resources/mongol-empire-ca-1206-1368/",
+      "locator": "Title; glossary Mongol Empire",
+      "scopedClaim": "An empire dated from1206 cannot supply researched1200 imperial ownership.",
+      "sourceDateWording": "ca.1206-1368",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "delhi": {
+      "url": "https://delhitourism.gov.in/aboutus/history_of_delhi.html",
+      "locator": "Paragraph beginning In1192",
+      "scopedClaim": "Delhi Sultanate establishment dates to1206.",
+      "sourceDateWording": "1192;1206",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "ghurid": {
+      "url": "https://www.iranicaonline.org/articles/ghurids/",
+      "locator": "Bosworth; paragraph beginning Mo ezz-al-Din installed at Ghazna",
+      "scopedClaim": "Ghurids ended Ghaznavid rule at Lahore and occupied Delhi, Ajmer and Gwalior; no matching source polygon is established.",
+      "sourceDateWording": "569/1173-74;582/1186;588/1192;596/1200",
+      "calendarHandling": "Preserve paired Islamic/AD dates from the scholarly author; no conversion to a precise simulation day"
+    },
+    "ghaznavid": {
+      "url": "https://www.iranicaonline.org/articles/ghaznavids/",
+      "locator": "Bosworth; opening definition and final Lahore surrender paragraph",
+      "scopedClaim": "Ghaznavid dynasty ended before1200.",
+      "sourceDateWording": "366-582/977-1186",
+      "calendarHandling": "Preserve paired Islamic/AD date ranges as printed"
+    },
+    "buyid": {
+      "url": "https://www.iranicaonline.org/articles/buyids/",
+      "locator": "Nagel; definition and paragraph ending end of Buyid amirate in Iraq/Only Fars",
+      "scopedClaim": "Buyid Iraq ended1055 and the remaining Fars regime ended1062.",
+      "sourceDateWording": "447/1055;545/1062",
+      "calendarHandling": "Preserve paired Islamic/AD dates as printed"
+    },
+    "china": {
+      "url": "https://www.metmuseum.org/zh/toah/ht/07/eac",
+      "locator": "Timeline; Key Events1032-1227,1125-1234,1127-1279,1206",
+      "scopedClaim": "Southern Song, Jin and Western Xia existed in1200; northern-China Liao did not. A northern Song polygon needs review.",
+      "sourceDateWording": "Liao907-1125;Jin1115-1234;SouthernSong1127-1279;Xixia1032-1227",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "nanzhao": {
+      "url": "https://www.cambridge.org/core/journals/journal-of-southeast-asian-studies/article/abs/nanzhao-as-a-southeast-asian-kingdom-c738902/664A52DACC0381482F1BF4952E128A2F",
+      "locator": "Christian Daniels2021; article title and abstract",
+      "scopedClaim": "The scholarly article dates Nanzhao to the eighth/ninth centuries.",
+      "sourceDateWording": "c.738-902",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "dali": {
+      "url": "https://static.artmuseum.princeton.edu/asian-art/china/timeline",
+      "locator": "Heading Dali kingdom",
+      "scopedClaim": "Dali is a supported political candidate in1200; this does not validate the upstream Nan Chao extent.",
+      "sourceDateWording": "937-1253",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "pyu": {
+      "url": "https://whc.unesco.org/en/list/1444/",
+      "locator": "Description and Brief Synthesis",
+      "scopedClaim": "Pyu kingdoms described here flourish throughAD900; source Pyu state label is stale for1200.",
+      "sourceDateWording": "200BC-AD900",
+      "calendarHandling": "Retain publisher BC/AD dating; no simulation-calendar conversion"
+    },
+    "bagan": {
+      "url": "https://whc.unesco.org/en/list/1588/",
+      "locator": "Description and Brief synthesis",
+      "scopedClaim": "Bagan was a regional imperial capital in the period containing1200.",
+      "sourceDateWording": "11th-13th centuriesCE",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "khmer": {
+      "url": "https://www.metmuseum.org/fr/toah/ht/07/sse.html",
+      "locator": "Timeline and Key Event1181-ca1243",
+      "scopedClaim": "Khmer/Angkor political rule existed in1200; the source is regional rather than a polygon frontier survey.",
+      "sourceDateWording": "Angkor802-1431;JayavarmanVII1181-ca1243",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "goryeo": {
+      "url": "https://www.metmuseum.org/pt/toah/ht/07/eak.html",
+      "locator": "Timeline and Overview",
+      "scopedClaim": "Goryeo ruled the Korean peninsula in the period containing1200.",
+      "sourceDateWording": "918-1392",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "chola": {
+      "url": "https://www.metmuseum.org/de/toah/ht/07/sss",
+      "locator": "Key Events9th-13thcentury and ca1070",
+      "scopedClaim": "Chola polity existed in1200; Sri Lanka had expelled Chola rule around1070.",
+      "sourceDateWording": "9th-13thcentury;ca1070",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "khwarazm": {
+      "url": "https://www.iranicaonline.org/articles/tekis-b-il-arslan/",
+      "locator": "Bosworth; opening and paragraphs on1194/June1200",
+      "scopedClaim": "Khwarazmshahs existed in1200; ruler succession and overlordship depend on date. Full source extent remains unsupported.",
+      "sourceDateWording": "Tekish1172-1200;deathJune1200;Muhammad1200-20",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "qarakhitai": {
+      "url": "https://www.iranicaonline.org/articles/qara-ketay/",
+      "locator": "Vasary; HISTORY and paragraph onYeluZhilugu",
+      "scopedClaim": "Qara Khitai was a Central Asian polity in1200; distinguish it from northern-China Liao.",
+      "sourceDateWording": "YeluZhilugu1178-1211;608/1211subjugation",
+      "calendarHandling": "Preserve author paired Islamic/AD dates and reign ranges"
+    },
+    "france": {
+      "url": "https://www.metmuseum.org/fr/toah/ht/07/euwf.html",
+      "locator": "Overview; Key Event1180",
+      "scopedClaim": "Kingdom of France under PhilipII existed in1200; crown domain and vassal jurisdictions require distinctions.",
+      "sourceDateWording": "PhilipII1180-1223;courtParis1194",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "byzantium": {
+      "url": "https://www.metmuseum.org/met-publications/byzantium-faith-and-power-1261-1557",
+      "locator": "Description opening",
+      "scopedClaim": "The Byzantine imperial capital at Constantinople fell in1204; pre1204 imperial identity fits1200.",
+      "sourceDateWording": "1204;MiddleByzantine843-1261",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "portugal": {
+      "url": "https://ikmk.smb.museum/object?id=18205684",
+      "locator": "Title; Sitter/Authority/Class-status/Date",
+      "scopedClaim": "Berlin museum catalogs SanchoI as king of medieval Portugal across1200.",
+      "sourceDateWording": "1185-1211",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "zimbabwe": {
+      "url": "https://www.metmuseum.org/de/essays/great-zimbabwe-11th-15th-century",
+      "locator": "Stone Ruins; Great Zimbabwes Inhabitants",
+      "scopedClaim": "Great Zimbabwe had ruling elites in a settlement developing from the11thcentury; precise political organization remains uncertain.",
+      "sourceDateWording": "11th-15thcentury",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "chimu": {
+      "url": "https://whc.unesco.org/en/list/366/",
+      "locator": "Brief synthesis; Authenticity; coordinate metadata",
+      "scopedClaim": "Chan Chan was Chimú capital; political society is dated ninth-fifteenthcenturies. Its modern site point falls in sourceChimu59.",
+      "sourceDateWording": "ninth-fifteenthcenturies;apogee15thcentury",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "wari": {
+      "url": "https://www.metmuseum.org/art/collection/search/314623",
+      "locator": "Curatorial text paragraph1",
+      "scopedClaim": "Wari/Huari imperial dominance dates centuries before1200.",
+      "sourceDateWording": "500-1000CE",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "tiwanaku": {
+      "url": "https://whc.unesco.org/en/list/567/",
+      "locator": "Dutch description paragraph2; English description apogee",
+      "scopedClaim": "UNESCO-hosted Dutch description places imperial collapse in the first half of the12thcentury; its English apogee is500-900AD.",
+      "sourceDateWording": "firsthalf12thcentury;500-900AD",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "toltec": {
+      "url": "https://lugares.inah.gob.mx/es/node/4360",
+      "locator": "Historical text paragraph beginning Se desconocen las razones",
+      "scopedClaim": "INAH places disintegration of the Toltec state in the12thcentury; reject unqualified1200imperial control.",
+      "sourceDateWording": "sigloXII;Tollan900-1150inrelatedINAH2026notice",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "tonga": {
+      "url": "https://press-files.anu.edu.au/downloads/press/n9214/html/ch08.xhtml?page=11&referer=",
+      "locator": "Parton,Clark,Reepmeyer; Site description first2paragraphs",
+      "scopedClaim": "Tu i Tonga chiefly influence extended into eastern Fiji,Uvea,Samoa during a broad interval; influence does not establish annexation of every island in1200.",
+      "sourceDateWording": "c.1200-1800CE;Heketa1200-1300CE",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "tonga_tradition": {
+      "url": "https://whc.unesco.org/en/tentativelists/5167",
+      "locator": "Tonga National Commission submission; Description Haamonga",
+      "scopedClaim": "Submission records oral traditions of Tu i Tonga and a monument around1200; preserve traditional attribution rather than an exact attested reign.",
+      "sourceDateWording": "oraltraditionformationaround950AD;trilithonabout1200AD",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "merina": {
+      "url": "https://whc.unesco.org/en/list/950/",
+      "locator": "Outstanding Universal Value, Brief synthesis",
+      "scopedClaim": "Source describes the relevant highland royal civilization from the15thcentury;1200Merina kingdom remains unsupported.",
+      "sourceDateWording": "15th-19thcenturies",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    },
+    "japan": {
+      "url": "https://www.metmuseum.org/fr/essays/heian-period-794-1185",
+      "locator": "Final historical paragraph",
+      "scopedClaim": "The source describes military government at Kamakura from1185; the blanket Fujiwara qualifier needs political review.",
+      "sourceDateWording": "Heian794-1185;Kamakuragovernment1185",
+      "calendarHandling": "AD/CE convention as printed by publisher; no exact-day conversion"
+    }
+  },
+  "replacementCandidates": [
+    {
+      "name": "Ayyubid domains",
+      "sourceEvidenceIds": [
+        "ayyubid"
+      ],
+      "doNotInheritFeatures": [
+        46
+      ],
+      "reason": "Egypt/Syria/Yemen regional support cannot cover the whole obsolete Fatimid NorthAfrican polygon."
+    },
+    {
+      "name": "Ghurid domains",
+      "sourceEvidenceIds": [
+        "ghurid"
+      ],
+      "doNotInheritFeatures": [
+        40,
+        282
+      ],
+      "reason": "Source supports regional/city authority; different stale imperial polygons cannot define1200Ghurid frontiers."
+    },
+    {
+      "name": "Jin",
+      "sourceEvidenceIds": [
+        "china"
+      ],
+      "doNotInheritFeatures": [
+        33
+      ],
+      "reason": "NorthChina chronology supported; delineation against SouthernSong needs reviewed mapping."
+    },
+    {
+      "name": "Dali",
+      "sourceEvidenceIds": [
+        "dali"
+      ],
+      "doNotInheritFeatures": [
+        26
+      ],
+      "reason": "1200polity supported; oldNanzhao maximumextent not established."
+    },
+    {
+      "name": "Pre1206Mongol/steppepoliticalgroups",
+      "sourceEvidenceIds": [
+        "mongol"
+      ],
+      "doNotInheritFeatures": [
+        213
+      ],
+      "reason": "No new exact1200boundary or unifiedimperialauthority established in this audit."
+    }
+  ],
+  "sourceBasedGeometryRegression": [
+    {
+      "site": "Chan Chan UNESCO reference point",
+      "sourceUrl": "https://whc.unesco.org/en/list/366/",
+      "sourceLocator": "Coordinate metadata S8 6 28.21 W79 4 29.053",
+      "longitudeLatitude": [
+        -79.07473694444444,
+        -8.10783611111111
+      ],
+      "expectedSourceFeatureIndex": 59,
+      "reuseScope": "Research diagnostic; site point is not political frontier. Preserve source terms if bundling location data."
+    }
+  ],
+  "notComplete": [
+    "Task2implementation/releasevalidation",
+    "worldwide1200historicalboundaryreview",
+    "annualhistoricaleventsresearch"
+  ],
+  "mapMappings": [
+    {
+      "index": 22,
+      "polityId": "western-xia",
+      "nameSv": "Västra Xia",
+      "sourceIds": [
+        "china"
+      ],
+      "noteSv": "Ungefärlig regional utbredning; västra gränsen är osäker."
+    },
+    {
+      "index": 217,
+      "polityId": "khmer-angkor",
+      "nameSv": "Khmerriket",
+      "sourceIds": [
+        "khmer"
+      ],
+      "noteSv": "Regional rekonstruktion kring Angkor; jämn kontroll över randområden påstås inte."
+    },
+    {
+      "index": 271,
+      "polityId": "almohad",
+      "nameSv": "Almohaderna",
+      "sourceIds": [
+        "almohad"
+      ],
+      "noteSv": "Partiell täckning i Maghreb och Iberien; kartans östra kant är ingen belagd yttergräns."
+    },
+    {
+      "index": 277,
+      "polityId": "france-capetian",
+      "nameSv": "Frankrike",
+      "sourceIds": [
+        "france"
+      ],
+      "noteSv": "Feodalt rike; skilda vasalljurisdiktioner förenklas. Gränserna är ungefärliga."
+    },
+    {
+      "index": 59,
+      "polityId": "chimu",
+      "nameSv": "Chimú",
+      "sourceIds": [
+        "chimu"
+      ],
+      "noteSv": "Ungefärligt kärnområde kring Chan Chan; ingen påstådd maximal utbredning år 1200."
+    }
+  ],
+  "geometryQuarantine": [
+    {
+      "index": 214,
+      "reason": "Self-intersection near126.371680,37.629797; no repair assumed. Goryeo identity remains reviewed, control geometry withheld."
+    },
+    {
+      "index": 240,
+      "reason": "Degenerate polygon with fewer than3 distinct points; withheld."
+    }
+  ]
+}

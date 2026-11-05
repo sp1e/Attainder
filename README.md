@@ -2,9 +2,11 @@
 
 An ancient empire strategy game built on [Open Historia](https://github.com/Open-Historia/open-historia). Choose whether your campaign follows the state through successive rulers or a family that can survive losing power.
 
-The playable prototype starts in fictional Hadara in 300 BCE with four political families, 24 characters, four cities and twelve provinces. The character interface currently uses Swedish. Public project documentation is in English.
+The current development branch offers two historical bookmarks: Egypt around 3000 BC and John of England on 31 December AD 1200. The character interface uses Swedish. Public project documentation is in English.
 
-The [historical-world direction](docs/superpowers/specs/2026-11-05-historical-world-direction.md) sets the next milestone: real geography and historical polities, with new starts from the Bronze Age through about AD 1200 and no modern starts. This replacement remains pending. The [development backlog](docs/development/DEVELOPMENT-BACKLOG.md) also records pending year-by-year research from approximately 3300 BC through AD 1200 and a sourced historical-reference popup at turn end, alongside dynamic campaign events.
+The historical foundation implements the [historical-world direction](docs/superpowers/specs/2026-11-05-historical-world-direction.md): real geography and historical polities, with new starts from the Bronze Age through about AD 1200 and no modern starts. The [implementation plan](docs/superpowers/plans/2026-11-05-historical-campaign-foundation.md), Task 6 browser evidence and final documentation review are accepted with documented limits. [PR #13](https://github.com/sp1e/Attainder/pull/13) tracks the merge state; its current head must pass CI before merge. The [play script](docs/play-scripts/historical-foundation.md) records the observed and pending checks. The [development backlog](docs/development/DEVELOPMENT-BACKLOG.md) retains the separate 4,500-year research and turn-end reference popup requirement.
+
+The Egyptian court is generated; its mapped core is a selective approximation with uncertain southern control. John’s composite realms use approximate geometry and leave some control unresolved. The worldwide backdrop uses generalized modern land, not reconstructed ancient coastlines. [Sources, licenses and coverage](docs/research/historical-scenarios.md) explain these limits and distinguish documented identities from generated people.
 
 ## Play locally
 
@@ -24,6 +26,8 @@ node scripts/launch-dynasties.mjs
 On Windows, after the first build, double-click `Start-Attainder.cmd`. The launcher opens http://127.0.0.1:4167. Select Claude or Codex, then choose the state or family campaign mode. Expand the campaign seed control to set a starting seed. An empty field uses 104729. Seed 293 reproduces the starting conditions used in the smallpox gameplay check. Model narration can vary between runs.
 
 Fresh clones store campaigns in `play-data/` and launcher logs in `reports/launcher/`. Both are ignored by Git. Set `ATTAINDER_DATA_HOME` to use another data directory. The older name `TIDES_DATA_HOME` still works. The original development installation retains its existing sibling data directory automatically.
+
+Game ZIP exports include the available scenario map, including built-in maps, when it fits the size limit. If the map is missing, invalid or too large, the export reports its omission. Game-only imports keep their scenario reference unresolved until the matching map is restored, even when a local scenario has the same ID. A game-bound restore accepts a companion with usable map geometry or an identified map bundled with the installation. Older companions that relied on an unidentified stock-map fallback need a map source. The saved people and replay stay with the campaign.
 
 ## Character systems
 
@@ -81,7 +85,9 @@ The upstream scenario-sharing rules remain in place. Scenarios posted or shared 
 
 ## Development status
 
-This is a playable development version. The full serial suite on 5 November 2026 at `cfa225238c5065441e4642481ab507629e498e73` ran 4,410 tests: 4,407 passed, none failed, one was skipped and two are TODOs. The build passed in 33.08 seconds with the inherited chunk-size warning. Lint retains its inherited baseline of 18 errors and 71 warnings. The Phase 3 task reviews closed the annual accounting and legacy succession replay findings; follow-up PR review, CI and merge remain pending. The original Hadara browser script remains deferred while the historical foundation takes priority; the Phase 0 theme and narrow-layout check remains open.
+The historical branch remains in development. [PR #13](https://github.com/sp1e/Attainder/pull/13) tracks the branch and its merge state. At `2066a55`, [CI run 42102593161](https://github.com/sp1e/Attainder/actions/runs/42102593161) passed: 4,654 tests passed, none failed, two are TODOs, and the build passed. The controller accepted browser evidence for both bookmarks and adapters with the limits in the [play script](docs/play-scripts/historical-foundation.md). Final review approved publication subject to current-head CI. The latest full local lint measurement, before the final render fixes, reported 18 errors and 71 warnings, matching the earlier aggregate; the final globe-fix files passed targeted lint. Build warnings remain.
+
+The Phase 3 annual accounting and legacy replay fixes passed branch review and the required CI check. [PR #12](https://github.com/sp1e/Attainder/pull/12) merged them as verified remote `main` commit `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`. The original Hadara browser script remains deferred; the Phase 0 theme and narrow-layout check remains open.
 
 Phase 1 (free-text actions, odds, schemes, the model gate and the panel) and Phase 2 (intrigue) have automated tests and manual play scripts, [Phase 1](docs/play-scripts/phase-1.md) and [Phase 2](docs/play-scripts/phase-2.md); both passed against Claude Code on 4 November 2026, part by part, as recorded in `docs/development/CONTINUE-HERE.md`. Regent authority checks cover both campaign modes, appointment consent, independent family guardians, exact promise deadlines and saved-state validation. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
 
@@ -90,6 +96,8 @@ The portrait component passed 864 rendered state/age combinations, including del
 Regent acceptance checks covered 48 combinations of campaign position, theme and viewport. In both state and family campaigns, appointing an official spent ten state silver and consumed one consent. A full page reload preserved the result without another transaction. These checks used isolated campaign fixtures.
 
 Incapacity checks covered 28 combinations of seven scenarios, theme and viewport. Private recovery spent ten family silver. Public religious support spent twenty state silver. Each submitted choice persisted once, and a page reload produced no further writes. Calendar tests also covered a birthday, recovery and multiple deaths on the same date. No live model turn was used in these checks.
+
+Known map limits include a straight Antarctic globe shading seam and a small blue gap near the pole, an oversized clipped polity label at the close Windsor view, and possible modern metadata baked into some translucent basemaps. The seam and gap are deferred visual defects; their cause is unconfirmed. No modern stock-label leak was established in the inspected views.
 
 Known limits: aging uses three visual stages. New characters share a stable family illustration. Simultaneous conditions use a primary portrait state. One child series conveys illness through expression and complexion without skin lesions. The event library currently has eight recurring templates alongside the existing political and health stories. Unborn heirs, foreign family branches and broader AI action coverage need further development. These checks do not establish long-term balance or complete parity with Crusader Kings III or Old World.
 

@@ -7,7 +7,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { dedupeByName, mergeCountryOverrides } from "./countryList.js";
+import { dedupeByName, mergeCountryOverrides, mergeStockAndDeclaredPolities } from "./countryList.js";
+
+test('historical country catalog comes from scenario entities, even with unrelated overrides', () => {
+  const world={historicalScenario:{kind:'historical',polities:[{id:'kingdom',nameSv:'Riket'}]},polityOverrides:{kingdom:{name:'Riket'},modern:{name:'Modern'}}};
+  assert.deepEqual(mergeStockAndDeclaredPolities(tiles,world),[{code:'kingdom',name:'Riket'}]);
+  assert.deepEqual(mergeStockAndDeclaredPolities(tiles,{historicalScenario:{kind:'historical',polities:[]},polityOverrides:world.polityOverrides}),[]);
+});
 
 const tiles = [
   { code: "DEU", name: "Germany" },
@@ -76,7 +82,6 @@ test("dedupeByName is the picker's last line of defence", () => {
   assert.deepEqual(dedupeByName(null), []);
 });
 
-import { mergeStockAndDeclaredPolities } from "./countryList.js";
 
 // The Fault Lines map names its Russia "Russian Federation"; the tiles say
 // "Russia". One polity, one picker entry, under the scenario's name.

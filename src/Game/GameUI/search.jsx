@@ -167,7 +167,7 @@ const Search = memo(({ mapRef }) => {
   const [status, setStatus] = useState(null);
   const [remote, setRemote] = useState(NO_REMOTE_RESULTS);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const { markers, cityRenames, polityOverrides } = useWorldState();
+  const { historical, markers, cityRenames, polityOverrides } = useWorldState();
   const placeIndex = useSyncExternalStore(subscribeWorldPlaceIndex, getWorldPlaceIndex, getWorldPlaceIndex);
   const inputRef = useRef(null);
   const debounceRef = useRef(null);
@@ -180,7 +180,7 @@ const Search = memo(({ mapRef }) => {
   }, [expanded]);
 
   useEffect(() => {
-    if (!query.trim() || query.length < 2) {
+    if (historical || !query.trim() || query.length < 2) {
       clearTimeout(debounceRef.current);
       searchAbortRef.current?.abort();
       setRemote(NO_REMOTE_RESULTS);
@@ -210,7 +210,7 @@ const Search = memo(({ mapRef }) => {
       clearTimeout(debounceRef.current);
       searchAbortRef.current?.abort();
     };
-  }, [query]);
+  }, [query, historical]);
 
   // All in memory already, so no network and no debounce, and only while the bar is open.
   const localPlaces = useMemo(
@@ -239,14 +239,14 @@ const Search = memo(({ mapRef }) => {
     const stale = answered !== typed.toLowerCase();
     const usable = answered && (!stale || typed.toLowerCase().startsWith(answered));
 
-    const geocoded = usable
+    const geocoded = !historical && usable
       ? remote.results
         .map((suggestion) => ({ ...remoteEntry(suggestion), stale }))
         .filter((entry) => !named.has(entry.primary.toLowerCase()))
       : [];
 
     return [...local, ...geocoded].slice(0, SUGGESTION_LIMIT);
-  }, [localPlaces, query, remote]);
+  }, [localPlaces, query, remote, historical]);
 
   const close = () => {
     clearTimeout(debounceRef.current);
@@ -266,6 +266,7 @@ const Search = memo(({ mapRef }) => {
 
     // A renamed stock place carries only its new name; the geocoder knows the old one.
     if (!Number.isFinite(entry.lng) || !Number.isFinite(entry.lat)) {
+      if (historical) return;
       await flyToQuery(entry.lookup || entry.primary);
       return;
     }
@@ -289,6 +290,7 @@ const Search = memo(({ mapRef }) => {
   };
 
   const flyToQuery = async (place) => {
+    if (historical) { setStatus("error"); return; }
     setStatus("loading");
     setRemote(NO_REMOTE_RESULTS);
 

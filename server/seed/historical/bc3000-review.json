@@ -1,0 +1,421 @@
+{
+  "schema": 1,
+  "sourceMapCommit": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+  "default": "Unknown control; unnamed land does not establish absence of settlement.",
+  "namedFeatures": [
+    {
+      "sourceFeatureIndex": 0,
+      "sourceName": "Dapenkeng culture",
+      "status": "cultural-nonstate",
+      "evidence": "Taiwan's [National Museum of Natural Science, Millennium Pottery Techniques](https://www.nmns.edu.tw/en/our-research/collections/26/), opening paragraph, lists Tapenkeng at **6,000–4,500 B.P.** The name has Dapenkeng/Dabenkeng/Tapenkeng transliterations.",
+      "references": [
+        {
+          "title": "National Museum of Natural Science, Millennium Pottery Techniques",
+          "url": "https://www.nmns.edu.tw/en/our-research/collections/26/"
+        }
+      ],
+      "decision": "An approximate Neolithic cultural layer fits the period; preserve the source's BP dating rather than claiming exact Gregorian endpoints. The museum supplies no ruler or island-wide frontier. Do not interpret `PARTOF: Dakapeng culture` as sovereign authority.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 1,
+      "sourceName": "Austronesians",
+      "status": "reject-for3000",
+      "evidence": "[Bellwood, ANU Press, Austronesian Prehistory](https://press-files.anu.edu.au/downloads/press/p69411/mobile/ch05.html), introduction and linked Pattern of Expansion, begins the process in southern China/Taiwan around 4000 BC. [Oliveira et al., Nature Ecology & Evolution](https://www.nature.com/articles/s41559-022-01775-2), introduction, places expansion out of Taiwan around **4,000–4,500 years ago**.",
+      "references": [
+        {
+          "title": "Bellwood, ANU Press, Austronesian Prehistory",
+          "url": "https://press-files.anu.edu.au/downloads/press/p69411/mobile/ch05.html"
+        },
+        {
+          "title": "Oliveira et al., Nature Ecology & Evolution",
+          "url": "https://www.nature.com/articles/s41559-022-01775-2"
+        }
+      ],
+      "decision": "Reject the supplied broad Island Southeast Asian distribution as a verified 3000 BC snapshot. Competing models and dates require regional review; neither source supplies a single Austronesian polity. Do not infer the later Pacific or Malagasy distribution from this language-family label.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 4,
+      "sourceName": "Aboriginal Tasmanians",
+      "status": "cultural-nonstate",
+      "evidence": "[National Museum of Australia, The Black Line](https://www.nma.gov.au/defining-moments/resources/the-black-line), First Tasmanians, describes settlement about **40,000 years ago** and separation after rising seas about **12,000 years ago**.",
+      "references": [
+        {
+          "title": "National Museum of Australia, The Black Line",
+          "url": "https://www.nma.gov.au/defining-moments/resources/the-black-line"
+        }
+      ],
+      "decision": "Indigenous presence predates 3000 BC. Use a broad explanatory label with local identity unresolved; no island-wide monarch or 3000 BC clan boundaries follow. Do not apply colonial population counts to the bookmark.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 13,
+      "sourceName": "Jōmon",
+      "status": "cultural-nonstate",
+      "evidence": "[UNESCO decision 44 COM 8B.37](https://whc.unesco.org/en/decisions/7956/), adopted Statement of Outstanding Universal Value, dates northern Japanese sedentary hunter-fisher-gatherer development about **13,000–400 BCE**.",
+      "references": [
+        {
+          "title": "UNESCO decision 44 COM 8B.37",
+          "url": "https://whc.unesco.org/en/decisions/7956/"
+        }
+      ],
+      "decision": "Supports an archaeological culture around 3000 BC. The serial sites do not certify this polygon's extent or one Jōmon state. Review its division from the adjacent Ainu-labeled region separately.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 14,
+      "sourceName": "Norte Chico",
+      "status": "cultural-nonstate",
+      "evidence": "[UNESCO, Sacred City of Caral-Supe](https://whc.unesco.org/en/list/1269), description / Brief synthesis / Integrity, discusses multiple urban settlements and dates development **3000–1800 BC**.",
+      "references": [
+        {
+          "title": "UNESCO, Sacred City of Caral-Supe",
+          "url": "https://whc.unesco.org/en/list/1269"
+        }
+      ],
+      "decision": "Supports local Caral-Supe society and hierarchy, not a single documented king of the polygon called Norte Chico. The oldest endpoint remains approximate. Do not treat a modern site's World Heritage boundary as the ancient political frontier.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 15,
+      "sourceName": "city-states",
+      "status": "unresolved",
+      "evidence": "[The Met, Eastern Mediterranean and Syria, 8000–2000 BC](https://www.metmuseum.org/it/toah/ht/02/wae), Overview, describes local city-state development during the **third millennium BC**.",
+      "references": [
+        {
+          "title": "The Met, Eastern Mediterranean and Syria, 8000–2000 BC",
+          "url": "https://www.metmuseum.org/it/toah/ht/02/wae"
+        }
+      ],
+      "decision": "Plausible regional process, but the generic label neither identifies constituent polities nor fixes the configuration at 3000 BC. Research settlements separately; no common ruler or umbrella state.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 16,
+      "sourceName": "Ur",
+      "status": "accept-approx-setting",
+      "evidence": "[French Ministry of Culture, Ur](https://archeologie.culture.gouv.fr/en/glossary/ur), opening entry, identifies Tell Muqqayar and occupation from the fifth millennium. [Penn Museum B17008](https://collections.penn.museum/collections/object/232090), Date Made / Description, catalogs an Ur grave object around **3000 BCE**; its register transcription instead says circa **3100 BC**.",
+      "references": [
+        {
+          "title": "French Ministry of Culture, Ur",
+          "url": "https://archeologie.culture.gouv.fr/en/glossary/ur"
+        },
+        {
+          "title": "Penn Museum B17008",
+          "url": "https://collections.penn.museum/collections/object/232090"
+        }
+      ],
+      "decision": "Accept a local Ur setting with explicit chronological uncertainty. **Do not approve the whole upstream Ur polygon as Ur's state**: the earlier containment audit places Uruk inside it. Later royal tombs and Ur III do not establish 3000 BC imperial authority. No exact-year ruler sourced.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 17,
+      "sourceName": "Elam",
+      "status": "unresolved",
+      "evidence": "[Robert K. Englund, Encyclopaedia Iranica, Proto-Elamite](https://www.iranicaonline.org/articles/elam-iii/), opening paragraphs, dates the writing system around **3050–2900 BCE** and identifies administrative centers across Susiana and the Iranian highlands. The precursor language remains unknown.",
+      "references": [
+        {
+          "title": "Robert K. Englund, Encyclopaedia Iranica, Proto-Elamite",
+          "url": "https://www.iranicaonline.org/articles/elam-iii/"
+        }
+      ],
+      "decision": "Supports a **Proto-Elamite administrative/cultural** setting. It does not validate one kingdom called Elam covering this polygon in 3000 BC. Keep the political claim unresolved; do not turn shared accounting practice into sovereignty or silently rename the feature.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 18,
+      "sourceName": "Khoisan",
+      "status": "unresolved",
+      "evidence": "[du Plessis, The linguistic classification of Kora](https://sahistory.org.za/archive/kora-lost-khoisan-language-early-cape-and-gariep-menan-du-plessis-1-linguistic), linguistic-family discussion, distinguishes groupings and uncertain histories. [Güldemann, Nature correspondence](https://www.nature.com/articles/464487a), opening discussion, challenges ethnic labels and explains the modern collective term.",
+      "references": [
+        {
+          "title": "du Plessis, The linguistic classification of Kora",
+          "url": "https://sahistory.org.za/archive/kora-lost-khoisan-language-early-cape-and-gariep-menan-du-plessis-1-linguistic"
+        },
+        {
+          "title": "Güldemann, Nature correspondence",
+          "url": "https://www.nature.com/articles/464487a"
+        }
+      ],
+      "decision": "Preserve uncertainty about 3000 BC identity and distribution. Do not equate a modern umbrella term, language families, subsistence and one political unit. These sources do not validate the polygon across southern/eastern Africa.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 19,
+      "sourceName": "Egypt",
+      "status": "accept-approx-setting",
+      "evidence": "[Egyptian Ministry, Early Dynastic Period](https://egymonuments.gov.eg/historical-periods/early-dynastic-period/), date heading and first paragraphs, gives about **3100–2686 BC**, gradual unification and Memphis as capital. [NMEC timeline](https://nmec.gov.eg/historical-timeline/), Archaic Period, corroborates the state/capital. Extent-specific reassessment: Met dates first-to-third-cataract domination ca. 2800–2200 BC; MPI places Egyptian settlements around 3100 BC; UCL places A-Group end about 3000 BC and labels following Lower Nubian evidence unknown. Moeller chapter 4 sections 4.1/4.2.6 supports the Nile Valley/Delta and Elephantine frontier-region context, not clipping vertices.",
+      "references": [
+        {
+          "title": "Egyptian Ministry, Early Dynastic Period",
+          "url": "https://egymonuments.gov.eg/historical-periods/early-dynastic-period/"
+        },
+        {
+          "title": "NMEC timeline",
+          "url": "https://nmec.gov.eg/historical-timeline/"
+        },
+        {
+          "title": "Nadine Moeller, The Origins of Urban Society, chapter 4 sections 4.1 and 4.2.6",
+          "url": "https://www.cambridge.org/core/books/archaeology-of-urbanism-in-ancient-egypt/origins-of-urban-society/7827A646AACBAEEEFCC7CF442E904D2B"
+        },
+        {
+          "title": "Met, Sudan 8000–2000 BC, Lower Nubia and Key Events",
+          "url": "https://www.metmuseum.org/pt/toah/ht/02/afs.html"
+        },
+        {
+          "title": "MPI, Nubian Rock Art archive, opening two paragraphs",
+          "url": "https://nubianrockart.mpiwg-berlin.mpg.de/nubia/history_archaeology/overview.html"
+        },
+        {
+          "title": "UCL, Nubia timeline, rows about 3000 BC and 2800–2200 BC",
+          "url": "https://www.ucl.ac.uk/museums-static/digitalegypt/nubia/timeline.html"
+        }
+      ],
+      "decision": "Playable Egyptian setting with a generated household and developer-authored selective core: intersect source feature 19 with bbox [-180,24.2,180,90]. The artificial crop omits the Elephantine/First Cataract frontier region and Nubian south conservatively; it is not an attested frontier or proof that excluded land was empty or non-Egyptian. Original outer edges remain publisher approximations. Ministry and Moeller support regional Nile Valley/Delta context; conflicting Met/MPI/UCL chronology does not establish continuous southern control in 3000 BC.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 20,
+      "sourceName": "Indus valley civilization",
+      "status": "cultural-nonstate",
+      "evidence": "[Yale eHRAF, Early Indus summary](https://ehrafarchaeology.yale.edu/traditions/aq43/summary), identification / temporal coverage, distinguishes Early Harappan/Regionalization traditions. [The Met, Early Harappan sherd 57.99.5](https://www.metmuseum.org/art/collection/search/324707), Artwork Details, dates it to the **early to middle third millennium BCE** at Damb Sadaat.",
+      "references": [
+        {
+          "title": "Yale eHRAF, Early Indus summary",
+          "url": "https://ehrafarchaeology.yale.edu/traditions/aq43/summary"
+        },
+        {
+          "title": "The Met, Early Harappan sherd 57.99.5",
+          "url": "https://www.metmuseum.org/art/collection/search/324707"
+        }
+      ],
+      "decision": "Retain an **Early Harappan** cultural context; exact placement at the 3000 BC boundary and the large polygon require review. Do not backdate the mature urban system or invent an Indus monarch, deciphered royal title or family tree.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 21,
+      "sourceName": "Hurrian Kingdoms",
+      "status": "reject-for3000",
+      "evidence": "[Gernot Wilhelm, Hurrian, Cambridge](https://www.cambridge.org/core/books/abs/ancient-languages-of-asia-minor/hurrian/190C6E806AD18A753663423855472264), chapter summary, places first attestations in Akkade-period words/names, **23rd–22nd centuries BC**, and wider evidence in the last quarter of the third millennium.",
+      "references": [
+        {
+          "title": "Gernot Wilhelm, Hurrian, Cambridge",
+          "url": "https://www.cambridge.org/core/books/abs/ancient-languages-of-asia-minor/hurrian/190C6E806AD18A753663423855472264"
+        }
+      ],
+      "decision": "Reject this precise political aggregate as a researched 3000 BC map label. Later attestations do not prove an earlier population absent; they also do not source its kingdoms at this date. Keep the earlier political configuration unknown.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 22,
+      "sourceName": "Valdivia",
+      "status": "cultural-nonstate",
+      "evidence": "[Textile Museum of Canada / Gardiner Museum, Artifact 8](https://textilemuseum.ca/cloth_clay/resources/intermediate_08-2.html), WHO/WHERE/WHEN, gives Valdivia, southern coastal Ecuador and **3200–1500 BC**. [Smithsonian NMAI, Valdivia figurines](https://americanindian.si.edu/exhibitions/infinityofnations/andes/248403.html), object heading / About This Object, dates examples circa **3500 BC**.",
+      "references": [
+        {
+          "title": "Textile Museum of Canada / Gardiner Museum, Artifact 8",
+          "url": "https://textilemuseum.ca/cloth_clay/resources/intermediate_08-2.html"
+        },
+        {
+          "title": "Smithsonian NMAI, Valdivia figurines",
+          "url": "https://americanindian.si.edu/exhibitions/infinityofnations/andes/248403.html"
+        }
+      ],
+      "decision": "Supports a local ceramic tradition around the bookmark. Ritual interpretations are qualified hypotheses. No Ecuador-wide political unity or ruler follows; the upstream extent remains unverified.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 23,
+      "sourceName": "Kerma",
+      "status": "reject-for3000",
+      "evidence": "[Kerma archaeological mission, Pre-Kerma agglomeration](https://kerma.ch/pre-kerma-agglomeration/), final paragraph, dates **Pre-Kerma 3500–2500 BC** and states that territorial extent and social organization remain difficult to establish. [Smithsonian, Ancient Nubian City of Kerma](https://www.si.edu/exhibitions/ancient-nubian-city-kerma-2500-1500-bc%3Aevent-exhib-1234), title, gives **2500–1500 BC**.",
+      "references": [
+        {
+          "title": "Kerma archaeological mission, Pre-Kerma agglomeration",
+          "url": "https://kerma.ch/pre-kerma-agglomeration/"
+        },
+        {
+          "title": "Smithsonian, Ancient Nubian City of Kerma",
+          "url": "https://www.si.edu/exhibitions/ancient-nubian-city-kerma-2500-1500-bc%3Aevent-exhib-1234"
+        }
+      ],
+      "decision": "Reject an unqualified Kerma kingdom/city-state label for 3000 BC. A separate **Pre-Kerma** cultural record is defensible; its boundaries and political organization need research. No automatic relabeling of the existing political polygon.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 24,
+      "sourceName": "Hunters-gatherers",
+      "status": "unresolved",
+      "evidence": "[Sereno et al., PLOS ONE, Gobero](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002995), mid-Holocene subsistence discussion, describes **5200–2500 BCE** local combinations of fishing, wild resources and domestic cattle. [Cambridge Prisms review of Madagascar](https://www.cambridge.org/core/journals/cambridge-prisms-extinction/article/patterns-of-late-holocene-and-historical-extinctions-on-madagascar/1ECC0DA3436B4E3F51584058694F2F8B), human-colonization discussion, records disputed dates.",
+      "references": [
+        {
+          "title": "Sereno et al., PLOS ONE, Gobero",
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002995"
+        },
+        {
+          "title": "Cambridge Prisms review of Madagascar",
+          "url": "https://www.cambridge.org/core/journals/cambridge-prisms-extinction/article/patterns-of-late-holocene-and-historical-extinctions-on-madagascar/1ECC0DA3436B4E3F51584058694F2F8B"
+        }
+      ],
+      "decision": "This is a generic subsistence description, not a people or government. The wide multi-part feature includes Madagascar; its 3000 BC population cannot be inferred from the label. Keep regional identities, occupation and control unresolved rather than asserting uniform foragers.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 27,
+      "sourceName": "Afanasevo",
+      "status": "cultural-nonstate",
+      "evidence": "[The Met, Central and North Asia chronology](https://www.metmuseum.org/ru/toah/ht/02/nc.html), North timeline, gives Afanasievo circa **3500/3000–3000/2000 BC**, and Overview flags debated absolute chronology. [Zhang et al., Nature](https://www.nature.com/articles/s41586-021-04052-7), introduction, distinguishes Altai-Sayan **3150–2750 BC** from Dzungarian **3000–2600 BC** evidence.",
+      "references": [
+        {
+          "title": "The Met, Central and North Asia chronology",
+          "url": "https://www.metmuseum.org/ru/toah/ht/02/nc.html"
+        },
+        {
+          "title": "Zhang et al., Nature",
+          "url": "https://www.nature.com/articles/s41586-021-04052-7"
+        }
+      ],
+      "decision": "Supports a regional archaeological context around 3000 BC. Preserve geographical and dating differences; ancestry or artifact similarities do not establish one state.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 28,
+      "sourceName": "Namazga",
+      "status": "cultural-nonstate",
+      "evidence": "Same [Met Central and North Asia chronology](https://www.metmuseum.org/ru/toah/ht/02/nc.html), South timeline, distinguishes Namazga I–III circa **5500–3000 BC** and IV–V circa **3000–2000/1900 BC**.",
+      "references": [
+        {
+          "title": "Met Central and North Asia chronology",
+          "url": "https://www.metmuseum.org/ru/toah/ht/02/nc.html"
+        }
+      ],
+      "decision": "This year lies near a conventional phase transition. Use qualified archaeological terminology. No unified Namazga kingdom or surveyed frontier follows; retain the audit's small overlap with unnamed #137 as a geometry issue.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 32,
+      "sourceName": "Minoan",
+      "status": "cultural-nonstate",
+      "evidence": "[The Met, Southern Europe chronology](https://www.metmuseum.org/ru/toah/ht/02/eus), Balkan/Aegean timeline, places Minoan culture around **3000–1100 BC**. [The Met, Minoan Crete](https://www.metmuseum.org/it/essays/minoan-crete), opening and second paragraphs, discusses the later palace centers around **1900 BC**.",
+      "references": [
+        {
+          "title": "The Met, Southern Europe chronology",
+          "url": "https://www.metmuseum.org/ru/toah/ht/02/eus"
+        },
+        {
+          "title": "The Met, Minoan Crete",
+          "url": "https://www.metmuseum.org/it/essays/minoan-crete"
+        }
+      ],
+      "decision": "An approximate early cultural label is defensible. Do not initialize a palace empire, legendary Minos or later writing/architecture at 3000 BC. The modern archaeological term does not imply a single Cretan sovereign.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 34,
+      "sourceName": "Ainu",
+      "status": "reject-for3000",
+      "evidence": "[Foundation for Ainu Culture, History and Culture](https://www.ff-ainu.or.jp/web/learn/culture/together/files/rekishitobunka_EN.pdf), printed pp. 2–4, discusses the transition of archaeological cultural styles around the **12th–13th centuries AD**, with regional scholarly disagreement. Compare the earlier Jōmon evidence above.",
+      "references": [
+        {
+          "title": "Foundation for Ainu Culture, History and Culture",
+          "url": "https://www.ff-ainu.or.jp/web/learn/culture/together/files/rekishitobunka_EN.pdf"
+        }
+      ],
+      "decision": "Reject the unqualified later cultural-period label for this 3000 BC snapshot, especially its broad Honshu/Hokkaido distribution. This **does not deny Indigenous status or ancestral continuity**. Do not identify every earlier northern Japanese community with a later cultural style or assign it one king.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 37,
+      "sourceName": "Cycladic",
+      "status": "cultural-nonstate",
+      "evidence": "[Museum of Cycladic Art, Settlements of the Cyclades](https://cycladic.gr/en/essay/oikismoi-tn-kikladon-tis-3is-xilietias-px/), introduction, dates Early Cycladic culture around **3200–2000 BC**; [Met Early Cycladic Art and Culture](https://www.metmuseum.org/it/essays/early-cycladic-art-and-culture), chronological discussion, divides phases.",
+      "references": [
+        {
+          "title": "Museum of Cycladic Art, Settlements of the Cyclades",
+          "url": "https://cycladic.gr/en/essay/oikismoi-tn-kikladon-tis-3is-xilietias-px/"
+        },
+        {
+          "title": "Met Early Cycladic Art and Culture",
+          "url": "https://www.metmuseum.org/it/essays/early-cycladic-art-and-culture"
+        }
+      ],
+      "decision": "Supports an archaeological setting around 3000 BC. No common island monarch or exact frontier approved; phase boundaries remain approximate.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 78,
+      "sourceName": "Dravidians",
+      "status": "unresolved",
+      "evidence": "[Kolipakam et al., Royal Society Open Science, abstract via PubMed](https://pubmed.ncbi.nlm.nih.gov/29657761/), DOI **10.1098/rsos.171504**, estimates the language family at about **4,500 years**. The [article's indexed text](https://pmc.ncbi.nlm.nih.gov/articles/PMC5882685/) acknowledges an older root remains possible.",
+      "references": [
+        {
+          "title": "Kolipakam et al., Royal Society Open Science, abstract via PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29657761/"
+        },
+        {
+          "title": "article's indexed text",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5882685/"
+        }
+      ],
+      "decision": "A model of language-family history does not establish this southern Indian polygon's population, boundaries or identity in 3000 BC. Do not translate genetic/linguistic estimates into a Dravidian kingdom.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 80,
+      "sourceName": "Bantu",
+      "status": "reject-for3000",
+      "evidence": "[Barbieri et al., PLOS ONE](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0099117), Introduction, describes broad dispersal in the last **4,000–5,000 years** and substantially later southern African arrival.",
+      "references": [
+        {
+          "title": "Barbieri et al., PLOS ONE",
+          "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0099117"
+        }
+      ],
+      "decision": "Reject the supplied vast African distribution as an established 3000 BC distribution. Origin models differ; this is not a claim that ancestral speakers were absent everywhere. A language-family label does not establish a continental polity.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 111,
+      "sourceName": "Aboriginal tribes",
+      "status": "cultural-nonstate",
+      "evidence": "[National Museum of Australia, Migration to Sahul](https://aws-digital-classroom.nma.gov.au/learning-modules/1/migration-sahul), The arrival of the first Australians, describes archaeological estimates of **50,000–65,000 years** and changing estimates.",
+      "references": [
+        {
+          "title": "National Museum of Australia, Migration to Sahul",
+          "url": "https://aws-digital-classroom.nma.gov.au/learning-modules/1/migration-sahul"
+        }
+      ],
+      "decision": "Indigenous presence long predates the bookmark. Use contextual wording such as Aboriginal communities, with the source label retained in provenance. This evidence supplies neither every 3000 BC local boundary nor one Australian sovereign.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 135,
+      "sourceName": "Yamnaya culture",
+      "status": "cultural-nonstate",
+      "evidence": "[Wilkin et al., Nature, Dairying enabled Early Bronze Age Yamnaya steppe expansions](https://www.nature.com/articles/s41586-021-03798-4), abstract / introduction, discusses approximately **3300–2500 BC** pastoralist movements.",
+      "references": [
+        {
+          "title": "Wilkin et al., Nature, Dairying enabled Early Bronze Age Yamnaya steppe expansions",
+          "url": "https://www.nature.com/articles/s41586-021-03798-4"
+        }
+      ],
+      "decision": "Supports an archaeological cultural layer. Research samples and ancestry do not define a single empire or validate the polygon's precise frontier.",
+      "ownerPolityId": null
+    },
+    {
+      "sourceFeatureIndex": 136,
+      "sourceName": "Semites",
+      "status": "cultural-nonstate",
+      "evidence": "[Kees Versteegh, The Arabic Language, Cambridge](https://www.cambridge.org/core/books/arabic-language/D40CEA0FF30CA11307294BC313D8A7C6/listing), Semitic-language discussion, distinguishes languages and gives Akkadian attestations in the **third millennium BC**.",
+      "references": [
+        {
+          "title": "Kees Versteegh, The Arabic Language, Cambridge",
+          "url": "https://www.cambridge.org/core/books/arabic-language/D40CEA0FF30CA11307294BC313D8A7C6/listing"
+        }
+      ],
+      "decision": "Treat this as an overbroad language-family category requiring replacement/qualification, not a state or uniform ethnicity. This source does not date the supplied Arabian/Levantine distribution to 3000 BC. No common ruler or frontier approved.",
+      "ownerPolityId": null
+    }
+  ]
+}

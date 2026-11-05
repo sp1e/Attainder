@@ -10,7 +10,7 @@
 // import time, so one process only ever sees one data directory.
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync, readFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import url from "node:url";
@@ -37,8 +37,10 @@ const buildDataDir = () => {
   roots.push(root);
   const scenarioDir = path.join(root, "scenarios", "hand-drawn");
   writeJson(path.join(scenarioDir, "scenario.json"), { id: "hand-drawn", name: "Hand Drawn World", createdAt: "2026-08-01T00:00:00.000Z", updatedAt: "2026-08-01T00:00:00.000Z" });
-  writeJson(path.join(scenarioDir, "world.json"), { ownerSchema: OWNER_SCHEMA });
-  writeJson(path.join(scenarioDir, "game.json"), { country: "Testland", gameDate: "2030-01-01" });
+  for (const file of ["world.json", "game.json", "regions.geojson", "cities.geojson"]) {
+    const value = JSON.parse(readFileSync(path.join(SERVER_DIR, "seed", "default", file), "utf8"));
+    writeJson(path.join(scenarioDir, file), value);
+  }
   for (const key of ["actions", "advisor", "chat", "events"]) writeJson(path.join(scenarioDir, "storage", `${key}.json`), []);
   writeJson(path.join(root, "scenario-manifest.json"), { order: ["hand-drawn"], selectedScenarioId: "hand-drawn", version: 2 });
   const gameDir = path.join(root, "games", "campaign");

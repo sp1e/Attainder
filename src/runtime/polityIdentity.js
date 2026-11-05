@@ -497,7 +497,7 @@ export const resolvePolityIdentity = (
   // declares a related historical/current identity, do NOT resurrect the base
   // label as a second country just because GADM knows the name.
   if (
-    allowStockBase &&
+    allowStockBase && world?.historicalScenario?.kind !== "historical" &&
     isStockPolityName(stockName) &&
     declaredRelated.length === 0
   ) {

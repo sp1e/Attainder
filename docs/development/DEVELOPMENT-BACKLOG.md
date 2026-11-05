@@ -4,9 +4,9 @@ Updated 5 November 2026. The owner's current requests take precedence over the e
 
 | Order | Work | State |
 | --- | --- | --- |
-| 1 | Merge the reviewed Phase 3 fixes. | Annual accounting and legacy succession replay fixed, tested and pushed through `cfa2252`; follow-up PR review, CI and merge pending. |
-| 2 | Replace the playable fictional world and modern default with real-world historical campaign starts, from the Bronze Age through about AD 1200; offer no modern starts. | Binding direction recorded; implementation plan and code pending. |
-| 3 | Research historical events year by year and add an end-turn historical-events popup. | Added at the owner's request; research and implementation pending. |
+| 1 | Merge the reviewed Phase 3 fixes. | Complete: [PR #12](https://github.com/sp1e/Attainder/pull/12) merged; final review `08d3518..55283dc` approved with no new Critical, Important or Minor findings; required test/build CI passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295); remote `main` verified as `6f4f7c0`. Retained remote branch `fix/phase-3-review`: `55283dc`. |
+| 2 | Replace the playable fictional world and modern default with real-world historical campaign starts, from the Bronze Age through about AD 1200; offer no modern starts. | Tasks 1–5 accepted through `1addf27`, including guards, defaults and UI. Task 6 and final documentation review are accepted with documented limits. Final review approved publication subject to current-head CI; PR #13 tracks merge state. |
+| 3 | Research historical events year by year and add an end-turn historical-events popup. | Pending: no release-approved events, fully reviewed year or popup implementation. The full 4,500-year research requirement remains open. |
 | 4 | Continue family/succession, life/events, diplomacy/war and religion phases against the historical setting. | Replan after the historical foundation. |
 
 ## Historical events at turn end

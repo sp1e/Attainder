@@ -2624,12 +2624,18 @@ const DateWidget = ({
     // each turn). Re-checked whenever the round changes — after a jump or undo.
     useEffect(() => {
         let active = true;
+        let sequence = 0;
         // The index, not the snapshots: the full list carries every prior world.
-        loadRollbackSnapshotCount().then((count) => {
-            if (active) setUndoCount(count);
-        });
-        return () => { active = false; };
-    }, [gameData?.round]);
+        const refresh = () => {
+            const current = ++sequence;
+            loadRollbackSnapshotCount().then((count) => {
+                if (active && current === sequence) setUndoCount(count);
+            });
+        };
+        window.addEventListener("oh:rollback-snapshots-updated", refresh);
+        refresh();
+        return () => { active = false; window.removeEventListener("oh:rollback-snapshots-updated", refresh); };
+    }, [gameData?.round, isLoading, skipInFlight]);
 
     // stayOnHistory: called from the fallback warning's "Rollback turn" button,
     // which lives in the history panel — yanking that panel away mid-undo would
@@ -2677,11 +2683,21 @@ const DateWidget = ({
     const latestTurnDate = worldState?.simulationHistory?.[0]?.date ?? "";
     useEffect(() => {
         let active = true;
-        canInterveneInLastTurn()
-            .then((can) => { if (active) setCanInterveneTurn(Boolean(can)); })
-            .catch(() => { if (active) setCanInterveneTurn(false); });
-        return () => { active = false; };
-    }, [gameData?.round, latestTurnDate]);
+        let sequence = 0;
+        const refresh = () => {
+            const current = ++sequence;
+            if (isLoading || skipInFlight) {
+                setCanInterveneTurn(false);
+                return;
+            }
+            canInterveneInLastTurn()
+                .then((can) => { if (active && current === sequence) setCanInterveneTurn(Boolean(can)); })
+                .catch(() => { if (active && current === sequence) setCanInterveneTurn(false); });
+        };
+        window.addEventListener("oh:rollback-snapshots-updated", refresh);
+        refresh();
+        return () => { active = false; window.removeEventListener("oh:rollback-snapshots-updated", refresh); };
+    }, [gameData?.round, latestTurnDate, isLoading, skipInFlight]);
 
     // Stop the round after the events revealed so far. The engine rolls back to
     // the turn's snapshot and applies the kept prefix again, without a request;

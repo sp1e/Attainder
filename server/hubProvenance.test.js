@@ -209,8 +209,9 @@ const buildDataDir = () => {
     updatedAt: "2026-08-01T00:00:00.000Z",
     hubOrigin: { ...ORIGIN, title: "Shared World", author: "arkniem" },
   });
-  writeJson(path.join(dir, "world.json"), { ownerSchema: OWNER_SCHEMA });
-  writeJson(path.join(dir, "game.json"), {});
+  for (const file of ["world.json", "game.json", "regions.geojson", "cities.geojson"]) {
+    writeJson(path.join(dir, file), JSON.parse(readFileSync(path.join(SERVER_DIR, "seed", "default", file), "utf8")));
+  }
   for (const key of ["actions", "advisor", "chat", "events"]) writeJson(path.join(dir, "storage", `${key}.json`), []);
   writeJson(path.join(root, "scenario-manifest.json"), { order: ["shared-world"], selectedScenarioId: "shared-world", version: 2 });
   const game = path.join(root, "games", "campaign");
@@ -264,11 +265,10 @@ test("the store keeps the checked copy a scenario was downloaded from, and an Up
   const root = buildDataDir();
   const result = runStore(root, `
     const scenario = (id) => store.getScenarioDetails(id).scenario;
+    const original = JSON.parse((await import("node:fs")).readFileSync(${JSON.stringify(path.join(SERVER_DIR,"seed/historical/john-1200/scenario.json"))},"utf8"));
     const bundle = (name, file, release) => ({
-      schema: "open-historia-scenario-bundle/2",
-      scenario: { name },
-      data: { world: { ownerSchema: ${OWNER_SCHEMA} }, game: {} },
-      assets: {},
+      ...structuredClone(original),
+      scenario: { ...original.scenario, name },
       hubOrigin: { postId: 42, bundleUrl: "https://github.com/user-attachments/files/" + file + "/world.zip", ...(release ? { release } : {}) },
     });
     const oldLink = scenario("shared-world").hubOrigin;
@@ -304,12 +304,11 @@ test("the web store writes provenance through the same rules", () => {
   const source = readFileSync(path.join(SERVER_DIR, "..", "src", "runtime", "web", "libraryStore.js"), "utf-8");
   assert.match(source, /hubOrigin: hubOriginAfterWrite\(current\.hubOrigin, updates, \{ touch \}\)/);
   assert.match(source, /writeScenarioMeta\(record, provenance, \{ touch: false \}\)/);
-  assert.match(source, /hubOrigin: fetchableHubOrigin\(scenario\?\.hubOrigin\)/);
+  assert.match(source, /hubOrigin: fetchableHubOrigin\(scenario\?\.missing \? meta\.importedScenarioOrigin : scenario\?\.hubOrigin\)/);
   // An import and an Update stamp the link their bundle carries, release and
   // all, through the same normalizeHubOrigin (src/runtime/web/libraryStore.test.js
   // runs both).
-  assert.equal(source.match(/const hubOrigin = normalizeHubOrigin\(bundle\.hubOrigin\);/g)?.length, 2);
-  assert.equal(source.match(/writeScenarioMeta\(record, \{ hubOrigin \}\);/g)?.length, 2);
+  assert.match(source, /hubOrigin:normalizeHubOrigin\(bundle\.hubOrigin\)/);
   const models = readFileSync(path.join(SERVER_DIR, "..", "src", "runtime", "web", "models.js"), "utf-8");
   assert.match(models, /hubOrigin: normalizeHubOrigin\(raw\?\.hubOrigin\)/);
   assert.match(models, /hubPublished: normalizeHubPublished\(raw\?\.hubPublished\)/);

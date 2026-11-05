@@ -7,6 +7,24 @@ const DEFAULT_MAX_AREA_DRIFT_RATIO = 0.0025;
 const DEFAULT_DETACHED_AREA_RATIO = 0.001;
 const DEFAULT_DETACHED_FILL_RATIO = 0.002;
 const DEFAULT_YIELD_EVERY = 48;
+// MapLibre uses its Mercator tiler for both flat and globe rendering and clamps
+// each vertex independently. Intersect first to preserve topology. Globe then
+// extends boundary edges to the poles; authored detail beyond this band cannot
+// be represented by that renderer, though the source geometry stays intact.
+const MERCATOR_LIMIT = 85.0511287798066;
+const mercatorBandFor = (polygons) => {
+  let minX = Infinity, maxX = -Infinity;
+  for (const polygon of polygons) for (const ring of polygon) for (const point of ring) {
+    const x = Number(point?.[0]);
+    if (Number.isFinite(x)) { minX = Math.min(minX, x); maxX = Math.max(maxX, x); }
+  }
+  // Preserve authored longitudes outside ±180 used by unwrapped dateline shapes.
+  const left = Math.min(-180, minX - 1), right = Math.max(180, maxX + 1);
+  return [[[left, -MERCATOR_LIMIT], [right, -MERCATOR_LIMIT],
+    [right, MERCATOR_LIMIT], [left, MERCATOR_LIMIT], [left, -MERCATOR_LIMIT]]];
+};
+const exceedsMercatorBand = (polygons) => polygons.some(polygon => polygon.some(ring =>
+  ring.some(point => Number(point?.[1]) < -MERCATOR_LIMIT || Number(point?.[1]) > MERCATOR_LIMIT)));
 // A handful of legacy exports are GEOS-valid yet still hostile to GPU
 // tessellation: they contain a duplicated vertex plus an almost perfectly
 // collinear chord spanning most of the ring. Earcut can emit a numerically
@@ -490,6 +508,7 @@ const defaultYield = () => new Promise((resolve) => setTimeout(resolve, 0));
  */
 export const buildRegionRenderRepair = async (featureCollection, {
   clipper = null,
+  projection = "globe",
   maxAreaDriftRatio = DEFAULT_MAX_AREA_DRIFT_RATIO,
   yieldEvery = DEFAULT_YIELD_EVERY,
   yieldTask = defaultYield,
@@ -510,6 +529,7 @@ export const buildRegionRenderRepair = async (featureCollection, {
   let removedPrecisionVertexCount = 0;
   let rejectedAreaDriftCount = 0;
   let repairErrorCount = 0;
+  let polarClippedFeatureCount = 0;
   let polygonClipping = clipper;
 
   for (let index = 0; index < features.length; index += 1) {
@@ -525,7 +545,8 @@ export const buildRegionRenderRepair = async (featureCollection, {
     const stripped = stripDegenerateDetachedPolygons(subject);
     const precision = simplifyPrecisionHazards(stripped.geometry);
     const invalidRing = precision.geometry.some((polygon) => polygonHasInvalidRing(polygon));
-    if (!stripped.changed && !precision.changed && !invalidRing) {
+    const polarClip = (projection === "mercator" || projection === "globe") && exceedsMercatorBand(subject);
+    if (!stripped.changed && !precision.changed && !invalidRing && !polarClip) {
       if (scannedFeatureCount % Math.max(1, Number(yieldEvery) || DEFAULT_YIELD_EVERY) === 0) await yieldTask();
       continue;
     }
@@ -559,8 +580,7 @@ export const buildRegionRenderRepair = async (featureCollection, {
       continue;
     }
 
-    const geometry = multiPolygonToGeometry(repaired);
-    if (!geometry) {
+    if (!multiPolygonToGeometry(repaired)) {
       repairErrorCount += 1;
       continue;
     }
@@ -572,6 +592,20 @@ export const buildRegionRenderRepair = async (featureCollection, {
       continue;
     }
 
+    if (polarClip) {
+      try {
+        polygonClipping ??= await getPolygonClipper();
+        repaired = polygonClipping.intersection(repaired, mercatorBandFor(repaired));
+        polarClippedFeatureCount += 1;
+      } catch {
+        repairErrorCount += 1;
+        continue;
+      }
+    }
+    // Entirely out-of-band shapes render empty in both projections: the shared
+    // tiler cannot represent isolated caps. The ID suppresses the canonical
+    // source and keeps fill, local outline and selection on the same geometry.
+    const geometry = multiPolygonToGeometry(repaired) ?? { type: "MultiPolygon", coordinates: [] };
     const id = featureId(feature, index);
     repairedIds.push(id);
     repairedFeatures.push({
@@ -599,6 +633,7 @@ export const buildRegionRenderRepair = async (featureCollection, {
       removedPrecisionVertexCount,
       rejectedAreaDriftCount,
       repairErrorCount,
+      polarClippedFeatureCount,
       elapsedMs,
     },
   };
