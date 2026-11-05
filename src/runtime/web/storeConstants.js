@@ -69,6 +69,8 @@ export const TEMPLATE_WORLD_OVERRIDE_KEYS = [
   "author",
   "background",
   "basemap",
+  "componentLicenses",
+  "assetProvenance",
   "customCities",
   "customGeometry",
   "customRegions",

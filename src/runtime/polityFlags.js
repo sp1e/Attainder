@@ -143,6 +143,8 @@ export const resolvePolityFlag = ({ polity, world, flags = {} } = {}) => {
     };
   }
 
+  if (world?.historicalScenario?.kind === "historical") return { imageUrl: null, polityKey, source: "none" };
+
   const mapRefs = Array.isArray(record?.mapRefs?.gadm0)
     ? [...new Set(record.mapRefs.gadm0.map((code) => str(code).toUpperCase()).filter(Boolean))]
     : [];

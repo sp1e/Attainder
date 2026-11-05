@@ -1,3 +1,4 @@
+import { withScenarioLicense, preserveComponentProvenance } from "../scenarioLicense.js";
 /*! Open Historia — web-mode library/scenario/game/runtime store © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 // Browser (IndexedDB) port of server/libraryStore.js. Backs /api/library,
 // /api/scenarios*, /api/games*, /api/runtime/json*, /api/runtime/pmtiles* in web
@@ -1178,12 +1179,12 @@ const exportScenarioBundle = async (id) => {
       ? { contentType: "application/octet-stream", data: bytesToBase64(record.pmtiles[key]), encoding: "base64", fileName, mode: "embedded" }
       : { fileName, mode: "default" };
   }
-  return {
+  return withScenarioLicense({
     schema: SCENARIO_BUNDLE_SCHEMA, version: SCENARIO_BUNDLE_VERSION, mode: "full", exportedAt: nowIso(),
     scenario: { accentColor: meta.accentColor, countryNameOverrides: meta.countryNameOverrides, features: meta.features, description: meta.description,
       eyebrow: meta.eyebrow, heroSubtitle: meta.heroSubtitle, heroTitle: meta.heroTitle, id: meta.id, name: meta.name, subtitle: meta.subtitle },
     data, assets,
-  };
+  });
 };
 
 // One bundle asset onto a stored scenario, for the fresh import and the hub
@@ -1225,7 +1226,7 @@ const importScenarioBundle = async (bundle) => {
   if (!bundle || typeof bundle !== "object" || !isScenarioBundleSchema(bundle.schema)) throw new Error("Unsupported scenario bundle.");
   // A file that declares its map's projection is laid out here, once
   // (mapProjection.js); any other bundle passes through untouched.
-  bundle = layOutScenarioBundle(bundle);
+  bundle = layOutScenarioBundle(preserveComponentProvenance(bundle));
   // Hub provenance the community tab attaches to a direct import — stamped
   // LAST so the import's own meta writes don't clear it.
   const hubOrigin = normalizeHubOrigin(bundle.hubOrigin);
@@ -1261,7 +1262,7 @@ const updateScenarioFromBundle = async (scenarioId, bundle) => {
   if (!bundle || typeof bundle !== "object" || !isScenarioBundleSchema(bundle.schema)) throw new Error("Unsupported scenario bundle.");
   // A file that declares its map's projection is laid out here, once
   // (mapProjection.js); any other bundle passes through untouched.
-  bundle = layOutScenarioBundle(bundle);
+  bundle = layOutScenarioBundle(preserveComponentProvenance(bundle));
   const existing = await getScenario(scenarioId);
   if (!existing) throw new Error(`Scenario not found: ${scenarioId}`);
   const scenario = bundle.scenario && typeof bundle.scenario === "object" ? bundle.scenario : {};

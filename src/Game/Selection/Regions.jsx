@@ -545,6 +545,7 @@ const RegionPopup = () => {
             .filter((value) => value && value !== controllerCode),
     )];
     const isUnclaimed = controllerCode === "";
+    const unknownControlLabel = worldState?.historicalScenario?.kind === "historical" ? "Okänd historisk kontroll" : "Unclaimed Territory";
     const controllingGroup = regionId ? territoryState.groups?.[territoryState.groupAreas?.[regionId]] ?? null : null;
     const isOccupied = Boolean(controllerCode && sovereignCode && controllerCode !== sovereignCode);
     const isContested = claimants.length > 0;
@@ -555,10 +556,10 @@ const RegionPopup = () => {
             : isContested
                 ? "Contested"
                 : isUnclaimed
-                    ? "Unclaimed"
+                    ? unknownControlLabel
                     : "Administered";
     const displayPolity = (code) => {
-        if (!code) return "Unclaimed Territory";
+        if (!code) return unknownControlLabel;
         const identity = resolvePolityIdentity(code, worldState, {
             allowUnknown: true,
             requireActive: false,
@@ -569,7 +570,7 @@ const RegionPopup = () => {
         return worldState?.polityOverrides?.[key]?.name || key || "Unclaimed Territory";
     };
     // header stays on the current administrator/controller. legal title goes below.
-    const displayCountry = isUnclaimed ? "Unclaimed Territory" : displayPolity(controllerCode);
+    const displayCountry = isUnclaimed ? unknownControlLabel : displayPolity(controllerCode);
     // Wider on a touch screen that still anchors the card at the tap (a tablet,
     // a phone on its side): the finger-sized buttons took 140 of the header's
     // 216 px and broke the country's name mid-word.
@@ -676,6 +677,7 @@ const RegionPopup = () => {
         <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#3b82f6", flexShrink: 0, boxShadow: "0 0 6px rgba(59,130,246,0.6)" }} />
         <span style={{ color: "rgba(255,255,255,0.95)", fontWeight: 600, fontSize: "13px", lineHeight: 1.3, wordBreak: "break-word" }}>
         {displayCountry}
+        {worldState?.historicalScenario?.kind === "historical" && <small style={{ display: "block", fontWeight: 400, fontSize: "11px" }}>{isUnclaimed ? "Underlag saknas för kontrollen; området är inte markerat som ledigt." : "Ungefärlig historisk rekonstruktion"}</small>}
         </span>
         </div>
         <div style={{ display: "flex", gap: "4px", flexShrink: 0 }}>

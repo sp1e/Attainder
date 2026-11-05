@@ -101,6 +101,7 @@ export const mergeStockAndDeclaredPolities = (
   world,
   { resolvePolityIdentity, resolveStockCountryCode } = {},
 ) => {
+  if (world?.historicalScenario?.kind === 'historical') countries = [];
   const overrides = world?.polityOverrides && typeof world.polityOverrides === "object"
     ? world.polityOverrides
     : {};

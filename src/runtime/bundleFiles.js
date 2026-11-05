@@ -18,6 +18,7 @@
 // Below this an asset stays inline: a handful of small descriptors are not worth
 // a zip entry each, and the small ones are already JSON that DEFLATEs with the
 // rest of the document.
+import { componentLicenseFiles } from './scenarioLicense.js';
 const LIFT_THRESHOLD_BYTES = 64 * 1024;
 
 const ASSET_DIR = "assets/";
@@ -70,9 +71,9 @@ const entryPath = (taken, key, fileName) => {
 // community basemap travelling as a real image) are simply not there to lift.
 export const splitBundleFiles = (bundle) => {
   const assets = bundle?.assets && typeof bundle.assets === "object" ? bundle.assets : null;
-  if (!assets) return { bundle, files: {} };
+  if (!assets) return { bundle, files: componentLicenseFiles(bundle) };
 
-  const files = {};
+  const files = componentLicenseFiles(bundle);
   const taken = new Set();
   const nextAssets = {};
   for (const [key, descriptor] of Object.entries(assets)) {

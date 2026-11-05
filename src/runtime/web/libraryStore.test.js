@@ -78,6 +78,23 @@ const call = async (handler, method, path, body) => {
 };
 const scenarios = (method, path, body) => call(store.handleScenarios, method, path, body);
 const games = (method, path, body) => call(store.handleGames, method, path, body);
+
+test('web historical scenario retains component terms, original sources and asset hashes through import/export', async () => {
+  await reset();
+  const { readFile } = await import('node:fs/promises');
+  const original = JSON.parse(await readFile(new URL('../../../server/seed/historical/egypt-3000bc/scenario.json', import.meta.url),'utf8'));
+  const first = ok(await scenarios('POST','import',original)).scenario.id;
+  const exported = ok(await scenarios('GET',`${first}/export`));
+  const second = ok(await scenarios('POST','import',exported)).scenario.id;
+  const roundtrip = ok(await scenarios('GET',`${second}/export`));
+  for (const b of [exported,roundtrip]) {
+    assert.deepEqual(b.componentLicenses,original.componentLicenses);
+    assert.deepEqual(b.assets.regionsGeojson.provenance,original.assets.regionsGeojson.provenance);
+    assert.deepEqual(b.data.world.historicalScenario,original.data.world.historicalScenario);
+    assert.deepEqual(b.assets.regionsGeojson.data,original.assets.regionsGeojson.data);
+    assert.equal(b.license.scope,'authored-content');
+  }
+});
 const ok = (reply) => {
   assert.ok(reply.status < 300, `HTTP ${reply.status}: ${JSON.stringify(reply.data)}`);
   return reply.data;

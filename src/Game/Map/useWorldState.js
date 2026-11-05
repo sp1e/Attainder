@@ -139,12 +139,13 @@ export const withSettledClaims = (claimants, settled) => {
 const deriveMapState = (state) => ({
   worldState: state,
   worldKnown: Boolean(state && Object.keys(state).length > 0),
-  customRegions: Boolean(state?.customRegions),
+  historical: state?.historicalScenario?.kind === "historical",
+  customRegions: Boolean(state?.customRegions || state?.historicalScenario?.kind === "historical"),
   customGeometry: Boolean(
     state?.customGeometry ??
     Object.keys(state?.regionOwnershipOverrides ?? EMPTY_OBJECT).some((id) => !String(id).includes(".")),
   ),
-  customCities: Boolean(state?.customCities),
+  customCities: Boolean(state?.customCities || state?.historicalScenario?.kind === "historical"),
   basemap: state?.basemap || null,
   background: state?.background ?? null,
   // How the scenario lets its map be shown (world.projection: mapViewOf).
@@ -176,6 +177,7 @@ const deriveMapState = (state) => ({
 const sameMapState = (prev, next) =>
   Boolean(prev) &&
   prev.worldKnown === next.worldKnown &&
+  prev.historical === next.historical &&
   prev.customRegions === next.customRegions &&
   prev.customGeometry === next.customGeometry &&
   prev.customCities === next.customCities &&

@@ -509,6 +509,7 @@ const WorldMap = ({ isGlobe = false }) => {
   const {
     worldState,
     worldKnown,
+    historical,
     customRegions: customFlag,
     regionOwnershipOverrides,
     regionClaimants,
@@ -683,7 +684,7 @@ const WorldMap = ({ isGlobe = false }) => {
       .then((tileRegionIds) => {
         if (cancelled) return;
         setRegionTileIdentityState(
-          hasExactRegionTileIdentity(customRegionMeta.records, tileRegionIds)
+          hasExactRegionTileIdentity(customRegionMeta.records, tileRegionIds, { historical })
             ? "compatible"
             : "incompatible",
         );
@@ -700,7 +701,7 @@ const WorldMap = ({ isGlobe = false }) => {
     return () => {
       cancelled = true;
     };
-  }, [activeGeometryEpoch, customFlag, customRegionMeta.ready, customRegionMeta.records, fullyAuthoredGeometry]);
+  }, [activeGeometryEpoch, customFlag, customRegionMeta.ready, customRegionMeta.records, fullyAuthoredGeometry, historical]);
 
   // Current PMTiles may be a different region catalog from the scenario's
   // serialized geometry (legacy scenarios can carry numeric/UUID ids while the
@@ -708,7 +709,7 @@ const WorldMap = ({ isGlobe = false }) => {
   // only when every stock-like scenario record exists by EXACT id in the mounted
   // region-tile archive. Punctuation, gid0 and polity identity are not evidence.
   const regionTileHandoffSafe = Boolean(
-    customActive && regionTileIdentityState === "compatible"
+    customActive && !historical && regionTileIdentityState === "compatible"
   );
   const scenarioOwnsRegionGeometryAtAllZooms = Boolean(customActive && !regionTileHandoffSafe);
   const shouldMountStockRegions = !customFlag || regionTileHandoffSafe;
@@ -3397,7 +3398,7 @@ const WorldMap = ({ isGlobe = false }) => {
           beforeId={map?.getLayer?.("polity-boundaries-shadow") ? "polity-boundaries-shadow" : undefined}
           filter={unrepairedRegionFilter}
           layout={{ "line-cap": "round", "line-join": "round" }}
-          paint={buildProvinceOutlinePaint(customActive && worldKnown)}
+          paint={buildProvinceOutlinePaint(customActive && worldKnown && !historical)}
         />
       </Source>
       )}
@@ -3445,7 +3446,7 @@ const WorldMap = ({ isGlobe = false }) => {
           minzoom={PROVINCE_OUTLINE_MIN_ZOOM}
           beforeId={map?.getLayer?.("polity-boundaries-shadow") ? "polity-boundaries-shadow" : undefined}
           layout={{ "line-cap": "round", "line-join": "round" }}
-          paint={buildProvinceOutlinePaint(customActive && worldKnown)}
+          paint={buildProvinceOutlinePaint(customActive && worldKnown && !historical)}
         />
       </Source>
       )}

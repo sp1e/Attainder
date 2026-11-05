@@ -1,5 +1,9 @@
 # Map Data & Assets
 
+The optional historical packages under `server/seed/historical/` form a separate, pinned content source. They do not replace the current default in Task 2. Their GeoJSON remains authoritative at close zoom; they suppress modern city, polity and flag fallback. See [Historical scenario content](research/historical-scenarios.md) for chronology, global coverage, source hashes, court origins and the offline build command.
+
+These packages include compact source files and generated geometry in Git. This exception does not put the large modern PMTiles downloads back into Git. Historical Basemaps geometry retains GPL-3.0 terms, full notices and corresponding source; Natural Earth physical land retains public-domain terms; Getty TGN location references retain ODC-By terms. Bundle CC BY metadata applies to authored content. `world.componentLicenses` and `world.assetProvenance` survive both storage adapters and regenerate JSON/ZIP component records on export.
+
 Open Historia paints the world from a handful of heavy, mostly-static binaries (three PMTiles vector archives, two GeoJSON seed/geometry files) plus small per-scenario JSON documents (colors, flags, tags, world state). This page traces where each asset physically lives (app bundle vs. the writable `OH_DATA_DIR` vs. a GitHub Release vs. a Cloudflare-hosted content swarm), how the server route layer resolves a scenario override on top of the shared default, and how the browser client (`src/runtime/assets.js`) caches, warms, primes, and memoizes everything without OOMing the tab. The single load-bearing rule: the big binaries are **never** in Git — they are downloaded from a GitHub Release named `map-data` on first launch, checksum-verified, and served locally.
 
 ---

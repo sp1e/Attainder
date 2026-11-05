@@ -1,3 +1,4 @@
+import { withScenarioLicense, preserveComponentProvenance } from "./scenarioLicense.js";
 /*! Open Historia — portions (regions.geojson scenario asset + custom-map seeding) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 import fs from "fs";
 import { normalizeFeatureOverrides, normalizeFeatureSettings } from "./gameFeatures.js";
@@ -500,6 +501,8 @@ const TEMPLATE_WORLD_OVERRIDE_KEYS = [
   "author",
   "background",
   "basemap",
+  "componentLicenses",
+  "assetProvenance",
   "customCities",
   "customGeometry",
   "customRegions",
@@ -3358,7 +3361,7 @@ const exportScenarioBundle = (scenarioId) => {
   const summary = getScenarioSummary(scenarioId);
   const details = getScenarioDetails(scenarioId);
 
-  return {
+  return withScenarioLicense({
     assets: {
       cover: buildScenarioBundleAsset(scenarioId, "cover"),
       cities: buildScenarioBundleAsset(scenarioId, "cities"),
@@ -3405,7 +3408,7 @@ const exportScenarioBundle = (scenarioId) => {
     },
     schema: SCENARIO_BUNDLE_SCHEMA,
     version: SCENARIO_BUNDLE_VERSION,
-  };
+  });
 };
 
 const importScenarioBundle = (bundle, { setSelected = true } = {}) => {
@@ -3424,7 +3427,7 @@ const importScenarioBundle = (bundle, { setSelected = true } = {}) => {
 
   // A file that declares its map's projection is laid out here, once
   // (mapProjection.js); any other bundle passes through untouched.
-  bundle = layOutScenarioBundle(bundle);
+  bundle = layOutScenarioBundle(preserveComponentProvenance(bundle));
 
   const scenario = bundle.scenario && typeof bundle.scenario === "object" ? bundle.scenario : {};
   const data = bundle.data && typeof bundle.data === "object" ? bundle.data : {};
@@ -3535,7 +3538,7 @@ const updateScenarioFromBundle = (scenarioId, bundle) => {
 
   // A file that declares its map's projection is laid out here, once
   // (mapProjection.js); any other bundle passes through untouched.
-  bundle = layOutScenarioBundle(bundle);
+  bundle = layOutScenarioBundle(preserveComponentProvenance(bundle));
   if (!fs.existsSync(getScenarioMetaPath(scenarioId))) {
     throw new Error(`Scenario not found: ${scenarioId}`);
   }

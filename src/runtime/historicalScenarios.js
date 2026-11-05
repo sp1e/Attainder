@@ -1,0 +1,131 @@
+/*! Attainder historical content schema. AGPL-3.0-or-later (see LICENSE). */
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
+import { validateHistoricalStartDate } from './historicalStarts.js';
+import { compareGameDates } from './gameDates.js';
+
+export const HISTORICAL_SCHEMA_VERSION = 1;
+export const isHistoricalWorld = world => world?.historicalScenario?.kind === 'historical';
+const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
+const text = x => typeof x === 'string' && x.trim().length > 0;
+const list = x => Array.isArray(x) ? x : [];
+const unique = xs => xs.length === new Set(xs).size;
+const failure = code => ({ ok: false, code, error: 'Det historiska scenariot saknar giltiga källor, kartdata eller hov för den valda starten.' });
+const polygons = g => g?.type === 'Polygon' ? [g.coordinates] : g?.type === 'MultiPolygon' ? g.coordinates : [];
+const coordinate = p => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite) && Math.abs(p[0]) <= 180 && Math.abs(p[1]) <= 90;
+const ids = xs => list(xs).map(x => x?.id);
+const validIds = xs => Array.isArray(xs) && xs.length > 0 && ids(xs).every(text) && unique(ids(xs));
+
+export function validHistoricalGeometry(geometry) {
+  const components = polygons(geometry);
+  return components.length > 0 && components.every(p => Array.isArray(p) && p.length > 0 && p.every(r =>
+    Array.isArray(r) && r.length >= 4 && r.every(coordinate)
+    && r[0][0] === r.at(-1)[0] && r[0][1] === r.at(-1)[1]
+    && new Set(r.map(x => x.join(','))).size >= 3));
+}
+
+// Select the largest component first. A whole-feature bbox puts Tonga near 0°.
+// Centers are display anchors, never evidence for a capital or political control.
+export function historicalGeometryCenter(geometry) {
+  let best = null, size = -1;
+  for (const p of polygons(geometry)) {
+    const ring = p?.[0];
+    if (!ring?.length) continue;
+    const xs = ring.map(c => c[0]), ys = ring.map(c => c[1]);
+    const bounds = [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
+    const area = (bounds[2] - bounds[0]) * (bounds[3] - bounds[1]);
+    if (area > size) { size = area; best = [(bounds[0] + bounds[2]) / 2, (bounds[1] + bounds[3]) / 2]; }
+  }
+  return best;
+}
+
+function validSources(sources) {
+  return record(sources) && Object.keys(sources).length > 0 && Object.values(sources).every(s =>
+    record(s) && ['title','institution','url','locator','retrievedAt','license','chronology','uncertainty','review'].every(k => text(s[k]))
+    && /^https:\/\//.test(s.url) && /^\d{4}-\d{2}-\d{2}$/.test(s.retrievedAt));
+}
+const sourceRefs = (refs, sources, allowEmpty = false) => Array.isArray(refs) && (allowEmpty || refs.length > 0)
+  && unique(refs) && refs.every(id => Object.hasOwn(sources, id));
+function validClaims(claims, sources) {
+  return record(claims) && Object.keys(claims).length > 0 && Object.values(claims).every(c =>
+    record(c) && ['sourced','uncertain','generated'].includes(c.status) && text(c.noteSv)
+    && sourceRefs(c.sourceIds, sources, c.status === 'generated'));
+}
+function validCourt(court, polityId, h) {
+  if (!record(court) || court.polityId !== polityId || !h.settlements.some(s => s.id === court.seatId && s.polityId === polityId)) return false;
+  if (!['people','families','religions','offices','cities'].every(k => validIds(court[k]))) return false;
+  const people = new Map(court.people.map(p => [p.id,p]));
+  const families = new Set(ids(court.families)), religions = new Set(ids(court.religions));
+  if (!people.has(court.rulerId) || court.offices.find(o => o.id === 'ruler')?.holderId !== court.rulerId) return false;
+  if (!court.people.every(p => ['documented','generated'].includes(p.identityOrigin) && text(p.originLabelSv)
+    && families.has(p.familyId) && religions.has(p.religionId) && validClaims(p.claims, h.sources)
+    && p.claims.identity?.status === (p.identityOrigin === 'generated' ? 'generated' : 'sourced')
+    && p.claims.mechanics?.status === 'generated'
+    && ['legalParentIds','spouseIds'].every(k => Array.isArray(p[k]) && p[k].every(id => id !== p.id && people.has(id))))) return false;
+  if (!court.families.every(f => people.has(f.headId) && validClaims(f.claims, h.sources))) return false;
+  if (!court.offices.every(o => (o.holderId === null || people.has(o.holderId)) && validClaims(o.claims, h.sources))) return false;
+  if (!court.religions.every(r => validClaims(r.claims, h.sources))) return false;
+  if (!court.cities.every(c => h.settlements.some(s => s.id === c.settlementId) && validClaims(c.claims, h.sources))) return false;
+  return court.mechanics?.status === 'generated' && text(court.mechanics.noteSv);
+}
+function validSettlements(h, regionMap) {
+  return validIds(h.settlements) && h.settlements.every(s => {
+    if (!coordinate(s.coordinates) || !text(s.nameSv) || !text(s.noteSv) || !sourceRefs(s.sourceIds,h.sources)) return false;
+    const region = regionMap.get(s.regionId);
+    if (!region) return false;
+    if (s.placement === 'contested') return s.polityId === null && list(s.candidatePolityIds).length >= 2
+      && unique(s.candidatePolityIds) && s.candidatePolityIds.every(id => h.polities.some(p => p.id === id));
+    return s.placement === 'inside' && h.polities.some(p => p.id === s.polityId)
+      && region.properties.owner === s.polityId && booleanPointInPolygon(s.coordinates,region);
+  });
+}
+
+/** Structural validation only. Human source review lives beside the authored data. */
+export function validateHistoricalScenario(input, options = {}) {
+  try {
+    const { game, world, regions, assetManifest } = input ?? {};
+    const h = world?.historicalScenario;
+    if (!record(h) || h.schemaVersion !== 1 || h.kind !== 'historical' || h.calendar !== 'proleptic-gregorian-no-year-zero'
+      || !['contentId','contentVersion','eraLabelSv','contextSv','coverageNoteSv'].every(k => text(h[k]))) return failure('invalidContent');
+    const date = options?.date, polityId = options?.polityId;
+    for (const value of [date,h.bookmarkDate,...(h.validFrom ? [h.validFrom] : []),...(h.validTo ? [h.validTo] : [])]) {
+      const parsed = validateHistoricalStartDate(value);
+      if (!parsed.ok || parsed.date !== value) return failure('invalidDate');
+    }
+    if (h.validFrom || h.validTo) {
+      if (!h.validFrom || !h.validTo || !sourceRefs(h.dateSourceIds,h.sources) || compareGameDates(h.validFrom,h.validTo) > 0
+        || compareGameDates(date,h.validFrom) < 0 || compareGameDates(date,h.validTo) > 0) return failure('unsupportedDate');
+    } else if (date !== h.bookmarkDate) return failure('unsupportedDate');
+    if (game?.startDate !== date || (game?.currentDate ?? game?.gameDate) !== date
+      || (game?.gameDate !== undefined && game.gameDate !== date)) return failure('dateMismatch');
+    if (!validSources(h.sources)) return failure('invalidSources');
+    if (!validIds(h.polities) || !h.polities.every(p => text(p.nameSv) && sourceRefs(p.sourceIds,h.sources) && ['approximate','uncertain'].includes(p.boundary))) return failure('invalidPolities');
+    const polityIds = new Set(ids(h.polities));
+    if (!Object.keys(world.polityOverrides ?? {}).every(id => polityIds.has(id))) return failure('invalidPolities');
+    if (!Array.isArray(h.playablePolityIds) || !h.playablePolityIds.length || !unique(h.playablePolityIds)
+      || !h.playablePolityIds.every(id => polityIds.has(id)) || !h.playablePolityIds.includes(polityId)) return failure('invalidPolity');
+    if (regions?.type !== 'FeatureCollection' || !Array.isArray(regions.features) || !regions.features.length) return failure('invalidGeometry');
+    const regionMap = new Map();
+    for (const region of regions.features) {
+      const p = region?.properties;
+      if (!text(p?.id) || regionMap.has(p.id) || !validHistoricalGeometry(region.geometry)) return failure('invalidGeometry');
+      if (p.owner && !polityIds.has(p.owner)) return failure('invalidOwner');
+      if (!['owned','unresolved','non-state','disputed','physical'].includes(p.historical?.status)
+        || !sourceRefs(p.historical?.sourceIds,h.sources)
+        || (p.owner ? p.historical.status !== 'owned' : p.historical.status === 'owned')) return failure('invalidOwnership');
+      regionMap.set(p.id,region);
+    }
+    for (const [id,owner] of Object.entries(world.regionOwnershipOverrides ?? {})) {
+      if (!regionMap.has(id) || regionMap.get(id).properties.owner !== owner) return failure('invalidOwner');
+    }
+    if (!h.playablePolityIds.every(id => regions.features.some(f => f.properties.owner === id) && record(world.polityOverrides?.[id]))) return failure('missingMapPolity');
+    if (!validSettlements(h,regionMap)) return failure('invalidSettlement');
+    if (!h.playablePolityIds.every(id => validCourt(h.courtSeeds?.[id],id,h))) return failure('invalidCourt');
+    const areas = ['Africa','Asia','Europe','Americas','Oceania','Antarctica'];
+    if (!Array.isArray(h.coverage) || !unique(h.coverage.map(c => c.area)) || !areas.every(area => h.coverage.some(c => c.area === area))
+      || !h.coverage.every(c => ['partial','unresolved','non-state'].includes(c.status) && text(c.noteSv) && sourceRefs(c.sourceIds,h.sources))) return failure('invalidCoverage');
+    if (!validIds(assetManifest?.assets) || !assetManifest.assets.every(a => sourceRefs(a.sourceIds,h.sources)
+      && a.crs === 'OGC:CRS84' && text(a.revision) && /^[a-f0-9]{64}$/.test(a.sha256) && text(a.license)
+      && Array.isArray(a.transformations) && a.transformations.length > 0)) return failure('invalidAssets');
+    return { ok: true, contentId: h.contentId, contentVersion: h.contentVersion, date, polityId };
+  } catch { return failure('invalidContent'); }
+}
