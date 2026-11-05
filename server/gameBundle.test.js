@@ -254,7 +254,7 @@ test("a game whose scenario this install lacks still imports, and remembers what
     const imported = store.importGameBundle({
       schema: "open-historia-game-bundle/1",
       game: { name: "Borrowed Campaign" },
-      data: { game: { country: "Testland" }, world: {} },
+      data: { game: { country: "Testland", gameDate: "2032-11-15" }, world: {} },
       scenarioRef: {
         builtIn: false,
         hubOrigin: { postId: 7, bundleUrl: "https://example.invalid/map.zip", syncedAt: "2026-08-01T00:00:00.000Z" },
@@ -268,6 +268,7 @@ test("a game whose scenario this install lacks still imports, and remembers what
       scenarioId: card.scenarioId,
       importedScenarioName: card.importedScenarioName,
       importedScenarioOrigin: card.importedScenarioOrigin,
+      reExportedOrigin: store.exportGameBundle(imported.game.id).scenarioRef.hubOrigin,
     }`)}
   `);
 
@@ -279,6 +280,7 @@ test("a game whose scenario this install lacks still imports, and remembers what
     "the scenario id is not a name a player can go and ask anyone for",
   );
   assert.equal(result.importedScenarioOrigin.bundleUrl, "https://example.invalid/map.zip");
+  assert.equal(result.reExportedOrigin.bundleUrl, "https://example.invalid/map.zip", "a missing map keeps its recorded origin when passed on");
 });
 
 test("the sender's scenario hints survive an ordinary meta write", () => {
@@ -287,7 +289,7 @@ test("the sender's scenario hints survive an ordinary meta write", () => {
     const imported = store.importGameBundle({
       schema: "open-historia-game-bundle/1",
       game: { name: "Borrowed Campaign" },
-      data: {},
+      data: { game: { country: "Testland", gameDate: "2032-11-15" }, world: {} },
       scenarioRef: { scenarioId: "someone-elses-map", scenarioName: "Someone Else's Map" },
     });
     // Archiving is the smallest ordinary meta write there is; readGameMeta
@@ -333,7 +335,7 @@ test("a game whose own map is already gone still exports, and passes the name on
     const imported = store.importGameBundle({
       schema: "open-historia-game-bundle/1",
       game: { name: "Passed Along" },
-      data: {},
+      data: { game: { country: "Testland", gameDate: "2032-11-15" }, world: {} },
       scenarioRef: { scenarioId: "long-gone", scenarioName: "Someone Else's Map" },
     });
     const reExported = store.exportGameBundle(imported.game.id);

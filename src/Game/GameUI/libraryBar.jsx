@@ -22,7 +22,8 @@ import {
   downloadScenarioJsonAsset,
   ensureLibraryCatalog,
   exportScenarioBundle,
-  importGameBundle,
+  restoreGameBundle,
+  restoreScenarioForGame,
   importScenarioBundle,
   updateScenarioFromBundle,
   loadGameDetails,
@@ -54,12 +55,11 @@ import { useCountryDisplayName } from "../../runtime/polityNames.js";
 import { flagEmojiFromGid } from "../../runtime/countryFlags.js";
 import {
   splitScenarioBundleImage,
-  embedScenarioBundleImage,
-  embedScenarioBundleVector,
 } from "../../runtime/communityBasemaps.js";
-import { zipBundle, unzipBundle, looksLikeZip } from "../../runtime/bundleZip.js";
+import { zipBundle, looksLikeZip } from "../../runtime/bundleZip.js";
 import { SCENARIO_LICENSE_FILE, SCENARIO_LICENSE_TEXT, SCENARIO_LICENSE_URL } from "../../runtime/scenarioLicense.js";
-import { restoreBundleFiles, splitBundleFiles } from "../../runtime/bundleFiles.js";
+import { splitBundleFiles } from "../../runtime/bundleFiles.js";
+import { readScenarioFile, restoreScenarioFileForGame } from "../../runtime/scenarioFile.js";
 import { buildGameZipBlob, formatZipSize, readGameZip, saveGameZipToDisk } from "../../runtime/gameZip.js";
 import { saveBlobToDisk } from "../../runtime/saveFile.js";
 import { acceptFor } from "../../runtime/fileAccept.js";
@@ -1723,6 +1723,7 @@ const LibraryTopBar = () => {
   const [isBusy, setIsBusy] = useState(false);
   const assetFileInputsRef = useRef({});
   const importScenarioInputRef = useRef(null);
+  const missingScenarioInputRef = useRef(null);
   const importGameInputRef = useRef(null);
   // The game whose map this library does not hold, while its prompt is up.
   const [missingScenarioGame, setMissingScenarioGame] = useState(null);
@@ -1794,10 +1795,6 @@ const LibraryTopBar = () => {
     // the remounted menu must come up closed, over the new game.
     setMenuOpen(false);
     try {
-      if (scenario.id?.startsWith("dynasties-hadara")) {
-        await startDynastyCampaign({ mode: dynastyMode, scenarioId: scenario.id, difficulty, characterDifficulty: dynastyDifficulty });
-        return;
-      }
       // gamePatch merges — a full `game` write would REPLACE game.json and wipe
       // startDate/gameDate/round (the "Undated" bug). It rides on the create
       // itself: patched in a second request, after `setActive` had switched to
@@ -1822,81 +1819,17 @@ const LibraryTopBar = () => {
   // Create a game led by a player-invented faction. It is written into the game's
   // OWN world/colors/flags — a game carries its own copies and falls back to the
   // scenario only for what it doesn't set, so the scenario is never touched.
-  const startGameForFaction = async (scenario, faction, difficulty) => {
-    setCountryPicker(null);
-    setCustomRegionData(null); setPickerOwnerOverrides(null); setPickerBackground(null);
-    setEditorError(null);
-    setIsBusy(true);
-    setMenuOpen(false);
-    try {
-      const details = await createGame({
-        name: `${faction.name} — ${scenario.name}`,
-        scenarioId: scenario.id,
-        // The faction's name from the first moment the game is active (the
-        // opening cover reads it); the save below writes it again once the
-        // faction is in the world it resolves against.
-        gamePatch: { country: faction.name, ...(difficulty ? { difficulty } : null) },
-        setActive: true,
-      });
-      const gameId = details.game.id;
-
-      // Read the game's world, which createGame seeded from the scenario, and merge
-      // the faction into its existing maps. This read-merge-write is load-bearing:
-      // saveGame writes `world` whole (a worldPatch would SHALLOW-merge, replacing
-      // polityOverrides/ownerCodes/regionOwnershipOverrides outright and wiping
-      // every other country on the map).
-      const gameDetails = await loadGameDetails(gameId).catch(() => null);
-      const world = { ...(gameDetails?.data?.world ?? {}) };
-      const name = faction.name;
-      const hexColor = /^#[0-9a-fA-F]{6}$/.test(faction.color) ? faction.color : "#a1a1aa";
-
-      world.polityOverrides = {
-        ...(world.polityOverrides ?? {}),
-        [name]: { name, aliases: [], color: hexColor, note: faction.lore || "" },
-      };
-      world.regionOwnershipOverrides = { ...(world.regionOwnershipOverrides ?? {}) };
-      for (const regionId of faction.regionIds ?? []) {
-        world.regionOwnershipOverrides[regionId] = name;
-      }
-      // ownerCodes lists who is playable — include the faction even when landless.
-      world.ownerCodes = [...new Set([...(world.ownerCodes ?? []), name])].sort();
-      // A faction that claimed drawn/overridden territory needs the custom-region
-      // renderer on so its regions paint; a landless faction leaves the flag as-is.
-      if ((faction.regionIds ?? []).length) world.customRegions = true;
-
-      await saveGame(gameId, { world, gamePatch: { country: name, ...(difficulty ? { difficulty } : null) } });
-
-      // Colour and flag live in their own runtime assets. createGame set this game
-      // active, so JSON_URLS.colors/flags now resolve to it — and reading them gives
-      // the EFFECTIVE asset (the scenario's, since a fresh game has none of its own).
-      // Read-merge-write materialises that whole palette into the game with the
-      // faction added; writing only the faction would shadow the scenario file and
-      // leave every other country uncoloured. This is the "Add Country" cheat's path.
-      try {
-        const colors = await readJson(JSON_URLS.colors, { defaultValue: {}, force: true });
-        await writeJson(JSON_URLS.colors, { ...colors, [name]: hexToRgbArray(hexColor) }, { pretty: true });
-      } catch { /* colours are cosmetic — a landless faction paints nothing anyway */ }
-
-      if (faction.flag) {
-        try {
-          const flags = await readJson(JSON_URLS.flags, { defaultValue: {}, force: true });
-          await writeJson(JSON_URLS.flags, { ...flags, [name]: faction.flag }, { pretty: true });
-        } catch { /* flag is cosmetic */ }
-      }
-
-      await openGameEditor(gameId);
-    } catch (nextError) {
-      setMenuOpen(true);
-      setEditorError(nextError.message);
-    } finally {
-      setIsBusy(false);
-    }
+  const startGameForFaction = async () => {
+    setEditorError("Välj ett historiskt rike med ett förberett hov.");
   };
 
   // Build the start-country list for a scenario: only the factions that actually
   // exist in it (world.ownerCodes), named as era polities where defined. Falls
   // back to every country for scenarios without an owner list.
   const buildScenarioCountryOptions = (world, allCountries, nameOverrides = {}) => {
+    const h = world?.historicalScenario;
+    if (h?.kind === 'historical') return (h.playablePolityIds ?? []).map(id => ({code:id,name:h.polities.find(p=>p.id===id)?.nameSv ?? id}));
+    if (!h) return [];
     const entries = Array.isArray(allCountries) ? allCountries : [];
     const entriesByCode = new Map();
     for (const entry of entries) {
@@ -2406,21 +2339,7 @@ const LibraryTopBar = () => {
 
       const { bundle, scenarioBundle, snapshotsText } = await readGameZip(buffer);
 
-      // The scenario first, so the game's card names its map the moment it
-      // appears. Only when this library doesn't already hold that id: importing
-      // regardless would mint a second copy of the same map — up to 53 MB —
-      // every time the same game was imported, and ensureUniqueId would rename
-      // it, so the game would point at whichever copy arrived first anyway.
-      let scenarioId = bundle.scenarioRef?.scenarioId ?? "";
-      if (scenarioBundle && !scenarios.some((entry) => entry.id === scenarioId)) {
-        const imported = await importScenarioBundle(scenarioBundle);
-        scenarioId = imported.scenario.id;
-      }
-
-      const details = await importGameBundle({
-        ...bundle,
-        scenarioRef: { ...(bundle.scenarioRef ?? {}), scenarioId },
-      });
+      const details = await restoreGameBundle({bundle,scenarioBundle});
       // Restore points go back as the text they arrived as, so neither side ever
       // parses ~21 MB of them.
       if (snapshotsText) await writeGameSnapshotsText(details.game.id, snapshotsText);
@@ -2458,8 +2377,7 @@ const LibraryTopBar = () => {
       // whole map inside the next game exported from it — hundreds of
       // megabytes, built in the page.
       const bundle = await downloadHubScenario({ postId: origin.postId, bundleUrl: origin.bundleUrl, syncedAt: origin.syncedAt });
-      const imported = await importScenarioBundle(bundle);
-      await saveGame(game.id, { scenarioId: imported.scenario.id });
+      await restoreScenarioForGame(game.id,bundle);
       await refreshLibraryCatalog({ force: true });
       setMissingScenarioGame(null);
       setMenuOpen(false);
@@ -2473,6 +2391,26 @@ const LibraryTopBar = () => {
     }
   };
 
+
+  const handleMissingScenarioFile = async (event) => {
+    const [file] = Array.from(event.target.files ?? []);
+    event.target.value = "";
+    if (!file || !missingScenarioGame) return;
+    const gameId = missingScenarioGame.id;
+    setMissingScenarioError("");
+    setIsBusy(true);
+    try {
+      await restoreScenarioFileForGame({ file, gameId, restore: restoreScenarioForGame });
+      await refreshLibraryCatalog({ force: true });
+      setMissingScenarioGame(null);
+      setMenuOpen(false);
+      await activateGame(gameId);
+    } catch (error) {
+      setMissingScenarioError(error.message);
+    } finally {
+      setIsBusy(false);
+    }
+  };
 
   // Blank scenario from the menu's + tile: create (seeded server-side from the
   // default scenario) and drop straight into its editor, above the menu.
@@ -2783,31 +2721,7 @@ const LibraryTopBar = () => {
     setIsBusy(true);
 
     try {
-      // A scenario exported with a custom basemap arrives as a .zip (scenario.json +
-      // the raw basemap file); everything else is a plain JSON bundle. Detect the zip
-      // by its magic bytes so a renamed file still works, then re-embed the basemap so
-      // the importer sees a normal self-contained bundle.
-      const buffer = await file.arrayBuffer();
-      let bundle;
-      if (looksLikeZip(new Uint8Array(buffer))) {
-        const zip = await unzipBundle(buffer);
-        const scenarioText = await zip.text("scenario.json");
-        if (!scenarioText) throw new Error("That .zip is missing scenario.json.");
-        bundle = await restoreBundleFiles(JSON.parse(scenarioText), zip);
-        const imageName = zip.names().find((n) => /(^|\/)basemap\.(png|jpe?g|webp|gif|svg)$/i.test(n));
-        if (imageName) {
-          embedScenarioBundleImage(bundle, await zip.bytes(imageName), imageName);
-        } else {
-          const vectorName = zip.names().find((n) => /(^|\/)basemap\.geojson$/i.test(n));
-          if (vectorName) embedScenarioBundleVector(bundle, await zip.bytes(vectorName));
-        }
-      } else {
-        bundle = JSON.parse(new TextDecoder().decode(buffer));
-      }
-      // A file never says for itself which post it came from: only a download
-      // of the game's own stamps that link (hubPosts.js downloadHubScenario),
-      // and one written into a file would pass for a checked copy of the hub's.
-      if (bundle && typeof bundle === "object") delete bundle.hubOrigin;
+      const bundle = await readScenarioFile(file);
       const details = await importScenarioBundle(bundle);
       setActiveTab("scenarios");
       setMenuOpen(true);
@@ -2908,13 +2822,13 @@ const LibraryTopBar = () => {
   // The character engine's difficulty for a dynasty started from the scenario picker; the start card has its own select.
   const [dynastyDifficulty, setDynastyDifficulty] = useState("normal");
   const [dynastyStartError, setDynastyStartError] = useState("");
-  const startDynastyFromCard = async ({ mode, seed, difficulty }) => {
+  const startDynastyFromCard = async (options) => {
     setDynastyStartError("");
     // Activation remounts this component. Its shared menu default must already
     // be closed when the new instance mounts, just as in startGameForCountry.
     setMenuOpen(false);
     try {
-      await startDynastyCampaign({ mode, seed, characterDifficulty: difficulty });
+      await startDynastyCampaign(options);
     } catch (failure) {
       setDynastyStartError(failure?.message || "Kampanjen kunde inte startas.");
       setMenuOpen(true);
@@ -3096,79 +3010,16 @@ const LibraryTopBar = () => {
     // flow below.
     if (!play) return { saved: true, scenarioId };
 
-    // Create + activate a fresh game so the running map reflects the edit. Relying
-    // on the player finishing a follow-up picker left the old active game (and old
-    // map) in place — this guarantees the new map is live. Menu flag first: the
-    // activation remounts the UI and the remount must come up menu-closed.
-    setMenuOpen(false);
-    const gameDetails = await createGame({
-      name: `${scenario.name} Session`,
-      scenarioId,
-      ...(seed.game?.country ? { gamePatch: { country: seed.game.country } } : null),
-      setActive: true,
-    });
-    const newGameId = gameDetails.game.id;
-
-    // Tear down all the library UI so the freshly-activated game is visible.
     setIsMapEditorOpen(false);
     setMapEditorScenario(null);
     setMapEditorSeed(null);
     resetEditor();
-    setMenuOpen(false);
-
-    // Optional: let the player pick who they control on the new game — limited to
-    // the factions this map actually contains.
-    const seedWorld = {
-      ownerCodes: [...new Set(Object.values(seed.world?.regionOwnershipOverrides ?? {}))].sort(),
-      polityOverrides: seed.world?.polityOverrides ?? {},
-    };
-    setPlayGameId(newGameId);
-    setCountryQuery("");
-    setCountryOptions([]);
-    setCustomRegionData(null); setPickerOwnerOverrides(null); setPickerBackground(null);
-    setCountryPicker(scenario);
-    loadCountryNames().catch(() => [])
-      .then((allCountries) => {
-        setCountryOptions(buildScenarioCountryOptions(
-          seedWorld,
-          [...getBaseCountryOptions(), ...allCountries],
-          scenario.countryNameOverrides,
-        ));
-        setPickerOwnerOverrides(seedWorld.regionOwnershipOverrides ?? null);
-        // The map editor just saved custom region geometry — load it so the
-        // country picker renders the scenario's actual map, not the stock seed.
-        downloadScenarioJsonAsset(scenario.id, "regionsGeojson", { coarse: true })
-          .then((geojson) => { if (geojson) setCustomRegionData(geojson); })
-          .catch(() => {});
-        loadPickerBackground(scenario.id, seed.world?.background);
-      })
-      // Falling back to every real-world country here was the same bug by another
-      // route: a scenario picker listing Germany and France because a name lookup
-      // failed. The scenario's own world is already in hand — build from it.
-      .catch(() => {
-        setCountryOptions(buildScenarioCountryOptions(seedWorld, [], scenario.countryNameOverrides));
-        setPickerOwnerOverrides(seedWorld.regionOwnershipOverrides ?? null);
-      });
+    handleScenarioPlay({...scenario,id:scenarioId});
   };
 
-  // Country picker resolution: in the Apply-&-Play flow update the active game;
-  // in the normal "New Game" flow create a new game.
-  const choosePlayCountry = async (countryCode, difficulty) => {
-    const gid = playGameId;
-    setCountryPicker(null);
-    setCustomRegionData(null); setPickerOwnerOverrides(null); setPickerBackground(null);
+  const choosePlayCountry = async (countryCode,difficulty) => {
     setPlayGameId(null);
-    if (!gid) return;
-    setMenuOpen(false);
-    try {
-      const gamePatch = { ...(countryCode ? { country: countryCode } : null), ...(difficulty ? { difficulty } : null) };
-      if (Object.keys(gamePatch).length) {
-        await saveGame(gid, { gamePatch });
-      }
-      await activateGame(gid);
-    } catch (nextError) {
-      setEditorError(nextError.message);
-    }
+    await startGameForCountry(countryPicker,countryCode,difficulty);
   };
 
   // Picking a country moves to step two (difficulty); picking a difficulty
@@ -3237,11 +3088,11 @@ const LibraryTopBar = () => {
     [visibleGames],
   );
   const mostPlayedScenarios = useMemo(
-    () => [...scenarios].sort((a, b) => (b.playCount ?? 0) - (a.playCount ?? 0) || (b.gameCount ?? 0) - (a.gameCount ?? 0)),
+    () => scenarios.filter(s=>s.historicalStart && !s.restoreOnly).sort((a, b) => (b.playCount ?? 0) - (a.playCount ?? 0) || (b.gameCount ?? 0) - (a.gameCount ?? 0)),
     [scenarios],
   );
   const lastUpdatedScenarios = useMemo(
-    () => [...scenarios].sort((a, b) => String(b.updatedAt ?? "").localeCompare(String(a.updatedAt ?? ""))),
+    () => scenarios.filter(s=>s.historicalStart && !s.restoreOnly).sort((a, b) => String(b.updatedAt ?? "").localeCompare(String(a.updatedAt ?? ""))),
     [scenarios],
   );
   // "Your Scenarios": ones the player made or edited themselves — no hubOrigin
@@ -3250,7 +3101,7 @@ const LibraryTopBar = () => {
   // only counts once it has actually been touched.
   const yourScenarios = useMemo(
     () => scenarios.filter(
-      (scenario) => (!scenario.hubOrigin || scenario.hubOrigin.editedAt) && (scenario.id !== "default" || scenario.updatedAt !== scenario.createdAt),
+      (scenario) => scenario.historicalStart && !scenario.restoreOnly && (!scenario.hubOrigin || scenario.hubOrigin.editedAt) && (scenario.id !== "default" || scenario.updatedAt !== scenario.createdAt),
     ),
     [scenarios],
   );
@@ -3583,7 +3434,7 @@ const LibraryTopBar = () => {
                 , which isn't in your library — so there is no map to open it on.
                 {pending.importedScenarioOrigin
                   ? " It's on the community hub, so it can be fetched now."
-                  : " Ask whoever sent you the game for the scenario file, then import it from the Scenarios tab."}
+                  : " Be om scenariofilen och välj den här."}
               </div>
               {/* Why Import & play did not work. Said here because no editor is
                   open behind this prompt to show it, and one reason is not
@@ -3606,6 +3457,11 @@ const LibraryTopBar = () => {
                     {isBusy ? "Getting the scenario…" : "Import & play"}
                   </button>
                 )}
+                <button type="button" className="oh-tap-row" disabled={isBusy}
+                  onClick={() => missingScenarioInputRef.current?.click()}
+                  style={touchFit({ ...actionButtonStyle, minHeight: "2.6rem" }, touch)}>
+                  Välj scenariofil och spela
+                </button>
                 {/* The hub is only worth offering when the map is actually on it.
                     Otherwise the player has a file to import, and the Scenarios
                     tab is where importing one happens. */}
@@ -3690,6 +3546,9 @@ const LibraryTopBar = () => {
         style={{ display: "none" }}
         type="file"
       />
+
+      <input ref={missingScenarioInputRef} accept={acceptFor(".json,application/json,.zip,application/zip")}
+        onChange={handleMissingScenarioFile} style={{ display: "none" }} type="file" />
 
       {/* A game export is always a .zip — the bundle alone is never a whole game,
           because its restore points and any map ride beside it. */}

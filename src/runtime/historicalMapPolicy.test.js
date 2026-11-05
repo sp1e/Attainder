@@ -5,7 +5,7 @@ import { resolvePolityFlag } from './polityFlags.js';
 import { resolveCityLayerSource } from './cityFeatures.js';
 import { mergeStockAndDeclaredPolities } from './countryList.js';
 import { hasExactRegionTileIdentity } from '../Game/Map/vnext/regionTileAuthority.js';
-const world = { historicalScenario: { kind: 'historical' }, polityOverrides: { egypt: { name: 'Egypt', mapRefs: { gadm0: ['EGY'] } } } };
+const world = { historicalScenario: { kind: 'historical', polities: [{id:'egypt',nameSv:'Egypt'}] }, polityOverrides: { egypt: { name: 'Egypt', mapRefs: { gadm0: ['EGY'] } } } };
 test('historical identity does not revive a modern stock country', () => {
   assert.equal(resolvePolityIdentity('Sweden',world,{ allowUnknown: false }).status,'unresolved');
   assert.equal(resolvePolityIdentity('Sweden',{}, { allowUnknown: false }).status,'stock-base');

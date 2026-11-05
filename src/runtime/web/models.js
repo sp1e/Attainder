@@ -121,6 +121,7 @@ export const resolveOwnerRef = (value, world) => {
 };
 
 export const canonicalizeWorldCountryRefs = (world) => {
+  if (world?.historicalScenario) return world;
   if (!world || typeof world !== "object" || Array.isArray(world)) return world;
   const next = { ...world };
 
@@ -193,6 +194,7 @@ export const canonicalizeColorKeys = (colors, world) => {
 // `world` is REQUIRED so aliases/current names/legacy codes resolve back to the
 // stable player polity key.
 export const canonicalizeGameCountry = (game, world) => {
+  if (world?.historicalScenario) return game;
   if (!game || typeof game !== "object" || Array.isArray(game) || !game.country) return game;
   return { ...game, country: resolveOwnerRef(game.country, world) };
 };
@@ -224,6 +226,7 @@ export const readScenarioMeta = (scenarioId, raw = {}) => {
   const subtitle = String(raw?.subtitle ?? "").trim() || DEFAULT_SCENARIO_META.subtitle;
   const description = String(raw?.description ?? "").trim() || subtitle || DEFAULT_SCENARIO_META.description;
   return {
+    restoreOnly: raw?.restoreOnly === true,
     accentColor: accentOrDefault(raw?.accentColor, DEFAULT_SCENARIO_META.accentColor),
     coverImageContentType: readStoredImageContentType(raw?.coverImageContentType),
     countryNameOverrides: raw?.countryNameOverrides && typeof raw.countryNameOverrides === "object" ? raw.countryNameOverrides : {},
@@ -262,6 +265,8 @@ export const readGameMeta = (gameId, raw = {}) => {
     // the scenario, and where they believed it could still be fetched — read
     // when this browser opens a game whose map it does not hold.
     importedScenarioName: String(raw?.importedScenarioName ?? "").trim() || null,
+    importedOriginalScenarioId: String(raw?.importedOriginalScenarioId ?? "").trim() || null,
+    importedScenarioUnbound: raw?.importedScenarioUnbound === true,
     importedScenarioOrigin: normalizeHubOrigin(raw?.importedScenarioOrigin),
     // Server twin: when this game arrived, used by the Last Played row.
     importedAt: String(raw?.importedAt ?? "").trim() || null,

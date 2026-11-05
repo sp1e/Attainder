@@ -2,13 +2,17 @@
 
 Implementation plan, 5 November 2026.
 
+## Current status
+
+Tasks 1–4 are accepted through `5e3f515`. Task 5 is locally tested and awaits independent review. Task 6 browser verification remains open; the annual historical-events research and popup are separate backlog work.
+
 ## Goal and completion boundary
 
 Replace the player-facing Hadara and Modern Day defaults with historical campaigns on a real-world map. Accept new-start dates from 3300 BC through AD 1200 inclusive, with no year zero. Keep the selected date and polity consistent across game state, court, map and model context. Preserve existing campaigns, their map assets, people and stored replay outcomes.
 
 Complete six tasks in numbered order. Tasks 1–4 prepare and test the foundation without changing the current start flow. Task 5 enables guards, historical defaults and start UI together, after content and court work passes review. Task 6 verifies both builds in a browser and records release evidence. Each task has a deliverable that can pass its own tests and review; no task waits for a later task to finish its acceptance checks. Keep preparation on the feature branch until the combined integration passes.
 
-The release must include a sourced Bronze Age bookmark and a sourced AD 1200 bookmark. Research and content verification remain pending. Review content in smaller increments within Task 2, but an AD 1200-only internal slice does not complete that task or the release. Choose the Bronze Age date and polity from evidence within the permitted range. Do not fabricate a ruler, court, frontier or date to satisfy the schedule.
+The release must include a sourced Bronze Age bookmark and a sourced AD 1200 bookmark. The two bookmark content packages passed Task 2 review; browser release verification remains open. The Bronze Age bookmark uses Egypt around 3000 BC. Do not fabricate a ruler, court, frontier or date to satisfy the schedule.
 
 Expose authored bookmarks, plus any date intervals whose content research supports them. Keep the entire policy range available to valid authored/imported scenarios. A validator accepting 3300 BC does not establish a researched world snapshot for that day. Do not move one court and map through 4,500 annual starts with a date slider.
 

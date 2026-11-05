@@ -1,27 +1,35 @@
-import { activateGame, createGame, ensureLibraryCatalog, importScenarioBundle, saveGame } from './library.js';
-import { createCharacterSystem } from './characters/index.js';
+import { activateGame, createGame, ensureLibraryCatalog, loadScenarioDetails, downloadScenarioJsonAsset } from './library.js';
 import { normalizeCampaignSeed } from './campaignSeed.js';
-import { DYNASTY_CITIES, DYNASTY_DATE, DYNASTY_SCENARIO_ID, createDynastyScenarioBundle } from './dynastyScenario.js';
+import { historicalStartOption } from './historicalStartOptions.js';
 
-// `difficulty` is the game's own setting; `characterDifficulty` is the character engine's (easy, normal, hard).
-export async function startDynastyCampaign({ mode = 'realm', scenarioId, difficulty = 'standard', characterDifficulty = 'normal', seed = 104729 } = {}) {
-  if (!['realm','family'].includes(mode)) throw new Error('Välj riket eller familjen.');
-  seed = normalizeCampaignSeed(seed);
-  let id = scenarioId;
-  if (!id) {
-    const catalog = await ensureLibraryCatalog();
-    id = catalog?.scenarios?.find(s => s.id === DYNASTY_SCENARIO_ID)?.id;
-    if (!id) id = (await importScenarioBundle(createDynastyScenarioBundle())).scenario.id;
+export async function loadHistoricalStartOptions() {
+  const catalog = await ensureLibraryCatalog();
+  const scenarios = (catalog?.scenarios ?? []).filter(s => s.historicalStart && !s.restoreOnly);
+  const options = [];
+  for (const scenario of scenarios) {
+    try {
+      const [details,regions,cities] = await Promise.all([loadScenarioDetails(scenario.id),downloadScenarioJsonAsset(scenario.id,'regionsGeojson'),downloadScenarioJsonAsset(scenario.id,'citiesGeojson')]);
+      options.push(historicalStartOption(details,regions,cities));
+    } catch { /* Invalid templates cannot offer a start. */ }
   }
-  // Finish the new campaign before activation, so no incomplete world is shown
-  // and no existing campaign or authored scenario is modified.
-  const created = await createGame({ name:`Hadara · ${mode === 'family' ? 'Familjen Arel' : 'Riket'}`,scenarioId:id,setActive:false,gamePatch:{country:'Hadara',difficulty,language:'Swedish'} });
+  return options;
+}
+
+export async function startDynastyCampaign({ mode = 'realm', scenarioId, date, polityId, familyId, difficulty = 'normal', characterDifficulty, seed = 104729 } = {}) {
+  seed = normalizeCampaignSeed(seed);
+  const options = await loadHistoricalStartOptions();
+  const scenario = scenarioId ? options.find(s => s.scenarioId === scenarioId) : options.find(s => s.scenarioId === 'default') ?? options[0];
+  if (!scenario) throw new Error('Det finns inget giltigt historiskt scenario att starta.');
+  const selectedPolity = polityId ?? scenario.polities[0]?.id;
+  const selectedDate = date ?? scenario.date;
+  const engineDifficulty = characterDifficulty ?? (difficulty === 'standard' ? 'normal' : difficulty);
+  const created = await createGame({ name: `${scenario.name} · ${mode === 'family' ? 'Familjen' : 'Riket'}`,
+    scenarioId: scenario.scenarioId, setActive: false,
+    historicalStart: { date: selectedDate, polityId: selectedPolity, mode, ...(familyId ? {familyId} : {}), seed, difficulty: engineDifficulty },
+    gamePatch: { country: selectedPolity, difficulty: engineDifficulty === 'normal' ? 'standard' : engineDifficulty, language: 'Swedish' } });
   const gameId = created.game.id;
-  const date = created.data.game.gameDate || DYNASTY_DATE;
-  const world = { ...created.data.world, initialCameraBounds:created.data.world.initialCameraBounds || [[26.7,32.0],[33.4,37.5]], characterSystem:createCharacterSystem({date,polityId:'Hadara',polityName:'Hadara',mode,seed,cities:DYNASTY_CITIES,difficulty:characterDifficulty}) };
-  await saveGame(gameId,{world,gamePatch:{characterMode:mode,characterSeed:seed}});
-  try { localStorage.setItem('oh-open-characters-on-start','1'); } catch { /* storage may be unavailable */ }
+  try { localStorage.setItem('oh-open-characters-on-start','1'); } catch { /* Optional persistence. */ }
   await activateGame(gameId);
-  window.dispatchEvent(new CustomEvent('oh:open-characters'));
+  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('oh:open-characters'));
   return gameId;
 }

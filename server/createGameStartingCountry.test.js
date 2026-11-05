@@ -41,19 +41,20 @@ after(() => {
 
 test("a game created with a gamePatch holds the country and difficulty from the start, exactly as a later save would write them", () => {
   const result = run(`
-    store.createScenario({ id: "vinland", name: "Vinland", setActive: true });
-    store.updateScenario("vinland", { game: { country: "Norway", startDate: "1000-01-01", gameDate: "1000-01-01", round: 1 } });
-    const created = store.createGame({ id: "picked", name: "Picked", scenarioId: "vinland", gamePatch: { country: "Iceland", difficulty: "hard" }, setActive: true });
-    store.createGame({ id: "saved", name: "Saved", scenarioId: "vinland" });
-    store.updateGame("saved", { gamePatch: { country: "Iceland", difficulty: "hard" } });
-    store.createGame({ id: "plain", name: "Plain", scenarioId: "vinland" });
-    ${report(`{ picked: gameJson("picked"), saved: gameJson("saved"), plain: gameJson("plain"), active: created.game?.id ?? created.id }`)}
+    const created = store.createGame({ id: "picked", name: "Picked", scenarioId: "default", gamePatch: { country: "johns-realms", difficulty: "hard" }, setActive: true });
+    store.createGame({ id: "saved", name: "Saved", scenarioId: "default" });
+    store.updateGame("saved", { gamePatch: { country: "johns-realms", difficulty: "hard" } });
+    store.createGame({ id: "plain", name: "Plain", scenarioId: "default" });
+    let rejected = false;
+    try { store.createGame({scenarioId:"default",gamePatch:{country:"Iceland"}}); } catch { rejected = true; }
+    ${report(`{ picked: gameJson("picked"), saved: gameJson("saved"), plain: gameJson("plain"), active: created.game?.id ?? created.id, rejected }`)}
   `);
-  assert.equal(result.picked.country, "Iceland");
+  assert.equal(result.picked.country, "johns-realms");
   assert.equal(result.picked.difficulty, "hard");
   // A patch merges: the scenario's dates and round stay (the "Undated" bug).
-  assert.equal(result.picked.startDate, "1000-01-01");
+  assert.equal(result.picked.startDate, "1200-12-31");
   assert.equal(result.picked.round, 1);
   assert.deepEqual(result.picked, result.saved);
-  assert.equal(result.plain.country, "Norway", "without a patch the scenario's default stands");
+  assert.equal(result.plain.country, "johns-realms", "without a patch the scenario's default stands");
+  assert.equal(result.rejected, true, "a polity without an authored court cannot be selected");
 });

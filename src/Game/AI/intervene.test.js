@@ -8,6 +8,12 @@ import assert from "node:assert/strict";
 
 import { closingDateAfterIntervene, describeIntervention, journalTurn, truncateTurn } from "./intervene.js";
 
+test('BC intervention closes on the chronologically latest kept day', () => {
+    const keptEvents = [{ id: 'a', date: '-0300-12-31' }, { id: 'b', date: '-0299-01-02' }];
+    assert.equal(closingDateAfterIntervene({ keptEvents, minimumDate: '-0300-12-30' }), '-0299-01-02');
+    assert.equal(truncateTurn({ events: keptEvents }, 2, { originDate: '-0300-12-30' }).closingDate, '-0299-01-02');
+});
+
 const event = (id, date, title) => ({ id, date, title, description: `${title}.`, impacts: {} });
 const turn = () => journalTurn({
     events: [

@@ -22,6 +22,8 @@ import {
   getScenarioCatalog,
   getScenarioDetails,
   importGameBundle,
+  restoreGameBundle,
+  restoreScenarioForGame,
   importScenarioBundle,
   updateScenarioFromBundle,
   readGameSnapshots,
@@ -695,6 +697,15 @@ app.get("/api/games/:gameId/export", (req, res) => {
   } catch (error) {
     sendError(res, 404, error);
   }
+});
+
+app.post("/api/games/restore", largeJsonParser, (req,res) => {
+  try { res.status(201).json(restoreGameBundle(req.body ?? {})); }
+  catch (error) { res.status(400).json({error:error.message}); }
+});
+app.post("/api/games/:gameId/scenario/restore", largeJsonParser, (req,res) => {
+  try { res.json(restoreScenarioForGame(req.params.gameId,req.body)); }
+  catch (error) { res.status(400).json({error:error.message}); }
 });
 
 app.post("/api/games/import", largeJsonParser, (req, res) => {

@@ -97,7 +97,7 @@ test("a bundle written either way imports to the same map on disk", () => {
   const root = buildDataDir();
   const result = runStore(root, `
     const fs = await import("node:fs");
-    const bundle = store.exportScenarioBundle("hand-drawn");
+    const bundle = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(SERVER_DIR,"seed/historical/john-1200/scenario.json"))}, "utf8"));
     const asBase64 = JSON.parse(JSON.stringify(bundle));
     asBase64.assets.regionsGeojson = {
       ...asBase64.assets.regionsGeojson,
@@ -115,8 +115,8 @@ test("a bundle written either way imports to the same map on disk", () => {
       firstName: read(fresh.scenario.id).features[0].properties.name,
     }`)}
   `);
-  assert.equal(result.fresh, 500);
-  assert.equal(result.legacy, 500, "the seven bundles already on the hub still import");
+  assert.equal(result.fresh, 1425);
+  assert.equal(result.legacy, 1425, "the seven bundles already on the hub still import");
   assert.equal(result.same, true);
-  assert.equal(result.firstName, "Region 0");
+  assert.equal(result.firstName, "Okänd historisk kontroll");
 });

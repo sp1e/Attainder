@@ -2,7 +2,7 @@
 
 Written by Claude on 5 November 2026 at `main` = `b655e2b`. Codex develops Attainder on the owner's private desktop until the owner's weekly Claude tokens reset. Read this file from top to bottom before you change anything.
 
-Updated by Codex on 5 November 2026: [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the Phase 3 review fixes after the final branch review and required test/build CI passed. The remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`; the retained remote branch `fix/phase-3-review` ends at `55283dc`. The historical campaign foundation is in progress on `codex/historical-campaign-foundation`. Tasks 1–3 are accepted through `808361e`; Task 4 is locally tested and pending independent review. Tasks 5–6 still own activation, start guards, UI and browser acceptance.
+Updated by Codex on 5 November 2026: [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the Phase 3 review fixes after the final branch review and required test/build CI passed. The remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`; the retained remote branch `fix/phase-3-review` ends at `55283dc`. The historical campaign foundation is in progress on `codex/historical-campaign-foundation`. Tasks 1–4 are accepted through `5e3f515`. Task 5 integrates activation, start guards and UI; local tests pass and independent review is pending. Task 6 still owns browser acceptance.
 
 **On this computer, read `HANDOVER.local.md` in the repository root next.** Git ignores it. It holds the machine-specific paths this public repository must not contain: where the newer Codex lives, the writing rules, the Swedish character sweep and the cleanup list.
 
@@ -40,7 +40,7 @@ The owner said on 4 November 2026: continue development without pausing and with
 
 13 of 29 moments are built. Phases 0 and 1 carry no moments of their own.
 
-Latest measurement: the full serial suite at `cfa225238c5065441e4642481ab507629e498e73` ran 4,410 tests: 4,407 pass, 0 fail, 1 skipped, 2 todo, in 111,035.0005 ms. The build passed in 33.08 seconds with the inherited chunk-size warning. Full lint retains 18 errors and 71 warnings; targeted ESLint for the replay changes reports none. These local measurements remain the tested production-code baseline. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295). The deferred browser checks remain open.
+Latest local Task 5 measurement, before independent review: the full serial suite ran 4,618 tests, with 4,615 pass, 0 fail, 1 skipped and 2 todo, in 157,441.6223 ms. The desktop build passed in 29.40 seconds and the web build in 33.20 seconds; both retain the chunk-size advisory. Changed JavaScript files pass targeted ESLint. The full suite preceded a test-only coverage expansion; those added adapter tests passed separately. The earlier Phase 3 baseline at `cfa225238c5065441e4642481ab507629e498e73` had 4,410 tests and retained 18 lint errors and 71 warnings in the full lint run. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295). The deferred browser checks remain open.
 
 Earlier measurements: `npm test` at `1698e61` gave 4,370 pass, 0 fail. The runtime suite at `62c7bd4` gave 2,280 of 2,280. Panel tests at `054d46a` gave 106 of 106. CI `test` passed on PRs #9 and #10.
 
@@ -65,7 +65,7 @@ Reproduce new findings before fixing them and write the failing test first.
 
 ### 2. Current: build the historical campaign foundation
 
-Follow `docs/superpowers/specs/2026-11-05-historical-world-direction.md`: real geography and historical polities, new starts from the Bronze Age through about AD 1200, and no modern starts. The written plan `docs/superpowers/plans/2026-11-05-historical-campaign-foundation.md` is prepared. Tasks 1–3 are accepted; complete Task 4 review before activating Tasks 5–6. The six ordered tasks cover: campaign-start policy, historical content, initializer, prompts, combined guards/defaults/UI, then browser evidence. Preserve existing campaigns. The foundation is not feature-complete. Year-by-year research for approximately 3300 BC through AD 1200 and the turn-end historical-reference popup remain separate pending work in `docs/development/DEVELOPMENT-BACKLOG.md`.
+Follow `docs/superpowers/specs/2026-11-05-historical-world-direction.md`: real geography and historical polities, new starts from the Bronze Age through about AD 1200, and no modern starts. The written plan `docs/superpowers/plans/2026-11-05-historical-campaign-foundation.md` is prepared. Tasks 1–4 are accepted. Task 5 is locally tested and awaits independent review; complete it before Task 6 browser acceptance. The six ordered tasks cover: campaign-start policy, historical content, initializer, prompts, combined guards/defaults/UI, then browser evidence. Preserve existing campaigns. The foundation is not feature-complete. Year-by-year research for approximately 3300 BC through AD 1200 and the turn-end historical-reference popup remain separate pending work in `docs/development/DEVELOPMENT-BACKLOG.md`.
 
 ### 3. Deferred: run `docs/play-scripts/phase-3.md` in a browser
 

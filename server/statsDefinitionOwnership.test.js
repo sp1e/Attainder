@@ -77,7 +77,7 @@ test("an orphaned imported campaign may fall back to its frozen game Stats defin
       schema: "open-historia-game-bundle/1",
       game: { name: "Orphan" },
       scenarioRef: { scenarioId: "missing-vinland", scenarioName: "Vinland", missing: true },
-      data: { game: {}, world: {}, prompts: {}, actions: [], advisor: [], chat: [], events: [], stats: ${JSON.stringify(frozen)} },
+      data: { game: { gameDate: "2032-11-15" }, world: {}, prompts: {}, actions: [], advisor: [], chat: [], events: [], stats: ${JSON.stringify(frozen)} },
     });
     const id = store.getGameCatalog().games.find((g) => g.name === "Orphan").id;
     store.setActiveGame(id);

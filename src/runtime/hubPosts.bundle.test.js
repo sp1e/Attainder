@@ -121,10 +121,11 @@ test("a file never brings its own link to a post: only a download of the game's 
   assert.equal(game.scenarioBundle.scenario.name, "Shared Relief");
   assert.equal(game.scenarioBundle.hubOrigin, undefined);
 
-  // A scenario imported from disk (the Scenarios tab's Import) is read in the
-  // library itself, and drops the link before the store sees the bundle.
+  // Both file imports use the decoder which strips a file's claimed hub link.
   const library = fs.readFileSync(new URL("../Game/GameUI/libraryBar.jsx", import.meta.url), "utf8");
   const fileImport = library.slice(library.indexOf("const handleImportScenarioFile = "), library.indexOf("// Full country name in the summary"));
-  assert.match(fileImport, /if \(bundle && typeof bundle === "object"\) delete bundle\.hubOrigin;\s+const details = await importScenarioBundle\(bundle\);/);
+  assert.match(fileImport, /const bundle = await readScenarioFile\(file\);\s+const details = await importScenarioBundle\(bundle\);/);
+  const { readScenarioFile } = await import('./scenarioFile.js');
+  assert.equal((await readScenarioFile(new Blob([JSON.stringify(carrying)]))).hubOrigin, undefined);
   assert.equal(fileImport.match(/importScenarioBundle\(/g)?.length, 1);
 });

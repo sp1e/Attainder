@@ -441,6 +441,15 @@ export const importGameBundle = async (bundle) => {
   return details;
 };
 
+export const restoreGameBundle = async ({bundle,scenarioBundle}) => {
+  const details=await requestJson(`${GAMES_API_ROOT}/restore`,{body:{bundle,scenarioBundle},method:"POST"});
+  await refreshLibraryCatalog({force:true}); return details;
+};
+export const restoreScenarioForGame = async (gameId,bundle) => {
+  const details=await requestJson(`${GAMES_API_ROOT}/${encodeURIComponent(gameId)}/scenario/restore`,{body:bundle,method:"POST"});
+  await refreshLibraryCatalog({force:true}); return details;
+};
+
 // Restore points move as TEXT, never through requestJson, and that is the whole
 // point of them having their own endpoint. A full snapshots file is ~21 MB;
 // JSON.parse on it costs ~80 MB of heap, and requestJson would parse it coming

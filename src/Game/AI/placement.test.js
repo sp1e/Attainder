@@ -124,7 +124,7 @@ test("a phrase that finds nothing reports every place it could have been naming"
 //
 // Modern Day's own map, as it ships: its regions are numbered ("2001"), not
 // GADM ids, and it is the map the fleet in that Game sailed on.
-const MODERN_DAY_REGIONS = JSON.parse(readFileSync(new URL("../../../server/seed/default/regions.geojson", import.meta.url), "utf8"))
+const MODERN_DAY_REGIONS = JSON.parse(readFileSync(new URL("../../../server/seed/earlier/modern-day-world-2026-10-v1.geojson", import.meta.url), "utf8"))
     .features.filter((feature) => feature?.geometry);
 const modernDayRegionAt = (point) => MODERN_DAY_REGIONS.find((feature) => pointInGeometry(point, feature.geometry)) ?? null;
 // The test map stands in for the real world here: its gazetteer is handed the

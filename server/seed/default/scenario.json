@@ -1,14 +1,1 @@
-{
-  "accentColor": "#2bc1f3",
-  "coverImageContentType": "image/jpeg",
-  "countryNameOverrides": {},
-  "createdAt": "2026-05-31T10:06:08.381Z",
-  "description": "The modern world: 3,662 regions, 202 polities, 2,500 cities.",
-  "eyebrow": "Scenario",
-  "heroSubtitle": "Lead any nation from 1 January 2016 on the built-in world map.",
-  "heroTitle": "Modern Day",
-  "id": "default",
-  "name": "Modern Day",
-  "subtitle": "Base template",
-  "updatedAt": "2026-05-31T10:06:08.381Z"
-}
+{"id":"default","name":"Johns riken (angevinskt välde), 1200 e.Kr.","description":"Johan av England efter äktenskapet med Isabella. Dokumenterade identiteter, ungefärliga födelsedatum och genererade hovmän.","eyebrow":"HISTORISK KAMPANJ","heroTitle":"Johns riken (angevinskt välde), 1200 e.Kr.","heroSubtitle":"Johan av England efter äktenskapet med Isabella. Dokumenterade identiteter, ungefärliga födelsedatum och genererade hovmän.","subtitle":"1200 e.Kr."}
