@@ -82,6 +82,8 @@ The play scripts reached four of the five tiers. `Det slog tillbaka` did not com
 
 ## Next step
 
+Codex has taken over development for now. The work queue is in `docs/development/CODEX-HANDOVER.md`.
+
 Finish Phase 3: run a whole-branch review of `e735a5b..9a780f7`, and run `docs/play-scripts/phase-3.md` in a browser. Then write the Phase 4 plan (moments 5, 6, 8, 9 and 10).
 
 ## Known Phase 2 limitations

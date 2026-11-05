@@ -1,5 +1,6 @@
 # Attainder contributor instructions
 
+- Codex: read `docs/development/CODEX-HANDOVER.md` first, then `HANDOVER.local.md` if it exists. It holds the current work queue and the standing mandate.
 - The project repository is https://github.com/sp1e/Attainder. Publish tested project changes there at development milestones. Verify the remote commit after each push.
 - Keep README and new public documentation in English. The current game interface includes Swedish text.
 - Preserve upstream attribution and AGPL notices. Do not publish credentials, account sessions, campaign saves, private reports or machine-specific paths.
