@@ -3,7 +3,7 @@ import { BREAKDOWN_EXPIRY, breakdownChoices, breakdownClosedReason, breakdownSte
 import { chancellorStep, loyaltyDriftStep, presentCouncil } from './council.js';
 import { dreadYearStep, presentDread } from './dread.js';
 import { DEMAND_EXPIRY, demandChoices, demandClosedReason, demandStep, presentDemands, resolveDemand, validateFamilyDemands, voidDemand, voidOpenDemands } from './familyDemands.js';
-import { factionStep, presentFactions, refreshFactions, validateFactions, voidFactions } from './factions.js';
+import { ULTIMATUM_EXPIRY, factionStep, presentFactions, refreshFactions, resolveUltimatum, ultimatumChoices, ultimatumClosedReason, validateFactions, voidFactions } from './factions.js';
 import { nicknameStep, validateNicknames } from './nicknames.js';
 import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, validateReign } from './reign.js';
 
@@ -12,11 +12,12 @@ import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, va
 
 export const COURT_STORY_TYPES = Object.freeze(['stress_breakdown', 'family_demand', 'faction_ultimatum']);
 
-// One row per court story that exists. Task 8 adds `faction_ultimatum`.
+// One row per court story.
 // `expiry` is what a story past its due date resolves to; `closedReason` gives the text of a story that fell away, or ''; `onClose` is what such a story leaves behind.
 const COURT_STORIES = Object.freeze({
   stress_breakdown: Object.freeze({ choices: breakdownChoices, resolve: resolveBreakdown, expiry: BREAKDOWN_EXPIRY, closedReason: breakdownClosedReason }),
   family_demand: Object.freeze({ choices: demandChoices, resolve: resolveDemand, expiry: DEMAND_EXPIRY, closedReason: demandClosedReason, onClose: voidDemand }),
+  faction_ultimatum: Object.freeze({ choices: ultimatumChoices, resolve: resolveUltimatum, expiry: ULTIMATUM_EXPIRY, closedReason: ultimatumClosedReason }),
 });
 
 /** Runs once a year, after npcPlotStep, so the draws of the earlier systems keep their order within the year. It stops at once in a dissolved realm. */
@@ -63,6 +64,8 @@ function closeStory(state, story, row, resolution, events, hooks) {
 export function refreshCourtStories(state, events, hooks) {
   refreshFactions(state, events, hooks);
   for (const story of state.stories.filter((item) => item.status === 'open' && Object.hasOwn(COURT_STORIES, item.type))) {
+    // A forced abdication earlier in this loop has voided what the old reign left open.
+    if (story.status !== 'open') continue;
     const row = COURT_STORIES[story.type], resolution = row.closedReason(state, story, hooks);
     if (resolution) closeStory(state, story, row, resolution, events, hooks);
     else if (compareGameDates(story.dueAt, state.date) <= 0) expireStory(state, story, row, events, hooks);

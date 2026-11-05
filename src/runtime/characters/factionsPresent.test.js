@@ -122,8 +122,9 @@ test('the pressure counts the factions the player can see, and no others', () =>
 const closedFields = (state) => ({ status: 'closed', outcome: 'dissolved', closedAt: state.date });
 // A whole ultimatum, then the one field a forgery spoils, so the check that refuses it is the check on that field.
 function standing(faction, state, fields) {
-  state.stories.push({ id: 'story-ultimatum', type: 'faction_ultimatum', factionId: faction.id });
-  Object.assign(faction, { status: 'ultimatum', ultimatumAt: state.date, dueAt: addGameMonths(state.date, 6), storyId: 'story-ultimatum', ...fields });
+  const dueAt = addGameMonths(state.date, 6);
+  state.stories.push({ id: 'story-ultimatum', type: 'faction_ultimatum', factionId: faction.id, status: 'open', dueAt });
+  Object.assign(faction, { status: 'ultimatum', ultimatumAt: state.date, dueAt, storyId: 'story-ultimatum', knownMemberIds: [faction.leaderId], ...fields });
 }
 const LIVE_FORGERIES = {
   'an unknown field': (faction) => { faction.secret = 1; },

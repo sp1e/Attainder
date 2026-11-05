@@ -1,14 +1,16 @@
 import { addGameMonths, compareGameDates, normalizeGameDate } from '../gameDates.js';
-import { bandFor } from './actionOdds.js';
-import { COUNCIL_SEATS, ambitionOf, loyaltyPrecision, readerIntrigue, serviceOf, serviceTier } from './council.js';
-import { normalizeDifficulty, plotRandom, spymasterOf } from './extensions.js';
+import { ODDS_MAX, ODDS_MIN, bandFor, precisionFor } from './actionOdds.js';
+import { COUNCIL_SEATS, ambitionOf, capPrecision, loyaltyPrecision, readerIntrigue, serviceOf, serviceTier } from './council.js';
+import { cowNobles } from './dread.js';
+import { actionRandom, normalizeDifficulty, plotRandom, spymasterOf } from './extensions.js';
 import { AGGRESSION } from './npcPlots.js';
-import { isImprisoned } from './prisoners.js';
-import { reignMonths } from './reign.js';
+import { imprisonPerson, imprisonRefusal, isImprisoned } from './prisoners.js';
+import { addPrestige, reignMonths } from './reign.js';
 
 // Factions: discontented nobles gather against the ruler in secret, and the spymaster uncovers them a person at a time. A record is { id: 'faction-<n>', targetRulerId, leaderId, claimantId, memberIds, knownMemberIds, formedAt, status, outcome, quietUntil, ultimatumAt, dueAt, storyId, concessions, closedAt } and lives in state.factions. memberIds and knownMemberIds stay sorted, every known member is a member, and one faction lives at a time.
-// Silence is a hard rule. A forecast passes event text to the model, so forming, joining, leaving and dissolving write no event, no memory and no log line. Only a discovery logs, and its text names nobody. presentFactions is the only reader that reveals names, and only known ones.
-// The yearly step runs only while the player holds the crown as an adult. It draws only from the plot stream (plotRandom), and only after every other check passed. Nothing else here draws randomness.
+// Silence is a hard rule. A forecast passes event text to the model, so forming, joining, leaving and dissolving write no event, no memory and no log line. A discovery logs and its text names nobody. presentFactions is the only reader that reveals names, and only known ones.
+// At strength 50 a faction comes out with a dated ultimatum, and its leader with it. The ruler abdicates, concedes or tries to crush it, and an unanswered ultimatum or a failed crush deposes the ruler. A concession buys 36 months, after which the faction goes back to work in the dark. An open ultimatum is public, so its story names the people behind it, and settleFaction retells it when one is replaced.
+// The yearly step runs only while the player holds the crown as an adult. It draws only from the plot stream (plotRandom), and only after every other check passed. The one other draw is the crush, from the action stream (actionRandom).
 // `hooks` are the engine's (actionHooks in index.js). actionResolution.js, npcPlots.js and schemes.js import each other in a cycle, so AGGRESSION is read only inside a function here.
 
 export const DISCONTENT_THRESHOLD = 16;
@@ -31,8 +33,27 @@ const TRACE = Object.freeze({ title: 'Spår av en faktion', spymaster: 'Din spio
 const STAGE_LABELS = Object.freeze({ active: 'I det fördolda', ultimatum: 'Ultimatum', appeased: 'Har backat tills vidare' });
 const STATUSES = Object.freeze(['active', 'ultimatum', 'appeased', 'closed']);
 const OUTCOMES = Object.freeze(['dissolved', 'abdicated', 'deposed', 'crushed', 'void']);
+// The outcomes only an ultimatum can lead to.
+const ANSWERED = Object.freeze(['abdicated', 'deposed', 'crushed']);
 const FIELDS = 'claimantId,closedAt,concessions,dueAt,formedAt,id,knownMemberIds,leaderId,memberIds,outcome,quietUntil,status,storyId,targetRulerId,ultimatumAt';
 const INVALID = 'En faktion i sparfilen är ogiltig.';
+const ULTIMATUM = Object.freeze({ months: 6, title: 'Faktionen kräver abdikation', event: 'Adeln ställer ett ultimatum', deadlineText: 'Utan svar tvingar adeln härskaren från tronen när tiden går ut.' });
+const ANSWER_ORDERS = 1;
+const NO_MANDATE = 'Kräver härskarmandat.';
+const NO_ORDERS = 'Årets handlingsutrymme är slut. För tiden framåt.';
+const NO_FUNDS = 'Otillräcklig statskassa.';
+const ABDICATION = Object.freeze({ reason: 'Abdikation under tryck från adeln', legitimacyLoss: 10, legitimacyFloor: 30, prestige: -8 });
+const CONCESSION = Object.freeze({ silver: 60, perConcession: 40, legitimacy: -5, quietMonths: 36 });
+const CRUSHED = Object.freeze({ fear: 15, opinion: -15, opinionLabel: 'Faktionen slogs ned', legitimacy: -3, title: 'Faktionen slås ned' });
+const DEPOSITION = Object.freeze({ reason: 'Adeln tvingar fram en abdikation', title: 'Adeln tvingar härskaren från tronen', legitimacy: 35, prestige: -15, influence: -15, stress: 30, stressMax: 200, grievance: 10, opinion: 10, opinionLabel: 'Hjälpte härskaren till tronen', chancellorReason: 'Faktionen belönar sin ledare' });
+const ODDS = Object.freeze({ base: 50, readinessBase: 55, readinessPer: 2, legitimacyBase: 50, legitimacyPer: 3, strengthBase: 50, strengthPer: 2, dreadPer: 5, dreadMax: 10 });
+const GENERAL_ROW = 'Överbefälhavarens tjänst';
+// By serviceTier. A vacant seat has no service and lands in the lowest tier.
+const GENERAL_SERVICE = Object.freeze({ trogen: 8, pålitlig: 0, motvillig: -8, opålitlig: -15 });
+const CLOSED = Object.freeze({ reign: 'Ultimatumet gällde den förra härskaren och faller med det styret.', dissolved: 'Faktionen har fallit samman, och ultimatumet faller med den.' });
+
+/** What an ultimatum past its due date resolves to. */
+export const ULTIMATUM_EXPIRY = Object.freeze({ choiceId: 'forced', text: 'Ingen svarade i tid, och adeln tvingade härskaren från tronen.' });
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 const compareIds = (a, b) => a.localeCompare(b, 'en', { numeric: true });
@@ -48,6 +69,9 @@ const isAtLarge = (state, person) => !state.families[person.familyId].exiled && 
 // hooks.adult is false for the dead and for a person who is missing.
 const isFree = (state, person, hooks) => hooks.adult(person) && isAtLarge(state, person);
 const closeFaction = (state, faction, outcome) => { Object.assign(faction, { status: 'closed', outcome, closedAt: state.date }); };
+const factionOf = (state, story) => state.factions.find((faction) => faction.id === story.factionId);
+const ultimatumStory = (state, faction) => state.stories.find((story) => story.id === faction.storyId);
+const moveLegitimacy = (state, amount) => { state.realm.legitimacy = clamp(state.realm.legitimacy + amount, 0, 100); };
 
 // A known member who leaves is no known member.
 function keepMembers(faction, keeps) {
@@ -139,13 +163,27 @@ function shiftMembers(state, faction, hooks) {
   }
 }
 
-// Replaces a leader or a claimant who is gone. Too few members or no claimant ends the faction. Silent, as forming is.
+function ultimatumText(state, faction, hooks) {
+  const leader = state.people[faction.leaderId], claimant = faction.claimantId === leader.id ? 'sig själv' : state.people[faction.claimantId].name;
+  return `${leader.name} leder adeln mot ${hooks.ruler().name} och kräver tronen åt ${claimant}.`;
+}
+
+const withLeaderKnown = (faction) => sortedIds(new Set([...faction.knownMemberIds, faction.leaderId]));
+
+// An open ultimatum is public, so it names the people who stand behind it today. Silent, as the rest of settleFaction is.
+function retellUltimatum(state, faction, hooks) {
+  faction.knownMemberIds = withLeaderKnown(faction);
+  Object.assign(ultimatumStory(state, faction), { actorId: faction.leaderId, description: ultimatumText(state, faction, hooks) });
+}
+
+// Replaces a leader or a claimant who is gone. Too few members or no claimant ends the faction, and refreshCourtStories then closes an open ultimatum. Silent, as forming is.
 function settleFaction(state, faction, hooks) {
   if (faction.memberIds.length < MIN_MEMBERS) { closeFaction(state, faction, 'dissolved'); return; }
   if (!faction.memberIds.includes(faction.leaderId)) faction.leaderId = mostDiscontented(state, faction.memberIds.map((id) => state.people[id]), hooks)[0].id;
   const claimant = state.people[faction.claimantId];
   if (!claimant || !isFree(state, claimant, hooks)) faction.claimantId = claimantFor(state, faction, hooks)?.id ?? null;
   if (faction.claimantId === null) closeFaction(state, faction, 'dissolved');
+  else if (faction.status === 'ultimatum') retellUltimatum(state, faction, hooks);
 }
 
 function discoveryChance(state, spymaster, hooks) {
@@ -163,14 +201,28 @@ function discover(state, faction, events, hooks) {
   hooks.logEvent(events, 'faction_trace', TRACE.title, spymaster ? TRACE.spymaster : TRACE.rumor, []);
 }
 
-/** Yearly, after the demands: a faction forms, or the live one shifts and may lose a member to the spymaster. A faction never surfaces in the year it forms. */
+const quietOver = (state, { quietUntil }) => quietUntil === null || compareGameDates(quietUntil, state.date) <= 0;
+const coupOpen = (state) => state.stories.some((story) => story.type === 'coup' && story.status === 'open');
+const readyToDemand = (state, faction, hooks) => faction.status === 'active' && quietOver(state, faction) && factionStrength(state, faction, hooks) >= ULTIMATUM_STRENGTH && !coupOpen(state);
+
+function openUltimatum(state, faction, events, hooks) {
+  const dueAt = addGameMonths(state.date, ULTIMATUM.months), description = ultimatumText(state, faction, hooks);
+  const story = hooks.openStory({ type: 'faction_ultimatum', title: ULTIMATUM.title, description, actorId: faction.leaderId, createdAt: state.date, dueAt, knownBy: 'public', factionId: faction.id, deadlineText: ULTIMATUM.deadlineText });
+  Object.assign(faction, { status: 'ultimatum', ultimatumAt: state.date, dueAt, storyId: story.id, knownMemberIds: withLeaderKnown(faction) });
+  hooks.logEvent(events, 'faction_ultimatum', ULTIMATUM.event, description, [faction.leaderId, hooks.ruler().id, faction.claimantId]);
+}
+
+/** Yearly, after the demands: a faction forms, or the live one shifts, may lose a member to the spymaster, and comes out with an ultimatum once it is strong enough. A faction never surfaces in the year it forms. */
 export function factionStep(state, events, hooks) {
   if (!hooks.canRule() || !hooks.adult(hooks.ruler()) || reignMonths(state) < GRACE_MONTHS) return;
   const [faction] = liveFactions(state);
   if (!faction) { formFaction(state, hooks); return; }
+  if (faction.status === 'appeased' && quietOver(state, faction)) faction.status = 'active';
   shiftMembers(state, faction, hooks);
   settleFaction(state, faction, hooks);
-  if (isLive(faction)) discover(state, faction, events, hooks);
+  if (!isLive(faction)) return;
+  discover(state, faction, events, hooks);
+  if (readyToDemand(state, faction, hooks)) openUltimatum(state, faction, events, hooks);
 }
 
 /** Takes the dead, the imprisoned and the banished out of the live faction on the date it happens, and refills what they held. Draws nothing and writes no event. */
@@ -181,9 +233,135 @@ export function refreshFactions(state, events, hooks) {
   }
 }
 
-/** A faction is sworn against one ruler, so every change of reign ends it. */
+/** A faction is sworn against one ruler, so every change of reign ends it and its open ultimatum. An answer that crowns closes the faction first, so that story stays for its caller to resolve. */
 export function voidFactions(state) {
-  for (const faction of liveFactions(state)) closeFaction(state, faction, 'void');
+  for (const faction of liveFactions(state)) {
+    const story = ultimatumStory(state, faction);
+    if (story?.status === 'open') Object.assign(story, { status: 'closed', resolvedAt: state.date, resolution: CLOSED.reign });
+    closeFaction(state, faction, 'void');
+  }
+}
+
+/** Why an open ultimatum fell away, or ''. The faction fell apart, since a change of reign has closed the story already. */
+export function ultimatumClosedReason(state, story) {
+  return factionOf(state, story).status === 'ultimatum' ? '' : CLOSED.dissolved;
+}
+
+function crushRows(state, faction, hooks) {
+  const { base, readinessBase, readinessPer, legitimacyBase, legitimacyPer, strengthBase, strengthPer, dreadPer, dreadMax } = ODDS;
+  return [
+    { label: 'Grundchans', value: base },
+    { label: 'Härens beredskap', value: Math.round((hooks.militaryReadiness() - readinessBase) / readinessPer) },
+    { label: GENERAL_ROW, value: GENERAL_SERVICE[serviceTier(serviceOf(state, 'general', hooks))] },
+    { label: 'Rikets legitimitet', value: Math.round((state.realm.legitimacy - legitimacyBase) / legitimacyPer) },
+    { label: 'Faktionens styrka', value: -Math.round((factionStrength(state, faction, hooks) - strengthBase) / strengthPer) },
+    { label: 'Rädsla för härskaren', value: Math.min(dreadMax, Math.floor(hooks.dreadOf() / dreadPer)) },
+  ].filter((row) => row.value !== 0);
+}
+
+function crushPrecision(state, hooks) {
+  if (serviceOf(state, 'general', hooks) === null) return 'three';
+  return capPrecision(precisionFor(state.people[state.offices.general.holderId].skills.command), loyaltyPrecision(state, hooks));
+}
+
+// As presentChance in conversation.js: a band hides the cut, which would show that the chance sits at a bound, and the general's row, which would read loyalty.
+function presentCrush(precision, value, rows, modifiers) {
+  if (precision === 'exact') return { chance: value, modifiers: modifiers.map(({ label, value: amount }) => ({ label, value: amount })) };
+  return { chance: bandFor(value, precision), modifiers: rows.filter(({ label }) => label !== GENERAL_ROW).map(({ label, value: amount }) => ({ label, sign: amount > 0 ? '+' : '−' })) };
+}
+
+/** The chance to crush the faction, 5 to 95. Reads only. `rows` add up to `value`, with the cut at a bound as a row of its own, and `display` is what the player may read of them. */
+export function crushOdds(state, faction, hooks) {
+  const rows = crushRows(state, faction, hooks), raw = rows.reduce((total, row) => total + row.value, 0), value = clamp(raw, ODDS_MIN, ODDS_MAX);
+  const modifiers = value === raw ? rows : [...rows, { label: value < raw ? 'Högsta möjliga chans' : 'Lägsta möjliga chans', value: value - raw }];
+  const precision = crushPrecision(state, hooks);
+  return { value, precision, rows: modifiers, display: presentCrush(precision, value, rows, modifiers) };
+}
+
+function answerBar(state, hooks) {
+  if (!hooks.canRule()) return NO_MANDATE;
+  return state.actionPoints < ANSWER_ORDERS ? NO_ORDERS : '';
+}
+
+const concessionCost = (faction) => CONCESSION.silver + CONCESSION.perConcession * faction.concessions;
+
+/** The three answers, as new objects. Reads only: the crush shows its odds and draws nothing until it is chosen. */
+export function ultimatumChoices(state, story, hooks) {
+  const faction = factionOf(state, story), { value, precision, display } = crushOdds(state, faction, hooks);
+  const bar = answerBar(state, hooks), silver = concessionCost(faction), cost = '1 handling';
+  const stress = (tag) => String(hooks.stressFor(hooks.activeRepresentative(), tag));
+  return [
+    { id: 'abdicate', label: `Abdikera till förmån för ${state.people[faction.claimantId].name}`, description: `Tronen går lagligt vidare. Riket tappar ${ABDICATION.legitimacyLoss} i legitimitet, till lägst ${ABDICATION.legitimacyFloor}, och ${-ABDICATION.prestige} i ryktbarhet.`, tag: 'surrender', cost, stress: stress('surrender'), disabledReason: bar },
+    { id: 'concede', label: 'Ge efter för adeln', description: `Adeln väntar i ${CONCESSION.quietMonths} månader, men faktionen består. Riket tappar ${-CONCESSION.legitimacy} i legitimitet.`, cost: `${silver} silver ur statskassan och 1 handling`, stress: stress('duty'), disabledReason: bar || (state.realm.treasury < silver ? NO_FUNDS : '') },
+    { id: 'crush', label: 'Slå ned faktionen', description: `Chans att lyckas: ${bandFor(value, precision)}`, tag: 'risky', odds: display, cost, stress: stress('risky'), disabledReason: bar },
+  ];
+}
+
+function abdicate(state, faction, events, hooks) {
+  hooks.charge(0, { publicFunds: true, orders: ANSWER_ORDERS, tag: 'surrender' });
+  closeFaction(state, faction, 'abdicated');
+  hooks.crown(state.people[faction.claimantId], events, ABDICATION.reason, Math.max(ABDICATION.legitimacyFloor, state.realm.legitimacy - ABDICATION.legitimacyLoss), true);
+  addPrestige(state, ABDICATION.prestige);
+}
+
+function concede(state, faction, events, hooks) {
+  hooks.charge(concessionCost(faction), { publicFunds: true, orders: ANSWER_ORDERS });
+  moveLegitimacy(state, CONCESSION.legitimacy);
+  Object.assign(faction, { status: 'appeased', concessions: faction.concessions + 1, quietUntil: addGameMonths(state.date, CONCESSION.quietMonths), dueAt: null });
+}
+
+// Puts a person in prison where imprisonPerson allows it. It refuses the ruler and whoever the player acts through.
+function jailIfAllowed(state, person, captorFamilyId, events, hooks, lawful) {
+  if (!imprisonRefusal(person.id, hooks)) imprisonPerson(state, person.id, captorFamilyId, events, hooks, { lawful });
+}
+
+// The crown holds. The event names the leader only: the other members stay hidden, also now.
+function breakFaction(state, faction, events, hooks) {
+  const ruler = hooks.ruler(), leader = state.people[faction.leaderId];
+  closeFaction(state, faction, 'crushed');
+  jailIfAllowed(state, leader, ruler.familyId, events, hooks, true);
+  cowNobles(state, CRUSHED.fear, hooks);
+  for (const id of faction.memberIds) hooks.opinionCause(id, ruler.id, CRUSHED.opinion, CRUSHED.opinionLabel, faction.id);
+  moveLegitimacy(state, CRUSHED.legitimacy);
+  hooks.logEvent(events, 'faction_crushed', CRUSHED.title, `${ruler.name} slår ned faktionen som ${leader.name} ledde.`, [ruler.id, leader.id]);
+}
+
+// The opinion cause drops a head who is missing, and a head who is the new ruler.
+function rewardHouses(state, faction, ruler, hooks) {
+  for (const familyId of new Set(faction.memberIds.map((id) => state.people[id].familyId))) {
+    const family = state.families[familyId];
+    family.grievance = clamp(family.grievance + DEPOSITION.grievance, -40, 40);
+    hooks.opinionCause(family.headId, ruler.id, DEPOSITION.opinion, DEPOSITION.opinionLabel, faction.id);
+  }
+}
+
+// The expiry runs this with no player present, so nothing here reads a story or spends an order. The faction closes first, so that crown leaves its outcome alone.
+function depose(state, faction, events, hooks, { confine = false } = {}) {
+  const old = hooks.ruler(), claimant = state.people[faction.claimantId], leader = state.people[faction.leaderId], family = state.families[old.familyId];
+  closeFaction(state, faction, 'deposed');
+  hooks.crown(claimant, events, DEPOSITION.reason, DEPOSITION.legitimacy, false);
+  addPrestige(state, DEPOSITION.prestige);
+  family.influence = Math.max(0, family.influence + DEPOSITION.influence);
+  old.stress = clamp(old.stress + DEPOSITION.stress, 0, DEPOSITION.stressMax);
+  rewardHouses(state, faction, claimant, hooks);
+  if (leader.id !== claimant.id && state.offices.chancellor.holderId !== leader.id) hooks.assignOffice(state.offices.chancellor, leader, events, DEPOSITION.chancellorReason);
+  hooks.logEvent(events, 'forced_abdication', DEPOSITION.title, `${leader.name} och adeln tvingar ${old.name} att lämna tronen till ${claimant.name}.`, [old.id, claimant.id, leader.id]);
+  if (confine || old.familyId !== claimant.familyId) jailIfAllowed(state, old, claimant.familyId, events, hooks, false);
+}
+
+// The roll comes last: nothing is drawn unless the order could be paid.
+function crush(state, faction, events, hooks) {
+  const { value } = crushOdds(state, faction, hooks);
+  hooks.charge(0, { publicFunds: true, orders: ANSWER_ORDERS, tag: 'risky' });
+  if (actionRandom(state) * 100 < value) breakFaction(state, faction, events, hooks);
+  else depose(state, faction, events, hooks, { confine: true });
+}
+
+const ANSWERS = Object.freeze({ abdicate, concede, crush, forced: depose });
+
+/** Pays a choice or the expiry `forced`. The caller closes the story. */
+export function resolveUltimatum(state, story, choiceId, events, hooks) {
+  ANSWERS[choiceId](state, factionOf(state, story), events, hooks);
 }
 
 function presentFaction(state, faction, precision, hooks) {
@@ -207,18 +385,31 @@ const sortedPeople = (state, ids) => Array.isArray(ids) && ids.every((id, index)
 const validMembers = (state, { memberIds, knownMemberIds }) => sortedPeople(state, memberIds) && sortedPeople(state, knownMemberIds) && knownMemberIds.every((id) => memberIds.includes(id));
 const ownStory = (state, { id, storyId }) => storyId === null || state.stories.some((story) => story.id === storyId && story.type === 'faction_ultimatum' && story.factionId === id);
 
-// A faction that ended keeps the record it ended with, so only a live one answers for its members and its target.
+// A faction that ended keeps the record it ended with, so only a live one answers for its members, its target and the grace of its reign.
 function validCourse(state, faction) {
   if (faction.status === 'closed') return OUTCOMES.includes(faction.outcome) && dateWithin(faction.closedAt, faction.formedAt, state.date) && (faction.claimantId === null || ownKey(state.people, faction.claimantId));
   if (faction.outcome !== null || faction.closedAt !== null || faction.memberIds.length < MIN_MEMBERS) return false;
+  if (compareGameDates(addGameMonths(state.reign.startedAt, GRACE_MONTHS), faction.formedAt) > 0) return false;
   return faction.memberIds.includes(faction.leaderId) && ownKey(state.people, faction.claimantId) && faction.targetRulerId === state.reign.rulerId;
 }
 
+function standingUltimatum(state, faction) {
+  const { ultimatumAt, dueAt, leaderId, knownMemberIds } = faction;
+  if (ultimatumAt === null || dueAt === null || !knownMemberIds.includes(leaderId) || compareGameDates(ultimatumAt, dueAt) > 0) return false;
+  const story = ultimatumStory(state, faction);
+  return story?.status === 'open' && story.dueAt === dueAt;
+}
+
+const validTruce = ({ ultimatumAt, quietUntil, concessions }) => ultimatumAt !== null && quietUntil !== null && concessions >= 1 && compareGameDates(quietUntil, ultimatumAt) > 0;
+const validEnd = ({ outcome, ultimatumAt, closedAt }) => !ANSWERED.includes(outcome) || (ultimatumAt !== null && compareGameDates(ultimatumAt, closedAt) <= 0);
+// A faction that gave way and came back keeps the date of its ultimatum.
+const validDark = ({ ultimatumAt, concessions }) => ultimatumAt === null || concessions >= 1;
+const STAGE_CHECKS = Object.freeze({ active: (state, faction) => validDark(faction), ultimatum: standingUltimatum, appeased: (state, faction) => validTruce(faction), closed: (state, faction) => validEnd(faction) });
+
 function validStage(state, faction) {
-  const { status, formedAt, quietUntil, ultimatumAt, dueAt, storyId } = faction;
+  const { status, formedAt, quietUntil, ultimatumAt, dueAt } = faction;
   if ((quietUntil !== null && !canonical(quietUntil)) || (dueAt !== null && !canonical(dueAt)) || (ultimatumAt !== null && !dateWithin(ultimatumAt, formedAt, state.date))) return false;
-  if (status === 'ultimatum' && (ultimatumAt === null || dueAt === null || storyId === null)) return false;
-  return (status !== 'appeased' || quietUntil !== null) && ownStory(state, faction);
+  return STAGE_CHECKS[status](state, faction) && ownStory(state, faction);
 }
 
 function validFaction(state, faction) {
@@ -228,10 +419,16 @@ function validFaction(state, faction) {
   return canonical(faction.formedAt) && compareGameDates(faction.formedAt, state.date) <= 0 && validCourse(state, faction) && validStage(state, faction);
 }
 
+// An open ultimatum is the one its faction stands on.
+function standsBehind(state, story) {
+  const faction = factionOf(state, story);
+  return faction.status === 'ultimatum' && faction.storyId === story.id;
+}
+
 /** Refuses forged faction records. Called from validateCourt when a save loads. */
 export function validateFactions(state) {
   if (!state.factions.every((faction) => validFaction(state, faction))) throw new Error(INVALID);
   const ids = new Set(state.factions.map((faction) => faction.id));
-  const told = state.stories.every((story) => story.type !== 'faction_ultimatum' || ids.has(story.factionId));
+  const told = state.stories.every((story) => story.type !== 'faction_ultimatum' || (ids.has(story.factionId) && (story.status !== 'open' || standsBehind(state, story))));
   if (ids.size !== state.factions.length || liveFactions(state).length > 1 || !told) throw new Error(INVALID);
 }
