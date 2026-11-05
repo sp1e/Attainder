@@ -2,6 +2,8 @@
 
 Written by Claude on 5 November 2026 at `main` = `b655e2b`. Codex develops Attainder on the owner's private desktop until the owner's weekly Claude tokens reset. Read this file from top to bottom before you change anything.
 
+Updated by Codex on 5 November 2026: the Phase 3 review fixes are tested and pushed on `fix/phase-3-review` through `cfa225238c5065441e4642481ab507629e498e73`. PR review, CI and merge remain publication steps. The owner now prioritizes the historical campaign foundation; see the current work queue below.
+
 **On this computer, read `HANDOVER.local.md` in the repository root next.** Git ignores it. It holds the machine-specific paths this public repository must not contain: where the newer Codex lives, the writing rules, the Swedish character sweep and the cleanup list.
 
 Reading order after that:
@@ -9,8 +11,9 @@ Reading order after that:
 1. `AGENTS.md`: repository rules. They outrank this file.
 2. `docs/development/CONTINUE-HERE.md`: the checkpoint, with every earlier measurement and play-script result.
 3. `src/runtime/characters/CONTRACT.md`: the rules engine contract.
-4. `docs/superpowers/specs/2026-10-31-ai-game-master-design.md`: the binding design. Section 9 lists the phases, section 10 the constraints, section 12 the calls Claude made for the owner to check, and the end of the spec the 29 moments.
-5. `docs/development/phase-3-decisions.md`: every Phase 3 ruling and deferred minor.
+4. `docs/superpowers/specs/2026-11-05-historical-world-direction.md` and `docs/development/DEVELOPMENT-BACKLOG.md`: the owner's current setting, research and gameplay requirements.
+5. `docs/superpowers/specs/2026-10-31-ai-game-master-design.md`: character and AI design, subject to the newer setting direction. Section 9 lists the phases, section 10 the constraints, section 12 the calls Claude made for the owner to check, and the end of the spec the 29 moments.
+6. `docs/development/phase-3-decisions.md`: every Phase 3 ruling and deferred minor.
 
 ## Mandate
 
@@ -26,10 +29,10 @@ The owner said on 4 November 2026: continue development without pausing and with
 
 | Phase | Content | State |
 |---|---|---|
-| 0 | Stable base | Merged. One panel check open (work item 5) |
+| 0 | Stable base | Merged. One panel check open (work item 6) |
 | 1 | Free-text actions, odds, schemes, model gate | Merged. Play script passed |
 | 2 | Intrigue, moments 1 to 4, 28, 29 | Merged. Play script passed |
-| 3 | Court and power, moments 11 to 17 | Merged as `9a780f7` (PR #9). Whole-branch review started, play script not run |
+| 3 | Court and power, moments 11 to 17 | Merged as `9a780f7` (PR #9). Review findings fixed through `cfa2252`; follow-up merge pending. Original browser script deferred |
 | 4 | Family and succession, moments 5, 6, 8, 9, 10 | Not started. No plan |
 | 5 | Events and life, moments 20 to 23 | Not started. No plan |
 | 6 | World, diplomacy and war, moments 7, 24 to 27 | Not started. No plan |
@@ -37,53 +40,62 @@ The owner said on 4 November 2026: continue development without pausing and with
 
 13 of 29 moments are built. Phases 0 and 1 carry no moments of their own.
 
-The last measurements: `npm test` at `1698e61` gave 4,370 pass, 0 fail. The runtime suite at `62c7bd4` gave 2,280 of 2,280. Panel tests at `054d46a` gave 106 of 106. CI `test` passed on PRs #9 and #10. `npm run lint` last read 18 errors and 71 warnings, all inherited; do not add to them.
+Latest measurement: the full serial suite at `cfa225238c5065441e4642481ab507629e498e73` ran 4,410 tests: 4,407 pass, 0 fail, 1 skipped, 2 todo, in 111,035.0005 ms. The build passed in 33.08 seconds with the inherited chunk-size warning. Full lint retains 18 errors and 71 warnings; targeted ESLint for the replay changes reports none. These are local code checks, not browser verification or CI for the follow-up PR.
 
-Phase 3 task 12 was cut short because the token limit was close. Tasks 1 to 10 each passed their own review. The documentation part of tasks 11 and 12 landed in PR #10. The final review and the browser run did not happen.
+Earlier measurements: `npm test` at `1698e61` gave 4,370 pass, 0 fail. The runtime suite at `62c7bd4` gave 2,280 of 2,280. Panel tests at `054d46a` gave 106 of 106. CI `test` passed on PRs #9 and #10.
+
+Phase 3 task 12 was cut short because the token limit was close. Tasks 1 to 10 each passed their own review. The documentation part of tasks 11 and 12 landed in PR #10. Codex completed the review follow-up described below. The original browser run has not happened.
 
 ## Work queue
 
 Do these in order.
 
-### 1. Finish the Phase 3 whole-branch review
+### 1. Publish the Phase 3 review follow-up
 
-Review range: `git diff e735a5b 9a780f7`. See "Phase 3 review status" at the end of this file for what has run. Check the code against the five items under `## Review Focus` in `docs/superpowers/plans/2026-11-04-phase-3-court-and-power.md`, then against these:
+The whole-branch review of `e735a5b..9a780f7` is complete. The two reproduced findings now have fixes, regressions and approved task reviews on `fix/phase-3-review`. Finish documentation review, whole-branch follow-up review, required CI and the PR merge. Verify the remote merge commit. See "Phase 3 review status" below for the rulings and measurements.
+
+Retain these review checks for future changes:
 
 - Hidden information: hidden faction members, unknown secrets, true loyalty beyond the spymaster's precision and rumor truth never reach `getCharacterPresentation` or a prompt.
 - Every state a Phase 3 path writes passes `validate*` after a JSON round trip: mid-ultimatum, after a crush, after forced abdication, after dissolution.
 - The acting person versus the ruler: regents, guardians, NPC rulers in family mode, incapacity, prisoners, the dead.
 - Lifecycle: stories and faction records closed by accession, death, dissolution and abdication; two systems firing on one date.
 
-Reproduce each finding before you fix it. Write the failing test first. Branch `fix/phase-3-review`.
+Reproduce new findings before fixing them and write the failing test first.
 
-### 2. Run `docs/play-scripts/phase-3.md` in a browser
+### 2. Build the historical campaign foundation
+
+Follow `docs/superpowers/specs/2026-11-05-historical-world-direction.md`: real geography and historical polities, new starts from the Bronze Age through about AD 1200, and no modern starts. Write and review the implementation plan before code changes. Preserve existing campaigns. Then address the year-by-year research for approximately 3300 BC through AD 1200 and the turn-end historical-reference popup in `docs/development/DEVELOPMENT-BACKLOG.md`. Research and implementation remain pending.
+
+### 3. Deferred: run `docs/play-scripts/phase-3.md` in a browser
+
+The owner moved the historical foundation ahead of this Hadara script. Adapt its setting-dependent fixtures after the new start flow exists. No Phase 3 browser pass is recorded.
 
 It takes about 90 minutes and about 35 model calls. Use the Codex connection in the game, so the run spends no Claude tokens. `HANDOVER.local.md` says how to make the game accept Codex. Fix what the script finds, write the failing test first, and record a result per part in `CONTINUE-HERE.md` in the same table form as Phases 1 and 2. Claude's search of `src/` confirmed 45 labels in the script. Four more are generated strings: `Sera Arel`, `Talia Namar`, `Tjänst: oviss`, `Tjänst: stark`.
 
 Never commit `play-data/` or `reports/`.
 
-### 3. Small corrections
+### 4. Small corrections
 
 Put these on one branch.
 
-- `README.md`, section `Development status`, still says 3,934 tests from 4 November. Replace it with your own latest measurement.
+- README's measured status now records the reviewed code measurement; keep it current at later milestones.
 - `docs/superpowers/plans/2026-11-04-phase-3-court-and-power.md` line 38 says Tarek Arel is the brother the moment names once Sera Arel reigns. Tarek is Sera's spouse and his `legalParentIds` is empty, so the sibling branch needs Mira and Neri.
 - Plan lines 68 and 164 still name the removed status `abandoned`.
 
-### 4. Deferred minors
+### 5. Deferred minors
 
 `docs/development/phase-3-decisions.md` lists them. Some were resolved by later tasks, so check the code before you act. Fix the ones that change behaviour:
 
-- `filledSeats` offers the ruler's own seat, which always refuses.
-- `rewardCouncillor` compares with the ruler, so a regent in a seat can reward herself. Compare with `activeRepresentative`.
+- `filledSeats` and `rewardCouncillor`: follow-up inspection found the current code already excludes ruler/self rewards; no new fix was needed.
 - `validateFamilyDemands` does not compare `story.actorId` with `family.headId`.
 - `reign.js` gives a builder with an overdue aqueduct the refusal `noBuilder`, which misstates the reason.
 
-### 5. The open Phase 0 check
+### 6. The open Phase 0 check
 
 The panel in both themes and narrow layouts, with one submitted public choice and one submitted private choice, each followed by a reload.
 
-### 6. Phase 4, then 5, 6 and 7
+### 7. Phase 4, then 5, 6 and 7
 
 For each phase:
 
@@ -93,7 +105,7 @@ For each phase:
 4. Work on `phase-N/<name>`. Per task: failing test, code, passing test, commit, push, then review the task's diff against the plan in a fresh context. A separate `codex exec` run works. Fix what it finds before the next task.
 5. Before the phase PR: a whole-branch review, the full serial suite, the build, a play script under `docs/play-scripts/phase-N.md`, a browser run of it, and updates to `CONTRACT.md`, `README.md` and `CONTINUE-HERE.md`.
 
-Phase 4 needs a decision first. Moment 6 splits the realm among three sons, and Hadara is the only polity until Phase 6 (`src/runtime/dynastyScenario.js:39-41`). Rule on this in the plan: either model a partition inside Hadara as rival holders of provinces, or build the polity layer earlier. Phase 3 left these seams for Phase 4: `crown`, `beginReign`, `rulerCandidates`, `claimantFor`, `legalParentIds`. In the opening cast Sera has no sibling, Tarek is her spouse, and the sibling route needs Mira to reign with Neri alive and adult.
+Replan these phases against the historical foundation. Moment 6 splits the realm among three sons, so the Phase 4 plan must specify partition and polity ownership in that model. The earlier Hadara-only partition choice no longer sets the product direction. Phase 3 left these seams for Phase 4: `crown`, `beginReign`, `rulerCandidates`, `claimantFor`, `legalParentIds`. In the existing Hadara test cast Sera has no sibling, Tarek is her spouse, and the sibling route needs Mira to reign with Neri alive and adult.
 
 Phase 6 starts with its own design, per the spec. Phase 5 builds on the minimal feast in `occasions.js`.
 
@@ -175,4 +187,13 @@ Leave `CONTINUE-HERE.md` current after every merge: branch state, measurements, 
 
 ## Phase 3 review status
 
-Claude started an independent read-only review of `e735a5b..9a780f7` on 5 November 2026. No result is recorded here yet, so treat work item 1 as open and run it yourself.
+The whole-branch review of `e735a5b..9a780f7` completed on 5 November 2026, including an 18-seed, 50-year JSON round-trip probe. It left two reproduced findings. The follow-up plan is `docs/superpowers/plans/2026-11-05-phase-3-review-follow-up.md`.
+
+- Annual accounting, `e5358ac`: include the actual chancellor payment in the existing year's aggregate after loyalty drift and court processing. Preserve payment formulas, event identity/order and saved random streams. Focused tests: 51 of 51; complete-state parity: 24 scenarios. Full serial suite: 4,404 total, 4,401 pass, 0 fail, 1 skipped, 2 todo. Independent task review approved the fix.
+- Legacy replay, `063fa87` and `cfa2252`: reconstruct legacy stored patches before migrating checkpoints, retain raw validated legacy checkpoint payloads, and follow the adapter's actual per-event date synchronization and reconciliation. A first review reproduced an interleaved model-date failure; `cfa2252` fixes it and passes scoped re-review with no open Critical or Important findings. Focused tests: 186 of 186. Final full serial suite and build are recorded above. The remote branch head matches `cfa225238c5065441e4642481ab507629e498e73`.
+
+Ruling: annual reporting uses actual paid deltas, including treasury clamps and rounding; the existing event keeps its one-decimal sentence and exposes no separate service or loyalty number. This fixes accounting without changing payments; a broader financial ledger would need a separate design.
+
+Ruling: legacy compatibility runs at the replay boundary after each event's calendar and host progress. Current-version reign/office mismatches remain invalid, and source/gate/revision checks remain strict. Replay consumes stored outcomes without extra random draws, model calls or persistent provenance. An unsupported legacy shape needs a separate compatibility case and regression.
+
+The original Phase 3 browser script and Phase 0 panel check remain open. The owner deferred the Hadara script behind the historical campaign foundation. Local checks and task reviews do not replace the follow-up branch review, CI or merge.

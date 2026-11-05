@@ -4,7 +4,7 @@ Updated on 5 November 2026.
 
 ## Branch state
 
-Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The final whole-branch review and a browser run have not happened, and nobody has run the Phase 3 play script yet.
+Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The whole-branch review is complete; the two reproduced findings now have reviewed fixes on `fix/phase-3-review` through `cfa225238c5065441e4642481ab507629e498e73`, matching the verified remote branch head. Follow-up PR review, CI and merge remain pending. Nobody has run the Phase 3 play script; the owner deferred the Hadara script behind the historical foundation.
 
 - Phase 3, engine: `reign.js`, `court.js`, `council.js`, `dread.js`, `nicknames.js`, `breakdowns.js`, `familyDemands.js`, `factions.js`.
 - Phase 3, model boundary: `buildCharacterPromptContext` adds `court: view.court` and one rule paragraph.
@@ -26,6 +26,8 @@ Phases 0, 1 and 2 are on `main`. PR #4 squash-merged Phase 2 as `ef0ab7c` on 3 N
 
 ## Verification
 
+- Phase 3 review follow-up on 5 November 2026, tested code `cfa225238c5065441e4642481ab507629e498e73`: full serial suite 4,410 tests, 4,407 pass, 0 fail, 1 skipped, 2 todo, in 111,035.0005 ms. Build passed in 33.08 seconds with the inherited chunk-size warning. Full lint: 18 errors and 71 warnings, unchanged; targeted replay ESLint: no diagnostics. The scoped re-review approved the interleaved-date fix with no open Critical or Important findings. These checks do not include the deferred Phase 3 browser script or the Phase 0 visual check.
+- Earlier follow-up measurements: annual accounting at `e5358ac` passed 51 focused tests and 24 complete-state parity scenarios; full serial suite 4,404 total, 4,401 pass, 0 fail, 1 skipped, 2 todo; build passed in 36.77 seconds. Legacy replay at `063fa87` passed 185 focused tests; full serial suite 4,409 total, 4,406 pass, 0 fail, 1 skipped, 2 todo, in 113,742.2782 ms; build passed in 31.57 seconds. Its first review then found an intervening model event's date synchronization missing from compatibility replay. Fix `cfa2252` passed the new regression and all 186 focused tests before the final suite above.
 - Phase 3 on 5 November 2026: `npm test` at `1698e61` ran 4,370 pass, 0 fail. The runtime suite at `62c7bd4` ran 2,280 of 2,280. Panel tests at `054d46a` ran 106 of 106. CI `test` passed on PR #9.
 - Phase 0 gaps on 4 November 2026, branch `test/phase-0-gaps`: 93 tests cover participant and mandate changes during a chain (50), JSON saves between two `advanceCharacters` calls (6), more than 1,000 newer memories (5), and immutable historical roles with story and source uniqueness (32). The last group found a real bug: `validateEventChains` loaded forged saves with swapped roles, rewritten role families, renamed source keys, rewritten city references, repeated steps, step actors outside the cast, deleted chains and spare chain memories. `eventChains.js` now rejects each of them. Full suite after merging main: 3,934 tests, 3,931 pass, 0 fail, 1 skipped, 2 todo.
 - Codex on 4 November 2026: a local Codex 0.166.0 answered through `generateWithLocalModel` in plain text in 8 seconds and with a schema in 5 seconds, using the existing ChatGPT login. The global Codex 0.117.0 on this computer stays as it is, and the game shows `Behöver uppdateras` for it. A full model year through Codex has not run.
@@ -82,9 +84,16 @@ The play scripts reached four of the five tiers. `Det slog tillbaka` did not com
 
 ## Next step
 
-Codex has taken over development for now. The work queue is in `docs/development/CODEX-HANDOVER.md`.
+Codex has taken over development for now. Current priorities are in `docs/development/DEVELOPMENT-BACKLOG.md`; the earlier queue is in `docs/development/CODEX-HANDOVER.md`.
 
-Finish Phase 3: run a whole-branch review of `e735a5b..9a780f7`, and run `docs/play-scripts/phase-3.md` in a browser. Then write the Phase 4 plan (moments 5, 6, 8, 9 and 10).
+The owner changed the setting on 5 November: use the real world and historical polities, with new starts from the Bronze Age through about AD 1200 and no modern starts. `docs/superpowers/specs/2026-11-05-historical-world-direction.md` supersedes the fictional Hadara default. Finish review, CI and merge for the Phase 3 follow-up, then write and review the historical foundation plan before implementation. Prioritize that foundation before the remaining Hadara browser script and Phase 4.
+
+The owner also requested year-by-year historical research for approximately 3300 BC through AD 1200 and a turn-end popup showing the real events of the current year alongside dynamic campaign events. The backlog records the research scope, source/date uncertainty, coverage gaps and game acceptance criteria. Research and implementation remain pending.
+
+## Phase 3 review rulings
+
+- Annual reporting counts actual base receipts plus the chancellor's paid delta, including treasury clamps and rounding. Loyalty drift and court ordering stay unchanged. The existing year event retains its ID, position and public shape; the one-decimal aggregate reveals no separate numerical service or loyalty field. Other story/plot payments retain their own events. This fixes the unexplained chancellor residual without changing payment outcomes.
+- Legacy replay reconstructs stored outcomes before migrating checkpoints. Normalization validates and retains raw legacy full-checkpoint payloads. Compatibility handling follows the adapter after each event's date synchronization and host reconciliation, including model events without character operations. Current-version checkpoints and authorized commands end that handling. Current-version reign mismatches, revision mismatches and invalid source/gate metadata still fail validation. No new random draw, model call, persistent provenance or version bump is involved. An unsupported legacy shape needs a separate compatibility regression.
 
 ## Known Phase 2 limitations
 

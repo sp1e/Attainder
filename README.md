@@ -4,6 +4,8 @@ An ancient empire strategy game built on [Open Historia](https://github.com/Open
 
 The playable prototype starts in fictional Hadara in 300 BCE with four political families, 24 characters, four cities and twelve provinces. The character interface currently uses Swedish. Public project documentation is in English.
 
+The [historical-world direction](docs/superpowers/specs/2026-11-05-historical-world-direction.md) sets the next milestone: real geography and historical polities, with new starts from the Bronze Age through about AD 1200 and no modern starts. This replacement remains pending. The [development backlog](docs/development/DEVELOPMENT-BACKLOG.md) also records pending year-by-year research from approximately 3300 BC through AD 1200 and a sourced historical-reference popup at turn end, alongside dynamic campaign events.
+
 ## Play locally
 
 Use Node.js 24, npm, and an installed, authenticated Codex CLI or Claude Code. The game uses the CLI's existing login. Model requests count toward that account's usage limits.
@@ -79,7 +81,9 @@ The upstream scenario-sharing rules remain in place. Scenarios posted or shared 
 
 ## Development status
 
-This is a playable development version. The local serial suite on 4 November 2026 ran 3,934 tests: 3,931 passed, none failed, one was skipped and two are TODOs. Phase 1 (free-text actions, odds, schemes, the model gate and the panel) and Phase 2 (intrigue) have automated tests and manual play scripts, [Phase 1](docs/play-scripts/phase-1.md) and [Phase 2](docs/play-scripts/phase-2.md); both passed against Claude Code on 4 November 2026, part by part, as recorded in `docs/development/CONTINUE-HERE.md`. Regent authority checks cover both campaign modes, appointment consent, independent family guardians, exact promise deadlines and saved-state validation. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
+This is a playable development version. The full serial suite on 5 November 2026 at `cfa225238c5065441e4642481ab507629e498e73` ran 4,410 tests: 4,407 passed, none failed, one was skipped and two are TODOs. The build passed in 33.08 seconds with the inherited chunk-size warning. Lint retains its inherited baseline of 18 errors and 71 warnings. The Phase 3 task reviews closed the annual accounting and legacy succession replay findings; follow-up PR review, CI and merge remain pending. The original Hadara browser script remains deferred while the historical foundation takes priority; the Phase 0 theme and narrow-layout check remains open.
+
+Phase 1 (free-text actions, odds, schemes, the model gate and the panel) and Phase 2 (intrigue) have automated tests and manual play scripts, [Phase 1](docs/play-scripts/phase-1.md) and [Phase 2](docs/play-scripts/phase-2.md); both passed against Claude Code on 4 November 2026, part by part, as recorded in `docs/development/CONTINUE-HERE.md`. Regent authority checks cover both campaign modes, appointment consent, independent family guardians, exact promise deadlines and saved-state validation. Recurring decisions were checked in an isolated browser fixture, including a submitted choice and its saved memory after a full page reload. Earlier production browser checks covered a real Codex year, smallpox, paid treatment and persistence after reopening. Claude was also tested through its existing CLI login.
 
 The portrait component passed 864 rendered state/age combinations, including delayed and failed image loading. Its controls support light and dark themes and a narrow viewport.
 
