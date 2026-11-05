@@ -233,23 +233,26 @@ const COURT_RULE = "Nicknames, reign goals, legitimacy sources, family demands, 
 const DISCOVERY_TITLE = "Spår av en faktion";
 const DECISION_TITLE = "Förslaget kräver ditt beslut";
 const REFUSED_TITLE = "Modellens förslag avvisades";
+const ULTIMATUM_TITLE = "Adeln ställer ett ultimatum";
 // The general is known and sits on the council in the open. Namar leads the faction, Dara and Talia follow him, and nobody has named Sera its claimant.
 const KNOWN_MEMBER = "person-1-2";
 const HIDDEN_MEMBERS = ["person-1-0", "person-1-1", "person-1-3"];
 const CLAIMANT = "person-0-2";
 const plain = (value) => JSON.parse(JSON.stringify(value));
 
-function plotting() {
-  const state = phase2State();
-  state.reign.startedAt = addGameMonths(state.date, -24);
-  state.factions.push({ id: `faction-${++state.sequence}`, targetRulerId: state.reign.rulerId, leaderId: HIDDEN_MEMBERS[0], claimantId: CLAIMANT,
-    memberIds: [...HIDDEN_MEMBERS, KNOWN_MEMBER].sort(), knownMemberIds: [KNOWN_MEMBER], formedAt: state.date, status: "active", outcome: null,
+// `faction: false` builds the twin: the same state, the same id spent, and no faction in it.
+function plotting({ knownMemberIds = [KNOWN_MEMBER], faction = true, reignMonths = 24, ageMonths = 0 } = {}) {
+  const state = phase2State(), id = `faction-${++state.sequence}`;
+  state.reign.startedAt = addGameMonths(state.date, -reignMonths);
+  if (!faction) return state;
+  state.factions.push({ id, targetRulerId: state.reign.rulerId, leaderId: HIDDEN_MEMBERS[0], claimantId: CLAIMANT,
+    memberIds: [...HIDDEN_MEMBERS, KNOWN_MEMBER].sort(), knownMemberIds, formedAt: addGameMonths(state.date, -ageMonths), status: "active", outcome: null,
     quietUntil: null, ultimatumAt: null, dueAt: null, storyId: null, concessions: 0, closedAt: null });
   return state;
 }
 
 // Every key path that names a hidden fact, written like ".families[].memberIds". The names on a public family list and a faith's leader are no secret.
-const HIDDEN_KEY = /^(memberIds|knownMemberIds|leaderId|loyalty|ambition|discontent)$/;
+const HIDDEN_KEY = /^(memberIds|knownMemberIds|leaderId|loyalty|ambition(Label)?|discontent)$/;
 function hiddenPaths(value, path = "", found = new Set()) {
   if (Array.isArray(value)) value.forEach((item) => hiddenPaths(item, `${path}[]`, found));
   else if (value && typeof value === "object") {
@@ -299,12 +302,43 @@ test("hidden court facts never reach the presentation or the year prompt", () =>
   assert.ok(prompt.includes(DISCOVERY_TITLE));
   const { developments } = JSON.parse(prompt.split("\n").at(-1));
   const trace = JSON.stringify(developments.filter((item) => item.title === DISCOVERY_TITLE));
-  for (const id of [...HIDDEN_MEMBERS, KNOWN_MEMBER, CLAIMANT]) {
-    assert.equal(JSON.stringify(developments).includes(id), false, id);
-    assert.equal(trace.includes(state.people[id].name), false, state.people[id].name);
-  }
-  assert.deepEqual(hiddenPaths(developments), []);
+  for (const id of [...HIDDEN_MEMBERS, KNOWN_MEMBER, CLAIMANT]) assert.equal(trace.includes(state.people[id].name), false, state.people[id].name);
   assert.deepEqual(promptData(state).court.factions[0].knownMembers.map(({ id }) => id), [KNOWN_MEMBER]);
+});
+
+// The view and the year prompt with court.factions emptied. The data line stays parsed, so deepEqual names the key that differs.
+function outsideFactions(state) {
+  const view = plain(getCharacterPresentation(state));
+  view.court.factions = [];
+  const prompt = buildCharacterPromptContext(state).split("\n").map((line) => {
+    if (!line.startsWith('{"date"')) return line;
+    const data = JSON.parse(line);
+    data.court.factions = [];
+    return data;
+  });
+  return { view, prompt };
+}
+
+test("a live faction shows only inside court.factions, at one known member and at none", () => {
+  for (const [knownMemberIds, rows] of [[[KNOWN_MEMBER], 1], [[], 0]]) {
+    const state = plotting({ knownMemberIds });
+    assert.equal(getCharacterPresentation(state).court.factions.length, rows);
+    assert.equal(promptData(state).court.factions.length, rows);
+    assert.deepEqual(outsideFactions(state), outsideFactions(plotting({ knownMemberIds, faction: false })));
+  }
+});
+
+const forecastOf = (state) => JSON.parse(buildCharacterPromptContext(state, { targetDate: state.nextAnnualDate }).split("\n").at(-1)).developments;
+
+test("the forecast of an undiscovered faction adds its ultimatum, which names the leader and the claimant and no other member", () => {
+  // Six years into the reign, a faction of four years stands above 50 at the next year turn. The twin shows what the year brings without it: the general speaks for his veterans there too, in the open.
+  const state = plotting({ knownMemberIds: [], reignMonths: 72, ageMonths: 48 });
+  assert.deepEqual(promptData(state).court.factions, []);
+  const twin = new Set(forecastOf(plotting({ faction: false, reignMonths: 72 })).map((item) => JSON.stringify(item)));
+  const added = forecastOf(state).filter((item) => !twin.has(JSON.stringify(item)));
+  assert.deepEqual(added.map(({ date, title }) => [date, title]), [[state.nextAnnualDate, ULTIMATUM_TITLE]]);
+  const named = [...HIDDEN_MEMBERS, KNOWN_MEMBER, CLAIMANT].filter((id) => added[0].description.includes(state.people[id].name));
+  assert.deepEqual(named, [HIDDEN_MEMBERS[0], CLAIMANT]);
 });
 
 test("the year prompt carries the court as the player knows it", () => {
