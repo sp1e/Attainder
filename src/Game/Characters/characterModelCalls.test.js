@@ -1,5 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { createHistoricalCharacterSystem } from '../../runtime/characters/scenarioSeed.js';
+import { advanceCharacters } from '../../runtime/characters/index.js';
 import { actionHooks, createCharacterSystem, estimateCharacterAction, estimateConversation, getCharacterPresentation, getConversationBrief } from '../../runtime/characters/index.js';
 import { createRumor } from '../../runtime/characters/rumors.js';
 import { createSecret, grantHook } from '../../runtime/characters/secrets.js';
@@ -9,6 +12,59 @@ import { extractConversationRequest, interpretCharacterAction, narrateCharacterR
 const REP = 'person-0-0';
 const TARGET = 'person-1-0';
 const view = () => getCharacterPresentation(createCharacterSystem({ seed: 321 }));
+
+for (const id of ['egypt-3000bc', 'john-1200']) {
+  for (const progressed of [false, true]) test(`${id}: four captured historical requests preserve visible context${progressed ? ' after progression' : ''}`, async () => {
+    const data = JSON.parse(readFileSync(new URL(`../../../server/seed/historical/${id}/scenario.json`, import.meta.url), 'utf8')).data;
+    let state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 });
+    if (progressed) state = advanceCharacters(state, id === 'john-1200' ? '1201-09-01' : '-2999-01-01', { id: 'progress' }).state;
+    state.historicalOrigin.sources.private = { chronology: 'HIDDEN_RESEARCH_1215' };
+    state.people[state.offices.ruler.holderId].historicalOrigin.claims.identity.noteSv = 'HIDDEN_PERSON_CLAIM';
+    createSecret(state, { type: 'murder', subjectId: state.offices.ruler.holderId, holderIds: ['generated-courtier-3'] });
+    const hiddenPerson = state.people['generated-courtier-2'];
+    hiddenPerson.loyalty = 37.24689;
+    const before = JSON.stringify(state);
+    const v = getCharacterPresentation(state);
+    const target = v.people.find(p => p.alive && p.age >= 18 && p.id !== v.representative.id);
+    const resolution = { actionLabel: 'Samtal', date: state.date, tier: 'success', tierLabel: 'Framgång', actorName: v.representative.name, targetNames: [target.name], agentNames: [], effects: [] };
+    const requests = [
+      [interpretCharacterAction, { text: 'Vila' }, { status: 'no_match', catalogId: '', targetIds: [], explanation: 'Välj en handling.' }],
+      [narrateCharacterResolution, { resolution }, { title: 'Samtalet', narrative: 'Orden når fram.', adjustments: [] }],
+      [extractConversationRequest, { personId: target.id, text: 'God dag' }, { kind: 'none' }],
+      [replyAsCharacter, { personId: target.id, text: 'God dag', outcome: { kind: 'support', accepted: false } }, { reply: 'Jag kan inte stödja dig.' }],
+    ];
+    for (const [fn, args, answer] of requests) {
+      const model = fakeModel(answer);
+      await fn({ ...args, view: v, callModel: model.callModel });
+      assert.equal(model.calls.length, 1);
+      const captured = model.calls[0];
+      const payload = JSON.parse(captured.history[0].parts[0].text);
+      assert.equal(payload.historicalContext.bookmarkDate, data.game.startDate);
+      assert.equal(payload.historicalContext.currentDate, state.date);
+      assert.equal(payload.historicalContext.polity.id, state.identity.polityId);
+      assert.equal(payload.historicalContext.ruler.name, v.ruler.name);
+      assert.equal(payload.historicalContext.contextSv, data.world.historicalScenario.contextSv);
+      const all = JSON.stringify(captured);
+      assert.match(all, /Genererad person/);
+      if (id === 'john-1200') assert.match(all, /Dokumenterad person/);
+      else {
+        assert.match(all, /utvecklarna/);
+        assert.match(all, /Kontroll längre söderut är oklar/);
+        assert.match(all, /ingen belagd exakt gräns/);
+      }
+      assert.doesNotMatch(all, /HIDDEN_|Hadara|Modern Day|medieval dynasty|the real events of this period happen/);
+      assert.doesNotMatch(all, /37\.24689|"loyalty"/);
+      assert.match(captured.systemPrompt, /alternate outcomes/);
+      assert.equal(payload.historicalContext.sources, undefined);
+      if (fn === narrateCharacterResolution) assert.deepEqual(payload.personOrigins.map(p => p.id).sort(), [v.representative.id, target.id].sort());
+      if (fn === replyAsCharacter) {
+        assert.equal(payload.speaker.identityOrigin, target.identityOrigin);
+        assert.deepEqual(payload.outcome, { kind: 'support', accepted: false });
+      }
+    }
+    assert.equal(JSON.stringify(state), before, 'request construction leaves all state and random streams unchanged');
+  });
+}
 
 // A callModel that answers from a queue and records every request it receives.
 function fakeModel(...answers) {

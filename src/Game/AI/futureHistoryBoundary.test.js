@@ -1,7 +1,30 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { buildRealHistoryDirective } from "./futureHistoryBoundary.js";
+import { buildRealHistoryDirective, historicalJumpTemplate } from "./futureHistoryBoundary.js";
+import { readFileSync } from 'node:fs';
+import { createHistoricalCharacterSystem } from '../../runtime/characters/scenarioSeed.js';
+import { getCharacterPresentation } from '../../runtime/characters/index.js';
+import { buildHistoricalPromptContext } from '../../runtime/characterWorld.js';
+
+test('historical context replaces mandatory future history, without treating scenario metadata alone as an opt-in', () => {
+  const data = JSON.parse(readFileSync(new URL('../../../server/seed/historical/john-1200/scenario.json', import.meta.url), 'utf8')).data;
+  const state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 });
+  const historicalContext = buildHistoricalPromptContext(getCharacterPresentation(state));
+  const result = buildRealHistoryDirective({ historicalContext, game: { ...data.game, gameDate: '1201-09-01' } });
+  assert.match(result, /alternate outcomes/);
+  assert.doesNotMatch(result, /the real events of this period happen|stays the default/);
+  const legacy = buildRealHistoryDirective({ world: data.world, game: data.game });
+  assert.match(legacy, /the real events of this period happen/);
+  assert.equal(buildRealHistoryDirective({ historicalContext: { contentId: 'fake' }, world: data.world, game: data.game }), legacy);
+  const custom = 'An inline mention [Real History Is the Default] stays.\r\n[Real History Is the Default]\r\nReplace this.\r\n[Author rules]\r\nKeep this.\r\n';
+  const changed = historicalJumpTemplate(custom, historicalContext);
+  assert.ok(changed.startsWith('An inline mention [Real History Is the Default] stays.\r\n'));
+  assert.ok(changed.endsWith('[Author rules]\r\nKeep this.\r\n'));
+  assert.ok(!changed.includes('Replace this.'));
+  assert.equal(historicalJumpTemplate(custom, undefined), custom);
+  assert.equal(historicalJumpTemplate(custom, { ...historicalContext, bookmarkDate: '0000-01-01' }), custom);
+});
 
 // A skip through May 2014 holds that month's real elections, coups and crises
 // unless this game has changed their causes.

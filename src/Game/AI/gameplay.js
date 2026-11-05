@@ -1,9 +1,10 @@
 /*! Open Historia — portions (briefing dossiers + timeout/fallback hardening) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 import { callAI, providerSupportsBatch, retrieveAIBatch, sendDiplomaticMessageOnceOff, submitAIBatch } from "./main.jsx";
 import { jumpDayStep, jumpTargetDate } from "../../runtime/jumpDates.js";
-import { assertCharacterModelGeneration, assertCharacterTurnHorizon, buildCharacterPromptContext, getCharacterEventBudget,
+import { assertCharacterModelGeneration, assertCharacterTurnHorizon, buildCharacterPromptContext, buildHistoricalPromptContext, getCharacterEventBudget,
   planCharacterTurnHorizon, prepareCharacterTimeline } from "../../runtime/characterWorld.js";
 import { commitCharacterCampaign } from "../../runtime/characterRuntime.js";
+import { getCharacterPresentation } from "../../runtime/characters/index.js";
 import { NATIVE_GAME_MASTER_PROMPT, normalizePromptPack } from "./gameplayPrompts.js";
 import { collectFoundedPolities, foundingPolityChange } from "../../runtime/polityFounding.js";
 import { CONTROL_CHANGE_LANGUAGE, LEGAL_TRANSFER_LANGUAGE } from "./territoryLanguage.js";
@@ -269,7 +270,7 @@ import {
 } from "../../runtime/statsSheet.js";
 import { beginTurnPerfStage, endTurnPerfStage, measureTurnPerfStage, recordTurnPerfAiAttempt } from "../../runtime/turnPerf.js";
 import { difficultyDirective, difficultyMeta } from "../../runtime/difficulty.js";
-import { buildRealHistoryDirective } from "./futureHistoryBoundary.js";
+import { buildRealHistoryDirective, historicalJumpTemplate } from "./futureHistoryBoundary.js";
 import { MAP_SETTING_KEYS, getMapSetting, getMapSettingDefaultOn } from "../../runtime/mapSettings.js";
 import { AI_FIRST_BYTE_TIMEOUT_MS, AI_IDLE_TIMEOUT_MS, createIdleDeadline } from "./idleDeadline.js";
 import { REPAIR_STOP_TIME_BUDGET, runBoundedRepairCall } from "./repairCall.js";
@@ -1599,6 +1600,8 @@ const buildTemplateVariables = async (bundle, options = {}) => {
     variables.characterContext = buildCharacterPromptContext(visible.world?.characterSystem, {
       targetDate: ["jumpForward", "autoJumpForward"].includes(taskKey) ? options.targetDate || "" : "",
     });
+    variables.historicalContext = visible.world?.characterSystem
+      ? buildHistoricalPromptContext(getCharacterPresentation(visible.world.characterSystem)) : undefined;
     variables.characterEventLimit = getCharacterEventBudget(visible.world?.characterSystem?.date, options.targetDate);
   }
   if (wants("canonicalStorylineContext")) {
@@ -2709,9 +2712,9 @@ const buildJumpLiveState = async ({ variables = {}, lookups = null, reminders = 
 
   // How this world relates to real history (futureHistoryBoundary.js).
   try {
-    blocks.push(buildRealHistoryDirective({ world, game, originDate: normalizeString(game?.gameDate) }));
+    blocks.push(buildRealHistoryDirective({ historicalContext: variables.historicalContext, game, originDate: normalizeString(game?.gameDate) }));
   } catch {
-    // The template's own [Real History Is the Default] still stands.
+    // Keep the rest of the live context available if the history block fails.
   }
   if (normalizeString(game?.difficulty)) blocks.push(jumpDifficultyDirective(game.difficulty));
 
@@ -2861,7 +2864,9 @@ const buildTaskSystemPrompt = async (taskKey, { variables, lookups = null, remin
   const customStatIndices = Boolean(!customFullStatSheet && statIndexDefinition?.custom && statIndexKeys.length);
   // The GM operational contract is native behaviour: a campaign's frozen
   // gameMaster prompt would silently roll the transaction semantics back.
-  const promptTemplate = taskKey === "gameMaster" ? NATIVE_GAME_MASTER_PROMPT : prompts.tasks[taskKey];
+  const loadedTemplate = taskKey === "gameMaster" ? NATIVE_GAME_MASTER_PROMPT : prompts.tasks[taskKey];
+  const promptTemplate = JUMP_TASK_KEYS.has(taskKey)
+    ? historicalJumpTemplate(loadedTemplate, variables?.historicalContext) : loadedTemplate;
   // A time skip's live records go INTO its template, at ${JUMP_LIVE_STATE}.
   const jumpTask = JUMP_TASK_KEYS.has(taskKey);
   if (jumpTask) {

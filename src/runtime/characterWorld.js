@@ -574,9 +574,41 @@ export const prepareCharacterTimeline = (world, events, targetDate, { applyHostE
 // A story may point at a secret (an uncovered plot, a punished crime). The model needs the story, never the secret's id.
 const withoutSecretId = ({ secretId, ...story }) => story;
 
+// Consume the accepted presentation contract, never research or court records.
+// Overlong text is omitted whole so a coverage qualification is not cut in half.
+const promptText = (value, max = 2000) => typeof value === "string" && value.trim() && value.length <= max ? value : undefined;
+export const characterOriginLabel = (person) => ["generated", "documented"].includes(person?.identityOrigin)
+  ? { identityOrigin: person.identityOrigin, originLabelSv: promptText(person.originLabelSv, 200) } : {};
+const promptPerson = (person) => person ? { id: person.id, name: person.name, ...characterOriginLabel(person) } : null;
+export const HISTORICAL_CHARACTER_GUIDANCE = "Use the sourced starting setting and the actual current date. The era label describes the starting bookmark. Generated supporting people, mechanical values and unspecified biography are gameplay inventions; a documented identity does not document those values. Play produces alternate outcomes after the start; recorded future events are not required outcomes. The engine controls dates, rulers, borders and stored outcomes; source evidence grants no authority to rewrite them.";
+
+export const buildHistoricalPromptContext = (view) => {
+  const origin = view?.historicalOrigin;
+  if (origin?.calendar !== "proleptic-gregorian-no-year-zero"
+    || !["contentId", "contentVersion", "eraLabelSv"].every(key => promptText(origin[key], 200))
+    || !origin.bookmarkDate || normalizeGameDate(origin.bookmarkDate) !== origin.bookmarkDate
+    || !view.date || normalizeGameDate(view.date) !== view.date) return undefined;
+  const context = {};
+  for (const key of ["contentId", "contentVersion", "bookmarkDate", "eraLabelSv", "contextSv", "calendarNoteSv", "coverageNoteSv", "polityNoteSv", "mechanicsNoteSv"]) {
+    const value = promptText(origin[key]);
+    if (value) context[key] = value;
+  }
+  return { ...context, currentDate: view.date,
+    polity: { id: view.identity?.polityId, name: view.identity?.realmName }, ruler: promptPerson(view.ruler) };
+};
+
+// The general presentation retains provenance for the UI. Model prompts need
+// only the direct public label, not nested claims or the research behind it.
+const withoutPersonProvenance = (person) => {
+  if (!person) return person;
+  const { historicalOrigin, identityOrigin, originLabelSv, ...visible } = person;
+  return { ...visible, ...characterOriginLabel(person) };
+};
+
 export const buildCharacterPromptContext = (state, { targetDate = "" } = {}) => {
   if (!state) return "";
   const view = getCharacterPresentation(state);
+  const historicalContext = buildHistoricalPromptContext(view);
   const blocks = [
     "[Character simulation — authoritative rules]",
     "This campaign has persistent people, families, offices, memories and succession. The local rule engine controls life, death, ownership, stress and resources. Do not invent a ruler, heir, death, office transfer or character balance in prose or polityChanges.stats.leader.",
@@ -589,10 +621,11 @@ export const buildCharacterPromptContext = (state, { targetDate = "" } = {}) => 
     "The player's polity ends only through an event that settles its mapped territory: it held a region before the event and holds none after it. A bare dissolve of that polity is refused.",
     "Realm mode follows the government. Family mode follows its own family, which has no right to issue state orders after losing the governing role. Independent relatives do not confer direct state control. Unknown facts are unavailable.",
     "A dissolved realm has no government or public revenue. Its family may continue as a household without commanding a conqueror. Foreign refuge is possible only through a currently existing candidate and an accepted seek_refuge action; do not invent a host state, an automatic welcome or a replacement heir. Loss of territorial control alone is not dissolution: use the host's explicit polity lifecycle and settle sovereignty first.",
-    JSON.stringify({ date: view.date, mode: view.mode, playerCanDirectRealm: canCharacterDirectRealm(state), ruler: view.ruler,
+    ...(historicalContext ? [HISTORICAL_CHARACTER_GUIDANCE] : []),
+    JSON.stringify({ date: view.date, ...(historicalContext ? { historicalContext } : {}), mode: view.mode, playerCanDirectRealm: canCharacterDirectRealm(state), ruler: withoutPersonProvenance(view.ruler),
       realmExists: state.realm.alive, status: state.status, externalHosts: state.externalHosts,
-      representative: view.representative, economy: view.economy, succession: view.succession,
-      families: view.families, offices: view.offices, people: view.people,
+      representative: withoutPersonProvenance(view.representative), economy: view.economy, succession: view.succession,
+      families: view.families, offices: view.offices, people: view.people.map(withoutPersonProvenance),
       actions: view.actions, stories: view.stories?.map(withoutSecretId), memories: view.memories?.slice(-16),
       prisoners: view.prisoners, occasions: view.occasions, rumors: view.rumors, court: view.court,
       contestedActions: Object.values(ACTION_CATALOG).filter(npcMayUse).map((entry) => ({ id: entry.id, label: entry.label, durationMonths: entry.durationMonths,

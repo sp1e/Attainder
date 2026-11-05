@@ -1,7 +1,7 @@
 // Reviewed historical facts and explicit gameplay choices. AGPL-3.0-or-later.
 // This module authors data only; runtime activation belongs to the start adapter.
 export const SOURCE_REVISION = '4b5039e50d8d2464b065bd76ad6086cd4597108d';
-export const EGYPT_CORE_NOTE_SV = 'Kartan visar ett valt, ungefärligt egyptiskt kärnområde. Kontroll längre söderut är oklar; områdets kant återger ingen belagd exakt gräns.';
+export const EGYPT_CORE_NOTE_SV = 'Kartan visar ett ungefärligt egyptiskt kärnområde som utvecklarna har valt och beskurit. Kontroll längre söderut är oklar; områdets kant återger ingen belagd exakt gräns.';
 export const EGYPT_CORE_SOURCE_IDS = ['egypt','egyptCore','nubiaMet','nubiaMpi','nubiaUcl','hbm'];
 export const EGYPT_CORE_TRANSFORM = { operation: 'intersection',maskBbox: [-180,24.2,180,90],authorship: 'developer',coverage: 'selective-core',
   note: 'Developer-selected latitude north of the Elephantine/First Cataract frontier region; conservative display omission, not a historical boundary. Remaining upstream edges stay approximate.',sourceIds: EGYPT_CORE_SOURCE_IDS };

@@ -1,13 +1,64 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { createHistoricalCharacterSystem } from "./characters/scenarioSeed.js";
 import { actionHooks, advanceCharacters, createCharacterSystem, executeCharacterCommand, getCharacterPresentation } from "./characters/index.js";
-import { discontentOf } from "./characters/factions.js";
+import { discontentOf, validateFactions } from "./characters/factions.js";
 import { createRumor, presentRumors } from "./characters/rumors.js";
 import { createSecret } from "./characters/secrets.js";
 import { imprisonPerson } from "./characters/prisoners.js";
 import { applyEventImpactsToWorld, normalizeEvents, normalizeWorldState, viewAsSeen } from "./gameState.js";
-import { buildCharacterPromptContext, characterTransitionEvents, normalizeCharacterOps, planCharacterAdvance, prepareCharacterTimeline, projectCharacterWorld } from "./characterWorld.js";
+import { buildCharacterPromptContext, buildHistoricalPromptContext, characterTransitionEvents, normalizeCharacterOps, planCharacterAdvance, prepareCharacterTimeline, projectCharacterWorld } from "./characterWorld.js";
 import { addGameMonths } from "./gameDates.js";
+
+test('historical context omits malformed and oversized metadata without truncating qualifications or seeding legacy state', () => {
+  const legacy = createCharacterSystem({ seed: 321 });
+  const before = JSON.stringify(legacy);
+  assert.equal(buildHistoricalPromptContext(getCharacterPresentation(legacy)), undefined);
+  assert.equal(JSON.stringify(legacy), before);
+  const view = { date: '1500-01-01', historicalOrigin: { calendar: 'proleptic-gregorian-no-year-zero', contentId: 'test', contentVersion: '1',
+    bookmarkDate: '1200-01-01', eraLabelSv: '1200 e.Kr.', contextSv: { private: 'HIDDEN_OBJECT' }, coverageNoteSv: 'x'.repeat(2001) } };
+  const context = buildHistoricalPromptContext(view);
+  assert.equal(context.currentDate, '1500-01-01');
+  assert.equal(context.contextSv, undefined);
+  assert.equal(context.coverageNoteSv, undefined);
+  assert.equal(buildHistoricalPromptContext({ ...view, historicalOrigin: { ...view.historicalOrigin, calendar: 'unknown' } }), undefined);
+});
+
+test('historical prompt projection whitelists metadata, keeps live control and leaves state and streams untouched', () => {
+  const data = JSON.parse(readFileSync(new URL('../../server/seed/historical/john-1200/scenario.json', import.meta.url), 'utf8')).data;
+  let state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 });
+  state = advanceCharacters(state, '1201-09-01', { id: 'progress' }).state;
+  state.historicalOrigin.sources.private = { chronology: 'HIDDEN_RESEARCH' };
+  state.historicalOrigin.courtSeeds = { secret: 'HIDDEN_COURT' };
+  state.people.john.historicalOrigin.claims.identity.noteSv = 'HIDDEN_CLAIM';
+  actionHooks(state).crown(state.people['generated-courtier-2'], [], 'Ett prov');
+  state.people['generated-courtier-2'].name = 'Den nuvarande härskaren';
+  state.identity.polityId = state.realm.id = 'current-polity';
+  state.realm.name = 'Det nuvarande riket';
+  const hidden = createSecret(state, { type: 'murder', subjectId: 'john', holderIds: ['isabella'] });
+  const before = JSON.stringify(state);
+  const context = buildCharacterPromptContext(state, { targetDate: '1202-01-01' });
+  const payload = JSON.parse(context.split('\n').find(line => line.startsWith('{"date"')));
+  assert.deepEqual(Object.keys(payload.historicalContext).sort(), ['bookmarkDate', 'calendarNoteSv', 'contentId', 'contentVersion', 'contextSv', 'coverageNoteSv', 'currentDate', 'eraLabelSv', 'mechanicsNoteSv', 'polity', 'polityNoteSv', 'ruler'].sort());
+  assert.equal(payload.historicalContext.currentDate, '1201-09-01');
+  assert.equal(payload.historicalContext.bookmarkDate, data.game.startDate);
+  assert.deepEqual(payload.historicalContext.polity, { id: 'current-polity', name: 'Det nuvarande riket' });
+  assert.equal(payload.historicalContext.ruler.name, 'Den nuvarande härskaren');
+  assert.equal(payload.historicalContext.ruler.id, 'generated-courtier-2');
+  assert.doesNotMatch(context, /HIDDEN_|"historicalOrigin"|"courtSeeds"/);
+  assert.ok(!context.includes(hidden.id));
+  assert.equal(JSON.stringify(state), before);
+  state.reign.startedAt = addGameMonths(state.date, -24);
+  const visibleCourt = promptData(state).court;
+  state.factions.push({ id: `faction-${++state.sequence}`, targetRulerId: state.reign.rulerId, leaderId: 'generated-courtier-3', claimantId: 'john',
+    memberIds: ['generated-courtier-1', 'generated-courtier-3'], knownMemberIds: [], formedAt: state.date, status: 'active', outcome: null,
+    quietUntil: null, ultimatumAt: null, dueAt: null, storyId: null, concessions: 0, closedAt: null });
+  validateFactions(state);
+  const hiddenCourt = promptData(state);
+  assert.deepEqual(hiddenCourt.court, visibleCourt, 'an undiscovered historical faction adds no court knowledge');
+  assert.deepEqual(hiddenPaths(hiddenCourt), ['.families[].memberIds']);
+});
 
 test('legacy display-name migration still runs for ordinary worlds', () => {
   const result = applyEventImpactsToWorld({ world: {

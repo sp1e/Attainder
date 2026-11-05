@@ -2,7 +2,7 @@
 
 Written by Claude on 5 November 2026 at `main` = `b655e2b`. Codex develops Attainder on the owner's private desktop until the owner's weekly Claude tokens reset. Read this file from top to bottom before you change anything.
 
-Updated by Codex on 5 November 2026: [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the Phase 3 review fixes after the final branch review and required test/build CI passed. The remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`; the retained remote branch `fix/phase-3-review` ends at `55283dc`. The historical campaign foundation is next, with its implementation plan prepared; begin Task 1.
+Updated by Codex on 5 November 2026: [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the Phase 3 review fixes after the final branch review and required test/build CI passed. The remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`; the retained remote branch `fix/phase-3-review` ends at `55283dc`. The historical campaign foundation is in progress on `codex/historical-campaign-foundation`. Tasks 1–3 are accepted through `808361e`; Task 4 is locally tested and pending independent review. Tasks 5–6 still own activation, start guards, UI and browser acceptance.
 
 **On this computer, read `HANDOVER.local.md` in the repository root next.** Git ignores it. It holds the machine-specific paths this public repository must not contain: where the newer Codex lives, the writing rules, the Swedish character sweep and the cleanup list.
 
@@ -65,7 +65,7 @@ Reproduce new findings before fixing them and write the failing test first.
 
 ### 2. Current: build the historical campaign foundation
 
-Follow `docs/superpowers/specs/2026-11-05-historical-world-direction.md`: real geography and historical polities, new starts from the Bronze Age through about AD 1200, and no modern starts. The written plan `docs/superpowers/plans/2026-11-05-historical-campaign-foundation.md` is prepared. Begin Task 1 and follow its six ordered tasks: campaign-start policy, historical content, initializer, prompts, combined guards/defaults/UI, then browser evidence. Preserve existing campaigns. The foundation is not feature-complete. Year-by-year research for approximately 3300 BC through AD 1200 and the turn-end historical-reference popup remain separate pending work in `docs/development/DEVELOPMENT-BACKLOG.md`.
+Follow `docs/superpowers/specs/2026-11-05-historical-world-direction.md`: real geography and historical polities, new starts from the Bronze Age through about AD 1200, and no modern starts. The written plan `docs/superpowers/plans/2026-11-05-historical-campaign-foundation.md` is prepared. Tasks 1–3 are accepted; complete Task 4 review before activating Tasks 5–6. The six ordered tasks cover: campaign-start policy, historical content, initializer, prompts, combined guards/defaults/UI, then browser evidence. Preserve existing campaigns. The foundation is not feature-complete. Year-by-year research for approximately 3300 BC through AD 1200 and the turn-end historical-reference popup remain separate pending work in `docs/development/DEVELOPMENT-BACKLOG.md`.
 
 ### 3. Deferred: run `docs/play-scripts/phase-3.md` in a browser
 
