@@ -13,7 +13,7 @@ import { addPrestige, reignMonths } from './reign.js';
 // The yearly step runs only while the player holds the crown as an adult. It draws only from the plot stream (plotRandom), and only after every other check passed. The one other draw is the crush, from the action stream (actionRandom).
 // `hooks` are the engine's (actionHooks in index.js). actionResolution.js, npcPlots.js and schemes.js import each other in a cycle, so AGGRESSION is read only inside a function here.
 
-export const DISCONTENT_THRESHOLD = 16;
+export const DISCONTENT_THRESHOLD = 15;
 export const LEAVE_BELOW = 5;
 export const FOUNDERS = 3;
 export const FORM_BASE = 40;

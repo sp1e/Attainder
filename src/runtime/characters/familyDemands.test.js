@@ -163,16 +163,16 @@ test('the draws run in family id order and the first hit ends the step', () => {
 });
 
 const CHANCES = [
-  ['the base at influence 45', () => {}, 30],
-  ['ten more influence', (state) => { state.families[ESHMUNS].influence = 55; }, 40],
-  ['an ambitious head', (state) => { state.people[ESHMUN].traits.push('ambitious'); }, 40],
-  ['half the head\'s fear', (state) => { state.people[ESHMUN].fear = 20; }, 20],
-  ['Svår', (state) => { state.difficulty = 'hard'; }, 45],
-  ['Lätt', (state) => { state.difficulty = 'easy'; }, 15],
+  ['the base at influence 45', () => {}, 34],
+  ['ten more influence', (state) => { state.families[ESHMUNS].influence = 55; }, 44],
+  ['an ambitious head', (state) => { state.people[ESHMUN].traits.push('ambitious'); }, 44],
+  ['half the head\'s fear', (state) => { state.people[ESHMUN].fear = 20; }, 24],
+  ['Svår', (state) => { state.difficulty = 'hard'; }, 51],
+  ['Lätt', (state) => { state.difficulty = 'easy'; }, 17],
   ['the floor', (state) => { state.people[ESHMUN].fear = 100; }, 5],
   ['the ceiling', (state) => { state.families[ESHMUNS].influence = 100; }, 70],
   ['the ceiling after Svår', (state) => { state.families[ESHMUNS].influence = 65; state.difficulty = 'hard'; }, 70],
-  ['the floor after Lätt', (state) => { state.people[ESHMUN].fear = 44; state.difficulty = 'easy'; }, 5],
+  ['the floor after Lätt', (state) => { state.people[ESHMUN].fear = 50; state.difficulty = 'easy'; }, 5],
 ];
 for (const [name, arrange, chance] of CHANCES) test(`the chance is ${chance} with ${name}`, () => {
   const roll = (stream) => {

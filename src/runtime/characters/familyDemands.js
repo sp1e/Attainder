@@ -11,7 +11,7 @@ import { isImprisoned } from './prisoners.js';
 const TERM_MONTHS = 12;
 const QUIET_MONTHS = 24;
 const OFFICES = Object.freeze(['chancellor', 'general', 'priest']);
-const CHANCE = Object.freeze({ base: 30, influence: 45, ambitious: 10, fearDivisor: 2, min: 5, max: 70 });
+const CHANCE = Object.freeze({ base: 34, influence: 45, ambitious: 10, fearDivisor: 2, min: 5, max: 70 });
 const COMPENSATION = 40;
 const ANSWER_ORDERS = 1;
 const ANSWER_TAG = 'duty';

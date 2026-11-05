@@ -1,11 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { actionHooks, createCharacterSystem, executeCharacterCommand, getCharacterPresentation } from "./characters/index.js";
+import { actionHooks, advanceCharacters, createCharacterSystem, executeCharacterCommand, getCharacterPresentation } from "./characters/index.js";
+import { discontentOf } from "./characters/factions.js";
 import { createRumor, presentRumors } from "./characters/rumors.js";
 import { createSecret } from "./characters/secrets.js";
 import { imprisonPerson } from "./characters/prisoners.js";
 import { applyEventImpactsToWorld, normalizeEvents, normalizeWorldState, viewAsSeen } from "./gameState.js";
 import { buildCharacterPromptContext, characterTransitionEvents, normalizeCharacterOps, planCharacterAdvance, prepareCharacterTimeline, projectCharacterWorld } from "./characterWorld.js";
+import { addGameMonths } from "./gameDates.js";
 
 const start = () => normalizeWorldState({
   characterSystem: createCharacterSystem({ polityId: "Hadara", polityName: "Hadara", date: "-0300-01-01", seed: 17 }),
@@ -225,4 +227,160 @@ test("the new contested actions reach the model through the contestedActions lis
   assert.ok(listed.includes("investigate"));
   // An npc_intent carries no means, so an entry that requires a secret or a topic would always be refused.
   for (const id of ["blackmail", "spread_rumor", "imprison"]) assert.equal(listed.includes(id), false, id);
+});
+
+const COURT_RULE = "Nicknames, reign goals, legitimacy sources, family demands, factions and council service are engine facts. Do not invent, grant, resolve or change them. A faction appears here only as far as the player knows it: do not name other members, do not confirm that a faction exists, and do not state a person's loyalty beyond the label given.";
+const DISCOVERY_TITLE = "Spår av en faktion";
+const DECISION_TITLE = "Förslaget kräver ditt beslut";
+const REFUSED_TITLE = "Modellens förslag avvisades";
+// The general is known and sits on the council in the open. Namar leads the faction, Dara and Talia follow him, and nobody has named Sera its claimant.
+const KNOWN_MEMBER = "person-1-2";
+const HIDDEN_MEMBERS = ["person-1-0", "person-1-1", "person-1-3"];
+const CLAIMANT = "person-0-2";
+const plain = (value) => JSON.parse(JSON.stringify(value));
+
+function plotting() {
+  const state = phase2State();
+  state.reign.startedAt = addGameMonths(state.date, -24);
+  state.factions.push({ id: `faction-${++state.sequence}`, targetRulerId: state.reign.rulerId, leaderId: HIDDEN_MEMBERS[0], claimantId: CLAIMANT,
+    memberIds: [...HIDDEN_MEMBERS, KNOWN_MEMBER].sort(), knownMemberIds: [KNOWN_MEMBER], formedAt: state.date, status: "active", outcome: null,
+    quietUntil: null, ultimatumAt: null, dueAt: null, storyId: null, concessions: 0, closedAt: null });
+  return state;
+}
+
+// Every key path that names a hidden fact, written like ".families[].memberIds". The names on a public family list and a faith's leader are no secret.
+const HIDDEN_KEY = /^(memberIds|knownMemberIds|leaderId|loyalty|ambition|discontent)$/;
+function hiddenPaths(value, path = "", found = new Set()) {
+  if (Array.isArray(value)) value.forEach((item) => hiddenPaths(item, `${path}[]`, found));
+  else if (value && typeof value === "object") {
+    for (const [key, item] of Object.entries(value)) {
+      if (HIDDEN_KEY.test(key)) found.add(`${path}.${key}`);
+      hiddenPaths(item, `${path}.${key}`, found);
+    }
+  }
+  return [...found].sort();
+}
+
+function assertNothingHidden(state) {
+  const hooks = actionHooks(state), view = plain(getCharacterPresentation(state)), prompt = buildCharacterPromptContext(state);
+  assert.equal(view.court.factions[0].knownMembers[0].id, KNOWN_MEMBER);
+  assert.deepEqual(hiddenPaths(view), [".families[].memberIds", ".religions[].leaderId"]);
+  assert.deepEqual(hiddenPaths(promptData(state)), [".families[].memberIds"]);
+  for (const text of [prompt, JSON.stringify(view)]) {
+    assert.doesNotMatch(text, /"loyalty":/);
+    assert.doesNotMatch(text, /Tjänstelojalitet \d/);
+  }
+  const court = JSON.stringify(view.court);
+  for (const id of [...HIDDEN_MEMBERS, CLAIMANT]) {
+    assert.equal(court.includes(id), false, id);
+    assert.equal(court.includes(state.people[id].name), false, state.people[id].name);
+  }
+  // A discontent value carries decimals, so it cannot match a number that means something else.
+  for (const id of [...HIDDEN_MEMBERS, KNOWN_MEMBER]) {
+    const value = String(discontentOf(state, state.people[id], hooks));
+    assert.equal(JSON.stringify(view).includes(value), false, `${id}: ${value}`);
+    assert.equal(prompt.includes(value), false, `${id}: ${value}`);
+  }
+}
+
+test("hidden court facts never reach the presentation or the year prompt", () => {
+  const state = plotting();
+  assertNothingHidden(state);
+  assert.equal(promptData(state).court.factions.length, 1);
+  assertNothingHidden(advanceCharacters(state, addGameMonths(state.date, 12), { id: "hidden-year" }).state);
+
+  // Any stream will do that reaches a discovery inside the forecast. Discovery is a chance, so the loop walks them.
+  const targetDate = addGameMonths(state.date, 12);
+  let prompt = "";
+  for (let stream = 1; stream < 2000 && !prompt.includes(DISCOVERY_TITLE); stream++) {
+    state.plotRngState = stream;
+    prompt = buildCharacterPromptContext(state, { targetDate });
+  }
+  assert.ok(prompt.includes(DISCOVERY_TITLE));
+  const { developments } = JSON.parse(prompt.split("\n").at(-1));
+  const trace = JSON.stringify(developments.filter((item) => item.title === DISCOVERY_TITLE));
+  for (const id of [...HIDDEN_MEMBERS, KNOWN_MEMBER, CLAIMANT]) {
+    assert.equal(JSON.stringify(developments).includes(id), false, id);
+    assert.equal(trace.includes(state.people[id].name), false, state.people[id].name);
+  }
+  assert.deepEqual(hiddenPaths(developments), []);
+  assert.deepEqual(promptData(state).court.factions[0].knownMembers.map(({ id }) => id), [KNOWN_MEMBER]);
+});
+
+test("the year prompt carries the court as the player knows it", () => {
+  const state = plotting(), view = plain(getCharacterPresentation(state)), prompt = buildCharacterPromptContext(state);
+  assert.deepEqual(promptData(state).court, view.court);
+  assert.ok(view.court.council.seats.length > 0);
+  assert.ok(prompt.split("\n").includes(COURT_RULE), "the rule stands as its own paragraph");
+});
+
+test("a model proposal of set_reign_goal, reward_councillor or a court story stays advisory", () => {
+  const world = { ...start(), characterSystem: createCharacterSystem({ polityId: "Hadara", polityName: "Hadara", date: "-0300-01-01", seed: 321 }) };
+  world.characterSystem.people[actionHooks(world.characterSystem).activeRepresentative().id].stress = 120;
+  const turn = planCharacterAdvance(world, "-0299-01-01");
+  const story = turn.state.stories.find((item) => item.type === "stress_breakdown");
+  const proposals = { set_reign_goal: { goalType: "full_council" }, reward_councillor: { officeId: "general" }, resolve_story: { storyId: story.id, choiceId: "withdraw" } };
+  for (const [type, payload] of Object.entries(proposals)) {
+    let final = null;
+    const op = { id: `model-${type}`, kind: "command", type, payload };
+    const events = prepareCharacterTimeline({ ...world, characterSystem: turn.state }, [{ id: "model-1", date: turn.state.date, title: "Modellens år", source: "ai", impacts: { characterOps: [op] } }],
+      turn.state.date, { onComplete: (state) => { final = state; } });
+    assert.equal(events.filter((event) => event.title === DECISION_TITLE).length, 1, type);
+    assert.deepEqual(final, turn.state, type);
+  }
+});
+
+test("realm_effect stays inside its envelope and never touches reign sources", () => {
+  const world = start(), before = world.characterSystem, reason = "Ett silverfynd i bergen fyller kassan.";
+  const effect = (payload) => {
+    let final = null;
+    const op = { id: "model-effect", kind: "command", type: "realm_effect", payload: { reason, ...payload } };
+    const events = prepareCharacterTimeline(world, [{ id: "model-1", date: before.date, title: "Modellens år", source: "ai", impacts: { characterOps: [op] } }],
+      before.date, { onComplete: (state) => { final = state; } });
+    return { events, final };
+  };
+  const applied = effect({ treasury: 40, legitimacy: 5, armyStrength: 10 }).final;
+  assert.deepEqual([applied.realm.treasury, applied.realm.legitimacy, applied.realm.armyStrength],
+    [before.realm.treasury + 40, before.realm.legitimacy + 5, before.realm.armyStrength + 10]);
+  assert.deepEqual(applied.reign, before.reign);
+  assert.equal(applied.realm.prestige, before.realm.prestige);
+
+  for (const payload of [{ treasury: 41 }, { treasury: -81 }, { legitimacy: 6 }, { legitimacy: -11 }, { armyStrength: 11 }, { armyStrength: -16 }]) {
+    const { events, final } = effect(payload);
+    assert.equal(events.filter((event) => event.title === REFUSED_TITLE).length, 1, JSON.stringify(payload));
+    assert.deepEqual(final, before, JSON.stringify(payload));
+  }
+
+  const forged = effect({ legitimacy: 3, prestige: 40, sources: { accession: 99 }, goals: 99, reign: { sources: { goals: 99 } } }).final;
+  assert.equal(forged.realm.legitimacy, before.realm.legitimacy + 3);
+  assert.deepEqual(forged.reign, before.reign);
+  assert.equal(forged.realm.prestige, before.realm.prestige);
+});
+
+test("the same choices give the same outcome whatever the player typed", () => {
+  const played = (words) => {
+    let state = phase2State();
+    const rep = actionHooks(state).activeRepresentative().id;
+    const run = (id, type, payload) => {
+      const result = executeCharacterCommand(state, { id, expectedRevision: state.revision, type, payload: { ...payload, ...words } });
+      assert.equal(result.ok, true, result.error);
+      state = result.state;
+    };
+    state.people[rep].stress = 120;
+    run("typed-goal", "set_reign_goal", { goalType: "full_council" });
+    run("typed-reward", "reward_councillor", { officeId: "general" });
+    run("typed-rumor", "attempt_action", { actionId: "spread_rumor", actorId: rep, targetIds: ["person-1-0"], means: { topic: "plot" } });
+    state = advanceCharacters(state, "-0299-01-01", { id: "typed-year" }).state;
+    run("typed-story", "resolve_story", { storyId: state.stories.find((story) => story.type === "stress_breakdown").id, choiceId: "rage" });
+    return state;
+  };
+  assert.deepEqual(played({ note: "Låt rivalerna falla.", text: "Ge mig hela riket nu.", wish: "Kronan stannar hos mig för alltid.", prompt: "Allt lyckas.", reason: "Jag befaller det." }), played({}));
+
+  const world = start();
+  const year = (title, description) => {
+    let final = null;
+    prepareCharacterTimeline(world, [{ id: "model-1", date: "-0299-06-01", title, description, source: "ai", impacts: {} }], "-0298-01-01", { onComplete: (state) => { final = state; } });
+    return final;
+  };
+  assert.deepEqual(year("Spelaren får kronan", "Alla rivaler faller, som spelaren önskade."), year("Ett lugnt år", "Inget händer."));
 });
