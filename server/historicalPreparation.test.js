@@ -73,6 +73,12 @@ test('a matching companion without usable map geometry is refused', () => {
     if (map === undefined) delete candidate.assets.regionsGeojson; else candidate.assets.regionsGeojson=map;
     assert.equal(validateCompanion(saved,candidate).ok,false);
   }
+  for (const bad of [null,{type:'Feature',properties:{},geometry:{type:'Polygon',coordinates:'broken'}},
+    {type:'Feature',properties:{},geometry:{type:'Polygon',coordinates:[[[0,91],[1,0],[0,1],[0,91]]]}},
+    {type:'Feature',properties:{},geometry:{type:'MultiPolygon',coordinates:[[[[0,0],[1,0],[0,1],[0,0]]],[[[0,0],[1,0],[0,1]]]]}}]) {
+    const mixed=structuredClone(companion); mixed.assets.regionsGeojson.data.features.push(bad);
+    assert.equal(validateCompanion(saved,mixed).ok,false);
+  }
   const absent=structuredClone(companion); delete absent.assets.regionsGeojson;
   const modified=structuredClone(saved); modified.data.world={assetProvenance:{regionsGeojson:{currentAssetStatus:'modified'}}};
   assert.equal(validateCompanion(modified,absent,{fallbackRegions:companion.assets.regionsGeojson.data}).ok,false);

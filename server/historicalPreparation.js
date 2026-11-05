@@ -1,6 +1,6 @@
 /*! Attainder historical start preparation. AGPL-3.0-or-later (see LICENSE). */
 import { classifyCampaignCreation, validateHistoricalStartDate, validateHistoricalStartDates } from './historicalStarts.js';
-import { validateHistoricalScenario, validHistoricalGeometry } from './historicalScenarios.js';
+import { validateHistoricalScenario } from './historicalScenarios.js';
 import { parseGameDate } from './gameDates.js';
 import { createHistoricalCharacterSystem } from './characters/scenarioSeed.js';
 import { projectPreparedCharacterWorld } from './characterProjection.js';
@@ -113,6 +113,19 @@ export function validateSavedGameBundle(bundle) {
   return { ok: true };
 }
 
+// Generic legacy maps may use unwrapped antimeridian longitudes, unlike authored starts.
+// Validate every polygon and ring without rewriting the supplied collection.
+function validCompanionGeometry(geometry) {
+  const polygons = geometry?.type === 'Polygon' ? [geometry.coordinates]
+    : geometry?.type === 'MultiPolygon' ? geometry.coordinates : null;
+  return Array.isArray(polygons) && polygons.length > 0 && polygons.every(polygon =>
+    Array.isArray(polygon) && polygon.length > 0 && polygon.every(ring =>
+      Array.isArray(ring) && ring.length >= 4
+      && ring.every(point => Array.isArray(point) && point.length >= 2 && point.every(Number.isFinite) && Math.abs(point[1]) <= 90)
+      && ring[0][0] === ring.at(-1)[0] && ring[0][1] === ring.at(-1)[1]
+      && new Set(ring.map(point => `${point[0]},${point[1]}`)).size >= 3));
+}
+
 export function companionMap(companion, fallbackRegions = null) {
   const asset = companion?.assets?.regionsGeojson;
   if (asset?.mode !== 'embedded' && companion?.data?.world?.assetProvenance?.regionsGeojson?.currentAssetStatus === 'modified') {
@@ -129,7 +142,7 @@ export function companionMap(companion, fallbackRegions = null) {
     }
   } else if (asset && asset.mode !== 'default') regions = null;
   if (regions?.type !== 'FeatureCollection' || !Array.isArray(regions.features)
-    || !regions.features.some(feature => feature?.type === 'Feature' && validHistoricalGeometry(feature.geometry))) {
+    || !regions.features.length || !regions.features.every(feature => feature?.type === 'Feature' && validCompanionGeometry(feature.geometry))) {
     return fail('missingMap', 'Scenariot saknar en giltig karta för den sparade kampanjen.');
   }
   return { ok: true, regions };

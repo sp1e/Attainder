@@ -111,9 +111,13 @@ test('server prepares both historical courts and refuses invalid requests withou
       const invalidMap=structuredClone(missingMap); invalidMap.assets.regionsGeojson={mode:'embedded',data:{type:'FeatureCollection',features:[]}};
       const invalidEncoded=structuredClone(missingMap); invalidEncoded.assets.regionsGeojson={mode:'embedded',encoding:'base64',data:'@@@'};
       const invalidCover=structuredClone(authored); invalidCover.scenario.id='long-gone'; invalidCover.assets.cover={mode:'embedded',data:'@@@',encoding:'base64',contentType:'application/octet-stream'};
-      for (const map of [missingMap,invalidMap,invalidEncoded,invalidCover]) {
-        const before=snapshot(); assert.throws(()=>store.restoreGameBundle({bundle:{...legacy,scenarioRef:{scenarioId:'long-gone'}},scenarioBundle:map}));
-        assert.throws(()=>store.restoreScenarioForGame(missing.game.id,map)); assert.deepEqual(snapshot(),before);
+      const mixedNull=structuredClone(authored); mixedNull.scenario.id='long-gone'; mixedNull.assets.regionsGeojson.data.features.push(null);
+      const mixedBroken=structuredClone(authored); mixedBroken.scenario.id='long-gone'; mixedBroken.assets.regionsGeojson.data.features.push({type:'Feature',properties:{},geometry:{type:'Polygon',coordinates:'broken'}});
+      for (const map of [missingMap,invalidMap,invalidEncoded,invalidCover,mixedNull,mixedBroken]) {
+        const before=snapshot(); const rejected=run=>{try { run(); return false; } catch { return true; }};
+        const combinedRejected=rejected(()=>store.restoreGameBundle({bundle:{...legacy,scenarioRef:{scenarioId:'long-gone'}},scenarioBundle:map}));
+        const existingRejected=rejected(()=>store.restoreScenarioForGame(missing.game.id,map));
+        assert.deepEqual([combinedRejected,existingRejected],[true,true]); assert.deepEqual(snapshot(),before);
       }
       const stamped=structuredClone(missingMap); stamped.data.world={builtInMap:'modern-day-world-2026-10-v1'};
       const stampedSave={...legacy,scenarioRef:{scenarioId:'long-gone'},data:{...legacy.data,world:{...legacy.data.world,builtInMap:'modern-day-world-2026-10-v1'}}};

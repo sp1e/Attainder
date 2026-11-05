@@ -398,10 +398,13 @@ test('non-default map collisions remain unresolved and empty companions cannot r
   const empty=structuredClone(companion); empty.assets.regionsGeojson={mode:'embedded',data:{type:'FeatureCollection',features:[]}};
   const invalidEncoded=structuredClone(companion); invalidEncoded.assets.regionsGeojson={mode:'embedded',encoding:'base64',data:'@@@'};
   const invalidCover=structuredClone(HISTORICAL); invalidCover.scenario.id=installed; invalidCover.assets.cover={mode:'embedded',data:'@@@',encoding:'base64',contentType:'application/octet-stream'};
-  for (const map of [companion,empty,invalidEncoded,invalidCover]) {
+  const mixedNull=structuredClone(HISTORICAL); mixedNull.scenario.id=installed; mixedNull.assets.regionsGeojson.data.features.push(null);
+  const mixedBroken=structuredClone(HISTORICAL); mixedBroken.scenario.id=installed; mixedBroken.assets.regionsGeojson.data.features.push({type:'Feature',properties:{},geometry:{type:'Polygon',coordinates:'broken'}});
+  for (const map of [companion,empty,invalidEncoded,invalidCover,mixedNull,mixedBroken]) {
     const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;
-    assert.equal((await games('POST','restore',{bundle,scenarioBundle:map})).status,400);
-    assert.equal((await games('POST',`${imported.game.id}/scenario/restore`,map)).status,400);
+    const combined=await games('POST','restore',{bundle,scenarioBundle:map});
+    const existing=await games('POST',`${imported.game.id}/scenario/restore`,map);
+    assert.deepEqual([combined.status,existing.status],[400,400]);
     assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes);
   }
   assert.deepEqual(await scenarioAsset(installed,'regionsGeojson'),existingMap);
