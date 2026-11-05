@@ -26,7 +26,7 @@ export function ReignCard({ court, Meter }) {
   const sources = entries(court.legitimacy.sources), goals = entries(court.reign.goals);
   return <div className="char-reign">
     <div className="char-leader-measures">
-      <div><Meter label="Fruktan" value={court.dread.value} danger /><p className="char-caption">{court.dread.label}</p></div>
+      <div><Meter label="Fruktan" value={court.dread.value} valueText={court.dread.label} danger /><p className="char-caption">{court.dread.label}</p></div>
       <div className="char-metric"><span>Ryktbarhet</span><strong>{number(court.prestige)}</strong></div>
     </div>
     {sources.length > 0 && <RowList summary="Vad bär legitimiteten?" rows={sources.map((row) => <li key={row.label}>{modifierText(row)}</li>)} />}

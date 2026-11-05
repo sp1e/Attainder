@@ -74,11 +74,11 @@ function Metric({ label, value, note, tone }) {
   return <div className={`char-metric${tone ? ` char-metric--${tone}` : ""}`}><span>{label}</span><strong>{value}</strong>{note && <small>{note}</small>}</div>;
 }
 
-function Meter({ label, value, max = 100, danger = false }) {
+function Meter({ label, value, max = 100, danger = false, valueText }) {
   const amount = Math.min(max, Math.max(0, Number(value) || 0));
   return <div className={`char-meter${danger ? " char-meter--danger" : ""}`}>
     <div><span>{label}</span><strong>{number(value)}<small> / {max}</small></strong></div>
-    <div className="char-meter-track" role="meter" aria-label={label} aria-valuemin={0} aria-valuemax={max} aria-valuenow={amount}><span style={{ width: `${amount / max * 100}%` }} /></div>
+    <div className="char-meter-track" role="meter" aria-label={label} aria-valuemin={0} aria-valuemax={max} aria-valuenow={amount} aria-valuetext={valueText}><span style={{ width: `${amount / max * 100}%` }} /></div>
   </div>;
 }
 
@@ -174,7 +174,7 @@ function StoryCard({ story, person, onCommand, busy }) {
     {isChain && entries(story.previousChoices).length > 0 && <details className="char-explanation"><summary>Tidigare val ({entries(story.previousChoices).length})</summary><ChainDecisions steps={story.previousChoices} /></details>}
     {story.deadlineText ? <p className="char-caption">{story.deadlineText}</p> : story.fallbackDescription && <p className="char-caption">Om du avstår till tidsgränsen: {story.fallbackDescription}</p>}
     {isChain && story.nextAt && <p className="char-caption">Nästa uppföljning: {dateLabel(story.nextAt)}</p>}
-    <div className="char-story-choices">{(story.choices || []).map((choice) => <div className="char-choice-slot" key={choice.id}><button type="button" className="char-choice" disabled={busy || Boolean(choice.disabledReason)} onClick={() => onCommand("resolve_story", { storyId: story.id, choiceId: choice.id })}>
+    <div className="char-story-choices">{(story.choices || []).map((choice) => <div className="char-choice-slot" key={choice.id} role={choice.odds ? "group" : undefined} aria-labelledby={choice.odds ? `char-choice-${story.id}-${choice.id}` : undefined}><button type="button" id={`char-choice-${story.id}-${choice.id}`} className="char-choice" disabled={busy || Boolean(choice.disabledReason)} onClick={() => onCommand("resolve_story", { storyId: story.id, choiceId: choice.id })}>
       <strong>{choice.label}</strong><span>{choice.description}</span>{choice.scope !== "none" && (choice.actorName ? <small>Utförs av: {choice.actorName}</small> : choice.actorName === null && <small>Ingen behörig aktör</small>)}<small>{[choice.cost, stressLabel(choice.stress)].filter(Boolean).join(" · ")}</small>{choice.disabledReason && <em>{choice.disabledReason}</em>}
     </button><ChoiceOdds odds={choice.odds} /></div>)}</div>
   </article>;

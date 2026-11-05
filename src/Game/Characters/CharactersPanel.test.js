@@ -7,6 +7,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
 import { applyRealmDissolution, createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation } from "../../runtime/characters/index.js";
 import { REASONS as ODDS_REASONS } from "../../runtime/characters/actionOdds.js";
+import * as realDates from "../../runtime/gameDates.js";
 import { CONVERSATION_REQUESTS } from "../../runtime/characters/conversation.js";
 import * as realCounter from "../AI/modelCallCounter.js";
 import { createSecret, grantHook } from "../../runtime/characters/secrets.js";
@@ -72,7 +73,7 @@ const conversationModel = (overrides = {}) => ({
   ...overrides,
 });
 
-function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council", modelCalls = 0, counter = null, react = null, runtime = {}, model = {}, globals = {} } = {}) {
+function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council", modelCalls = 0, counter = null, react = null, runtime = {}, model = {}, globals = {}, dates = null } = {}) {
   let stateIndex = 0;
   const calls = [];
   const modules = {
@@ -84,7 +85,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
         return [value, () => {}];
       } },
     "../../runtime/useRuntimeState.js": { useRuntimeState: () => null },
-    "../../runtime/gameDates.js": { parseGameDate: () => null, compareGameDates: () => 0 },
+    "../../runtime/gameDates.js": dates || { parseGameDate: () => null, compareGameDates: () => 0 },
     "../../runtime/characters/index.js": { getCharacterPresentation: (state) => state },
     "../../runtime/characterRuntime.js": {
       advanceCharacterYearWithModel: async () => { calls.push("advance"); return {}; },
@@ -128,8 +129,8 @@ const baseView = () => ({
   },
 });
 // CouncilView takes the view as a prop; panel state would otherwise feed the first child hooks.
-const council = (view) => {
-  const { CouncilView } = loadPanel(view, { panelState: false });
+const council = (view, options = {}) => {
+  const { CouncilView } = loadPanel(view, { panelState: false, ...options });
   return renderToStaticMarkup(React.createElement(CouncilView, { view, pending: [], setTab: () => {}, selectPerson: () => {} }));
 };
 
@@ -1669,7 +1670,7 @@ const emptyCourt = () => {
   view.court = { ...view.court, reign: { ...view.court.reign, goals: [] }, legitimacy: { value: 0, sources: [] }, council: { seats: view.court.council.seats, ambitions: [] }, demands: [], factions: [] };
   return view;
 };
-const onTab = (view, tab) => renderToStaticMarkup(loadPanel(view, { tab }).default({ open: true, onClose: () => {} }));
+const onTab = (view, tab, options = {}) => renderToStaticMarkup(loadPanel(view, { tab, ...options }).default({ open: true, onClose: () => {} }));
 const sectionOf = (html, name) => { const from = html.slice(html.indexOf(`aria-label="${name}"`)); return from.slice(0, from.indexOf("</section>")); };
 
 test("the leader card shows dread, prestige, the sources of legitimacy and the reign's goals", () => {
@@ -1685,6 +1686,72 @@ test("the leader card shows dread, prestige, the sources of legitimacy and the r
   assert.doesNotMatch(html, /Inga mål är utlysta\./);
   assert.ok(html.indexOf("Fruktan") > html.indexOf("char-leader-card"), "the reign sits in the leader card");
   assert.ok(html.indexOf("Fruktan") < html.indexOf("Rikets tillstånd"), "the reign sits in the leader card");
+});
+
+// The sections fed by the real presenters, so a renamed field leaves these tests red. The goal, demand and faction are the
+// saved records the engine writes; `known` sets how many of the faction's members the player has found.
+function courtCampaign({ spymaster = true, known = 1 } = {}) {
+  const { state } = engineCampaign(undefined, { spymaster });
+  const [, otherFamily] = Object.values(state.families);
+  const memberIds = Object.values(state.people).filter((person) => person.familyId === otherFamily.id && !person.diedAt).map((person) => person.id).sort().slice(0, 3);
+  const dueAt = realDates.addGameMonths(state.date, 60);
+  state.reign.goals.push({ id: "goal-1", type: "fill_treasury", baseline: 0, setAt: state.date, dueAt, status: "active", closedAt: null });
+  state.familyDemands.push({ id: "demand-1", familyId: otherFamily.id, kind: "office", targetId: "chancellor", status: "open", openedAt: state.date, dueAt, storyId: null, closedAt: null });
+  state.factions.push({ id: "faction-1", targetRulerId: state.reign.rulerId, leaderId: memberIds[0], claimantId: memberIds[1], memberIds, knownMemberIds: memberIds.slice(0, known), formedAt: state.date, status: "active", outcome: null, quietUntil: null, ultimatumAt: null, dueAt: null, storyId: null, concessions: 0, closedAt: null });
+  return { state, view: getCharacterPresentation(state), otherFamily, memberIds };
+}
+
+test("the reign and Rådet render from the real court", () => {
+  const { view } = courtCampaign();
+  const leader = council(view);
+  assert.match(leader, /role="meter" aria-label="Fruktan"/);
+  assert.match(leader, /Ingen fruktar kronan/);
+  assert.match(leader, /Ryktbarhet<\/span><strong>\d/);
+  assert.match(leader, /Vad bär legitimiteten\?/);
+  assert.match(leader, /Tronföljd: \+\d/);
+  assert.match(leader, /Fyll statskassan/);
+  assert.match(leader, /Statskassan ska rymma minst 300 silver/);
+  assert.match(leader, /Pågår/);
+  const seats = sectionOf(onTab(view, "offices"), "Rådet");
+  assert.deepEqual(view.court.council.seats.map((seat) => seat.officeId), ["chancellor", "general", "spymaster"]);
+  for (const name of ["Kansler", "Spionmästare"]) assert.ok(seats.includes(name), name);
+  assert.match(seats, /Tjänst: [^<]+</);
+  assert.ok(seats.includes(view.people.find((person) => person.id === "person-1-3").name), "the spymaster's name");
+});
+
+test("a goal's due date reads as a date through the real gameDates module", () => {
+  const { view } = courtCampaign();
+  assert.equal(view.court.reign.goals[0].dueAt, "-0295-01-01");
+  assert.match(council(view, { dates: realDates }), /1\/1 295 f\.Kr\. · Pågår/);
+});
+
+test("Krav and Faktioner render from the real presenters", () => {
+  const { view, otherFamily, memberIds } = courtCampaign();
+  const demands = sectionOf(onTab(view, "families"), "Krav från familjerna");
+  assert.ok(demands.includes(otherFamily.name), otherFamily.name);
+  assert.match(demands, /Ämbete: Kansler/);
+  assert.match(demands, /Obesvarat/);
+  const name = (id) => view.people.find((person) => person.id === id).name;
+  const faction = sectionOf(onTab(view, "intrigue"), "Faktioner");
+  assert.match(faction, /I det fördolda/);
+  assert.ok(faction.includes(`Känd krets: ${name(memberIds[0])}<`), "one known member");
+  assert.match(faction, /Pretendent: okänd/);
+  assert.match(faction, /Styrka: \d+ %</);
+  assert.match(faction, /Medlemmar: 3/);
+});
+
+test("in the real presenters a second known member names the claimant, and no spymaster hides the count", () => {
+  const named = courtCampaign({ known: 2 });
+  const name = named.view.people.find((person) => person.id === named.memberIds[1]).name;
+  assert.ok(sectionOf(onTab(named.view, "intrigue"), "Faktioner").includes(`Pretendent: ${name}`));
+  const blind = sectionOf(onTab(courtCampaign({ spymaster: false }).view, "intrigue"), "Faktioner");
+  assert.match(blind, /Styrka: [a-zåäö ]+</, "a band, no number");
+  assert.doesNotMatch(blind, /Medlemmar/);
+});
+
+test("the dread meter carries its label as the accessible value", () => {
+  assert.match(council(courtView()), /aria-label="Fruktan"[^>]*aria-valuetext="Adeln är på sin vakt"/);
+  assert.doesNotMatch(council(courtView()), /aria-label="Legitimitet"[^>]*aria-valuetext/);
 });
 
 test("a reign with no goals says so, and no sources leave out the question", () => {
@@ -1824,6 +1891,12 @@ test("the odds sit under the choice, outside its button, and only under a choice
   assert.equal(buttons.length, 2);
   for (const button of buttons) assert.doesNotMatch(button, /<details|Vad påverkar chansen/);
   assert.equal((html.match(/char-choice-odds/g) || []).length, 1);
+});
+
+test("the odds block is grouped under the name of its own button, and a choice without odds gets no group", () => {
+  const html = storyHtml(ultimatumStory());
+  assert.match(html, /<div class="char-choice-slot" role="group" aria-labelledby="char-choice-story-9-crush"><button type="button" id="char-choice-story-9-crush"/);
+  assert.equal((html.match(/role="group"/g) || []).length, 1);
 });
 
 test("a choice with a disabledReason stays disabled and still explains its chance", () => {
