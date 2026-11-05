@@ -1,0 +1,71 @@
+import { compareGameDates, formatGameDate, parseGameDate } from "./gameDates.js";
+
+export const HISTORICAL_START_RANGE = Object.freeze({ minYear: -3300, maxYear: 1200 });
+export const HISTORICAL_START_REFUSAL = "Välj ett giltigt startdatum mellan 3300 f.Kr. och 1200 e.Kr.";
+
+const isPlainObject = (value) => value !== null && typeof value === "object"
+  && (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
+
+const dateRefusal = (code) => ({ ok: false, code, error: HISTORICAL_START_REFUSAL });
+
+export const validateHistoricalStartDate = (value) => {
+  if (typeof value !== "string" || !/^-?[0-9]{1,6}-[0-9]{1,2}-[0-9]{1,2}$/.test(value.trim())) {
+    return dateRefusal("invalidDate");
+  }
+  const parts = parseGameDate(value.trim());
+  if (!parts) return dateRefusal("invalidDate");
+  if (parts.year < HISTORICAL_START_RANGE.minYear || parts.year > HISTORICAL_START_RANGE.maxYear) {
+    return dateRefusal("outOfRange");
+  }
+  return { ok: true, date: formatGameDate(parts), year: parts.year };
+};
+
+export const validateHistoricalStartDates = (value) => {
+  if (!isPlainObject(value)) return dateRefusal("invalidDate");
+  const start = validateHistoricalStartDate(value.startDate);
+  if (!start.ok) return start;
+  const game = validateHistoricalStartDate(value.gameDate);
+  if (!game.ok) return game;
+  if (compareGameDates(start.date, game.date) !== 0) {
+    return { ok: false, code: "dateMismatch", error: "Startdatum och speldatum måste vara samma dag." };
+  }
+  return { ok: true, startDate: start.date, gameDate: game.date };
+};
+
+// Object key order does not change a JSON value; array order does.
+const sameJsonValue = (left, right) => {
+  if (left === right) return true;
+  if (Array.isArray(left) || Array.isArray(right)) {
+    return Array.isArray(left) && Array.isArray(right) && left.length === right.length
+      && left.every((value, index) => sameJsonValue(value, right[index]));
+  }
+  if (!isPlainObject(left) || !isPlainObject(right)) return false;
+  const keys = Object.keys(left);
+  return keys.length === Object.keys(right).length
+    && keys.every((key) => Object.hasOwn(right, key) && sameJsonValue(left[key], right[key]));
+};
+
+export const classifyCampaignCreation = (options = {}) => {
+  if (!isPlainObject(options)) {
+    return { ok: false, code: "invalidOptions", error: "Alternativen för historisk start måste vara ett objekt." };
+  }
+  const { seedGameId, sourceGame, scenarioId, gamePatch } = options;
+  if (seedGameId && (!isPlainObject(sourceGame) || !isPlainObject(sourceGame.game)
+    || typeof sourceGame.scenarioId !== "string" || !sourceGame.scenarioId)) {
+    return { ok: false, code: "missingCopySource", error: "Det sparade spelet som ska kopieras saknas." };
+  }
+  if (Object.hasOwn(options, "gamePatch") && !isPlainObject(gamePatch)) {
+    return { ok: false, code: "invalidPatch", error: "Speländringarna måste vara ett objekt." };
+  }
+  const hasHistoricalStart = Object.hasOwn(options, "historicalStart");
+  if (hasHistoricalStart && !isPlainObject(options.historicalStart)) {
+    return { ok: false, code: "invalidOptions", error: "Alternativen för historisk start måste vara ett objekt." };
+  }
+  if (!seedGameId || hasHistoricalStart) return { ok: true, kind: "new" };
+  if (scenarioId !== undefined && scenarioId !== null && scenarioId !== "" && scenarioId !== sourceGame.scenarioId) {
+    return { ok: true, kind: "new" };
+  }
+  const changed = Object.keys(gamePatch ?? {}).some((key) => !Object.hasOwn(sourceGame.game, key)
+    || !sameJsonValue(gamePatch[key], sourceGame.game[key]));
+  return { ok: true, kind: changed ? "new" : "copy" };
+};
