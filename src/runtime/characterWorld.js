@@ -110,7 +110,7 @@ export const diffCharacterState = (before, after, path = [], output = []) => {
   return output;
 };
 
-const applyStatePatch = (state, changes) => {
+const patchCharacterData = (state, changes) => {
   const next = copy(state);
   for (const change of changes) {
     let holder = next;
@@ -129,8 +129,10 @@ const applyStatePatch = (state, changes) => {
       holder[key].push(...copy(change.append));
     } else holder[key] = copy(change.value);
   }
-  return normalizeCharacterSystem(next);
+  return next;
 };
+
+const applyStatePatch = (state, changes) => normalizeCharacterSystem(patchCharacterData(state, changes));
 
 export const normalizeCharacterOps = (value) => (Array.isArray(value) ? value : [])
   .filter((op) => op && typeof op === "object" && typeof op.id === "string" && op.id.length <= 240)
@@ -149,7 +151,10 @@ export const normalizeCharacterOps = (value) => (Array.isArray(value) ? value : 
     if (op.kind === "checkpoint") {
       // Checkpoints are emitted by the local reducer, never accepted from model
       // output. Preserve them exactly for export, rollback and staged reveal.
-      const state = normalizeCharacterSystem(op.state);
+      const validated = normalizeCharacterSystem(op.state);
+      // Validate old payloads without replacing the raw base which later saved
+      // patches address. Migration happens when the checkpoint enters the world.
+      const state = needsReignMigration(op.state) ? copy(op.state) : validated;
       return state && Number.isInteger(op.fromRevision)
         ? [{ id: op.id, kind: "checkpoint", fromRevision: op.fromRevision, state }]
         : [];
@@ -165,6 +170,56 @@ export const normalizeCharacterOps = (value) => (Array.isArray(value) ? value : 
     }
     return [];
   });
+
+const needsReignMigration = (state) => state && !Object.hasOwn(state, "reign")
+  && (state.extensionsVersion == null || [1, 2].includes(state.extensionsVersion));
+
+// A stored legacy patch addresses the unmigrated snapshot. Reconstruct that
+// checkpoint first, then migrate it: migrating the base alone invents a reign
+// which an old succession patch could not update. Keep this provenance local
+// to one replay; current-version patches still go through strict validation.
+export const createLegacyCharacterReplay = (initial) => {
+  let raw = needsReignMigration(initial) ? copy(initial) : null;
+  let previous = raw ? normalizeCharacterSystem(raw) : null;
+  return (event, current) => {
+    if (!raw) return event;
+    // Mirror the adapter's actual date synchronization and host reconciliation.
+    // This copies their results without simulating the calendar a second time.
+    const progress = diffCharacterState(previous, current).filter((change) => change.path[0] !== "reign");
+    for (const { path: [key] } of progress) {
+      if (!Object.hasOwn(raw, key) && Object.hasOwn(previous, key)) raw[key] = copy(previous[key]);
+    }
+    raw = patchCharacterData(raw, progress);
+    previous = current;
+    if (!Array.isArray(event?.impacts?.characterOps)) return event;
+    const characterOps = event.impacts.characterOps.map((input) => {
+      if (!raw) return input;
+      const [op] = normalizeCharacterOps([input]);
+      if (!op) return input;
+      if (op.kind === "checkpoint" && event.source === "character-system") {
+        if (raw.revision === op.fromRevision && raw.revision < op.state.revision) {
+          raw = needsReignMigration(input.state) ? copy(input.state) : null;
+          previous = normalizeCharacterSystem(op.state);
+        }
+      } else if (op.kind === "patch" && (event.source === "character-system" || op.gate === true)) {
+        if (raw.revision >= op.toRevision) return input;
+        if (raw.revision !== op.fromRevision) throw new Error("Karaktärshändelsen bygger på en annan världsversion.");
+        const before = previous;
+        raw = patchCharacterData(raw, op.changes);
+        const after = normalizeCharacterSystem(raw);
+        if (after.revision !== op.toRevision) throw new Error("Karaktärshistorikens revision stämmer inte.");
+        if (!needsReignMigration(raw)) raw = null;
+        previous = after;
+        return { ...op, changes: diffCharacterState(before, after) };
+      } else if (op.kind === "command" && COMMAND_SOURCES.has(event.source)) {
+        // Commands resume the migrated engine; only stored outcomes use the raw base.
+        raw = null;
+      }
+      return input;
+    });
+    return { ...event, impacts: { ...event.impacts, characterOps } };
+  };
+};
 
 // The only writer of the character polity's leader, stability, treasury and
 // military readiness in the host world. Model polityChanges.stats for these
@@ -259,7 +314,7 @@ export const applyCharacterOpsToWorld = (world, operations, { source = "" } = {}
       const revision = next.characterSystem?.revision ?? -1;
       if (revision >= op.state.revision) continue;
       if (revision !== op.fromRevision) throw new Error("Karaktärshändelsen bygger på en annan världsversion.");
-      next = { ...next, characterSystem: op.state };
+      next = { ...next, characterSystem: normalizeCharacterSystem(op.state) };
     } else if (!COMMAND_SOURCES.has(source)) {
       console.warn(`[character gate] skipped command "${op.type}" from a "${source || "unknown"}" event.`);
     } else if (next.characterSystem) {

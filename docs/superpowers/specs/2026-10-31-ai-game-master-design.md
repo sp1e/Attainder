@@ -2,6 +2,8 @@
 
 Date: 31 October 2026. Written by Claude from an interview with Simon, the owner. Status: draft for Simon's approval.
 
+Setting precedence, 5 November 2026: the owner's [historical-world direction](2026-11-05-historical-world-direction.md) supersedes this document's fictional Hadara assumption. Use real geography and historical polities, with new starts from the Bronze Age through about AD 1200 and no modern starts. Keep the earlier phase history below as a record of the original implementation.
+
 ## 1. Intent
 
 Simon wants Attainder to combine three things:

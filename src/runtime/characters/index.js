@@ -767,7 +767,8 @@ function aiAnnual(state, events) { const player = activeRepresentative(state); c
 }
 function newChild(state, mother, father, events) { const id = nextId(state, 'person'); const familyId = mother.familyId; const nameIndex = Math.floor(random(state) * NAME_POOL.length); const sex = random(state) < 0.5 ? 'female' : 'male'; const child = { id, name: `${NAME_POOL[nameIndex]} ${state.families[familyId].name}`, familyId, bornAt: state.date, diedAt: null, sex, culture: mother.culture, religionId: mother.religionId, traits: [mother.traits[0], father.traits[0]].filter((t, i, list) => list.indexOf(t) === i), archetype: 'scholar', skills: { command: 1, stewardship: 1, diplomacy: 1, learning: 1, intrigue: 1, prowess: 1 }, stress: 0, health: 100, wealth: 0, loyalty: 60, fear: 0, biologicalParentIds: [mother.id, father.id], legalParentIds: [mother.id, father.id], spouseId: null, mentorId: mother.id, education: 'learning', goal: { type: 'education', since: state.date, progress: 0 }, lastBirthAt: null, lastDecision: null, cooldowns: {} }; child.healthConditions = []; ensurePortraitIdentity(child, state.people); state.people[id] = child; mother.lastBirthAt = state.date; const event = logEvent(state, events, 'birth', `${child.name} föds`, `Barn till ${mother.name} och ${father.name}.`, [id, mother.id, father.id]); memory(state, 'birth', event.title, event.participants, { causeId: event.id }); }
 function annualStep(state, events) {
-  const effects = getCharacterWorldEffects(state); state.realm.treasury = rounded(Math.max(0, state.realm.treasury + effects.annualRevenue)); state.actionPoints = 4;
+  const effects = getCharacterWorldEffects(state), treasuryBefore = state.realm.treasury; state.realm.treasury = rounded(Math.max(0, state.realm.treasury + effects.annualRevenue)); state.actionPoints = 4;
+  let annualRevenue = rounded(state.realm.treasury - treasuryBefore);
   for (const office of values(state.offices)) if (state.realm.alive && office.kind !== 'ruler' && office.holderId) office.publicBudget = Math.min(30, office.publicBudget + 5);
   for (const family of values(state.families)) { const members = familyMembers(state, family.id); const income = family.estates * (family.exiled ? (family.hostFamilyId || family.hostPolityId) ? 1 : 0 : 6); family.treasury = rounded(Math.max(0, family.treasury + income - members.length * 0.5 - (family.exiled ? 4 : 0))); family.influence = clamp(family.influence - (family.exiled ? 2 : 0)); if (family.exiled && !family.hostFamilyId && !family.hostPolityId && family.treasury < 5) for (const person of members) { person.health = Math.max(1, person.health - 5); person.stress = clamp(person.stress + 8, 0, 200); } }
   for (const city of values(state.cities)) { const support = familySupport(state, state.families[city.familyId]); city.unrest = clamp(city.unrest + (support < 35 ? 6 : -2) + (state.realm.taxPolicy === 'harsh' ? 5 : state.realm.taxPolicy === 'gentle' ? -3 : 0)); }
@@ -788,11 +789,13 @@ function annualStep(state, events) {
   scheduleEventChain(state, events, chainContext(state), chainHooks(state));
   const actor = activeRepresentative(state); if (actor?.stress >= 80 && !breakdownDue(state, actor) && !state.stories.some((s) => s.type === 'stress_crisis' && s.status === 'open' && s.actorId === actor.id)) state.stories.push({ id: nextId(state, 'story'), type: 'stress_crisis', title: 'Ansvaret börjar tära', description: `${actor.name} behöver hantera sin belastning.`, actorId: actor.id, createdAt: state.date, dueAt: addGameMonths(state.date, 12), status: 'open', knownBy: [actor.id] });
   if (state.realm.alive && state.realm.treasury === 0) state.realm.legitimacy = clamp(state.realm.legitimacy - 8); else if (state.realm.alive) state.realm.legitimacy = clamp(state.realm.legitimacy + 0.5);
-  updateStatus(state); logEvent(state, events, 'year', 'Årets förvaltning är avslutad', `Statskassan förändras med ${effects.annualRevenue.toFixed(1).replace('.', ',').replace('-', '−')} silver. Nya personliga beslut, ålder och politiska förhållanden har behandlats.`, []);
+  updateStatus(state); const yearEvent = logEvent(state, events, 'year', 'Årets förvaltning är avslutad', '', []);
   syncPlotSecrets(state);
   prisonerStep(state, events, actionHooks(state));
   npcPlotStep(state, events, actionHooks(state));
-  courtAnnualStep(state, events, actionHooks(state));
+  annualRevenue = rounded(annualRevenue + courtAnnualStep(state, events, actionHooks(state)));
+  // Fill the existing event after the payment, preserving its id and position in both logs.
+  yearEvent.description = `Statskassan förändras med ${annualRevenue.toFixed(1).replace('.', ',').replace('-', '−')} silver. Nya personliga beslut, ålder och politiska förhållanden har behandlats.`;
 }
 
 export function advanceCharacters(original, targetDate, options = {}) {

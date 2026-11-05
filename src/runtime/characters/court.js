@@ -20,12 +20,12 @@ const COURT_STORIES = Object.freeze({
   faction_ultimatum: Object.freeze({ choices: ultimatumChoices, resolve: resolveUltimatum, expiry: ULTIMATUM_EXPIRY, closedReason: ultimatumClosedReason }),
 });
 
-/** Runs once a year, after npcPlotStep, so the draws of the earlier systems keep their order within the year. It stops at once in a dissolved realm. */
+/** Runs after npcPlotStep and returns the paid chancellor delta for annual accounting. A dissolved realm pays 0. */
 export function courtAnnualStep(state, events, hooks) {
-  if (!state.realm.alive) return;
+  if (!state.realm.alive) return 0;
   lostOrdersStep(state);
   loyaltyDriftStep(state, hooks);
-  chancellorStep(state, hooks);
+  const contribution = chancellorStep(state, hooks);
   dreadYearStep(state, hooks);
   goalStep(state, events, hooks);
   prestigeStep(state);
@@ -34,6 +34,7 @@ export function courtAnnualStep(state, events, hooks) {
   factionStep(state, events, hooks);
   stressPressureStep(state, hooks);
   breakdownStep(state, events, hooks);
+  return contribution;
 }
 
 /** The choices of a court story, for rawStoryChoices. Reads only. */
