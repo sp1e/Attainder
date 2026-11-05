@@ -8,6 +8,8 @@ import { COURT_STORY_TYPES, courtAnnualStep, courtStoryChoices, refreshCourtStor
 const REP = 'person-0-0';
 const HEIR = 'person-0-2';
 const NOBLE = 'person-1-1';
+const HEAD = 'person-1-0';
+const CHILD = 'person-0-4';
 const NAMARS = 'family-namar';
 const OWN = 'family-arel';
 
@@ -27,6 +29,21 @@ function broken(options) {
   person.stress = 120;
   breakdownStep(state, [], hooks);
   return { state, story: openOf(state, 'stress_breakdown')[0], personId: person.id };
+}
+
+// The head of another house breaks down under an NPC ruler. hooks.canRule() is false, so she speaks for no realm.
+const underNpc = () => broken({ mode: 'family', familyId: NAMARS });
+
+// A child on the throne and the old ruler as her regent, as in reign.test.js. The reign is the child's, as crown leaves it.
+function regency() {
+  const state = plain(base());
+  Object.assign(state.offices.ruler, { holderId: CHILD, regentId: REP });
+  state.reign.rulerId = CHILD;
+  state.realm.lawfulRulerId = CHILD;
+  state.regencies['office:ruler'] = { id: 'office:ruler', principalId: CHILD, regentId: REP, phase: 'minority', startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
+  state.stories = [];
+  delete state.mandateVersion; delete state.mandateActivatedAt; delete state.mandateSequence;
+  return normalizeCharacterSystem(state);
 }
 
 // What a path through a breakdown can cost, for the representative of `state`.
@@ -300,12 +317,80 @@ test('a breakdown closes without cost when its actor stops being the representat
   assert.ok(events.some((event) => event.type === 'story_closed' && event.title === story.title));
 });
 
-test('a breakdown in family mode costs the family head as it costs a ruler, and is no deed of the ruler', () => {
-  const { state, story, personId } = broken({ mode: 'family', familyId: NAMARS });
-  assert.equal(personId, 'person-1-0');
-  assert.notEqual(state.offices.ruler.holderId, personId);
-  const before = ledger(state, personId), after = ledger(resolve(state, story.id, 'withdraw'), personId);
-  assert.deepEqual(after, { ...before, stress: before.stress - 50, orders: 0, lostOrders: 2, legitimacy: before.legitimacy - 4, prestige: before.prestige - 5 });
+test('a family head under an NPC ruler pays for each path and charges the realm nothing, and it is no deed of the ruler', () => {
+  const paths = { withdraw: { stress: -50, orders: 0, lostOrders: 2 }, rage: { stress: -40 }, vice: { stress: -35, health: -15, silver: -30 } };
+  for (const [choiceId, change] of Object.entries(paths)) {
+    const { state, story, personId } = underNpc();
+    assert.equal(personId, HEAD);
+    assert.notEqual(state.offices.ruler.holderId, personId);
+    state.people[HEAD].health = 60;
+    const before = ledger(state, HEAD), after = ledger(resolve(state, story.id, choiceId), HEAD);
+    const expected = { ...before, stress: before.stress + change.stress, health: before.health + (change.health ?? 0), silver: before.silver + (change.silver ?? 0) };
+    if ('orders' in change) Object.assign(expected, { orders: change.orders, lostOrders: change.lostOrders });
+    assert.deepEqual(after, expected, choiceId);
+  }
+});
+
+test('a family head\'s collapse under an NPC ruler costs health and orders, and the realm nothing', () => {
+  const { state, story } = underNpc(), before = ledger(state, HEAD);
+  const after = ok(advanceCharacters(state, story.dueAt, { id: 'collapse' }));
+  assert.deepEqual(ledger(after, HEAD), { ...before, stress: before.stress - 30, health: before.health - 20, orders: 0, lostOrders: 2 });
+  assert.equal(after.log.find((item) => item.type === 'story_expired' && item.title === story.title).description, 'Ingen valde i tid. Sammanbrottet kostade 20 hälsa, årets handlingar och 2 handlingar nästa år.');
+});
+
+test('rage under an NPC ruler cows nobody and still sours the other heads', () => {
+  const { state, story } = underNpc();
+  const heads = ['person-0-0', 'person-2-0', 'person-3-0'], opinions = heads.map((head) => getPersonalOpinion(state, head, HEAD));
+  const after = resolve(state, story.id, 'rage');
+  for (const person of Object.values(after.people)) assert.equal(person.fear, state.people[person.id].fear, person.id);
+  assert.deepEqual(heads.map((head) => getPersonalOpinion(after, head, HEAD)), opinions.map((opinion) => opinion - 15));
+});
+
+test('every path costs a family head under an NPC ruler something', () => {
+  const heads = ['person-0-0', 'person-2-0', 'person-3-0'];
+  const opinionOfHeads = (state) => heads.reduce((sum, head) => sum + getPersonalOpinion(state, head, HEAD), 0);
+  const lost = (state, later) => {
+    const before = ledger(state, HEAD), after = ledger(later, HEAD);
+    return [before.health - after.health, before.silver - after.silver, before.orders - after.orders, opinionOfHeads(state) - opinionOfHeads(later)].filter((value) => value > 0).length;
+  };
+  for (const choiceId of ['withdraw', 'rage', 'vice']) {
+    const { state, story } = underNpc();
+    assert.ok(lost(state, resolve(state, story.id, choiceId)) > 0, choiceId);
+  }
+  const { state, story } = underNpc();
+  assert.ok(lost(state, ok(advanceCharacters(state, story.dueAt, { id: 'collapse' }))) > 0, 'collapse');
+});
+
+test('the texts of a breakdown under an NPC ruler name only what the path charges', () => {
+  const { state, story } = underNpc();
+  assert.equal(story.deadlineText, 'Utan ett val kostar sammanbrottet 20 hälsa och årets alla handlingar.');
+  const shown = getCharacterPresentation(state).stories.find((item) => item.id === story.id);
+  assert.equal(shown.deadlineText, story.deadlineText);
+  assert.deepEqual(shown.choices.map(({ id, cost }) => [id, cost]), [
+    ['withdraw', 'Årets handlingar och 2 handlingar nästa år'],
+    ['rage', '15 i åsikt hos de andra familjernas huvudmän'],
+    ['vice', '15 hälsa och 30 familjesilver'],
+  ]);
+  const rage = shown.choices.find((choice) => choice.id === 'rage');
+  assert.equal(rage.description, 'Minska stress med 40. De andra familjernas huvudmän tycker 15 sämre om dig.');
+  for (const text of shown.choices.flatMap(({ description, cost }) => [description, cost])) assert.doesNotMatch(text, /legitimitet|ryktbarhet|skräm/, text);
+});
+
+test('a family head who holds the crown and a regent both speak for the realm', () => {
+  const crowned = broken({ mode: 'family', familyId: OWN });
+  assert.equal(actionHooks(crowned.state).canRule(), true);
+  assert.equal(crowned.story.deadlineText, 'Utan ett val kostar sammanbrottet 20 hälsa, 8 legitimitet och årets alla handlingar.');
+  const before = ledger(crowned.state), after = ledger(resolve(crowned.state, crowned.story.id, 'rage'));
+  assert.deepEqual(after, { ...before, stress: before.stress - 40, legitimacy: before.legitimacy - 2, prestige: before.prestige - 5, deeds: 1 });
+
+  const state = regency(), hooks = actionHooks(state);
+  assert.equal(hooks.activeRepresentative().id, REP);
+  assert.equal(hooks.canRule(), true);
+  state.people[REP].stress = 120;
+  breakdownStep(state, [], hooks);
+  const [story] = openOf(state, 'stress_breakdown'), reigning = ledger(state);
+  assert.equal(story.deadlineText, 'Utan ett val kostar sammanbrottet 20 hälsa, 8 legitimitet och årets alla handlingar.');
+  assert.deepEqual(ledger(resolve(state, story.id, 'withdraw')), { ...reigning, stress: reigning.stress - 50, orders: 0, lostOrders: 2, legitimacy: reigning.legitimacy - 4, prestige: reigning.prestige - 5 }, 'the deed stays the ruler\'s, and a regent is not the ruler');
 });
 
 test('the choices, the pressure and the opening draw nothing', () => {
@@ -379,11 +464,36 @@ test('the pressure reads refused and lapsed demands and the known factions, at m
 
 test('the pressure falls on the representative, also when she is a family head and not the ruler', () => {
   const state = base({ mode: 'family', familyId: NAMARS });
-  state.realm.treasury = 0;
-  const { stress } = state.people['person-1-0'], rulerStress = state.people[REP].stress;
+  state.families[NAMARS].treasury = 19;
+  const { stress } = state.people[HEAD], rulerStress = state.people[REP].stress;
   stressPressureStep(state, actionHooks(state));
-  assert.equal(state.people['person-1-0'].stress, stress + 3);
+  assert.equal(state.people[HEAD].stress, stress + 3);
   assert.equal(state.people[REP].stress, rulerStress);
+});
+
+test('under an NPC ruler the low treasury is the family\'s own, and the realm\'s weighs nothing', () => {
+  const pressure = (prepare) => {
+    const state = base({ mode: 'family', familyId: NAMARS });
+    state.people[HEAD].stress = 10;
+    prepare(state);
+    stressPressureStep(state, actionHooks(state));
+    return state.people[HEAD].stress - 10;
+  };
+  assert.equal(pressure((state) => { state.realm.treasury = 0; }), 0);
+  assert.equal(pressure((state) => { state.families[NAMARS].treasury = 19; }), 3);
+  assert.equal(pressure((state) => { state.families[NAMARS].treasury = 20; }), 0);
+});
+
+test('a regent feels the realm\'s treasury, not the family\'s', () => {
+  const pressure = (prepare) => {
+    const state = regency();
+    state.people[REP].stress = 10;
+    prepare(state);
+    stressPressureStep(state, actionHooks(state));
+    return state.people[REP].stress - 10;
+  };
+  assert.equal(pressure((state) => { state.realm.treasury = 19; }), 3);
+  assert.equal(pressure((state) => { state.families[OWN].treasury = 0; }), 0);
 });
 
 test('the year turn takes the lost orders first and ends with the pressure and then the breakdown', () => {

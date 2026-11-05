@@ -1,5 +1,5 @@
 import { compareGameDates } from '../gameDates.js';
-import { BREAKDOWN_EXPIRY, breakdownChoices, breakdownClosedReason, breakdownStep, lostOrdersStep, resolveBreakdown, stressPressureStep } from './breakdowns.js';
+import { BREAKDOWN_EXPIRY, breakdownChoices, breakdownClosedReason, breakdownExpiryText, breakdownStep, lostOrdersStep, resolveBreakdown, stressPressureStep } from './breakdowns.js';
 import { chancellorStep, loyaltyDriftStep, presentCouncil } from './council.js';
 import { dreadYearStep, presentDread } from './dread.js';
 import { DEMAND_EXPIRY, demandChoices, demandClosedReason, demandStep, presentDemands, resolveDemand, validateFamilyDemands, voidDemand, voidOpenDemands } from './familyDemands.js';
@@ -13,9 +13,9 @@ import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, va
 export const COURT_STORY_TYPES = Object.freeze(['stress_breakdown', 'family_demand', 'faction_ultimatum']);
 
 // One row per court story.
-// `expiry` is what a story past its due date resolves to; `closedReason` gives the text of a story that fell away, or ''; `onClose` is what such a story leaves behind.
+// `expiry` is what a story past its due date resolves to, and `expiryText` replaces its log line where the cost depends on who is acting; `closedReason` gives the text of a story that fell away, or ''; `onClose` is what such a story leaves behind.
 const COURT_STORIES = Object.freeze({
-  stress_breakdown: Object.freeze({ choices: breakdownChoices, resolve: resolveBreakdown, expiry: BREAKDOWN_EXPIRY, closedReason: breakdownClosedReason }),
+  stress_breakdown: Object.freeze({ choices: breakdownChoices, resolve: resolveBreakdown, expiry: BREAKDOWN_EXPIRY, expiryText: breakdownExpiryText, closedReason: breakdownClosedReason }),
   family_demand: Object.freeze({ choices: demandChoices, resolve: resolveDemand, expiry: DEMAND_EXPIRY, closedReason: demandClosedReason, onClose: voidDemand }),
   faction_ultimatum: Object.freeze({ choices: ultimatumChoices, resolve: resolveUltimatum, expiry: ULTIMATUM_EXPIRY, closedReason: ultimatumClosedReason }),
 });
@@ -51,7 +51,7 @@ function expireStory(state, story, row, events, hooks) {
   const { choiceId, text } = row.expiry;
   row.resolve(state, story, choiceId, events, hooks);
   Object.assign(story, { status: 'resolved', choiceId, resolvedAt: state.date });
-  hooks.logEvent(events, 'story_expired', story.title, text, [story.actorId]);
+  hooks.logEvent(events, 'story_expired', story.title, row.expiryText?.(hooks) ?? text, [story.actorId]);
 }
 
 function closeStory(state, story, row, resolution, events, hooks) {

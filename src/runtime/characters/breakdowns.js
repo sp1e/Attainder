@@ -4,6 +4,7 @@ import { presentFactions } from './factions.js';
 import { addPrestige, recordDeed } from './reign.js';
 
 // Stress breakdowns: sustained stress turns into a public court story with a real cost. The first crossing of stress 80 opens the existing `stress_crisis` (annualStep); a second crossing within 60 months, or stress 100, opens `stress_breakdown` here.
+// Legitimacy, prestige and the nobles' fear belong to whoever speaks for the realm, so hooks.canRule() gates each of them: a regent pays them, and a family head under an NPC ruler pays only with her health, her orders, the family's silver and the other houses' opinion.
 // `hooks` are the engine's (actionHooks in index.js). Nothing here draws randomness.
 
 export const CRISIS_STRESS = 80;
@@ -25,6 +26,7 @@ const LOST_ORDERS = 2;
 const PRESTIGE_LOSS = -5;
 const RAGE = Object.freeze({ fear: 10, opinion: -15, label: 'Vredesutbrott vid hovet' });
 const DEADLINE_TEXT = 'Utan ett val kostar sammanbrottet 20 hälsa, 8 legitimitet och årets alla handlingar.';
+const HOUSEHOLD_DEADLINE_TEXT = 'Utan ett val kostar sammanbrottet 20 hälsa och årets alla handlingar.';
 const CLOSED = Object.freeze({ dead: 'Personens liv har avslutats.', replaced: 'Personen företräder inte längre familjen eller riket.' });
 
 // What each path costs. `orders` empties the year and takes LOST_ORDERS from the next one.
@@ -39,9 +41,19 @@ const CHOICES = Object.freeze([
   { id: 'rage', label: 'Släpp lös vreden', description: 'Minska stress med 40 och skräm adeln. De andra familjernas huvudmän tycker 15 sämre om dig.', cost: '2 legitimitet och 5 ryktbarhet', stress: '−40', disabledReason: '' },
   { id: 'vice', label: 'Sök tröst i vinet', description: 'Minska stress med 35 på bekostnad av hälsan och familjekassan.', cost: '15 hälsa, 30 familjesilver och 5 ryktbarhet', stress: '−35', disabledReason: '' },
 ].map((choice) => Object.freeze(choice)));
+// What replaces a choice's text when the person speaks for no realm, so it names only what the path charges.
+const HOUSEHOLD_TEXTS = Object.freeze({
+  withdraw: Object.freeze({ cost: 'Årets handlingar och 2 handlingar nästa år' }),
+  rage: Object.freeze({ description: 'Minska stress med 40. De andra familjernas huvudmän tycker 15 sämre om dig.', cost: '15 i åsikt hos de andra familjernas huvudmän' }),
+  vice: Object.freeze({ cost: '15 hälsa och 30 familjesilver' }),
+});
 
 /** The choice-free end of a breakdown, for the dispatch table in court.js. */
 export const BREAKDOWN_EXPIRY = Object.freeze({ choiceId: 'collapse', text: 'Ingen valde i tid. Sammanbrottet kostade 20 hälsa, 8 legitimitet, 5 ryktbarhet, årets handlingar och 2 handlingar nästa år.' });
+const HOUSEHOLD_EXPIRY_TEXT = 'Ingen valde i tid. Sammanbrottet kostade 20 hälsa, årets handlingar och 2 handlingar nästa år.';
+
+/** What the expiry's log line says it cost. */
+export const breakdownExpiryText = (hooks) => (hooks.canRule() ? BREAKDOWN_EXPIRY.text : HOUSEHOLD_EXPIRY_TEXT);
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 const has = (person, trait) => Boolean(person?.traits?.includes(trait));
@@ -81,13 +93,14 @@ function goalPressure(state) {
   return state.reign.goals.filter((goal) => goal.status === 'failed' && closedThisYear(state, goal.closedAt)).length * PRESSURE.goal;
 }
 
-const treasuryPressure = (state) => (state.realm.treasury < PRESSURE.treasuryBelow ? PRESSURE.lowTreasury : 0);
+// Whoever speaks for no realm feels the family's own purse.
+const treasuryPressure = (state, hooks) => ((hooks.canRule() ? state.realm : hooks.controlledFamily())?.treasury < PRESSURE.treasuryBelow ? PRESSURE.lowTreasury : 0);
 
 /** Yearly: what the court lays on the representative, at most 15. */
 export function stressPressureStep(state, hooks) {
   const actor = hooks.activeRepresentative();
   if (!actor) return;
-  moveStress(actor, Math.min(PRESSURE.yearlyCap, demandPressure(state) + factionPressure(state, hooks) + goalPressure(state) + treasuryPressure(state)));
+  moveStress(actor, Math.min(PRESSURE.yearlyCap, demandPressure(state) + factionPressure(state, hooks) + goalPressure(state) + treasuryPressure(state, hooks)));
 }
 
 /** Yearly: the orders a breakdown took from this year. */
@@ -101,20 +114,21 @@ export function breakdownStep(state, events, hooks) {
   const actor = hooks.activeRepresentative();
   if (!actor || !breakdownDue(state, actor)) return;
   if (state.stories.some((story) => (story.type === 'stress_breakdown' && story.status === 'open') || (isCrisisOf(story, actor) && story.createdAt === state.date))) return;
-  hooks.openStory({ type: 'stress_breakdown', title: `${actor.name} bryter samman`, description: `${actor.name} orkar inte bära ansvaret längre, och hela hovet ser det.`, actorId: actor.id, createdAt: state.date, dueAt: addGameMonths(state.date, DUE_MONTHS), knownBy: 'public', deadlineText: DEADLINE_TEXT });
+  hooks.openStory({ type: 'stress_breakdown', title: `${actor.name} bryter samman`, description: `${actor.name} orkar inte bära ansvaret längre, och hela hovet ser det.`, actorId: actor.id, createdAt: state.date, dueAt: addGameMonths(state.date, DUE_MONTHS), knownBy: 'public', deadlineText: hooks.canRule() ? DEADLINE_TEXT : HOUSEHOLD_DEADLINE_TEXT });
   hooks.logEvent(events, 'stress_breakdown', 'Sammanbrott vid hovet', `${actor.name} bryter samman inför hovet.`, [actor.id]);
 }
 
 /** The three ways out, as new objects. */
-export function breakdownChoices() {
-  return CHOICES.map((choice) => ({ ...choice }));
+export function breakdownChoices(state, story, hooks) {
+  const texts = hooks.canRule() ? {} : HOUSEHOLD_TEXTS;
+  return CHOICES.map((choice) => ({ ...choice, ...texts[choice.id] }));
 }
 
 function payPath(state, actor, path, hooks) {
   moveStress(actor, path.stress);
   if (path.health) actor.health = Math.max(1, actor.health + path.health);
   // The loss goes straight to realm.legitimacy, as a failed goal's does, so the rows show it under `Styre och händelser`.
-  if (path.legitimacy) state.realm.legitimacy = clamp(state.realm.legitimacy + path.legitimacy, 0, 100);
+  if (path.legitimacy && hooks.canRule()) state.realm.legitimacy = clamp(state.realm.legitimacy + path.legitimacy, 0, 100);
   const family = hooks.controlledFamily();
   if (path.silver && family) family.treasury = Math.max(0, family.treasury + path.silver);
   if (path.orders) { state.actionPoints = 0; state.reign.lostOrders = LOST_ORDERS; }
@@ -122,7 +136,7 @@ function payPath(state, actor, path, hooks) {
 
 // The other houses remember the outburst. opinionCause drops a cause it already holds, so each outburst has a memory of its own.
 function lashOut(state, actor, story, hooks) {
-  cowNobles(state, RAGE.fear, hooks);
+  if (hooks.canRule()) cowNobles(state, RAGE.fear, hooks);
   const note = hooks.memory('breakdown_rage', 'Ett vredesutbrott vid hovet', [actor.id], { causeId: story.id });
   for (const family of Object.values(state.families)) {
     const head = state.people[family.headId];
@@ -135,7 +149,7 @@ export function resolveBreakdown(state, story, choiceId, events, hooks) {
   const actor = state.people[story.actorId];
   payPath(state, actor, PATHS[choiceId], hooks);
   if (choiceId === 'rage') lashOut(state, actor, story, hooks);
-  addPrestige(state, PRESTIGE_LOSS);
+  if (hooks.canRule()) addPrestige(state, PRESTIGE_LOSS);
   if (actor.id === state.reign.rulerId) recordDeed(state, 'breakdowns');
 }
 
