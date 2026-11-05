@@ -326,6 +326,9 @@ test('the court story list names the three types, and a choice outside the list 
   assert.equal(result.error, 'Valet är inte giltigt.');
 });
 
+// Only a faction the player has found weighs on the representative.
+const knownFaction = (state) => ({ id: 'faction-1', targetRulerId: REP, leaderId: NOBLE, claimantId: HEIR, memberIds: [NOBLE, 'person-1-2'], knownMemberIds: [NOBLE], formedAt: state.date, status: 'active', outcome: null, quietUntil: null, ultimatumAt: null, dueAt: null, storyId: null, concessions: 0, closedAt: null });
+
 test('stressPressureStep sums over empty lists until demands and factions exist', () => {
   for (const change of [() => {}, (state) => { delete state.familyDemands; delete state.factions; }]) {
     const state = base();
@@ -365,10 +368,10 @@ test('the pressure reads refused and lapsed demands and the known factions, at m
   assert.equal(pressure((state) => { state.familyDemands = [closed(state, 'lapsed', 12)]; }), 0, 'a lapse counted on the turn it closed');
   assert.equal(pressure((state) => { state.familyDemands = [closed(state, 'refused', 12)]; }), 4, 'the player refused after that turn, so this turn is the first to count it');
   assert.equal(pressure((state) => { state.familyDemands = [closed(state, 'refused', 13)]; }), 0);
-  assert.equal(pressure((state) => { state.factions = [{ id: 'faction-1' }]; }), 6);
+  assert.equal(pressure((state) => { state.factions = [knownFaction(state)]; }), 6);
   assert.equal(pressure((state) => {
     state.familyDemands = [closed(state, 'refused')];
-    state.factions = [{ id: 'faction-1' }];
+    state.factions = [knownFaction(state)];
     state.reign.goals = [failedGoal(state, 'fill_treasury'), failedGoal(state, 'strong_army')];
     state.realm.treasury = 0;
   }), 15);

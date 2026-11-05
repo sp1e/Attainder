@@ -1,0 +1,877 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { addGameMonths } from '../gameDates.js';
+import { actionHooks, advanceCharacters, applyRealmDissolution, createCharacterSystem, executeCharacterCommand, getCharacterPresentation, normalizeCharacterSystem } from './index.js';
+import { bandFor } from './actionOdds.js';
+import { stressPressureStep } from './breakdowns.js';
+import { ambitionOf } from './council.js';
+import { courtAnnualStep, refreshCourtStories, validateCourt } from './court.js';
+import { actionRandom, plotRandom } from './extensions.js';
+import { DISCONTENT_THRESHOLD, FORM_BASE, FOUNDERS, GRACE_MONTHS, JOIN_CHANCE, LEAVE_BELOW, MATURITY_PER_YEAR, ULTIMATUM_STRENGTH, claimantFor, discontentOf, factionStep, factionStrength, presentFactions, refreshFactions, validateFactions, voidFactions } from './factions.js';
+import { setRelationship } from './secrets.js';
+
+const AREL = 'person-0-0';
+const ISET = 'person-0-1';
+const SERA = 'person-0-2';
+const TAREK = 'person-0-3';
+const MIRA = 'person-0-4';
+const NAMAR = 'person-1-0';
+const DARA = 'person-1-1';
+const KELAN = 'person-1-2';
+const TALIA = 'person-1-3';
+const BAREK = 'person-2-2';
+const YARA = 'person-2-3';
+const SAFRA = 'person-3-0';
+const CHILDLESS = 'person-3-5';
+const ARELS = 'family-arel';
+const NAMARS = 'family-namar';
+const ESHMUNS = 'family-eshmun';
+const SAFRAS = 'family-safra';
+const FOUR = [NAMAR, DARA, KELAN, TALIA];
+const STREAM_LIMIT = 50_000_000;
+const FORGED = { name: 'Error', message: /^En faktion i sparfilen är ogiltig\.$/ };
+const TRACE_SPY = 'Din spionmästare har hittat ännu en person i en faktion mot härskaren.';
+const TRACE_RUMOR = 'Du har hört talas om ännu en person i en faktion mot härskaren.';
+
+const plain = (value) => JSON.parse(JSON.stringify(value));
+const base = (options = {}) => plain(createCharacterSystem({ seed: 321, ...options }));
+const ok = (result) => { assert.equal(result.ok, true, result.error); return result.state; };
+const near = (actual, expected) => assert.ok(Math.abs(actual - expected) < 1e-9, `${actual} is not ${expected}`);
+let commands = 0;
+const command = (state, type, payload) => executeCharacterCommand(state, { id: `faction-test-${++commands}`, expectedRevision: state.revision, type, payload });
+
+// A plot stream whose next draws, as percents, pass the checks in order, as in familyDemands.test.js.
+function streamWith(...checks) {
+  for (let seed = 1; seed < STREAM_LIMIT; seed++) {
+    const probe = { plotRngState: seed };
+    if (checks.every((check) => check(plotRandom(probe) * 100))) return seed;
+  }
+  throw new Error('No such stream.');
+}
+const HIT = streamWith((roll) => roll < 1);
+const MISS = streamWith((roll) => roll >= 99);
+const within = (low, high) => streamWith((roll) => roll >= low && roll < high);
+const afterDraws = (seed, count) => { const probe = { plotRngState: seed }; for (let i = 0; i < count; i++) plotRandom(probe); return probe.plotRngState; };
+// An action stream whose first roll is a success at any odds.
+function certainAction() {
+  for (let seed = 1; seed < STREAM_LIMIT; seed++) if (actionRandom({ actionRngState: seed }) * 100 < 1) return seed;
+  throw new Error('No such stream.');
+}
+
+// A reign old enough for a faction. The four adult Namars stand at about 25 from the first day, every other house below the threshold.
+const ready = (options = {}, months = GRACE_MONTHS) => { const state = base(options); state.reign.startedAt = addGameMonths(state.date, -months); return state; };
+const step = (state, events = []) => { factionStep(state, events, actionHooks(state)); return events; };
+const stepOn = (state, stream) => { state.plotRngState = stream; return step(state); };
+function opinionOf(state, fromId, amount, toId = AREL) {
+  const key = `${fromId}:${toId}`;
+  state.relations[key] ??= { fromId, toId, bonds: [], causes: [] };
+  state.relations[key].causes.push({ id: `fixture-${++state.sequence}`, amount, label: 'Provvärde', causeId: `fixture-${state.sequence}`, startAt: state.date, expiresAt: null });
+}
+// Above LEAVE_BELOW and under the threshold: a member stays and a stranger does not join.
+const lukewarm = (state, ...ids) => { for (const id of ids) opinionOf(state, id, 40); };
+// Under LEAVE_BELOW: a member leaves.
+const calm = (state, ...ids) => { for (const id of ids) opinionOf(state, id, 80); };
+const jail = (state, personId, n = 1) => { state.prisoners.push({ id: `prisoner-${n}`, personId, captorFamilyId: ARELS, since: state.date, ransom: 40, status: 'held', closedAt: null, reason: null }); };
+function record(state, fields = {}) {
+  return { id: `faction-${++state.sequence}`, targetRulerId: state.reign.rulerId, leaderId: NAMAR, claimantId: SERA, memberIds: [NAMAR, DARA, KELAN], knownMemberIds: [], formedAt: state.date, status: 'active', outcome: null, quietUntil: null, ultimatumAt: null, dueAt: null, storyId: null, concessions: 0, closedAt: null, ...fields };
+}
+const withFaction = (state, fields) => { const faction = record(state, fields); state.factions.push(faction); return faction; };
+const everyoneKnown = { memberIds: FOUR, knownMemberIds: FOUR };
+
+// Nothing to hold against the crown: support 60 through the hook, legitimacy 60, no grievance, no trait, no fear and no seat. Every term then stands alone.
+function neutral() {
+  const state = base(), person = state.people[TALIA], family = state.families[NAMARS];
+  state.realm.legitimacy = 60;
+  Object.assign(family, { grievance: 0, influence: 45 });
+  Object.assign(person, { traits: [], fear: 0 });
+  return { state, person, family, hooks: { ...actionHooks(state), familySupport: () => 60 } };
+}
+
+test('the constants are the brief\'s', () => {
+  assert.deepEqual({ DISCONTENT_THRESHOLD, LEAVE_BELOW, FOUNDERS, FORM_BASE, JOIN_CHANCE, GRACE_MONTHS, ULTIMATUM_STRENGTH, MATURITY_PER_YEAR }, { DISCONTENT_THRESHOLD: 16, LEAVE_BELOW: 5, FOUNDERS: 3, FORM_BASE: 40, JOIN_CHANCE: 50, GRACE_MONTHS: 24, ULTIMATUM_STRENGTH: 50, MATURITY_PER_YEAR: 6 });
+});
+
+test('a neutral person holds no discontent', () => {
+  const { state, person, hooks } = neutral();
+  near(discontentOf(state, person, hooks), 0);
+});
+
+const TERMS = {
+  'the opinion of the ruler counts half, against': [({ state }) => opinionOf(state, TALIA, -20), 10],
+  'the opinion of the ruler counts half, for': [({ state }) => opinionOf(state, TALIA, 20), -10],
+  'family support under 60 counts 0.6': [({ hooks }) => { hooks.familySupport = () => 50; }, 6],
+  'family support over 60 counts 0.6': [({ hooks }) => { hooks.familySupport = () => 70; }, -6],
+  'grievance counts half against the crown': [({ family }) => { family.grievance = -10; }, 5],
+  'grievance in the crown\'s favour counts half': [({ family }) => { family.grievance = 10; }, -5],
+  'legitimacy under 60 counts 0.3': [({ state }) => { state.realm.legitimacy = 50; }, 3],
+  'legitimacy over 60 counts 0.3': [({ state }) => { state.realm.legitimacy = 70; }, -3],
+  'an ambitious person adds 10': [({ person }) => { person.traits = ['ambitious']; }, 10],
+  'a vengeful person adds 8': [({ person }) => { person.traits = ['vengeful']; }, 8],
+  'a seat at service below 30 adds 10': [({ state, person }) => { state.offices.chancellor.holderId = person.id; person.loyalty = 29; }, 10],
+  'a seat at service 30 adds nothing': [({ state, person }) => { state.offices.chancellor.holderId = person.id; person.loyalty = 30; }, 0],
+  'a seat outside the council adds nothing': [({ state, person }) => { state.offices.priest.holderId = person.id; person.loyalty = 10; }, 0],
+  'a person of no trait loses fear × 0.3': [({ person }) => { person.fear = 20; }, -6],
+  'a cautious person loses fear × 0.6': [({ person }) => { person.traits = ['cautious']; person.fear = 20; }, -12],
+  'a craven person loses fear × 0.6': [({ person }) => { person.traits = ['craven']; person.fear = 20; }, -12],
+  'a vengeful person at fear 15 gets it back': [({ person }) => { person.traits = ['vengeful']; person.fear = 15; }, 8],
+  'a vengeful person at fear 14 does not': [({ person }) => { person.traits = ['vengeful']; person.fear = 14; }, 8 - 4.2],
+  'a brave person at fear 15 gets it back': [({ person }) => { person.traits = ['brave']; person.fear = 15; }, 0],
+  'a brave person at fear 14 does not': [({ person }) => { person.traits = ['brave']; person.fear = 14; }, -4.2],
+  'a vengeful coward keeps half the loss': [({ person }) => { person.traits = ['vengeful', 'cautious']; person.fear = 20; }, 8 - 12 + 6],
+};
+for (const [name, [arrange, expected]] of Object.entries(TERMS)) test(`discontentOf: ${name}`, () => {
+  const fixture = neutral();
+  arrange(fixture);
+  near(discontentOf(fixture.state, fixture.person, fixture.hooks), expected);
+});
+
+test('discontentOf: wanting the throne adds 8 beside the ambitious trait', () => {
+  const { state, person, family, hooks } = neutral();
+  person.traits = ['ambitious'];
+  family.influence = 50;
+  assert.equal(ambitionOf(state, person, hooks), 'throne');
+  near(discontentOf(state, person, hooks), 10 + 8);
+  family.influence = 49;
+  assert.notEqual(ambitionOf(state, person, hooks), 'throne');
+  near(discontentOf(state, person, hooks), 10);
+});
+
+test('discontentOf: a nemesis of the ruler adds 10, in either id order', () => {
+  const held = neutral();
+  setRelationship(held.state, { kind: 'nemesis', aId: TALIA, bId: AREL });
+  near(discontentOf(held.state, held.person, held.hooks), 10);
+  const reversed = neutral();
+  setRelationship(reversed.state, { kind: 'nemesis', aId: AREL, bId: TALIA });
+  near(discontentOf(reversed.state, reversed.person, reversed.hooks), 10);
+});
+
+test('discontentOf: a nemesis of someone else and a rival of the ruler add nothing', () => {
+  const { state, person, hooks } = neutral();
+  setRelationship(state, { kind: 'nemesis', aId: TALIA, bId: SERA });
+  setRelationship(state, { kind: 'rival', aId: TALIA, bId: AREL });
+  setRelationship(state, { kind: 'nemesis', aId: DARA, bId: AREL });
+  near(discontentOf(state, person, hooks), 0);
+});
+
+test('fear holds cautious nobles back and drives vengeful ones', () => {
+  const at = (traits, fear) => { const { state, person, hooks } = neutral(); Object.assign(person, { traits, fear }); return discontentOf(state, person, hooks); };
+  near(at(['cautious'], 40) - at(['cautious'], 0), -24);
+  near(at(['vengeful'], 40) - at(['vengeful'], 0), 0);
+  // A cautious noble stops at the threshold his vengeful neighbour keeps crossing.
+  const state = ready(), hooks = actionHooks(state);
+  for (const id of [DARA, KELAN]) state.people[id].traits = ['ambitious', 'cautious'];
+  for (const id of FOUR) state.people[id].fear = 30;
+  assert.ok(discontentOf(state, state.people[DARA], hooks) < DISCONTENT_THRESHOLD);
+  assert.ok(discontentOf(state, state.people[TALIA], hooks) >= DISCONTENT_THRESHOLD);
+  // Two free of fear are too few, so the frightened house founds nothing.
+  stepOn(state, HIT);
+  assert.deepEqual(state.factions, []);
+});
+
+test('a faction needs three discontented nobles and a reign of 24 months', () => {
+  const young = ready({}, GRACE_MONTHS - 1);
+  stepOn(young, HIT);
+  assert.deepEqual(young.factions, []);
+  assert.equal(young.plotRngState, HIT, 'a young reign draws nothing');
+
+  const two = ready();
+  lukewarm(two, KELAN, TALIA);
+  stepOn(two, HIT);
+  assert.deepEqual(two.factions, []);
+  assert.equal(two.plotRngState, HIT, 'two nobles draw nothing');
+
+  const three = ready();
+  lukewarm(three, TALIA);
+  const sequence = three.sequence;
+  stepOn(three, HIT);
+  assert.equal(three.plotRngState, afterDraws(HIT, 1), 'one draw');
+  assert.deepEqual(three.factions, [{ id: `faction-${sequence + 1}`, targetRulerId: AREL, leaderId: NAMAR, claimantId: SERA, memberIds: [NAMAR, DARA, KELAN], knownMemberIds: [], formedAt: three.date, status: 'active', outcome: null, quietUntil: null, ultimatumAt: null, dueAt: null, storyId: null, concessions: 0, closedAt: null }]);
+  validateFactions(three);
+
+  const missed = ready();
+  stepOn(missed, MISS);
+  assert.deepEqual(missed.factions, []);
+  assert.equal(missed.plotRngState, afterDraws(MISS, 1), 'a missed roll is one draw too');
+});
+
+test('the three most discontented found the faction, and the leader is the highest, then the lowest id', () => {
+  const state = ready();
+  opinionOf(state, TALIA, -30);
+  opinionOf(state, KELAN, -20);
+  stepOn(state, HIT);
+  const [faction] = state.factions;
+  assert.equal(faction.leaderId, TALIA);
+  assert.deepEqual(faction.memberIds, [NAMAR, KELAN, TALIA], 'sorted, with Namar first of the tie between him and Dara');
+
+  const tied = ready();
+  stepOn(tied, HIT);
+  assert.equal(tied.factions[0].leaderId, NAMAR);
+  assert.deepEqual(tied.factions[0].memberIds, [NAMAR, DARA, KELAN]);
+});
+
+test('the formation chance is 40 plus the top discontent, by difficulty, at most 90', () => {
+  for (const [difficulty, scale] of [['easy', 0.5], ['normal', 1], ['hard', 1.5]]) {
+    const fresh = () => { const state = ready(); state.difficulty = difficulty; return state; };
+    const probe = fresh(), hooks = actionHooks(probe);
+    const top = Math.max(...FOUR.map((id) => discontentOf(probe, probe.people[id], hooks)));
+    const chance = Math.min(90, (FORM_BASE + top) * scale);
+    if (difficulty === 'hard') assert.equal(chance, 90, 'the hard chance meets the cap');
+    const below = fresh(), above = fresh();
+    stepOn(below, within(chance - 1, chance));
+    stepOn(above, within(chance, chance + 1));
+    assert.equal(below.factions.length, 1, difficulty);
+    assert.equal(above.factions.length, 0, difficulty);
+  }
+});
+
+const UNFIT = {
+  'an exiled family': (state) => { state.families[NAMARS].exiled = true; },
+  'prisoners': (state) => { jail(state, KELAN, 1); jail(state, TALIA, 2); },
+  'the dead': (state) => { state.people[KELAN].diedAt = state.date; state.people[TALIA].diedAt = state.date; },
+  'minors': (state) => { state.people[KELAN].bornAt = addGameMonths(state.date, -120); state.people[TALIA].bornAt = addGameMonths(state.date, -120); },
+};
+for (const [name, arrange] of Object.entries(UNFIT)) test(`${name} cannot found a faction and cost no draw`, () => {
+  const state = ready();
+  arrange(state);
+  stepOn(state, HIT);
+  assert.deepEqual(state.factions, []);
+  assert.equal(state.plotRngState, HIT);
+});
+
+test('the ruler\'s own family cannot found a faction', () => {
+  const state = ready();
+  state.families[NAMARS].exiled = true;
+  for (const id of [ISET, SERA, TAREK]) { state.people[id].traits = ['ambitious', 'vengeful']; opinionOf(state, id, -80); }
+  assert.ok(discontentOf(state, state.people[SERA], actionHooks(state)) >= DISCONTENT_THRESHOLD);
+  stepOn(state, HIT);
+  assert.deepEqual(state.factions, []);
+  assert.equal(state.plotRngState, HIT);
+});
+
+test('forming a faction logs nothing and leaves no memory', () => {
+  const state = ready();
+  state.plotRngState = HIT;
+  const before = plain(state), events = step(state);
+  assert.equal(state.factions.length, 1);
+  assert.deepEqual(events, []);
+  assert.deepEqual(state.log, before.log);
+  assert.deepEqual(state.memories, before.memories);
+  assert.deepEqual(state.stories, before.stories);
+  // Past the record itself, its id and the one draw, the state has not moved.
+  const rest = ({ factions, plotRngState, sequence, ...other }) => other;
+  assert.deepEqual(rest(plain(state)), rest(before));
+});
+
+test('the step draws from the plot stream alone', () => {
+  const state = ready();
+  withFaction(state, { memberIds: [NAMAR, DARA] });
+  const { rngState, actionRngState } = state;
+  stepOn(state, HIT);
+  assert.equal(state.rngState, rngState);
+  assert.equal(state.actionRngState, actionRngState);
+  assert.notEqual(state.plotRngState, HIT);
+});
+
+test('a live faction shuts out a second one, and a closed one does not', () => {
+  const state = ready();
+  const faction = withFaction(state, { memberIds: FOUR, knownMemberIds: FOUR });
+  stepOn(state, HIT);
+  assert.deepEqual(state.factions, [faction]);
+  Object.assign(faction, { status: 'closed', outcome: 'dissolved', closedAt: state.date });
+  stepOn(state, HIT);
+  assert.equal(state.factions.length, 2);
+  validateFactions(state);
+});
+
+test('an unknown faction is absent from the view', () => {
+  const state = ready(), before = plain(getCharacterPresentation(state));
+  withFaction(state, { memberIds: FOUR });
+  const view = plain(getCharacterPresentation(state));
+  assert.deepEqual(view.court.factions, []);
+  assert.deepEqual(view, before);
+  assert.deepEqual(presentFactions(state, actionHooks(state)), []);
+});
+
+test('a discovered member appears at the reader\'s precision and the rest stay hidden', () => {
+  const state = ready();
+  const faction = withFaction(state, { memberIds: FOUR });
+  stepOn(state, HIT);
+  assert.deepEqual(faction.knownMemberIds, [NAMAR]);
+  const strength = factionStrength(state, faction, actionHooks(state));
+  const view = plain(getCharacterPresentation(state)).court.factions;
+  assert.deepEqual(view, [{ id: faction.id, stageLabel: 'I det fördolda', knownMembers: [{ id: NAMAR, name: 'Namar av Hadara' }], claimantName: null, strengthLabel: bandFor(strength, 'three'), memberCount: null, dueAt: null }]);
+  const text = JSON.stringify(view);
+  for (const id of [DARA, KELAN, TALIA, SERA]) assert.equal(text.includes(id), false, id);
+  for (const name of [DARA, KELAN, TALIA, SERA].map((id) => state.people[id].name)) assert.equal(text.includes(name), false, name);
+});
+
+test('the reader\'s precision sets the strength label and the head count', () => {
+  const read = (intrigue) => {
+    const state = ready();
+    const faction = withFaction(state, { memberIds: FOUR, knownMemberIds: [NAMAR] });
+    state.offices.spymaster.holderId = SERA;
+    state.people[SERA].skills.intrigue = intrigue;
+    return { shown: presentFactions(state, actionHooks(state))[0], strength: factionStrength(state, faction, actionHooks(state)) };
+  };
+  const five = read(7), exact = read(12);
+  assert.equal(five.shown.strengthLabel, bandFor(five.strength, 'five'));
+  assert.equal(five.shown.memberCount, null);
+  assert.equal(exact.shown.strengthLabel, `${exact.strength} %`);
+  assert.equal(exact.shown.memberCount, 4);
+});
+
+test('the claimant stays unnamed until two members are known or the ultimatum is out', () => {
+  const claimant = (fields) => { const state = ready(); withFaction(state, fields); return presentFactions(state, actionHooks(state))[0].claimantName; };
+  assert.equal(claimant({ knownMemberIds: [NAMAR] }), null);
+  assert.equal(claimant({ knownMemberIds: [NAMAR, DARA] }), 'Sera Arel');
+  assert.equal(claimant({ status: 'ultimatum', ultimatumAt: base().date, dueAt: addGameMonths(base().date, 6) }), 'Sera Arel');
+});
+
+test('the stage labels follow the status, and a closed faction is not shown', () => {
+  const shown = (fields) => { const state = ready(); withFaction(state, fields); return presentFactions(state, actionHooks(state)); };
+  const date = base().date, due = addGameMonths(date, 6);
+  assert.equal(shown({ knownMemberIds: [NAMAR] })[0].stageLabel, 'I det fördolda');
+  const ultimatum = shown({ status: 'ultimatum', ultimatumAt: date, dueAt: due });
+  assert.equal(ultimatum[0].stageLabel, 'Ultimatum');
+  assert.equal(ultimatum[0].dueAt, due, 'an ultimatum shows with no member known');
+  assert.deepEqual(ultimatum[0].knownMembers, []);
+  assert.equal(shown({ status: 'appeased', ultimatumAt: date, quietUntil: addGameMonths(date, 36) })[0].stageLabel, 'Har backat tills vidare');
+  assert.deepEqual(shown({ knownMemberIds: [NAMAR], status: 'closed', outcome: 'dissolved', closedAt: date }), []);
+});
+
+test('the court shows what presentFactions shows, and showing draws nothing', () => {
+  const state = ready();
+  withFaction(state, { knownMemberIds: [NAMAR] });
+  const before = plain(state);
+  assert.deepEqual(getCharacterPresentation(state).court.factions, presentFactions(state, actionHooks(state)));
+  assert.deepEqual(plain(state), before);
+});
+
+test('the pressure counts the factions the player can see, and no others', () => {
+  const pressure = (fields) => {
+    const state = ready();
+    state.people[AREL].stress = 10;
+    withFaction(state, fields(state));
+    stressPressureStep(state, actionHooks(state));
+    return state.people[AREL].stress - 10;
+  };
+  assert.equal(pressure(() => ({})), 0, 'an unknown faction weighs nothing');
+  assert.equal(pressure(() => ({ knownMemberIds: [NAMAR] })), 6);
+  assert.equal(pressure((state) => ({ knownMemberIds: [NAMAR], status: 'closed', outcome: 'dissolved', closedAt: state.date })), 0);
+});
+
+const discovers = (chance, prepare = () => {}) => {
+  const run = (roll) => { const state = ready(); withFaction(state, { memberIds: FOUR }); prepare(state); stepOn(state, roll); return state.factions[0].knownMemberIds.length; };
+  assert.equal(run(within(chance - 1, chance)), 1, `a roll under ${chance}`);
+  assert.equal(run(within(chance, chance + 1)), 0, `a roll of ${chance}`);
+};
+const spymaster = (loyalty, intrigue = 7) => (state) => { state.offices.spymaster.holderId = SERA; state.people[SERA].loyalty = loyalty; state.people[SERA].skills.intrigue = intrigue; };
+
+test('discovery reads half the representative\'s intrigue with no spymaster', () => {
+  discovers(25); // Arel's intrigue of 4 reads as 2
+  discovers(15, (state) => { state.people[AREL].skills.intrigue = 0; });
+});
+
+test('discovery reads the spymaster, and +10 comes on top of the cap for a faithful one', () => {
+  discovers(50, spymaster(60));
+  discovers(60, spymaster(68));
+  discovers(70, spymaster(60, 14));
+  discovers(80, spymaster(68, 14));
+});
+
+test('discovery takes the first hidden member, a year at a time', () => {
+  const state = ready();
+  const faction = withFaction(state, { memberIds: FOUR, knownMemberIds: [DARA] });
+  stepOn(state, HIT);
+  assert.deepEqual(faction.knownMemberIds, [NAMAR, DARA]);
+  assert.equal(state.plotRngState, afterDraws(HIT, 1), 'once a year');
+  stepOn(state, HIT);
+  assert.deepEqual(faction.knownMemberIds, [NAMAR, DARA, KELAN]);
+  validateFactions(state);
+});
+
+test('the discovery event names nobody', () => {
+  for (const [holderId, description] of [[null, TRACE_RUMOR], [SERA, TRACE_SPY]]) {
+    const state = ready(), events = [];
+    withFaction(state, { memberIds: FOUR });
+    state.offices.spymaster.holderId = holderId;
+    state.plotRngState = HIT;
+    step(state, events);
+    assert.equal(events.length, 1);
+    const [event] = events;
+    assert.equal(event.title, 'Spår av en faktion');
+    assert.equal(event.description, description);
+    assert.deepEqual(event.participants, []);
+    assert.equal(state.log.at(-1).id, event.id);
+    const text = JSON.stringify(event);
+    for (const person of Object.values(state.people)) { assert.equal(text.includes(person.name), false, person.name); assert.equal(text.includes(person.id), false, person.id); }
+    for (const family of Object.values(state.families)) assert.equal(text.includes(family.name), false, family.name);
+  }
+});
+
+test('discovery draws only when a member is hidden', () => {
+  const state = ready();
+  withFaction(state, everyoneKnown);
+  const events = stepOn(state, HIT) ?? [];
+  assert.equal(state.plotRngState, HIT);
+  assert.deepEqual(events, []);
+});
+
+test('a faction does not surface in the year it forms', () => {
+  const state = ready();
+  const hitTwice = streamWith((roll) => roll < 1, (roll) => roll < 1);
+  stepOn(state, hitTwice);
+  assert.equal(state.factions.length, 1);
+  assert.deepEqual(state.factions[0].knownMemberIds, []);
+  assert.equal(state.plotRngState, afterDraws(hitTwice, 1));
+});
+
+test('members who calm down leave with no draw', () => {
+  const state = ready();
+  const faction = withFaction(state, { memberIds: [NAMAR, DARA, KELAN], knownMemberIds: [NAMAR, DARA, KELAN] });
+  lukewarm(state, TALIA);
+  calm(state, DARA);
+  assert.ok(discontentOf(state, state.people[DARA], actionHooks(state)) < LEAVE_BELOW);
+  stepOn(state, HIT);
+  assert.deepEqual(faction.memberIds, [NAMAR, KELAN]);
+  assert.deepEqual(faction.knownMemberIds, [NAMAR, KELAN], 'a known member who left is no known member');
+  assert.equal(faction.status, 'active');
+  assert.equal(state.plotRngState, HIT);
+  validateFactions(state);
+});
+
+test('a member at exactly the leaving line stays, and half a point under it leaves', () => {
+  // With no trait, grievance or doubt about legitimacy, Dara's discontent is half her opinion against the ruler.
+  const atOpinion = (opinion) => {
+    const state = ready();
+    const faction = withFaction(state, { memberIds: FOUR, knownMemberIds: FOUR });
+    state.realm.legitimacy = 60;
+    state.families[NAMARS].grievance = 0;
+    state.people[DARA].traits = [];
+    opinionOf(state, DARA, opinion);
+    const hooks = { ...actionHooks(state), familySupport: () => 60 };
+    factionStep(state, [], hooks);
+    return { stays: faction.memberIds.includes(DARA), discontent: discontentOf(state, state.people[DARA], hooks) };
+  };
+  assert.deepEqual(atOpinion(-10), { stays: true, discontent: LEAVE_BELOW });
+  assert.deepEqual(atOpinion(-9), { stays: false, discontent: LEAVE_BELOW - 0.5 });
+});
+
+test('a leader who calms down hands over to the most discontented member', () => {
+  const state = ready();
+  const faction = withFaction(state, { memberIds: [NAMAR, DARA, KELAN], knownMemberIds: [NAMAR, DARA, KELAN] });
+  lukewarm(state, TALIA);
+  calm(state, NAMAR);
+  opinionOf(state, KELAN, -10);
+  stepOn(state, HIT);
+  assert.deepEqual(faction.memberIds, [DARA, KELAN]);
+  assert.equal(faction.leaderId, KELAN);
+});
+
+test('non-members at the threshold draw in id order, and only they draw', () => {
+  const state = ready();
+  const faction = withFaction(state, { memberIds: [NAMAR, DARA], knownMemberIds: [NAMAR, DARA] });
+  const stream = streamWith((roll) => roll >= 99, (roll) => roll < 1, (roll) => roll >= 99);
+  stepOn(state, stream);
+  assert.deepEqual(faction.memberIds, [NAMAR, DARA, TALIA], 'Kelan drew first and missed, Talia hit');
+  assert.deepEqual(faction.knownMemberIds, [NAMAR, DARA], 'a new member starts hidden');
+  // Talia is hidden, so the year ended with a third draw for discovery.
+  assert.equal(state.plotRngState, afterDraws(stream, 3));
+  validateFactions(state);
+});
+
+test('a joiner lands in id order among the members', () => {
+  const state = ready();
+  const faction = withFaction(state, { memberIds: [NAMAR, TALIA], knownMemberIds: [NAMAR, TALIA] });
+  stepOn(state, streamWith((roll) => roll < 1, (roll) => roll < 1, (roll) => roll >= 99));
+  assert.deepEqual(faction.memberIds, [NAMAR, DARA, KELAN, TALIA]);
+  validateFactions(state);
+});
+
+test('a non-member under the threshold costs no draw', () => {
+  const state = ready();
+  withFaction(state, { memberIds: [NAMAR, DARA], knownMemberIds: [NAMAR, DARA] });
+  lukewarm(state, KELAN, TALIA);
+  stepOn(state, HIT);
+  assert.equal(state.plotRngState, HIT);
+});
+
+test('people of an exiled house or in prison do not join', () => {
+  const state = ready();
+  withFaction(state, { memberIds: [NAMAR, DARA], knownMemberIds: [NAMAR, DARA] });
+  jail(state, KELAN);
+  jail(state, TALIA, 2);
+  stepOn(state, HIT);
+  assert.equal(state.plotRngState, HIT);
+});
+
+test('the join chance is 50 by difficulty', () => {
+  for (const [difficulty, chance] of [['easy', 25], ['normal', 50], ['hard', 75]]) {
+    const joins = (roll) => {
+      const state = ready();
+      state.difficulty = difficulty;
+      const faction = withFaction(state, { memberIds: FOUR.slice(0, 3), knownMemberIds: FOUR.slice(0, 3) });
+      stepOn(state, roll);
+      return faction.memberIds.includes(TALIA);
+    };
+    assert.equal(joins(within(chance - 1, chance)), true, difficulty);
+    assert.equal(joins(within(chance, chance + 1)), false, difficulty);
+  }
+  assert.equal(JOIN_CHANCE, 50);
+});
+
+test('a faction under two members closes as dissolved and draws no discovery', () => {
+  const state = ready();
+  const faction = withFaction(state, { memberIds: [NAMAR, DARA] });
+  lukewarm(state, KELAN, TALIA);
+  calm(state, DARA);
+  stepOn(state, HIT);
+  assert.deepEqual([faction.status, faction.outcome, faction.closedAt], ['closed', 'dissolved', state.date]);
+  assert.equal(state.plotRngState, HIT);
+  validateFactions(state);
+});
+
+test('a joiner keeps a faction alive that a leaver would have ended', () => {
+  const state = ready();
+  const faction = withFaction(state, { memberIds: [NAMAR, DARA], knownMemberIds: [NAMAR] });
+  calm(state, DARA);
+  lukewarm(state, TALIA);
+  stepOn(state, streamWith((roll) => roll < 1, (roll) => roll >= 99));
+  assert.deepEqual(faction.memberIds, [NAMAR, KELAN]);
+  assert.equal(faction.status, 'active');
+});
+
+const NPC_AND_MINOR = {
+  'an NPC ruler': () => ready({ mode: 'family', familyId: NAMARS }),
+  'a minor': () => {
+    const state = base();
+    Object.assign(state.offices.ruler, { holderId: MIRA, regentId: AREL });
+    state.reign.rulerId = MIRA;
+    state.realm.lawfulRulerId = MIRA;
+    state.regencies['office:ruler'] = { id: 'office:ruler', principalId: MIRA, regentId: AREL, phase: 'minority', startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
+    state.stories = [];
+    delete state.mandateVersion; delete state.mandateActivatedAt; delete state.mandateSequence;
+    const loaded = plain(normalizeCharacterSystem(state));
+    loaded.reign.startedAt = addGameMonths(loaded.date, -GRACE_MONTHS);
+    assert.equal(actionHooks(loaded).canRule(), true);
+    return loaded;
+  },
+};
+test('factions stop under an NPC ruler and under a minor', () => {
+  for (const [name, fresh] of Object.entries(NPC_AND_MINOR)) {
+    const empty = fresh();
+    stepOn(empty, HIT);
+    assert.deepEqual(empty.factions, [], name);
+    assert.equal(empty.plotRngState, HIT, name);
+
+    const live = fresh();
+    withFaction(live, { memberIds: [NAMAR, DARA] });
+    live.plotRngState = HIT;
+    calm(live, DARA);
+    const before = plain(live);
+    step(live);
+    assert.deepEqual(plain(live), before, name);
+  }
+});
+
+test('the claimant is the oldest free sibling, then the first free adult in line, then the leader', () => {
+  const state = ready();
+  const faction = withFaction(state), hooks = actionHooks(state);
+  const claimant = (useHooks = hooks) => claimantFor(state, faction, useHooks)?.id ?? null;
+  assert.equal(claimant(), SERA, 'Arel has no sibling, so the heir claims');
+  jail(state, SERA, 1);
+  assert.equal(claimant(), ISET, 'the next free adult in line');
+  // Arel gets two siblings through a shared legal parent who has no child yet.
+  for (const id of [AREL, YARA, BAREK]) state.people[id].legalParentIds = [CHILDLESS];
+  assert.equal(claimant(), BAREK, 'the older sibling');
+  state.people[YARA].bornAt = addGameMonths(state.people[BAREK].bornAt, -12);
+  assert.equal(claimant(), YARA, 'age decides, ahead of the id');
+  jail(state, YARA, 2);
+  assert.equal(claimant(), BAREK, 'a sibling in prison gives way');
+  state.people[BAREK].bornAt = addGameMonths(state.date, -120);
+  assert.equal(claimant(), ISET, 'a minor sibling gives way');
+  assert.equal(claimant({ ...hooks, rulerCandidates: () => [] }), NAMAR, 'nobody in line leaves the leader');
+  state.people[NAMAR].diedAt = state.date;
+  assert.equal(claimant({ ...hooks, rulerCandidates: () => [] }), null, 'nobody at all');
+});
+
+test('the first free adult in line skips a minor', () => {
+  const state = ready();
+  const faction = withFaction(state), hooks = actionHooks(state);
+  assert.equal(claimantFor(state, faction, { ...hooks, rulerCandidates: () => [state.people[MIRA], state.people[TAREK]] }).id, TAREK);
+});
+
+test('factionStrength adds members, families, legitimacy, influence and age and subtracts dread', () => {
+  const strength = (prepare, fields) => {
+    const state = ready();
+    state.realm.legitimacy = 60;
+    prepare(state);
+    return factionStrength(state, record(state, fields), actionHooks(state));
+  };
+  const none = () => {};
+  assert.equal(strength(none), 24, '8 × 3 members');
+  assert.equal(strength(none, { memberIds: [NAMAR, DARA, BAREK] }), 24 + 10, 'a second family');
+  assert.equal(strength(none, { memberIds: [NAMAR, DARA, BAREK, SAFRA] }), 32 + 20, 'a third family');
+  assert.equal(strength((state) => { state.realm.legitimacy = 40; }), 24 + 10);
+  assert.equal(strength((state) => { state.families[NAMARS].influence = 65; }), 24 + 10);
+  assert.equal(strength((state) => { state.families[NAMARS].influence = 25; }), 24 - 10);
+  assert.equal(strength((state) => { for (const person of Object.values(state.people)) person.fear = 20; }), 24 - 6, 'dread 20');
+  assert.equal(strength((state) => { state.families[ESHMUNS].influence = 65; }, { memberIds: [NAMAR, DARA, BAREK] }), 34 + 10, 'the top influence of the member families');
+  assert.equal(strength((state) => { state.families[SAFRAS].influence = 65; }), 24, 'a family with no member counts nothing');
+});
+
+test('factionStrength matures by full years since forming and stays within 5 to 95', () => {
+  const at = (months, prepare = () => {}) => {
+    const state = ready();
+    state.realm.legitimacy = 60;
+    prepare(state);
+    return factionStrength(state, record(state, { formedAt: addGameMonths(state.date, -months) }), actionHooks(state));
+  };
+  assert.equal(at(11), 24);
+  assert.equal(at(12), 24 + MATURITY_PER_YEAR);
+  assert.equal(at(23), 24 + MATURITY_PER_YEAR);
+  assert.equal(at(24), 24 + 2 * MATURITY_PER_YEAR);
+  assert.equal(at(0, (state) => { for (const person of Object.values(state.people)) person.fear = 100; }), 5);
+  assert.equal(at(240), 95);
+});
+
+test('a member who dies or goes to prison is removed on the same date', () => {
+  const start = ready();
+  const faction = withFaction(start, { memberIds: FOUR, knownMemberIds: [DARA, KELAN] });
+  // killPeople ends with refreshStories, so the death needs no year turn.
+  actionHooks(start).kill([DARA], [], 'Ett prov');
+  assert.deepEqual(faction.memberIds, [NAMAR, KELAN, TALIA]);
+  assert.deepEqual(faction.knownMemberIds, [KELAN]);
+
+  const date = start.date;
+  start.actionRngState = certainAction();
+  const jailed = ok(command(start, 'attempt_action', { actionId: 'imprison', actorId: AREL, targetIds: [KELAN], means: {} }));
+  assert.equal(jailed.date, date);
+  assert.ok(jailed.prisoners.some((prisoner) => prisoner.personId === KELAN && prisoner.status === 'held'));
+  assert.deepEqual(jailed.factions[0].memberIds, [NAMAR, TALIA]);
+  assert.deepEqual(jailed.factions[0].knownMemberIds, []);
+});
+
+test('a dead or imprisoned leader gives way to the most discontented member', () => {
+  const dead = ready();
+  const first = withFaction(dead, { memberIds: FOUR });
+  opinionOf(dead, TALIA, -10);
+  actionHooks(dead).kill([NAMAR], [], 'Ett prov');
+  assert.equal(first.leaderId, TALIA);
+
+  const held = ready();
+  const second = withFaction(held, { memberIds: FOUR });
+  jail(held, NAMAR);
+  refreshCourtStories(held, [], actionHooks(held));
+  assert.equal(second.leaderId, DARA, 'a tie goes to the lowest id');
+  assert.deepEqual(second.memberIds, [DARA, KELAN, TALIA]);
+});
+
+test('a dead or imprisoned claimant is replaced through the chain', () => {
+  const dead = ready();
+  const first = withFaction(dead, { memberIds: FOUR });
+  actionHooks(dead).kill([SERA], [], 'Ett prov');
+  assert.equal(first.claimantId, ISET);
+
+  const held = ready();
+  const second = withFaction(held, { memberIds: FOUR });
+  jail(held, SERA);
+  refreshFactions(held, [], actionHooks(held));
+  assert.equal(second.claimantId, ISET);
+});
+
+test('a refresh dissolves a faction under two members or with no claimant, and draws nothing', () => {
+  const few = ready();
+  const faction = withFaction(few, { memberIds: [NAMAR, DARA] });
+  few.plotRngState = HIT;
+  const before = plain(few.log), events = [];
+  actionHooks(few).kill([DARA], events, 'Ett prov');
+  assert.deepEqual([faction.status, faction.outcome, faction.closedAt], ['closed', 'dissolved', few.date]);
+  assert.deepEqual(faction.memberIds, [NAMAR]);
+  assert.equal(few.plotRngState, HIT);
+  assert.ok(few.log.length > before.length);
+  validateFactions(few);
+
+  const orphan = ready();
+  const hopeless = withFaction(orphan, { memberIds: FOUR });
+  orphan.people[SERA].diedAt = orphan.date;
+  refreshFactions(orphan, [], { ...actionHooks(orphan), adult: () => false });
+  assert.deepEqual([hopeless.status, hopeless.outcome, hopeless.claimantId], ['closed', 'dissolved', null]);
+  validateFactions(orphan);
+});
+
+test('a refresh leaves a closed faction and the year\'s calm members alone', () => {
+  const state = ready();
+  const faction = withFaction(state, { status: 'closed', outcome: 'dissolved', closedAt: state.date });
+  const live = record(state, { memberIds: [KELAN, TALIA], leaderId: KELAN });
+  state.factions.push(live);
+  calm(state, TALIA);
+  state.people[DARA].diedAt = state.date;
+  const before = plain(state.factions);
+  refreshFactions(state, [], actionHooks(state));
+  assert.deepEqual(plain(state.factions), before, `${faction.id} keeps its dead, and leaving is the year step's`);
+});
+
+test('any accession voids the faction', () => {
+  const state = ready();
+  const faction = withFaction(state, { memberIds: FOUR, knownMemberIds: [NAMAR] });
+  actionHooks(state).kill([AREL], [], 'Ett prov');
+  assert.notEqual(state.offices.ruler.holderId, AREL);
+  assert.deepEqual([faction.status, faction.outcome, faction.closedAt], ['closed', 'void', state.date]);
+  assert.deepEqual(presentFactions(state, actionHooks(state)), []);
+  validateFactions(state);
+});
+
+test('a dissolved realm voids the faction', () => {
+  const state = ready();
+  const faction = withFaction(state);
+  const after = ok(applyRealmDissolution(state, { id: 'host-end', date: state.date, reason: 'Ett prov', hostCandidates: [] }));
+  assert.equal(after.factions.at(-1).id, faction.id);
+  assert.deepEqual([after.factions.at(-1).status, after.factions.at(-1).outcome], ['closed', 'void']);
+});
+
+test('voidFactions leaves an ended faction as it ended', () => {
+  const state = ready();
+  const ended = addGameMonths(state.date, -12);
+  const faction = withFaction(state, { status: 'closed', outcome: 'dissolved', closedAt: ended, formedAt: addGameMonths(state.date, -24) });
+  voidFactions(state);
+  assert.deepEqual([faction.outcome, faction.closedAt], ['dissolved', ended]);
+});
+
+test('the court year runs the faction step after the demands', () => {
+  const state = ready();
+  for (const id of [ESHMUNS, SAFRAS]) state.families[id].exiled = true;
+  // Namar's house demands at 40 and forms at about 65. The first roll is a miss for the demand and a hit for the faction, the second a miss for both.
+  const stream = streamWith((roll) => roll >= 50 && roll < 60, (roll) => roll >= 99);
+  state.plotRngState = stream;
+  courtAnnualStep(state, [], actionHooks(state));
+  assert.deepEqual(state.familyDemands, []);
+  assert.deepEqual(state.factions, []);
+  assert.equal(state.plotRngState, afterDraws(stream, 2));
+});
+
+test('a faction goes through the year turn, a save and a load', () => {
+  let state = createCharacterSystem({ seed: 321 });
+  for (let year = 1; year <= 6 && !state.factions.length; year++) state = ok(advanceCharacters(state, addGameMonths(state.date, 12), { id: `year-${year}` }));
+  assert.equal(state.factions.length, 1, 'seed 321 grows a faction within six years');
+  const loaded = normalizeCharacterSystem(plain(state));
+  assert.deepEqual(loaded.factions, state.factions);
+  validateCourt(loaded);
+});
+
+test('a whole advance and a month-by-month advance reach the same factions', () => {
+  const start = createCharacterSystem({ seed: 321 }), months = 72;
+  const whole = ok(advanceCharacters(start, addGameMonths(start.date, months), { id: 'whole' }));
+  let split = start;
+  for (let month = 1; month <= months; month++) split = ok(advanceCharacters(split, addGameMonths(start.date, month), { id: `month-${month}` }));
+  assert.ok(whole.factions.length > 0);
+  assert.deepEqual(split.factions, whole.factions);
+  assert.equal(split.plotRngState, whole.plotRngState);
+});
+
+const closedFields = (state) => ({ status: 'closed', outcome: 'dissolved', closedAt: state.date });
+// A whole ultimatum, then the one field a forgery spoils, so the check that refuses it is the check on that field.
+function standing(faction, state, fields) {
+  state.stories.push({ id: 'story-ultimatum', type: 'faction_ultimatum', factionId: faction.id });
+  Object.assign(faction, { status: 'ultimatum', ultimatumAt: state.date, dueAt: addGameMonths(state.date, 6), storyId: 'story-ultimatum', ...fields });
+}
+const LIVE_FORGERIES = {
+  'an unknown field': (faction) => { faction.secret = 1; },
+  'a missing field': (faction) => { delete faction.quietUntil; },
+  'a bad id': (faction) => { faction.id = 'faction-x'; },
+  'an id past the sequence': (faction, state) => { faction.id = `faction-${state.sequence + 1}`; },
+  'a known member who is no member': (faction) => { faction.knownMemberIds = [TALIA]; },
+  'an unsorted member list': (faction) => { faction.memberIds = [DARA, NAMAR, KELAN]; },
+  'a repeated member': (faction) => { faction.memberIds = [NAMAR, DARA, DARA]; },
+  'a member who does not exist': (faction) => { faction.memberIds = [NAMAR, 'person-9-9']; },
+  'an inherited name as a member': (faction) => { faction.memberIds = [NAMAR, 'toString']; },
+  'a member list that is no list': (faction) => { faction.memberIds = NAMAR; },
+  'an unsorted known list': (faction) => { faction.knownMemberIds = [DARA, NAMAR]; },
+  'a repeated known member': (faction) => { faction.knownMemberIds = [NAMAR, NAMAR]; },
+  'a leader outside the faction': (faction) => { faction.leaderId = TALIA; },
+  'a live faction with no claimant': (faction) => { faction.claimantId = null; },
+  'a claimant who does not exist': (faction) => { faction.claimantId = 'person-9-9'; },
+  'a live faction of one': (faction) => { faction.memberIds = [NAMAR]; },
+  'a target who does not rule': (faction) => { faction.targetRulerId = SERA; },
+  'an unknown status': (faction) => { faction.status = 'open'; },
+  'an outcome on a live faction': (faction) => { faction.outcome = 'dissolved'; },
+  'a closing date on a live faction': (faction, state) => { faction.closedAt = state.date; },
+  'a formation in the future': (faction, state) => { faction.formedAt = addGameMonths(state.date, 1); },
+  'a date that is no date': (faction) => { faction.formedAt = 'igår'; },
+  'a negative concession count': (faction) => { faction.concessions = -1; },
+  'a fractional concession count': (faction) => { faction.concessions = 0.5; },
+  'a quiet date that is no date': (faction) => { faction.quietUntil = 'snart'; },
+  'an ultimatum with no date': (faction, state) => { standing(faction, state, { ultimatumAt: null }); },
+  'an ultimatum with no deadline': (faction, state) => { standing(faction, state, { dueAt: null }); },
+  'an ultimatum after today': (faction, state) => { standing(faction, state, { ultimatumAt: addGameMonths(state.date, 1) }); },
+  'an ultimatum with no story': (faction, state) => { standing(faction, state, { storyId: null }); },
+  'a truce with no end': (faction) => { faction.status = 'appeased'; },
+  'a story that does not exist': (faction) => { faction.storyId = 'story-999'; },
+};
+const CLOSED_FORGERIES = {
+  'a closed faction with no outcome': (faction) => { faction.outcome = null; },
+  'a closed faction with an unknown outcome': (faction) => { faction.outcome = 'won'; },
+  'a closed faction with no date': (faction) => { faction.closedAt = null; },
+  'a closing before the forming': (faction, state) => { faction.closedAt = addGameMonths(state.date, -1); },
+  'a closing in the future': (faction, state) => { faction.closedAt = addGameMonths(state.date, 1); },
+  'a closed faction with a leader who does not exist': (faction) => { faction.leaderId = 'person-9-9'; },
+};
+test('forged faction records are rejected', () => {
+  const clean = ready();
+  withFaction(clean);
+  validateFactions(clean);
+  for (const [name, forge] of Object.entries(LIVE_FORGERIES)) {
+    const state = plain(clean);
+    forge(state.factions[0], state);
+    assert.throws(() => validateFactions(state), FORGED, name);
+  }
+  const ended = ready();
+  withFaction(ended, closedFields(ended));
+  validateFactions(ended);
+  for (const [name, forge] of Object.entries(CLOSED_FORGERIES)) {
+    const state = plain(ended);
+    forge(state.factions[0], state);
+    assert.throws(() => validateFactions(state), FORGED, name);
+  }
+});
+
+test('forged lists are rejected, and loading goes through the check', () => {
+  const twins = ready();
+  withFaction(twins);
+  withFaction(twins, { memberIds: [KELAN, TALIA], leaderId: KELAN });
+  assert.throws(() => validateFactions(twins), FORGED, 'two live factions');
+
+  const repeated = ready();
+  withFaction(repeated, closedFields(repeated));
+  repeated.factions.push(plain(repeated.factions[0]));
+  assert.throws(() => validateFactions(repeated), FORGED, 'a repeated id');
+
+  const loose = ready();
+  loose.stories.push({ id: 'story-loose', type: 'faction_ultimatum', factionId: 'faction-99' });
+  assert.throws(() => validateFactions(loose), FORGED, 'an ultimatum story of no faction');
+
+  const notARecord = ready();
+  notARecord.factions = [null];
+  assert.throws(() => validateFactions(notARecord), FORGED, 'no record at all');
+
+  const saved = ready();
+  withFaction(saved, { knownMemberIds: [TALIA] });
+  assert.throws(() => validateCourt(saved), FORGED);
+  assert.throws(() => normalizeCharacterSystem(plain(saved)), FORGED);
+});
+
+test('the later statuses load as records of their own', () => {
+  const held = ready();
+  standing(withFaction(held), held);
+  validateFactions(held);
+  const stray = plain(held);
+  stray.stories.at(-1).factionId = 'faction-0';
+  assert.throws(() => validateFactions(stray), FORGED, 'a story of no faction');
+  const wrongType = plain(held);
+  wrongType.stories.at(-1).type = 'family_demand';
+  assert.throws(() => validateFactions(wrongType), FORGED, 'a story of another type');
+
+  const truce = ready();
+  withFaction(truce, { status: 'appeased', ultimatumAt: truce.date, quietUntil: addGameMonths(truce.date, 36), concessions: 1 });
+  validateFactions(truce);
+});

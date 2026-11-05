@@ -3,6 +3,7 @@ import { BREAKDOWN_EXPIRY, breakdownChoices, breakdownClosedReason, breakdownSte
 import { chancellorStep, loyaltyDriftStep, presentCouncil } from './council.js';
 import { dreadYearStep, presentDread } from './dread.js';
 import { DEMAND_EXPIRY, demandChoices, demandClosedReason, demandStep, presentDemands, resolveDemand, validateFamilyDemands, voidDemand, voidOpenDemands } from './familyDemands.js';
+import { factionStep, presentFactions, refreshFactions, validateFactions, voidFactions } from './factions.js';
 import { nicknameStep, validateNicknames } from './nicknames.js';
 import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, validateReign } from './reign.js';
 
@@ -29,6 +30,7 @@ export function courtAnnualStep(state, events, hooks) {
   prestigeStep(state);
   nicknameStep(state, events, hooks);
   demandStep(state, events, hooks);
+  factionStep(state, events, hooks);
   stressPressureStep(state, hooks);
   breakdownStep(state, events, hooks);
 }
@@ -57,8 +59,9 @@ function closeStory(state, story, row, resolution, events, hooks) {
   hooks.logEvent(events, 'story_closed', story.title, resolution, [story.actorId]);
 }
 
-/** Closes a court story that fell away and expires one past its due date. Called last by refreshStories. */
+/** Takes the gone out of the live faction, then closes a court story that fell away and expires one past its due date. Called last by refreshStories. */
 export function refreshCourtStories(state, events, hooks) {
+  refreshFactions(state, events, hooks);
   for (const story of state.stories.filter((item) => item.status === 'open' && Object.hasOwn(COURT_STORIES, item.type))) {
     const row = COURT_STORIES[story.type], resolution = row.closedReason(state, story, hooks);
     if (resolution) closeStory(state, story, row, resolution, events, hooks);
@@ -70,11 +73,12 @@ export function refreshCourtStories(state, events, hooks) {
 export function onAccession(state, person, { lawful, legitimacy }) {
   beginReign(state, person, { lawful, legitimacy });
   voidOpenDemands(state);
+  voidFactions(state);
 }
 
 /** The court as the player sees it. Reads only: draws nothing and spends nothing. */
 export function presentCourt(state, hooks) {
-  return { reign: presentReign(state, hooks), legitimacy: { value: Math.round(state.realm.legitimacy), sources: legitimacySources(state) }, prestige: state.realm.prestige, council: presentCouncil(state, hooks), dread: presentDread(state, hooks), demands: presentDemands(state) };
+  return { reign: presentReign(state, hooks), legitimacy: { value: Math.round(state.realm.legitimacy), sources: legitimacySources(state) }, prestige: state.realm.prestige, council: presentCouncil(state, hooks), dread: presentDread(state, hooks), demands: presentDemands(state), factions: presentFactions(state, hooks) };
 }
 
 /** Refuses forged court records. Called beside validatePrisoners when a save loads. */
@@ -82,4 +86,5 @@ export function validateCourt(state) {
   validateReign(state);
   validateNicknames(state);
   validateFamilyDemands(state);
+  validateFactions(state);
 }

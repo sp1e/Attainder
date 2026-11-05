@@ -1,5 +1,6 @@
 import { addGameMonths, compareGameDates } from '../gameDates.js';
 import { cowNobles } from './dread.js';
+import { presentFactions } from './factions.js';
 import { addPrestige, recordDeed } from './reign.js';
 
 // Stress breakdowns: sustained stress turns into a public court story with a real cost. The first crossing of stress 80 opens the existing `stress_crisis` (annualStep); a second crossing within 60 months, or stress 100, opens `stress_breakdown` here.
@@ -71,9 +72,9 @@ function demandPressure(state) {
   return (state.familyDemands ?? []).filter((demand) => (demand.status === 'refused' && refusedThisYear(state, demand.closedAt)) || (demand.status === 'lapsed' && closedThisYear(state, demand.closedAt))).length * PRESSURE.demand;
 }
 
-// Task 7 counts presentFactions here, so an undiscovered faction adds no stress.
-function factionPressure(state) {
-  return (state.factions ?? []).length * PRESSURE.faction;
+// presentFactions shows only what the player knows, so an undiscovered faction adds no stress.
+function factionPressure(state, hooks) {
+  return presentFactions(state, hooks).length * PRESSURE.faction;
 }
 
 function goalPressure(state) {
@@ -86,7 +87,7 @@ const treasuryPressure = (state) => (state.realm.treasury < PRESSURE.treasuryBel
 export function stressPressureStep(state, hooks) {
   const actor = hooks.activeRepresentative();
   if (!actor) return;
-  moveStress(actor, Math.min(PRESSURE.yearlyCap, demandPressure(state) + factionPressure(state) + goalPressure(state) + treasuryPressure(state)));
+  moveStress(actor, Math.min(PRESSURE.yearlyCap, demandPressure(state) + factionPressure(state, hooks) + goalPressure(state) + treasuryPressure(state)));
 }
 
 /** Yearly: the orders a breakdown took from this year. */

@@ -8,8 +8,8 @@ import { RELATIONSHIP_KINDS, SECRET_TYPES, activeHooks, addSecretHolders, create
 
 // Captured at f0d6ea3, before annualStep called syncPlotSecrets: the plotting campaign below after 24 months. The sequence is 46, not 45, because new campaigns now spend one number on the chancellor's seeded affair; the random streams are unchanged.
 const PRE_CHANGE_PLOT_RUN = { rngState: 1348504830, sequence: 46, plotMemories: 4 };
-// A found plot stream: on it no house makes a demand in the 24 months, so the run above still holds. To replace it, loop plotRngState through twoYears until the test that reads PRE_CHANGE_PLOT_RUN passes.
-const QUIET_PLOT_STREAM = 129887017;
+// A found plot stream: on it no house makes a demand and no faction forms in the 24 months, so the run above still holds. To replace it, loop plotRngState through twoYears until the test that reads PRE_CHANGE_PLOT_RUN passes.
+const QUIET_PLOT_STREAM = 132688508;
 const plain = (state) => JSON.parse(JSON.stringify(state));
 const streams = (state) => [state.rngState, state.actionRngState];
 // New campaigns start with the chancellor's seeded affair (Phase 2). These tests exercise the secrets API from an empty ledger, so they drop it; the sequence number it spent stays spent.
