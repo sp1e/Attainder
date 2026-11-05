@@ -4,7 +4,7 @@ Updated on 5 November 2026.
 
 ## Branch state
 
-Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The final whole-branch review and a browser run have not happened, and the Phase 3 play script does not exist yet.
+Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The final whole-branch review and a browser run have not happened, and nobody has run the Phase 3 play script yet.
 
 - Phase 3, engine: `reign.js`, `court.js`, `council.js`, `dread.js`, `nicknames.js`, `breakdowns.js`, `familyDemands.js`, `factions.js`.
 - Phase 3, model boundary: `buildCharacterPromptContext` adds `court: view.court` and one rule paragraph.
@@ -82,7 +82,7 @@ The play scripts reached four of the five tiers. `Det slog tillbaka` did not com
 
 ## Next step
 
-Finish Phase 3: write `docs/play-scripts/phase-3.md` from Task 11 of the plan, run a whole-branch review of `e735a5b..9a780f7`, and run the script in a browser. Then write the Phase 4 plan (moments 5, 6, 8, 9 and 10).
+Finish Phase 3: run a whole-branch review of `e735a5b..9a780f7`, and run `docs/play-scripts/phase-3.md` in a browser. Then write the Phase 4 plan (moments 5, 6, 8, 9 and 10).
 
 ## Known Phase 2 limitations
 
