@@ -43,8 +43,10 @@ const hasAny = (person, traits) => traits.some((trait) => person.traits.includes
 const aggression = (state) => AGGRESSION[normalizeDifficulty(state.difficulty)];
 const isLive = (faction) => faction.status !== 'closed';
 const liveFactions = (state) => (state.factions ?? []).filter(isLive);
+// In exile or in prison, a person neither plots nor claims. The loader refuses a person with no family, so the lookup always lands.
+const isAtLarge = (state, person) => !state.families[person.familyId].exiled && !isImprisoned(state, person.id);
 // hooks.adult is false for the dead and for a person who is missing.
-const isFree = (state, person, hooks) => hooks.adult(person) && !isImprisoned(state, person.id);
+const isFree = (state, person, hooks) => hooks.adult(person) && isAtLarge(state, person);
 const closeFaction = (state, faction, outcome) => { Object.assign(faction, { status: 'closed', outcome, closedAt: state.date }); };
 
 // A known member who leaves is no known member.
@@ -105,13 +107,10 @@ export function factionStrength(state, faction, hooks) {
   return clamp(Math.round(numbers + standing - hooks.dreadOf() * STRENGTH.dread + MATURITY_PER_YEAR * fullYears(faction.formedAt, state.date)), STRENGTH.min, STRENGTH.max);
 }
 
-// Free adults outside the ruler's family, in families still in the realm, at the threshold, in id order.
+// Free adults outside the ruler's family, at the threshold, in id order.
 function restless(state, hooks) {
   const rulingFamilyId = hooks.ruler().familyId;
-  const eligible = (person) => {
-    const family = state.families[person.familyId];
-    return family && !family.exiled && family.id !== rulingFamilyId && isFree(state, person, hooks);
-  };
+  const eligible = (person) => person.familyId !== rulingFamilyId && isFree(state, person, hooks);
   return Object.values(state.people).filter((person) => eligible(person) && discontentOf(state, person, hooks) >= DISCONTENT_THRESHOLD).sort(byId);
 }
 
@@ -174,10 +173,10 @@ export function factionStep(state, events, hooks) {
   if (isLive(faction)) discover(state, faction, events, hooks);
 }
 
-/** Takes the dead and the imprisoned out of the live faction on the date it happens, and refills what they held. Draws nothing and writes no event. */
+/** Takes the dead, the imprisoned and the banished out of the live faction on the date it happens, and refills what they held. Draws nothing and writes no event. */
 export function refreshFactions(state, events, hooks) {
   for (const faction of liveFactions(state)) {
-    keepMembers(faction, (id) => !state.people[id].diedAt && !isImprisoned(state, id));
+    keepMembers(faction, (id) => !state.people[id].diedAt && isAtLarge(state, state.people[id]));
     settleFaction(state, faction, hooks);
   }
 }
