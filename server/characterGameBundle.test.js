@@ -101,6 +101,7 @@ async function roundtripWorker() {
     regent.health = 100;
     state.offices.ruler.holderId = principal.id;
     state.offices.ruler.regentId = regent.id;
+    state.reign.rulerId = principal.id;
     state.regencies["office:ruler"] = { id: "office:ruler", principalId: principal.id, regentId: regent.id,
       phase: "minority", startedAt: state.date, grants: [], requestAfter: {}, handoverDueAt: null };
     // This deliberately hand-authored record exercises the legacy save path.

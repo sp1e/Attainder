@@ -24,8 +24,8 @@ export const TIER_TITLES = Object.freeze({
 export const REFUSED_TITLE = 'Ordern vägrades';
 // Tiers the world learns about. Their anchor memory is public, and such an action by another family reaches the player's list.
 const PUBLIC_TIERS = new Set(['exposed_success', 'exposed_failure', 'backfire']);
-// Spec 5.8: refusal = clamp(40 − loyalty × 0.4 − opinion(actor → representative) × 0.3 + 10 if ambitious − 15 if dutiful, 0, 90), rounded to an integer.
-const REFUSAL = Object.freeze({ base: 40, loyalty: 0.4, opinion: 0.3, ambitious: 10, dutiful: 15, max: 90 });
+// Spec 5.8: refusal = clamp(40 − loyalty × 0.4 − opinion(actor → representative) × 0.3 − fear × 0.2 + 10 if ambitious − 15 if dutiful, 0, 90), rounded to an integer.
+const REFUSAL = Object.freeze({ base: 40, loyalty: 0.4, opinion: 0.3, fear: 0.2, ambitious: 10, dutiful: 15, max: 90 });
 // A failed roll in the top tenth of the failure range backfires.
 const BACKFIRE_SHARE = 0.9;
 const TITLE_MAX = 120, TEXT_MAX = 1500;
@@ -82,7 +82,7 @@ export function tierFor(successRoll, secrecyRoll, success, secrecy) {
 
 /** The chance, an integer from 0 to 90, that an ordered actor refuses the representative (spec 5.8). */
 export function refusalChance(actor, opinionOfRepresentative) {
-  const raw = REFUSAL.base - finite(actor?.loyalty) * REFUSAL.loyalty - finite(opinionOfRepresentative) * REFUSAL.opinion
+  const raw = REFUSAL.base - finite(actor?.loyalty) * REFUSAL.loyalty - finite(opinionOfRepresentative) * REFUSAL.opinion - finite(actor?.fear) * REFUSAL.fear
     + (hasTrait(actor, 'ambitious') ? REFUSAL.ambitious : 0) - (hasTrait(actor, 'dutiful') ? REFUSAL.dutiful : 0);
   return Math.round(clamp(raw, 0, REFUSAL.max));
 }

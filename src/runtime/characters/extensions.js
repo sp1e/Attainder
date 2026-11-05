@@ -1,12 +1,13 @@
 import { ADULT_AGE } from './content.js';
 import { getCharacterAge } from './characterCapacity.js';
 import { validateCourtStaff } from './courtStaff.js';
+import { defaultReign } from './reign.js';
 import { syncPlotSecrets, validateSecrets } from './secrets.js';
 
-export const EXTENSIONS_VERSION = 2;
+export const EXTENSIONS_VERSION = 3;
 export const DIFFICULTIES = Object.freeze({ easy: 'Lätt', normal: 'Normal', hard: 'Svår' });
 export const DEFAULT_DIFFICULTY = 'normal';
-const CONTAINER_LISTS = ['secrets', 'hooks', 'relationships', 'schemes', 'actionLog', 'occasions', 'prisoners', 'rumors', 'conversations'];
+const CONTAINER_LISTS = ['secrets', 'hooks', 'relationships', 'schemes', 'actionLog', 'occasions', 'prisoners', 'rumors', 'conversations', 'nicknames', 'familyDemands', 'factions'];
 // Version 2 adds the spymaster office. Vacant until the ruler appoints; kind 'council' keeps it out of the governor, general, chancellor and priest effects.
 const spymasterOffice = () => ({ id: 'spymaster', name: 'Spionmästare', kind: 'council', holderId: null, regentId: null, history: [], publicBudget: 0 });
 const validStream = (value) => Number.isInteger(value) && value >= 1 && value <= 0xffffffff;
@@ -34,7 +35,7 @@ export function deriveExtendedSkills(person, date = null) {
   return child ? { intrigue: Math.max(1, Math.round(intrigue / 2)), prowess: Math.max(1, Math.round(prowess / 2)) } : { intrigue, prowess };
 }
 
-/** Idempotent migration from a save without extensions. Fills only missing fields, never overwrites, and draws from no random stream. Version 2 adds the plot stream (seeded like the action stream, with the suffix `plots`), four empty ledgers and a vacant spymaster office. Private plot memories become plot secrets (syncPlotSecrets); that spends state.sequence for the new ids but no randomness. The action stream is seeded per campaign: polity, start date and the main stream's value at the moment it is first filled (the seed at creation, the save's current value on migration). */
+/** Idempotent migration from a save without extensions. Fills only missing fields, never overwrites, and draws from no random stream. Version 2 adds the plot stream (seeded like the action stream, with the suffix `plots`), four empty ledgers and a vacant spymaster office. Version 3 adds three empty court ledgers and the reign record, counted from the save's own date. Private plot memories become plot secrets (syncPlotSecrets); that spends state.sequence for the new ids but no randomness. The action stream is seeded per campaign: polity, start date and the main stream's value at the moment it is first filled (the seed at creation, the save's current value on migration). */
 export function ensureCharacterExtensions(state) {
   if (!Object.hasOwn(state, 'extensionsVersion')) state.extensionsVersion = EXTENSIONS_VERSION;
   if (!Object.hasOwn(state, 'difficulty')) state.difficulty = DEFAULT_DIFFICULTY;
@@ -43,7 +44,8 @@ export function ensureCharacterExtensions(state) {
   for (const key of CONTAINER_LISTS) if (!Object.hasOwn(state, key)) state[key] = [];
   if (!Object.hasOwn(state, 'courtStaff')) state.courtStaff = {};
   if (plainObject(state.offices) && !Object.hasOwn(state.offices, 'spymaster')) state.offices.spymaster = spymasterOffice();
-  if (state.extensionsVersion === 1) state.extensionsVersion = EXTENSIONS_VERSION; // any other version is left for validation to refuse
+  if (!Object.hasOwn(state, 'reign')) state.reign = defaultReign(state);
+  if (state.extensionsVersion === 1 || state.extensionsVersion === 2) state.extensionsVersion = EXTENSIONS_VERSION; // any other version is left for validation to refuse
   for (const person of Object.values(state.people || {})) {
     if (!plainObject(person) || !plainObject(person.skills)) continue;
     const missing = ['intrigue', 'prowess'].filter((key) => !Object.hasOwn(person.skills, key));

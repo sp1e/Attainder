@@ -3,6 +3,7 @@ import { ACTION_CATALOG, MAX_EXTRA_SILVER } from './actionCatalog.js';
 import { estimateAction } from './actionOdds.js';
 import { resolutionVisible, resolveScheme } from './actionResolution.js';
 import { STAFF_ROLES } from './courtStaff.js';
+import { effectiveIntrigue } from './council.js';
 import { actionRandom, spymasterOf } from './extensions.js';
 import { uncoverPlot } from './npcPlots.js';
 import { isImprisoned } from './prisoners.js';
@@ -12,7 +13,7 @@ import { hearScheme } from './rumors.js';
 // Randomness comes only from actionRandom (state.actionRngState): one draw per discovery check, then the two rolls of the resolution. The main stream state.rngState is never touched.
 // actionResolution.js imports startScheme from here and this file imports from it, so nothing at the top level of either file may use the other's exports; they are only used inside functions.
 
-// Each check the target may see through the plan: chance = clamp(10 + target intrigue × 2 − actor intrigue, 3, 40) percent. When the target belongs to the controlled family and the family has a spymaster, the chance gains floor(spymaster intrigue / 2) before the clamp, which reaches 55 once that bonus is above 0.
+// Each check the target may see through the plan: chance = clamp(10 + target intrigue × 2 − actor intrigue, 3, 40) percent. When the target belongs to the controlled family and the family has a spymaster, the chance gains floor(the spymaster's effective intrigue / 2) before the clamp, which reaches 55 once that bonus is above 0.
 const DISCOVERY = Object.freeze({ base: 10, perIntrigue: 2, min: 3, max: 40, maxWatched: 55 });
 const DISCOVERY_OPINION = -20;
 const SCHEME_STATUSES = Object.freeze(['active', 'discovered', 'aborted', 'failed', 'resolved']);
@@ -123,11 +124,11 @@ function discover(state, scheme, actor, target, events, hooks) {
   uncoverPlot(state, scheme, memory, hooks);
 }
 
-// The spymaster's help in seeing through a plan against the controlled family: the added percent, or null when the plan is against anyone else, nobody holds the office (a prisoner cannot serve) the spymaster runs the plan himself or his intrigue is too low to add a point. Draws nothing.
+// The spymaster's help in seeing through a plan against the controlled family: the added percent, or null when the plan is against anyone else, nobody holds the office (a prisoner cannot serve) the spymaster runs the plan himself or his effective intrigue is too low to add a point. Draws nothing.
 function spymasterWatch(state, scheme, target, hooks) {
   const spymaster = spymasterOf(state);
   if (!spymaster || spymaster.id === scheme.actorId || isImprisoned(state, spymaster.id) || target.familyId !== hooks.controlledFamily()?.id) return null;
-  const bonus = Math.floor(intrigueOf(spymaster) / 2);
+  const bonus = Math.floor(effectiveIntrigue(state, spymaster, hooks) / 2);
   return bonus > 0 ? bonus : null;
 }
 

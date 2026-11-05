@@ -12,12 +12,14 @@ import { activeHooks, addSecretHolders, createSecret, exposeSecret, grantHook, s
 // actionResolution.js imports schemes.js, which imports this file, so nothing at the top level may use the exports of actionResolution.js; they are only used inside functions.
 
 // How much more or less often the court plots by difficulty.
-const AGGRESSION = Object.freeze({ easy: 0.5, normal: 1, hard: 1.5 });
-// Plot against the player: score = −opinion(candidate → target) + 15 × ambitious + 15 × vengeful + intrigue. The best candidate plots at a score of 20 or more, with chance clamp(score / 2, 0, 40) percent × aggression, and poisons at 60 or more.
+export const AGGRESSION = Object.freeze({ easy: 0.5, normal: 1, hard: 1.5 });
+// Plot against the player: score = −opinion(candidate → target) + 15 × ambitious + 15 × vengeful + intrigue − fear × 0.4 (cautious or craven) or 0.15 (anyone else), the fear weights of evaluateCharacterDecision. The best candidate plots at a score of 20 or more, with chance clamp(score / 2, 0, 40) percent × aggression, and poisons at 60 or more.
 const MIN_SCORE = 20;
 const POISON_SCORE = 60;
 const CHANCE_CAP = 40;
 const TRAIT_BONUS = 15;
+const TIMID_FEAR = 0.4;
+const BOLD_FEAR = 0.15;
 // Feud between two NPCs: the pair with the lowest mutual opinion (the average of the two opinions) below −10 starts an undermine with chance 0.2. At most two feuds are active.
 const FEUD_OPINION = -10;
 const FEUD_CHANCE = 0.2;
@@ -56,8 +58,9 @@ function crownTarget(state, hooks) {
   return target && !target.diedAt && target.familyId === hooks.controlledFamily()?.id ? target : null;
 }
 
-function plotScore(person, opinion) {
-  return -opinion + (hasTrait(person, 'ambitious') ? TRAIT_BONUS : 0) + (hasTrait(person, 'vengeful') ? TRAIT_BONUS : 0) + finite(person.skills?.intrigue);
+export function plotScore(person, opinion) {
+  const fearWeight = hasTrait(person, 'cautious') || hasTrait(person, 'craven') ? TIMID_FEAR : BOLD_FEAR;
+  return -opinion + (hasTrait(person, 'ambitious') ? TRAIT_BONUS : 0) + (hasTrait(person, 'vengeful') ? TRAIT_BONUS : 0) + finite(person.skills?.intrigue) - finite(person.fear) * fearWeight;
 }
 
 // Starts the scheme through the engine's own gate, with the NPC's context (no order, paid by the plotter's family). The plotter's plot secret (subject and only holder the plotter) is what a discovery later turns into evidence.

@@ -5,8 +5,9 @@ import vm from "node:vm";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
-import { createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getCharacterPresentation } from "../../runtime/characters/index.js";
+import { applyRealmDissolution, createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation } from "../../runtime/characters/index.js";
 import { REASONS as ODDS_REASONS } from "../../runtime/characters/actionOdds.js";
+import * as realDates from "../../runtime/gameDates.js";
 import { CONVERSATION_REQUESTS } from "../../runtime/characters/conversation.js";
 import * as realCounter from "../AI/modelCallCounter.js";
 import { createSecret, grantHook } from "../../runtime/characters/secrets.js";
@@ -23,6 +24,7 @@ const compileFile = (name) => transformSync(readFileSync(new URL(`./${name}`, im
   loader: "jsx", format: "cjs", jsx: "transform",
 }).code;
 const actionBoxCompiled = compileFile("ActionBox.jsx");
+const courtCompiled = compileFile("CourtSections.jsx");
 const intrigueCompiled = compileFile("IntrigueView.jsx");
 const conversationCompiled = compileFile("ConversationView.jsx");
 
@@ -71,7 +73,7 @@ const conversationModel = (overrides = {}) => ({
   ...overrides,
 });
 
-function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council", modelCalls = 0, counter = null, react = null, runtime = {}, model = {}, globals = {} } = {}) {
+function loadPanel(view, { busy = false, theme = "light", panelState = true, tab = "council", modelCalls = 0, counter = null, react = null, runtime = {}, model = {}, globals = {}, dates = null } = {}) {
   let stateIndex = 0;
   const calls = [];
   const modules = {
@@ -83,7 +85,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
         return [value, () => {}];
       } },
     "../../runtime/useRuntimeState.js": { useRuntimeState: () => null },
-    "../../runtime/gameDates.js": { parseGameDate: () => null, compareGameDates: () => 0 },
+    "../../runtime/gameDates.js": dates || { parseGameDate: () => null, compareGameDates: () => 0 },
     "../../runtime/characters/index.js": { getCharacterPresentation: (state) => state },
     "../../runtime/characterRuntime.js": {
       advanceCharacterYearWithModel: async () => { calls.push("advance"); return {}; },
@@ -106,6 +108,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
     "./Portrait.jsx": { default: ({ person }) => React.createElement("span", { "data-portrait-person": person.id }), __esModule: true },
   };
   modules["./ActionBox.jsx"] = runModule(actionBoxCompiled, modules);
+  modules["./CourtSections.jsx"] = runModule(courtCompiled, modules);
   modules["./IntrigueView.jsx"] = runModule(intrigueCompiled, modules);
   modules["./ConversationView.jsx"] = runModule(conversationCompiled, modules);
   const exports = runModule(compiled, modules, { window: { matchMedia: () => ({ matches: theme === "dark" }) }, localStorage: { getItem: () => "system" }, ...globals });
@@ -126,8 +129,8 @@ const baseView = () => ({
   },
 });
 // CouncilView takes the view as a prop; panel state would otherwise feed the first child hooks.
-const council = (view) => {
-  const { CouncilView } = loadPanel(view, { panelState: false });
+const council = (view, options = {}) => {
+  const { CouncilView } = loadPanel(view, { panelState: false, ...options });
   return renderToStaticMarkup(React.createElement(CouncilView, { view, pending: [], setTab: () => {}, selectPerson: () => {} }));
 };
 
@@ -184,6 +187,16 @@ function elements(tree) {
   if (!tree || typeof tree !== "object") return [];
   return [tree, ...React.Children.toArray(tree.props?.children).flatMap(elements)];
 }
+
+test("every tab renders the real view of a realm campaign ended by dissolution", () => {
+  const state = createCharacterSystem({ mode: "realm", polityId: "Hadara", seed: 321 });
+  const view = getCharacterPresentation(applyRealmDissolution(state, { id: "annexed", date: state.date, reason: "Riket annekterades.", hostCandidates: [] }).state);
+  for (const tab of ["council", "people", "families", "offices", "decisions", "intrigue", "chronicle"]) {
+    const html = renderToStaticMarkup(loadPanel(view, { tab }).default({ open: true, onClose: () => {} }));
+    assert.match(html, /Kampanjen är avslutad/, tab);
+  }
+  assert.match(renderToStaticMarkup(loadPanel(view).default({ open: true, onClose: () => {} })), /Riket har upplösts\./);
+});
 
 test("a blocked mandate leaves the time button enabled and wired to advance", async () => {
   const view = baseView();
@@ -366,11 +379,17 @@ test("Decisions includes chain history in both themes and excludes waiting stori
   assert.doesNotMatch(html, /Händelsekedjornas historik/);
 });
 
-// A real family campaign from the engine, so the catalog, staff and odds are the ones the player meets.
-function engineCampaign(diplomacy) {
+// A real family campaign from the engine, so the catalog, staff and odds are the ones the player meets. `spymaster` seats one who reads loyalty exactly, so the diplomacy alone sets the precision of the odds.
+function engineCampaign(diplomacy, { spymaster = false } = {}) {
   const state = createCharacterSystem({ mode: "family", seed: 41 });
   const representativeId = getCharacterPresentation(state).representative.id;
   if (diplomacy !== undefined) state.people[representativeId].skills.diplomacy = diplomacy;
+  if (spymaster) {
+    const reader = state.people["person-1-3"];
+    state.offices.spymaster.holderId = reader.id;
+    reader.loyalty = 80;
+    reader.skills.intrigue = 12;
+  }
   return { state, view: getCharacterPresentation(state) };
 }
 const swayAnswer = (view) => ({ ok: true, mode: "contested", catalogId: "sway", explanation: "Du vill vinna Isets gunst.",
@@ -1164,8 +1183,8 @@ test("the confirmation card names the means and the estimate and the command rec
 // --- Court conversations ---
 
 // The conversation view under the hook driver with the engine's real estimate behind it. `turns` lives in the test, as it does in the panel.
-function mountTalk({ diplomacy, runtime = {}, model = {}, person = null } = {}) {
-  const { state, view } = engineCampaign(diplomacy);
+function mountTalk({ diplomacy, runtime = {}, model = {}, person = null, spymaster = false } = {}) {
+  const { state, view } = engineCampaign(diplomacy, { spymaster });
   const speaker = person ?? view.conversationTargets.find((target) => target.id === "person-0-2");
   const driver = createHookDriver();
   const panel = loadPanel(view, { react: driver.react, model, runtime: conversationRuntime({
@@ -1197,7 +1216,7 @@ const requestCard = (tree) => findAll(tree, (node) => node.type === "section" &&
 
 test("the conversation view asks Vad säger du? and shows bands for a low-diplomacy representative, numbers for a high one", async () => {
   for (const [diplomacy, exact] of [[3, false], [14, true]]) {
-    const mounted = mountTalk({ diplomacy, model: askSupport() });
+    const mounted = mountTalk({ diplomacy, model: askSupport(), spymaster: true });
     assert.match(textOf(mounted.tree), /Vad säger du\?/);
     assert.ok(buttonNamed(mounted.tree, "Säg det"));
     await mounted.say("Kan jag räkna med ditt stöd?");
@@ -1359,7 +1378,7 @@ test("model text is rendered as text and the transcript is never stored", () => 
     turns: [{ from: "player", text: "Hej <b>du</b>" }, { from: "speaker", text: "<img src=x onerror=alert(1)>" }, { from: "note", text: "<script>x</script>" }] }));
   assert.match(html, /&lt;img src=x onerror=alert\(1\)&gt;/);
   assert.doesNotMatch(html, /<img|<script|<b>/);
-  for (const file of ["ConversationView.jsx", "IntrigueView.jsx", "CharactersPanel.jsx", "ActionBox.jsx"]) {
+  for (const file of ["ConversationView.jsx", "IntrigueView.jsx", "CharactersPanel.jsx", "ActionBox.jsx", "CourtSections.jsx"]) {
     assert.doesNotMatch(readFileSync(new URL(`./${file}`, import.meta.url), "utf8"), /dangerouslySetInnerHTML/, file);
   }
   assert.doesNotMatch(readFileSync(new URL("./ConversationView.jsx", import.meta.url), "utf8"), /localStorage|sessionStorage|indexedDB/, "the transcript is session memory only");
@@ -1615,4 +1634,297 @@ test("closing a conversation with someone who can no longer be asked moves focus
   assert.equal(heading?.type, "h3");
   assert.equal(heading.props.tabIndex, -1);
   assert.equal(textOf(heading), "Sera Arel");
+});
+
+// --- Phase 3: the reign, the council, demands and factions ---
+
+const courtView = () => ({
+  ...baseView(),
+  court: {
+    reign: { rulerId: "ruler", rulerName: "Astrid", startedAt: "0200-01-01", goals: [
+      { id: "goal-1", type: "fill_treasury", label: "Fyll statskassan", description: "Statskassan ska rymma minst 300 silver.", dueAt: "0205-01-01", status: "active", statusLabel: "Pågår" },
+      { id: "goal-2", type: "strong_army", label: "Stärk hären", description: "Arméns styrka ska nå minst 70.", dueAt: "0204-06-01", status: "met", statusLabel: "Uppnått" },
+    ] },
+    legitimacy: { value: 58, sources: [{ label: "Tronföljd", value: 62 }, { label: "Styre och händelser", value: -4 }] },
+    prestige: 37,
+    council: {
+      seats: [
+        { officeId: "chancellor", name: "Kansler", holderId: "head", holderName: "Cecilia", serviceLabel: "stark" },
+        { officeId: "general", name: "Överbefälhavare", holderId: null, holderName: "Vakant", serviceLabel: null },
+      ],
+      ambitions: [{ personId: "guardian", name: "Dag", ambitionLabel: "En stad" }],
+    },
+    dread: { value: 22, label: "Adeln är på sin vakt" },
+    demands: [
+      { id: "demand-1", familyName: "Ptah", kindLabel: "Stad", targetName: "Kition", statusLabel: "Obesvarat", dueAt: "0201-01-01" },
+      { id: "demand-2", familyName: "Eshmun", kindLabel: "Ämbete", targetName: "Kansler", statusLabel: "Avvisat", dueAt: "0199-01-01" },
+    ],
+    factions: [
+      { id: "faction-1", stageLabel: "I det fördolda", knownMembers: [{ id: "head", name: "Cecilia" }], claimantName: null, strengthLabel: "låg", memberCount: null, dueAt: null },
+      { id: "faction-2", stageLabel: "Ultimatum", knownMembers: [{ id: "head", name: "Cecilia" }, { id: "guardian", name: "Dag" }], claimantName: "Bertil", strengthLabel: "50 %", memberCount: 4, dueAt: "0201-03-01" },
+    ],
+  },
+});
+const emptyCourt = () => {
+  const view = courtView();
+  view.court = { ...view.court, reign: { ...view.court.reign, goals: [] }, legitimacy: { value: 0, sources: [] }, council: { seats: view.court.council.seats, ambitions: [] }, demands: [], factions: [] };
+  return view;
+};
+const onTab = (view, tab, options = {}) => renderToStaticMarkup(loadPanel(view, { tab, ...options }).default({ open: true, onClose: () => {} }));
+const sectionOf = (html, name) => { const from = html.slice(html.indexOf(`aria-label="${name}"`)); return from.slice(0, from.indexOf("</section>")); };
+
+test("the leader card shows dread, prestige, the sources of legitimacy and the reign's goals", () => {
+  const html = council(courtView());
+  assert.match(html, /role="meter" aria-label="Fruktan"[^>]*aria-valuenow="22"/);
+  assert.match(html, /Adeln är på sin vakt/);
+  assert.match(html, /Ryktbarhet<\/span><strong>37</);
+  assert.match(html, /<summary>Vad bär legitimiteten\?<\/summary>/);
+  assert.match(html, /Tronföljd: \+62/);
+  assert.match(html, /Styre och händelser: −4/);
+  assert.match(html, /<h4>Regeringsmål<\/h4>/);
+  for (const text of ["Fyll statskassan", "Statskassan ska rymma minst 300 silver.", "0205-01-01", "Pågår", "Stärk hären", "0204-06-01", "Uppnått"]) assert.ok(html.includes(text), text);
+  assert.doesNotMatch(html, /Inga mål är utlysta\./);
+  assert.ok(html.indexOf("Fruktan") > html.indexOf("char-leader-card"), "the reign sits in the leader card");
+  assert.ok(html.indexOf("Fruktan") < html.indexOf("Rikets tillstånd"), "the reign sits in the leader card");
+});
+
+// The sections fed by the real presenters, so a renamed field leaves these tests red. The goal, demand and faction are the
+// saved records the engine writes; `known` sets how many of the faction's members the player has found.
+function courtCampaign({ spymaster = true, known = 1 } = {}) {
+  const { state } = engineCampaign(undefined, { spymaster });
+  const [, otherFamily] = Object.values(state.families);
+  const memberIds = Object.values(state.people).filter((person) => person.familyId === otherFamily.id && !person.diedAt).map((person) => person.id).sort().slice(0, 3);
+  const dueAt = realDates.addGameMonths(state.date, 60);
+  state.reign.goals.push({ id: "goal-1", type: "fill_treasury", baseline: 0, setAt: state.date, dueAt, status: "active", closedAt: null });
+  state.familyDemands.push({ id: "demand-1", familyId: otherFamily.id, kind: "office", targetId: "chancellor", status: "open", openedAt: state.date, dueAt, storyId: null, closedAt: null });
+  state.factions.push({ id: "faction-1", targetRulerId: state.reign.rulerId, leaderId: memberIds[0], claimantId: memberIds[1], memberIds, knownMemberIds: memberIds.slice(0, known), formedAt: state.date, status: "active", outcome: null, quietUntil: null, ultimatumAt: null, dueAt: null, storyId: null, concessions: 0, closedAt: null });
+  return { state, view: getCharacterPresentation(state), otherFamily, memberIds };
+}
+
+test("the reign and Rådet render from the real court", () => {
+  const { view } = courtCampaign();
+  const leader = council(view);
+  assert.match(leader, /role="meter" aria-label="Fruktan"/);
+  assert.match(leader, /Ingen fruktar kronan/);
+  assert.match(leader, /Ryktbarhet<\/span><strong>\d/);
+  assert.match(leader, /Vad bär legitimiteten\?/);
+  assert.match(leader, /Tronföljd: \+\d/);
+  assert.match(leader, /Fyll statskassan/);
+  assert.match(leader, /Statskassan ska rymma minst 300 silver/);
+  assert.match(leader, /Pågår/);
+  const seats = sectionOf(onTab(view, "offices"), "Rådet");
+  assert.deepEqual(view.court.council.seats.map((seat) => seat.officeId), ["chancellor", "general", "spymaster"]);
+  for (const name of ["Kansler", "Spionmästare"]) assert.ok(seats.includes(name), name);
+  assert.match(seats, /Tjänst: [^<]+</);
+  assert.ok(seats.includes(view.people.find((person) => person.id === "person-1-3").name), "the spymaster's name");
+});
+
+test("a goal's due date reads as a date through the real gameDates module", () => {
+  const { view } = courtCampaign();
+  assert.equal(view.court.reign.goals[0].dueAt, "-0295-01-01");
+  assert.match(council(view, { dates: realDates }), /1\/1 295 f\.Kr\. · Pågår/);
+});
+
+test("Krav and Faktioner render from the real presenters", () => {
+  const { view, otherFamily, memberIds } = courtCampaign();
+  const demands = sectionOf(onTab(view, "families"), "Krav från familjerna");
+  assert.ok(demands.includes(otherFamily.name), otherFamily.name);
+  assert.match(demands, /Ämbete: Kansler/);
+  assert.match(demands, /Obesvarat/);
+  const name = (id) => view.people.find((person) => person.id === id).name;
+  const faction = sectionOf(onTab(view, "intrigue"), "Faktioner");
+  assert.match(faction, /I det fördolda/);
+  assert.ok(faction.includes(`Känd krets: ${name(memberIds[0])}<`), "one known member");
+  assert.match(faction, /Pretendent: okänd/);
+  assert.match(faction, /Styrka: \d+ %</);
+  assert.match(faction, /Medlemmar: 3/);
+});
+
+test("in the real presenters a second known member names the claimant, and no spymaster hides the count", () => {
+  const named = courtCampaign({ known: 2 });
+  const name = named.view.people.find((person) => person.id === named.memberIds[1]).name;
+  assert.ok(sectionOf(onTab(named.view, "intrigue"), "Faktioner").includes(`Pretendent: ${name}`));
+  const blind = sectionOf(onTab(courtCampaign({ spymaster: false }).view, "intrigue"), "Faktioner");
+  assert.match(blind, /Styrka: [a-zåäö ]+</, "a band, no number");
+  assert.doesNotMatch(blind, /Medlemmar/);
+});
+
+test("the dread meter carries its label as the accessible value", () => {
+  assert.match(council(courtView()), /aria-label="Fruktan"[^>]*aria-valuetext="Adeln är på sin vakt"/);
+  assert.doesNotMatch(council(courtView()), /aria-label="Legitimitet"[^>]*aria-valuetext/);
+});
+
+test("a reign with no goals says so, and no sources leave out the question", () => {
+  const html = council(emptyCourt());
+  assert.match(html, /Inga mål är utlysta\./);
+  assert.doesNotMatch(html, /Vad bär legitimiteten/);
+  assert.match(html, /aria-label="Fruktan"/);
+});
+
+test("a view with no court shows no reign and no council", () => {
+  assert.doesNotMatch(council(baseView()), /Fruktan|Regeringsmål/);
+  assert.doesNotMatch(onTab(baseView(), "offices"), /aria-label="Rådet"/);
+});
+
+test("the nickname follows the name in both sexes, and a person without one keeps the plain name", () => {
+  const titled = (nickname) => {
+    const view = baseView();
+    delete view.authority;
+    view.representative = { ...royalRegent, name: "Arel av Hadara", nickname };
+    return council(view);
+  };
+  assert.match(titled("den Stora"), /<h3>Arel av Hadara den Stora<\/h3>/);
+  assert.match(titled("den Store"), /<h3>Arel av Hadara den Store<\/h3>/);
+  assert.match(titled(null), /<h3>Arel av Hadara<\/h3>/);
+});
+
+test("the engine's nickname reaches the summary in the form of the person's sex", () => {
+  const { state } = engineCampaign();
+  const living = Object.values(state.people).filter((person) => !person.diedAt);
+  const woman = living.find((person) => person.sex === "female"), man = living.find((person) => person.sex === "male");
+  state.nicknames.push({ personId: woman.id, nicknameId: "great", earnedAt: state.date }, { personId: man.id, nicknameId: "great", earnedAt: state.date });
+  const view = getCharacterPresentation(state);
+  const heading = (id) => textOf(findAll(mountPeople({ selectedId: id, view }).tree, (node) => node.type === "h3" && node.props.tabIndex === -1)[0]);
+  assert.equal(heading(woman.id), `${woman.name} den Stora`);
+  assert.equal(heading(man.id), `${man.name} den Store`);
+});
+
+test("service loyalty is a fact row with the reading, never a meter or a number", () => {
+  const { view } = engineCampaign();
+  const person = view.people.find((candidate) => candidate.id === "person-0-2");
+  person.loyaltyReading = { label: "stark", precision: "five" };
+  const { tree } = mountPeople({ selectedId: person.id, view });
+  const facts = findAll(tree, (node) => node.type === "dl")[0];
+  const row = findAll(facts, (node) => node.type === "div" && textOf(node).startsWith("Tjänstelojalitet"))[0];
+  assert.equal(textOf(row), "Tjänstelojalitetstark");
+  assert.equal(findAll(tree, (node) => node.props?.["aria-label"] === "Tjänstelojalitet").length, 0, "no meter is left");
+});
+
+test("the representative reads no loyalty of herself, in the real view as well", () => {
+  const { view } = engineCampaign();
+  assert.equal(view.representative.loyaltyReading, null);
+  assert.doesNotMatch(textOf(mountPeople({ selectedId: view.representative.id, view }).tree), /Tjänstelojalitet/);
+  const other = view.people.find((person) => person.loyaltyReading);
+  assert.match(textOf(mountPeople({ selectedId: other.id, view }).tree), new RegExp(`Tjänstelojalitet${other.loyaltyReading.label}`));
+});
+
+test("Rådet lists each seat with its holder and service, or Vakant, and the spymaster's guesses", () => {
+  const html = sectionOf(onTab(courtView(), "offices"), "Rådet");
+  assert.match(html, /<h3>Rådet<\/h3>/);
+  assert.match(html, /Kansler/);
+  assert.match(html, /Cecilia/);
+  assert.match(html, /Tjänst: stark/);
+  assert.match(html, /Överbefälhavare/);
+  assert.match(html, /Vakant/);
+  assert.equal((html.match(/Tjänst:/g) || []).length, 1, "a vacant seat shows no service");
+  assert.match(html, /<summary>Vad spionmästaren tror att de vill<\/summary>/);
+  assert.match(html, /Dag: En stad/);
+});
+
+test("without ambitions Rådet leaves the spymaster's guesses out", () => {
+  const html = sectionOf(onTab(emptyCourt(), "offices"), "Rådet");
+  assert.match(html, /Kansler/);
+  assert.doesNotMatch(html, /Vad spionmästaren tror/);
+});
+
+test("Krav från familjerna lists family, kind, target, status and date, or says the table is empty", () => {
+  const html = sectionOf(onTab(courtView(), "families"), "Krav från familjerna");
+  assert.match(html, /<h3>Krav från familjerna<\/h3>/);
+  for (const text of ["Ptah", "Stad: Kition", "Obesvarat", "0201-01-01", "Eshmun", "Ämbete: Kansler", "Avvisat", "0199-01-01"]) assert.ok(html.includes(text), text);
+  assert.doesNotMatch(html, /Inga krav ligger på bordet\./);
+  assert.match(sectionOf(onTab(emptyCourt(), "families"), "Krav från familjerna"), /Inga krav ligger på bordet\./);
+});
+
+test("Faktioner comes before Rykten and shows what is known, okänd for a hidden claimant and no count below exact", () => {
+  const whole = onTab(courtView(), "intrigue");
+  assert.ok(whole.indexOf('aria-label="Faktioner"') > 0 && whole.indexOf('aria-label="Faktioner"') < whole.indexOf('aria-label="Rykten"'));
+  const html = sectionOf(whole, "Faktioner");
+  const [hidden, shown] = html.split("<li").slice(1);
+  assert.match(hidden, /I det fördolda/);
+  assert.match(hidden, /Känd krets: Cecilia</);
+  assert.match(hidden, /Pretendent: okänd/);
+  assert.match(hidden, /Styrka: låg/);
+  assert.doesNotMatch(hidden, /Medlemmar/);
+  assert.match(shown, /Ultimatum/);
+  assert.match(shown, /Känd krets: Cecilia, Dag</);
+  assert.match(shown, /Pretendent: Bertil/);
+  assert.match(shown, /Medlemmar: 4/);
+  assert.doesNotMatch(html, /Du känner inte till någon faktion/);
+});
+
+test("an empty faction list says only that the player knows of none", () => {
+  const html = sectionOf(onTab(emptyCourt(), "intrigue"), "Faktioner");
+  assert.deepEqual(html.replace(/^[^>]*>/, "").replace(/<[^>]+>/g, "\n").split("\n").filter(Boolean), ["Faktioner", "Du känner inte till någon faktion."]);
+});
+
+const ultimatumStory = (crush = {}) => ({
+  id: "story-9", type: "faction_ultimatum", title: "Adeln ställer krav", description: "Faktionen har trätt fram.", createdAt: "0200-01-01", dueAt: "0201-01-01", status: "open",
+  choices: [
+    { id: "concede", label: "Ge efter för adeln", description: "Adeln väntar.", cost: "40 silver", stress: "4", disabledReason: "" },
+    { id: "crush", label: "Slå ned faktionen", description: "Chans att lyckas: hög", cost: "1 handling", stress: "8", disabledReason: "",
+      odds: { chance: "hög", modifiers: [{ label: "Härens beredskap", sign: "+" }, { label: "Faktionens styrka", sign: "−" }] }, ...crush },
+  ],
+});
+const storyHtml = (story) => renderToStaticMarkup(React.createElement(loadPanel(baseView(), { panelState: false }).StoryCard, { story, onCommand: () => {}, busy: false }));
+const oddsBlock = (html) => { const from = html.slice(html.indexOf('class="char-choice-odds"')); return from.slice(0, from.indexOf("</details>")); };
+const choiceButtons = (html) => [...html.matchAll(/<button[\s\S]*?<\/button>/g)].map((match) => match[0]);
+
+test("a band shows the crush's label and signs, with no number", () => {
+  const block = oddsBlock(storyHtml(ultimatumStory()));
+  assert.match(block, /Chans att lyckas: hög/);
+  assert.match(block, /<summary>Vad påverkar chansen\?<\/summary>/);
+  assert.match(block, /Härens beredskap: \+</);
+  assert.match(block, /Faktionens styrka: −</);
+  assert.doesNotMatch(block, /\d/);
+});
+
+test("exact odds show numbers on the chance and on every row", () => {
+  const block = oddsBlock(storyHtml(ultimatumStory({ odds: { chance: 62, modifiers: [{ label: "Grundchans", value: 40 }, { label: "Faktionens styrka", value: -6 }] } })));
+  assert.match(block, /Chans att lyckas: 62 %/);
+  assert.match(block, /Grundchans: \+40/);
+  assert.match(block, /Faktionens styrka: −6/);
+});
+
+test("the odds sit under the choice, outside its button, and only under a choice that has odds", () => {
+  const html = storyHtml(ultimatumStory());
+  const buttons = choiceButtons(html);
+  assert.equal(buttons.length, 2);
+  for (const button of buttons) assert.doesNotMatch(button, /<details|Vad påverkar chansen/);
+  assert.equal((html.match(/char-choice-odds/g) || []).length, 1);
+});
+
+test("the odds block is grouped under the name of its own button, and a choice without odds gets no group", () => {
+  const html = storyHtml(ultimatumStory());
+  assert.match(html, /<div class="char-choice-slot" role="group" aria-labelledby="char-choice-story-9-crush"><button type="button" id="char-choice-story-9-crush"/);
+  assert.equal((html.match(/role="group"/g) || []).length, 1);
+});
+
+test("a choice with odds shows its chance once, and a choice without odds keeps its description", () => {
+  const html = storyHtml(ultimatumStory());
+  assert.equal((html.match(/Chans att lyckas/g) || []).length, 1);
+  assert.ok(html.indexOf("Chans att lyckas") > html.indexOf('class="char-choice-odds"'), "the one line is the odds block's");
+  const [concede, crush] = choiceButtons(html);
+  assert.match(concede, /Adeln väntar\./);
+  assert.match(crush, /Slå ned faktionen/);
+  assert.doesNotMatch(crush, /Chans att lyckas/);
+});
+
+test("a choice with a disabledReason stays disabled and still explains its chance", () => {
+  const html = storyHtml(ultimatumStory({ disabledReason: "Ingen kan besluta just nu." }));
+  const crush = choiceButtons(html).find((button) => button.includes("Slå ned faktionen"));
+  assert.match(crush, /^<button[^>]*disabled=""/);
+  assert.match(crush, /Ingen kan besluta just nu\./);
+  assert.match(oddsBlock(html), /Vad påverkar chansen/);
+});
+
+test("set_reign_goal and reward_councillor reach the player through the menu's Förvaltning och hushåll", () => {
+  const state = createCharacterSystem({ mode: "realm", seed: 41 });
+  const types = getAvailableCharacterActions(state).map((action) => action.type);
+  assert.ok(types.includes("set_reign_goal") && types.includes("reward_councillor"));
+  const view = getCharacterPresentation(state);
+  const html = renderToStaticMarkup(React.createElement(loadActionBox().ActionMenu, { view, CommandCard: loadPanel(view).ActionCard, onPropose: () => {} }));
+  const start = html.indexOf(">Förvaltning och hushåll<");
+  assert.ok(start > 0);
+  const group = html.slice(start, html.indexOf('class="char-action-group"', start));
+  for (const id of ["set_reign_goal", "reward_councillor"]) assert.ok(group.includes(`data-catalog-id="${id}"`), id);
 });

@@ -293,7 +293,7 @@ test("an npc_intent for the active representative outside the controlled family 
   const principal = state.people["person-0-4"];
   principal.bornAt = addGameMonths(DATE, -10 * 12);
   principal.health = 100;
-  state.offices.ruler.holderId = principal.id;
+  state.offices.ruler.holderId = principal.id; state.reign.rulerId = principal.id;
   state.offices.ruler.regentId = NPC;
   state.realm.lawfulRulerId = principal.id;
   state.regencies["office:ruler"] = { id: "office:ruler", principalId: principal.id, regentId: NPC, phase: "minority", startedAt: DATE, grants: [], requestAfter: {}, handoverDueAt: null };

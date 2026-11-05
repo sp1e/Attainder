@@ -1,6 +1,7 @@
 import { normalizeGameDate, compareGameDates } from '../gameDates.js';
 import { RUMOR_TOPICS } from './actionCatalog.js';
 import { isAdultCharacter } from './characterCapacity.js';
+import { effectiveIntrigue } from './council.js';
 import { plotRandom, spymasterOf } from './extensions.js';
 import { isImprisoned } from './prisoners.js';
 
@@ -71,10 +72,10 @@ export function createRumor(state, fields) {
   return rumor;
 }
 
-// The one who listens: the spymaster at full intrigue, else the representative at half, rounded down. Nobody in prison listens (the office falls vacant on imprisonment, but the check is cheap), and a spymaster does not listen to a plan of his own.
+// The one who listens: the spymaster at his effective intrigue, else the representative at half, rounded down. Nobody in prison listens (the office falls vacant on imprisonment, but the check is cheap), and a spymaster does not listen to a plan of his own.
 function listenerOf(state, scheme, hooks) {
   const spymaster = spymasterOf(state);
-  if (spymaster && spymaster.id !== scheme.actorId && !isImprisoned(state, spymaster.id)) return { person: spymaster, intrigue: finite(spymaster.skills?.intrigue) };
+  if (spymaster && spymaster.id !== scheme.actorId && !isImprisoned(state, spymaster.id)) return { person: spymaster, intrigue: effectiveIntrigue(state, spymaster, hooks) };
   const representative = hooks.activeRepresentative();
   if (!representative || representative.diedAt || isImprisoned(state, representative.id)) return null;
   return { person: representative, intrigue: Math.floor(finite(representative.skills?.intrigue) / 2) };
@@ -95,7 +96,7 @@ function pickFalseName(state, scheme, actor, family) {
 /**
  * Whether the controlled family hears of an active scheme of another house on this monthly check, and if so what. Returns the new rumor or null. The caller has already seen that the plan was not discovered on this check. A scheme the player ordered (playerControlled, even when an office holder of another house is the actor) and one the controlled family's own member runs are never heard of, and nothing is drawn for them.
  * One draw decides the hearing (nothing is drawn when nobody listens or the scheme already has three rumors); a second decides whether the account is true; a third picks the wrong name when it is not, and none is drawn when no one qualifies. All come from plotRandom.
- * `hooks` need controlledFamily and activeRepresentative (actionHooks in index.js). Called from schemes.js on every check, so schemes that Task 7 adds for NPCs are heard automatically.
+ * `hooks` need controlledFamily, activeRepresentative, ruler and getPersonalOpinion (actionHooks in index.js). Called from schemes.js on every check, so schemes that Task 7 adds for NPCs are heard automatically.
  */
 export function hearScheme(state, scheme, hooks) {
   const family = hooks.controlledFamily(), actor = personOf(state, scheme?.actorId);

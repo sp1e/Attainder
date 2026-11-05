@@ -1,5 +1,6 @@
 import { addGameMonths, compareGameDates, normalizeGameDate } from '../gameDates.js';
 import { crimeOfSecret } from './crimes.js';
+import { onExecution } from './dread.js';
 import { plotRandom } from './extensions.js';
 
 // Prisoners: persons the ruler holds. A record is { id: 'prisoner-<n>', personId, captorFamilyId, since, ransom, status, closedAt, reason } and lives in state.prisoners. While `status` is 'held' the person cannot act, holds no office and is no feast guest; every other status closes the record with a date and a reason.
@@ -126,7 +127,7 @@ function ownRecord(state, payload, hooks) {
   return record;
 }
 
-const livingAdults = (state, hooks, familyId, exceptId) => Object.values(state.people).filter((person) => person.familyId === familyId && !person.diedAt && person.id !== exceptId && hooks.adult(person));
+export const livingAdults = (state, hooks, familyId, exceptId) => Object.values(state.people).filter((person) => person.familyId === familyId && !person.diedAt && person.id !== exceptId && hooks.adult(person));
 
 /** Runs the command release_prisoner: payload { prisonerId }. Costs one order (realm treasury, no silver). The prisoner and the head of his family think better of the ruler (+10). Draws no randomness. */
 export function releasePrisoner(state, payload, events, hooks) {
@@ -141,7 +142,7 @@ export function releasePrisoner(state, payload, events, hooks) {
   return record;
 }
 
-/** Runs the command execute_prisoner: payload { prisonerId }. Costs one order and the cruelty stress. The prisoner dies ('Avrättad'), every living adult of his family loses 50 opinion of the ruler, and an execution that is not lawful costs 4 legitimacy. Draws no randomness. */
+/** Runs the command execute_prisoner: payload { prisonerId }. Costs one order and the cruelty stress. The prisoner dies ('Avrättad'), every living adult of his family loses 50 opinion of the ruler, an execution that is not lawful costs 4 legitimacy, and onExecution settles fear, grievance and enemies before the death. Draws no randomness. */
 export function executePrisoner(state, payload, events, hooks) {
   const record = ownRecord(state, payload, hooks);
   hooks.charge(0, { orders: 1, publicFunds: true, tag: 'cruel' });
@@ -151,6 +152,7 @@ export function executePrisoner(state, payload, events, hooks) {
   const note = hooks.memory('execution', event.title, [person.id, ruler?.id], { causeId: event.id });
   if (ruler) for (const kin of livingAdults(state, hooks, person.familyId, person.id)) hooks.opinionCause(kin.id, ruler.id, EXECUTION_OPINION, 'Avrättad släkting', note.id);
   if (!lawful) state.realm.legitimacy = clamp(state.realm.legitimacy + EXECUTION_LEGITIMACY, 0, 100);
+  onExecution(state, person, note.id, hooks);
   hooks.kill([person.id], events, 'Avrättad');
   return record;
 }

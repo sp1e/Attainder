@@ -38,11 +38,18 @@ function answer(state, storyId, choiceId) {
 // To replace a seed that no longer does: loop healthRng through openChain, print
 // person-0-0's healthConditions (kind, severity, nextTransitionAt), and keep one
 // with smallpox of severity 1 or 2 and an open health_care story.
+// The plot stream is found: on it no house makes a demand in the two years these
+// tests cross. A lapsed demand costs 15 of the head's opinion, and below -10 he can
+// open a second chain, whose draw is no continuation. To replace it: loop
+// plotRngState through walkChain and keep one that leaves familyDemands empty on
+// both CALENDARS.
+const QUIET_PLOT_STREAM = 123821063;
 function openChain({ healthRng = null } = {}) {
   const initial = createCharacterSystem({ seed: 321 }); ensureEventChains(initial);
   for (const city of Object.values(initial.cities)) city.unrest = 0;
   initial.people['person-0-4'].mentorId = 'person-1-1';
   if (healthRng) initial.healthRngState = healthRng;
+  initial.plotRngState = QUIET_PLOT_STREAM;
   const state = advance(initial, addGameMonths(initial.date, 12), 'open-chain');
   const story = state.stories.find((item) => item.type === 'event_chain' && item.status === 'open');
   assert.ok(story, 'the first annual step opens a chain');
@@ -492,7 +499,7 @@ test('after an abdication the new ruler pays public choices and the old head pay
   assert.deepEqual(Object.fromEntries(choicesOf(abdicated, story).map((choice) => [choice.id, choice.actorId])),
     { public_provision: 'person-0-2', family_rest: 'person-0-0', close: null });
   const paid = answer(abdicated, story.id, 'public_provision').state;
-  assert.equal(paid.realm.treasury, treasury - 10);
+  assert.equal(paid.realm.treasury, Math.round((treasury - 10) * 100) / 100);
   assert.equal(outcomeOf(paid, story).decisionActorId, 'person-0-2');
 });
 

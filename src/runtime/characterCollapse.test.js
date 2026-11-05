@@ -1,8 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createCharacterSystem } from "./characters/index.js";
+import { createCharacterSystem, getCharacterPresentation } from "./characters/index.js";
 import { applyEventImpactsToWorld, normalizeWorldState } from "./gameState.js";
-import { executeCharacterWorldCommand, getExternalCharacterHosts, prepareCharacterTimeline } from "./characterWorld.js";
+import { buildCharacterPromptContext, executeCharacterWorldCommand, getExternalCharacterHosts, prepareCharacterTimeline } from "./characterWorld.js";
 
 const date = "-0300-01-01";
 const fixture = (mode) => normalizeWorldState({
@@ -35,6 +35,23 @@ test("accepted annexation ends realm play without recreating a stat sheet; retry
   const restored = normalizeWorldState(JSON.parse(JSON.stringify(once)));
   assert.deepEqual(restored.characterSystem, once.characterSystem);
   assert.equal(restored.countryStats.Hadara, undefined);
+});
+
+test("a realm campaign ended by annexation still reads in the panel and the model prompt", () => {
+  const world = host(fixture("realm"), annex()).world, state = world.characterSystem;
+  assert.equal(state.status.ended, true);
+  // Realm mode follows the ruler, so with the throne empty no family is controlled and neither mandate has a principal.
+  const view = getCharacterPresentation(state);
+  assert.equal(view.status.ended, true);
+  assert.equal(view.ruler, null);
+  assert.equal(view.representative, null);
+  assert.deepEqual(view.authority.royal, { principalId: null, representativeId: null, reason: null, blockedReason: "Riket har upplösts.", playerCanExercise: false });
+  assert.equal(view.authority.household.principalId, null);
+  assert.equal(view.authority.household.reason, null);
+  assert.equal(view.authority.household.playerCanExercise, false);
+  assert.ok(buildCharacterPromptContext(state).includes("[Character simulation"));
+  const restored = normalizeWorldState(JSON.parse(JSON.stringify(world)));
+  assert.deepEqual(getCharacterPresentation(restored.characterSystem), view);
 });
 
 test("a surviving family keeps its identity and private property after its realm disappears", () => {

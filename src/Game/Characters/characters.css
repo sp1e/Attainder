@@ -302,6 +302,21 @@
 .char-talk-form { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
 .char-talk-form > label { font-size: 13px; font-weight: 600; }
 .char-talk-form .char-button { align-self: flex-start; }
+/* Phase 3: the reign, the council seats, the families' demands, the factions and a story choice's odds. */
+.char-reign { border-top: 1px solid var(--char-border); padding-top: 15px; margin-top: 20px; }
+.char-reign .char-leader-measures { margin-top: 0; margin-bottom: 8px; }
+.char-reign .char-caption { margin: 6px 0 0; }
+.char-reign h4 { font-size: 18px; margin: 16px 0 10px; }
+.char-reign-goals { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-size: 13px; }
+.char-reign-goals li { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; background: var(--char-soft); border-left: 2px solid var(--char-gold); min-width: 0; overflow-wrap: anywhere; }
+.char-seat, .char-demand, .char-faction { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; font-size: 13px; overflow-wrap: anywhere; }
+.char-seat strong, .char-demand strong, .char-faction strong { color: var(--char-accent); font-size: 15px; }
+.char-choice-slot { display: flex; flex-direction: column; min-width: 0; }
+.char-choice-slot > .char-choice { flex: 1 1 auto; }
+.char-choice-odds { padding: 8px 2px 0; font-size: 12px; overflow-wrap: anywhere; }
+.char-choice-odds > strong { color: var(--char-accent); font-weight: 600; }
+.char-choice-odds .char-explanation { margin-top: 2px; }
+.char-choice-odds .char-explanation ul { margin: 4px 0 0; }
 @media (max-width: 950px) {
   .char-backdrop { padding: 10px; }
   .char-header, .char-campaign-strip, .char-footer { padding-left: 20px; padding-right: 20px; }
@@ -351,7 +366,7 @@
   .char-footer { padding: 8px 15px; font-size: 9px; gap: 12px; }
   .char-footer { flex-wrap: wrap; }
   .char-confirm, .char-outcome { padding: 15px; }
-  .char-confirm-facts, .char-confirm-odds, .char-scheme-list { grid-template-columns: 1fr; }
+  .char-confirm-facts, .char-confirm-odds, .char-scheme-list, .char-intrigue-list { grid-template-columns: 1fr; }
   .char-content { overflow-wrap: anywhere; }
   .char-local-heading { flex-wrap: wrap; }
   .char-local-connect { padding: 17px; }

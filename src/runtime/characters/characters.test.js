@@ -393,7 +393,7 @@ test('all eight archetype abilities execute under the matching mandate and refus
 });
 
 test('stress crisis offers a valid free recovery path when cash is exhausted', () => {
-  let state = createCharacterSystem(); state.people['person-0-0'].stress = 105; state.families['family-arel'].treasury = 0;
+  let state = createCharacterSystem(); state.people['person-0-0'].stress = 90; state.families['family-arel'].treasury = 0;
   state = advance(state);
   const story = state.stories.find((item) => item.type === 'stress_crisis' && item.status === 'open');
   assert.ok(story);

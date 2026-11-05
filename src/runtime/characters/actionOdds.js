@@ -174,22 +174,24 @@ function targetRows(state, entry, target) {
 
 // The cut rows that `bound` creates. A cut row says the roll sits exactly at 5 or 95 and its sign reads as a cause, so the band precisions leave it out of what the player sees (presentOdds). A WeakSet keeps the rows plain { label, value } data.
 const CUT_ROWS = new WeakSet();
+const HIGHEST_CHANCE = 'Högsta möjliga chans', LOWEST_CHANCE = 'Lägsta möjliga chans';
 
-// Collects rows and skips zero values. `bound` adds the cut row so the rows always add up to the value inside 5 to 95.
+// Adds the cut row so the rows always add up to the value inside 5 to 95. A cut goes in a new array: the rows passed in stay as they are.
+function boundRows(rows, highLabel, lowLabel) {
+  const raw = rows.reduce((total, row) => total + row.value, 0);
+  const value = clamp(raw, ODDS_MIN, ODDS_MAX);
+  if (value === raw) return { value, modifiers: rows };
+  const cut = { label: value < raw ? highLabel : lowLabel, value: value - raw };
+  CUT_ROWS.add(cut);
+  return { value, modifiers: [...rows, cut] };
+}
+
+// Collects rows and skips zero values.
 function rowBuilder(baseLabel, baseValue) {
   const rows = [{ label: baseLabel, value: baseValue }];
   return {
     add(label, value) { if (value !== 0) rows.push({ label, value }); },
-    bound(highLabel, lowLabel) {
-      const raw = rows.reduce((total, row) => total + row.value, 0);
-      const value = clamp(raw, ODDS_MIN, ODDS_MAX);
-      if (value !== raw) {
-        const cut = { label: value < raw ? highLabel : lowLabel, value: value - raw };
-        CUT_ROWS.add(cut);
-        rows.push(cut);
-      }
-      return { value, modifiers: rows };
-    },
+    bound: (highLabel, lowLabel) => boundRows(rows, highLabel, lowLabel),
   };
 }
 
@@ -216,7 +218,7 @@ function successOdds(state, entry, actor, target, means, ctx, situational) {
   const difficulty = difficultyRow(state, ctx, target);
   if (difficulty) rows.add(difficulty.label, difficulty.value);
   for (const item of situational) rows.add(item.label, item.value);
-  return rows.bound('Högsta möjliga chans', 'Lägsta möjliga chans');
+  return rows.bound(HIGHEST_CHANCE, LOWEST_CHANCE);
 }
 
 function secrecyOdds(entry, actor, target, means, situational) {
@@ -230,12 +232,26 @@ function secrecyOdds(entry, actor, target, means, situational) {
   return rows.bound('Hemlighållning: högsta möjliga nivå', 'Hemlighållning: lägsta möjliga nivå');
 }
 
+const exactRow = ({ label, value }) => ({ label, value });
+const signedRow = ({ label, value }) => ({ label, sign: value > 0 ? '+' : '−' });
+
 // What the player may read. Exact shows numbers and every row, cut rows included. Five and three show band labels and only the label and sign (+ or the real minus U+2212) of each formula row; the cut rows stay out because they would reveal that a roll sits exactly at 5 or 95.
 function presentOdds(precision, success, secrecy) {
   const rows = [...success.modifiers, ...secrecy.modifiers];
-  if (precision === 'exact') return { success: success.value, secrecy: secrecy.value, modifiers: rows.map(({ label, value }) => ({ label, value })) };
+  if (precision === 'exact') return { success: success.value, secrecy: secrecy.value, modifiers: rows.map(exactRow) };
   const causes = rows.filter((row) => !CUT_ROWS.has(row));
-  return { success: bandFor(success.value, precision), secrecy: bandFor(secrecy.value, precision), modifiers: causes.map(({ label, value }) => ({ label, sign: value > 0 ? '+' : '−' })) };
+  return { success: bandFor(success.value, precision), secrecy: bandFor(secrecy.value, precision), modifiers: causes.map(signedRow) };
+}
+
+/**
+ * One chance from rows that add up to it, for the odds outside estimateAction. Returns the `value` inside 5 to 95, the `modifiers` with any cut as a row of its own, and `display`, what the player may read at `precision`.
+ * Exact shows every row with its value. A band shows the label and sign of each cause and leaves out two rows. The cut would reveal that the chance sits exactly at a bound. The row labelled `hiddenLabel` still counts in the odds, but its sign, or its absence at zero, would sort a hidden value into buckets.
+ */
+export function chanceFromRows(rows, precision, hiddenLabel) {
+  const { value, modifiers } = boundRows(rows, HIGHEST_CHANCE, LOWEST_CHANCE);
+  if (precision === 'exact') return { value, modifiers, display: { chance: value, modifiers: modifiers.map(exactRow) } };
+  const causes = modifiers.filter((row) => !CUT_ROWS.has(row) && row.label !== hiddenLabel);
+  return { value, modifiers, display: { chance: bandFor(value, precision), modifiers: causes.map(signedRow) } };
 }
 
 const refuse = (reason) => ({ ok: false, reason });

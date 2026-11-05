@@ -264,7 +264,8 @@ test('only adults of the family and office holders may be asked, never the repre
 });
 
 test('the precision follows the representative\'s diplomacy with Phase 1\'s bands', () => {
-  const at = (diplomacy) => { const state = plain(); state.people[REP].skills.diplomacy = diplomacy; setOpinion(state, NAMAR, REP, 20); return estimate(state, ask({ offerSilver: 12 })); };
+  // A spymaster who reads loyalty exactly lifts the cap, so the diplomacy alone sets the precision.
+  const at = (diplomacy) => { const state = plain(); state.offices.spymaster.holderId = TALIA; state.people[TALIA].loyalty = 80; state.people[TALIA].skills.intrigue = 12; state.people[REP].skills.diplomacy = diplomacy; setOpinion(state, NAMAR, REP, 20); return estimate(state, ask({ offerSilver: 12 })); };
   const exact = at(12);
   assert.equal(exact.precision, 'exact');
   assert.equal(exact.display.chance, exact.value);
