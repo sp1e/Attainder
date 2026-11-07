@@ -114,7 +114,7 @@ test('court size is authored data; a one-family court works with vacant generate
   assert.ok(getCharacterPresentation(state).ruler);
 });
 
-test('the validator and the seed share one frozen succession law list', () => {
+test('SUCCESSION_LAWS is frozen and lists primogeniture and merit', () => {
   assert.deepEqual(SUCCESSION_LAWS, ['primogeniture', 'merit']);
   assert.ok(Object.isFrozen(SUCCESSION_LAWS));
 });

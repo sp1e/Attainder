@@ -64,8 +64,8 @@ const generatedName = p => p.identityOrigin !== 'generated' || (typeof p.name ==
 
 // Engine id rules. validateEngineSeed in characters/scenarioSeed.js imports these and stays as
 // defence in depth; the validator mirrors it so the start card never offers a court the engine refuses.
-export const RESERVED_IDS = ['__proto__','constructor','prototype'];
-export const ENGINE_OFFICE_IDS = ['ruler','general','chancellor','priest','spymaster'];
+export const RESERVED_IDS = Object.freeze(['__proto__','constructor','prototype']);
+export const ENGINE_OFFICE_IDS = Object.freeze(['ruler','general','chancellor','priest','spymaster']);
 export const safeId = x => typeof x === 'string' && /^[a-zA-Z0-9_:.-]{1,160}$/.test(x) && !RESERVED_IDS.includes(x);
 const known = (table, key) => typeof key === 'string' && Object.hasOwn(table,key);
 const validMechanics = m => m === undefined || (record(m) && known(ARCHETYPES,m.archetype)
