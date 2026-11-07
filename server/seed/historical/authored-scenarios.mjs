@@ -28,21 +28,23 @@ export const sources = {
 const claim = (status,noteSv,sourceIds = []) => ({ status,noteSv,sourceIds });
 const generated = note => claim('generated',note);
 const mechanics = generated('Spelvärden, personlighet och ämbetsregler är skapade för simuleringen.');
+const settlement = (seat,polityId) => ({ id: seat.id,nameSv: seat.nameSv,coordinates: seat.coordinates,polityId,regionId: seat.regionId,placement: seat.placement,sourceIds: seat.sourceIds,noteSv: seat.noteSv });
 
+// spec.familyId names the ruling family, so two courts of one package never give one id to two houses.
 function court({ polityId, seat, spec }) {
-  const { religionId,rulerId,partnerId } = spec;
+  const { religionId,rulerId,partnerId } = spec, rulingFamilyId = spec.familyId ?? 'royal-house';
   const person = (id,name,bornAt,familyId,sex = 'male') => ({ id,name,bornAt,familyId,sex,religionId,
     identityOrigin: 'generated',originLabelSv: 'Genererad person',legalParentIds: [],spouseIds: [],
     claims: { identity: generated('Personen och namnet är genererade.'), bornAt: generated('Födelsedatumet är ett spelvärde.'), kinship: generated('Inga dokumenterade föräldrar läggs till; familjegruppen är en spelabstraktion.'), mechanics },
     mechanics: { archetype: 'steward', traits: ['dutiful'], skills: { command: 5,stewardship: 6,diplomacy: 5,learning: 5,intrigue: 4,prowess: 4 } } });
-  const people = [person(rulerId,spec.rulerName,spec.rulerBornAt,'royal-house')];
+  const people = [person(rulerId,spec.rulerName,spec.rulerBornAt,rulingFamilyId)];
   if (partnerId) {
-    people.push(person(partnerId,spec.partnerName,spec.partnerBornAt,'royal-house','female'));
+    people.push(person(partnerId,spec.partnerName,spec.partnerBornAt,rulingFamilyId,'female'));
     people[0].spouseIds = [partnerId]; people[1].spouseIds = [rulerId];
   }
-  for (const member of spec.household ?? []) people.push({ ...person(member.id,member.name,member.bornAt,'royal-house',member.sex),legalParentIds: member.legalParentIds });
+  for (const member of spec.household ?? []) people.push({ ...person(member.id,member.name,member.bornAt,rulingFamilyId,member.sex),legalParentIds: member.legalParentIds });
   spec.annotatePeople(people);
-  const families = [{ id: 'royal-house',name: spec.familyName,headId: rulerId,religionId,color: '#bd9251',claims: { identity: generated('Hushållet är en administrativ spelgrupp; inga okända släktled påstås.') } }];
+  const families = [{ id: rulingFamilyId,name: spec.familyName,headId: rulerId,religionId,color: '#bd9251',claims: { identity: generated('Hushållet är en administrativ spelgrupp; inga okända släktled påstås.') } }];
   for (let i = 1; i <= 3; i++) {
     const id = `generated-courtier-${i}`, familyId = `generated-house-${i}`;
     people.push(person(id,spec.courtierNames[i-1],spec.courtierBornAt(i),familyId));
@@ -51,9 +53,9 @@ function court({ polityId, seat, spec }) {
   // A family start preselects the first family, so this order decides who the player follows.
   if (spec.nonRulingFamiliesFirst) families.push(families.shift());
   const offices = [['ruler',spec.rulerOfficeName ?? 'Kung',rulerId],['general','Överbefälhavare','generated-courtier-1'],['chancellor','Kansler','generated-courtier-2'],['priest','Religiös företrädare','generated-courtier-3']].map(([id,name,holderId]) => ({ id,name,holderId,claims: { identity: id === 'ruler' && spec.rulerOfficeClaim ? spec.rulerOfficeClaim : generated('Ämbete och utnämning följer spelets regler.'), mechanics } }));
-  return { polityId,rulerId,seatId: seat.id,people,families,offices,
-    religions: [{ id: religionId,name: spec.religionName,leaderId: 'generated-courtier-3',claims: { identity: spec.religionClaim, mechanics } }],
-    cities: [{ id: seat.id,settlementId: seat.id,name: seat.nameSv,regionId: seat.regionId,familyId: 'royal-house',claims: { mechanics } }],
+  return { polityId,rulerId,seatId: seat.id,...(spec.successionLaw ? { successionLaw: spec.successionLaw } : {}),people,families,offices,
+    religions: [{ id: religionId,name: spec.religionName,leaderId: spec.religionLeaderId ?? 'generated-courtier-3',claims: { identity: spec.religionClaim, mechanics } }],
+    cities: [{ id: seat.id,settlementId: seat.id,name: seat.nameSv,regionId: seat.regionId,familyId: rulingFamilyId,claims: { mechanics } }],
     mechanics: { status: 'generated',noteSv: 'Resurser, succession, familjegrupper, myndighetsålder och hovämbeten följer spelets regler. De beskriver inte belagda historiska värden.' } };
 }
 
@@ -65,6 +67,8 @@ const CHARLEMAGNE_SOURCES = {
   aachen: { ...source('Aachen, TGN 7004799','Getty Research Institute','https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=Aachen&nation=Germany&place=inhabited+place&subjectid=7004799','Coordinates; vocabulary data-services terms','Modern inhabited-place reference','[6.1053,50.7708] marks the modern place, not a palace or a physical presence.','ODC-By-1.0; Getty Thesaurus of Geographic Names, Getty Research Institute'),retrievedAt: '2026-11-07' },
   rome: { ...source('Rome, TGN 7000874','Getty Research Institute','https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=Rome&nation=&place=inhabited+place&subjectid=7000874','Coordinates; vocabulary data-services terms','Modern inhabited-place reference','[12.4833,41.9000] marks the modern place, not a papal frontier.','ODC-By-1.0; Getty Thesaurus of Geographic Names, Getty Research Institute'),retrievedAt: '2026-11-07' },
 };
+// Rome is a listed settlement of the package and the seat of the Papal States court; review settlements[0].
+const ROME_800 = { id: 'rome',nameSv: 'Rom',coordinates: [12.4833,41.9],regionId: 'hbm-ad800-222',placement: 'inside',sourceIds: ['rome',...evidence('ce-papal-states','rfa-801-coronation','einhard-28')],noteSv: 'Ungefärlig ortsmarkör från Getty. Staden hör till påvens område på kartan. Karl var här på bokmärkets dag; spelsätet är Aachen. Titeln patricius gav den dagen vika för kejsartiteln.' };
 const DAUGHTER_SURVIVAL_SV = 'Einhards kapitel 19 anger att Karl förlorade tre barn och nämner inte henne bland dem. Kapitel 20 visar att barnlistan är ofullständig. Källorna namnger ingen överlevande dotter. Hennes plats är inte belagd.';
 const hildegardsChild = (roleSv,...ids) => claim('sourced',`${roleSv} till Karl och Hildegard. Hildegard dog 783 och ingår inte i hovet.`,evidence('einhard-18','rfa-783-deaths',...ids));
 const fastradasChild = claim('sourced','Dotter till Karl och, enligt Einhards ordföljd, Fastrada. Fastrada dog 794 och ingår inte i hovet.',evidence('einhard-18','rfa-794-fastrada'));
@@ -110,9 +114,32 @@ function annotateCharlemagneCourt(people) {
   }
 }
 
+// Leo III's court on 25 December 800. Sourced facts come from the church record of ad800-review.json;
+// the birth value, the household and the courtiers are generated.
+function annotateLeoCourt(people) {
+  const leo = people.find(p => p.id === 'leo-iii');
+  leo.identityOrigin = 'documented'; leo.originLabelSv = 'Dokumenterad person; spelvärden är genererade';
+  leo.claims.identity = claim('sourced','Biskop av Rom sedan 795.',evidence('ce-leo3','osborne-rome','rfa-801-coronation'));
+  leo.claims.bornAt = generated('Ingen källa ger födelseår. Den första januari 750 är ett spelvärde.');
+}
+// Merit is the engine's closest analogue to a papal election; a later phase adds an elective law.
+const PAPAL_STATES_800 = { polityId: 'papal-states',seat: ROME_800,successionLaw: 'merit',
+  court: {
+    religionId: 'latin-church',rulerId: 'leo-iii',partnerId: null,household: [],
+    rulerName: 'Leo III',rulerBornAt: '0750-01-01',rulerOfficeName: 'Påve',familyId: 'leo-household',familyName: 'Leos hushåll',
+    nonRulingFamiliesFirst: true,
+    courtierNames: ['Sergius (genererad)','Johannes (genererad)','Theodorus (genererad)'],courtierBornAt: i => `0${755+i}-01-01`,
+    annotatePeople: annotateLeoCourt,
+    rulerOfficeClaim: claim('sourced','Leo III valdes till påve den 26 december 795.',evidence('ce-leo3')),
+    religionName: 'Den latinska kyrkan',religionLeaderId: 'leo-iii',
+    religionClaim: claim('sourced','Leo III, biskop av Rom sedan 795, krönte Karl vid julmässan. Kyrkans spelorganisation är förenklad.',evidence('ce-leo3','rfa-801-coronation')),
+  },
+};
+
 const COVERAGE_BASE_NOTE_SV = 'Världens land visas med en generaliserad nutida kustlinje. Granskade historiska områden har ungefärliga gränser. Okänd kontroll betyder att underlag saknas, inte att marken är obebodd eller ledig.';
 
 // One authored record per package. Everything that differs between packages lives here.
+// extraPlayables: further playable polities as { polityId, seat, court, successionLaw? }; seat has the primary seat's fields.
 const AUTHORED_PACKAGES = {
   'egypt-3000bc': {
     sources,polityId: 'egypt-early-dynastic',bookmarkDate: '-3000-01-01',eraLabelSv: 'Cirka 3000 f.Kr.',
@@ -151,12 +178,13 @@ const AUTHORED_PACKAGES = {
     },
   },
   'charlemagne-800': {
-    sources: CHARLEMAGNE_SOURCES,polityId: 'carolingian-realm',bookmarkDate: '0800-12-25',eraLabelSv: '800 e.Kr.',
+    sources: CHARLEMAGNE_SOURCES,polityId: 'carolingian-realm',contentVersion: '1.1.0',bookmarkDate: '0800-12-25',eraLabelSv: '800 e.Kr.',
     seat: { id: 'aachen',nameSv: 'Aachen',coordinates: [6.1053,50.7708],regionId: 'hbm-ad800-151',placement: 'inside',sourceIds: ['aachen',...evidence('rfa-800-itinerary','rfa-801-coronation','einhard-28')],noteSv: 'Ungefärlig ortsmarkör från Getty. Vald som spelsäte. Karl lämnade Aachen i mars 800 och återvände under året, men på bokmärkets dag var han i Rom.' },
-    otherSettlements: [{ id: 'rome',nameSv: 'Rom',coordinates: [12.4833,41.9],polityId: 'papal-states',regionId: 'hbm-ad800-222',placement: 'inside',sourceIds: ['rome',...evidence('ce-papal-states','rfa-801-coronation','einhard-28')],noteSv: 'Ungefärlig ortsmarkör från Getty. Staden hör till påvens område på kartan. Karl var här på bokmärkets dag; spelsätet är Aachen. Titeln patricius gav den dagen vika för kejsartiteln.' }],
-    contextSv: 'Leo III kröner Karl till kejsare i Rom på juldagen. Karl stannar där hela vintern, och spelsätet är Aachen. Hans hustru Liutgard dog samma år, så hovet saknar kejsarinna. Dokumenterade personer med genererade spelvärden och genererade hovmän.',
+    otherSettlements: [settlement(ROME_800,'papal-states')],
+    extraPlayables: [PAPAL_STATES_800],
+    contextSv: 'Leo III kröner Karl till kejsare i Rom på juldagen. Karl stannar där hela vintern, och spelsätet är Aachen. Hans hustru Liutgard dog samma år, så hovet saknar kejsarinna. Dokumenterade personer med genererade spelvärden och genererade hovmän. Kyrkostaten går också att spela, med Leo III som påve i Rom.',
     calendarNoteSuffixSv: ' Riksannalerna räknar året från jul och för kröningen under 801.',
-    coverageNotePrefixSv: 'Av 225 former i källkartan har 11 godkänts som ungefärliga områden. Hovet visar Bertas, Giselas, Teoderadas, Hiltruds och Ruodhaids överlevnad som osäker. ',
+    coverageNotePrefixSv: 'Av 225 former i källkartan har 11 godkänts som ungefärliga områden. Karls rike och Kyrkostaten är spelbara. Karls hov visar Bertas, Giselas, Teoderadas, Hiltruds och Ruodhaids överlevnad som osäker. Leo III:s födelsedatum och hovmän är genererade. ',
     coverageBaseNoteSv: 'Världens land visas med en generaliserad nutida kustlinje. Granskade historiska områden har ungefärliga gränser. Okänd kontroll betyder att underlag saknas och säger inget om marken var bebodd eller ledig.',
     polity: { nameSv: 'Karls rike (karolingiska riket)',sourceIds: ['hbm',...evidence('einhard-15','rfa-781-kings','rfa-800-itinerary','rfa-800-italy','rfa-797-barcelona','rfa-801-barcelona','rfa-799-brittany','rfa-806-venice','rfa-810-venice','rfa-810-treaty','rfa-801-aftermath','ce-papal-states')],extra: {},noteSv: 'Spelaggregat över Karls områden. Pippin och Ludvig smordes 781 till kungar i Italien och Akvitanien. Likformigt styre är inte belagt, och kartan ger ingen exakt gräns.' },
     court: {
@@ -182,15 +210,29 @@ const AUTHORED_PACKAGES = {
   },
 };
 
+// An extra playable's seat may already be a listed settlement (Rome); it is then emitted once, from that list.
+function extraSeats(a) {
+  const others = a.otherSettlements ?? [];
+  return (a.extraPlayables ?? []).flatMap(e => {
+    const seat = settlement(e.seat,e.polityId), listed = others.find(s => s.id === seat.id);
+    if (listed && JSON.stringify(listed) !== JSON.stringify(seat)) throw new Error(`Seat ${seat.id} of ${e.polityId} differs from its listed settlement`);
+    return listed ? [] : [seat];
+  });
+}
+
+// Playable polities: the primary first, then each extra in authored order. An extra playable takes its polity
+// record and map feature from the review file; the builder adds both.
 export function authoredScenario(contentId) {
   if (!Object.hasOwn(AUTHORED_PACKAGES,contentId)) throw new Error(`Unknown historical scenario: ${contentId}`);
-  const a = AUTHORED_PACKAGES[contentId], polityId = a.polityId, seat = { id: a.seat.id,nameSv: a.seat.nameSv,coordinates: a.seat.coordinates,polityId,regionId: a.seat.regionId,placement: a.seat.placement,sourceIds: a.seat.sourceIds,noteSv: a.seat.noteSv };
+  const a = AUTHORED_PACKAGES[contentId], polityId = a.polityId, seat = settlement(a.seat,polityId), extras = a.extraPlayables ?? [];
   const calendarNoteSv = 'Startdagen är vald för simuleringen. Källornas datering och kalenderkonventioner finns kvar i proveniensen.' + (a.calendarNoteSuffixSv ?? '');
-  return { schemaVersion: 1,kind: 'historical',contentId,contentVersion: '1.0.0',calendar: 'proleptic-gregorian-no-year-zero',bookmarkDate: a.bookmarkDate,
+  const courtSeeds = { [polityId]: court({ polityId,seat,spec: a.court }) };
+  for (const e of extras) courtSeeds[e.polityId] = court({ polityId: e.polityId,seat: settlement(e.seat,e.polityId),spec: { ...e.court,successionLaw: e.successionLaw } });
+  return { schemaVersion: 1,kind: 'historical',contentId,contentVersion: a.contentVersion ?? '1.0.0',calendar: 'proleptic-gregorian-no-year-zero',bookmarkDate: a.bookmarkDate,
     eraLabelSv: a.eraLabelSv,contextSv: a.contextSv,
     calendarNoteSv,
     coverageNoteSv: a.coverageNotePrefixSv + (a.coverageBaseNoteSv ?? COVERAGE_BASE_NOTE_SV),
     sources: { ...a.sources },polities: [{ id: polityId,nameSv: a.polity.nameSv,sourceIds: a.polity.sourceIds,boundary: 'approximate',...a.polity.extra,noteSv: a.polity.noteSv }],
-    playablePolityIds: [polityId],settlements: [seat,...(a.otherSettlements ?? [])],courtSeeds: { [polityId]: court({ polityId,seat,spec: a.court }) },
+    playablePolityIds: [polityId,...extras.map(e => e.polityId)],settlements: [seat,...extraSeats(a),...(a.otherSettlements ?? [])],courtSeeds,
   };
 }

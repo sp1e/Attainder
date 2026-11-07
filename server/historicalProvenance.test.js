@@ -45,6 +45,8 @@ const seedJson = async name => JSON.parse(await fs.readFile(new URL(name,SEED),'
 
 test('every shipped start keeps the build record of its release',async () => {
   const released = await seedJson('released-provenance.json');
+  // Exactly the shipped starts: a stale entry for a removed start would freeze nothing and hide the removal.
+  assert.deepEqual(Object.keys(released).sort(),[...HISTORICAL_BOOKMARKS.map(b => b.id),'john-1200'].sort());
   for (const contentId of [...HISTORICAL_BOOKMARKS.map(b => b.id),'john-1200']) {
     const manifest = await seedJson(`${contentId}/manifest.json`);
     assert.ok(released[contentId],`${contentId}: no released provenance`);
@@ -54,6 +56,7 @@ test('every shipped start keeps the build record of its release',async () => {
 
 test('the 800 package pins world_800',async () => {
   const manifest = await seedJson('charlemagne-800/manifest.json');
+  assert.equal(manifest.contentVersion,'1.1.0');
   assert.deepEqual(manifest.authoredInputs.map(i => i.fileName),['authored-scenarios.mjs','ad800-review.json']);
   assert.equal(manifest.sourceFiles.find(f => f.fileName === 'hbm-world_800.geojson').sha256,SOURCE_800);
   assert.equal(sha(await fs.readFile(new URL('sources/hbm-world_800.geojson',SEED))),SOURCE_800);

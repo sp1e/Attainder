@@ -86,6 +86,45 @@ for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
   });
 }
 
+test('every person in every playable court of every package carries the label of its origin', () => {
+  for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
+    const h = load(id).world.historicalScenario;
+    for (const polityId of h.playablePolityIds) for (const person of h.courtSeeds[polityId].people) {
+      const where = `${id} ${polityId} ${person.id}`;
+      if (person.identityOrigin === 'generated') {
+        assert.equal(person.originLabelSv, 'Genererad person', where);
+        assert.ok(person.name.endsWith(' (genererad)'), where);
+      } else {
+        assert.equal(person.identityOrigin, 'documented', where);
+        assert.match(person.originLabelSv, /^Dokumenterad person/, where);
+      }
+    }
+  }
+});
+
+for (const mode of ['realm', 'family']) test(`charlemagne-800 papal-states ${mode}: Leo III's court initializes deterministically under merit succession`, () => {
+  const data = load('charlemagne-800'), h = data.world.historicalScenario;
+  assert.deepEqual(h.playablePolityIds, ['carolingian-realm', 'papal-states']);
+  const options = { historicalScenario: h, date: data.game.startDate, polityId: 'papal-states', mode, seed: 321 };
+  const before = clone(options);
+  const state = createHistoricalCharacterSystem(options);
+  assert.deepEqual(options, before);
+  assert.deepEqual(createHistoricalCharacterSystem(options), state);
+  assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
+  const court = h.courtSeeds['papal-states'];
+  assert.equal(state.realm.id, 'papal-states');
+  assert.equal(state.identity.polityId, 'papal-states');
+  assert.equal(state.offices.ruler.holderId, 'leo-iii');
+  assert.equal(state.people['leo-iii'].originLabelSv.startsWith('Dokumenterad person'), true);
+  assert.equal(state.realm.successionLaw, 'merit');
+  assert.equal(state.identity.familyId, mode === 'family' ? court.families[0].id : 'leo-household');
+  assert.deepEqual(Object.keys(state.people), court.people.map(p => p.id));
+  const heirClaims = Object.values(state.families).flatMap(f => f.claims).filter(c => c.kind === 'heir' && c.status === 'active');
+  assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt merit')));
+  const projected = projectCharacterWorld({ ...data.world, characterSystem: state });
+  assert.equal(projected.countryStats['papal-states'].leader, 'Leo III');
+});
+
 test('missing biography uses a labeled generated birth date and invents no recorded culture or genealogy', () => {
   const options = optionsFor(load('john-1200'));
   const person = options.historicalScenario.courtSeeds[options.polityId].people[0];

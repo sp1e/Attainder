@@ -8,7 +8,7 @@ import { createHistoricalCharacterSystem } from './characters/scenarioSeed.js';
 import { getCharacterPresentation } from './characters/index.js';
 import { historicalStartOption } from '../src/runtime/historicalStartOptions.js';
 
-const DATE = '0800-12-25', POLITY = 'carolingian-realm', ID = 'charlemagne-800';
+const DATE = '0800-12-25', POLITY = 'carolingian-realm', PAPAL = 'papal-states', ID = 'charlemagne-800';
 const seedFile = name => new URL(`./seed/historical/${name}`,import.meta.url);
 const readJson = name => JSON.parse(readFileSync(seedFile(name),'utf8'));
 const review = readJson('ad800-review.json');
@@ -30,12 +30,26 @@ const DOCUMENTED_IDS = [...COURT_IDS,...UNCERTAIN_IDS];
 
 test('the package validates for its bookmark and carries the reviewed names',() => {
   const input = loadPackage(), { h,game,bundle } = input;
-  assert.deepEqual(validate(input),{ ok: true,contentId: ID,contentVersion: '1.0.0',date: DATE,polityId: POLITY });
+  assert.deepEqual(validate(input),{ ok: true,contentId: ID,contentVersion: '1.1.0',date: DATE,polityId: POLITY });
   assert.equal(h.bookmarkDate,DATE);
   assert.equal(game.country,POLITY);
-  assert.deepEqual(h.playablePolityIds,[POLITY]);
+  assert.deepEqual(h.playablePolityIds,[POLITY,PAPAL]);
   assert.equal(h.polities.find(p => p.id === POLITY).nameSv,'Karls rike (karolingiska riket)');
   assert.equal(bundle.scenario.id,ID);
+  assert.equal(bundle.scenario.name,'Karls rike (karolingiska riket), 800 e.Kr.');
+});
+
+test('every playable polity passes both validators, and polity order follows the source features',() => {
+  const input = loadPackage(), { h } = input;
+  for (const polityId of h.playablePolityIds) {
+    assert.deepEqual(validateHistoricalScenario(input,{ date: DATE,polityId }),{ ok: true,contentId: ID,contentVersion: '1.1.0',date: DATE,polityId });
+    assert.equal(validateHistoricalCourt(h,{ date: DATE,polityId }).ok,true,polityId);
+  }
+  // Polity colours are assigned by list position, so the Papal States addition must not move any polity.
+  assert.deepEqual(h.polities.map(p => p.id),[...new Set([POLITY,...review.mapMappings.map(m => m.polityId)])]);
+  const papal = review.mapMappings.find(m => m.polityId === PAPAL);
+  assert.deepEqual(h.polities.find(p => p.id === PAPAL),{ id: PAPAL,nameSv: 'Kyrkostaten',sourceIds: ['hbm',...regional(papal.sourceIds)],boundary: 'approximate',noteSv: papal.noteSv });
+  assert.equal(h.courtSeeds[POLITY].successionLaw,undefined);
 });
 
 test('features 151 and 221 share one owner, one polity record and one seat',() => {
@@ -90,8 +104,10 @@ test('the seat is Aachen at the Getty coordinate and the note puts Charles in Ro
   assert.deepEqual(rome.coordinates,review.settlements[0].coordinates);
   assert.equal(rome.polityId,'papal-states');
   assert.equal(rome.noteSv,review.settlements[0].noteSv);
+  // Rome is both a listed settlement and the Papal States seat; it appears once and carries the seat flag.
+  assert.deepEqual(h.settlements.map(s => s.id),['aachen','rome']);
   const seats = Object.fromEntries(cities.features.map(f => [f.id,f.properties.seat]));
-  assert.deepEqual(seats,{ aachen: true,rome: false });
+  assert.deepEqual(seats,{ aachen: true,rome: true });
 });
 
 test('the court holds exactly the ruled people',() => {
@@ -310,13 +326,15 @@ for (const id of ['carolingian realm','__proto__']) test(`both validators refuse
   for (const result of renamedPolity(id)) assert.equal(result.code,'invalidPolity',id);
 });
 
-test('the Egypt, John and Charlemagne packages pass both validators',() => {
+test('the Egypt, John and Charlemagne packages pass both validators for every playable polity',() => {
   for (const id of ['egypt-3000bc','john-1200','charlemagne-800']) {
     const bundle = readJson(`${id}/scenario.json`), { game,world } = bundle.data, h = world.historicalScenario;
-    const options = { date: h.bookmarkDate,polityId: h.playablePolityIds[0] };
     const input = { game,world,regions: readJson(`${id}/regions.geojson`),assetManifest: readJson(`${id}/manifest.json`) };
-    assert.equal(validateHistoricalScenario(input,options).ok,true,id);
-    assert.equal(validateHistoricalCourt(h,options).ok,true,id);
+    for (const polityId of h.playablePolityIds) {
+      const options = { date: h.bookmarkDate,polityId };
+      assert.equal(validateHistoricalScenario(input,options).ok,true,`${id} ${polityId}`);
+      assert.equal(validateHistoricalCourt(h,options).ok,true,`${id} ${polityId}`);
+    }
   }
 });
 
@@ -363,6 +381,103 @@ test('a realm start follows Charles under the title of emperor',() => {
   assert.equal(state.cities.aachen.familyId,'royal-house');
 });
 
+// Leo III's court. Every sourced value comes from the church record of ad800-review.json.
+const church = review.church;
+const papalCourt = () => loadPackage().h.courtSeeds[PAPAL];
+const sourcedBy = (claim,ids) => { assert.equal(claim.status,'sourced'); assert.deepEqual(claim.sourceIds,regional(ids)); for (const id of ids) assert.ok(church.sourceIds.includes(id),id); };
+
+test('Leo III rules the Papal States from Rome as a documented pope',() => {
+  const court = papalCourt(), leo = personIn(court,'leo-iii');
+  assert.equal(court.polityId,PAPAL);
+  assert.equal(court.seatId,church.seatSettlementId);
+  assert.equal(court.rulerId,'leo-iii');
+  assert.equal(court.successionLaw,'merit');
+  assert.equal(church.aliveOnBookmark,true);
+  assert.equal(leo.name,church.popeNameSv);
+  assert.equal(leo.identityOrigin,'documented');
+  assert.match(leo.originLabelSv,/^Dokumenterad person/);
+  assert.equal(leo.claims.identity.noteSv,`${church.positionSv}.`);
+  sourcedBy(leo.claims.identity,['ce-leo3','osborne-rome','rfa-801-coronation']);
+  const ruler = court.offices.find(o => o.id === 'ruler');
+  assert.equal(ruler.name,'Påve');
+  assert.equal(ruler.holderId,'leo-iii');
+  assert.ok(ruler.claims.identity.noteSv.includes(church.electedAsWorded));
+  sourcedBy(ruler.claims.identity,['ce-leo3']);
+  assert.deepEqual(court.religions.map(r => [r.id,r.name,r.leaderId]),[['latin-church','Den latinska kyrkan','leo-iii']]);
+  sourcedBy(court.religions[0].claims.identity,['ce-leo3','rfa-801-coronation']);
+});
+
+test('Leo III has a generated birth value, no parents and no spouse',() => {
+  const leo = personIn(papalCourt(),'leo-iii');
+  assert.equal(leo.bornAt,'0750-01-01');
+  assert.deepEqual(leo.claims.bornAt,{ status: 'generated',noteSv: 'Ingen källa ger födelseår. Den första januari 750 är ett spelvärde.',sourceIds: [] });
+  assert.equal(leo.claims.kinship.status,'generated');
+  assert.deepEqual(leo.legalParentIds,[]);
+  assert.deepEqual(leo.spouseIds,[]);
+  assert.equal(leo.claims.spouseIds,undefined);
+});
+
+test('Leo III keeps a generated household of his own and three generated courtiers',() => {
+  const { h } = loadPackage(), court = h.courtSeeds[PAPAL];
+  assert.deepEqual(court.people.map(p => p.id),['leo-iii','generated-courtier-1','generated-courtier-2','generated-courtier-3']);
+  for (const person of court.people.filter(p => p.id !== 'leo-iii')) {
+    assert.equal(person.identityOrigin,'generated');
+    assert.equal(person.originLabelSv,'Genererad person');
+    assert.ok(person.name.endsWith(' (genererad)'),person.name);
+  }
+  const household = court.families.find(f => f.id === 'leo-household');
+  assert.equal(household.name,'Leos hushåll');
+  assert.equal(household.headId,'leo-iii');
+  assert.equal(household.claims.identity.status,'generated');
+  assert.equal(personIn(court,'leo-iii').familyId,'leo-household');
+  assert.ok(!court.families.some(f => f.id === 'royal-house'),'two courts never share a ruling family id');
+  assert.notEqual(court.families[0].id,'leo-household','the start card preselects a non-ruling house');
+  assert.deepEqual(court.cities.map(c => [c.id,c.familyId,c.regionId]),[['rome','leo-household','hbm-ad800-222']]);
+  for (const row of [...court.people,...court.families,...court.offices,...court.religions,...court.cities])
+    for (const claim of Object.values(row.claims)) for (const id of claim.sourceIds) assert.ok(Object.hasOwn(h.sources,id),`${row.id}: ${id}`);
+});
+
+test('a realm start of the Papal States follows Leo III under merit succession',() => {
+  const { h } = loadPackage();
+  const state = createHistoricalCharacterSystem({ historicalScenario: h,date: DATE,polityId: PAPAL,seed: 9 });
+  const view = getCharacterPresentation(state);
+  assert.equal(state.realm.id,PAPAL);
+  assert.equal(state.realm.successionLaw,'merit');
+  assert.equal(state.identity.familyId,'leo-household');
+  assert.equal(view.representative.id,'leo-iii');
+  assert.equal(state.offices.ruler.name,'Påve');
+  assert.equal(state.offices.ruler.holderId,'leo-iii');
+  assert.equal(state.religions['latin-church'].leaderId,'leo-iii');
+  assert.equal(state.cities.rome.familyId,'leo-household');
+  assert.equal(view.succession.law,'merit');
+});
+
+test('a family start of the Papal States follows a generated house and keeps Leo III in office',() => {
+  const { h } = loadPackage();
+  const state = createHistoricalCharacterSystem({ historicalScenario: h,date: DATE,polityId: PAPAL,mode: 'family',seed: 9 });
+  assert.equal(state.identity.familyId,h.courtSeeds[PAPAL].families[0].id);
+  assert.notEqual(getCharacterPresentation(state).representative.id,'leo-iii');
+  assert.equal(state.offices.ruler.holderId,'leo-iii');
+  assert.equal(state.realm.successionLaw,'merit');
+});
+
+test('the start card offers both AD 800 polities and a prepared start reaches the Papal States',() => {
+  const { bundle,regions,cities } = loadPackage();
+  const option = historicalStartOption(bundle,regions,cities);
+  assert.deepEqual(option.polities.map(p => [p.id,p.name,p.ruler.id]),[[POLITY,'Karls rike (karolingiska riket)','karl'],[PAPAL,'Kyrkostaten','leo-iii']]);
+  const scenario = { data: bundle.data,meta: bundle.scenario,regions,cities };
+  const result = prepareHistoricalCampaignStart({ request: { historicalStart: { date: DATE,polityId: PAPAL,mode: 'realm' },gamePatch: { country: PAPAL } },scenario });
+  assert.equal(result.ok,true,result.error);
+  assert.equal(result.data.world.characterSystem.identity.polityId,PAPAL);
+  assert.equal(result.data.world.characterSystem.offices.ruler.holderId,'leo-iii');
+});
+
+test('the package context and coverage say that the Papal States are playable',() => {
+  const { h } = loadPackage();
+  assert.match(h.contextSv,/Kyrkostaten/);
+  assert.match(h.coverageNoteSv,/Kyrkostaten/);
+});
+
 test('coverage notes state what each continent withholds and cite real sources',() => {
   const { h } = loadPackage();
   const note = area => h.coverage.find(c => c.area === area).noteSv;
@@ -388,10 +503,13 @@ test('coverage notes state what each continent withholds and cite real sources',
 });
 
 test('player text keeps Swedish letters and the house style',() => {
-  const { h,court } = loadPackage();
+  const { h } = loadPackage();
   const claims = rows => rows.flatMap(r => Object.values(r.claims).map(c => c.noteSv));
+  const courts = Object.values(h.courtSeeds);
+  assert.equal(courts.length,2);
   const texts = [h.contextSv,h.calendarNoteSv,h.coverageNoteSv,h.eraLabelSv,...h.coverage.map(c => c.noteSv),...h.polities.map(p => p.noteSv),
-    ...h.settlements.map(s => s.noteSv),...claims(court.people),...claims(court.offices),...claims(court.religions),...claims(court.families)].filter(Boolean);
+    ...h.settlements.map(s => s.noteSv),...courts.flatMap(court => [...claims(court.people),...claims(court.offices),...claims(court.religions),...claims(court.families),
+      ...court.people.map(p => p.name),...court.families.map(f => f.name),...court.offices.map(o => o.name)])].filter(Boolean);
   for (const text of texts) {
     assert.ok(!/[–—]/.test(text),text);
     assert.ok(!/inte [^.]{1,60}, utan /i.test(text),text);

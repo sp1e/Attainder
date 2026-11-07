@@ -63,7 +63,7 @@ const SOURCE_HASHES = {
 // Fields: idPrefix (region id prefix), coverage (area rows), addRegionalSources, mapMappings (extra polities from the review file),
 // coreIndex and coreSourceIds (the playable polity feature; a review mapping for coreIndex supplies its sources and note instead), selectiveCore (clip transform, or null) with selectiveCoreNoteSv,
 // compositeNote (appended to the playable polity note, or null), quarantine (source index to geometry status),
-// selectionTransformation and quarantineTransformation (manifest lines), seatId (also the seat's Getty source id),
+// selectionTransformation and quarantineTransformation (manifest lines), seatId (the primary seat's Getty source id),
 // citySourceIds (when settlements go beyond the seat), gettyRetrievedAt, gettyTransformation and gettyNotice
 // (wording for a package whose settlements go beyond one seat), and three review readers.
 const PACKAGE_RECORDS = [
@@ -146,10 +146,13 @@ async function loadInputs() {
   return inputs;
 }
 
-// The polity features of one package: the playable polity first, then the review file's mapped polities.
+// The polity features of one package: the primary polity first, then the review file's mapped polities.
+// An extra playable polity keeps its reviewed feature, polity record and list position, so polity colours stay put.
 function polityMappings(pkg,h,review) {
   const reviewed = pkg.mapMappings(review), core = reviewed.find(m => m.index === pkg.coreIndex);
   const mappings = [{ index: pkg.coreIndex,polityId: h.playablePolityIds[0],nameSv: h.polities[0].nameSv,sourceIds: core?.sourceIds ?? pkg.coreSourceIds,noteSv: core?.noteSv ?? h.polities[0].noteSv },...reviewed.filter(m => m !== core)];
+  const unmapped = h.playablePolityIds.filter(id => !mappings.some(m => m.polityId === id));
+  if (unmapped.length) throw new Error(`${h.contentId}: no reviewed map feature for playable polity ${unmapped.join(', ')}`);
   // Several features can belong to one polity; each polity gets a single record.
   for (const m of mappings.slice(1)) if (!h.polities.some(p => p.id === m.polityId)) h.polities.push({ id: m.polityId,nameSv: m.nameSv,sourceIds: m.sourceIds,boundary: 'approximate',noteSv: m.noteSv });
   return mappings;
@@ -185,8 +188,10 @@ function backgroundFeatures(land,owned) {
   return background;
 }
 
-function citiesFor(pkg,h) {
-  return { type: 'FeatureCollection',features: h.settlements.map(s => ({ type: 'Feature',id: s.id,properties: { id: s.id,name: s.nameSv,city: s.nameSv,owner: s.polityId,tier: 3,seat: s.id === pkg.seatId,placementNoteSv: s.noteSv,sourceIds: s.sourceIds },geometry: { type: 'Point',coordinates: s.coordinates } })) };
+// Every playable polity's court seat carries the seat flag.
+function citiesFor(h) {
+  const seats = new Set(h.playablePolityIds.map(id => h.courtSeeds[id].seatId));
+  return { type: 'FeatureCollection',features: h.settlements.map(s => ({ type: 'Feature',id: s.id,properties: { id: s.id,name: s.nameSv,city: s.nameSv,owner: s.polityId,tier: 3,seat: seats.has(s.id),placementNoteSv: s.noteSv,sourceIds: s.sourceIds },geometry: { type: 'Point',coordinates: s.coordinates } })) };
 }
 
 function regionReviewFor(pkg,source,review,mappings) {
@@ -269,16 +274,19 @@ async function buildPackage(pkg,{ inputs,physical,land }) {
   const mappings = polityMappings(pkg,h,review);
   const owned = ownedFeatures(pkg,h,source,mappings);
   const regions = { type: 'FeatureCollection',features: [...backgroundFeatures(land,owned),...owned] };
-  const cities = citiesFor(pkg,h);
+  const cities = citiesFor(h);
   h.regionReview = regionReviewFor(pkg,source,review,mappings);
   const { list: transformations,naturalEarth } = transformationsFor(pkg);
   const assetManifest = await manifestFor(pkg,h,physical,regions,cities,transformations);
   h.assetManifest = assetManifest;
   const componentLicenses = componentLicensesFor(pkg,h,inputs,physical,transformations,naturalEarth);
   const world = worldFor(h,regions,assetManifest,componentLicenses);
+  // The default start and the bundle name stay on the primary polity; every playable polity must validate.
   const game = { country: h.playablePolityIds[0],startDate: h.bookmarkDate,gameDate: h.bookmarkDate,difficulty: 'standard',language: 'Svenska' };
-  const valid = validateHistoricalScenario({ game,world,regions,assetManifest },{ date: h.bookmarkDate,polityId: h.playablePolityIds[0] });
-  if (!valid.ok) throw new Error(`${h.contentId}: ${valid.code}`);
+  for (const polityId of h.playablePolityIds) {
+    const valid = validateHistoricalScenario({ game,world,regions,assetManifest },{ date: h.bookmarkDate,polityId });
+    if (!valid.ok) throw new Error(`${h.contentId} ${polityId}: ${valid.code}`);
+  }
   const bundle = bundleFor(h,world,game,regions,cities);
   return { contentId: h.contentId,outputs: { 'regions.geojson': json(regions),'cities.geojson': json(cities),'scenario.json': json(bundle),'manifest.json': json(assetManifest) },
     summary: { contentId: h.contentId,regions: regions.features.length,reviewedCandidates: h.regionReview.length,polities: h.polities.length } };

@@ -96,7 +96,7 @@
   "charlemagne-800": {
     "generator": {
       "file": "scripts/build-historical-scenarios.mjs",
-      "sha256": "ea7b2c4282a17c657d36dae0417aa5184f714ae1a71a30f0e9532fe3d00cb7da",
+      "sha256": "254b512d22db675ac06fa22107902d86ae36eac4a62785aab1a7eda7fbc92462",
       "polygonClipping": "0.15.7"
     },
     "sourceFiles": [
@@ -132,7 +132,7 @@
     "authoredInputs": [
       {
         "fileName": "authored-scenarios.mjs",
-        "sha256": "e13cda0643c16b8305759dd8d6e451214038800f0035ef18966b986dc783f595"
+        "sha256": "7f110ec2cd938207e65f4fd44aaed7d17d2bbb684da5c6f7cad331b779efcefc"
       },
       {
         "fileName": "ad800-review.json",
