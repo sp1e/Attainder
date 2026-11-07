@@ -1,0 +1,2176 @@
+{
+  "schema": "attainder-d2-maya-research-v1",
+  "preparedOn": "2026-11-07",
+  "bookmark": "0800-12-31",
+  "status": "Source-review-complete-with-explicit-uncertainty",
+  "notDropInCourtSeed": true,
+  "scope": "Five bounded ancient city cases; no aggregate Maya polity presumed.",
+  "cases": [
+    {
+      "id": "tikal",
+      "labelSv": "Tikal",
+      "bookmark": "0800-12-31",
+      "reviewStatus": "Source-review-complete; research case only, no playable court or geometry approval.",
+      "seedReadiness": "withheld",
+      "rulerCandidate": "Nuun ’Ujol K’inich",
+      "rulerAtBookmark": null,
+      "people": [],
+      "peopleWithheldReasonSv": "Levande härskare och hov den 31 december 800 kräver ytterligare belägg. Inga födelsedatum, makar eller arvingar fylls i.",
+      "seat": {
+        "labelSv": "Tikal",
+        "tgnId": "7007807",
+        "coordinates": [
+          -89.65,
+          17.3333
+        ],
+        "decimalStrings": [
+          "-89.6500",
+          "17.3333"
+        ],
+        "sourceId": "tgn-tikal",
+        "precision": "Source-supplied site point; not an identified palace or state centre of mass.",
+        "insideAcceptedPolygon": null
+      },
+      "successionLaw": "none-fits",
+      "successionReason": "Reviewed evidence does not justify mapping the AD 800 transfer mechanism to an engine law.",
+      "historicalKin": [],
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "claimIds": [
+        "d2-800-tikal-seat",
+        "d2-800-tikal-name",
+        "d2-800-tikal-current",
+        "d2-800-tikal-kin",
+        "d2-800-tikal-succession",
+        "d2-800-tikal-area"
+      ],
+      "territory": {
+        "geometry": null,
+        "sourceFeatureIndexes": [],
+        "accepted": false,
+        "area": null,
+        "radius": null
+      },
+      "noteSv": "Sätet är belagt som arkeologisk plats. Markören anger ingen statsgräns."
+    },
+    {
+      "id": "calakmul",
+      "labelSv": "Calakmul",
+      "bookmark": "0800-12-31",
+      "reviewStatus": "Source-review-complete; research case only, no playable court or geometry approval.",
+      "seedReadiness": "withheld",
+      "rulerCandidate": null,
+      "rulerAtBookmark": null,
+      "people": [],
+      "peopleWithheldReasonSv": "Levande härskare och hov den 31 december 800 kräver ytterligare belägg. Inga födelsedatum, makar eller arvingar fylls i.",
+      "seat": {
+        "labelSv": "Calakmul",
+        "tgnId": "7032431",
+        "coordinates": [
+          -89.8105,
+          18.1062
+        ],
+        "decimalStrings": [
+          "-89.8105",
+          "18.1062"
+        ],
+        "sourceId": "tgn-calakmul",
+        "precision": "Source-supplied site point; not an identified palace or state centre of mass.",
+        "insideAcceptedPolygon": null
+      },
+      "successionLaw": "none-fits",
+      "successionReason": "Reviewed evidence does not justify mapping the AD 800 transfer mechanism to an engine law.",
+      "historicalKin": [],
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "claimIds": [
+        "d2-800-calakmul-seat",
+        "d2-800-calakmul-name",
+        "d2-800-calakmul-conflict",
+        "d2-800-calakmul-current",
+        "d2-800-calakmul-succession",
+        "d2-800-calakmul-area"
+      ],
+      "territory": {
+        "geometry": null,
+        "sourceFeatureIndexes": [],
+        "accepted": false,
+        "area": null,
+        "radius": null
+      },
+      "noteSv": "Sätet är belagt som arkeologisk plats. Markören anger ingen statsgräns."
+    },
+    {
+      "id": "copan",
+      "labelSv": "Copán",
+      "bookmark": "0800-12-31",
+      "reviewStatus": "Source-review-complete; research case only, no playable court or geometry approval.",
+      "seedReadiness": "withheld",
+      "rulerCandidate": "Yax Pasaj Chan Yopaat",
+      "rulerAtBookmark": null,
+      "people": [],
+      "peopleWithheldReasonSv": "Levande härskare och hov den 31 december 800 kräver ytterligare belägg. Inga födelsedatum, makar eller arvingar fylls i.",
+      "seat": {
+        "labelSv": "Copán",
+        "tgnId": "7018167",
+        "coordinates": [
+          -89.1667,
+          14.8667
+        ],
+        "decimalStrings": [
+          "-89.1667",
+          "14.8667"
+        ],
+        "sourceId": "tgn-copan",
+        "precision": "Source-supplied site point; not an identified palace or state centre of mass.",
+        "insideAcceptedPolygon": null
+      },
+      "successionLaw": "none-fits",
+      "successionReason": "Reviewed evidence does not justify mapping the AD 800 transfer mechanism to an engine law.",
+      "historicalKin": [
+        {
+          "subject": "Yax Pasaj Chan Yopaat",
+          "relation": "mother",
+          "object": "Lady Chak Nik Ye Xook",
+          "aliveAtBookmark": null,
+          "claimId": "d2-800-copan-mother"
+        }
+      ],
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "claimIds": [
+        "d2-800-copan-seat",
+        "d2-800-copan-ruler",
+        "d2-800-copan-later-mention",
+        "d2-800-copan-current",
+        "d2-800-copan-mother",
+        "d2-800-copan-successor",
+        "d2-800-copan-last-date",
+        "d2-800-copan-succession",
+        "d2-800-copan-area"
+      ],
+      "territory": {
+        "geometry": null,
+        "sourceFeatureIndexes": [],
+        "accepted": false,
+        "area": null,
+        "radius": null
+      },
+      "noteSv": "Sätet är belagt som arkeologisk plats. Markören anger ingen statsgräns."
+    },
+    {
+      "id": "palenque",
+      "labelSv": "Palenque",
+      "bookmark": "0800-12-31",
+      "reviewStatus": "Source-review-complete; research case only, no playable court or geometry approval.",
+      "seedReadiness": "withheld",
+      "rulerCandidate": "Wak Kimi Janaahb’ Pakal",
+      "rulerAtBookmark": null,
+      "people": [],
+      "peopleWithheldReasonSv": "Levande härskare och hov den 31 december 800 kräver ytterligare belägg. Inga födelsedatum, makar eller arvingar fylls i.",
+      "seat": {
+        "labelSv": "Palenque",
+        "tgnId": "7007153",
+        "coordinates": [
+          -92.0167,
+          17.65
+        ],
+        "decimalStrings": [
+          "-92.0167",
+          "17.6500"
+        ],
+        "sourceId": "tgn-palenque",
+        "precision": "Source-supplied site point; not an identified palace or state centre of mass.",
+        "insideAcceptedPolygon": null
+      },
+      "successionLaw": "none-fits",
+      "successionReason": "Reviewed evidence does not justify mapping the AD 800 transfer mechanism to an engine law.",
+      "historicalKin": [],
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "claimIds": [
+        "d2-800-palenque-seat",
+        "d2-800-palenque-office",
+        "d2-800-palenque-calendar",
+        "d2-800-palenque-current",
+        "d2-800-palenque-814",
+        "d2-800-palenque-succession",
+        "d2-800-palenque-area"
+      ],
+      "territory": {
+        "geometry": null,
+        "sourceFeatureIndexes": [],
+        "accepted": false,
+        "area": null,
+        "radius": null
+      },
+      "noteSv": "Sätet är belagt som arkeologisk plats. Markören anger ingen statsgräns."
+    },
+    {
+      "id": "aguateca",
+      "labelSv": "Aguateca",
+      "bookmark": "0800-12-31",
+      "reviewStatus": "Source-review-complete; research case only, no playable court or geometry approval.",
+      "seedReadiness": "withheld",
+      "rulerCandidate": "Tan Te’ K’inich",
+      "rulerAtBookmark": null,
+      "people": [],
+      "peopleWithheldReasonSv": "Levande härskare och hov den 31 december 800 kräver ytterligare belägg. Inga födelsedatum, makar eller arvingar fylls i.",
+      "seat": {
+        "labelSv": "Aguateca",
+        "tgnId": "7030187",
+        "coordinates": [
+          -90.203,
+          16.399
+        ],
+        "decimalStrings": [
+          "-90.2030",
+          "16.3990"
+        ],
+        "sourceId": "tgn-aguateca",
+        "precision": "Source-supplied site point; not an identified palace or state centre of mass.",
+        "insideAcceptedPolygon": null
+      },
+      "successionLaw": "none-fits",
+      "successionReason": "Reviewed evidence does not justify mapping the AD 800 transfer mechanism to an engine law.",
+      "historicalKin": [],
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "claimIds": [
+        "d2-800-aguateca-seat",
+        "d2-800-aguateca-getty-conflict",
+        "d2-800-aguateca-ruler",
+        "d2-800-aguateca-current",
+        "d2-800-aguateca-destruction",
+        "d2-800-aguateca-household",
+        "d2-800-aguateca-succession"
+      ],
+      "territory": {
+        "geometry": null,
+        "sourceFeatureIndexes": [],
+        "accepted": false,
+        "area": null,
+        "radius": null
+      },
+      "noteSv": "Sätet är belagt som arkeologisk plats. Markören anger ingen statsgräns."
+    }
+  ],
+  "claims": [
+    {
+      "id": "d2-800-tikal-seat",
+      "caseId": "tikal",
+      "statement": "Tikal is identified by Getty as an ancient/deserted site; the supplied decimal point is [-89.65,17.3333] in [longitude, latitude] order.",
+      "status": "sourced",
+      "value": {
+        "tgnId": "7007807",
+        "coordinates": [
+          -89.65,
+          17.3333
+        ],
+        "decimalStrings": [
+          "-89.6500",
+          "17.3333"
+        ],
+        "geometryType": "Point"
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "tgn-tikal",
+          "locator": "Record 7007807: Coordinates and site classification"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The exact TGN record identifies the archaeological/deserted settlement and prints longitude -89.6500 and latitude 17.3333. The submitted [longitude, latitude] pair is copied correctly; it identifies a site point only.",
+        "sourceLocators": [
+          {
+            "sourceId": "tgn-tikal",
+            "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7007807",
+            "locator": "TGN 7007807: record heading, Coordinates decimal-degree fields and Note"
+          },
+          {
+            "sourceId": "tgn-tikal",
+            "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7007807",
+            "locator": "TGN 7007807: Hierarchical Position and Place Types"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-calakmul-seat",
+      "caseId": "calakmul",
+      "statement": "Calakmul is identified by Getty as an ancient/deserted site; the supplied decimal point is [-89.8105,18.1062] in [longitude, latitude] order.",
+      "status": "sourced",
+      "value": {
+        "tgnId": "7032431",
+        "coordinates": [
+          -89.8105,
+          18.1062
+        ],
+        "decimalStrings": [
+          "-89.8105",
+          "18.1062"
+        ],
+        "geometryType": "Point"
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "tgn-calakmul",
+          "locator": "Record 7032431: Coordinates and site classification"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The exact TGN record identifies the archaeological/deserted settlement and prints longitude -89.8105 and latitude 18.1062. The submitted [longitude, latitude] pair is copied correctly; it identifies a site point only.",
+        "sourceLocators": [
+          {
+            "sourceId": "tgn-calakmul",
+            "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7032431",
+            "locator": "TGN 7032431: record heading, Coordinates decimal-degree fields and Note"
+          },
+          {
+            "sourceId": "tgn-calakmul",
+            "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7032431",
+            "locator": "TGN 7032431: Hierarchical Position and Place Types"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-copan-seat",
+      "caseId": "copan",
+      "statement": "Copán is identified by Getty as an ancient/deserted site; the supplied decimal point is [-89.1667,14.8667] in [longitude, latitude] order.",
+      "status": "sourced",
+      "value": {
+        "tgnId": "7018167",
+        "coordinates": [
+          -89.1667,
+          14.8667
+        ],
+        "decimalStrings": [
+          "-89.1667",
+          "14.8667"
+        ],
+        "geometryType": "Point"
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "tgn-copan",
+          "locator": "Record 7018167: Coordinates and site classification"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The exact TGN record identifies the archaeological/deserted settlement and prints longitude -89.1667 and latitude 14.8667. The submitted [longitude, latitude] pair is copied correctly; it identifies a site point only.",
+        "sourceLocators": [
+          {
+            "sourceId": "tgn-copan",
+            "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7018167",
+            "locator": "TGN 7018167: record heading, Coordinates decimal-degree fields and Note"
+          },
+          {
+            "sourceId": "tgn-copan",
+            "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7018167",
+            "locator": "TGN 7018167: Hierarchical Position and Place Types"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-palenque-seat",
+      "caseId": "palenque",
+      "statement": "Palenque is identified by Getty as an ancient/deserted site; the supplied decimal point is [-92.0167,17.65] in [longitude, latitude] order.",
+      "status": "sourced",
+      "value": {
+        "tgnId": "7007153",
+        "coordinates": [
+          -92.0167,
+          17.65
+        ],
+        "decimalStrings": [
+          "-92.0167",
+          "17.6500"
+        ],
+        "geometryType": "Point"
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "tgn-palenque",
+          "locator": "Record 7007153: Coordinates and site classification"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The exact TGN record identifies the archaeological/deserted settlement and prints longitude -92.0167 and latitude 17.6500. The submitted [longitude, latitude] pair is copied correctly; it identifies a site point only. Getty separately links the nearby inhabited Palenque record 1099861.",
+        "sourceLocators": [
+          {
+            "sourceId": "tgn-palenque",
+            "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7007153",
+            "locator": "TGN 7007153: record heading, Coordinates decimal-degree fields and Note"
+          },
+          {
+            "sourceId": "tgn-palenque",
+            "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7007153",
+            "locator": "TGN 7007153: Hierarchical Position and Place Types"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-aguateca-seat",
+      "caseId": "aguateca",
+      "statement": "Aguateca is identified by Getty as an ancient/deserted site; the supplied decimal point is [-90.203,16.399] in [longitude, latitude] order.",
+      "status": "sourced",
+      "value": {
+        "tgnId": "7030187",
+        "coordinates": [
+          -90.203,
+          16.399
+        ],
+        "decimalStrings": [
+          "-90.2030",
+          "16.3990"
+        ],
+        "geometryType": "Point"
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "tgn-aguateca",
+          "locator": "Record 7030187: Coordinates and site classification"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The exact TGN record identifies the archaeological/deserted settlement and prints longitude -90.2030 and latitude 16.3990. The submitted [longitude, latitude] pair is copied correctly; it identifies a site point only. The contradictory country text in the Note remains flagged separately.",
+        "sourceLocators": [
+          {
+            "sourceId": "tgn-aguateca",
+            "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7030187",
+            "locator": "TGN 7030187: record heading, Coordinates decimal-degree fields and Note"
+          },
+          {
+            "sourceId": "tgn-aguateca",
+            "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7030187",
+            "locator": "TGN 7030187: Hierarchical Position and Place Types"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-aguateca-getty-conflict",
+      "caseId": "aguateca",
+      "statement": "The Aguateca Note describes an ancient Maya site in Guatemala and also says “Located in: Mexico”; the hierarchy places it in Guatemala > Petén. This internal contradiction is unresolved.",
+      "status": "sourced",
+      "value": {
+        "contradictoryNoteText": "Located in: Mexico",
+        "hierarchy": "Guatemala > Petén",
+        "separateCountryField": false
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "tgn-aguateca",
+          "locator": "TGN 7030187, Note (single HTML span) and Hierarchical Position"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "The internal Note contradiction remains unresolved; this record supplies no polygon acceptance.",
+      "review": {
+        "initialVerdict": "corrected",
+        "finding": "The revised wording and value fields were confirmed in the separate follow-up.",
+        "sourceLocators": [
+          {
+            "sourceId": "tgn-aguateca",
+            "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7030187",
+            "locator": "TGN 7030187, Note (single HTML span) and Hierarchical Position"
+          }
+        ],
+        "followupVerdict": "confirmed"
+      }
+    },
+    {
+      "id": "d2-800-tikal-name",
+      "caseId": "tikal",
+      "statement": "Calvin lists Nuun ’Ujol K’inich around AD 800 with explicit uncertainty.",
+      "status": "sourced",
+      "value": "Nuun ’Ujol K’inich",
+      "sourceRefs": [
+        {
+          "sourceId": "calvin2012",
+          "locator": "Printed p. 37, Tikal V"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "ca. AD 800?"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "Calvin prints Nuun ’Ujol K’inich with “ca. AD 800?”. Both approximation and the question mark are essential.",
+        "sourceLocators": [
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 37 / PDF page 38, Tikal V: Nuun ’Ujol K’inich and Dark Sun"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-tikal-current",
+      "caseId": "tikal",
+      "statement": "Whether Nuun ’Ujol K’inich held power and was alive on 0800-12-31 remains unresolved in this bounded source set.",
+      "status": "uncertain",
+      "value": null,
+      "sourceRefs": [
+        {
+          "sourceId": "calvin2012",
+          "locator": "Printed p. 37"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "Find a dated living act or a sufficiently supported regnal span for the exact bookmark.",
+      "review": {
+        "initialVerdict": "uncertain",
+        "finding": "The approximate, questioned AD 800 listing gives no accession, death or living dated act that fixes his status on 0800-12-31.",
+        "sourceLocators": [
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 37 / PDF page 38, Tikal V: Nuun ’Ujol K’inich and Dark Sun"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-tikal-kin",
+      "caseId": "tikal",
+      "statement": "Calvin tentatively identifies Nuun Ujol K’inich as Dark Sun’s father; the relation is explicitly questioned.",
+      "status": "uncertain",
+      "value": {
+        "parent": "Nuun Ujol K’inich",
+        "child": "Dark Sun",
+        "activeAtBookmark": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "calvin2012",
+          "locator": "Printed p. 37, Dark Sun father line"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "Dark Sun: ca.AD 810?",
+          "Father: Nuun Ujol K’inich?"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "Dark Sun’s father is listed as Nuun Ujol K’inich with a question mark. Dark Sun’s own “ca. AD 810?” entry is also tentative; neither person’s survival in 800 follows.",
+        "sourceLocators": [
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 37 / PDF page 38, Tikal V: Nuun ’Ujol K’inich and Dark Sun"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-calakmul-name",
+      "caseId": "calakmul",
+      "statement": "Calvin places Bolon K’awiil around 771–789? and later lists Chan Pet around 849?; these entries do not identify the ruler on 0800-12-31.",
+      "status": "sourced",
+      "value": {
+        "rulerAtBookmark": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "calvin2012",
+          "locator": "Printed pp. 3–4"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "ca.AD 771–789?",
+          "ca.AD 849?"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The table gives Bolon K’awiil “ca. AD 771–789?” and Chan Pet “ca. AD 849?”. Neither entry identifies the ruler at the bookmark.",
+        "sourceLocators": [
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 3 / PDF page 4, Calakmul II: Ruler Y, Great Serpent, Bolon K’awiil"
+          },
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 4 / PDF page 5, Calakmul III: Chan Pet and Aj Took’"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-calakmul-conflict",
+      "caseId": "calakmul",
+      "statement": "INAH associates Bolon Kawil’s accession with 751, differing from Calvin’s qualified late-eighth-century entry. Their identities and chronologies cannot be silently combined.",
+      "status": "uncertain",
+      "value": {
+        "resolvedAccession": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "inah-calakmul",
+          "locator": "Structure XI paragraph"
+        },
+        {
+          "sourceId": "calvin2012",
+          "locator": "Printed p.3"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "751",
+          "ca.AD 771–789?"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "Same person, namesakes, or differing readings? Not resolved.",
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "INAH associates Bolon Kawil’s accession with 751 while calling the ball-court construction date an assumption. Calvin’s differently framed entry is ca. AD 771–789?; it also distinguishes an earlier Bolon K’awiil I alias. Identity and chronology remain unreconciled.",
+        "sourceLocators": [
+          {
+            "sourceId": "inah-calakmul",
+            "url": "https://lugares.inah.gob.mx/en/pagina-de-elemento/1802",
+            "locator": "Gran Acrópolis, Structure XI or Ball Court: assumption of construction in 751 and Bolon Kawil accession"
+          },
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 3 / PDF page 4, Calakmul II: Ruler Y, Great Serpent, Bolon K’awiil"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-calakmul-current",
+      "caseId": "calakmul",
+      "statement": "The exact Calakmul ruler, living status and royal household on 0800-12-31 remain unresolved.",
+      "status": "uncertain",
+      "value": null,
+      "sourceRefs": [
+        {
+          "sourceId": "calvin2012",
+          "locator": "Printed pp. 3–4"
+        },
+        {
+          "sourceId": "braswell2004",
+          "locator": "Printed pp. 190–192"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "Broad kingship continuity does not name an800 ruler.",
+      "review": {
+        "initialVerdict": "uncertain",
+        "finding": "The tables leave the bookmark ruler unidentified. The chapter’s broad continuation of kingship does not identify a living officeholder or household on 0800-12-31.",
+        "sourceLocators": [
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 3 / PDF page 4, Calakmul II: Ruler Y, Great Serpent, Bolon K’awiil"
+          },
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 4 / PDF page 5, Calakmul III: Chan Pet and Aj Took’"
+          },
+          {
+            "sourceId": "braswell2004",
+            "url": "https://pages.ucsd.edu/~gbraswel/docs/Braswell%20CV_Peer%20Reviewed%20Chapters%20%26%20Articles/Braswell%20et%20al%202004b.pdf",
+            "locator": "Printed p. 190 / PDF page 29: ninth-century population loss and kingship continuing to at least 899 or 909"
+          },
+          {
+            "sourceId": "braswell2004",
+            "url": "https://pages.ucsd.edu/~gbraswel/docs/Braswell%20CV_Peer%20Reviewed%20Chapters%20%26%20Articles/Braswell%20et%20al%202004b.pdf",
+            "locator": "Printed p. 192 / PDF page 31: kingship, source-specific Copán AD 820 endpoint and different abandonment sequences"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-copan-ruler",
+      "caseId": "copan",
+      "statement": "Calvin identifies Yax Pasaj Chan Yopaat as the sixteenth successor, giving a qualified 763–810? reign and accession 28 June 763.",
+      "status": "sourced",
+      "value": {
+        "name": "Yax Pasaj Chan Yopaat",
+        "dynasticOrdinal": 16
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "calvin2012",
+          "locator": "Printed p. 13, Copan IV"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "AD 763–810?",
+          "28 June 763",
+          "9.16.12.5.17 6 Kaban 10 Mol"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "Calvin supplies Yax Pasaj Chan Yopaat, “16th Successor”, AD 763–810?, and accession 28 June 763 (9.16.12.5.17 6 Kaban 10 Mol). The endpoint remains questioned.",
+        "sourceLocators": [
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 13 / PDF page 14, Copan IV: Yax Pasaj Chan Yopaat and ’Ukit Took’"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-copan-later-mention",
+      "caseId": "copan",
+      "statement": "McNeil and colleagues report Yax Pasaj’s last inscriptional mention in 810 and an Altar L event in 822.",
+      "status": "sourced",
+      "value": null,
+      "sourceRefs": [
+        {
+          "sourceId": "mcneil2013",
+          "locator": "Printed p. 422, Breve historia"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "810 DC",
+          "822 d.C."
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "McNeil et al. report a final inscriptional mention of Yax Pasaj in 810 and an event dated 822 on Altar L. Their sentence does not characterize the 810 mention as a living act.",
+        "sourceLocators": [
+          {
+            "sourceId": "mcneil2013",
+            "url": "https://www.asociaciontikal.com/wp-content/uploads/2017/07/Simp26-35-McNeil-et-al.pdf",
+            "locator": "Printed p. 422 / PDF page 3, Breve historia de la región del valle de Copán: final paragraph"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-copan-current",
+      "caseId": "copan",
+      "statement": "Yax Pasaj is a named Copán candidate for800; exact-date living authority remains uncertain because a later mention may be retrospective.",
+      "status": "uncertain",
+      "value": {
+        "candidate": "Yax Pasaj Chan Yopaat",
+        "aliveOnBookmark": null,
+        "birthDate": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "calvin2012",
+          "locator": "Printed p. 13"
+        },
+        {
+          "sourceId": "mcneil2013",
+          "locator": "Printed p. 422"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "Review the 810 inscription as a possible living act and the qualified reign.",
+      "review": {
+        "initialVerdict": "uncertain",
+        "finding": "The compiled interval makes Yax Pasaj a candidate. A final mention in 810 cannot by itself establish living authority in 800; the cited paragraph supplies no event-specific demonstration that the mention is contemporary rather than retrospective.",
+        "sourceLocators": [
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 13 / PDF page 14, Copan IV: Yax Pasaj Chan Yopaat and ’Ukit Took’"
+          },
+          {
+            "sourceId": "mcneil2013",
+            "url": "https://www.asociaciontikal.com/wp-content/uploads/2017/07/Simp26-35-McNeil-et-al.pdf",
+            "locator": "Printed p. 422 / PDF page 3, Breve historia de la región del valle de Copán: final paragraph"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-copan-mother",
+      "caseId": "copan",
+      "statement": "Calvin identifies Lady Chak Nik Ye Xook of Palenque as Yax Pasaj’s mother; her survival in 800 is not established here.",
+      "status": "sourced",
+      "value": {
+        "relation": "mother",
+        "name": "Lady Chak Nik Ye Xook",
+        "aliveOnBookmark": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "calvin2012",
+          "locator": "Printed p. 13, Mother line"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "Historical relation only; no active court member inferred.",
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The mother line names Lady Chak Nik Ye Xook of Palenque. It supplies no evidence of her survival on 0800-12-31.",
+        "sourceLocators": [
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 13 / PDF page 14, Copan IV: Yax Pasaj Chan Yopaat and ’Ukit Took’"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-copan-successor",
+      "caseId": "copan",
+      "statement": "Calvin lists ’Ukit Took’ with accession 6 February 822; this does not establish a living heir or a parent-child succession in 800.",
+      "status": "sourced",
+      "value": {
+        "futureAccessionOnly": true
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "calvin2012",
+          "locator": "Printed p. 13, ’Ukit Took’ entry"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "AD 822",
+          "6 February 822",
+          "9.19.11.14.15 3 Chikchan 3 Wo"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "Calvin gives ’Ukit Took’ accession 6 February 822 (9.19.11.14.15 3 Chikchan 3 Wo). This entry supplies neither parentage nor evidence of a living designated heir in 800.",
+        "sourceLocators": [
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 13 / PDF page 14, Copan IV: Yax Pasaj Chan Yopaat and ’Ukit Took’"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-copan-last-date",
+      "caseId": "copan",
+      "statement": "The Río Amarillo Altar 1 date is published as 798 or 850; it cannot be collapsed into one exact abandonment or dynastic-end date.",
+      "status": "uncertain",
+      "value": null,
+      "sourceRefs": [
+        {
+          "sourceId": "mcneil2013",
+          "locator": "Printed p. 422, Altar 1 sentence"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "798 DC (9.18.8.5.16)",
+          "850 DC (10.1.1.0.16)"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The Río Amarillo Altar 1 sentence explicitly offers 798 DC (9,18.8.5.16) or 850 DC (10.1.1.0.16). It concerns an alternative inscriptional date in the valley, not a demonstrated political-end or abandonment date.",
+        "sourceLocators": [
+          {
+            "sourceId": "mcneil2013",
+            "url": "https://www.asociaciontikal.com/wp-content/uploads/2017/07/Simp26-35-McNeil-et-al.pdf",
+            "locator": "Printed p. 422 / PDF page 3, Breve historia de la región del valle de Copán: final paragraph"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-palenque-office",
+      "caseId": "palenque",
+      "statement": "Skidmore records Janaab Pakal III / Wak Kimi Janaahb’ Pakal taking office in 799. The reproduced museum placard warns that he lacked the sacred Palenque lord title and may have held lower rank.",
+      "status": "sourced",
+      "value": {
+        "name": "Wak Kimi Janaahb’ Pakal",
+        "sovereignRank": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "palenque2007",
+          "locator": "Printed p. 90, entry and placard"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "Reigned799–?",
+          "9.18.9.4.4,7 K’an 17 Muwan",
+          "November 13, 799"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The entry and reproduced placard record the 799 accession to office and the absent k’uhul B’aakal ajaw title. Lower rank is a probability in the placard, not a settled rank determination. The museum text is witnessed through Skidmore’s reproduction.",
+        "sourceLocators": [
+          {
+            "sourceId": "palenque2007",
+            "url": "https://www.mesoweb.com/palenque/resources/rulers/PalenqueRulers-02.pdf",
+            "locator": "Printed/PDF p. 90: Janaab Pakal III entry, Comalcalco paragraph, and reproduced museum placard"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-palenque-calendar",
+      "caseId": "palenque",
+      "statement": "For accession Long Count 9.18.9.4.4, 7 K’an 17 Muwan, Skidmore’s guide p. 90 prints November 13, 799 without labeling its calendar there; Mesoweb’s table prints November 17, 799 and explicitly specifies Gregorian dates with modified GMT 584285. Retain both supplied dates; their calendar relationship remains unresolved here.",
+      "status": "sourced",
+      "value": {
+        "resolvedGregorianDate": null,
+        "guideCalendarOnPage90": null,
+        "tableCalendar": "Gregorian",
+        "tableCorrelation": "modified GMT 584285"
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "palenque2007",
+          "locator": "Printed p. 90"
+        },
+        {
+          "sourceId": "palenque-table",
+          "locator": "Calendar note and final accession row"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "November 13, 799 (guide; calendar unspecified on page 90)",
+          "November 17, 799 (table; Gregorian, modified GMT 584285)"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "The relationship between the printed dates remains unresolved; no new conversion was calculated.",
+      "review": {
+        "initialVerdict": "corrected",
+        "finding": "The revised wording and value fields were confirmed in the separate follow-up.",
+        "sourceLocators": [
+          {
+            "sourceId": "palenque2007",
+            "url": "https://www.mesoweb.com/palenque/resources/rulers/PalenqueRulers-02.pdf",
+            "locator": "Printed/PDF p. 90: Janaab Pakal III entry, Comalcalco paragraph, and reproduced museum placard"
+          },
+          {
+            "sourceId": "palenque-table",
+            "url": "https://www.mesoweb.com/palenque/resources/rulers/rulers_table.html",
+            "locator": "Opening calendar note: Gregorian, modified GMT 584285"
+          },
+          {
+            "sourceId": "palenque-table",
+            "url": "https://www.mesoweb.com/palenque/resources/rulers/rulers_table.html",
+            "locator": "Final ruler entry: Wak Kimi Janahb’ Pakal, accession row"
+          },
+          {
+            "sourceId": "palenque2007",
+            "url": "https://www.mesoweb.com/palenque/resources/rulers/PalenqueRulers-02.pdf",
+            "locator": "Printed/PDF p. 6, footnote 4: explicitly Julian date and source-supplied Gregorian equivalent"
+          },
+          {
+            "sourceId": "palenque2007",
+            "url": "https://www.mesoweb.com/palenque/resources/rulers/PalenqueRulers-02.pdf",
+            "locator": "Printed/PDF p. 81: discussion explicitly distinguishes Julian and Gregorian accession dates for a different ruler"
+          }
+        ],
+        "followupVerdict": "confirmed"
+      }
+    },
+    {
+      "id": "d2-800-palenque-current",
+      "caseId": "palenque",
+      "statement": "Wak Kimi Janaahb’ Pakal’s survival, continued office and sovereign authority on 0800-12-31 remain unresolved; the 799 accession alone is insufficient.",
+      "status": "uncertain",
+      "value": {
+        "rulerAtBookmark": null,
+        "aliveOnBookmark": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "palenque2007",
+          "locator": "Printed p. 90"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "Find post-accession living and authority evidence; review title rank.",
+      "review": {
+        "initialVerdict": "uncertain",
+        "finding": "The 799 office accession is reported, but survival, tenure through the bookmark and sovereign rank are not demonstrated. The lower-rank warning further limits identification as a reigning sacred lord.",
+        "sourceLocators": [
+          {
+            "sourceId": "palenque2007",
+            "url": "https://www.mesoweb.com/palenque/resources/rulers/PalenqueRulers-02.pdf",
+            "locator": "Printed/PDF p. 90: Janaab Pakal III entry, Comalcalco paragraph, and reproduced museum placard"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-palenque-814",
+      "caseId": "palenque",
+      "statement": "The 814 Comalcalco brick cannot securely extend Palenque’s ruler sequence: Skidmore explicitly leaves its bone emblem’s political attribution uncertain.",
+      "status": "uncertain",
+      "value": null,
+      "sourceRefs": [
+        {
+          "sourceId": "palenque2007",
+          "locator": "Printed p. 90, Comalcalco paragraph"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "AD 814"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "Skidmore explicitly leaves the 814 Comalcalco brick’s bone emblem attributable either to Palenque or Comalcalco. An extension of Janaab Pakal III’s reign or Palenque’s ruler sequence is therefore insecure.",
+        "sourceLocators": [
+          {
+            "sourceId": "palenque2007",
+            "url": "https://www.mesoweb.com/palenque/resources/rulers/PalenqueRulers-02.pdf",
+            "locator": "Printed/PDF p. 90: Janaab Pakal III entry, Comalcalco paragraph, and reproduced museum placard"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-aguateca-ruler",
+      "caseId": "aguateca",
+      "statement": "Barrois and García place Tan Te’ K’inich at Aguateca in 770–802 and associate him with the divine Mutul title on Stelae 7 and 19.",
+      "status": "sourced",
+      "value": {
+        "name": "Tan Te’ K’inich"
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "barrois2011",
+          "locator": "Printed p. 940, El fin de la dinastía del Petexbatun"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "770–802 DC",
+          "Estelas 7 y 19"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The passage places Tan Te’ K’inich at Aguateca in 770–802 DC and associates his Mutul title with Stelae 7 and 19. The authors’ general warning about hypothetical reconstructions applies; the interval is not an exact-day living-act demonstration.",
+        "sourceLocators": [
+          {
+            "sourceId": "barrois2011",
+            "url": "https://www.mesoweb.com/Simposio/pdf/24/Barrios_y_Garcia.2011.pdf",
+            "locator": "Printed p. 940 / PDF page 2: El fin de la dinastía del Petexbatun"
+          },
+          {
+            "sourceId": "barrois2011",
+            "url": "https://www.mesoweb.com/Simposio/pdf/24/Barrios_y_Garcia.2011.pdf",
+            "locator": "Printed p. 939 / PDF page 1: abstract and explicit hypothetical-reconstruction warning"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-aguateca-current",
+      "caseId": "aguateca",
+      "statement": "Tan Te’ K’inich is a named candidate whose published interval crosses 800; exact-day living authority, birth date and household await closer inscriptional review.",
+      "status": "uncertain",
+      "value": {
+        "candidate": "Tan Te’ K’inich",
+        "aliveOnBookmark": null,
+        "birthDate": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "barrois2011",
+          "locator": "Printed p. 940"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "Check the original dated acts underlying 770–802; no active family or birth date selected.",
+      "review": {
+        "initialVerdict": "uncertain",
+        "finding": "The published 770–802 interval crosses 800, making him a candidate. Its endpoints do not independently demonstrate a living dated act on 0800-12-31 or supply a birth date or named household.",
+        "sourceLocators": [
+          {
+            "sourceId": "barrois2011",
+            "url": "https://www.mesoweb.com/Simposio/pdf/24/Barrios_y_Garcia.2011.pdf",
+            "locator": "Printed p. 940 / PDF page 2: El fin de la dinastía del Petexbatun"
+          },
+          {
+            "sourceId": "barrois2011",
+            "url": "https://www.mesoweb.com/Simposio/pdf/24/Barrios_y_Garcia.2011.pdf",
+            "locator": "Printed p. 939 / PDF page 1: abstract and explicit hypothetical-reconstruction warning"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-aguateca-destruction",
+      "caseId": "aguateca",
+      "statement": "Inomata reports late-eighth-century fortification and destructive attack at the end of the Late Classic, with burned buildings and abandoned belongings. This is not an exact800 destruction date.",
+      "status": "sourced",
+      "value": null,
+      "sourceRefs": [
+        {
+          "sourceId": "inomata1997",
+          "locator": "p. 1 opening"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "late eighth century A.D.",
+          "end of the Late Classic period"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The opening distinguishes late-eighth-century fortification from a destructive attack at the end of the Late Classic. It describes burned structures and belongings left behind, without giving an exact AD 800 destruction date.",
+        "sourceLocators": [
+          {
+            "sourceId": "inomata1997",
+            "url": "https://www.famsi.org/reports/96022/96022Inomata01.pdf",
+            "locator": "PDF p. 1: Research Year 1997; opening fortification/destruction account and residences M8-10/M8-13"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-aguateca-household",
+      "caseId": "aguateca",
+      "statement": "Excavated Aguateca residences support study of household activity and status differences without identifying a named royal marriage or family alive on 0800-12-31.",
+      "status": "sourced",
+      "value": {
+        "named800RoyalHousehold": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "inomata1997",
+          "locator": "pp. 1–2: M8-10, M8-13, M8-8"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The two pages compare residential room use, prestige goods, craft production and status. These observations do not identify a named royal marriage or family living on the bookmark.",
+        "sourceLocators": [
+          {
+            "sourceId": "inomata1997",
+            "url": "https://www.famsi.org/reports/96022/96022Inomata01.pdf",
+            "locator": "PDF p. 1: Research Year 1997; opening fortification/destruction account and residences M8-10/M8-13"
+          },
+          {
+            "sourceId": "inomata1997",
+            "url": "https://www.famsi.org/reports/96022/96022Inomata01.pdf",
+            "locator": "PDF p. 2: M8-8 and four conclusions about residential use, craft production and status"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-political-collapse",
+      "caseId": "regional",
+      "statement": "The Calakmul comparison distinguishes surviving divine kingship from demographic crisis and later abandonment at Calakmul, Tikal and Copán; it does not supply one common collapse year.",
+      "status": "sourced",
+      "value": null,
+      "sourceRefs": [
+        {
+          "sourceId": "braswell2004",
+          "locator": "Printed pp. 190–192"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "waning years of ninth century (Calakmul/Tikal kingship)",
+          "AD 820 (Copán dynasty, source-specific endpoint)"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The chapter separates demographic decline, continued kingship and differing abandonment sequences. It gives Calakmul kingship to at least 899 or 909 and a source-specific Copán dynasty endpoint of AD 820; these are not a shared collapse year.",
+        "sourceLocators": [
+          {
+            "sourceId": "braswell2004",
+            "url": "https://pages.ucsd.edu/~gbraswel/docs/Braswell%20CV_Peer%20Reviewed%20Chapters%20%26%20Articles/Braswell%20et%20al%202004b.pdf",
+            "locator": "Printed p. 190 / PDF page 29: ninth-century population loss and kingship continuing to at least 899 or 909"
+          },
+          {
+            "sourceId": "braswell2004",
+            "url": "https://pages.ucsd.edu/~gbraswel/docs/Braswell%20CV_Peer%20Reviewed%20Chapters%20%26%20Articles/Braswell%20et%20al%202004b.pdf",
+            "locator": "Printed p. 191 / PDF page 30: comparative Tikal and Copán demographic/political sequences"
+          },
+          {
+            "sourceId": "braswell2004",
+            "url": "https://pages.ucsd.edu/~gbraswel/docs/Braswell%20CV_Peer%20Reviewed%20Chapters%20%26%20Articles/Braswell%20et%20al%202004b.pdf",
+            "locator": "Printed p. 192 / PDF page 31: kingship, source-specific Copán AD 820 endpoint and different abandonment sequences"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-emblem-scope",
+      "caseId": "regional",
+      "statement": "Barrois and García discuss shared emblem titles across distinct cities and propose a dynastic interpretation while acknowledging partly hypothetical reconstructions. Shared emblems alone do not prove one territorial state.",
+      "status": "uncertain",
+      "value": null,
+      "sourceRefs": [
+        {
+          "sourceId": "barrois2011",
+          "locator": "Printed p. 939, abstract and methodological caution"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The abstract and introduction discuss shared emblems and argue for a dynastic reading. The authors explicitly warn that some reconstructions are hypothetical and lack evidence. A shared title alone cannot establish a single territorial state.",
+        "sourceLocators": [
+          {
+            "sourceId": "barrois2011",
+            "url": "https://www.mesoweb.com/Simposio/pdf/24/Barrios_y_Garcia.2011.pdf",
+            "locator": "Printed p. 939 / PDF page 1: abstract and explicit hypothetical-reconstruction warning"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-tikal-succession",
+      "caseId": "tikal",
+      "statement": "A specific AD 800 succession mechanism and living marriage/kin network for Tikal are not established by this bounded packet.",
+      "status": "uncertain",
+      "value": {
+        "successionLaw": null,
+        "activeSpouses": null,
+        "activeChildren": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "barrois2011",
+          "locator": "Printed p. 939, methodological caution"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "What attested transfer mechanism and living relations belong to this exact bookmark? No primogeniture, spouse or heir inferred.",
+      "review": {
+        "initialVerdict": "uncertain",
+        "finding": "The cited p. 939 is a general methodological caution, not a city-specific reconstruction of succession in 800. The targeted Tikal table supplies only tentative dating and parentage.",
+        "sourceLocators": [
+          {
+            "sourceId": "barrois2011",
+            "url": "https://www.mesoweb.com/Simposio/pdf/24/Barrios_y_Garcia.2011.pdf",
+            "locator": "Printed p. 939 / PDF page 1: abstract and explicit hypothetical-reconstruction warning"
+          },
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 37 / PDF page 38, Tikal V: Nuun ’Ujol K’inich and Dark Sun"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-calakmul-succession",
+      "caseId": "calakmul",
+      "statement": "A specific AD 800 succession mechanism and living marriage/kin network for Calakmul are not established by this bounded packet.",
+      "status": "uncertain",
+      "value": {
+        "successionLaw": null,
+        "activeSpouses": null,
+        "activeChildren": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "barrois2011",
+          "locator": "Printed p. 939, methodological caution"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "What attested transfer mechanism and living relations belong to this exact bookmark? No primogeniture, spouse or heir inferred.",
+      "review": {
+        "initialVerdict": "uncertain",
+        "finding": "The cited general caution does not test a Calakmul succession mechanism in 800. The targeted tables leave the bookmark ruler and living kin network unidentified.",
+        "sourceLocators": [
+          {
+            "sourceId": "barrois2011",
+            "url": "https://www.mesoweb.com/Simposio/pdf/24/Barrios_y_Garcia.2011.pdf",
+            "locator": "Printed p. 939 / PDF page 1: abstract and explicit hypothetical-reconstruction warning"
+          },
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 3 / PDF page 4, Calakmul II: Ruler Y, Great Serpent, Bolon K’awiil"
+          },
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 4 / PDF page 5, Calakmul III: Chan Pet and Aj Took’"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-copan-succession",
+      "caseId": "copan",
+      "statement": "A specific AD 800 succession mechanism and living marriage/kin network for Copán are not established by this bounded packet.",
+      "status": "uncertain",
+      "value": {
+        "successionLaw": null,
+        "activeSpouses": null,
+        "activeChildren": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "calvin2012",
+          "locator": "Printed p. 13, ordinal and822 accession"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "What attested transfer mechanism and living relations belong to this exact bookmark? No primogeniture, spouse or heir inferred.",
+      "review": {
+        "initialVerdict": "uncertain",
+        "finding": "The dynastic ordinal, maternal attribution and later 822 accession do not establish the succession mechanism operating in 800 or the survival of a marriage/kin network then.",
+        "sourceLocators": [
+          {
+            "sourceId": "calvin2012",
+            "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+            "locator": "Printed p. 13 / PDF page 14, Copan IV: Yax Pasaj Chan Yopaat and ’Ukit Took’"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-palenque-succession",
+      "caseId": "palenque",
+      "statement": "A specific AD 800 succession mechanism and living marriage/kin network for Palenque are not established by this bounded packet.",
+      "status": "uncertain",
+      "value": {
+        "successionLaw": null,
+        "activeSpouses": null,
+        "activeChildren": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "barrois2011",
+          "locator": "Printed p. 939, methodological caution"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "What attested transfer mechanism and living relations belong to this exact bookmark? No primogeniture, spouse or heir inferred.",
+      "review": {
+        "initialVerdict": "uncertain",
+        "finding": "The cited general caution does not establish a Palenque succession mechanism in 800. The relevant guide reports a 799 office accession with uncertain rank and no living household for the bookmark.",
+        "sourceLocators": [
+          {
+            "sourceId": "barrois2011",
+            "url": "https://www.mesoweb.com/Simposio/pdf/24/Barrios_y_Garcia.2011.pdf",
+            "locator": "Printed p. 939 / PDF page 1: abstract and explicit hypothetical-reconstruction warning"
+          },
+          {
+            "sourceId": "palenque2007",
+            "url": "https://www.mesoweb.com/palenque/resources/rulers/PalenqueRulers-02.pdf",
+            "locator": "Printed/PDF p. 90: Janaab Pakal III entry, Comalcalco paragraph, and reproduced museum placard"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-aguateca-succession",
+      "caseId": "aguateca",
+      "statement": "A specific AD 800 succession mechanism and living marriage/kin network for Aguateca are not established by this bounded packet.",
+      "status": "uncertain",
+      "value": {
+        "successionLaw": null,
+        "activeSpouses": null,
+        "activeChildren": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "barrois2011",
+          "locator": "Printed p. 939, methodological caution"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": "What attested transfer mechanism and living relations belong to this exact bookmark? No primogeniture, spouse or heir inferred.",
+      "review": {
+        "initialVerdict": "uncertain",
+        "finding": "The cited general caution, title-movement reconstruction and unnamed household archaeology do not establish a specific 800 succession mechanism or living marriage/kin network.",
+        "sourceLocators": [
+          {
+            "sourceId": "barrois2011",
+            "url": "https://www.mesoweb.com/Simposio/pdf/24/Barrios_y_Garcia.2011.pdf",
+            "locator": "Printed p. 939 / PDF page 1: abstract and explicit hypothetical-reconstruction warning"
+          },
+          {
+            "sourceId": "barrois2011",
+            "url": "https://www.mesoweb.com/Simposio/pdf/24/Barrios_y_Garcia.2011.pdf",
+            "locator": "Printed p. 940 / PDF page 2: El fin de la dinastía del Petexbatun"
+          },
+          {
+            "sourceId": "inomata1997",
+            "url": "https://www.famsi.org/reports/96022/96022Inomata01.pdf",
+            "locator": "PDF p. 1: Research Year 1997; opening fortification/destruction account and residences M8-10/M8-13"
+          },
+          {
+            "sourceId": "inomata1997",
+            "url": "https://www.famsi.org/reports/96022/96022Inomata01.pdf",
+            "locator": "PDF p. 2: M8-8 and four conclusions about residential use, craft production and status"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-tikal-area",
+      "caseId": "tikal",
+      "statement": "UNESCO describes an archaeological or heritage property at tikal. Its urban, park or property extent cannot stand as the AD 800 kingdom boundary.",
+      "status": "sourced",
+      "value": {
+        "ad800TerritoryGeometry": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "unesco-tikal",
+          "locator": "Description, Brief synthesis and Integrity"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "UNESCO distinguishes the 57,600-ha park/property, an approximately 400-ha inner urban zone and a wider archaeological zone around 1,200 ha. These are different extents; none is specified as an AD 800 kingdom polygon.",
+        "sourceLocators": [
+          {
+            "sourceId": "unesco-tikal",
+            "url": "https://whc.unesco.org/en/list/64/",
+            "locator": "Outstanding Universal Value > Brief synthesis (modern heritage/archaeological property)"
+          },
+          {
+            "sourceId": "unesco-tikal",
+            "url": "https://whc.unesco.org/en/list/64/",
+            "locator": "Outstanding Universal Value > Integrity"
+          },
+          {
+            "sourceId": "unesco-tikal",
+            "url": "https://whc.unesco.org/en/list/64/",
+            "locator": "Property metadata: area and any buffer zone"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-calakmul-area",
+      "caseId": "calakmul",
+      "statement": "UNESCO describes an archaeological or heritage property at calakmul. Its urban, park or property extent cannot stand as the AD 800 kingdom boundary.",
+      "status": "sourced",
+      "value": {
+        "ad800TerritoryGeometry": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "unesco-calakmul",
+          "locator": "Description, Brief synthesis and Integrity"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "UNESCO describes a modern expanded property of 331,397 ha and buffer of 391,788 ha, replacing/extending an earlier 3,000-ha cultural property. Ancient dynastic importance does not make these modern boundaries an AD 800 kingdom polygon.",
+        "sourceLocators": [
+          {
+            "sourceId": "unesco-calakmul",
+            "url": "https://whc.unesco.org/en/list/1061/",
+            "locator": "Outstanding Universal Value > Brief synthesis (modern heritage/archaeological property)"
+          },
+          {
+            "sourceId": "unesco-calakmul",
+            "url": "https://whc.unesco.org/en/list/1061/",
+            "locator": "Outstanding Universal Value > Integrity"
+          },
+          {
+            "sourceId": "unesco-calakmul",
+            "url": "https://whc.unesco.org/en/list/1061/",
+            "locator": "Property metadata: area and any buffer zone"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-copan-area",
+      "caseId": "copan",
+      "statement": "UNESCO describes an archaeological or heritage property at copan. Its urban, park or property extent cannot stand as the AD 800 kingdom boundary.",
+      "status": "sourced",
+      "value": {
+        "ad800TerritoryGeometry": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "unesco-copan",
+          "locator": "Description, Brief synthesis and Integrity"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "UNESCO describes the protected monuments and archaeological park. Its metadata gives property 15.095 ha and buffer 258.365 ha, while Integrity refers to a park about 84.7 ha. Different stated extents must remain distinct; none supplies an AD 800 polity polygon.",
+        "sourceLocators": [
+          {
+            "sourceId": "unesco-copan",
+            "url": "https://whc.unesco.org/en/list/129/",
+            "locator": "Outstanding Universal Value > Brief synthesis (modern heritage/archaeological property)"
+          },
+          {
+            "sourceId": "unesco-copan",
+            "url": "https://whc.unesco.org/en/list/129/",
+            "locator": "Outstanding Universal Value > Integrity"
+          },
+          {
+            "sourceId": "unesco-copan",
+            "url": "https://whc.unesco.org/en/list/129/",
+            "locator": "Property metadata: area and any buffer zone"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-palenque-area",
+      "caseId": "palenque",
+      "statement": "UNESCO describes an archaeological or heritage property at palenque. Its urban, park or property extent cannot stand as the AD 800 kingdom boundary.",
+      "status": "sourced",
+      "value": {
+        "ad800TerritoryGeometry": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "unesco-palenque",
+          "locator": "Description, Brief synthesis and Integrity"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "UNESCO describes an archaeological heritage property. Its metadata says 1,772 ha, while the synthesis gives 1780 hectares, 09 areas and 49 square meters. Preserve that numerical inconsistency rather than selecting a historical kingdom extent; neither supplies an AD 800 polity polygon.",
+        "sourceLocators": [
+          {
+            "sourceId": "unesco-palenque",
+            "url": "https://whc.unesco.org/en/list/411/",
+            "locator": "Outstanding Universal Value > Brief synthesis (modern heritage/archaeological property)"
+          },
+          {
+            "sourceId": "unesco-palenque",
+            "url": "https://whc.unesco.org/en/list/411/",
+            "locator": "Outstanding Universal Value > Integrity"
+          },
+          {
+            "sourceId": "unesco-palenque",
+            "url": "https://whc.unesco.org/en/list/411/",
+            "locator": "Property metadata: area and any buffer zone"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-map-reuse",
+      "caseId": "regional",
+      "statement": "Wayeb’s atlas requires author permission for commercial reproduction; site points do not supply reviewed AD 800 city-state territories.",
+      "status": "sourced",
+      "value": {
+        "importedGeometry": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "wayeb-atlas",
+          "locator": "Copyright and site-coordinate notes"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "Wayeb states that authors retain rights and commercial reproduction requires their permission. The archaeological-sites dataset is described as 137 site-centre positions with variable source quality; that description supplies no reviewed AD 800 city-state boundaries.",
+        "sourceLocators": [
+          {
+            "sourceId": "wayeb-atlas",
+            "url": "https://www.wayeb.org/resources-links/wayeb-resources/wayeb-gis-atlas/",
+            "locator": "Important Notes, A note on authorship; Atlas of Maya Archaeological Sites"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-map-model-scope",
+      "caseId": "regional",
+      "statement": "Anaya’s summary concerns modeled potential boundaries of Pomoná and Piedras Negras outside these five cases; it supplies no ready AD 800 geometry for them.",
+      "status": "sourced",
+      "value": {
+        "targetGeometry": null
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "anaya2006",
+          "locator": "Summary paragraphs 1–3"
+        }
+      ],
+      "chronology": {
+        "asWorded": [
+          "ClassicAD600–900"
+        ],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "The summary models potential boundaries for Pomoná and Piedras Negras, not these five cities. It dates the relevant interaction to the Late Classic, c. AD 600–900; its summary is not ready geometry for the target cities at AD 800.",
+        "sourceLocators": [
+          {
+            "sourceId": "anaya2006",
+            "url": "https://www.intarch.ac.uk/journal/issue19/anaya_index.html",
+            "locator": "Summary paragraphs 1–4: Late Classic c. AD 600–900, Pomoná/Piedras Negras and GIS potential-boundary model"
+          }
+        ]
+      }
+    },
+    {
+      "id": "d2-800-point-rights",
+      "caseId": "regional",
+      "statement": "Getty makes vocabulary data available under ODC-By 1.0 with attribution; the points are reusable data, not territorial-extent evidence.",
+      "status": "sourced",
+      "value": {
+        "dataLicense": "ODC-By-1.0"
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "getty-rights",
+          "locator": "Licensing and Citations"
+        },
+        {
+          "sourceId": "odc-by",
+          "locator": "Preamble; sections 2 and 4"
+        }
+      ],
+      "chronology": {
+        "asWorded": [],
+        "calendarConversion": "Only source-supplied equivalents retained; no calendar calculation."
+      },
+      "openQuestion": null,
+      "review": {
+        "initialVerdict": "confirmed",
+        "finding": "Getty explicitly places vocabulary data under ODC-By 1.0. The license permits commercial database use and requires relevant notices/attribution. Independent contents rights remain distinct. Reusable coordinates remain point evidence, with no territorial extent implied.",
+        "sourceLocators": [
+          {
+            "sourceId": "getty-rights",
+            "url": "https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/",
+            "locator": "Licensing and Citations > Licensing, Citations, General and Uniform Resource Identifiers"
+          },
+          {
+            "sourceId": "odc-by",
+            "url": "https://opendatacommons.org/licenses/by/1-0/",
+            "locator": "Preamble: database license and independent contents rights"
+          },
+          {
+            "sourceId": "odc-by",
+            "url": "https://opendatacommons.org/licenses/by/1-0/",
+            "locator": "Sections 2.0–2.4: rights covered, exclusions, independent contents rights"
+          },
+          {
+            "sourceId": "odc-by",
+            "url": "https://opendatacommons.org/licenses/by/1-0/",
+            "locator": "Section 3.1: commercial use included"
+          },
+          {
+            "sourceId": "odc-by",
+            "url": "https://opendatacommons.org/licenses/by/1-0/",
+            "locator": "Sections 4.2–4.3: database notices and public Produced Work attribution"
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "tgn-tikal",
+      "title": "Getty TGN 7007807: Tikal (deserted settlement)",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7007807",
+      "institution": "Getty Research Institute, J. Paul Getty Trust",
+      "locator": "Record 7007807: Coordinates, place type, names, hierarchy",
+      "scopedClaim": "Ancient-site identity and supplied decimal point; no territorial extent or palace location.",
+      "chronologyAsWorded": "Modern vocabulary record; no regnal chronology.",
+      "reuseRights": "ODC-By-1.0; retain Getty attribution and record URL.",
+      "readingRoute": "Fresh verified HTTPS complete record text inspected; decimal fields copied, no DMS conversion.",
+      "retrievedOn": "2026-11-07",
+      "rightsSourceRefs": [
+        {
+          "sourceId": "getty-rights",
+          "locator": "Licensing and Citations > Licensing, Citations, General and Uniform Resource Identifiers"
+        },
+        {
+          "sourceId": "odc-by",
+          "locator": "Preamble and sections 2–4"
+        }
+      ],
+      "rightsScope": "Vocabulary coordinate data only; ODC-By claim is supported by the separate licensing records, not by this individual place page. No blanket image, text or polygon license is inferred."
+    },
+    {
+      "id": "tgn-calakmul",
+      "title": "Getty TGN 7032431: Calakmul (deserted settlement)",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7032431",
+      "institution": "Getty Research Institute, J. Paul Getty Trust",
+      "locator": "Record 7032431: Coordinates, place type, names, hierarchy",
+      "scopedClaim": "Ancient-site identity and supplied decimal point; no territorial extent or palace location.",
+      "chronologyAsWorded": "Modern vocabulary record; no regnal chronology.",
+      "reuseRights": "ODC-By-1.0; retain Getty attribution and record URL.",
+      "readingRoute": "Fresh verified HTTPS complete record text inspected; decimal fields copied, no DMS conversion.",
+      "retrievedOn": "2026-11-07",
+      "rightsSourceRefs": [
+        {
+          "sourceId": "getty-rights",
+          "locator": "Licensing and Citations > Licensing, Citations, General and Uniform Resource Identifiers"
+        },
+        {
+          "sourceId": "odc-by",
+          "locator": "Preamble and sections 2–4"
+        }
+      ],
+      "rightsScope": "Vocabulary coordinate data only; ODC-By claim is supported by the separate licensing records, not by this individual place page. No blanket image, text or polygon license is inferred."
+    },
+    {
+      "id": "tgn-copan",
+      "title": "Getty TGN 7018167: Copán (deserted settlement)",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7018167",
+      "institution": "Getty Research Institute, J. Paul Getty Trust",
+      "locator": "Record 7018167: Coordinates, place type, names, hierarchy",
+      "scopedClaim": "Ancient-site identity and supplied decimal point; no territorial extent or palace location.",
+      "chronologyAsWorded": "Modern vocabulary record; no regnal chronology.",
+      "reuseRights": "ODC-By-1.0; retain Getty attribution and record URL.",
+      "readingRoute": "Fresh verified HTTPS complete record text inspected; decimal fields copied, no DMS conversion.",
+      "retrievedOn": "2026-11-07",
+      "rightsSourceRefs": [
+        {
+          "sourceId": "getty-rights",
+          "locator": "Licensing and Citations > Licensing, Citations, General and Uniform Resource Identifiers"
+        },
+        {
+          "sourceId": "odc-by",
+          "locator": "Preamble and sections 2–4"
+        }
+      ],
+      "rightsScope": "Vocabulary coordinate data only; ODC-By claim is supported by the separate licensing records, not by this individual place page. No blanket image, text or polygon license is inferred."
+    },
+    {
+      "id": "tgn-palenque",
+      "title": "Getty TGN 7007153: Palenque (deserted settlement)",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7007153",
+      "institution": "Getty Research Institute, J. Paul Getty Trust",
+      "locator": "Record 7007153: Coordinates, place type, names, hierarchy",
+      "scopedClaim": "Ancient-site identity and supplied decimal point; no territorial extent or palace location.",
+      "chronologyAsWorded": "Modern vocabulary record; no regnal chronology.",
+      "reuseRights": "ODC-By-1.0; retain Getty attribution and record URL.",
+      "readingRoute": "Fresh verified HTTPS complete record text inspected; decimal fields copied, no DMS conversion.",
+      "retrievedOn": "2026-11-07",
+      "rightsSourceRefs": [
+        {
+          "sourceId": "getty-rights",
+          "locator": "Licensing and Citations > Licensing, Citations, General and Uniform Resource Identifiers"
+        },
+        {
+          "sourceId": "odc-by",
+          "locator": "Preamble and sections 2–4"
+        }
+      ],
+      "rightsScope": "Vocabulary coordinate data only; ODC-By claim is supported by the separate licensing records, not by this individual place page. No blanket image, text or polygon license is inferred."
+    },
+    {
+      "id": "tgn-aguateca",
+      "title": "Getty TGN 7030187: Aguateca (deserted settlement)",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7030187",
+      "institution": "Getty Research Institute, J. Paul Getty Trust",
+      "locator": "Record 7030187: Coordinates, place type, names, hierarchy",
+      "scopedClaim": "Ancient-site identity and supplied decimal point; no territorial extent or palace location.",
+      "chronologyAsWorded": "Modern vocabulary record; no regnal chronology.",
+      "reuseRights": "ODC-By-1.0; retain Getty attribution and record URL.",
+      "readingRoute": "Fresh verified HTTPS complete record text inspected; decimal fields copied, no DMS conversion.",
+      "retrievedOn": "2026-11-07",
+      "rightsSourceRefs": [
+        {
+          "sourceId": "getty-rights",
+          "locator": "Licensing and Citations > Licensing, Citations, General and Uniform Resource Identifiers"
+        },
+        {
+          "sourceId": "odc-by",
+          "locator": "Preamble and sections 2–4"
+        }
+      ],
+      "rightsScope": "Vocabulary coordinate data only; ODC-By claim is supported by the separate licensing records, not by this individual place page. No blanket image, text or polygon license is inferred."
+    },
+    {
+      "id": "getty-rights",
+      "title": "Getty Vocabularies: Data Services",
+      "url": "https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/",
+      "institution": "Getty Research Institute",
+      "locator": "Licensing and Citations, paragraphs 1–4",
+      "scopedClaim": "Getty vocabulary data license and attribution.",
+      "chronologyAsWorded": "Current data-service notice.",
+      "reuseRights": "Policy reference; vocabulary data ODC-By-1.0.",
+      "readingRoute": "Fresh public page opened; precise stated passage read.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "odc-by",
+      "title": "Open Data Commons Attribution License (ODC-By) v1.0",
+      "url": "https://opendatacommons.org/licenses/by/1-0/",
+      "institution": "Open Data Commons / Open Knowledge Foundation",
+      "locator": "Preamble; sections 2 and 4",
+      "scopedClaim": "Database license and attribution; no blanket image license.",
+      "chronologyAsWorded": "Version 1.0.",
+      "reuseRights": "License document reference.",
+      "readingRoute": "Fresh public page opened; precise stated passage read.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "calvin2012",
+      "title": "Maya Royal Dynasties, revised by Inga E. Calvin (2012)",
+      "url": "https://www.famsi.org/mayawriting/calvin/royal_dynasties.pdf",
+      "institution": "FAMSI; Inga E. Calvin",
+      "locator": "Printed pp. 3–4 (Calakmul II–III),13 (Copan IV),36–37 (Tikal IV–V); PDF pages 4–5,14,37–38",
+      "scopedClaim": "Named rulers, qualified chronologies and Copán maternal relation.",
+      "chronologyAsWorded": "Tikal ca.AD 800? / ca.AD 810?; Calakmul ca.AD 771–789?; Copán AD 763–810?.",
+      "reuseRights": "Reference only; no source prose or images redistributed.",
+      "readingRoute": "Fresh full PDF opened; listed tables read through direct HTTPS/pypdf. Partial volume III PDF also read, not independent corroboration.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "palenque2007",
+      "title": "The Rulers of Palenque, second edition (2007)",
+      "url": "https://www.mesoweb.com/palenque/resources/rulers/PalenqueRulers-02.pdf",
+      "institution": "Joel Skidmore; Mesoweb",
+      "locator": "Printed/PDF p. 90: Janaab Pakal III and reproduced museum placard",
+      "scopedClaim": "799 office accession, lower-rank caution, ambiguous814 political attribution.",
+      "chronologyAsWorded": "Reigned799–?; 9.18.9.4.4,7 K’an 17 Muwan (November 13, 799); AD 814 uncertain.",
+      "reuseRights": "Reference only; no source prose or images redistributed.",
+      "readingRoute": "Public PDF opened through verified HTTPS; page 90 read. The museum placard is known through the publication, not an independent visit.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "palenque-table",
+      "title": "Palenque Rulers Table",
+      "url": "https://www.mesoweb.com/palenque/resources/rulers/rulers_table.html",
+      "institution": "Mesoweb",
+      "locator": "Opening calendar note and final Wak Kimi Janahb Pakal accession row",
+      "scopedClaim": "The table supplies a Gregorian date for accession Long Count 9.18.9.4.4 and explicitly names modified GMT 584285.",
+      "chronologyAsWorded": "Modified GMT 584285; 9.18.9.4.4,7 K’an 17 Muwan: November 17, 799.",
+      "reuseRights": "Reference only; no source prose or images redistributed.",
+      "readingRoute": "Fresh public page opened; precise stated passage read.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "braswell2004",
+      "title": "Defining the Terminal Classic at Calakmul, Campeche (2004)",
+      "url": "https://pages.ucsd.edu/~gbraswel/docs/Braswell%20CV_Peer%20Reviewed%20Chapters%20%26%20Articles/Braswell%20et%20al%202004b.pdf",
+      "institution": "Glenn E. Braswell, Joel D. Gunn, M. Rosario Domínguez Carrasco, William J. Folan, Laraine A. Fletcher, Abel Morales López, Michael D. Glascock; scholarly chapter hosted by UC San Diego",
+      "locator": "Printed pp. 190–192; PDF pages 29–31",
+      "scopedClaim": "Kingship, demographic crisis and abandonment distinguished; broad continuity not exact-day ruler identification.",
+      "chronologyAsWorded": "Ninth-century demographic decline; Calakmul/Tikal kingship into waning ninth century; source-specific Copán dynasty endpoint AD 820.",
+      "reuseRights": "Reference only; no source prose or images redistributed.",
+      "readingRoute": "Fresh public PDF and direct HTTPS/pypdf reread. Encoding warnings for headings; readable prose paragraphs used.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "inah-calakmul",
+      "title": "Gran Acrópolis: Structure XI / Ball Court",
+      "url": "https://lugares.inah.gob.mx/en/pagina-de-elemento/1802",
+      "institution": "Instituto Nacional de Antropología e Historia, Mexico",
+      "locator": "Gran Acrópolis, Structure XI paragraph; Legal Notice",
+      "scopedClaim": "Assumed ball-court construction and Bolon Kawil accession751; chronology not extended to800.",
+      "chronologyAsWorded": "Late Classic 600–800; fragment731; assumed construction751 and accession751.",
+      "reuseRights": "Portal CC BY-NC-ND4.0 unless otherwise stated; reference only, no assets imported.",
+      "readingRoute": "Fresh public page opened; precise stated passage read.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "mcneil2013",
+      "title": "Investigando el colapso maya y período Postclásico en Río Amarillo, Copán, Honduras (2013)",
+      "url": "https://www.asociaciontikal.com/wp-content/uploads/2017/07/Simp26-35-McNeil-et-al.pdf",
+      "institution": "Cameron McNeil, Edy Barrios, Cassandra Bill, Walter Burgos, Raquel Macario; Museo Nacional de Arqueología y Etnología, Guatemala, XXVI Simposio",
+      "locator": "Printed p. 422, Breve historia; PDF page3",
+      "scopedClaim": "Yax Pasaj last mention810; Altar L event 822; Río Amarillo date alternatives.",
+      "chronologyAsWorded": "810 DC;822 d.C.; Altar 1:798 DC (9.18.8.5.16) or 850 DC (10.1.1.0.16).",
+      "reuseRights": "Reference only; no source prose or images redistributed.",
+      "readingRoute": "Fresh full public PDF opened; page 422 reread with verified HTTPS/pypdf. Later mention not assumed living act.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "barrois2011",
+      "title": "El Glifo-Emblema, un glifo dinástico maya (2011)",
+      "url": "https://www.mesoweb.com/Simposio/pdf/24/Barrios_y_Garcia.2011.pdf",
+      "institution": "Ramzy Barrois and Hugo García; Museo Nacional de Arqueología y Etnología, Guatemala, XXIV Simposio",
+      "locator": "Printed pp. 939–940: introduction and El fin de la dinastía del Petexbatun; PDF pages 1–2",
+      "scopedClaim": "Tan Te’ K’inich at Aguateca; partly hypothetical dynastic-title interpretation.",
+      "chronologyAsWorded": "Tan Te’ K’inich770–802 DC; Stelae 7 and 19; later La Amelia802–807 is authors’ reconstruction.",
+      "reuseRights": "Reference only; no source prose or images redistributed.",
+      "readingRoute": "Fresh public PDF opened; precise passage read. Filename Barrios differs from title-page Barrois.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "inomata1997",
+      "title": "Aguateca Archaeological Project: A Study of Classic Maya Household Organization and Domestic Activities",
+      "url": "https://www.famsi.org/reports/96022/96022Inomata01.pdf",
+      "institution": "Takeshi Inomata, University of Arizona; FAMSI",
+      "locator": "Two-page report; p. 1 opening, pp. 1–2 residential observations",
+      "scopedClaim": "Late-eighth-century fortification, late-Classic attack and household archaeology; no named royal800 family.",
+      "chronologyAsWorded": "Research Year 1997; FAMSI © 2000; late eighth century A.D.; end of Late Classic period.",
+      "reuseRights": "Reference only; no source prose or images redistributed.",
+      "readingRoute": "Fresh original two-page FAMSI PDF recovered through HTTPS in memory; both pages read.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "wayeb-atlas",
+      "title": "Wayeb GIS Atlas of the Maya area",
+      "url": "https://www.wayeb.org/resources-links/wayeb-resources/wayeb-gis-atlas/",
+      "institution": "European Association of Mayanists, Wayeb",
+      "locator": "Introduction, copyright and site-coordinate notes",
+      "scopedClaim": "Site points have variable precision; commercial reproduction requires author permission; no open AD 800 state polygons established.",
+      "chronologyAsWorded": "Modern GIS atlas, not dated state boundaries.",
+      "reuseRights": "Authors retain rights; commercial reproduction requires permission. No assets imported.",
+      "readingRoute": "Fresh public page opened; precise stated passage read.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "anaya2006",
+      "title": "Strategic Location and Territorial Integrity: The Role of Subsidiary Sites in the Classic Maya Kingdoms of the Upper Usumacinta Region",
+      "url": "https://www.intarch.ac.uk/journal/issue19/anaya_index.html",
+      "institution": "Armando Anaya Hernández; Universidad Autónoma de Campeche; Internet Archaeology 19; DOI 10.11141/ia.19.3",
+      "locator": "Summary paragraphs 1–3",
+      "scopedClaim": "GIS potential-boundary model for Pomoná and Piedras Negras, outside five cases.",
+      "chronologyAsWorded": "ClassicAD600–900; modeled potential boundaries.",
+      "reuseRights": "No target-geometry reuse license established from summary; no geometry imported.",
+      "readingRoute": "Fresh public page opened; precise stated passage read.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "unesco-tikal",
+      "title": "Tikal National Park",
+      "url": "https://whc.unesco.org/en/list/64/",
+      "institution": "UNESCO World Heritage Centre",
+      "locator": "Description, Brief synthesis and Integrity",
+      "scopedClaim": "Political/urban centre; urban and park extents not kingdom boundaries.",
+      "chronologyAsWorded": "Urban end around900; modern park distinct.",
+      "reuseRights": "Description identifies CC-BY-SA IGO3.0; maps/images not assumed covered. Reference paraphrase only.",
+      "readingRoute": "Fresh public page opened; precise stated passage read.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "unesco-calakmul",
+      "title": "Ancient Maya City and Protected Tropical Forests of Calakmul, Campeche",
+      "url": "https://whc.unesco.org/en/list/1061/",
+      "institution": "UNESCO World Heritage Centre",
+      "locator": "Description, Brief synthesis and Integrity",
+      "scopedClaim": "Ancient dynastic seat and modern property/buffer distinct.",
+      "chronologyAsWorded": "Ancient settlement mid-first millenniumBC to aboutAD1000; modern property.",
+      "reuseRights": "Description identifies CC-BY-SA IGO3.0; maps/images not assumed covered. Reference paraphrase only.",
+      "readingRoute": "Fresh public page opened; precise stated passage read.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "unesco-copan",
+      "title": "Maya Site of Copan",
+      "url": "https://whc.unesco.org/en/list/129/",
+      "institution": "UNESCO World Heritage Centre",
+      "locator": "Description, Brief synthesis and Integrity",
+      "scopedClaim": "Political/civil/religious centre; dynastic history and population abandonment distinct.",
+      "chronologyAsWorded": "Classic 300–900; abandonment early tenth century.",
+      "reuseRights": "Description identifies CC-BY-SA IGO3.0; maps/images not assumed covered. Reference paraphrase only.",
+      "readingRoute": "Fresh public page opened; precise stated passage read.",
+      "retrievedOn": "2026-11-07"
+    },
+    {
+      "id": "unesco-palenque",
+      "title": "Pre-Hispanic City and National Park of Palenque",
+      "url": "https://whc.unesco.org/en/list/411/",
+      "institution": "UNESCO World Heritage Centre",
+      "locator": "Description, Brief synthesis and Integrity",
+      "scopedClaim": "Regional capital and archaeological property; not exact political-end date.",
+      "chronologyAsWorded": "Regional capital ca.AD 500; abandonment around ninth century.",
+      "reuseRights": "Description identifies CC-BY-SA IGO3.0; maps/images not assumed covered. Reference paraphrase only.",
+      "readingRoute": "Fresh public page opened; precise stated passage read.",
+      "retrievedOn": "2026-11-07"
+    }
+  ],
+  "representationProposal": {
+    "kind": "seat-markers-only",
+    "status": "editorial-proposal-requires-engine-review",
+    "acceptedPolygon": null,
+    "radius": null,
+    "area": null,
+    "sourceFeatureIndexes": [],
+    "gettyAttribution": "Coordinate data: Getty Thesaurus of Geographic Names, Getty Research Institute, J. Paul Getty Trust. ODC-By 1.0; individual record URLs retained.",
+    "engineGap": "Current polygon/court attachment needs a separately reviewed point representation. No playable state area is derived."
+  },
+  "limits": [
+    "Exact-date ruler/household claims remain uncertain in all five cases.",
+    "No named active spouse, child, heir, birth date or generated person.",
+    "No accepted state polygon; no point containment, overlap or gameplay validation performed.",
+    "Demographic decline, last dated inscription, dynastic failure and abandonment are distinct.",
+    "No name pool generated from royal names; candidate rulers do not license commoner-name generation."
+  ],
+  "independentReview": {
+    "initialSessionExitCode": 0,
+    "initialLastMessageSha256": "31d2d3a27efa7189ca0a11b25067cc8c766048bebc014f807a7fd513c501713e",
+    "initialReportFile": "blind-review/review-results.json",
+    "initialReportSha256": "a8725f74f2484f522684154ace10ade17bcb5e3d0429b870d21acd23a02bd968",
+    "initialCounts": {
+      "confirmed": 28,
+      "corrected": 2,
+      "uncertain": 10
+    },
+    "followupPending": 0,
+    "scope": "Forty individual claims; confirmation of an attribution does not remove source uncertainty or approve an active court.",
+    "followup": {
+      "sessionExitCode": 0,
+      "claimsChecked": 2,
+      "confirmed": 2,
+      "corrected": 0,
+      "unsupported": 0,
+      "uncertain": 0,
+      "packetSha256": "da657b2160ebc6dd45b4bef57a94d486dc0883d2201235e79f50da40f9e4c264",
+      "reportSha256": "7e3c4f9c5f38fe4ffed4c7d16d4d33abe124717ecd579ca10226d2ab45c4a143",
+      "scope": "Two exact revised document claims and their chronology/value fields."
+    },
+    "sourceMetadataQualification": {
+      "followupFinding": "The individual Getty place page does not state ODC-By; this metadata assertion was unsupported within the follow-up subset.",
+      "resolution": "The initial separately confirmed d2-800-point-rights claim cites Getty licensing and ODC-By directly. All five point-source records now explicitly link those existing sources. The follow-up did not recheck those separate pages.",
+      "newHistoricalClaim": false
+    },
+    "rulerEvidenceRule": "A sufficiently supported reign interval containing the bookmark can establish a ruler under the research brief. This dossier keeps the submitted candidate assessments uncertain; it introduces no universal requirement for an act on the exact day, and its source checks do not create active court seeds."
+  }
+}
