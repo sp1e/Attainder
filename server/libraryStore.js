@@ -1,6 +1,6 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "./historicalPreparation.js";
 import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade, withLibraryFields } from "./historicalStarts.js";
-import { HISTORICAL_SUMMARY_SCHEMA, historicalStartSummary } from "./historicalStartSummary.js";
+import { HISTORICAL_SUMMARY_SCHEMA, historicalStartFromSummary, historicalStartSummary } from "./historicalStartSummary.js";
 import { withScenarioLicense, preserveComponentProvenance } from "./scenarioLicense.js";
 /*! Open Historia — portions (regions.geojson scenario asset + custom-map seeding) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 import fs from "fs";
@@ -1915,7 +1915,7 @@ const storeHistoricalSummary = (scenarioId, historicalSummary) => {
   const metaPath = getScenarioMetaPath(scenarioId);
   const raw = readJsonFile(metaPath, null);
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) return;
-  try { writeJsonFile(metaPath, { ...raw, historicalSummary }); }
+  try { writeJsonFileWhole(metaPath, { ...raw, historicalSummary }); }
   catch (error) { console.warn(`[library] could not store the historical summary of ${scenarioId}: ${error.message}`); }
 };
 
@@ -1948,11 +1948,10 @@ const buildScenarioCatalogEntry = (scenarioId, { gameCount = 0, canDelete = true
   const cacheToken = missing ? `${scenarioId}-missing` : `${scenarioId}-${meta.updatedAt}`;
   // A scenario that is gone has nothing to summarise, and a cache write would create its directory.
   const historicalSummary = missing ? null : scenarioHistoricalSummary(scenarioId, meta);
-  const offered = historicalSummary && historicalSummary.invalid !== true && !meta.restoreOnly;
   return {
     ...meta,
     historicalSummary,
-    historicalStart: offered ? { date: historicalSummary.date, contentId: historicalSummary.contentId } : null,
+    historicalStart: historicalStartFromSummary(historicalSummary, meta),
     assetStatus,
     cacheToken,
     canDelete,
