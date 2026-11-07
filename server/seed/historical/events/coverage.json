@@ -15,6 +15,12 @@
     },
     {
       "startYear": -3000,
+      "endYear": -2901,
+      "status": "partial",
+      "note": "Six independently checked records concern a brewery at Abydos, the low dams and main city construction at Liangzhu, Stonehenge ditch and banks, a specific Valdivia stone figure, and one burial at Kerma. Full approximate dates and construction intervals remain qualified. Kerma retains a provisional prose estimate alongside the chronology table question mark; settlement samples do not date the grave. Caral, Nausharo, Kot Diji-Amri contacts, aggregated Afanasievo burials and access-limited Kobeba remain withheld. South Asia, Southeast Asia, Oceania, the steppe and much of Africa and the Americas remain gaps. Long intervals establish no occurrence in every year or researched coverage of later centuries. Empty years are research gaps."
+    },
+    {
+      "startYear": -2900,
       "endYear": 799,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
