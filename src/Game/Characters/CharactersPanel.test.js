@@ -17,7 +17,7 @@ import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testi
 // Render the real JSX with supplied presentation data. Runtime and portrait
 // loading are stubs; these checks do not exercise the core or a browser.
 const source = readFileSync(new URL("./CharactersPanel.jsx", import.meta.url), "utf8");
-const compiled = transformSync(`${source}\nexport { CouncilView, PeopleView, GovernanceSummary, ActionCard, StoryCard, ChainHistory };`, {
+const compiled = transformSync(`${source}\nexport { ChronicleView, CouncilView, PeopleView, GovernanceSummary, ActionCard, StoryCard, ChainHistory };`, {
   loader: "jsx", format: "cjs", jsx: "transform",
 }).code;
 const compileFile = (name) => transformSync(readFileSync(new URL(`./${name}`, import.meta.url), "utf8"), {
@@ -104,6 +104,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
       ...conversationModel(model),
     },
     "./characters.css": {},
+    "./HistoricalRecordView.jsx": { default: () => React.createElement("p", null, "HISTORISK POST"), holdFocus: () => {}, useChronicleRequest: () => {}, __esModule: true },
     "./LocalModelConnect.jsx": { default: () => null, __esModule: true },
     "./Portrait.jsx": { default: ({ person }) => React.createElement("span", { "data-portrait-person": person.id }), __esModule: true },
   };
@@ -1927,4 +1928,16 @@ test("set_reign_goal and reward_councillor reach the player through the menu's F
   assert.ok(start > 0);
   const group = html.slice(start, html.indexOf('class="char-action-group"', start));
   for (const id of ["set_reign_goal", "reward_councillor"]) assert.ok(group.includes(`data-catalog-id="${id}"`), id);
+});
+
+test("the real-history segment shows for a historical campaign and opens the record; a Hadara campaign has none", () => {
+  const { ChronicleView } = loadPanel(baseView());
+  const render = (props) => renderToStaticMarkup(React.createElement(ChronicleView, { view: baseView(), filter: "memories", setFilter: () => {}, ...props }));
+  assert.match(render({ historical: true }), /I verklighetens historia/);
+  assert.doesNotMatch(render({ historical: false }), /I verklighetens historia/);
+  assert.doesNotMatch(render({ historical: true }), /HISTORISK POST/);
+  const open = render({ historical: true, filter: "history" });
+  assert.match(open, /HISTORISK POST/);
+  assert.match(open, /aria-pressed="true">I verklighetens historia/);
+  assert.doesNotMatch(render({ historical: false, filter: "history" }), /HISTORISK POST/);
 });

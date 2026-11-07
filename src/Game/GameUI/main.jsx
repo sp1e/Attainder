@@ -33,6 +33,7 @@ import {
 } from "../AI/providerConfig.js";
 import { FallbackSwitchNotice } from "./fallbackSwitchNotice.jsx";
 import { useRuntimeState } from "../../runtime/useRuntimeState.js";
+import { useHistoryRecordRequest } from "../Characters/HistoricalRecordView.jsx";
 
 // Whether anything in the Fallback list has what its provider needs, and the
 // top entry's provider for the start-of-game prompt's wording. Re-read whenever
@@ -235,6 +236,8 @@ const Main = ({
   const [shouldLoadDebugConsole, setShouldLoadDebugConsole] = useState(false);
   const [isInteractiveOpen, setIsInteractiveOpen] = useState(false);
   const [isCharactersOpen, setIsCharactersOpen] = useState(false);
+  // The year popup's link to the chronicle: opens the panel and counts each request.
+  const chronicleRequest = useHistoryRecordRequest(() => { if (hasCharacters) setIsCharactersOpen(true); });
   const hasCharacters = useRuntimeState("world", (world) => Boolean(world?.characterSystem));
   const isHistoricalCampaign = useRuntimeState("world", (world) => Boolean(world?.historicalScenario));
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
@@ -562,7 +565,7 @@ const Main = ({
         onClick={() => setIsCharactersOpen(true)}
         style={{ ...baseStyle, top: `calc(${TOP_BAR_OFFSET} + 5rem)`, left: "0.5rem", padding: "0.7rem 1rem", minHeight: "44px", cursor: "pointer", fontSize: "0.85rem", gap: "0.6rem" }}
       ><span aria-hidden="true">◇</span> Rike & familjer</button>}
-      {hasCharacters && <Suspense fallback={null}><LazyCharactersPanel key={activeGame?.id} open={isCharactersOpen} onClose={() => setIsCharactersOpen(false)} /></Suspense>}
+      {hasCharacters && <Suspense fallback={null}><LazyCharactersPanel key={activeGame?.id} open={isCharactersOpen} onClose={() => setIsCharactersOpen(false)} chronicleRequest={chronicleRequest} /></Suspense>}
       {isHistoricalCampaign && Boolean(activeGame?.id) && <Suspense fallback={null}><LazyHistoricalYearNotice key={activeGame.id} gameId={activeGame.id} hidden={mainMenuOpen} /></Suspense>}
       <DateWidget
         activePanel={activeBottomPanel}
