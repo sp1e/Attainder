@@ -59,10 +59,14 @@ const claimedRelation = (p, key) => !p[key].length
   || (Object.hasOwn(p.claims,key) && (p.identityOrigin !== 'documented' || p.claims[key].status !== 'generated'));
 const validLabel = p => p.identityOrigin === 'generated' ? p.originLabelSv === 'Genererad person'
   : p.identityOrigin === 'documented' && text(p.originLabelSv) && p.originLabelSv.startsWith('Dokumenterad person');
+// A generated person carries the marker in the name as well as in the label.
+const generatedName = p => p.identityOrigin !== 'generated' || (typeof p.name === 'string' && p.name.endsWith(' (genererad)'));
 
-// Mirrors validateEngineSeed in characters/scenarioSeed.js, which stays as defence in depth,
-// so the start card never offers a court that the engine refuses on click.
-const safeId = x => typeof x === 'string' && /^[a-zA-Z0-9_:.-]{1,160}$/.test(x) && !['__proto__','constructor','prototype'].includes(x);
+// Engine id rules. validateEngineSeed in characters/scenarioSeed.js imports these and stays as
+// defence in depth; the validator mirrors it so the start card never offers a court the engine refuses.
+export const RESERVED_IDS = ['__proto__','constructor','prototype'];
+export const ENGINE_OFFICE_IDS = ['ruler','general','chancellor','priest','spymaster'];
+export const safeId = x => typeof x === 'string' && /^[a-zA-Z0-9_:.-]{1,160}$/.test(x) && !RESERVED_IDS.includes(x);
 const known = (table, key) => typeof key === 'string' && Object.hasOwn(table,key);
 const validMechanics = m => m === undefined || (record(m) && known(ARCHETYPES,m.archetype)
   && Array.isArray(m.traits) && m.traits.length > 0 && m.traits.every(t => known(TRAITS,t))
@@ -85,8 +89,10 @@ function acyclicParents(people) {
 }
 function validEngineShape(court, people) {
   return ['people','families','religions','offices','cities'].every(k => court[k].every(e => safeId(e.id)))
+    // seedCourt opens one governor office per city under the id governor:<city id>.
+    && court.cities.every(c => safeId(`governor:${c.id}`))
     && court.people.every(enginePerson) && acyclicParents(people)
-    && court.offices.every(o => ['ruler','general','chancellor','priest','spymaster'].includes(o.id))
+    && court.offices.every(o => ENGINE_OFFICE_IDS.includes(o.id))
     && (court.successionLaw === undefined || ['primogeniture','merit'].includes(court.successionLaw));
 }
 function validCourt(court, polityId, h, date) {
@@ -95,7 +101,7 @@ function validCourt(court, polityId, h, date) {
   const people = new Map(court.people.map(p => [p.id,p]));
   const families = new Set(ids(court.families)), religions = new Set(ids(court.religions));
   if (!people.has(court.rulerId) || court.offices.find(o => o.id === 'ruler')?.holderId !== court.rulerId) return false;
-  if (!court.people.every(p => ['documented','generated'].includes(p.identityOrigin) && validLabel(p)
+  if (!court.people.every(p => ['documented','generated'].includes(p.identityOrigin) && validLabel(p) && generatedName(p)
     && families.has(p.familyId) && religions.has(p.religionId) && validClaims(p.claims, h.sources)
     && p.claims.identity?.status === (p.identityOrigin === 'generated' ? 'generated' : 'sourced')
     && p.claims.mechanics?.status === 'generated'
@@ -141,7 +147,7 @@ export function validateHistoricalCourt(h, { date, polityId } = {}) {
       if (!sourceRefs(h.dateSourceIds, h.sources) || compareGameDates(h.validFrom, h.validTo) > 0
         || compareGameDates(date, h.validFrom) < 0 || compareGameDates(date, h.validTo) > 0) return failure('unsupportedDate');
     } else if (date !== h.bookmarkDate) return failure('unsupportedDate');
-    if (!h.playablePolityIds?.includes(polityId) || !h.polities?.some(p => p.id === polityId && text(p.nameSv))) return failure('invalidPolity');
+    if (!safeId(polityId) || !h.playablePolityIds?.includes(polityId) || !h.polities?.some(p => p.id === polityId && text(p.nameSv))) return failure('invalidPolity');
     if (!validCourt(h.courtSeeds?.[polityId], polityId, h, date)) return failure('invalidCourt');
     return { ok: true, contentId: h.contentId, contentVersion: h.contentVersion, date, polityId };
   } catch { return failure('invalidContent'); }
@@ -170,7 +176,7 @@ export function validateHistoricalScenario(input, options = {}) {
     const polityIds = new Set(ids(h.polities));
     if (!Object.keys(world.polityOverrides ?? {}).every(id => polityIds.has(id))) return failure('invalidPolities');
     if (!Array.isArray(h.playablePolityIds) || !h.playablePolityIds.length || !unique(h.playablePolityIds)
-      || !h.playablePolityIds.every(id => polityIds.has(id)) || !h.playablePolityIds.includes(polityId)) return failure('invalidPolity');
+      || !h.playablePolityIds.every(id => polityIds.has(id) && safeId(id)) || !h.playablePolityIds.includes(polityId)) return failure('invalidPolity');
     if (regions?.type !== 'FeatureCollection' || !Array.isArray(regions.features) || !regions.features.length) return failure('invalidGeometry');
     const regionMap = new Map();
     for (const region of regions.features) {

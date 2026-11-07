@@ -258,6 +258,7 @@ const ACCEPTED = [
   ['a three-generation parent chain',c => { relate(c,'generated-courtier-2','legalParentIds',['generated-courtier-1']); relate(c,'generated-courtier-3','legalParentIds',['generated-courtier-2']); }],
   ['the office spymaster',c => { c.offices.find(o => o.id === 'priest').id = 'spymaster'; }],
   ...['people','families','religions','cities'].map(kind => [`a renamed ${kind} id with every allowed character`,c => rename(c,kind,RENAMED[kind],'renamed_id:1.x-y')]),
+  ['a 151-character city id, whose governor office id fits 160 characters',c => rename(c,'cities','aachen','a'.repeat(151))],
   ['successionLaw merit',c => { c.successionLaw = 'merit'; }],
   ['successionLaw primogeniture',c => { c.successionLaw = 'primogeniture'; }],
   ['an absent successionLaw',c => { delete c.successionLaw; }],
@@ -270,6 +271,7 @@ const REFUSED = [
   ['a generated person with an extended label',c => { personIn(c,'generated-courtier-1').originLabelSv = 'Genererad person, kung'; }],
   ['a documented person without the documented prefix',c => { personIn(c,'rotrud').originLabelSv = 'Prinsessa'; }],
   ['a documented person with the generated label',c => { personIn(c,'rotrud').originLabelSv = 'Genererad person'; }],
+  ['a generated person named Odo without the generated suffix',c => { personIn(c,'generated-courtier-1').name = 'Odo'; }],
   ['the runtime person id person-7',c => rename(c,'people','generated-courtier-3','person-7')],
   ['a blank name',c => { personIn(c,'rotrud').name = '  '; }],
   ['a second reciprocal spouse',c => { marry(c,'generated-courtier-1','generated-courtier-2'); marry(c,'generated-courtier-1','generated-courtier-3'); }],
@@ -285,12 +287,27 @@ const REFUSED = [
   ['a two-person parent cycle',c => { relate(c,'generated-courtier-2','legalParentIds',['generated-courtier-1']); relate(c,'generated-courtier-1','legalParentIds',['generated-courtier-2']); }],
   ['a three-person parent cycle',c => { relate(c,'generated-courtier-2','legalParentIds',['generated-courtier-1']); relate(c,'generated-courtier-3','legalParentIds',['generated-courtier-2']); relate(c,'generated-courtier-1','legalParentIds',['generated-courtier-3']); }],
   ['the office steward',c => { c.offices.find(o => o.id === 'priest').id = 'steward'; }],
+  ['a 152-character city id, whose governor office id exceeds 160 characters',c => rename(c,'cities','aachen','a'.repeat(152))],
+  // For offices these probes prove only the office whitelist, which refuses any id outside it before its shape matters.
   ...Object.keys(RENAMED).flatMap(kind => ['with space','__proto__','constructor','prototype'].map(id => [`the ${kind} id "${id}"`,c => rename(c,kind,RENAMED[kind],id)])),
   ['successionLaw tanistry',c => { c.successionLaw = 'tanistry'; }],
   ['a null successionLaw',c => { c.successionLaw = null; }],
 ];
 for (const [name,mutate] of REFUSED) test(`both validators refuse ${name}`,() => {
   for (const result of probe(mutate)) assert.equal(result.code,'invalidCourt',name);
+});
+// Renames the playable polity wherever its id is a whole JSON string, keys and values alike.
+const renamedPolity = to => {
+  const { game,world,regions,assetManifest } = loadPackage();
+  const input = JSON.parse(JSON.stringify({ game,world,regions,assetManifest }).replaceAll(JSON.stringify(POLITY),JSON.stringify(to)));
+  const options = { date: DATE,polityId: to };
+  return [validateHistoricalScenario(input,options),validateHistoricalCourt(input.world.historicalScenario,options)];
+};
+test('both validators accept a renamed playable polity id with every allowed character',() => {
+  for (const result of renamedPolity('carolingian_realm:1.x')) assert.equal(result.ok,true,result.code);
+});
+for (const id of ['carolingian realm','__proto__']) test(`both validators refuse the playable polity id "${id}"`,() => {
+  for (const result of renamedPolity(id)) assert.equal(result.code,'invalidPolity',id);
 });
 
 test('the Egypt, John and Charlemagne packages pass both validators',() => {
