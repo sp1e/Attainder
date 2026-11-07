@@ -19,6 +19,7 @@ let pendingProjectsJump = null;
 // The idle chat poll is mid-generation ("someone might be typing").
 let chatGenerationInFlight = false;
 const chatGenerationListeners = new Set();
+const simulationIdleListeners = new Set();
 
 export const beginSimulation = () => {
   activeSimulations += 1;
@@ -26,6 +27,22 @@ export const beginSimulation = () => {
 
 export const endSimulation = () => {
   activeSimulations = Math.max(0, activeSimulations - 1);
+  if (activeSimulations !== 0) return;
+  for (const listener of simulationIdleListeners) {
+    try {
+      listener();
+    } catch {
+      // A listener's failure is its own; the counter is already settled.
+    }
+  }
+};
+
+// Told when the last running simulation ends. Returns the unsubscribe.
+export const subscribeSimulationIdle = (listener) => {
+  simulationIdleListeners.add(listener);
+  return () => {
+    simulationIdleListeners.delete(listener);
+  };
 };
 
 export const getPendingJumpSegment = () => pendingJumpSegment;

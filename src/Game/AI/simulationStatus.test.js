@@ -2,9 +2,12 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import {
+  beginSimulation,
+  endSimulation,
   isChatGenerationLikely,
   setChatGenerationInFlight,
   subscribeChatGeneration,
+  subscribeSimulationIdle,
 } from "./simulationStatus.js";
 
 test("the chat is told when a generation starts and stops, once per change", () => {
@@ -35,6 +38,23 @@ test("a listener that throws does not stop the others or the flag", () => {
   setChatGenerationInFlight(false);
   dropBroken();
   dropGood();
+});
+
+test("idle listeners fire when the last simulation ends, and a throwing one breaks nothing", () => {
+  let calls = 0;
+  const dropBroken = subscribeSimulationIdle(() => { throw new Error("broken listener"); });
+  const dropGood = subscribeSimulationIdle(() => { calls += 1; });
+  beginSimulation();
+  beginSimulation();
+  endSimulation();
+  assert.equal(calls, 0);
+  endSimulation();
+  assert.equal(calls, 1);
+  dropGood();
+  beginSimulation();
+  endSimulation();
+  assert.equal(calls, 1);
+  dropBroken();
 });
 
 test("the chat panel subscribes instead of polling the flag on a timer", () => {
