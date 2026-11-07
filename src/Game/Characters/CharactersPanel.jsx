@@ -317,7 +317,7 @@ function SuccessionForecast({ forecast }) {
     {forecast.contestedCrown && <p className="char-badge char-badge--warning">Tronen är omstridd. Den rättsliga arvingen behöver inte bli faktisk härskare.</p>}
     <div className="char-succession-grid">
       <div><h4>{forecast.currentUsesRegent ? 'Nuvarande regent och förmåga' : 'Nuvarande härskare och förmåga'}</h4>{forecast.currentExercising ? personSummary(forecast.currentExercising) : <p>Ingen myndig person utövar mandatet.</p>}<p>{forecast.currentAuthority}</p></div>
-      <div><h4>Väntad faktisk efterträdare</h4>{personSummary(forecast.expectedRuler)}<p>{forecast.authority}</p>
+      <div><h4>Väntad faktisk efterträdare</h4>{forecast.electionFromOutside ? <p>En genererad person utanför hovet väljs.</p> : personSummary(forecast.expectedRuler)}<p>{forecast.authority}</p>
         {forecast.expectedRuler && <p>{forecast.requiresRegency ? 'Barnets arketyp visas som personuppgift, inte som regentens förmåga.' : forecast.abilityChanges ? 'Mandatet byter arketypförmåga.' : 'Mandatet behåller samma arketypförmåga.'}</p>}
       </div>
     </div>

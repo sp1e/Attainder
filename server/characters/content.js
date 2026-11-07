@@ -92,7 +92,7 @@ export const FAMILY_SEEDS = [
 export const SUCCESSION_LAWS = Object.freeze(['primogeniture', 'merit', 'elective']);
 export const SUCCESSION_LAW_LABELS_SV = Object.freeze({ primogeniture: 'förstfödslorätt', merit: 'förtjänst', elective: 'val' });
 // The rule each law applies, as the succession panel states it.
-export const SUCCESSION_LAW_RULES_SV = Object.freeze({ primogeniture: 'Äldsta erkända barn, därefter familjen och rådet', merit: 'Rådets meriterade utnämning', elective: 'Val efter förmåga, först bland vuxna i härskarens hus och sedan vid hovet' });
+export const SUCCESSION_LAW_RULES_SV = Object.freeze({ primogeniture: 'Äldsta erkända barn, därefter familjen och rådet', merit: 'Rådets meriterade utnämning', elective: 'Val efter förmåga bland vuxna i härskarens hus, därefter husets barn efter ålder och sist hovets övriga vuxna' });
 // Kinds of historical polity; a non-state polity can stand on the map but is never playable.
 export const POLITY_KINDS = Object.freeze(['state', 'city-state', 'confederation', 'chiefdom', 'non-state']);
 export const POLITY_KIND_LABELS_SV = Object.freeze({ state: 'stat', 'city-state': 'stadsstat', confederation: 'förbund', chiefdom: 'hövdingadöme', 'non-state': 'statslöst samhälle' });

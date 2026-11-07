@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createHistoricalCharacterSystem } from './scenarioSeed.js';
 import { actionHooks, advanceCharacters, createCharacterSystem, executeCharacterCommand, getCharacterAge, getCharacterPresentation, getSuccessionForecast, normalizeCharacterSystem } from './index.js';
 import { ARCHETYPES, SKILL_LABELS } from './content.js';
-import { ELECTION_REASON_SV, electiveCandidates, nextSuccessionLaw } from './election.js';
+import { ELECTION_REASON_SV, electOutsider, electiveCandidates, nextSuccessionLaw } from './election.js';
 import { addGameMonths } from '../gameDates.js';
 
 const clone = value => JSON.parse(JSON.stringify(value));
@@ -37,6 +37,29 @@ test('elective ranking puts adult kin first, kin minors second and married-in pe
   const ids = electiveCandidates(probe, probe.people['huayna-capac'], people, () => 0).map(p => p.id);
   assert.deepEqual(ids.slice(0, 2), ['probe-kinsman', 'huascar']);
   assert.ok(!ids.includes('probe-outside-minor'));
+});
+
+test("the old ruler's children in their mother's house rank as kin, and their mother stands with the outsiders", () => {
+  const probe = inca(), base = probe.people.huascar;
+  const outside = (id, bornAt, legalParentIds) => ({ ...clone(base), id, familyId: 'generated-house-1', bornAt, legalParentIds });
+  probe.people['probe-mother'] = outside('probe-mother', '1470-01-01', []);
+  probe.people['probe-son'] = outside('probe-son', '1480-01-01', ['huayna-capac', 'probe-mother']);
+  probe.people['probe-daughter'] = outside('probe-daughter', '1495-01-01', ['huayna-capac', 'probe-mother']);
+  const people = Object.values(probe.people).filter(p => p.id !== 'huayna-capac');
+  const ids = electiveCandidates(probe, probe.people['huayna-capac'], people, () => 0).map(p => p.id);
+  assert.deepEqual(ids, ['probe-son', 'huascar', 'probe-daughter', 'araua-ocllo', ...courtiers, 'probe-mother']);
+});
+
+test("the ruler's adoption of his nephew leaves the nephew's father among the kin", () => {
+  let state = inca();
+  state.date = '1510-01-01';
+  const base = state.people.huascar;
+  state.people['probe-brother'] = { ...clone(base), id: 'probe-brother', bornAt: '1460-01-01', legalParentIds: [], skills: { ...base.skills, diplomacy: 20, stewardship: 20 } };
+  state.people['probe-nephew'] = { ...clone(base), id: 'probe-nephew', bornAt: '1505-01-01', legalParentIds: ['probe-brother'] };
+  assert.equal(candidateIds(state)[0], 'probe-brother');
+  state = ok(executeCharacterCommand(state, { id: 'adopt-nephew', expectedRevision: state.revision, type: 'adopt', payload: { childId: 'probe-nephew' } }));
+  assert.deepEqual(state.people['probe-nephew'].legalParentIds, ['probe-brother', 'huayna-capac']);
+  assert.deepEqual(candidateIds(state).slice(0, 3), ['probe-brother', 'huascar', 'probe-nephew']);
 });
 
 test("Huayna Capac's successor is not Araua Ocllo once Huáscar is adult", () => {
@@ -80,6 +103,14 @@ test('a death with no adult creates one generated electee and keeps the realm', 
   assert.equal(successions.length, 1);
   assert.equal(successions[0].title, 'Vald härskare 1 (genererad) tillträder');
   assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
+});
+
+test('an election writes no legal succession from the dead ruler to himself', () => {
+  const state = kill(papal(), [...courtiers, 'leo-iii']);
+  const history = state.realm.claimHistory;
+  assert.ok(!history.some(entry => entry.type === 'legal_succession' && entry.fromId === entry.toId), JSON.stringify(history));
+  assert.equal(history.at(-1).type, 'lawful_accession');
+  assert.equal(history.at(-1).toId, state.offices.ruler.holderId);
 });
 
 test('a second election numbers the house 2', () => {
@@ -159,6 +190,19 @@ test('the election draws nothing', () => {
   assert.equal(JSON.stringify(elective.people), JSON.stringify(merit.people));
 });
 
+test('the election kill and the electee draw nothing', () => {
+  const streams = state => ({ rng: state.rngState, health: state.healthRngState, action: state.actionRngState, plot: state.plotRngState });
+  const elective = kill(papal('elective', { seed: 7 }), [...courtiers, 'leo-iii']);
+  const merit = kill(papal('merit', { seed: 7 }), [...courtiers, 'leo-iii']);
+  assert.equal(elective.people[elective.offices.ruler.holderId].name, 'Vald härskare 1 (genererad)');
+  assert.equal(merit.realm.alive, false);
+  assert.deepEqual(streams(elective), streams(merit));
+  const state = papal('elective', { seed: 7 }), before = streams(state);
+  assert.equal(typeof before.rng, 'number');
+  electOutsider(state, state.people['leo-iii']);
+  assert.deepEqual(streams(state), before);
+});
+
 test('realm kind', () => {
   assert.equal(createCharacterSystem().realm.kind, 'state');
   const data = load('john-1200'), h = clone(data.world.historicalScenario);
@@ -177,5 +221,5 @@ test('realm kind', () => {
 test('the presentation shows kind and law', () => {
   const view = getCharacterPresentation(papal());
   assert.deepEqual(view.realm, { kind: 'state', kindLabelSv: 'stat', successionLaw: 'elective', successionLawLabelSv: 'val' });
-  assert.equal(view.succession.lawLabel, 'Val efter förmåga, först bland vuxna i härskarens hus och sedan vid hovet');
+  assert.equal(view.succession.lawLabel, 'Val efter förmåga bland vuxna i härskarens hus, därefter husets barn efter ålder och sist hovets övriga vuxna');
 });

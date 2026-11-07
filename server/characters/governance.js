@@ -46,7 +46,7 @@ export function refreshLegalClaims(state, candidates) {
     const previous = lawful;
     lawful = candidates(state, previous)[0] || state.people[state.offices.ruler.holderId] || null;
     state.realm.lawfulRulerId = lawful?.id || null;
-    if (lawful) state.realm.claimHistory.push({ date: state.date, type: 'legal_succession', fromId: previous?.id || null, toId: lawful.id, reason: 'Den rättsliga successionsordningen förs vidare separat från faktisk kontroll.' });
+    if (lawful && lawful.id !== previous?.id) state.realm.claimHistory.push({ date: state.date, type: 'legal_succession', fromId: previous?.id || null, toId: lawful.id, reason: 'Den rättsliga successionsordningen förs vidare separat från faktisk kontroll.' });
   }
   const heir = lawful ? candidates(state, lawful)[0] : null;
   state.realm.legalHeirId = heir?.id || null;

@@ -5,7 +5,7 @@ import vm from "node:vm";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
-import { applyRealmDissolution, createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation } from "../../runtime/characters/index.js";
+import { actionHooks, applyRealmDissolution, createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation } from "../../runtime/characters/index.js";
 import { createHistoricalCharacterSystem } from "../../runtime/characters/scenarioSeed.js";
 import { REASONS as ODDS_REASONS } from "../../runtime/characters/actionOdds.js";
 import * as realDates from "../../runtime/gameDates.js";
@@ -1510,10 +1510,11 @@ const officesText = (view) => {
   return renderToStaticMarkup(React.createElement(OfficesView, { view, setTab: () => {} })).replace(/<[^>]+>/g, "");
 };
 // Kyrkostaten's court from the Charlemagne package under the given succession law.
-const papalView = (law) => {
+const papalView = (law, deadIds = []) => {
   const { data } = JSON.parse(readFileSync(new URL("../../../server/seed/historical/charlemagne-800/scenario.json", import.meta.url), "utf8"));
   const state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: "papal-states", seed: 321 });
   state.realm.successionLaw = law;
+  if (deadIds.length) actionHooks(state).kill(deadIds, [], "Prov");
   return getCharacterPresentation(state);
 };
 
@@ -1523,6 +1524,13 @@ test("Ämbeten & arv names the succession order, and a presentation without a re
   const legacy = papalView("merit");
   delete legacy.realm;
   assert.doesNotMatch(officesText(legacy), /Tronföljd:/);
+});
+
+test("the forecast announces the election from outside in place of an empty successor", () => {
+  const text = officesText(papalView("elective", ["generated-courtier-1", "generated-courtier-2", "generated-courtier-3"]));
+  assert.match(text, /Väntad faktisk efterträdareEn genererad person utanför hovet väljs\./);
+  assert.doesNotMatch(text, /Ingen levande innehavare/);
+  assert.match(text, /Valet faller på en genererad person utanför hovet\./);
 });
 
 test("a person who has died in the campaign loses the survival tag", () => {

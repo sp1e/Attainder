@@ -6,13 +6,22 @@ import { ensurePortraitIdentity } from './portraitState.js';
 export const ELECTION_REASON_SV = 'Valet föll på en person utanför hovet';
 const ELECTION_NOTE_SV = 'Personen valdes i simuleringen när hovet saknade behöriga vuxna.';
 
-/** The old ruler's spouse and every other legal parent of the old ruler's legal children, living or dead. */
+/** Children the ruler adopted, from the adoption memory (participants: adopter, child). */
+function adoptedBy(state, rulerId) {
+  return new Set((state.memories || []).filter((m) => m.type === 'adoption' && m.participants?.[0] === rulerId).map((m) => m.participants[1]));
+}
+
+/**
+ * The old ruler's spouse and every other legal parent of the old ruler's legal children, living or dead.
+ * A child the ruler adopted adds nobody: the adoption does not marry its parents into the house.
+ */
 export function marriedIn(state, oldRuler) {
   const ids = new Set();
   if (!oldRuler) return ids;
   if (oldRuler.spouseId) ids.add(oldRuler.spouseId);
+  const adopted = adoptedBy(state, oldRuler.id);
   for (const person of Object.values(state.people || {})) {
-    if (person.legalParentIds?.includes(oldRuler.id)) for (const id of person.legalParentIds) ids.add(id);
+    if (person.legalParentIds?.includes(oldRuler.id) && !adopted.has(person.id)) for (const id of person.legalParentIds) ids.add(id);
   }
   ids.delete(oldRuler.id);
   return ids;
@@ -20,16 +29,19 @@ export function marriedIn(state, oldRuler) {
 
 /**
  * Elective order: adults of the old ruler's house by merit, then its minors eldest first,
- * then every other adult by merit. Married-in persons stand with the outsiders. Draws nothing.
+ * then every other adult by merit. The old ruler's legal children count as the house whatever
+ * their family. Married-in persons stand with the outsiders. Draws nothing.
  */
 export function electiveCandidates(state, oldRuler, people, score) {
   const outside = marriedIn(state, oldRuler);
   const byScore = (a, b) => score(b) - score(a) || a.id.localeCompare(b.id);
   const byAge = (a, b) => compareGameDates(a.bornAt, b.bornAt) || a.id.localeCompare(b.id);
-  const kin = people.filter((p) => oldRuler && p.familyId === oldRuler.familyId && !outside.has(p.id));
+  const isKin = (p) => p.legalParentIds?.includes(oldRuler.id) || (p.familyId === oldRuler.familyId && !outside.has(p.id));
+  const kin = oldRuler ? people.filter(isKin) : [];
+  const kinIds = new Set(kin.map((p) => p.id));
   const adults = kin.filter((p) => isAdultCharacter(p, state.date));
   const minors = kin.filter((p) => !isAdultCharacter(p, state.date));
-  const others = people.filter((p) => !kin.includes(p) && isAdultCharacter(p, state.date));
+  const others = people.filter((p) => !kinIds.has(p.id) && isAdultCharacter(p, state.date));
   return [...adults.sort(byScore), ...minors.sort(byAge), ...others.sort(byScore)];
 }
 
