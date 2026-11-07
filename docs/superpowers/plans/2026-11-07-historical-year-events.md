@@ -41,7 +41,7 @@ Ruling: the popup lists at most 12 events, by importance then date, with `Visa a
 
 Ruling: the catalog holds approved events only, and an empty catalog is valid — tasks 1 to 5 can merge before any research — the first merge shows `Inga godkända händelser ännu` in the record and no popup.
 
-Ruling: years after AD 1200 have no coverage and show no popup — the research range ends there and a campaign may run past it — John's start at `1200-12-31` reports only year 1200, which the owner should weigh when setting the research order.
+Ruling: years after AD 1200 have no coverage and show no popup — the research range ends there and a campaign may run past it — John's start at `1200-12-31` reports only year 1200, so the owner asked for a better start and `2026-11-07-charlemagne-800-start.md` adds one at AD 800.
 
 Ruling: research batch 1 waits for the owner's answer on the private Codex pilot — the pilot is on no reachable machine or repository, and redoing it wastes work — tasks 1 to 5 go ahead without it.
 
@@ -217,7 +217,7 @@ Add a segment `I verklighetens historia` to `ChronicleView` for historical campa
 - Create: `docs/research/historical-events-method.md`
 - Modify: `server/seed/historical/events/catalog.json`, `server/seed/historical/events/coverage.json`, `docs/research/historical-events-coverage.md`
 
-Scope: `-3000` through `-2900` (the Egypt start walks forward from here) and AD 1200 (the John start). If the owner hands over the pilot, build on it and recheck each record.
+Scope: `-3000` through `-2900` (the Egypt start walks forward from here), AD 800 through 900 (the Charlemagne start) and AD 1200 (the John start). If the owner hands over the pilot, build on it and recheck each record.
 
 - [ ] **Step 1: Write the method:** selection criteria, source order (primary evidence, then institutional and scholarly sources), how competing chronologies are recorded, when a year is `no-secure-event`, and the review gate.
 - [ ] **Step 2: Research each year** and draft records. Check competing chronologies and record each locator.
