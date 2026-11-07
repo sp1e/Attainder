@@ -1,6 +1,6 @@
 # Research status
 
-Updated by Codex on 7 November 2026 at main `3a513dde4fa70acb884e259168ed674360c3fa2e`.
+Updated by Codex on 7 November 2026 at main `47fa170fe6d25b6e2b9490223e6c45b4899d16c6`.
 
 | Batch | State | PR | Files | Counts | Waiting for Claude |
 |---|---|---|---|---|---|
@@ -14,7 +14,12 @@ Updated by Codex on 7 November 2026 at main `3a513dde4fa70acb884e259168ed674360c
 | E800–899: year events | Merged at `cbbdd014`; remote commit verified | [#25](https://github.com/sp1e/Attainder/pull/25) | Event catalog, coverage and report; `docs/research/world-cultures/e0800-year-events.md` | 44 events; 39 sources; initial 44/41/1/2; separate follow-up 3/3/0/0; 29 existing tests passed | Visible chronicle/turn-end checks, stale coverage label; no runtime change supplied |
 | E900–999: year events | Merged at `3a2adac6`; remote commit verified | [#26](https://github.com/sp1e/Attainder/pull/26) | Event catalog, coverage and report; `docs/research/world-cultures/e0900-year-events.md` | 44 added events; 43 added sources; initial 45/40/4/1; separate follow-up 5/5/0/0; 2 withheld candidates; 29 existing tests passed | Visible chronicle/turn-end checks and coverage label; catalog totals 88 events and 82 sources |
 | E1000–1099: year events | Merged at `3a513dde`; remote commit verified | [#28](https://github.com/sp1e/Attainder/pull/28) | Event catalog, coverage and report; `docs/research/world-cultures/e1000-year-events.md` | 45 added events; 48 added sources; initial 45/38/6/1; separate follow-up 8/8/0/0; 29 existing tests passed | Visible chronicle/turn-end checks; catalog totals 133 events and 130 sources |
-| E1100–1199: year events | Source-approved; independent batch and integrated-data reviews passed; repository checks passed; publication pending | None yet | Event catalog, coverage and report; `docs/research/world-cultures/e1100-year-events.md` | 56 added events; 53 added sources; initial 56/39/15/2; separate follow-ups 17/15/2/0 and 2/2/0/0; 29 existing tests passed | Visible chronicle/turn-end checks; catalog totals 189 events and 183 sources |
+| E1100–1199: year events | Merged at `793b4369`; remote commit verified | [#29](https://github.com/sp1e/Attainder/pull/29) | Event catalog, coverage and report; `docs/research/world-cultures/e1100-year-events.md` | 56 added events; 53 added sources; initial 56/39/15/2; separate follow-ups 17/15/2/0 and 2/2/0/0; 29 existing tests passed | Visible chronicle/turn-end checks; catalog totals 189 events and 183 sources |
+| D2: Maya political forms | Source checks and reconciliation complete; final publication review pending | None yet | Two research JSON files and companion notes under `docs/research/world-cultures/d2-maya-ad800.*` and `d2-maya-ad1500.*` | AD 800: 5 cases, 40 claims, 21 sources; initial 28 confirmed, 2 corrected, 10 uncertain; separate follow-up 2 confirmed. AD 1500: 5 cases, 62 scoped items, 21 source records; initial 58 confirmed, 4 corrected; separate follow-up 4 confirmed | City-specific rulers, households and territorial evidence; locality points establish no control area; no active courts or generated replacements supplied |
+
+## Implementation handoff update
+
+Claude merged [Phase 3 in PR #30](https://github.com/sp1e/Attainder/pull/30) at `47fa170fe6d25b6e2b9490223e6c45b4899d16c6`; this research branch fetched and fast-forwarded to that commit. Claude's [checkpoint](CONTINUE-HERE.md#every-culture-playable-phase-3) records the dossier importer, ten playable Charlemagne polities, four John polities, Rome wording and the coverage-driven research-end label. Western Xia and Chimú remain blocked. The earlier handoff requests below are publication-time records; those completed Phase 3 items no longer wait for implementation. Codex has not rerun Claude's gameplay or browser verification. Future edits to imported court dossiers need Claude's rebuild and provenance refresh.
 
 ## Rulings
 
@@ -58,6 +63,10 @@ Updated by Codex on 7 November 2026 at main `3a513dde4fa70acb884e259168ed674360c
 - Ruling: keep the Aztec `merit` mapping uncertain and preserve Townsend's primogeniture terminology, restricted dynastic candidates and Torquemada's brother-succession account. Retain Inca `none-fits`. Removing these qualifications would misrepresent the succession evidence.
 - Ruling: remove the unsupported Inca implementation assertion. Historical source reviewers cannot establish runtime behavior; Claude owns that verification. Keep the original unsupported verdict in the 54-claim audit and record the three confirmed follow-up occurrences separately.
 - Ruling: deduplicate the shared Getty licensing page from twenty original B2 source records to nineteen retained records. Preserve both coordinate records' ODC-By data rights, reference-only page prose and the original source-review counts. Treating source deduplication as extra historical confirmation would inflate the audit.
+
+- Ruling: publish D2 as research dossiers, with uncertain candidate officeholders and withheld households. A documented reign interval may establish a bookmark officeholder; an exact-day act is not a universal prerequisite. These source chains leave case-specific gaps. Filling them with generated rulers could replace named historical candidates.
+- Ruling: keep the Maya Long Count and published calendar labels as stated. The Mesoweb table labels its dates Gregorian; the guide’s prose date lacks a calendar label; selecting a conversion independently would invent certainty.
+- Ruling: retain Getty locality points with attribution and leave Maya city-state areas unresolved. The consulted sources supply no accepted successor polygon or justified territorial radius; treating a point as control would exceed the evidence.
 
 ## Corrections for files Codex may not change
 
@@ -110,6 +119,8 @@ E1000 publication is complete through [PR #28](https://github.com/sp1e/Attainder
 
 C2's private East and South Asia source-check batch is published and its remote main commit verified. All 308 culture values remain unchanged; C3 owns the recorded corrections. C3 correction and completeness work continues privately, alongside Maya political-form research for D2.
 
-Publish the E1100 batch; its independent integrated-data review approved the five-file change with no findings. Catalog generation/check mode and all 29 existing historical-event tests passed. The combined catalog contains 189 events and 183 sources, with all four centuries partial. Research for events starting in 1200 and later must preserve the existing start horizon through 1530 and the remaining annual coverage gaps. Claude owns visible chronicle and turn-end verification and the previously reported stale coverage label.
+E1100 publication is complete through [PR #29](https://github.com/sp1e/Attainder/pull/29), merged at verified main `793b43694359d9499ffb453e8a9fb73f8116a913`. Required CI passed: 4,963 total, 4,961 passed, zero failed and two TODO; the build took 29.95 seconds. The catalog contains 189 events and 183 sources, and all four centuries remain partial.
+
+D2 Maya source reconciliation is complete for both bookmarks, with final publication review pending. AD 800 retains ten uncertain initial outcomes and the confirmed two-claim correction follow-up. AD 1500 retains the initial 62 scoped items (58 confirmed, four corrected) and four confirmed follow-up occurrences. Neither dossier supplies an active court, generated replacement ruler or accepted territory. C3 private completeness and correction work continues. E1200 has 55 events with approved final data review, awaiting its own publication batch; none has been added to the public catalog. D1 name-pool review and D3 political-form reconciliation proceed separately. Claude owns game implementation and visible verification. Phase 3 resolved the previously reported fixed coverage label, as recorded above.
 
 Ruling: preserve partial coverage, separately recorded review rounds and long archaeological phases. Codex researches; Claude implements and verifies the game.

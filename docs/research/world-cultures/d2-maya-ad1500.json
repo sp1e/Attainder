@@ -1,0 +1,4239 @@
+{
+  "schema": "attainder-d2-maya-research-v1",
+  "bookmark": "1500-12-31",
+  "status": "Source-review-complete-with-explicit-uncertainty",
+  "scope": "Five bounded late Postclassic political cases; contextual historical claims and exact-bookmark limitations are kept distinct.",
+  "calendarHandling": "Sources retain their own chronology. No independent Maya calendar, BP, century or relative-year arithmetic is used.",
+  "publicationBoundary": "Contains public-source research only. No private culture-inventory material, campaign data or machine-specific paths.",
+  "sources": {
+    "mayapan-politics-2014": {
+      "title": "Politics and Monumental Legacies, chapter 2 of Kukulcan’s Realm: Urban Life at Ancient Mayapán",
+      "institution": "University Press of Colorado; Carlos Peraza Lope and Marilyn A. Masson",
+      "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+      "locator": "Sections Politics at the City; The Confederacy and Its Allied Territories; Lords and Kings at Mayapán; Council Rule; Major Dynasties and Ethnic Struggles; Official Bureaucracy",
+      "scopedClaim": "Places Mayapán’s abandonment and later lineage influence in historical context, while distinguishing political authority from exchange and material similarity.",
+      "chronology": {
+        "asWorded": [
+          "AD 1441–1461",
+          "K’atun 8 Ahau",
+          "Contact Period"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "The chapter synthesizes retrospective documents and archaeology; it is not a census of rulers or jurisdictions on 1500-12-31.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual chapter body retrieved with live Firecrawl scrape after web reader exposed only a shell; relevant sections read."
+    },
+    "andrews-1984": {
+      "title": "The Political Geography of the Sixteenth Century Yucatan Maya: Comments and Revisions, Journal of Anthropological Research 40(4), 589–596",
+      "institution": "Anthony P. Andrews; University of New Mexico / University of Chicago Press",
+      "url": "https://www.journals.uchicago.edu/doi/abs/10.1086/jar.40.4.3629799",
+      "locator": "Public Abstract, paragraph beginning Research on the political geography",
+      "scopedClaim": "The public abstract describes revisions to Roys’s 1957 reconstruction; it does not validate five fixed AD1500 polygons.",
+      "chronology": {
+        "asWorded": [
+          "sixteenth-century Yucatán"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "Only the public abstract and bibliographic front matter were read. The described revisions concern Cupul, Chikinchel and Tases.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Public abstract and front matter only; full article not accessed."
+    },
+    "ah-kin-chel-2008": {
+      "title": "Geografía política de la provincia de Ah Kin Chel, Boletín del Sistema Nacional de Información Estadística y Geográfica 1(1), article beginning p.46",
+      "institution": "Miguel Covarrubias Reyna and Rafael Burgos Villanueva, Proyecto Izamal/INAH; INEGI; institutional SIC mirror",
+      "url": "https://sic.cultura.gob.mx/documentos/1249.pdf",
+      "locator": "Article Introduction; Los recorridos, paragraphs beginning La confusión se incrementaba and El modesto volumen; discussion beginning Es probable que en este proceso; Metodología",
+      "scopedClaim": "Distinguishes historical phases around Izamal, discusses Tecoh east of Izamal and a competing Dzidzantún capital interpretation, and treats Cehpech/Motul separation as a reconstruction.",
+      "chronology": {
+        "asWorded": [
+          "siglos XV y XVI",
+          "época de la Conquista"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "The article’s diachronic survey and archaeological distribution are not fixed political borders or an exact AD1500 capital date.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual PDF article text retrieved via live Firecrawl; relevant sections read. Original PDF also downloaded privately; local pypdf extraction was unusable and not evidence."
+    },
+    "okoshi-2012": {
+      "title": "Las entidades políticas de las Tierras Bajas del norte al tiempo de la invasión española, Revista Digital Universitaria 13(12), 1 December 2012",
+      "institution": "Tsubasa Okoshi Harada; UNAM",
+      "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+      "locator": "Abstract; La geografía política maya; La organización sociopolítica; conclusion, PDF pp.2–8",
+      "scopedClaim": "Explains relational jurisdictions, partly autonomous batabob, alliance strategies and council constraints, and discusses varying reconstructions of named northern entities.",
+      "chronology": {
+        "asWorded": [
+          "al tiempo de la invasión española"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "Contact-period reconstruction is not a roster or constitution securely fixed to 1500-12-31.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual PDF text read; live Firecrawl recovered full article after focused web access failures."
+    },
+    "alliances-2012": {
+      "title": "Alianzas y estrategias de legitimación de la nobleza indígena en el norte de Yucatán durante el Posclásico: un enfoque comparativo y multidisciplinario, Estudios de cultura maya 40, 123–166",
+      "institution": "María Flores Hernández and Manuel Eduardo Pérez Rivas, INAH; UNAM journal / SciELO",
+      "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+      "locator": "Sections Las alianzas de los Pech and Las alianzas de los Ch’el; discussions of Cocom origins; note 21 quoting RHGGY I:269–270; note 19",
+      "scopedClaim": "Analyzes lineage alliance and legitimating narratives; reports Nohcabal Pech’s Motul tradition and Na Mo Ch’el’s marriage/discipleship tradition.",
+      "chronology": {
+        "asWorded": [
+          "Posclásico",
+          "1565–1567",
+          "al cabo de muchos años"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "Colonial genealogies and legitimating narratives cannot date an accession, marriage, household or living ruler to 1500. RHGGY is encountered through this article, not independently read.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual HTML article body recovered by live Firecrawl after web timeout; specified sections and notes read."
+    },
+    "acalan-2016": {
+      "title": "Organización política de los Mayas chontales de la provincia de Acalan-Tixchel, XXIX Simposio de Investigaciones Arqueológicas en Guatemala 2015, pp.151–162 (published 2016)",
+      "institution": "Ernesto Vargas and Angélica Delgado; Museo Nacional de Arqueología y Etnología, Guatemala; Asociación Tikal",
+      "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+      "locator": "Printed pp.151–154: Introduction; La provincia de Acalan-Tixchel; Itzamkanac, cabecera de la provincia de Acalan-Tixchel",
+      "scopedClaim": "Identifies Itzamkanac with El Tigre; presents an Acalan house/network model; describes the hypothesized quadripartite structure and Paxbolonacha/Pachimalahix relationship at Cortés’s arrival.",
+      "chronology": {
+        "asWorded": [
+          "segunda mitad del Siglo XIII ó XIV",
+          "al momento de la llegada de Cortés"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "The uninterrupted quadripartite structure is explicitly proposed, not proved; four batabilob and five named rulers are not a dated four-person council roster. Cortés and the Papeles are quoted through this study, not independently read.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual institutional PDF, printed pp.151–154 read; article HTML also read at Asociación Tikal.",
+      "alternateUrls": [
+        "https://www.asociaciontikal.com/test-page/simposio-29-2015/organizacion-politica-de-los-mayas-chontales-de-la-provincia-de-acalan-tixchel/"
+      ]
+    },
+    "inah-el-tigre": {
+      "title": "El Tigre (Itzamkanac), archaeological-zone record",
+      "institution": "Secretaría de Cultura / INAH; Sistema de Información Cultural",
+      "url": "https://sic.gob.mx/ficha.php?disciplina=&table=zona_arqueologica&table_id=144",
+      "locator": "Descripción and Reseña Histórica; Cronología",
+      "scopedClaim": "Identifies El Tigre/Itzamkanac as a river port and describes Cortés’s later visit and the site’s occupation span.",
+      "chronology": {
+        "asWorded": [
+          "hacia 1525",
+          "600 a.C. - 1557"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "A settlement occupation span and approximately five square kilometres of site area do not establish Acalan’s state lifetime or territorial extent.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual institutional page body read."
+    },
+    "landa-government": {
+      "title": "Los mayas de Yucatán: Gobierno, sacerdocio, ciencias, letras y libros de Yucatán",
+      "institution": "Diego de Landa, selected colonial account; Biblioteca Digital ILCE, Fondo 2000",
+      "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/2.html",
+      "locator": "Section 2; paragraphs on Cocom government, Caluac, and Ah Kin May / Ahau Can May",
+      "scopedClaim": "Reports retrospective Mayapán government and priestly succession/advice traditions; does not establish offices or persons in the five cases in AD1500.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent date arithmetic applied",
+        "temporalScope": "Mayapán before its abandonment; undated general customs"
+      },
+      "uncertainty": "A selected colonial account rather than a critical edition; office descriptions may belong to different periods.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual HTML body read with native PowerShell after web reader omitted body."
+    },
+    "landa-xiu": {
+      "title": "Los mayas de Yucatán: Llegada de los Tutul Xiu y alianza que hicieron con los señores de Mayapán",
+      "institution": "Diego de Landa, selected colonial account; Biblioteca Digital ILCE, Fondo 2000",
+      "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/3.html",
+      "locator": "Section 3; paragraphs on Xiu alliance, intermarriage, conflict and the absent surviving Cocom son",
+      "scopedClaim": "Reports Xiu alliance/intermarriage and a Cocom survival narrative associated with Mayapán’s fall.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent date arithmetic applied",
+        "temporalScope": "Undated narrative sequence before and during Mayapán’s fall"
+      },
+      "uncertainty": "Neither personal dates nor a household at AD1500 are supplied.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual HTML body read with native PowerShell."
+    },
+    "landa-chel": {
+      "title": "Los mayas de Yucatán: Monumentos cronológicos de Yucatán; Fundación del reino de Zututa; Origen de los Chel; Los tres reinos",
+      "institution": "Diego de Landa, selected colonial account; Biblioteca Digital ILCE, Fondo 2000",
+      "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+      "locator": "Section 4; paragraphs on the surviving Cocom son/Tibulón, Ah Chel/Tikoch, and rivalry among Cocom, Xiu and Chel",
+      "scopedClaim": "Reports Cocom reassembly at Tibulón in Zututa and an Ah Chel marriage/priestly transmission tradition at Tikoch; describes rivalry without fixing an AD1500 roster.",
+      "chronology": {
+        "asWorded": [
+          "hará 120 años",
+          "hasta la venida de los españoles"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "Relative chronology is not converted. Tikoch, Tecoh and a modern TGN homonym are not equated automatically. The priest and daughter are unnamed here.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual HTML body read with native PowerShell."
+    },
+    "landa-marriage": {
+      "title": "Los mayas de Yucatán: Matrimonios",
+      "institution": "Diego de Landa, selected colonial account; Biblioteca Digital ILCE, Fondo 2000",
+      "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/17.html",
+      "locator": "Section 17; opening paragraphs on parents arranging marriages and status considerations",
+      "scopedClaim": "Reports general marriage negotiation customs in Landa’s account; no named marriage at the bookmark is established.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent date arithmetic applied",
+        "temporalScope": "Undated general customs in a colonial account"
+      },
+      "uncertainty": "A normative retrospective account cannot prove every elite household followed one rule.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual HTML body read with native PowerShell."
+    },
+    "tgn-7024106": {
+      "title": "Getty TGN 7024106: Maní",
+      "institution": "Getty Research Institute, J. Paul Getty Trust",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7024106",
+      "locator": "Full record: preferred/alternate names, Coordinates decimal degrees, hierarchy and place types",
+      "scopedClaim": "Coordinates of Maní and a note identifying a former Xiu capital; not a royal residence on the bookmark.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent date arithmetic applied",
+        "temporalScope": "Modern authority-record coordinates; no AD1500 court date"
+      },
+      "uncertainty": "A locality point is not a political boundary or an exact palace location.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual full record read using native PowerShell; decimal coordinates copied without conversion.",
+      "coordinates": [
+        -89.4,
+        20.3833
+      ],
+      "attribution": "Getty Research Institute, J. Paul Getty Trust; Getty Thesaurus of Geographic Names (TGN); ODC Attribution 1.0."
+    },
+    "tgn-7024107": {
+      "title": "Getty TGN 7024107: Sotuta",
+      "institution": "Getty Research Institute, J. Paul Getty Trust",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7024107",
+      "locator": "Full record: preferred/alternate names, Coordinates decimal degrees, hierarchy and place types",
+      "scopedClaim": "Coordinates of the modern inhabited place Sotuta; not proof that Tibulón or a ruler’s residence occupied this point in AD1500.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent date arithmetic applied",
+        "temporalScope": "Modern authority-record coordinates; no AD1500 court date"
+      },
+      "uncertainty": "A locality point is not a political boundary or an exact palace location.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual full record read using native PowerShell; decimal coordinates copied without conversion.",
+      "coordinates": [
+        -89.0167,
+        20.6
+      ],
+      "attribution": "Getty Research Institute, J. Paul Getty Trust; Getty Thesaurus of Geographic Names (TGN); ODC Attribution 1.0."
+    },
+    "tgn-1017891": {
+      "title": "Getty TGN 1017891: Motul de Felipe Carrillo Puerto",
+      "institution": "Getty Research Institute, J. Paul Getty Trust",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=1017891",
+      "locator": "Full record: preferred/alternate names, Coordinates decimal degrees, hierarchy and place types",
+      "scopedClaim": "Coordinates and alternate name Motul; not proof of a ruler’s residence in AD1500.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent date arithmetic applied",
+        "temporalScope": "Modern authority-record coordinates; no AD1500 court date"
+      },
+      "uncertainty": "A locality point is not a political boundary or an exact palace location.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual full record read using native PowerShell; decimal coordinates copied without conversion.",
+      "coordinates": [
+        -89.2833,
+        21.1
+      ],
+      "attribution": "Getty Research Institute, J. Paul Getty Trust; Getty Thesaurus of Geographic Names (TGN); ODC Attribution 1.0."
+    },
+    "tgn-7366487": {
+      "title": "Getty TGN 7366487: El Tigre / Itzamkanac",
+      "institution": "Getty Research Institute, J. Paul Getty Trust",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7366487",
+      "locator": "Full record: preferred/alternate names, Coordinates decimal degrees, hierarchy and place types",
+      "scopedClaim": "Coordinates of El Tigre deserted settlement and its alternate name Itzamkanac; not a capital-date or court-presence claim.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent date arithmetic applied",
+        "temporalScope": "Modern authority-record coordinates; no AD1500 court date"
+      },
+      "uncertainty": "A locality point is not a political boundary or an exact palace location.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual full record read using native PowerShell; decimal coordinates copied without conversion.",
+      "coordinates": [
+        -90.85,
+        18.1333
+      ],
+      "attribution": "Getty Research Institute, J. Paul Getty Trust; Getty Thesaurus of Geographic Names (TGN); ODC Attribution 1.0."
+    },
+    "getty-rights": {
+      "title": "Data & Services for Vocabularies",
+      "institution": "Getty Research Institute, J. Paul Getty Trust",
+      "url": "https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/",
+      "locator": "Licensing and Citations: Licensing, General, Uniform Resource Identifiers",
+      "scopedClaim": "States that Getty Vocabulary data is available under ODC-By 1.0 and requires attribution and contributor/source credit where appropriate.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent date arithmetic applied",
+        "temporalScope": "Current licensing statement retrieved 2026-11-07"
+      },
+      "uncertainty": "This licenses vocabulary data, not unrelated maps or scholarship.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual licensing section read."
+    },
+    "tecoh-1993": {
+      "title": "Tecoh, Izamal: Nobleza Indigena y Conquista Española, Latin American Antiquity 4(1), 48–58",
+      "institution": "Luis Millet Cámara, Heber Ojeda M., Vicente Suárez A.; Society for American Archaeology / Cambridge University Press",
+      "url": "https://www.cambridge.org/core/journals/latin-american-antiquity/article/abs/tecoh-izamal-nobleza-indigena-y-conquista-espanola/3ECE878A0A53FC0D75D9BF06F48AC74A",
+      "locator": "Public Resumen and Abstract; bibliographic front matter",
+      "scopedClaim": "The abstract cautiously identifies Tecoh in Izamal municipality as a principal town/relocated seat and discusses indigenous nobles’ early colonial houses.",
+      "chronology": {
+        "asWorded": [
+          "primeros años de la dominación española"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "Only the public abstract and front matter were read; the relocation is qualified and no AD1500 date is supplied.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Public abstract/front matter only; full article not accessed."
+    },
+    "rubio-later-xiu": {
+      "title": "Los Primeros Vecinos de la Ciudad de Mérida de Yucatán, annotated reception address",
+      "institution": "J. Ignacio Rubio Mañé; Academia Mexicana de la Historia",
+      "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+      "locator": "PDF p.13 / zero-based page12, corrective note 5, paragraphs naming the Xiu, Napuc Chi, Ix Kukil Xiu and Nachi Cocom",
+      "scopedClaim": "Reports named Xiu/Cocom persons and kinship in the 1530s/1540s; used only to show later attestation and prevent backdating into AD1500.",
+      "chronology": {
+        "asWorded": [
+          "1531",
+          "agosto de 1536",
+          "1537",
+          "23 de enero de 1542"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "Later conquest-era attestation only; no AD1500 birth, survival or office date is supplied by the selected passage.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual named corrective note and front matter read; no complete-work claim."
+    },
+    "hbm-readme": {
+      "title": "Historical boundaries of world countries and cultural regions, pinned README",
+      "institution": "André Ourednik / Historical Basemaps",
+      "url": "https://raw.githubusercontent.com/aourednik/historical-basemaps/4b5039e50d8d2464b065bd76ad6086cd4597108d/README.md",
+      "locator": "Introduction; GeoJSON/Polygons; Conceptual limitations and disputed territories",
+      "scopedClaim": "Describes coarse world-scale approximate basemaps, incomplete source compilation and limits of political interpretation.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "README warnings do not validate any Maya successor’s territory.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual raw README read."
+    },
+    "hbm-license": {
+      "title": "Historical Basemaps pinned repository LICENSE",
+      "institution": "Historical Basemaps; Free Software Foundation license text",
+      "url": "https://raw.githubusercontent.com/aourednik/historical-basemaps/4b5039e50d8d2464b065bd76ad6086cd4597108d/LICENSE",
+      "locator": "GPL version heading and licensing terms",
+      "scopedClaim": "Repository license file is GNU GPL version 3; no polygon from it is accepted or redistributed by this draft.",
+      "chronology": {
+        "asWorded": [
+          "29 June 2007"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "Repository-wide license is recorded; source provenance and historical fit still require separate scrutiny.",
+      "license": "GPL-3.0 repository license; no geometry redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual raw license heading and relevant terms read."
+    },
+    "hbm-1500": {
+      "title": "Historical Basemaps world_1500.geojson at pinned commit",
+      "institution": "André Ourednik / Historical Basemaps",
+      "url": "https://raw.githubusercontent.com/aourednik/historical-basemaps/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_1500.geojson",
+      "locator": "Feature index 82, properties NAME/SUBJECTO/PARTOF/BORDERPRECISION; complete feature list inspected for Maya name",
+      "scopedClaim": "Contains one aggregate feature named Maya city-states, rather than five separately named successor-polity features.",
+      "chronology": {
+        "asWorded": [
+          "1500"
+        ],
+        "conversion": "None; no independent date arithmetic applied"
+      },
+      "uncertainty": "The aggregate feature does not establish a single Maya state, five internal divisions or bookmark political control.",
+      "license": "GPL-3.0 repository license; no geometry redistributed",
+      "retrievedAt": "2026-11-07",
+      "accessExtent": "Actual GeoJSON fetched and parsed; Maya properties and feature identity inspected; no geometric accuracy certification.",
+      "sha256": "d01ffc9b80629787f13d2b1c2f881f005bc0164433548e30f5c058ddee0bfc7b"
+    }
+  },
+  "regionalClaims": [
+    {
+      "id": "regional-mayapan-fall",
+      "value": {
+        "abandonmentAsWorded": "AD 1441–1461",
+        "sourceCorrelation": "K’atun 8 Ahau",
+        "bookmarkConversionPerformed": false
+      },
+      "status": "sourced",
+      "claimScope": "Chronology as given by the 2014 scholarly synthesis, not a newly calculated correlation",
+      "sourceIds": [
+        "mayapan-politics-2014"
+      ],
+      "noteSv": "Källans datering återges utan egen kalenderomräkning. Den daterar inte varje efterföljande jurisdiktion."
+    },
+    {
+      "id": "regional-relational-authority",
+      "value": {
+        "model": "Contact-period northern jurisdictions depended on ruler/local-lord relationships, alliances and redistribution; autonomy and changing affiliation mattered"
+      },
+      "status": "sourced",
+      "claimScope": "What the cited modern study says about the contact-period northern model, not a universal AD1500 constitution",
+      "sourceIds": [
+        "okoshi-2012"
+      ],
+      "noteSv": "Detta är en regional modell från kontaktmaterial. Tillämpningen på varje fall år 1500 är osäker."
+    },
+    {
+      "id": "regional-marriage-context",
+      "value": {
+        "model": "Marriage and kinship could support elite political alliances and legitimation; no universal succession rule or named bookmark couple established"
+      },
+      "status": "uncertain",
+      "claimScope": "Regional context assembled from sources with different periods and purposes",
+      "sourceIds": [
+        "alliances-2012",
+        "landa-marriage",
+        "landa-government"
+      ],
+      "noteSv": "Normativa uppgifter och legitimerande släktberättelser fastställer inte samma sed i varje enskilt hov."
+    },
+    {
+      "id": "regional-boundary-caution",
+      "value": {
+        "fixed1500ProvinceBoundaries": null,
+        "colonialLabelsAreNotAcceptedBorders": true
+      },
+      "status": "uncertain",
+      "claimScope": "No fixed AD1500 boundary claim; the reviewed scholarship questions static reconstructions",
+      "sourceIds": [
+        "andrews-1984",
+        "okoshi-2012",
+        "ah-kin-chel-2008"
+      ],
+      "noteSv": "Roys rekonstruktion och senare provinsnamn används som forskningsingångar, inte som färdiga gränser år 1500."
+    },
+    {
+      "id": "regional-hbm-scope",
+      "value": {
+        "commit": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "file": "geojson/world_1500.geojson",
+        "featureIndex": 82,
+        "name": "Maya city-states",
+        "geometryType": "MultiPolygon",
+        "borderPrecision": 1,
+        "fileSha256": "d01ffc9b80629787f13d2b1c2f881f005bc0164433548e30f5c058ddee0bfc7b"
+      },
+      "status": "sourced",
+      "claimScope": "Dataset identity and properties only; no historical acceptance",
+      "sourceIds": [
+        "hbm-1500"
+      ],
+      "noteSv": "Den gemensamma ytan belägger varken en enda stat eller interna gränser mellan kandidaterna."
+    },
+    {
+      "id": "regional-geometry-choice",
+      "value": {
+        "acceptedPolygons": [],
+        "radiusKm": null,
+        "pointOnlyAlternative": true,
+        "unreviewedControlLabelSv": "Okänd historisk kontroll"
+      },
+      "status": "uncertain",
+      "claimScope": "Bounded research output: no successor-area data accepted, no source-justified radius located",
+      "sourceIds": [
+        "hbm-readme",
+        "hbm-license",
+        "hbm-1500",
+        "andrews-1984",
+        "okoshi-2012",
+        "ah-kin-chel-2008"
+      ],
+      "noteSv": "Inga kartbilder kopieras och inga gränser ritas av. Tidigare megalitiska områden, moderna kommuner och en fornlämnings areal styrker inte politisk kontroll år 1500."
+    },
+    {
+      "id": "regional-getty-rights",
+      "value": {
+        "coordinateLicense": "ODC-By-1.0",
+        "coordinateOrder": "[longitude, latitude]",
+        "attribution": "Getty Research Institute, J. Paul Getty Trust; Getty Thesaurus of Geographic Names (TGN); ODC Attribution 1.0."
+      },
+      "status": "sourced",
+      "claimScope": "Rights for the four copied Getty coordinate records",
+      "sourceIds": [
+        "getty-rights",
+        "tgn-7024106",
+        "tgn-7024107",
+        "tgn-1017891",
+        "tgn-7366487"
+      ],
+      "noteSv": "Gettydata får återanvändas med angiven källa och licens. Detta licensierar inte andra kartor."
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "mani-xiu",
+      "nameSv": "Maní och Xiu",
+      "bookmark": "1500-12-31",
+      "status": "blocked",
+      "blockedReason": "Exact bookmark authority, ruler and territorial control are not established by the bounded corpus.",
+      "sourceIds": [
+        "mayapan-politics-2014",
+        "landa-xiu",
+        "landa-chel",
+        "rubio-later-xiu",
+        "tgn-7024106"
+      ],
+      "people": [],
+      "generatedPeople": [],
+      "acceptedPolygon": null,
+      "insideAcceptedPolygon": null,
+      "geometry": {
+        "mode": "research-point-only",
+        "acceptedForGameplay": false,
+        "polygon": null,
+        "radiusKm": null,
+        "controlStatus": "unresolved",
+        "noteSv": "Ortspunkten visar en möjlig anknytning. Den styrker varken områdeskontroll eller fasta gränser år 1500."
+      },
+      "claims": [
+        {
+          "id": "mani-xiu-bookmarkPresence",
+          "field": "bookmarkPresence",
+          "value": {
+            "candidate": "Xiu political network centred on Maní",
+            "secureExactDate": false
+          },
+          "status": "uncertain",
+          "claimScope": "Candidate application to 1500-12-31; exact institutions and extent unclaimed",
+          "sourceIds": [
+            "mayapan-politics-2014",
+            "landa-chel"
+          ],
+          "noteSv": "Xiu är belagda i traditionen efter Mayapán och under kontakttiden. Organisationen just vid bokmärket kräver tidsmässig inferens."
+        },
+        {
+          "id": "mani-xiu-politicalAuthority",
+          "field": "politicalAuthority",
+          "value": {
+            "model": "Lineage authority within a network of dependent local rulers; no uniform constitutional model assigned",
+            "ruler": null,
+            "titleSv": "Härskare; exakt ämbetstitel obestyrkt"
+          },
+          "status": "uncertain",
+          "claimScope": "Bookmark authority; general northern model is contextual only",
+          "sourceIds": [
+            "okoshi-2012",
+            "mayapan-politics-2014"
+          ],
+          "noteSv": "En dynastisk beteckning identifierar inte en viss levande härskare. Lokala råd och underordnade ledare får inte ersättas med en påhittad ensamkung."
+        },
+        {
+          "id": "mani-xiu-succession",
+          "field": "succession",
+          "value": {
+            "engineLaw": "none-fits",
+            "historicalRule": null
+          },
+          "status": "uncertain",
+          "claimScope": "No exact AD1500 succession procedure asserted",
+          "sourceIds": [
+            "landa-government",
+            "alliances-2012"
+          ],
+          "noteSv": "Släktanspråk och legitimationsberättelser styrker inte en regel om förstfödslorätt eller val efter förmåga."
+        },
+        {
+          "id": "mani-xiu-kinshipAndMarriage",
+          "field": "kinshipAndMarriage",
+          "value": {
+            "bookmarkRelations": [],
+            "context": "Landa reports Xiu alliances and intermarriage in the earlier Mayapán narrative; later Xiu kinship appears in conquest-era accounts."
+          },
+          "status": "uncertain",
+          "claimScope": "Retrospective / later context, not a bookmark household",
+          "sourceIds": [
+            "landa-xiu",
+            "rubio-later-xiu",
+            "landa-marriage"
+          ],
+          "noteSv": "Inget namngivet par eller förälder–barnförhållande förs över till en levande hovlista år 1500."
+        },
+        {
+          "id": "mani-xiu-councilRoles",
+          "field": "councilRoles",
+          "value": {
+            "bookmarkMembers": [],
+            "context": "Ah cuchcabob and subordinate batabob are discussed in contact-period northern political models."
+          },
+          "status": "uncertain",
+          "claimScope": "Institutional context; exact Maní roles/membership on bookmark unknown",
+          "sourceIds": [
+            "okoshi-2012"
+          ],
+          "noteSv": "Ett råd i en senare beskrivning bevisar inte identiska ämbeten eller namngivna ledamöter år 1500."
+        }
+      ],
+      "bookmarkPresence": {
+        "value": {
+          "candidate": "Xiu political network centred on Maní",
+          "secureExactDate": false
+        },
+        "status": "uncertain",
+        "claimScope": "Candidate application to 1500-12-31; exact institutions and extent unclaimed",
+        "sourceIds": [
+          "mayapan-politics-2014",
+          "landa-chel"
+        ],
+        "noteSv": "Xiu är belagda i traditionen efter Mayapán och under kontakttiden. Organisationen just vid bokmärket kräver tidsmässig inferens."
+      },
+      "politicalAuthority": {
+        "value": {
+          "model": "Lineage authority within a network of dependent local rulers; no uniform constitutional model assigned",
+          "ruler": null,
+          "titleSv": "Härskare; exakt ämbetstitel obestyrkt"
+        },
+        "status": "uncertain",
+        "claimScope": "Bookmark authority; general northern model is contextual only",
+        "sourceIds": [
+          "okoshi-2012",
+          "mayapan-politics-2014"
+        ],
+        "noteSv": "En dynastisk beteckning identifierar inte en viss levande härskare. Lokala råd och underordnade ledare får inte ersättas med en påhittad ensamkung."
+      },
+      "succession": {
+        "value": {
+          "engineLaw": "none-fits",
+          "historicalRule": null
+        },
+        "status": "uncertain",
+        "claimScope": "No exact AD1500 succession procedure asserted",
+        "sourceIds": [
+          "landa-government",
+          "alliances-2012"
+        ],
+        "noteSv": "Släktanspråk och legitimationsberättelser styrker inte en regel om förstfödslorätt eller val efter förmåga."
+      },
+      "kinshipAndMarriage": {
+        "value": {
+          "bookmarkRelations": [],
+          "context": "Landa reports Xiu alliances and intermarriage in the earlier Mayapán narrative; later Xiu kinship appears in conquest-era accounts."
+        },
+        "status": "uncertain",
+        "claimScope": "Retrospective / later context, not a bookmark household",
+        "sourceIds": [
+          "landa-xiu",
+          "rubio-later-xiu",
+          "landa-marriage"
+        ],
+        "noteSv": "Inget namngivet par eller förälder–barnförhållande förs över till en levande hovlista år 1500."
+      },
+      "councilRoles": {
+        "value": {
+          "bookmarkMembers": [],
+          "context": "Ah cuchcabob and subordinate batabob are discussed in contact-period northern political models."
+        },
+        "status": "uncertain",
+        "claimScope": "Institutional context; exact Maní roles/membership on bookmark unknown",
+        "sourceIds": [
+          "okoshi-2012"
+        ],
+        "noteSv": "Ett råd i en senare beskrivning bevisar inte identiska ämbeten eller namngivna ledamöter år 1500."
+      },
+      "seat": {
+        "nameSv": "Maní",
+        "coordinates": [
+          -89.4,
+          20.3833
+        ],
+        "gettyTgnId": "7024106",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7024106",
+        "coordinateStatus": "sourced",
+        "historicalSeatOnBookmarkStatus": "uncertain",
+        "rulerOnBookmark": {
+          "value": null,
+          "status": "withheld",
+          "noteSv": "Ingen läst källa placerar en identifierad härskare på denna ort den 31 december 1500."
+        },
+        "insideAcceptedPolygon": null,
+        "sourceIds": [
+          "tgn-7024106"
+        ],
+        "noteSv": "Getty anger en tidigare Xiu-huvudort. Punkten är en ungefärlig ortsmarkör; hovets närvaro på bokmärkesdagen är obestyrkt."
+      },
+      "peopleWithheld": [
+        {
+          "who": "Napot Xiu and Ah Ziyah Xiu",
+          "context": "The annotated address places the father and heir/son in the August 1536 killing narrative.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "rubio-later-xiu"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        },
+        {
+          "who": "Melchor Xiu and Ah Kukum Xiu / Francisco Montejo Xiu",
+          "context": "The annotated address describes the 23 January 1542 visit and a subsequent fraternal succession.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "rubio-later-xiu"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        },
+        {
+          "who": "Ah Mochan Xiu, Napuc Chi / Ah Kin Chi, and Ix Kukil Xiu",
+          "context": "The corrective note names them in 1531 diplomacy and a marriage connection.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "rubio-later-xiu"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        }
+      ],
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "engineLimitAssessments": [
+        {
+          "code": "collective-rule",
+          "status": "uncertain",
+          "noteSv": "Råd och nätverk kan behöva stöd i motorn. Materialet fastställer inte lika makt mellan flera härskare på bokmärkesdagen.",
+          "sourceIds": [
+            "okoshi-2012"
+          ]
+        }
+      ],
+      "religiousAuthorityOnBookmark": {
+        "leader": null,
+        "householdRelations": [],
+        "status": "withheld",
+        "noteSv": "Präster och ritualkunskap förekommer i källornas sammanhang, men inget religionsöverhuvud knyts säkert till datumet."
+      },
+      "review": {
+        "status": "source-review-complete-with-explicit-uncertainty",
+        "reviewedBy": "Codex independent source-only review",
+        "reviewedOn": "2026-11-07",
+        "scope": "Scoped claims and qualified unknowns only; case remains blocked for playable court implementation",
+        "initialCounts": {
+          "total": 11,
+          "confirmed": 11,
+          "corrected": 0,
+          "unsupported": 0
+        },
+        "followupClaims": 0,
+        "wholeCaseApproval": false
+      }
+    },
+    {
+      "caseId": "sotuta-cocom",
+      "nameSv": "Sotuta och Cocom",
+      "bookmark": "1500-12-31",
+      "status": "blocked",
+      "blockedReason": "Exact bookmark authority, ruler and territorial control are not established by the bounded corpus.",
+      "sourceIds": [
+        "mayapan-politics-2014",
+        "alliances-2012",
+        "landa-chel",
+        "rubio-later-xiu",
+        "tgn-7024107"
+      ],
+      "people": [],
+      "generatedPeople": [],
+      "acceptedPolygon": null,
+      "insideAcceptedPolygon": null,
+      "geometry": {
+        "mode": "research-point-only",
+        "acceptedForGameplay": false,
+        "polygon": null,
+        "radiusKm": null,
+        "controlStatus": "unresolved",
+        "noteSv": "Ortspunkten visar en möjlig anknytning. Den styrker varken områdeskontroll eller fasta gränser år 1500."
+      },
+      "claims": [
+        {
+          "id": "sotuta-cocom-bookmarkPresence",
+          "field": "bookmarkPresence",
+          "value": {
+            "candidate": "Cocom political network associated with Sotuta/Zututa",
+            "secureExactDate": false
+          },
+          "status": "uncertain",
+          "claimScope": "Candidate application to 1500-12-31; no fixed colonial province projected backward",
+          "sourceIds": [
+            "mayapan-politics-2014",
+            "landa-chel"
+          ],
+          "noteSv": "Cocomtraditionen pekar mot en politisk fortsättning efter Mayapán. Ett exakt områdesinnehåll år 1500 är obestyrkt."
+        },
+        {
+          "id": "sotuta-cocom-politicalAuthority",
+          "field": "politicalAuthority",
+          "value": {
+            "model": "Cocom lineage authority is reported in successor traditions; exact structure and ruler at bookmark unknown",
+            "ruler": null,
+            "titleSv": "Härskare; exakt ämbetstitel obestyrkt"
+          },
+          "status": "uncertain",
+          "claimScope": "Bookmark authority remains unresolved",
+          "sourceIds": [
+            "mayapan-politics-2014",
+            "alliances-2012"
+          ],
+          "noteSv": "Ursprungsberättelserna och den senare politiska rekonstruktionen ger ingen säker ämbetsinnehavare på bokmärket."
+        },
+        {
+          "id": "sotuta-cocom-succession",
+          "field": "succession",
+          "value": {
+            "engineLaw": "none-fits",
+            "historicalRule": null,
+            "context": "Landa describes a surviving Cocom son reassembling kin and followers after Mayapán."
+          },
+          "status": "uncertain",
+          "claimScope": "Dynastic survival narrative, not a formal or dated AD1500 succession rule",
+          "sourceIds": [
+            "landa-xiu",
+            "landa-chel"
+          ],
+          "noteSv": "En överlevande sons berättelse visar inte att alla senare arv följde förstfödslorätt."
+        },
+        {
+          "id": "sotuta-cocom-kinshipAndMarriage",
+          "field": "kinshipAndMarriage",
+          "value": {
+            "bookmarkRelations": [],
+            "context": "Cocom origin narratives differ in the retrospective traditions examined by the modern study."
+          },
+          "status": "uncertain",
+          "claimScope": "No named kin pair or marriage at bookmark",
+          "sourceIds": [
+            "alliances-2012",
+            "landa-chel"
+          ],
+          "noteSv": "Inga födelseår eller hushållsrelationer vid bokmärket konstrueras ur dynastins namn."
+        },
+        {
+          "id": "sotuta-cocom-councilRoles",
+          "field": "councilRoles",
+          "value": {
+            "bookmarkMembers": [],
+            "context": "Relational jurisdiction and local councils are a regional analytical context."
+          },
+          "status": "uncertain",
+          "claimScope": "Specific Sotuta council composition in AD1500 unclaimed",
+          "sourceIds": [
+            "okoshi-2012"
+          ],
+          "noteSv": "Rådets eventuella sammansättning och befogenheter i Sotuta år 1500 är obestyrkta."
+        }
+      ],
+      "bookmarkPresence": {
+        "value": {
+          "candidate": "Cocom political network associated with Sotuta/Zututa",
+          "secureExactDate": false
+        },
+        "status": "uncertain",
+        "claimScope": "Candidate application to 1500-12-31; no fixed colonial province projected backward",
+        "sourceIds": [
+          "mayapan-politics-2014",
+          "landa-chel"
+        ],
+        "noteSv": "Cocomtraditionen pekar mot en politisk fortsättning efter Mayapán. Ett exakt områdesinnehåll år 1500 är obestyrkt."
+      },
+      "politicalAuthority": {
+        "value": {
+          "model": "Cocom lineage authority is reported in successor traditions; exact structure and ruler at bookmark unknown",
+          "ruler": null,
+          "titleSv": "Härskare; exakt ämbetstitel obestyrkt"
+        },
+        "status": "uncertain",
+        "claimScope": "Bookmark authority remains unresolved",
+        "sourceIds": [
+          "mayapan-politics-2014",
+          "alliances-2012"
+        ],
+        "noteSv": "Ursprungsberättelserna och den senare politiska rekonstruktionen ger ingen säker ämbetsinnehavare på bokmärket."
+      },
+      "succession": {
+        "value": {
+          "engineLaw": "none-fits",
+          "historicalRule": null,
+          "context": "Landa describes a surviving Cocom son reassembling kin and followers after Mayapán."
+        },
+        "status": "uncertain",
+        "claimScope": "Dynastic survival narrative, not a formal or dated AD1500 succession rule",
+        "sourceIds": [
+          "landa-xiu",
+          "landa-chel"
+        ],
+        "noteSv": "En överlevande sons berättelse visar inte att alla senare arv följde förstfödslorätt."
+      },
+      "kinshipAndMarriage": {
+        "value": {
+          "bookmarkRelations": [],
+          "context": "Cocom origin narratives differ in the retrospective traditions examined by the modern study."
+        },
+        "status": "uncertain",
+        "claimScope": "No named kin pair or marriage at bookmark",
+        "sourceIds": [
+          "alliances-2012",
+          "landa-chel"
+        ],
+        "noteSv": "Inga födelseår eller hushållsrelationer vid bokmärket konstrueras ur dynastins namn."
+      },
+      "councilRoles": {
+        "value": {
+          "bookmarkMembers": [],
+          "context": "Relational jurisdiction and local councils are a regional analytical context."
+        },
+        "status": "uncertain",
+        "claimScope": "Specific Sotuta council composition in AD1500 unclaimed",
+        "sourceIds": [
+          "okoshi-2012"
+        ],
+        "noteSv": "Rådets eventuella sammansättning och befogenheter i Sotuta år 1500 är obestyrkta."
+      },
+      "seat": {
+        "nameSv": "Sotuta",
+        "coordinates": [
+          -89.0167,
+          20.6
+        ],
+        "gettyTgnId": "7024107",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7024107",
+        "coordinateStatus": "sourced",
+        "historicalSeatOnBookmarkStatus": "uncertain",
+        "rulerOnBookmark": {
+          "value": null,
+          "status": "withheld",
+          "noteSv": "Ingen läst källa placerar en identifierad härskare på denna ort den 31 december 1500."
+        },
+        "insideAcceptedPolygon": null,
+        "sourceIds": [
+          "tgn-7024107",
+          "landa-chel"
+        ],
+        "noteSv": "Modern ortspunkt från Getty. Landa placerar återgrundandet i Tibulón inom Zututa; samma huvudort eller hovläge år 1500 är inte visat."
+      },
+      "peopleWithheld": [
+        {
+          "who": "Nachi Cocom",
+          "context": "The annotated conquest-era note names him in the August 1536 Xiu killing narrative and later resistance.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "rubio-later-xiu"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        },
+        {
+          "who": "The unnamed surviving Cocom son",
+          "context": "Landa’s retrospective foundation narrative; no personal name or absolute life dates.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "landa-xiu",
+            "landa-chel"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        }
+      ],
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "engineLimitAssessments": [
+        {
+          "code": "collective-rule",
+          "status": "uncertain",
+          "noteSv": "Råd och nätverk kan behöva stöd i motorn. Materialet fastställer inte lika makt mellan flera härskare på bokmärkesdagen.",
+          "sourceIds": [
+            "okoshi-2012"
+          ]
+        }
+      ],
+      "religiousAuthorityOnBookmark": {
+        "leader": null,
+        "householdRelations": [],
+        "status": "withheld",
+        "noteSv": "Präster och ritualkunskap förekommer i källornas sammanhang, men inget religionsöverhuvud knyts säkert till datumet."
+      },
+      "review": {
+        "status": "source-review-complete-with-explicit-uncertainty",
+        "reviewedBy": "Codex independent source-only review",
+        "reviewedOn": "2026-11-07",
+        "scope": "Scoped claims and qualified unknowns only; case remains blocked for playable court implementation",
+        "initialCounts": {
+          "total": 11,
+          "confirmed": 11,
+          "corrected": 0,
+          "unsupported": 0
+        },
+        "followupClaims": 0,
+        "wholeCaseApproval": false
+      }
+    },
+    {
+      "caseId": "ah-kin-chel",
+      "nameSv": "Ah Kin Chel",
+      "bookmark": "1500-12-31",
+      "status": "blocked",
+      "blockedReason": "Exact bookmark authority, ruler and territorial control are not established by the bounded corpus.",
+      "sourceIds": [
+        "ah-kin-chel-2008",
+        "alliances-2012",
+        "landa-chel",
+        "tecoh-1993"
+      ],
+      "people": [],
+      "generatedPeople": [],
+      "acceptedPolygon": null,
+      "insideAcceptedPolygon": null,
+      "geometry": {
+        "mode": "no-point-until-seat-identity-resolved",
+        "acceptedForGameplay": false,
+        "polygon": null,
+        "radiusKm": null,
+        "controlStatus": "unresolved",
+        "noteSv": "Ingen ortspunkt väljs innan huvudortens identitet har klarlagts. De citerade beläggen fastställer varken områdeskontroll eller fasta gränser år 1500."
+      },
+      "claims": [
+        {
+          "id": "ah-kin-chel-bookmarkPresence",
+          "field": "bookmarkPresence",
+          "value": {
+            "candidate": "Chel-linked successor jurisdiction in northern Yucatán",
+            "secureExactDate": false
+          },
+          "status": "uncertain",
+          "claimScope": "Candidate application to 1500-12-31; exact date and regional outline unresolved",
+          "sourceIds": [
+            "mayapan-politics-2014",
+            "ah-kin-chel-2008",
+            "alliances-2012"
+          ],
+          "noteSv": "Chel förekommer i berättelser och rekonstruktioner efter Mayapán. En bestämd statsgräns eller härskare år 1500 följer inte av dem."
+        },
+        {
+          "id": "ah-kin-chel-politicalAuthority",
+          "field": "politicalAuthority",
+          "value": {
+            "model": "A Chel lineage paramount supported by alliances is reconstructed; no individual or exact distribution of power assigned to AD1500",
+            "ruler": null,
+            "titleSv": "Härskare; exakt ämbetstitel obestyrkt"
+          },
+          "status": "uncertain",
+          "claimScope": "Modern interpretation of retrospective sources; bookmark implementation unclaimed",
+          "sourceIds": [
+            "alliances-2012",
+            "okoshi-2012"
+          ],
+          "noteSv": "Na Mo Ch’el är knuten till en legitimationsberättelse. Den ger inte en säkert daterad regeringstid vid bokmärket."
+        },
+        {
+          "id": "ah-kin-chel-succession",
+          "field": "succession",
+          "value": {
+            "engineLaw": "none-fits",
+            "historicalRule": null,
+            "context": "Descent, priestly knowledge and marriage alliances figure in legitimating narratives."
+          },
+          "status": "uncertain",
+          "claimScope": "No fixed AD1500 succession rule",
+          "sourceIds": [
+            "alliances-2012",
+            "landa-chel"
+          ],
+          "noteSv": "Varken förstfödslorätt eller förmågebaserat rådsval kan härledas säkert."
+        },
+        {
+          "id": "ah-kin-chel-kinshipAndMarriage",
+          "field": "kinshipAndMarriage",
+          "value": {
+            "bookmarkRelations": [],
+            "context": "The 2012 study describes Na Mo Ch’el as Ah Xupan Xiu’s disciple and son-in-law, married to his unnamed daughter. Landa’s selected account names Ah Chel and leaves the priest and daughter unnamed. These source wordings are kept separate; no living couple is dated to AD1500."
+          },
+          "status": "uncertain",
+          "claimScope": "Variant founder traditions; no dated living couple at bookmark",
+          "sourceIds": [
+            "alliances-2012",
+            "landa-chel"
+          ],
+          "noteSv": "Berättelsernas namn och rollbeskrivningar skiljer sig. De förs inte samman till ett säkert hushåll år 1500."
+        },
+        {
+          "id": "ah-kin-chel-councilRoles",
+          "field": "councilRoles",
+          "value": {
+            "bookmarkMembers": [],
+            "context": "Alliance and local jurisdiction models do not establish named council members or equal co-rulers."
+          },
+          "status": "uncertain",
+          "claimScope": "AD1500 membership/constitution unclaimed",
+          "sourceIds": [
+            "alliances-2012",
+            "okoshi-2012"
+          ],
+          "noteSv": "Ingen ledamot, valregel eller maktdelning mellan namngivna personer är säkert belagd på datumet."
+        }
+      ],
+      "bookmarkPresence": {
+        "value": {
+          "candidate": "Chel-linked successor jurisdiction in northern Yucatán",
+          "secureExactDate": false
+        },
+        "status": "uncertain",
+        "claimScope": "Candidate application to 1500-12-31; exact date and regional outline unresolved",
+        "sourceIds": [
+          "mayapan-politics-2014",
+          "ah-kin-chel-2008",
+          "alliances-2012"
+        ],
+        "noteSv": "Chel förekommer i berättelser och rekonstruktioner efter Mayapán. En bestämd statsgräns eller härskare år 1500 följer inte av dem."
+      },
+      "politicalAuthority": {
+        "value": {
+          "model": "A Chel lineage paramount supported by alliances is reconstructed; no individual or exact distribution of power assigned to AD1500",
+          "ruler": null,
+          "titleSv": "Härskare; exakt ämbetstitel obestyrkt"
+        },
+        "status": "uncertain",
+        "claimScope": "Modern interpretation of retrospective sources; bookmark implementation unclaimed",
+        "sourceIds": [
+          "alliances-2012",
+          "okoshi-2012"
+        ],
+        "noteSv": "Na Mo Ch’el är knuten till en legitimationsberättelse. Den ger inte en säkert daterad regeringstid vid bokmärket."
+      },
+      "succession": {
+        "value": {
+          "engineLaw": "none-fits",
+          "historicalRule": null,
+          "context": "Descent, priestly knowledge and marriage alliances figure in legitimating narratives."
+        },
+        "status": "uncertain",
+        "claimScope": "No fixed AD1500 succession rule",
+        "sourceIds": [
+          "alliances-2012",
+          "landa-chel"
+        ],
+        "noteSv": "Varken förstfödslorätt eller förmågebaserat rådsval kan härledas säkert."
+      },
+      "kinshipAndMarriage": {
+        "value": {
+          "bookmarkRelations": [],
+          "context": "The 2012 study describes Na Mo Ch’el as Ah Xupan Xiu’s disciple and son-in-law, married to his unnamed daughter. Landa’s selected account names Ah Chel and leaves the priest and daughter unnamed. These source wordings are kept separate; no living couple is dated to AD1500."
+        },
+        "status": "uncertain",
+        "claimScope": "Variant founder traditions; no dated living couple at bookmark",
+        "sourceIds": [
+          "alliances-2012",
+          "landa-chel"
+        ],
+        "noteSv": "Berättelsernas namn och rollbeskrivningar skiljer sig. De förs inte samman till ett säkert hushåll år 1500."
+      },
+      "councilRoles": {
+        "value": {
+          "bookmarkMembers": [],
+          "context": "Alliance and local jurisdiction models do not establish named council members or equal co-rulers."
+        },
+        "status": "uncertain",
+        "claimScope": "AD1500 membership/constitution unclaimed",
+        "sourceIds": [
+          "alliances-2012",
+          "okoshi-2012"
+        ],
+        "noteSv": "Ingen ledamot, valregel eller maktdelning mellan namngivna personer är säkert belagd på datumet."
+      },
+      "seat": {
+        "nameSv": null,
+        "coordinates": null,
+        "gettyTgnId": null,
+        "coordinateRecordUrl": null,
+        "coordinateStatus": "withheld",
+        "historicalSeatOnBookmarkStatus": "uncertain",
+        "candidates": [
+          "Tecoh in Izamal municipality",
+          "Tikoch in Landa’s narrative",
+          "Dzidzantún as a competing reconstruction"
+        ],
+        "rulerOnBookmark": {
+          "value": null,
+          "status": "withheld",
+          "noteSv": "Härskare och vistelseort på bokmärkesdagen är obestyrkta."
+        },
+        "insideAcceptedPolygon": null,
+        "sourceIds": [
+          "tecoh-1993",
+          "ah-kin-chel-2008",
+          "landa-chel"
+        ],
+        "noteSv": "Tecoh i Izamals kommun identifieras försiktigt som huvudort i material om den tidiga spanska dominansen; 2008 års artikel diskuterar även Dzidzantún. Landa använder namnet Tikoch. De citerade beläggen fastställer ingen huvudort eller hovnärvaro den 31 december 1500 och ger ingen säkert knuten Getty-koordinat. Ortspunkt och ersättningshuvudort lämnas därför utan värde."
+      },
+      "peopleWithheld": [
+        {
+          "who": "Na Mo Ch’el (2012 study); Ah Chel (Landa’s selected account)",
+          "context": "Source-specific founder/legitimation traditions. This grouping does not establish that their differently named figures are the same person; neither is assigned AD1500 life or office dates.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "alliances-2012",
+            "landa-chel"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        },
+        {
+          "who": "Ah Xupan Xiu and his unnamed daughter (2012 study); an unnamed priest and his unnamed daughter (Landa’s selected account)",
+          "context": "The named priest/ruler and marriage tradition in the study are kept separate from Landa’s unnamed priest/daughter narrative. No cross-account identity or AD1500 household is established.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "alliances-2012",
+            "landa-chel"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        }
+      ],
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "engineLimitAssessments": [
+        {
+          "code": "collective-rule",
+          "status": "uncertain",
+          "noteSv": "Råd och nätverk kan behöva stöd i motorn. Materialet fastställer inte lika makt mellan flera härskare på bokmärkesdagen.",
+          "sourceIds": [
+            "okoshi-2012"
+          ]
+        }
+      ],
+      "religiousAuthorityOnBookmark": {
+        "leader": null,
+        "householdRelations": [],
+        "status": "withheld",
+        "noteSv": "Präster och ritualkunskap förekommer i källornas sammanhang, men inget religionsöverhuvud knyts säkert till datumet."
+      },
+      "review": {
+        "status": "source-review-complete-with-explicit-uncertainty",
+        "reviewedBy": "Codex independent source-only review",
+        "reviewedOn": "2026-11-07",
+        "scope": "Scoped claims and qualified unknowns only; case remains blocked for playable court implementation",
+        "initialCounts": {
+          "total": 11,
+          "confirmed": 7,
+          "corrected": 4,
+          "unsupported": 0
+        },
+        "followupClaims": 4,
+        "wholeCaseApproval": false
+      }
+    },
+    {
+      "caseId": "cehpech-motul",
+      "nameSv": "Cehpech och Motul",
+      "bookmark": "1500-12-31",
+      "status": "blocked",
+      "blockedReason": "Exact bookmark authority, ruler and territorial control are not established by the bounded corpus.",
+      "sourceIds": [
+        "alliances-2012",
+        "okoshi-2012",
+        "ah-kin-chel-2008",
+        "tgn-1017891"
+      ],
+      "people": [],
+      "generatedPeople": [],
+      "acceptedPolygon": null,
+      "insideAcceptedPolygon": null,
+      "geometry": {
+        "mode": "research-point-only",
+        "acceptedForGameplay": false,
+        "polygon": null,
+        "radiusKm": null,
+        "controlStatus": "unresolved",
+        "noteSv": "Ortspunkten visar en möjlig anknytning. Den styrker varken områdeskontroll eller fasta gränser år 1500."
+      },
+      "claims": [
+        {
+          "id": "cehpech-motul-bookmarkPresence",
+          "field": "bookmarkPresence",
+          "value": {
+            "candidate": "Pech-linked Cehpech/Motul jurisdiction, kept distinct from Ah Kin Chel",
+            "secureExactDate": false
+          },
+          "status": "uncertain",
+          "claimScope": "Candidate application to 1500-12-31; no automatic merger with Chel polity",
+          "sourceIds": [
+            "alliances-2012",
+            "okoshi-2012",
+            "ah-kin-chel-2008"
+          ],
+          "noteSv": "Pech- och Chelområdenas relation rekonstrueras från senare material. Tidpunkt för separation och jurisdiktionsdetaljer är osäkra."
+        },
+        {
+          "id": "cehpech-motul-politicalAuthority",
+          "field": "politicalAuthority",
+          "value": {
+            "model": "Pech lineage office-holding and Motul association appear in retrospective and colonial records; exact AD1500 ruler unknown",
+            "ruler": null,
+            "titleSv": "Härskare; exakt ämbetstitel obestyrkt"
+          },
+          "status": "uncertain",
+          "claimScope": "Lineage pattern is contextual; individual AD1500 office unclaimed",
+          "sourceIds": [
+            "alliances-2012"
+          ],
+          "noteSv": "Koloniala ämbetsinnehav får inte räknas som en personlista för år 1500."
+        },
+        {
+          "id": "cehpech-motul-succession",
+          "field": "succession",
+          "value": {
+            "engineLaw": "none-fits",
+            "historicalRule": null,
+            "context": "Note 21 reports Nohcabal Pech and descendants holding Motul lordship after an undated repopulation."
+          },
+          "status": "uncertain",
+          "claimScope": "Retrospective descent claim; accession date and selection procedure unclaimed",
+          "sourceIds": [
+            "alliances-2012"
+          ],
+          "noteSv": "Uttrycket om efterkommande bevisar inte äldste sonens företräde eller en regeringstid som täcker bokmärket."
+        },
+        {
+          "id": "cehpech-motul-kinshipAndMarriage",
+          "field": "kinshipAndMarriage",
+          "value": {
+            "bookmarkRelations": [],
+            "context": "A quoted Motul tradition describes Nohcabal Pech as close kin of a Mayapán lord, without dating the relation to AD1500."
+          },
+          "status": "uncertain",
+          "claimScope": "Narrative kinship context only",
+          "sourceIds": [
+            "alliances-2012"
+          ],
+          "noteSv": "Den ospecificerade nära släktingen kan inte bli en namngiven förälder eller make i spelets hov."
+        },
+        {
+          "id": "cehpech-motul-councilRoles",
+          "field": "councilRoles",
+          "value": {
+            "bookmarkMembers": [],
+            "context": "Lineage office patterns and general local-council models are not a dated council roster."
+          },
+          "status": "uncertain",
+          "claimScope": "Exact Cehpech council at bookmark unclaimed",
+          "sourceIds": [
+            "alliances-2012",
+            "okoshi-2012"
+          ],
+          "noteSv": "Råd, befattningshavare och deras makt vid bokmärket är obestyrkta."
+        }
+      ],
+      "bookmarkPresence": {
+        "value": {
+          "candidate": "Pech-linked Cehpech/Motul jurisdiction, kept distinct from Ah Kin Chel",
+          "secureExactDate": false
+        },
+        "status": "uncertain",
+        "claimScope": "Candidate application to 1500-12-31; no automatic merger with Chel polity",
+        "sourceIds": [
+          "alliances-2012",
+          "okoshi-2012",
+          "ah-kin-chel-2008"
+        ],
+        "noteSv": "Pech- och Chelområdenas relation rekonstrueras från senare material. Tidpunkt för separation och jurisdiktionsdetaljer är osäkra."
+      },
+      "politicalAuthority": {
+        "value": {
+          "model": "Pech lineage office-holding and Motul association appear in retrospective and colonial records; exact AD1500 ruler unknown",
+          "ruler": null,
+          "titleSv": "Härskare; exakt ämbetstitel obestyrkt"
+        },
+        "status": "uncertain",
+        "claimScope": "Lineage pattern is contextual; individual AD1500 office unclaimed",
+        "sourceIds": [
+          "alliances-2012"
+        ],
+        "noteSv": "Koloniala ämbetsinnehav får inte räknas som en personlista för år 1500."
+      },
+      "succession": {
+        "value": {
+          "engineLaw": "none-fits",
+          "historicalRule": null,
+          "context": "Note 21 reports Nohcabal Pech and descendants holding Motul lordship after an undated repopulation."
+        },
+        "status": "uncertain",
+        "claimScope": "Retrospective descent claim; accession date and selection procedure unclaimed",
+        "sourceIds": [
+          "alliances-2012"
+        ],
+        "noteSv": "Uttrycket om efterkommande bevisar inte äldste sonens företräde eller en regeringstid som täcker bokmärket."
+      },
+      "kinshipAndMarriage": {
+        "value": {
+          "bookmarkRelations": [],
+          "context": "A quoted Motul tradition describes Nohcabal Pech as close kin of a Mayapán lord, without dating the relation to AD1500."
+        },
+        "status": "uncertain",
+        "claimScope": "Narrative kinship context only",
+        "sourceIds": [
+          "alliances-2012"
+        ],
+        "noteSv": "Den ospecificerade nära släktingen kan inte bli en namngiven förälder eller make i spelets hov."
+      },
+      "councilRoles": {
+        "value": {
+          "bookmarkMembers": [],
+          "context": "Lineage office patterns and general local-council models are not a dated council roster."
+        },
+        "status": "uncertain",
+        "claimScope": "Exact Cehpech council at bookmark unclaimed",
+        "sourceIds": [
+          "alliances-2012",
+          "okoshi-2012"
+        ],
+        "noteSv": "Råd, befattningshavare och deras makt vid bokmärket är obestyrkta."
+      },
+      "seat": {
+        "nameSv": "Motul",
+        "coordinates": [
+          -89.2833,
+          21.1
+        ],
+        "gettyTgnId": "1017891",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=1017891",
+        "coordinateStatus": "sourced",
+        "historicalSeatOnBookmarkStatus": "uncertain",
+        "rulerOnBookmark": {
+          "value": null,
+          "status": "withheld",
+          "noteSv": "Ingen läst källa placerar en identifierad härskare på denna ort den 31 december 1500."
+        },
+        "insideAcceptedPolygon": null,
+        "sourceIds": [
+          "tgn-1017891",
+          "alliances-2012",
+          "okoshi-2012"
+        ],
+        "noteSv": "Gettys ortspunkt för Motul de Felipe Carrillo Puerto. Motuls koppling till Pechtraditionen är belagd i en senare text; exakt huvudort och hovnärvaro år 1500 är osäkra."
+      },
+      "peopleWithheld": [
+        {
+          "who": "Nohcabal Pech",
+          "context": "Undated repopulation and dynastic ancestry tradition quoted in note 21; no 1470 accession adopted.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "alliances-2012"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        },
+        {
+          "who": "Don Juan Pech",
+          "context": "The quoted colonial relation calls him its contemporary governor; no AD1500 lifespan is established.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "alliances-2012"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        }
+      ],
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "engineLimitAssessments": [
+        {
+          "code": "collective-rule",
+          "status": "uncertain",
+          "noteSv": "Råd och nätverk kan behöva stöd i motorn. Materialet fastställer inte lika makt mellan flera härskare på bokmärkesdagen.",
+          "sourceIds": [
+            "okoshi-2012"
+          ]
+        }
+      ],
+      "religiousAuthorityOnBookmark": {
+        "leader": null,
+        "householdRelations": [],
+        "status": "withheld",
+        "noteSv": "Präster och ritualkunskap förekommer i källornas sammanhang, men inget religionsöverhuvud knyts säkert till datumet."
+      },
+      "review": {
+        "status": "source-review-complete-with-explicit-uncertainty",
+        "reviewedBy": "Codex independent source-only review",
+        "reviewedOn": "2026-11-07",
+        "scope": "Scoped claims and qualified unknowns only; case remains blocked for playable court implementation",
+        "initialCounts": {
+          "total": 11,
+          "confirmed": 11,
+          "corrected": 0,
+          "unsupported": 0
+        },
+        "followupClaims": 0,
+        "wholeCaseApproval": false
+      }
+    },
+    {
+      "caseId": "acalan-itzamkanac",
+      "nameSv": "Acalan och Itzamkanac",
+      "bookmark": "1500-12-31",
+      "status": "blocked",
+      "blockedReason": "Exact bookmark authority, ruler and territorial control are not established by the bounded corpus.",
+      "sourceIds": [
+        "acalan-2016",
+        "inah-el-tigre",
+        "tgn-7366487"
+      ],
+      "people": [],
+      "generatedPeople": [],
+      "acceptedPolygon": null,
+      "insideAcceptedPolygon": null,
+      "geometry": {
+        "mode": "research-point-only",
+        "acceptedForGameplay": false,
+        "polygon": null,
+        "radiusKm": null,
+        "controlStatus": "unresolved",
+        "noteSv": "Ortspunkten visar en möjlig anknytning. Den styrker varken områdeskontroll eller fasta gränser år 1500."
+      },
+      "claims": [
+        {
+          "id": "acalan-itzamkanac-bookmarkPresence",
+          "field": "bookmarkPresence",
+          "value": {
+            "candidate": "Acalan lineage and riverine political network, a comparative late Postclassic case rather than a proved Mayapán daughter-state",
+            "secureExactDate": false
+          },
+          "status": "uncertain",
+          "claimScope": "Candidate application to 1500-12-31; precise local chronology unclaimed",
+          "sourceIds": [
+            "acalan-2016"
+          ],
+          "noteSv": "En tidigare dynastisk grundläggning och senare kontaktbelägg pekar mot kontinuitet. De bevisar inte samma områden eller ämbeten år 1500."
+        },
+        {
+          "id": "acalan-itzamkanac-politicalAuthority",
+          "field": "politicalAuthority",
+          "value": {
+            "model": "A paramount and subordinate local authorities are described at Cortés’s arrival; organization varied over time",
+            "ruler": null,
+            "titleSv": "Härskare; exakt ämbetstitel obestyrkt"
+          },
+          "status": "uncertain",
+          "claimScope": "Contact-era authority and modern reconstruction; exact AD1500 holder unclaimed",
+          "sourceIds": [
+            "acalan-2016"
+          ],
+          "noteSv": "Paxbolonacha får inte bakåtdateras från Cortés besök till år 1500."
+        },
+        {
+          "id": "acalan-itzamkanac-succession",
+          "field": "succession",
+          "value": {
+            "engineLaw": "none-fits",
+            "historicalRule": null,
+            "context": "The study reports Paxbolonacha as a son of Pachimalahix and sixth ruler in the retrospective sequence."
+          },
+          "status": "uncertain",
+          "claimScope": "Specific later genealogy; no AD1500 accession, succession law or household",
+          "sourceIds": [
+            "acalan-2016"
+          ],
+          "noteSv": "En släktföljd fastställer varken regeringstider eller en allmän arvslag."
+        },
+        {
+          "id": "acalan-itzamkanac-kinshipAndMarriage",
+          "field": "kinshipAndMarriage",
+          "value": {
+            "bookmarkRelations": [],
+            "context": "At Cortés’s arrival the study identifies Paxbolonacha’s father and quotes an unnamed son as a messenger; no marriage is dated to AD1500."
+          },
+          "status": "uncertain",
+          "claimScope": "Contact-era kinship context only",
+          "sourceIds": [
+            "acalan-2016",
+            "inah-el-tigre"
+          ],
+          "noteSv": "Fader, son och eventuell maka får inga konstruerade födelseår eller levnadsdatum vid bokmärket."
+        },
+        {
+          "id": "acalan-itzamkanac-councilRoles",
+          "field": "councilRoles",
+          "value": {
+            "bookmarkMembers": [],
+            "context": "The study proposes a quadripartite city/territory structure and possible political representation; uninterrupted continuation is explicitly a supposition."
+          },
+          "status": "uncertain",
+          "claimScope": "Hypothesized institution; no exact AD1500 four-member council or equal co-rulers",
+          "sourceIds": [
+            "acalan-2016"
+          ],
+          "noteSv": "Fyra delområden och fem uppräknade härskarnamn blir inte automatiskt ett säkert fyrmannaråd."
+        }
+      ],
+      "bookmarkPresence": {
+        "value": {
+          "candidate": "Acalan lineage and riverine political network, a comparative late Postclassic case rather than a proved Mayapán daughter-state",
+          "secureExactDate": false
+        },
+        "status": "uncertain",
+        "claimScope": "Candidate application to 1500-12-31; precise local chronology unclaimed",
+        "sourceIds": [
+          "acalan-2016"
+        ],
+        "noteSv": "En tidigare dynastisk grundläggning och senare kontaktbelägg pekar mot kontinuitet. De bevisar inte samma områden eller ämbeten år 1500."
+      },
+      "politicalAuthority": {
+        "value": {
+          "model": "A paramount and subordinate local authorities are described at Cortés’s arrival; organization varied over time",
+          "ruler": null,
+          "titleSv": "Härskare; exakt ämbetstitel obestyrkt"
+        },
+        "status": "uncertain",
+        "claimScope": "Contact-era authority and modern reconstruction; exact AD1500 holder unclaimed",
+        "sourceIds": [
+          "acalan-2016"
+        ],
+        "noteSv": "Paxbolonacha får inte bakåtdateras från Cortés besök till år 1500."
+      },
+      "succession": {
+        "value": {
+          "engineLaw": "none-fits",
+          "historicalRule": null,
+          "context": "The study reports Paxbolonacha as a son of Pachimalahix and sixth ruler in the retrospective sequence."
+        },
+        "status": "uncertain",
+        "claimScope": "Specific later genealogy; no AD1500 accession, succession law or household",
+        "sourceIds": [
+          "acalan-2016"
+        ],
+        "noteSv": "En släktföljd fastställer varken regeringstider eller en allmän arvslag."
+      },
+      "kinshipAndMarriage": {
+        "value": {
+          "bookmarkRelations": [],
+          "context": "At Cortés’s arrival the study identifies Paxbolonacha’s father and quotes an unnamed son as a messenger; no marriage is dated to AD1500."
+        },
+        "status": "uncertain",
+        "claimScope": "Contact-era kinship context only",
+        "sourceIds": [
+          "acalan-2016",
+          "inah-el-tigre"
+        ],
+        "noteSv": "Fader, son och eventuell maka får inga konstruerade födelseår eller levnadsdatum vid bokmärket."
+      },
+      "councilRoles": {
+        "value": {
+          "bookmarkMembers": [],
+          "context": "The study proposes a quadripartite city/territory structure and possible political representation; uninterrupted continuation is explicitly a supposition."
+        },
+        "status": "uncertain",
+        "claimScope": "Hypothesized institution; no exact AD1500 four-member council or equal co-rulers",
+        "sourceIds": [
+          "acalan-2016"
+        ],
+        "noteSv": "Fyra delområden och fem uppräknade härskarnamn blir inte automatiskt ett säkert fyrmannaråd."
+      },
+      "seat": {
+        "nameSv": "El Tigre / Itzamkanac",
+        "coordinates": [
+          -90.85,
+          18.1333
+        ],
+        "gettyTgnId": "7366487",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7366487",
+        "coordinateStatus": "sourced",
+        "historicalSeatOnBookmarkStatus": "uncertain",
+        "rulerOnBookmark": {
+          "value": null,
+          "status": "withheld",
+          "noteSv": "Ingen läst källa placerar en identifierad härskare på denna ort den 31 december 1500."
+        },
+        "insideAcceptedPolygon": null,
+        "sourceIds": [
+          "tgn-7366487",
+          "acalan-2016",
+          "inah-el-tigre"
+        ],
+        "noteSv": "Getty och INAH kopplar El Tigre till Itzamkanac; studien identifierar platsen som Acalans huvudort. Det exakta huvudortsbruket och hovnärvaron år 1500 är osäkra."
+      },
+      "peopleWithheld": [
+        {
+          "who": "Paxbolonacha / Apaspolon",
+          "context": "Ruler/merchant paramount described at Cortés’s arrival, placed around 1525 by the INAH site account.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "acalan-2016",
+            "inah-el-tigre"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        },
+        {
+          "who": "Pachimalahix",
+          "context": "Reported father of Paxbolonacha; no reign or death date placing him at 1500.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "acalan-2016"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        },
+        {
+          "who": "The unnamed son of Apaspolon",
+          "context": "Messenger in the Cortés episode quoted by the study; no birth or AD1500 presence established.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "acalan-2016"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        },
+        {
+          "who": "Auxaual and the named founding companions",
+          "context": "The study assigns the founder context to the second half of the 13th or 14th century; no own calendar arithmetic or survival inference.",
+          "aliveOnBookmark": null,
+          "officeOnBookmark": null,
+          "sourceIds": [
+            "acalan-2016"
+          ],
+          "reasonSv": "Belägget daterar inte personens födelse, liv eller ämbete till den 31 december 1500."
+        }
+      ],
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "engineLimitAssessments": [
+        {
+          "code": "collective-rule",
+          "status": "uncertain",
+          "noteSv": "Råd och nätverk kan behöva stöd i motorn. Materialet fastställer inte lika makt mellan flera härskare på bokmärkesdagen.",
+          "sourceIds": [
+            "acalan-2016"
+          ]
+        }
+      ],
+      "religiousAuthorityOnBookmark": {
+        "leader": null,
+        "householdRelations": [],
+        "status": "withheld",
+        "noteSv": "Präster och ritualkunskap förekommer i källornas sammanhang, men inget religionsöverhuvud knyts säkert till datumet."
+      },
+      "review": {
+        "status": "source-review-complete-with-explicit-uncertainty",
+        "reviewedBy": "Codex independent source-only review",
+        "reviewedOn": "2026-11-07",
+        "scope": "Scoped claims and qualified unknowns only; case remains blocked for playable court implementation",
+        "initialCounts": {
+          "total": 11,
+          "confirmed": 11,
+          "corrected": 0,
+          "unsupported": 0
+        },
+        "followupClaims": 0,
+        "wholeCaseApproval": false
+      }
+    }
+  ],
+  "geometryAssessment": {
+    "pointCount": 4,
+    "unresolvedSeatCount": 1,
+    "acceptedPolygons": [],
+    "acceptedPolityCount": 0,
+    "upstreamFeatureIndex": 82,
+    "sourceMapCommit": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+    "sourceFile": "geojson/world_1500.geojson",
+    "sourceSha256": "d01ffc9b80629787f13d2b1c2f881f005bc0164433548e30f5c058ddee0bfc7b",
+    "polityAreaLicense": null,
+    "pointLicense": "ODC-By-1.0",
+    "radiusKm": null,
+    "pointInAcceptedPolygonCheck": "Not applicable: no polity polygon is accepted. No inside:true assertion is made.",
+    "noCopiedMaps": true,
+    "limits": "The bounded corpus supplies no verified openly licensed AD1500 successor areas. This is not a claim that no such data could exist elsewhere."
+  },
+  "notComplete": [
+    "No candidate is release-ready as an exact-date court.",
+    "No named ruler, spouse, child, priestly head or council member is entered as alive/in office on 1500-12-31.",
+    "Acalan is a comparative regional case; its derivation as a Mayapán successor is not asserted.",
+    "Ah Kin Chel seat identity and Getty linkage remain unresolved.",
+    "The Itzá/Petén lead was not developed into a sixth case; no Itzá political assertion is exported.",
+    "No exhaustive archive search or proof of historical absence is claimed.",
+    "Independent source-only review is complete for the scoped claims; exact-bookmark court and territorial gaps remain unresolved."
+  ],
+  "preparedOn": "2026-11-07",
+  "notDropInCourtSeed": true,
+  "independentReview": {
+    "reviewedBy": "Codex independent source-only review",
+    "reviewedOn": "2026-11-07",
+    "initial": {
+      "processExitCode": 0,
+      "inputPacketSha256": "75710fe7343c84d9d7ed84a0082831cc322a6df371dc297192af2c88bbe29328",
+      "reportSha256": "f1d4064a2180067694abad3180f1513bbe592de4fa5be3e66c1ddb358db22266",
+      "counts": {
+        "total": 62,
+        "confirmed": 58,
+        "corrected": 4,
+        "unsupported": 0,
+        "accessLimitedItems": 0
+      },
+      "scope": "62 complete scoped values including uncertainty, contextual attribution, explicit empty fields and withheld values"
+    },
+    "followup": {
+      "packetId": "F01",
+      "processExitCode": 0,
+      "inputPacketSha256": "540bf9653d7f3522a7c0b81e70bb322b007af138279a108aa9d6751c07d78d14",
+      "reportSha256": "861edd478b37d655dadbc7d26c8e18a63ae253f4fc647c6f18481d3f3ca0d949",
+      "counts": {
+        "total": 4,
+        "confirmed": 4,
+        "corrected": 0,
+        "unsupported": 0,
+        "accessLimitedItems": 0
+      },
+      "scope": "Four complete revised Ah Kin Chel values; no review of additional cases, person activation, coordinate or territorial acceptance"
+    },
+    "uniqueInitialClaims": 62,
+    "followupRechecks": 4,
+    "followupPending": 0,
+    "finalSubmittedClaimStatusCounts": {
+      "sourced": 4,
+      "uncertain": 28,
+      "scope-limited": 25,
+      "research-limit": 5
+    },
+    "statusMeaning": "Confirmed means the complete qualified source attribution or withholding was supported within its stated scope. It does not upgrade uncertain historical content or approve a whole case.",
+    "correctedDraftSha256": "1d576fbe28404602752c2ac58301ed80533efc2b4d48dc4f04e47afcc429da52",
+    "originalDraftSha256": "82bb92c87a4faa05ce9ee1b65aa71d8cb4d37fcf0e2e504dd5e1773a3865a3b9",
+    "valueHashMethods": {
+      "initialCaseFacts": "SHA256 of UTF8 JSON.stringify, original object order preserved, no trailing newline; duplicate claims array excluded from the fact projection",
+      "followupValues": "SHA256 of UTF8 sorted-key compact JSON, array order preserved, no trailing newline"
+    },
+    "sourceAccessLimits": [
+      "The 1993 Tecoh source was reviewed through its public Resumen, Abstract and bibliographic front matter; the full article was not inspected.",
+      "The selected ILCE text does not itself establish its exact editorial relationship to Landa’s original publication; the account is cited within that limited manifestation.",
+      "Other access extents and original chronology remain in the source records; confirmation is restricted to inspected passages."
+    ],
+    "rulerEvidenceRule": "A sufficiently supported reign interval containing the bookmark can establish a ruler under the research brief. This bounded corpus does not supply a named active court for the selected cases; no universal exact-day act requirement is introduced.",
+    "newHistoricalResearchDuringFinalization": false
+  },
+  "claimReviewIndex": [
+    {
+      "claimId": "regional-mayapan-fall",
+      "caseId": null,
+      "targetPointer": "/regionalClaims/0/value",
+      "submittedClaimStatus": "sourced",
+      "finalValueType": "object",
+      "finalValueSha256": "816e23ac621e84cb1b6019948d1c5934c346663e4f5302a37489ecdbb0288e28",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Chronology as given by the 2014 scholarly synthesis, not a newly calculated correlation",
+      "sourceEvidence": [
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "Chapter 2, Politics at the City, opening paragraph",
+          "chronology": {
+            "asWorded": [
+              "AD 1441–1461",
+              "K’atun 8 Ahau"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "regional-relational-authority",
+      "caseId": null,
+      "targetPointer": "/regionalClaims/1/value",
+      "submittedClaimStatus": "sourced",
+      "finalValueType": "object",
+      "finalValueSha256": "143ad082e0d0d624aebb2c3afe9092fa957ef82e2d0d6579100ef737d056b6e8",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "What the cited modern study says about the contact-period northern model, not a universal AD1500 constitution",
+      "sourceEvidence": [
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF p.2 Resumen/Abstract; pp.4–5 La geografía política maya",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF p.6, differing Roys/Quezada lists; pp.7–8 Conclusión",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "regional-marriage-context",
+      "caseId": null,
+      "targetPointer": "/regionalClaims/2/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "ede56964ad3f81499815faf540d2e5431a132381c16b7b1f0701e7cf1aee0780",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Regional context assembled from sources with different periods and purposes",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Ch’el, founder/legitimation paragraphs beginning with Na Mo and later marriage discussion",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Note 19; Chel legitimacy discussion",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-marriage",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/17.html",
+          "locator": "ILCE section 17, opening paragraphs and parental marriage-arrangement paragraph",
+          "chronology": {
+            "asWorded": [
+              "antiguamente",
+              "ahora"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-government",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/2.html",
+          "locator": "ILCE section 2, Cocom/Caluac, appointment, high-priest succession and advice paragraphs",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "regional-boundary-caution",
+      "caseId": null,
+      "targetPointer": "/regionalClaims/3/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "3273830bc840f42f9e12a27b58534da24748a184a5a7d40dfd5636bc000c1887",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "No fixed AD1500 boundary claim; the reviewed scholarship questions static reconstructions",
+      "sourceEvidence": [
+        {
+          "sourceId": "andrews-1984",
+          "url": "https://www.journals.uchicago.edu/doi/abs/10.1086/jar.40.4.3629799",
+          "locator": "Publisher public Abstract, paragraph beginning Research on the political geography; Information pp.589–596",
+          "chronology": {
+            "asWorded": [
+              "sixteenth-century Yucatán"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF p.2 Resumen/Abstract; pp.4–5 La geografía política maya",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "ah-kin-chel-2008",
+          "url": "https://sic.cultura.gob.mx/documentos/1249.pdf",
+          "locator": "PDF p.56, Metodología, opening two paragraphs",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "ah-kin-chel-2008",
+          "url": "https://sic.cultura.gob.mx/documentos/1249.pdf",
+          "locator": "PDF pp.66–68, Conclusiones preliminares; especially p.67 Ceh Pech/Motul separation paragraph",
+          "chronology": {
+            "asWorded": [
+              "Postclásico",
+              "siglo XVI"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "regional-hbm-scope",
+      "caseId": null,
+      "targetPointer": "/regionalClaims/4/value",
+      "submittedClaimStatus": "sourced",
+      "finalValueType": "object",
+      "finalValueSha256": "0b4f7ea15d0281ab89cb6aacf4d80485ad7777f37422778a8546e6c26045977d",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Dataset identity and properties only; no historical acceptance",
+      "sourceEvidence": [
+        {
+          "sourceId": "hbm-1500",
+          "url": "https://raw.githubusercontent.com/aourednik/historical-basemaps/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_1500.geojson",
+          "locator": "Pinned world_1500.geojson: full-byte SHA-256 and all291 feature properties inspected for Maya; zero-based feature82",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "regional-geometry-choice",
+      "caseId": null,
+      "targetPointer": "/regionalClaims/5/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "de85d55dfbcfcf58db4a6ff3938fc1093bf0e9bc68b7a782dbd11ca116d0f53e",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Bounded research output: no successor-area data accepted, no source-justified radius located",
+      "sourceEvidence": [
+        {
+          "sourceId": "hbm-readme",
+          "url": "https://raw.githubusercontent.com/aourednik/historical-basemaps/4b5039e50d8d2464b065bd76ad6086cd4597108d/README.md",
+          "locator": "Pinned README: Introduction, GeoJSON/Polygons, Conceptual limitations and disputed territories",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "hbm-license",
+          "url": "https://raw.githubusercontent.com/aourednik/historical-basemaps/4b5039e50d8d2464b065bd76ad6086cd4597108d/LICENSE",
+          "locator": "Pinned LICENSE: heading, Preamble, Terms0–6 and15–17",
+          "chronology": {
+            "asWorded": [
+              "Version 3, 29 June 2007"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "hbm-1500",
+          "url": "https://raw.githubusercontent.com/aourednik/historical-basemaps/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_1500.geojson",
+          "locator": "Pinned world_1500.geojson: full-byte SHA-256 and all291 feature properties inspected for Maya; zero-based feature82",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF p.2 Resumen/Abstract; pp.4–5 La geografía política maya",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "ah-kin-chel-2008",
+          "url": "https://sic.cultura.gob.mx/documentos/1249.pdf",
+          "locator": "PDF p.56, Metodología, opening two paragraphs",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "ah-kin-chel-2008",
+          "url": "https://sic.cultura.gob.mx/documentos/1249.pdf",
+          "locator": "PDF pp.66–68, Conclusiones preliminares; especially p.67 Ceh Pech/Motul separation paragraph",
+          "chronology": {
+            "asWorded": [
+              "Postclásico",
+              "siglo XVI"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "andrews-1984",
+          "url": "https://www.journals.uchicago.edu/doi/abs/10.1086/jar.40.4.3629799",
+          "locator": "Publisher public Abstract, paragraph beginning Research on the political geography; Information pp.589–596",
+          "chronology": {
+            "asWorded": [
+              "sixteenth-century Yucatán"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "regional-getty-rights",
+      "caseId": null,
+      "targetPointer": "/regionalClaims/6/value",
+      "submittedClaimStatus": "sourced",
+      "finalValueType": "object",
+      "finalValueSha256": "7e3d1b01906a0fe4e77b8596268e1318564b7e3353095bfbc44082396104a7e1",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Rights for the four copied Getty coordinate records",
+      "sourceEvidence": [
+        {
+          "sourceId": "getty-rights",
+          "url": "https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/",
+          "locator": "Licensing and Citations: Licensing; Citations/General; Uniform Resource Identifiers",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "tgn-7024106",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7024106",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "tgn-7024107",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7024107",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "tgn-1017891",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=1017891",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "tgn-7366487",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7366487",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "mani-xiu-bookmarkPresence",
+      "caseId": "mani-xiu",
+      "targetPointer": "/cases/0/bookmarkPresence/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "a9d0338379d2d16985ff09b1c4aaeae1caf756a3095a269c33e066376591712b",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Candidate application to 1500-12-31; exact institutions and extent unclaimed",
+      "sourceEvidence": [
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "The Confederacy and Its Allied Territories, paragraphs on unknown extent, material similarity, and final paragraph on Contact Period provinces",
+          "chronology": {
+            "asWorded": [
+              "Contact Period",
+              "fifteenth and sixteenth centuries AD"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "Lords and Kings at Mayapán, both paragraphs; Major Dynasties and Ethnic Struggles, paragraphs on Cocom/Xiu/Chel",
+          "chronology": {
+            "asWorded": [
+              "around AD 1441",
+              "Contact Period"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE section 4, final Cocom/Xiu/Chel rivalry paragraph",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "mani-xiu-politicalAuthority",
+      "caseId": "mani-xiu",
+      "targetPointer": "/cases/0/politicalAuthority/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "ec57373a1617379a0eb0f307faaf2298f429047efd19777e401e576be12574fe",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Bookmark authority; general northern model is contextual only",
+      "sourceEvidence": [
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF p.2 Resumen/Abstract; pp.4–5 La geografía política maya",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "Lords and Kings at Mayapán, both paragraphs; Major Dynasties and Ethnic Struggles, paragraphs on Cocom/Xiu/Chel",
+          "chronology": {
+            "asWorded": [
+              "around AD 1441",
+              "Contact Period"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "Council Rule, paragraphs 1–3; Official Bureaucracy, paragraphs on subordinate councils and Ah Cuch Cab",
+          "chronology": {
+            "asWorded": [
+              "Colonial Period",
+              "Contact Period"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "mani-xiu-succession",
+      "caseId": "mani-xiu",
+      "targetPointer": "/cases/0/succession/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "a37c9c210cef9c3ed980e655ecf690cbd3dc27af7aaea570f25297ea64af1f12",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "No exact AD1500 succession procedure asserted",
+      "sourceEvidence": [
+        {
+          "sourceId": "landa-government",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/2.html",
+          "locator": "ILCE section 2, Cocom/Caluac, appointment, high-priest succession and advice paragraphs",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Note 19; Chel legitimacy discussion",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "mani-xiu-kinshipAndMarriage",
+      "caseId": "mani-xiu",
+      "targetPointer": "/cases/0/kinshipAndMarriage/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "45a6d055e30202709dd896aa2f2a0e13dc603bd5effe5c9b18cfe57c6c1c888e",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Retrospective / later context, not a bookmark household",
+      "sourceEvidence": [
+        {
+          "sourceId": "landa-xiu",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/3.html",
+          "locator": "ILCE section 3, first Xiu-alliance paragraph and final Cocom-sons/fall paragraph",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-marriage",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/17.html",
+          "locator": "ILCE section 17, opening paragraphs and parental marriage-arrangement paragraph",
+          "chronology": {
+            "asWorded": [
+              "antiguamente",
+              "ahora"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13 (zero-based page12), corrective note5, Ávila diplomacy paragraph, web parsed lines492–497",
+          "chronology": {
+            "asWorded": [
+              "1531"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13, note5, Otzmal account, web parsed lines511–524",
+          "chronology": {
+            "asWorded": [
+              "1535",
+              "agosto de 1536",
+              "1537"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13, note5, Melchor paragraph and final Nachi paragraph, web parsed lines530–543",
+          "chronology": {
+            "asWorded": [
+              "23 de enero de 1542",
+              "Mas tarde"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "mani-xiu-councilRoles",
+      "caseId": "mani-xiu",
+      "targetPointer": "/cases/0/councilRoles/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "d4f34ec2b5bae33caae4b782cf29fb438951a37afdaf0719a8afb3e052e7c912",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Institutional context; exact Maní roles/membership on bookmark unknown",
+      "sourceEvidence": [
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "mani-xiu-seat",
+      "caseId": "mani-xiu",
+      "targetPointer": "/cases/0/seat",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "4c5a1233df765de2dc2cecb92a60ac2d77aae74b1daa4e76280f842feae21f24",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "tgn-7024106",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7024106",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "The Confederacy and Its Allied Territories, paragraphs on unknown extent, material similarity, and final paragraph on Contact Period provinces",
+          "chronology": {
+            "asWorded": [
+              "Contact Period",
+              "fifteenth and sixteenth centuries AD"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "mani-xiu-peopleWithheld",
+      "caseId": "mani-xiu",
+      "targetPointer": "/cases/0/peopleWithheld",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "array",
+      "finalValueSha256": "3f152281913310458c5d0aa1ea774ffc310a8f2187295f59b650feb2c7af4425",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Later or undated contextual identities are withheld; no AD1500 presence or historical absence asserted.",
+      "sourceEvidence": [
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13 (zero-based page12), corrective note5, Ávila diplomacy paragraph, web parsed lines492–497",
+          "chronology": {
+            "asWorded": [
+              "1531"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13, note5, Otzmal account, web parsed lines511–524",
+          "chronology": {
+            "asWorded": [
+              "1535",
+              "agosto de 1536",
+              "1537"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13, note5, Melchor paragraph and final Nachi paragraph, web parsed lines530–543",
+          "chronology": {
+            "asWorded": [
+              "23 de enero de 1542",
+              "Mas tarde"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "mani-xiu-engineLimits",
+      "caseId": "mani-xiu",
+      "targetPointer": "/cases/0/engineLimits",
+      "submittedClaimStatus": "research-limit",
+      "finalValueType": "array",
+      "finalValueSha256": "b5912085a32931b827110ee92a23c00eb869597f55442cd25c16db320899b8b6",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13 (zero-based page12), corrective note5, Ávila diplomacy paragraph, web parsed lines492–497",
+          "chronology": {
+            "asWorded": [
+              "1531"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13, note5, Otzmal account, web parsed lines511–524",
+          "chronology": {
+            "asWorded": [
+              "1535",
+              "agosto de 1536",
+              "1537"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13, note5, Melchor paragraph and final Nachi paragraph, web parsed lines530–543",
+          "chronology": {
+            "asWorded": [
+              "23 de enero de 1542",
+              "Mas tarde"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "mani-xiu-engineLimitAssessments",
+      "caseId": "mani-xiu",
+      "targetPointer": "/cases/0/engineLimitAssessments",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "array",
+      "finalValueSha256": "e5e89a5b1f9ceca88817edcf2980233ea2df0420feea23672fb2a762dd761c47",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "mani-xiu-religiousAuthorityOnBookmark",
+      "caseId": "mani-xiu",
+      "targetPointer": "/cases/0/religiousAuthorityOnBookmark",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "cb0215a43c53d4ed0024ce36a86c1b8ff45934ca80d1a784f95946c9f7319711",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "Priests, paragraphs 1–3 and Maní festival paragraph",
+          "chronology": {
+            "asWorded": [
+              "Postclassic and Colonial era"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "mani-xiu-geometry",
+      "caseId": "mani-xiu",
+      "targetPointer": "/cases/0/geometry",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "a7bb0d5b2da81927c0c81470c78b3ceabef728d03478834a34abfe9720b2b51b",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "tgn-7024106",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7024106",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "The Confederacy and Its Allied Territories, paragraphs on unknown extent, material similarity, and final paragraph on Contact Period provinces",
+          "chronology": {
+            "asWorded": [
+              "Contact Period",
+              "fifteenth and sixteenth centuries AD"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "sotuta-cocom-bookmarkPresence",
+      "caseId": "sotuta-cocom",
+      "targetPointer": "/cases/1/bookmarkPresence/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "0177fb65d7af637cd3eefbfb0e4c145526eee72aa6b8eb007253d18d626d28c7",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Candidate application to 1500-12-31; no fixed colonial province projected backward",
+      "sourceEvidence": [
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "The Confederacy and Its Allied Territories, paragraphs on unknown extent, material similarity, and final paragraph on Contact Period provinces",
+          "chronology": {
+            "asWorded": [
+              "Contact Period",
+              "fifteenth and sixteenth centuries AD"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "Lords and Kings at Mayapán, both paragraphs; Major Dynasties and Ethnic Struggles, paragraphs on Cocom/Xiu/Chel",
+          "chronology": {
+            "asWorded": [
+              "around AD 1441",
+              "Contact Period"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE section4, opening relative-chronology paragraph and Cocom-son/Tibulón/Zututa paragraph",
+          "chronology": {
+            "asWorded": [
+              "hará 120 años"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "sotuta-cocom-politicalAuthority",
+      "caseId": "sotuta-cocom",
+      "targetPointer": "/cases/1/politicalAuthority/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "e473476e66332eac98e13f160e1947319edd43254f954bd12a72559b7e015cca",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Bookmark authority remains unresolved",
+      "sourceEvidence": [
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "Lords and Kings at Mayapán, both paragraphs; Major Dynasties and Ethnic Struggles, paragraphs on Cocom/Xiu/Chel",
+          "chronology": {
+            "asWorded": [
+              "around AD 1441",
+              "Contact Period"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Cocom, displacement narrative and paragraph setting out two conjeturas",
+          "chronology": {
+            "asWorded": [
+              "1584",
+              "1688"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "sotuta-cocom-succession",
+      "caseId": "sotuta-cocom",
+      "targetPointer": "/cases/1/succession/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "cd3d3e48f1ad1c40b5072bbf947f06bf38fecce5028784dd3b6f3e4b1fcc9779",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Dynastic survival narrative, not a formal or dated AD1500 succession rule",
+      "sourceEvidence": [
+        {
+          "sourceId": "landa-xiu",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/3.html",
+          "locator": "ILCE section 3, first Xiu-alliance paragraph and final Cocom-sons/fall paragraph",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE section4, opening relative-chronology paragraph and Cocom-son/Tibulón/Zututa paragraph",
+          "chronology": {
+            "asWorded": [
+              "hará 120 años"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "sotuta-cocom-kinshipAndMarriage",
+      "caseId": "sotuta-cocom",
+      "targetPointer": "/cases/1/kinshipAndMarriage/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "39bf8bc6caf40161da04c2437bfa19a4efe94c20a34804e322f868581bcc8eac",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "No named kin pair or marriage at bookmark",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Cocom, displacement narrative and paragraph setting out two conjeturas",
+          "chronology": {
+            "asWorded": [
+              "1584",
+              "1688"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE section4, opening relative-chronology paragraph and Cocom-son/Tibulón/Zututa paragraph",
+          "chronology": {
+            "asWorded": [
+              "hará 120 años"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "sotuta-cocom-councilRoles",
+      "caseId": "sotuta-cocom",
+      "targetPointer": "/cases/1/councilRoles/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "ebbfbf5fc7a96dfb3e4dbea626fc1d50bac0c969e87a812a1ec9d90691dd785f",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Specific Sotuta council composition in AD1500 unclaimed",
+      "sourceEvidence": [
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "sotuta-cocom-seat",
+      "caseId": "sotuta-cocom",
+      "targetPointer": "/cases/1/seat",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "937d8e2b06cfdd963476c7a72fb8c9608dad31d2f08797ce7c11c4942964258d",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "tgn-7024107",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7024107",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE section4, opening relative-chronology paragraph and Cocom-son/Tibulón/Zututa paragraph",
+          "chronology": {
+            "asWorded": [
+              "hará 120 años"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "sotuta-cocom-peopleWithheld",
+      "caseId": "sotuta-cocom",
+      "targetPointer": "/cases/1/peopleWithheld",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "array",
+      "finalValueSha256": "870de174049161724f3d41d5ce17ca356aa91ac898f45503d4a4bf0cfd51b545",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Later or undated contextual identities are withheld; no AD1500 presence or historical absence asserted.",
+      "sourceEvidence": [
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13, note5, Otzmal account, web parsed lines511–524",
+          "chronology": {
+            "asWorded": [
+              "1535",
+              "agosto de 1536",
+              "1537"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13, note5, Melchor paragraph and final Nachi paragraph, web parsed lines530–543",
+          "chronology": {
+            "asWorded": [
+              "23 de enero de 1542",
+              "Mas tarde"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-xiu",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/3.html",
+          "locator": "ILCE section 3, first Xiu-alliance paragraph and final Cocom-sons/fall paragraph",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE section4, opening relative-chronology paragraph and Cocom-son/Tibulón/Zututa paragraph",
+          "chronology": {
+            "asWorded": [
+              "hará 120 años"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "sotuta-cocom-engineLimits",
+      "caseId": "sotuta-cocom",
+      "targetPointer": "/cases/1/engineLimits",
+      "submittedClaimStatus": "research-limit",
+      "finalValueType": "array",
+      "finalValueSha256": "b5912085a32931b827110ee92a23c00eb869597f55442cd25c16db320899b8b6",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE section4, opening relative-chronology paragraph and Cocom-son/Tibulón/Zututa paragraph",
+          "chronology": {
+            "asWorded": [
+              "hará 120 años"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "rubio-later-xiu",
+          "url": "https://acadmexhistoria.org.mx/wp/wp-content/uploads/2022/10/SILLON_19_IGNACIO_RUBIO.pdf",
+          "locator": "PDF p.13, note5, Otzmal account, web parsed lines511–524",
+          "chronology": {
+            "asWorded": [
+              "1535",
+              "agosto de 1536",
+              "1537"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "sotuta-cocom-engineLimitAssessments",
+      "caseId": "sotuta-cocom",
+      "targetPointer": "/cases/1/engineLimitAssessments",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "array",
+      "finalValueSha256": "e5e89a5b1f9ceca88817edcf2980233ea2df0420feea23672fb2a762dd761c47",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "sotuta-cocom-religiousAuthorityOnBookmark",
+      "caseId": "sotuta-cocom",
+      "targetPointer": "/cases/1/religiousAuthorityOnBookmark",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "cb0215a43c53d4ed0024ce36a86c1b8ff45934ca80d1a784f95946c9f7319711",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "Priests, paragraphs 1–3 and Maní festival paragraph",
+          "chronology": {
+            "asWorded": [
+              "Postclassic and Colonial era"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Cocom, displacement narrative and paragraph setting out two conjeturas",
+          "chronology": {
+            "asWorded": [
+              "1584",
+              "1688"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "sotuta-cocom-geometry",
+      "caseId": "sotuta-cocom",
+      "targetPointer": "/cases/1/geometry",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "a7bb0d5b2da81927c0c81470c78b3ceabef728d03478834a34abfe9720b2b51b",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "tgn-7024107",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7024107",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Cocom, displacement narrative and paragraph setting out two conjeturas",
+          "chronology": {
+            "asWorded": [
+              "1584",
+              "1688"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "ah-kin-chel-bookmarkPresence",
+      "caseId": "ah-kin-chel",
+      "targetPointer": "/cases/2/bookmarkPresence/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "f85caf92d765013498df2a212c4421431bb35cf0b81c4d8ad5eb99eb64f8366a",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Candidate application to 1500-12-31; exact date and regional outline unresolved",
+      "sourceEvidence": [
+        {
+          "sourceId": "mayapan-politics-2014",
+          "url": "https://read.upcolorado.com/read/kukulcan-s-realm-urban-life-at-ancient-mayapan/section/43d4e611-bcb7-4e3d-8c5e-91a56195f0bc",
+          "locator": "The Confederacy and Its Allied Territories, paragraphs on unknown extent, material similarity, and final paragraph on Contact Period provinces",
+          "chronology": {
+            "asWorded": [
+              "Contact Period",
+              "fifteenth and sixteenth centuries AD"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "ah-kin-chel-2008",
+          "url": "https://sic.cultura.gob.mx/documentos/1249.pdf",
+          "locator": "PDF pp.46–50, article opening and Introducción",
+          "chronology": {
+            "asWorded": [
+              "siglo XV",
+              "siglo XVI"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Ch’el, founder/legitimation paragraphs beginning with Na Mo and later marriage discussion",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "ah-kin-chel-politicalAuthority",
+      "caseId": "ah-kin-chel",
+      "targetPointer": "/cases/2/politicalAuthority/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "3d7a08d1c6fc5c9357257dad100309a62663ea4e259a9b89606fb817a01937c1",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Modern interpretation of retrospective sources; bookmark implementation unclaimed",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Ch’el, founder/legitimation paragraphs beginning with Na Mo and later marriage discussion",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF p.2 Resumen/Abstract; pp.4–5 La geografía política maya",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "ah-kin-chel-succession",
+      "caseId": "ah-kin-chel",
+      "targetPointer": "/cases/2/succession/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "c0f4af1cc13439339409222172b662aa04bcea2d38f564e0393d69080aa661a7",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "No fixed AD1500 succession rule",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Ch’el, founder/legitimation paragraphs beginning with Na Mo and later marriage discussion",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Note 19; Chel legitimacy discussion",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE section 4, Ah Chel/priest’s daughter/Tikoch paragraph",
+          "chronology": {
+            "asWorded": [
+              "hasta la entrada del adelantado Montejo"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "ah-kin-chel-kinshipAndMarriage",
+      "caseId": "ah-kin-chel",
+      "targetPointer": "/cases/2/kinshipAndMarriage/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "3c8123febd40ade960c88b30b112e5b6fda66c629e7f1fb1dafe1511b91e5cee",
+      "initialVerdict": "corrected",
+      "followupVerdict": "confirmed",
+      "reviewScope": "Variant founder traditions; no dated living couple at bookmark",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Ch’el: stycket som börjar Puede caracterizarse; styckena om det första Na Mo Ch’el och äktenskapet före Las alianzas de los Iuit.",
+          "chronology": {
+            "asWorded": "durante el Posclásico; destrucción del asentamiento de Mayapán; Posteriormente.",
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE avsnitt 4: hela stycket från Dicen que entre los doce sacerdotes till del adelantado Montejo; följande stycke om de tre husen läst som kontext.",
+          "chronology": {
+            "asWorded": "hará 120 años que se despobló Mayapán; destrucción de aquella ciudad; hasta la entrada del adelantado Montejo.",
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "ah-kin-chel-councilRoles",
+      "caseId": "ah-kin-chel",
+      "targetPointer": "/cases/2/councilRoles/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "5b4cb7a90fa5662830c968a6a366094d892630665bde67bdcf1b8fdf54841e08",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "AD1500 membership/constitution unclaimed",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Ch’el, founder/legitimation paragraphs beginning with Na Mo and later marriage discussion",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "ah-kin-chel-seat",
+      "caseId": "ah-kin-chel",
+      "targetPointer": "/cases/2/seat",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "99eff9830dd53b469805be05aa18050d77b32f08ebe606316faec90ab286744a",
+      "initialVerdict": "corrected",
+      "followupVerdict": "confirmed",
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "tecoh-1993",
+          "url": "https://www.cambridge.org/core/journals/latin-american-antiquity/article/abs/tecoh-izamal-nobleza-indigena-y-conquista-espanola/3ECE878A0A53FC0D75D9BF06F48AC74A",
+          "locator": "Offentliga Resumen och Abstract, båda styckena i vardera; Information: March 1993, 4(1), pp. 48–58.",
+          "chronology": {
+            "asWorded": "primeros años de la dominación española; first years of Spanish domination; siglo XVI / sixteenth-century.",
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "ah-kin-chel-2008",
+          "url": "https://sic.cultura.gob.mx/documentos/1249.pdf",
+          "locator": "Fysisk PDF-sida 55, Los recorridos: de tre inledande styckena om Tecoh, Dzidzantún och Dzilam; föregående sida 54 läst för argumentets sammanhang.",
+          "chronology": {
+            "asWorded": "época de la Conquista; siglos XV y XVI.",
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE avsnitt 4, Ah Chel-styckets kustetablering, Tikoch och fortsättning till Montejos ankomst.",
+          "chronology": {
+            "asWorded": "hasta la entrada del adelantado Montejo.",
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "ah-kin-chel-peopleWithheld",
+      "caseId": "ah-kin-chel",
+      "targetPointer": "/cases/2/peopleWithheld",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "array",
+      "finalValueSha256": "fb38f0e56aab0abd1883366ca0964052a95129e92edad4898dfb7611493b2209",
+      "initialVerdict": "corrected",
+      "followupVerdict": "confirmed",
+      "reviewScope": "Later or undated contextual identities are withheld; no AD1500 presence or historical absence asserted.",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Hela Las alianzas de los Ch’el, särskilt founder/legitimerings- och äktenskapsstyckena; noter 27 och 30–31.",
+          "chronology": {
+            "asWorded": "Posclásico; destrucción del asentamiento de Mayapán.",
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE avsnitt 4, hela Ah Chel/prästens dotter/Tikoch-stycket samt efterföljande Chel-argument om härstamning.",
+          "chronology": {
+            "asWorded": "hasta la entrada del adelantado Montejo.",
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "ah-kin-chel-engineLimits",
+      "caseId": "ah-kin-chel",
+      "targetPointer": "/cases/2/engineLimits",
+      "submittedClaimStatus": "research-limit",
+      "finalValueType": "array",
+      "finalValueSha256": "b5912085a32931b827110ee92a23c00eb869597f55442cd25c16db320899b8b6",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Ch’el, founder/legitimation paragraphs beginning with Na Mo and later marriage discussion",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE section 4, Ah Chel/priest’s daughter/Tikoch paragraph",
+          "chronology": {
+            "asWorded": [
+              "hasta la entrada del adelantado Montejo"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "ah-kin-chel-engineLimitAssessments",
+      "caseId": "ah-kin-chel",
+      "targetPointer": "/cases/2/engineLimitAssessments",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "array",
+      "finalValueSha256": "e5e89a5b1f9ceca88817edcf2980233ea2df0420feea23672fb2a762dd761c47",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "ah-kin-chel-religiousAuthorityOnBookmark",
+      "caseId": "ah-kin-chel",
+      "targetPointer": "/cases/2/religiousAuthorityOnBookmark",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "cb0215a43c53d4ed0024ce36a86c1b8ff45934ca80d1a784f95946c9f7319711",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Ch’el, founder/legitimation paragraphs beginning with Na Mo and later marriage discussion",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE section 4, Ah Chel/priest’s daughter/Tikoch paragraph",
+          "chronology": {
+            "asWorded": [
+              "hasta la entrada del adelantado Montejo"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "ah-kin-chel-geometry",
+      "caseId": "ah-kin-chel",
+      "targetPointer": "/cases/2/geometry",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "69c53cd5d7de644dd920b72e120e8ea0d0f24cd6f5a67f1081fb347ccef3a45d",
+      "initialVerdict": "corrected",
+      "followupVerdict": "confirmed",
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "ah-kin-chel-2008",
+          "url": "https://sic.cultura.gob.mx/documentos/1249.pdf",
+          "locator": "Fysisk PDF-sida 55, de tre första styckena under fortsättningen av Los recorridos; sidorna 53–54 som kontext.",
+          "chronology": {
+            "asWorded": "época de la Conquista; siglos XV y XVI.",
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "ah-kin-chel-2008",
+          "url": "https://sic.cultura.gob.mx/documentos/1249.pdf",
+          "locator": "Fysisk PDF-sida 56, Metodología, första två styckena; andra styckets fortsättning på fysisk sida 57. Artikelns inledning på sidorna 46–47 läst för tidsskikten.",
+          "chronology": {
+            "asWorded": "antiguas fronteras; límites municipales y ejidales actuales; relativamente coincidentes; 407 sitios registrados vid undersökningen.",
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "landa-chel",
+          "url": "https://bibliotecadigital.ilce.edu.mx/sites/fondo2000/vol1/mayas/html/4.html",
+          "locator": "ILCE avsnitt 4, Ah Chel/Tikoch-stycket och följande stycke om husens rivalitet.",
+          "chronology": {
+            "asWorded": "hasta la entrada del adelantado Montejo.",
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "cehpech-motul-bookmarkPresence",
+      "caseId": "cehpech-motul",
+      "targetPointer": "/cases/3/bookmarkPresence/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "be7bbf9dc93a6a9f84bdb477a0005dec68f7ab817fd7702ddb814badff7da0bc",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Candidate application to 1500-12-31; no automatic merger with Chel polity",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Pech, full section; note 21 (RHGGY 1983 I:269–270 quoted within article)",
+          "chronology": {
+            "asWorded": [
+              "1565",
+              "al cabo de muchos años",
+              "el día de hoy"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF p.6, differing Roys/Quezada lists; pp.7–8 Conclusión",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "ah-kin-chel-2008",
+          "url": "https://sic.cultura.gob.mx/documentos/1249.pdf",
+          "locator": "PDF pp.66–68, Conclusiones preliminares; especially p.67 Ceh Pech/Motul separation paragraph",
+          "chronology": {
+            "asWorded": [
+              "Postclásico",
+              "siglo XVI"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "cehpech-motul-politicalAuthority",
+      "caseId": "cehpech-motul",
+      "targetPointer": "/cases/3/politicalAuthority/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "a82bfad7a03da376b1bbcf39ca52629ea9e75a1d8e0d628eca2e4e0c43b58605",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Lineage pattern is contextual; individual AD1500 office unclaimed",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Los esquemas de alianza política en el norte de Yucatán, sample-method paragraphs",
+          "chronology": {
+            "asWorded": [
+              "1565-1567"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Pech, full section; note 21 (RHGGY 1983 I:269–270 quoted within article)",
+          "chronology": {
+            "asWorded": [
+              "1565",
+              "al cabo de muchos años",
+              "el día de hoy"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "cehpech-motul-succession",
+      "caseId": "cehpech-motul",
+      "targetPointer": "/cases/3/succession/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "03bf6ff6d96ec7a35c5235b03304815ab098843c9117e0837f4ef19762ab0464",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Retrospective descent claim; accession date and selection procedure unclaimed",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Pech, full section; note 21 (RHGGY 1983 I:269–270 quoted within article)",
+          "chronology": {
+            "asWorded": [
+              "1565",
+              "al cabo de muchos años",
+              "el día de hoy"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "cehpech-motul-kinshipAndMarriage",
+      "caseId": "cehpech-motul",
+      "targetPointer": "/cases/3/kinshipAndMarriage/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "f928271128acad787ad269222d456ca1afb4f0c43e8c7403ac16671f65711324",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Narrative kinship context only",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Pech, full section; note 21 (RHGGY 1983 I:269–270 quoted within article)",
+          "chronology": {
+            "asWorded": [
+              "1565",
+              "al cabo de muchos años",
+              "el día de hoy"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "cehpech-motul-councilRoles",
+      "caseId": "cehpech-motul",
+      "targetPointer": "/cases/3/councilRoles/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "7ae2cb8ef29675c839b58232abb7d6ad92ecb588ece5de8ff8bb87dd613b3191",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Exact Cehpech council at bookmark unclaimed",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Pech, full section; note 21 (RHGGY 1983 I:269–270 quoted within article)",
+          "chronology": {
+            "asWorded": [
+              "1565",
+              "al cabo de muchos años",
+              "el día de hoy"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "cehpech-motul-seat",
+      "caseId": "cehpech-motul",
+      "targetPointer": "/cases/3/seat",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "432b7ed6cd0b345e575e0e841838b74a51f08fe5fdb525d0b73150e9b09e3ab9",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "tgn-1017891",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=1017891",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Pech, full section; note 21 (RHGGY 1983 I:269–270 quoted within article)",
+          "chronology": {
+            "asWorded": [
+              "1565",
+              "al cabo de muchos años",
+              "el día de hoy"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF p.6, differing Roys/Quezada lists; pp.7–8 Conclusión",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "cehpech-motul-peopleWithheld",
+      "caseId": "cehpech-motul",
+      "targetPointer": "/cases/3/peopleWithheld",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "array",
+      "finalValueSha256": "dc97c3ff2a508384b41224e9ef338b581781abe6c8dc4b020ecba21529b76f32",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Later or undated contextual identities are withheld; no AD1500 presence or historical absence asserted.",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Pech, full section; note 21 (RHGGY 1983 I:269–270 quoted within article)",
+          "chronology": {
+            "asWorded": [
+              "1565",
+              "al cabo de muchos años",
+              "el día de hoy"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "cehpech-motul-engineLimits",
+      "caseId": "cehpech-motul",
+      "targetPointer": "/cases/3/engineLimits",
+      "submittedClaimStatus": "research-limit",
+      "finalValueType": "array",
+      "finalValueSha256": "b5912085a32931b827110ee92a23c00eb869597f55442cd25c16db320899b8b6",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Las alianzas de los Pech, full section; note 21 (RHGGY 1983 I:269–270 quoted within article)",
+          "chronology": {
+            "asWorded": [
+              "1565",
+              "al cabo de muchos años",
+              "el día de hoy"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "cehpech-motul-engineLimitAssessments",
+      "caseId": "cehpech-motul",
+      "targetPointer": "/cases/3/engineLimitAssessments",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "array",
+      "finalValueSha256": "e5e89a5b1f9ceca88817edcf2980233ea2df0420feea23672fb2a762dd761c47",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "cehpech-motul-religiousAuthorityOnBookmark",
+      "caseId": "cehpech-motul",
+      "targetPointer": "/cases/3/religiousAuthorityOnBookmark",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "cb0215a43c53d4ed0024ce36a86c1b8ff45934ca80d1a784f95946c9f7319711",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "alliances-2012",
+          "url": "https://www.scielo.org.mx/scielo.php?pid=S0185-25742012000200005&script=sci_arttext",
+          "locator": "Note 19; Chel legitimacy discussion",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF pp.6–7 La organización sociopolítica, ah cuch cab/consejo and internal-autonomy paragraphs",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "cehpech-motul-geometry",
+      "caseId": "cehpech-motul",
+      "targetPointer": "/cases/3/geometry",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "a7bb0d5b2da81927c0c81470c78b3ceabef728d03478834a34abfe9720b2b51b",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "tgn-1017891",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=1017891",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "ah-kin-chel-2008",
+          "url": "https://sic.cultura.gob.mx/documentos/1249.pdf",
+          "locator": "PDF pp.66–68, Conclusiones preliminares; especially p.67 Ceh Pech/Motul separation paragraph",
+          "chronology": {
+            "asWorded": [
+              "Postclásico",
+              "siglo XVI"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "okoshi-2012",
+          "url": "https://www.revista.unam.mx/vol.13/num12/art119/art119.pdf",
+          "locator": "PDF p.2 Resumen/Abstract; pp.4–5 La geografía política maya",
+          "chronology": {
+            "asWorded": [
+              "al tiempo de la invasión española"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "acalan-itzamkanac-bookmarkPresence",
+      "caseId": "acalan-itzamkanac",
+      "targetPointer": "/cases/4/bookmarkPresence/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "5acd8c4874826f6de900057395a046dc5a178dd3070f7bf330736af15aa1bc47",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Candidate application to 1500-12-31; precise local chronology unclaimed",
+      "sourceEvidence": [
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.151–152, Introducción and La provincia de Acalan-Tixchel; corresponding institutional HTML sections",
+          "chronology": {
+            "asWorded": [
+              "Posclásico Tardío"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed p.153, La provincia de Acalan-Tixchel, dynasty and four-batabilob paragraphs",
+          "chronology": {
+            "asWorded": [
+              "segunda mitad del Siglo XIII ó XIV",
+              "al momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "acalan-itzamkanac-politicalAuthority",
+      "caseId": "acalan-itzamkanac",
+      "targetPointer": "/cases/4/politicalAuthority/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "2ea6bbf2b79ade79c7d2dbf036c241769accb7754409b814b5ae4f5585a26187",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Contact-era authority and modern reconstruction; exact AD1500 holder unclaimed",
+      "sourceEvidence": [
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed p.153, La provincia de Acalan-Tixchel, dynasty and four-batabilob paragraphs",
+          "chronology": {
+            "asWorded": [
+              "segunda mitad del Siglo XIII ó XIV",
+              "al momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.153–154, Itzamkanac, cabecera de la provincia de Acalan-Tixchel; corresponding institutional HTML section",
+          "chronology": {
+            "asWorded": [
+              "en el momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "acalan-itzamkanac-succession",
+      "caseId": "acalan-itzamkanac",
+      "targetPointer": "/cases/4/succession/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "e888005caf3aa4631ddd1a08856e85d73b1ea0b2f963c32f5601ac5ebfd8848d",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Specific later genealogy; no AD1500 accession, succession law or household",
+      "sourceEvidence": [
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.153–154, Itzamkanac, cabecera de la provincia de Acalan-Tixchel; corresponding institutional HTML section",
+          "chronology": {
+            "asWorded": [
+              "en el momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "acalan-itzamkanac-kinshipAndMarriage",
+      "caseId": "acalan-itzamkanac",
+      "targetPointer": "/cases/4/kinshipAndMarriage/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "a584cb5ccc66062e2c68488df3311700051ee1a0418a29b3c8e4f1c28e7b9ed0",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Contact-era kinship context only",
+      "sourceEvidence": [
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.153–154, Itzamkanac, cabecera de la provincia de Acalan-Tixchel; corresponding institutional HTML section",
+          "chronology": {
+            "asWorded": [
+              "en el momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "inah-el-tigre",
+          "url": "https://sic.gob.mx/ficha.php?disciplina=&table=zona_arqueologica&table_id=144",
+          "locator": "SIC institutional record: Descripción, Reseña Histórica, Cronología",
+          "chronology": {
+            "asWorded": [
+              "hacia 1525",
+              "600 a.C. - 1557"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "acalan-itzamkanac-councilRoles",
+      "caseId": "acalan-itzamkanac",
+      "targetPointer": "/cases/4/councilRoles/value",
+      "submittedClaimStatus": "uncertain",
+      "finalValueType": "object",
+      "finalValueSha256": "589feaa1a370ee4ece924a214c8c83b7b615fcc7cbec937c2aa1d6c264c66f16",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Hypothesized institution; no exact AD1500 four-member council or equal co-rulers",
+      "sourceEvidence": [
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed p.153, La provincia de Acalan-Tixchel, dynasty and four-batabilob paragraphs",
+          "chronology": {
+            "asWorded": [
+              "segunda mitad del Siglo XIII ó XIV",
+              "al momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.153–154, Itzamkanac, cabecera de la provincia de Acalan-Tixchel; corresponding institutional HTML section",
+          "chronology": {
+            "asWorded": [
+              "en el momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "acalan-itzamkanac-seat",
+      "caseId": "acalan-itzamkanac",
+      "targetPointer": "/cases/4/seat",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "9935a355e019e21ca669039c7c047f54d664cb746cdf1cd51113ba7b35cb2e2c",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "tgn-7366487",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7366487",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.151–152, Introducción and La provincia de Acalan-Tixchel; corresponding institutional HTML sections",
+          "chronology": {
+            "asWorded": [
+              "Posclásico Tardío"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.153–154, Itzamkanac, cabecera de la provincia de Acalan-Tixchel; corresponding institutional HTML section",
+          "chronology": {
+            "asWorded": [
+              "en el momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "inah-el-tigre",
+          "url": "https://sic.gob.mx/ficha.php?disciplina=&table=zona_arqueologica&table_id=144",
+          "locator": "SIC institutional record: Descripción, Reseña Histórica, Cronología",
+          "chronology": {
+            "asWorded": [
+              "hacia 1525",
+              "600 a.C. - 1557"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "acalan-itzamkanac-peopleWithheld",
+      "caseId": "acalan-itzamkanac",
+      "targetPointer": "/cases/4/peopleWithheld",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "array",
+      "finalValueSha256": "b7031ac45ec418c60fb1f948aecadb1e459c0fd545d05aa2182d88641eb0ea24",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Later or undated contextual identities are withheld; no AD1500 presence or historical absence asserted.",
+      "sourceEvidence": [
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed p.153, La provincia de Acalan-Tixchel, dynasty and four-batabilob paragraphs",
+          "chronology": {
+            "asWorded": [
+              "segunda mitad del Siglo XIII ó XIV",
+              "al momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.153–154, Itzamkanac, cabecera de la provincia de Acalan-Tixchel; corresponding institutional HTML section",
+          "chronology": {
+            "asWorded": [
+              "en el momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "inah-el-tigre",
+          "url": "https://sic.gob.mx/ficha.php?disciplina=&table=zona_arqueologica&table_id=144",
+          "locator": "SIC institutional record: Descripción, Reseña Histórica, Cronología",
+          "chronology": {
+            "asWorded": [
+              "hacia 1525",
+              "600 a.C. - 1557"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "acalan-itzamkanac-engineLimits",
+      "caseId": "acalan-itzamkanac",
+      "targetPointer": "/cases/4/engineLimits",
+      "submittedClaimStatus": "research-limit",
+      "finalValueType": "array",
+      "finalValueSha256": "b5912085a32931b827110ee92a23c00eb869597f55442cd25c16db320899b8b6",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed p.153, La provincia de Acalan-Tixchel, dynasty and four-batabilob paragraphs",
+          "chronology": {
+            "asWorded": [
+              "segunda mitad del Siglo XIII ó XIV",
+              "al momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.153–154, Itzamkanac, cabecera de la provincia de Acalan-Tixchel; corresponding institutional HTML section",
+          "chronology": {
+            "asWorded": [
+              "en el momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "acalan-itzamkanac-engineLimitAssessments",
+      "caseId": "acalan-itzamkanac",
+      "targetPointer": "/cases/4/engineLimitAssessments",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "array",
+      "finalValueSha256": "2def306e68562cd658528679267f5b0a87b606b11d2ca6a1d2f9cb9e8aa73bde",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed p.153, La provincia de Acalan-Tixchel, dynasty and four-batabilob paragraphs",
+          "chronology": {
+            "asWorded": [
+              "segunda mitad del Siglo XIII ó XIV",
+              "al momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.153–154, Itzamkanac, cabecera de la provincia de Acalan-Tixchel; corresponding institutional HTML section",
+          "chronology": {
+            "asWorded": [
+              "en el momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "acalan-itzamkanac-religiousAuthorityOnBookmark",
+      "caseId": "acalan-itzamkanac",
+      "targetPointer": "/cases/4/religiousAuthorityOnBookmark",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "cb0215a43c53d4ed0024ce36a86c1b8ff45934ca80d1a784f95946c9f7319711",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.151–152, Introducción and La provincia de Acalan-Tixchel; corresponding institutional HTML sections",
+          "chronology": {
+            "asWorded": [
+              "Posclásico Tardío"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.153–154, Itzamkanac, cabecera de la provincia de Acalan-Tixchel; corresponding institutional HTML section",
+          "chronology": {
+            "asWorded": [
+              "en el momento de la llegada de Cortés"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    },
+    {
+      "claimId": "acalan-itzamkanac-geometry",
+      "caseId": "acalan-itzamkanac",
+      "targetPointer": "/cases/4/geometry",
+      "submittedClaimStatus": "scope-limited",
+      "finalValueType": "object",
+      "finalValueSha256": "a7bb0d5b2da81927c0c81470c78b3ceabef728d03478834a34abfe9720b2b51b",
+      "initialVerdict": "confirmed",
+      "followupVerdict": null,
+      "reviewScope": "Review the full value and its internal status qualifiers; no whole-case certification.",
+      "sourceEvidence": [
+        {
+          "sourceId": "tgn-7366487",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=7366487",
+          "locator": "Full record: ID, decimal-degree Coordinates, Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "chronology": {
+            "asWorded": [],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "acalan-2016",
+          "url": "https://www.asociaciontikal.com/wp-content/uploads/2020/07/11-Vargas-y-Delgado.pdf",
+          "locator": "PDF printed pp.151–152, Introducción and La provincia de Acalan-Tixchel; corresponding institutional HTML sections",
+          "chronology": {
+            "asWorded": [
+              "Posclásico Tardío"
+            ],
+            "conversionPerformed": false
+          }
+        },
+        {
+          "sourceId": "inah-el-tigre",
+          "url": "https://sic.gob.mx/ficha.php?disciplina=&table=zona_arqueologica&table_id=144",
+          "locator": "SIC institutional record: Descripción, Reseña Histórica, Cronología",
+          "chronology": {
+            "asWorded": [
+              "hacia 1525",
+              "600 a.C. - 1557"
+            ],
+            "conversionPerformed": false
+          }
+        }
+      ]
+    }
+  ]
+}
