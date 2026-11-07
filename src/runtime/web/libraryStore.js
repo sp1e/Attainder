@@ -1354,8 +1354,9 @@ let _defaultSeedPromise = null;
 const loadDefaultSeed = () => (_defaultSeedPromise ??= import("./generated/defaultScenario.js").then((m) => m.default));
 const defaultScenarioSeedRecord = async () => {
   const DEFAULT_SEED = await loadDefaultSeed();
-  const record = emptyScenarioRecord(DEFAULT_SCENARIO_ID);
-  record.meta = { ...DEFAULT_SCENARIO_META, ...(DEFAULT_SEED.meta ?? {}), countryNameOverrides: {}, createdAt: nowIso(), updatedAt: nowIso() };
+  const record = emptyScenarioRecord(DEFAULT_SCENARIO_ID), now = nowIso();
+  // One timestamp for both: refreshBuiltInContent takes updatedAt !== createdAt as the player's edit.
+  record.meta = { ...DEFAULT_SCENARIO_META, ...(DEFAULT_SEED.meta ?? {}), countryNameOverrides: {}, createdAt: now, updatedAt: now };
   record.json = {
     actions: cloneJson(DEFAULT_SEED.data?.actions ?? []), advisor: cloneJson(DEFAULT_SEED.data?.advisor ?? []),
     chat: cloneJson(DEFAULT_SEED.data?.chat ?? []), events: cloneJson(DEFAULT_SEED.data?.events ?? []),

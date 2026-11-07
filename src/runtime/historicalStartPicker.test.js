@@ -20,9 +20,10 @@ test('a blank query groups every playable polity by region, then era, then date'
   const rows = historicalStartRows(options);
   const expected = [
     ['Europa', [['Tidig medeltid', ['Bysantinska riket', 'Emiratet Córdoba', 'Furstendömet Benevento', 'Karls rike (karolingiska riket)', 'Kungariket Asturien', 'Kyrkostaten']],
-      ['Högmedeltid', [polityName(options, 'default')]]]],
-    ['Mellanöstern och Nordafrika', [['Bronsålder', [polityName(options, 'egypt-3000bc')]], ['Tidig medeltid', ['Abbasidiska kalifatet', 'Aghlabidiska emiratet']]]],
+      ['Högmedeltid', ['Frankrike', polityName(options, 'default')]]]],
+    ['Mellanöstern och Nordafrika', [['Bronsålder', [polityName(options, 'egypt-3000bc')]], ['Tidig medeltid', ['Abbasidiska kalifatet', 'Aghlabidiska emiratet']], ['Högmedeltid', ['Almohaderna']]]],
     ['Östasien', [['Tidig medeltid', ['Silla', 'Tangriket']]]],
+    ['Sydostasien', [['Högmedeltid', ['Khmerriket']]]],
   ];
   assert.deepEqual(shape(groupHistoricalStartRows(rows, '')), expected);
   assert.deepEqual(shape(groupHistoricalStartRows(rows, '   ')), expected);
@@ -46,7 +47,7 @@ test('search ignores case, diacritics and stray whitespace', () => {
     assert.ok(keys(groupHistoricalStartRows(rows, query)).includes('charlemagne-800/papal-states'), query);
   }
   assert.deepEqual(keys(groupHistoricalStartRows(rows, 'Högmedeltid')), keys(groupHistoricalStartRows(rows, 'hogmedeltid')));
-  assert.deepEqual(keys(groupHistoricalStartRows(rows, 'Högmedeltid')), ['default/johns-realms']);
+  assert.deepEqual(keys(groupHistoricalStartRows(rows, 'Högmedeltid')), ['default/france-capetian', 'default/johns-realms', 'default/almohad', 'default/khmer-angkor']);
   assert.deepEqual(keys(groupHistoricalStartRows(rows, 'Bronsålder')), keys(groupHistoricalStartRows(rows, 'bronsalder')));
   assert.deepEqual(groupHistoricalStartRows(rows, 'zzz'), []);
 });
@@ -56,7 +57,7 @@ test('a polity with no region entry lands under Övriga, last', () => {
   const egypt = options.find(o => o.scenarioId === 'egypt-3000bc');
   const stray = { ...egypt, scenarioId: 'imported', polities: [{ ...egypt.polities[0], id: 'invented-polity', name: 'Påhittat rike', regionId: undefined }] };
   const groups = groupHistoricalStartRows(historicalStartRows([...options, stray]), '');
-  assert.deepEqual(groups.map(g => g.regionId), ['europe', 'mena', 'east-asia', 'other']);
+  assert.deepEqual(groups.map(g => g.regionId), ['europe', 'mena', 'east-asia', 'southeast-asia', 'other']);
   assert.equal(groups.at(-1).labelSv, 'Övriga');
   assert.deepEqual(keys([groups.at(-1)]), ['imported/invented-polity']);
 });

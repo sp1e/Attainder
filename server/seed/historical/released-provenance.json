@@ -49,54 +49,7 @@
   "john-1200": {
     "generator": {
       "file": "scripts/build-historical-scenarios.mjs",
-      "sha256": "0b95800dbe3e37901e0f8951cfc5979411feda5edc97ea2c1763279297244029",
-      "polygonClipping": "0.15.7"
-    },
-    "sourceFiles": [
-      {
-        "fileName": "hbm-world_1200.geojson",
-        "sha256": "2d6913ecedb38e269e41d249c87874d81e3e8d7351754821f57e627442d91525"
-      },
-      {
-        "fileName": "hbm-world_bc3000.geojson",
-        "sha256": "2cf107e2f0d4f9b5427b293f19b11fffe7c1134f52320df4f94b4889b978f033"
-      },
-      {
-        "fileName": "hbm-LICENSE",
-        "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
-      },
-      {
-        "fileName": "hbm-README.md",
-        "sha256": "4a6d137790d3aea8c2a53c26d6a3fe4a43485f90d48b7751c5e53b65b2a8d6fe"
-      },
-      {
-        "fileName": "hbm-CONTRIBUTING.md",
-        "sha256": "e039e33384bfc0cb7eae4ef2508002ac1d7369a0199823dc8a78db6ab38354d4"
-      },
-      {
-        "fileName": "ne_50m_land.geojson",
-        "sha256": "e874b27a51d146452be360cafb3cc50c86001074a67d534113e6534682f9826b"
-      }
-    ],
-    "authoredInputs": [
-      {
-        "fileName": "authored-scenarios.mjs",
-        "sha256": "ab4e86bb08db49d501bf70b6f298ec4477ae25fc21347e3f68754252e01ba7bb"
-      },
-      {
-        "fileName": "ad1200-review.json",
-        "sha256": "2a3b75188313ad65b62b255fa4a661c5fa16da57307ff8c8970b9a5f0990ce24"
-      },
-      {
-        "fileName": "bc3000-review.json",
-        "sha256": "441714004843b39a5e122848b2ed74ec2e7af6f2437745e53c584d24e1bf6f8c"
-      }
-    ]
-  },
-  "charlemagne-800": {
-    "generator": {
-      "file": "scripts/build-historical-scenarios.mjs",
-      "sha256": "138fa1f35175a37333acfe3a60e173cafd29a0de2b61184f242c5e127914a7fa",
+      "sha256": "54ba776b2e29e4c2360141d0cd235f18ace2c2482ae12604826c73ffa9331f50",
       "polygonClipping": "0.15.7"
     },
     "sourceFiles": [
@@ -132,7 +85,62 @@
     "authoredInputs": [
       {
         "fileName": "authored-scenarios.mjs",
-        "sha256": "131cddd86b42531b32ece013e2d0283b799bead1487a6fcbe25f04bd7ccb1736"
+        "sha256": "2cd0a45201a4dfdb574fc520afe3890b1d9703c850720dd6e5cad6f26b4137ed"
+      },
+      {
+        "fileName": "ad1200-review.json",
+        "sha256": "659173366f6553a46229ece765b46aa194ff450ed28f92a97c2217d004df5ac5"
+      },
+      {
+        "fileName": "dossier-courts.mjs",
+        "sha256": "c892c9304f976fc51d62c4b3b24d820d3b19060132b358cac1d2a67e55600f7a"
+      },
+      {
+        "fileName": "courts/ad1200-courts.json",
+        "sha256": "6543752c8c39fec97028a55bf5f48202322a2710ad6a0d7e6694b42e0151cb6d"
+      }
+    ]
+  },
+  "charlemagne-800": {
+    "generator": {
+      "file": "scripts/build-historical-scenarios.mjs",
+      "sha256": "54ba776b2e29e4c2360141d0cd235f18ace2c2482ae12604826c73ffa9331f50",
+      "polygonClipping": "0.15.7"
+    },
+    "sourceFiles": [
+      {
+        "fileName": "hbm-world_800.geojson",
+        "sha256": "9d046cdc4662109c3f803ae46e2c8cba941aa092ec86eccc7823e6cf1554920c"
+      },
+      {
+        "fileName": "hbm-world_1200.geojson",
+        "sha256": "2d6913ecedb38e269e41d249c87874d81e3e8d7351754821f57e627442d91525"
+      },
+      {
+        "fileName": "hbm-world_bc3000.geojson",
+        "sha256": "2cf107e2f0d4f9b5427b293f19b11fffe7c1134f52320df4f94b4889b978f033"
+      },
+      {
+        "fileName": "hbm-LICENSE",
+        "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+      },
+      {
+        "fileName": "hbm-README.md",
+        "sha256": "4a6d137790d3aea8c2a53c26d6a3fe4a43485f90d48b7751c5e53b65b2a8d6fe"
+      },
+      {
+        "fileName": "hbm-CONTRIBUTING.md",
+        "sha256": "e039e33384bfc0cb7eae4ef2508002ac1d7369a0199823dc8a78db6ab38354d4"
+      },
+      {
+        "fileName": "ne_50m_land.geojson",
+        "sha256": "e874b27a51d146452be360cafb3cc50c86001074a67d534113e6534682f9826b"
+      }
+    ],
+    "authoredInputs": [
+      {
+        "fileName": "authored-scenarios.mjs",
+        "sha256": "2cd0a45201a4dfdb574fc520afe3890b1d9703c850720dd6e5cad6f26b4137ed"
       },
       {
         "fileName": "ad800-review.json",

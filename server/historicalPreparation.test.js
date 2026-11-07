@@ -172,3 +172,20 @@ test('a matching companion without usable map geometry is refused', () => {
   const modified=structuredClone(saved); modified.data.world={assetProvenance:{regionsGeojson:{currentAssetStatus:'modified'}}};
   assert.equal(validateCompanion(modified,absent,{fallbackRegions:companion.assets.regionsGeojson.data}).ok,false);
 });
+
+// Spec ruling: a built-in save restores with a companion of a later revision on the same map; any other edition is refused.
+test('a companion of a later built-in revision on the same map binds; another map or an earlier revision does not', () => {
+  const companion=structuredClone(read('john-1200'));
+  Object.assign(companion.data.world,{builtInMap:'historical-john-1200-v1',builtInRevision:2});
+  const saved=revision=>({schema:'open-historia-game-bundle/1',scenarioRef:{scenarioId:companion.scenario.id},
+    data:{game:{gameDate:'1201-12-31'},world:{builtInMap:'historical-john-1200-v1',builtInRevision:revision}}});
+  assert.equal(validateCompanion(saved(1),companion).ok,true,'revision 1 save, revision 2 companion');
+  assert.equal(validateCompanion(saved(2),companion).ok,true,'same revision');
+  assert.equal(validateCompanion(saved(3),companion).code,'wrongEdition','a companion older than the save');
+  const otherMap=saved(1); otherMap.data.world.builtInMap='modern-day-world-2026-10-v1';
+  assert.equal(validateCompanion(otherMap,companion).code,'wrongEdition','another map');
+  const unstampedCompanion=structuredClone(companion); delete unstampedCompanion.data.world.builtInMap;
+  assert.equal(validateCompanion(saved(1),unstampedCompanion).code,'wrongEdition','a companion without the map stamp');
+  const unrevisedSave=saved(1); delete unrevisedSave.data.world.builtInRevision;
+  assert.equal(validateCompanion(unrevisedSave,companion).ok,true,'an unstamped revision counts as 1');
+});

@@ -31,3 +31,6 @@ export function releaseFromPatch(patchName) {
 
 // The Charlemagne bundle as release 1.1.0 shipped it (main at 2128ee11).
 export const charlemagneRelease110 = () => releaseFromPatch('charlemagne-800-1.1.0.patch.json');
+
+// The John bundle as release 1.0.0 shipped it (main at 2128ee11), which the built-in scenario `default` held at revision 1.
+export const johnRelease100 = () => releaseFromPatch('john-1200-1.0.0.patch.json');

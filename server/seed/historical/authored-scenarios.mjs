@@ -134,7 +134,7 @@ const PAPAL_STATES_800 = { polityId: 'papal-states',seat: ROME_800,successionLaw
 // The eight reviewed AD 800 dossier courts, in dossier order. Each court is built from courts/ad800-courts.json;
 // the succession law and the three generated courtiers (courtier-names.md) are game choices.
 const dossierPlayable = (polityId,successionLaw,courtierNames,courtierYears) => ({ polityId,successionLaw,
-  dossier: { courtierNames: courtierNames.map(name => `${name} (genererad)`),courtierBornAt: i => `0${courtierYears[i-1]}-01-01` } });
+  dossier: { courtierNames: courtierNames.map(name => `${name} (genererad)`),courtierBornAt: i => `${String(courtierYears[i-1]).padStart(4,'0')}-01-01` } });
 const AD800_DOSSIER_PLAYABLES = [
   dossierPlayable('tang-empire','primogeniture',['Zhao Huaiyuan','Li Shouyi','Chen Junzhi'],[760,764,768]),
   dossierPlayable('abbasid-caliphate','merit',['Sa\'id ibn Mansur','Ali ibn Hamza','Hasan ibn Ziyad'],[758,763,767]),
@@ -144,6 +144,12 @@ const AD800_DOSSIER_PLAYABLES = [
   dossierPlayable('aghlabid-emirate','primogeniture',['Asad ibn Musa','Muhammad ibn Salim','Abd Allah ibn Rashid'],[758,761,766]),
   dossierPlayable('kingdom-of-asturias','merit',['Gundemaro','Sisnando','Teodomiro'],[760,763,771]),
   dossierPlayable('duchy-of-benevento','merit',['Ansfrid','Rodoald','Garibald'],[756,762,767]),
+];
+// The three reviewed AD 1200 dossier courts in the ruled order; Western Xia and Chimú stay blocked in the dossier.
+const AD1200_DOSSIER_PLAYABLES = [
+  dossierPlayable('khmer-angkor','merit',['Mratan Shivadasa','Mratan Rudrapala','Vap Kirtindra'],[1160,1165,1170]),
+  dossierPlayable('almohad','merit',['Ali ibn Yintan','Umar ibn Wakkak','Abd al-Haqq ibn Ziyad'],[1158,1163,1168]),
+  dossierPlayable('france-capetian','primogeniture',['Hugues de Montfort','Raoul de Beaumont','Pierre de Chaumont'],[1157,1162,1166]),
 ];
 // "A, B och C"
 const listSv = names => `${names.slice(0,-1).join(', ')} och ${names.at(-1)}`;
@@ -171,10 +177,11 @@ const AUTHORED_PACKAGES = {
     },
   },
   'john-1200': {
-    sources,polityId: 'johns-realms',bookmarkDate: '1200-12-31',eraLabelSv: '1200 e.Kr.',
+    sources,polityId: 'johns-realms',contentVersion: '1.1.0',bookmarkDate: '1200-12-31',eraLabelSv: '1200 e.Kr.',
     seat: { id: 'windsor',nameSv: 'Windsor',coordinates: [-0.6,51.4833],regionId: 'hbm-ad1200-275',placement: 'inside',sourceIds: ['windsor','windsorResidence'],noteSv: 'Ungefärlig ortsmarkör. Vald som spelsäte; kungaparets närvaro denna dag är inte belagd.' },
-    contextSv: 'Johan av England efter äktenskapet med Isabella. Dokumenterade identiteter, ungefärliga födelsedatum och genererade hovmän.',
-    coverageNotePrefixSv: '',
+    extraPlayables: AD1200_DOSSIER_PLAYABLES,
+    contextSv: names => `Nyårsafton 1200. Spelbara riken: ${listSv(names)}. Du möter dokumenterade personer med genererade spelvärden och genererade hovmän.`,
+    coverageNotePrefixSv: names => `${names.length} riken är spelbara. `,
     polity: { nameSv: 'Johns riken (angevinskt välde)',sourceIds: ['john','angevin','angevinJurisdiction','hbm'],extra: {},noteSv: 'Spelaggregat av skilda besittningar; franska länsförhållanden och oklart lokalt herravälde kvarstår.' },
     court: {
       religionId: 'latin-church',rulerId: 'john',partnerId: 'isabella',
@@ -188,6 +195,8 @@ const AUTHORED_PACKAGES = {
         }
       },
       rulerOfficeClaim: claim('sourced','Johan var kung av England vid starten.',['john']),religionName: 'Den latinska kyrkan',
+      contextSv: 'Johan av England efter äktenskapet med Isabella. Dokumenterade identiteter, ungefärliga födelsedatum och genererade hovmän.',
+      contextSourceIds: ['john','isabella'],
       religionClaim: claim('sourced','Kunglig kröning vid Westminster; kyrkans spelorganisation är förenklad.',['john']),
     },
   },

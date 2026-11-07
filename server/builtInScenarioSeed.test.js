@@ -114,7 +114,9 @@ test("the seed is a complete scenario whose world matches its map", () => {
   const regions = readJson(path.join(SEED_DIR, "regions.geojson"));
   const cities = readJson(path.join(SEED_DIR, "cities.geojson"));
   assert.equal(regions.features.length, 1425);
-  assert.equal(cities.features.length, 1);
+  // One marker per seat of the four playable realms: Windsor, Angkor Thom, Marrakech and Paris.
+  assert.equal(cities.features.length, 4);
+  assert.equal(cities.features.length, seedWorld.historicalScenario.settlements.length);
   assert.ok(seedRegionsBytes < 20 * 1024 * 1024, "the map has to stay small enough to ship in the app and on the website");
   const owners = new Set(regions.features.map((feature) => feature.properties.owner).filter(Boolean));
   const overrides = seedWorld.regionOwnershipOverrides;

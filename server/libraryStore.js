@@ -790,6 +790,9 @@ const normalizePlayCount = (raw) => {
 
 const readScenarioMeta = (scenarioId) => {
   const raw = readJsonFile(getScenarioMetaPath(scenarioId), {});
+  // One clock read for both missing timestamps: refreshBuiltInContent takes updatedAt !== createdAt as
+  // the player's edit, and two reads a millisecond apart would fork an untouched built-in.
+  const now = new Date().toISOString();
   const name = String(raw?.name ?? "").trim() || DEFAULT_SCENARIO_META.name;
   const subtitle = String(raw?.subtitle ?? "").trim() || DEFAULT_SCENARIO_META.subtitle;
   const description = String(raw?.description ?? "").trim() || subtitle || DEFAULT_SCENARIO_META.description;
@@ -802,7 +805,7 @@ const readScenarioMeta = (scenarioId) => {
     raw?.countryNameOverrides && typeof raw.countryNameOverrides === "object"
     ? raw.countryNameOverrides
     : {},
-    createdAt: raw?.createdAt ?? new Date().toISOString(),
+    createdAt: raw?.createdAt ?? now,
     description,
     eyebrow: String(raw?.eyebrow ?? "").trim() || DEFAULT_SCENARIO_META.eyebrow,
     features: normalizeFeatureSettings(raw?.features),
@@ -815,7 +818,7 @@ const readScenarioMeta = (scenarioId) => {
     name,
     playCount: normalizePlayCount(raw?.playCount),
     subtitle,
-    updatedAt: raw?.updatedAt ?? new Date().toISOString(),
+    updatedAt: raw?.updatedAt ?? now,
   };
 };
 

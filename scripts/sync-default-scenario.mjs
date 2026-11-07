@@ -14,22 +14,22 @@ const ROOT = fileURLToPath(new URL('../', import.meta.url));
 const PACKAGE_DIR = path.join(ROOT, 'server', 'seed', 'historical', 'john-1200');
 export const DEFAULT_DIR = path.join(ROOT, 'server', 'seed', 'default');
 export const BUILT_IN_MAP = 'historical-john-1200-v1';
-export const BUILT_IN_REVISION = 1;
+export const BUILT_IN_REVISION = 2;
 export const SYNCED_FILES = Object.freeze(['world.json', 'game.json', 'scenario.json', 'cities.geojson', 'regions.geojson']);
 
 const line = value => JSON.stringify(value) + '\n';
-const readPackage = name => readFileSync(path.join(PACKAGE_DIR, name), 'utf8');
+const packageBundle = () => JSON.parse(readFileSync(path.join(PACKAGE_DIR, 'scenario.json'), 'utf8'));
 
 // The library card of the built-in: the package's bundle name and start text under the id `default`.
 const scenarioMeta = (bundle, h) => ({ id: 'default', name: bundle.scenario.name, description: bundle.scenario.description,
   eyebrow: 'HISTORISK KAMPANJ', heroTitle: bundle.scenario.name, heroSubtitle: bundle.scenario.description, subtitle: h.eraLabelSv });
 
-// Each file's bytes as git stores them: one line of JSON and a newline.
-export function defaultScenarioFiles() {
-  const bundle = JSON.parse(readPackage('scenario.json'));
-  const world = { ...bundle.data.world, builtInMap: BUILT_IN_MAP, builtInRevision: BUILT_IN_REVISION };
+// Each file's bytes as git stores them: one line of JSON and a newline. The bundle embeds the package's
+// cities.geojson and regions.geojson, which serialize to the same bytes. Tests pass an earlier release.
+export function defaultScenarioFiles(bundle = packageBundle(), revision = BUILT_IN_REVISION) {
+  const world = { ...bundle.data.world, builtInMap: BUILT_IN_MAP, builtInRevision: revision };
   return { 'world.json': line(world), 'game.json': line(bundle.data.game), 'scenario.json': line(scenarioMeta(bundle, world.historicalScenario)),
-    'cities.geojson': readPackage('cities.geojson'), 'regions.geojson': readPackage('regions.geojson') };
+    'cities.geojson': line(bundle.assets.citiesGeojson.data), 'regions.geojson': line(bundle.assets.regionsGeojson.data) };
 }
 
 // A Windows checkout with core.autocrlf ends the single line with CRLF; git stores the same LF bytes.

@@ -187,6 +187,16 @@ export function companionCoverType(companion) {
   return '';
 }
 
+// The built-in's revision on a map, 1 when unstamped (server/libraryStore.js builtInRevisionOf).
+const builtInRevisionOf = world => { const value = Number(world?.builtInRevision); return Number.isInteger(value) && value > 0 ? value : 1; };
+
+// A save binds to a companion on its own map. A later revision of that map carries newer content and the
+// same geometry, so a campaign started on revision 1 restores from a revision 2 export; an earlier one does not.
+function sameBuiltInEdition(saved, incoming) {
+  if (saved?.builtInMap !== undefined && incoming.builtInMap !== saved.builtInMap) return false;
+  return saved?.builtInRevision === undefined || builtInRevisionOf(incoming) >= builtInRevisionOf(saved);
+}
+
 export function validateCompanion(bundle, companion, { fallbackRegions = null } = {}) {
   const checked = validateSavedGameBundle(bundle);
   if (!checked.ok) return checked;
@@ -196,7 +206,7 @@ export function validateCompanion(bundle, companion, { fallbackRegions = null } 
     || companion.scenario?.id !== ref.scenarioId || !record(companion.data?.game) || !record(companion.data?.world)) return fail('wrongCompanion', 'Scenariot måste höra till den sparade kampanjen.');
   const expected = ref.hubOrigin, supplied = companion.hubOrigin;
   if (supplied && expected && ['postId','bundleUrl','release'].some(k => expected[k] !== undefined && !sameJson(expected[k],supplied[k]))) return fail('wrongEdition', 'Scenariots utgåva stämmer inte med den sparade kampanjen.');
-  for (const key of ['builtInMap','builtInRevision']) if (bundle.data.world?.[key] !== undefined && companion.data.world[key] !== bundle.data.world[key]) return fail('wrongEdition', 'Scenariots utgåva stämmer inte med den sparade kampanjen.');
+  if (!sameBuiltInEdition(bundle.data.world, companion.data.world)) return fail('wrongEdition', 'Scenariots utgåva stämmer inte med den sparade kampanjen.');
   const savedAsset=bundle.data.world?.assetProvenance?.regionsGeojson;
   const worldAsset=companion.data.world?.assetProvenance?.regionsGeojson, descriptorAsset=companion.assets?.regionsGeojson?.provenance;
   if (companion.assets?.regionsGeojson?.mode !== 'embedded' && savedAsset?.currentAssetStatus === 'modified') return fail('missingMap', 'Scenariot saknar en giltig karta för den sparade kampanjen.');

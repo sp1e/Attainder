@@ -9,6 +9,8 @@ import { DEFAULT_DIR, SYNCED_FILES } from './sync-default-scenario.mjs';
 
 const SCRIPT = fileURLToPath(new URL('./sync-default-scenario.mjs', import.meta.url));
 const run = (...args) => spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8' });
+const readDefault = name => JSON.parse(readFileSync(path.join(DEFAULT_DIR, name), 'utf8'));
+const johnBundle = () => JSON.parse(readFileSync(new URL('../server/seed/historical/john-1200/scenario.json', import.meta.url), 'utf8'));
 
 test('the committed default scenario matches the John package', () => {
   const result = run('--check');
@@ -31,4 +33,16 @@ test('a one-byte edit to a copy of the default scenario fails the check, which n
       assert.equal(readFileSync(path.join(dir, name), 'utf8'), readFileSync(path.join(DEFAULT_DIR, name), 'utf8'), name);
     }
   } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test('the default world keeps the John map stamp at revision 2 and carries the package world', () => {
+  const world = readDefault('world.json'), bundle = johnBundle();
+  assert.equal(world.builtInMap, 'historical-john-1200-v1');
+  assert.equal(world.builtInRevision, 2);
+  const { builtInMap, builtInRevision, ...rest } = world;
+  assert.deepEqual(rest, bundle.data.world);
+  assert.equal(world.historicalScenario.contentVersion, '1.1.0');
+  assert.deepEqual(readDefault('game.json'), bundle.data.game);
+  assert.equal(readDefault('scenario.json').description, world.historicalScenario.contextSv);
+  assert.equal(readDefault('cities.geojson').features.length, world.historicalScenario.settlements.length);
 });
