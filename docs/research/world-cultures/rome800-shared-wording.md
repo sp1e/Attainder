@@ -48,3 +48,7 @@ The independent historical review records seven checked, seven confirmed, zero c
 Ruling: deliver the proposed literals through research documentation and leave the optional review-file note edit to the implementation handoff. The builder takes the Rome note from `ROME_800`, so editing only `settlements[0].noteSv` would leave the player-facing text unchanged. The cost is one remaining duplicate note for Claude to align while implementing the release.
 
 Claude must update both authored literals, align the optional review note as appropriate, create the new frozen provenance record, set the bookmark content version to `1.2.0` and rebuild Charlemagne. The brief states that installed 1.1.0 copies then upgrade on the next library read. Those release actions and their verification are outside this research change.
+
+## Publication
+
+[PR #24](https://github.com/sp1e/Attainder/pull/24) merged as `4c1c95d1d40ef97e65090f64df5db844a881a994`, verified on remote main. [The required CI check](https://github.com/sp1e/Attainder/actions/runs/42386554185/job/128445079183) passed with 4,915 tests total, 4,913 passed, zero failed and two TODO; the build completed in 26.93 seconds. Publication delivers the proposals and their evidence. Claude's authored literals, frozen provenance, version bump, rebuild and gameplay checks remain separate work.
