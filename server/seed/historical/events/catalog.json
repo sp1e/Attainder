@@ -1,5 +1,2987 @@
 {
   "schemaVersion": 1,
-  "sources": [],
-  "events": []
+  "sources": [
+    {
+      "id": "e0800-east-arizona-aguateca",
+      "title": "Takeshi Inomata and Daniela Triadan, Life and politics at the royal court of Aguateca: Artifacts, analytical data, and synthesis (2014)",
+      "institution": "University of Arizona research portal; University of Utah publication",
+      "url": "https://experts.arizona.edu/en/publications/life-and-politics-at-the-royal-court-of-aguateca-artifacts-analyt/",
+      "locator": "Public abstract, first paragraph (web line 17). Full monograph not consulted.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'around AD 810'. Archaeological estimate retained; no exact attack year claimed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Unknown attackers struck Aguateca around AD 810, burned its centre, and caused residents to flee or be taken captive."
+    },
+    {
+      "id": "e0800-east-bakong-alvares",
+      "title": "Sharon Alvares, L'iconographie du temple de Bakong de sa fondation au XIIIe siècle (1992)",
+      "institution": "Histoire de l'art; Persée scholarly portal",
+      "url": "https://www.persee.fr/doc/hista_0992-2059_1992_num_20_1_2530",
+      "locator": "Printed p. 27, first and second paragraphs (web lines 51–52).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'En 881'; reign '877-889'. Author supplies CE year; no era conversion performed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Indravarman I consecrated Bakong at Roluos in 881 to Shiva under the name Sri Indresvara. The author identifies it as the first securely established example of the Khmer temple mountain."
+    },
+    {
+      "id": "e0800-east-bl-diamond",
+      "title": "Life in Ancient Dunhuang: Large print guide",
+      "institution": "British Library / International Dunhuang Programme",
+      "url": "https://idp.bl.uk/wp-content/uploads/2025/01/BL.SR_.Large_.Print_.Guide_.V3.pdf",
+      "locator": "PDF pages 29–30, 'The Printer' and object label 'Printed Diamond Sutra', Or.8210/P.2.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: '11 May 868'. British Library supplies this calendar date; native colophon date not transcribed here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The woodblock-printed Diamond Sutra bears the date 11 May 868 and is the oldest complete dated printed book; the scroll includes a frontispiece of the Buddha teaching Subhuti."
+    },
+    {
+      "id": "e0800-east-cambridge-huang",
+      "title": "David A. Graff, The Reach of the Military: Tang, Journal of Chinese History 1 (2017), 243–268",
+      "institution": "Cambridge University Press",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/ECFE9C64AE6E73EC4319B165A606F88C/S2059163216000359a.pdf/div-class-title-the-reach-of-the-military-tang-div.pdf",
+      "locator": "Printed p. 259 (PDF page 17), paragraph beginning 'Worse was to still to come', especially sentences on capital capture and initial violence.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'the beginning of 881'. Author supplies year; exact day deliberately omitted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Huang Chao's rebels captured Chang'an at the beginning of 881, after Luoyang; their entry involved widespread robbery and killing."
+    },
+    {
+      "id": "e0800-east-inflibnet-chola",
+      "title": "P. Bhaskar Reddy, The cholas",
+      "institution": "INFLIBNET Centre, Outlines of Indian history educational module",
+      "url": "https://ebooks.inflibnet.ac.in/icp01/chapter/the-cholas/",
+      "locator": "Section 3 'Imperial Cholas', Vijayalaya and Aditya I paragraphs (web lines 79–80).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'around 850 CE'; '850 – 871 CE'; '871- 907'. Approximation retained for Vijayalaya; Aditya succession uses stated reign boundary.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Vijayalaya founded the Imperial Chola line around Tanjore, began rule around 850 and acknowledged Pallava overlordship. Aditya I succeeded Vijayalaya and ruled 871–907."
+    },
+    {
+      "id": "e0800-east-inflibnet-rashtrakuta",
+      "title": "P. Bhaskar Reddy, Major dynasties of south India (753–1300 CE)",
+      "institution": "INFLIBNET Centre, Outlines of Indian history educational module",
+      "url": "https://ebooks.inflibnet.ac.in/icp01/chapter/major-dynasties-of-south-india-753-1300-ce/",
+      "locator": "Section 2, Topic I: Rashtrakutas, succession paragraph following Govinda III (web lines 80–82).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: '814 – 880 CE'; predecessor reign '793-814 CE'. Educational source supplies CE reign years; no conversion performed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Govinda III's young son Amoghavarsha, also called Nrupatunga, succeeded him in 814 as Rashtrakuta ruler."
+    },
+    {
+      "id": "e0800-east-kci-cheonghaejin",
+      "title": "Kim Myeongjin, Yeongsan River and Cheonghaejin, Jang Bogo and Wang Geon (2026), The Korean Journal of History 101, 39–70",
+      "institution": "Honam Historical Society; abstract hosted by Korea Citation Index",
+      "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003312947",
+      "locator": "Public English abstract, first paragraph (web line 68); DOI 10.37924/JSSW.101.2. Full article not consulted.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: '828'. Public abstract supplies year; no month or day conversion performed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Jang Bogo returned to Silla in 828 and joined King Heungdeok in building Cheonghaejin at Wando; he directed domestic and international trade and fought slave trading."
+    },
+    {
+      "id": "e0800-east-kyoto-saicho",
+      "title": "Saichō and Tendai Buddhism: A Guide to Enjoying the Exhibition (2022)",
+      "institution": "Kyoto National Museum",
+      "url": "https://www.kyohaku.go.jp/jp/learn/assets/guides/2022_saicho_guide_en.pdf",
+      "locator": "PDF page 2, 'Who was Saichō?' timeline entries 804, 805, 806, 815, 822.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: '806'; '822'. Museum supplies CE years; no conversion performed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Tendai received official recognition in 806. In 822 Emperor Saga approved a new certification system for monks at Mount Hiei, following Saicho's proposals from 815; Saicho died the following day."
+    },
+    {
+      "id": "e0800-east-lolei-chandler",
+      "title": "David P. Chandler, Maps for the Ancestors: Sacralized Topography and Echoes of Angkor in Two Cambodian Texts (1976)",
+      "institution": "Journal of the Siam Society",
+      "url": "https://thesiamsociety.org/wp-content/uploads/1976/03/JSS_064_2h_Chandler_MapForAncestorsInTwoCambodianTexts.pdf",
+      "locator": "Printed p. 179 (PDF page 10), item 12 'lolei' and footnote 36.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: '893 A.D.'; inscriptions K.324–338 '893 A.D.'. Chandler explicitly gives 'erected (or completed)', which this draft preserves.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Yasovarman I erected or completed Lolei's four-towered brick temple in honour of ancestors in 893. Inscriptions K.324–338 bear that year; K.323 dates to 889."
+    },
+    {
+      "id": "e0800-east-maya-terminal",
+      "title": "Claire E. Ebert et al., Terminal Long Count Dates and the Disintegration of Classic Period Maya Polities (2014/2015)",
+      "institution": "Ancient Mesoamerica / Cambridge University Press; UC Davis eScholarship copy",
+      "url": "https://escholarship.org/content/qt2312p0h9/qt2312p0h9.pdf",
+      "locator": "Table 1, printed pp. 342–343 (PDF pages 8–9), Caracol and Uaxactun rows; discussion printed pp. 350–351 (PDF pages 15–16), paragraph on Tikal, Uaxactun and Caracol; Methods printed p. 341.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: Caracol '859', Long Count '10.01.10.00.00'; Uaxactun '889', '10.03.00.00.00'. Table supplies Gregorian years using GMT correlation. No independent conversion performed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Caracol Stela 10 carries terminal date AD 859; Uaxactun Stela 12 carries AD 889 and refers to warfare with neighbours. Terminal monument dates concern a documented tradition, not proof that each city was abandoned in that year."
+    },
+    {
+      "id": "e0800-east-met-andes",
+      "title": "Central and Southern Andes, 500–1000 A.D. (March 2006)",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/sac.html",
+      "locator": "Key Events, first and second 'ca. 800 A.D.' entries: Sicán at Lambayeque and the Wari offering at Pacheco (web lines 169–174).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'ca. 800 A.D.' for both entries. Museum's approximate CE estimates retained; no annual precision inferred.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Around AD 800, Sican people in Lambayeque gained power and produced burnished blackware influenced by Moche and Wari ceramics. Around AD 800, participants at Pacheco shattered and buried large Wari ceramic jars painted with male and female forms of the Tiwanaku gateway deity and crops."
+    },
+    {
+      "id": "e0800-east-princeton-wuzong",
+      "title": "John Kieschnick, The Impact of Buddhism on Chinese Material Culture, Introduction",
+      "institution": "Princeton University Press",
+      "url": "https://assets.press.princeton.edu/chapters/i7539.pdf",
+      "locator": "Printed p. 11 (PDF page 11), paragraph beginning 'One such instance'.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: '845'. Author supplies CE year; no conversion performed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "During Wuzong's persecution of Buddhism in 845, he prohibited gold, silver, copper, iron and gems in Buddhist images and required clay and wood instead."
+    },
+    {
+      "id": "e0800-east-standrews-kukai",
+      "title": "David L. Gardiner, Kūkai (774–835)",
+      "institution": "St Andrews Encyclopaedia of Theology",
+      "url": "https://www.saet.ac.uk/Buddhism/Kukai.pdf",
+      "locator": "Sections 2.4.1 and 2.4.2, printed pp. 10–11 (PDF pages 12–13), paragraphs on the 816 permission and 819 construction.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: '816'; '819'. Author supplies CE years; permission and construction are separate acts.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Emperor Saga granted Kukai permission in 816 to build a monastic centre on Mount Koya; construction began in 819 and continued beyond Kukai's lifetime."
+    },
+    {
+      "id": "e0800-east-tnm-kukai",
+      "title": "KUKAI: The origin of Japanese esoteric Buddhism",
+      "institution": "Tokyo National Museum",
+      "url": "https://www.tnm.jp/modules/r_event/index.php?cid=12&controller=past_dtl&id=10078&lang=en",
+      "locator": "Historical introduction, paragraph beginning 'In the year 804' (web lines 180–182).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: '804'; '823'. Museum supplies CE years; no calendar conversion performed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Kukai travelled to Tang China in 804 to study esoteric Buddhism; the emperor entrusted Toji to him in 823."
+    },
+    {
+      "id": "e0800-east-unesco-tikal",
+      "title": "Tikal National Park",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/00064/",
+      "locator": "Outstanding Universal Value, Criterion (iii), second sentence (web line 61).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: '869'. UNESCO supplies CE year for Stela 11; no Long Count conversion performed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Tikal's last sculptured monument is Stela 11, dated AD 869. Its inscriptions form part of the city's dynastic record."
+    },
+    {
+      "id": "e0800-east-usgs-bonito",
+      "title": "Chaco Culture: Pueblo Bonito",
+      "institution": "U.S. Geological Survey",
+      "url": "https://www.usgs.gov/media/images/chaco-culture-pueblo-bonito",
+      "locator": "Detailed Description, sentence beginning 'Construction began' and following sentence (web line 13).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'around A.D. 850'. Approximate start of construction, not completion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Builders began Pueblo Bonito around AD 850; later builders expanded it into a Chacoan great house."
+    },
+    {
+      "id": "e0800-recovery-dvornik-moravia",
+      "title": "The Significance of the Missions of Cyril and Methodius",
+      "institution": "Slavic Review / Cambridge University Press; Francis Dvornik",
+      "url": "https://www.cambridge.org/core/journals/slavic-review/article/abs/significance-of-the-missions-of-cyril-and-methodius/BA6950F8E7B59143643C69310833AD20",
+      "locator": "Public Extract, first sentence; Slavic Review 23(2), June 1964, pp. 195–211, DOI 10.2307/2492930. Only the public extract and bibliographic information were used.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "863, explicitly printed in parentheses beside arrival of the Byzantine mission in Moravia; no anniversary subtraction performed.",
+      "scopedClaim": "The article's opening sentence explicitly dates the arrival of the Byzantine mission associated with Cyril and Methodius in Moravia to 863.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-recovery-herp-jogan",
+      "title": "Gigantic earthquakes (Tohoku Pacific-coast type) [Japanese page]",
+      "institution": "Headquarters for Earthquake Research Promotion, Japan",
+      "url": "https://jishin.go.jp/regional_seismicity/rs_kaiko/rs_tohokuoki_eq-type/",
+      "locator": "Main historical description, paragraph beginning with the other gigantic earthquakes and 869, followed by paragraph on four older tsunami deposits; web text lines 158–159 at retrieval.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "869, identified as the Jogan earthquake in the historical description; no month or day supplied in this passage.",
+      "scopedClaim": "The government assessment identifies the 869 Jogan earthquake and tsunami, and reports widely distributed tsunami deposits attributed to it from Miyagi to northern Fukushima, with additional evidence on the Iwate coast. The replacement preserves the attribution as a research assessment.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-recovery-jma-jogan",
+      "title": "Major earthquakes and tsunamis that caused damage in Miyagi Prefecture [Japanese page]",
+      "institution": "Japan Meteorological Agency, Sendai Regional Headquarters",
+      "url": "https://www.jma-net.go.jp/sendai/knowledge/earthquake/higai.html",
+      "locator": "First chronological entry, headed 869 (Jogan 11), 7/13, Sanriku offshore; damage text immediately below, before the 1611 entry. Web text lines 19–24 at retrieval.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "869 (Jogan 11), month 7 day 13 as displayed by JMA. The replacement uses only the explicitly supplied CE year and performs no calendar conversion.",
+      "scopedClaim": "In the 869 entry JMA describes collapse of castle structures, storehouses, gates/towers and walls, and tsunami water reaching the castle town at present-day Tagajo. The replacement distinguishes structural collapse from the tsunami's reach rather than attributing every castle loss to water.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-recovery-vlasto-moravia",
+      "title": "The mission of SS. Cyril and Methodios and its aftermath in Central Europe",
+      "institution": "Studies in Church History / Cambridge University Press; A. P. Vlasto",
+      "url": "https://www.cambridge.org/core/journals/studies-in-church-history/article/abs/mission-of-ss-cyril-and-methodios-and-its-aftermath-in-central-europe/C55D48D740A5659B9FDDB1A37C993038",
+      "locator": "Public Extract, first sentence; Studies in Church History 6 (1970), pp. 1–16, DOI 10.1017/S0424208400004812. Only the public extract and bibliographic information were used.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "in 863",
+      "scopedClaim": "In 863 the Byzantine emperor sent a mission led by Cyril and Methodius to the Moravian prince at that prince's request, to develop Christian evangelization there.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-alfred",
+      "title": "Alfred 'The Great' (r. 871–899)",
+      "institution": "The Royal Household",
+      "url": "https://www.royal.uk/alfred-great-r-871-899",
+      "locator": "Paragraphs beginning In early 878 and A resourceful fighter, plus the following Asser quotation",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "May 878",
+      "scopedClaim": "Guthrum seized Chippenham early in 878; Alfred regrouped at Athelney and defeated the Danes at Edington in May, followed by a fourteen-day siege and their request for peace.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-bnf-coronation",
+      "title": "Sacre de Charlemagne",
+      "institution": "Bibliothèque nationale de France",
+      "url": "https://expositions.bnf.fr/rouge/bande/grand/116.htm",
+      "locator": "Caption, final paragraph, beneath Français 6465 fol. 89v identification",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "25 décembre de l'an 800",
+      "scopedClaim": "Leo III crowned Charlemagne emperor at St Peter's in Rome on 25 December 800.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-carmatians",
+      "title": "CARMATIANS",
+      "institution": "Encyclopaedia Iranica; Farhad Daftary",
+      "url": "https://www.iranicaonline.org/articles/carmatians-ismailis/?generate_pdf=1",
+      "locator": "Generated PDF p. 3, final third of paragraph on Hamdan's refuge; p. 4, paragraph on missions outside Iraq",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "277/890–91; 268/881",
+      "scopedClaim": "Hamdan Qarmat founded a fortified refuge near Kufa in 277/890–91. Ali b. Fadl and Ibn Hawshab began the Isma'ili mission in Yemen in 268/881.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-dongola",
+      "title": "Renovation of the oldest mosque in Sudan",
+      "institution": "University of Warsaw, reporting PCMA UW",
+      "url": "https://en.uw.edu.pl/renovation-of-the-oldest-mosque-in-sudan/",
+      "locator": "Paragraphs beginning Old Dongola, originally named Tungul and The two-storey building",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "early 9th century",
+      "scopedClaim": "Builders erected the two-storey monument at Old Dongola in the early ninth century; its original interpretation remains throne hall or church. Dongola was Makuria's capital.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-guinea",
+      "title": "Guinea Coast, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/06/afg.html",
+      "locator": "Key Events, ca. 800–1000 (Ife) and ca. 10th century (Igbo-Ukwu)",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "ca. 800–1000; ca. 10th century",
+      "scopedClaim": "Human and animal stone and terracotta figures became more common at Ife in the Pre-Pavement period ca. 800–1000. This chronology dates Igbo-Ukwu copper-alloy casting to the tenth century, conflicting with the separate essay's proposed ninth-century dating.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-herat",
+      "title": "HERAT iii. HISTORY, MEDIEVAL PERIOD",
+      "institution": "Encyclopaedia Iranica; Maria Szuppe",
+      "url": "https://www.iranicaonline.org/articles/herat-iii/?generate_pdf=1",
+      "locator": "Generated PDF p. 3, The local dynasties in Herat, paragraph 1, passage on raids and capture",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "11 Ša'ban 253/16 August 867",
+      "scopedClaim": "Ya'qub b. Layth began raids on Herat in 862 and besieged and captured the city on 16 August 867.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-iceland",
+      "title": "14C dating of the settlement of Iceland",
+      "institution": "University of Iceland, repository of peer-reviewed Radiocarbon article by Sveinbjörnsdóttir, Heinemeier and Gudmundsson (2004)",
+      "url": "https://iris.hi.is/en/publications/sup14supc-dating-of-the-settlement-of-iceland/",
+      "locator": "Abstract, first two paragraphs",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "AD 874 in early-twelfth-century sagas; AD 890 from barley-grain dating at Reykjavík",
+      "scopedClaim": "The sagas date the arrival of the first Norwegian settlers to 874; the authors date sampled Reykjavík occupation to 890 and explain older wood dates. The abstract does not establish an exact first-arrival year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-icons",
+      "title": "Religious painting, 610–867",
+      "institution": "Foundation of the Hellenic World",
+      "url": "https://www.ime.gr/CHRONOS/09/en/pl/610/t/main/t3m.html",
+      "locator": "Paragraphs 1–3, especially paragraph 2 on Theodora in 843",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "843; Iconoclasm 726–843",
+      "scopedClaim": "Theodora restored icons in 843, concluding the iconoclastic dispute; iconoclast church decoration had replaced the Virgin with a cross.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-igbo",
+      "title": "Igbo-Ukwu (ca. 9th Century)",
+      "institution": "The Metropolitan Museum of Art; Alice Apley",
+      "url": "https://www.metmuseum.org/essays/igbo-ukwu-ca-9th-century",
+      "locator": "Opening paragraph and paragraph on cast vessels and regalia",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "ca. 9th Century, explicitly controversial",
+      "scopedClaim": "The essay allows a controversial ninth-century dating for Igbo-Ukwu metalworking; excavators found bronze ritual vessels and regalia.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-kairouan",
+      "title": "Jami' Uqba Ibn Nafi'",
+      "institution": "Archnet, Aga Khan Documentation Center at MIT / Aga Khan Trust for Culture",
+      "url": "https://www.archnet.org/sites/3763",
+      "locator": "Historical description paragraph 4, sentence on Ziyadat Allah's 836 reconstruction; roof description on the dome dated 836",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "836",
+      "scopedClaim": "Ziyadat Allah rebuilt the Great Mosque sanctuary in 836, including the dome over the mihrab. This is a reconstruction phase, not the mosque's first foundation.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-saffar",
+      "title": "IRAN ii. IRANIAN HISTORY (2) Islamic period (page 2)",
+      "institution": "Encyclopaedia Iranica; Ehsan Yarshater",
+      "url": "https://www.iranicaonline.org/articles/iran-ii2-islamic-period-page-2/?generate_pdf=1",
+      "locator": "Generated PDF p. 1, The Saffarids (861–1003), first two sentences",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "The Saffarids (861–1003); Ya'qub (861–79)",
+      "scopedClaim": "The source dates the Saffarid line and Ya'qub's rule from 861 and places its center in Sistan.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-samarra",
+      "title": "Ernst Emil Herzfeld (1879–1948) in Samarra",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/essays/ernst-emil-herzfeld-1879-1948-in-samarra",
+      "locator": "Opening historical paragraph, sentences on foundation in 836 and court departure in 892",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "836; 892",
+      "scopedClaim": "Al-Mu'tasim founded Samarra and moved his capital from Baghdad there in 836. The court abandoned Samarra in 892.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-strasbourg",
+      "title": "Serments de Strasbourg",
+      "institution": "Université Paul-Valéry Montpellier 3 / Université Ouverte des Humanités",
+      "url": "https://langues-romanes.uoh.univ-montp3.fr/content/serments-de-strasbourg",
+      "locator": "Le roman dans la stratégie politique, paragraphs 2–4",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "14 février 842",
+      "scopedClaim": "Louis the German and Charles the Bald made a military alliance against Lothair, using Romance and Germanic oaths.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-tahir",
+      "title": "TAHERIDS",
+      "institution": "Encyclopaedia Iranica; Elton L. Daniel",
+      "url": "https://www.iranicaonline.org/articles/taherid-dynasty/?generate_pdf=1",
+      "locator": "Generated PDF p. 11, The Taherid governors of Khorasan, item (1), opening sentence; opening definition on p. 1",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "spring of 205/821; governors 205–59/821–73",
+      "scopedClaim": "Al-Ma'mun appointed Taher b. Hosayn governor of Khorasan and the eastern provinces in spring 821; the family supplied the subsequent line of governors.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-tarim",
+      "title": "CHINESE TURKESTAN ii. In Pre-Islamic Times",
+      "institution": "Encyclopaedia Iranica; Victor Mair and Prods Oktor Skjærvø",
+      "url": "https://www.iranicaonline.org/articles/chinese-turkestan-ii/?generate_pdf=1",
+      "locator": "Generated PDF p. 10, paragraph beginning Toward the end of the 8th century; sentences on Qirghiz 840 and Talas 280/893",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "840; 280/893",
+      "scopedClaim": "The Qirghiz sacked the Uyghur capital on the Orkhon in 840, after which Uyghurs migrated. The Samanids took Talas in 893, followed by a shift of the second Qarakhanid capital to Kashgar.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-tulun",
+      "title": "Islamic Inscriptions: Ahmad Ibn Tulun, inscription 220.1",
+      "institution": "Center for Documentation of Cultural and Natural Heritage (CULTNAT)",
+      "url": "https://islamicinscriptions.cultnat.org/InscriptionDetails?id=6714",
+      "locator": "Inscription Text, paragraphs 1–2; metadata Insc. Number 220.1, Date Hijri and Date CE",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Ramadan 265/879",
+      "scopedClaim": "The foundation inscription records Ahmad ibn Tulun's funding and commissioning of the mosque, dated Ramadan 265, converted by the catalog to 879 CE.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-tulun-monument",
+      "title": "Ahmad Ibn Tulun Mosque",
+      "institution": "Ministry of Tourism and Antiquities, Egypt",
+      "url": "https://egymonuments.gov.eg/monuments/ahmad-ibn-tulun-mosque/",
+      "locator": "Description, paragraph 2, construction dates and location in al-Qata'i",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "263 AH/876 AD to 265 AH/879 AD",
+      "scopedClaim": "Construction of the mosque began in 876 and finished in 879; it served Ibn Tulun's administrative capital al-Qata'i. A separate erroneous AH/CE pair in paragraph 1 is not used.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-verdun",
+      "title": "Le partage de Verdun en 843",
+      "institution": "INSEI",
+      "url": "https://www.insei.fr/ressources/le-partage-de-verdun-en-843",
+      "locator": "Description, paragraph 1",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "843",
+      "scopedClaim": "The three surviving sons of Louis the Pious partitioned the realm at Verdun in 843; Charles received the west, Lothair the middle and Louis the east.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0800-west-zanj",
+      "title": "The landscape of the Zanj Rebellion? Dating the remains of a large-scale agricultural system in southern Iraq",
+      "institution": "Antiquity / Cambridge University Press",
+      "url": "https://www.cambridge.org/core/journals/antiquity/article/landscape-of-the-zanj-rebellion-dating-the-remains-of-a-largescale-agricultural-system-in-southern-iraq/8EFD7A767C88F526B45330E4AC4D309C",
+      "locator": "Historical context, paragraphs beginning 'Zanj' is a medieval Arabic term, Accordingly and Whatever their precise composition",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "AD 869; AD 883",
+      "scopedClaim": "The Zanj revolt began in 869 and Abbasid authorities regained control in 883. The movement included local people and enslaved Africans, and scholars dispute precise origins and composition.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-africa-antonites2018-schroda",
+      "title": "A revised chronology for the Zhizo and Leokwe horizons at Schroda",
+      "institution": "Annie R. Antonites; Southern African Humanities 31 (2018), 223–246; KwaZulu-Natal Museum; author-uploaded full text",
+      "url": "https://www.researchgate.net/publication/329775710_A_revised_chronology_for_the_Zhizo_and_Leokwe_horizons_at_Schroda",
+      "locator": "p. 223, introductory settlement chronology; p. 225, Middle Limpopo Valley chronological sequence, first paragraph; pp. 242–243, Discussion and conclusion, abandonment and figurine paragraphs",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Settlement: around AD 900; regional arrival: late ninth and early tenth centuries AD. Abandonment possibilities: late twelfth to early thirteenth centuries AD; preferred upper limit: AD 1100. Earlier abandonment estimate cited in the introduction: AD 1020.",
+      "scopedClaim": "Antonites places initial settlement around 900 and distinguishes Zhizo and Leokwe deposits. She prefers abandonment by 1100, while uncertain stratigraphy permits a later date. The figurines belong to the later phase.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-africa-antonites2024-schroda",
+      "title": "Animal diversity and procurement strategies at Schroda, Limpopo Valley, South Africa",
+      "institution": "Annie R. Antonites; Koedoe 66(2), a1790 (2024); AOSIS; Ditsong National Museum of Natural History",
+      "url": "https://koedoe.co.za/index.php/koedoe/article/view/1790/3337",
+      "locator": "Abstract, opening sentence; Introduction, paragraphs beginning Schroda provides and Settlement in the Valley; Local environment, opening paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Abstract: AD 900–1100; Introduction: c. AD 900–1100; late 9th and early 10th centuries; Zhizo period: c. AD 900–1000.",
+      "scopedClaim": "The author distinguishes the site's approximate 900–1100 occupation from its 900–1000 Zhizo phase, places it in the middle Limpopo Valley and describes coastal trade through Schroda during the Zhizo phase.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-africa-huffman-woodborne2021-schroda",
+      "title": "New AMS dates for the Middle Iron Age in the Mapungubwe landscape",
+      "institution": "Thomas N. Huffman and Stephan Woodborne; South African Journal of Science 117(3/4) (2021); Academy of Science of South Africa",
+      "url": "https://scielo.org.za/scielo.php?pid=S0038-23532021000200026&script=sci_arttext",
+      "locator": "The Middle Iron Age, opening paragraph; introductory archaeology paragraph beginning Archaeologically, Mapungubwe belongs, on ceramic naming conventions",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "about AD 900",
+      "scopedClaim": "The authors place Zhizo movement into the Limpopo Valley around 900 and identify ivory artefacts and imported glass beads at Schroda as evidence of trade. They explain that naming people after ceramic facies is an archaeological convention.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-africa-origins-centre-schroda",
+      "title": "Schroda Figurines",
+      "institution": "Origins Centre, University of the Witwatersrand; catalogue entry hosted by Google Arts & Culture",
+      "url": "https://artsandculture.google.com/asset/schroda-figurines-zhizo-culture/kQEFCiLDERkXgQ?hl=en",
+      "locator": "Description, opening paragraph beginning These clay figurines; Details, Original Source and time period fields",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "about 900AD to just after 1000AD",
+      "scopedClaim": "The museum dates initial site occupation around 900 and gives a shorter occupation summary ending just after 1000. It supplies no phase-by-phase chronology. This source supports the settlement estimate only, not a figurine-creation event in 900.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-aks-goryeo",
+      "title": "A History of Korean Women, Understanding Korea No. 12",
+      "institution": "Academy of Korean Studies; Chung Hyun Back et al.; Korean Association of Schools institutional copy",
+      "url": "https://kasonline.net/wp-content/uploads/2022/12/2-Edit-UKS12_Korean_Women_eng.pdf",
+      "locator": "Chapter 2, Overview of the Period, PDF page 42, first paragraph (web lines 1550–1555).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'founded in 918 by Wang Geon'; 'achieved unification in 936'. CE dates supplied by the authors. The same paragraph's 'r. 877–943' is not used as a reign chronology.",
+      "scopedClaim": "Wang Geon, a local elite from Gaeseong, founded Goryeo in 918. He conciliated regional elites and achieved unification in 936 amid the division between Goryeo, Later Baekje and Silla.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-cleveland-celadon",
+      "title": "Korea in Focus: Goryeo Celadons in Relation to Chinese Ceramics",
+      "institution": "Cleveland Museum of Art; In-Hee Song",
+      "url": "https://www.clevelandart.org/articles/korea-focus-goryeo-celadons-relation-chinese-ceramics",
+      "locator": "Introduction of Advanced Technologies, paragraphs 1–2 (web lines 14–15), jar bearing a creation date of 993.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'creation date of 993'. Museum supplies CE year for the inscription; no native era or day conversion supplied here.",
+      "scopedClaim": "A jar bears a creation date of 993 and an inscription identifying its use at the royal ancestral shrine; early ritual-vessel kilns occur at Gaeseong.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-inah-tonina",
+      "title": "Toniná site museum, A or Red Room",
+      "institution": "Instituto Nacional de Antropología e Historia",
+      "url": "https://lugares.inah.gob.mx/en/pagina-de-elemento/1734",
+      "locator": "A or Red Room, paragraph on the two calendrical inscriptions (web line 22).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: '909 CE', corresponding to '10 Baktun, 4 Katun, 0 Tun, 0 Uinal, 0 Kin'. INAH supplies the CE correspondence; no independent Long Count conversion performed.",
+      "scopedClaim": "The Toniná site museum displays an inscription with Long Count 10.4.0.0.0 and gives its CE correspondence as 909. Its sweeping claim that Maya inscriptions then ended is not adopted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-inah-tula",
+      "title": "Examining Tula's Complex Urban Layout",
+      "institution": "Instituto Nacional de Antropología e Historia, Centro INAH Hidalgo; Luis Manuel Gamboa Cabezas",
+      "url": "https://lugares.inah.gob.mx/en/node/5542",
+      "locator": "Paragraphs on the second urban stage and neighborhoods (web lines 18–21).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'Tollan phase (900-1150 AD)'. Full archaeological phase retained; 900 is not an attested single building year or the first settlement.",
+      "scopedClaim": "Tula reached its maximum urban expansion during the Tollan phase, 900–1150. Its neighborhoods contained clusters of houses, temples and specialist craft production.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-inflibnet-chalukya",
+      "title": "P. Bhaskar Reddy, Major dynasties of south India (753–1300 CE)",
+      "institution": "INFLIBNET Centre, Outlines of Indian history educational module",
+      "url": "https://ebooks.inflibnet.ac.in/icp01/chapter/major-dynasties-of-south-india-753-1300-ce/",
+      "locator": "Section 2 Topic I Rashtrakutas, final succession paragraph (web line 90); section 3 Topic II The Chalukyas of Kalyani, opening paragraphs (lines 144–145).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'in 973 CE'; 'Taila or Tailapa-II, (973 – 997 CE)'. Author supplies CE dates.",
+      "scopedClaim": "Tailapa II overthrew Karka II and founded the Chalukyas of Kalyana in 973, ending Rashtrakuta paramount rule.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-inflibnet-chola",
+      "title": "P. Bhaskar Reddy, The cholas",
+      "institution": "INFLIBNET Centre, Outlines of Indian history educational module",
+      "url": "https://ebooks.inflibnet.ac.in/icp01/chapter/the-cholas/",
+      "locator": "Introduction (web line 65); section 3 Imperial Cholas, Parantaka I paragraphs (web lines 81–83); section 3.1 Rajaraja I, heading and first paragraph (lines 91–92).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'Parantaka I (907 – 953 CE)'; '949 CE'; 'Rajaraja I (985 CE – 1014 CE)'. Only the accession years and battle year are used; no conversion performed.",
+      "scopedClaim": "Parantaka I's reign began in 907. Krishna III defeated the Cholas at Takkolam near Arkonam in 949 and occupied a large part of their northern territory. Arumolivarman, son of Parantaka II, assumed the title Rajaraja I on accession in 985.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-met-andes",
+      "title": "Central and Southern Andes, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/zh/toah/ht/06/sac",
+      "locator": "Key Events, ca. 900 entry on arsenical bronze (web lines 186–187) and ca. 950 entry on Chan Chan (lines 196–197).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'ca. 900 A.D.' for arsenical-bronze production; 'ca. 950 A.D.' for construction at Chan Chan. Both estimates remain approximate.",
+      "scopedClaim": "Around 900, north-coast Peruvian metalworkers produced arsenical bronze in pear-shaped furnaces and used it for tools. Construction at Chan Chan began around 950; Chayhuac was among the early palace compounds, built of adobe.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-met-song",
+      "title": "Northern Song Dynasty (960–1127)",
+      "institution": "The Metropolitan Museum of Art, Department of Asian Art",
+      "url": "https://www.metmuseum.org/essays/northern-song-dynasty-960-1127",
+      "locator": "Title and first prose paragraph after the object gallery (web lines 125–126).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'Song dynasty (960–1279)'; 'Northern Song Dynasty (960–1127)'. CE dates supplied by the museum.",
+      "scopedClaim": "The Song dynasty began in 960; its northern period had its capital at Bianliang, modern Kaifeng.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-nasa-greenland",
+      "title": "Brattahlid, Norse Greenland",
+      "institution": "NASA Earth Observatory",
+      "url": "https://science.nasa.gov/earth/earth-observatory/brattahlid-norse-greenland-5548/",
+      "locator": "Article dated 2 June 2005, first historical paragraph (web line 260).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'AD 985'. NASA supplies the arrival year. The paragraph identifies Erik the Red as Brattahlid's founder without separately dating its construction.",
+      "scopedClaim": "Norse settlers arrived in Greenland in 985 and settled chiefly in southern fjords; Erik the Red founded Brattahlid.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-nedkvitne-greenland",
+      "title": "Arnved Nedkvitne, Norse Greenland: Viking Peasants in the Arctic (2019)",
+      "institution": "Routledge scholarly monograph, publisher preview",
+      "url": "https://api.pageplace.de/preview/DT0400.9781351259590_A35196282/preview-9781351259590_A35196282.pdf",
+      "locator": "Chapter 1, section 2 The first Greenlanders, When did they go?, printed p. 21 (PDF page 36), first two paragraphs (web lines 1085–1096).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'AD 986 or 985'; '14 or 15 years before Iceland was christened'. Author supplies the CE alternatives and declines to prefer either. The isolated 984 in Hauksbok is judged a probable copying error.",
+      "scopedClaim": "Medieval written traditions give alternative Greenland settlement dates of 985 and 986; Nedkvitne finds no reason to prefer either. Archaeology does not establish a single year at that precision.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-nps-chetro",
+      "title": "Anasazi Sites Within the Chacoan Interaction Sphere, National Register nomination (1978)",
+      "institution": "U.S. National Park Service, National Register of Historic Places",
+      "url": "https://npgallery.nps.gov/GetAsset/f2ba7710-2ed4-427a-8dd1-e5dece3debf9",
+      "locator": "W. James Judge's 1976 paper appended to the 1978 National Register nomination, printed p. 2 (PDF page 25), Chetro Ketl paragraph (web lines 918–924).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'around 990 AD'. Tree-ring-based estimate of the start of construction retained, distinct from later expansion in 1038–1054.",
+      "scopedClaim": "Tree-ring date clusters indicate the start of construction at Chetro Ketl around 990; the nomination reports about 380 tree-ring dates from the site.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-princeton-china",
+      "title": "China Timeline",
+      "institution": "Princeton University Art Museum",
+      "url": "https://static.artmuseum.princeton.edu/asian-art/china/timeline",
+      "locator": "Five Dynasties period, paragraphs 1 and 4 (web lines 197–201); Song dynasty, first paragraph (line 210), restricted to Zhao's accession and Kaifeng.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'fall of the Tang dynasty in 907'; 'from 932 to 953'; 'r. 960–76'. CE years supplied by the museum; no era conversion performed. The page's claim of reunification in 960 and its reference to Northern Song in 946–947 are not used.",
+      "scopedClaim": "Tang ended in 907, followed by military regimes in northern China. Feng Tao produced a woodblock edition of the Confucian Classics in 932–953. Zhao Kuangyin became emperor with troop support and established his capital at Kaifeng.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-smithsonian-banteay",
+      "title": "Sacred Sites in Southeast Asia | Banteay Srei",
+      "institution": "Smithsonian National Museum of Asian Art",
+      "url": "https://asia-archive.si.edu/collections-area/southeast-asian/sacred-sites-in-southeast-asia-banteay-srei/",
+      "locator": "Date/material label and first three descriptive paragraphs (web lines 10–15).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: '10th century (ca. 967 CE)'. Approximate monument date retained. This source does not establish an exact dedication day.",
+      "scopedClaim": "The museum dates Banteay Srei to around 967. A royal guru sponsored it; builders used pink sandstone and laterite, and the central shrine was for Shiva.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-unesco-kohker",
+      "title": "Koh Ker: Archaeological Site of Ancient Lingapura or Chok Gargyar",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/1667",
+      "locator": "Outstanding Universal Value, Brief synthesis, first two paragraphs (web lines 37–38).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'Established by King Jayavarman IV in 921 CE'; 'sole capital until 944 CE'. Foundation and return of the political centre to Angkor are separate acts.",
+      "scopedClaim": "Jayavarman IV established Koh Ker in 921. It rivalled Angkor as a capital until 928 and served as the sole capital until 944, after which the political centre returned to Angkor.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-east-vnmh-bachdang",
+      "title": "Vietnam from the 1st to the 10th centuries AD",
+      "institution": "Vietnam National Museum of History",
+      "url": "https://vnmh.com.vn/en/Articles/4196/vietnam-from-the-1st-to-the-10th-centuries-ad",
+      "locator": "Main exhibition text, second paragraph, final sentence (web line 80).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 'In 938'. Museum supplies CE year, without an exact battle day.",
+      "scopedClaim": "Ngo Quyen won the Bach Dang river battle in 938, ending the period of Chinese dynastic domination and opening an era of independence.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-recovery-sakly",
+      "title": "Kairouan",
+      "institution": "École française de Rome; Mondher Sakly; Publications de l'École française de Rome 269 (2000), pp. 57–85; Persée",
+      "url": "https://www.persee.fr/doc/efr_0223-5099_2000_ant_269_1_6135",
+      "locator": "p. 57, Présentation générale, paragraph beginning Sous les Aghlabides; p. 72, Les souks, paragraph beginning Après la fondation, available with ?pageId=T1_72",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "p. 57: entre 334 et 336/945-948; p. 72: 336/947/948",
+      "scopedClaim": "Sakly places the caliphal foundation of Sabra al-Mansuriyya between 334 and 336/945–948 in the introduction and identifies its foundation as 336/947/948 in the souk discussion. The text supplies both chronology pairs without explaining the difference.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-althing",
+      "title": "Þingvellir National Park",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/1152",
+      "locator": "English Description, first paragraph; Outstanding Universal Value, Brief synthesis",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "930; around 930 AD",
+      "scopedClaim": "The Althing was established at Thingvellir around 930 as an open-air assembly for Iceland; its annual meetings made laws and settled disputes.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-balkh",
+      "title": "SAFFARIDS",
+      "institution": "Encyclopaedia Iranica; Clifford Edmund Bosworth",
+      "url": "https://www.iranicaonline.org/articles/saffarids/?generate_pdf=1",
+      "locator": "Generated PDF p. 6, paragraph beginning However, not content; passage on Esmail crossing the Oxus and capturing Amr",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "287/900",
+      "scopedClaim": "Esmail b. Ahmad crossed the Oxus and defeated Amr's army outside Balkh in 900, capturing the Saffarid amir.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-brunanburh",
+      "title": "Athelstan (r.924-939)",
+      "institution": "The Royal Household",
+      "url": "https://www.royal.uk/athelstan-r924-939",
+      "locator": "Main biography, paragraph beginning The battle of Brunanburh",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "937",
+      "scopedClaim": "Athelstan defeated an invasion by the Scottish king with Welsh and Dublin Danish allies at Brunanburh in 937.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-brunanburh-site",
+      "title": "Possible Site Of The Battle Of Brunanburh, MLS4273",
+      "institution": "North Lincolnshire Historic Environment Record via Historic England Heritage Gateway",
+      "url": "https://historicengland.org.uk/listing/heritage-gateway/results/record/25aa12ce-f213-4897-9c25-400531bf27e8/MLS4273",
+      "locator": "Summary and Description, quoted J. B. Whitwell county archaeologist report (1993), opening and conclusion",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "AD 937",
+      "scopedClaim": "The heritage record documents multiple candidate locations for the 937 battle and states that the evidence does not establish its site.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-bukhara",
+      "title": "ʿABD-AL-MALEK B. NŪḤ B. MANṢŪR",
+      "institution": "Encyclopaedia Iranica; Clifford Edmund Bosworth",
+      "url": "https://www.iranicaonline.org/articles/abd-al-malek-b-nuh-b-mansur-samanid-ruler-in-khorasan-and-transoxania-r-999/?generate_pdf=1",
+      "locator": "Generated PDF pp. 1–2, paragraph beginning Abd-al-Malek's reign lasted, sentences on Nasr's occupation of Bokhara",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Ḏu'l-qaʿda, 389/October, 999",
+      "scopedClaim": "Qarakhanid Ilig Nasr b. Ali occupied Bukhara without opposition in October 999, deposed Abd-al-Malek and incorporated Transoxiana; the Samanids lost their effective rule, though a relative resisted for five more years.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-buyids",
+      "title": "BUYIDS",
+      "institution": "Encyclopaedia Iranica; Tilman Nagel",
+      "url": "https://www.iranicaonline.org/articles/buyids/?generate_pdf=1",
+      "locator": "Generated PDF p. 4, paragraph beginning Ebn Raeq, sentences on Ahmad entering Baghdad",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "11 Jomādā I 334/19 December 945",
+      "scopedClaim": "Ahmad b. Buya entered Baghdad without fighting on 19 December 945; the caliph appointed him amir al-umara and gave him the title Mo'ezz-al-Dawla.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-capet",
+      "title": "La date du sacre de Hugues Capet",
+      "institution": "Bulletin de la Société nationale des Antiquaires de France (1966, published 1967), pp. 118–119; Jean-François Lemarignier; Persée",
+      "url": "https://www.persee.fr/doc/bsnaf_0081-1181_1967_num_1966_1_7564",
+      "locator": "p. 118, report of communication at Séance du 15 juin, paragraphs on the two groups of sources",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1er juin; 3 juillet 987",
+      "scopedClaim": "Hugh Capet's coronation occurred in 987; different textual groups give 1 June or 3 July, and the article considers a double coronation.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-cluny-cmn",
+      "title": "History of the Abbey of Cluny",
+      "institution": "Centre des monuments nationaux",
+      "url": "https://www.cluny-abbaye.fr/en/discover/history-of-the-abbey-of-cluny",
+      "locator": "The Carolingian villa, paragraphs 1–2; The foundation of the monastery, paragraph 1",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "September 11, 910",
+      "scopedClaim": "William the Pious donated the estate and founded Cluny by a charter dated 11 September 910; the monks followed Benedict's rule and Bernon was first abbot.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-cluny-jones",
+      "title": "Small-town life in late medieval Burgundy: the case of Cluny",
+      "institution": "Revue belge de Philologie et d'Histoire 78-2 (2000), pp. 359–377; Michael Jones, University of Nottingham; Persée",
+      "url": "https://www.persee.fr/doc/rbph_0035-0818_2000_num_78_2_4448",
+      "locator": "p. 359, opening paragraph below University of Nottingham affiliation",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "AD 909",
+      "scopedClaim": "The peer-reviewed historical article dates the Benedictine abbey's foundation to AD 909, in contrast to the heritage body's 910.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-cordoba",
+      "title": "Capital",
+      "institution": "Museum With No Frontiers / Museum für Islamische Kunst; Annette Hagedorn",
+      "url": "https://islamicart.museumwnf.org/database_item.php?id=object%3BISL%3Bde%3BMus01%3B15%3Ben",
+      "locator": "Description, paragraph on Madinat al-Zahra and Salon Rico, sentence on Abd al-Rahman's declaration",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "AH 317 / AD 929",
+      "scopedClaim": "Abd al-Rahman III declared himself caliph of the western Islamic world in 929; the architectural record places his court in al-Andalus.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-fadlan",
+      "title": "AḤMAD B. FAŻLĀN",
+      "institution": "Encyclopaedia Iranica; Clifford Edmund Bosworth",
+      "url": "https://www.iranicaonline.org/articles/ahmad-b-5/",
+      "locator": "Main text, paragraph beginning The mission was headed, departure from Gorganj and reception by the Bulghar ruler",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "spring, 309-10/922; departure from Baghdad Ṣafar, 309/June, 921",
+      "scopedClaim": "The embassy including Ibn Fadlan crossed the steppes from Gorganj in spring 922 and reached the Volga-Kama Bulghar lands, where ruler Jafar b. Abdallah received it.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-fatimid-art",
+      "title": "The Art of the Fatimid Period (909–1171)",
+      "institution": "The Metropolitan Museum of Art; Suzan Yalman",
+      "url": "https://www.metmuseum.org/essays/the-art-of-the-fatimid-period-909-1171",
+      "locator": "Opening historical paragraph: al-Mansuriya 947 and Egypt/Cairo 969; architecture paragraph: al-Azhar 969–73",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "947; 969; 969–73; capital 973",
+      "scopedClaim": "The Fatimids founded the circular capital al-Mansuriya in 947, conquered Egypt and founded Cairo in 969, and founded al-Azhar along with Cairo during 969–73.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-fatimids",
+      "title": "FATIMIDS, relations with Persia",
+      "institution": "Encyclopaedia Iranica; Farhad Daftary",
+      "url": "https://www.iranicaonline.org/articles/fatimids/?generate_pdf=1",
+      "locator": "Generated PDF p. 1, opening paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "297/909; 362/973",
+      "scopedClaim": "The Fatimids established their own Ismaili Shiite caliphate in Ifriqiya in 909, in rivalry with the Abbasids.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-jelling",
+      "title": "Kings' Jelling: Gorm & Thyra's Palace, Harald's Monument & Grave - Svend's Cathedral",
+      "institution": "Acta Archaeologica 79 (2008), pp. 1–23; Klavs Randsborg; World Archaeological Congress host",
+      "url": "https://worldarchaeology.org/publications/downloads/Jelling.pdf",
+      "locator": "Printed pp. 1, 4–5: quotation and discussion of Harald's large rune stone",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "960s AD; rune-stones from the 960s",
+      "scopedClaim": "The large Jelling rune stone belongs to the 960s in this study; it names Harald, claims he made the Danes Christian, and carries a representation of Christ.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-kyiv",
+      "title": "Volodymyr the Great",
+      "institution": "Canadian Institute of Ukrainian Studies, University of Alberta; Internet Encyclopedia of Ukraine",
+      "url": "https://www.encyclopediaofukraine.com/display.asp?linkpath=pages%5CV%5CO%5CVolodymyrtheGreat.htm",
+      "locator": "Paragraph beginning Soon afterward, immediately after discussion of Volodymyr's own baptism",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1 August 988; ruler's own baptism December 987",
+      "scopedClaim": "The article distinguishes Volodymyr's own baptism in December 987 from the mass baptism of Kyiv's citizens in 988; conversion elsewhere proceeded gradually.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-mieszko",
+      "title": "Homo religiosus: the phenomenon of Poland's Mieszko I",
+      "institution": "Polish History Museum in Warsaw; Philip Earl Steele",
+      "url": "https://muzhp.pl/en/knowledges/homo-religiosus-fenomen-mieszka-i-en",
+      "locator": "Main text, paragraph beginning As with the 10th century generally",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "966 or 968; sources silent on the exact day",
+      "scopedClaim": "The museum dates Mieszko's conversion to Christianity chiefly to 966 but reports Thietmar's uncertainty between 966 and 968; the written evidence supplies no exact day.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-otto",
+      "title": "Otto I. der Große",
+      "institution": "Neue Deutsche Biographie 19 (1999); Gerd Althoff; Historische Kommission bei der Bayerischen Akademie der Wissenschaften",
+      "url": "https://www.deutsche-biographie.de/sfz74082.html?language=en",
+      "locator": "NDB Biography, paragraphs on Lechfeld (10.8.955) and renewal of western emperorship (2.2.962)",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "10.8.955; 2.2.962",
+      "scopedClaim": "Otto repelled the Hungarian incursion at Lechfeld on 10 August 955. John XII anointed and crowned him emperor on 2 February 962, renewing western emperorship.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-qarmatians",
+      "title": "CARMATIANS",
+      "institution": "Encyclopaedia Iranica; Farhad Daftary",
+      "url": "https://www.iranicaonline.org/articles/carmatians-ismailis/?generate_pdf=1",
+      "locator": "Generated PDF p. 12, paragraph beginning The ravaging activities of Abu Taher",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "pilgrimage season of 317/930",
+      "scopedClaim": "Abu Taher's Qarmatians attacked Mecca during the pilgrimage in 930, killed pilgrims and inhabitants, and took the Black Stone to Ahsa.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-sebuktegin",
+      "title": "SEBÜKTEGIN",
+      "institution": "Encyclopaedia Iranica; Clifford Edmund Bosworth",
+      "url": "https://www.iranicaonline.org/articles/sebuktegin/?generate_pdf=1",
+      "locator": "Generated PDF p. 2, paragraph continuing When Alptegin, sentences on the troops' election",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "366/977",
+      "scopedClaim": "Turkish troops at Ghazna chose Sebuktegin as leader in 977; he ruled nominally as Samanid governor but in practice independently and founded the Ghaznavid dynasty.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-sufi",
+      "title": "The Constellation Gemini: miniature in a copy of al-Sufi's Book of Fixed Stars",
+      "institution": "The David Collection",
+      "url": "https://davidmus.dk/kunst-fra-islams-verden/miniaturemaleri/item/1619?culture=en-us",
+      "locator": "Object 165/2006, historical paragraph beginning The original work behind this copy",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "964 (original work); February 4, 1675 (the displayed copy)",
+      "scopedClaim": "Al-Sufi's original Arabic constellation catalogue dates to 964 and drew partly on Greek models; he was court astronomer to the Buyid ruler Adud al-Dawla in Iran. The object on display is a later copy.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-theophanu",
+      "title": "Theophanu",
+      "institution": "Neue Deutsche Biographie 26 (2016); Deutsche Biographie",
+      "url": "https://www.deutsche-biographie.de/sfz74948.html",
+      "locator": "NDB Leben, paragraph beginning Nach mehrfacher Werbung, sentence on marriage and coronation",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "14.4.972",
+      "scopedClaim": "John XIII married Theophanu to Otto II in Rome on 14 April 972 and then crowned her empress; she came from the Byzantine imperial court.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-zahra-archaeology",
+      "title": "La Plaza de Armas de Madīnat al-Zahrāʾ. Fase 3 (2021)",
+      "institution": "Instituto Arqueológico Alemán / Conjunto Arqueológico de Madinat al-Zahra; Junta de Andalucía repository",
+      "url": "https://www.juntadeandalucia.es/cultura/tabula/bitstream/20.500.11947/34581/1/AAA_2020_358_clapessalmoralrafael_fase3madinatalzahra_cordoba.pdf",
+      "locator": "PDF p. 1, first historical paragraph after English abstract",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "936 o 940",
+      "scopedClaim": "The archaeological report gives 936 or 940 for Abd al-Rahman III's construction of the new Umayyad caliphal capital, about 7 km west of Cordoba.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e0900-west-zahra-boe",
+      "title": "Decreto 46/1996: Madinat Al-Zahara archaeological zone",
+      "institution": "Junta de Andalucía / Agencia Estatal Boletín Oficial del Estado",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-1996-15769",
+      "locator": "Artículo 2, description of the archaeological zone, first paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "año 936",
+      "scopedClaim": "The decree dates Abd al-Rahman III's foundation of Madinat al-Zahra west of Cordoba to 936.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-0800-bronsgjutning-i-igbo-ukwu",
+      "date": {
+        "kind": "disputed",
+        "startYear": 800,
+        "endYear": 999,
+        "displaySv": "Omtvistat: 800- eller 900-talet",
+        "noteSv": "Museets uppsats föreslår en omstridd datering till 800-talet. Museets regionala kronologi anger cirka 900-talet. Intervallet omfattar båda århundradena och fastställer inget tillverkningsår."
+      },
+      "titleSv": "Hantverkare gjuter bronsföremål i Igbo-Ukwu",
+      "summarySv": "Hantverkare i Igbo-Ukwu gjuter rituella kärl och regalier i brons. Museets texter anger olika dateringar för arbetena, från en omstridd datering till 800-talet till cirka 900-talet.",
+      "geographySv": "Igbo-Ukwu, nuvarande sydöstra Nigeria",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-igbo",
+        "e0800-west-guinea"
+      ],
+      "selectionNote": "Significant metalworking evidence with conflicting museum chronologies preserved rather than converted into an exact ninth-century event.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0800-figurskulptur-i-ife",
+      "date": {
+        "kind": "range",
+        "startYear": 800,
+        "endYear": 1000,
+        "displaySv": "Cirka 800–1000",
+        "noteSv": "Källan daterar utvecklingen till hela perioden. År 800 anger intervallets början och är inget känt år för ett enskilt verk."
+      },
+      "titleSv": "Konstnärer i Ife gör fler människo- och djurfigurer",
+      "summarySv": "Konstnärer i Ife gör fler figurer av människor och djur i sten och terrakotta under perioden cirka 800–1000. De återger gestalterna med större naturalism.",
+      "geographySv": "Ife, skogsområdet i nuvarande sydvästra Nigeria",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "e0800-west-guinea"
+      ],
+      "selectionNote": "Preserves a dated artistic development as a multi-century range without inventing a foundation or centralized kingdom.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0800-karl-kronas-till-kejsare",
+      "date": {
+        "kind": "exact",
+        "startYear": 800,
+        "endYear": 800,
+        "displaySv": "25 december 800"
+      },
+      "titleSv": "Leo III kröner Karl den store till kejsare",
+      "summarySv": "Påven Leo III kröner Karl den store till kejsare i Rom. Kröningen äger rum i Peterskyrkan på juldagen år 800.",
+      "geographySv": "Rom, Italien",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e0800-west-bnf-coronation"
+      ],
+      "selectionNote": "Imperial coronation of continental importance; the opened BnF caption explicitly supplies the day and year, avoiding the annal-year convention issue.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0800-monumentbyggnad-i-dongola",
+      "date": {
+        "kind": "range",
+        "startYear": 800,
+        "endYear": 899,
+        "displaySv": "Tidigt 800-tal",
+        "noteSv": "Källan anger tidigt 800-tal utan snävare årtal. Det numeriska intervallet omfattar århundradet och anger ingen säker byggstart år 800."
+      },
+      "titleSv": "Byggare uppför en monumental byggnad i Dongola",
+      "summarySv": "Byggare i Dongola uppför en tvåvåningsbyggnad på en sandstenshöjd under tidigt 800-tal. Forskarna tolkar dess ursprungliga funktion som tronsal eller kyrka. Dongola är huvudstad i Makuria.",
+      "geographySv": "Dongola, Nubien, nuvarande Sudan",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "e0800-west-dongola"
+      ],
+      "selectionNote": "Includes Nile-valley monumental architecture while retaining uncertainty over original function and avoiding an invented construction year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0800-sican-starker-sin-makt",
+      "date": {
+        "kind": "approximate",
+        "startYear": 800,
+        "endYear": 800,
+        "displaySv": "cirka 800",
+        "noteSv": "Museet anger omkring 800 för Sicánfolkets ökade makt."
+      },
+      "titleSv": "Sicánfolket stärker sin makt i Lambayeque",
+      "summarySv": "Sicánfolket stärker sin makt i Lambayeque på Perus nordkust. Deras keramiker tillverkar blankpolerade svarta kärl och hämtar former och dekorationer från Moche- och Warikeramik.",
+      "geographySv": "Lambayeque, norra Peru",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-met-andes"
+      ],
+      "selectionNote": "A regional cultural and political transition adds northern coastal Peru; the approximate date is a museum estimate rather than an attested accession.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0800-wari-offrar-karl-i-pacheco",
+      "date": {
+        "kind": "approximate",
+        "startYear": 800,
+        "endYear": 800,
+        "displaySv": "cirka 800",
+        "noteSv": "Museet anger omkring 800 för offerdepositionen. Något exakt kalenderår framgår inte."
+      },
+      "titleSv": "Ritualdeltagare krossar och begraver Warikärl i Pacheco",
+      "summarySv": "Ritualdeltagare krossar stora Warikärl och begraver dem som offer i Pacheco. På kärlen avbildar konstnärerna manliga och kvinnliga former av portguden från Tiwanaku samt grödor som majs, quinoa och potatis.",
+      "geographySv": "Pacheco, nedre Nazcadalen, Peru",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "e0800-east-met-andes"
+      ],
+      "selectionNote": "A bounded ritual deposition supplies an Andean event with the museum's archaeological approximation intact.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0804-kukai-reser-till-tangkina",
+      "date": {
+        "kind": "exact",
+        "startYear": 804,
+        "endYear": 804,
+        "displaySv": "804"
+      },
+      "titleSv": "Kūkai reser till Tangkina",
+      "summarySv": "Munken Kūkai reser till Tangriket för att studera esoterisk buddhism. Efter studierna för han med sig lärorna till Japan.",
+      "geographySv": "Japan och Tangriket, Kina",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-tnm-kukai"
+      ],
+      "selectionNote": "A documented transfer of Buddhist learning between the Tang court's world and Japan.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0806-tendai-far-officiellt-erkannande",
+      "date": {
+        "kind": "exact",
+        "startYear": 806,
+        "endYear": 806,
+        "displaySv": "806"
+      },
+      "titleSv": "Japans hov erkänner Tendai",
+      "summarySv": "Japans hov erkänner Tendai som buddhistisk skola. Saichō hade återvänt från sina studier i Kina året före.",
+      "geographySv": "Japan",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-kyoto-saicho"
+      ],
+      "selectionNote": "Official recognition marks an institutional change in Japanese Buddhism.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0810-angripare-branner-aguateca",
+      "date": {
+        "kind": "approximate",
+        "startYear": 810,
+        "endYear": 810,
+        "displaySv": "cirka 810",
+        "noteSv": "Arkeologerna anger omkring år 810. Året för anfallet är osäkert."
+      },
+      "titleSv": "Angripare bränner Aguatecas centrum",
+      "summarySv": "Angripare anfaller mayastaden Aguateca och bränner dess centrum. Invånarna flyr eller hamnar i fångenskap.",
+      "geographySv": "Aguateca, Petexbatun, nuvarande Guatemala",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-arizona-aguateca"
+      ],
+      "selectionNote": "A major archaeological case of the destruction of a Maya royal centre; the attackers remain unnamed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0814-amoghavarsha-eftertrader-govinda",
+      "date": {
+        "kind": "exact",
+        "startYear": 814,
+        "endYear": 814,
+        "displaySv": "814"
+      },
+      "titleSv": "Amoghavarsha blir Rashtrakutahärskare",
+      "summarySv": "Amoghavarsha efterträder sin far Govinda III som Rashtrakutahärskare. Han är ung vid trontillträdet och kallas också Nrupatunga.",
+      "geographySv": "Deccan, Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-inflibnet-rashtrakuta"
+      ],
+      "selectionNote": "Succession in a major Deccan kingdom; the source gives 814 as the reign's beginning.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0816-kukai-far-tillstand-pa-koya",
+      "date": {
+        "kind": "exact",
+        "startYear": 816,
+        "endYear": 816,
+        "displaySv": "816",
+        "noteSv": "Årtalet gäller kejsarens tillstånd. Byggstarten dateras till 819 i samma källa."
+      },
+      "titleSv": "Kūkai får tillstånd att bygga på berget Kōya",
+      "summarySv": "Kejsar Saga ger Kūkai tillstånd att anlägga ett klostercentrum på berget Kōya. Kūkai inleder byggarbetet 819.",
+      "geographySv": "Berget Kōya, Japan",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-standrews-kukai"
+      ],
+      "selectionNote": "The event records the imperial permission separately from later construction.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0821-tahir-far-khorasan",
+      "date": {
+        "kind": "exact",
+        "startYear": 821,
+        "endYear": 821,
+        "displaySv": "821"
+      },
+      "titleSv": "Al-Mamun utser Tahir till guvernör i Khorasan",
+      "summarySv": "Kalifen al-Mamun utser Tahir ibn Husayn till guvernör över Khorasan och de östra provinserna våren 821. Tahirs familj fortsätter därefter att inneha guvernörsämbetet i Khorasan.",
+      "geographySv": "Khorasan, östra iranska området och Centralasien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-tahir"
+      ],
+      "selectionNote": "A specific appointment begins Tahirid provincial rule; the claim does not recast it as a declaration of complete independence.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0822-saga-godkanner-tendais-munkutbildning",
+      "date": {
+        "kind": "exact",
+        "startYear": 822,
+        "endYear": 822,
+        "displaySv": "822"
+      },
+      "titleSv": "Saga godkänner nya regler för munkar på Hiei",
+      "summarySv": "Kejsar Saga godkänner ett nytt system för att pröva och erkänna munkar på berget Hiei. Saichō hade föreslagit nya regler för Tendaimunkar 815.",
+      "geographySv": "Berget Hiei, Japan",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-kyoto-saicho"
+      ],
+      "selectionNote": "A change to the authorization of Tendai monastics, following a documented proposal.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0823-kukai-far-ansvar-for-toji",
+      "date": {
+        "kind": "exact",
+        "startYear": 823,
+        "endYear": 823,
+        "displaySv": "823"
+      },
+      "titleSv": "Kejsaren ger Kūkai ansvar för Tōji",
+      "summarySv": "Kejsaren anförtror templet Tōji åt Kūkai. Kūkai använder templet för undervisning i esoterisk buddhism.",
+      "geographySv": "Tōji, Japan",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "e0800-east-tnm-kukai"
+      ],
+      "selectionNote": "A documented imperial assignment of a temple to a major religious teacher.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0828-jang-bogo-bygger-cheonghaejin",
+      "date": {
+        "kind": "exact",
+        "startYear": 828,
+        "endYear": 828,
+        "displaySv": "828"
+      },
+      "titleSv": "Jang Bogo bygger Cheonghaejin",
+      "summarySv": "Jang Bogo återvänder till Silla och bygger Cheonghaejin på Wando tillsammans med kung Heungdeok. Därifrån leder han handel inom landet och med utlandet och bekämpar slavhandeln.",
+      "geographySv": "Wando, Silla, nuvarande Sydkorea",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-kci-cheonghaejin"
+      ],
+      "selectionNote": "The foundation of an important maritime base links Silla's political authority and overseas trade.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0836-samarra-blir-kalifens-huvudstad",
+      "date": {
+        "kind": "exact",
+        "startYear": 836,
+        "endYear": 836,
+        "displaySv": "836"
+      },
+      "titleSv": "Al-Mutasim flyttar sin huvudstad till Samarra",
+      "summarySv": "Kalifen al-Mutasim grundar Samarra år 836. Han flyttar sin huvudstad dit från Bagdad.",
+      "geographySv": "Samarra vid Tigris, Irak",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-samarra"
+      ],
+      "selectionNote": "A specific transfer of the Abbasid court and capital, with a secure year in an opened museum essay.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0836-stora-mosken-i-kairouan-byggs-om",
+      "date": {
+        "kind": "exact",
+        "startYear": 836,
+        "endYear": 836,
+        "displaySv": "836"
+      },
+      "titleSv": "Ziyadat Allah bygger om helgedomen i Kairouans stora moské",
+      "summarySv": "Ziyadat Allah låter bygga om helgedomen i Kairouans stora moské år 836. Byggarna uppför också kupolen över bönenischen, mihraben.",
+      "geographySv": "Kairouan, Ifriqiya, nuvarande Tunisien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-kairouan"
+      ],
+      "selectionNote": "A major North African architectural phase; it is explicitly a rebuilding of an existing mosque.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0840-kirgizerna-intar-uigurernas-huvudstad",
+      "date": {
+        "kind": "exact",
+        "startYear": 840,
+        "endYear": 840,
+        "displaySv": "840"
+      },
+      "titleSv": "Kirgizerna plundrar uigurernas huvudstad",
+      "summarySv": "Kirgizerna intar och plundrar uigurernas huvudstad vid Orkhon år 840. Grupper av uigurer lämnar därefter sitt hemland i Mongoliet.",
+      "geographySv": "Orkhondalen, den mongoliska stäppen",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e0800-west-tarim"
+      ],
+      "selectionNote": "A major Inner Asian political and migratory rupture, stated without assigning every subsequent Uyghur settlement to 840.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0842-ederna-i-strasbourg",
+      "date": {
+        "kind": "exact",
+        "startYear": 842,
+        "endYear": 842,
+        "displaySv": "14 februari 842"
+      },
+      "titleSv": "Ludvig och Karl svär eder i Strasbourg",
+      "summarySv": "Ludvig den tyske och Karl den skallige sluter ett militärt förbund mot sin bror Lothar. De avlägger eder i Strasbourg på romanska och germanska språk den 14 februari 842.",
+      "geographySv": "Strasbourg, det karolingiska riket",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-strasbourg"
+      ],
+      "selectionNote": "The alliance and its bilingual political oath have both political and textual significance; no modern nation is projected onto the participants.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0843-riket-delas-i-verdun",
+      "date": {
+        "kind": "exact",
+        "startYear": 843,
+        "endYear": 843,
+        "displaySv": "843"
+      },
+      "titleSv": "Ludvigs söner delar riket i Verdun",
+      "summarySv": "Ludvig den frommes tre överlevande söner delar det karolingiska riket i Verdun år 843. Karl den skallige får den västra delen, Lothar den mellersta och Ludvig den tyske den östra.",
+      "geographySv": "Verdun och det karolingiska riket",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e0800-west-verdun"
+      ],
+      "selectionNote": "A continental partition described through its contemporary rulers and shares, without claiming the birth of modern nation-states.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0843-theodora-aterinfor-ikonerna",
+      "date": {
+        "kind": "exact",
+        "startYear": 843,
+        "endYear": 843,
+        "displaySv": "843"
+      },
+      "titleSv": "Theodora återinför ikonerna",
+      "summarySv": "Theodora återinför ikonerna i det bysantinska riket år 843 och avslutar bildstridens sista fas. Under bildstriden hade kyrkomålare ersatt framställningar av Maria med kors i kyrkornas absider.",
+      "geographySv": "Det bysantinska riket",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-icons"
+      ],
+      "selectionNote": "A specific religious settlement with documented consequences for church decoration; no unsupported exact day is added.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0845-wuzong-forbjuder-metallbilder",
+      "date": {
+        "kind": "exact",
+        "startYear": 845,
+        "endYear": 845,
+        "displaySv": "845"
+      },
+      "titleSv": "Wuzong förbjuder metall i buddhistiska bilder",
+      "summarySv": "Kejsar Wuzong förbjuder buddhister att använda guld, silver, koppar, järn och ädelstenar i religiösa bilder. Han kräver att de använder lera och trä under förföljelsen av buddhismen.",
+      "geographySv": "Tangriket, Kina",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "e0800-east-princeton-wuzong"
+      ],
+      "selectionNote": "A precisely dated edict within a major imperial persecution; the summary stays within the opened passage.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0850-byggare-borjar-pueblo-bonito",
+      "date": {
+        "kind": "approximate",
+        "startYear": 850,
+        "endYear": 850,
+        "displaySv": "cirka 850",
+        "noteSv": "Källan anger en ungefärlig byggstart. Byggarna fortsätter att utvidga anläggningen under senare århundraden."
+      },
+      "titleSv": "Byggare påbörjar Pueblo Bonito",
+      "summarySv": "Byggare påbörjar Pueblo Bonito i Chaco Canyon omkring 850. Senare generationer bygger ut anläggningen till ett av Chacokulturens stora hus.",
+      "geographySv": "Chaco Canyon, nuvarande New Mexico, USA",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-usgs-bonito"
+      ],
+      "selectionNote": "A significant North American construction beginning, retained as approximate rather than a dedication date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0850-vijayalaya-grundar-cholariket",
+      "date": {
+        "kind": "approximate",
+        "startYear": 850,
+        "endYear": 850,
+        "displaySv": "cirka 850",
+        "noteSv": "Källan daterar styrets början till omkring 850. Den ger inget separat exakt år för erövringen av Tanjore."
+      },
+      "titleSv": "Vijayalaya bygger upp Cholaättens rike",
+      "summarySv": "Vijayalaya inleder sitt styre omkring 850 och erkänner Pallavahärskarnas överhöghet. Han bygger upp sitt rike kring Uraiyur och Tanjore i Kaveris nedre dalgång.",
+      "geographySv": "Kaveridalen, södra Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-inflibnet-chola"
+      ],
+      "selectionNote": "The beginning of the Imperial Chola line is a regional political change; the source itself says around 850.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0859-caracol-reser-stela-tio",
+      "date": {
+        "kind": "exact",
+        "startYear": 859,
+        "endYear": 859,
+        "displaySv": "859",
+        "noteSv": "Dateringen gäller monumentet. Den visar inte att invånarna övergav Caracol detta år."
+      },
+      "titleSv": "Caracols bildhuggare daterar stela 10",
+      "summarySv": "Bildhuggare i Caracol förser stela 10 med en datering till 859. Forskarna anger detta som stadens sista monumentdatum i sin sammanställning.",
+      "geographySv": "Caracol, nuvarande Belize",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "e0800-east-maya-terminal"
+      ],
+      "selectionNote": "A dated monument documents the end of a local royal commemorative sequence.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0861-yaqub-inleder-sitt-styre-i-sistan",
+      "date": {
+        "kind": "exact",
+        "startYear": 861,
+        "endYear": 861,
+        "displaySv": "861"
+      },
+      "titleSv": "Yaqub inleder saffaridernas styre i Sistan",
+      "summarySv": "Yaqub ibn Layth inleder sitt styre år 861 enligt Iranicas kronologi. Han blir saffaridernas förste härskare, med Sistan som maktcentrum.",
+      "geographySv": "Sistan, nuvarande östra Iran och sydvästra Afghanistan",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-saffar"
+      ],
+      "selectionNote": "The accession is narrower than a dynasty-long event; the opened Iranica survey dates Yaqub's Sistan rule from 861.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0863-kyrillos-och-methodios-i-stormahren",
+      "date": {
+        "kind": "exact",
+        "startYear": 863,
+        "endYear": 863,
+        "displaySv": "863",
+        "noteSv": "Dvornik anger uttryckligen 863 för missionens ankomst, och Vlasto daterar kejsarens utsändande till samma år. Ingen källa här anger en exakt ankomstdag."
+      },
+      "titleSv": "Kyrillos och Methodios kommer till Stormähren",
+      "summarySv": "Kyrillos och Methodios kommer till Moravien år 863 som ledare för en bysantinsk mission. Kejsaren har sänt dem på den moraviske furstens begäran för att utveckla den kristna förkunnelsen i hans område.",
+      "geographySv": "Moravien, Stormähren, Centraleuropa",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-recovery-dvornik-moravia",
+        "e0800-recovery-vlasto-moravia"
+      ],
+      "selectionNote": "A Byzantine mission requested by the Moravian ruler is a major regional episode of Christian evangelization.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0867-yaqub-intar-herat",
+      "date": {
+        "kind": "exact",
+        "startYear": 867,
+        "endYear": 867,
+        "displaySv": "16 augusti 867"
+      },
+      "titleSv": "Yaqub ibn Layth intar Herat",
+      "summarySv": "Yaqub ibn Layth belägrar och intar Herat den 16 augusti 867. Han hade börjat genomföra räder mot staden år 862.",
+      "geographySv": "Herat, Khorasan, nuvarande Afghanistan",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-herat"
+      ],
+      "selectionNote": "A securely dated regional conquest; the cited article itself converts the Hijri date into 16 August 867.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0868-diamantsutran-trycks",
+      "date": {
+        "kind": "exact",
+        "startYear": 868,
+        "endYear": 868,
+        "displaySv": "11 maj 868",
+        "noteSv": "British Library anger den 11 maj 868. Källan föreslår Chengdu som möjlig tryckort men fastställer ingen ort."
+      },
+      "titleSv": "Tryckare framställer Diamantsutran",
+      "summarySv": "Tryckare framställer en rulle med Diamantsutran och daterar den till den 11 maj 868. De använder träblock och inleder texten med en bild av Buddha som undervisar Subhuti.",
+      "geographySv": "Kina; exemplaret hittades i Mogao vid Dunhuang",
+      "category": "technology",
+      "importance": 3,
+      "sourceIds": [
+        "e0800-east-bl-diamond"
+      ],
+      "selectionNote": "The oldest complete dated printed book is a major surviving witness to printing technology.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0869-jogan-tsunamin-traffar-japan",
+      "date": {
+        "kind": "exact",
+        "startYear": 869,
+        "endYear": 869,
+        "displaySv": "869",
+        "noteSv": "Källorna anger 869. Händelsen återges på årsnivå; ingen japansk kalenderdag har räknats om."
+      },
+      "titleSv": "En jordbävning och tsunami drabbar nordöstra Japan",
+      "summarySv": "En kraftig jordbävning får borgbyggnader, förråd och murar vid Taga att rasa år 869. En tsunami når staden nedanför borgen. Forskare har funnit avlagringar från Miyagi till norra Fukushima som de bedömer kommer från denna tsunami.",
+      "geographySv": "Nordöstra Japan, området kring Taga och kusten vid Miyagi och norra Fukushima",
+      "category": "nature",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-recovery-jma-jogan",
+        "e0800-recovery-herp-jogan"
+      ],
+      "selectionNote": "A major regional earthquake and tsunami with documented structural damage and later geological evidence.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0869-tikal-reser-sista-stelan",
+      "date": {
+        "kind": "exact",
+        "startYear": 869,
+        "endYear": 869,
+        "displaySv": "869",
+        "noteSv": "Årtalet gäller stela 11. UNESCO daterar stadens nedgång till en längre period."
+      },
+      "titleSv": "Tikals bildhuggare färdigställer stela 11",
+      "summarySv": "Bildhuggare i Tikal färdigställer stela 11 med dateringen 869. Forskarna känner inget senare skulpterat monument från staden.",
+      "geographySv": "Tikal, Petén, nuvarande Guatemala",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-unesco-tikal"
+      ],
+      "selectionNote": "A terminal monument at a major Maya city records a specific cultural act rather than an invented collapse year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0869-zanjupproret-borjar",
+      "date": {
+        "kind": "exact",
+        "startYear": 869,
+        "endYear": 869,
+        "displaySv": "869"
+      },
+      "titleSv": "Zanjupproret börjar i södra Irak",
+      "summarySv": "Människor som källorna kallar zanj gör uppror i södra Irak år 869. Bland deltagarna finns troligen både lokalbefolkning och förslavade afrikaner, men forskarna diskuterar deras ursprung och sammansättning. Abbasiderna återtar kontrollen över området år 883.",
+      "geographySv": "Södra Irak",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-zanj"
+      ],
+      "selectionNote": "A major rebellion with African and local participants; the summary preserves scholarly disagreement rather than asserting a uniform East African origin.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0871-aditya-eftertrader-vijayalaya",
+      "date": {
+        "kind": "exact",
+        "startYear": 871,
+        "endYear": 871,
+        "displaySv": "871"
+      },
+      "titleSv": "Aditya I efterträder Vijayalaya",
+      "summarySv": "Aditya I efterträder Vijayalaya som Cholahärskare. Han fortsätter att styra till 907.",
+      "geographySv": "Cholariket, södra Indien",
+      "category": "politics",
+      "importance": 1,
+      "sourceIds": [
+        "e0800-east-inflibnet-chola"
+      ],
+      "selectionNote": "A documented succession in an expanding South Indian kingdom; a lower-priority candidate for final selection.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0874-norska-bosattare-kommer-till-island",
+      "date": {
+        "kind": "approximate",
+        "startYear": 874,
+        "endYear": 874,
+        "displaySv": "Cirka 874",
+        "noteSv": "Sagor från tidigt 1100-tal anger 874. Forskarna daterar undersökta sädeskorn från Reykjavík till omkring 890, vilket inte fastställer den första ankomsten. 874 återger den skriftliga traditionens ungefärliga datering."
+      },
+      "titleSv": "Norska bosättare kommer till Island",
+      "summarySv": "Norska bosättare kommer till Island omkring 874 enligt den skriftliga traditionen i senare sagor. Forskare har daterat sädeskorn från en tidig boplats i Reykjavík till omkring 890 och visat att träprover därifrån kan ge äldre dateringar.",
+      "geographySv": "Island, med arkeologiska fynd från Reykjavík",
+      "category": "migration",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-iceland"
+      ],
+      "selectionNote": "A qualified traditional settlement date, with the different archaeological observation made explicit; the two dates do not identify the same act.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0878-alfred-segrar-vid-edington",
+      "date": {
+        "kind": "exact",
+        "startYear": 878,
+        "endYear": 878,
+        "displaySv": "Maj 878"
+      },
+      "titleSv": "Alfred besegrar den danska hären vid Edington",
+      "summarySv": "Alfreds här besegrar danskarna vid Edington i maj 878. Han förföljer dem till Chippenham och belägrar deras befästning. Efter fjorton dagar ber de om fred.",
+      "geographySv": "Edington och Chippenham, Wessex",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-alfred"
+      ],
+      "selectionNote": "A decisive regional battle; no unsupported exact day or disputed treaty formulation is included.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0879-ibn-tuluns-byggare-fardigstaller-mosken",
+      "date": {
+        "kind": "exact",
+        "startYear": 879,
+        "endYear": 879,
+        "displaySv": "879",
+        "noteSv": "Grundläggningsinskriften anger ramadan 265 enligt den muslimska kalendern. Inskriftskatalogen ger motsvarigheten 879; ingen exakt dag omräknas här."
+      },
+      "titleSv": "Ahmad ibn Tuluns byggare färdigställer moskén",
+      "summarySv": "Ahmad ibn Tuluns byggare färdigställer hans moské i al-Qatai år 879. Ibn Tulun bekostar byggnaden för den muslimska församlingen, enligt grundläggningsinskriften.",
+      "geographySv": "Al-Qatai, i nuvarande Kairo, Egypten",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-tulun",
+        "e0800-west-tulun-monument"
+      ],
+      "selectionNote": "The ministry's monument description supports completion in 879; the inscription supplies the patron and funding. No exact completion day is inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0881-huang-chao-intar-changan",
+      "date": {
+        "kind": "exact",
+        "startYear": 881,
+        "endYear": 881,
+        "displaySv": "881"
+      },
+      "titleSv": "Huang Chaos rebeller intar Chang'an",
+      "summarySv": "Huang Chaos rebeller intar Tangrikets huvudstad Chang'an i början av 881. De plundrar och dödar invånare när de går in i staden.",
+      "geographySv": "Chang'an, Tangriket, Kina",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e0800-east-cambridge-huang"
+      ],
+      "selectionNote": "The capture of the imperial capital was a major crisis for the Tang state; the opened scholarly passage supplies 881.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0881-indravarman-inviger-bakong",
+      "date": {
+        "kind": "exact",
+        "startYear": 881,
+        "endYear": 881,
+        "displaySv": "881"
+      },
+      "titleSv": "Indravarman I inviger Bakong",
+      "summarySv": "Kung Indravarman I inviger templet Bakong vid Roluos. Han tillägnar det Shiva i form av en linga med namnet Sri Indresvara.",
+      "geographySv": "Roluos, nuvarande Kambodja",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-bakong-alvares"
+      ],
+      "selectionNote": "A documented consecration of an early Khmer temple mountain, separate from later rebuilding.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0881-ismailitisk-mission-i-jemen",
+      "date": {
+        "kind": "exact",
+        "startYear": 881,
+        "endYear": 881,
+        "displaySv": "881"
+      },
+      "titleSv": "Ali ibn Fadl och Ibn Hawshab inleder mission i Jemen",
+      "summarySv": "Ali ibn Fadl och Ibn Hawshab inleder en ismailitisk mission i Jemen år 881. De håller kontakt med rörelsens centrala ledning.",
+      "geographySv": "Jemen, södra Arabiska halvön",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-carmatians"
+      ],
+      "selectionNote": "A specific start of organized religious activity in southern Arabia, without prematurely calling it a separate Qarmatian state.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0889-uaxactun-daterar-krigsmonument",
+      "date": {
+        "kind": "exact",
+        "startYear": 889,
+        "endYear": 889,
+        "displaySv": "889",
+        "noteSv": "Forskarna anger detta som Uaxactuns sista monumentdatum i sin sammanställning."
+      },
+      "titleSv": "Uaxactuns bildhuggare hugger ett monument om krig",
+      "summarySv": "Bildhuggare i Uaxactun daterar stela 12 till 889. De berättar på monumentet om krig med stadens grannar.",
+      "geographySv": "Uaxactun, nuvarande Guatemala",
+      "category": "war",
+      "importance": 1,
+      "sourceIds": [
+        "e0800-east-maya-terminal"
+      ],
+      "selectionNote": "A dated final monument records warfare rather than a conjectured city abandonment.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0890-hamdan-grundar-en-befast-fristad",
+      "date": {
+        "kind": "range",
+        "startYear": 890,
+        "endYear": 891,
+        "displaySv": "890–891",
+        "noteSv": "Källan daterar grundandet till år 277 enligt den muslimska kalendern och anger motsvarigheten 890–891."
+      },
+      "titleSv": "Hamdan Qarmat grundar en befäst fristad nära Kufa",
+      "summarySv": "Hamdan Qarmat grundar en befäst fristad nära Kufa för sina anhängare. Där kan karmaterna söka skydd och samlas.",
+      "geographySv": "Området kring Kufa, Irak",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "e0800-west-carmatians"
+      ],
+      "selectionNote": "Preserves the source's Hijri-to-CE two-year span for an institutional foundation rather than choosing one CE year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0892-kalifens-hov-lamnar-samarra",
+      "date": {
+        "kind": "exact",
+        "startYear": 892,
+        "endYear": 892,
+        "displaySv": "892"
+      },
+      "titleSv": "Kalifens hov lämnar Samarra",
+      "summarySv": "Kalifens hov lämnar Samarra år 892. Al-Mutasim hade grundat staden som sin nya huvudstad år 836.",
+      "geographySv": "Samarra, Irak",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-samarra"
+      ],
+      "selectionNote": "A specific end to the court's residence, distinct from the city's founding; the summary makes no unsupported claim that all inhabitants left.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0893-samaniderna-intar-talas",
+      "date": {
+        "kind": "exact",
+        "startYear": 893,
+        "endYear": 893,
+        "displaySv": "893"
+      },
+      "titleSv": "Samaniderna intar Talas",
+      "summarySv": "Samaniderna intar Talas år 893. Karakhaniderna flyttar därefter sin andra huvudstad till Kashgar.",
+      "geographySv": "Talas och Kashgar, Centralasien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-west-tarim"
+      ],
+      "selectionNote": "A Central Asian conquest and the relocation reported by the cited scholarly reference; no date is assigned to the subsequent move.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0893-yasovarman-bygger-lolei",
+      "date": {
+        "kind": "exact",
+        "startYear": 893,
+        "endYear": 893,
+        "displaySv": "893",
+        "noteSv": "Chandler skriver att kungen uppförde eller slutförde templet."
+      },
+      "titleSv": "Yasovarman I låter uppföra eller slutföra Lolei",
+      "summarySv": "Kung Yasovarman I låter uppföra eller slutföra Loleis fyra tegeltorn till sina förfäders ära. Hans inskriftshuggare daterar flera inskrifter där till 893.",
+      "geographySv": "Lolei vid Hariharalaya, nuvarande Kambodja",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0800-east-lolei-chandler"
+      ],
+      "selectionNote": "A bounded building or completion event supported by multiple same-year inscriptions; construction-stage ambiguity is retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0900-peruanska-hantverkare-framstaller-arsenikbrons",
+      "date": {
+        "kind": "approximate",
+        "startYear": 900,
+        "endYear": 900,
+        "displaySv": "Cirka 900",
+        "noteSv": "Museets kronologi anger en ungefärlig tidpunkt för storskalig framställning, utan ett känt första produktionsår."
+      },
+      "titleSv": "Hantverkare på Perus nordkust framställer arsenikbrons",
+      "summarySv": "Metallarbetare på Perus nordkust framställer stora mängder arsenikbrons i små päronformade smältugnar omkring år 900. De använder den hårda legeringen av koppar och arsenik till knivar, mejslar och nålar.",
+      "geographySv": "Perus nordkust",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-met-andes"
+      ],
+      "selectionNote": "A specific technological development, distinct from the E800 Sicán political rise and Wari vessel offering.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0900-samaniderna-segrar-vid-balkh",
+      "date": {
+        "kind": "exact",
+        "startYear": 900,
+        "endYear": 900,
+        "displaySv": "900"
+      },
+      "titleSv": "Samaniderna besegrar saffariderna vid Balkh",
+      "summarySv": "Ismail ibn Ahmad för sin här över Oxus och besegrar Amr ibn Layths armé utanför Balkh år 900. Samaniderna tar den saffaridiske härskaren till fånga.",
+      "geographySv": "Balkh, nuvarande Afghanistan",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-balkh"
+      ],
+      "selectionNote": "The capture of the Saffarid ruler changed the balance of power in the Iranian east; the source itself pairs the Hijri and CE years.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0900-tula-vaxer-under-tollanfasen",
+      "date": {
+        "kind": "range",
+        "startYear": 900,
+        "endYear": 1150,
+        "displaySv": "Cirka 900–1150",
+        "noteSv": "Källan anger Tollanfasen som en arkeologisk period. År 900 anger intervallets början och fastställer varken stadens grundande eller året för dess största utbredning."
+      },
+      "titleSv": "Tulas invånare utvidgar staden under Tollanfasen",
+      "summarySv": "Tulas invånare utvidgar staden till dess största utbredning under Tollanfasen, som arkeologerna daterar till 900–1150. Hantverkare arbetar i kvarter med bostäder och tempel.",
+      "geographySv": "Tula, nuvarande Hidalgo i Mexiko",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-inah-tula"
+      ],
+      "selectionNote": "A major Toltec urban phase with the full archaeological interval preserved; no exact foundation year is claimed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0900-zhizobonder-bosatter-sig-i-schroda",
+      "date": {
+        "kind": "approximate",
+        "startYear": 900,
+        "endYear": 900,
+        "displaySv": "cirka 900",
+        "noteSv": "Årtalet anger en ungefärlig första bosättning. Antonites anger cirka 900 och placerar den regionala inflyttningen i sent 800-tal och tidigt 900-tal. Arkeologerna skiljer mellan Zhizo- och Leokwefaser. År 2018 bedömer Antonites att invånarna troligen övergav platsen senast 1100, men lämnar sent 1100-tal eller tidigt 1200-tal öppet på grund av oklar lagerföljd. År 2024 använder hon cirka 900–1100 för hela boplatsen och cirka 900–1000 för Zhizofasen. Origins Centre anger cirka 900 till strax efter 1000."
+      },
+      "titleSv": "Zhizobönder bosätter sig i Schroda",
+      "summarySv": "Jordbrukare som arkeologer förknippar med Zhizokeramik bosätter sig i Schroda i Limpopodalen. Under 900-talet deltar invånarna i handeln med Indiska oceanens kust; arkeologer har funnit importerade glaspärlor och elfenbensföremål i boplatsens Zhizolager.",
+      "geographySv": "Schroda, mellersta Limpopodalen, nuvarande norra Sydafrika",
+      "category": "migration",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-africa-antonites2018-schroda",
+        "e0900-africa-antonites2024-schroda",
+        "e0900-africa-huffman-woodborne2021-schroda",
+        "e0900-africa-origins-centre-schroda"
+      ],
+      "selectionNote": "Schroda's farmers connected the southern African interior with Indian Ocean commerce before the regional centres at K2 and Mapungubwe developed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0907-parantaka-blir-cholaharskare",
+      "date": {
+        "kind": "exact",
+        "startYear": 907,
+        "endYear": 907,
+        "displaySv": "907"
+      },
+      "titleSv": "Parantaka I blir Cholahärskare",
+      "summarySv": "Parantaka I blir Cholahärskare år 907 efter Aditya I. Han regerar ett rike med kärnområde kring Tanjore och nedre Kaveri.",
+      "geographySv": "Cholariket, södra Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-inflibnet-chola"
+      ],
+      "selectionNote": "The accession marks a distinct reign following the E800 Aditya succession. No disputed later death year is used.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0907-tangdynastins-styre-upphor",
+      "date": {
+        "kind": "exact",
+        "startYear": 907,
+        "endYear": 907,
+        "displaySv": "907"
+      },
+      "titleSv": "Tangdynastins härskare förlorar makten",
+      "summarySv": "Tangdynastins härskare förlorar makten år 907. Under den följande perioden regerar fem kortlivade militärregimer i norra Kina, medan flera riken konkurrerar i söder.",
+      "geographySv": "Kina",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e0900-east-princeton-china"
+      ],
+      "selectionNote": "A continental dynastic rupture; subsequent fragmentation is context, not a separate event assigned to each year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0909-fatimiderna-grundar-sitt-kalifat",
+      "date": {
+        "kind": "exact",
+        "startYear": 909,
+        "endYear": 909,
+        "displaySv": "909"
+      },
+      "titleSv": "Fatimiderna grundar ett kalifat i Nordafrika",
+      "summarySv": "Fatimiderna grundar ett eget kalifat i Ifriqiya år 909. De tillhör den ismailitiska grenen av shiaislam och konkurrerar med abbasiderna om ledarskapet i den muslimska världen.",
+      "geographySv": "Ifriqiya, Nordafrika",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e0900-west-fatimids"
+      ],
+      "selectionNote": "A new rival caliphate shaped North African and Mediterranean politics; the event uses the scholarly article's foundation year without dating the later ruler's ceremonial arrival.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0909-tonina-daterar-en-inskrift",
+      "date": {
+        "kind": "exact",
+        "startYear": 909,
+        "endYear": 909,
+        "displaySv": "909",
+        "noteSv": "INAH anger motsvarigheten 909 för mayakalenderns långa räkning 10.4.0.0.0. Dateringen gäller inskriftens kalenderuppgift och fastställer inget övergivande av staden."
+      },
+      "titleSv": "Skrivare i Toniná anger år 909 i en inskrift",
+      "summarySv": "Skrivare i Toniná anger kalenderdatumet 10.4.0.0.0 i en inskrift. INAH:s arkeologer anger motsvarigheten 909 enligt vår tideräkning.",
+      "geographySv": "Toniná, nuvarande Chiapas i Mexiko",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "e0900-east-inah-tonina"
+      ],
+      "selectionNote": "A specific dated inscription; the museum's unsupported universal end-of-Maya-writing formulation is excluded.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0909-vilhelm-grundar-klostret-i-cluny",
+      "date": {
+        "kind": "disputed",
+        "startYear": 909,
+        "endYear": 910,
+        "displaySv": "Omtvistat: 909 eller 910",
+        "noteSv": "Centre des monuments nationaux anger den 11 september 910. Historikern Michael Jones anger 909 i forskningsartikeln. Intervallet bevarar dessa alternativa år."
+      },
+      "titleSv": "Vilhelm den fromme grundar klostret i Cluny",
+      "summarySv": "Vilhelm den fromme skänker sin egendom i Cluny till ett kloster. Munkarna ska följa Benedikts regel, med Bernon som förste abbot. Källorna anger 909 eller 910 för klostrets grundläggning.",
+      "geographySv": "Cluny, Burgund, nuvarande Frankrike",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-cluny-cmn",
+        "e0900-west-cluny-jones"
+      ],
+      "selectionNote": "A monastic foundation with long regional reach. Preserve the alternative foundation years rather than selecting the official site's preferred year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0918-wang-geon-grundar-goryeo",
+      "date": {
+        "kind": "exact",
+        "startYear": 918,
+        "endYear": 918,
+        "displaySv": "918"
+      },
+      "titleSv": "Wang Geon grundar Goryeo",
+      "summarySv": "Wang Geon grundar Goryeo år 918. Han kommer från den lokala eliten i Gaeseong, under en tid då rivaliserande makthavare delar den koreanska halvön.",
+      "geographySv": "Den koreanska halvön",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-aks-goryeo"
+      ],
+      "selectionNote": "A specific political foundation, separate from the later consolidation in 936.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0921-jayavarman-grundar-koh-ker",
+      "date": {
+        "kind": "exact",
+        "startYear": 921,
+        "endYear": 921,
+        "displaySv": "921"
+      },
+      "titleSv": "Jayavarman IV grundar Koh Ker",
+      "summarySv": "Jayavarman IV grundar Koh Ker år 921. Han gör staden till ett maktcentrum som konkurrerar med Angkor om rollen som khmerrikets huvudstad.",
+      "geographySv": "Koh Ker, nuvarande Kambodja",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-unesco-kohker"
+      ],
+      "selectionNote": "Uses the inscription-site chronology in UNESCO's statement of Outstanding Universal Value; rival capital status is distinguished from sole capital status.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0922-ibn-fadlan-nar-volgabulgarerna",
+      "date": {
+        "kind": "exact",
+        "startYear": 922,
+        "endYear": 922,
+        "displaySv": "922",
+        "noteSv": "Källan anger avresan från Gorganj våren 309–310/922. Den ger ingen exakt ankomstdag i den lästa passagen."
+      },
+      "titleSv": "Ibn Fadlan kommer till volgabulgarernas land",
+      "summarySv": "En beskickning från Bagdad, med Ibn Fadlan bland deltagarna, reser genom stäppen till volgabulgarernas land år 922. Härskaren Jafar ibn Abdallah tar emot dem vid området kring Volgas och Kamas sammanflöde.",
+      "geographySv": "Volga–Kamaområdet, nuvarande Ryssland",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-fadlan"
+      ],
+      "selectionNote": "A documented diplomatic journey connects the Abbasid court, Muslim Central Asia and the Volga region; no conversion of the entire population is claimed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0929-abd-al-rahman-utropar-sig-till-kalif",
+      "date": {
+        "kind": "exact",
+        "startYear": 929,
+        "endYear": 929,
+        "displaySv": "929"
+      },
+      "titleSv": "Abd al-Rahman III utropar sig till kalif",
+      "summarySv": "Abd al-Rahman III utropar sig till kalif år 929. Han gör därmed anspråk på kaliftiteln i den västra delen av den muslimska världen.",
+      "geographySv": "Córdoba, al-Andalus, nuvarande Spanien",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e0900-west-cordoba"
+      ],
+      "selectionNote": "A major change in the ruler's claimed religious and political authority, explicitly dated by the museum record.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0930-alltinget-grundas-pa-island",
+      "date": {
+        "kind": "approximate",
+        "startYear": 930,
+        "endYear": 930,
+        "displaySv": "Cirka 930",
+        "noteSv": "Unescos beskrivning anger 930, medan avsnittet om världsarvets värde skriver omkring 930. Dateringen återges därför som ungefärlig."
+      },
+      "titleSv": "Islänningarna grundar alltinget vid Thingvellir",
+      "summarySv": "Islänningarna grundar alltinget vid Thingvellir omkring 930. Deltagarna möts under bar himmel för att stifta lagar och avgöra tvister.",
+      "geographySv": "Thingvellir, Island",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-althing"
+      ],
+      "selectionNote": "An institutional foundation broadens the political forms represented. UNESCO gives both 930 and around 930; retain the qualified version.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0930-karmaterna-angriper-mecka",
+      "date": {
+        "kind": "exact",
+        "startYear": 930,
+        "endYear": 930,
+        "displaySv": "930"
+      },
+      "titleSv": "Karmaterna angriper Mecka och för bort Svarta stenen",
+      "summarySv": "Abu Tahirs karmater angriper Mecka under vallfärden år 930. De dödar pilgrimer och invånare och för Kabahelgedomens Svarta sten till sin huvudstad al-Ahsa.",
+      "geographySv": "Mecka och al-Ahsa, Arabiska halvön",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-qarmatians"
+      ],
+      "selectionNote": "A major assault on a pilgrimage center with consequences across the Islamic world; no casualty count or exact day is inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0932-feng-tao-trycker-konfucianska-klassiker",
+      "date": {
+        "kind": "range",
+        "startYear": 932,
+        "endYear": 953,
+        "displaySv": "932–953",
+        "noteSv": "Källan daterar framställningen till hela intervallet. År 932 är projektets början, inte dess slutår."
+      },
+      "titleSv": "Feng Tao framställer en trätryckt utgåva av konfucianska klassiker",
+      "summarySv": "Feng Tao framställer en fullständig trätryckt utgåva av de konfucianska klassikerna under åren 932–953. Tryckarna använder träblock för att mångfaldiga texterna.",
+      "geographySv": "Kina",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-princeton-china"
+      ],
+      "selectionNote": "A bounded printing project, distinct from the dated Diamond Sutra in 868; no movable type is claimed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0936-abd-al-rahman-grundar-madinat-al-zahra",
+      "date": {
+        "kind": "disputed",
+        "startYear": 936,
+        "endYear": 940,
+        "displaySv": "Omtvistat: 936 eller 940",
+        "noteSv": "Det spanska skyddsbeslutet anger 936. Den arkeologiska rapporten bevarar alternativen 936 och 940, vilket intervallet återger."
+      },
+      "titleSv": "Abd al-Rahman III grundar Madinat al-Zahra",
+      "summarySv": "Abd al-Rahman III låter bygga Madinat al-Zahra som en ny huvudstad för kalifatet. Han väljer en plats väster om Córdoba, vid Sierra Morena. Arkeologerna anger 936 eller 940 för grundläggningen.",
+      "geographySv": "Madinat al-Zahra, al-Andalus, nuvarande Spanien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-zahra-boe",
+        "e0900-west-zahra-archaeology"
+      ],
+      "selectionNote": "A new palace city represents a distinct building and court project, separate from the caliphal title assumed in 929.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0936-wang-geon-enar-de-senare-tre-rikena",
+      "date": {
+        "kind": "exact",
+        "startYear": 936,
+        "endYear": 936,
+        "displaySv": "936"
+      },
+      "titleSv": "Wang Geon enar de senare tre rikena",
+      "summarySv": "Wang Geon fullbordar enandet av de senare tre rikena år 936. Han har knutit regionala eliter till Goryeo och fört en politik som gynnar Silla och motarbetar Senare Baekje.",
+      "geographySv": "Den koreanska halvön",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-aks-goryeo"
+      ],
+      "selectionNote": "Regional consolidation distinct from the 918 foundation; no claim to the entire modern peninsula or an exact battle day.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0937-athelstan-segrar-vid-brunanburh",
+      "date": {
+        "kind": "exact",
+        "startYear": 937,
+        "endYear": 937,
+        "displaySv": "937"
+      },
+      "titleSv": "Athelstan besegrar en allians vid Brunanburh",
+      "summarySv": "Athelstan besegrar en invasionshär vid Brunanburh år 937. Mot honom står den skotske kungen och hans allierade från Dublin.",
+      "geographySv": "Brunanburh, Brittiska öarna; platsen är osäker",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-brunanburh",
+        "e0900-west-brunanburh-site"
+      ],
+      "selectionNote": "A major regional battle; the event does not choose a disputed modern battlefield location.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0938-ngo-quyen-segrar-vid-bach-dang",
+      "date": {
+        "kind": "exact",
+        "startYear": 938,
+        "endYear": 938,
+        "displaySv": "938"
+      },
+      "titleSv": "Ngo Quyen segrar vid Bach Dang",
+      "summarySv": "Ngo Quyen vinner slaget vid floden Bach Dang år 938. Med segern avslutar han perioden av kinesiskt dynastiskt styre och inleder en tid av självständighet i området.",
+      "geographySv": "Bach Dang, nuvarande norra Vietnam",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-vnmh-bachdang"
+      ],
+      "selectionNote": "A specific regional military turning point. No unsupported day, stake tactic, or modern territorial border is added.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0944-khmerhovet-atervander-till-angkor",
+      "date": {
+        "kind": "exact",
+        "startYear": 944,
+        "endYear": 944,
+        "displaySv": "944"
+      },
+      "titleSv": "Khmerrikets härskare återför maktcentrum till Angkor",
+      "summarySv": "Khmerrikets härskare återför rikets politiska centrum till Angkor år 944. De hade dessförinnan haft Koh Ker som enda huvudstad sedan 928.",
+      "geographySv": "Angkor och Koh Ker, nuvarande Kambodja",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-unesco-kohker"
+      ],
+      "selectionNote": "The return of political primacy is a distinct act; no abandonment of Koh Ker or destruction is inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0945-buyiderna-tar-makten-i-bagdad",
+      "date": {
+        "kind": "exact",
+        "startYear": 945,
+        "endYear": 945,
+        "displaySv": "19 december 945",
+        "noteSv": "Iranica anger den 11 jumada I 334 och motsvarigheten 19 december 945. Datumet återges som källan anger det; ingen ny kalenderomräkning görs."
+      },
+      "titleSv": "Ahmad ibn Buya går in i Bagdad",
+      "summarySv": "Ahmad ibn Buya går in i Bagdad utan strid den 19 december 945. Kalifen ger honom ämbetet amir al-umara och hederstiteln Muizz al-Dawla.",
+      "geographySv": "Bagdad, Irak",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e0900-west-buyids"
+      ],
+      "selectionNote": "A transfer of military and executive power at the Abbasid center. The article supplies the Hijri date and the CE equivalent.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0945-fatimiderna-grundar-al-mansuriya",
+      "date": {
+        "kind": "range",
+        "startYear": 945,
+        "endYear": 948,
+        "displaySv": "945–948, osäker grundläggningstid",
+        "noteSv": "Saklys översikt anger 334–336 enligt den muslimska kalendern, motsvarande 945–948, på sidan 57. På sidan 72 anger han 336/947/948. Metropolitan Museum anger 947. Intervallet bevarar den vidaste tidsramen i forskningsöversikten; källorna förklarar inte skillnaden. Det anger osäkerheten om tidpunkten, inte en fastställd byggtid."
+      },
+      "titleSv": "Fatimiderna grundar al-Mansuriya",
+      "summarySv": "Fatimiderna anlägger huvudstaden Sabra al-Mansuriyya vid Kairouan. De ger staden en cirkelformad plan.",
+      "geographySv": "Sabra al-Mansuriyya vid Kairouan, Ifriqiya",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-recovery-sakly",
+        "e0900-west-fatimid-art"
+      ],
+      "selectionNote": "A Fatimid capital with a circular plan marks a major regional political and urban development.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0949-krishna-segrar-vid-takkolam",
+      "date": {
+        "kind": "exact",
+        "startYear": 949,
+        "endYear": 949,
+        "displaySv": "949"
+      },
+      "titleSv": "Krishna III besegrar Cholas vid Takkolam",
+      "summarySv": "Rashtrakutahärskaren Krishna III besegrar Cholas vid Takkolam nära Arkonam år 949. Han ockuperar därefter en stor del av Cholarikets norra territorium.",
+      "geographySv": "Takkolam nära Arkonam, södra Indien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-inflibnet-chola"
+      ],
+      "selectionNote": "A major Deccan–Tamil military shift; subsequent territorial occupation is not assigned a separate exact year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0950-byggare-paborjar-chan-chan",
+      "date": {
+        "kind": "approximate",
+        "startYear": 950,
+        "endYear": 950,
+        "displaySv": "Cirka 950",
+        "noteSv": "Museet anger en ungefärlig byggstart. Dateringen fastställer inget exakt grundläggningsår för Chimúriket."
+      },
+      "titleSv": "Byggare påbörjar Chan Chan",
+      "summarySv": "Byggare påbörjar Chan Chan på Perus nordkust omkring år 950. De uppför tidiga palatsområden, däribland Chayhuac, med soltorkat tegel.",
+      "geographySv": "Chan Chan, Perus nordkust",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-met-andes"
+      ],
+      "selectionNote": "A new urban construction programme distinct from Sicán's earlier rise; preserves the museum's approximate 950 date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0955-otto-segrar-pa-lechfaltet",
+      "date": {
+        "kind": "exact",
+        "startYear": 955,
+        "endYear": 955,
+        "displaySv": "10 augusti 955"
+      },
+      "titleSv": "Otto I besegrar ungrarna på Lechfältet",
+      "summarySv": "Otto I besegrar en ungersk här på Lechfältet den 10 augusti 955. Han avvärjer därmed härens infall i sitt rike.",
+      "geographySv": "Lechfältet vid Augsburg, nuvarande Tyskland",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e0900-west-otto"
+      ],
+      "selectionNote": "A battle of continental reach supported by an explicit day, month and year in the scholarly biography.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0960-harald-reser-den-stora-jellingstenen",
+      "date": {
+        "kind": "range",
+        "startYear": 960,
+        "endYear": 969,
+        "displaySv": "960-talet",
+        "noteSv": "Studien daterar stenen till 960-talet. 960–969 är hela årtiondets gränser och anger osäkerheten om tidpunkten, inte att arbetet pågick i tio år."
+      },
+      "titleSv": "Harald Blåtand reser den stora Jellingstenen",
+      "summarySv": "Harald Blåtand reser den stora runstenen i Jelling under 960-talet. Han låter ristarna förklara att han har gjort danerna kristna. Ristarna avbildar också Kristus på stenen.",
+      "geographySv": "Jelling, Danmark",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-jelling"
+      ],
+      "selectionNote": "A ruler's dated public religious claim, distinguished from the population's gradual conversion.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0960-zhao-kuangyin-grundar-songdynastin",
+      "date": {
+        "kind": "exact",
+        "startYear": 960,
+        "endYear": 960,
+        "displaySv": "960"
+      },
+      "titleSv": "Zhao Kuangyin grundar Songdynastin",
+      "summarySv": "Zhao Kuangyin blir kejsare och grundar Songdynastin år 960 med stöd av sina trupper. Han upprättar sitt huvudstadssäte i Kaifeng.",
+      "geographySv": "Kaifeng och norra Kina",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e0900-east-princeton-china",
+        "e0900-east-met-song"
+      ],
+      "selectionNote": "The Met independently supports the 960 start and Kaifeng capital; Princeton supports the accession. Its erroneous 960 reunification claim is excluded.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0962-otto-krons-till-kejsare",
+      "date": {
+        "kind": "exact",
+        "startYear": 962,
+        "endYear": 962,
+        "displaySv": "2 februari 962"
+      },
+      "titleSv": "Johannes XII kröner Otto I till kejsare",
+      "summarySv": "Påven Johannes XII smörjer och kröner Otto I till kejsare den 2 februari 962. Otto förnyar därmed det västliga kejsarämbetet i den karolingiska traditionen.",
+      "geographySv": "Rom, Italien",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e0900-west-otto"
+      ],
+      "selectionNote": "The renewal of western emperorship warrants a separate event from the earlier battle.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0964-al-sufi-skriver-sin-stjarnkatalog",
+      "date": {
+        "kind": "exact",
+        "startYear": 964,
+        "endYear": 964,
+        "displaySv": "964"
+      },
+      "titleSv": "Al-Sufi skriver sin stjärnkatalog",
+      "summarySv": "Abd al-Rahman al-Sufi skriver en arabisk katalog över stjärnbilder år 964. Han bygger delar av arbetet på grekiska förebilder och verkar som hovastronom hos den buyidiske härskaren Adud al-Dawla.",
+      "geographySv": "Iran",
+      "category": "discovery",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-sufi"
+      ],
+      "selectionNote": "A court-linked scientific work supplies a non-military event. The source distinguishes the original 964 catalogue from its displayed 1675 copy.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0966-mieszko-later-dopa-sig",
+      "date": {
+        "kind": "disputed",
+        "startYear": 966,
+        "endYear": 968,
+        "displaySv": "Omtvistat: 966 eller 968",
+        "noteSv": "Det polska historiska museet anger att de skriftliga källorna saknar exakt dag. Intervallet bevarar de alternativa årtalen 966 och 968."
+      },
+      "titleSv": "Mieszko I låter döpa sig",
+      "summarySv": "Mieszko I lämnar den slaviska gudatron och tar emot det kristna dopet. De främsta källorna daterar dopet till 966, medan Thietmar av Merseburg lämnar valet mellan 966 och 968 öppet.",
+      "geographySv": "Mieszkos rike, nuvarande Polen",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-mieszko"
+      ],
+      "selectionNote": "A ruler's conversion has major regional importance. Preserve the museum's explicit report of competing years and omit the commemorative April date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0967-en-kunglig-guru-bekostar-banteay-srei",
+      "date": {
+        "kind": "approximate",
+        "startYear": 967,
+        "endYear": 967,
+        "displaySv": "Cirka 967",
+        "noteSv": "Smithsonian daterar templet till omkring 967. Denna post använder monumentets ungefärliga datering och anger ingen exakt invigningsdag."
+      },
+      "titleSv": "En kunglig guru bekostar Banteay Srei",
+      "summarySv": "En kunglig guru bekostar templet Banteay Srei omkring år 967. Byggarna använder rosa sandsten och laterit och uppför den centrala helgedomen åt Shiva.",
+      "geographySv": "Angkorområdet, nuvarande Kambodja",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-smithsonian-banteay"
+      ],
+      "selectionNote": "Nonroyal religious patronage and temple construction; the opened museum's approximate monument date is retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0969-fatimiderna-erovrar-egypten",
+      "date": {
+        "kind": "exact",
+        "startYear": 969,
+        "endYear": 969,
+        "displaySv": "969"
+      },
+      "titleSv": "Fatimiderna erövrar Egypten och grundar Kairo",
+      "summarySv": "Fatimiderna erövrar Egypten år 969. De grundar Kairo, al-Qahira, som en ny stad för sitt styre.",
+      "geographySv": "Egypten och Kairo",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e0900-west-fatimid-art"
+      ],
+      "selectionNote": "A major conquest and its new court city are combined as one event; the later capital transfer is not repeated as a second record.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0969-fatimiderna-grundar-al-azhar",
+      "date": {
+        "kind": "range",
+        "startYear": 969,
+        "endYear": 973,
+        "displaySv": "969–973",
+        "noteSv": "Museet anger 969–73 för grundläggningen. Händelsen gäller moskén; texten daterar inte ett senare universitet till samma år."
+      },
+      "titleSv": "Fatimiderna grundar al-Azharmoskén",
+      "summarySv": "Fatimiderna grundar al-Azhar som sin första församlingsmoské i Kairo. De uppför den i samband med grundläggningen av den nya staden.",
+      "geographySv": "Kairo, Egypten",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-fatimid-art"
+      ],
+      "selectionNote": "A specific religious foundation warrants a record distinct from the military conquest. The museum gives a multi-year foundation span.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0972-theophanu-gifter-sig-med-otto",
+      "date": {
+        "kind": "exact",
+        "startYear": 972,
+        "endYear": 972,
+        "displaySv": "14 april 972"
+      },
+      "titleSv": "Theophanu gifter sig med Otto II och blir kejsarinna",
+      "summarySv": "Påven Johannes XIII förrättar vigseln mellan Theophanu och Otto II i Rom den 14 april 972. Han kröner därefter Theophanu till kejsarinna. Hon har kommit från det bysantinska kejsarhovet.",
+      "geographySv": "Rom och det bysantinska kejsarhovet",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-theophanu"
+      ],
+      "selectionNote": "A diplomatic marriage joins the western imperial dynasty with a woman from the Byzantine court; no unsupported claim of purple-born status is made.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0973-tailapa-stortar-rashtrakutaharskaren",
+      "date": {
+        "kind": "exact",
+        "startYear": 973,
+        "endYear": 973,
+        "displaySv": "973"
+      },
+      "titleSv": "Tailapa II störtar Karka II",
+      "summarySv": "Tailapa II störtar Rashtrakutahärskaren Karka II år 973. Han grundar den dynasti som historikerna kallar Chalukyas av Kalyana.",
+      "geographySv": "Deccan, södra Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-inflibnet-chalukya"
+      ],
+      "selectionNote": "A documented replacement of a major regional dynasty; no claim that Kalyana already served as the capital in 973.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0977-sebuktegin-tar-ledningen-i-ghazna",
+      "date": {
+        "kind": "exact",
+        "startYear": 977,
+        "endYear": 977,
+        "displaySv": "977"
+      },
+      "titleSv": "Soldaterna i Ghazna väljer Sebüktegin till ledare",
+      "summarySv": "De turkiska soldaterna i Ghazna väljer Sebüktegin till ledare år 977. Han styr som samanidisk guvernör till namnet och utövar egen makt i praktiken. Han blir grundare av den ghaznavidiska dynastin.",
+      "geographySv": "Ghazna, nuvarande Afghanistan",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-west-sebuktegin"
+      ],
+      "selectionNote": "The source explicitly dates the soldiers' choice, avoiding a vague dynasty-wide duration or an inferred accession year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0985-nordbor-bosatter-sig-pa-gronland",
+      "date": {
+        "kind": "disputed",
+        "startYear": 985,
+        "endYear": 986,
+        "displaySv": "Omtvistat: 985 eller 986",
+        "noteSv": "NASA anger 985. Historikern Nedkvitne redovisar medeltida dateringar till både 985 och 986 och finner inget skäl att föredra något av åren. Han bedömer en ensam uppgift om 984 som ett troligt avskriftsfel. Dateringen fastställer inget byggår för varje gård."
+      },
+      "titleSv": "Nordiska bosättare kommer till Grönland",
+      "summarySv": "Nordiska bosättare kommer till Grönland år 985 eller 986. De slår sig främst ned vid fjordar nära öns sydspets. Erik den röde grundar bosättningen Brattahlid.",
+      "geographySv": "Södra Grönland",
+      "category": "migration",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-nasa-greenland",
+        "e0900-east-nedkvitne-greenland"
+      ],
+      "selectionNote": "North Atlantic settlement movement with competing medieval chronologies preserved. No initial human discovery is claimed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0985-rajaraja-blir-cholaharskare",
+      "date": {
+        "kind": "exact",
+        "startYear": 985,
+        "endYear": 985,
+        "displaySv": "985"
+      },
+      "titleSv": "Arumolivarman blir Cholahärskare som Rajaraja I",
+      "summarySv": "Arumolivarman bestiger Cholatronen år 985 och tar härskarnamnet Rajaraja I. Han är son till Parantaka II.",
+      "geographySv": "Cholariket, södra Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-inflibnet-chola"
+      ],
+      "selectionNote": "The accession starts a major Chola reign; later conquests and eleventh-century temple completion are not moved into 985.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0987-hugo-capet-krons-till-kung",
+      "date": {
+        "kind": "exact",
+        "startYear": 987,
+        "endYear": 987,
+        "displaySv": "987",
+        "noteSv": "Källan jämför två datum inom samma år. Året 987 är gemensamt; därför anges ingen bestämd dag i datumfältet."
+      },
+      "titleSv": "Hugo Capet kröns till kung",
+      "summarySv": "Hugo Capet tar emot kungakröningen år 987. De bevarade texterna ger olika dagar, den 1 juni eller den 3 juli, och forskare har diskuterat om han genomgick två kröningar.",
+      "geographySv": "Det västfrankiska riket, nuvarande Frankrike",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e0900-west-capet"
+      ],
+      "selectionNote": "The shared year is secure in the cited discussion. Day-level disagreement does not justify inventing a multi-year disputed range.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0988-invanares-dop-i-kyiv",
+      "date": {
+        "kind": "exact",
+        "startYear": 988,
+        "endYear": 988,
+        "displaySv": "988",
+        "noteSv": "Uppslagsverket anger den 1 augusti 988 för stadsbornas dop men förklarar inte kalendern. Händelsen återger därför bara året, utan omräknad dag."
+      },
+      "titleSv": "Invånarna i Kyiv tar emot det kristna dopet",
+      "summarySv": "Invånare i Kyiv tar emot det kristna dopet år 988 efter furst Vladimirs omvändelse. Befolkningen i resten av Rus övergår till kristendomen under en längre tid.",
+      "geographySv": "Kyiv, nuvarande Ukraina",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "e0900-west-kyiv"
+      ],
+      "selectionNote": "The source separates the ruler's own baptism in 987 from the city's mass baptism in 988. The record uses the year alone and does not add a calendar conversion.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0990-byggare-paborjar-chetro-ketl",
+      "date": {
+        "kind": "approximate",
+        "startYear": 990,
+        "endYear": 990,
+        "displaySv": "Cirka 990",
+        "noteSv": "National Park Service anger en uppskattad byggstart omkring 990 utifrån grupper av årsringdateringar. De stora senare utbyggnaderna hör till 1000-talet."
+      },
+      "titleSv": "Byggare påbörjar Chetro Ketl",
+      "summarySv": "Byggare påbörjar Chetro Ketl i Chaco Canyon omkring år 990 enligt National Park Services sammanställning av årsringdateringar. Arkeologerna har samlat omkring 380 sådana dateringar från platsen enligt en äldre sammanställning i 1978 års nomineringshandling.",
+      "geographySv": "Chaco Canyon, nuvarande New Mexico i USA",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e0900-east-nps-chetro"
+      ],
+      "selectionNote": "A separate great-house construction start, distinct from E800 Pueblo Bonito; the 1978 source age and approximate interpretation are explicit.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0993-krukmakare-tillverkar-karl-for-kungliga-forfader",
+      "date": {
+        "kind": "exact",
+        "startYear": 993,
+        "endYear": 993,
+        "displaySv": "993",
+        "noteSv": "Museiforskaren anger att kärlets inskrift bär tillverkningsåret 993 och identifierar dess användning i den kungliga förfädershelgedomen."
+      },
+      "titleSv": "Krukmakare tillverkar ett kärl för Goryeos kungliga förfädershelgedom",
+      "summarySv": "Krukmakare i Goryeo tillverkar ett kärl som bär årtalet 993. I inskriften anger de att kärlet ska användas i den kungliga förfädershelgedomen.",
+      "geographySv": "Goryeo, den koreanska halvön",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "e0900-east-cleveland-celadon"
+      ],
+      "selectionNote": "An inscribed ritual object supplies a securely dated material-culture event; it is not generalized into the invention of Korean celadon.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-0999-karakhaniderna-intar-bukhara",
+      "date": {
+        "kind": "exact",
+        "startYear": 999,
+        "endYear": 999,
+        "displaySv": "Oktober 999",
+        "noteSv": "Källan anger dhu al-qada 389 och motsvarigheten oktober 999; månaden återges enligt källans omräkning."
+      },
+      "titleSv": "Karakhaniderna intar Bukhara",
+      "summarySv": "Ilig Nasr ibn Ali intar Bukhara utan motstånd i oktober 999. Han avsätter den samanidiske härskaren Abd al-Malik och införlivar Transoxanien med sitt välde. En släkting till den avsatte härskaren fortsätter motståndet i ytterligare fem år.",
+      "geographySv": "Bukhara och Transoxanien, Centralasien",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e0900-west-bukhara"
+      ],
+      "selectionNote": "The Qarakhanid occupation ended effective Samanid government in Transoxiana, while the text preserves the subsequent resistance rather than asserting an instantaneous end to all Samanid activity.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    }
+  ]
 }

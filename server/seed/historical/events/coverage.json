@@ -3,9 +3,27 @@
   "ranges": [
     {
       "startYear": -3300,
-      "endYear": 1200,
+      "endYear": 799,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": 800,
+      "endYear": 899,
+      "status": "partial",
+      "note": "44 independently checked event records cover parts of Europe, the Middle East and North Africa, the steppe and Central Asia, sub-Saharan Africa, East Asia, South Asia, Southeast Asia and the Americas. Oceania has no retained event. Japan and court/religious history are overrepresented; much of Africa, maritime Southeast Asia, northern South Asia, the Americas and other regions need further work. Ife (circa 800–1000) and Igbo-Ukwu (disputed ninth- and tenth-century dates, numeric span 800–999) are single uncertain records whose spans cross the batch boundary. Their presence does not establish researched coverage of later years. Empty years are research gaps, not evidence that no event occurred."
+    },
+    {
+      "startYear": 900,
+      "endYear": 999,
+      "status": "partial",
+      "note": "44 independently checked event records cover selected acts in Europe, the Middle East and North Africa, the steppe and Central Asia, southern Africa, East Asia, South Asia, Southeast Asia and the Americas including Greenland. Oceania and Japan have no retained event; sub-Saharan Africa has only Schroda. Northern and eastern South Asia, maritime Southeast Asia, much of Africa and the Americas, and other regions need further research. Shanga and the proposed Kokinshu completion event are withheld because their submitted dates remain unresolved. Tula retains its full circa 900–1150 phase as one record; this does not establish researched coverage of later years. Empty years are research gaps, not evidence that no event occurred."
+    },
+    {
+      "startYear": 1000,
+      "endYear": 1200,
+      "status": "unresearched",
+      "note": "Annual research has not started in this catalog. Earlier records whose date ranges extend into these years do not establish researched annual coverage."
     },
     {
       "startYear": 1201,
