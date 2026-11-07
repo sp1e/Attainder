@@ -39,6 +39,12 @@
     },
     {
       "startYear": 1300,
+      "endYear": 1399,
+      "status": "partial",
+      "note": "62 independently checked event records cover selected acts in Europe, the Middle East and North Africa, the steppe and Central Asia, sub-Saharan Africa, East Asia, South Asia, Southeast Asia and central Mexico. Oceania has no retained event. The strict sub-Saharan selection has Husuni Kubwa and two Ibn Battuta visits; Mansa Musa is counted at his Cairo visit. Most African and American regions, maritime Southeast Asia, science, technology, social history and environmental events need more research. Tenochtitlan retains an approximate foundation tradition distinct from earlier occupation; Tlatelolco and Acamapichtli retain competing chronologies. Luang Prabang dates capital status, not foundation. Long phases remain single records. Empty years are research gaps."
+    },
+    {
+      "startYear": 1400,
       "endYear": 1530,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog for events beginning in these years. Earlier records whose ranges extend into later years do not establish researched annual coverage."
