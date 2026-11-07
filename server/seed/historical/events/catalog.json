@@ -2587,6 +2587,825 @@
       "reuseTerms": "Reference only; no source prose or images redistributed",
       "scopedClaim": "Imperial edict promulgated the new Mongolian script devised by Phags-pa at Kublai’s request.",
       "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1300-east-nios-delhi",
+      "title": "Establishment and Expansion of the Delhi Sultanate, History Lesson 9",
+      "institution": "National Institute of Open Schooling, Government of India",
+      "url": "https://digital.nios.ac.in/content/315en/315_History_Eng_Lesson9.pdf",
+      "locator": "Printed p.142 (PDF p.10), Chittor paragraph; p.144 (PDF p.12), §9.6 opening; p.148 (PDF p.16), Attacks by Mongols and others",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "AD 1303; AD 1320; AD 1398",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-zhu-shijie",
+      "title": "Zhu Shijie",
+      "institution": "J. J. O'Connor and E. F. Robertson, MacTutor, University of St Andrews",
+      "url": "https://mathshistory.st-andrews.ac.uk/Biographies/Zhu_Shijie/",
+      "locator": "Biography, paragraph naming both books; later paragraphs on 1303 prefaces and polynomial methods",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1303; two surviving prefaces dated 1303; author life dates approximate",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-hammers-nongshu",
+      "title": "Pictures of Tilling and Weaving: Art, Labor, and Technology in Song and Yuan China",
+      "institution": "Roslyn Lee Hammers; Hong Kong University Press, 2011",
+      "url": "https://hkupress.hku.hk/image/catalog/pdf-preview/9789888028634.pdf",
+      "locator": "Printed p.267, chapter five note 12 (preview PDF p.45)",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Wang Zhen's own preface: 1313; Dai Biaoyuan preface: 1303; possible earlier composition 1302–1303 discussed",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-met-daulatabad",
+      "title": "South Asia: North, 1000–1400 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/07/ssn.html",
+      "locator": "Key Events, Tughluq cities paragraph ending with temporary Deogiri capital transfer",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Around 1327",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-met-japan",
+      "title": "Japan, 1000–1400 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/07/eaj.html",
+      "locator": "Key Events, 1333 and 1336 entries",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1333; 1336; rival courts until 1392",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-tenryuji",
+      "title": "About Tenryu-ji",
+      "institution": "Tenryu-ji, Rinzai Zen temple institution",
+      "url": "https://www.tenryuji.com/en/about/",
+      "locator": "Tenryu-ji / Establishment, first two paragraphs",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Established 1339; consecrated 1345",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-met-bahmani",
+      "title": "South Asia: South, 1000–1400 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/07/sss.html",
+      "locator": "Key Events,1347 entry",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1347",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-met-china",
+      "title": "China, 1000–1400 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/07/eac.html",
+      "locator": "Overview; Key Events ca.1350 and 1368 entries",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "ca.1350;1368",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-unesco-ayutthaya",
+      "title": "Historic City of Ayutthaya",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/576/",
+      "locator": "English Description first paragraph; Outstanding Universal Value / Brief synthesis opening",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "c. 1350 in Description; 1350 in Brief synthesis",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-ayutthaya-province",
+      "title": "การกำเนิดอยุธยา (The emergence of Ayutthaya)",
+      "institution": "Phra Nakhon Si Ayutthaya provincial government",
+      "url": "https://go.ayutthaya.go.th/ข่าวประชาสัมพันธ์/highlight/การกำเนิดอยุธยา/",
+      "locator": "Final substantive paragraph, calendar discussion ending with explicit CE 1351",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "ศักราช 712; 4 มีนาคม พ.ศ. 1893; 12 มีนาคม พ.ศ. 1894 (ค.ศ. 1351), as supplied by the source",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-banglapedia-iliyas",
+      "title": "Iliyas Shah",
+      "institution": "Banglapedia, Asiatic Society of Bangladesh",
+      "url": "https://en.banglapedia.org/index.php?title=Iliyas_Shah",
+      "locator": "Paragraph on eastern Bengal campaign and Sonargaon, following Nepal campaign",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1352",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-unesco-phutthaisawan",
+      "title": "UNESCO field report: Demystifying ancient Ayutthaya",
+      "institution": "UNESCO",
+      "url": "https://www.unesco.org/en/articles/unesco-field-report-demystifying-ancient-ayutthaya",
+      "locator": "Wat Phutthaisawan: A cosmos of details, opening paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Commissioned in 1353",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-unesco-luang-prabang",
+      "title": "Periodic Report, Town of Luang Prabang,2003",
+      "institution": "Lao People's Democratic Republic, state-party report hosted by UNESCO",
+      "url": "https://whc.unesco.org/document/163006",
+      "locator": "SectionII.2 Statement of significance, box 011, printed p.6 / PDF p.6",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Capital of Lan Xang from 1353–1560",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-aist-nankai",
+      "title": "7世紀末と9世紀末の東海地震の痕跡を発見 (Evidence of late seventh- and ninth-century Tokai earthquakes)",
+      "institution": "National Institute of Advanced Industrial Science and Technology, Japan",
+      "url": "https://www.aist.go.jp/aist_j/press_release/pr2019/pr20191119/pr20191119.html",
+      "locator": "Research results paragraph listing confirmed Nankai earthquakes; glossary 1361",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1361年; glossary discusses 1361年7月24日 for Tokai, two days before Nankai",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-gsi-nankai",
+      "title": "自然災害伝承碑: Representative cases before the seventeenth century",
+      "institution": "Geospatial Information Authority of Japan",
+      "url": "https://web1.gsi.go.jp/bousaichiri/bousaichiri41071.html",
+      "locator": "正平南海地震 / 東由岐康暦碑, disaster-type and伝承内容 fields",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "康安元年6月24日（1361年7月26日）; memorial erection 1380",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-unesco-nagarakretagama",
+      "title": "Nāgarakrĕtāgāma or Description of the Country (1365 AD), nomination form",
+      "institution": "Indonesian National Committee on Memory of the World; UNESCO",
+      "url": "https://media.unesco.org/sites/default/files/webform/mow001/indonesia_nagarakretagama.pdf",
+      "locator": "§3.2.1–3.2.2, PDF pp.2–3, especially composition chronology on p.3",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Çaka 1287; source supplies30th of11th month 1365 Julian;1365 AD",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-bm-ming-note",
+      "title": "Great Ming Circulating Treasure Note",
+      "institution": "British Museum, authored collection record on Google Arts & Culture",
+      "url": "https://artsandculture.google.com/asset/great-ming-circulating-treasure-note/iAFKr9bi4LqIRA?hl=en",
+      "locator": "Description opening paragraph; details registration 1942,0805.1",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Produced from 1375; object dated 1375/1375",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-unesco-jikji",
+      "title": "Buljo jikji simche yo jeol (vol.II), Memory of the World nomination",
+      "institution": "Republic of Korea nomination hosted by UNESCO",
+      "url": "https://media.unesco.org/sites/default/files/webform/mow001/korea_buljo_jikj_simch_yo_jeol.pdf",
+      "locator": "Introduction PDF p.1; §3.1 PDF pp.2–3; metal-type publication paragraph PDF p.4",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "July 1377 in introduction; seventh lunar month of 1377 in §3.1; woodblock edition 1378 separately",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-met-korea",
+      "title": "Korea, 1000–1400 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/07/eak.html",
+      "locator": "Key Events, late14th-century entry (1388 sentence) and 1392 entry",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1388;1392; capital move mentioned under 1392 entry without separate date",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-princeton-japan",
+      "title": "Japan Timeline",
+      "institution": "Princeton University Art Museum",
+      "url": "https://static.artmuseum.princeton.edu/asian-art/japan/timeline",
+      "locator": "Muromachi(Ashikaga) period, paragraph resolving Northern/Southern Court conflict",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Conflict resolved in 1392",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-seoul-history",
+      "title": "History of Seoul",
+      "institution": "Seoul Metropolitan Government",
+      "url": "https://english.seoul.go.kr/seoul-views/meaning-of-seoul/1-history/",
+      "locator": "Seoul, reborn as the capital of Joseon, first paragraph; earlier name-history paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1394 capital designation;1395 completion of Gyeongbokgung,Jongmyo andSajikdan",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-kitayama",
+      "title": "About Kinkaku-ji",
+      "institution": "Shokoku-ji religious corporation",
+      "url": "https://www.shokoku-ji.jp/en/kinkakuji/about/",
+      "locator": "Yoshimitsu and the Golden Pavilion, final paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Began construction in 1397; temple conversion afterYoshimitsu's death separately",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-unesco-ho-citadel",
+      "title": "Citadel of the Ho Dynasty",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/1358/",
+      "locator": "Outstanding Universal Value / Brief synthesis first two paragraphs",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Built in 1397; capital status 1398–1407 separately",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-east-unesco-luang-prabang-geography",
+      "title": "Town of Luang Prabang",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/479/",
+      "locator": "Outstanding Universal Value / Brief synthesis, first two paragraphs: Mekong/Nam Khan peninsula and royal-capital context",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "from the 14th to the 16th century",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1300-west-nrs-scotland",
+      "title": "The Declaration of Arbroath",
+      "institution": "National Records of Scotland",
+      "url": "https://www.nrscotland.gov.uk/learning-and-events/the-declaration-of-arbroath/",
+      "locator": "Opening description and dated caption; Scottish Independence paragraphs on 1306 and 1328",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1306; 6 April 1320; 1328. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Robert Bruce seized the throne in 1306; the 1320 letter sought recognition; Scottish independence was acknowledged in 1328.",
+      "chronology": {
+        "asWorded": [
+          "1306",
+          "6 April 1320",
+          "1328"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-nts-bannockburn",
+      "title": "Bannockburn Rising, historical introduction",
+      "institution": "National Trust for Scotland",
+      "url": "https://www.nts.org.uk/campaigns/bannockburn-rising",
+      "locator": "Opening historical paragraph; Why Bannockburn needs your help, June 1314",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1314; June 1314. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Bruce defeated Edward II at Bannockburn in 1314.",
+      "chronology": {
+        "asWorded": [
+          "1314",
+          "June 1314"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-palais-avignon",
+      "title": "9 papes à Avignon",
+      "institution": "Palais des Papes / Avignon Tourisme, heritage institution",
+      "url": "https://palais-des-papes.com/9-papes-a-avignon/",
+      "locator": "Clément V paragraph; Grégoire XI paragraph; Grand Schisme and Clément VII paragraphs",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1309; début de l’année 1377; 1378-1417; 1378-1394. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Clement V came to Avignon in 1309; Gregory XI returned to Rome in 1377; dissident cardinals elected Clement VII against Urban VI in 1378.",
+      "chronology": {
+        "asWorded": [
+          "1309",
+          "début de l’année 1377",
+          "1378-1417",
+          "1378-1394"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-padova-giotto",
+      "title": "The Scrovegni Chapel",
+      "institution": "City of Padova, civic museum chapel",
+      "url": "https://www.cappelladegliscrovegni.it/index.php/en/la-cappella-di-giotto",
+      "locator": "The Scrovegni Chapel, first paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: between 1303 and 1305. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Giotto frescoed the chapel for Enrico Scrovegni, with scenes of Mary, Christ and Last Judgement.",
+      "chronology": {
+        "asWorded": [
+          "between 1303 and 1305"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-prague-charter",
+      "title": "Foundation Charter of Charles University in Prague on 7 April 1348",
+      "institution": "Charles University, institutional transcription/translation",
+      "url": "https://cuni.cz/UKEN-116.html",
+      "locator": "Foundation Charter: establishment paragraph and closing date clause",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded in the institutional heading: 7 April 1348. The charter closing clause writes the same date in words; no calendar conversion calculated.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Charles establishes a Studium generale at Prague and promises protection and privileges to its scholars.",
+      "chronology": {
+        "asWorded": [
+          "7 April 1348"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-krakow-history",
+      "title": "History: A brief history of Jagiellonian University",
+      "institution": "Jagiellonian University, official student-government information",
+      "url": "https://info.samorzad.uj.edu.pl/en/university/history/",
+      "locator": "A brief history, first paragraph; The Origins of the University, 12 May 1364 entry",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 12 May 1364. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Casimir III founded a General Study at Krakow and endowed faculties of law, medicine and liberal arts.",
+      "chronology": {
+        "asWorded": [
+          "12 May 1364"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-london-revolt",
+      "title": "How the Peasants’ Revolt rocked medieval London",
+      "institution": "London Museum",
+      "url": "https://www.londonmuseum.org.uk/collections/london-stories/how-peasants-revolt-rocked-medieval-london/",
+      "locator": "Violent rebellion comes to London; Why did peasants revolt in 1381; How did revolt start/end",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1348 and 1349; 1351; spring of 1381; 11–15 June 1381. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "The museum dates the plague 1348–1349, wage-restricting law 1351 and poll-tax revolt 1381, including London violence and Tyler’s death.",
+      "chronology": {
+        "asWorded": [
+          "1348 and 1349",
+          "1351",
+          "spring of 1381",
+          "11–15 June 1381"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-royal-armouries",
+      "title": "The Hundred Years’ War 1337–1453",
+      "institution": "Royal Armouries, national museum",
+      "url": "https://royalarmouries.org/objects-and-stories/stories/the-hundred-years-war-1337-1453",
+      "locator": "Introduction 1337 invasion; Battle of Crécy; Battle of Poitiers",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1337; 26 August 1346; 19 September 1356. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Philip VI invaded Edward III’s French lands in 1337; English forces won at Crécy and Poitiers; John II was captured.",
+      "chronology": {
+        "asWorded": [
+          "1337",
+          "26 August 1346",
+          "19 September 1356"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-golden-bull",
+      "title": "The Golden Bull",
+      "institution": "Austrian Commission for UNESCO, documentary heritage",
+      "url": "https://www.unesco.at/en/communication/documentary-heritage/memory-of-the-world-in-austria/the-golden-bull",
+      "locator": "The Golden Bull, paragraph beginning Emperor Charles IV",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1356. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Charles IV recorded royal-election rules and electors’ rights, excluding papal co-decision.",
+      "chronology": {
+        "asWorded": [
+          "1356"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-kalmar",
+      "title": "Kalmar sommaren 1397",
+      "institution": "Kalmar läns museum, Möt medeltiden",
+      "url": "https://medeltiden.kalmarlansmuseum.se/samhallet/kalmarunionen/kalmar-sommaren-1397/",
+      "locator": "Main historical narrative: Nikolaikyrkan coronation and subsequent deliberations",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 17 juni; 1397. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Erik was crowned in Kalmar on 17June 1397; nobles discussed the union’s terms.",
+      "chronology": {
+        "asWorded": [
+          "17 juni",
+          "1397"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual main page body recovered with live Firecrawl after TLS hostname failure; public read-only fetch used skipTlsVerification"
+    },
+    {
+      "id": "e1300-west-mamluk-art",
+      "title": "Suzan Yalman, The Art of the Mamluk Period 1250–1517",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/essays/the-art-of-the-mamluk-period-1250-1517",
+      "locator": "Art and Architecture under the Bahri Mamluks, paragraph listing Hasan complex",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: begun 1356. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "The immense Hasan religious complex in Cairo was begun in 1356.",
+      "chronology": {
+        "asWorded": [
+          "begun 1356"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-ghazan",
+      "title": "Reuven Amitai, ḠĀZĀN KHAN, MAḤMŪD",
+      "institution": "Encyclopaedia Iranica, 2000; updated 2013",
+      "url": "https://www.iranicaonline.org/articles/gazan-khan-mahmud/",
+      "locator": "Syrian campaigns paragraph beginning Finally in 702/1303",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 702/1303. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Mamluks decisively defeated Ghazan’s invading forces at Marj al-Soffar south of Damascus; Ghazan remained near Euphrates.",
+      "chronology": {
+        "asWorded": [
+          "702/1303"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-abu-said",
+      "title": "Peter Jackson, ABŪ SAʿĪD BAHĀDOR KHAN",
+      "institution": "Encyclopaedia Iranica, 1983; updated 2018",
+      "url": "https://www.iranicaonline.org/articles/abu-said-bahador-khan/",
+      "locator": "Paragraph on last Golden Horde offensive/death; final assessment beginning At his death",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 13 Rabīʿ II 736/30 November 1335. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Abu Sa’id died in Qarabagh; absence of a close male heir led to rival dynastic claims and prolonged state disputes.",
+      "chronology": {
+        "asWorded": [
+          "13 Rabīʿ II 736/30 November 1335"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual complete article body retrieved with live Firecrawl; final death and succession passages inspected"
+    },
+    {
+      "id": "e1300-west-timurid-chronology",
+      "title": "Daniel C. Waugh, A Timurid Chronology",
+      "institution": "University of Washington faculty teaching resource, 2000",
+      "url": "https://faculty.washington.edu/dwaugh/01hist225/225chron/timurchr1.html",
+      "locator": "Chronology rows 1370, 1381, 1393, 1395–6",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1370; 1381; 1393; 1395-6. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Timur became head of Ulus Chagatay, developed Samarkand, captured Herat and Baghdad, and devastated Golden Horde cities.",
+      "chronology": {
+        "asWorded": [
+          "1370",
+          "1381",
+          "1393",
+          "1395-6"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-musa-gold",
+      "title": "The Trans-Saharan Gold Trade 7th–14th Century",
+      "institution": "The Metropolitan Museum of Art, Department of Arts of Africa, Oceania and the Americas, 2000",
+      "url": "https://www.metmuseum.org/essays/the-trans-saharan-gold-trade-7th-14th-century",
+      "locator": "Gold Trade and the Mali Empire, paragraph on Mansa Musa’s Cairo arrival",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1324–25. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Mansa Musa arrived in Cairo with substantial gold and disturbed its gold market; no entourage or tonnage estimate is exported.",
+      "chronology": {
+        "asWorded": [
+          "1324–25"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-ibn-battuta",
+      "title": "Ibn Battuta: Travels in Asia and Africa 1325–1354, selected translation",
+      "institution": "Fordham University, Internet History Sourcebooks Project",
+      "url": "https://sourcebooks.fordham.edu/source/1354-ibnbattuta.asp",
+      "locator": "Opening departure passage, p 43; Mali arrival/departure passage, pages in final Mali section",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 2nd Rajab 725 [June 14, 1325]; 14th Jumada I, 53 [AH 753, June 28, 1352]. The translated edition supplies the bracketed equivalents; its calendar convention is not independently resolved. No conversion calculated.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Ibn Battuta reports leaving Tangier for pilgrimage in 1325 and arrival at the city of Mali in 1352.",
+      "chronology": {
+        "asWorded": [
+          "2nd Rajab 725 [June 14, 1325]",
+          "14th Jumada I, 53 [AH 753, June 28, 1352]"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-kilwa",
+      "title": "Ruins of Kilwa Kisiwani and Ruins of Songo Mnara",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/144/",
+      "locator": "Outstanding Universal Value, Brief synthesis: first paragraph and standing-ruins/Husuni Kubwa paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1331-1332; between c1310 and 1333. The approximate construction onset and the visit interval remain qualified.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Ibn Battuta stopped at Kilwa in 1331–1332; Husuni Kubwa was built between circa 1310 and 1333.",
+      "chronology": {
+        "asWorded": [
+          "1331-1332",
+          "between c1310 and 1333"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-tenochtitlan",
+      "title": "María Luisa Santillán, A 700 años de la fundación de Tenochtitlan: entre el mito y la historia",
+      "institution": "Ciencia UNAM-DGDC; interview with Miguel Pastrana Flores, Instituto de Investigaciones Históricas",
+      "url": "https://ciencia.unam.mx/leer/1599/a-700-anos-de-la-fundacion-de-tenochtitlan-entre-el-mito-y-la-historia",
+      "locator": "Llegada al islote; Año de la fundación, three paragraphs",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: Ome calli, año Dos Casa; 1325. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Most accepted foundation year 1325 has source-provided native correlation, but no specific day/month and no claim of first occupation.",
+      "chronology": {
+        "asWorded": [
+          "Ome calli, año Dos Casa",
+          "1325"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-tlatelolco-1337",
+      "title": "Zona Arqueológica Tlatelolco",
+      "institution": "Instituto Nacional de Antropología e Historia",
+      "url": "https://www.inah.gob.mx/zonas/zona-arqueologica-tlatelolco",
+      "locator": "Relevancia cultural, first paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: hacia 1337. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Tlatelolco was founded around 1337 by part of the Mexica group.",
+      "chronology": {
+        "asWorded": [
+          "hacia 1337"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual Relevancia cultural body recovered with live Firecrawl after web reader403"
+    },
+    {
+      "id": "e1300-west-tlatelolco-1338",
+      "title": "Tlatelolco",
+      "institution": "INAH, Lugares institucional archaeological-site portal",
+      "url": "https://lugares.inah.gob.mx/es/node/4477",
+      "locator": "VISÍTANOS, first historical paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1338, según las crónicas. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "The site’s chronicle-based foundation date is 1338 after separation from the Tenochca.",
+      "chronology": {
+        "asWorded": [
+          "1338, según las crónicas"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-mexicanus",
+      "title": "María Castañeda de la Paz, Los anales prehispánicos, in El Códice mexicanus, Tomo I (2019)",
+      "institution": "UNAM Institutes of Anthropological, Historical and Philological Research; El Colegio Mexiquense; Fundación Alfredo Harp Helú",
+      "url": "https://historicas.unam.mx/publicaciones/publicadigital/libros/727_01/727_01_04_03_anales.pdf",
+      "locator": "Printed p 144/PDF p 55, Acamapichtli paragraph and footnote 255; bibliographic cover",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded in the scholarly discussion and footnote 255: 1 Técpatl, 1376; 4 tochtli, 1366; 5 acatl, 1367. All paired years are supplied by the author, with contradictions retained.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "The author analyses Acamapichtli’s accession at Tenochtitlan and explicitly documents incompatible chronicle years 1366, 1367 and 1376.",
+      "chronology": {
+        "asWorded": [
+          "1 Técpatl, 1376",
+          "4 tochtli, 1366",
+          "5 acatl, 1367"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual downloaded institutional PDF, bibliographic cover and printed p144/PDFp55 read with pypdf; no figures copied"
+    },
+    {
+      "id": "e1300-west-famine",
+      "title": "Insights from past millennia into climatic impacts on human health and survival",
+      "institution": "Proceedings of the National Academy of Sciences; public PMC article",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3324023/",
+      "locator": "Great Famine, Europe, three paragraphs",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1315–1322. No independent calendar conversion performed.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Northern Europe suffered prolonged famine with rain, cold and floods; social and agricultural conditions probably also contributed.",
+      "chronology": {
+        "asWorded": [
+          "1315–1322"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-khaldun",
+      "title": "Franz Rosenthal, EBN ḴALDŪN, ABŪ ZAYD ʿABD-AL-RAḤMĀN",
+      "institution": "Encyclopaedia Iranica, 1997; updated 2013",
+      "url": "https://www.iranicaonline.org/articles/ebn-kaldun/",
+      "locator": "His life, paragraph beginning After less than three years in Fes; internal passage beginning He became convinced and completion sentence Rajab 779/November 1377.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: Rajab 779/November 1377. Rosenthal provides the paired chronology; no conversion calculated.",
+      "reuseTerms": "Reference and short chronology quotations only; no permission for images or maps inferred. Publisher reuse terms were not independently established.",
+      "scopedClaim": "Ibn Khaldun completed the Muqaddima at Qal’at Ibn Salama as part of his world-history project.",
+      "chronology": {
+        "asWorded": [
+          "Rajab 779/November 1377"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual cited passages read"
+    },
+    {
+      "id": "e1300-west-herat-history",
+      "title": "Maria Szuppe, HERAT iii. HISTORY, MEDIEVAL PERIOD",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/herat-iii/",
+      "locator": "The later Kart period, paragraph on Timur: arrival and surrender in 1381, followed by retained officials and installed deputy.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1381; Moḥarram 783/April 1381. Source supplies this paired chronology; event retains year only. No independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports Khorasan context, Herat surrender in 1381 and Timur political control through a deputy. No independent date conversion; no later destruction exported.",
+      "chronology": {
+        "asWorded": [
+          "1381",
+          "Moḥarram 783/April 1381"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual scoped passage freshly reopened and read during reconciliation; source supplies only the stated scope."
+    },
+    {
+      "id": "e1300-west-herat-geography",
+      "title": "Arash Khazeni, HERAT i. GEOGRAPHY",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/herat-i/",
+      "locator": "Opening paragraph on province in western Afghanistan and eastern Khorasan; following paragraph locating Herat town in the province.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Modern geography of Herat city/province; passage supplies no date for the 1381 conquest. No independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports Herat city/province in present Afghanistan and Khorasan regional identification; no event dating inferred.",
+      "chronology": {
+        "asWorded": [],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual scoped passage freshly reopened and read during reconciliation; source supplies only the stated scope."
+    },
+    {
+      "id": "e1300-west-baghdad-history",
+      "title": "Abbas Zaryab, BAGHDAD ii. From the Mongol Invasion to the Ottoman Occupation",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/baghdad/baghdad-iranian-connection-ii/",
+      "locator": "The Jalayerids’ rule in Baghdad: opening Iraq/capital context; paragraph beginning Solṭān-Aḥmad’s rule in Baghdad ended; next paragraph on 1394 return.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1393 for capture; 1394 for the previous ruler's return. Event concerns 1393 only. No independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports 1393 capture in Timur westward thrust, governor/control and capital-city importance in Iraq. Later loss of control means no permanent annexation inferred.",
+      "chronology": {
+        "asWorded": [
+          "1393",
+          "1394"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual scoped passage freshly reopened and read during reconciliation; source supplies only the stated scope."
+    },
+    {
+      "id": "e1300-west-golden-horde",
+      "title": "Peter Jackson, GOLDEN HORDE",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/golden-horde/",
+      "locator": "Opening historical paragraph on core steppes, Khwarazm and administrative centre Sarai; final historical paragraph on Timur invasion and later dissolution.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "The article gives geographic extent and later fifteenth-century dissolution, without dating the invasion here. The event's 1395–1396 interval comes from Waugh. No independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports regional extent north of Black/Caspian Seas and Khwarazm, administrative city of Sarai, Timur invasion and later fifteenth-century dissolution. Does not date all territory/cities destruction to one moment.",
+      "chronology": {
+        "asWorded": [
+          "15th century"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual scoped passage freshly reopened and read during reconciliation; source supplies only the stated scope."
+    },
+    {
+      "id": "e1300-west-kalmar-context",
+      "title": "Kalmar läns museum, De nordiska länderna enas",
+      "institution": "Möt medeltiden, Kalmar läns museum",
+      "url": "https://medeltiden.kalmarlansmuseum.se/samhallet/kalmarunionen/de-nordiska-landerna-enas/",
+      "locator": "Main narrative: Margareta regent over Sweden, Norway and Denmark; Bogislav from Pomerania renamed Erik; closing planned Kalmar coronation in summer 1397.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "sommaren 1397 for the planned coronation; the paired original museum page supplies 17 juni. No independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports identity Erik of Pomerania and named Norway, Sweden, Denmark. Original Kalmar page remains authority for 17 June 1397 and negotiations. No unrelated narrative claims added.",
+      "chronology": {
+        "asWorded": [
+          "sommaren 1397"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual scoped passage freshly reopened and read during reconciliation; source supplies only the stated scope."
+    },
+    {
+      "id": "e1300-west-gregory-hayez",
+      "title": "Michel Hayez, GREGORIO XI, Enciclopedia dei Papi (2000)",
+      "institution": "Istituto della Enciclopedia Italiana, Treccani",
+      "url": "https://www.treccani.it/enciclopedia/gregorio-xi_(Enciclopedia-dei-Papi)/",
+      "locator": "Return-to-Rome paragraph beginning Il racconto del viaggio; within the same paragraph, Ma fu ugualmente necessario and entry into Rome on 17 January 1377 with armed men. Byline and edition year at heading.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "17 gennaio 1377, as printed in the entry-into-Rome paragraph. Event retains the coarser beginning-of-1377 wording from its original cited source. No independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Gregory XI entered Rome accompanied by armed men. This corroborates the return and supports the second sentence about an armed escort; no troop count or named commander is imported.",
+      "chronology": {
+        "asWorded": [
+          "17 gennaio 1377"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual scholarly encyclopaedia article paragraph and named byline/edition read; raw HTML saved."
+    },
+    {
+      "id": "e1300-west-khaldun-geography",
+      "title": "Saleh Ben Tahar Machouche and Benaouda Bensaid, Ethics in Muslim Writing and Research Methodology: The Case of Ibn Khaldun’s Scholarly Writing",
+      "institution": "Journal of Al-Tamaddun, Universiti Malaya, 17(2) (2022), 39–52; DOI 10.22452/JAT.vol17no2.4; institutional repository copy at Istanbul Sabahattin Zaim University",
+      "url": "https://openaccess.izu.edu.tr/server/api/core/bitstreams/315d731d-9121-4917-ad10-c5c459a02c87/content",
+      "locator": "Printed p. 40, PDF page 2 (zero-based index 1), On Ibn Khaldun, paragraph beginning However: Fort of Ibn Salamah near current Frenda, Tiaret, Algeria. Publisher record identifies article, DOI and 21.12.2022 publication.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "The paragraph starts with withdrawal in 1375 and describes a first draft without a separate completion date. Used only for the site’s present Algeria geography; Rosenthal remains authority for Rajab 779/November 1377. No independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Fort Ibn Salamah is near present Frenda in Tiaret, Algeria. Supports only the current-country geography of the event’s Qal’at Ibn Salama site.",
+      "chronology": {
+        "asWorded": [
+          "1375"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual PDF p. 40 and publisher metadata/licence read; institutional PDF saved."
+    },
+    {
+      "id": "e1300-west-inah-templo-mayor",
+      "title": "Templo Mayor",
+      "institution": "Instituto Nacional de Antropología e Historia",
+      "url": "https://lugares.inah.gob.mx/es/node/4463",
+      "locator": "Location introduction; first main historical paragraph; address; HTML dcterms.license",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Modern geography; source-provided 2 Calli/1325 correlation is not independently converted. Used for modern geographic corroboration; does not replace UNAM chronology.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The INAH Templo Mayor entry relates Tenochtitlan’s temple to the present Mexico City location. Supports the event’s modern geographic binding only.",
+      "chronology": {
+        "asWorded": [
+          "2 Calli",
+          "1325"
+        ],
+        "conversionPerformed": false
+      },
+      "accessExtent": "Actual location introduction, first historical paragraph, address and HTML licence metadata read by F01 reviewer and reopened during finalization."
     }
   ],
   "events": [
@@ -8400,6 +9219,1525 @@
       ],
       "selectionNote": "Distinguishes the 1299 raid from subsequent campaigns and permanent provincial administration.",
       "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1303-alauddin-belagrar-chittor",
+      "date": {
+        "kind": "exact",
+        "startYear": 1303,
+        "endYear": 1303,
+        "displaySv": "1303"
+      },
+      "titleSv": "Alauddin Khalji belägrar Chittor",
+      "summarySv": "Alauddin Khalji belägrar Chittor i Rajputana. Staden får därefter namnet Khizrabad efter sultanens son.",
+      "geographySv": "Chittor, Indien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-nios-delhi"
+      ],
+      "selectionNote": "A major Delhi campaign against a powerful Rajput centre; omit the later Padmini legend.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1303-giotto-malar-scrovegnikapellet",
+      "date": {
+        "kind": "range",
+        "startYear": 1303,
+        "endYear": 1305,
+        "displaySv": "1303–1305"
+      },
+      "titleSv": "Giotto målar Scrovegnikapellet",
+      "summarySv": "Giotto målar Scrovegnikapellets väggar på uppdrag av Enrico Scrovegni. Han skildrar Marias och Kristi liv och avslutar berättelsen med den yttersta domen.",
+      "geographySv": "Padova, Italien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-padova-giotto"
+      ],
+      "selectionNote": "A major surviving mural commission provides a dated cultural event beyond military and dynastic change.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1303-mamlukerna-segrar-vid-marj-al-soffar",
+      "date": {
+        "kind": "exact",
+        "startYear": 1303,
+        "endYear": 1303,
+        "displaySv": "1303",
+        "noteSv": "Källan anger 702/1303 och skiljer Ghazans position från den stridande arméns."
+      },
+      "titleSv": "Mamlukerna besegrar mongolerna vid Marj al-Soffar",
+      "summarySv": "Mamlukernas styrkor besegrar en ilkhansk invasionsarmé söder om Damaskus. Ghazan stannar själv nära Eufrat medan hans här tränger in i centrala Syrien.",
+      "geographySv": "Marj al-Soffar, söder om Damaskus, Syrien",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-ghazan"
+      ],
+      "selectionNote": "The defeat is a major outcome of the Ilkhanid attempts to take Mamluk Syria.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1303-zhu-shijie-publicerar-siyuan-yujian",
+      "date": {
+        "kind": "exact",
+        "startYear": 1303,
+        "endYear": 1303,
+        "displaySv": "1303",
+        "noteSv": "Årtalet gäller verkets publicering. Den bevarade texten har senare kommentarer och förord."
+      },
+      "titleSv": "Zhu Shijie publicerar Siyuan yujian",
+      "summarySv": "Zhu Shijies matematiska verk Siyuan yujian publiceras. Boken behandlar bland annat polynomekvationer med flera obekanta.",
+      "geographySv": "Kina",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-zhu-shijie"
+      ],
+      "selectionNote": "A major work of Chinese algebra, with a publication year stated by the scholarly source.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1306-robert-bruce-tar-skottlands-tron",
+      "date": {
+        "kind": "exact",
+        "startYear": 1306,
+        "endYear": 1306,
+        "displaySv": "1306",
+        "noteSv": "Året gäller maktövertagandet; posten daterar ingen slutlig internationell erkännande."
+      },
+      "titleSv": "Robert Bruce tar Skottlands tron",
+      "summarySv": "Robert Bruce tar kungamakten i Skottland. Han kämpar därefter för att hävda sin ställning mot motståndare inom landet och mot England.",
+      "geographySv": "Skottland",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-nrs-scotland"
+      ],
+      "selectionNote": "Bruce's seizure of the crown is a distinct political transition within the independence conflict.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1309-clemens-v-borjar-vistas-i-avignon",
+      "date": {
+        "kind": "exact",
+        "startYear": 1309,
+        "endYear": 1309,
+        "displaySv": "1309",
+        "noteSv": "Källan beskriver Clemens vistelse som periodisk. Posten påstår ingen oavbruten närvaro eller färdigbyggt påvepalats 1309."
+      },
+      "titleSv": "Clemens V börjar vistas i Avignon",
+      "summarySv": "Påven Clemens V kommer till Avignon och bor hos dominikanerna. Han vistas där periodvis, medan påvedömets ledning får en växande anknytning till staden.",
+      "geographySv": "Avignon, nuvarande Frankrike",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-palais-avignon"
+      ],
+      "selectionNote": "The papal stay marks a major geographical shift in western ecclesiastical government.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1310-byggare-uppfor-husuni-kubwa",
+      "date": {
+        "kind": "range",
+        "startYear": 1310,
+        "endYear": 1333,
+        "displaySv": "cirka 1310–1333",
+        "noteSv": "UNESCO anger mellan cirka 1310 och 1333. Spannet återger byggnadstiden i denna källa och fastställer inget enskilt grundandeår för Kilwa."
+      },
+      "titleSv": "Byggare uppför Husuni Kubwa på Kilwa",
+      "summarySv": "Byggare uppför palatset Husuni Kubwa på ön Kilwa. I komplexet anlägger de en stor åttkantig badbassäng.",
+      "geographySv": "Kilwa Kisiwani, nuvarande Tanzania",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-kilwa"
+      ],
+      "selectionNote": "The palace is a major surviving architectural commission of the Swahili trading world.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "uncertain"
+    },
+    {
+      "id": "ev-1313-wang-zhen-daterar-forord-till-nongshu",
+      "date": {
+        "kind": "exact",
+        "startYear": 1313,
+        "endYear": 1313,
+        "displaySv": "1313",
+        "noteSv": "Årtalet gäller Wang Zhens förord. Källan diskuterar också ett förord från 1303 och möjlig tidigare tillkomst; första utgåvan dateras inte här."
+      },
+      "titleSv": "Wang Zhen daterar sitt förord till Nongshu",
+      "summarySv": "Wang Zhens eget förord till jordbruksverket Nongshu är daterat 1313. Verket samlar och utvecklar kunskap om jordbrukets teknik.",
+      "geographySv": "Kina",
+      "category": "technology",
+      "importance": 1,
+      "sourceIds": [
+        "e1300-east-hammers-nongshu"
+      ],
+      "selectionNote": "A dated authorial preface to an important agricultural-technology treatise; the claim is narrower than first publication.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1314-robert-bruce-segrar-vid-bannockburn",
+      "date": {
+        "kind": "exact",
+        "startYear": 1314,
+        "endYear": 1314,
+        "displaySv": "juni 1314",
+        "noteSv": "Den lästa källan anger juni och två dagars strid; inget exakt dagsdatum läggs till."
+      },
+      "titleSv": "Robert Bruce besegrar Edward II vid Bannockburn",
+      "summarySv": "Robert Bruces skotska armé besegrar Edward II:s engelska styrkor vid Bannockburn. Slaget pågår i två dagar i juni.",
+      "geographySv": "Bannockburn, Skottland",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-nts-bannockburn"
+      ],
+      "selectionNote": "The victory is a major military result in the Scottish independence struggle.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1315-nordeuropas-invanare-drabbas-av-stor-hungersnod",
+      "date": {
+        "kind": "range",
+        "startYear": 1315,
+        "endYear": 1322,
+        "displaySv": "1315–1322",
+        "noteSv": "Den vetenskapliga översikten använder spannet 1315–1322 för den svåraste perioden. Posten fastställer ingen gemensam dödlighet eller likadan lokal utveckling varje år."
+      },
+      "titleSv": "Nordeuropas invånare svälter under den stora hungersnöden",
+      "summarySv": "Människor i norra Europa svälter under en lång försörjningskris. De möter ihållande regn, översvämningar och kyla. Ekonomiska och agrara förändringar bidrar sannolikt också till krisen.",
+      "geographySv": "Norra Europa",
+      "category": "nature",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-famine"
+      ],
+      "selectionNote": "The widespread subsistence crisis affected populations and governments across northern Europe.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1320-ghiyasuddin-tughlaq-tar-tronen",
+      "date": {
+        "kind": "exact",
+        "startYear": 1320,
+        "endYear": 1320,
+        "displaySv": "1320"
+      },
+      "titleSv": "Ghiyasuddin Tughlaq tar tronen i Delhi",
+      "summarySv": "Ghazi Malik blir sultan under namnet Ghiyasuddin Tughlaq. Därmed börjar Tughlaqättens styre i Delhi.",
+      "geographySv": "Delhi, Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-nios-delhi"
+      ],
+      "selectionNote": "A change of the ruling dynasty in a major South Asian sultanate.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1320-skotska-storman-sander-arbroathbrevet",
+      "date": {
+        "kind": "exact",
+        "startYear": 1320,
+        "endYear": 1320,
+        "displaySv": "6 april 1320",
+        "noteSv": "Datumet är brevets datering; posten avgör inte vilka personer som fysiskt befann sig i Arbroath när texten färdigställdes."
+      },
+      "titleSv": "Skotska stormän ber påven erkänna självständigheten",
+      "summarySv": "Skotska baroner sänder ett brev till påven och ber honom erkänna rikets självständighet. De försvarar också Robert Bruces rätt till kungamakten.",
+      "geographySv": "Arbroath och Skottland; brevet riktas till påven",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-nrs-scotland"
+      ],
+      "selectionNote": "The letter is a major surviving diplomatic statement of Scottish independence.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1324-mansa-musa-besoker-kairo",
+      "date": {
+        "kind": "range",
+        "startYear": 1324,
+        "endYear": 1325,
+        "displaySv": "1324–1325",
+        "noteSv": "Museet daterar ankomsten till 1324–1325. Spannet uttrycker källdateringen och påstår ingen oavbruten tvåårig vistelse; följeslagarnas antal och guldets vikt utelämnas."
+      },
+      "titleSv": "Mansa Musa besöker Kairo med stora mängder guld",
+      "summarySv": "Malis härskare Mansa Musa anländer till Kairo med stora mängder guld. Där faller guldpriset när metallen kommer ut på marknaden.",
+      "geographySv": "Kairo, Egypten, med anknytning till Maliriket i Västafrika",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-musa-gold"
+      ],
+      "selectionNote": "The visit connected Mali's gold resources with major Mediterranean and Islamic markets.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1325-ibn-battuta-lamnar-tanger",
+      "date": {
+        "kind": "exact",
+        "startYear": 1325,
+        "endYear": 1325,
+        "displaySv": "1325",
+        "noteSv": "Översättningen ger 2 rajab 725 och 14 juni 1325. Året återges utan en egen kalenderomräkning eller ny kalenderetikett."
+      },
+      "titleSv": "Ibn Battuta lämnar Tanger för pilgrimsfärden",
+      "summarySv": "Ibn Battuta lämnar sin hemstad Tanger för att resa till Mecka och Medina. Han påbörjar resan ensam och berättar om avskedet från familjen.",
+      "geographySv": "Tanger, nuvarande Marocko",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-ibn-battuta"
+      ],
+      "selectionNote": "The departure begins a major documented travel account connecting courts and commercial routes across several regions.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1325-mexika-grundar-tenochtitlan",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1325,
+        "endYear": 1325,
+        "displaySv": "1325 enligt grundläggningstraditionen",
+        "noteSv": "UNAM beskriver 1325 som det mest accepterade året och ger motsvarigheten Ome calli, Två Hus. Källan fastställer ingen dag eller månad och skiljer grundläggningen från tidigare bosättning."
+      },
+      "titleSv": "Mexika grundar Tenochtitlan i Mexikodalen",
+      "summarySv": "Mexika grundar Tenochtitlan på en ö i Mexikodalen. Forskare förknippar grundläggningen med år Två Hus, 1325, medan äldre bosättningar redan har funnits på platsen.",
+      "geographySv": "Mexikodalen, nuvarande Mexico City, Mexiko",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-tenochtitlan",
+        "e1300-west-tlatelolco-1337",
+        "e1300-west-inah-templo-mayor"
+      ],
+      "selectionNote": "The foundation tradition concerns the future centre of a major Mesoamerican polity.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "uncertain"
+    },
+    {
+      "id": "ev-1327-muhammad-tughlaq-flyttar-hovet",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1327,
+        "endYear": 1327,
+        "displaySv": "cirka 1327",
+        "noteSv": "Museet anger omkring 1327. Posten ger inget exakt år för återflytten och innebär inte att Delhi helt övergavs."
+      },
+      "titleSv": "Muhammad ibn Tughlaq flyttar huvudstaden till Deogiri",
+      "summarySv": "Muhammad ibn Tughlaq flyttar tillfälligt sin huvudstad från Delhi till Deogiri i Deccan. Orten får namnet Daulatabad, men hovet återvänder senare till Delhi.",
+      "geographySv": "Delhi och Daulatabad, Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-met-daulatabad"
+      ],
+      "selectionNote": "A major attempt to reposition the sultanate's governing centre.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1328-england-erkanner-skottlands-sjalvstandighet",
+      "date": {
+        "kind": "exact",
+        "startYear": 1328,
+        "endYear": 1328,
+        "displaySv": "1328"
+      },
+      "titleSv": "England erkänner Skottlands självständighet",
+      "summarySv": "Englands regering erkänner Skottlands självständighet. Erkännandet kommer efter år av militär och diplomatisk kamp.",
+      "geographySv": "England och Skottland",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-nrs-scotland"
+      ],
+      "selectionNote": "The recognition is a separate diplomatic outcome from Bruce's accession and battlefield victory.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1331-ibn-battuta-besoker-kilwa",
+      "date": {
+        "kind": "range",
+        "startYear": 1331,
+        "endYear": 1332,
+        "displaySv": "1331–1332",
+        "noteSv": "UNESCO anger 1331–1332 för besöket. Posten återger detta intervall och hävdar ingen kontinuerlig tvåårig vistelse."
+      },
+      "titleSv": "Ibn Battuta besöker Kilwa",
+      "summarySv": "Ibn Battuta stannar vid handelsstaden Kilwa på den östafrikanska kusten. Han beskriver staden som en av de vackraste han känner till.",
+      "geographySv": "Kilwa Kisiwani, nuvarande Tanzania",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-kilwa"
+      ],
+      "selectionNote": "The documented visit records a major Swahili port in an Indian Ocean travel network.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1333-go-daigo-stortar-kamakurastyret",
+      "date": {
+        "kind": "exact",
+        "startYear": 1333,
+        "endYear": 1333,
+        "displaySv": "1333"
+      },
+      "titleSv": "Go-Daigo och hans anhängare störtar Kamakurastyret",
+      "summarySv": "Kejsar Go-Daigo och hans anhängare störtar Kamakurashogunatet. De försöker återföra den politiska makten till kejsartronen genom Kenmurestaurationen.",
+      "geographySv": "Japan",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-met-japan"
+      ],
+      "selectionNote": "The destruction of the Kamakura military regime and an attempted imperial restoration.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1335-abu-said-dor-och-ilkhanatet-far-tronstrider",
+      "date": {
+        "kind": "exact",
+        "startYear": 1335,
+        "endYear": 1335,
+        "displaySv": "30 november 1335",
+        "noteSv": "Jackson ger det parade datumet 13 rabi II 736/30 november 1335. Senare maktstrider samlas inte till ett nytt exakt slutår; misstanken om förgiftning utelämnas."
+      },
+      "titleSv": "Abu Sa’id dör och rivaler strider om ilkhankronan",
+      "summarySv": "Ilkhanen Abu Sa’id dör vid sitt högkvarter i Qarabagh. Rivaler ur den mongoliska kejsarfamiljen kämpar därefter om tronföljden när en nära manlig arvinge saknas.",
+      "geographySv": "Qarabagh och det ilkhanska riket i Iran och angränsande områden",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-abu-said"
+      ],
+      "selectionNote": "The succession crisis weakened the Ilkhanid state and changed the political landscape of Iran.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1336-takauji-driver-go-daigo-fran-kyoto",
+      "date": {
+        "kind": "exact",
+        "startYear": 1336,
+        "endYear": 1336,
+        "displaySv": "1336",
+        "noteSv": "Årtalet gäller maktskiftet och hovens delning. Takaujis senare utnämning till shogun är en annan handling."
+      },
+      "titleSv": "Ashikaga Takauji driver Go-Daigo från Kyoto",
+      "summarySv": "Ashikaga Takauji driver Go-Daigo från Kyoto och sätter en annan kejsare på tronen. Go-Daigo upprättar ett rivaliserande hov i Yoshino.",
+      "geographySv": "Kyoto och Yoshino, Japan",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-met-japan"
+      ],
+      "selectionNote": "The defeat of the restoration and emergence of rival imperial courts, distinct from the 1333 overthrow.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1337-frankrikes-kung-angriper-engelska-besittningar",
+      "date": {
+        "kind": "exact",
+        "startYear": 1337,
+        "endYear": 1337,
+        "displaySv": "1337",
+        "noteSv": "Posten gäller angreppet 1337 och ger ingen ny sammanhängande krigsfas fram till 1453."
+      },
+      "titleSv": "Filip VI angriper Edward III:s franska besittningar",
+      "summarySv": "Filip VI av Frankrike angriper Edward III:s besittningar i Frankrike. Kungarna inleder därmed den territoriella konflikt som senare kallas hundraårskriget.",
+      "geographySv": "Frankrike och England",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-royal-armouries"
+      ],
+      "selectionNote": "The territorial attack is a dated trigger of the later sequence of Anglo-French wars.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1337-mexika-grundar-tlatelolco",
+      "date": {
+        "kind": "disputed",
+        "startYear": 1337,
+        "endYear": 1338,
+        "displaySv": "omtvistat: cirka 1337 eller 1338",
+        "noteSv": "Två INAH-sidor anger omkring 1337 respektive 1338 enligt krönikorna. De motstridiga årtalen behålls; ingen egen kalenderkorrelation eller beräkning från Tenochtitlans grundande görs."
+      },
+      "titleSv": "En grupp mexika grundar Tlatelolco",
+      "summarySv": "En grupp mexika lämnar tenochkerna och grundar Tlatelolco längre norrut. Invånarna bygger upp ett eget samhälle intill Tenochtitlan.",
+      "geographySv": "Mexikodalen, nuvarande Mexico City, Mexiko",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-tlatelolco-1337",
+        "e1300-west-tlatelolco-1338"
+      ],
+      "selectionNote": "The breakaway settlement became a significant independent centre beside Tenochtitlan.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "uncertain"
+    },
+    {
+      "id": "ev-1339-takauji-grundar-tenryuji",
+      "date": {
+        "kind": "exact",
+        "startYear": 1339,
+        "endYear": 1339,
+        "displaySv": "1339",
+        "noteSv": "1339 gäller grundandet. Templets egen historik skiljer detta från invigningen 1345."
+      },
+      "titleSv": "Ashikaga Takauji grundar Tenryu-ji",
+      "summarySv": "Ashikaga Takauji grundar zentemplet Tenryu-ji till minne av Go-Daigo. Muso Soseki utses till templets förste abbot.",
+      "geographySv": "Kyoto, Japan",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "e1300-east-tenryuji"
+      ],
+      "selectionNote": "An important Zen foundation linking the new military regime to its former imperial opponent.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1346-engelsmannen-segrar-vid-crecy",
+      "date": {
+        "kind": "exact",
+        "startYear": 1346,
+        "endYear": 1346,
+        "displaySv": "26 augusti 1346"
+      },
+      "titleSv": "Edward III:s armé besegrar fransmännen vid Crécy",
+      "summarySv": "Edward III placerar sin armé på en höjd nära Crécy och väntar på Filip VI:s styrkor. Engelska bågskyttar bidrar till att slå tillbaka anfallen och vinna slaget.",
+      "geographySv": "Crécy, norra Frankrike",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-royal-armouries"
+      ],
+      "selectionNote": "The battle is a major English field victory in the Anglo-French conflict.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1347-bahmanidernas-dynasti-bildas",
+      "date": {
+        "kind": "exact",
+        "startYear": 1347,
+        "endYear": 1347,
+        "displaySv": "1347"
+      },
+      "titleSv": "Bahmanidernas dynasti bildas i Deccan",
+      "summarySv": "Muslimska stormän gör uppror mot Delhis sultan Muhammad ibn Tughluq. Ur upproret bildas Bahmanidernas dynasti i Deccan.",
+      "geographySv": "Deccan, Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-met-bahmani"
+      ],
+      "selectionNote": "An independent regional power emerges from the Delhi Sultanate's southern territories.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1348-karl-iv-grundar-universitetet-i-prag",
+      "date": {
+        "kind": "exact",
+        "startYear": 1348,
+        "endYear": 1348,
+        "displaySv": "7 april 1348",
+        "noteSv": "Datumet gäller det kungliga grundläggningsbrevet och hävdar ingen första undervisningsdag eller kejserlig kröning."
+      },
+      "titleSv": "Karl IV utfärdar universitetets grundläggningsbrev i Prag",
+      "summarySv": "Karl IV grundar ett studium generale i Prag. Han lovar lärare och studenter kungligt skydd och privilegier efter förebilderna i Paris och Bologna.",
+      "geographySv": "Prag, Böhmen, nuvarande Tjeckien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-prague-charter"
+      ],
+      "selectionNote": "The dated charter creates a major centre for learning and scholarly mobility in Central Europe.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1348-manniskor-i-england-insjuknar-i-digerdoden",
+      "date": {
+        "kind": "range",
+        "startYear": 1348,
+        "endYear": 1349,
+        "displaySv": "1348–1349",
+        "noteSv": "Museets framställning använder 1348–1349 för den stora pesten. Posten anger inget gemensamt ankomst- eller slutdatum för hela Europa."
+      },
+      "titleSv": "Människor i England insjuknar i digerdöden",
+      "summarySv": "Människor i England insjuknar och dör under pestepidemin. Efteråt kan många överlevande arbetare kräva högre lön när arbetskraften blir knapp.",
+      "geographySv": "England",
+      "category": "nature",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-london-revolt"
+      ],
+      "selectionNote": "The epidemic reshaped population and labour relations in England.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1350-ayutthaya-upprattas-som-huvudstad",
+      "date": {
+        "kind": "disputed",
+        "startYear": 1350,
+        "endYear": 1351,
+        "displaySv": "omtvistat: cirka 1350 eller 1351",
+        "noteSv": "UNESCO anger cirka 1350 i beskrivningen och 1350 i syntesen. Provinsens historik anger 1351 efter sin egen kalenderdiskussion; ingen egen omräkning görs."
+      },
+      "titleSv": "Ayutthaya upprättas som siamesisk huvudstad",
+      "summarySv": "Ayutthaya etableras som en ny siamesisk huvudstad efter Sukhothai. Staden ligger på en flodö med förbindelse till havet.",
+      "geographySv": "Ayutthaya, Thailand",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-unesco-ayutthaya",
+        "e1300-east-ayutthaya-province"
+      ],
+      "selectionNote": "A major new mainland Southeast Asian political centre; retain competing institutional chronologies.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1350-blatt-och-vitt-porslin-blir-populart",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1350,
+        "endYear": 1350,
+        "displaySv": "cirka 1350",
+        "noteSv": "Dateringen gäller teknikens ökade popularitet. Tekniken var äldre och uppfanns inte detta år."
+      },
+      "titleSv": "Blåvitt porslin får större spridning i Kina",
+      "summarySv": "Dekor med koboltblå färg under glasyren blir populär på kinesiskt porslin. Föremål framställs både för Yuanhovet och för handel.",
+      "geographySv": "Kina",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-met-china"
+      ],
+      "selectionNote": "A major development in ceramic production and exchange, dated approximately by the museum.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1351-englands-styre-forsoker-begransa-lonerna",
+      "date": {
+        "kind": "exact",
+        "startYear": 1351,
+        "endYear": 1351,
+        "displaySv": "1351",
+        "noteSv": "Källan daterar lagen till 1351 men ger inte dess formella namn i det lästa avsnittet. Posten hävdar inte att myndigheterna lyckades sänka alla löner."
+      },
+      "titleSv": "Englands makthavare försöker pressa tillbaka lönerna",
+      "summarySv": "Englands makthavare inför en lag för att pressa tillbaka lönerna efter pesten. Arbetarna har kunnat begära mer betalt när så många människor har dött.",
+      "geographySv": "England",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-london-revolt"
+      ],
+      "selectionNote": "The wage restriction is a major governmental response to the post-plague labour market.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1352-ibn-battuta-ankommer-till-mali",
+      "date": {
+        "kind": "exact",
+        "startYear": 1352,
+        "endYear": 1352,
+        "displaySv": "1352",
+        "noteSv": "Översättningen anger 14 jumada I 753 och 28 juni 1352 för ankomsten. Posten väljer ingen modern platsidentifikation för staden och gör ingen egen kalenderomräkning."
+      },
+      "titleSv": "Ibn Battuta anländer till staden Mali",
+      "summarySv": "Ibn Battuta anländer till staden som han kallar Mali i det västafrikanska kungariket. Han beskriver sin vistelse och livet i riket i sin reseberättelse.",
+      "geographySv": "Maliriket, Västafrika",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-ibn-battuta"
+      ],
+      "selectionNote": "The traveller's account is an important documentary encounter with a West African court and society.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1352-iliyas-shah-intar-sonargaon",
+      "date": {
+        "kind": "exact",
+        "startYear": 1352,
+        "endYear": 1352,
+        "displaySv": "1352"
+      },
+      "titleSv": "Iliyas Shah intar Sonargaon och samlar Bengal",
+      "summarySv": "Iliyas Shah besegrar Ikhtiyaruddin Ghazi Shah och intar Sonargaon. Fälttåget för samman Bengals större maktcentra under hans styre.",
+      "geographySv": "Sonargaon och Bengal",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-banglapedia-iliyas"
+      ],
+      "selectionNote": "The consolidation of an independent Bengal sultanate after the eastern campaign.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1353-luang-prabang-ar-lan-xangs-huvudstad",
+      "date": {
+        "kind": "exact",
+        "startYear": 1353,
+        "endYear": 1353,
+        "displaySv": "1353",
+        "noteSv": "Rapporten anger huvudstadsställning från 1353. Posten daterar varken ortens första bosättning eller alla steg i rikets tillkomst."
+      },
+      "titleSv": "Luang Prabang är huvudstad i Lan Xang",
+      "summarySv": "Luang Prabang får ställning som Lan Xangs huvudstad. Orten blir ett kungligt centrum vid Mekong.",
+      "geographySv": "Luang Prabang, Laos",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-unesco-luang-prabang",
+        "e1300-east-unesco-luang-prabang-geography"
+      ],
+      "selectionNote": "The source explicitly dates the beginning of the city's capital status, without supplying a first-settlement date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1353-ramathibodi-bestaller-wat-phutthaisawan",
+      "date": {
+        "kind": "exact",
+        "startYear": 1353,
+        "endYear": 1353,
+        "displaySv": "1353",
+        "noteSv": "Årtalet gäller beställningen. Det används inte som exakt färdigställandeår för alla bevarade byggnadsdelar."
+      },
+      "titleSv": "Ramathibodi I beställer Wat Phutthaisawan",
+      "summarySv": "Ramathibodi I beställer templet Wat Phutthaisawan. Anläggningen hör till Ayutthayarikets tidiga buddhistiska byggnadsprojekt.",
+      "geographySv": "Ayutthaya, Thailand",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "e1300-east-unesco-phutthaisawan"
+      ],
+      "selectionNote": "An explicitly dated royal temple commission, separate from the disputed city-foundation chronology.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1356-byggare-inleder-sultan-hasans-komplex",
+      "date": {
+        "kind": "exact",
+        "startYear": 1356,
+        "endYear": 1356,
+        "displaySv": "1356",
+        "noteSv": "Museet anger att komplexet påbörjades 1356. Posten ger inget exakt invigningsdatum eller påstående om färdigställande detta år."
+      },
+      "titleSv": "Byggare inleder sultan Hasans religiösa komplex i Kairo",
+      "summarySv": "Byggare påbörjar sultan Hasans stora religiösa komplex i Kairo. Sultanens beställning hör till mamlukernas omfattande stöd till religiös arkitektur.",
+      "geographySv": "Kairo, Egypten",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-mamluk-art"
+      ],
+      "selectionNote": "The major endowed complex represents royal religious and architectural patronage in Mamluk Cairo.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1356-karl-iv-reglerar-kungavalet-i-gyllene-bullan",
+      "date": {
+        "kind": "exact",
+        "startYear": 1356,
+        "endYear": 1356,
+        "displaySv": "1356"
+      },
+      "titleSv": "Karl IV reglerar kungavalet genom Gyllene bullan",
+      "summarySv": "Kejsar Karl IV låter skriva ned regler för valet av romersk-tysk kung. Han fastställer kurfurstarnas rättigheter och utesluter påvens medbestämmande i valet.",
+      "geographySv": "Tysk-romerska riket, Centraleuropa",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-golden-bull"
+      ],
+      "selectionNote": "The legal instrument formalizes central rules of imperial royal selection.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1356-svarte-prinsen-tar-johan-ii-till-fanga",
+      "date": {
+        "kind": "exact",
+        "startYear": 1356,
+        "endYear": 1356,
+        "displaySv": "19 september 1356"
+      },
+      "titleSv": "Svarte prinsen besegrar Johan II vid Poitiers",
+      "summarySv": "Edward, den svarte prinsen, besegrar Johan II:s franska armé vid Poitiers. Johan kapitulerar och hamnar i engelsk fångenskap.",
+      "geographySv": "Poitiers, Frankrike",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-royal-armouries"
+      ],
+      "selectionNote": "The capture of the French king changed negotiations and the military balance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1361-jordbavning-och-tsunami-i-nankai",
+      "date": {
+        "kind": "exact",
+        "startYear": 1361,
+        "endYear": 1361,
+        "displaySv": "1361",
+        "noteSv": "Händelsen återges på årsnivå. Källans japanska kalenderdatum och dess angivna motsvarighet räknas inte om; inga osäkra dödstal tas med."
+      },
+      "titleSv": "En jordbävning och tsunami drabbar Nankaiområdet",
+      "summarySv": "En kraftig jordbävning och tsunami drabbar Nankaiområdet. Taiheiki berättar om förstörelse vid Yukis hamn i Awa.",
+      "geographySv": "Nankaiområdet och Awa, Japan",
+      "category": "nature",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-aist-nankai",
+        "e1300-east-gsi-nankai"
+      ],
+      "selectionNote": "A major natural disaster with government geoscience and historical-record references.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1364-kazimir-iii-grundar-universitet-i-krakow",
+      "date": {
+        "kind": "exact",
+        "startYear": 1364,
+        "endYear": 1364,
+        "displaySv": "12 maj 1364",
+        "noteSv": "Grundläggningen och den utlovade fakultetsordningen skiljs från senare undervisningsverksamhet och universitetets återgrundande."
+      },
+      "titleSv": "Kazimir III grundar ett studium generale i Kraków",
+      "summarySv": "Kung Kazimir III grundar ett studium generale i Kraków. Han lovar att försörja fakulteter för juridik, medicin och de fria konsterna.",
+      "geographySv": "Kraków, Polen",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-krakow-history"
+      ],
+      "selectionNote": "The charter established a major scholarly institution in the Polish kingdom.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1365-prapanca-fullbordar-nagarakretagama",
+      "date": {
+        "kind": "exact",
+        "startYear": 1365,
+        "endYear": 1365,
+        "displaySv": "1365",
+        "noteSv": "Källan anger Caka 1287 och ger en motsvarighet inom 1365. Endast året används; posten daterar diktens tillkomst, inte en bevarad fysisk handskrift."
+      },
+      "titleSv": "Prapanca fullbordar Nagarakretagama",
+      "summarySv": "Prapanca fullbordar det gammaljavanska lovverket Nagarakretagama till kung Hayam Wuruks ära. Dikten skildrar hovet och kungens resor genom Majapahit.",
+      "geographySv": "Java, Indonesien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-unesco-nagarakretagama"
+      ],
+      "selectionNote": "A major literary source for Majapahit; treat its royal praise as a literary perspective.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1366-acamapichtli-blir-harskare-i-tenochtitlan",
+      "date": {
+        "kind": "disputed",
+        "startYear": 1366,
+        "endYear": 1376,
+        "displaySv": "omtvistat: 1366, 1367 eller 1376",
+        "noteSv": "Castañeda de la Paz redovisar 1366, 1367 och 1376 i Chimalpahins olika uppgifter; huvudtexten diskuterar 1 tecpatl, 1376. Årsspannet uttrycker konkurrerande dateringar, inte en tioårig tronbestigning. Alla moderna årtal kommer från författaren."
+      },
+      "titleSv": "Acamapichtli blir härskare i Tenochtitlan",
+      "summarySv": "Acamapichtli övertar styret i Tenochtitlan. Kröniketraditionerna ger olika år för hans maktövertagande.",
+      "geographySv": "Tenochtitlan, Mexikodalen, nuvarande Mexiko",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-mexicanus"
+      ],
+      "selectionNote": "The accession records a political transition without suppressing conflicting native-source chronologies.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "uncertain"
+    },
+    {
+      "id": "ev-1368-mingdynastin-tar-makten",
+      "date": {
+        "kind": "exact",
+        "startYear": 1368,
+        "endYear": 1368,
+        "displaySv": "1368"
+      },
+      "titleSv": "Mingdynastin tar makten i Kina",
+      "summarySv": "Zhu Yuanzhang blir Mingdynastins förste kejsare och regerar som Hongwu. Dynastiskiftet bryter Yuanhovets styre från Peking.",
+      "geographySv": "Kina",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-east-met-china"
+      ],
+      "selectionNote": "A continental dynastic change ending Yuan control of the Chinese imperial centre.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1370-timur-tar-ledningen-i-ulus-chagatay",
+      "date": {
+        "kind": "exact",
+        "startYear": 1370,
+        "endYear": 1370,
+        "displaySv": "1370",
+        "noteSv": "Posten använder årtalet i Waughs kronologi och tillför ingen exakt kröningsdag eller khantitel."
+      },
+      "titleSv": "Timur tar ledningen i Ulus Chagatay",
+      "summarySv": "Timur blir ledare för Ulus Chagatay. Han börjar utveckla Samarkand som sin huvudstad.",
+      "geographySv": "Transoxanien och Samarkand, Centralasien",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-timurid-chronology"
+      ],
+      "selectionNote": "The political rise supplies the basis for the later Timurid expansion.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1375-ming-borjar-ge-ut-sedlar",
+      "date": {
+        "kind": "exact",
+        "startYear": 1375,
+        "endYear": 1375,
+        "displaySv": "1375",
+        "noteSv": "Årtalet gäller Mingutgivningen. Kinesiska papperspengar fanns långt tidigare."
+      },
+      "titleSv": "Mingstyret börjar ge ut papperspengar",
+      "summarySv": "Mingstyret börjar framställa papperspengar av mullbärsbark. Sedlarna bär namnet Da Ming tong xing bao chao.",
+      "geographySv": "Kina",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-bm-ming-note"
+      ],
+      "selectionNote": "A dated monetary policy of the new dynasty; not the invention of paper currency.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1377-gregorius-xi-atervander-till-rom",
+      "date": {
+        "kind": "exact",
+        "startYear": 1377,
+        "endYear": 1377,
+        "displaySv": "början av 1377",
+        "noteSv": "Källan anger början av 1377. Posten gör inte Avignons senare påvliga verksamhet ogiltig."
+      },
+      "titleSv": "Gregorius XI återvänder till Rom",
+      "summarySv": "Påven Gregorius XI återvänder från Avignon till Rom. En väpnad eskort följer honom in i staden.",
+      "geographySv": "Avignon och Rom",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-palais-avignon",
+        "e1300-west-gregory-hayez"
+      ],
+      "selectionNote": "The return is a major change in the location of papal government before the succession crisis.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1377-ibn-khaldun-avslutar-muqaddima",
+      "date": {
+        "kind": "exact",
+        "startYear": 1377,
+        "endYear": 1377,
+        "displaySv": "november 1377",
+        "noteSv": "Rosenthal ger det parade datumet rajab 779/november 1377. Posten gäller denna författarfas och beräknar ingen ny kalenderkorrelation."
+      },
+      "titleSv": "Ibn Khaldun avslutar Muqaddima vid Qal’at Ibn Salama",
+      "summarySv": "Ibn Khaldun avslutar Muqaddima under sin vistelse vid Qal’at Ibn Salama. Han skriver verket som inledning till sitt projekt om världshistorien.",
+      "geographySv": "Qal’at Ibn Salama, nuvarande Algeriet",
+      "category": "culture",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-khaldun",
+        "e1300-west-khaldun-geography"
+      ],
+      "selectionNote": "The composition is a major work of historical and social thought in the Maghrib.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1377-jikji-trycks-med-metalltyper",
+      "date": {
+        "kind": "exact",
+        "startYear": 1377,
+        "endYear": 1377,
+        "displaySv": "1377",
+        "noteSv": "Nomineringen anger sjunde månmånaden 1377 och skriver även July 1377. Posten använder endast året och påstår inte att metalltrycket uppfanns då."
+      },
+      "titleSv": "Jikji trycks med lösa metalltyper",
+      "summarySv": "Den buddhistiska textsamlingen Jikji trycks med lösa metalltyper i Heungdeok-sa i Cheongju. Seokcan och Daldam medverkar, och nunnan Myodeok bidrar till finansieringen.",
+      "geographySv": "Cheongju, Korea",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-unesco-jikji"
+      ],
+      "selectionNote": "An exceptionally important surviving metal-type printing, with a stated place and year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1378-kardinaler-valjer-en-rivaliserande-pave",
+      "date": {
+        "kind": "exact",
+        "startYear": 1378,
+        "endYear": 1378,
+        "displaySv": "1378",
+        "noteSv": "Posten gäller det rivaliserande valet 1378. Den ger ingen ny sammanhängande händelsepost för hela schismen fram till 1417."
+      },
+      "titleSv": "Kardinaler väljer Clemens VII mot Urban VI",
+      "summarySv": "En grupp kardinaler i Fondi väljer Robert av Genève till påve med namnet Clemens VII. De motsätter sig valet av Urban VI, och kyrkans lydnadsområden delas mellan rivaliserande påvar.",
+      "geographySv": "Fondi, Rom och Avignon",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-palais-avignon"
+      ],
+      "selectionNote": "The rival election initiates the western papal schism.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1381-timur-intar-herat",
+      "date": {
+        "kind": "exact",
+        "startYear": 1381,
+        "endYear": 1381,
+        "displaySv": "1381"
+      },
+      "titleSv": "Timur intar Herat",
+      "summarySv": "Timur erövrar Herat under sin expansion i Khorasan. Han för därmed staden under sin makt.",
+      "geographySv": "Herat, Khorasan, nuvarande Afghanistan",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-timurid-chronology",
+        "e1300-west-herat-history",
+        "e1300-west-herat-geography"
+      ],
+      "selectionNote": "The conquest is a major regional step in Timurid expansion.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1381-upprorsman-marscherar-mot-london",
+      "date": {
+        "kind": "exact",
+        "startYear": 1381,
+        "endYear": 1381,
+        "displaySv": "1381",
+        "noteSv": "Museet daterar upprorets början till våren 1381 och Londonförloppet till juni. Sammanfattningen anger inget gemensamt dagdatum för hela upproret."
+      },
+      "titleSv": "Upprorsmän marscherar mot London",
+      "summarySv": "Människor i Essex och Kent gör uppror mot kapitationsskatten och marscherar mot London. Där angriper de myndighetspersoner och byggnader innan Richard II möter dem och Wat Tyler dödas.",
+      "geographySv": "Essex, Kent och London, England",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-london-revolt"
+      ],
+      "selectionNote": "The rising challenged taxation, lordship and royal government across England.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1388-yi-seonggye-avsatter-goryeos-kung",
+      "date": {
+        "kind": "exact",
+        "startYear": 1388,
+        "endYear": 1388,
+        "displaySv": "1388"
+      },
+      "titleSv": "Yi Seonggye avsätter Goryeos kung",
+      "summarySv": "Yi Seonggye avsätter Goryeos regerande kung. Även ledande ämbetsmän som drivit hovets politik mot Ming förlorar sina ställningar.",
+      "geographySv": "Korea",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-met-korea"
+      ],
+      "selectionNote": "A decisive overthrow preceding the later dynastic change; no unsupported Yalu-march detail added.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1392-yi-seonggye-grundar-joseon",
+      "date": {
+        "kind": "exact",
+        "startYear": 1392,
+        "endYear": 1392,
+        "displaySv": "1392"
+      },
+      "titleSv": "Yi Seonggye blir Joseondynastins förste kung",
+      "summarySv": "Goryeos siste monark avsätts. Yi Seonggye utropas till kung i den nya Joseondynastin.",
+      "geographySv": "Korea",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-met-korea"
+      ],
+      "selectionNote": "A new Korean ruling dynasty, separate from the 1388 overthrow and 1394 capital designation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1392-yoshimitsu-forenar-kejsarhoven",
+      "date": {
+        "kind": "exact",
+        "startYear": 1392,
+        "endYear": 1392,
+        "displaySv": "1392",
+        "noteSv": "Årtalet gäller kejsarhovens konflikt. Det innebär inte att alla lokala maktstrider i Japan upphör."
+      },
+      "titleSv": "Yoshimitsu löser konflikten mellan Japans kejsarhov",
+      "summarySv": "Ashikaga Yoshimitsu löser konflikten mellan det norra och det södra kejsarhovet. Den långa perioden med rivaliserande hov går därmed mot sitt slut.",
+      "geographySv": "Japan",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-princeton-japan"
+      ],
+      "selectionNote": "The resolution of the rival-court conflict, distinct from the 1336 split.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1393-timur-intar-bagdad",
+      "date": {
+        "kind": "exact",
+        "startYear": 1393,
+        "endYear": 1393,
+        "displaySv": "1393"
+      },
+      "titleSv": "Timur intar Bagdad",
+      "summarySv": "Timur erövrar Bagdad under sina västliga fälttåg. Han utvidgar därmed sin militära kontroll till en av Iraks stora städer.",
+      "geographySv": "Bagdad, Irak",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-west-timurid-chronology",
+        "e1300-west-baghdad-history"
+      ],
+      "selectionNote": "The seizure links the Central Asian expansion to Iraqi political centres.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1394-joseon-utser-hanyang-till-huvudstad",
+      "date": {
+        "kind": "exact",
+        "startYear": 1394,
+        "endYear": 1394,
+        "displaySv": "1394"
+      },
+      "titleSv": "Joseon utser Hanyang till huvudstad",
+      "summarySv": "Joseondynastin utser Hanyang till huvudstad. Den redan bebodda orten får därmed en ny roll som rikets politiska centrum.",
+      "geographySv": "Hanyang, nuvarande Seoul, Korea",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-seoul-history"
+      ],
+      "selectionNote": "An explicitly dated capital designation; corrects the temptation to put it in the 1392 dynastic-change event.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1395-palats-och-helgedomar-fardigstalls-i-hanyang",
+      "date": {
+        "kind": "exact",
+        "startYear": 1395,
+        "endYear": 1395,
+        "displaySv": "1395"
+      },
+      "titleSv": "Palats och rituella anläggningar färdigställs i Hanyang",
+      "summarySv": "Gyeongbokgungpalatset, Jongmyohelgedomen och Sajikdanaltaret färdigställs i Hanyang. De hör till den nya huvudstadens hov och rituella miljö.",
+      "geographySv": "Hanyang, nuvarande Seoul, Korea",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "e1300-east-seoul-history"
+      ],
+      "selectionNote": "An explicitly dated building programme at the new capital, distinct from its prior designation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1395-timurs-styrkor-odelagger-gyllene-hordens-stader",
+      "date": {
+        "kind": "range",
+        "startYear": 1395,
+        "endYear": 1396,
+        "displaySv": "1395–1396",
+        "noteSv": "Waugh anger 1395–6. Posten daterar fälttågets härjningar och fastställer inget enda slutår för hela Gyllene horden."
+      },
+      "titleSv": "Timurs styrkor ödelägger Gyllene hordens städer",
+      "summarySv": "Timurs styrkor angriper Gyllene horden under 1395–1396. De förstör hordens större städer.",
+      "geographySv": "Gyllene hordens städer",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-timurid-chronology",
+        "e1300-west-golden-horde"
+      ],
+      "selectionNote": "The campaign devastated major urban centres in the western steppe.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1397-erik-av-pommern-krons-i-kalmar",
+      "date": {
+        "kind": "exact",
+        "startYear": 1397,
+        "endYear": 1397,
+        "displaySv": "17 juni 1397",
+        "noteSv": "Datumet gäller kröningen. Posten gör inga påståenden om unionsbrevets rättsliga status eller om enhetliga lagar i de tre rikena."
+      },
+      "titleSv": "Erik av Pommern kröns till gemensam kung i Kalmar",
+      "summarySv": "Erik av Pommern kröns i Kalmar till kung över de nordiska rikena. Stormännen stannar efter ceremonin för att förhandla om unionens utformning.",
+      "geographySv": "Kalmar; Danmark, Norge och Sverige",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-west-kalmar",
+        "e1300-west-kalmar-context"
+      ],
+      "selectionNote": "The shared coronation is a major political union event in northern Europe.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "historicalStatus": "sourced"
+    },
+    {
+      "id": "ev-1397-ho-citadellet-byggs",
+      "date": {
+        "kind": "exact",
+        "startYear": 1397,
+        "endYear": 1397,
+        "displaySv": "1397",
+        "noteSv": "1397 gäller citadellets byggande. Posten daterar inte Hoättens maktövertagande eller alla senare delar av världsarvsområdet."
+      },
+      "titleSv": "Ho-citadellet byggs i Thanh Hoa",
+      "summarySv": "Ett nytt citadell byggs mellan floderna Ma och Buoi. De stora kalkstensblocken och anläggningens placering visar en ny inriktning i regionens stadsbyggande.",
+      "geographySv": "Thanh Hoa, Vietnam",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1300-east-unesco-ho-citadel"
+      ],
+      "selectionNote": "A major citadel and imperial-city project with an explicit construction year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1397-yoshimitsu-borjar-bygga-kitayama",
+      "date": {
+        "kind": "exact",
+        "startYear": 1397,
+        "endYear": 1397,
+        "displaySv": "1397",
+        "noteSv": "1397 gäller byggstarten för residenset. Omvandlingen till Rokuon-ji sker senare."
+      },
+      "titleSv": "Yoshimitsu börjar bygga Kitayamapalatset",
+      "summarySv": "Ashikaga Yoshimitsu inleder bygget av Kitayamapalatset. Gyllene paviljongen får en framträdande plats i den planerade residensanläggningen.",
+      "geographySv": "Kyoto, Japan",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "e1300-east-kitayama"
+      ],
+      "selectionNote": "The beginning of an important architectural commission, not a fabricated temple-completion date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1398-timur-intar-och-plundrar-delhi",
+      "date": {
+        "kind": "exact",
+        "startYear": 1398,
+        "endYear": 1398,
+        "displaySv": "1398",
+        "noteSv": "Året anges uttryckligen i läroboken. Osäkra dödstal, exakta kalenderdagar och senare dynastibildningar läggs inte till."
+      },
+      "titleSv": "Timurs armé intar och plundrar Delhi",
+      "summarySv": "Timurs armé besegrar Delhis försvarare och går in i staden. Plundringståget försvagar sultanatets ställning.",
+      "geographySv": "Delhi, Indien",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1300-east-nios-delhi"
+      ],
+      "selectionNote": "A major destructive invasion of the Delhi Sultanate, distinct from Timur's rise and Golden Horde campaign owned by West.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",
