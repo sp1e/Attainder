@@ -104,6 +104,7 @@ const LazyInteractivePanel = lazy(() =>
   import("./interactive.jsx").then((module) => ({ default: module.InteractivePanel })),
 );
 const LazyCharactersPanel = lazy(() => import("../Characters/CharactersPanel.jsx"));
+const LazyHistoricalYearNotice = lazy(() => import("../Characters/HistoricalYearNotice.jsx"));
 
 const checkWebGL = () => {
   try {
@@ -235,6 +236,7 @@ const Main = ({
   const [isInteractiveOpen, setIsInteractiveOpen] = useState(false);
   const [isCharactersOpen, setIsCharactersOpen] = useState(false);
   const hasCharacters = useRuntimeState("world", (world) => Boolean(world?.characterSystem));
+  const isHistoricalCampaign = useRuntimeState("world", (world) => Boolean(world?.historicalScenario));
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
   const [advisorWidth, setAdvisorWidth] = useState(readAdvisorWidth);
   // A starter message queued for the advisor's input box — set when something
@@ -561,6 +563,7 @@ const Main = ({
         style={{ ...baseStyle, top: `calc(${TOP_BAR_OFFSET} + 5rem)`, left: "0.5rem", padding: "0.7rem 1rem", minHeight: "44px", cursor: "pointer", fontSize: "0.85rem", gap: "0.6rem" }}
       ><span aria-hidden="true">◇</span> Rike & familjer</button>}
       {hasCharacters && <Suspense fallback={null}><LazyCharactersPanel key={activeGame?.id} open={isCharactersOpen} onClose={() => setIsCharactersOpen(false)} /></Suspense>}
+      {isHistoricalCampaign && Boolean(activeGame?.id) && <Suspense fallback={null}><LazyHistoricalYearNotice key={activeGame.id} gameId={activeGame.id} hidden={mainMenuOpen} /></Suspense>}
       <DateWidget
         activePanel={activeBottomPanel}
         mapRef={mapRef}
