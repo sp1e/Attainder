@@ -57,7 +57,7 @@ const COVERAGE_BASE_NOTE_SV = 'Världens land visas med en generaliserad nutida 
 // One authored record per package. Everything that differs between packages lives here.
 const AUTHORED_PACKAGES = {
   'egypt-3000bc': {
-    polityId: 'egypt-early-dynastic',bookmarkDate: '-3000-01-01',eraLabelSv: 'Cirka 3000 f.Kr.',
+    sources,polityId: 'egypt-early-dynastic',bookmarkDate: '-3000-01-01',eraLabelSv: 'Cirka 3000 f.Kr.',
     seat: { id: 'memphis',nameSv: 'Ineb-Hedj (Memfis)',coordinates: [31.25,29.85],regionId: 'hbm-bc3000-19',placement: 'inside',sourceIds: ['egypt','memphis'],noteSv: 'Ungefärlig placering vid dagens Mit Rahina; det tidiga palatsets läge är okänt.' },
     contextSv: `Egypten, cirka 3000 f.Kr. Kungahuset är genererat. ${EGYPT_CORE_NOTE_SV}`,
     coverageNotePrefixSv: `${EGYPT_CORE_NOTE_SV} `,
@@ -72,7 +72,7 @@ const AUTHORED_PACKAGES = {
     },
   },
   'john-1200': {
-    polityId: 'johns-realms',bookmarkDate: '1200-12-31',eraLabelSv: '1200 e.Kr.',
+    sources,polityId: 'johns-realms',bookmarkDate: '1200-12-31',eraLabelSv: '1200 e.Kr.',
     seat: { id: 'windsor',nameSv: 'Windsor',coordinates: [-0.6,51.4833],regionId: 'hbm-ad1200-275',placement: 'inside',sourceIds: ['windsor','windsorResidence'],noteSv: 'Ungefärlig ortsmarkör. Vald som spelsäte; kungaparets närvaro denna dag är inte belagd.' },
     contextSv: 'Johan av England efter äktenskapet med Isabella. Dokumenterade identiteter, ungefärliga födelsedatum och genererade hovmän.',
     coverageNotePrefixSv: '',
@@ -101,7 +101,7 @@ export function authoredScenario(contentId) {
     eraLabelSv: a.eraLabelSv,contextSv: a.contextSv,
     calendarNoteSv: 'Startdagen är vald för simuleringen. Källornas datering och kalenderkonventioner finns kvar i proveniensen.',
     coverageNoteSv: a.coverageNotePrefixSv + COVERAGE_BASE_NOTE_SV,
-    sources: { ...sources },polities: [{ id: polityId,nameSv: a.polity.nameSv,sourceIds: a.polity.sourceIds,boundary: 'approximate',...a.polity.extra,noteSv: a.polity.noteSv }],
+    sources: { ...a.sources },polities: [{ id: polityId,nameSv: a.polity.nameSv,sourceIds: a.polity.sourceIds,boundary: 'approximate',...a.polity.extra,noteSv: a.polity.noteSv }],
     playablePolityIds: [polityId],settlements: [seat],courtSeeds: { [polityId]: court({ polityId,seat,spec: a.court }) },
   };
 }
