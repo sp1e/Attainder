@@ -50,7 +50,7 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
   // waiting for the catalog stand down.
   useEffect(() => {
     const ready = () => !hidden && Boolean(gameId) && !noticeRef.current && !isSimulationBusy()
-      && unseenEvents.unseenInTurn(String(turnKey || "").split("\n").filter(Boolean)).length === 0;
+      && unseenEvents.unseenInTurn(String(turnKey || "").split("\n").filter(Boolean)).size === 0;
     const check = async () => {
       if (!ready()) return;
       const start = parseGameDate(startDate);

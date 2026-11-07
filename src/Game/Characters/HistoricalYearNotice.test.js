@@ -65,7 +65,7 @@ function mount({ startDate = "0800-01-01", gameDate = "0802-01-01", busy = false
     "../../runtime/unseenEvents.js": {
       UNSEEN_EVENTS_CHANGED: "oh:unseen-events-changed",
       latestTurnEventIds: () => [],
-      unseenEvents: { unseenInTurn: () => control.unseen },
+      unseenEvents: { unseenInTurn: () => new Set(control.unseen) },
     },
     "../../runtime/historicalYearSeen.js": { historicalYearSeen: seen },
     "../../runtime/historicalEvents.js": realEvents,
