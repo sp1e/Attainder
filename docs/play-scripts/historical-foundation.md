@@ -190,7 +190,14 @@ Run on `670af54d` with Playwright Chromium on 7 November 2026, with the same ser
 | A-S | Server | Observed: `AMERIKA`, `Senmedeltid`, Aztekriket with Ahuitzotl and Inkariket with Huayna Capac | Observed in realm mode: Ahuitzotl, 50, header `Riket / Aztekriket / 1500-12-31`; `Ämbeten & arv` shows `Huey tlatoani` and Tenochtitlan | Observed in family mode: families Hovhus 1–3 (genererat) and Huayna Capacs hus; representative Kuntur Rimaq (genererad), 44 |
 | A-W | Web | Observed: the same `AMERIKA` rows | Not run | Observed in realm mode: header `Riket / Inkariket / 1500-12-31`; `Ämbeten & arv` shows `Sapa inka`, Huáscar and Cusco |
 
-Choosing Aztekriket shows the dossier text that opens `Ahuitzotl styr från Tenochtitlan inom trippelalliansen.` Both consoles showed 0 errors. No model turn was run.
+A second run on `edf7fbef` covered the two starts the first run left out.
+
+| ID | Adapter | Start | Observed |
+| --- | --- | --- | --- |
+| A-S2 | Server | Inkariket, realm mode | `Huayna Capacs hus · 43 år`; `Ämbeten & arv` shows `Sapa inka` held by Huayna Capac; Cusco under `Förvaltning` |
+| A-W2 | Web | Aztekriket, realm mode | `Ahuitzotls hus · 50 år`; `Ämbeten & arv` shows `Huey tlatoani` held by Ahuitzotl; Tenochtitlan under `Förvaltning` |
+
+Choosing Aztekriket shows the dossier text that opens `Ahuitzotl styr från Tenochtitlan inom trippelalliansen.` Both consoles showed 0 errors in both runs. No model turn was run.
 
 ## Closure
 
