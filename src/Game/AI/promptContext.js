@@ -1495,21 +1495,79 @@ export const rankFocusPowers = (regions, world, bundle, { playerName, actorNames
       stockName: toCountryName(normalizeString(record?.code)) || "",
     };
   });
-  const ranked = selectFocusPowers({
-    owners,
-    player: playerName,
-    actions: normalizeArray(bundle?.actions),
-    chats: normalizeArray(bundle?.chats),
-    events: recentEventList(bundle?.events),
-    wars: normalizeArray(world.wars),
-    claimants: world.regionClaimants ?? {},
-    ownerOfRegion: (regionId) => ownerById.get(String(regionId)) ?? "",
-  });
+  const ranked = selectFocusPowers({ owners, ...focusSignals(world, bundle, playerName, ownerById) });
   const labels = ranked.map((entry) => entry.label);
   for (const name of actorNames) {
     if (name && !labels.some((label) => label.toLowerCase() === name.toLowerCase())) labels.push(name);
   }
   return labels;
+};
+
+// What the turn is about, as selectFocusPowers reads it. Shared by the region
+// focus above and the polity list below so both rank on the same signals.
+const focusSignals = (world, bundle, playerName, ownerById) => ({
+  player: playerName,
+  actions: normalizeArray(bundle?.actions),
+  chats: normalizeArray(bundle?.chats),
+  events: recentEventList(bundle?.events),
+  wars: normalizeArray(world?.wars),
+  claimants: world?.regionClaimants ?? {},
+  ownerOfRegion: (regionId) => ownerById.get(String(regionId)) ?? "",
+});
+
+const POLITY_FULL_LINES = 16;
+const POLITY_OVERFLOW_NAMES = 40;
+
+// `note` is the polity's lore: the author's (or the faction creator's) own
+// description of who this power is. It steers the story.
+const polityLine = (entry) =>
+  `- ${entry.code}: ${entry.name || entry.code}${entry.color ? ` (${entry.color})` : ""}${normalizeArray(entry.aliases).length > 0 ? ` aliases ${entry.aliases.join(", ")}` : ""}${entry.note ? ` — ${entry.note}` : ""}`;
+
+// Polities with any focus score, most relevant first (selectFocusPowers: the
+// player, pending actions, wars, chats, recent events, claimants, then size),
+// followed by the rest in insertion order. Draws no randomness.
+const rankPolities = (polities, world, { playerName = "", bundle = {}, regions = [] } = {}) => {
+  const overrides = world?.regionOwnershipOverrides ?? {};
+  const ownerById = new Map();
+  const heldBy = new Map();
+  for (const region of normalizeArray(regions)) {
+    const owner = regionOwnerName(region, overrides);
+    if (!owner) continue;
+    ownerById.set(String(region.id), owner);
+    heldBy.set(owner.toLowerCase(), (heldBy.get(owner.toLowerCase()) ?? 0) + 1);
+  }
+  const byLabel = new Map();
+  const owners = [];
+  for (const entry of polities) {
+    const label = normalizeString(entry?.code);
+    if (!label || byLabel.has(label)) continue;
+    byLabel.set(label, entry);
+    const stockName = toCountryName(label);
+    const regionCount = heldBy.get(stockName.toLowerCase()) ?? heldBy.get(normalizeString(entry.name).toLowerCase()) ?? 0;
+    owners.push({ key: label.toLowerCase(), label, regions: regionCount, displayName: normalizeString(entry.name), aliases: normalizeArray(entry.aliases), stockName });
+  }
+  const ranked = selectFocusPowers({ owners, ...focusSignals(world, bundle, playerName, ownerById) })
+    .filter((row) => row.score > 0)
+    .map((row) => byLabel.get(row.label));
+  const placed = new Set(ranked);
+  return [...ranked, ...polities.filter((entry) => !placed.has(entry))];
+};
+
+// The "Dynamic polity overrides" section of the world summary: the first 16
+// polities by relevance in full, then one line naming up to 40 more, then a
+// count of any still left out.
+export const rankedPolitySummary = (world, context = {}) => {
+  const polities = Object.values(world?.polityOverrides ?? {}).filter((entry) => entry && typeof entry === "object");
+  if (polities.length === 0) return "No dynamic polity overrides are currently recorded.";
+  const ordered = rankPolities(polities, world, context);
+  const lines = ordered.slice(0, POLITY_FULL_LINES).map(polityLine);
+  const overflow = ordered.slice(POLITY_FULL_LINES);
+  if (overflow.length > 0) {
+    const names = overflow.slice(0, POLITY_OVERFLOW_NAMES).map((entry) => entry.name || entry.code);
+    const hidden = overflow.length - names.length;
+    lines.push(`Other polities: ${names.join(", ")}${hidden > 0 ? `, +${hidden} more` : ""}`);
+  }
+  return lines.join("\n");
 };
 
 // `regionListsViaTools`: the task has the lookup functions (lookupTools.js),
@@ -1538,14 +1596,6 @@ export const buildWorldSummary = async (bundle, regionCatalog = null, { regionLi
       return `- ${region?.name || regionId}${bakedOwner ? ` (${bakedOwner})` : ""} -> ${ownerCode}`;
     }).join("\n");
   const polities = Object.values(world.polityOverrides);
-  const politySummary = polities.length === 0
-    ? "No dynamic polity overrides are currently recorded."
-    : polities.slice(0, 16).map((entry) =>
-      // `note` is the polity's lore — the author's (or the faction creator's) own
-      // description of who this power is. It was persisted but never reached the
-      // model, so a player-written backstory did nothing. It steers the story now.
-      `- ${entry.code}: ${entry.name || entry.code}${entry.color ? ` (${entry.color})` : ""}${entry.aliases.length > 0 ? ` aliases ${entry.aliases.join(", ")}` : ""}${entry.note ? ` — ${entry.note}` : ""}`,
-    ).join("\n");
 
   // What each country IS: the map-maker's tags with the AI's own changes layered
   // over them. This is the whole reason tags exist — the model reads it for every
@@ -1589,6 +1639,7 @@ export const buildWorldSummary = async (bundle, regionCatalog = null, { regionLi
     if (entry?.code) polityNames[toCountryName(String(entry.code)).toLowerCase()] = entry.name || toCountryName(entry.code);
   }
   const focusCodes = rankFocusPowers(regions, world, bundle, { playerName, actorNames, polityNames });
+  const politySummary = rankedPolitySummary(world, { playerName, bundle, regions });
   const regionOwnershipCatalog = buildRegionOwnershipText(regions, world.regionOwnershipOverrides, {
     focusCodes,
     polityNames,
