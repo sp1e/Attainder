@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { dateCertaintySv, eventAnchorYear, eventsForYears, historicalRecord, yearsClosedBetween } from './historicalEvents.js';
+import { readFileSync } from 'node:fs';
+import { dateCertaintySv, eventAnchorYear, eventsForYears, historicalRecord, renderCoverageReport, validateCoverage, validateEventCatalog, yearsClosedBetween } from './historicalEvents.js';
 
 test('a turn reports the year whose last day it contains', () => {
   assert.deepEqual(yearsClosedBetween('-3000-01-01', '-2999-01-01'), [-3000]);
@@ -69,4 +70,62 @@ test('lookup leaves the catalog unchanged and draws no randomness', () => {
     Math.random = realRandom;
   }
   assert.deepEqual(catalog, clone);
+});
+
+const emptyCatalog = { schemaVersion: 1, sources: [], events: [] };
+const range = (startYear, endYear, status = 'unresearched') => ({ startYear, endYear, status, note: 'test' });
+const fixtureCoverage = { schemaVersion: 1, ranges: [range(-3300, -1), range(1, 1200, 'partial')] };
+const source = { id: 's1', title: 'T', institution: 'I', url: 'https://example.org', locator: 'p. 1', retrievedOn: '2026-11-07', originalChronology: 'BC', reuseTerms: 'cite' };
+const goodEvent = {
+  id: 'e1', titleSv: 'Rubrik', summarySv: 'Sammanfattning', geographySv: 'Egypten', category: 'politics', importance: 2,
+  date: { kind: 'exact', startYear: -3100, endYear: -3100, displaySv: '3100 f.Kr.' },
+  sourceIds: ['s1'], selectionNote: 'Valt', review: { status: 'approved', reviewedBy: 'sp1e', reviewedOn: '2026-11-07' },
+};
+const catalogWith = (event, sources = [source]) => ({ schemaVersion: 1, sources, events: [event] });
+
+test('the coverage index partitions all 4,500 years', () => {
+  const result = validateCoverage(fixtureCoverage, emptyCatalog);
+  assert.equal(result.ok, true);
+  assert.equal(Object.values(result.totals).reduce((a, b) => a + b), 4500);
+  assert.equal(result.totals.partial, 1200);
+});
+test('a gap, an overlap or a range holding year zero alone is refused', () => {
+  const refused = (ranges) => validateCoverage({ schemaVersion: 1, ranges }, emptyCatalog).ok === false;
+  assert.ok(refused([range(-3300, -2), range(1, 1200)]));
+  assert.ok(refused([range(-3300, 5), range(5, 1200)]));
+  assert.ok(refused([range(-3300, -1), range(0, 0), range(1, 1200)]));
+});
+test('an event is refused for each defect', () => {
+  const withDate = (patch) => ({ ...goodEvent, date: { ...goodEvent.date, ...patch } });
+  const cases = {
+    'year outside the range': withDate({ startYear: -3400, endYear: -3400 }),
+    'start year zero': withDate({ startYear: 0, endYear: 5, kind: 'range' }),
+    'start after end': withDate({ startYear: -3000, endYear: -3100, kind: 'range' }),
+    'exact with start != end': withDate({ endYear: -3000 }),
+    'missing source id': { ...goodEvent, sourceIds: ['nope'] },
+    'no Swedish title': { ...goodEvent, titleSv: '' },
+    'unknown category': { ...goodEvent, category: 'sport' },
+    'unapproved review': { ...goodEvent, review: { ...goodEvent.review, status: 'draft' } },
+  };
+  assert.equal(validateEventCatalog(catalogWith(goodEvent)).ok, true);
+  for (const [name, event] of Object.entries(cases)) assert.equal(validateEventCatalog(catalogWith(event)).ok, false, name);
+  assert.equal(validateEventCatalog(catalogWith(goodEvent, [{ ...source, url: '' }])).ok, false, 'source without url');
+  assert.equal(validateEventCatalog(catalogWith(goodEvent, [{ ...source, locator: '' }])).ok, false, 'source without locator');
+  assert.equal(validateEventCatalog({ ...emptyCatalog, sources: [source], events: [goodEvent, goodEvent] }).ok, false, 'duplicate id');
+});
+test('an event inside a range marked no-secure-event is refused', () => {
+  const coverage = { schemaVersion: 1, ranges: [range(-3300, -3000, 'no-secure-event'), range(-2999, -1), range(1, 1200)] };
+  assert.equal(validateCoverage(coverage, catalogWith(goodEvent)).ok, false);
+  assert.equal(validateCoverage(coverage, emptyCatalog).ok, true);
+});
+test('the committed catalog and coverage pass', () => {
+  const read = (name) => JSON.parse(readFileSync(new URL(`./seed/historical/events/${name}`, import.meta.url), 'utf8'));
+  const catalog = read('catalog.json');
+  assert.equal(validateEventCatalog(catalog).ok, true);
+  assert.equal(validateCoverage(read('coverage.json'), catalog).ok, true);
+});
+test('the coverage report is stable', () => {
+  const first = renderCoverageReport(fixtureCoverage, emptyCatalog);
+  assert.equal(first, renderCoverageReport(fixtureCoverage, emptyCatalog));
+  assert.match(first, /4500 calendar years/);
 });

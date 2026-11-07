@@ -60,3 +60,5 @@ export const historicalRecord = (catalog, startDate, gameDate) => {
 };
 
 export const dateCertaintySv = (event) => CERTAINTY_SV[event?.date?.kind] ?? CERTAINTY_SV.disputed;
+
+export { validateEventCatalog, validateCoverage, renderCoverageReport } from "./historicalEventValidation.js";
