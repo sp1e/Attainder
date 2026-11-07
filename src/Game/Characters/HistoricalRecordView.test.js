@@ -63,21 +63,21 @@ test("events appear grouped by year, newest year first", async () => {
   const catalog = { sources: [source], events: [event("a", 801), event("b", 802), event("c", 802, { importance: 3 })] };
   const m = await mountView({ startDate: "0800-01-01", gameDate: "0804-01-01" }, { catalog });
   const tree = m.render();
-  assert.deepEqual(headings(tree), ["802", "801"]);
+  assert.deepEqual(headings(tree), ["802 e.Kr.", "801 e.Kr."]);
   assert.deepEqual(cards(tree), ["Händelse c", "Händelse b", "Händelse a"]);
 });
 
-test("BC years read as BC, newest (closest to AD) first", async () => {
+test("BC years read as f.Kr., newest (closest to AD) first", async () => {
   const catalog = { sources: [source], events: [event("a", -219), event("b", -218)] };
   const m = await mountView({ startDate: "-0220-01-01", gameDate: "-0216-01-01" }, { catalog });
-  assert.deepEqual(headings(m.render()), ["218 BC", "219 BC"]);
+  assert.deepEqual(headings(m.render()), ["218 f.Kr.", "219 f.Kr."]);
 });
 
 test("a lower gameDate after an undo drops the later years", async () => {
   const catalog = { sources: [source], events: [event("a", 801), event("b", 802)] };
   const m = await mountView({ startDate: "0800-01-01", gameDate: "0804-01-01" }, { catalog });
-  assert.deepEqual(headings(m.render()), ["802", "801"]);
-  assert.deepEqual(headings(m.render({ startDate: "0800-01-01", gameDate: "0802-01-01" })), ["801"]);
+  assert.deepEqual(headings(m.render()), ["802 e.Kr.", "801 e.Kr."]);
+  assert.deepEqual(headings(m.render({ startDate: "0800-01-01", gameDate: "0802-01-01" })), ["801 e.Kr."]);
   assert.equal(m.control.loads, 1, "the catalog loads once");
 });
 
@@ -180,4 +180,19 @@ test("holdFocus moves focus into the panel only when it is outside", () => {
 test("the view makes no network call and writes nothing to a save", () => {
   const text = readFileSync(new URL("./HistoricalRecordView.jsx", import.meta.url), "utf8");
   assert.doesNotMatch(text, /fetch\(|localStorage|sessionStorage|indexedDB|useRuntimeState|runtime\/(?!historical|gameDates)/);
+});
+
+test("the headings across the BC/AD boundary read 1 f.Kr. and 1 e.Kr., with no year zero", async () => {
+  const catalog = { sources: [source], events: [event("a", -2), event("b", -1), event("c", 1), event("d", 2)] };
+  const m = await mountView({ startDate: "-0002-06-01", gameDate: "0003-06-01" }, { catalog });
+  assert.deepEqual(headings(m.render()), ["2 e.Kr.", "1 e.Kr.", "1 f.Kr.", "2 f.Kr."]);
+});
+
+test("a date note renders on the card when the catalog gives one, and not otherwise", async () => {
+  const noted = event("n", 801, { date: { kind: "approximate", startYear: 801, endYear: 801, displaySv: "omkring 801", noteSv: "Källorna anger 800 eller 802." } });
+  const catalog = { sources: [source], events: [noted, event("p", 801)] };
+  const m = await mountView({ startDate: "0800-01-01", gameDate: "0803-01-01" }, { catalog });
+  const tree = m.render();
+  const notes = findAll(tree, (n) => n.type === "p" && n.props?.className === "hist-date-note").map((n) => textOf(n).trim());
+  assert.deepEqual(notes, ["Källorna anger 800 eller 802."]);
 });

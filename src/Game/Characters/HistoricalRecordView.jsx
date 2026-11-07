@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { historicalRecord } from "../../runtime/historicalEvents.js";
-import { formatGameDate, formatGameDateReadable, parseGameDate } from "../../runtime/gameDates.js";
+import { parseGameDate } from "../../runtime/gameDates.js";
 import { loadHistoricalEventCatalog } from "../../runtime/historicalEventCatalog.js";
 import HistoricalEventCard from "./HistoricalEventCard.jsx";
 import "./characters.css";
@@ -23,7 +23,8 @@ export function holdFocus(panel, active) {
   panel.querySelector("button")?.focus();
 }
 
-const yearHeading = (year) => formatGameDateReadable(formatGameDate({ year, month: 1, day: 1 }), "YYYY");
+// The character panel's own era form (CharactersPanel.jsx): 218 f.Kr., 802 e.Kr.
+const yearHeading = (year) => `${Math.abs(year)} ${year < 0 ? "f.Kr." : "e.Kr."}`;
 
 // The sourced real-world events of every year the campaign has closed, newest
 // year first. Read-only: the catalog loads when this view is first shown, and

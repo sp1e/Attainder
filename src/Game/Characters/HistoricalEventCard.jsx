@@ -13,6 +13,7 @@ export default function HistoricalEventCard({ event, sources = [] }) {
   return <article className="hist-card">
     <h3>{event.titleSv}</h3>
     <p className="hist-meta"><span>{event.date?.displaySv}</span><span>{dateCertaintySv(event)}</span><span>{event.geographySv}</span></p>
+    {event.date?.noteSv && <p className="hist-date-note">{event.date.noteSv}</p>}
     <p>{event.summarySv}</p>
     {cited.length > 0 && <details className="hist-sources">
       <summary>Källor</summary>
