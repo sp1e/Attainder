@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHistoricalCharacterSystem } from './scenarioSeed.js';
 import { advanceCharacters, executeCharacterCommand, getCharacterPresentation, normalizeCharacterSystem } from './index.js';
+import { SUCCESSION_LAWS } from './content.js';
 import { addGameMonths } from '../gameDates.js';
 import { validateHistoricalScenario } from '../historicalScenarios.js';
 import { projectCharacterWorld } from '../characterWorld.js';
@@ -113,19 +114,27 @@ test('court size is authored data; a one-family court works with vacant generate
   assert.ok(getCharacterPresentation(state).ruler);
 });
 
-test('the authored succession law seeds the realm and an absent law keeps primogeniture', () => {
+test('the validator and the seed share one frozen succession law list', () => {
+  assert.deepEqual(SUCCESSION_LAWS, ['primogeniture', 'merit']);
+  assert.ok(Object.isFrozen(SUCCESSION_LAWS));
+});
+
+for (const mode of ['realm', 'family']) test(`${mode}: the authored succession law seeds the realm, draws nothing, and an absent law keeps primogeniture`, () => {
   for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
-    const merit = optionsFor(load(id)), absent = optionsFor(load(id));
+    const merit = { ...optionsFor(load(id)), mode }, absent = { ...optionsFor(load(id)), mode };
     merit.historicalScenario.courtSeeds[merit.polityId].successionLaw = 'merit';
     delete absent.historicalScenario.courtSeeds[absent.polityId].successionLaw;
-    const state = createHistoricalCharacterSystem(merit);
+    const state = createHistoricalCharacterSystem(merit), unchanged = createHistoricalCharacterSystem(absent);
     assert.equal(state.realm.successionLaw, 'merit', id);
     // The opening heir claim is recorded under the authored law, so the law is in place before the court completes.
     const heirClaims = Object.values(state.families).flatMap(f => f.claims).filter(c => c.kind === 'heir' && c.status === 'active');
     assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt merit')), id);
     assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
     assert.equal(getCharacterPresentation(state).succession.law, 'merit', id);
-    assert.equal(createHistoricalCharacterSystem(absent).realm.successionLaw, 'primogeniture', id);
+    assert.equal(unchanged.realm.successionLaw, 'primogeniture', id);
+    // Setting the law draws no randomness: the merit start consumes the same rng values and logs the same events.
+    assert.deepEqual(state.rngState, unchanged.rngState, id);
+    assert.deepEqual(state.log, unchanged.log, id);
   }
 });
 

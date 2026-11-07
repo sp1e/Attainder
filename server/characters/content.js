@@ -87,5 +87,7 @@ export const FAMILY_SEEDS = [
   { id: 'family-eshmun', name: 'Eshmun', color: '#527c8b', religionId: 'river', names: ['Eshmun', 'Maren', 'Barek', 'Yara', 'Lior', 'Suri'], traits: ['greedy', 'cautious'], archetype: 'steward' },
   { id: 'family-safra', name: 'Safra', color: '#7b648e', religionId: 'dawn', names: ['Safra', 'Amat', 'Danel', 'Reva', 'Tamar', 'Zuri'], traits: ['devout', 'compassionate'], archetype: 'guardian' },
 ];
+// The engine's succession laws; the historical validator and the authored-court seed both check against this list.
+export const SUCCESSION_LAWS = Object.freeze(['primogeniture', 'merit']);
 export const SKILL_LABELS = { command: 'Befäl', stewardship: 'Förvaltning', diplomacy: 'Diplomati', learning: 'Lärdom', intrigue: 'Intrig', prowess: 'Kampförmåga' };
 export const NAME_POOL = ['Adara', 'Belen', 'Ciran', 'Dema', 'Eris', 'Fara', 'Galen', 'Hessa', 'Ilan', 'Jara', 'Keris', 'Luma', 'Meran', 'Nara', 'Orin', 'Pella', 'Ramin', 'Sela', 'Tiran', 'Vera'];

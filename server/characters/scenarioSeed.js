@@ -1,6 +1,6 @@
 import { addGameMonths } from '../gameDates.js';
 import { ENGINE_OFFICE_IDS, safeId, validateHistoricalCourt } from '../historicalScenarios.js';
-import { ADULT_AGE, ARCHETYPES, TRAITS, SKILL_LABELS, publicHistoricalOrigin, publicPersonOrigin, publicReligionOrigin } from './content.js';
+import { ADULT_AGE, ARCHETYPES, TRAITS, SKILL_LABELS, SUCCESSION_LAWS, publicHistoricalOrigin, publicPersonOrigin, publicReligionOrigin } from './content.js';
 import { completeCharacterState, createCharacterState, getCharacterAge, normalizeCharacterSystem } from './index.js';
 
 const refusal = () => new Error('Det historiska hovets uppgifter kan inte användas av karaktärssystemet.');
@@ -35,7 +35,7 @@ function validateEngineSeed(court, familyId) {
   // Current engine supports its council roles and one generated governor per city.
   if (court.offices.some(office => !ENGINE_OFFICE_IDS.includes(office.id))) throw refusal();
   // The engine knows two succession laws; null counts as a present value and is refused like the validator does.
-  if (court.successionLaw !== undefined && !['primogeniture', 'merit'].includes(court.successionLaw)) throw refusal();
+  if (court.successionLaw !== undefined && !SUCCESSION_LAWS.includes(court.successionLaw)) throw refusal();
 }
 
 function seedPerson(authored, date) {

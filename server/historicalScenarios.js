@@ -2,7 +2,7 @@
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { validateHistoricalStartDate } from './historicalStarts.js';
 import { compareGameDates, parseGameDate, formatGameDate } from './gameDates.js';
-import { ARCHETYPES, TRAITS, SKILL_LABELS } from './characters/content.js';
+import { ARCHETYPES, TRAITS, SKILL_LABELS, SUCCESSION_LAWS } from './characters/content.js';
 
 export const HISTORICAL_SCHEMA_VERSION = 1;
 export const isHistoricalWorld = world => world?.historicalScenario?.kind === 'historical';
@@ -93,7 +93,7 @@ function validEngineShape(court, people) {
     && court.cities.every(c => safeId(`governor:${c.id}`))
     && court.people.every(enginePerson) && acyclicParents(people)
     && court.offices.every(o => ENGINE_OFFICE_IDS.includes(o.id))
-    && (court.successionLaw === undefined || ['primogeniture','merit'].includes(court.successionLaw));
+    && (court.successionLaw === undefined || SUCCESSION_LAWS.includes(court.successionLaw));
 }
 function validCourt(court, polityId, h, date) {
   if (!record(court) || court.polityId !== polityId || !h.settlements.some(s => s.id === court.seatId && s.polityId === polityId)) return false;
