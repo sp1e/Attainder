@@ -45,7 +45,7 @@ export default function DynastyStartCard({ onStart, errorMessage = '' }) {
   };
   const start = async () => {
     setBusy(true); setError('');
-    try { const options = {mode,seed,difficulty,scenarioId,date:selected?.date,polityId,...(mode === 'family' ? {familyId} : {})}; await (onStart ? onStart(options) : startDynastyCampaign(options)); }
+    try { const options = {option:selected,mode,seed,difficulty,scenarioId,date:selected?.date,polityId,...(mode === 'family' ? {familyId} : {})}; await (onStart ? onStart(options) : startDynastyCampaign(options)); }
     catch (failure) { setError(failure.message); setBusy(false); }
   };
   return <section className="dynasty-start" data-theme={theme} aria-labelledby="dynasty-start-heading" data-no-translate>

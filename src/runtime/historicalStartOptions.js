@@ -1,7 +1,9 @@
 import { validatePlayableScenario, requirePrepared } from '../../server/historicalPreparation.js';
 import { HISTORICAL_START_ORDER } from '../../server/historicalStarts.js';
+import { HISTORICAL_SUMMARY_SCHEMA, historicalStartFromSummary } from '../../server/historicalStartSummary.js';
 
-// The same content used for creation supplies every visible choice.
+// The same content used for creation supplies every visible choice. The start card reads
+// historicalStartOptionFromSummary instead; this one validates the whole package first.
 export function historicalStartOption(details, regions, cities) {
   const data = details?.data, meta = details?.scenario;
   requirePrepared(validatePlayableScenario({ data, meta, regions, cities }));
@@ -12,6 +14,25 @@ export function historicalStartOption(details, regions, cities) {
     polities: h.playablePolityIds.map(id => ({ id, name: h.polities.find(p => p.id === id).nameSv,
       ruler: h.courtSeeds[id].people.find(p => p.id === h.courtSeeds[id].rulerId),
       families: h.courtSeeds[id].families.map(f => ({ id: f.id, name: f.name ?? f.id })) })),
+  };
+}
+
+// A catalog scenario the start card offers: a valid summary of the current schema with at least one
+// polity, on a scenario that is not a restore-only copy. Both library stores attach the summary.
+export const offersHistoricalStart = scenario => {
+  const summary = scenario?.historicalSummary;
+  return summary?.schema === HISTORICAL_SUMMARY_SCHEMA && Array.isArray(summary.polities) && summary.polities.length > 0
+    && historicalStartFromSummary(summary, scenario) !== null;
+};
+
+// The card's option from the library catalog's summary, without loading the package. Creation
+// still validates the whole package, so a start the summary shows can fail there, not here.
+export function historicalStartOptionFromSummary(scenarioId, summary) {
+  return {
+    scenarioId, name: summary.name ?? scenarioId, date: summary.date, label: summary.eraLabelSv, eraId: summary.eraId,
+    context: summary.contextSv, coverage: summary.coverageNoteSv, calendarNote: summary.calendarNoteSv,
+    polities: summary.polities.map(p => ({ id: p.id, name: p.nameSv, regionId: p.regionId, ruler: { ...p.ruler },
+      families: p.families.map(f => ({ id: f.id, name: f.name })) })),
   };
 }
 

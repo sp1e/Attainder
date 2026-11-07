@@ -27,7 +27,7 @@ test('the start card sends the selected historical bookmark, identity and diffic
   render(); await settle(); let tree=render();
   findAll(tree,n=>n.type==='select' && n.props.id==='dynasty-difficulty')[0].props.onChange({target:{value:'hard'}});
   tree=render(); await buttonNamed(tree,'Starta som riket').props.onClick();
-  assert.deepEqual(JSON.parse(JSON.stringify(started)),[{mode:'realm',seed:'',difficulty:'hard',scenarioId:'default',date:'1200-12-31',polityId:'johns-realms'}]);
+  assert.deepEqual(JSON.parse(JSON.stringify(started)),[{option:bookmark,mode:'realm',seed:'',difficulty:'hard',scenarioId:'default',date:'1200-12-31',polityId:'johns-realms'}]);
   assert.deepEqual(JSON.parse(JSON.stringify(card.DYNASTY_DIFFICULTIES)),[['easy','Lätt'],['normal','Normal'],['hard','Svår']]);
 });
 
@@ -50,7 +50,7 @@ test('orchestrator creates once with the selected historical options before acti
     loadScenarioDetails:async()=>({}), downloadScenarioJsonAsset:async()=>({}),
     createGame:async request=>{calls.push(['create',request]);return {game:{id:'game-1'}};},
     activateGame:async id=>calls.push(['activate',id])};
-  const mod=load('../runtime/startDynastyCampaign.js','js',{'./library.js':library,'./campaignSeed.js':campaignSeed,'./historicalStartOptions.js':{historicalStartOption:()=>bookmark,orderHistoricalStarts,historicalCampaignName}});
+  const mod=load('../runtime/startDynastyCampaign.js','js',{'./library.js':library,'./campaignSeed.js':campaignSeed,'./historicalStartOptions.js':{offersHistoricalStart:()=>true,historicalStartOptionFromSummary:()=>bookmark,orderHistoricalStarts,historicalCampaignName}});
   await mod.startDynastyCampaign({scenarioId:'default',date:bookmark.date,polityId:'johns-realms',mode:'family',familyId:'plantagenet',seed:7,difficulty:'hard'});
   assert.deepEqual(calls.map(c=>c[0]),['create','activate']);
   assert.deepEqual(JSON.parse(JSON.stringify(calls[0][1].historicalStart)),{date:'1200-12-31',polityId:'johns-realms',mode:'family',familyId:'plantagenet',seed:7,difficulty:'hard'});
@@ -77,8 +77,8 @@ test('a start with no chosen scenario takes Charlemagne from the three-start cat
   const library={ensureLibraryCatalog:async()=>({scenarios:['default','egypt-3000bc','charlemagne-800'].map(id=>({id,historicalStart:{}}))}),
     loadScenarioDetails:async id=>({id}), downloadScenarioJsonAsset:async()=>({}),
     createGame:async request=>{calls.push(request);return {game:{id:'game-1'}};}, activateGame:async()=>{}};
-  const historicalStartOption=details=>({scenarioId:details.id,name:details.id,date:'0800-12-25',polities:[{id:`${details.id}-realm`}]});
-  const mod=load('../runtime/startDynastyCampaign.js','js',{'./library.js':library,'./campaignSeed.js':campaignSeed,'./historicalStartOptions.js':{historicalStartOption,orderHistoricalStarts,historicalCampaignName}});
+  const historicalStartOptionFromSummary=id=>({scenarioId:id,name:id,date:'0800-12-25',polities:[{id:`${id}-realm`}]});
+  const mod=load('../runtime/startDynastyCampaign.js','js',{'./library.js':library,'./campaignSeed.js':campaignSeed,'./historicalStartOptions.js':{offersHistoricalStart:()=>true,historicalStartOptionFromSummary,orderHistoricalStarts,historicalCampaignName}});
   assert.deepEqual([...await mod.loadHistoricalStartOptions()].map(o=>o.scenarioId),['charlemagne-800','default','egypt-3000bc']);
   await mod.startDynastyCampaign({});
   assert.equal(calls[0].scenarioId,'charlemagne-800'); assert.equal(calls[0].historicalStart.polityId,'charlemagne-800-realm');
