@@ -92,6 +92,18 @@ test('the start card lists the shipped starts under region headings with a searc
   assert.equal(findAll(tree,n=>n.props?.role==='radiogroup' && startRows(n).length).length,1);
 });
 
+test('a row names the polity kind after the start, and a state row names none', async () => {
+  const driver=createHookDriver(), options=shippedOptions();
+  const karl=options.find(o=>o.scenarioId==='charlemagne-800');
+  const city={...karl,scenarioId:'city',polities:[{...karl.polities[1],id:'venice',name:'Venedig',kind:'city-state'}]};
+  const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>[...options,city],startDynastyCampaign:async()=>{}}});
+  const render=()=>driver.render(React.createElement(card.default,{}));
+  render(); await settle(); const tree=render();
+  const row=key=>startRows(tree).find(r=>r.props['data-start-key']===key);
+  assert.equal(textOf(row('city/venice').props.children[0]),'Venedig · 800 e.Kr. · stadsstat');
+  assert.equal(textOf(row('charlemagne-800/papal-states').props.children[0]),'Kyrkostaten · 800 e.Kr.');
+});
+
 test('typing in the search field filters the rows and shows an empty state', async () => {
   const driver=createHookDriver(), options=shippedOptions();
   const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>options,startDynastyCampaign:async()=>{}}});

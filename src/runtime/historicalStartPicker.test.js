@@ -40,6 +40,17 @@ test('a row carries the polity, its start, era and ruler', () => {
   assert.ok(papal.searchText.includes('kyrkostaten') && papal.searchText.includes('leo iii') && papal.searchText.includes('tidig medeltid'));
 });
 
+test('a row names the polity kind for every kind but a state, and the search finds it', () => {
+  const options = shippedOptions();
+  const base = options.find(o => o.scenarioId === 'charlemagne-800');
+  const city = { ...base, scenarioId: 'city', polities: [{ ...base.polities[1], id: 'venice', name: 'Venedig', kind: 'city-state' }] };
+  const rows = historicalStartRows([...options, city]);
+  assert.equal(rows.find(r => r.key === 'city/venice').kindLabelSv, 'stadsstat');
+  assert.equal(rows.find(r => r.key === 'charlemagne-800/papal-states').kindLabelSv, '');
+  assert.ok(options.flatMap(o => o.polities).every(p => p.kind === 'state'), 'the shipped options carry kind state');
+  assert.deepEqual(keys(groupHistoricalStartRows(rows, 'stadsstat')), ['city/venice']);
+});
+
 test('search ignores case, diacritics and stray whitespace', () => {
   const rows = historicalStartRows(shippedOptions());
   assert.deepEqual(keys(groupHistoricalStartRows(rows, 'leo')), ['charlemagne-800/papal-states']);

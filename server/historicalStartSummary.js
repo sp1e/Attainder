@@ -7,9 +7,11 @@
 // polities live in seed/historical/polity-regions.json, checked by scripts/check-polity-regions.mjs.
 import polityRegions from "./seed/historical/polity-regions.json" with { type: "json" };
 import { parseGameDate } from "./gameDates.js";
+import { playablePolityKind } from "./historicalScenarios.js";
 
-// 2: each polity carries its court's start text (contextSv). A summary of another schema is rebuilt.
-export const HISTORICAL_SUMMARY_SCHEMA = 2;
+// 2: each polity carries its court's start text (contextSv). 3: each polity carries its kind.
+// A summary of another schema is rebuilt.
+export const HISTORICAL_SUMMARY_SCHEMA = 3;
 
 export const HISTORICAL_REGIONS = Object.freeze([
   Object.freeze({ id: "europe", labelSv: "Europa" }),
@@ -60,15 +62,18 @@ export const foldSearchText = (text) => String(text ?? "")
 const text = (value) => (typeof value === "string" ? value : null);
 
 // One playable polity as the card shows it, or null when its court fails a check the card needs.
+// An unknown or non-state kind fails too, as the validators refuse it at start.
 const polityEntry = (scenario, polityId) => {
   const polity = Array.isArray(scenario.polities) ? scenario.polities.find(p => p?.id === polityId) : null;
   const court = scenario.courtSeeds?.[polityId];
-  if (!polity || !court || !Array.isArray(court.people) || !Array.isArray(court.families)) return null;
+  if (!polity || !playablePolityKind(polity)) return null;
+  if (!court || !Array.isArray(court.people) || !Array.isArray(court.families)) return null;
   const ruler = court.people.find(person => person?.id === court.rulerId);
   if (!ruler || court.families.length === 0) return null;
   return {
     id: polityId,
     nameSv: text(polity.nameSv) ?? polityId,
+    kind: polity.kind ?? "state",
     regionId: regionForPolity(polityId),
     ruler: { name: text(ruler.name) ?? ruler.id, originLabelSv: text(ruler.originLabelSv) },
     // Null when the court has none; the card then shows the package's contextSv.

@@ -706,7 +706,7 @@ test('the web catalog carries each historical start summary and derives historic
   await reset();
   const entry = catalogEntry(await library(),'charlemagne-800');
   assert.deepEqual(entry.historicalSummary.polities.map(p => p.id),['carolingian-realm','papal-states','tang-empire','abbasid-caliphate','byzantine-empire','silla','emirate-of-cordoba','aghlabid-emirate','kingdom-of-asturias','duchy-of-benevento']);
-  assert.equal(entry.historicalSummary.schema,2);
+  assert.equal(entry.historicalSummary.schema,3);
   assert.equal(entry.historicalSummary.sourceStamp,null);
   assert.equal(entry.historicalSummary.name,entry.name);
   assert.deepEqual(entry.historicalStart,{ date: '0800-12-25', contentId: entry.historicalSummary.contentId });
@@ -730,7 +730,7 @@ test('a scenario meta stored without a summary gains one on the next catalog rea
   metas.get(id).historicalSummary = { ...historicalSummary, schema: 1, polities: historicalSummary.polities.map(polity => { const old = { ...polity }; delete old.contextSv; return old; }) };
   globalThis.__ohWebStoreReads = [];
   await library();
-  assert.equal(metas.get(id).historicalSummary.schema,2);
+  assert.equal(metas.get(id).historicalSummary.schema,3);
   // Every AD 800 court ships its own start text, and the projection carries each one.
   const { courtSeeds,playablePolityIds } = db.get('scenarios').get(id).json.world.historicalScenario;
   assert.deepEqual(metas.get(id).historicalSummary.polities.map(p => p.contextSv),playablePolityIds.map(polityId => courtSeeds[polityId].contextSv));
@@ -739,6 +739,13 @@ test('a scenario meta stored without a summary gains one on the next catalog rea
   globalThis.__ohWebStoreReads = [];
   await library();
   assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[]);
+  // A summary stored under schema 2, without polity kinds, is projected again with each kind.
+  metas.get(id).historicalSummary = { ...historicalSummary, schema: 2, polities: historicalSummary.polities.map(polity => { const old = { ...polity }; delete old.kind; return old; }) };
+  globalThis.__ohWebStoreReads = [];
+  await library();
+  assert.equal(metas.get(id).historicalSummary.schema,3);
+  assert.ok(metas.get(id).historicalSummary.polities.every(p => p.kind === 'state'));
+  assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[`scenarios:${id}`]);
 });
 
 test('a stored start whose papal ruler is gone stays in the catalog as invalid and in the library bar', async () => {
