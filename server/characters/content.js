@@ -18,7 +18,7 @@ export function publicHistoricalOrigin(value) {
 export function publicPersonOrigin(value) {
   if (!value || typeof value !== 'object') return undefined;
   const claims = {};
-  for (const key of ['identity', 'bornAt', 'sex', 'legalParentIds', 'spouseIds', 'kinship', 'mechanics', 'culture']) {
+  for (const key of ['identity', 'bornAt', 'sex', 'legalParentIds', 'spouseIds', 'kinship', 'survival', 'mechanics', 'culture']) {
     const claim = value.claims?.[key];
     if (claim && ['sourced', 'uncertain', 'generated'].includes(claim.status)) claims[key] = {
       ...publicText(claim, ['status', 'noteSv']), sourceIds: publicSourceIds(claim.sourceIds),

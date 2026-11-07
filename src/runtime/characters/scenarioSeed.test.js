@@ -13,7 +13,7 @@ const optionsFor = data => ({ historicalScenario: data.world.historicalScenario,
 const ok = result => { assert.equal(result.ok, true, result.error); return result.state; };
 const ledger = state => { const value = clone(state); delete value.revision; delete value.appliedCommandIds; return value; };
 
-for (const id of ['egypt-3000bc', 'john-1200']) {
+for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
   for (const mode of ['realm', 'family']) test(`${id} ${mode}: authored court initializes deterministically in the current engine`, () => {
     const data = load(id), options = { ...optionsFor(data), mode };
     const before = clone(options);

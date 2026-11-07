@@ -32,12 +32,17 @@ function sourcesFromNamedFeatures(h,review) {
   });
 }
 // Regional sources keyed by the evidence entries of the review file.
-function sourcesFromEvidence(h,review) {
+function sourcesFromEvidence(h,review,retrievedAt = regionalSourceBase.retrievedAt) {
   for (const [id,s] of Object.entries(review.sources)) h.sources[`regional-${id}`] = {
     title: s.scopedClaim,institution: new URL(s.url).hostname,url: s.url,locator: s.locator,
     chronology: s.sourceDateWording,uncertainty: `${s.calendarHandling}; no surveyed frontier follows from the historical period.`,
-    license: regionalSourceBase.license,retrievedAt: regionalSourceBase.retrievedAt,review: 'Regional source review; scope limited to named claim.',
+    license: regionalSourceBase.license,retrievedAt,review: 'Regional source review; scope limited to named claim.',
   };
+}
+// The AD 800 review cites Getty twice; those two records live in the authored table with their own licence.
+function sourcesFromAd800Review(h,review) {
+  const cited = Object.fromEntries(Object.entries(review.sources).filter(([id]) => !id.startsWith('getty-')));
+  sourcesFromEvidence(h,{ sources: cited },'2026-11-07');
 }
 const ANTARCTICA_COVERAGE = { area: 'Antarctica',status: 'unresolved',sourceIds: ['naturalEarth'],noteSv: 'Fysisk geografi visas. Inget historiskt ägande eller någon befolkning tillskrivs området.' };
 
@@ -46,6 +51,7 @@ const releasedProvenance = JSON.parse(await read('released-provenance.json'));
 // ---- Package records: everything that differs between packages. ----
 // Pinned inputs; each package names its own source file.
 const SOURCE_HASHES = {
+  'hbm-world_800.geojson': '9d046cdc4662109c3f803ae46e2c8cba941aa092ec86eccc7823e6cf1554920c',
   'hbm-world_1200.geojson': '2d6913ecedb38e269e41d249c87874d81e3e8d7351754821f57e627442d91525',
   'hbm-world_bc3000.geojson': '2cf107e2f0d4f9b5427b293f19b11fffe7c1134f52320df4f94b4889b978f033',
   'hbm-LICENSE': '8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903',
@@ -55,9 +61,10 @@ const SOURCE_HASHES = {
 };
 // A package with a releasedProvenance entry keeps the build record of the release that published it.
 // Fields: idPrefix (region id prefix), coverage (area rows), addRegionalSources, mapMappings (extra polities from the review file),
-// coreIndex and coreSourceIds (the playable polity feature), selectiveCore (clip transform, or null) with selectiveCoreNoteSv,
+// coreIndex and coreSourceIds (the playable polity feature; a review mapping for coreIndex supplies its sources and note instead), selectiveCore (clip transform, or null) with selectiveCoreNoteSv,
 // compositeNote (appended to the playable polity note, or null), quarantine (source index to geometry status),
-// selectionTransformation and quarantineTransformation (manifest lines), seatId, and three review readers.
+// selectionTransformation and quarantineTransformation (manifest lines), seatId (also the seat's Getty source id),
+// citySourceIds (when settlements go beyond the seat), gettyRetrievedAt, and three review readers.
 const PACKAGE_RECORDS = [
   { contentId: 'egypt-3000bc',idPrefix: 'hbm-bc3000',sourceFile: 'hbm-world_bc3000.geojson',reviewFile: 'bc3000-review.json',
     authored: () => authoredScenario('egypt-3000bc'),addRegionalSources: sourcesFromNamedFeatures,
@@ -73,7 +80,7 @@ const PACKAGE_RECORDS = [
     selectiveCore: EGYPT_CORE_TRANSFORM,selectiveCoreNoteSv: EGYPT_CORE_NOTE_SV,compositeNote: null,quarantine: {},
     selectionTransformation: `Intersect Egypt feature19 with developer mask bbox ${JSON.stringify(EGYPT_CORE_TRANSFORM.maskBbox)}; selective partial core, not an attested boundary; retain original source/hash.`,
     quarantineTransformation: 'Quarantine AD1200 source features214 and240; no unsupported repair or owner assignment.',
-    seatId: 'memphis',
+    seatId: 'memphis',gettyRetrievedAt: '2026-11-05',
     reviewFeature: (review,index) => review.namedFeatures.find(r => r.sourceFeatureIndex === index),
     unmappedSourceIds: (r,index) => (r?.references ?? []).map((_,i) => `regional-${index}-${i}`),
     mappedBoundaryDecision: 'developer-authored-selective-core' },
@@ -94,7 +101,28 @@ const PACKAGE_RECORDS = [
     quarantine: { 214: 'quarantined-self-intersection',240: 'quarantined-degenerate' },
     selectionTransformation: 'Preserve accepted source coordinates and component structure; assign stable historical IDs.',
     quarantineTransformation: 'Quarantine AD1200 source features214 and240; no unsupported repair or owner assignment.',
-    seatId: 'windsor',
+    seatId: 'windsor',gettyRetrievedAt: '2026-11-05',
+    reviewFeature: (review,index) => review.allFeatures[index],
+    unmappedSourceIds: (r) => (r?.sourceEvidenceIds ?? []).map(id => `regional-${id}`),
+    mappedBoundaryDecision: 'accepted-world-scale-approximation' },
+  { contentId: 'charlemagne-800',idPrefix: 'hbm-ad800',sourceFile: 'hbm-world_800.geojson',reviewFile: 'ad800-review.json',
+    authored: () => authoredScenario('charlemagne-800'),addRegionalSources: sourcesFromAd800Review,
+    coverage: [
+      { area: 'Africa',status: 'partial',sourceIds: ['regional-qantara-aghlabids','regional-qantara-idrisids','regional-virtual-nubia','regional-soba'],noteSv: 'Aghlabidernas emirat har en ungefärlig form. Idrisidernas form används inte eftersom källan ger ingen utbredning för år 800 och formen når in i Sahara. Makuria och Alwa saknar belagda gränser. Ghana, Aksum och Kanem har ingen granskad källa och står som okänd kontroll.' },
+      { area: 'Asia',status: 'partial',sourceIds: ['regional-qantara-abbasids','regional-columbia-china','regional-columbia-korea','regional-rubin-jug','regional-waugh-tibet','regional-daniels-nanzhao','regional-columbia-japan','regional-virji-valabhi'],noteSv: 'Abbasidiska kalifatet, Tang och Silla har ungefärliga former. Balhae, Nanzhao, Japan, Tibet och uigurerna saknar ägare eftersom källorna inte stöder deras former. Valabhi avvisas eftersom Virji räknar riket som utslocknat 783. Övriga former har ingen godkänd ägare.' },
+      { area: 'Europe',status: 'partial',sourceIds: ['regional-einhard-13','regional-einhard-18','regional-einhard-19','regional-einhard-20','regional-rfa-792-pippin','regional-rfa-799-brittany','regional-ce-bulgaria','regional-asc-avalon','regional-bertin-839'],noteSv: 'Karls rike, Bysantinska riket, Kyrkostaten, Benevento, Asturien och Córdoba har ungefärliga former. Avarriket avvisas för år 800 eftersom Einhard beskriver kriget som avslutat och formen spänner över Balkan utan stöd. Wessex, Mercia, Northumbria, Bretagne, bulgarerna och Rus saknar ägare eftersom källorna inte stöder formerna. Pippin puckelryggen står utanför hovet och tronföljden: Einhard låter honom gå i kloster i Prüm, och källorna ger inget dödsår. Gersuinda, Regina och Ethelind med barn ingår inte i hovet eftersom ingen källa placerar dem där på bokmärkets dag. Bernard och hans systrar ingår inte heller, eftersom ingen citerad källa ger deras födelsedatum.' },
+      { area: 'Americas',status: 'unresolved',sourceIds: ['regional-inah-tula','regional-conlee-wari','regional-knudson-tiwanaku'],noteSv: 'Inget område i Amerika har en godkänd ägare. Toltekriket avvisas eftersom INAH lägger Tulas höjdpunkt till åren 900 till 1000. Waris form är större än det publicerade maximumet. Tiwanakus form slår ihop en koloni med lokalt stilinflytande. Maya och andra kulturområden får ingen gemensam härskare.' },
+      { area: 'Oceania',status: 'unresolved',sourceIds: ['hbm','naturalEarth'],noteSv: 'Granskningen har ingen källa för Oceanien. Papuaner och jägar-samlare i Australien och Tasmanien står som kulturetiketter utan härskare, och kontrollen är okänd.' },
+      ANTARCTICA_COVERAGE,
+    ],
+    coreIndex: 151,coreSourceIds: null,
+    mapMappings: review => review.mapMappings.map(m => ({ ...m,sourceIds: ['hbm',...m.sourceIds.map(id => `regional-${id}`)] })),
+    selectiveCore: null,selectiveCoreNoteSv: null,
+    compositeNote: ' Pippin och Ludvig smordes 781 till kungar i Italien och Akvitanien; kartan skiljer inte deras områden från Karls.',
+    quarantine: {},
+    selectionTransformation: 'Preserve accepted source coordinates and component structure; assign stable historical IDs. Source features151 and221 share one polity.',
+    quarantineTransformation: null,
+    seatId: 'aachen',citySourceIds: ['aachen','rome'],gettyRetrievedAt: '2026-11-07',
     reviewFeature: (review,index) => review.allFeatures[index],
     unmappedSourceIds: (r) => (r?.sourceEvidenceIds ?? []).map(id => `regional-${id}`),
     mappedBoundaryDecision: 'accepted-world-scale-approximation' },
@@ -116,8 +144,10 @@ async function loadInputs() {
 
 // The polity features of one package: the playable polity first, then the review file's mapped polities.
 function polityMappings(pkg,h,review) {
-  const mappings = [{ index: pkg.coreIndex,polityId: h.playablePolityIds[0],nameSv: h.polities[0].nameSv,sourceIds: pkg.coreSourceIds,noteSv: h.polities[0].noteSv },...pkg.mapMappings(review)];
-  for (const m of mappings.slice(1)) h.polities.push({ id: m.polityId,nameSv: m.nameSv,sourceIds: m.sourceIds,boundary: 'approximate',noteSv: m.noteSv });
+  const reviewed = pkg.mapMappings(review), core = reviewed.find(m => m.index === pkg.coreIndex);
+  const mappings = [{ index: pkg.coreIndex,polityId: h.playablePolityIds[0],nameSv: h.polities[0].nameSv,sourceIds: core?.sourceIds ?? pkg.coreSourceIds,noteSv: core?.noteSv ?? h.polities[0].noteSv },...reviewed.filter(m => m !== core)];
+  // Several features can belong to one polity; each polity gets a single record.
+  for (const m of mappings.slice(1)) if (!h.polities.some(p => p.id === m.polityId)) h.polities.push({ id: m.polityId,nameSv: m.nameSv,sourceIds: m.sourceIds,boundary: 'approximate',noteSv: m.noteSv });
   return mappings;
 }
 
@@ -151,8 +181,8 @@ function backgroundFeatures(land,owned) {
   return background;
 }
 
-function citiesFor(h) {
-  return { type: 'FeatureCollection',features: h.settlements.map(s => ({ type: 'Feature',id: s.id,properties: { id: s.id,name: s.nameSv,city: s.nameSv,owner: s.polityId,tier: 3,seat: true,placementNoteSv: s.noteSv,sourceIds: s.sourceIds },geometry: { type: 'Point',coordinates: s.coordinates } })) };
+function citiesFor(pkg,h) {
+  return { type: 'FeatureCollection',features: h.settlements.map(s => ({ type: 'Feature',id: s.id,properties: { id: s.id,name: s.nameSv,city: s.nameSv,owner: s.polityId,tier: 3,seat: s.id === pkg.seatId,placementNoteSv: s.noteSv,sourceIds: s.sourceIds },geometry: { type: 'Point',coordinates: s.coordinates } })) };
 }
 
 function regionReviewFor(pkg,source,review,mappings) {
@@ -191,7 +221,7 @@ async function manifestFor(pkg,h,physical,regions,cities,transformations) {
     generator: released?.generator ?? { file: 'scripts/build-historical-scenarios.mjs',sha256: sha(await fs.readFile(fileURLToPath(import.meta.url))),polygonClipping: '0.15.7' },
     sourceFiles: released?.sourceFiles ?? Object.entries(SOURCE_HASHES).map(([fileName,sha256]) => ({ fileName,sha256 })),
     assets: [{ id: 'regionsGeojson',sourceIds: ['hbm','naturalEarth'],crs: 'OGC:CRS84',revision: `${SOURCE_REVISION}+${physical.revision}`,sha256: sha(json(regions)),license: 'GPL-3.0-only AND public-domain',transformations },
-      { id: 'citiesGeojson',sourceIds: [pkg.seatId],crs: 'OGC:CRS84',revision: 'Getty records retrieved2026-11-05',sha256: sha(json(cities)),license: 'ODC-By-1.0',transformations: ['Copy the decimal modern-place reference; describe its historical placement limit.'] }],
+      { id: 'citiesGeojson',sourceIds: pkg.citySourceIds ?? [pkg.seatId],crs: 'OGC:CRS84',revision: `Getty records retrieved${pkg.gettyRetrievedAt}`,sha256: sha(json(cities)),license: 'ODC-By-1.0',transformations: ['Copy the decimal modern-place reference; describe its historical placement limit.'] }],
     authoredInputs: released?.authoredInputs ?? await liveAuthoredInputs(pkg),
   };
 }
@@ -204,7 +234,7 @@ function componentLicensesFor(pkg,h,inputs,physical,transformations,naturalEarth
     revision: SOURCE_REVISION,sha256: SOURCE_HASHES[sourceFile],licenseText: inputs['hbm-LICENSE'],modifications: transformations,
     sourceFiles: [{ fileName: sourceFile.slice(4),text: inputs[sourceFile] },{ fileName: 'README.md',text: inputs['hbm-README.md'] },{ fileName: 'CONTRIBUTING.md',text: inputs['hbm-CONTRIBUTING.md'] }] },
     { id: 'natural-earth',license: 'public-domain',scope: ['regionsGeojson'],attribution: 'Made with Natural Earth. Physical land 1:50m.',sourceUrl: physical.url,revision: physical.revision,sha256: physical.sha256,licenseText: 'Natural Earth states that its map data is in the public domain. https://www.naturalearthdata.com/about/terms-of-use/',modifications: [naturalEarthLine] },
-    { id: 'getty-tgn',license: 'ODC-By-1.0',scope: ['citiesGeojson','world.historicalScenario.settlements'],attribution: 'Getty Thesaurus of Geographic Names, Getty Research Institute. https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/',sourceUrl: h.sources[pkg.seatId].url,revision: 'retrieved2026-11-05',sha256: sha(json(h.settlements)),licenseText: 'Open Data Commons Attribution License1.0: https://opendatacommons.org/licenses/by/1-0/',modifications: ['Modern place coordinate retained; historical marker explicitly approximate.'] }];
+    { id: 'getty-tgn',license: 'ODC-By-1.0',scope: ['citiesGeojson','world.historicalScenario.settlements'],attribution: 'Getty Thesaurus of Geographic Names, Getty Research Institute. https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/',sourceUrl: h.sources[pkg.seatId].url,revision: `retrieved${pkg.gettyRetrievedAt}`,sha256: sha(json(h.settlements)),licenseText: 'Open Data Commons Attribution License1.0: https://opendatacommons.org/licenses/by/1-0/',modifications: ['Modern place coordinate retained; historical marker explicitly approximate.'] }];
 }
 
 function worldFor(h,regions,assetManifest,componentLicenses) {
@@ -234,7 +264,7 @@ async function buildPackage(pkg,{ inputs,physical,land }) {
   const mappings = polityMappings(pkg,h,review);
   const owned = ownedFeatures(pkg,h,source,mappings);
   const regions = { type: 'FeatureCollection',features: [...backgroundFeatures(land,owned),...owned] };
-  const cities = citiesFor(h);
+  const cities = citiesFor(pkg,h);
   h.regionReview = regionReviewFor(pkg,source,review,mappings);
   const { list: transformations,naturalEarth } = transformationsFor(pkg);
   const assetManifest = await manifestFor(pkg,h,physical,regions,cities,transformations);

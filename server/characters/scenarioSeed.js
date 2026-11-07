@@ -91,7 +91,8 @@ export function createHistoricalCharacterSystem({ historicalScenario, date, poli
     const h = historicalScenario, court = h.courtSeeds[polityId];
     validateEngineSeed(court, familyId);
     const polity = h.polities.find(entry => entry.id === polityId);
-    const chosenFamily = familyId ?? court.people.find(person => person.id === court.rulerId).familyId;
+    // A family start without a choice takes the family the start card preselects, the first one listed.
+    const chosenFamily = familyId ?? (mode === 'family' ? court.families[0].id : court.people.find(person => person.id === court.rulerId).familyId);
     const state = createCharacterState({ date, polityId, polityName: polity.nameSv, mode, seed }, { familyId: chosenFamily, religions: {} });
     state.historicalOrigin = publicHistoricalOrigin({ ...h, polityNoteSv: polity.noteSv, mechanicsNoteSv: court.mechanics.noteSv });
     seedCourt(state, court);
