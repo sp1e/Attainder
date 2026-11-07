@@ -354,3 +354,24 @@ test("rendering and dismissing make no network call and write to no runtime slic
   assert.deepEqual(m.control.writes, []);
   assert.equal(m.live.gameDate, "0802-01-01");
 });
+
+// A real browser fires focusin synchronously inside focus(); the dialog's own
+// listener must not pull focus back from the opener it is returning to.
+for (const [name, close] of [
+  ["Stäng", (m, tree) => buttonNamed(tree, "Stäng").props.onClick()],
+  ["Escape", (m) => m.fire("keydown", keydown("Escape"))],
+  ["the chronicle link", (m, tree) => buttonNamed(tree, "Visa alla i krönikan").props.onClick()],
+]) {
+  test(`the opener keeps focus after ${name} closes the dialog`, async () => {
+    const events = Array.from({ length: 13 }, (_, i) => event(`e${String(i).padStart(2, "0")}`));
+    const m = mount({ catalog: catalogOf(events) });
+    const opener = { name: "opener", focus() { m.control.doc.activeElement = this; m.fire("focusin", { target: this }); } };
+    m.control.doc.activeElement = opener;
+    const tree = await shown(m);
+    const pulled = m.driver.focused.length;
+    close(m, tree);
+    assert.equal(m.control.doc.activeElement, opener);
+    assert.equal(m.driver.focused.length, pulled, "nothing pulled focus back into the dialog");
+    assert.equal(m.render(), null);
+  });
+}

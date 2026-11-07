@@ -40,6 +40,9 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
   const openerRef = useRef(null);
   const checkRef = useRef(null);
   const mountedRef = useRef(true);
+  // Set while the dialog closes: returning focus to the opener fires focusin
+  // before the listeners are removed, and that must not pull focus back in.
+  const closingRef = useRef(false);
 
   // Looks again at everything that decides whether a window is due. A newer
   // call, a change of inputs or an unmount makes an older one that is still
@@ -65,6 +68,7 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
         return;
       }
       noticeRef.current = { to: due.to };
+      closingRef.current = false;
       openerRef.current = opener;
       setNotice({
         to: due.to,
@@ -93,6 +97,7 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
 
   const open = Boolean(notice) && !hidden;
   const close = () => {
+    closingRef.current = true;
     historicalYearSeen.markSeen(gameId, notice.to);
     noticeRef.current = null;
     setNotice(null);
@@ -132,6 +137,7 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
       }
     };
     const onFocusIn = (event) => {
+      if (closingRef.current) return;
       if (dialogRef.current && !dialogRef.current.contains(event.target)) (reachable()[0] ?? dialogRef.current).focus();
     };
     window.addEventListener("keydown", onKeyDown, true);
