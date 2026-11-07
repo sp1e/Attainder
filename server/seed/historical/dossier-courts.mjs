@@ -11,11 +11,12 @@ export const ENGINE_LIMIT_TEXT_SV = Object.freeze({
   'multiple-spouses': 'Spelet tillåter en make eller maka per person. Hovet visar högst ett äktenskap för varje person.',
 });
 
-const claim = (status,noteSv,sourceIds = []) => ({ status,noteSv,sourceIds });
-const generated = note => claim('generated',note);
-const mechanics = generated('Spelvärden, personlighet och ämbetsregler är skapade för simuleringen.');
+// Shared with court() in authored-scenarios.mjs, so hand-authored and dossier courts stay alike.
+export const claim = (status,noteSv,sourceIds = []) => ({ status,noteSv,sourceIds });
+export const generated = note => claim('generated',note);
+export const mechanics = generated('Spelvärden, personlighet och ämbetsregler är skapade för simuleringen.');
 const MECHANICS = () => ({ archetype: 'steward',traits: ['dutiful'],skills: { command: 5,stewardship: 6,diplomacy: 5,learning: 5,intrigue: 4,prowess: 4 } });
-const DOCUMENTED_LABEL_SV = 'Dokumenterad person; spelvärden är genererade';
+export const DOCUMENTED_LABEL_SV = 'Dokumenterad person; spelvärden är genererade';
 const STATUS_RANK = { generated: 0,uncertain: 1,sourced: 2 };
 const HOUSEHOLD_COLORS = ['#7f8c5a','#8c6a5a','#5a7a8c','#8c5a7f'];
 const SOURCE_FIELDS = ['title','institution','url','locator','chronology','uncertainty','license','retrievedAt'];
@@ -75,8 +76,8 @@ function documentedPerson(p,familyId,religionId,byId) {
     legalParentIds: [...p.legalParentIds],spouseIds: [...p.spouseIds],claims,mechanics: MECHANICS() };
 }
 
-function generatedPerson(id,name,bornAt,familyId,religionId) {
-  return { id,name,bornAt,familyId,sex: 'male',religionId,identityOrigin: 'generated',originLabelSv: 'Genererad person',legalParentIds: [],spouseIds: [],
+export function generatedPerson(id,name,bornAt,familyId,religionId,sex = 'male') {
+  return { id,name,bornAt,familyId,sex,religionId,identityOrigin: 'generated',originLabelSv: 'Genererad person',legalParentIds: [],spouseIds: [],
     claims: { identity: generated('Personen och namnet är genererade.'),bornAt: generated('Födelsedatumet är ett spelvärde.'),
       kinship: generated('Inga dokumenterade föräldrar läggs till; familjegruppen är en spelabstraktion.'),mechanics },
     mechanics: MECHANICS() };
@@ -86,6 +87,8 @@ function generatedPerson(id,name,bornAt,familyId,religionId) {
 function rulingKin(people,rulerId) {
   const links = new Map(people.map(p => [p.id,new Set()]));
   const link = (a,b) => { if (links.has(a) && links.has(b)) { links.get(a).add(b); links.get(b).add(a); } };
+  // A kinship entry may name someone outside the court (ofPersonId null or an absent relative); link() skips
+  // that id, because the family can only gather people the court holds.
   for (const p of people) [...p.legalParentIds,...p.spouseIds,...p.kinship.map(k => k.ofPersonId).filter(Boolean)].forEach(id => link(p.id,id));
   const kin = new Set([rulerId]), queue = [rulerId];
   while (queue.length) for (const id of links.get(queue.shift())) if (!kin.has(id)) { kin.add(id); queue.push(id); }
@@ -107,14 +110,17 @@ function familiesFor(polity,ruler,religionId) {
   return { families,familyOf,rulingFamilyId };
 }
 
-function addCourtiers(people,families,{ courtierNames,courtierBornAt },religionId) {
-  if (!Array.isArray(courtierNames) || courtierNames.length !== 3) throw new Error('dossier court needs three generated courtier names');
+// Three generated courtiers, each heading a generated house; they hold the general, chancellor and priest offices.
+export function generatedCourtiers({ courtierNames,courtierBornAt },religionId) {
+  if (!Array.isArray(courtierNames) || courtierNames.length !== 3) throw new Error('a court needs three generated courtier names');
+  const people = [], families = [];
   for (let i = 1; i <= 3; i++) {
     const id = `generated-courtier-${i}`, familyId = `generated-house-${i}`;
     people.push(generatedPerson(id,courtierNames[i-1],courtierBornAt(i),familyId,religionId));
     families.push({ id: familyId,name: `Hovhus ${i} (genererat)`,headId: id,religionId,color: ['#93594d','#567b82','#776c91'][i-1],
       claims: { identity: generated('Hovfamilj utan påstådd historisk identitet eller genealogi.') } });
   }
+  return { people,families };
 }
 
 function officesFor(polity,rulerId) {
@@ -148,7 +154,7 @@ function sourcesFor(dossier,polity,ids) {
     const missing = SOURCE_FIELDS.find(k => typeof s[k] !== 'string' || !s[k].trim());
     if (missing) throw new Error(`dossier source ${id} lacks ${missing}`);
     const record = Object.fromEntries(SOURCE_FIELDS.map(k => [k,s[k]]));
-    return [id,{ ...record,review: `Dossier review status checked: checked by ${review.checkedBy} on ${review.checkedOn}.` }];
+    return [id,{ ...record,review: `Dossier review: checked by ${review.checkedBy} on ${review.checkedOn}.` }];
   }));
 }
 
@@ -167,7 +173,8 @@ function courtFor(polity,polityId,seat,{ successionLaw,courtierNames,courtierBor
   const byId = new Map(polity.people.map(p => [p.id,p]));
   const { families,familyOf,rulingFamilyId } = familiesFor(polity,ruler,religionId);
   const people = polity.people.map(p => documentedPerson(p,familyOf.get(p.id),religionId,byId));
-  addCourtiers(people,families,{ courtierNames,courtierBornAt },religionId);
+  const courtiers = generatedCourtiers({ courtierNames,courtierBornAt },religionId);
+  people.push(...courtiers.people); families.push(...courtiers.families);
   return { polityId,rulerId: ruler.id,seatId: seat.id,...(successionLaw ? { successionLaw } : {}),people,families,offices: officesFor(polity,ruler.id),
     religions: [{ id: religionId,name: religion.nameSv,leaderId: religion.leaderPersonId ?? 'generated-courtier-3',
       claims: { identity: claim(religion.status,religion.claimSv,religion.sourceIds),mechanics } }],

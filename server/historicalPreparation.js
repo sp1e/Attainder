@@ -69,7 +69,7 @@ export function narrowToChosenCourt(world, polityId) {
   const historicalScenario = { ...h, playablePolityIds: [polityId], courtSeeds: { [polityId]: court } };
   if (typeof court?.contextSv !== 'string') return { ...world, historicalScenario };
   return { ...world, historicalScenario: { ...historicalScenario, contextSv: court.contextSv },
-    startingTimelineText: [court.contextSv, h.calendarNoteSv, h.coverageNoteSv].filter(part => typeof part === 'string').join('\n') };
+    startingTimelineText: [court.contextSv, h.calendarNoteSv, h.coverageNoteSv].join('\n') };
 }
 
 const ENGINE_DIFFICULTY = Object.freeze({ easy: 'easy', standard: 'normal', normal: 'normal', hard: 'hard' });
