@@ -27,6 +27,7 @@ const DIST_DIR = path.join(PROJECT_ROOT, "dist");
 const PUBLIC_DIR = path.join(PROJECT_ROOT, "public");
 import { DATA_DIR as SERVER_DATA_DIR } from "./dataDir.js";
 import { coarsenFeatureCollection } from "./coarseGeometry.js";
+import { builtInMetaEdited } from "./builtInStamps.js";
 import {
   fetchableHubOrigin,
   hubOriginAfterWrite,
@@ -790,7 +791,7 @@ const normalizePlayCount = (raw) => {
 
 const readScenarioMeta = (scenarioId) => {
   const raw = readJsonFile(getScenarioMetaPath(scenarioId), {});
-  // One clock read for both missing timestamps: refreshBuiltInContent takes updatedAt !== createdAt as
+  // One clock read for both missing timestamps: refreshBuiltInContent takes a later updatedAt as
   // the player's edit, and two reads a millisecond apart would fork an untouched built-in.
   const now = new Date().toISOString();
   const name = String(raw?.name ?? "").trim() || DEFAULT_SCENARIO_META.name;
@@ -1437,7 +1438,7 @@ const refreshBuiltInContent = (stamp) => {
     (gameId) => readGameMeta(gameId).scenarioId === DEFAULT_SCENARIO_ID,
   );
   const meta = readScenarioMeta(DEFAULT_SCENARIO_ID);
-  if (meta.updatedAt !== meta.createdAt) {
+  if (builtInMetaEdited(meta)) {
     const regionsPath = getScenarioUploadPath(DEFAULT_SCENARIO_ID, "regionsGeojson");
     const forkId = forkBuiltInScenarioForExistingGames(gamesOnBuiltIn, fs.existsSync(regionsPath) ? regionsPath : null, { edited: true });
     console.warn(`[built-in scenario] kept the player's edited Modern Day as "${forkId}" for ${gamesOnBuiltIn.length} campaign(s)`);
@@ -1504,7 +1505,7 @@ const syncBuiltInScenarioFromSeed = () => {
     (gameId) => readGameMeta(gameId).scenarioId === DEFAULT_SCENARIO_ID,
   );
   const meta = readScenarioMeta(DEFAULT_SCENARIO_ID);
-  const touched = meta.updatedAt !== meta.createdAt;
+  const touched = builtInMetaEdited(meta);
   const ownRegions = retireLegacyBuiltInRegions();
   if (gamesOnBuiltIn.length || touched) {
     const forkId = forkBuiltInScenarioForExistingGames(gamesOnBuiltIn, ownRegions);
@@ -1536,11 +1537,13 @@ const ensureDefaultScenario = () => {
   ensureDirectory(path.join(scenarioDir, "storage"));
 
   if (!fs.existsSync(getScenarioMetaPath(DEFAULT_SCENARIO_ID))) {
+    // One clock read for both, as in readScenarioMeta: an untouched built-in has equal stamps.
+    const now = new Date().toISOString();
     writeJsonFile(getScenarioMetaPath(DEFAULT_SCENARIO_ID), {
       ...DEFAULT_SCENARIO_META,
       countryNameOverrides: {},
-      createdAt: new Date().toISOString(),
-                  updatedAt: new Date().toISOString(),
+      createdAt: now,
+      updatedAt: now,
     });
   }
 

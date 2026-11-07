@@ -316,11 +316,11 @@ const revisedSeed = () => {
   writeJson(path.join(seed, "world.json"), { ...seedWorld, builtInRevision: 2 });
   return seed;
 };
-const revisionOneRoot = ({ touched = false } = {}) => {
+const revisionOneRoot = ({ touched = false, updatedAt } = {}) => {
   const root = freshRoot();
   const dir = path.join(root, "scenarios", "default");
   const createdAt = "2026-09-07T12:00:00.000Z";
-  writeJson(path.join(dir, "scenario.json"), { id: "default", name: "Modern Day", createdAt, updatedAt: touched ? "2026-09-10T08:00:00.000Z" : createdAt });
+  writeJson(path.join(dir, "scenario.json"), { id: "default", name: "Modern Day", createdAt, updatedAt: updatedAt ?? (touched ? "2026-09-10T08:00:00.000Z" : createdAt) });
   writeJson(path.join(dir, "world.json"), {
     ownerSchema: OWNER_SCHEMA,
     builtInMap: STAMP,
@@ -382,6 +382,16 @@ test("a copy the player edited is kept with its campaigns before the content is 
   assert.equal(world.builtInRevision, 2);
   assert.deepEqual(world.polityOverrides, seedWorld.polityOverrides);
   assert.deepEqual(readJson(path.join(root, "scenario-manifest.json")).order, ["default", "modern-day-edited"]);
+});
+
+// An install written before both stamps shared one clock read: they sit a millisecond apart.
+test("a built-in whose stamps sit 1 ms apart is refreshed in place, its campaigns staying on it", () => {
+  const root = revisionOneRoot({ updatedAt: "2026-09-07T12:00:00.001Z" });
+  assert.deepEqual(catalogOf(root, revisedSeed()), ["default"], "an untouched built-in is not forked");
+  assert.equal(readJson(path.join(root, "scenarios", "default", "world.json")).builtInRevision, 2);
+  for (const game of ["own-copies", "reads-scenario"]) {
+    assert.equal(readJson(path.join(root, "games", game, "game-instance.json")).scenarioId, "default", `${game} stays on the built-in`);
+  }
 });
 
 test("a second start after the refresh does nothing more", () => {

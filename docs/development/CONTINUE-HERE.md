@@ -52,7 +52,7 @@ The design is `docs/superpowers/specs/2026-11-07-world-cultures-phase-3-design.m
 - John 1.1.0 has four: Johns riken, Khmerriket, Almohaderna and Frankrike. `node scripts/sync-default-scenario.mjs` writes `server/seed/default` from the John package with `builtInRevision` 2; `--check` fails on drift and runs in the suite through `server/syncDefaultScenario.test.js`.
 - Each court carries its own `contextSv`. The card, the campaign record and the model briefing describe the chosen polity. `HISTORICAL_SUMMARY_SCHEMA` is 2.
 - A campaign saved under Charlemagne 1.1.0 or John 1.0.0 restores against the new release. The companion check accepts a later `builtInRevision` for the same `builtInMap`. `server/fixtures/*.patch.json` rebuild the old releases byte for byte; rerun `scripts/write-release-patch.mjs` after any rebuild of those packages.
-- Both library stores read the clock once when they stamp a built-in scenario, so an untouched default no longer reads as edited.
+- Both library stores read the clock once when they stamp a built-in scenario and treat stamps under one second apart as unedited, so an untouched default no longer reads as edited.
 - The character view reads the end of research from `server/seed/historical/events/coverage.json` (year 999 today).
 
 Evidence at `7ccef350`: the full serial suite ran 5,029 tests, with 5,026 passed, 0 failed, 1 skipped and 2 TODO, in 445 seconds. The build and the four `--check` scripts exited 0, and eslint reported no errors in the changed files. Egypt's package and its release rows are byte-identical. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md). Next: Phase 4, the AD 1500 package (Aztec and Inca courts).

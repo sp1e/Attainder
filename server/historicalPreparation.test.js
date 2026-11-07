@@ -103,6 +103,22 @@ test('a court start text becomes the campaign text and the world briefing; witho
   assert.equal(karl.data.world.startingTimelineText, scenario.data.world.startingTimelineText);
   assert.deepEqual(scenario, before);
 });
+for (const id of SHIPPED_START_FOLDERS) test(`${id} ships the briefing in the builder layout that a court text replaces`, () => {
+  const { world } = read(id).data, h = world.historicalScenario;
+  assert.equal(world.startingTimelineText, [h.contextSv, h.calendarNoteSv, h.coverageNoteSv].join('\n'));
+});
+test('a briefing the player edited survives the court start text', () => {
+  const scenario = candidate(read('charlemagne-800')), h = scenario.data.world.historicalScenario, date = '0800-12-25';
+  const edited = 'Min egen inledning: Karl kröns i Rom och Europa håller andan.';
+  scenario.data.world.startingTimelineText = edited;
+  const polityId = 'papal-states', courtText = h.courtSeeds[polityId].contextSv;
+  assert.equal(typeof courtText, 'string');
+  const result = prepareHistoricalCampaignStart({ scenario, request: {
+    historicalStart: { date, polityId, mode: 'realm', seed: 7, difficulty: 'normal' }, gamePatch: { country: polityId, difficulty: 'standard', language: 'Swedish' } } });
+  assert.equal(result.ok, true, result.error);
+  assert.equal(result.data.world.startingTimelineText, edited);
+  assert.equal(result.data.world.historicalScenario.contextSv, courtText);
+});
 test('raw dates, conflicting options, missing sources and actual assets fail before preparation', () => {
   const scenario = candidate(read('john-1200'));
   for (const gamePatch of [{ gameDate: null }, { startDate: '1200-12-31junk' }, { gameDate: '1531-01-01' }, { country: 'France' }]) {

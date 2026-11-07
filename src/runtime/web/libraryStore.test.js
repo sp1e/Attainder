@@ -756,3 +756,35 @@ test('a stored start whose papal ruler is gone stays in the catalog as invalid a
     assert.ok(catalogEntry(catalog,other).historicalStart,other);
   }
 });
+
+// A default record written before both stamps shared one clock read, on the first content revision,
+// with one campaign on it, stored as the old code left it. gapMs is how far its updatedAt sits past its createdAt.
+const legacyDefaultOnRevisionOne = async (gapMs) => {
+  await reset();
+  const record = db.get("scenarios").get("default"), createdAt = "2026-09-07T12:00:00.000Z", gameId = "legacy-campaign";
+  if (!db.has("games")) db.set("games", new Map());
+  db.get("games").set(gameId, { id: gameId, meta: { id: gameId, name: "Campaign", scenarioId: "default", createdAt, updatedAt: createdAt },
+    json: { game: { country: "Testland", gameDate: "2016-05-01" }, world: { builtInMap: "test-map" } } });
+  record.meta = { ...record.meta, createdAt, updatedAt: new Date(Date.parse(createdAt) + gapMs).toISOString() };
+  record.json.world = { ...record.json.world, builtInRevision: 1, polityOverrides: { Oldland: { name: "Oldland" } } };
+  await store.ensureSeeded();
+  const scenarioIds = [...db.get("scenarios").keys()];
+  const bound = db.get("games").get(gameId).meta.scenarioId;
+  return { scenarioIds, bound, world: db.get("scenarios").get("default").json.world };
+};
+
+test("a web default whose stamps sit 1 ms apart is refreshed in place and keeps its campaign", async () => {
+  const { scenarioIds, bound, world } = await legacyDefaultOnRevisionOne(1);
+  assert.deepEqual(scenarioIds.filter((id) => id.startsWith("modern-day-")), [], "an untouched default is not forked");
+  assert.equal(bound, "default", "its campaign stays on the built-in");
+  assert.equal(world.builtInRevision, 2);
+  assert.equal(world.polityOverrides.Oldland, undefined, "the built-in has the seed's content");
+});
+
+test("a web default whose stamps sit 5 s apart is kept as the player's edited copy", async () => {
+  const { scenarioIds, bound, world } = await legacyDefaultOnRevisionOne(5000);
+  assert.deepEqual(scenarioIds.filter((id) => id.startsWith("modern-day-")), ["modern-day-edited"]);
+  assert.equal(bound, "modern-day-edited", "its campaign goes with the edited copy");
+  assert.equal(world.builtInRevision, 2);
+  assert.equal(db.get("scenarios").get("modern-day-edited").json.world.polityOverrides.Oldland.name, "Oldland");
+});

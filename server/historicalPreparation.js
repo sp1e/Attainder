@@ -62,14 +62,17 @@ export function validatePlayableScenario({ data, meta, regions, cities } = {}) {
 
 // A new campaign saves only the chosen polity's court. Polities, settlements and
 // sources stay whole because the country list and the map read them. A court with its own
-// start text replaces the package text in the campaign record and in the world briefing, which
-// keeps the builder's layout: context, calendar note, coverage note.
+// start text replaces the package text in the campaign record. The world briefing takes it
+// in the builder's layout (context, calendar note, coverage note) only while the briefing
+// still holds the package text; a briefing the player edited stays as written.
+const briefingLayout = (contextSv, h) => [contextSv, h.calendarNoteSv, h.coverageNoteSv].join('\n');
 export function narrowToChosenCourt(world, polityId) {
   const h = world.historicalScenario, court = h.courtSeeds[polityId];
   const historicalScenario = { ...h, playablePolityIds: [polityId], courtSeeds: { [polityId]: court } };
   if (typeof court?.contextSv !== 'string') return { ...world, historicalScenario };
-  return { ...world, historicalScenario: { ...historicalScenario, contextSv: court.contextSv },
-    startingTimelineText: [court.contextSv, h.calendarNoteSv, h.coverageNoteSv].join('\n') };
+  const narrowed = { ...world, historicalScenario: { ...historicalScenario, contextSv: court.contextSv } };
+  if (world.startingTimelineText !== briefingLayout(h.contextSv, h)) return narrowed;
+  return { ...narrowed, startingTimelineText: briefingLayout(court.contextSv, h) };
 }
 
 const ENGINE_DIFFICULTY = Object.freeze({ easy: 'easy', standard: 'normal', normal: 'normal', hard: 'hard' });
