@@ -1,0 +1,1016 @@
+{
+  "schema": "attainder-court-dossiers-v1",
+  "bookmark": "1500-12-31",
+  "reviewFile": "ad1500-review.json",
+  "calendarHandling": "Sources retain their own chronology in asWorded fields. This dossier performs no indigenous-calendar conversion, exact-day conversion or age-to-year calculation. January 1 game birth values are simulation markers. Ahuitzotl, Huayna Capac and Araua Ocllo have generated birth values; Cuauhtémoc and Huáscar retain uncertain historical birth estimates.",
+  "sourceAttribution": {
+    "gettyTgn": "Contains information from the J. Paul Getty Trust, Getty Research Institute, Getty Thesaurus of Geographic Names, which is made available under the ODC Attribution License.",
+    "sourceIds": [
+      "b2-aztec-getty-license"
+    ]
+  },
+  "geometryCheck": {
+    "status": "checked",
+    "checkedOn": "2026-11-07",
+    "method": "Author checks and independent controller Shapely covers/validity checks against actual public pinned B1 bytes, separate from historical source review.",
+    "sourceMapCommit": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+    "sourceFile": "hbm-world_1500.geojson",
+    "sourceSha256": "d01ffc9b80629787f13d2b1c2f881f005bc0164433548e30f5c058ddee0bfc7b",
+    "pointsChecked": 2,
+    "pointsInside": 2,
+    "perPolityChecks": {
+      "aztec-empire": {
+        "status": "checked",
+        "checkedOn": "2026-11-07",
+        "method": "Shapely covers check against exact pinned Historical Basemaps GeoJSON bytes and feature 80; polygon validity checked.",
+        "sourceMapCommit": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceFile": "hbm-world_1500.geojson",
+        "sourceSha256": "d01ffc9b80629787f13d2b1c2f881f005bc0164433548e30f5c058ddee0bfc7b",
+        "pointsChecked": 1,
+        "pointsInside": 1,
+        "note": "A contained seat supplies no evidence of control over the rest of the approximate feature, including independent Tlaxcala and unsupported fringes identified by B1."
+      },
+      "inca-empire": {
+        "status": "checked",
+        "checkedOn": "2026-11-07",
+        "method": "Shapely covers against the pinned B1 GeoJSON bytes.",
+        "sourceMapCommit": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceFile": "hbm-world_1500.geojson",
+        "sourceSha256": "d01ffc9b80629787f13d2b1c2f881f005bc0164433548e30f5c058ddee0bfc7b",
+        "pointsChecked": 1,
+        "pointsInside": 1,
+        "featureIndex": 83,
+        "note": "This repeats seat placement only. B1 accepted an uncertain approximation; its southern overreach and undated northern cap remain."
+      }
+    },
+    "note": "These technical checks establish point containment in approximate accepted features. They establish no frontier, exact-day location or control over the feature."
+  },
+  "reviewSummary": {
+    "status": "checked",
+    "checkedBy": "Codex independent check",
+    "checkedOn": "2026-11-07",
+    "claimsChecked": 54,
+    "confirmed": 51,
+    "corrected": 2,
+    "dropped": 1,
+    "note": "Initial independent source-only counts. The unsupported implementation assertion has been removed. Follow-up occurrences remain separate. Twenty original source records yield nineteen retained records after one Getty licensing-page deduplication.",
+    "followup": {
+      "status": "checked",
+      "checkedBy": "Codex independent check",
+      "checkedOn": "2026-11-07",
+      "claimsChecked": 3,
+      "confirmed": 3,
+      "corrected": 0,
+      "dropped": 0,
+      "scope": "Aztec succession qualification, disputed Atahualpa withholding and Huayna Capac birth span. These repeat three historical occurrences after correction and clarification."
+    }
+  },
+  "publication": {
+    "status": "validated-candidate",
+    "pullRequest": null,
+    "mergeCommit": null,
+    "note": "Research candidate after independent source audits and controller checks. B1 merged through PR 21 at 3bc2d7c7edc0888798b4408803f27f9585d4da94. B2 PR and merge state are reported in RESEARCH-STATUS.md on the next batch; this record asserts no playable start or integration."
+  },
+  "sources": {
+    "b2-aztec-met-chronology": {
+      "title": "Mexico, 1400–1600 A.D., Heilbrunn Timeline of Art History",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/ja/toah/ht/08/canm.html",
+      "locator": "Overview paragraphs 1–3; Key Events entries ca. 1427, ca. 1486, 1502 and 1521 (web lines 137–147, 180–191 and 204–205).",
+      "scopedClaim": "Ahuitzotl reigned 1486–1502. Tenochtitlan was the tribute empire's capital and dominant Triple Alliance city; some enclosed states, including Tlaxcala, remained autonomous. The 1521 entry gives Cuauhtemoc an uncertain 1495 birth and a 1525 death.",
+      "chronology": {
+        "asWorded": "By the end of the fifteenth century; ca. 1427; ca. 1486; r. 1486–1502; 1502; Cuauhtemoc (1495?–1525)",
+        "precision": "Period and years; uncertain birth year; no exact-day ruler location."
+      },
+      "uncertainty": "The 1495? estimate differs from UNAM's 1497–1499 estimate. The approximate entry heading does not supply an accession day or polygon frontier.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-aztec-getty-tenochtitlan": {
+      "title": "Getty TGN 7668941, Tenochtitlan",
+      "institution": "Getty Research Institute, Vocabulary Program",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7668941",
+      "locator": "Record 7668941, Coordinates, Note, Names and capital-of relationship (web lines 19–31 and 54–56).",
+      "scopedClaim": "Tenochtitlan's former-community marker has longitude -99.1314 and latitude 19.4350; Getty identifies it as the fifteenth-century Triple Alliance capital.",
+      "chronology": {
+        "asWorded": "founded ca. 1325; capital of the Triple Alliance of the 15th century; captured ... in 1521",
+        "precision": "Broad historical note and present gazetteer coordinates."
+      },
+      "uncertainty": "This point locates the former community, not a particular palace or Ahuitzotl's whereabouts on the bookmark day.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-aztec-getty-license": {
+      "title": "Getty Vocabularies: Data & Services",
+      "institution": "J. Paul Getty Trust, Getty Research Institute",
+      "url": "https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/",
+      "locator": "Licensing and Citations, Licensing and General subsections (web lines 130–148).",
+      "scopedClaim": "Getty makes Vocabulary data available under ODC-By 1.0 and supplies an attribution form.",
+      "chronology": {
+        "asWorded": "Current licensing terms read on 2026-11-07",
+        "precision": "Retrieval date."
+      },
+      "uncertainty": "The terms concern Vocabulary data; they grant no rights to unrelated website prose or images.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-aztec-inah-templo": {
+      "title": "Templo Mayor",
+      "institution": "Instituto Nacional de Antropología e Historia, Lugares INAH",
+      "url": "https://lugares.inah.gob.mx/es/node/4463",
+      "locator": "Site introduction and VISÍTANOS paragraphs 1–3; Punto 4, Etapa VI heading (web lines 150–157 and 256–264).",
+      "scopedClaim": "Tenochtitlan was a Mexica political and religious centre; Templo Mayor had sanctuaries for Tlaloc and Huitzilopochtli. The site dates construction stage VI to Ahuitzotl's rule, 1486–1502.",
+      "chronology": {
+        "asWorded": "Gobierno de Ahuízotl (1486-1502)",
+        "precision": "Reign and archaeological construction-stage years."
+      },
+      "uncertainty": "The page names no high priest for 1500. Another mixed-stage heading combines rulers and 1481–1502; that heading is not used as a reign chronology.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-aztec-vela-ahuitzotl": {
+      "title": "Enrique Vela, Ahuítzotl, El espinoso del agua (1486-1502)",
+      "institution": "Arqueología Mexicana, Editorial Raíces / INAH; excerpt from Especial 40 (2011)",
+      "url": "https://arqueologiamexicana.mx/node/1016",
+      "locator": "Opening biographical paragraph; caption on temple circuit; captions on aqueduct and death; final paragraph (web lines 40, 45–47, 51–52 and 62).",
+      "scopedClaim": "Ahuitzotl's birth date is unknown; Tezozomoc was his father and Axayacatl and Tizoc his brothers. The author reports his temple rituals and preserves divergent death explanations, with aqueduct dating around 1500 but a caption pairing 7 Reed with 1499.",
+      "chronology": {
+        "asWorded": "1486-1502; 7 caña, correspondiente a 1499 d.C.; inundación de 1500; alrededor de 1500 d.C.; muerte en 1502 d.C.",
+        "precision": "Author's conversions and approximations retained; no new day conversion."
+      },
+      "uncertainty": "The web excerpt summarizes colonial narratives. Its captions and body differ in aqueduct dating and cause of death. No exact birth, dated household roster or bookmark itinerary follows.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-aztec-unam-cuauhtemoc": {
+      "title": "María Luisa Santillán, Cuauhtémoc, el último gran gobernante mexica (2025)",
+      "institution": "Ciencia UNAM, Dirección General de Divulgación de la Ciencia; interview with historian Miguel Pastrana Flores, Instituto de Investigaciones Históricas",
+      "url": "https://ciencia.unam.mx/leer/1569/cuauhtemoc-el-ultimo-gran-gobernante-mexica-en-resistencia",
+      "locator": "Opening execution paragraph; Sus primeros años, paragraphs on parents and estimated birth (web lines 43 and 53–55).",
+      "scopedClaim": "Cuauhtemoc was the son of Ahuitzotl and Tiyacapantzin and died in 1525. Pastrana estimates birth in 1497–1499, inferring from military activity in 1515, and states that no document gives an exact birth date.",
+      "chronology": {
+        "asWorded": "28 de febrero de 1525; entre 1497 y 1499; combate en 1515; padre murió en 1502",
+        "precision": "One reported execution day, inferred birth range and year-level acts."
+      },
+      "uncertainty": "The range differs from the Met's 1495? estimate. The historian infers maternal care after the father's death; that inference does not independently document Tiyacapantzin's survival on the bookmark or a current marriage.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-aztec-castaneda-kinship": {
+      "title": "María Castañeda de la Paz, Cuauhtémoc: linaje y legitimidad (public excerpt)",
+      "institution": "Arqueología Mexicana, Editorial Raíces / INAH; scholarly article excerpt credited to issue 193, pp. 16–25",
+      "url": "https://arqueologiamexicana.mx/node/6984",
+      "locator": "Final two paragraphs of public excerpt, beginning with Cuauhtemoc's father and then his mother (web lines 49–52).",
+      "scopedClaim": "The scholar identifies Cuauhtemoc's father as Ahuitzotl and reports divergent colonial genealogies for his mother Tiyacapatzin or Te[ya]capantzin: Chimalpahin names her father Epcoatzin, while Ixtlilxochitl and Torquemada name Moquihuix.",
+      "chronology": {
+        "asWorded": "Colonial genealogical accounts; the cited paragraphs give no birth or death year for the mother",
+        "precision": "Undated kinship."
+      },
+      "uncertainty": "Only the public excerpt was read, not the full paid article. Its own bibliographic credit and product edition labels differ; the source title and URL identify the inspected excerpt. No grandfather is resolved and no dated maternal household presence is claimed.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-aztec-townsend-succession": {
+      "title": "Richard F. Townsend, The Aztecs, Priests, Warriors, and Kings (university-hosted excerpts)",
+      "institution": "Thames and Hudson; University of Kentucky course-hosted scan",
+      "url": "https://web.as.uky.edu/history/faculty/myrup/his206/Townsend%2C%20Richard%20-%20Aztecs%20%28excerpts%29.pdf",
+      "locator": "Printed p. 202, Aztec kingship: a tlatoani takes office, first two paragraphs (PDF page 12, left page).",
+      "scopedClaim": "Townsend uses the term primogeniture while describing restricted dynastic candidates and council approval, with the cihuacoatl and sometimes allied rulers consulted. He also describes the ruler’s religious role.",
+      "chronology": {
+        "asWorded": "after Itzcoatl; general reconstruction of imperial Tenochtitlan",
+        "precision": "Institutional practice, not an exact-day constitution."
+      },
+      "uncertainty": "Downloaded the 24-page image scan and visually read PDF page 12. No machine-extracted text was available. Preserve Townsend’s terminology beside Torquemada’s brother-succession account. Merit remains an uncertain editorial game mapping, not a historical claim of unrestricted selection.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-aztec-torquemada-election": {
+      "title": "Juan de Torquemada, Monarquía indiana, volume I, book II, chapter LXIII, UNAM edition",
+      "institution": "Universidad Nacional Autónoma de México, Instituto de Investigaciones Históricas; colonial Franciscan chronicle",
+      "url": "https://historicas.unam.mx/publicaciones/publicadigital/monarquia/volumen/01/03Libro_Segundo/miv1128.pdf",
+      "locator": "Printed p. 257, chapter LXIII, opening paragraph (PDF page 1).",
+      "scopedClaim": "Torquemada presents Ahuitzotl as the preceding rulers' brother and describes his election through a custom of choosing brothers in succession, considering his suitability.",
+      "chronology": {
+        "asWorded": "Election follows the deceased brother; opening paragraph gives no absolute accession year",
+        "precision": "Dynastic sequence."
+      },
+      "uncertainty": "This post-conquest Franciscan account is not contemporary legislation. Native PowerShell downloaded and pypdf exposed the passage after web timeouts and Python certificate errors. Demonological commentary and sacrificial totals are excluded from the dossier's claims.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-inca-nmai-ruler": {
+      "title": "The Empire Builders, Huayna Capac",
+      "institution": "Smithsonian Institution, National Museum of the American Indian",
+      "url": "https://americanindian.si.edu/inkaroad/inkauniverse/cusco/empire-builders.html",
+      "locator": "Huayna Capac heading and portrait caption, web lines 102–107.",
+      "scopedClaim": "The museum identifies Huayna Capac as the eleventh Shapa Inka and dates his reign 1493–1527.",
+      "chronology": {
+        "asWorded": "1493–1527; 1615"
+      },
+      "uncertainty": "The reign years and the 1615 portrait date concern different things. The page gives no accession day, birth date or bookmark itinerary. Compare Bray and Sarmiento for differing end chronologies.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-inca-bray-parents": {
+      "title": "Tamara Bray, chapter 22 in El imperio inka, p. 809",
+      "institution": "Pontificia Universidad Católica del Perú, Fondo Editorial, 2018; Biblioteca Nacional del Perú host",
+      "url": "https://repositoriodigital.bnp.gob.pe/bnp/recursos/2/html/el-imperio-inka/809/",
+      "locator": "Printed p. 809, paragraph beginning También parece probable. Chapter authorship checked in the introduction, printed p. 16.",
+      "scopedClaim": "Bray tentatively reconstructs Huayna Capac as the son of Tupac Yupanqui and his principal wife Mama Ocllo, probably born at Tomebamba during a northern campaign.",
+      "chronology": {
+        "asWorded": "1471 d.C.; 1457 o 1458 d.C."
+      },
+      "uncertainty": "These dates on p. 809 date competing investiture chronologies for Tupac, not Huayna’s birth. The birth setting is an authorial probability from colonial accounts, not an eyewitness birth record.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "additionalOpenedUrls": [
+        "https://repositoriodigital.bnp.gob.pe/bnp/recursos/2/html/el-imperio-inka/"
+      ]
+    },
+    "b2-inca-bray-chronology": {
+      "title": "Tamara Bray, chapter 22 in El imperio inka, p. 810",
+      "institution": "Pontificia Universidad Católica del Perú, Fondo Editorial, 2018; Biblioteca Nacional del Perú host",
+      "url": "https://repositoriodigital.bnp.gob.pe/bnp/recursos/2/html/el-imperio-inka/810/",
+      "locator": "Printed p. 810, opening paragraph and paragraphs beginning Respecto a la cronología and Esto sugeriría.",
+      "scopedClaim": "Bray identifies Tomebamba as Huayna’s northern operating base, discusses 1527/1528 death dates, and infers an approximate birth span between 1447–1448 and 1457–1458 from colonial age estimates.",
+      "chronology": {
+        "asWorded": "1527 y 1528; aproximadamente 70 u 80 años; entre 1447-1448 d.C. y 1457-1458 d.C."
+      },
+      "uncertainty": "Bray’s inferred birth span is uncertain. This dossier performs no age-to-calendar calculation. Northern campaigns and the Tomebamba base lack an exact placement on 1500-12-31.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-inca-sarmiento": {
+      "title": "Pedro Sarmiento de Gamboa, History of the Incas (1572), Clements Markham translation (1907), electronic edition (2000)",
+      "institution": "York University host; In parentheses Publications",
+      "url": "https://www.yorku.ca/inpar/sarmiento_markham.pdf",
+      "locator": "PDF/edition pp. 133–136, chapters LV–LVIII; p. 138, LX; pp. 144–146, LXII–LXIII; p. 162, LXIX.",
+      "scopedClaim": "Sarmiento names Huayna’s parents, Araua Ocllo as his wife and Huáscar’s mother, Cusi Rimay Coya as another wife, and named sons. He describes Araua after Huayna’s death and Huayna taking custody of the Sun early in his reign. His chronology gives Huayna’s death in 1524 and Huáscar’s death in 1533 at age 40. He gives Atahualpa 36 years of life at an execution narrated after Huáscar’s death in 1533.",
+      "chronology": {
+        "asWorded": "1572; 1524 of the nativity of our Lord Jesus Christ; 1533; 40 years; 80 years; reigned 60 years; 36 years"
+      },
+      "uncertainty": "A colonial retrospective written for Viceroy Toledo and Philip II. The dedication on pp. 4–6 argues for Spanish title; categories of legitimacy and kinship require caution. No marriage, campaign departure or Araua birth date here fixes the bookmark. Markham’s notes are editorial, distinct from Sarmiento. Do not reconcile this chronology by inventing a cause. The Atahualpa age conflicts with VLE’s approximate 1502 birth; no derived birth year is entered.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-inca-vle-huascar": {
+      "title": "Huaskaras",
+      "institution": "Visuotinė lietuvių enciklopedija; Lithuanian National Library, Science and Encyclopaedia Publishing Centre",
+      "url": "https://www.vle.lt/straipsnis/huaskaras/",
+      "locator": "Opening biographical paragraph, web line 28, full-name/life-date string and following kinship sentence.",
+      "scopedClaim": "The reference work places Huáscar’s birth around 1491 and death in 1532, and identifies him as Huayna Capac’s son.",
+      "chronology": {
+        "asWorded": "apie 1491; 1532; 1525–32"
+      },
+      "uncertainty": "The approximate birth supports an uncertain placement before 1500. The article dates his later rule 1525–32, which this dossier does not adopt. Its 1532 death differs from Sarmiento’s 1533, both after the bookmark. No exact birth day or childhood residence appears.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-inca-vle-atahualpa": {
+      "title": "Atahualpa",
+      "institution": "Visuotinė lietuvių enciklopedija; Lithuanian National Library, Science and Encyclopaedia Publishing Centre",
+      "url": "https://www.vle.lt/straipsnis/atahualpa/",
+      "locator": "Opening biography, web line 29, life dates and paternal relation.",
+      "scopedClaim": "The reference work dates Atahualpa’s birth around 1502 and names Huayna Capac as his father.",
+      "chronology": {
+        "asWorded": "apie 1502; 1533 08 29"
+      },
+      "uncertainty": "VLE’s approximate birth falls after the bookmark, while Sarmiento’s age-at-execution account implies a pre-1500 birth within his conflicting chronology. The person remains withheld because bookmark placement is disputed. This dossier adopts no execution day or succession chronology from VLE.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-inca-succession": {
+      "title": "Francisco Hernández Astete, La sucesión entre los incas, Chungará 44(4), 655–667 (2012)",
+      "institution": "Chungará, Universidad de Tarapacá; SciELO Chile",
+      "url": "https://www.scielo.cl/scielo.php?pid=S0717-73562012000400008&script=sci_arttext",
+      "locator": "Resumen; sections La Influencia de la Élite en la Elección del Nuevo Inca and Un Modelo Alternativo; web lines 75–78, 104–119, 135, 160–165.",
+      "scopedClaim": "The historian treats succession as disputed: scholarly models involve elite alliances, candidate capability, ritual sanction and alternative sibling/dual-office arrangements. He questions a European primogeniture template and the source basis of a simple capability rule.",
+      "chronology": {
+        "asWorded": "2012; chronicles from the sixteenth century"
+      },
+      "uncertainty": "A modern interpretation of colonial testimony. It supplies no agreed succession algorithm or named, dated council for 1500. A merit engine law would omit kinship, ritual and competing institutional models.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-inca-nmai-seat": {
+      "title": "Heart of the Inka Universe",
+      "institution": "Smithsonian Institution, National Museum of the American Indian",
+      "url": "https://americanindian.si.edu/inkaroad/inkauniverse/cusco/cusco-experience.html",
+      "locator": "Opening paragraph, web line 83; The Qorikancha, Temple of the Sun, lines 112–117.",
+      "scopedClaim": "The museum identifies Cusco as the Inka political and spiritual centre and Qorikancha as the empire’s chief sun temple.",
+      "chronology": {
+        "asWorded": "Inka period; exhibition 2015–2020; page copyright 2016"
+      },
+      "uncertainty": "A general institutional description, without a date-specific ruler itinerary or a named priest at 1500.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-inca-nmai-religion": {
+      "title": "A Road for Religion",
+      "institution": "Smithsonian Institution, National Museum of the American Indian",
+      "url": "https://americanindian.si.edu/inkaroad/inkauniverse/inkaroadexpansion/road-religion.html",
+      "locator": "Opening paragraph, web line 82; The Shapa Inka and His Court, line 91.",
+      "scopedClaim": "The museum connects imperial conquest with worship of Inti and describes the Shapa Inka as divine.",
+      "chronology": {
+        "asWorded": "Inka period; exhibition 2015–2020; page copyright 2016"
+      },
+      "uncertainty": "The page does not name a priest or identify a single institutional head on 1500-12-31.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "b2-inca-getty-cuzco": {
+      "title": "Getty TGN 7005819, Cuzco",
+      "institution": "Getty Research Institute, Vocabulary Program",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7005819",
+      "locator": "Record 7005819, Coordinates, Names, Note and historical capital type, web lines 19–31 and 45–48.",
+      "scopedClaim": "Getty records Cuzco/Cusco at longitude −71.9667 and latitude −13.5167 and identifies its historical Inca capital role.",
+      "chronology": {
+        "asWorded": "15th cen."
+      },
+      "uncertainty": "Settlement-level marker. It supplies neither a palace coordinate nor ruler whereabouts on a day.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07",
+      "licenseSourceId": "b2-aztec-getty-license"
+    }
+  },
+  "polities": [
+    {
+      "polityId": "aztec-empire",
+      "nameSv": "Aztekriket",
+      "sourceFeatureIndexes": [
+        80
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Huey tlatoani",
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "b2-aztec-unam-cuauhtemoc"
+        ],
+        "noteSv": "Titeln avser Ahuitzotl i Tenochtitlan; hovlistan sammanför inte trippelalliansens skilda härskarämbeten."
+      },
+      "successionLaw": "merit",
+      "successionNoteSv": "Ett råd godkände en efterträdare inom en begränsad furstekrets; merit är en osäker spelmotsvarighet och släktkravet behöver bevaras.",
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "b2-aztec-townsend-succession",
+          "b2-aztec-torquemada-election"
+        ],
+        "noteSv": "Townsend använder termen primogenitur men beskriver också rådets godkännande och en begränsad dynastisk krets. Torquemada beskriver Ahuitzotls val och brödernas turordning. Spelmotsvarigheten är osäker och innebär inget fritt val efter förmåga."
+      },
+      "engineLimits": [
+        "elective-rule",
+        "collective-rule",
+        "no-sourced-household"
+      ],
+      "engineLimitNotesSv": "Rådet och trippelalliansens skilda härskare ryms inte i ett ensamt härskarämbete. Sonens släktskap har källstöd, men källorna placerar inget daterat hushåll vid Ahuitzotls hov på bokmärkets dag.",
+      "contextSv": "Ahuitzotl styr från Tenochtitlan inom trippelalliansen. Under hans regering har mexica utvidgat sitt tributvälde, där många stadsstater behåller egna härskare. Tlaxcala står självständigt trots kartans sammanhängande yta. Vid Templo Mayor vördar mexica Tláloc och Huitzilopochtli. Källorna ger ingen säker plats för Ahuitzotl den 31 december 1500.",
+      "contextSourceIds": [
+        "b2-aztec-met-chronology",
+        "b2-aztec-inah-templo"
+      ],
+      "contextClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "b2-aztec-met-chronology",
+          "b2-aztec-inah-templo"
+        ],
+        "noteSv": "Texten beskriver styre och institutioner under regeringstiden. Den daterar ingen särskild hovhändelse till bokmärkets dag."
+      },
+      "seat": {
+        "settlementId": "tenochtitlan",
+        "nameSv": "Tenochtitlan",
+        "coordinates": [
+          -99.1314,
+          19.435
+        ],
+        "gettyTgnId": "7668941",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7668941",
+        "insideAcceptedPolygon": true,
+        "sourceIds": [
+          "b2-aztec-getty-tenochtitlan",
+          "b2-aztec-met-chronology"
+        ],
+        "seatClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "b2-aztec-met-chronology"
+          ],
+          "noteSv": "Met anger Tenochtitlan som huvudstad vid slutet av 1400-talet."
+        },
+        "noteSv": "Gettys punkt är en ungefärlig ortsmarkör för den tidigare staden. Punkten belägger inget visst palats.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd vistelseort den 31 december 1500",
+          "status": "uncertain",
+          "sourceIds": [],
+          "noteSv": "Ingen öppnad källa ger Ahuitzotls vistelseort den dagen."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "b2-aztec-getty-license"
+          ],
+          "claimSv": "Getty tillhandahåller TGN:s data enligt ODC-By 1.0."
+        },
+        "geometryChecks": {
+          "localPolygonNoteSv": "Punkten belägger ingen kontroll över hela polygon 80, som även omsluter självständiga Tlaxcala och områden utan stöd i B1:s källor."
+        }
+      },
+      "religion": {
+        "id": "mexica-templo-mayor-cults",
+        "nameSv": "Mexicas tempelkult i Tenochtitlan",
+        "status": "sourced",
+        "claimSv": "Templo Mayor hade helgedomar för Tláloc och Huitzilopochtli. Ahuitzotl deltog i riter och främjade templet under sin regering.",
+        "sourceIds": [
+          "b2-aztec-inah-templo",
+          "b2-aztec-vela-ahuitzotl"
+        ],
+        "leaderPersonId": null,
+        "noteSv": "Källorna belägger institutionen och härskarens religiösa roll. Ingen öppnad källa namnger en tempelledare för den 31 december 1500; ingen person får ett sådant ämbete här."
+      },
+      "people": [
+        {
+          "id": "ahuitzotl",
+          "nameSv": "Ahuitzotl",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Härskare i Tenochtitlan",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "b2-aztec-met-chronology",
+              "b2-aztec-inah-templo"
+            ]
+          },
+          "reign": {
+            "asWorded": "r. 1486–1502",
+            "startYear": 1486,
+            "endYear": 1502,
+            "status": "sourced",
+            "sourceIds": [
+              "b2-aztec-met-chronology",
+              "b2-aztec-inah-templo"
+            ],
+            "noteSv": "Källorna ger årtal. Inget tillträdes- eller dödsdatum på dagsnivå införs."
+          },
+          "birth": {
+            "asWorded": null,
+            "status": "generated",
+            "gameValue": "1450-01-01",
+            "noteSv": "Hela födelsedatumet är ett genererat spelvärde för en dokumenterad person. Det anger ingen historisk ålder; Vela uppger att födelsedatumet saknar säker uppgift.",
+            "sourceIds": []
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Met och INAH placerar den 31 december 1500 inom regeringstiden 1486–1502.",
+            "sourceIds": [
+              "b2-aztec-met-chronology",
+              "b2-aztec-inah-templo"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Tezozómoc, son till Itzcóatl",
+              "status": "sourced",
+              "sourceIds": [
+                "b2-aztec-vela-ahuitzotl"
+              ]
+            },
+            {
+              "relation": "brother",
+              "ofPersonId": null,
+              "ofSv": "Axayácatl och Tízoc",
+              "status": "sourced",
+              "sourceIds": [
+                "b2-aztec-vela-ahuitzotl",
+                "b2-aztec-torquemada-election"
+              ]
+            }
+          ],
+          "uncertaintySv": "Vela skriver Ahuítzotl; Met skriver Ahuitzotl. Ingen öppnad källa ger en daterad maka eller ett fullständigt hushåll för bokmärket. Vela återger olika dödsförklaringar och skilda dateringar kring akvedukten; ingen sådan episod får ett exakt speldatum.",
+          "uncertaintySourceIds": [
+            "b2-aztec-vela-ahuitzotl"
+          ]
+        },
+        {
+          "id": "cuauhtemoc",
+          "nameSv": "Cuauhtémoc",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Son till Ahuitzotl; plats vid hovet osäker",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "b2-aztec-unam-cuauhtemoc",
+              "b2-aztec-castaneda-kinship"
+            ]
+          },
+          "birth": {
+            "asWorded": "entre 1497 y 1499; Cuauhtemoc (1495?–1525)",
+            "status": "uncertain",
+            "gameValue": "1497-01-01",
+            "noteSv": "UNAM:s intervju ger en beräknad födelseperiod 1497–1499; Met anger 1495 med frågetecken. Spelåret följer början av UNAM:s intervall, och 1 januari är en platshållare. Ingen källa ger dagen.",
+            "sourceIds": [
+              "b2-aztec-unam-cuauhtemoc",
+              "b2-aztec-met-chronology"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "uncertain",
+            "noteSv": "Båda födelseuppskattningarna ligger före 1500 och källorna anger död 1525. Liv vid bokmärket bygger därför på en osäker födelseberäkning tillsammans med senare liv, inte på en daterad närvaro år 1500.",
+            "sourceIds": [
+              "b2-aztec-unam-cuauhtemoc",
+              "b2-aztec-met-chronology"
+            ]
+          },
+          "legalParentIds": [
+            "ahuitzotl"
+          ],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": "ahuitzotl",
+              "ofSv": "Ahuitzotl",
+              "status": "sourced",
+              "sourceIds": [
+                "b2-aztec-unam-cuauhtemoc",
+                "b2-aztec-castaneda-kinship"
+              ]
+            },
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Tiyacapantzin, även Tiyacapatzin eller Te[ya]capantzin i källorna",
+              "status": "sourced",
+              "sourceIds": [
+                "b2-aztec-unam-cuauhtemoc",
+                "b2-aztec-castaneda-kinship"
+              ]
+            }
+          ],
+          "householdPresence": {
+            "status": "uncertain",
+            "sourceIds": [],
+            "noteSv": "Släktskapet visar ingen vistelseort eller närvaro vid faderns hov den 31 december 1500."
+          },
+          "uncertaintySv": "Modern forskning ger olika födelseuppskattningar. Castañeda återger dessutom skilda koloniala uppgifter om moderns far, Epcoatzin respektive Moquíhuix. Ingen morfar eller hovtjänst tilldelas Cuauhtémoc här.",
+          "uncertaintySourceIds": [
+            "b2-aztec-unam-cuauhtemoc",
+            "b2-aztec-met-chronology",
+            "b2-aztec-castaneda-kinship"
+          ]
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Tiyacapantzin / Tiyacapatzin / Te[ya]capantzin",
+          "status": "uncertain",
+          "reason": "Sources identify Cuauhtemoc's mother but do not securely place her alive or in a current marital household on 1500-12-31. UNAM's proposed maternal care after 1502 is an inference. Sources also disagree on her father. Motherhood supplies no automatic current-spouse link.",
+          "sourceIds": [
+            "b2-aztec-unam-cuauhtemoc",
+            "b2-aztec-castaneda-kinship"
+          ]
+        },
+        {
+          "who": "Unnamed spouses, additional children, resident kin and a named temple head",
+          "status": "uncertain",
+          "reason": "No opened passage places such people in Ahuitzotl's household or a named religious leadership office on the bookmark. No attested ordinary-name pool has been built, so no generated roster fills the gaps.",
+          "sourceIds": []
+        }
+      ],
+      "namePoolId": "mexica-nahuatl-1500",
+      "namePoolStatus": "proposed-unbuilt",
+      "namePoolClaim": {
+        "status": "uncertain",
+        "sourceIds": [],
+        "noteSv": "Ett namnregister för vanliga personer under perioden har inte sammanställts. De dokumenterade härskarnas namn får inte användas för att skapa ett påhittat hushåll."
+      },
+      "searchLog": [
+        "Searched institutional and scholarly results for Ahuitzotl's 1486–1502 reign, birth, family, Templo Mayor, priesthood and succession; reopened every cited URL.",
+        "Read the Met Overview and relevant year entries, Getty TGN 7668941 and Getty's licensing section. Rechecked the point with Shapely against pinned feature 80.",
+        "Read INAH's site introduction and stage-VI heading, Vela's biography and conflicting aqueduct/death captions, UNAM's Cuauhtemoc interview and Castaneda's public genealogy excerpt.",
+        "Townsend PDF exceeded the web fetch size limit. Direct Python download returned HTTP 200 and 24 scanned pages. Rendered the scan and visually read printed p. 202 on PDF page 12; retained the scholarly council/dynasty description.",
+        "UNAM Torquemada web fetch returned 502/timeouts; direct Python requests failed certificate validation. Native PowerShell download succeeded. Read chapter LXIII's opening paragraph on printed p. 257 using pypdf; did not use search snippets as evidence.",
+        "A search result suggested another Cuauhtemoc age estimate in Hechos y Derechos. Web and direct Python access to the candidate PDF returned 404, so its snippet supplies no claim or competing chronology in this dossier. Harvard Peabody object access returned 403 and supplies no claim.",
+        "No opened source gives an exact-day itinerary, secure dated maternal survival or a named priest for the bookmark. No generated identity or ordinary-name pool is supplied. The roster contains a ruler and an uncertain-age documented son, with no claim that the son resided at court."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 24,
+        "confirmed": 24,
+        "corrected": 0,
+        "dropped": 0,
+        "note": "Initial frozen-packet counts retained. Scoped follow-up occurrences are counted separately; research readiness establishes no game integration.",
+        "followup": {
+          "status": "checked",
+          "checkedBy": "Codex independent check",
+          "checkedOn": "2026-11-07",
+          "claimsChecked": 1,
+          "confirmed": 1,
+          "corrected": 0,
+          "dropped": 0,
+          "note": "Repeated final historical occurrences, separate from the initial audit."
+        }
+      },
+      "readiness": {
+        "research": "ready-after-independent-source-review",
+        "engine": "not-integrated"
+      }
+    },
+    {
+      "polityId": "inca-empire",
+      "nameSv": "Inkariket",
+      "sourceFeatureIndexes": [
+        83
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Sapa inka",
+      "titleNoteSv": "Sapa inka används som svensk ämbetsetikett; Smithsonian skriver Shapa Inka.",
+      "titleSourceIds": [
+        "b2-inca-nmai-ruler"
+      ],
+      "successionLaw": "none-fits",
+      "successionNoteSv": "Elitens släktallianser, kandidaternas förmåga och rituellt godkännande ingår i historikernas tolkningar av tronföljden. Varken primogenitur eller spelets meritregel återger de omstridda ordningarna.",
+      "successionSourceIds": [
+        "b2-inca-succession"
+      ],
+      "successionStatus": "uncertain",
+      "engineLimits": [
+        "elective-rule"
+      ],
+      "contextSv": "Huayna Capac regerar i Inkariket. Cusco är rikets politiska och religiösa centrum, med soltemplet Qorikancha. Härskaren betraktas som gudomlig och inkorna dyrkar Inti, solen.",
+      "contextSourceIds": [
+        "b2-inca-nmai-ruler",
+        "b2-inca-nmai-seat",
+        "b2-inca-nmai-religion"
+      ],
+      "seat": {
+        "settlementId": "cuzco",
+        "nameSv": "Cusco",
+        "coordinates": [
+          -71.9667,
+          -13.5167
+        ],
+        "gettyTgnId": "7005819",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7005819",
+        "sourceIds": [
+          "b2-inca-getty-cuzco",
+          "b2-inca-nmai-seat"
+        ],
+        "noteSv": "Ortsmarkör från Getty; ingen palatskoordinat eller vistelseort för härskaren på startdagen.",
+        "rulerOnBookmark": {
+          "placeSv": null,
+          "status": "uncertain",
+          "sourceIds": [
+            "b2-inca-bray-chronology"
+          ],
+          "noteSv": "Ingen öppnad passage anger Huayna Capacs vistelseort den 31 december 1500. Tomebambas roll i nordliga fälttåg saknar datering till denna dag."
+        },
+        "seatClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "b2-inca-getty-cuzco",
+            "b2-inca-nmai-seat"
+          ],
+          "noteSv": "Ortsmarkör från Getty; ingen palatskoordinat eller vistelseort för härskaren på startdagen."
+        },
+        "insideAcceptedPolygon": true
+      },
+      "religion": {
+        "id": "inca-state-cult",
+        "nameSv": "Inkornas statskult",
+        "claimSv": "Härskaren betraktas som gudomlig, och Inti dyrkas inom rikets kult. Qorikancha i Cusco är solkultens främsta tempel.",
+        "status": "sourced",
+        "sourceIds": [
+          "b2-inca-nmai-religion",
+          "b2-inca-nmai-seat"
+        ],
+        "leaderPersonId": null,
+        "leaderNoteSv": "Ingen öppnad passage namnger en präst eller belägger vem som leder institutionen denna dag. Sarmiento skildrar hur Huayna övertar solens vårdnad tidigt under sin regering; ämbetets varaktighet fram till startdagen är osäker.",
+        "historicalOfficeClaim": {
+          "status": "uncertain",
+          "asWorded": "Shepherd of the Sun",
+          "sourceIds": [
+            "b2-inca-sarmiento"
+          ]
+        }
+      },
+      "people": [
+        {
+          "id": "huayna-capac",
+          "nameSv": "Huayna Capac",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Härskare",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "b2-inca-nmai-ruler"
+            ]
+          },
+          "birth": {
+            "asWorded": null,
+            "status": "generated",
+            "gameValue": "1457-01-01",
+            "noteSv": "Genererat födelsedatum för spelets ålder; ingen historisk födelsedag påstås.",
+            "sourceIds": []
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Smithsonians regeringsintervall omfattar startdagen. De olika slutåren ändrar inte den placeringen.",
+            "sourceIds": [
+              "b2-inca-nmai-ruler"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Tupac Inka Yupanqui",
+              "status": "sourced",
+              "sourceIds": [
+                "b2-inca-sarmiento"
+              ]
+            },
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Mama Ocllo",
+              "status": "sourced",
+              "sourceIds": [
+                "b2-inca-sarmiento"
+              ]
+            }
+          ],
+          "uncertaintySv": "Födelsedatumet är ett spelvärde. De koloniala berättelserna ger motstridig kronologi. Ingen ort eller maka knyts till honom med säker datering på startdagen.",
+          "reign": {
+            "status": "uncertain",
+            "startYear": 1493,
+            "endYear": null,
+            "asWorded": [
+              "1493–1527",
+              "1527 y 1528",
+              "1524 of the nativity of our Lord Jesus Christ"
+            ],
+            "sourceIds": [
+              "b2-inca-nmai-ruler",
+              "b2-inca-bray-chronology",
+              "b2-inca-sarmiento"
+            ],
+            "noteSv": "Smithsonian anger 1493–1527; Bray behandlar 1527 och 1528; Sarmiento anger 1524. Startår återges från Smithsonian. Ingen gemensam slutdag eller förklaring till skillnaden konstrueras."
+          },
+          "historicalBirthEvidence": {
+            "status": "uncertain",
+            "asWorded": "entre 1447-1448 d.C. y 1457-1458 d.C.",
+            "sourceIds": [
+              "b2-inca-bray-chronology"
+            ],
+            "noteSv": "Bray härleder ett ungefärligt födelsespann från 1447–1448 till 1457–1458 ur koloniala åldersuppgifter. Spelets separata födelsedatum är genererat; det ger ingen exakt historisk datering."
+          }
+        },
+        {
+          "id": "huascar",
+          "nameSv": "Huáscar",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Huayna Capacs son",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "b2-inca-vle-huascar",
+              "b2-inca-sarmiento"
+            ]
+          },
+          "birth": {
+            "asWorded": "apie 1491",
+            "status": "uncertain",
+            "gameValue": "1491-01-01",
+            "noteSv": "Uppslagsverket anger cirka 1491. Första januari är en spelmarkör. Sarmiento anger 40 års ålder vid döden 1533; ingen egen omräkning eller exakt födelsedag införs.",
+            "sourceIds": [
+              "b2-inca-vle-huascar",
+              "b2-inca-sarmiento"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "uncertain",
+            "noteSv": "Det ungefärliga födelseåret före startdagen och beläggen för senare liv ger placeringen. Osäkerheten i den tidiga dateringen kvarstår; dödsåren 1532 och 1533 ligger efter startdagen.",
+            "sourceIds": [
+              "b2-inca-vle-huascar",
+              "b2-inca-sarmiento"
+            ]
+          },
+          "legalParentIds": [
+            "huayna-capac",
+            "araua-ocllo"
+          ],
+          "spouseIds": [],
+          "kinship": [],
+          "uncertaintySv": "Barnets existens på startdagen bygger på en ungefärlig födelsedatering. Ingen passage placerar honom i Cusco just denna dag eller utser honom till arvtagare vid denna tid."
+        },
+        {
+          "id": "araua-ocllo",
+          "nameSv": "Araua Ocllo",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Huáscars mor",
+          "sex": "female",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "b2-inca-sarmiento"
+            ]
+          },
+          "birth": {
+            "asWorded": null,
+            "status": "generated",
+            "gameValue": "1470-01-01",
+            "noteSv": "Genererat födelsedatum för spelets ålder; ingen historisk födelsedag påstås.",
+            "sourceIds": []
+          },
+          "aliveOnBookmark": {
+            "status": "uncertain",
+            "noteSv": "Placeringen är en uttalad inferens: hon är mor till Huáscar, som dateras till cirka 1491, och Sarmiento skildrar henne efter Huaynas död. Ingen egen födelsedatering för henne finns i passagerna.",
+            "sourceIds": [
+              "b2-inca-vle-huascar",
+              "b2-inca-sarmiento"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "wife",
+              "ofPersonId": "huayna-capac",
+              "ofSv": null,
+              "status": "uncertain",
+              "sourceIds": [
+                "b2-inca-sarmiento"
+              ],
+              "noteSv": "Sarmiento anger ett äktenskap. Han daterar inte dess början eller dess status den 31 december 1500; därför skapas ingen spouseIds-länk."
+            }
+          ],
+          "uncertaintySv": "Hennes namn och moderskap har ett kolonialt belägg. Liv på startdagen följer av en sammanvägning med sonens osäkra födelseår. Födelsedatumet är genererat; vigseldag, fysisk ort och status som coya denna dag saknar belägg."
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Atahualpa",
+          "reason": "VLE anger födsel omkring 1502. Sarmiento anger 36 års liv vid avrättningen efter Huáscars död 1533, vilket i berättelsens kronologi talar för födsel före 1500. Källorna ger därför motstridigt stöd för placering på startdagen; personen hålls tillbaka på grund av denna osäkerhet.",
+          "sourceIds": [
+            "b2-inca-vle-atahualpa",
+            "b2-inca-sarmiento"
+          ]
+        },
+        {
+          "who": "Cusi Rimay Coya",
+          "reason": "Sarmiento namnger henne som maka men daterar varken giftermål, död eller liv på startdagen. Hennes senare eller tidigare plats i en äktenskapsföljd räcker inte.",
+          "sourceIds": [
+            "b2-inca-sarmiento"
+          ]
+        },
+        {
+          "who": "Ninan Cuyoche, Manco Inca och Paulu Tupac",
+          "reason": "Sarmiento namnger sönerna i berättelsen om nordliga krig. Passagen ger inga födelseår som placerar dem före 1500. Ingen av dem förs in genom en senare död eller enbart ett släktskapsbelägg.",
+          "sourceIds": [
+            "b2-inca-sarmiento"
+          ]
+        },
+        {
+          "who": "Mama Ocllo och Tupac Inka Yupanqui",
+          "reason": "De anges som Huaynas föräldrar. Sarmiento placerar moderns död nära faderns död och tidigt i Huaynas regering. De tas med som släktreferenser, inte som levande hovpersoner 1500.",
+          "sourceIds": [
+            "b2-inca-bray-parents",
+            "b2-inca-sarmiento",
+            "b2-inca-nmai-ruler"
+          ]
+        },
+        {
+          "who": "Huaman Achachi och andra namngivna hovfunktionärer",
+          "reason": "Sarmiento beskriver uppdrag i en odaterad händelseföljd. Ingen öppnad passage ger ett tillräckligt livsintervall eller ett ämbetsbelägg för startdagen.",
+          "sourceIds": [
+            "b2-inca-sarmiento"
+          ]
+        }
+      ],
+      "namePoolId": "inca-ad1500",
+      "namePool": {
+        "status": "proposed-unbuilt",
+        "proposedId": "inca-ad1500",
+        "noteSv": "Tekniskt id för en framtida namnlista. Ingen namnlistfil eller belagd namnlista ingår. Inga genererade identiteter har skapats."
+      },
+      "searchLog": [
+        "Opened NMAI ruler, Cusco and religion pages; no exact birth, household dates, named priest or bookmark itinerary found in the cited passages.",
+        "Opened Bray pp. 809–810 and book introduction; kept probable genealogy and competing chronologies. Did not calculate a birth year or explain the discrepancy.",
+        "Downloaded York-hosted Sarmiento/Markham PDF, read chapters LV–LXIII and LXIX plus dedication. Marriage and campaign sequences lack calendar anchors for this bookmark.",
+        "Searched Huascar1491, Huayna wives, Cusirimay and Runtu in institutional/scholarly sources. Opened VLE Huascar and Atahualpa entries. A PARES authority page returned429 through both web opening and Python requests; no search snippet from it supports this dossier.",
+        "Cervantes Atahualpa URL returned404 and an Oxford chapter abstract returned500; neither is cited. No birth chronology from an inaccessible search hit was adopted.",
+        "Read Hernández Astete2012 on disputed succession models; no fixed engine law established.",
+        "No attested generic name pool was built; no roster count was targeted."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 30,
+        "confirmed": 27,
+        "corrected": 2,
+        "dropped": 1,
+        "note": "Initial frozen-packet counts retained. Scoped follow-up occurrences are counted separately; research readiness establishes no game integration.",
+        "followup": {
+          "status": "checked",
+          "checkedBy": "Codex independent check",
+          "checkedOn": "2026-11-07",
+          "claimsChecked": 2,
+          "confirmed": 2,
+          "corrected": 0,
+          "dropped": 0,
+          "note": "Repeated final historical occurrences, separate from the initial audit."
+        }
+      },
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "b2-inca-nmai-ruler"
+        ],
+        "noteSv": "Sapa inka används som svensk ämbetsetikett; Smithsonian skriver Shapa Inka."
+      },
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "b2-inca-succession"
+        ],
+        "noteSv": "Elitens släktallianser, kandidaternas förmåga och rituellt godkännande ingår i historikernas tolkningar av tronföljden. Varken primogenitur eller spelets meritregel återger de omstridda ordningarna."
+      },
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "b2-inca-nmai-ruler",
+          "b2-inca-nmai-seat",
+          "b2-inca-nmai-religion"
+        ],
+        "noteSv": "Status och källhänvisningar gäller den befintliga kontextens uppgifter."
+      },
+      "namePoolStatus": "proposed-unbuilt",
+      "namePoolNoteSv": "Tekniskt id för en framtida namnlista. Ingen namnlistfil finns; id:t anger ingen belagd namnlista.",
+      "readiness": {
+        "research": "ready-after-independent-source-review",
+        "engine": "not-integrated"
+      }
+    }
+  ],
+  "technicalGeometry": {
+    "scope": "Local point containment audit only; exclude this entire field from historical source-only review packets.",
+    "polities": [
+      {
+        "scope": "Local point containment audit only; exclude from historical source-only review packets.",
+        "polityId": "aztec-empire",
+        "settlementId": "tenochtitlan",
+        "sourceFeatureIndex": 80,
+        "coordinates": [
+          -99.1314,
+          19.435
+        ],
+        "insideAcceptedPolygon": true,
+        "noteSv": "Punkten belägger ingen kontroll över hela polygon 80, som även omsluter självständiga Tlaxcala och områden utan stöd i B1:s källor.",
+        "auditReference": "geometryCheck.perPolityChecks.aztec-empire"
+      },
+      {
+        "scope": "Local point containment audit only; exclude from historical source-only review packets.",
+        "polityId": "inca-empire",
+        "settlementId": "cuzco",
+        "sourceFeatureIndex": 83,
+        "coordinates": [
+          -71.9667,
+          -13.5167
+        ],
+        "insideAcceptedPolygon": true,
+        "noteSv": "Gettys ortsmarkör ligger i B1:s ungefärliga polygon 83. Kontrollen gäller punktens placering; den styrker ingen gräns eller kontroll över polygonens södra och norra ytterområden.",
+        "auditReference": "geometryCheck.perPolityChecks.inca-empire"
+      }
+    ]
+  }
+}
