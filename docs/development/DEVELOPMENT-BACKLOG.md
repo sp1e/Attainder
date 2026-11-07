@@ -9,6 +9,7 @@ Updated 7 November 2026. The owner's current requests take precedence over the e
 | 3 | Research historical events year by year and add an end-turn historical-events popup. | Popup, per-device watermark and the chronicle record `I verklighetens historia` are built and read an approved catalog. The catalog ships empty, so no popup appears yet. The research round and the full 4,500-year research requirement remain open. |
 | 4 | Continue family/succession, life/events, diplomacy/war and religion phases against the historical setting. | Replan after the historical foundation. |
 | 5 | Widen the date guards for three-digit years. | Three-digit years skip the four-digit guards at `src/Game/AI/gameplay.js:1354, 14615, 14620`; widening them needs a form that does not read `March 3, 200 soldiers` as a date. |
+| 6 | Make every culture of the world in the period playable, and move the upper start year from AD 1200 to AD 1530 (owner, 7 November 2026). | Not started. A world inventory and a code map exist in the owner's private workspace; the design comes next. |
 
 ## Historical events at turn end
 
