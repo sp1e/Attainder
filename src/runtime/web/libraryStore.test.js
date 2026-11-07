@@ -632,10 +632,17 @@ test('unresolved saved stats never come from a colliding scenario', async () => 
   }
 });
 
-test('a web library read replaces an older shipped start in place and leaves deleted starts, player copies and campaigns alone', async () => {
+test('a web library read replaces an older shipped start in place and leaves deleted starts, player copies and campaigns alone', async t => {
   await reset();
+  // The upgrade reports itself on console.info; the test keeps the lines instead of printing them.
+  const info = console.info, logged = [];
+  console.info = (...args) => { logged.push(args.join(' ')); };
+  t.after(() => { console.info = info; });
   const id = 'charlemagne-800';
   const record = () => db.get('scenarios').get(id), manifest = () => db.get('kv').get('scenario-manifest').value;
+  // The stored city file is an object, or its JSON text when the asset arrived encoded.
+  const rome = () => { const stored = record().geojson.citiesGeojson, cities = typeof stored === 'string' ? JSON.parse(stored) : stored;
+    return { cities, feature: cities.features.find(f => f.id === 'rome') }; };
   const shipped = structuredClone(record());
   ok(await scenarios('PUT','selected',{scenarioId:'egypt-3000bc'}));
   // An earlier release installed Charlemagne. The player chose Egypt and started a campaign at AD 800.
@@ -644,14 +651,18 @@ test('a web library read replaces an older shipped start in place and leaves del
     gamePatch:{country:'carolingian-realm',difficulty:'standard',language:'Swedish'}})).game.id;
   // That release shipped 1.0.0, so the installed start and the campaign both carry it.
   record().json.world.historicalScenario.contentVersion = '1.0.0';
+  { const { cities, feature } = rome(); feature.properties.seat = false;
+    if (typeof record().geojson.citiesGeojson === 'string') record().geojson.citiesGeojson = JSON.stringify(cities); }
   db.get('games').get(gameId).json.world.historicalScenario.contentVersion = '1.0.0';
   const before = { manifest: structuredClone(manifest()), campaign: JSON.stringify(db.get('games').get(gameId)),
     campaignMeta: structuredClone(db.get('gameMeta').get(gameId)), egypt: structuredClone(db.get('scenarios').get('egypt-3000bc')) };
   assert.equal(before.manifest.selectedScenarioId,'egypt-3000bc');
-  // (a) The next read replaces the old copy where it stands.
+  // (a) The next read replaces the old copy where it stands, map files included.
   await store.ensureSeeded();
   assert.equal(record().json.world.historicalScenario.contentVersion,'1.1.0');
   assert.ok(JSON.stringify(record().json) === JSON.stringify(shipped.json),'the installed copy is the shipped 1.1.0');
+  assert.equal(rome().feature.properties.seat,true,'the 1.1.0 city file makes Rome a seat');
+  assert.deepEqual(logged,['[historical start] charlemagne-800 updated to 1.1.0']);
   assert.equal(record().meta.createdAt,shipped.meta.createdAt);
   assert.deepEqual(manifest(),before.manifest,'order and selection stand');
   // (d) The campaign started from 1.0.0 keeps its own data, and Egypt, already current, is not written.

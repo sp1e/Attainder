@@ -255,23 +255,34 @@ test('a desktop library offers three starts with Charlemagne as the default, and
   } finally { rmSync(root,{recursive:true,force:true}); }
 });
 
-test('a desktop library read replaces an older shipped start in place and leaves deleted starts, player copies and campaigns alone', () => {
-  const root = mkdtempSync(path.join(os.tmpdir(),'attainder-historical-'));
-  const id = 'charlemagne-800', dir = path.join(root,'scenarios',id), egypt = path.join(root,'scenarios','egypt-3000bc');
-  const worldPath = path.join(dir,'world.json'), metaPath = path.join(dir,'scenario.json');
-  const marker = path.join(root,'historical-bookmarks-charlemagne-800.json'), manifestPath = path.join(root,'scenario-manifest.json');
-  const readJson = file => JSON.parse(readFileSync(file,'utf8'));
-  const edit = (file,change) => { const value = readJson(file); change(value); writeFileSync(file,JSON.stringify(value,null,2)); };
-  const hash = text => createHash('sha256').update(text).digest('hex');
-  // Content hash and modification time of every file under the given paths, so a rewrite with equal bytes still shows.
-  const files = (...paths) => Object.fromEntries(paths.flatMap(p => statSync(p).isDirectory() ? readdirSync(p,{recursive:true}).map(name => path.join(p,name)) : [p])
-    .filter(file => statSync(file).isFile()).map(file => [file,[statSync(file).mtimeMs,hash(readFileSync(file))]]));
-  // Each boot is a separate start of the app and ends with a library read.
+const readJson = file => JSON.parse(readFileSync(file,'utf8'));
+const editJson = (file,change) => { const value = readJson(file); change(value); writeFileSync(file,JSON.stringify(value,null,2)); };
+const hash = text => createHash('sha256').update(text).digest('hex');
+const romeIsSeat = file => readJson(file).features.find(f => f.id === 'rome').properties.seat;
+// A desktop data folder and the paths into its Charlemagne copy. Each boot is a separate start of the app:
+// it runs `body`, then a library read, unless `body` ends the process first.
+const desktopLibrary = () => {
+  const root = mkdtempSync(path.join(os.tmpdir(),'attainder-historical-')), dir = path.join(root,'scenarios','charlemagne-800');
   const boot = (body = '') => execFileSync(process.execPath,['--input-type=module','-e',`
+    import fs from 'node:fs';
     import * as store from ${JSON.stringify(new URL('./libraryStore.js',import.meta.url).href)};
     ${body}
     console.log(JSON.stringify(store.getScenarioCatalog().scenarios.map(s => s.id)));
   `],{ env: { ...process.env,OH_DATA_DIR: root },stdio: 'pipe',encoding: 'utf8' }).trim().split('\n');
+  return { root, dir, boot, worldPath: path.join(dir,'world.json'), citiesPath: path.join(dir,'cities.geojson'), metaPath: path.join(dir,'scenario.json') };
+};
+// What the 1.0.0 release installed: that version, with Rome not yet a seat.
+const ageToFirstRelease = ({ worldPath, citiesPath }) => {
+  editJson(worldPath,world => { world.historicalScenario.contentVersion = '1.0.0'; });
+  editJson(citiesPath,cities => { cities.features.find(f => f.id === 'rome').properties.seat = false; });
+};
+
+test('a desktop library read replaces an older shipped start in place and leaves deleted starts, player copies and campaigns alone', () => {
+  const { root, dir, boot, worldPath, citiesPath, metaPath } = desktopLibrary(), id = 'charlemagne-800', egypt = path.join(root,'scenarios','egypt-3000bc');
+  const marker = path.join(root,'historical-bookmarks-charlemagne-800.json'), manifestPath = path.join(root,'scenario-manifest.json');
+  // Content hash and modification time of every file under the given paths, so a rewrite with equal bytes still shows.
+  const files = (...paths) => Object.fromEntries(paths.flatMap(p => statSync(p).isDirectory() ? readdirSync(p,{recursive:true}).map(name => path.join(p,name)) : [p])
+    .filter(file => statSync(file).isFile()).map(file => [file,[statSync(file).mtimeMs,hash(readFileSync(file))]]));
   try {
     // An earlier release installed Charlemagne. The player chose Egypt and started a campaign at AD 800.
     const first = boot(`store.ensureScenarioStore(); store.setSelectedScenario('egypt-3000bc');
@@ -280,14 +291,15 @@ test('a desktop library read replaces an older shipped start in place and leaves
         gamePatch: { country: 'carolingian-realm', difficulty: 'standard', language: 'Swedish' } }).game.id);`);
     const campaign = path.join(root,'games',first[0]), shipped = readFileSync(worldPath,'utf8'), { createdAt } = readJson(metaPath);
     // That release shipped 1.0.0, so the installed start and the campaign both carry it.
-    edit(worldPath,world => { world.historicalScenario.contentVersion = '1.0.0'; });
-    edit(path.join(campaign,'world.json'),world => { world.historicalScenario.contentVersion = '1.0.0'; });
+    ageToFirstRelease({ worldPath, citiesPath });
+    editJson(path.join(campaign,'world.json'),world => { world.historicalScenario.contentVersion = '1.0.0'; });
     const manifest = readJson(manifestPath), untouched = files(campaign,egypt);
     assert.equal(manifest.selectedScenarioId,'egypt-3000bc');
-    // (a) The next read replaces the old copy where it stands.
+    // (a) The next read replaces the old copy where it stands, map files included.
     assert.deepEqual(boot().at(-1),first.at(-1),'the catalog keeps its order');
     assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.1.0');
     assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the installed copy is the shipped 1.1.0');
+    assert.equal(romeIsSeat(citiesPath),true,'the 1.1.0 city file makes Rome a seat');
     assert.equal(readJson(metaPath).createdAt,createdAt);
     assert.deepEqual(readJson(manifestPath),manifest,'order and selection stand');
     // (d) The campaign started from 1.0.0 keeps its own data, and Egypt, already current, is not written.
@@ -297,9 +309,9 @@ test('a desktop library read replaces an older shipped start in place and leaves
     { const before = files(dir,manifestPath,marker); boot(); assert.deepEqual(files(dir,manifestPath,marker),before); }
     // (e) A scenario under the id that is not this start, and the copy a restored campaign uses, stay as they are.
     for (const [label,change] of [
-      ['a player import that reuses the id',() => edit(worldPath,world => { world.historicalScenario.contentId = 'player-start'; world.historicalScenario.contentVersion = '1.0.0'; })],
-      ['a scenario without historical content',() => edit(worldPath,world => { delete world.historicalScenario; })],
-      ['the copy a restored campaign uses',() => { writeFileSync(worldPath,shipped); edit(worldPath,world => { world.historicalScenario.contentVersion = '1.0.0'; }); edit(metaPath,meta => { meta.restoreOnly = true; }); }],
+      ['a player import that reuses the id',() => editJson(worldPath,world => { world.historicalScenario.contentId = 'player-start'; world.historicalScenario.contentVersion = '1.0.0'; })],
+      ['a scenario without historical content',() => editJson(worldPath,world => { delete world.historicalScenario; })],
+      ['the copy a restored campaign uses',() => { writeFileSync(worldPath,shipped); editJson(worldPath,world => { world.historicalScenario.contentVersion = '1.0.0'; }); editJson(metaPath,meta => { meta.restoreOnly = true; }); }],
     ]) {
       change();
       const before = files(dir); boot(); assert.deepEqual(files(dir),before,label);
@@ -310,4 +322,28 @@ test('a desktop library read replaces an older shipped start in place and leaves
     assert.equal(JSON.parse(boot().at(-1)).includes(id),false,'a deleted start stays deleted');
     assert.equal(existsSync(dir),false); assert.equal(readJson(manifestPath).order.includes(id),false);
   } finally { rmSync(root,{recursive:true,force:true}); }
+});
+
+test('a desktop upgrade cut short before world.json is repeated on the next read', () => {
+  // The app dies while writing the city file, or on the rename that would put the new world.json in place.
+  // Each case names the fs call, which argument holds the target, how the target ends, and Rome's seat after the crash.
+  for (const [fsCall,targetArg,fileEnd,romeAfterCrash] of [['writeFileSync',0,'cities.geojson',false],['renameSync',1,'world.json',true]]) {
+    const { root, boot, worldPath, citiesPath } = desktopLibrary();
+    try {
+      boot('store.ensureScenarioStore();');
+      const shipped = readFileSync(worldPath,'utf8');
+      ageToFirstRelease({ worldPath, citiesPath });
+      const crashed = boot(`
+        const original = fs.${fsCall};
+        fs.${fsCall} = (...args) => { if (String(args[${targetArg}]).endsWith('${fileEnd}')) { console.log('cut short'); process.exit(0); } return original(...args); };
+        store.ensureScenarioStore();`);
+      assert.deepEqual(crashed,['cut short'],fsCall);
+      assert.equal(romeIsSeat(citiesPath),romeAfterCrash,`${fsCall}: Rome's seat right after the crash`);
+      assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.0.0',`${fsCall}: world.json still names the old release`);
+      boot();
+      assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${fsCall}: the next read finishes at the shipped 1.1.0`);
+      assert.equal(romeIsSeat(citiesPath),true,fsCall);
+      assert.equal(existsSync(`${worldPath}.tmp`),false,`${fsCall}: no half-written world file is left`);
+    } finally { rmSync(root,{recursive:true,force:true}); }
+  }
 });

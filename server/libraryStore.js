@@ -591,6 +591,13 @@ const writeJsonFile = (targetPath, value) => {
   invalidateCatalogs();
 };
 
+// Written beside the target and renamed onto it, so an interrupted write leaves the old file whole.
+const writeJsonFileWhole = (targetPath, value) => {
+  const temporaryPath = `${targetPath}.tmp`;
+  writeJsonFile(temporaryPath, value);
+  fs.renameSync(temporaryPath, targetPath);
+};
+
 // ---- Catalog cache ---------------------------------------------------------
 // getGameCatalog/getScenarioCatalog walk EVERY game and scenario directory and
 // parse each meta file. Nothing needs that per request, but everything paid for
@@ -1557,7 +1564,7 @@ const replaceShippedStart = (entry) => {
   }
   requirePrepared(validatePlayableScenario(candidate));
   persistScenarioBundle(candidate,{id:entry.id});
-  console.warn(`[historical start] ${entry.id} updated to ${entry.contentVersion}`);
+  console.info(`[historical start] ${entry.id} updated to ${entry.contentVersion}`);
 };
 
 const upgradeShippedStart = (entry) => {
@@ -2085,8 +2092,11 @@ const persistScenarioBundle = (candidate, { id, restoreOnly = false, selected = 
   const now = new Date().toISOString(), previous = readJsonFile(getScenarioMetaPath(scenarioId),{});
   writeJsonFile(getScenarioMetaPath(scenarioId), { ...DEFAULT_SCENARIO_META, ...candidate.meta, id: scenarioId, restoreOnly: restoreOnly || previous.restoreOnly === true,
     createdAt: previous.createdAt ?? now, updatedAt: now, hubOrigin: normalizeHubOrigin(bundle?.hubOrigin) });
-  for (const key of Object.keys(JSON_ASSET_FILES)) writeJsonFile(getScenarioJsonPath(scenarioId,key), candidate.data[key] ?? cloneJson(JSON_ASSET_DEFAULTS[key]));
+  // world.json goes last and whole: it holds the version an upgrade of a shipped start compares,
+  // so a write cut short leaves the old version, and the next read repeats the whole replace.
+  for (const key of Object.keys(JSON_ASSET_FILES)) if (key !== "world") writeJsonFile(getScenarioJsonPath(scenarioId,key), candidate.data[key] ?? cloneJson(JSON_ASSET_DEFAULTS[key]));
   for (const key of Object.keys(UPLOADABLE_SCENARIO_ASSET_FILES)) applyScenarioBundleAsset(scenarioId,key,bundle.assets?.[key]);
+  writeJsonFileWhole(getScenarioJsonPath(scenarioId,"world"), candidate.data.world ?? cloneJson(JSON_ASSET_DEFAULTS.world));
   const manifest = getScenarioManifest();
   if (!manifest.order.includes(scenarioId)) manifest.order.push(scenarioId);
   if (selected) manifest.selectedScenarioId = scenarioId;
