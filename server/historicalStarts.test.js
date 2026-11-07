@@ -1,10 +1,37 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { HISTORICAL_BOOKMARKS, shippedStartNeedsUpgrade } from './historicalStarts.js';
+
+test('each shipped start names the content version its built package carries', () => {
+  assert.deepEqual(HISTORICAL_BOOKMARKS.map(({ id, contentVersion }) => [id,contentVersion]),[['egypt-3000bc','1.0.0'],['charlemagne-800','1.1.0']]);
+  for (const { id, contentVersion } of HISTORICAL_BOOKMARKS) {
+    const built = JSON.parse(readFileSync(new URL(`./seed/historical/${id}/scenario.json`,import.meta.url),'utf8'));
+    const manifest = JSON.parse(readFileSync(new URL(`./seed/historical/${id}/manifest.json`,import.meta.url),'utf8'));
+    assert.equal(built.data.world.historicalScenario.contentId,id);
+    assert.equal(built.data.world.historicalScenario.contentVersion,contentVersion,id);
+    assert.equal(manifest.contentVersion,contentVersion,id);
+  }
+});
+
+test('only an older copy of the same shipped start needs an upgrade', () => {
+  const entry = { id: 'charlemagne-800', marker: 'historical-bookmarks-charlemagne-800', contentVersion: '1.10.0' };
+  const stored = (historicalScenario, meta = {}) => ({ meta, data: { world: { historicalScenario } } });
+  const copy = contentVersion => stored({ kind: 'historical', contentId: 'charlemagne-800', contentVersion });
+  for (const version of ['1.0.0','1.9.0','1.9','0.99.99']) assert.equal(shippedStartNeedsUpgrade(copy(version),entry),true,version);
+  for (const version of ['1.10.0','1.10','1.10.1','1.11.0','2.0.0']) assert.equal(shippedStartNeedsUpgrade(copy(version),entry),false,version);
+  for (const version of [undefined,'','v1.0.0','1.0.0-beta','1..0',1]) assert.equal(shippedStartNeedsUpgrade(copy(version),entry),false,`unreadable ${version}`);
+  assert.equal(shippedStartNeedsUpgrade(copy('1.0.0'),{ ...entry,contentVersion: 'next' }),false,'an unreadable shipped version replaces nothing');
+  assert.equal(shippedStartNeedsUpgrade(stored({ kind: 'historical', contentId: 'player-start', contentVersion: '1.0.0' }),entry),false,'a player import that reuses the id');
+  assert.equal(shippedStartNeedsUpgrade(stored(undefined),entry),false,'a scenario without historical content');
+  assert.equal(shippedStartNeedsUpgrade({ ...copy('1.0.0'),meta: { restoreOnly: true } },entry),false,'the copy a restored campaign uses');
+  for (const bundle of [null,undefined,{},{ data: {} },{ data: { world: null } }]) assert.equal(shippedStartNeedsUpgrade(bundle,entry),false);
+});
 
 test('server prepares both historical courts and refuses invalid requests without writes', () => {
   const root = mkdtempSync(path.join(os.tmpdir(),'attainder-historical-'));
@@ -225,5 +252,62 @@ test('a desktop library offers three starts with Charlemagne as the default, and
       assert.equal(karl.data.world.characterSystem.identity.polityId,'carolingian-realm');
       assert.deepEqual(store.getGameDetails(karl.game.id).data.world.characterSystem,karl.data.world.characterSystem);
     `], { env: { ...process.env, OH_DATA_DIR: root }, stdio: 'pipe', encoding: 'utf8' });
+  } finally { rmSync(root,{recursive:true,force:true}); }
+});
+
+test('a desktop library read replaces an older shipped start in place and leaves deleted starts, player copies and campaigns alone', () => {
+  const root = mkdtempSync(path.join(os.tmpdir(),'attainder-historical-'));
+  const id = 'charlemagne-800', dir = path.join(root,'scenarios',id), egypt = path.join(root,'scenarios','egypt-3000bc');
+  const worldPath = path.join(dir,'world.json'), metaPath = path.join(dir,'scenario.json');
+  const marker = path.join(root,'historical-bookmarks-charlemagne-800.json'), manifestPath = path.join(root,'scenario-manifest.json');
+  const readJson = file => JSON.parse(readFileSync(file,'utf8'));
+  const edit = (file,change) => { const value = readJson(file); change(value); writeFileSync(file,JSON.stringify(value,null,2)); };
+  const hash = text => createHash('sha256').update(text).digest('hex');
+  // Content hash and modification time of every file under the given paths, so a rewrite with equal bytes still shows.
+  const files = (...paths) => Object.fromEntries(paths.flatMap(p => statSync(p).isDirectory() ? readdirSync(p,{recursive:true}).map(name => path.join(p,name)) : [p])
+    .filter(file => statSync(file).isFile()).map(file => [file,[statSync(file).mtimeMs,hash(readFileSync(file))]]));
+  // Each boot is a separate start of the app and ends with a library read.
+  const boot = (body = '') => execFileSync(process.execPath,['--input-type=module','-e',`
+    import * as store from ${JSON.stringify(new URL('./libraryStore.js',import.meta.url).href)};
+    ${body}
+    console.log(JSON.stringify(store.getScenarioCatalog().scenarios.map(s => s.id)));
+  `],{ env: { ...process.env,OH_DATA_DIR: root },stdio: 'pipe',encoding: 'utf8' }).trim().split('\n');
+  try {
+    // An earlier release installed Charlemagne. The player chose Egypt and started a campaign at AD 800.
+    const first = boot(`store.ensureScenarioStore(); store.setSelectedScenario('egypt-3000bc');
+      console.log(store.createGame({ name: 'Karl', scenarioId: '${id}', setActive: false,
+        historicalStart: { date: '0800-12-25', polityId: 'carolingian-realm', mode: 'realm', seed: 7, difficulty: 'normal' },
+        gamePatch: { country: 'carolingian-realm', difficulty: 'standard', language: 'Swedish' } }).game.id);`);
+    const campaign = path.join(root,'games',first[0]), shipped = readFileSync(worldPath,'utf8'), { createdAt } = readJson(metaPath);
+    // That release shipped 1.0.0, so the installed start and the campaign both carry it.
+    edit(worldPath,world => { world.historicalScenario.contentVersion = '1.0.0'; });
+    edit(path.join(campaign,'world.json'),world => { world.historicalScenario.contentVersion = '1.0.0'; });
+    const manifest = readJson(manifestPath), untouched = files(campaign,egypt);
+    assert.equal(manifest.selectedScenarioId,'egypt-3000bc');
+    // (a) The next read replaces the old copy where it stands.
+    assert.deepEqual(boot().at(-1),first.at(-1),'the catalog keeps its order');
+    assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.1.0');
+    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the installed copy is the shipped 1.1.0');
+    assert.equal(readJson(metaPath).createdAt,createdAt);
+    assert.deepEqual(readJson(manifestPath),manifest,'order and selection stand');
+    // (d) The campaign started from 1.0.0 keeps its own data, and Egypt, already current, is not written.
+    assert.deepEqual(files(campaign,egypt),untouched);
+    assert.equal(readJson(path.join(campaign,'world.json')).historicalScenario.contentVersion,'1.0.0');
+    // (c) A current copy is not written at all.
+    { const before = files(dir,manifestPath,marker); boot(); assert.deepEqual(files(dir,manifestPath,marker),before); }
+    // (e) A scenario under the id that is not this start, and the copy a restored campaign uses, stay as they are.
+    for (const [label,change] of [
+      ['a player import that reuses the id',() => edit(worldPath,world => { world.historicalScenario.contentId = 'player-start'; world.historicalScenario.contentVersion = '1.0.0'; })],
+      ['a scenario without historical content',() => edit(worldPath,world => { delete world.historicalScenario; })],
+      ['the copy a restored campaign uses',() => { writeFileSync(worldPath,shipped); edit(worldPath,world => { world.historicalScenario.contentVersion = '1.0.0'; }); edit(metaPath,meta => { meta.restoreOnly = true; }); }],
+    ]) {
+      change();
+      const before = files(dir); boot(); assert.deepEqual(files(dir),before,label);
+    }
+    // (b) A start the player deleted stays deleted.
+    assert.equal(JSON.parse(boot(`store.deleteGame('${first[0]}'); store.deleteScenario('${id}');`).at(-1)).includes(id),false);
+    assert.ok(existsSync(marker));
+    assert.equal(JSON.parse(boot().at(-1)).includes(id),false,'a deleted start stays deleted');
+    assert.equal(existsSync(dir),false); assert.equal(readJson(manifestPath).order.includes(id),false);
   } finally { rmSync(root,{recursive:true,force:true}); }
 });

@@ -1,5 +1,5 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "./historicalPreparation.js";
-import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER } from "./historicalStarts.js";
+import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade } from "./historicalStarts.js";
 import { withScenarioLicense, preserveComponentProvenance } from "./scenarioLicense.js";
 /*! Open Historia — portions (regions.geojson scenario asset + custom-map seeding) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 import fs from "fs";
@@ -1534,17 +1534,49 @@ const ensureDefaultScenario = () => {
   if (changed || !fs.existsSync(SCENARIO_MANIFEST_PATH)) saveScenarioManifest(manifest);
 };
 
+const shippedStartCandidate = (id) => bundleCandidate(readJsonFile(path.join(__dirname,"seed/historical",id,"scenario.json"),null));
+
+// The shipped packages cannot change while the server runs, and ensure* runs on every read,
+// where parsing an installed start's world.json (over a megabyte) each time would hold up
+// every poll. So each start is compared with its installed copy once per process.
+const checkedShippedStarts = new Set();
+
+// A start the player deleted is absent from the manifest and stays deleted.
+const installedShippedStartIsOlder = (entry) => getScenarioManifest().order.includes(entry.id)
+  && shippedStartNeedsUpgrade({ meta: readJsonFile(getScenarioMetaPath(entry.id),{}),
+    data: { world: readJsonFile(getScenarioJsonPath(entry.id,"world"),{}) } },entry);
+
+// The copy is replaced where it stands: its place in the order, the selection and createdAt
+// stay. Campaigns keep their own game and world files, which this never writes.
+const replaceShippedStart = (entry) => {
+  const candidate = shippedStartCandidate(entry.id);
+  // A package at another version than the list names would be replaced again on every start.
+  if (candidate.data.world?.historicalScenario?.contentVersion !== entry.contentVersion) {
+    console.warn(`[historical start] ${entry.id}: the shipped package is not ${entry.contentVersion}, so the installed copy stays`);
+    return;
+  }
+  requirePrepared(validatePlayableScenario(candidate));
+  persistScenarioBundle(candidate,{id:entry.id});
+  console.warn(`[historical start] ${entry.id} updated to ${entry.contentVersion}`);
+};
+
+const upgradeShippedStart = (entry) => {
+  if (checkedShippedStarts.has(entry.id)) return;
+  if (installedShippedStartIsOlder(entry)) replaceShippedStart(entry);
+  checkedShippedStarts.add(entry.id);
+};
+
 const ensureScenarioStore = () => {
   ensureDirectory(SERVER_DATA_DIR);
   ensureDirectory(SCENARIOS_DIR);
   ensureDefaultScenario();
   if (process.env.OH_BUILT_IN_SEED_DIR) return;
-  for (const { id, marker } of HISTORICAL_BOOKMARKS) {
-    const bookmarkMarker = path.join(SERVER_DATA_DIR,`${marker}.json`);
-    if (fs.existsSync(bookmarkMarker)) continue;
+  for (const entry of HISTORICAL_BOOKMARKS) {
+    const { id, marker } = entry, bookmarkMarker = path.join(SERVER_DATA_DIR,`${marker}.json`);
+    if (fs.existsSync(bookmarkMarker)) { upgradeShippedStart(entry); continue; }
     // The manifest is written last, so an id in it means a complete install that lost only its marker.
     if (getScenarioManifest().order.includes(id)) { writeJsonFile(bookmarkMarker,{installed:true}); continue; }
-    const candidate = bundleCandidate(readJsonFile(path.join(__dirname,"seed/historical",id,"scenario.json"),null));
+    const candidate = shippedStartCandidate(id);
     requirePrepared(validatePlayableScenario(candidate));
     persistScenarioBundle(candidate,{id,selected:id === HISTORICAL_START_ORDER[0] && getScenarioManifest().selectedScenarioId === DEFAULT_SCENARIO_ID});
     writeJsonFile(bookmarkMarker,{installed:true});

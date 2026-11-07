@@ -6,15 +6,41 @@ export const HISTORICAL_START_REFUSAL = "Välj ett giltigt startdatum mellan 330
 // The shipped starts installed beside the built-in scenario `default`, which holds John.
 // Each start has its own marker, so an upgrade adds a new one once and a start the
 // player deleted stays deleted. `historical-bookmarks-v1` predates the list.
+// `contentVersion` is the built package's `historicalScenario.contentVersion`: an installed
+// copy with an older one is replaced in place on the next library read.
 export const HISTORICAL_BOOKMARKS = Object.freeze([
-  Object.freeze({ id: "egypt-3000bc", marker: "historical-bookmarks-v1" }),
-  Object.freeze({ id: "charlemagne-800", marker: "historical-bookmarks-charlemagne-800" }),
+  Object.freeze({ id: "egypt-3000bc", marker: "historical-bookmarks-v1", contentVersion: "1.0.0" }),
+  Object.freeze({ id: "charlemagne-800", marker: "historical-bookmarks-charlemagne-800", contentVersion: "1.1.0" }),
 ]);
 // Catalog order by scenario id. The first start present is the default.
 export const HISTORICAL_START_ORDER = Object.freeze(["charlemagne-800", "default", "egypt-3000bc"]);
 
 const isPlainObject = (value) => value !== null && typeof value === "object"
   && (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
+
+// Dot-separated whole numbers, so 1.10.0 is newer than 1.9.0. Null for anything else.
+const versionParts = (value) => typeof value === "string" && /^[0-9]+(\.[0-9]+)*$/.test(value)
+  ? value.split(".").map(Number) : null;
+
+const compareVersions = (left, right) => {
+  for (let index = 0; index < Math.max(left.length, right.length); index += 1) {
+    const difference = (left[index] ?? 0) - (right[index] ?? 0);
+    if (difference !== 0) return Math.sign(difference);
+  }
+  return 0;
+};
+
+// True when a stored scenario ({ meta, data: { world } }) is an older copy of the shipped
+// start `entry`. A scenario without historical content, one whose contentId differs (a
+// player import that reuses the id), the restore-only copy a restored campaign uses and a
+// version that does not read as numbers are the player's own and are never replaced.
+export const shippedStartNeedsUpgrade = (storedBundle, entry) => {
+  const content = storedBundle?.data?.world?.historicalScenario;
+  if (!content || typeof content !== "object" || content.contentId !== entry?.id) return false;
+  if (storedBundle.meta?.restoreOnly === true) return false;
+  const stored = versionParts(content.contentVersion), shipped = versionParts(entry.contentVersion);
+  return Boolean(stored && shipped) && compareVersions(stored, shipped) < 0;
+};
 
 const dateRefusal = (code) => ({ ok: false, code, error: HISTORICAL_START_REFUSAL });
 
