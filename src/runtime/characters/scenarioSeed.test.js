@@ -113,6 +113,35 @@ test('court size is authored data; a one-family court works with vacant generate
   assert.ok(getCharacterPresentation(state).ruler);
 });
 
+test('the authored succession law seeds the realm and an absent law keeps primogeniture', () => {
+  for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
+    const merit = optionsFor(load(id)), absent = optionsFor(load(id));
+    merit.historicalScenario.courtSeeds[merit.polityId].successionLaw = 'merit';
+    delete absent.historicalScenario.courtSeeds[absent.polityId].successionLaw;
+    const state = createHistoricalCharacterSystem(merit);
+    assert.equal(state.realm.successionLaw, 'merit', id);
+    // The opening heir claim is recorded under the authored law, so the law is in place before the court completes.
+    const heirClaims = Object.values(state.families).flatMap(f => f.claims).filter(c => c.kind === 'heir' && c.status === 'active');
+    assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt merit')), id);
+    assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
+    assert.equal(getCharacterPresentation(state).succession.law, 'merit', id);
+    assert.equal(createHistoricalCharacterSystem(absent).realm.successionLaw, 'primogeniture', id);
+  }
+});
+
+test('an explicit primogeniture law draws no randomness and seeds the same court as an absent law', () => {
+  for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
+    const absent = optionsFor(load(id)), explicit = optionsFor(load(id));
+    delete absent.historicalScenario.courtSeeds[absent.polityId].successionLaw;
+    explicit.historicalScenario.courtSeeds[explicit.polityId].successionLaw = 'primogeniture';
+    const unchanged = createHistoricalCharacterSystem(absent), seeded = createHistoricalCharacterSystem(explicit);
+    assert.deepEqual(seeded.rngState, unchanged.rngState, id);
+    assert.deepEqual(seeded.people, unchanged.people, id);
+    assert.deepEqual(seeded.log, unchanged.log, id);
+    assert.deepEqual(seeded, unchanged, id);
+  }
+});
+
 test('sourced young spouse retains her birth date and relationship without weakening action adulthood gates', () => {
   const state = createHistoricalCharacterSystem(optionsFor(load('john-1200')));
   const view = getCharacterPresentation(state), spouse = view.people.find(p => p.id === 'isabella');
@@ -229,6 +258,8 @@ for (const [name, mutate] of [
   ['invalid mechanics', o => { o.historicalScenario.courtSeeds[o.polityId].people[0].mechanics.skills.command = -1; }],
   ['missing family', o => { o.historicalScenario.courtSeeds[o.polityId].people[0].familyId = 'missing'; }],
   ['unsupported spouse shape', o => { o.historicalScenario.courtSeeds[o.polityId].people[0].spouseIds.push('generated-courtier-1'); }],
+  ['unsupported succession law', o => { o.historicalScenario.courtSeeds[o.polityId].successionLaw = 'tanistry'; }],
+  ['null succession law', o => { o.historicalScenario.courtSeeds[o.polityId].successionLaw = null; }],
 ]) test(`factory rejects ${name} without mutating input`, () => {
   const options = optionsFor(load('john-1200')); mutate(options); const before = clone(options);
   assert.throws(() => createHistoricalCharacterSystem(options), /historiska.*[.]/i);

@@ -35,6 +35,8 @@ function validateEngineSeed(court, familyId) {
   for (const person of court.people) checkParents(person.id);
   // Current engine supports its council roles and one generated governor per city.
   if (court.offices.some(office => !['ruler', 'general', 'chancellor', 'priest', 'spymaster'].includes(office.id))) throw refusal();
+  // The engine knows two succession laws; null counts as a present value and is refused like the validator does.
+  if (court.successionLaw !== undefined && !['primogeniture', 'merit'].includes(court.successionLaw)) throw refusal();
 }
 
 function seedPerson(authored, date) {
@@ -94,6 +96,8 @@ export function createHistoricalCharacterSystem({ historicalScenario, date, poli
     // A family start without a choice takes the family the start card preselects, the first one listed.
     const chosenFamily = familyId ?? (mode === 'family' ? court.families[0].id : court.people.find(person => person.id === court.rulerId).familyId);
     const state = createCharacterState({ date, polityId, polityName: polity.nameSv, mode, seed }, { familyId: chosenFamily, religions: {} });
+    // Set before completeCharacterState so the opening heir claims follow the authored law; draws no randomness.
+    state.realm.successionLaw = court.successionLaw ?? 'primogeniture';
     state.historicalOrigin = publicHistoricalOrigin({ ...h, polityNoteSv: polity.noteSv, mechanicsNoteSv: court.mechanics.noteSv });
     seedCourt(state, court);
     completeCharacterState(state, difficulty);
