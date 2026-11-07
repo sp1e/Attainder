@@ -31,6 +31,39 @@ Ruling: **Johns riken (angevinskt välde)** denotes composite simulation control
 
 The authored mapping accepts both components of upstream Angevin feature 275. Regression points include Windsor, Rouen, Bordeaux, Angers and Rennes; negative points include Edinburgh, Gwynedd, Cardiff, Dublin, Connacht, Paris and Toulouse. The source contains no Irish component. The package discloses that omission rather than inventing Irish control geometry. These rounded points test coarse placement. They are not historical settlement coordinates or proof of exact local borders.
 
+## Charlemagne AD 800 research
+
+This section records research for the `charlemagne-800` package. Independent checkers opened each source, and the review took their corrections. A second check covers the changed rows, and Task 3 still has to build the package.
+
+`server/seed/historical/sources/hbm-world_800.geojson` copies `geojson/world_800.geojson` from Historical Basemaps commit `4b5039e50d8d2464b065bd76ad6086cd4597108d`. Its SHA-256 is `9d046cdc4662109c3f803ae46e2c8cba941aa092ec86eccc7823e6cf1554920c`. `server/seed/historical/ad800-review.json` records a decision for each of its 225 features.
+
+| Status | Features |
+|---|---|
+| `accept-as-approximate-polity` | 11 |
+| `cultural-or-nonstate` | 68 |
+| `reject-for800` | 3 |
+| `unresolved` | 143 |
+
+An accepted row states that a cited source supports the polity on the bookmark date and its rough area. Each `noteSv` names the limit of that support. All 11 accepted polygons passed the `polygon-clipping` test, so `geometryQuarantine` is empty. The tests found no overlap between accepted polygons.
+
+The package claims these points:
+
+- Charles stood in Rome on the bookmark date and Leo III crowned him at the Christmas mass. The Royal Frankish Annals enter the coronation under 801 because they change the year at Christmas. The label `0800-12-25` is a game date, and the file converts no source day.
+- Aachen serves as the gameplay seat at Getty's `[6.1053, 50.7708]`. The seat note says Charles was in Rome that day.
+- Features 151 and 221 map to the single polity `carolingian-realm`. The map draws feature 221 as Carolingian land in central Italy, and the sources do not settle that.
+- Rome at Getty's `[12.4833, 41.9]` falls inside feature 222, mapped to `papal-states`. The annals carry Ravenna, the Pentapolis and the exarchate under 756. The 1912 Catholic Encyclopedia article carries the Duchy of Rome and the term States of the Church, and it reports that no document survives from Pepin or Charles.
+- Liutgard died at Tours on 4 June 800. No cited source names a wife of Charles on the bookmark date, so the court shows no living queen.
+- Charles, his sons Charles, Pepin and Louis, and his daughter Rotrude count as alive on the bookmark date. A source gives each of them a later death or a later act.
+
+The package withholds these points:
+
+- Survival of Bertha, Gisela, Theoderada, Hiltrud, Ruodhaid and Pepin the Hunchback. Their `aliveOnBookmark` value is `uncertain`. Einhard's chapter 19 gives a count of three children lost, chapter 20 shows his list of children is incomplete, and the sources name none of these six as a survivor.
+- Birth years for most people. Charles has an age at death with two readings. Louis has a manuscript note at the close of the annal for 777.
+- The location of Pepin, Louis and the daughters on the bookmark date. Hammer places Charles the Younger in Rome through the Liber Pontificalis, and the review marks that claim `uncertain`.
+- Later concubines and their children, Bernard of Italy and the wider court, because no cited source places them in the household that day.
+- Every frontier. Barcelona lies outside feature 151: Zatun commended the city to Charles in 797, and on the bookmark date it stood under a two-year siege that ended in summer 801, out of Frankish hands. Venice lies inside feature 151: its dukes came to Charles in 806, Pepin attacked it in 810, and Charles returned it to Nikephoros in the peace of that year.
+- Polities with unopened or insufficient evidence, including Makuria, Japan, the Bulgars, Wari, Tiwanaku, Tibet, the Khazars, the Idrisids and the Indian kingdoms.
+
 ## Worldwide political coverage
 
 The packages preserve a record for each of the 424 upstream features: original properties, geometry hash, review classification, evidence IDs, mapping decision and any quarantine. `ad1200-review.json` and `bc3000-review.json` hold authored research inputs. The build ships their scoped decisions in `world.historicalScenario.regionReview`, alongside the referenced sources. An unresolved label remains unresolved after review; a recognizable name does not establish its chronology or frontier.

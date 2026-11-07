@@ -21,6 +21,7 @@ src/Game/AI/shippedGuidance.js merge=union
 server/seed/historical/** -text
 server/seed/historical/authored-scenarios.mjs text eol=lf
 server/seed/historical/ad1200-review.json text eol=lf
+server/seed/historical/ad800-review.json text eol=lf
 server/seed/historical/bc3000-review.json text eol=lf
 # Original upstream Markdown hard-break spaces are covered by its pinned hash.
 server/seed/historical/sources/hbm-README.md whitespace=-blank-at-eol
