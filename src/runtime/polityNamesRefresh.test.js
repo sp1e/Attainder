@@ -23,3 +23,9 @@ test('a missing code refreshes at most once a second', () => {
 test('an empty code never forces a refresh', () => {
   assert.equal(shouldRefreshPolityNames({ now: 5500, refreshedAt: 4000, code: '  ', known }), false);
 });
+
+test('a code the current cache already lacked after a reload does not reload again until the cache expires', () => {
+  assert.equal(shouldRefreshPolityNames({ now: 9000, refreshedAt: 4000, code: 'stray', known, missedAt: new Map([['stray', 4000]]) }), false);
+  assert.equal(shouldRefreshPolityNames({ now: 9000, refreshedAt: 4000, code: 'stray', known, missedAt: new Map([['stray', 1000]]) }), true);
+  assert.equal(shouldRefreshPolityNames({ now: 20000, refreshedAt: 4000, code: 'stray', known, missedAt: new Map([['stray', 4000]]) }), true);
+});

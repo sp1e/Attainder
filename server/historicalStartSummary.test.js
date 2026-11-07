@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import {
   HISTORICAL_ERAS, HISTORICAL_REGIONS, HISTORICAL_SUMMARY_SCHEMA,
-  foldSearchText, historicalEraFor, historicalStartSummary, regionForPolity,
+  foldSearchText, historicalEraFor, historicalStartFromSummary, historicalStartSummary, regionForPolity,
 } from './historicalStartSummary.js';
 
 const readPackage = id => JSON.parse(readFileSync(new URL(`./seed/historical/${id}/scenario.json`, import.meta.url), 'utf8'));
@@ -64,7 +64,11 @@ test('a broken court makes the summary invalid and a non-historical world gives 
   const pkg = readPackage('charlemagne-800');
   const court = pkg.data.world.historicalScenario.courtSeeds['papal-states'];
   court.people = court.people.filter(person => person.id !== court.rulerId);
-  assert.deepEqual(historicalStartSummary({ meta: pkg.scenario, data: pkg.data, sourceStamp: 'stamp' }), { schema: 1, sourceStamp: 'stamp', invalid: true });
+  const broken = historicalStartSummary({ meta: pkg.scenario, data: pkg.data, sourceStamp: 'stamp' });
+  assert.deepEqual(broken, { schema: 1, sourceStamp: 'stamp', invalid: true, date: '0800-12-25', contentId: 'charlemagne-800' });
+  // The library bar still lists a broken start, so the player can open or delete it.
+  assert.deepEqual(historicalStartFromSummary(broken, pkg.scenario), { date: '0800-12-25', contentId: 'charlemagne-800' });
+  assert.equal(historicalStartFromSummary(broken, { ...pkg.scenario, restoreOnly: true }), null);
 
   const families = readPackage('egypt-3000bc');
   const [polityId] = families.data.world.historicalScenario.playablePolityIds;

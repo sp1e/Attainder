@@ -126,11 +126,27 @@ test('a stored start whose papal ruler is gone from the court is left off and th
   runStore(root, `
     const karl = entry('charlemagne-800');
     assert.equal(karl.historicalSummary.invalid, true);
-    assert.equal(karl.historicalStart, null);
+    assert.deepEqual(karl.historicalStart, { date: '0800-12-25', contentId: 'charlemagne-800' }, 'the library bar keeps the broken start');
     for (const [id, contentId] of [['default', 'john-1200'], ['egypt-3000bc', 'egypt-3000bc']]) {
       assert.equal(entry(id).historicalSummary.contentId, contentId);
       assert.equal(entry(id).historicalStart.contentId, contentId);
     }
     assert.equal(store.getLibraryCatalog().scenarios.find(s => s.id === 'charlemagne-800').historicalSummary.invalid, true);
+  `);
+}));
+
+test('a stat error on one scenario leaves the catalog loading and caches nothing for that scenario', () => withLibrary(root => {
+  runStore(root, `
+    const statSync = fs.statSync;
+    fs.statSync = (file, ...rest) => {
+      if (String(file).includes(path.join('scenarios', 'egypt-3000bc'))) throw Object.assign(new Error('EPERM: busy'), { code: 'EPERM' });
+      return statSync(file, ...rest);
+    };
+    const egypt = entry('egypt-3000bc');
+    assert.equal(egypt.historicalSummary.eraId, 'bronze-age', 'the summary is built from the files');
+    assert.equal(egypt.historicalSummary.sourceStamp, null);
+    assert.equal(entry('charlemagne-800').historicalSummary.polities.length, 2, 'the other starts still load');
+    const meta = JSON.parse(fs.readFileSync(path.join(scenariosDir, 'egypt-3000bc', 'scenario.json'), 'utf8'));
+    assert.notEqual(meta.historicalSummary?.sourceStamp, null, 'no summary with an unknown stamp is cached');
   `);
 }));

@@ -18,6 +18,9 @@ Updated 7 November 2026. The owner's current requests take precedence over the e
 | 12 | Shrink `componentLicenses` in saves, about 1 MB per campaign. | The licence texts carry attribution, so removal needs its own design. |
 | 13 | Move the `readdirSync` after the rename in the temp-file cleanup of `server/libraryStore.js` inside its `try`. | Minor from the world-cultures Phase 1 final review. |
 | 14 | Parse John's world once per catalog build in `syncBuiltInScenarioSeedDate`; it parses it twice. | Predates world-cultures Phase 2. |
+| 15 | Run the full `validatePlayableScenario` when a start summary is rebuilt and store `invalid: true` on failure, then raise `HISTORICAL_SUMMARY_SCHEMA` to 2. The card checks only structure today, so a start with no map feature for a polity, a date outside the range or a copy written under an older validator appears and fails at Start with the Swedish refusal. | Phase 2 final review M2. Take up with Phase 3, when edited and imported starts become common. |
+| 16 | Add `ctimeMs` or a hash of `game.json` to the desktop summary stamp, and pass the raw meta through `buildScenarioCatalogEntry` instead of reading it up to three times. | Phase 2 final review M4 and M6. A same-size edit within one timestamp tick on FAT32 or a network share keeps the old summary. |
+| 17 | Stub `generated/historical/index.js` and the package modules in `src/runtime/web/libraryStore.test.js`. The test reads the generated files from disk, and `seed-web-defaults.mjs` removes and recreates that folder, so a parallel `npm test` on a clean checkout can race. | Predates Phase 2 (the file fails 23 of 23 at `bfaf00c1` without generated files). |
 
 ## Historical events at turn end
 

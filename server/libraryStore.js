@@ -1895,16 +1895,25 @@ const getScenarioSummary = (scenarioId) => {
 };
 
 // The size and modification time of the two files a historical summary is built from. A file
-// that is not there stamps as "-:-", so its arrival changes the stamp.
-const scenarioSourceStamp = (scenarioId) => ["world", "game"].map((assetKey) => {
-  const stat = fs.statSync(getScenarioJsonPath(scenarioId, assetKey), { throwIfNoEntry: false });
-  return stat ? `${stat.size}:${stat.mtimeMs}` : "-:-";
-}).join(":");
+// that is not there stamps as "-:-", so its arrival changes the stamp. A stat that fails otherwise,
+// as with EPERM while Windows replaces a file or a scanner holds it, gives null: the summary is
+// built from the files and not cached, and the rest of the catalog still loads.
+const scenarioSourceStamp = (scenarioId) => {
+  try {
+    return ["world", "game"].map((assetKey) => {
+      const stat = fs.statSync(getScenarioJsonPath(scenarioId, assetKey), { throwIfNoEntry: false });
+      return stat ? `${stat.size}:${stat.mtimeMs}` : "-:-";
+    }).join(":");
+  } catch (error) {
+    console.warn(`[library] could not stamp the files of ${scenarioId}: ${error.message}`);
+    return null;
+  }
+};
 
 // The summary carries the scenario name from the meta, which a rename changes without touching
 // world.json or game.json, so a cached summary must also still carry the current name.
 const cachedSummaryFits = (cached, sourceStamp, meta) =>
-  cached?.schema === HISTORICAL_SUMMARY_SCHEMA && cached.sourceStamp === sourceStamp
+  sourceStamp !== null && cached?.schema === HISTORICAL_SUMMARY_SCHEMA && cached.sourceStamp === sourceStamp
   && (cached.invalid === true || cached.notHistorical === true || cached.name === meta.name);
 
 // Adds the summary to the meta file as it stands on disk. writeScenarioMeta would store the
@@ -1932,7 +1941,7 @@ const scenarioHistoricalSummary = (scenarioId, meta) => {
     };
     summary = historicalStartSummary({ meta, data, sourceStamp })
       ?? { schema: HISTORICAL_SUMMARY_SCHEMA, sourceStamp, notHistorical: true };
-    storeHistoricalSummary(scenarioId, summary);
+    if (sourceStamp !== null) storeHistoricalSummary(scenarioId, summary);
   }
   return summary.notHistorical === true ? null : summary;
 };

@@ -75,18 +75,20 @@ const polityEntry = (scenario, polityId) => {
 };
 
 // The historicalStart field of a library catalog entry, read from the scenario's summary: the
-// start's date and content id while the summary is valid and the scenario is not a restore-only copy.
+// start's date and content id for any historical scenario that is not a restore-only copy. The
+// library bar lists a broken start too, so the player can open or delete it; the start card reads
+// offersHistoricalStart, which leaves a summary without polities off.
 export const historicalStartFromSummary = (summary, meta) =>
-  summary && summary.invalid !== true && summary.notHistorical !== true && meta?.restoreOnly !== true
+  summary && summary.notHistorical !== true && meta?.restoreOnly !== true
     ? { date: summary.date, contentId: summary.contentId } : null;
 
 // Null for a scenario that is not historical. A historical scenario whose card data is broken
-// gives { schema, sourceStamp, invalid: true } and is left off the card; this never throws.
+// gives { schema, sourceStamp, invalid: true, date, contentId } and is left off the card; this never throws.
 export const historicalStartSummary = ({ meta, data, sourceStamp = null }) => {
   const scenario = data?.world?.historicalScenario;
   if (scenario?.kind !== "historical") return null;
-  const invalid = { schema: HISTORICAL_SUMMARY_SCHEMA, sourceStamp, invalid: true };
   const date = data?.game?.gameDate;
+  const invalid = { schema: HISTORICAL_SUMMARY_SCHEMA, sourceStamp, invalid: true, date: text(date), contentId: text(scenario.contentId) };
   const era = historicalEraFor(date);
   const ids = scenario.playablePolityIds;
   if (!era || !Array.isArray(ids) || ids.length === 0) return invalid;

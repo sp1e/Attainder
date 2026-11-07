@@ -737,7 +737,7 @@ test('a scenario meta stored without a summary gains one on the next catalog rea
   assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[]);
 });
 
-test('a stored start whose papal ruler is gone stays in the catalog as invalid without a historicalStart', async () => {
+test('a stored start whose papal ruler is gone stays in the catalog as invalid and in the library bar', async () => {
   await reset();
   const id = 'charlemagne-800', court = db.get('scenarios').get(id).json.world.historicalScenario.courtSeeds['papal-states'];
   court.people = court.people.filter(person => person.id !== court.rulerId);
@@ -746,7 +746,7 @@ test('a stored start whose papal ruler is gone stays in the catalog as invalid w
   const catalog = await library();
   const entry = catalogEntry(catalog,id);
   assert.equal(entry.historicalSummary.invalid,true);
-  assert.equal(entry.historicalStart,null);
+  assert.deepEqual(entry.historicalStart,{date:'0800-12-25',contentId:'charlemagne-800'});
   for (const other of ['egypt-3000bc']) {
     assert.equal(catalogEntry(catalog,other).historicalSummary.invalid,undefined,other);
     assert.ok(catalogEntry(catalog,other).historicalStart,other);
