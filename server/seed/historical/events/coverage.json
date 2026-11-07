@@ -3,6 +3,18 @@
   "ranges": [
     {
       "startYear": -3300,
+      "endYear": -3101,
+      "status": "unresearched",
+      "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": -3100,
+      "endYear": -3001,
+      "status": "partial",
+      "note": "Six independently checked records concern Egyptian political unification, the Stenness henge, high dams at Liangzhu, the approximate start of the Thach Lac sequence, early weighing objects, and a qualified cattle-husbandry interpretation north of the Black Sea. These are approximate archaeological attestations, constructions or processes; no strict single-calendar-year occurrence is established. Full date intervals, competing chronologies and later endpoints remain in single records. Their spans establish no annual occurrence or researched coverage of later years. The Americas, Oceania, South Asia, much of Africa and other regions remain gaps. Empty years are research gaps."
+    },
+    {
+      "startYear": -3000,
       "endYear": 799,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
