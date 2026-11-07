@@ -177,7 +177,7 @@ const AUTHORED_PACKAGES = {
       courtierNames: ['Odo (genererad)','Ansgar (genererad)','Rikulf (genererad)'],courtierBornAt: i => `0${750+i}-01-01`,
       annotatePeople: annotateCharlemagneCourt,
       rulerOfficeClaim: claim('sourced','Leo III satte kronan på Karl vid julmässan i Rom. Titeln patricius gav den dagen vika för kejsartiteln.',evidence('rfa-801-coronation','einhard-28')),religionName: 'Den latinska kyrkan',
-      religionClaim: claim('sourced','Leo III, biskop av Rom sedan 795, krönte Karl. Leo angreps i Rom 25 april 799 och sökte upp Karl i Paderborn. I december 800 hördes anklagelser mot honom i Rom inför Karl. Ingen anklagare styrkte dem och Leo svor sig fri två dagar före kröningen. Hovets religiösa företrädare är genererad.',evidence('ce-leo3','osborne-rome','adelson-baker','rfa-800-rome','rfa-801-coronation')),
+      religionClaim: claim('sourced','Leo III, biskop av Rom sedan 795, krönte Karl. Leo angreps i Rom 25 april 799 och sökte upp Karl i Paderborn. I december 800 hördes anklagelser mot honom i Rom inför Karl. Ingen anklagare styrkte dem och Leo svor sig fri två dagar före kröningen. Hovets religiösa företrädare vid starten är genererad.',evidence('ce-leo3','osborne-rome','adelson-baker','rfa-800-rome','rfa-801-coronation')),
     },
   },
 };

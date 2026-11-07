@@ -229,11 +229,13 @@ const noteUnknown = (trimmed) => {
 
 // The translation of a whole value with its surrounding whitespace kept, or
 // null when there is none.
+// A numeric date ("1/8/2016", "2016-01-08") has no words, but is written
+// differently in most languages (localDates.js).
+export const isNumericDate = (text) => /^\d{1,2}\/\d{1,2}\/\d{1,6}$|^-?\d{4,6}-\d{2}-\d{2}$/.test(text);
+
 const translateValue = (value, { note = true } = {}) => {
   const trimmed = value.trim();
-  // A numeric date ("1/8/2016", "2016-01-08") has no words, but is written
-  // differently in most languages (localDates.js).
-  const numericDate = /^\d{1,2}\/\d{1,2}\/\d{4}$|^-?\d{4,6}-\d{2}-\d{2}$/.test(trimmed);
+  const numericDate = isNumericDate(trimmed);
   if (!numericDate && !isTranslatable(trimmed)) return null;
   const translated = book.translate(trimmed);
   if (translated == null) {

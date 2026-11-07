@@ -15,6 +15,7 @@ import {
   BATCH_MAX_CHARS,
   BATCH_MAX_STRINGS,
   BATCH_MIN_STRINGS,
+  isNumericDate,
   planTranslationBatch,
 } from "./translator.js";
 
@@ -42,6 +43,11 @@ test("one string longer than the whole ceiling still goes, alone", () => {
 test("the queue is taken in order, and a Set is accepted as it comes", () => {
   const queue = new Set(["Save game", "Load game", "Quit"]);
   assert.deepEqual(planTranslationBatch(queue, { maxStrings: 2 }), ["Save game", "Load game"]);
+});
+
+test("a numeric date counts at any year the HUD writes, and only a whole date counts", () => {
+  for (const text of ["12/25/800", "1/8/2016", "2016-01-08", "-0218-03-01"]) assert.equal(isNumericDate(text), true, text);
+  for (const text of ["12/25", "12/25/1234567", "12/25/800 AD", "0800-12", ""]) assert.equal(isNumericDate(text), false, JSON.stringify(text));
 });
 
 test("the sizes are the ones the request budget was tuned for", () => {

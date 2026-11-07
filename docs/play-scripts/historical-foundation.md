@@ -126,16 +126,21 @@ The third start is the default: the card preselects it, and John and Egypt stay 
 
 | ID | Adapter | Start card | Map at Aachen | Household command | Reload | One turn |
 | --- | --- | --- | --- | --- | --- | --- |
-| S-K-R | Server | not yet run | not yet run | not yet run | not yet run | not yet run |
-| W-K-R | Web | not yet run | not yet run | not yet run | not yet run | not yet run |
+| S-K-R | Server | Observed 2026-11-07 | not yet run | Observed 2026-11-07: gift | Observed 2026-11-07 | Observed 2026-11-07: real local Claude, one year |
+| W-K-R | Web | Observed 2026-11-07 | Observed 2026-11-07 | Observed 2026-11-07: gift | Observed 2026-11-07 | not yet run: model status stubbed |
+
+Web run: `npm run dev:web` with the model status stubbed. The start card preselected `800 e.Kr. · Karls rike (karolingiska riket), 800 e.Kr.` among 3 starts. The court showed Karl aged 57 with the title Kejsare, 13 living people and the heir Karl den yngre. `Överlevnad osäker` showed in person detail. A gift gave `En relation stärks`, and a reload kept the campaign and the gift event. The map showed Aachen, Rome and polities.
+
+Server run: `http://localhost:3000` with an isolated `OH_DATA_DIR` and the real local Claude through `claude-cli`. Start, gift and reload worked. One real year turn took about 5.5 minutes and gave 11 events, the first dated 2/3 801 e.Kr., and the date 25/12 801 e.Kr. survived a reload. The console showed 0 errors. The events name no dead court member and no year after 801. `GET /api/scenarios/<id>/assets/stats` returns 404 for both `charlemagne-800` and `john-1200`, which predates this branch.
+
 
 - Start card: `Startdatum och scenario` opens on `800 e.Kr. · Karls rike (karolingiska riket), 800 e.Kr.`, and `Rike` shows `Karls rike (karolingiska riket)`. A start records date `0800-12-25` and polity `carolingian-realm`.
 - Map: the seat marker is Aachen at `[6.1053, 50.7708]`, an approximate Getty placement. Karl stands in Rome on the bookmark date, and the map keeps the game seat at Aachen.
 - Court: Berta, Gisela, Teoderada, Hiltrud and Ruodhaid each carry the tag `Överlevnad osäker` on their person card, and the tag title shows the package note. Karl and his sons carry no such tag.
 - Religion: under `Familjer`, `Religiösa samfund`, the Latin Church shows `Företrädare vid hovet` with Rikulf (genererad), and the caption above it names Leo III. A John campaign started on this build shows the same label with its own representative. An older saved campaign shows the label and no caption.
-- Turn: run it against the local provider if one answers. Otherwise the cell stays open for the owner.
+- Turn: the web cell stays open for a run against a local provider.
 
-An upgraded library gains the start once, keeps a scenario the player selected and keeps a deleted start deleted. Each start has its own marker for this: `historical-bookmarks-charlemagne-800.json` on the server and the key of that name in the web store.
+An upgraded library gains the start once, keeps a selected scenario other than John, because `default` reads as no choice, and keeps a deleted start deleted. Each start has its own marker for this: `historical-bookmarks-charlemagne-800.json` on the server and the key of that name in the web store.
 
 ## Closure
 

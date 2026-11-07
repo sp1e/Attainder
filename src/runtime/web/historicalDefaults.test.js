@@ -76,6 +76,12 @@ test('fresh web store starts the three shipped historical bookmarks with their c
     assert.equal((await library()).selectedScenarioId,'charlemagne-800');
     const johnAfter=await call('GET',[games.john]);
     assert.equal(johnAfter.game.scenarioId,'default'); assert.deepEqual(johnAfter.data,johnBefore.data);
+    // A second tab or an interrupted install: the scenario stands and its marker is unset.
+    await idbDelete(STORES.kv,'historical-bookmarks-charlemagne-800');
+    await store.ensureSeeded();
+    assert.deepEqual(await starts(),offered,'an installed start gains no second copy');
+    assert.equal((await library()).scenarios.some(s=>s.id==='charlemagne-800-2'),false);
+    assert.equal(await kvGet('historical-bookmarks-charlemagne-800',false),true);
     // A deleted start stays deleted: the marker, not the scenario, records the installation.
     await remove('charlemagne-800'); await store.ensureSeeded();
     assert.deepEqual(await starts(),offered.slice(0,2));

@@ -32,7 +32,7 @@ const SHAPES = [
   // Jan 2016
   { re: new RegExp(`^(${SHORT}) (\\d{1,6})( BC)?$`), month: 1, year: 2, bc: 3, style: "monthShort" },
   // 1/8/2016 (month first, as the jump widget writes it)
-  { re: /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, month: 1, day: 2, year: 3, numericMonth: true, style: "short" },
+  { re: /^(\d{1,2})\/(\d{1,2})\/(\d{1,6})$/, month: 1, day: 2, year: 3, numericMonth: true, style: "short" },
   // 2016-01-08, a game date as stored (cards, the game menu); -0218-03-01 is 218 BC
   { re: /^(-?\d{4,6})-(\d{2})-(\d{2})$/, year: 1, month: 2, day: 3, numericMonth: true, iso: true, style: "medium" },
 ];

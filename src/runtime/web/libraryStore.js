@@ -1488,9 +1488,11 @@ export const ensureSeeded = async () => {
   for (const entry of HISTORICAL_BOOKMARKS) if (!(await kvGet(entry.marker,false))) pending.push(entry);
   if (pending.length) {
     const { default: bookmarks } = await import("./generated/historicalBookmarks.js");
-    for (const bundle of bookmarks) {
-      const entry=pending.find((candidate) => candidate.id === bundle.scenario.id);
-      if (!entry) continue;
+    for (const entry of pending) {
+      // A second tab or an interrupted install got here first, so this start only needs its marker.
+      if (await getScenario(entry.id)) { await kvPut(entry.marker,true); continue; }
+      const bundle=bookmarks.find((candidate) => candidate.scenario.id === entry.id);
+      if (!bundle) { console.warn(`Historical start ${entry.id} is missing from the generated bookmarks.`); continue; }
       const id=await ensureUniqueId(entry.id,"scenario");
       const record=bundleScenarioRecord(bundle,id);
       requirePrepared(validatePlayableScenario(await scenarioCandidate(record)));

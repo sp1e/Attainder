@@ -70,7 +70,14 @@ async function roundtripWorker() {
     return nextResolve(specifier, context);
   } });
   webStore = await import("./src/runtime/web/libraryStore.js");
+  // The stubbed chunk holds no bookmark, so each start the store cannot install says so.
+  const warnings = [], warn = console.warn;
+  console.warn = (...parts) => warnings.push(parts.join(" "));
   await webStore.ensureSeeded();
+  console.warn = warn;
+  for (const id of ["egypt-3000bc", "charlemagne-800"]) {
+    if (warnings.filter(line => line.includes(id)).length !== 1) throw new Error(`Expected one warning for ${id}: ${JSON.stringify(warnings)}`);
+  }
   const webCall = async (resource, method, route, body) => {
     const handler = resource === "games" ? webStore.handleGames : webStore.handleScenarios;
     const reply = await handler({ method, segments: route.split("/").filter(Boolean), body, query: new URLSearchParams() });
