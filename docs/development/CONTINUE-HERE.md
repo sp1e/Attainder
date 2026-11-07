@@ -43,6 +43,20 @@ The design is `docs/superpowers/specs/2026-11-07-world-cultures-phase-2-design.m
 
 Evidence at `8176bf1b`: the full serial suite ran 4,956 tests, with 4,953 passed, 0 failed, 1 skipped and 2 TODO, in 276 seconds. The build and the three `--check` scripts exited 0, and eslint reported no errors in the changed files. After the name-cache fix at `9d8605de`, the `src/runtime` tests ran 2,568 of 2,568. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md). Next: Phase 3, the reviewed courts of AD 800 and AD 1200.
 
+## Every culture playable: Phase 3
+
+The design is `docs/superpowers/specs/2026-11-07-world-cultures-phase-3-design.md` and the plan is `docs/superpowers/plans/2026-11-07-world-cultures-phase-3.md`. Phase 3 is built on `feature/world-cultures-phase-3`:
+
+- `server/seed/historical/dossier-courts.mjs` builds a court, seat, sources and coverage lines from a `ready` polity in Codex's court dossiers. Western Xia and Chimú stay blocked.
+- Charlemagne 1.2.0 has ten playable polities: Karls rike, Kyrkostaten, Tangriket, Abbasidiska kalifatet, Bysantinska riket, Silla, Emiratet Córdoba, Aghlabidiska emiratet, Kungariket Asturien and Furstendömet Benevento. Rome carries Codex's reviewed note.
+- John 1.1.0 has four: Johns riken, Khmerriket, Almohaderna and Frankrike. `node scripts/sync-default-scenario.mjs` writes `server/seed/default` from the John package with `builtInRevision` 2; `--check` fails on drift and runs in the suite through `server/syncDefaultScenario.test.js`.
+- Each court carries its own `contextSv`. The card, the campaign record and the model briefing describe the chosen polity. `HISTORICAL_SUMMARY_SCHEMA` is 2.
+- A campaign saved under Charlemagne 1.1.0 or John 1.0.0 restores against the new release. The companion check accepts a later `builtInRevision` for the same `builtInMap`. `server/fixtures/*.patch.json` rebuild the old releases byte for byte; rerun `scripts/write-release-patch.mjs` after any rebuild of those packages.
+- Both library stores read the clock once when they stamp a built-in scenario, so an untouched default no longer reads as edited.
+- The character view reads the end of research from `server/seed/historical/events/coverage.json` (year 999 today).
+
+Evidence at `7ccef350`: the full serial suite ran 5,029 tests, with 5,026 passed, 0 failed, 1 skipped and 2 TODO, in 445 seconds. The build and the four `--check` scripts exited 0, and eslint reported no errors in the changed files. Egypt's package and its release rows are byte-identical. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md). Next: Phase 4, the AD 1500 package (Aztec and Inca courts).
+
 ## Branch state
 
 Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The whole-branch review found two reproduced issues; both now have reviewed fixes. The final follow-up review of `08d3518..55283dc` approved the branch with no new Critical, Important or Minor findings. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295). [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the fixes, and the remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`. The retained remote branch `fix/phase-3-review` ends at `55283dc`; its tested production code remains `cfa225238c5065441e4642481ab507629e498e73`. Nobody has run the Phase 3 play script; the owner deferred the Hadara script behind the historical foundation.
