@@ -1,0 +1,2822 @@
+{
+  "schema": "attainder-court-dossiers-v1",
+  "bookmark": "0800-12-25",
+  "reviewFile": "ad800-review.json",
+  "calendarHandling": "Sources keep their own chronology; this file converts no day unless a cited source does. January 1 game birth dates are simulation placeholders.",
+  "sourceAttribution": {
+    "gettyTgn": "Coordinate data: J. Paul Getty Trust, Getty Research Institute, Getty Thesaurus of Geographic Names (TGN), under ODC-By 1.0.",
+    "sourceIds": [
+      "a1-getty-data-license"
+    ]
+  },
+  "geometryCheck": {
+    "status": "checked",
+    "checkedOn": "2026-11-07",
+    "method": "Shapely covers check against the exact pinned Historical Basemaps GeoJSON bytes and accepted feature indexes.",
+    "sourceMapCommit": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+    "sourceFile": "world_800.geojson",
+    "sourceSha256": "9d046cdc4662109c3f803ae46e2c8cba941aa092ec86eccc7823e6cf1554920c",
+    "pointsChecked": 8,
+    "pointsInside": 8
+  },
+  "sources": {
+    "a1-hk-museum-tang-lineage": {
+      "title": "Hong Kong Museum Bulletin, issue 1: the five generations of Emperor Xuanzong",
+      "institution": "Leisure and Cultural Services Department, Hong Kong Museums",
+      "url": "https://www.museums.gov.hk/documents/MP-UAT/Brand-Book/HKMuseumBulletin001.pdf",
+      "locator": "Printed pp. 43 and 45 (PDF pages 23 and 24), paragraph on Li Song's birth and table 'Table of Emperor Xuanzong and the four emperors after him', Dezong and Shunzong rows; notes 19, 23 and 24.",
+      "scopedClaim": "Li Kuo/Dezong lived 742-805 and reigned 779-805; his eldest son Li Song/Shunzong lived 761-806 and reigned in 805.",
+      "chronology": "Table: 742-805; 779-805; 761-806; 805. The preceding paragraph equates the second Shangyuan year with 761.",
+      "uncertainty": "Year-level dates only. The table gives no location on 25 December 800 and does not by itself date Li Song's designation as crown prince. The museum calls the row heading Posthumous Title; no inference about the contemporaneous use of Dezong or Shunzong follows from that heading.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-tang-reign-table": {
+      "title": "Tang Dynasty Rulers and Reign-Periods",
+      "institution": "University of Hawai'i Press; De Gruyter Brill digital distribution",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/9780824893224-004/pdf?licenseType=free",
+      "locator": "Printed p. xxii (PDF page 2), Emperor Dezong and Emperor Shunzong rows.",
+      "scopedClaim": "The table assigns Dezong's reign to 779-805 and the Zhenyuan reign-period to 785-805, followed by Shunzong in 805.",
+      "chronology": "r. 779–805; Zhenyuan 785–805; r. 805.",
+      "uncertainty": "Year-level reign table; it does not convert any particular Chinese-calendar day.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-tang-bdcw-chronology": {
+      "title": "Biographical Dictionary of Chinese Women: Tang through Ming, 618-1644",
+      "institution": "University of Hong Kong Libraries Publications; M. E. Sharpe / Routledge",
+      "url": "https://api.pageplace.de/preview/DT0400.9781317515623_A23898257/preview-9781317515623_A23898257.pdf",
+      "locator": "Public preview, printed p. xx (PDF page 21), Chronology of Dynasties and Major Rulers, Li Kuo and Li Song rows; printed p. xiii, Editors' Note on converting lunar-calendar dates.",
+      "scopedClaim": "This table gives Dezong's reign as 779-804, in disagreement with the museum and the University of Hawai'i reign table; it agrees on his lifetime 742-805 and on Li Song's lifetime 761-806.",
+      "chronology": "Li Kuo: 742–805; 779–804. Li Song: 761–806; 805.",
+      "uncertainty": "The editor discusses lunar-calendar conversion in general but does not explain this particular 804 endpoint. Treat the reign endpoint discrepancy as unresolved rather than silently changing the printed date.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-tang-zhangjing-sun2024": {
+      "title": "Mingli Sun, A Forgotten Eminent Buddhist Monk and His Social Network for Constructing Buddhist Statues in Qionglai: A Study Based on the Statue Construction Account in 798",
+      "institution": "Religions 15 (2024), article 412; author affiliated with University of British Columbia",
+      "url": "https://www.wisdomlib.org/uploads/journals/mdpi-relig/2024-volume-15-issue-4--2077-1444-15-4-412-.pdf",
+      "locator": "Article pp. 7-10, sections 3.2.1 and 3.2.2: royal functions of Zhangjing Temple; Dezong's precepts under Daocheng; monks' connections to the imperial court; notes 23-35.",
+      "scopedClaim": "Zhangjing Temple was a royal Buddhist monastery at Chang'an under Dezong; Dezong received Bodhisattva precepts from Daocheng in 786, and Daocheng resided there from 781 until his death in 803.",
+      "chronology": "Second Zhenyuan year, eighth day of the second month, equated by the author with March 12, 786; Daocheng's residence 781-803.",
+      "uncertainty": "The article supports a specific Buddhist relationship, not exclusive adherence to Buddhism, a single Tang religious establishment or Daocheng's leadership over all Chinese Buddhists. Publisher HTML returned 429/403; the same scholarly article was opened and read at this PDF mirror.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-tang-succession-essentials": {
+      "title": "Wu Jing, The Essentials of Governance, edited by Hilde De Weerdt, Glen Dudbridge and Gabe van Beijeren (2020)",
+      "institution": "Cambridge University Press",
+      "url": "https://api.pageplace.de/preview/DT0400.9781108912686_A45556898/preview-9781108912686_A45556898.pdf",
+      "locator": "Public preview, Introduction by Hilde De Weerdt and David McMullen, printed pp. xxii and xxxiv-xxxv (PDF pages 24 and 36-37), paragraphs on the succession ideal and failures to implement it.",
+      "scopedClaim": "The Tang ideal preferred the empress's eldest son, but early Tang rulers repeatedly failed to implement that ideal.",
+      "chronology": "Introduction discusses the Tang dynasty, especially its first century, rather than a law promulgated in 800.",
+      "uncertainty": "Mapping this ideal onto the game's sex-neutral primogeniture law is a modern approximation; this source does not establish a mechanically enforced law on the bookmark date.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-getty-xian": {
+      "title": "Getty TGN 7001810, Xi'an",
+      "institution": "Getty Research Institute, Vocabulary Program",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=7003692&nation=&place=&subjectid=7001810",
+      "locator": "Record ID 7001810, Coordinates and Names fields.",
+      "scopedClaim": "The Xi'an settlement marker has latitude 34.2583 and longitude 108.9286; Getty includes Changan and Ch'ang-an among its names.",
+      "chronology": "Current gazetteer marker with historical name variants; no date-specific palace coordinate.",
+      "uncertainty": "The coordinate is an approximate settlement point, not a surveyed location of the Tang palace or the ruler on a particular day.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-aks-aejang": {
+      "title": "Encyclopedia of Korean Culture: Aejang-wang",
+      "institution": "Academy of Korean Studies",
+      "url": "https://encykorea.aks.ac.kr/Article/E0035230",
+      "locator": "Personal data box; Family and personal details; Main activities, paragraphs beginning with accession in June 800 and the regency; concluding paragraph on the killing in July 809.",
+      "scopedClaim": "Aejang, originally Kim Cheongmyeong and later renamed Jung-hui, was born in 788, reigned in 800-809, was Soseong and Gyehwa's son and began his reign under the regency of his uncle Kim Eon-seung and grandmother Seongmok.",
+      "chronology": "788(원성왕 4); 800~809; accession 800년 6월; death 809년(애장왕 10) 7월.",
+      "uncertainty": "The summary says age 12 at accession and the main text age 13, reflecting age conventions that the article does not explain. No conversion of the June/July Korean-calendar months to game days is supplied. Scholars differ on whether the uncle's regency ended in 805 or continued throughout the reign.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-nikh-heondeok": {
+      "title": "Our History Net, Korean History Chronology: Heondeok-wang",
+      "institution": "National Institute of Korean History",
+      "url": "https://contents.history.go.kr/mobile/kc/view.do?code=kc_age_10&levelId=kc_n101850",
+      "locator": "Section 2, Heondeok's family, identity and death in 826; section 3, activities before accession and royal succession, paragraphs on regency and the 809 palace coup.",
+      "scopedClaim": "Kim Eon-seung was Soseong's younger brother and Aejang's uncle and regent; he died in 826. The Wonseong-Soseong-Aejang line followed legitimate-descendant succession until his 809 usurpation.",
+      "chronology": "미상 ~ 826년(헌덕왕 18); 801년(애장왕 2) 2월; 809년(애장왕 10) 7월.",
+      "uncertainty": "Birth is unknown. The article notes disagreement between Samguk sagi and Samguk yusa about Eon-seung's accomplice in 809; it also describes conflicting records about his wife and children. Those disputed people are not instantiated in this dossier.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-aks-gyehwa": {
+      "title": "Encyclopedia of Korean Culture: Gyehwa-buin",
+      "institution": "Academy of Korean Studies",
+      "url": "https://encykorea.aks.ac.kr/Article/E0003282",
+      "locator": "Personal data box, Overview and Activities; discussion of the Tang documents of 805 and 808 and variant clan names.",
+      "scopedClaim": "Gyehwa was Soseong's queen and Aejang's mother; her birth and death years are unknown and documents report differing forms of her clan name.",
+      "chronology": "Birth and death unknown; appointment as queen in 800년(소성왕 2) 봄 정월; documentary references in 805 and 808.",
+      "uncertainty": "Later documents naming her do not explicitly establish survival at the bookmark; the source discusses Kim, Suk and Hwa forms and explains the latter forms as probable diplomatic concealment or copying error.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-getty-gyeongju": {
+      "title": "Getty TGN 7002225, Gyeongju",
+      "institution": "Getty Research Institute, Vocabulary Program",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=7003692&nation=&place=&subjectid=7002225",
+      "locator": "Record ID 7002225, Coordinates, Names and Place Types fields; historical capital date span.",
+      "scopedClaim": "The Gyeongju settlement point is latitude 35.8428, longitude 129.2117; Getty classifies it as Silla's historical capital across a span containing 800.",
+      "chronology": "Capital of Silla 57 BCE-935 CE; of unified Korea 668-935.",
+      "uncertainty": "Modern settlement marker; it does not establish a palace coordinate or the king's whereabouts on 25 December 800.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-unesco-gyeongju": {
+      "title": "Gyeongju Historic Areas",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/976/",
+      "locator": "Outstanding Universal Value, Brief synthesis; paragraphs on the Wolseong Belt and Hwangnyongsa Belt.",
+      "scopedClaim": "Gyeongju preserves Silla palace remains and Buddhist institutions from the seventh-tenth centuries; King Jinheung ordered Hwangnyongsa's foundation and its pagoda was added in 645.",
+      "chronology": "Buddhist cultural flowering in the seventh-tenth centuries; Jinheung 540-576 CE; pagoda 645 CE.",
+      "uncertainty": "This supports the monarchy's institutional Buddhist setting, not a personal profession of faith by Aejang or a named religious head in 800.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-do-eirene": {
+      "title": "God's Regents on Earth: Eirene (797–802)",
+      "institution": "Dumbarton Oaks, Harvard University",
+      "url": "https://www.doaks.org/resources/online-exhibits/gods-regents-on-earth-a-thousand-years-of-byzantine-imperial-seals/rulers-of-byzantium/eirene-7972013802",
+      "locator": "Heading; opening narrative paragraph; paragraph on seals and coins",
+      "scopedClaim": "Eirene was sole empress in 797–802 after removing Constantine VI; she supported the restoration of icons in 787. Her seals and coins depict her imperial authority.",
+      "chronology": "797–802; 787",
+      "uncertainty": "No exact accession-day conversion or place of residence on the bookmark day is supplied. Direct HTTP retrieval exposed the article when the browser reader encountered a challenge.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-nce-eirene-birth": {
+      "title": "D. A. Miller, Irene, Byzantine Empress, New Catholic Encyclopedia",
+      "institution": "New Catholic Encyclopedia, reproduced by Encyclopedia.com",
+      "url": "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/irene-byzantine-empress",
+      "locator": "Opening biographical sentence, immediately below IRENE, BYZANTINE EMPRESS; author credit D. A. Miller",
+      "scopedClaim": "The reference entry gives Eirene's birth at Athens around 752 and death on Lesbos in August 803.",
+      "chronology": "c. 752; Aug. 9, 803",
+      "uncertainty": "The birth year is approximate. The online reproduction does not identify the edition or justify conversion to a proleptic Gregorian day. Other assertions in the article are outside this citation's scope.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-pbe-eirene": {
+      "title": "Prosopography of the Byzantine Empire: Eirene 1",
+      "institution": "King's College London, PBE I",
+      "url": "https://pbe.kcl.ac.uk/data/D23/F09.htm",
+      "locator": "Locations and Titles; narrative paragraphs citing Theophanes AM 6261, 6289, 6291, 6295 and Theodore Studites Ep. 7",
+      "scopedClaim": "Eirene held imperial office in Constantinople; Leo IV was her husband and Constantine VI her son. A letter addresses her in 801; she lost power in 802 and died in 803.",
+      "chronology": "Theophanes AM 6261, 6289, 6291, 6295; editorial 797, 801, 802, 803",
+      "uncertainty": "This is a scholarly synthesis of cited texts, not direct inspection of their manuscripts. Some later chronicles give differing narratives and dating. No exact location on 25 December 800 is attested here.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-pbe-aetios": {
+      "title": "Prosopography of the Byzantine Empire: Aetios 1",
+      "institution": "King's College London, PBE I",
+      "url": "https://pbe.kcl.ac.uk/data/D00/F71.htm",
+      "locator": "Narrative paragraphs for 790, 799, 800, 801/802 and 811, citing Theophanes AM 6283, 6291, 6292, 6294 and 6303",
+      "scopedClaim": "Aetios was a eunuch in Eirene's household and a trusted adviser. He opposed Staurakios in 800, remained politically active in 801/802 and died in 811; Leo was his brother.",
+      "chronology": "790; 799; 800; 801/802; 26 July, 811; Theophanes AM 6292 and 6294",
+      "uncertainty": "No birth date is supplied. His later command of two Asian themes and his brother's promotion are not backdated to 800.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-pbe-tarasios": {
+      "title": "Prosopography of the Byzantine Empire: Tarasios 1",
+      "institution": "King's College London, PBE I",
+      "url": "https://pbe.kcl.ac.uk/data/D73/F07.htm",
+      "locator": "Narrative paragraphs on appointment, Nikaia and tenure: Vita Tarasii 12–17, 28–32; Theophanes AM 6277; Nicephorus Chron. 77",
+      "scopedClaim": "Tarasios was patriarch of Constantinople from 784 until 806. Eirene supported his appointment; he participated in the council that restored icon veneration in 787.",
+      "chronology": "25 December 784; 787; 806; Theophanes AM 6277",
+      "uncertainty": "Sources differ over the stated length of his tenure; both endpoints enclose 800. No birth date is established by the inspected entry. His ecclesiastical office does not imply residence in the imperial household.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-getty-constantinople": {
+      "title": "Getty Thesaurus of Geographic Names: Istanbul, 7002473",
+      "institution": "Getty Research Institute",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=Istanbul&nation=&place=inhabited+place&subjectid=7002473",
+      "locator": "Record 7002473, Coordinates decimal degrees; historical name Constantinople",
+      "scopedClaim": "The inhabited-place record supplies latitude 41.0110 and longitude 28.9578 and the historical name Constantinople.",
+      "chronology": "Modern geographic reference point; historical name retained by TGN",
+      "uncertainty": "The point marks the settlement, not a researched palace location or a ruler's itinerary. Only coordinates and place identity are used from this record.",
+      "license": "ODC-By-1.0; Getty TGN attribution required for coordinates",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-pbe-constantine-vi": {
+      "title": "Prosopography of the Byzantine Empire: Konstantinos 8",
+      "institution": "King's College London, PBE I",
+      "url": "https://pbe.kcl.ac.uk/data/D43/F19.htm",
+      "locator": "Opening parentage paragraph; paragraph on overthrow in 797 citing Theophanes AM 6289; paragraph on Zonaras XV 14.10–11",
+      "scopedClaim": "Constantine VI was Eirene's son. The entry places his blinding and death in 797 but records a contradictory later account involving Nikephoros I.",
+      "chronology": "797; Theophanes AM 6289; later narrative concerning Nikephoros I",
+      "uncertainty": "The inspected account does not justify adding Constantine as a living member of the court in December 800. Contradictory later survival traditions remain unresolved here.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-pbe-staurakios": {
+      "title": "Prosopography of the Byzantine Empire: Staurakios 1",
+      "institution": "King's College London, PBE I",
+      "url": "https://pbe.kcl.ac.uk/data/D70/F34.htm",
+      "locator": "Final narrative for February–June 800, citing Theophanes AM 6292; following Bar Hebraeus paragraph",
+      "scopedClaim": "The entry dates the adviser Staurakios's death to June 800, before the bookmark. It also records a conflicting later placement in Bar Hebraeus.",
+      "chronology": "3 June 800; Theophanes AM 6292",
+      "uncertainty": "No Gregorian day conversion is made. The later contradictory narrative does not establish survival on the bookmark.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-pbe-euphrosyne": {
+      "title": "Prosopography of the Byzantine Empire: Euphrosyne 1",
+      "institution": "King's College London, PBE I",
+      "url": "https://pbe.kcl.ac.uk/data/D25/F21.htm",
+      "locator": "Opening narrative on parentage and childhood convent residence, citing Theophanes Continuatus II.24 and Zonaras XV.24–25",
+      "scopedClaim": "Euphrosyne was a daughter of Constantine VI and Maria of Amnia. She lived in a convent from childhood; the compiler tentatively places her removal there after 802.",
+      "chronology": "Childhood; editorial conjecture after 802",
+      "uncertainty": "The entry does not establish her location or household membership in December 800. She is withheld from the starting court.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-pbe-leo-iv": {
+      "title": "Prosopography of the Byzantine Empire: Leo 4",
+      "institution": "King's College London, PBE I",
+      "url": "https://pbe.kcl.ac.uk/data/D48/F19.htm",
+      "locator": "Dates field 750 (n.) / 780 (ob.); marriage paragraph citing Theophanes AM 6261",
+      "scopedClaim": "Leo IV married Eirene and died in 780, before the bookmark.",
+      "chronology": "780 (ob.); Theophanes AM 6261 for marriage",
+      "uncertainty": "No living spouse link is created for the widowed empress.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-west-arias-oviedo": {
+      "title": "Lorenzo Arias and Raquel Alonso, Oviedo and Pravia sections, Camino Primitivo exhibition catalogue (2021)",
+      "institution": "Universidad de Oviedo author; Principado de Asturias education portal host",
+      "url": "https://www.educastur.es/documents/34868/351940/2021-10-camino-primitivo-catalogo-LNE.pdf/3b4ffe3e-304a-d87a-3f6a-da2ce21c25e3?t=1635423157040",
+      "locator": "Catalogue spread4–5, El origen de Oviedo, opening paragraphs and Fruela discussion; PDF page5, Raquel Alonso, Pravia section",
+      "scopedClaim": "Alfonso II was king, Fruela I was his father, and Adosinda was his aunt; Arias places accession and the royal seat in791.",
+      "chronology": "en 791; 14 de septiembre del 791",
+      "uncertainty": "Getty dates capital status810; no exact-day itinerary for800.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-west-solano-household": {
+      "title": "Álvaro Solano Fernández-Sordo, Las reinas de la Monarquía Asturiana y su tiempo (718–925) (2018)",
+      "institution": "Marcial Pons; Universidad de Oviedo repository",
+      "url": "https://digibuo.uniovi.es/dspace/bitstream/handle/10651/49645/SOLANO%20FERN%C3%81NDEZ-SORDO%2C%20A.%20-%20Las%20reinas%20de%20la%20monarqu%C3%ADa%20asturiana%20y%20su%20tiempo%20%28RUO%29%201.pdf?isAllowed=y&sequence=3",
+      "locator": "Printed pp.74–79, ¿Ximena?, especially p.78 for Alfonso death842; pp.365–366, Bertinalda conclusion",
+      "scopedClaim": "Solano dates Alfonso II death to842, rejects Bertinalda as a historical wife, and questions the sister/Nepociano reconstruction.",
+      "chronology": "2018 historical analysis of eighth/ninth-century traditions",
+      "uncertainty": "The rejection of a proposed wife does not prove that no otherwise unknown partner existed.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-west-venegas-succession": {
+      "title": "Alberto Venegas Ramos, La consolidación de la monarquía asturiana a través de la cronística y la herencia visigoda (2013)",
+      "institution": "Roda da Fortuna2(2), pp.308–339; Universidad de La Rioja Dialnet host",
+      "url": "https://dialnet.unirioja.es/descarga/articulo/4748605.pdf",
+      "locator": "Section4.3.1, printed pp.327–328; section4.3.2, pp.330–331",
+      "scopedClaim": "Asturian kingship combined family legitimacy and magnate selection; chronicles describe Alfonso II's anointing, churches and Ramiro's disputed succession.",
+      "chronology": "791; Alfonso II's death and Ramiro succession; ninth-century chronicles",
+      "uncertainty": "Chronicles present competing legitimating narratives; no precise election procedure for800.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-west-getty-oviedo": {
+      "title": "Getty TGN7008910: Oviedo",
+      "institution": "Getty Research Institute",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7008910",
+      "locator": "Coordinates; Place Types > capital",
+      "scopedClaim": "Oviedo coordinates are[-5.8333,43.3667]; Getty dates its capital role810.",
+      "chronology": "capital of Kingdom of Asturias810",
+      "uncertainty": "Capital chronology conflicts with Arias791. Coordinates identify a settlement, not a palace.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-west-treccani-grimoaldo": {
+      "title": "Andrea Bedina, Grimoaldo, Dizionario Biografico degli Italiani59 (2002)",
+      "institution": "Istituto della Enciclopedia Italiana Treccani",
+      "url": "https://www.treccani.it/enciclopedia/grimoaldo_(Dizionario-Biografico)/",
+      "locator": "Opening; paragraphs beginning Giunto a Benevento, Probabilmente verso il791, Dall'unione con Ewanzia, La tensione antifranca",
+      "scopedClaim": "Grimoald, Arechis and Adelperga's son, ruled as prince May788–April806; thanked God at Benevento cathedral; repudiated Ewanzia, with no established repudiation date; an official succeeded him.",
+      "chronology": "maggio del788; aprile dell'806; forse nel795; settimo decennio del secolo",
+      "uncertainty": "Birth is approximate; prince-numbering differs from modern Grimoald III. Household survival in800 lacks proof. The tentative795 date concerns marital deterioration, not a separately dated repudiation.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-west-getty-benevento": {
+      "title": "Getty TGN7004393: Benevento",
+      "institution": "Getty Research Institute",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7004393",
+      "locator": "Coordinates; Place Types > capital",
+      "scopedClaim": "Benevento settlement coordinates are[14.7500,41.1333].",
+      "chronology": "Lombard duchy capital from571",
+      "uncertainty": "No ruler itinerary or palace position.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-west-rah-hakam": {
+      "title": "La primera década del reinado de Al-Hakam I, public book description (2003)",
+      "institution": "Real Academia de la Historia",
+      "url": "https://publicaciones.rah.es/producto/la-primera-decada-del-reinado-de-al-hakam-i-segun-el-muqtabis-ii-1-de-ben-hayyan-de-cordoba-m-469-h-1076-j-c/)",
+      "locator": "Descripción, first and second paragraphs",
+      "scopedClaim": "Al-Hakam I was emir of Córdoba796–822 and succeeded his father Hisham I amid opposition from his uncles.",
+      "chronology": "796-822;180-190 h.(796-806 J.C.)",
+      "uncertainty": "Only the publisher's public description was read; the advertised book was not accessed.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-west-toledo-abdrahman": {
+      "title": "Ricardo Izquierdo Benito, Abd al-Rahman II, un toledano en el XII centenario de su proclamación como emir de al-Andalus (2021)",
+      "institution": "Real Academia de Bellas Artes y Ciencias Históricas de Toledo, TOLETVM65",
+      "url": "https://www.realacademiatoledo.es/wp-content/uploads/2022/03/Abderraman2.pdf",
+      "locator": "Printed p.1, first paragraph; p.3, accession paragraph; p.13, Muerte",
+      "scopedClaim": "Abd al-Rahman II, son of al-Hakam I and concubine Halawa, was born late792, succeeded his father822 and died852; his father arranged an oath to him.",
+      "chronology": "a finales del año792;22 de mayo del año822;22 de septiembre del año852",
+      "uncertainty": "No exact birth day; Halawa's survival to800 unproven. Article gives807 for the trench episode, unlike RAH797; dossier omits that event.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-west-tdv-hakam": {
+      "title": "Mehmet Özdemir, HAKEM I (1997)",
+      "institution": "TDV İslâm Ansiklopedisi, vol.15, pp.173–174",
+      "url": "https://islamansiklopedisi.org.tr/hakem-i",
+      "locator": "Opening paragraph; final paragraph before BİBLİYOGRAFYA",
+      "scopedClaim": "Al-Hakam was born154/771, acceded180/796, died206/822 and left rule to his son Abd al-Rahman II.",
+      "chronology": "154(771);3 Safer180(17 Nisan796);25 Zilhicce206(21 Mayıs822)",
+      "uncertainty": "Day equivalents belong to this source's calendar conversion; no independent conversion adopted.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-west-csic-mosque": {
+      "title": "Julio Navarro Palazón and Pedro Jiménez Castillo, Una aproximación al urbanismo medieval de Murcia",
+      "institution": "Escuela de Estudios Árabes, CSIC",
+      "url": "https://web.archive.org/web/20250505053408id_/https://www.eea.csic.es/wp-content/uploads/2018/03/libro-750-MUY-BAJA.pdf",
+      "locator": "La mezquita aljama, printed pp.88–89 and note96",
+      "scopedClaim": "Authors cite an heir receiving public oaths in the congregational mosque during al-Hakam I's reign.",
+      "chronology": "en tiempos del emir al-Hakam I; Ibn Hayyán2001 p.89",
+      "uncertainty": "The passage identifies neither the mosque city nor an800 date. This is a scholarly chapter preserved by a dated archive; the cited Ibn Hayyan edition was not directly inspected.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalUrl": "https://www.eea.csic.es/wp-content/uploads/2018/03/libro-750-MUY-BAJA.pdf",
+      "retrievalNotes": "The first independent check recovered the substantive PDF at the cited dated id_ archive after the live URL returned404. On the second check the same id_ route returned429; the reviewer recovered the same archived document through the alternate if_ URL and read printed pp.88–89 and note96 on2026-11-07.",
+      "alternateRetrievalUrl": "https://web.archive.org/web/20250505053408if_/https://www.eea.csic.es/wp-content/uploads/2018/03/libro-750-MUY-BAJA.pdf"
+    },
+    "a1-west-getty-cordoba": {
+      "title": "Getty TGN7007513: Cordova/Córdoba, Spain",
+      "institution": "Getty Research Institute",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=Heidelberg&nation=&place=inhabited+place&subjectid=7007513",
+      "locator": "Coordinates; Hierarchical Position > Spain > Andalusia > Córdoba",
+      "scopedClaim": "Córdoba in Spain has coordinates[-4.7667,37.8833].",
+      "chronology": "Settlement record; modern coordinates",
+      "uncertainty": "The similarly named Argentine city7006288 is excluded.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07"
+    },
+    "iranica-harun": {
+      "title": "HĀRUN AL-RAŠID, Clifford Edmund Bosworth",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/harun-al-rasid/?generate_pdf=1",
+      "locator": "Vol. XII, Fasc. 1, pp. 17–20; generated PDF pp. 1–3: opening biography, capital-transfer paragraph, religious-role paragraph",
+      "scopedClaim": "Harun reigned 786–809, acceded 14 September 786, died 24 March 809, and had competing births in 763 and 766. He transferred his capital to Raqqa/Rafiqa in 796, saw himself as defending Sunnism, and relied on the Barmakids until 803.",
+      "chronology": "170–93/786–809; accession 15 Rabiʿ I 170/14 September 786; death 3 Jomādā II 193/24 March 809; transfer 180/796.",
+      "uncertainty": "Birth traditions disagree. A residence period gives no exact-day itinerary. Christian dates retain the source convention.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "mwnf-raqqa": {
+      "title": "Palace B, Verena Daiber",
+      "institution": "Museum With No Frontiers, Discover Islamic Art",
+      "url": "https://islamicart.museumwnf.org/database_item.php?id=monument%3BISL%3Bsy%3BMon01%3B30%3Ben",
+      "locator": "Patron(s); Description, first two paragraphs; How Monument was dated, first paragraph",
+      "scopedClaim": "Harun used Rafiqa/Raqqa as residence in 796–808. The author names wife Zubayda and al-Amin, al-Mamun, al-Qasim and al-Mutasim as residents of the palace complex.",
+      "chronology": "AH 180–192 / AD 796–808; reign AH 170–193 / AD 786–809.",
+      "uncertainty": "The household list spans the residence period. The word heirs does not establish formal heir status for each prince in 800.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "getty-raqqa": {
+      "title": "TGN 7016565: Ar Raqqah",
+      "institution": "Getty Research Institute",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=7003692&nation=&place=&subjectid=7016565",
+      "locator": "ID; Coordinates; Note; Place Types",
+      "scopedClaim": "The inhabited-place record gives Raqqa decimal latitude 35.9520 and longitude 39.0070.",
+      "chronology": "Modern gazetteer record.",
+      "uncertainty": "Settlement point, not palace location or dated itinerary.",
+      "license": "ODC-By-1.0; Getty TGN coordinate data",
+      "retrievedAt": "2026-11-07"
+    },
+    "tdv-zubayda": {
+      "title": "ZÜBEYDE bint CA‘FER, Gülgün Uyar",
+      "institution": "TDV İslâm Araştırmaları Merkezi",
+      "url": "https://islamansiklopedisi.org.tr/zubeyde-bint-cafer",
+      "locator": "Opening biography; marriage paragraph beginning Teyzesi; death paragraph beginning Zübeyde, 210",
+      "scopedClaim": "Zubayda was Harun’s wife and al-Amin’s mother, born in 145 (762), married in 165 (782), and died in 216 (831). Her activity continued after Harun’s death.",
+      "chronology": "Birth 145 (762); marriage Zilhicce 165 (Temmuz-Ağustos 782); death 26 Cemâziyelevvel 216 / 11 Temmuz 831.",
+      "uncertainty": "The entry gives birth AH145(762), death AH216(831), and age71 without specifying the age calendar.216 minus145 equals71, so lunar-year reckoning can reconcile the figures; no contradiction is established. No exact birthday is supplied.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "tdv-amin": {
+      "title": "EMÎN, Hakkı Dursun Yıldız",
+      "institution": "TDV İslâm Araştırmaları Merkezi",
+      "url": "https://islamansiklopedisi.org.tr/emin--abbasi",
+      "locator": "Opening three paragraphs; heading; death paragraph beginning Ancak bunu",
+      "scopedClaim": "Al-Amin, born April 787 to Harun and Zubayda, was preferred to older half-brother Abdallah and designated heir in 792. Harun named Abdallah al-Mamun second heir six years later. Al-Amin ruled 809–813.",
+      "chronology": "Şevval 170 (Nisan 787); designation 175/792; second designation six years later; 186 (802) Meccan settlement.",
+      "uncertainty": "The second-heir chronology differs from Iranica MAʾMUN, which dates proclamation to 802. This describes designation, not eldest-child succession.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "iranica-mamun": {
+      "title": "MAʾMUN, Clifford Edmund Bosworth",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/mamun-abul-abbas-abd-allah/?generate_pdf=1",
+      "locator": "Generated PDF p. 1, first two paragraphs",
+      "scopedClaim": "Al-Mamun was Harun’s son by enslaved concubine Marajel, born 786, and lived until 833. Younger al-Amin became first heir; the article places al-Mamun’s proclamation as second heir and Qasim’s as third in 802.",
+      "chronology": "b. 786; d. July–August 833; first heir between 791 and 792; pilgrimage 802.",
+      "uncertainty": "Second-heir timing differs from TDV. A distinction between initial designation and later confirmation could explain it, but these passages do not resolve it.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "tdv-mutasim": {
+      "title": "MU‘TASIM-BİLLÂH, Casim Avcı",
+      "institution": "TDV İslâm Araştırmaları Merkezi",
+      "url": "https://islamansiklopedisi.org.tr/mutasim-billah",
+      "locator": "Opening paragraph; final biography paragraph beginning Mu‘tasım-Billâh 1 Muharrem",
+      "scopedClaim": "Abu Ishaq Muhammad, later al-Mutasim, was Harun’s son by an enslaved Sogdian woman, born 796 or alternatively 795, and died 842.",
+      "chronology": "10 Şâban 180 (18 Ekim 796); alternative 179 (795); death 18 Rebîülevvel 227 (5 Ocak 842).",
+      "uncertainty": "Competing birth years prevent treating the 796 day as undisputed. His later regnal title does not make him ruler or designated heir in 800.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "iranica-mothers": {
+      "title": "BARDA and BARDA-DĀRI iii, Clifford Edmund Bosworth",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/barda-iii/?generate_pdf=1",
+      "locator": "Vol. III, Fasc. 7, pp. 766–768; generated PDF pp. 2–3, paragraph on concubines and umm walad",
+      "scopedClaim": "Marajel was Harun’s enslaved concubine and al-Mamun’s mother. Mareda, his slave of Sogdian ancestry, bore al-Mutasim. The printed births are al-Mamun 170/787 and al-Mutasim 179/795 or 180/796.",
+      "chronology": "170/787; 179/795 or 180/796.",
+      "uncertainty": "The al-Mamun date differs from the Iranica person entry’s 786. Maternity alone gives neither mother’s survival nor legal marital status in 800.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "tdv-ibrahim": {
+      "title": "İBRÂHİM I, Nadir Özkuyumcu",
+      "institution": "TDV İslâm Araştırmaları Merkezi",
+      "url": "https://islamansiklopedisi.org.tr/ibrahim-i",
+      "locator": "Opening paragraph; appointment paragraph beginning Herseme; final paragraph beginning İbrâhim b. Ağleb’in",
+      "scopedClaim": "Ibrahim ibn al-Aghlab, son of al-Aghlab ibn Salim, founded Aghlabid government in 800 while acknowledging the Abbasid caliph. Born 757–758, he died July 812. The entry says Harun accepted father-to-son succession and names successor son Abdullah.",
+      "chronology": "Birth 140 (757–58); appointment 184/800; death 21 Şevval 196 (5 Temmuz 812).",
+      "uncertainty": "No appointment day or eldest-son rule. The named son’s birth and residence in 800 are not supplied.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "tdv-ziyadat": {
+      "title": "ZİYÂDETULLAH I, Ali Öngül",
+      "institution": "TDV İslâm Araştırmaları Merkezi",
+      "url": "https://islamansiklopedisi.org.tr/ziyadetullah-i",
+      "locator": "Heading; opening paragraph; final paragraph ending Ağleb b. İbrâhim geçti",
+      "scopedClaim": "Ziyadat Allah, Ibrahim ibn al-Aghlab’s son and Abdullah’s brother, was born 788–789 and survived until 838. He succeeded Abdullah in 817.",
+      "chronology": "172 (788–89); 6 Zilhicce 201 (25 Haziran 817); death 14 Receb 223 (11 Haziran 838).",
+      "uncertainty": "Birth spans two Christian years. The entry does not fix his location in 800 or name his mother.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "getty-kairouan": {
+      "title": "TGN 7000986: al-Qayrawān",
+      "institution": "Getty Research Institute",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?find=Kairouan&place=&nation=&prev_page=1&english=Y&subjectid=7000986",
+      "locator": "ID; Coordinates; Place Types, historical capital row",
+      "scopedClaim": "The inhabited-place record gives decimal latitude 35.7000 and longitude 10.0167, and calls Kairouan an Aghlabid capital in 800–909.",
+      "chronology": "Modern gazetteer; capital 800–909.",
+      "uncertainty": "The coordinates identify an inhabited-place reference point, not a surveyed palace, a modern-centre comparison or a bookmark-day itinerary. Polygon inclusion is established separately by the batch geometry check.",
+      "license": "ODC-By-1.0; Getty TGN coordinate data",
+      "retrievedAt": "2026-11-07"
+    },
+    "kennedy-aghlabids": {
+      "title": "The Origins of the Aghlabids, Hugh Kennedy",
+      "institution": "Brill scholarly chapter, institutional copy hosted by Utrecht University",
+      "url": "https://newdiscoveries.sites.uu.nl/wp-content/uploads/sites/712/2023/12/Kennedy_The-Origins-of-the-Aghlabids.pdf",
+      "locator": "Chapter 2, printed pp. 44–46 (PDF pp. 14–16): appointment, palace and succession paragraphs; opening p. 33 (PDF p. 3)",
+      "scopedClaim": "Ibrahim’s appointment arrived in June 800 as an Abbasid governorship. He built a palace settlement near Kairouan. Sons Abdullah and Ziyadat succeeded in 812 and 817 without apparent caliphal appointment during the Abbasid civil war.",
+      "chronology": "middle of Jumada II 184/June 800; Ibrahim death July 812; Abdullah death June 817.",
+      "uncertainty": "The palace move has no date within 800. Kennedy describes independence as a process. Opened as PDF bytes with urllib and read with pypdf after the web parser returned a bot challenge.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "tdv-aghlabids": {
+      "title": "AĞLEBÎLER, Abdülkerim Özaydın",
+      "institution": "TDV İslâm Araştırmaları Merkezi",
+      "url": "https://islamansiklopedisi.org.tr/aglebiler",
+      "locator": "Opening institutional description; paragraph beginning Ağlebîler devrinde Kayrevan dinî ilimler",
+      "scopedClaim": "The Aghlabids were a Muslim dynasty. Kairouan contained Hanafi and Maliki legal communities and other Islamic currents during its rule.",
+      "chronology": "Dynasty 800–909; dynasty-wide cultural account.",
+      "uncertainty": "A dynasty-wide account cannot establish exclusive state doctrine or Ibrahim’s personal school in 800.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a1-getty-data-license": {
+      "title": "Getty Vocabularies: Data & Services",
+      "institution": "J. Paul Getty Trust, Getty Research Institute",
+      "url": "https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/",
+      "locator": "Licensing and Citations: Licensing; General attribution; Uniform Resource Identifiers",
+      "scopedClaim": "Getty makes all Getty Vocabulary data, including TGN data, available under ODC-By1.0.",
+      "chronology": "Current data-service terms read on 2026-11-07",
+      "uncertainty": "This citation concerns Getty Vocabulary data; it grants no rights to unrelated website prose, images or other sources.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    }
+  },
+  "polities": [
+    {
+      "polityId": "tang-empire",
+      "nameSv": "Tangriket",
+      "sourceFeatureIndexes": [
+        45
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Kejsare",
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-hk-museum-tang-lineage",
+          "a1-tang-reign-table"
+        ],
+        "noteSv": "Svensk översättning av kejsartiteln i källorna."
+      },
+      "successionLaw": "primogeniture",
+      "successionNoteSv": "Idealet ger kejsarinnans äldste son företräde, men spelets primogenitur förenklar hovets val och strider om tronföljden.",
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a1-tang-succession-essentials",
+          "a1-hk-museum-tang-lineage"
+        ],
+        "noteSv": "Källan beskriver ett dynastiskt ideal och tidigare avsteg; den belägger ingen mekanisk lag för år 800 och spelets könsneutrala arvsordning skiljer sig från idealet."
+      },
+      "engineLimits": [],
+      "contextSv": "Kejsar Dezong regerar över Tangriket sedan 779. I huvudstaden Chang'an finns Zhangjingtemplet, vars munkar har nära band till hovet. Dezong har tagit bodhisattvalöftena under Daocheng. Hans äldste son heter Li Song.",
+      "contextSourceIds": [
+        "a1-hk-museum-tang-lineage",
+        "a1-tang-zhangjing-sun2024"
+      ],
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-hk-museum-tang-lineage",
+          "a1-tang-zhangjing-sun2024"
+        ]
+      },
+      "seat": {
+        "settlementId": "changan",
+        "nameSv": "Chang'an",
+        "coordinates": [
+          108.9286,
+          34.2583
+        ],
+        "gettyTgnId": "7001810",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=7003692&nation=&place=&subjectid=7001810",
+        "insideAcceptedPolygon": true,
+        "sourceIds": [
+          "a1-getty-xian",
+          "a1-tang-zhangjing-sun2024"
+        ],
+        "seatClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "a1-getty-xian",
+            "a1-tang-zhangjing-sun2024"
+          ]
+        },
+        "noteSv": "Ungefärlig ortsmarkör från Getty för dagens Xi'an, med Chang'an som namnvariant. Punkten ligger inom den godkända spelpolygonen. Markören anger ingen palatsbyggnad.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd vistelseort den 25 december 800",
+          "status": "uncertain",
+          "sourceIds": [],
+          "noteSv": "Källorna belägger huvudstaden och tidigare besök där. De anger ingen vistelseort för bokmärkets dag."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a1-getty-data-license"
+          ],
+          "claimSv": "Getty gör alla data i sina vokabulärer, däribland TGN, tillgängliga enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "tang-zhangjing-buddhism",
+        "nameSv": "Buddhismen vid Zhangjingtemplet",
+        "status": "sourced",
+        "claimSv": "Dezong har tagit bodhisattvalöftena under Daocheng vid det kungliga Zhangjingtemplet i Chang'an.",
+        "sourceIds": [
+          "a1-tang-zhangjing-sun2024"
+        ],
+        "leaderPersonId": null,
+        "noteSv": "Daocheng är kejsarens buddhistiske lärare och lever till 803. Källan ger honom inget övergripande ledarämbete för rikets religioner. Hovet har fler religiösa och rituella anknytningar än denna post rymmer."
+      },
+      "people": [
+        {
+          "id": "dezong",
+          "nameSv": "Dezong",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kejsare av Tang",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-hk-museum-tang-lineage",
+              "a1-tang-reign-table"
+            ],
+            "noteSv": "Personnamnet är Li Kuo. Dezong är det vedertagna historiska kejsarnamnet."
+          },
+          "reign": {
+            "asWorded": "779-805",
+            "startYear": 779,
+            "endYear": 805,
+            "status": "uncertain",
+            "sourceIds": [
+              "a1-hk-museum-tang-lineage",
+              "a1-tang-reign-table",
+              "a1-tang-bdcw-chronology"
+            ],
+            "noteSv": "Museet och regeringstabellen anger 779–805. Kvinnobiografiernas kronologi anger 779–804. Bokmärkets år ligger inom båda intervallen; osäkerheten gäller slutåret."
+          },
+          "birth": {
+            "asWorded": "742-805",
+            "status": "uncertain",
+            "gameValue": "0742-01-01",
+            "noteSv": "Källans livsintervall ger födelseåret 742. Den 1 januari är en spelteknisk dag, eftersom källan saknar månad och dag.",
+            "sourceIds": [
+              "a1-hk-museum-tang-lineage"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Källan anger hans dödsår som 805, efter bokmärket.",
+            "sourceIds": [
+              "a1-hk-museum-tang-lineage"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "father",
+              "ofPersonId": "li-song",
+              "ofSv": "Li Song",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-hk-museum-tang-lineage"
+              ]
+            }
+          ],
+          "uncertaintySv": "Urvalet omfattar den belagda sonen Li Song och gör inget anspråk på att täcka hela familjen. Källorna placerar inte kejsaren på en bestämd ort den 25 december 800."
+        },
+        {
+          "id": "li-song",
+          "nameSv": "Li Song",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kejsarens äldste son",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-hk-museum-tang-lineage"
+            ]
+          },
+          "birth": {
+            "asWorded": "761-806",
+            "status": "uncertain",
+            "gameValue": "0761-01-01",
+            "noteSv": "Källans livsintervall ger födelseåret 761. Den 1 januari är en spelteknisk dag; källans text jämställer också Shangyuan-erans andra år med 761.",
+            "sourceIds": [
+              "a1-hk-museum-tang-lineage"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Han lever till 806 och regerar som Shunzong under 805 enligt källan.",
+            "sourceIds": [
+              "a1-hk-museum-tang-lineage"
+            ]
+          },
+          "legalParentIds": [
+            "dezong"
+          ],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": "dezong",
+              "ofSv": "Dezong",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-hk-museum-tang-lineage"
+              ]
+            }
+          ],
+          "uncertaintySv": "Källan belägger hans identitet, livstid och relation. Den ger ingen ort för honom på bokmärkets dag. Inga spelvärden för förmåga eller personlighet har historiskt källstöd."
+        }
+      ],
+      "peopleWithheld": [],
+      "namePoolId": "tang-chinese",
+      "namePoolStatus": "proposed-unbuilt",
+      "searchLog": [
+        "Searched scholarly and institutional material for Dezong, Shunzong, household, reign chronology, succession, Buddhism and Chang'an.",
+        "Read the Hong Kong Museum Bulletin table and the preceding lineage paragraph after downloading the complete PDF; browser fetch timed out but direct HTTPS retrieval succeeded.",
+        "Retained one son whose identity, relationship and survival after 800 were all supported. Did not infer a complete spouse or child list from popular biographies.",
+        "Compared two 779-805 reign tables with the 779-804 chronology in Biographical Dictionary of Chinese Women; retained the discrepancy.",
+        "Opened Getty TGN 7001810. Found no cited passage fixing either person's whereabouts on 25 December 800.",
+        "The proposed tang-chinese name pool has not been built in this research subtask."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 16,
+        "confirmed": 16,
+        "corrected": 0,
+        "dropped": 0,
+        "countScope": "Initial blind-review occurrences; follow-up checks are recorded separately.",
+        "followUp": {
+          "status": "complete",
+          "note": "Source-check follow-up occurrences and applied corrections are recorded separately in reviewSummary."
+        }
+      },
+      "readiness": {
+        "research": "ready",
+        "engine": "not-integrated"
+      }
+    },
+    {
+      "polityId": "abbasid-caliphate",
+      "nameSv": "Abbasidiska kalifatet",
+      "sourceFeatureIndexes": [
+        33
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Kalif",
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "iranica-harun"
+        ]
+      },
+      "successionLaw": "none-fits",
+      "successionNoteSv": "Kalifen utsåg tronföljare ur familjen; den yngre al-Amin fick företräde framför sin äldre halvbror, så varken äldstebarnsrätt eller rådets förtjänstval beskriver ordningen.",
+      "successionClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "tdv-amin",
+          "iranica-mamun"
+        ]
+      },
+      "engineLimits": [],
+      "engineRepresentationNoteSv": "Skilj äktenskap från förslavade bihustrur. Bara det belagda äktenskapet med Zubayda får spouseIds. Ingen fullständig äktenskapslista för år 800 har belagts.",
+      "contextSv": "Harun ar-Rashid styr från Raqqa och Rafiqa vid Eufrat efter hovets flytt 796. Familjen Barmak leder stora delar av förvaltningen. Han har utsett sin yngre son al-Amin till förste tronföljare. I Ifriqiya har Ibrahim ibn al-Aghlab fått styra som abbasidisk guvernör under år 800.",
+      "contextSourceIds": [
+        "iranica-harun",
+        "tdv-amin",
+        "kennedy-aghlabids"
+      ],
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "iranica-harun",
+          "tdv-amin",
+          "kennedy-aghlabids"
+        ]
+      },
+      "seat": {
+        "settlementId": "raqqa",
+        "nameSv": "Raqqa och Rafiqa",
+        "coordinates": [
+          39.007,
+          35.952
+        ],
+        "gettyTgnId": "7016565",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=7003692&nation=&place=&subjectid=7016565",
+        "insideAcceptedPolygon": true,
+        "seatClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "getty-raqqa",
+            "mwnf-raqqa",
+            "iranica-harun"
+          ]
+        },
+        "sourceIds": [
+          "getty-raqqa",
+          "mwnf-raqqa",
+          "iranica-harun"
+        ],
+        "noteSv": "Gettypunkten markerar Raqqa, inte en enskild palatsbyggnad. Harun använde hovbasen vid Rafiqa under 796–808. Punkten ligger inom den godkända spelpolygonen.",
+        "rulerOnBookmark": {
+          "placeSv": "Raqqa eller Rafiqa, sannolik hovbas",
+          "status": "uncertain",
+          "sourceIds": [
+            "mwnf-raqqa",
+            "iranica-harun"
+          ],
+          "noteSv": "Källorna anger hovbasen under perioden men ingen resrutt för den 25 december 800."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a1-getty-data-license"
+          ],
+          "claimSv": "Getty gör alla data i sina vokabulärer, däribland TGN, tillgängliga enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "sunni-islam",
+        "nameSv": "Sunnitisk islam",
+        "claimSv": "Harun såg kalifämbetet som ett försvar för sunnitisk islam och förenade den religiösa rollen med sin världsliga makt.",
+        "status": "sourced",
+        "sourceIds": [
+          "iranica-harun"
+        ],
+        "leaderPersonId": "harun-ar-rashid",
+        "leaderClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "iranica-harun"
+          ],
+          "noteSv": "Harun gör som kalif anspråk på religiös ledning; uppgiften gör honom inte till all islams oomstridde ledare."
+        }
+      },
+      "people": [
+        {
+          "id": "harun-ar-rashid",
+          "nameSv": "Harun ar-Rashid",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kalif",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "iranica-harun"
+            ]
+          },
+          "birth": {
+            "asWorded": "26 Ḏu’l-ḥejja 145/17 March 763; 1 Moḥarram 149/16 February 766",
+            "status": "uncertain",
+            "gameValue": "0766-01-01",
+            "noteSv": "Iranica återger födelsedatum 763 och 766 och föredrar det senare. Spelvärdet använder 1 januari 766; dagen är en spelkonvention.",
+            "sourceIds": [
+              "iranica-harun"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Han regerade 786–809 och dog den 24 mars 809 enligt källans datering.",
+            "sourceIds": [
+              "iranica-harun"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [
+            "zubayda-bint-jafar"
+          ],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Kalifen al-Mahdi",
+              "status": "sourced",
+              "sourceIds": [
+                "iranica-harun"
+              ]
+            }
+          ],
+          "uncertaintySv": "Källorna fastställer inte personens vistelseort den 25 december 800.",
+          "reign": {
+            "status": "sourced",
+            "start": {
+              "asWorded": "15 Rabiʿ I 170/14 September 786",
+              "sourceIds": [
+                "iranica-harun"
+              ]
+            },
+            "end": {
+              "asWorded": "3 Jomādā II 193/24 March 809",
+              "sourceIds": [
+                "iranica-harun"
+              ]
+            },
+            "sourceIds": [
+              "iranica-harun"
+            ]
+          },
+          "relationshipClaim": {
+            "status": "sourced",
+            "sourceIds": [
+              "tdv-zubayda"
+            ],
+            "noteSv": "TDV belägger äktenskapet med Zubayda. Den registrerade makarelationen återger den dokumenterade relationen; en tom lista över föräldralänkar betyder att inga sådana länkar har registrerats."
+          }
+        },
+        {
+          "id": "zubayda-bint-jafar",
+          "nameSv": "Zubayda bint Jaʿfar",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kalifens hustru",
+          "sex": "female",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "tdv-zubayda"
+            ]
+          },
+          "birth": {
+            "asWorded": "145 (762)",
+            "status": "uncertain",
+            "gameValue": "0762-01-01",
+            "noteSv": "TDV anger födelse år 145 AH (762), död år 216 AH (831) och ålder 71 utan att ange ålderns kalender. Skillnaden 216 minus 145 är 71; månår kan förena uppgifterna och ingen motsägelse är fastställd. Den 1 januari 762 är ett spelvärde, ingen historisk födelsedag.",
+            "sourceIds": [
+              "tdv-zubayda"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Hon gifte sig med Harun 165 (782) och dog 216 (831).",
+            "sourceIds": [
+              "tdv-zubayda"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [
+            "harun-ar-rashid"
+          ],
+          "kinship": [
+            {
+              "relation": "wife",
+              "ofPersonId": "harun-ar-rashid",
+              "ofSv": "Harun ar-Rashid",
+              "status": "sourced",
+              "sourceIds": [
+                "tdv-zubayda"
+              ]
+            }
+          ],
+          "uncertaintySv": "Källorna fastställer inte personens vistelseort den 25 december 800."
+        },
+        {
+          "id": "muhammad-al-amin",
+          "nameSv": "Muhammad al-Amin",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kalifens son och utsedde tronföljare",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "tdv-amin"
+            ]
+          },
+          "birth": {
+            "asWorded": "Şevval 170 (Nisan 787)",
+            "status": "uncertain",
+            "gameValue": "0787-01-01",
+            "noteSv": "Källan anger april 787 utan dag. Spelvärdet använder 1 januari enligt dossierns årskonvention.",
+            "sourceIds": [
+              "tdv-amin"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Källan anger födelse 787, tronföljarutnämning 792 och regering 809–813.",
+            "sourceIds": [
+              "tdv-amin"
+            ]
+          },
+          "legalParentIds": [
+            "harun-ar-rashid",
+            "zubayda-bint-jafar"
+          ],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": "harun-ar-rashid",
+              "ofSv": "Harun ar-Rashid",
+              "status": "sourced",
+              "sourceIds": [
+                "tdv-amin"
+              ]
+            },
+            {
+              "relation": "son",
+              "ofPersonId": "zubayda-bint-jafar",
+              "ofSv": "Zubayda bint Jaʿfar",
+              "status": "sourced",
+              "sourceIds": [
+                "tdv-amin"
+              ]
+            }
+          ],
+          "uncertaintySv": "Källorna fastställer inte personens vistelseort den 25 december 800.",
+          "heirDesignation": {
+            "status": "sourced",
+            "asWorded": "175/792; between 791 and 792",
+            "sourceIds": [
+              "tdv-amin",
+              "iranica-mamun"
+            ],
+            "noteSv": "Båda källorna placerar honom först i tronföljden före 800, trots att al-Maʾmun var äldre. De ger 792 respektive 791–792."
+          }
+        },
+        {
+          "id": "abdallah-al-mamun",
+          "nameSv": "Abdallah al-Maʾmun",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kalifens son",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "iranica-mamun",
+              "iranica-mothers"
+            ]
+          },
+          "birth": {
+            "asWorded": "b. 786; alternative 170/787",
+            "status": "uncertain",
+            "gameValue": "0786-01-01",
+            "noteSv": "Iranicas personartikel anger 786, medan dess artikel om slaveri trycker 170/787. Spelvärdet följer personartikeln och lägger dagen på 1 januari; källornas årtal lämnas oförändrade.",
+            "sourceIds": [
+              "iranica-mamun",
+              "iranica-mothers"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Personartikeln anger födelse 786 och död 833.",
+            "sourceIds": [
+              "iranica-mamun",
+              "iranica-mothers"
+            ]
+          },
+          "legalParentIds": [
+            "harun-ar-rashid"
+          ],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": "harun-ar-rashid",
+              "ofSv": "Harun ar-Rashid",
+              "status": "sourced",
+              "sourceIds": [
+                "iranica-mamun"
+              ]
+            },
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Marajel, en förslavad bihustru till Harun",
+              "status": "sourced",
+              "sourceIds": [
+                "iranica-mamun",
+                "iranica-mothers"
+              ]
+            }
+          ],
+          "uncertaintySv": "Källorna fastställer inte hans vistelseort den 25 december 800. Hans ställning som andra tronföljare på bokmärket är osäker.",
+          "heirDesignation": {
+            "status": "uncertain",
+            "asWorded": "six years after 175/792; pilgrimage 802",
+            "sourceIds": [
+              "tdv-amin",
+              "iranica-mamun"
+            ],
+            "noteSv": "TDV anger andra tronföljarutnämningen sex år efter 792, vilket ger 798. Iranica anger proklamationen vid vallfärden 802. En tidigare utnämning och senare bekräftelse kan förklara skillnaden, men passagerna avgör det inte."
+          }
+        },
+        {
+          "id": "muhammad-abu-ishaq",
+          "nameSv": "Muhammad Abu Ishaq",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kalifens son, senare känd som al-Muʿtasim",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "tdv-mutasim"
+            ]
+          },
+          "birth": {
+            "asWorded": "10 Şâban 180 (18 Ekim 796); alternative 179 (795)",
+            "status": "uncertain",
+            "gameValue": "0796-01-01",
+            "noteSv": "TDV anger 796 och alternativet 795. Spelvärdet använder 1 januari 796; det återger inget historiskt födelsedatum.",
+            "sourceIds": [
+              "tdv-mutasim"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Båda föreslagna födelseåren ligger före 800; källan anger död 227/842.",
+            "sourceIds": [
+              "tdv-mutasim"
+            ]
+          },
+          "legalParentIds": [
+            "harun-ar-rashid"
+          ],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": "harun-ar-rashid",
+              "ofSv": "Harun ar-Rashid",
+              "status": "sourced",
+              "sourceIds": [
+                "tdv-mutasim"
+              ]
+            },
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Mareda, en förslavad kvinna av sogdiskt ursprung",
+              "status": "sourced",
+              "sourceIds": [
+                "iranica-mothers"
+              ]
+            }
+          ],
+          "uncertaintySv": "Källorna fastställer inte hans vistelseort den 25 december 800. Ingen öppnad källa gör honom till utsedd tronföljare år 800."
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "al-Qasim, Haruns son",
+          "reason": "Belagd som son och tredje tronföljare 802. De öppnade passagerna ger ingen födelse eller handling före bokmärket.",
+          "sourceIds": [
+            "iranica-mamun",
+            "mwnf-raqqa"
+          ]
+        },
+        {
+          "who": "Marajel och Mareda",
+          "reason": "Moderskap och förslavad ställning är belagda; överlevnad till den 25 december 800 saknar belägg. Mödrarna får externa släktrelationer och inga äktenskapslänkar.",
+          "sourceIds": [
+            "iranica-mamun",
+            "iranica-mothers"
+          ]
+        },
+        {
+          "who": "Övriga hustrur, bihustrur och barn",
+          "reason": "De öppnade källorna ger ingen fullständig lista med belagd överlevnad på bokmärkesdagen.",
+          "sourceIds": [
+            "mwnf-raqqa",
+            "iranica-mothers"
+          ]
+        }
+      ],
+      "namePoolId": "abbasid-arabic-8th-9th-century",
+      "searchLog": [
+        "Opened Iranica Harun, Mamun and Barda PDFs, MWNF Palace B, TDV Zubayda/Emîn/Muʿtasim, and Getty Raqqa city record.",
+        "Searched institutional and scholarly sources for al-Qasim birth and exact-period marriages; no securely dated complete household found.",
+        "Name pool proposed but unbuilt; no generated people supplied."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 38,
+        "confirmed": 36,
+        "corrected": 2,
+        "dropped": 0,
+        "countScope": "Initial blind-review occurrences; follow-up checks are recorded separately.",
+        "followUp": {
+          "status": "complete",
+          "note": "Source-check follow-up occurrences and applied corrections are recorded separately in reviewSummary."
+        }
+      },
+      "readiness": {
+        "research": "ready",
+        "engine": "not-integrated"
+      },
+      "namePoolStatus": "proposed-unbuilt"
+    },
+    {
+      "polityId": "byzantine-empire",
+      "nameSv": "Bysantinska riket",
+      "sourceFeatureIndexes": [
+        152
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Kejsarinna",
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-do-eirene"
+        ],
+        "noteSv": "Svensk benämning på Eirenes roll som regerande kejsarinna."
+      },
+      "successionLaw": "none-fits",
+      "successionNoteSv": "Eirene tog ensam makten från sin son och föll senare för en palatskupp; varken primogenitur eller rådets meritval beskriver detta förlopp.",
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a1-do-eirene",
+          "a1-pbe-eirene"
+        ],
+        "noteSv": "Bedömning av två belagda maktövertaganden, ingen påstådd enhetlig bysantinsk arvslag."
+      },
+      "engineLimits": [
+        "female-ruler-succession",
+        "eunuch-status"
+      ],
+      "contextSv": "Eirene styr ensam sedan hon avsatte Konstantin VI år 797. Hon stöder bildvördnaden, som kyrkomötet i Nikaia återställde 787. Rådgivaren Aetios hör till hennes närmaste krets.",
+      "contextSourceIds": [
+        "a1-do-eirene",
+        "a1-pbe-aetios"
+      ],
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-do-eirene",
+          "a1-pbe-aetios"
+        ]
+      },
+      "seat": {
+        "settlementId": "constantinople",
+        "nameSv": "Konstantinopel",
+        "coordinates": [
+          28.9578,
+          41.011
+        ],
+        "gettyTgnId": "7002473",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=Istanbul&nation=&place=inhabited+place&subjectid=7002473",
+        "insideAcceptedPolygon": true,
+        "sourceIds": [
+          "a1-getty-constantinople",
+          "a1-pbe-eirene"
+        ],
+        "seatClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "a1-pbe-eirene"
+          ],
+          "noteSv": "Konstantinopel anges som kejsarinnans ämbetsort och residens."
+        },
+        "noteSv": "Ungefärlig ortsmarkör från Getty, ingen inmätt punkt för ett visst palats.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd",
+          "status": "uncertain",
+          "sourceIds": [
+            "a1-pbe-eirene"
+          ],
+          "noteSv": "Residenset är belagt, men den lästa källan anger ingen vistelseort för just bokmärkets dag."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a1-getty-data-license"
+          ],
+          "claimSv": "Getty gör alla data i sina vokabulärer, däribland TGN, tillgängliga enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "constantinopolitan-church",
+        "nameSv": "Kyrkan i Konstantinopel",
+        "status": "sourced",
+        "claimSv": "Eirene stödde patriarken Tarasios och återställandet av bildvördnaden; Tarasios innehade patriarkämbetet 784–806.",
+        "sourceIds": [
+          "a1-pbe-tarasios",
+          "a1-do-eirene"
+        ],
+        "leaderPersonId": "tarasios"
+      },
+      "people": [
+        {
+          "id": "eirene-of-athens",
+          "nameSv": "Eirene av Aten",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Regerande kejsarinna",
+          "sex": "female",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-do-eirene",
+              "a1-pbe-eirene"
+            ]
+          },
+          "reign": {
+            "asWorded": "797–802",
+            "startYear": 797,
+            "endYear": 802,
+            "status": "sourced",
+            "sourceIds": [
+              "a1-do-eirene"
+            ],
+            "noteSv": "Ensam regering enligt Dumbarton Oaks; inga exakta dagar har omräknats."
+          },
+          "birth": {
+            "asWorded": "c. 752",
+            "status": "uncertain",
+            "gameValue": "0752-01-01",
+            "noteSv": "Ungefärligt födelseår; 1 januari är ett spelvärde.",
+            "sourceIds": [
+              "a1-nce-eirene-birth"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Hon adresseras i ett brev 801 och avsätts 802.",
+            "sourceIds": [
+              "a1-pbe-eirene"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "widow",
+              "ofPersonId": null,
+              "ofSv": "Leo IV",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-pbe-leo-iv"
+              ]
+            },
+            {
+              "relation": "mother",
+              "ofPersonId": null,
+              "ofSv": "Konstantin VI",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-pbe-constantine-vi"
+              ]
+            }
+          ],
+          "uncertaintySv": "Födelseåret är ungefärligt. Hennes exakta vistelseort på bokmärkets dag är okänd. Ingen arvslag väljs genom att ändra historiska släktförhållanden."
+        },
+        {
+          "id": "aetios",
+          "nameSv": "Aetios",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Patrikios och rådgivare",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-pbe-aetios"
+            ]
+          },
+          "birth": {
+            "asWorded": "No birth date supplied",
+            "status": "generated",
+            "gameValue": "0750-01-01",
+            "noteSv": "Genererat födelsedatum för spelets åldersberäkning; källan anger ingen ålder.",
+            "sourceIds": []
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Källan beskriver hans verksamhet 800 och 801/802 samt hans död 811.",
+            "sourceIds": [
+              "a1-pbe-aetios"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "brother",
+              "ofPersonId": null,
+              "ofSv": "Leo, Aetios bror",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-pbe-aetios"
+              ]
+            }
+          ],
+          "uncertaintySv": "Källan beskriver Aetios som eunuck. Könskoden male anger ingen fertilitet. Spelet behöver bevara detta innan han används för familjebildning; hans senare militärbefäl backdateras inte."
+        },
+        {
+          "id": "tarasios",
+          "nameSv": "Tarasios",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Patriark av Konstantinopel",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-pbe-tarasios"
+            ]
+          },
+          "birth": {
+            "asWorded": "No birth date established in the inspected entry",
+            "status": "generated",
+            "gameValue": "0730-01-01",
+            "noteSv": "Genererat födelsedatum för spelets åldersberäkning, utan påstående om historisk födelsedag.",
+            "sourceIds": []
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Han innehade patriarkämbetet från 784 till 806.",
+            "sourceIds": [
+              "a1-pbe-tarasios"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [],
+          "uncertaintySv": "Han ingår som dokumenterad religionsledare. Ingen plats i kejsarinnans privata hushåll eller någon släktrelation till henne påstås."
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Leo IV",
+          "reason": "Died in 780; excluded from the living court and reciprocal spouse links.",
+          "sourceIds": [
+            "a1-pbe-leo-iv"
+          ]
+        },
+        {
+          "who": "Konstantin VI",
+          "reason": "The inspected PBE entry places his death in 797 while preserving contradictory later stories. Survival at the bookmark is not established.",
+          "sourceIds": [
+            "a1-pbe-constantine-vi"
+          ]
+        },
+        {
+          "who": "Staurakios",
+          "reason": "PBE dates the adviser's death to June 800. A conflicting later chronicle placement does not establish survival in December.",
+          "sourceIds": [
+            "a1-pbe-staurakios"
+          ]
+        },
+        {
+          "who": "Euphrosyne",
+          "reason": "Her parentage is documented, but the inspected account does not place her in Eirene's court in December 800. Childhood convent chronology remains tentative.",
+          "sourceIds": [
+            "a1-pbe-euphrosyne"
+          ]
+        }
+      ],
+      "namePoolId": "byzantine-greek-8c",
+      "searchLog": [
+        "Opened Dumbarton Oaks Eirene exhibit by direct HTTP after browser challenge.",
+        "Opened PBE entries for Eirene, Aetios, Tarasios, Constantine VI, Staurakios, Euphrosyne and Leo IV; kept manuscript citations as secondary provenance.",
+        "Opened New Catholic Encyclopedia reproduction for approximate birth only; did not adopt unrelated chronology assertions.",
+        "Opened Getty TGN 7002473 by direct HTTP; inspected decimal coordinate rows.",
+        "Loyola DIR Irene page failed browser fetching and direct DNS lookup; excluded as a source.",
+        "No exact-day itinerary or additional secure household member was established; the proposed name pool has not been built."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 21,
+        "confirmed": 20,
+        "corrected": 1,
+        "dropped": 0,
+        "countScope": "Initial blind-review occurrences; follow-up checks are recorded separately.",
+        "followUp": {
+          "status": "complete",
+          "note": "Source-check follow-up occurrences and applied corrections are recorded separately in reviewSummary."
+        }
+      },
+      "readiness": {
+        "research": "ready",
+        "engine": "not-integrated"
+      },
+      "namePoolStatus": "proposed-unbuilt"
+    },
+    {
+      "polityId": "silla",
+      "nameSv": "Silla",
+      "sourceFeatureIndexes": [
+        43
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Kung",
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-aks-aejang"
+        ],
+        "noteSv": "Svensk översättning av wang, kung, i källans regentbeskrivning."
+      },
+      "successionLaw": "primogeniture",
+      "successionNoteSv": "Kronprinsen efterträder sin far, men kungliga släktingar kan ta tronen med våld; spelets primogenitur förenklar denna ordning.",
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a1-nikh-heondeok",
+          "a1-aks-aejang"
+        ],
+        "noteSv": "Historikern beskriver legitim härstamning i följden Wonseong, Soseong och Aejang. Spelets automatiska och könsneutrala arvsordning är en tolkning, och källan belägger inget rådsval efter förmåga."
+      },
+      "engineLimits": [
+        "regency"
+      ],
+      "contextSv": "Den unge Aejang har tillträtt under 800. Farbrodern Kim Eon-seung tjänstgör som regent. Kungahuset har sitt säte i Gyeongju. I staden finns Hwangnyongsatemplet, som en tidigare kung lät grunda.",
+      "contextSourceIds": [
+        "a1-aks-aejang",
+        "a1-getty-gyeongju",
+        "a1-unesco-gyeongju"
+      ],
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-aks-aejang",
+          "a1-getty-gyeongju",
+          "a1-unesco-gyeongju"
+        ]
+      },
+      "seat": {
+        "settlementId": "gyeongju",
+        "nameSv": "Gyeongju",
+        "coordinates": [
+          129.2117,
+          35.8428
+        ],
+        "gettyTgnId": "7002225",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=7003692&nation=&place=&subjectid=7002225",
+        "insideAcceptedPolygon": true,
+        "sourceIds": [
+          "a1-getty-gyeongju",
+          "a1-unesco-gyeongju"
+        ],
+        "seatClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "a1-getty-gyeongju",
+            "a1-unesco-gyeongju"
+          ]
+        },
+        "noteSv": "Ungefärlig ortsmarkör från Getty för Sillas huvudstad. Punkten ligger inom den godkända spelpolygonen. Markören anger ingen palatsbyggnad.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd vistelseort den 25 december 800",
+          "status": "uncertain",
+          "sourceIds": [],
+          "noteSv": "Källorna belägger huvudstaden. De anger ingen vistelseort för kungen på bokmärkets dag."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a1-getty-data-license"
+          ],
+          "claimSv": "Getty gör alla data i sina vokabulärer, däribland TGN, tillgängliga enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "silla-royal-buddhism",
+        "nameSv": "Sillas kungliga buddhistiska tempel",
+        "status": "uncertain",
+        "claimSv": "Aejang hör till ett kungahus med buddhistiska tempel i huvudstaden; Hwangnyongsa grundades på en tidigare kungs befallning.",
+        "sourceIds": [
+          "a1-unesco-gyeongju",
+          "a1-aks-aejang"
+        ],
+        "leaderPersonId": null,
+        "noteSv": "UNESCO belägger den kungliga tempelmiljön. Att knyta just Aejang till den på bokmärkets dag kräver en tolkning. Hans senare kungahus stöder Haeinsa från 802, men det templet hör inte till starten år 800. Ingen belagd religiös ledare för år 800 har valts."
+      },
+      "people": [
+        {
+          "id": "aejang",
+          "nameSv": "Aejang",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kung av Silla",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-aks-aejang"
+            ],
+            "noteSv": "Han heter först Kim Cheongmyeong och senare Kim Jung-hui. Källan anger inget datum för namnbytet. Aejang är det vedertagna historiska kunganamnet."
+          },
+          "reign": {
+            "asWorded": "800~809",
+            "startYear": 800,
+            "endYear": 809,
+            "status": "sourced",
+            "sourceIds": [
+              "a1-aks-aejang"
+            ],
+            "noteSv": "Källan anger tillträde i den sjätte månaden år 800 och död i den sjunde månaden 809. Ingen dag har räknats om till spelkalendern."
+          },
+          "birth": {
+            "asWorded": "788(원성왕 4)",
+            "status": "uncertain",
+            "gameValue": "0788-01-01",
+            "noteSv": "Källan anger födelseåret 788, Wonseongs fjärde år. Den 1 januari är en spelteknisk dag. Källan använder både 12 och 13 år för hans ålder vid tillträdet; någon förklaring av åldersräkningen följer inte med.",
+            "sourceIds": [
+              "a1-aks-aejang"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Han tillträder under 800 och lever till 809 enligt källan.",
+            "sourceIds": [
+              "a1-aks-aejang"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "nephew",
+              "ofPersonId": "kim-eon-seung",
+              "ofSv": "Kim Eon-seung",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-aks-aejang",
+                "a1-nikh-heondeok"
+              ]
+            },
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Kung Soseong",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-aks-aejang"
+              ]
+            },
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Gyehwa",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-aks-aejang",
+                "a1-aks-gyehwa"
+              ]
+            }
+          ],
+          "uncertaintySv": "Regentskapet i början av regeringstiden har källstöd. Historikerna skiljer sig åt om när kungen började regera själv. Namnbytet från Cheongmyeong till Jung-hui kan inte dateras med de lästa källorna."
+        },
+        {
+          "id": "kim-eon-seung",
+          "nameSv": "Kim Eon-seung",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kungens farbror och regent",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-nikh-heondeok",
+              "a1-aks-aejang"
+            ]
+          },
+          "birth": {
+            "asWorded": null,
+            "status": "generated",
+            "gameValue": "0760-01-01",
+            "noteSv": "Födelsedatumet är ett genererat simuleringsvärde utan historiskt anspråk. Källan anger att födelseåret är okänt. År 760 ger en vuxen regent vid bokmärket.",
+            "sourceIds": []
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Han tjänstgör som regent från Aejangs tillträde och lever till 826 enligt källorna.",
+            "sourceIds": [
+              "a1-aks-aejang",
+              "a1-nikh-heondeok"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "uncle",
+              "ofPersonId": "aejang",
+              "ofSv": "Aejang",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-aks-aejang",
+                "a1-nikh-heondeok"
+              ]
+            },
+            {
+              "relation": "brother",
+              "ofPersonId": null,
+              "ofSv": "Kung Soseong",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-nikh-heondeok"
+              ]
+            }
+          ],
+          "uncertaintySv": "Hans födelseår är okänt. Han blir själv kung under namnet Heondeok år 809, efter bokmärket. Källorna anger olika släktled för hans hustru; ingen hustru har därför lagts till."
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Gyehwa, Aejangs mor",
+          "reason": "The source names her and her relationship but gives no death date. It refers to Tang documents of 805 and 808 without explicitly establishing that she was then alive; survival on the bookmark remains uncertain.",
+          "sourceIds": [
+            "a1-aks-gyehwa"
+          ]
+        },
+        {
+          "who": "Seongmok, Aejangs farmor",
+          "reason": "The Aejang article places her in the early regency but supplies no end date or later dated act proving survival to 25 December 800. Retained as a researched omission rather than an additional living household member.",
+          "sourceIds": [
+            "a1-aks-aejang"
+          ]
+        },
+        {
+          "who": "Kim Eon-seungs hustru och barn",
+          "reason": "The institutional biography describes conflicting kinship and parentage records. It does not establish a secure household roster at the bookmark.",
+          "sourceIds": [
+            "a1-nikh-heondeok"
+          ]
+        }
+      ],
+      "namePoolId": "silla-korean",
+      "namePoolStatus": "proposed-unbuilt",
+      "searchLog": [
+        "Read Academy of Korean Studies entries for Aejang and Gyehwa, including family, dates, age discrepancy and early regency.",
+        "Read National Institute of Korean History's Heondeok biography, including the 800 regency, 801 office, 809 coup, 826 death and the account of legitimate-descendant succession.",
+        "Withheld Gyehwa and Seongmok because the consulted passages did not prove survival to the exact bookmark; retained Eon-seung because his dated later career and death do.",
+        "Read UNESCO on Gyeongju palace and Buddhist temple remains and Getty TGN 7002225 for the historical capital and coordinates. Found no named religious head or exact-day royal whereabouts.",
+        "Did not retroject Haeinsa's foundation in 802 into the year 800.",
+        "The proposed silla-korean name pool has not been built in this research subtask."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 20,
+        "confirmed": 20,
+        "corrected": 0,
+        "dropped": 0,
+        "countScope": "Initial blind-review occurrences; follow-up checks are recorded separately.",
+        "followUp": {
+          "status": "complete",
+          "note": "Source-check follow-up occurrences and applied corrections are recorded separately in reviewSummary."
+        }
+      },
+      "readiness": {
+        "research": "ready",
+        "engine": "not-integrated"
+      }
+    },
+    {
+      "polityId": "emirate-of-cordoba",
+      "nameSv": "Emiratet Córdoba",
+      "sourceFeatureIndexes": [
+        31
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Emir",
+      "successionLaw": "none-fits",
+      "successionLawMapping": {
+        "status": "generated",
+        "sourceIds": [],
+        "noteSv": "Forskningsförslag för spelreglerna; ingen historisk lagtext."
+      },
+      "successionNoteSv": "Källan belägger en trohetsed till sonen strax före 822; tronföljdspraktiken vid starten år 800 förblir osäker.",
+      "engineLimits": [],
+      "contextSv": "al-Hakam I regerar som emir av Córdoba sedan 796. Hans son Abd al-Rahman, född 792, hör till den härskande familjen.",
+      "contextSourceIds": [
+        "a1-west-rah-hakam",
+        "a1-west-toledo-abdrahman"
+      ],
+      "seat": {
+        "settlementId": "cordoba",
+        "nameSv": "Córdoba",
+        "coordinates": [
+          -4.7667,
+          37.8833
+        ],
+        "gettyTgnId": "7007513",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=Heidelberg&nation=&place=inhabited+place&subjectid=7007513",
+        "insideAcceptedPolygon": true,
+        "coordinatesClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "a1-west-getty-cordoba"
+          ]
+        },
+        "sourceIds": [
+          "a1-west-getty-cordoba",
+          "a1-west-rah-hakam"
+        ],
+        "noteSv": "Ungefärlig ortsmarkör från Getty. Punkten ligger inom den godkända spelpolygonen.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd vistelseort den 25 december 800",
+          "status": "uncertain",
+          "sourceIds": [],
+          "noteSv": "Källorna anger ingen vistelseort för denna dag."
+        },
+        "seatClaim": {
+          "status": "uncertain",
+          "sourceIds": [
+            "a1-west-rah-hakam"
+          ],
+          "noteSv": "Källan titulerar honom emir av Córdoba; hovsätet är ett forskningsförslag och dagläget är okänt."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a1-getty-data-license"
+          ],
+          "claimSv": "Getty gör alla data i sina vokabulärer, däribland TGN, tillgängliga enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "congregational-mosque-unspecified",
+        "nameSv": "En fredagsmoské, ort okänd",
+        "status": "uncertain",
+        "claimSv": "Under al-Hakam I:s regering tog Almugira, som källan kallar andre arvinge, emot folkets trohetseder vid en mosképulpet.",
+        "sourceIds": [
+          "a1-west-csic-mosque"
+        ],
+        "leaderPersonId": null,
+        "noteSv": "Den lästa CSIC-passagen anger varken moskéns stad eller att händelsen inträffade år 800."
+      },
+      "people": [
+        {
+          "id": "al-hakam-i",
+          "nameSv": "al-Hakam I",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Emir av Córdoba",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-rah-hakam",
+              "a1-west-tdv-hakam"
+            ]
+          },
+          "role": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-rah-hakam",
+              "a1-west-tdv-hakam"
+            ]
+          },
+          "birth": {
+            "asWorded": "154 (771)",
+            "status": "uncertain",
+            "gameValue": "0771-01-01",
+            "noteSv": "Källan motsvarar år 154 med 771. Den 1 januari är ett spelvärde; källan anger ingen födelsedag.",
+            "sourceIds": [
+              "a1-west-tdv-hakam"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-rah-hakam",
+              "a1-west-tdv-hakam"
+            ],
+            "noteSv": "Han regerade 796–822."
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Hisham I",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-west-rah-hakam"
+              ]
+            }
+          ],
+          "uncertaintySv": "Exakt vistelseort på startdagen är okänd.",
+          "reign": {
+            "asWorded": "796-822; 180-206",
+            "status": "sourced",
+            "startYear": 796,
+            "endYear": 822,
+            "sourceIds": [
+              "a1-west-rah-hakam",
+              "a1-west-tdv-hakam"
+            ],
+            "chronology": "796-822; 180-206"
+          }
+        },
+        {
+          "id": "abd-al-rahman-ii",
+          "nameSv": "Abd al-Rahman II",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Emirens son",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-toledo-abdrahman"
+            ]
+          },
+          "role": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-toledo-abdrahman"
+            ]
+          },
+          "birth": {
+            "asWorded": "a finales del año 792",
+            "status": "uncertain",
+            "gameValue": "0792-01-01",
+            "noteSv": "Källan anger slutet av 792. Den 1 januari är spelets årsplatshållare och avser ingen historisk födelsedag.",
+            "sourceIds": [
+              "a1-west-toledo-abdrahman"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-toledo-abdrahman"
+            ],
+            "noteSv": "Han föddes 792 och dog 852."
+          },
+          "legalParentIds": [
+            "al-hakam-i"
+          ],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": "al-hakam-i",
+              "ofSv": "al-Hakam I",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-west-toledo-abdrahman"
+              ]
+            },
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Halawa",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-west-toledo-abdrahman"
+              ]
+            }
+          ],
+          "uncertaintySv": "Exakt vistelseort på startdagen är okänd.",
+          "relationshipEncoding": {
+            "status": "generated",
+            "sourceIds": [],
+            "noteSv": "Den registrerade föräldralänken återger den dokumenterade fadersrelationen som redaktionellt spelvärde och fastställer ingen juridisk klassificering. En tom lista över makarelationer betyder att ingen make eller maka har registrerats; civilståndet år 800 är okänt."
+          }
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Halawa",
+          "reason": "Källan namnger modern till Abd al-Rahman men anger inte att hon levde år 800.",
+          "sourceIds": [
+            "a1-west-toledo-abdrahman"
+          ]
+        },
+        {
+          "who": "al-Mughira",
+          "reason": "Källan kallar honom andre arvinge under regeringstiden; födelse och liv år 800 saknar stöd.",
+          "sourceIds": [
+            "a1-west-csic-mosque"
+          ]
+        }
+      ],
+      "namePoolId": "andalusi-arabic-ad800-proposed",
+      "searchLog": [
+        "Opened RAH public book description and Toledo academy2021 article for reign and father-son relation.",
+        "TDV gives birth and the source's own Hijri/CE dating.",
+        "Excluded RAH797/Toledo807 trench episode from context because chronology conflicts.",
+        "The proposed name pool has not been authored.",
+        "Independent review could not inspect de la Puente PDF; the older-brother assertion and source were removed."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 19,
+        "confirmed": 16,
+        "corrected": 2,
+        "dropped": 1,
+        "countScope": "Initial blind-review occurrences; follow-up checks are recorded separately.",
+        "followUp": {
+          "status": "complete",
+          "note": "Source-check follow-up occurrences and applied corrections are recorded separately in reviewSummary."
+        }
+      },
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-west-rah-hakam"
+        ]
+      },
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a1-west-toledo-abdrahman"
+        ],
+        "noteSv": "Källan belägger att al-Hakam lät sonen ta emot trohetsed strax före tillträdet 822. Den fastställer ingen successionspraktik eller utsedd arvinge för år 800."
+      },
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-west-rah-hakam",
+          "a1-west-toledo-abdrahman"
+        ]
+      },
+      "readiness": {
+        "research": "ready",
+        "engine": "not-integrated"
+      },
+      "namePoolStatus": "proposed-unbuilt"
+    },
+    {
+      "polityId": "aghlabid-emirate",
+      "nameSv": "Aghlabidiska emiratet",
+      "sourceFeatureIndexes": [
+        27
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Emir",
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "tdv-ibrahim"
+        ],
+        "noteSv": "Källan kallar honom dynastins förste emir och beskriver ämbetet som abbasidisk guvernör."
+      },
+      "successionLaw": "none-fits",
+      "successionNoteSv": "Kalifen utnämnde Ibrahim, vars familj sedan behöll makten genom sönernas tronföljd; källorna belägger ingen automatisk företrädesrätt för äldste sonen.",
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "tdv-ibrahim",
+          "kennedy-aghlabids"
+        ],
+        "noteSv": "TDV säger att Harun godtog far-till-son-följd. Kennedy betonar att sönerna saknade känd kalifutnämning och tog över under kalifatets senare kris. År 800 kan man därför inte förutsätta en färdig successionslag."
+      },
+      "engineLimits": [],
+      "engineRepresentationNoteSv": "Familjens senare maktinnehav räcker inte för att sätta primogenitur som historisk lag. Hustrur och flera söner saknar datumstöd i de öppnade passagerna.",
+      "contextSv": "Harun ar-Rashid har utsett Ibrahim ibn al-Aghlab till guvernör i Ifriqiya. Utnämningsbrevet kom i juni 800. Ibrahim erkänner kalifens överhöghet och etablerar sin familjs makt kring Kairouan. Källorna fastställer inte vilket palats han använde på bokmärkesdagen.",
+      "contextSourceIds": [
+        "kennedy-aghlabids",
+        "tdv-ibrahim"
+      ],
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "kennedy-aghlabids",
+          "tdv-ibrahim"
+        ]
+      },
+      "seat": {
+        "settlementId": "kairouan",
+        "nameSv": "Kairouan",
+        "coordinates": [
+          10.0167,
+          35.7
+        ],
+        "gettyTgnId": "7000986",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?find=Kairouan&place=&nation=&prev_page=1&english=Y&subjectid=7000986",
+        "insideAcceptedPolygon": true,
+        "seatClaim": {
+          "status": "uncertain",
+          "sourceIds": [
+            "getty-kairouan",
+            "tdv-ibrahim",
+            "kennedy-aghlabids"
+          ],
+          "noteSv": "Kairouan är belagd som huvudort. Ingen öppnad källa daterar Ibrahims flytt till det nya palatsområdet inom 800."
+        },
+        "sourceIds": [
+          "getty-kairouan",
+          "tdv-ibrahim",
+          "kennedy-aghlabids"
+        ],
+        "noteSv": "Getty anger en ortspunkt för Kairouan: [10.0167, 35.7000] i ordningen [longitud, latitud]. Ibrahim anlade al-Abbasiyya nära staden; Kennedy beskriver palatsområdet som senare kallat al-Qasr al-Qadim. Kairouan används här som ortsmarkör. De lästa passagerna daterar inte hovets flytt inom 800 och belägger ingen vistelseort den 25 december 800.",
+        "rulerOnBookmark": {
+          "placeSv": "Kairouans område; exakt palats och vistelseort okända",
+          "status": "uncertain",
+          "sourceIds": [
+            "kennedy-aghlabids",
+            "tdv-ibrahim"
+          ],
+          "noteSv": "Källorna fastställer inte var Ibrahim befann sig den 25 december 800."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a1-getty-data-license"
+          ],
+          "claimSv": "Getty gör alla data i sina vokabulärer, däribland TGN, tillgängliga enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "islam",
+        "nameSv": "Islam under den abbasidiske kalifen",
+        "claimSv": "Ibrahim styrde som muslimsk guvernör och erkände den abbasidiske kalifens överhöghet; de öppnade källorna fastställer ingen exklusiv rättsskola för honom på bokmärkesdagen.",
+        "status": "sourced",
+        "sourceIds": [
+          "kennedy-aghlabids",
+          "tdv-ibrahim"
+        ],
+        "leaderPersonId": null,
+        "externalLeader": {
+          "nameSv": "Harun ar-Rashid",
+          "roleSv": "Erkänd abbasidisk kalif",
+          "status": "sourced",
+          "sourceIds": [
+            "tdv-ibrahim"
+          ]
+        },
+        "doctrinalScope": {
+          "status": "uncertain",
+          "sourceIds": [
+            "tdv-aghlabids"
+          ],
+          "noteSv": "TDV beskriver hanafitiska och malikitiska miljöer under dynastin som helhet. Det räcker inte för att ge år 800 en exklusiv statlig rättsskola eller senare muʿtazilitisk statsdoktrin."
+        }
+      },
+      "people": [
+        {
+          "id": "ibrahim-ibn-al-aghlab",
+          "nameSv": "Ibrahim ibn al-Aghlab",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Emir och abbasidisk guvernör i Ifriqiya",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "tdv-ibrahim"
+            ]
+          },
+          "birth": {
+            "asWorded": "140 (757–58)",
+            "status": "uncertain",
+            "gameValue": "0757-01-01",
+            "noteSv": "Källan anger två möjliga år. Spelvärdet använder det tidigare året och 1 januari; dagen är en spelkonvention.",
+            "sourceIds": [
+              "tdv-ibrahim"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Han tillträdde i juni 800 och dog den 5 juli 812 enligt källornas dateringar.",
+            "sourceIds": [
+              "tdv-ibrahim",
+              "kennedy-aghlabids"
+            ]
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "al-Aghlab ibn Salim",
+              "status": "sourced",
+              "sourceIds": [
+                "tdv-ibrahim"
+              ]
+            }
+          ],
+          "uncertaintySv": "Källorna fastställer inte hans vistelseort den 25 december 800.",
+          "reign": {
+            "status": "sourced",
+            "start": {
+              "asWorded": "middle of Jumada II 184/June 800",
+              "sourceIds": [
+                "kennedy-aghlabids"
+              ]
+            },
+            "end": {
+              "asWorded": "21 Şevval 196 (5 Temmuz 812)",
+              "sourceIds": [
+                "tdv-ibrahim"
+              ]
+            },
+            "sourceIds": [
+              "kennedy-aghlabids",
+              "tdv-ibrahim"
+            ]
+          }
+        },
+        {
+          "id": "ziyadat-allah-ibn-ibrahim",
+          "nameSv": "Ziyadat Allah ibn Ibrahim",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Emirens son",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "tdv-ziyadat"
+            ]
+          },
+          "birth": {
+            "asWorded": "172 (788–89)",
+            "status": "uncertain",
+            "gameValue": "0788-01-01",
+            "noteSv": "Källan anger två möjliga år. Spelvärdet använder det tidigare året och 1 januari; dagen är en spelkonvention.",
+            "sourceIds": [
+              "tdv-ziyadat"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "noteSv": "Källan anger födelse 788–789 och död 838.",
+            "sourceIds": [
+              "tdv-ziyadat"
+            ]
+          },
+          "legalParentIds": [
+            "ibrahim-ibn-al-aghlab"
+          ],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": "ibrahim-ibn-al-aghlab",
+              "ofSv": "Ibrahim ibn al-Aghlab",
+              "status": "sourced",
+              "sourceIds": [
+                "tdv-ziyadat"
+              ]
+            }
+          ],
+          "uncertaintySv": "Källorna fastställer inte hans vistelseort den 25 december 800."
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Abu al-Abbas Abdullah ibn Ibrahim",
+          "reason": "Belagd som son och efterträdare 812, men de öppnade passagerna anger ingen födelse före 800 eller vistelse i hushållet på bokmärkesdagen.",
+          "sourceIds": [
+            "tdv-ibrahim",
+            "kennedy-aghlabids"
+          ]
+        },
+        {
+          "who": "Muhammad ibn Ibrahim och al-Aghlab ibn Ibrahim",
+          "reason": "Kennedy belägger sonen Muhammad i kalifatets senare inbördeskrig; TDV namnger al-Aghlab som efterträdare 838. Ingen öppnad passage ger födelse före 800 eller vistelse vid hovet på bokmärket.",
+          "sourceIds": [
+            "kennedy-aghlabids",
+            "tdv-ziyadat"
+          ]
+        },
+        {
+          "who": "Ibrahims hustru eller hustrur och andra barn",
+          "reason": "De öppnade källorna ger ingen hustru eller andra barn med belagt hushållsmedlemskap och liv före den 25 december 800.",
+          "sourceIds": [
+            "tdv-ibrahim",
+            "tdv-ziyadat"
+          ]
+        }
+      ],
+      "namePoolId": "ifriqiyan-arabic-8th-9th-century",
+      "searchLog": [
+        "Opened TDV İBRÂHİM I, ZİYÂDETULLAH I and AĞLEBÎLER; Getty al-Qayrawān inhabited-place record.",
+        "Read Kennedy printed pp. 44–46 from downloaded PDF bytes using pypdf; checked foundation within 800, palace, and succession.",
+        "Searched for named wives and pre-800 birth evidence for Abdullah and other sons; none secured from an opened passage.",
+        "Name pool proposed but unbuilt; no generated people supplied."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 19,
+        "confirmed": 19,
+        "corrected": 0,
+        "dropped": 0,
+        "countScope": "Initial blind-review occurrences; follow-up checks are recorded separately.",
+        "followUp": {
+          "status": "complete",
+          "note": "Source-check follow-up occurrences and applied corrections are recorded separately in reviewSummary."
+        }
+      },
+      "readiness": {
+        "research": "ready",
+        "engine": "not-integrated"
+      },
+      "namePoolStatus": "proposed-unbuilt"
+    },
+    {
+      "polityId": "kingdom-of-asturias",
+      "nameSv": "Kungariket Asturien",
+      "sourceFeatureIndexes": [
+        28
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Kung",
+      "successionLaw": "none-fits",
+      "successionLawMapping": {
+        "status": "generated",
+        "sourceIds": [],
+        "noteSv": "Forskningsförslag för spelreglerna; ingen historisk lagtext."
+      },
+      "successionNoteSv": "Stormännen medverkade i kungaval inom den härskande släkten; varken strikt förstfödslorätt eller ett fritt duglighetsval återger detta.",
+      "engineLimits": [
+        "elective-rule",
+        "no-sourced-household"
+      ],
+      "contextSv": "Alfonso II den kyske regerar i Asturien. Han stöder kyrkorna och utvecklar kungasätet Oviedo.",
+      "contextSourceIds": [
+        "a1-west-arias-oviedo",
+        "a1-west-venegas-succession"
+      ],
+      "seat": {
+        "settlementId": "oviedo",
+        "nameSv": "Oviedo",
+        "coordinates": [
+          -5.8333,
+          43.3667
+        ],
+        "gettyTgnId": "7008910",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7008910",
+        "insideAcceptedPolygon": true,
+        "coordinatesClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "a1-west-getty-oviedo"
+          ]
+        },
+        "sourceIds": [
+          "a1-west-getty-oviedo",
+          "a1-west-arias-oviedo"
+        ],
+        "noteSv": "Ungefärlig ortsmarkör från Getty. Punkten ligger inom den godkända spelpolygonen.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd vistelseort den 25 december 800",
+          "status": "uncertain",
+          "sourceIds": [],
+          "noteSv": "Källorna anger ingen vistelseort för denna dag."
+        },
+        "seatClaim": {
+          "status": "uncertain",
+          "sourceIds": [
+            "a1-west-arias-oviedo",
+            "a1-west-getty-oviedo"
+          ],
+          "noteSv": "Arias anger kungasäte från 791; Getty anger huvudstad från 810. Spelet använder Oviedo som osäkert hovsäte för år 800."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a1-getty-data-license"
+          ],
+          "claimSv": "Getty gör alla data i sina vokabulärer, däribland TGN, tillgängliga enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "asturian-church",
+        "nameSv": "Kyrkan i Asturien",
+        "status": "sourced",
+        "claimSv": "Alfonso II stödjer kyrkorna i Oviedo; krönikörerna beskriver hans kristna smörjelse.",
+        "sourceIds": [
+          "a1-west-venegas-succession"
+        ],
+        "leaderPersonId": null
+      },
+      "people": [
+        {
+          "id": "alfonso-ii-asturias",
+          "nameSv": "Alfonso II den kyske",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kung av Asturien",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-arias-oviedo",
+              "a1-west-venegas-succession"
+            ]
+          },
+          "role": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-arias-oviedo",
+              "a1-west-venegas-succession"
+            ]
+          },
+          "birth": {
+            "asWorded": null,
+            "status": "generated",
+            "gameValue": "0750-01-01",
+            "noteSv": "Simulerat födelsedatum för spelet. Datumet anger inget historiskt födelseår.",
+            "sourceIds": []
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-arias-oviedo",
+              "a1-west-solano-household"
+            ],
+            "noteSv": "Tillträdet 791 och döden 842 belägger liv vid bokmärket."
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Fruela I",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-west-arias-oviedo"
+              ]
+            }
+          ],
+          "uncertaintySv": "Exakt vistelseort på startdagen är okänd.",
+          "reign": {
+            "asWorded": "791; 842",
+            "status": "sourced",
+            "startYear": 791,
+            "endYear": 842,
+            "sourceIds": [
+              "a1-west-arias-oviedo",
+              "a1-west-solano-household"
+            ],
+            "chronology": "791; 842",
+            "noteSv": "Arias daterar tillträdet till 791; Solano anger dödsåret 842. Källorna ger ingen obruten vistelseberättelse."
+          }
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Bertinalda/Berta",
+          "reason": "Solano avvisar henne som historisk maka; hovmedlemskap saknar stöd.",
+          "sourceIds": [
+            "a1-west-solano-household"
+          ]
+        },
+        {
+          "who": "Ximena",
+          "reason": "Den föreslagna systerns identitet och släktskap hör till omstridd tradition; inget belägg placerar henne i hovet år 800.",
+          "sourceIds": [
+            "a1-west-solano-household"
+          ]
+        },
+        {
+          "who": "Adosinda och Ramiro I",
+          "reason": "Katalogen belägger Adosindas släktskap och Venegas beskriver Ramiros senare succession. Ingen läst passage placerar dem vid hovet den 25 december 800 eller belägger Adosindas liv då.",
+          "sourceIds": [
+            "a1-west-arias-oviedo",
+            "a1-west-venegas-succession"
+          ]
+        }
+      ],
+      "namePoolId": "asturian-ad800-proposed",
+      "searchLog": [
+        "Searched University of Oviedo and institutional histories for Alfonso II's consort and children; Solano's2018 monograph rejects Bertinalda.",
+        "PARES authority48114 returned HTTP429 in web and requests; no claim cites it.",
+        "An Instituto Cervantes biography returned404; no claim cites it.",
+        "The proposed name pool has not been authored."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 13,
+        "confirmed": 13,
+        "corrected": 0,
+        "dropped": 0,
+        "countScope": "Initial blind-review occurrences; follow-up checks are recorded separately.",
+        "followUp": {
+          "status": "complete",
+          "note": "Source-check follow-up occurrences and applied corrections are recorded separately in reviewSummary."
+        }
+      },
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-west-arias-oviedo"
+        ]
+      },
+      "successionClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-west-venegas-succession"
+        ],
+        "uncertaintySv": "Källorna beskriver historiska maktskiften; de fastställer ingen fullständig successionsregel för startdagen."
+      },
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-west-arias-oviedo",
+          "a1-west-venegas-succession"
+        ]
+      },
+      "readiness": {
+        "research": "ready",
+        "engine": "not-integrated"
+      },
+      "namePoolStatus": "proposed-unbuilt"
+    },
+    {
+      "polityId": "duchy-of-benevento",
+      "nameSv": "Furstendömet Benevento",
+      "sourceFeatureIndexes": [
+        29
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Furste",
+      "successionLaw": "none-fits",
+      "successionLawMapping": {
+        "status": "generated",
+        "sourceIds": [],
+        "noteSv": "Forskningsförslag för spelreglerna; ingen historisk lagtext."
+      },
+      "successionNoteSv": "Grimoald ärvde makten efter förhandlingar; efter hans död utan direkta arvingar tog en hovämbetsman över.",
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "contextSv": "Grimoald III regerar som furste av Benevento. Han försvarar sitt självstyre mot frankiska ingrepp.",
+      "contextSourceIds": [
+        "a1-west-treccani-grimoaldo"
+      ],
+      "seat": {
+        "settlementId": "benevento",
+        "nameSv": "Benevento",
+        "coordinates": [
+          14.75,
+          41.1333
+        ],
+        "gettyTgnId": "7004393",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7004393",
+        "insideAcceptedPolygon": true,
+        "coordinatesClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "a1-west-getty-benevento"
+          ]
+        },
+        "sourceIds": [
+          "a1-west-getty-benevento",
+          "a1-west-treccani-grimoaldo"
+        ],
+        "noteSv": "Ungefärlig ortsmarkör från Getty. Punkten ligger inom den godkända spelpolygonen.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd vistelseort den 25 december 800",
+          "status": "uncertain",
+          "sourceIds": [],
+          "noteSv": "Källorna anger ingen vistelseort för denna dag."
+        },
+        "seatClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "a1-west-treccani-grimoaldo"
+          ],
+          "noteSv": "Grimoald inledde sitt styre i Benevento. Källan ger ingen plats för startdagen."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a1-getty-data-license"
+          ],
+          "claimSv": "Getty gör alla data i sina vokabulärer, däribland TGN, tillgängliga enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "beneventan-church",
+        "nameSv": "Domkyrkan i Benevento",
+        "status": "sourced",
+        "claimSv": "Grimoald tackade Gud i domkyrkan när han tillträdde.",
+        "sourceIds": [
+          "a1-west-treccani-grimoaldo"
+        ],
+        "leaderPersonId": null
+      },
+      "people": [
+        {
+          "id": "grimoald-iii-benevento",
+          "nameSv": "Grimoald III",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Furste av Benevento",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-treccani-grimoaldo"
+            ]
+          },
+          "role": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-treccani-grimoaldo"
+            ]
+          },
+          "birth": {
+            "asWorded": "entro il settimo decennio del secolo",
+            "status": "uncertain",
+            "gameValue": "0765-01-01",
+            "noteSv": "Författaren anger ett ungefärligt årtionde. Spelet använder 765 och den 1 januari som osäkra platshållare.",
+            "sourceIds": [
+              "a1-west-treccani-grimoaldo"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a1-west-treccani-grimoaldo"
+            ],
+            "noteSv": "Han regerade till april 806."
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Arechis II",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-west-treccani-grimoaldo"
+              ]
+            },
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Adelperga",
+              "status": "sourced",
+              "sourceIds": [
+                "a1-west-treccani-grimoaldo"
+              ]
+            }
+          ],
+          "uncertaintySv": "Exakt vistelseort på startdagen är okänd.",
+          "reign": {
+            "asWorded": "dal maggio del 788 all'aprile dell'806",
+            "status": "sourced",
+            "startYear": 788,
+            "endYear": 806,
+            "sourceIds": [
+              "a1-west-treccani-grimoaldo"
+            ],
+            "chronology": "dal maggio del 788 all'aprile dell'806"
+          }
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Ewanzia",
+          "reason": "Grimoald försköt Ewanzia under de fortsatta konflikterna med frankerna. Författaren placerar äktenskapets försämring möjligen 795 och daterar inte själva förskjutandet till det året. Hennes ställning och närvaro den 25 december 800 är obelagda; utelämnandet är en försiktighetsåtgärd.",
+          "sourceIds": [
+            "a1-west-treccani-grimoaldo"
+          ]
+        },
+        {
+          "who": "Adelperga",
+          "reason": "Källan anger moderns regentskap 787–788 men styrker inte att hon levde vid hovet år 800.",
+          "sourceIds": [
+            "a1-west-treccani-grimoaldo"
+          ]
+        }
+      ],
+      "namePoolId": "beneventan-lombard-ad800-proposed",
+      "searchLog": [
+        "Opened full Treccani DBI article with Python requests HTTP200 after the web tool returned a shortened rendering.",
+        "Treccani calls this ruler the first prince of his name; modern Grimoald III numbering counts earlier ducal rulers.",
+        "The proposed name pool has not been authored."
+      ],
+      "reviewCorrections": [
+        {
+          "file": "ad800-review.json",
+          "path": "mapMappings[2].nameSv",
+          "problem": "The retained polity id says duchy; the ruler's title and polity form were princely by800.",
+          "proposal": "Keep stable duchy-of-benevento id; display Furstendömet Benevento and Furste after checking affected labels.",
+          "sourceIds": [
+            "a1-west-treccani-grimoaldo"
+          ]
+        }
+      ],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 14,
+        "confirmed": 13,
+        "corrected": 1,
+        "dropped": 0,
+        "countScope": "Initial blind-review occurrences; follow-up checks are recorded separately.",
+        "followUp": {
+          "status": "complete",
+          "note": "Source-check follow-up occurrences and applied corrections are recorded separately in reviewSummary."
+        }
+      },
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-west-treccani-grimoaldo"
+        ]
+      },
+      "successionClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-west-treccani-grimoaldo"
+        ],
+        "uncertaintySv": "Källorna beskriver historiska maktskiften; de fastställer ingen fullständig successionsregel för startdagen."
+      },
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a1-west-treccani-grimoaldo"
+        ]
+      },
+      "readiness": {
+        "research": "ready",
+        "engine": "not-integrated"
+      },
+      "namePoolStatus": "proposed-unbuilt"
+    }
+  ],
+  "reviewSummary": {
+    "status": "checked",
+    "initialBlind": {
+      "checkedBy": "Codex independent check",
+      "checkedOn": "2026-11-07",
+      "claimsChecked": 160,
+      "confirmed": 153,
+      "corrected": 6,
+      "dropped": 1
+    },
+    "supplement": {
+      "claimsChecked": 4,
+      "confirmed": 3,
+      "corrected": 0,
+      "unsupported": 1,
+      "countScope": "Separate review occurrences, not additional unique initial claims.",
+      "note": "Three historical follow-up claims confirmed. An overbroad file-compliance licensing claim was unsupported; the final packet narrows it to the Getty data-licensing premise.",
+      "status": "checked",
+      "checkedBy": "Codex independent check",
+      "checkedOn": "2026-11-07"
+    },
+    "finalScoped": {
+      "status": "checked",
+      "checkedBy": "Codex independent check",
+      "checkedOn": "2026-11-07",
+      "claimsChecked": 16,
+      "confirmed": 15,
+      "corrected": 1,
+      "unsupported": 0,
+      "countScope": "Separate follow-up review occurrences; no claim of additional unique initial claims.",
+      "correctionsApplied": true,
+      "note": "Aghlabid palace note narrowed to the source-supported construction and undated relocation. The modern-centre comparison and redundant polygon sentence were removed. Aejang name-change and Aghlabid palace-alias notes were included in this check."
+    }
+  }
+}
