@@ -1,5 +1,5 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "../../../server/historicalPreparation.js";
-import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade } from "../../../server/historicalStarts.js";
+import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade, withLibraryFields } from "../../../server/historicalStarts.js";
 import { withScenarioLicense, preserveComponentProvenance } from "../scenarioLicense.js";
 /*! Open Historia — web-mode library/scenario/game/runtime store © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 // Browser (IndexedDB) port of server/libraryStore.js. Backs /api/library,
@@ -1495,8 +1495,8 @@ const installShippedStart = async (entry) => {
 };
 
 // An installed copy older than the shipped start is replaced where it stands: its place in the
-// order, the selection and createdAt stay. A start the player deleted is absent from the manifest
-// and stays deleted. Campaigns keep their own game and world data, which this never writes.
+// order, the selection and the library's own meta fields (createdAt, playCount and the rest) stay.
+// A start the player deleted is absent from the manifest and stays deleted. Campaigns keep their own game and world data, which this never writes.
 const upgradeShippedStart = async (entry) => {
   if (!(await getScenarioManifest()).order.includes(entry.id)) return;
   const stored=await getScenario(entry.id);
@@ -1509,7 +1509,7 @@ const upgradeShippedStart = async (entry) => {
     return;
   }
   const record=bundleScenarioRecord(bundle,entry.id);
-  record.meta.createdAt=stored.meta?.createdAt ?? record.meta.createdAt;
+  record.meta=withLibraryFields(stored.meta,record.meta);
   requirePrepared(validatePlayableScenario(await scenarioCandidate(record)));
   await persistScenarioRecord(record);
   console.info(`[historical start] ${entry.id} updated to ${entry.contentVersion}`);

@@ -293,6 +293,8 @@ test('a desktop library read replaces an older shipped start in place and leaves
     // That release shipped 1.0.0, so the installed start and the campaign both carry it.
     ageToFirstRelease({ worldPath, citiesPath });
     editJson(path.join(campaign,'world.json'),world => { world.historicalScenario.contentVersion = '1.0.0'; });
+    // The player has started this start five times and renamed a country on it.
+    editJson(metaPath,meta => { meta.playCount = 5; meta.countryNameOverrides = { 'papal-states': 'Påvens land' }; });
     const manifest = readJson(manifestPath), untouched = files(campaign,egypt);
     assert.equal(manifest.selectedScenarioId,'egypt-3000bc');
     // (a) The next read replaces the old copy where it stands, map files included.
@@ -301,6 +303,9 @@ test('a desktop library read replaces an older shipped start in place and leaves
     assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the installed copy is the shipped 1.1.0');
     assert.equal(romeIsSeat(citiesPath),true,'the 1.1.0 city file makes Rome a seat');
     assert.equal(readJson(metaPath).createdAt,createdAt);
+    assert.equal(readJson(metaPath).playCount,5,'the play count stays');
+    assert.deepEqual(readJson(metaPath).countryNameOverrides,{ 'papal-states': 'Påvens land' },'the renamed country stays');
+    assert.equal(readJson(metaPath).name,readJson(fileURLToPath(new URL(`./seed/historical/${id}/scenario.json`,import.meta.url))).scenario.name,'the name comes from the package');
     assert.deepEqual(readJson(manifestPath),manifest,'order and selection stand');
     // (d) The campaign started from 1.0.0 keeps its own data, and Egypt, already current, is not written.
     assert.deepEqual(files(campaign,egypt),untouched);
@@ -326,8 +331,10 @@ test('a desktop library read replaces an older shipped start in place and leaves
 
 test('a desktop upgrade cut short before world.json is repeated on the next read', () => {
   // The app dies while writing the city file, or on the rename that would put the new world.json in place.
-  // Each case names the fs call, which argument holds the target, how the target ends, and Rome's seat after the crash.
-  for (const [fsCall,targetArg,fileEnd,romeAfterCrash] of [['writeFileSync',0,'cities.geojson',false],['renameSync',1,'world.json',true]]) {
+  // Each case names the fs call, which argument holds the target, how the target ends, Rome's seat after the crash
+  // and the temporary world files the crash leaves. A temporary name carries the process id and a counter, so two
+  // processes on one data folder never share one; the next write removes those of processes that have ended.
+  for (const [fsCall,targetArg,fileEnd,romeAfterCrash,leftover] of [['writeFileSync',0,'cities.geojson',false,0],['renameSync',1,'world.json',true,1]]) {
     const { root, boot, worldPath, citiesPath } = desktopLibrary();
     try {
       boot('store.ensureScenarioStore();');
@@ -340,10 +347,13 @@ test('a desktop upgrade cut short before world.json is repeated on the next read
       assert.deepEqual(crashed,['cut short'],fsCall);
       assert.equal(romeIsSeat(citiesPath),romeAfterCrash,`${fsCall}: Rome's seat right after the crash`);
       assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.0.0',`${fsCall}: world.json still names the old release`);
+      const temporary = readdirSync(path.dirname(worldPath)).filter(name => name.startsWith('world.json.'));
+      assert.equal(temporary.length,leftover,`${fsCall}: temporary world files after the crash`);
+      for (const name of temporary) assert.match(name,/^world\.json\.[0-9]+\.[0-9]+\.tmp$/,fsCall);
       boot();
       assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${fsCall}: the next read finishes at the shipped 1.1.0`);
       assert.equal(romeIsSeat(citiesPath),true,fsCall);
-      assert.equal(existsSync(`${worldPath}.tmp`),false,`${fsCall}: no half-written world file is left`);
+      assert.deepEqual(readdirSync(path.dirname(worldPath)).filter(name => name.startsWith('world.json.')),[],`${fsCall}: no half-written world file is left`);
     } finally { rmSync(root,{recursive:true,force:true}); }
   }
 });

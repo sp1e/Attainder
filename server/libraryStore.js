@@ -1,5 +1,5 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "./historicalPreparation.js";
-import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade } from "./historicalStarts.js";
+import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade, withLibraryFields } from "./historicalStarts.js";
 import { withScenarioLicense, preserveComponentProvenance } from "./scenarioLicense.js";
 /*! Open Historia — portions (regions.geojson scenario asset + custom-map seeding) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 import fs from "fs";
@@ -591,11 +591,34 @@ const writeJsonFile = (targetPath, value) => {
   invalidateCatalogs();
 };
 
+// A process that no longer runs cannot be part-way through a write. EPERM means it runs.
+const processIsRunning = (pid) => {
+  try { process.kill(pid, 0); return true; }
+  catch (error) { return error.code === "EPERM"; }
+};
+
+// Temporary files a crash left beside the target. Another running process may be writing its
+// own, so only this process's files and those of processes that have ended are removed.
+const removeLeftoverTemporaryFiles = (targetPath) => {
+  const directory = path.dirname(targetPath), pattern = /^\.([0-9]+)\.[0-9]+\.tmp$/, base = path.basename(targetPath);
+  for (const name of fs.readdirSync(directory)) {
+    const pid = name.startsWith(base) ? Number(pattern.exec(name.slice(base.length))?.[1]) : NaN;
+    if (!Number.isInteger(pid) || (pid !== process.pid && processIsRunning(pid))) continue;
+    try { fs.unlinkSync(path.join(directory, name)); }
+    catch (error) { console.warn(`[library] could not remove the leftover ${name} in ${directory}: ${error.message}`); }
+  }
+};
+
 // Written beside the target and renamed onto it, so an interrupted write leaves the old file whole.
+// The temporary name carries the process id and a counter, so two processes that share a data
+// directory never write the same temporary file.
+let temporaryWriteCount = 0;
 const writeJsonFileWhole = (targetPath, value) => {
-  const temporaryPath = `${targetPath}.tmp`;
+  temporaryWriteCount += 1;
+  const temporaryPath = `${targetPath}.${process.pid}.${temporaryWriteCount}.tmp`;
   writeJsonFile(temporaryPath, value);
   fs.renameSync(temporaryPath, targetPath);
+  removeLeftoverTemporaryFiles(targetPath);
 };
 
 // ---- Catalog cache ---------------------------------------------------------
@@ -1553,8 +1576,9 @@ const installedShippedStartIsOlder = (entry) => getScenarioManifest().order.incl
   && shippedStartNeedsUpgrade({ meta: readJsonFile(getScenarioMetaPath(entry.id),{}),
     data: { world: readJsonFile(getScenarioJsonPath(entry.id,"world"),{}) } },entry);
 
-// The copy is replaced where it stands: its place in the order, the selection and createdAt
-// stay. Campaigns keep their own game and world files, which this never writes.
+// The copy is replaced where it stands: its place in the order, the selection and the library's
+// own meta fields (createdAt, playCount and the rest) stay. Campaigns keep their own game and
+// world files, which this never writes.
 const replaceShippedStart = (entry) => {
   const candidate = shippedStartCandidate(entry.id);
   // A package at another version than the list names would be replaced again on every start.
@@ -1563,7 +1587,8 @@ const replaceShippedStart = (entry) => {
     return;
   }
   requirePrepared(validatePlayableScenario(candidate));
-  persistScenarioBundle(candidate,{id:entry.id});
+  const meta = withLibraryFields(readJsonFile(getScenarioMetaPath(entry.id),{}),candidate.meta);
+  persistScenarioBundle({ ...candidate, meta },{id:entry.id});
   console.info(`[historical start] ${entry.id} updated to ${entry.contentVersion}`);
 };
 

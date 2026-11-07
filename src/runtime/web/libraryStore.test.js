@@ -655,6 +655,8 @@ test('a web library read replaces an older shipped start in place and leaves del
   { const { cities, feature } = rome(); feature.properties.seat = false;
     if (typeof record().geojson.citiesGeojson === 'string') record().geojson.citiesGeojson = JSON.stringify(cities); }
   db.get('games').get(gameId).json.world.historicalScenario.contentVersion = '1.0.0';
+  // The player has started this start five times and renamed a country on it.
+  Object.assign(record().meta,{ playCount: 5, countryNameOverrides: { 'papal-states': 'Påvens land' } });
   const before = { manifest: structuredClone(manifest()), campaign: JSON.stringify(db.get('games').get(gameId)),
     campaignMeta: structuredClone(db.get('gameMeta').get(gameId)), egypt: structuredClone(db.get('scenarios').get('egypt-3000bc')) };
   assert.equal(before.manifest.selectedScenarioId,'egypt-3000bc');
@@ -665,6 +667,9 @@ test('a web library read replaces an older shipped start in place and leaves del
   assert.equal(rome().feature.properties.seat,true,'the 1.1.0 city file makes Rome a seat');
   assert.deepEqual(logged,['[historical start] charlemagne-800 updated to 1.1.0']);
   assert.equal(record().meta.createdAt,shipped.meta.createdAt);
+  assert.equal(record().meta.playCount,5,'the play count stays');
+  assert.deepEqual(record().meta.countryNameOverrides,{ 'papal-states': 'Påvens land' },'the renamed country stays');
+  assert.equal(record().meta.name,shipped.meta.name,'the name comes from the package');
   assert.deepEqual(manifest(),before.manifest,'order and selection stand');
   // (d) The campaign started from 1.0.0 keeps its own data, and Egypt, already current, is not written.
   assert.ok(JSON.stringify(db.get('games').get(gameId)) === before.campaign,'the campaign keeps its own scenario data');

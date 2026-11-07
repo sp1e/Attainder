@@ -15,6 +15,16 @@ export const HISTORICAL_BOOKMARKS = Object.freeze([
 // Catalog order by scenario id. The first start present is the default.
 export const HISTORICAL_START_ORDER = Object.freeze(["charlemagne-800", "default", "egypt-3000bc"]);
 
+// What the library records about an installed start, as opposed to what the package ships.
+// An upgrade keeps these from the stored meta and takes every other field from the package.
+const SHIPPED_START_LIBRARY_FIELDS = Object.freeze(["createdAt", "playCount", "countryNameOverrides", "features", "hubPublished", "hubReviews"]);
+
+export const withLibraryFields = (storedMeta, shippedMeta) => ({
+  ...shippedMeta,
+  ...Object.fromEntries(SHIPPED_START_LIBRARY_FIELDS
+    .filter((key) => storedMeta?.[key] !== undefined).map((key) => [key, storedMeta[key]])),
+});
+
 const isPlainObject = (value) => value !== null && typeof value === "object"
   && (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
 
@@ -31,9 +41,11 @@ const compareVersions = (left, right) => {
 };
 
 // True when a stored scenario ({ meta, data: { world } }) is an older copy of the shipped
-// start `entry`. A scenario without historical content, one whose contentId differs (a
-// player import that reuses the id), the restore-only copy a restored campaign uses and a
-// version that does not read as numbers are the player's own and are never replaced.
+// start `entry`. These are never replaced: a scenario without historical content, the
+// restore-only copy a restored campaign uses, a version that does not read as numbers, and a
+// scenario whose contentId differs, such as a player import with other content under the id.
+// An imported export of this same start keeps its contentId. When its version is older, it is
+// upgraded like an installed copy, and any edits the player made to it are lost.
 export const shippedStartNeedsUpgrade = (storedBundle, entry) => {
   const content = storedBundle?.data?.world?.historicalScenario;
   if (!content || typeof content !== "object" || content.contentId !== entry?.id) return false;

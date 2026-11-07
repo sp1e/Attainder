@@ -159,4 +159,4 @@ The heading reads `HISTORISKA DYNASTIER · 3300 F.KR.–1530 E.KR.`, and the AD 
 
 ## Closure
 
-The controller accepted Task 6 with the documented limits, and final documentation review approved publication subject to current-head CI. CI passed at `2066a55`; the PR tracks the current head and merge state. Preserve source attribution and licenses, and exclude private material from publication. The annual 3300 BC–AD 1200 historical-reference research and turn-end popup remain a separate pending milestone.
+The controller accepted Task 6 with the documented limits, and final documentation review approved publication subject to current-head CI. CI passed at `2066a55`; the PR tracks the current head and merge state. Preserve source attribution and licenses, and exclude private material from publication. The annual 3300 BC–AD 1530 historical-reference research and turn-end popup remain a separate pending milestone.

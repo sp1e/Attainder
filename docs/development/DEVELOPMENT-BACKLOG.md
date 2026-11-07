@@ -13,10 +13,11 @@ Updated 7 November 2026. The owner's current requests take precedence over the e
 | 7 | Let courts renew themselves: an elective law that brings in a new ruler when no heir exists, and courts with people who can marry and have children. | World-cultures Phase 5. In the Task 5 review, Kyrkostaten ended between 813 and 838 and Charlemagne between 856 and 868 on eight seeds, with no births in either court. |
 | 8 | Guard `citiesFor` in `scripts/build-historical-scenarios.mjs` against a playable polity without a court, so the validator reports `invalidCourt` instead of a TypeError. | At the next package rebuild. An edit now changes the generator hash frozen for Charlemagne 1.1.0. |
 | 9 | Keep a fresh desktop install that stops between the world file and the manifest from leaving a scenario folder outside the manifest. | Found in the Task 6 re-review. It predates the world-cultures branch. |
+| 10 | Release Charlemagne 1.2.0 with a Rome settlement note (`ROME_800`) and an AD 800 `contextSv` that hold for both Karls rike and Kyrkostaten. Both say `spelsätet är Aachen` today. | Waits for Codex's sourced wording in `RESEARCH-STATUS.md`, requested in `docs/development/CODEX-RESEARCH-BRIEF.md` section 13. Claude then edits `server/seed/historical/authored-scenarios.mjs`, rebuilds the package as 1.2.0, records new frozen provenance in `released-provenance.json` and sets `contentVersion` to `1.2.0` in `HISTORICAL_BOOKMARKS`. Row 8 can ship in the same rebuild. |
 
 ## Historical events at turn end
 
-The owner requested deep research into notable events for each year from approximately 3300 BC through AD 1200, and a turn-ending experience like Total War: alongside dynamically generated events, show a popup describing which real historical event or events occurred in the campaign's current year.
+The owner requested deep research into notable events for each year from approximately 3300 BC through AD 1530, and a turn-ending experience like Total War: alongside dynamically generated events, show a popup describing which real historical event or events occurred in the campaign's current year.
 
 ### Research deliverable
 

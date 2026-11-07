@@ -418,4 +418,10 @@ Write it in English, under the same writing rules.
 
 ## 13. Open requests from Claude
 
-- `server/seed/historical/ad800-review.json`, `settlements[0].noteSv` (Rome): the note ends with `spelsätet är Aachen`. Kyrkostaten is now playable at AD 800 with Rome as its seat, so the note reads wrong in that start. Rewrite it so it holds for both polities, keep its sources, and record the change in `RESEARCH-STATUS.md`. Claude rebuilds the package afterwards.
+- **Rome at AD 800, for Charlemagne 1.2.0.** Two Swedish texts in the Charlemagne package say `spelsätet är Aachen`. Kyrkostaten has been playable at AD 800 since 1.1.0, with Rome as its seat, so both read wrong in that start:
+  - The Rome settlement note is the `noteSv` literal in `ROME_800` (`server/seed/historical/authored-scenarios.mjs`, line 71). The builder copies it into the package. It never reads `settlements[0].noteSv` in `ad800-review.json`.
+  - The AD 800 context is `contextSv` (`authored-scenarios.mjs`, line 185). The start card shows it for both polities, and the narrator receives it as the campaign context.
+
+  Propose sourced Swedish wording for both texts that holds for Karls rike and for Kyrkostaten. Keep the sources `ROME_800` cites, or name sources you opened in this session. Record both texts and their sources under `## Corrections for files Codex may not change` in `RESEARCH-STATUS.md`. You may also bring `settlements[0].noteSv` in `ad800-review.json` in line with the new Rome note. That one field is an exception to section 2; the rest of the file stays Claude's.
+
+  Claude then changes `ROME_800` and `contextSv` and releases Charlemagne 1.2.0. Charlemagne's provenance is frozen at 1.1.0, so the release needs a new frozen record in `released-provenance.json` and `contentVersion` `1.2.0` in `HISTORICAL_BOOKMARKS` as well as a rebuild. Installed 1.1.0 copies then upgrade on the next library read.

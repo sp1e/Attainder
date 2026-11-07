@@ -44,6 +44,7 @@ import { LABEL_FONT_SUGGESTIONS } from "../../runtime/mapSettings.js";
 import FactionCreator from "./FactionCreator.jsx";
 import DynastyStartCard, { DYNASTY_DIFFICULTIES } from "../DynastyStartCard.jsx";
 import { startDynastyCampaign } from "../../runtime/startDynastyCampaign.js";
+import { pickerCampaignName } from "../../runtime/historicalStartOptions.js";
 import FeaturesSectionEditor from "./FeaturesSectionEditor.jsx";
 import StatsSheetEditor, { normalizeStatsEditorValue } from "./StatsSheetEditor.jsx";
 import { normalizeFeatureOverrides, normalizeFeatureSettings } from "../../runtime/gameFeatures.js";
@@ -1802,7 +1803,7 @@ const LibraryTopBar = () => {
       // country until it landed.
       const gamePatch = { ...(countryCode ? { country: countryCode } : null), ...(difficulty ? { difficulty } : null) };
       const details = await createGame({
-        name: `${scenario.name} Session`,
+        name: pickerCampaignName(scenario.name, countryOptions.filter((option) => option.historical), countryCode),
         scenarioId: scenario.id,
         ...(Object.keys(gamePatch).length ? { gamePatch } : null),
         setActive: true,
@@ -1828,7 +1829,7 @@ const LibraryTopBar = () => {
   // back to every country for scenarios without an owner list.
   const buildScenarioCountryOptions = (world, allCountries, nameOverrides = {}) => {
     const h = world?.historicalScenario;
-    if (h?.kind === 'historical') return (h.playablePolityIds ?? []).map(id => ({code:id,name:h.polities.find(p=>p.id===id)?.nameSv ?? id}));
+    if (h?.kind === 'historical') return (h.playablePolityIds ?? []).map(id => ({code:id,name:h.polities.find(p=>p.id===id)?.nameSv ?? id,historical:true}));
     if (!h) return [];
     const entries = Array.isArray(allCountries) ? allCountries : [];
     const entriesByCode = new Map();
