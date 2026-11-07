@@ -4354,6 +4354,116 @@
       "retrievedOn": "2026-11-07",
       "originalChronology": "Erzbischof und Kurfürst von Mainz (seit 1514); Kardinal (seit 1.8.1518); source-supplied chronology retained without independent conversion.",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ebc3100-egypt-ministry-unification",
+      "title": "Early Dynastic Period",
+      "institution": "Egyptian Ministry of Tourism and Antiquities",
+      "url": "https://egymonuments.gov.eg/historical-periods/early-dynastic-period/",
+      "locator": "Early Dynastic Period, opening historical paragraphs (web lines 133–136).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Unification around 3100 BC; a very gradual process, with one final stage apparently in Narmer's reign.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "An approximate chronology of political unification and a qualified association of one final stage with Narmer; no single-day conquest."
+    },
+    {
+      "id": "ebc3100-egypt-ministry-narmer-palette",
+      "title": "Narmer Palette",
+      "institution": "Egyptian Ministry of Tourism and Antiquities; Egyptian Museum",
+      "url": "https://egymonuments.gov.eg/collections/narmer-palette-1/",
+      "locator": "Collection description, two iconographic paragraphs and dating line (web lines 130–136).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1st Dynasty, reign of Narmer (c.3100 BC).",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The palette's attribution to Narmer, approximate object date, the king wearing both crowns on opposite sides and the qualified interpretation of the scenes; no independently dated battle."
+    },
+    {
+      "id": "ebc3100-oxford-egypt-project-background",
+      "title": "A New Chronology for the Formation of the Egyptian State",
+      "institution": "Oxford Radiocarbon Accelerator Unit, University of Oxford",
+      "url": "https://c14.arch.ox.ac.uk/egypt2.html",
+      "locator": "The Formation of Ancient Egypt, single paragraph (web lines 21–23). This project-background page is not the 2013 paper or its statistical tables.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Political unification of the state around 3000 BC; integration continued beyond it.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "An alternative approximate date for political unification and an explicit distinction between political unification and continuing integration; it does not date Narmer personally."
+    },
+    {
+      "id": "ebc3100-hes-stenness",
+      "title": "Stones of Stenness: History and stories",
+      "institution": "Historic Environment Scotland",
+      "url": "https://www.historicenvironment.scot/visit/all/stones-of-stenness/history-and-stories/",
+      "locator": "Britain's earliest henge monument, second paragraph, and Hearth and home, pottery/bone paragraph (web lines 166–167, 186).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Around 3100–2900 BC, based on radiocarbon analysis of bones from the surrounding ditch.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The monument's archaeological date range, an oval stone arrangement and surrounding ditch; function remains unclear."
+    },
+    {
+      "id": "ebc3100-scarf-stenness",
+      "title": "6.2.3 The chronological framework and overview of monuments",
+      "institution": "Scottish Archaeological Research Framework, Society of Antiquaries of Scotland",
+      "url": "https://scarf.scot/national/scarf-neolithic-panel-report/6-identity-society-belief-systems/6-3-2-neolithic-cosmology/6-2-3-the-chronological-framework-and-overview-of-monuments/",
+      "locator": "Timber circles / henge monuments / stone circles and settings, paragraph beginning Over 80 possible henge monuments (web lines 125–127); cites Ritchie 1976.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Stones of Stenness dated by animal bone on the ditch base to 3100–2650.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "A wider published dating of the Stenness henge from animal bone on the ditch base; no precise building year."
+    },
+    {
+      "id": "ebc3100-icomos-liangzhu-high-dams",
+      "title": "Archaeological Ruins of Liangzhu City (China), No 1592: Advisory Body Evaluation (ICOMOS), 2019",
+      "institution": "ICOMOS; UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/document/176165",
+      "locator": "Printed page 112 (PDF page 1), Description and history, paragraph The Area of High-dam at the Mouth of the Valley; contrast printed page 113 (PDF page 2), low-dam and city paragraphs.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "High-dam area believed built ca. 3100–2850 BCE, in use until ca. 2600 BCE; low-dam area ca. 3000–2600 BCE; city mainly ca. 3000–2850 BCE.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Six artificial dam sites in the high-dam component and the evaluation's approximate construction interval; the separate city and low-dam intervals do not date the high dams."
+    },
+    {
+      "id": "ebc3100-liu-liangzhu-radiocarbon",
+      "title": "Bin Liu and colleagues, The earliest hydraulic enterprise in China, 5,100 years ago, author manuscript",
+      "institution": "University College London Discovery institutional repository; Zhejiang Provincial Institute of Cultural Relics and Archaeology and collaborating universities",
+      "url": "https://discovery.ucl.ac.uk/10040887/1/Revised%20manuscript.pdf",
+      "locator": "PDF page 4, paragraph beginning Superimposed over the Laohuling dam, continuing through radiocarbon sample clusters, named high-dam dates, suggested reconstruction and spatial construction groupings (Fig. 1B).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Most high-dam sample results cluster at 5,200–4,800 cal B.P.; most low-dam and levee results at 5,000–4,800 cal B.P.; different high dams were built at slightly different times. Outlier dates suggest later reconstruction of certain dams or groups; spatial groupings likely reflect separate construction projects.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Direct AMS sample dating, multiple construction projects and reconstruction, plus sequence high dams then low dams/levees. Sample-age clusters are not independently converted to BCE or treated as the life span of construction."
+    },
+    {
+      "id": "ebc3100-piper-thach-lac-abstract",
+      "title": "Philip J. Piper and colleagues, Thạch Lạc and the Neolithic transition in north-central Vietnam, 3000–2000 BCE (2025)",
+      "institution": "Australian National University Research Portal; Journal of Island and Coastal Archaeology",
+      "url": "https://researchportalplus.anu.edu.au/en/publications/th%E1%BA%A1ch-l%E1%BA%A1c-and-the-neolithic-transition-in-north-central-vietnam-3/",
+      "locator": "Public abstract, three paragraphs (web lines 25–28). Full publisher text returned HTTP 403 and was not read.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Overall Thạch Lạc sequence from ca. 3100 until after 2200 cal. BCE; three phases of pottery-using occupation separated by brief hiatuses.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The approximate beginning of the excavated pottery-using occupation sequence and its multi-phase character. It does not identify a village foundation, earliest pottery invention, migrant ethnicity, farming arrival or an exact first year."
+    },
+    {
+      "id": "ebc3100-ialongo-weighing-origins",
+      "title": "Nicola Ialongo, Raphael Hermann and Lorenz Rahmstorf, Bronze Age weight systems as a measure of market integration in Western Eurasia (2021)",
+      "institution": "Proceedings of the National Academy of Sciences; National Library of Medicine PubMed Central",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8271817/",
+      "locator": "Opening paragraph after Abstract (web lines 90–91); Results, The Diffusion of Weighing Technology, first paragraph (web line 126); Materials and Methods, The Sample, Egyptian sampling limitation (web line 188). DOI 10.1073/pnas.2105873118.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Invention around 3100 to 3000 BCE; earliest Egyptian weight approximately 3100 BCE; Diyala Basin weights approximately 3000 BCE. Egyptian weights excluded from the article's statistical sample owing to old, often undated contexts.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Published archaeological synthesis for the approximate emergence of weighing technology between Egypt and Mesopotamia. No precisely dated invention, universal original unit, royal reform, or direct statistical confirmation of the Egyptian date is asserted."
+    },
+    {
+      "id": "ebc3100-topoi-cattle-steppe",
+      "title": "Pastorialism on the Eurasian steppes, research project A-2-1",
+      "institution": "Topoi: The Formation and Transformation of Space and Knowledge in Ancient Civilizations, Berlin research cluster",
+      "url": "https://www.topoi.org/project/a-2-1/",
+      "locator": "Research, A: Pastoralists in the 4th/3rd millennium BCE north of the Black Sea, first two paragraphs (web lines 13–15), on the canonical www.topoi.org project page.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "At around 3100 BCE, settlement residents north of the Black Sea changed animal husbandry to focus predominantly on cattle; before 3100 BCE, varied subsistence strategies.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "An archaeozoologically inferred, approximately dated regional shift toward cattle husbandry in the studied settlements north of the Black Sea, with sheep and goats also kept and fewer wild game bones; no single decree or whole-steppe uniformity."
     }
   ],
   "events": [
@@ -13875,6 +13985,148 @@
       "review": {
         "status": "approved",
         "reviewedBy": "Independent Codex source review (E1500 East, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3100-egyptens-harskare-enar-landet",
+      "date": {
+        "kind": "disputed",
+        "startYear": -3100,
+        "endYear": -3000,
+        "displaySv": "omtvistat: omkring 3100 eller 3000 f.Kr."
+      },
+      "titleSv": "Egyptens härskare samlar Övre och Nedre Egypten",
+      "summarySv": "Egyptens härskare för samman Övre och Nedre Egypten genom en gradvis process. Egyptens antikvitetsministerium förknippar ett av slutskedena med kung Narmer, som på sin palett bär de båda landsdelarnas kronor. Ministeriet daterar det politiska enandet till omkring 3100 f.Kr., medan Oxfords projektöversikt anger omkring 3000 f.Kr. Forskare kan därför inte knyta hela förloppet till ett säkert årtal.",
+      "geographySv": "Övre och Nedre Egypten",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "ebc3100-egypt-ministry-unification",
+        "ebc3100-egypt-ministry-narmer-palette",
+        "ebc3100-oxford-egypt-project-background"
+      ],
+      "selectionNote": "A major political transformation, represented once with competing approximate chronologies. Narmer and his palette supply qualified context within this record; no duplicate palette or independently dated conquest event. The Oxford project-background chronology is not misrepresented as a model result from Dee et al. 2013.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (BC3100, initial-confirmed)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3100-byggare-anlagger-stenness",
+      "date": {
+        "kind": "range",
+        "startYear": -3100,
+        "endYear": -2650,
+        "displaySv": "dateringsintervall: cirka 3100–2900 f.Kr. enligt HES; 3100–2650 f.Kr. enligt ScARF"
+      },
+      "titleSv": "Människor anlägger hengeanläggningen vid Stenness",
+      "summarySv": "Vid Stenness på Orkney finns en oval stenring inom ett omgivande dike. Historic Environment Scotland daterar monumentet till omkring 3100–2900 f.Kr., medan ScARF daterar hengeanläggningen till 3100–2650 f.Kr. Dateringarna bygger på ben från diket; ScARF preciserar djurben på dikets botten. De fastställer inget säkert byggår för stenringen. Funktionen är osäker, men en ceremoniell roll har föreslagits.",
+      "geographySv": "Stenness, Orkneyöarna, Skottland",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "ebc3100-hes-stenness",
+        "ebc3100-scarf-stenness"
+      ],
+      "selectionNote": "A distinct major ceremonial construction in Neolithic Orkney. Both archaeological dating ranges remain visible, and their complete union is kept in the date fields. The date span is uncertainty in dating, not evidence of continuous construction or a separate event in every year. Religion is a catalog grouping for a probably ceremonial monument; no named religion or definite ritual is asserted.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (BC3100, F01-confirmed)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3100-byggare-anlagger-liangzhus-hoga-dammar",
+      "date": {
+        "kind": "range",
+        "startYear": -3100,
+        "endYear": -2850,
+        "displaySv": "uppskattat byggnadsintervall: cirka 3100–2850 f.Kr."
+      },
+      "titleSv": "Byggare anlägger höga dammar vid Liangzhu",
+      "summarySv": "Byggare vid Liangzhu i Yangtzedeltat anlägger dammar mellan höjder vid dalmynningar. ICOMOS bedömer att området med sex höga dammanläggningar uppfördes omkring 3100–2850 f.Kr. Arkeologerna daterar olika höga dammar till delvis skilda tider. Rumsliga grupperingar tolkas som sannolika separata byggprojekt, och vissa dateringar tyder på senare ombyggnader. Anläggningarna har därför inget gemensamt säkert byggår.",
+      "geographySv": "Liangzhu, Zhejiang, Kina",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "ebc3100-icomos-liangzhu-high-dams",
+        "ebc3100-liu-liangzhu-radiocarbon"
+      ],
+      "selectionNote": "A substantial collective water-management undertaking with an explicitly dated construction component in an ICOMOS evaluation. Preserve the high-dam construction interval; defer the separate ca. 3000 BC city and low-dam components. The UCL manuscript reports broader sample-age clusters in cal BP; no unsourced BP/BCE conversion, chronological reconciliation or claim that every dam was built at once. Reviewer must assess whether the component-specific ICOMOS chronology can support this event despite the broader sample chronology.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (BC3100, F01-confirmed)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3100-keramikbrukare-bor-vid-thach-lac",
+      "date": {
+        "kind": "approximate",
+        "startYear": -3100,
+        "endYear": -3100,
+        "displaySv": "cirka 3100 f.Kr."
+      },
+      "titleSv": "Människor använder keramik vid Thạch Lạc",
+      "summarySv": "Människor använder keramik vid Thạch Lạc i nuvarande norra centrala Vietnam. Arkeologerna daterar början av den undersökta boplatsföljden till cirka 3100 f.Kr. De har urskilt tre skeden med olika keramiktraditioner och korta uppehåll i bosättningen, och dateringen ger inget säkert grundläggningsår.",
+      "geographySv": "Thạch Lạc, Hà Tĩnh, Vietnam",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ebc3100-piper-thach-lac-abstract"
+      ],
+      "selectionNote": "Provisional inclusion of the approximate onset of an excavated pottery-using occupation sequence, supported by the public scholarly abstract. It does not manufacture an invention, founding act, continuous 900-year residence or migration. The full sequence ends after 2200 cal BCE, an open endpoint that the catalog cannot express; this record concerns only the approximate onset attested in the abstract. Reviewer should withhold if that onset alone is too phase-like to qualify as a year event.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (BC3100, initial-confirmed)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3100-manniskor-borjar-vaga-varor",
+      "date": {
+        "kind": "range",
+        "startYear": -3100,
+        "endYear": -3000,
+        "displaySv": "cirka 3100–3000 f.Kr."
+      },
+      "titleSv": "Tidiga användare väger varor med vågar och vikter",
+      "summarySv": "Människor i området mellan Egypten och Mesopotamien börjar använda vågar och vikter för att jämföra varors vikt. Forskare placerar teknikens uppkomst omkring 3100–3000 f.Kr. De daterar den äldsta kända egyptiska vikten till cirka 3100 f.Kr. och tidiga vikter från Diyalaområdet till cirka 3000 f.Kr., så något säkert uppfinningsår kan de inte ange.",
+      "geographySv": "Egypten och Mesopotamien",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "ebc3100-ialongo-weighing-origins"
+      ],
+      "selectionNote": "The scholarly synthesis explicitly dates the emergence of weighing technology to ca.3100–3000BCE, distinguishes Egyptian and Mesopotamian first attestations, and therefore supports a cautious technology event beyond an isolated generic object. Keep the full interval and the source's sampling limitation; no exact invention year, common universal unit, named inventor or royal decree.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (BC3100, F01-confirmed)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3100-boskapsskotare-inriktar-sig-pa-notkreatur",
+      "date": {
+        "kind": "approximate",
+        "startYear": -3100,
+        "endYear": -3100,
+        "displaySv": "cirka 3100 f.Kr."
+      },
+      "titleSv": "Djurben tyder på ökad inriktning på nötkreatur norr om Svarta havet",
+      "summarySv": "Djurben från undersökta stäppbosättningar norr om Svarta havet tyder på att invånarna omkring 3100 f.Kr. började inrikta djurhållningen främst på nötkreatur. Får och getter förekom som kompletterande boskap, och andelen ben från vilda djur blev liten. Detta är en tolkad regional förändring i försörjningen; källan ger inget gemensamt årtal för ett sådant skifte.",
+      "geographySv": "Stäppen norr om Svarta havet",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ebc3100-topoi-cattle-steppe"
+      ],
+      "selectionNote": "A bounded regional subsistence change reported by an institutional archaeozoological research project, with an explicit approximate date. The claim covers studied settlements and coexisting livestock, without assigning an ethnic identity, all-steppe uniformity, invented reform or precisely dated migration.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (BC3100, F01-confirmed)",
         "reviewedOn": "2026-11-07"
       }
     }
