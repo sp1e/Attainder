@@ -103,6 +103,9 @@ test('an event is refused for each defect', () => {
     'start after end': withDate({ startYear: -3000, endYear: -3100, kind: 'range' }),
     'exact with start != end': withDate({ endYear: -3000 }),
     'missing source id': { ...goodEvent, sourceIds: ['nope'] },
+    'missing id': { ...goodEvent, id: undefined },
+    'empty id': { ...goodEvent, id: '' },
+    'non-string id': { ...goodEvent, id: 7 },
     'no Swedish title': { ...goodEvent, titleSv: '' },
     'unknown category': { ...goodEvent, category: 'sport' },
     'unapproved review': { ...goodEvent, review: { ...goodEvent.review, status: 'draft' } },
@@ -111,6 +114,7 @@ test('an event is refused for each defect', () => {
   for (const [name, event] of Object.entries(cases)) assert.equal(validateEventCatalog(catalogWith(event)).ok, false, name);
   assert.equal(validateEventCatalog(catalogWith(goodEvent, [{ ...source, url: '' }])).ok, false, 'source without url');
   assert.equal(validateEventCatalog(catalogWith(goodEvent, [{ ...source, locator: '' }])).ok, false, 'source without locator');
+  assert.equal(validateEventCatalog(catalogWith(goodEvent, [{ ...source, url: 'javascript:alert(1)' }])).ok, false, 'source with a script url');
   assert.equal(validateEventCatalog({ ...emptyCatalog, sources: [source], events: [goodEvent, goodEvent] }).ok, false, 'duplicate id');
 });
 test('an event inside a range marked no-secure-event is refused', () => {

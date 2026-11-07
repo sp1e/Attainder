@@ -17,4 +17,4 @@ Catalog: 0 approved events, 0 sources.
 
 | From | To | Years | Status | Note |
 | --- | --- | ---: | --- | --- |
-| 3300 BC | AD 1200 | 4500 | unresearched | Annual research has not started in this catalog; a private pilot exists outside this repository. |
+| 3300 BC | AD 1200 | 4500 | unresearched | Annual research has not started in this catalog. |

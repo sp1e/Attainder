@@ -13,7 +13,9 @@ const done = (errors, extra = {}) => (errors.length ? { ok: false, errors } : { 
 
 export const validateSource = (source, label) => {
   if (source === null || typeof source !== "object") return [`${label}: not an object`];
-  return SOURCE_FIELDS.filter((field) => !filled(source[field])).map((field) => `${label}: missing ${field}`);
+  const errors = SOURCE_FIELDS.filter((field) => !filled(source[field])).map((field) => `${label}: missing ${field}`);
+  if (filled(source.url) && !/^https?:\/\//.test(source.url)) errors.push(`${label}: url must start with https:// or http://`);
+  return errors;
 };
 
 const dateErrors = (date, label) => {
@@ -32,6 +34,7 @@ const dateErrors = (date, label) => {
 const eventErrors = (event, label, sourceIds) => {
   if (event === null || typeof event !== "object") return [`${label}: not an object`];
   const errors = dateErrors(event.date, label);
+  if (!filled(event.id)) errors.push(`${label}: missing id`);
   for (const field of ["titleSv", "summarySv", "geographySv", "selectionNote"]) {
     if (!filled(event[field])) errors.push(`${label}: missing ${field}`);
   }
