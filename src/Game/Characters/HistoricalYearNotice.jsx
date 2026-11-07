@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRuntimeState } from "../../runtime/useRuntimeState.js";
 import { UNSEEN_EVENTS_CHANGED, latestTurnEventIds, unseenEvents } from "../../runtime/unseenEvents.js";
 import { historicalYearSeen } from "../../runtime/historicalYearSeen.js";
-import { MAX_NOTICE_EVENTS, eventsForYears, yearsClosedBetween } from "../../runtime/historicalEvents.js";
+import { MAX_NOTICE_EVENTS, eventsForYears, noticeEvents, yearsClosedBetween } from "../../runtime/historicalEvents.js";
 import { loadHistoricalEventCatalog } from "../../runtime/historicalEventCatalog.js";
 import { parseGameDate } from "../../runtime/gameDates.js";
+import { useBackToClose } from "../../runtime/backToClose.js";
 import { isSimulationBusy, subscribeSimulationIdle } from "../AI/simulationStatus.js";
 import HistoricalEventCard from "./HistoricalEventCard.jsx";
 import "./characters.css";
@@ -62,7 +63,8 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
       try { catalog = await loadHistoricalEventCatalog(); } catch { return; }
       if (token !== tokenRef.current || !mountedRef.current || !ready()) return;
       const groups = eventsForYears(catalog, yearsClosedBetween(due.from, due.to), start.year);
-      const events = groups.flatMap((group) => group.events);
+      // Importance first, then date: a long jump keeps its major events within the cap.
+      const events = noticeEvents(groups);
       if (events.length === 0) {
         historicalYearSeen.markSeen(gameId, due.to);
         return;
@@ -105,6 +107,8 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
   };
   const closeRef = useRef(close);
   useEffect(() => { closeRef.current = close; });
+  // On a phone, Back closes the popup the way Escape does.
+  useBackToClose(open, close);
 
   useEffect(() => {
     if (open) dialogRef.current?.focus();

@@ -22,3 +22,16 @@ test('the chronicle request hook runs after activeGame exists', () => {
   const hook = code.indexOf('useHistoryRecordRequest(activeGame');
   assert.ok(hook > declaration, 'useHistoryRecordRequest reads activeGame below its declaration');
 });
+
+test('the year popup waits while any panel that holds the year report is open', () => {
+  const mount = code.match(/<LazyHistoricalYearNotice[^>]*\/>/)?.[0] ?? '';
+  const hidden = mount.match(/hidden=\{([^}]*)\}/)?.[1] ?? '';
+  for (const flag of ['mainMenuOpen', 'isCharactersOpen', 'isSettingsOpen', 'isCheatsOpen', 'Boolean(activeBottomPanel)']) {
+    assert.ok(hidden.includes(flag), `hidden must include ${flag}, got: ${hidden}`);
+  }
+});
+
+test('the timeline history panel is held in activeBottomPanel', () => {
+  assert.match(code, /onOpenEvents=\{\(\) => setActiveBottomPanel\("history"\)\}/);
+  assert.match(code, /<DateWidget[^>]*activePanel=\{activeBottomPanel\}/);
+});

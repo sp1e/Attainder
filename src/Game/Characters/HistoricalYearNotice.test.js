@@ -41,7 +41,8 @@ const catalogOf = (events, sources = [source("s1")]) => ({ schemaVersion: 1, sou
 function mount({ startDate = "0800-01-01", gameDate = "0802-01-01", busy = false, unseen = [], catalog = catalogOf([event("e1")]),
   loadError = null, hidden = false, gameId = "g1", storage = createMemoryStorage(), turnKey = "" } = {}) {
   const driver = createHookDriver();
-  const control = { busy, unseen, listeners: [], idle: [], loads: 0, fetches: 0, writes: [], cleanups: [], deferred: null, doc: { activeElement: { focus: () => { control.returned = true; } } } };
+  let hiddenNow = hidden;
+  const control = { backCloses: [], busy, unseen, listeners: [], idle: [], loads: 0, fetches: 0, writes: [], cleanups: [], deferred: null, doc: { activeElement: { focus: () => { control.returned = true; } } } };
   const seen = createHistoricalYearSeen({ storage });
   // The player has been shown history through the campaign start, as on a fresh campaign.
   seen.seenThrough(gameId, { startDate, gameDate: startDate });
@@ -70,6 +71,7 @@ function mount({ startDate = "0800-01-01", gameDate = "0802-01-01", busy = false
     "../../runtime/historicalEvents.js": realEvents,
     "../../runtime/gameDates.js": realDates,
     "../../runtime/historicalEventCatalog.js": { loadHistoricalEventCatalog: async () => { control.loads += 1; if (control.deferred) await new Promise((resolve) => { control.deferred.push(resolve); }); if (loadError) throw loadError; return catalog; } },
+    "../../runtime/backToClose.js": { useBackToClose: (open, onClose) => { control.back = { open, onClose }; } },
     "../AI/simulationStatus.js": {
       isSimulationBusy: () => control.busy,
       subscribeSimulationIdle: (listener) => { control.idle.push(listener); return () => {}; },
@@ -89,11 +91,12 @@ function mount({ startDate = "0800-01-01", gameDate = "0802-01-01", busy = false
     fetch: () => { control.fetches += 1; throw new Error("no network in these tests"); },
   });
   const Notice = exports.default;
-  const render = () => driver.render(React.createElement(Notice, { gameId, hidden }));
+  const render = () => driver.render(React.createElement(Notice, { gameId, hidden: hiddenNow }));
   const fire = (name, event = {}) => { for (const entry of [...control.listeners]) if (entry.name === name) entry.listener(event); };
   const unmount = () => { for (const cleanup of control.cleanups.splice(0)) cleanup(); };
   const release = () => { for (const resolve of control.deferred.splice(0)) resolve(); };
-  return { render, control, seen, storage, driver, docs, live, fire, unmount, release, dates: { startDate, gameDate } };
+  const setHidden = (value) => { hiddenNow = value; };
+  return { render, setHidden, control, seen, storage, driver, docs, live, fire, unmount, release, dates: { startDate, gameDate } };
 }
 
 const shown = async (m) => { m.render(); await settle(); return m.render(); };
@@ -201,6 +204,59 @@ test("hidden renders nothing and does not load the catalog", async () => {
   const m = mount({ hidden: true });
   assert.equal(await shown(m), null);
   assert.equal(m.control.loads, 0);
+});
+
+test("hidden turning false loads the catalog and shows the popup", async () => {
+  const m = mount({ hidden: true });
+  assert.equal(await shown(m), null);
+  m.setHidden(false);
+  const tree = await shown(m);
+  assert.equal(m.control.loads, 1);
+  assert.match(textOf(tree), /Händelse e1/);
+});
+
+test("an open popup that turns hidden keeps its watermark and comes back when shown again", async () => {
+  const m = mount();
+  assert.ok(dialogOf(await shown(m)));
+  m.setHidden(true);
+  assert.equal(m.render(), null);
+  assert.equal(m.seen.seenThrough("g1", m.dates), "0800-01-01", "hiding does not move the watermark");
+  assert.equal(m.control.loads, 1, "hiding does not load the catalog again");
+  m.setHidden(false);
+  await settle();
+  const tree = m.render();
+  assert.match(textOf(tree), /Händelse e1/);
+  assert.equal(m.seen.seenThrough("g1", m.dates), "0800-01-01");
+  buttonNamed(tree, "Stäng").props.onClick();
+  assert.equal(m.seen.seenThrough("g1", m.dates), "0802-01-01");
+});
+
+test("a long jump shows the important event, not the 12 earliest", async () => {
+  const minor = Array.from({ length: 13 }, (_, i) => event(`m${String(i).padStart(2, "0")}`, { importance: 1, date: { kind: "exact", startYear: 1000 + i, endYear: 1000 + i, displaySv: String(1000 + i) } }));
+  const major = event("big", { importance: 3, date: { kind: "exact", startYear: 1100, endYear: 1100, displaySv: "1100" } });
+  const m = mount({ startDate: "1000-01-01", gameDate: "1102-01-01", catalog: catalogOf([...minor, major]) });
+  const tree = await shown(m);
+  const titles = findAll(tree, (n) => n.type === "h3").map((n) => textOf(n).trim());
+  assert.equal(titles.length, 12);
+  assert.equal(titles[0], "Händelse big");
+  assert.ok(!titles.includes("Händelse m12"));
+  assert.ok(buttonNamed(tree, "Visa alla i krönikan"));
+});
+
+test("Back closes the popup through useBackToClose and moves the watermark", async () => {
+  const m = mount();
+  await shown(m);
+  m.render();
+  assert.equal(m.control.back.open, true);
+  m.control.back.onClose();
+  assert.equal(m.render(), null);
+  assert.equal(m.seen.seenThrough("g1", m.dates), "0802-01-01");
+});
+
+test("useBackToClose is told the popup is closed while hidden", async () => {
+  const m = mount({ hidden: true });
+  m.render();
+  assert.equal(m.control.back.open, false);
 });
 
 const keydown = (key, extra = {}) => ({ key, defaultPrevented: false, shiftKey: false, preventDefault() { this.defaultPrevented = true; }, ...extra });
