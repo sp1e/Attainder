@@ -99,6 +99,7 @@ export function createHistoricalCharacterSystem({ historicalScenario, date, poli
     const state = createCharacterState({ date, polityId, polityName: polity.nameSv, mode, seed }, { familyId: chosenFamily, religions: {} });
     // Set before completeCharacterState so the opening heir claims follow the authored law; draws no randomness.
     state.realm.successionLaw = court.successionLaw ?? 'primogeniture';
+    state.realm.kind = polity.kind ?? 'state';
     state.historicalOrigin = publicHistoricalOrigin({ ...h, polityNoteSv: polity.noteSv, mechanicsNoteSv: court.mechanics.noteSv });
     seedCourt(state, court);
     completeCharacterState(state, difficulty);

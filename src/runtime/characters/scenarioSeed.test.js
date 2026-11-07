@@ -121,7 +121,7 @@ for (const mode of ['realm', 'family']) test(`charlemagne-800 papal-states ${mod
   assert.equal(state.identity.familyId, mode === 'family' ? court.families[0].id : 'leo-household');
   assert.deepEqual(Object.keys(state.people), court.people.map(p => p.id));
   const heirClaims = Object.values(state.families).flatMap(f => f.claims).filter(c => c.kind === 'heir' && c.status === 'active');
-  assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt merit')));
+  assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt förtjänst')));
   const projected = projectCharacterWorld({ ...data.world, characterSystem: state });
   assert.equal(projected.countryStats['papal-states'].leader, 'Leo III');
 });
@@ -187,7 +187,7 @@ for (const mode of ['realm', 'family']) test(`${mode}: the authored succession l
     assert.equal(state.realm.successionLaw, 'merit', id);
     // The opening heir claim is recorded under the authored law, so the law is in place before the court completes.
     const heirClaims = Object.values(state.families).flatMap(f => f.claims).filter(c => c.kind === 'heir' && c.status === 'active');
-    assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt merit')), id);
+    assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt förtjänst')), id);
     assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
     assert.equal(getCharacterPresentation(state).succession.law, 'merit', id);
     assert.equal(unchanged.realm.successionLaw, 'primogeniture', id);
