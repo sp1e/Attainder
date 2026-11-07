@@ -12,6 +12,7 @@ import * as realDates from "../../runtime/gameDates.js";
 import { CONVERSATION_REQUESTS } from "../../runtime/characters/conversation.js";
 import * as realCounter from "../AI/modelCallCounter.js";
 import { createSecret, grantHook } from "../../runtime/characters/secrets.js";
+import { SHIPPED_START_FOLDERS } from "../../runtime/testing/shippedHistoricalStarts.js";
 import { interpretCharacterAction } from "./characterModelCalls.js";
 import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testing/hookDriver.js";
 
@@ -1493,7 +1494,7 @@ test("a sourced birth date shows no birth tag, and a claim without a note gets n
 });
 
 test("a court member whose name says generated gets no doubled label, and a non-historical court shows nothing new", () => {
-  for (const id of ["charlemagne-800", "john-1200", "egypt-3000bc"]) {
+  for (const id of SHIPPED_START_FOLDERS) {
     const view = seededView(id);
     const generated = view.people.filter((person) => / \(genererad\)$/.test(person.name));
     assert.ok(generated.length >= 3, id);

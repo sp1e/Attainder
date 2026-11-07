@@ -6,6 +6,7 @@ import geojsonvt from '@maplibre/geojson-vt';
 import earcut from 'earcut';
 import clipping from 'polygon-clipping';
 import { buildRegionRenderRepair } from './regionRenderRepair.js';
+import { SHIPPED_START_FOLDERS } from '../../../runtime/testing/shippedHistoricalStarts.js';
 
 const LIMIT=85.0511287798066;
 const BAND=[[[-180,-LIMIT],[180,-LIMIT],[180,LIMIT],[-180,LIMIT],[-180,-LIMIT]]];
@@ -27,7 +28,7 @@ const inTriangle=(p,[a,b,c])=>{
 };
 const contains=(triangles,p)=>triangles.some(t=>inTriangle(p,t));
 
-for(const bookmark of ['egypt-3000bc','john-1200','charlemagne-800']) test(`${bookmark} retains Antarctic land coverage in the Mercator tile`,async()=>{
+for(const bookmark of SHIPPED_START_FOLDERS) test(`${bookmark} retains Antarctic land coverage in the Mercator tile`,async()=>{
   const data=JSON.parse(readFileSync(new URL(`../../../../server/seed/historical/${bookmark}/regions.geojson`,import.meta.url),'utf8'));
   const original=data.features.find(f=>f.properties.id==='physical-1378'); assert.ok(original);
   const before=JSON.stringify(original);

@@ -7,17 +7,21 @@ import { actionHooks, createCharacterSystem, estimateCharacterAction, estimateCo
 import { createRumor } from '../../runtime/characters/rumors.js';
 import { createSecret, grantHook } from '../../runtime/characters/secrets.js';
 import { getModelCallCounts, recordModelCall, subscribeModelCalls } from '../AI/modelCallCounter.js';
+import { addGameMonths } from '../../runtime/gameDates.js';
+import { SHIPPED_START_FOLDERS } from '../../runtime/testing/shippedHistoricalStarts.js';
 import { extractConversationRequest, interpretCharacterAction, narrateCharacterResolution, replyAsCharacter } from './characterModelCalls.js';
 
 const REP = 'person-0-0';
 const TARGET = 'person-1-0';
 const view = () => getCharacterPresentation(createCharacterSystem({ seed: 321 }));
 
-for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
+// Progression dates chosen for the original three starts; a later start progresses one year.
+const PROGRESS_DATES = { 'john-1200': '1201-09-01', 'charlemagne-800': '0801-09-01', 'egypt-3000bc': '-2999-01-01' };
+for (const id of SHIPPED_START_FOLDERS) {
   for (const progressed of [false, true]) test(`${id}: four captured historical requests preserve visible context${progressed ? ' after progression' : ''}`, async () => {
     const data = JSON.parse(readFileSync(new URL(`../../../server/seed/historical/${id}/scenario.json`, import.meta.url), 'utf8')).data;
     let state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 });
-    if (progressed) state = advanceCharacters(state, { 'john-1200': '1201-09-01', 'charlemagne-800': '0801-09-01', 'egypt-3000bc': '-2999-01-01' }[id], { id: 'progress' }).state;
+    if (progressed) state = advanceCharacters(state, PROGRESS_DATES[id] ?? addGameMonths(data.game.startDate, 12), { id: 'progress' }).state;
     state.historicalOrigin.sources.private = { chronology: 'HIDDEN_RESEARCH_1215' };
     state.people[state.offices.ruler.holderId].historicalOrigin.claims.identity.noteSv = 'HIDDEN_PERSON_CLAIM';
     Object.values(state.religions)[0].historicalOrigin.claims.identity.noteSv = 'HIDDEN_RELIGION_CLAIM';

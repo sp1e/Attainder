@@ -9,6 +9,7 @@ import Point from '@mapbox/point-geometry';
 import { classifyRings } from '@maplibre/maplibre-gl-style-spec';
 import clipping from 'polygon-clipping';
 import { buildRegionRenderRepair } from './regionRenderRepair.js';
+import { SHIPPED_START_FOLDERS } from '../../../runtime/testing/shippedHistoricalStarts.js';
 
 // Execute the installed renderer's subdivision and pole-extension implementation,
 // not a test-local approximation of its globe triangulation.
@@ -49,7 +50,7 @@ function contains(triangles, [x, y]) {
   });
 }
 
-for (const bookmark of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
+for (const bookmark of SHIPPED_START_FOLDERS) {
   test(`${bookmark} globe tessellation retains Antarctic land and generates the south polar cap`, async () => {
     const data = JSON.parse(readFileSync(new URL(`../../../../server/seed/historical/${bookmark}/regions.geojson`, import.meta.url), 'utf8'));
     const original = data.features.find(f => f.properties.id === 'physical-1378');

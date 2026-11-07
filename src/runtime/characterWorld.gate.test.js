@@ -12,6 +12,7 @@ import { buildCharacterPromptContext, prepareCharacterTimeline } from "./charact
 import { addGameMonths } from "./gameDates.js";
 import { setRuntimeAssetEndpoints } from "./assets.js";
 import { initializeCampaignCharacters, submitCharacterCommand } from "./characterRuntime.js";
+import { SHIPPED_START_FOLDERS } from "./testing/shippedHistoricalStarts.js";
 
 // REP rules the realm and heads the player's family; NPC heads another family.
 const REP = "person-0-0";
@@ -41,7 +42,7 @@ function plan(world, events) {
 const replay = (world, events) => applyEventImpactsToWorld({ world, events }).world;
 const notices = (events) => events.filter((event) => event.title === REFUSED_TITLE);
 
-for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) test(`${id}: historical gates retain refusals and replay accepted stored outcomes without RNG`, () => {
+for (const id of SHIPPED_START_FOLDERS) test(`${id}: historical gates retain refusals and replay accepted stored outcomes without RNG`, () => {
   const data = JSON.parse(readFileSync(new URL(`../../server/seed/historical/${id}/scenario.json`, import.meta.url), 'utf8')).data;
   const initial = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 });
   const world = normalizeWorldState({ ...data.world, characterSystem: initial });
