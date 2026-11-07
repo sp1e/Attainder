@@ -150,7 +150,7 @@ test('an AD 1500 dossier source with an object chronology imports its asWorded t
 });
 
 test('elective-rule describes the game\'s election and reaches the coverage lines of both AD 1500 courts', () => {
-  assert.equal(ENGINE_LIMIT_TEXT_SV['elective-rule'],'Spelets valordning väljer först bland vuxna i härskarens hus och sedan bland hovets övriga vuxna, efter förmåga. Finns ingen behörig väljs en genererad person utanför hovet. Valet återger inte rådets eller väljarnas egen ordning.');
+  assert.equal(ENGINE_LIMIT_TEXT_SV['elective-rule'],'Spelets valordning väljer först bland vuxna i härskarens hus efter förmåga, sedan bland husets barn efter ålder och sist bland hovets övriga vuxna efter förmåga. Ett barn styr genom en förmyndare. Finns ingen behörig väljs en genererad person utanför hovet. Valet återger inte rådets eller väljarnas egen ordning.');
   for (const polityId of ['aztec-empire','inca-empire']) assert.ok(build1500(polityId).coverageLinesSv.includes(ENGINE_LIMIT_TEXT_SV['elective-rule']),polityId);
 });
 

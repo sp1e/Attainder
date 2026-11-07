@@ -6,7 +6,7 @@ export const ENGINE_LIMIT_TEXT_SV = Object.freeze({
   'female-ruler-succession': 'Spelets tronföljd är könsneutral. Den återger inte de särskilda villkor som gällde när en kvinna regerade ensam.',
   'eunuch-status': 'Spelet saknar eunuckstatus och behandlar eunucker som andra hovmän.',
   regency: 'En vuxen förmyndare styr i härskarens namn tills härskaren blir myndig. Spelets regler väljer förmyndaren.',
-  'elective-rule': 'Spelets valordning väljer först bland vuxna i härskarens hus och sedan bland hovets övriga vuxna, efter förmåga. Finns ingen behörig väljs en genererad person utanför hovet. Valet återger inte rådets eller väljarnas egen ordning.',
+  'elective-rule': 'Spelets valordning väljer först bland vuxna i härskarens hus efter förmåga, sedan bland husets barn efter ålder och sist bland hovets övriga vuxna efter förmåga. Ett barn styr genom en förmyndare. Finns ingen behörig väljs en genererad person utanför hovet. Valet återger inte rådets eller väljarnas egen ordning.',
   'no-sourced-household': 'Underlaget belägger inget hushåll vid hovet. De tre hovmännen är genererade för spelet.',
   'multiple-spouses': 'Spelet tillåter en make eller maka per person. Hovet visar högst ett äktenskap för varje person.',
   'collective-rule': 'Spelet har ett ensamt härskarämbete. Råd och delat styre visas inte som egna ämbeten.',

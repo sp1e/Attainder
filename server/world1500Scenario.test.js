@@ -212,16 +212,16 @@ const RELEASED_ROWS = [
   ['egypt-3000bc/manifest.json', 2489, 'addff0749e22622951840a5859c91ed73c8227d61338ea63b9cfc9a46ba5c716'],
   ['john-1200/regions.geojson', 2077205, '94308b5d9fabf18b87b3742f82dbc35d7286beb03a4d61e65e86f725d4c2d440'],
   ['john-1200/cities.geojson', 1953, 'cefed90d6abde489be1fde2273d97ab54336a2825c24dc928b412c7e0cf0ece5'],
-  ['john-1200/scenario.json', 4552741, '719bf933e861e3368b6da8e496a88038e80b8535e43cface9d0248b3d12020e8'],
-  ['john-1200/manifest.json', 2871, '6d4d10137e02a46d48e1ebc0b84973892e4b0ecf29e1bc554d07516a48642e36'],
+  ['john-1200/scenario.json', 4552829, 'd28cc0e52c889bd959a587f20cb8a4f87bdf6c67c7d4a8354b62ae2e55e2209b'],
+  ['john-1200/manifest.json', 2871, '3dfe9ffe3cffabb3ff907ad15305a68ba87ce09bebcac46425546880512cae8a'],
   ['charlemagne-800/regions.geojson', 2191514, '83cd982d563954d49d110bd616e71196a4369b0f7f659c209945514514e3217c'],
   ['charlemagne-800/cities.geojson', 4560, 'eef2d09798684f6f5dd83a16d791a206b307ced19a7416468e6fa0f1564d5d7b'],
-  ['charlemagne-800/scenario.json', 4631980, 'fba69f216138fddc8282c5b076598e086dcb93e88d188bda3488e44fb9eac726'],
-  ['charlemagne-800/manifest.json', 2930, 'b694b07e0b332857ad296996f82fb83307c0dff8c9946a042e3c9ff2d1c1a3cb'],
+  ['charlemagne-800/scenario.json', 4632068, '8f597712b09d47973461e206703376abceb99121d45ff15b4424f03aa3dbcb2c'],
+  ['charlemagne-800/manifest.json', 2930, 'c42c3452ae62216749aa2f91cda1e577e982814e5e716493afdb8596a2547d5a'],
   ['world-1500/regions.geojson', 2049578, 'd4e90914ae1fc8e8c37c060115d1dad5fb54506e7cc1b3fce04b68f40bfb99a9'],
   ['world-1500/cities.geojson', 830, '5466fb0f0a5aa4ae067732dc405fa6a4e7c45eb95ea583b942da88507f31f52d'],
-  ['world-1500/scenario.json', 4748891, '8435710b9799700e8266ee30cd2769acd9e878bdec2aa542017f9f39b45d56f5'],
-  ['world-1500/manifest.json', 2854, 'ef392bb6d73aef48a5dfbd7558eff7bc6d92fd279ea702c3aab966d75626c073'],
+  ['world-1500/scenario.json', 4749067, '8fcf577a460b40bb51c63915bb324a4a5578dd0aacd06b4e0d61c63bd4760fe7'],
+  ['world-1500/manifest.json', 2854, '602e3d4d8a1137e6f67b41fff3cdf77b72d68c7b78620f4f04beff8c1b3b8f1b'],
 ];
 
 test('releases.json pins world_1500 and every released row, and each file keeps its bytes', () => {
