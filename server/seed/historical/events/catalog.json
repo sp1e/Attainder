@@ -4464,6 +4464,66 @@
       "originalChronology": "At around 3100 BCE, settlement residents north of the Black Sea changed animal husbandry to focus predominantly on cattle; before 3100 BCE, varied subsistence strategies.",
       "reuseTerms": "Reference only; no source prose or images redistributed",
       "scopedClaim": "An archaeozoologically inferred, approximately dated regional shift toward cattle husbandry in the studied settlements north of the Black Sea, with sheep and goats also kept and fewer wild game bones; no single decree or whole-steppe uniformity."
+    },
+    {
+      "id": "bc3000-icomos-liangzhu",
+      "title": "ICOMOS evaluation: Archaeological Ruins of Liangzhu City, No.1592 (2019)",
+      "institution": "ICOMOS; UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/document/176165",
+      "locator": "Description and history, printed pp.112–113 (PDF pp.1–2), low-dam/causeway and City Site paragraphs; second-period paragraph on p.113.",
+      "asWorded": "ca. 3000 to 2600 BCE; mainly between ca. 3000 and 2850 BCE; ca. 3000-2850 BCE",
+      "originalChronology": "Approximate BCE construction spans. The report separates low dams/causeway (3000–2600) and main city construction (3000–2850) from earlier occupation (3300 onward) and high dams (3100–2850). No conversion.",
+      "scopedClaim": "Builders constructed the low-dam/causeway component ca.3000–2600 BCE and mainly constructed the City Site ca.3000–2850 BCE, including palace and settlement areas and graded cemeteries.",
+      "retrievedOn": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc3000-princeton-abydos",
+      "title": "Archaeological team co-led by Princeton’s Vischak identifies world’s oldest industrial-scale brewery at Abydos, Egypt, ca.3000 BCE (2021)",
+      "institution": "Princeton University, Office of the Dean for Research; North Abydos Project",
+      "url": "https://research.princeton.edu/news/archaeological-team-co-led-princetons-vischak-identifies-worlds-oldest-industrial-scale-brewery",
+      "locator": "Paragraph beginning 'The archaeological team' and paragraphs describing eight installations, forty vats per installation and estimated batch capacity (web lines89,94–98).",
+      "asWorded": "ca. 3000 BCE",
+      "originalChronology": "Archaeological team's approximate BCE dating of the brewery. No exact foundation or production year and no calendar conversion.",
+      "scopedClaim": "The North Abydos brewery dates to ca.3000 BCE, had at least eight installations containing about forty vats each, and could produce an estimated22000 litres per batch.",
+      "retrievedOn": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc3000-englishheritage-stonehenge",
+      "title": "History of Stonehenge",
+      "institution": "English Heritage",
+      "url": "https://www.english-heritage.org.uk/visit/places/stonehenge/history-and-stories/history/",
+      "locator": "The Earliest Monument, first paragraph (web line240).",
+      "asWorded": "about 3000 BC",
+      "originalChronology": "Approximate BC construction date for circular ditch and inner/outer banks, distinct from later stone settings. No conversion.",
+      "scopedClaim": "Builders made Stonehenge's circular ditch with inner and outer banks about3000 BC; the enclosed area measured about100 metres across and had two entrances.",
+      "retrievedOn": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc3000-met-valdivia",
+      "title": "Figure, Valdivia artist(s), object1980.83.16; curatorial commentary by Carol Velandia(2025)",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/art/collection/search/314205",
+      "locator": "Artwork Details, object1980.83.16 (Date, Geography, Culture, Medium); opening curatorial paragraphs (web lines29–31,60–69).",
+      "asWorded": "3000 BCE; around 3000 BCE",
+      "originalChronology": "Museum's object date and approximate dating of early stone figures. Archaeological estimate, not an exact production year. No conversion.",
+      "scopedClaim": "The museum attributes stone human figure 1980.83.16 to the Valdivia culture in Ecuador, dates it to 3000 BCE and gives its height as 7 cm. The commentary leaves the exact function unknown; the event retains an approximate archaeological date.",
+      "retrievedOn": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc3000-honegger-prekerma",
+      "title": "Matthieu Honegger, Kerma: The Neolithic and Pre-Kerma Occupation of the Eastern Necropolis, English translation in the Kerma reports compilation (Rapport_2001.pdf)",
+      "institution": "Swiss Archaeological Mission to Sudan; Genava archaeological reports",
+      "url": "https://www.kerma.ch/documents/Publications_PDF/Genava_2001/Rapport_2001.pdf",
+      "locator": "English translation, printed pp.X–XI, PDF pp.47–48, The Pre-Kerma Settlement and Burial; burial paragraph PDF p.48, web lines1900–1918; chronological table PDF p.47; duplicate burial text PDF p.62 lines2985–3003.",
+      "asWorded": "about 3000 BC",
+      "originalChronology": "Grave-goods-based approximate date of the adult woman's grave, about 3000 BC; table uses a tentative late-fourth/early-third-millennium designation. Numerical earliest uncertainty bound is unspecified. Settlement radiocarbon samples do not date this burial.",
+      "scopedClaim": "A grave assigned about3000 BC held an adult woman in a flexed position with a quartz palette, copper pin and handled copper awl, among other goods; the date depends on comparative grave goods.",
+      "retrievedOn": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
     }
   ],
   "events": [
@@ -14127,6 +14187,144 @@
       "review": {
         "status": "approved",
         "reviewedBy": "Independent Codex source review (BC3100, F01-confirmed)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3000-stort-bryggeri-i-abydos",
+      "date": {
+        "kind": "approximate",
+        "startYear": -3000,
+        "endYear": -3000,
+        "displaySv": "cirka 3000 f.Kr."
+      },
+      "titleSv": "Bryggare producerar öl i stor skala i Abydos",
+      "summarySv": "Bryggare vid Abydos arbetar med minst åtta parallella anläggningar med stora keramikkar. Arkeologer daterar bryggeriet till omkring 3000 f.Kr. och uppskattar kapaciteten till omkring 22000 liter öl per sats.",
+      "geographySv": "Abydos, Egypten",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "bc3000-princeton-abydos"
+      ],
+      "selectionNote": "A substantial production installation relevant to early Egyptian royal resource mobilisation. This dates the brewery, without asserting the invention of beer or a construction order by Narmer.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent historical source reviewer (initial review)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3000-liangzhus-laga-dammar",
+      "date": {
+        "kind": "range",
+        "startYear": -3000,
+        "endYear": -2600,
+        "displaySv": "cirka 3000–2600 f.Kr."
+      },
+      "titleSv": "Byggare anlägger låga dammar och en vall vid Liangzhu",
+      "summarySv": "Byggare norr och väster om Liangzhu anlägger fyra dammar och en lång vall vid bergens fot. De skapar ett system för vattenlagring. ICOMOS anger byggnadstiden till omkring 3000–2600 f.Kr.",
+      "geographySv": "Liangzhu, Zhejiang, Kina",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "bc3000-icomos-liangzhu"
+      ],
+      "selectionNote": "Distinct low-dam/causeway construction component, not the earlier high dams. Preserve full construction span beyond this century.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent historical source reviewer (initial review)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3000-liangzhus-stadsomrade-byggs-ut",
+      "date": {
+        "kind": "range",
+        "startYear": -3000,
+        "endYear": -2850,
+        "displaySv": "cirka 3000–2850 f.Kr."
+      },
+      "titleSv": "Invånarna bygger ut Liangzhus stadsområde",
+      "summarySv": "Invånarna i Liangzhu bygger palatsområde, bostadsområden och gravfält med skillnader i gravarnas status. ICOMOS förlägger huvuddelen av arbetet med stadsområdet till omkring 3000–2850 f.Kr. Människor hade bott i området före denna byggnadsperiod.",
+      "geographySv": "Liangzhu, Zhejiang, Kina",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc3000-icomos-liangzhu"
+      ],
+      "selectionNote": "Bounded main city-building episode explicitly dated by ICOMOS, separated from earlier occupation and from the low-dam/causeway construction. No foundation year or date for all city walls.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent historical source reviewer (initial review)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3000-stonehenges-dike-och-vallar",
+      "date": {
+        "kind": "approximate",
+        "startYear": -3000,
+        "endYear": -3000,
+        "displaySv": "cirka 3000 f.Kr."
+      },
+      "titleSv": "Byggare gräver Stonehenges cirkelformade dike",
+      "summarySv": "Byggare gräver ett cirkelformat dike och lägger upp vallar på båda sidor. De omger en yta som mäter omkring 100 meter tvärs över och lämnar två ingångar. English Heritage daterar arbetet till omkring 3000 f.Kr.",
+      "geographySv": "Stonehenge, England",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "bc3000-englishheritage-stonehenge"
+      ],
+      "selectionNote": "Specific construction episode of the ditch-and-bank monument. Later stone settings receive no date from this event.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent historical source reviewer (initial review)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3000-valdivias-stenfigurer",
+      "date": {
+        "kind": "approximate",
+        "startYear": -3000,
+        "endYear": -3000,
+        "displaySv": "cirka 3000 f.Kr."
+      },
+      "titleSv": "En hantverkare skapar en stenfigur i Ecuador",
+      "summarySv": "En hantverkare inom Valdiviakulturen tillverkar en liten människogestalt i sten i dagens Ecuador. Metropolitan Museum daterar det sju centimeter höga exemplaret, objekt 1980.83.16, till omkring 3000 f.Kr. Figurernas exakta funktion är okänd.",
+      "geographySv": "Ecuador",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc3000-met-valdivia"
+      ],
+      "selectionNote": "Manufacture of the individually dated stone figure 1980.83.16. Its approximate object date does not establish the beginning or duration of a regional craft tradition.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent historical source reviewer (F01 follow-up)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc3000-kvinnograv-vid-kerma",
+      "date": {
+        "kind": "approximate",
+        "startYear": -3000,
+        "endYear": -3000,
+        "displaySv": "cirka 3000 f.Kr."
+      },
+      "titleSv": "En kvinna får kopparredskap med sig i graven vid Kerma",
+      "summarySv": "Gravläggare lägger en vuxen kvinna i hopkrupen ställning vid Kerma och ger henne bland annat en kopparnål, en syl och en kvartspalett. Arkeologen Matthieu Honegger daterar graven till omkring 3000 f.Kr. med hjälp av gravgåvorna. Han lämnar sambandet med den närliggande bosättningen öppet.",
+      "geographySv": "Kerma, övre Nubien, Sudan",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc3000-honegger-prekerma"
+      ],
+      "selectionNote": "A specific burial episode rather than the onset of the 3500–2500 Pre-Kerma cultural phase. Grave-goods date and settlement radiocarbon date remain separate.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent historical source reviewer (F01 follow-up)",
         "reviewedOn": "2026-11-07"
       }
     }
