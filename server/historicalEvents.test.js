@@ -169,7 +169,7 @@ test('a range event that overlaps a no-secure-event range at either end is refus
 });
 test('a range whose end year falls inside a no-secure-event range is refused', () => {
   const coverage = { schemaVersion: 1, ranges: [range(-3300, -3200, 'partial'), range(-3199, -3000, 'no-secure-event'), range(-2999, -1, 'partial'), range(1, 1530, 'partial')] };
-  const event ={ ...goodEvent, date: { kind: 'range', startYear: -3250, endYear: -3100, displaySv: 'x' } };
+  const event = { ...goodEvent, date: { kind: 'range', startYear: -3250, endYear: -3100, displaySv: 'x' } };
   const errors = validateCoverage(coverage, catalogWith(event)).errors ?? [];
   assert.ok(hasError(errors, 'marked no-secure-event'), JSON.stringify(errors));
 });

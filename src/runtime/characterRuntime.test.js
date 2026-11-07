@@ -320,7 +320,7 @@ test('historical initialization refuses the reserved generated-person namespace 
   try {
     const result = await initializeCampaignCharacters({ seed: 1 });
     assert.equal(result.ok, false);
-    assert.match(result.error, /Det historiska hovets uppgifter.*\./);
+    assert.equal(result.error, 'Det historiska scenariot saknar giltiga källor, kartdata eller hov för den valda starten.');
     assert.deepEqual(puts, []);
     assert.deepEqual(data, before);
   } finally { globalThis.fetch = originalFetch; }
