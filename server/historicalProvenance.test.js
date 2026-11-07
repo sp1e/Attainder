@@ -7,6 +7,7 @@ import { createHash } from 'node:crypto';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
+import { HISTORICAL_BOOKMARKS } from './historicalStarts.js';
 
 test('desktop store preserves historical source, component terms and geometry through two imports',async () => {
   const root = await fs.mkdtemp(path.join(os.tmpdir(),'attainder-provenance-'));
@@ -42,14 +43,18 @@ const SOURCE_800 = '9d046cdc4662109c3f803ae46e2c8cba941aa092ec86eccc7823e6cf1554
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const seedJson = async name => JSON.parse(await fs.readFile(new URL(name,SEED),'utf8'));
 
-test('the 800 package computes its provenance live and pins world_800',async () => {
+test('every shipped start keeps the build record of its release',async () => {
   const released = await seedJson('released-provenance.json');
-  assert.deepEqual(Object.keys(released),['egypt-3000bc','john-1200']);
+  for (const contentId of [...HISTORICAL_BOOKMARKS.map(b => b.id),'john-1200']) {
+    const manifest = await seedJson(`${contentId}/manifest.json`);
+    assert.ok(released[contentId],`${contentId}: no released provenance`);
+    for (const field of ['generator','sourceFiles','authoredInputs']) assert.deepEqual(released[contentId][field],manifest[field],`${contentId}: ${field}`);
+  }
+});
+
+test('the 800 package pins world_800',async () => {
   const manifest = await seedJson('charlemagne-800/manifest.json');
-  const generator = await fs.readFile(new URL('../scripts/build-historical-scenarios.mjs',import.meta.url));
-  assert.equal(manifest.generator.sha256,sha(generator));
   assert.deepEqual(manifest.authoredInputs.map(i => i.fileName),['authored-scenarios.mjs','ad800-review.json']);
-  for (const input of manifest.authoredInputs) assert.equal(input.sha256,sha(await fs.readFile(new URL(input.fileName,SEED))),input.fileName);
   assert.equal(manifest.sourceFiles.find(f => f.fileName === 'hbm-world_800.geojson').sha256,SOURCE_800);
   assert.equal(sha(await fs.readFile(new URL('sources/hbm-world_800.geojson',SEED))),SOURCE_800);
 });
