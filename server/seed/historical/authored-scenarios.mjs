@@ -60,9 +60,11 @@ function court({ polityId, seat, ancient }) {
     mechanics: { status: 'generated',noteSv: 'Resurser, succession, familjegrupper, myndighetsålder och hovämbeten följer spelets regler. De beskriver inte belagda historiska värden.' } };
 }
 
-export function authoredScenario(ancient) {
+const ANCIENT_BY_CONTENT_ID = { 'egypt-3000bc': true,'john-1200': false };
+export function authoredScenario(contentId) {
+  if (!Object.hasOwn(ANCIENT_BY_CONTENT_ID,contentId)) throw new Error(`Unknown historical scenario: ${contentId}`);
+  const ancient = ANCIENT_BY_CONTENT_ID[contentId];
   const polityId = ancient ? 'egypt-early-dynastic' : 'johns-realms';
-  const contentId = ancient ? 'egypt-3000bc' : 'john-1200';
   const date = ancient ? '-3000-01-01' : '1200-12-31';
   const seat = { id: ancient ? 'memphis' : 'windsor',nameSv: ancient ? 'Ineb-Hedj (Memfis)' : 'Windsor',coordinates: ancient ? [31.25,29.85] : [-0.6,51.4833],polityId,regionId: ancient ? 'hbm-bc3000-19' : 'hbm-ad1200-275',placement: 'inside',sourceIds: ancient ? ['egypt','memphis'] : ['windsor','windsorResidence'],noteSv: ancient ? 'Ungefärlig placering vid dagens Mit Rahina; det tidiga palatsets läge är okänt.' : 'Ungefärlig ortsmarkör. Vald som spelsäte; kungaparets närvaro denna dag är inte belagd.' };
   return { schemaVersion: 1,kind: 'historical',contentId,contentVersion: '1.0.0',calendar: 'proleptic-gregorian-no-year-zero',bookmarkDate: date,

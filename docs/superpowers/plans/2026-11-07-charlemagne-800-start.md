@@ -31,6 +31,8 @@ Ruling: the seat is Aachen, with Getty's coordinate, and the package says Charle
 
 Ruling: John stays offered and Charlemagne becomes the default medieval start — John's saves and browser evidence stay valid and the player gets the longer campaign by default — one line in the catalog order if the owner prefers otherwise.
 
+Ruling: released packages keep the build provenance of their release in `server/seed/historical/released-provenance.json`, and a package without an entry computes it live — the build hashes its own file, `authored-scenarios.mjs`, the review list and `SOURCE_HASHES` into each manifest, so without this any edit changes Egypt and John — their manifests then name the generator commit that released them, which the research doc states.
+
 Ruling: only the people the sources support get `documented`, and everyone else stays generated — the spec forbids invented biography — the court may hold fewer documented names than a player expects.
 
 ## Review Focus
