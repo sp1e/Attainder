@@ -84,7 +84,7 @@ Historical Basemaps uses commit `4b5039e50d8d2464b065bd76ad6086cd4597108d`. Its 
 
 The bundle's CC BY record covers authored content. `componentLicenses` identifies embedded GPL geometry, Natural Earth public-domain physical data and Getty ODC-By location data. Both stores retain these records and asset provenance in world state. JSON exports preserve them; ZIP and suggestion exports include component notices and corresponding source entries. Re-importing and exporting on either adapter preserves original source hashes, license text and transformation records. Ordinary authored scenarios retain their existing CC BY behavior. Application AGPL notices remain in place.
 
-Annual historical-event research, the turn-end reference popup, additional dates and more detailed political frontiers remain separate work. This release does not fill those gaps with generated history.
+The year popup and the chronicle segment `I verklighetens historia` exist and read one approved catalog. The catalog ships empty until the research round, so no popup appears yet and the segment shows its empty text. The segment is available for historical campaigns, lists the closed years newest first and notes that the research ends at year 1200. Annual historical-event research, additional dates and more detailed political frontiers remain separate work. This release does not fill those gaps with generated history.
 
 ## Model context and alternate outcomes
 

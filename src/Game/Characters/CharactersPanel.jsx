@@ -16,6 +16,7 @@ import { ChoiceOdds, CouncilSeats, DemandList, ReignCard } from "./CourtSections
 import IntrigueView from "./IntrigueView.jsx";
 import LocalModelConnect from "./LocalModelConnect.jsx";
 import Portrait from "./Portrait.jsx";
+import HistoricalRecordView, { holdFocus, useChronicleRequest } from "./HistoricalRecordView.jsx";
 
 const THEME_KEY = "oh:characters:theme";
 const ACTION_FAILED = "Handlingen kunde inte genomföras.";
@@ -330,17 +331,16 @@ function MemoryList({ memories, people = {} }) {
   return <ol className="char-memory-list">{memories.map((memory, index) => <li key={memory.id || index}><span className="char-memory-date">{dateLabel(memory.date || memory.createdAt)}</span><div><strong>{memory.title || humanize(memory.type)}</strong><p>{memory.description || memory.text}</p>{memory.participants?.length > 0 && <small>{memory.participants.map((id) => people[id]?.name).filter(Boolean).join(" · ")}</small>}{memory.causeId && <small className="char-memory-cause">Följd av: {memory.causeTitle || titles[memory.causeId] || "ett tidigare beslut"}</small>}</div></li>)}</ol>;
 }
 
-function ChronicleView({ view }) {
-  const [filter, setFilter] = useState("memories");
+function ChronicleView({ view, filter, setFilter, historical = false, startDate, gameDate }) {
   const people = Object.fromEntries(entries(view.people).map((person) => [person.id, person]));
   const records = [...(filter === "memories" ? entries(view.memories) : entries(view.log))].sort((a, b) => compareGameDates(b.date || b.createdAt, a.date || a.createdAt));
-  return <><div className="char-section-heading"><div><span className="char-eyebrow">Besluten som världen minns</span><h3>Kampanjens krönika</h3></div><div className="char-segment" aria-label="Typ av historik"><button type="button" aria-pressed={filter === "memories"} onClick={() => setFilter("memories")}>Minnen</button><button type="button" aria-pressed={filter === "log"} onClick={() => setFilter("log")}>Årskrönika</button></div></div><p className="char-intro">En tillfällig känsla kan blekna medan minnet, ett löfte eller ett anspråk består. Här visas det din sida känner till.</p>
-    <div className="char-card">{records.length ? <MemoryList memories={records} people={people} /> : <Empty title="En historia tar sin början">Beslut, relationer och generationsskiften kommer att lämna spår här.</Empty>}</div>
+  return <><div className="char-section-heading"><div><span className="char-eyebrow">Besluten som världen minns</span><h3>Kampanjens krönika</h3></div><div className="char-segment" aria-label="Typ av historik"><button type="button" aria-pressed={filter === "memories"} onClick={() => setFilter("memories")}>Minnen</button><button type="button" aria-pressed={filter === "log"} onClick={() => setFilter("log")}>Årskrönika</button>{historical && <button type="button" aria-pressed={filter === "history"} onClick={() => setFilter("history")}>I verklighetens historia</button>}</div></div><p className="char-intro">En tillfällig känsla kan blekna medan minnet, ett löfte eller ett anspråk består. Här visas det din sida känner till.</p>
+    {historical && filter === "history" ? <HistoricalRecordView startDate={startDate} gameDate={gameDate} /> : <div className="char-card">{records.length ? <MemoryList memories={records} people={people} /> : <Empty title="En historia tar sin början">Beslut, relationer och generationsskiften kommer att lämna spår här.</Empty>}</div>}
     <details className="char-explanation char-rules"><summary>Kampanjens regelversion</summary><dl className="char-facts">{Object.entries(view.versions || {}).filter(([key]) => key !== "provenance").map(([key, value]) => <div key={key}><dt>{({ schema: "Sparformat", rules: "Spelregler", content: "Innehåll" })[key] || key}</dt><dd>{text(value)}</dd></div>)}</dl><p>Regler och balans är egna anpassningar, med inspiration från Old World och Crusader Kings III.</p></details>
   </>;
 }
 
-export default function CharactersPanel({ open, onClose }) {
+export default function CharactersPanel({ open, onClose, chronicleRequest = 0 }) {
   const worldRevision = useRuntimeState("world", (world) => world?.characterSystem?.revision ?? null);
   const game = useRuntimeState("game");
   const events = useRuntimeState("events");
@@ -361,6 +361,8 @@ export default function CharactersPanel({ open, onClose }) {
   const [talks, setTalks] = useState({});
   // True while a conversation's confirmation card is open: time stays put so its odds cannot go stale.
   const [talkHold, setTalkHold] = useState(false);
+  const [chronicleFilter, setChronicleFilter] = useState("memories");
+  const historical = Boolean(useRuntimeState("world", (world) => world?.historicalScenario));
   const busyRef = useRef(false);
   const readSequence = useRef(0);
   const panelRef = useRef(null);
@@ -389,6 +391,8 @@ export default function CharactersPanel({ open, onClose }) {
     panelRef.current?.querySelector("button")?.focus();
     return () => previousFocus?.focus?.();
   }, [open]);
+  // The popup's "Visa alla i krönikan" link: open the record, and keep focus in the panel.
+  useChronicleRequest(chronicleRequest, () => { setTab("chronicle"); setChronicleFilter("history"); holdFocus(panelRef.current, document.activeElement); });
   useEffect(() => { panelRef.current?.querySelector(".char-content")?.scrollTo({ top: 0 }); }, [tab, yearEvents]);
   useEffect(() => subscribeModelCalls((counts) => setModelCalls(counts.total)), []);
   useEffect(() => {
@@ -476,7 +480,7 @@ export default function CharactersPanel({ open, onClose }) {
           {tab === "offices" && <OfficesView view={view} setTab={setTab} />}
            {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Olika personer kan företräda riket och hushållet. Varje handling följer den ansvariga aktörens mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}<ChainHistory chains={view.chainHistory} /></>}
           {tab === "intrigue" && <IntrigueView view={view} busy={busy} onCommand={command} />}
-          {tab === "chronicle" && <ChronicleView view={view} />}
+          {tab === "chronicle" && <ChronicleView view={view} filter={chronicleFilter} setFilter={setChronicleFilter} historical={historical} startDate={game?.startDate} gameDate={game?.gameDate} />}
         </>}
       </div>
       <footer className="char-footer"><span>{view?.mode === "family" ? "Din familj består genom maktskiften." : "Dina ledare skiftar. Riket består."}</span><span>Modellanrop denna session: {modelCalls}</span><span>{busy ? "Arbetar med kampanjen…" : "Beslut sparas automatiskt"}</span></footer>

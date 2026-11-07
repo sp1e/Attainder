@@ -33,6 +33,7 @@ import {
 } from "../AI/providerConfig.js";
 import { FallbackSwitchNotice } from "./fallbackSwitchNotice.jsx";
 import { useRuntimeState } from "../../runtime/useRuntimeState.js";
+import { useHistoryRecordRequest } from "../Characters/historyRecordRequest.js";
 
 // Whether anything in the Fallback list has what its provider needs, and the
 // top entry's provider for the start-of-game prompt's wording. Re-read whenever
@@ -104,6 +105,7 @@ const LazyInteractivePanel = lazy(() =>
   import("./interactive.jsx").then((module) => ({ default: module.InteractivePanel })),
 );
 const LazyCharactersPanel = lazy(() => import("../Characters/CharactersPanel.jsx"));
+const LazyHistoricalYearNotice = lazy(() => import("../Characters/HistoricalYearNotice.jsx"));
 
 const checkWebGL = () => {
   try {
@@ -235,6 +237,7 @@ const Main = ({
   const [isInteractiveOpen, setIsInteractiveOpen] = useState(false);
   const [isCharactersOpen, setIsCharactersOpen] = useState(false);
   const hasCharacters = useRuntimeState("world", (world) => Boolean(world?.characterSystem));
+  const isHistoricalCampaign = useRuntimeState("world", (world) => Boolean(world?.historicalScenario));
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
   const [advisorWidth, setAdvisorWidth] = useState(readAdvisorWidth);
   // A starter message queued for the advisor's input box — set when something
@@ -250,6 +253,8 @@ const Main = ({
 
   const [aiSetup, setAiSetup] = useState(readAiSetup);
   const { activeGame, games, loaded, runtimeScenario } = useLibraryState();
+  // The year popup's link to the chronicle: opens the panel and counts each request.
+  const chronicleRequest = useHistoryRecordRequest(activeGame?.id, () => { if (hasCharacters) setIsCharactersOpen(true); });
   // The game menu names the campaign the way the library does.
   const activeCountryName = useCountryDisplayName(activeGame?.country || "");
   // No games -> nothing to simulate (the main menu covers the empty world).
@@ -560,7 +565,8 @@ const Main = ({
         onClick={() => setIsCharactersOpen(true)}
         style={{ ...baseStyle, top: `calc(${TOP_BAR_OFFSET} + 5rem)`, left: "0.5rem", padding: "0.7rem 1rem", minHeight: "44px", cursor: "pointer", fontSize: "0.85rem", gap: "0.6rem" }}
       ><span aria-hidden="true">◇</span> Rike & familjer</button>}
-      {hasCharacters && <Suspense fallback={null}><LazyCharactersPanel key={activeGame?.id} open={isCharactersOpen} onClose={() => setIsCharactersOpen(false)} /></Suspense>}
+      {hasCharacters && <Suspense fallback={null}><LazyCharactersPanel key={activeGame?.id} open={isCharactersOpen} onClose={() => setIsCharactersOpen(false)} chronicleRequest={chronicleRequest} /></Suspense>}
+      {isHistoricalCampaign && Boolean(activeGame?.id) && <Suspense fallback={null}><LazyHistoricalYearNotice key={activeGame.id} gameId={activeGame.id} hidden={mainMenuOpen || isCharactersOpen || isSettingsOpen || isCheatsOpen || Boolean(activeBottomPanel)} /></Suspense>}
       <DateWidget
         activePanel={activeBottomPanel}
         mapRef={mapRef}

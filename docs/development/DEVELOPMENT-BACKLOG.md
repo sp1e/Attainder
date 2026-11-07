@@ -1,12 +1,12 @@
 # Development backlog
 
-Updated 5 November 2026. The owner's current requests take precedence over the earlier fictional-world design. This file records planned work; it does not claim implementation or research completion.
+Updated 7 November 2026. The owner's current requests take precedence over the earlier fictional-world design. This file records planned work; it does not claim implementation or research completion.
 
 | Order | Work | State |
 | --- | --- | --- |
 | 1 | Merge the reviewed Phase 3 fixes. | Complete: [PR #12](https://github.com/sp1e/Attainder/pull/12) merged; final review `08d3518..55283dc` approved with no new Critical, Important or Minor findings; required test/build CI passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295); remote `main` verified as `6f4f7c0`. Retained remote branch `fix/phase-3-review`: `55283dc`. |
 | 2 | Replace the playable fictional world and modern default with real-world historical campaign starts, from the Bronze Age through about AD 1200; offer no modern starts. | Tasks 1–5 accepted through `1addf27`, including guards, defaults and UI. Task 6 and final documentation review are accepted with documented limits. Final review approved publication subject to current-head CI; PR #13 tracks merge state. |
-| 3 | Research historical events year by year and add an end-turn historical-events popup. | Pending: no release-approved events, fully reviewed year or popup implementation. The full 4,500-year research requirement remains open. |
+| 3 | Research historical events year by year and add an end-turn historical-events popup. | Popup, per-device watermark and the chronicle record `I verklighetens historia` are built and read an approved catalog. The catalog ships empty, so no popup appears yet. The research round and the full 4,500-year research requirement remain open. |
 | 4 | Continue family/succession, life/events, diplomacy/war and religion phases against the historical setting. | Replan after the historical foundation. |
 
 ## Historical events at turn end
@@ -31,7 +31,7 @@ The owner requested deep research into notable events for each year from approxi
 - Use the researched dataset for lookup; no extra model call or live research request is needed at turn end. Missing evidence must not cause the model to invent a historical popup.
 - Preserve deterministic simulation, saves and stored replay. Historical reference cards must not force the campaign to repeat a real death, war or succession that contradicts its state.
 - Define notification deduplication, reload/replay behavior and multi-year turns in the written implementation plan. Test the BC/AD boundary, approximate dates, empty coverage, multiple events in a year and repeated loading of a completed turn.
-- Provide a browsable history record so dismissed reference cards remain accessible.
+- Provide a browsable history record so dismissed reference cards remain accessible. Built: the chronicle segment `I verklighetens historia`, reached from the popup link or the chronicle tab.
 
 ### Acceptance evidence
 
