@@ -126,10 +126,14 @@ The third start is the default: the card preselects it, and John and Egypt stay 
 
 | ID | Adapter | Start card | Map at Aachen | Household command | Reload | One turn |
 | --- | --- | --- | --- | --- | --- | --- |
-| S-K-R | Server | Observed 2026-11-07 | not yet run | Observed 2026-11-07: gift | Observed 2026-11-07 | Observed 2026-11-07: real local Claude, one year |
-| W-K-R | Web | Observed 2026-11-07 | Observed 2026-11-07 | Observed 2026-11-07: gift | Observed 2026-11-07 | not yet run: model status stubbed |
+| S-K-R | Server | Observed 2026-11-07 | Observed 2026-11-07 | Observed 2026-11-07: gift | Observed 2026-11-07 | Observed 2026-11-07: real local Claude, one year |
+| W-K-R | Web | Observed 2026-11-07 | Observed 2026-11-07 | Observed 2026-11-07: gift | Observed 2026-11-07 | Observed 2026-11-07: real local Claude, one year |
 
 Web run: `npm run dev:web` with the model status stubbed. The start card preselected `800 e.Kr. · Karls rike (karolingiska riket), 800 e.Kr.` among 3 starts. The court showed Karl aged 57 with the title Kejsare, 13 living people and the heir Karl den yngre. `Överlevnad osäker` showed in person detail. A gift gave `En relation stärks`, and a reload kept the campaign and the gift event. The map showed Aachen, Rome and polities.
+
+Web turn on `efe9f11`: the bridge only answers its own origin, so a loopback host in the test run served the web build and `/api/local-models` from one origin, with the campaign in IndexedDB. One real year turn with local Claude took about 4.5 minutes and gave 11 events, the first dated 10/2 801 e.Kr. After a reload and `Current`, the header read `0801-12-25` and the panel kept the turn. The events name no dead court member. The only later date is `Senast 25/12 802 e.Kr.` on two pending decisions. While the panel stayed open after the turn, the header still read `0800-12-25`, and on that run it showed the polity ID `carolingian-realm` until the reload.
+
+Server map on `efe9f11`: the map shows Aachen, Rom, `Karls rike (karolingiska riket)` and its neighbours with 0 console errors.
 
 Server run: `http://localhost:3000` with an isolated `OH_DATA_DIR` and the real local Claude through `claude-cli`. Start, gift and reload worked. One real year turn took about 5.5 minutes and gave 11 events, the first dated 2/3 801 e.Kr., and the date 25/12 801 e.Kr. survived a reload. The console showed 0 errors. The events name no dead court member and no year after 801. `GET /api/scenarios/<id>/assets/stats` returns 404 for both `charlemagne-800` and `john-1200`, which predates this branch.
 
