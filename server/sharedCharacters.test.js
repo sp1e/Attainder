@@ -7,6 +7,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import * as shared from './characters/index.js';
 import { addGameMonths } from './gameDates.js';
+import { SHIPPED_START_FOLDERS } from '../src/runtime/testing/shippedHistoricalStarts.js';
 
 const digest = state => createHash('sha256').update(JSON.stringify(state)).digest('hex');
 const baselines = [
@@ -43,7 +44,7 @@ test('installed layout validates and constructs both historical courts with no s
     // Production dependency resolution only; no checkout source tree is linked.
     fs.symlinkSync(path.resolve('node_modules'), path.join(fixture, 'node_modules'), 'junction');
     assert.equal(fs.existsSync(path.join(fixture, 'src')), false);
-    for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
+    for (const id of SHIPPED_START_FOLDERS) {
       const directory = path.join(fixture, 'server', 'seed', 'historical', id);
       fs.mkdirSync(directory, { recursive: true });
       for (const name of ['scenario.json', 'regions.geojson', 'manifest.json']) fs.copyFileSync(new URL(`./seed/historical/${id}/${name}`, import.meta.url), path.join(directory, name));
@@ -52,13 +53,16 @@ test('installed layout validates and constructs both historical courts with no s
     fs.writeFileSync(entry, `import assert from 'node:assert/strict';
 import { createCharacterSystem } from './server/characters/index.js';
 import { createHistoricalCharacterSystem } from './server/characters/scenarioSeed.js';
-import { validateHistoricalStartDate } from './server/historicalStarts.js';
+import { HISTORICAL_BOOKMARKS, validateHistoricalStartDate } from './server/historicalStarts.js';
 import { validateHistoricalScenario } from './server/historicalScenarios.js';
 import fs from 'node:fs';
 assert.equal(typeof validateHistoricalScenario, 'function');
 assert.equal(validateHistoricalStartDate('1200-12-31').ok, true);
 assert.equal(createCharacterSystem().realm.id, 'hadara');
-for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
+const folders = ${JSON.stringify(SHIPPED_START_FOLDERS)};
+// Every bookmark in the installed catalog is a copied package; John's package installs as the default start.
+for (const { id } of HISTORICAL_BOOKMARKS) assert.ok(folders.includes(id), id);
+for (const id of folders) {
   const load = name => JSON.parse(fs.readFileSync(new URL('./server/seed/historical/' + id + '/' + name, import.meta.url), 'utf8'));
   const { data } = load('scenario.json');
   const { historicalScenario } = data.world;

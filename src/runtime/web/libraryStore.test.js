@@ -15,6 +15,7 @@ import test from "node:test";
 import { readFileSync } from "node:fs";
 import { restoreScenarioFileForGame } from '../scenarioFile.js';
 import { zipBundle } from '../bundleZip.js';
+import { SHIPPED_START_FOLDERS } from '../testing/shippedHistoricalStarts.js';
 
 const db = new Map();
 globalThis.__ohWebStoreTestDb = db;
@@ -228,7 +229,7 @@ test('historical web starts create a complete court and invalid requests make no
     const response=await store.handleRuntimeJson({method:'PUT',segments:['json','game'],body:{gameDate:'2016-01-01'}});
     assert.equal(response.status,400); assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes); }
   const { readFile } = await import('node:fs/promises');
-  for (const bookmark of ['egypt-3000bc','john-1200','charlemagne-800']) {
+  for (const bookmark of SHIPPED_START_FOLDERS) {
     const bundle = JSON.parse(await readFile(new URL(`../../../server/seed/historical/${bookmark}/scenario.json`,import.meta.url),'utf8'));
     const invalid=structuredClone(bundle); invalid.data.world.polityOverrides.modern={name:'Modern'};
     { const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;

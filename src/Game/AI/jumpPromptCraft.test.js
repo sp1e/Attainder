@@ -25,6 +25,8 @@ import { buildCharacterPromptContext, buildHistoricalPromptContext, getCharacter
 import { createHistoricalCharacterSystem } from '../../runtime/characters/scenarioSeed.js';
 import { advanceCharacters, getCharacterPresentation } from '../../runtime/characters/index.js';
 import { normalizeWorldState, viewAsSeen } from '../../runtime/gameState.js';
+import { addGameMonths } from '../../runtime/gameDates.js';
+import { SHIPPED_START_FOLDERS } from '../../runtime/testing/shippedHistoricalStarts.js';
 
 const JUMP_TASKS = ["jumpForward", "autoJumpForward"];
 const EDITABLE = {
@@ -94,10 +96,13 @@ test('template variables derive historical mode from the visible snapshot, never
   assert.equal(hidden.characterContext, '');
 });
 
-for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) test(`${id}: assembled jump requests replace future-history prescriptions in loaded and frozen templates`, async () => {
+// Progression dates chosen for the original three starts (Egypt stays at its start); a later start progresses one year.
+const PROGRESS_DATES = { 'john-1200': '1201-09-01', 'charlemagne-800': '0801-09-01', 'egypt-3000bc': null };
+for (const id of SHIPPED_START_FOLDERS) test(`${id}: assembled jump requests replace future-history prescriptions in loaded and frozen templates`, async () => {
   const data = JSON.parse(readFileSync(new URL(`../../../server/seed/historical/${id}/scenario.json`, import.meta.url), 'utf8')).data;
   let state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 });
-  if (id !== 'egypt-3000bc') state = advanceCharacters(state, id === 'john-1200' ? '1201-09-01' : '0801-09-01', { id: 'progress' }).state;
+  const progressTo = Object.hasOwn(PROGRESS_DATES, id) ? PROGRESS_DATES[id] : addGameMonths(data.game.startDate, 12);
+  if (progressTo) state = advanceCharacters(state, progressTo, { id: 'progress' }).state;
   data.world.characterSystem = state;
   data.game.gameDate = state.date;
   const historicalContext = buildHistoricalPromptContext(getCharacterPresentation(state));

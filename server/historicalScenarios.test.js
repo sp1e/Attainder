@@ -326,17 +326,7 @@ for (const id of ['carolingian realm','__proto__']) test(`both validators refuse
   for (const result of renamedPolity(id)) assert.equal(result.code,'invalidPolity',id);
 });
 
-test('the Egypt, John and Charlemagne packages pass both validators for every playable polity',() => {
-  for (const id of ['egypt-3000bc','john-1200','charlemagne-800']) {
-    const bundle = readJson(`${id}/scenario.json`), { game,world } = bundle.data, h = world.historicalScenario;
-    const input = { game,world,regions: readJson(`${id}/regions.geojson`),assetManifest: readJson(`${id}/manifest.json`) };
-    for (const polityId of h.playablePolityIds) {
-      const options = { date: h.bookmarkDate,polityId };
-      assert.equal(validateHistoricalScenario(input,options).ok,true,`${id} ${polityId}`);
-      assert.equal(validateHistoricalCourt(h,options).ok,true,`${id} ${polityId}`);
-    }
-  }
-});
+// Both validators over every playable polity of every shipped package: src/runtime/historicalPlayables.test.js.
 
 test('a family start offers a non-ruling house and never the ruler as representative',() => {
   const { bundle,h,court,regions,cities } = loadPackage();

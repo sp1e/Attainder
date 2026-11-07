@@ -3,10 +3,11 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion } from './historicalPreparation.js';
 import { validateHistoricalStartDate, validateHistoricalStartDates } from './historicalStarts.js';
+import { SHIPPED_START_FOLDERS } from '../src/runtime/testing/shippedHistoricalStarts.js';
 
 const read = id => JSON.parse(readFileSync(new URL(`./seed/historical/${id}/scenario.json`, import.meta.url), 'utf8'));
 const candidate = bundle => ({ data: bundle.data, meta: bundle.scenario, regions: bundle.assets.regionsGeojson.data, cities: bundle.assets.citiesGeojson.data });
-for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) test(`${id} prepares one complete detached court`, () => {
+for (const id of SHIPPED_START_FOLDERS) test(`${id} prepares one complete detached court`, () => {
   const scenario = candidate(read(id)), before = structuredClone(scenario);
   const result = prepareHistoricalCampaignStart({ request: {}, scenario });
   assert.equal(result.ok, true, result.error);

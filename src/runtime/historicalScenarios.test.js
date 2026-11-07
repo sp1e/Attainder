@@ -7,6 +7,7 @@ import { pointInGeometry } from '../Game/AI/placement.js';
 import { aggregatePolityGeometry } from '../Game/Map/vnext/polityGeometry.js';
 import { buildPolityLabelCollections } from '../Game/Map/vnext/polityLabels.js';
 import { validateHistoricalScenario, historicalGeometryCenter } from './historicalScenarios.js';
+import { SHIPPED_START_FOLDERS } from './testing/shippedHistoricalStarts.js';
 
 // Synthetic schema fixture. Never packaged as playable historical content.
 export function syntheticScenario() {
@@ -201,7 +202,7 @@ test('Bronze Age cultures do not acquire kingdoms; omitted Pacific land remains 
   assert.equal(regions.features.some(f => booleanPointInPolygon([0,0],f)),false,'Atlantic ocean stays water');
 });
 test('shared placement and label pipeline choose the seat polity, with no background duplicate',async () => {
-  for (const id of ['egypt-3000bc','john-1200','charlemagne-800']) {
+  for (const id of SHIPPED_START_FOLDERS) {
     const { regions,world } = await loadBookmark(id), h = world.historicalScenario;
     const seat = h.settlements[0];
     const hits = regions.features.filter(f => pointInGeometry(seat.coordinates,f.geometry));
