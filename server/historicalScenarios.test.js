@@ -76,8 +76,8 @@ test('regression points fall inside their reviewed owners',() => {
     assert.deepEqual(ownersAt(regions,row.longitudeLatitude),[mapping.polityId],row.site);
   }
   assert.deepEqual(ownersAt(regions,review.seat.coordinates),[POLITY]);
-  for (const [name,point] of [['Constantinople',[28.98,41.01]],['Córdoba',[-4.78,37.88]],['Baghdad',[44.39,33.31]]])
-    assert.ok(!ownersAt(regions,point).includes(POLITY),name);
+  for (const [name,point,owner] of [['Constantinople',[28.95,41.02],'byzantine-empire'],['Córdoba',[-4.78,37.88],'emirate-of-cordoba'],['Baghdad',[44.39,33.31],'abbasid-caliphate']])
+    assert.deepEqual(ownersAt(regions,point),[owner],name);
 });
 
 test('the seat is Aachen at the Getty coordinate and the note puts Charles in Rome',() => {
@@ -136,6 +136,14 @@ test('survival of the five daughters stays uncertain in the review wording',() =
     assert.deepEqual(person.claims.survival,{ status: 'uncertain',noteSv: reviewed.uncertaintySv,sourceIds: regional(reviewed.sourceIds) });
   }
   for (const id of COURT_IDS) assert.equal(personIn(court,id).claims.survival,undefined);
+});
+
+test('the anointed kings rank ahead of Rotrud in the succession',() => {
+  const { h,court } = loadPackage();
+  const state = createHistoricalCharacterSystem({ historicalScenario: h,date: DATE,polityId: POLITY,seed: 9 });
+  const order = getCharacterPresentation(state).succession.candidates.map(c => c.id);
+  assert.deepEqual(order.slice(0,4),['karl-den-yngre','pippin-av-italien','ludvig-av-akvitanien','rotrud']);
+  assert.equal(court.people.find(p => p.id === 'rotrud').claims.bornAt.status,'generated');
 });
 
 test('the character system keeps the survival claim public',() => {
@@ -267,6 +275,9 @@ test('a realm start follows Charles under the title of emperor',() => {
 test('coverage notes state what each continent withholds and cite real sources',() => {
   const { h } = loadPackage();
   const note = area => h.coverage.find(c => c.area === area).noteSv;
+  assert.match(note('Africa'),/eftersom källan inte ger någon utbredning/);
+  assert.match(note('Asia'),/Parhae/);
+  assert.doesNotMatch(note('Asia'),/Balhae/);
   assert.deepEqual(h.coverage.map(c => c.area),['Africa','Asia','Europe','Americas','Oceania','Antarctica']);
   for (const row of h.coverage) {
     assert.ok(row.sourceIds.length > 0,row.area);

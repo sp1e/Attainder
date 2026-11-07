@@ -166,7 +166,7 @@ const AUTHORED_PACKAGES = {
         { id: 'karl-den-yngre',name: 'Karl den yngre',bornAt: '0772-01-01',sex: 'male',legalParentIds: ['karl'] },
         { id: 'pippin-av-italien',name: 'Pippin av Italien',bornAt: '0776-01-01',sex: 'male',legalParentIds: ['karl'] },
         { id: 'ludvig-av-akvitanien',name: 'Ludvig av Akvitanien',bornAt: '0778-01-01',sex: 'male',legalParentIds: ['karl'] },
-        { id: 'rotrud',name: 'Rotrud',bornAt: '0774-01-01',sex: 'female',legalParentIds: ['karl'] },
+        { id: 'rotrud',name: 'Rotrud',bornAt: '0778-07-01',sex: 'female',legalParentIds: ['karl'] },
         { id: 'berta',name: 'Berta',bornAt: '0779-01-01',sex: 'female',legalParentIds: ['karl'] },
         { id: 'gisela',name: 'Gisela',bornAt: '0780-01-01',sex: 'female',legalParentIds: ['karl'] },
         { id: 'teoderada',name: 'Teoderada',bornAt: '0785-01-01',sex: 'female',legalParentIds: ['karl'] },

@@ -63,12 +63,16 @@ test('the 800 package keeps the source, licence and notices of its map',async ()
   assert.equal(hbm.sourceFiles[0].fileName,'world_800.geojson');
   assert.equal(hbm.sourceFiles[0].text,source);
   assert.ok(bundle.componentLicenses.some(c => c.id === 'natural-earth'));
-  assert.equal(bundle.componentLicenses.find(c => c.id === 'getty-tgn').license,'ODC-By-1.0');
+  const getty = bundle.componentLicenses.find(c => c.id === 'getty-tgn');
+  assert.equal(getty.license,'ODC-By-1.0');
+  assert.doesNotMatch(getty.sourceUrl,/Aachen|Rome/);
   assert.equal(bundle.license.scope,'authored-content');
   const h = bundle.data.world.historicalScenario;
   assert.match(h.sources.hbm.chronology,/800/);
   for (const id of ['aachen','rome']) assert.match(h.sources[id].license,/^ODC-By-1\.0/,id);
   assert.deepEqual(h.assetManifest.assets.find(a => a.id === 'citiesGeojson').sourceIds,['aachen','rome']);
+  for (const id of ['aachen','rome']) assert.ok(getty.modifications.some(line => line.includes(h.sources[id].url)),id);
+  for (const line of hbm.modifications) assert.doesNotMatch(line,/seat markers/);
 });
 
 test('the build reads no clock, locale or machine value',async () => {

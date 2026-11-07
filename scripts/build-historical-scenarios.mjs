@@ -64,7 +64,8 @@ const SOURCE_HASHES = {
 // coreIndex and coreSourceIds (the playable polity feature; a review mapping for coreIndex supplies its sources and note instead), selectiveCore (clip transform, or null) with selectiveCoreNoteSv,
 // compositeNote (appended to the playable polity note, or null), quarantine (source index to geometry status),
 // selectionTransformation and quarantineTransformation (manifest lines), seatId (also the seat's Getty source id),
-// citySourceIds (when settlements go beyond the seat), gettyRetrievedAt, and three review readers.
+// citySourceIds (when settlements go beyond the seat), gettyRetrievedAt, gettyTransformation and gettyNotice
+// (wording for a package whose settlements go beyond one seat), and three review readers.
 const PACKAGE_RECORDS = [
   { contentId: 'egypt-3000bc',idPrefix: 'hbm-bc3000',sourceFile: 'hbm-world_bc3000.geojson',reviewFile: 'bc3000-review.json',
     authored: () => authoredScenario('egypt-3000bc'),addRegionalSources: sourcesFromNamedFeatures,
@@ -108,8 +109,8 @@ const PACKAGE_RECORDS = [
   { contentId: 'charlemagne-800',idPrefix: 'hbm-ad800',sourceFile: 'hbm-world_800.geojson',reviewFile: 'ad800-review.json',
     authored: () => authoredScenario('charlemagne-800'),addRegionalSources: sourcesFromAd800Review,
     coverage: [
-      { area: 'Africa',status: 'partial',sourceIds: ['regional-qantara-aghlabids','regional-qantara-idrisids','regional-virtual-nubia','regional-soba'],noteSv: 'Aghlabidernas emirat har en ungefärlig form. Idrisidernas form används inte eftersom källan ger ingen utbredning för år 800 och formen når in i Sahara. Makuria och Alwa saknar belagda gränser. Ghana, Aksum och Kanem har ingen granskad källa och står som okänd kontroll.' },
-      { area: 'Asia',status: 'partial',sourceIds: ['regional-qantara-abbasids','regional-columbia-china','regional-columbia-korea','regional-rubin-jug','regional-waugh-tibet','regional-daniels-nanzhao','regional-columbia-japan','regional-virji-valabhi'],noteSv: 'Abbasidiska kalifatet, Tang och Silla har ungefärliga former. Balhae, Nanzhao, Japan, Tibet och uigurerna saknar ägare eftersom källorna inte stöder deras former. Valabhi avvisas eftersom Virji räknar riket som utslocknat 783. Övriga former har ingen godkänd ägare.' },
+      { area: 'Africa',status: 'partial',sourceIds: ['regional-qantara-aghlabids','regional-qantara-idrisids','regional-virtual-nubia','regional-soba'],noteSv: 'Aghlabidernas emirat har en ungefärlig form. Idrisidernas form används inte eftersom källan inte ger någon utbredning för år 800 och formen når in i Sahara. Makuria och Alwa saknar belagda gränser. Ghana, Aksum och Kanem har ingen granskad källa och står som okänd kontroll.' },
+      { area: 'Asia',status: 'partial',sourceIds: ['regional-qantara-abbasids','regional-columbia-china','regional-columbia-korea','regional-rubin-jug','regional-waugh-tibet','regional-daniels-nanzhao','regional-columbia-japan','regional-virji-valabhi'],noteSv: 'Abbasidiska kalifatet, Tang och Silla har ungefärliga former. Parhae, Nanzhao, Japan, Tibet och uigurerna saknar ägare eftersom källorna inte stöder deras former. Valabhi avvisas eftersom Virji räknar riket som utslocknat 783. Övriga former har ingen godkänd ägare.' },
       { area: 'Europe',status: 'partial',sourceIds: ['regional-einhard-13','regional-einhard-18','regional-einhard-19','regional-einhard-20','regional-rfa-792-pippin','regional-rfa-799-brittany','regional-ce-bulgaria','regional-asc-avalon','regional-bertin-839'],noteSv: 'Karls rike, Bysantinska riket, Kyrkostaten, Benevento, Asturien och Córdoba har ungefärliga former. Avarriket avvisas för år 800 eftersom Einhard beskriver kriget som avslutat och formen spänner över Balkan utan stöd. Wessex, Mercia, Northumbria, Bretagne, bulgarerna och Rus saknar ägare eftersom källorna inte stöder formerna. Pippin puckelryggen står utanför hovet och tronföljden: Einhard låter honom gå i kloster i Prüm, och källorna ger inget dödsår. Gersuinda, Regina och Ethelind med barn ingår inte i hovet eftersom ingen källa placerar dem där på bokmärkets dag. Bernard och hans systrar ingår inte heller, eftersom ingen citerad källa ger deras födelsedatum.' },
       { area: 'Americas',status: 'unresolved',sourceIds: ['regional-inah-tula','regional-conlee-wari','regional-knudson-tiwanaku'],noteSv: 'Inget område i Amerika har en godkänd ägare. Toltekriket avvisas eftersom INAH lägger Tulas höjdpunkt till åren 900 till 1000. Waris form är större än det publicerade maximumet. Tiwanakus form slår ihop en koloni med lokalt stilinflytande. Maya och andra kulturområden får ingen gemensam härskare.' },
       { area: 'Oceania',status: 'unresolved',sourceIds: ['hbm','naturalEarth'],noteSv: 'Granskningen har ingen källa för Oceanien. Papuaner och jägar-samlare i Australien och Tasmanien står som kulturetiketter utan härskare, och kontrollen är okänd.' },
@@ -123,6 +124,9 @@ const PACKAGE_RECORDS = [
     selectionTransformation: 'Preserve accepted source coordinates and component structure; assign stable historical IDs. Source features151 and221 share one polity.',
     quarantineTransformation: null,
     seatId: 'aachen',citySourceIds: ['aachen','rome'],gettyRetrievedAt: '2026-11-07',
+    gettyTransformation: 'Use Getty modern place coordinates as approximate settlement markers; no physical royal-presence claim and no frontier claim.',
+    gettyNotice: h => ({ sourceUrl: 'https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/',
+      modifications: ['Modern place coordinates retained; settlement markers explicitly approximate.',`Records used: Aachen ${h.sources.aachen.url}; Rome ${h.sources.rome.url}`] }),
     reviewFeature: (review,index) => review.allFeatures[index],
     unmappedSourceIds: (r) => (r?.sourceEvidenceIds ?? []).map(id => `regional-${id}`),
     mappedBoundaryDecision: 'accepted-world-scale-approximation' },
@@ -207,7 +211,7 @@ function transformationsFor(pkg) {
     'Withhold unreviewed and rejected political ownership; retain original labels and hashes in regionReview.',
     ...(pkg.quarantineTransformation ? [pkg.quarantineTransformation] : []),
     naturalEarth,
-    'Use Getty modern place coordinates as approximate seat markers; no physical royal-presence claim.'];
+    pkg.gettyTransformation ?? 'Use Getty modern place coordinates as approximate seat markers; no physical royal-presence claim.'];
   return { list,naturalEarth };
 }
 
@@ -228,13 +232,14 @@ async function manifestFor(pkg,h,physical,regions,cities,transformations) {
 
 function componentLicensesFor(pkg,h,inputs,physical,transformations,naturalEarthLine) {
   const { sourceFile } = pkg;
+  const getty = pkg.gettyNotice?.(h) ?? { sourceUrl: h.sources[pkg.seatId].url,modifications: ['Modern place coordinate retained; historical marker explicitly approximate.'] };
   return [{ id: 'historical-basemaps',license: 'GPL-3.0-only',scope: ['regionsGeojson','world.historicalScenario.regionReview'],
     attribution: 'Historical boundaries: André Ourednik and contributors, historical-basemaps. Original collection credits accompany the source.',
     sourceUrl: `https://raw.githubusercontent.com/aourednik/historical-basemaps/${SOURCE_REVISION}/geojson/${sourceFile.slice(4)}`,
     revision: SOURCE_REVISION,sha256: SOURCE_HASHES[sourceFile],licenseText: inputs['hbm-LICENSE'],modifications: transformations,
     sourceFiles: [{ fileName: sourceFile.slice(4),text: inputs[sourceFile] },{ fileName: 'README.md',text: inputs['hbm-README.md'] },{ fileName: 'CONTRIBUTING.md',text: inputs['hbm-CONTRIBUTING.md'] }] },
     { id: 'natural-earth',license: 'public-domain',scope: ['regionsGeojson'],attribution: 'Made with Natural Earth. Physical land 1:50m.',sourceUrl: physical.url,revision: physical.revision,sha256: physical.sha256,licenseText: 'Natural Earth states that its map data is in the public domain. https://www.naturalearthdata.com/about/terms-of-use/',modifications: [naturalEarthLine] },
-    { id: 'getty-tgn',license: 'ODC-By-1.0',scope: ['citiesGeojson','world.historicalScenario.settlements'],attribution: 'Getty Thesaurus of Geographic Names, Getty Research Institute. https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/',sourceUrl: h.sources[pkg.seatId].url,revision: `retrieved${pkg.gettyRetrievedAt}`,sha256: sha(json(h.settlements)),licenseText: 'Open Data Commons Attribution License1.0: https://opendatacommons.org/licenses/by/1-0/',modifications: ['Modern place coordinate retained; historical marker explicitly approximate.'] }];
+    { id: 'getty-tgn',license: 'ODC-By-1.0',scope: ['citiesGeojson','world.historicalScenario.settlements'],attribution: 'Getty Thesaurus of Geographic Names, Getty Research Institute. https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/',sourceUrl: getty.sourceUrl,revision: `retrieved${pkg.gettyRetrievedAt}`,sha256: sha(json(h.settlements)),licenseText: 'Open Data Commons Attribution License1.0: https://opendatacommons.org/licenses/by/1-0/',modifications: getty.modifications }];
 }
 
 function worldFor(h,regions,assetManifest,componentLicenses) {
