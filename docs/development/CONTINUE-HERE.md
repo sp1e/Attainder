@@ -18,7 +18,7 @@ The popup after a closed calendar year and the chronicle segment `I verkligheten
 
 The owner decided on 7 November 2026 that every culture of the world in the period must be playable, and moved the upper start year to AD 1530. The design is `docs/superpowers/specs/2026-11-07-world-cultures-design.md` and the Phase 1 plan is `docs/superpowers/plans/2026-11-07-world-cultures-phase-1.md`. Codex does the research under `docs/development/CODEX-RESEARCH-BRIEF.md`, and Claude writes the code.
 
-Phase 1 is built on `feature/world-cultures`:
+[PR #22](https://github.com/sp1e/Attainder/pull/22) merged Phase 1 to `main` as `bfaf00c1`:
 
 - New campaigns start from 3300 BC through AD 1530. The chronicle note `Forskningen sträcker sig till år 1200.` stays until research reaches further.
 - A package can list several playable polities. Charlemagne 1.1.0 adds Kyrkostaten, with Leo III as the documented pope in Rome and merit succession. A Kyrkostaten campaign is named `Kyrkostaten, 800 e.Kr. · Riket`.
@@ -28,7 +28,20 @@ Phase 1 is built on `feature/world-cultures`:
 
 Evidence at `018c823c`: the full serial suite ran 4,913 tests, with 4,910 passed, 0 failed, 1 skipped and 2 TODO. The build, `build-historical-scenarios.mjs --check` and `check-historical-events.mjs --check` exited 0. Lint reported 18 errors and 71 warnings, all in 40 files this branch does not touch. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md).
 
-Known limit: the Kyrkostaten court has four men aged 42 to 50 and no women. Nobody is born, and the realm ends between 813 and 838 on eight seeds. Charlemagne's court has the same cause and ends between 856 and 868. Phase 5 adds elective succession and courts that renew themselves. Next: Phase 2, the searchable picker and per-start loading.
+Known limit: the Kyrkostaten court has four men aged 42 to 50 and no women. Nobody is born, and the realm ends between 813 and 838 on eight seeds. Charlemagne's court has the same cause and ends between 856 and 868. Phase 5 adds elective succession and courts that renew themselves.
+
+## Every culture playable: Phase 2
+
+The design is `docs/superpowers/specs/2026-11-07-world-cultures-phase-2-design.md` and the plan is `docs/superpowers/plans/2026-11-07-world-cultures-phase-2.md`. Phase 2 is built on `feature/world-cultures-phase-2`:
+
+- The start card lists every playable polity under nine world regions and five eras, with a search field `Sök rike, härskare eller tid` that ignores case and diacritics. Region ids come from `server/seed/historical/polity-regions.json`, checked by `node scripts/check-polity-regions.mjs --check`.
+- Both library stores keep a `historicalSummary` in each historical scenario's meta. The card reads the catalog only and fetches no scenario details or GeoJSON. The desktop store recomputes a summary when the size or modification time of `world.json` or `game.json` changes; the web store projects it on every `putScenario` and migrates older installs in `reconcileMeta`. A start whose court fails the structural checks stays off the card. The full validator still runs at Start.
+- The web build writes one module per shipped package under `src/runtime/web/generated/historical/`, with an `index.js` of dynamic imports. `build:web` emitted `egypt-3000bc` at 3,825,944 bytes and `charlemagne-800` at 4,439,240 bytes.
+- A new campaign's save keeps only the chosen polity's court. Older saves with every court load unchanged.
+- The model prompt ranks polities with `selectFocusPowers`. The first 16 keep their full line, then `Other polities:` names up to 40 more and ends with `+N more`.
+- The browser run found the session summary showing `papal-states` when a campaign started within 15 seconds of the menu. `src/runtime/polityNamesRefresh.js` now reloads the name cache when a code is missing, at most once a second.
+
+Evidence at `8176bf1b`: the full serial suite ran 4,956 tests, with 4,953 passed, 0 failed, 1 skipped and 2 TODO, in 276 seconds. The build and the three `--check` scripts exited 0, and eslint reported no errors in the changed files. After the name-cache fix at `9d8605de`, the `src/runtime` tests ran 2,568 of 2,568. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md). Next: Phase 3, the reviewed courts of AD 800 and AD 1200.
 
 ## Branch state
 
