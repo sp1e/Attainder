@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -150,4 +150,80 @@ test('server prepares both historical courts and refuses invalid requests withou
     `], { env: { ...process.env, OH_DATA_DIR: root }, stdio: 'pipe', encoding: 'utf8' });
   } finally { rmSync(root,{recursive:true,force:true}); }
   assert.ok(true);
+});
+
+test('an interrupted desktop install finishes in place and never adds a second copy', () => {
+  const root = mkdtempSync(path.join(os.tmpdir(),'attainder-historical-'));
+  const id = 'charlemagne-800', dir = path.join(root,'scenarios',id), meta = path.join(dir,'scenario.json');
+  const marker = path.join(root,'historical-bookmarks-charlemagne-800.json'), manifestPath = path.join(root,'scenario-manifest.json');
+  const manifest = () => JSON.parse(readFileSync(manifestPath,'utf8'));
+  const boot = () => execFileSync(process.execPath,['--input-type=module','-e',`
+    import * as store from ${JSON.stringify(new URL('./libraryStore.js',import.meta.url).href)};
+    store.ensureScenarioStore();
+    console.log(JSON.stringify(store.getScenarioCatalog().scenarios.map(s=>s.id)));
+  `],{ env: { ...process.env,OH_DATA_DIR: root },stdio: 'pipe',encoding: 'utf8' });
+  const catalog = () => JSON.parse(boot().trim().split('\n').at(-1));
+  try {
+    assert.deepEqual(catalog(),['default','egypt-3000bc',id]);
+    // Crash after the meta write: the directory is partial and the manifest lacks the id.
+    const partial = path.join(dir,'world.json');
+    assert.ok(existsSync(partial));
+    rmSync(partial); rmSync(marker);
+    const before = manifest();
+    writeFileSync(manifestPath,JSON.stringify({ ...before,order: before.order.filter(entry => entry !== id),activeScenarioId: 'default',selectedScenarioId: 'default' }));
+    assert.deepEqual(catalog().sort(),['charlemagne-800','default','egypt-3000bc']);
+    assert.ok(manifest().order.includes(id)); assert.ok(existsSync(partial),'the install finishes the partial directory');
+    assert.ok(existsSync(marker)); assert.equal(manifest().selectedScenarioId,id);
+    // Crash after the manifest write: the scenario is complete and only the marker is absent.
+    rmSync(marker);
+    const written = readFileSync(meta,'utf8');
+    assert.deepEqual(catalog(),['default','egypt-3000bc',id]);
+    assert.ok(existsSync(marker)); assert.equal(readFileSync(meta,'utf8'),written,'a complete scenario is left as it stands');
+    assert.deepEqual(readdirSync(path.join(root,'scenarios')).sort(),['charlemagne-800','default','egypt-3000bc']);
+  } finally { rmSync(root,{recursive:true,force:true}); }
+});
+
+test('a desktop library offers three starts with Charlemagne as the default, and the upgrade leaves John saves alone', () => {
+  const root = mkdtempSync(path.join(os.tmpdir(),'attainder-historical-'));
+  try {
+    execFileSync(process.execPath, ['--input-type=module','-e', `
+      import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path';
+      import * as store from ${JSON.stringify(new URL('./libraryStore.js',import.meta.url).href)};
+      const charlemagneMarker=path.join(process.env.OH_DATA_DIR,'historical-bookmarks-charlemagne-800.json');
+      const starts=()=>store.getScenarioCatalog().scenarios.filter(s=>s.historicalStart).map(s=>[s.id,s.historicalStart.contentId,s.historicalStart.date]);
+      const offered=[['default','john-1200','1200-12-31'],['egypt-3000bc','egypt-3000bc','-3000-01-01'],['charlemagne-800','charlemagne-800','0800-12-25']];
+      store.ensureScenarioStore();
+      assert.deepEqual(starts(),offered);
+      assert.equal(store.getScenarioCatalog().selectedScenarioId,'charlemagne-800');
+      const john=store.createGame({scenarioId:'default'});
+      const savedGame=store.getGameDetails(john.game.id), savedBundle=store.exportGameBundle(john.game.id);
+      // An install from before this start: the Egypt marker stands, Charlemagne is absent.
+      store.deleteScenario('charlemagne-800'); fs.rmSync(charlemagneMarker);
+      assert.deepEqual(starts(),offered.slice(0,2));
+      // Selecting a scenario moves it to the front of the stored order, so these compare by id.
+      const byId=list=>[...list].sort((a,b)=>a[0].localeCompare(b[0]));
+      store.setSelectedScenario('egypt-3000bc');
+      store.ensureScenarioStore();
+      assert.deepEqual(byId(starts()),byId(offered),'the upgrade adds Charlemagne once and leaves Egypt installed');
+      assert.equal(store.getScenarioCatalog().selectedScenarioId,'egypt-3000bc','a choice the player made stands');
+      const loaded=store.getGameDetails(john.game.id);
+      assert.equal(loaded.game.scenarioId,'default'); assert.deepEqual(loaded.data,savedGame.data);
+      assert.deepEqual(store.exportGameBundle(john.game.id).data,savedBundle.data);
+      const oldBundle=structuredClone(savedBundle);
+      for (const religion of Object.values(oldBundle.data.world.characterSystem.religions)) delete religion.historicalOrigin;
+      const imported=store.importGameBundle(oldBundle);
+      assert.deepEqual(imported.data.world.characterSystem,oldBundle.data.world.characterSystem,'a save from before the religion claims imports as it was written');
+      assert.deepEqual(store.getGameDetails(imported.game.id).data.events,oldBundle.data.events);
+      // A deleted start stays deleted: the marker, not the scenario, records the installation.
+      store.deleteScenario('charlemagne-800'); store.ensureScenarioStore();
+      assert.deepEqual(byId(starts()),byId(offered.slice(0,2)));
+      fs.rmSync(charlemagneMarker); store.ensureScenarioStore();
+      const karl=store.createGame({name:'Karl',scenarioId:'charlemagne-800',setActive:false,
+        historicalStart:{date:'0800-12-25',polityId:'carolingian-realm',mode:'realm',seed:7,difficulty:'normal'},
+        gamePatch:{country:'carolingian-realm',difficulty:'standard',language:'Swedish'}});
+      assert.equal(karl.data.game.startDate,'0800-12-25'); assert.equal(karl.data.world.characterSystem.date,'0800-12-25');
+      assert.equal(karl.data.world.characterSystem.identity.polityId,'carolingian-realm');
+      assert.deepEqual(store.getGameDetails(karl.game.id).data.world.characterSystem,karl.data.world.characterSystem);
+    `], { env: { ...process.env, OH_DATA_DIR: root }, stdio: 'pipe', encoding: 'utf8' });
+  } finally { rmSync(root,{recursive:true,force:true}); }
 });

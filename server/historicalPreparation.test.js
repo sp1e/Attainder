@@ -1,11 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { prepareHistoricalCampaignStart, validatePlayableScenario, validateSavedGameBundle, validateCompanion } from './historicalPreparation.js';
+import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion } from './historicalPreparation.js';
+import { validateHistoricalStartDate, validateHistoricalStartDates } from './historicalStarts.js';
 
 const read = id => JSON.parse(readFileSync(new URL(`./seed/historical/${id}/scenario.json`, import.meta.url), 'utf8'));
 const candidate = bundle => ({ data: bundle.data, meta: bundle.scenario, regions: bundle.assets.regionsGeojson.data, cities: bundle.assets.citiesGeojson.data });
-for (const id of ['egypt-3000bc', 'john-1200']) test(`${id} prepares one complete detached court`, () => {
+for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) test(`${id} prepares one complete detached court`, () => {
   const scenario = candidate(read(id)), before = structuredClone(scenario);
   const result = prepareHistoricalCampaignStart({ request: {}, scenario });
   assert.equal(result.ok, true, result.error);
@@ -13,6 +14,21 @@ for (const id of ['egypt-3000bc', 'john-1200']) test(`${id} prepares one complet
   assert.equal(result.data.world.characterSystem.startedAt, scenario.data.game.gameDate);
   assert.equal(result.data.world.characterSystem.identity.polityId, scenario.data.game.country);
   assert.deepEqual(scenario, before);
+});
+test('the Charlemagne date passes every new-game guard', () => {
+  const scenario = candidate(read('charlemagne-800')), date = '0800-12-25', polityId = 'carolingian-realm';
+  assert.deepEqual(validateHistoricalStartDate(date), { ok: true, date, year: 800 });
+  assert.deepEqual(validateHistoricalStartDates(scenario.data.game), { ok: true, startDate: date, gameDate: date });
+  assert.equal(validateRawStartFields(scenario.data.game, { startDate: date, gameDate: date }, { date }).ok, true);
+  assert.equal(validatePlayableScenario(scenario).ok, true);
+  const request = { historicalStart: { date, polityId, mode: 'family', seed: 7, difficulty: 'hard' }, gamePatch: { country: polityId, difficulty: 'hard', language: 'Swedish' } };
+  const result = prepareHistoricalCampaignStart({ request, scenario });
+  assert.equal(result.ok, true, result.error);
+  assert.deepEqual([result.data.game.startDate, result.data.game.gameDate, result.data.game.characterMode], [date, date, 'family']);
+  assert.equal(result.data.world.characterSystem.identity.polityId, polityId);
+  for (const other of ['0800-12-24', '0801-01-01']) {
+    assert.equal(prepareHistoricalCampaignStart({ request: { ...request, historicalStart: { ...request.historicalStart, date: other } }, scenario }).ok, false, other);
+  }
 });
 test('raw dates, conflicting options, missing sources and actual assets fail before preparation', () => {
   const scenario = candidate(read('john-1200'));

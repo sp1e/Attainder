@@ -125,6 +125,38 @@ test('Egypt selective core leaves the disputed southern reach unresolved',async 
   assert.equal(core.properties.historical.noteSv,h.polities[0].noteSv);
   assert.ok(h.assetManifest.assets.find(a => a.id === 'regionsGeojson').transformations.some(t => t.includes('[-180,24.2,180,90]')));
 });
+const rotrudCourt = async () => {
+  const input = await loadBookmark('charlemagne-800');
+  const court = input.world.historicalScenario.courtSeeds['carolingian-realm'];
+  return { input,court,rotrud: court.people.find(p => p.id === 'rotrud') };
+};
+const marry = (rotrud,court,claim) => {
+  const spouse = court.people.find(p => p.id === 'generated-courtier-1');
+  rotrud.spouseIds = [spouse.id]; spouse.spouseIds = [rotrud.id];
+  spouse.claims.spouseIds = { status: 'generated',sourceIds: [],noteSv: 'Prov.' };
+  if (claim) rotrud.claims.spouseIds = claim; else delete rotrud.claims.spouseIds;
+};
+for (const [name,mutate] of [
+  ['no birth date claim',r => { delete r.claims.bornAt; }],
+  ['no parent claim',r => { delete r.claims.legalParentIds; }],
+  ['a spouse with no claim',(r,c) => marry(r,c)],
+  ['a sourced parent claim with no sources',r => { r.claims.legalParentIds.sourceIds = []; }],
+  ['an uncertain parent claim with no sources',r => { Object.assign(r.claims.legalParentIds,{ status: 'uncertain',sourceIds: [] }); }],
+  ['a generated parent claim with no sources',r => { Object.assign(r.claims.legalParentIds,{ status: 'generated',sourceIds: [] }); }],
+  ['a generated parent claim with sources',r => { r.claims.legalParentIds.status = 'generated'; }],
+  ['a generated spouse claim',(r,c) => marry(r,c,{ status: 'generated',sourceIds: [],noteSv: 'Prov.' })],
+  ['no kinship claim',r => { delete r.claims.kinship; }],
+]) test(`a documented person is refused with ${name}`,async () => {
+  const { input,court,rotrud } = await rotrudCourt();
+  mutate(rotrud,court);
+  assert.equal(validateBookmark(input).ok,false);
+});
+test('a documented relationship stays accepted as uncertain with sources',async () => {
+  const { input,court,rotrud } = await rotrudCourt();
+  rotrud.claims.legalParentIds.status = 'uncertain';
+  marry(rotrud,court,{ status: 'uncertain',sourceIds: rotrud.claims.legalParentIds.sourceIds,noteSv: 'Prov.' });
+  assert.equal(validateBookmark(input).ok,true);
+});
 for (const id of ['egypt-3000bc','john-1200']) test(`source-backed ${id} package validates with complete hashed assets and review`,async () => {
   const input = await loadBookmark(id), h = input.world.historicalScenario;
   assert.equal(validateHistoricalScenario(input,{ date: h.bookmarkDate,polityId: h.playablePolityIds[0] }).ok,true);
@@ -169,7 +201,7 @@ test('Bronze Age cultures do not acquire kingdoms; omitted Pacific land remains 
   assert.equal(regions.features.some(f => booleanPointInPolygon([0,0],f)),false,'Atlantic ocean stays water');
 });
 test('shared placement and label pipeline choose the seat polity, with no background duplicate',async () => {
-  for (const id of ['egypt-3000bc','john-1200']) {
+  for (const id of ['egypt-3000bc','john-1200','charlemagne-800']) {
     const { regions,world } = await loadBookmark(id), h = world.historicalScenario;
     const seat = h.settlements[0];
     const hits = regions.features.filter(f => pointInGeometry(seat.coordinates,f.geometry));

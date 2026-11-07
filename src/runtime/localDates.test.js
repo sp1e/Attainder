@@ -44,6 +44,13 @@ test("every language counts in the Gregorian calendar with Latin digits", () => 
   }
 });
 
+test("the numeric shape takes a year below 1000, as the HUD writes it", () => {
+  assert.equal(de("12/25/800"), "25.12.800");
+  assert.equal(de("12/31/1200"), "31.12.1200");
+  assert.equal(createDateLocalizer("sv")("12/25/800"), "800-12-25");
+  assert.equal(createDateLocalizer("sv")("12/31/1200"), "1200-12-31");
+});
+
 test("only a whole date is a date", () => {
   for (const text of ["31 February 2016", "Round 5", "Maybe 2016", "1 January 2016 and more", "13/1/2016", "Jan 32, 2016", ""]) {
     assert.equal(de(text), null, JSON.stringify(text));

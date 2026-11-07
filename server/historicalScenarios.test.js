@@ -1,0 +1,317 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
+import { validateHistoricalScenario } from './historicalScenarios.js';
+import { prepareHistoricalCampaignStart } from './historicalPreparation.js';
+import { createHistoricalCharacterSystem } from './characters/scenarioSeed.js';
+import { getCharacterPresentation } from './characters/index.js';
+import { historicalStartOption } from '../src/runtime/historicalStartOptions.js';
+
+const DATE = '0800-12-25', POLITY = 'carolingian-realm', ID = 'charlemagne-800';
+const seedFile = name => new URL(`./seed/historical/${name}`,import.meta.url);
+const readJson = name => JSON.parse(readFileSync(seedFile(name),'utf8'));
+const review = readJson('ad800-review.json');
+const loadPackage = () => {
+  const bundle = readJson(`${ID}/scenario.json`);
+  const regions = readJson(`${ID}/regions.geojson`), cities = readJson(`${ID}/cities.geojson`);
+  const assetManifest = readJson(`${ID}/manifest.json`);
+  const { game,world } = bundle.data, h = world.historicalScenario;
+  return { bundle,regions,cities,assetManifest,game,world,h,court: h.courtSeeds[POLITY] };
+};
+const validate = input => validateHistoricalScenario(input,{ date: DATE,polityId: POLITY });
+const regional = ids => ids.map(id => `regional-${id}`);
+const ownersAt = (regions,point) => regions.features.filter(f => f.properties.owner && booleanPointInPolygon(point,f)).map(f => f.properties.owner);
+const reviewPerson = id => review.people.find(p => p.id === id);
+const personIn = (court,id) => court.people.find(p => p.id === id);
+const COURT_IDS = ['karl','karl-den-yngre','pippin-av-italien','ludvig-av-akvitanien','rotrud'];
+const UNCERTAIN_IDS = ['berta','gisela','teoderada','hiltrud','ruodhaid'];
+const DOCUMENTED_IDS = [...COURT_IDS,...UNCERTAIN_IDS];
+
+test('the package validates for its bookmark and carries the reviewed names',() => {
+  const input = loadPackage(), { h,game,bundle } = input;
+  assert.deepEqual(validate(input),{ ok: true,contentId: ID,contentVersion: '1.0.0',date: DATE,polityId: POLITY });
+  assert.equal(h.bookmarkDate,DATE);
+  assert.equal(game.country,POLITY);
+  assert.deepEqual(h.playablePolityIds,[POLITY]);
+  assert.equal(h.polities.find(p => p.id === POLITY).nameSv,'Karls rike (karolingiska riket)');
+  assert.equal(bundle.scenario.id,ID);
+});
+
+test('features 151 and 221 share one owner, one polity record and one seat',() => {
+  const { regions,h,world,court } = loadPackage();
+  const owner = i => regions.features.find(f => f.properties.id === `hbm-ad800-${i}`)?.properties.owner;
+  assert.equal(owner(151),POLITY);
+  assert.equal(owner(221),POLITY);
+  assert.equal(h.polities.filter(p => p.id === POLITY).length,1);
+  assert.equal(new Set(h.polities.map(p => p.id)).size,h.polities.length);
+  assert.equal(Object.keys(world.polityOverrides).filter(id => id === POLITY).length,1);
+  assert.deepEqual(h.settlements.filter(s => s.polityId === POLITY).map(s => s.id),['aachen']);
+  assert.equal(court.seatId,'aachen');
+  assert.deepEqual(court.cities.map(c => c.id),['aachen']);
+});
+
+test('ownership follows mapMappings and nothing else',() => {
+  const { regions,h } = loadPackage();
+  const owned = regions.features.filter(f => f.properties.owner);
+  assert.deepEqual(owned.map(f => [f.properties.id,f.properties.owner]).sort(),
+    review.mapMappings.map(m => [`hbm-ad800-${m.index}`,m.polityId]).sort());
+  for (const m of review.mapMappings) {
+    const feature = owned.find(f => f.properties.id === `hbm-ad800-${m.index}`);
+    assert.equal(feature.properties.historical.noteSv.startsWith(m.noteSv),true,`note of ${m.index}`);
+    assert.deepEqual(feature.properties.historical.sourceIds,['hbm',...regional(m.sourceIds)]);
+  }
+  assert.equal(h.regionReview.length,review.allFeatures.length);
+  for (const row of h.regionReview) {
+    assert.equal(row.classification,review.allFeatures[row.sourceIndex].status);
+    assert.equal(row.ownerPolityId,review.allFeatures[row.sourceIndex].approvedOwnerPolityId);
+    for (const id of row.sourceIds) assert.ok(Object.hasOwn(h.sources,id),id);
+  }
+});
+
+test('regression points fall inside their reviewed owners',() => {
+  const { regions } = loadPackage();
+  for (const row of review.sourceBasedGeometryRegression) {
+    const mapping = review.mapMappings.find(m => m.index === row.expectedSourceFeatureIndex);
+    assert.deepEqual(ownersAt(regions,row.longitudeLatitude),[mapping.polityId],row.site);
+  }
+  assert.deepEqual(ownersAt(regions,review.seat.coordinates),[POLITY]);
+  for (const [name,point,owner] of [['Constantinople',[28.95,41.02],'byzantine-empire'],['Córdoba',[-4.78,37.88],'emirate-of-cordoba'],['Baghdad',[44.39,33.31],'abbasid-caliphate']])
+    assert.deepEqual(ownersAt(regions,point),[owner],name);
+});
+
+test('the seat is Aachen at the Getty coordinate and the note puts Charles in Rome',() => {
+  const { h,cities } = loadPackage();
+  const seat = h.settlements.find(s => s.id === 'aachen'), rome = h.settlements.find(s => s.id === 'rome');
+  assert.deepEqual(seat.coordinates,review.seat.coordinates);
+  assert.equal(seat.noteSv,review.seat.noteSv);
+  assert.match(seat.noteSv,/på bokmärkets dag var han i Rom/);
+  assert.equal(seat.nameSv,'Aachen');
+  assert.deepEqual(rome.coordinates,review.settlements[0].coordinates);
+  assert.equal(rome.polityId,'papal-states');
+  assert.equal(rome.noteSv,review.settlements[0].noteSv);
+  const seats = Object.fromEntries(cities.features.map(f => [f.id,f.properties.seat]));
+  assert.deepEqual(seats,{ aachen: true,rome: false });
+});
+
+test('the court holds exactly the ruled people',() => {
+  const { court } = loadPackage();
+  const documented = court.people.filter(p => p.identityOrigin === 'documented').map(p => p.id);
+  assert.deepEqual([...documented].sort(),[...DOCUMENTED_IDS].sort());
+  assert.deepEqual(court.people.filter(p => p.identityOrigin === 'generated').map(p => p.id),['generated-courtier-1','generated-courtier-2','generated-courtier-3']);
+  assert.equal(personIn(court,'pippin-puckelryggen'),undefined);
+  assert.equal(court.rulerId,'karl');
+  assert.equal(court.offices.find(o => o.id === 'ruler').name,'Kejsare');
+  for (const id of ['general','chancellor','priest']) {
+    const office = court.offices.find(o => o.id === id);
+    assert.equal(office.claims.identity.status,'generated');
+    assert.equal(personIn(court,office.holderId).identityOrigin,'generated');
+  }
+  assert.equal(court.families.length,4);
+  for (const family of court.families.filter(f => f.id !== 'royal-house')) {
+    assert.match(family.name,/genererat/);
+    assert.equal(family.claims.identity.status,'generated');
+  }
+  for (const person of court.people.filter(p => p.identityOrigin === 'generated')) assert.match(person.name,/\(genererad\)/);
+});
+
+test('each documented person has source IDs behind the identity claim',() => {
+  const { court,h } = loadPackage();
+  for (const id of DOCUMENTED_IDS) {
+    const person = personIn(court,id), reviewed = reviewPerson(id);
+    assert.equal(person.name,reviewed.nameSv);
+    assert.equal(person.originLabelSv,reviewed.originLabelSv);
+    assert.equal(person.claims.identity.status,'sourced');
+    assert.ok(person.claims.identity.sourceIds.length > 0,id);
+    assert.deepEqual([...person.claims.identity.sourceIds].sort(),regional(reviewed.sourceIds).sort(),id);
+    for (const claim of Object.values(person.claims)) for (const source of claim.sourceIds) assert.ok(Object.hasOwn(h.sources,source),`${id}: ${source}`);
+  }
+});
+
+test('survival of the five daughters stays uncertain in the review wording',() => {
+  const { court } = loadPackage();
+  for (const id of UNCERTAIN_IDS) {
+    const person = personIn(court,id), reviewed = reviewPerson(id);
+    assert.equal(reviewed.aliveOnBookmark,'uncertain');
+    assert.deepEqual(person.claims.survival,{ status: 'uncertain',noteSv: reviewed.uncertaintySv,sourceIds: regional(reviewed.sourceIds) });
+  }
+  for (const id of COURT_IDS) assert.equal(personIn(court,id).claims.survival,undefined);
+});
+
+test('the anointed kings rank ahead of Rotrud in the succession',() => {
+  const { h,court } = loadPackage();
+  const state = createHistoricalCharacterSystem({ historicalScenario: h,date: DATE,polityId: POLITY,seed: 9 });
+  const order = getCharacterPresentation(state).succession.candidates.map(c => c.id);
+  assert.deepEqual(order.slice(0,4),['karl-den-yngre','pippin-av-italien','ludvig-av-akvitanien','rotrud']);
+  assert.equal(court.people.find(p => p.id === 'rotrud').claims.bornAt.status,'generated');
+});
+
+test('the character system keeps the survival claim public',() => {
+  const { h } = loadPackage();
+  const state = createHistoricalCharacterSystem({ historicalScenario: h,date: DATE,polityId: POLITY,seed: 9 });
+  assert.equal(state.people.berta.historicalOrigin.claims.survival.status,'uncertain');
+  assert.equal(state.people.berta.historicalOrigin.claims.survival.noteSv,reviewPerson('berta').uncertaintySv);
+});
+
+test('kinship uses living parents and states the dead parent in text',() => {
+  const { court } = loadPackage();
+  for (const id of ['karl-den-yngre','pippin-av-italien','ludvig-av-akvitanien','rotrud','berta','gisela']) {
+    const person = personIn(court,id);
+    assert.deepEqual(person.legalParentIds,['karl']);
+    assert.equal(person.claims.legalParentIds.status,'sourced');
+    assert.match(person.claims.kinship.noteSv,/Hildegard/);
+  }
+  for (const id of ['teoderada','hiltrud']) assert.match(personIn(court,id).claims.kinship.noteSv,/Fastrada/);
+  assert.deepEqual(personIn(court,'ruodhaid').legalParentIds,['karl']);
+  assert.deepEqual(personIn(court,'karl').legalParentIds,[]);
+  assert.match(personIn(court,'karl').claims.kinship.noteSv,/Bertrada/);
+  assert.equal(personIn(court,'karl').claims.kinship.status,'sourced');
+});
+
+test('the bookmark court contradicts no sourced death',() => {
+  const { court,h } = loadPackage();
+  const dead = review.people.filter(p => p.aliveOnBookmark === false).map(p => p.id);
+  assert.deepEqual(dead,['liutgard','hildegard','fastrada','bertrada']);
+  const ids = new Set(court.people.map(p => p.id));
+  for (const id of dead) assert.ok(!ids.has(id),`${id} died before the bookmark`);
+  for (const name of ['Liutgard','Hildegard','Fastrada','Bertrada']) assert.ok(!court.people.some(p => p.name.includes(name)),name);
+  const karl = personIn(court,'karl');
+  assert.deepEqual(karl.spouseIds,[]);
+  assert.equal(court.people.filter(p => p.spouseIds.length).length,0);
+  assert.match(karl.claims.spouseIds.noteSv,/Liutgard/);
+  const state = createHistoricalCharacterSystem({ historicalScenario: h,date: DATE,polityId: POLITY,seed: 9 });
+  assert.equal(state.people.karl.spouseId,null);
+});
+
+test('birth values stay labelled and contradict no sourced fact',() => {
+  const { court } = loadPackage();
+  const born = id => personIn(court,id).bornAt;
+  const year = id => Number(born(id).slice(0,4));
+  for (const person of court.people) {
+    const reviewed = reviewPerson(person.id), claim = person.claims.bornAt;
+    assert.ok(/^\d{4}-\d{2}-\d{2}$/.test(person.bornAt),person.id);
+    assert.notEqual(claim.status,'sourced',person.id);
+    assert.match(claim.noteSv,/spelvärde/,person.id);
+    if (reviewed && reviewed.birth.asWorded === null) { assert.equal(claim.status,'generated',person.id); assert.deepEqual(claim.sourceIds,[],person.id); }
+    if (reviewed?.birth.asWorded?.startsWith('Inget datum')) { assert.equal(claim.status,'generated',person.id); assert.ok(claim.noteSv.includes(reviewed.birth.asWorded),person.id); }
+  }
+  for (const id of ['karl','ludvig-av-akvitanien']) {
+    const claim = personIn(court,id).claims.bornAt, reviewed = reviewPerson(id);
+    assert.equal(claim.status,'uncertain',id);
+    assert.ok(claim.noteSv.includes(reviewed.birth.asWorded),id);
+    assert.deepEqual(claim.sourceIds,regional(reviewed.birth.sourceIds),id);
+  }
+  // Einhard: seventy-second year of life at death on 28 January 814.
+  assert.ok(born('karl') >= '0742-01-28' && born('karl') <= '0743-01-28');
+  assert.ok(born('karl-den-yngre') < born('pippin-av-italien') && born('karl-den-yngre') < born('ludvig-av-akvitanien'),'eldest son');
+  for (const id of ['pippin-av-italien','ludvig-av-akvitanien']) assert.ok(year(id) <= 781,`${id} was anointed king in 781`);
+  for (const id of ['karl-den-yngre','pippin-av-italien','ludvig-av-akvitanien']) assert.ok(800 - year(id) >= 19,`${id} holds an adult role in 800`);
+  for (const id of ['berta','gisela']) assert.ok(born('rotrud') < born(id),'elder daughter');
+  assert.ok(year('gisela') <= 781,'baptised at Milan in 781');
+  for (const id of ['karl-den-yngre','pippin-av-italien','ludvig-av-akvitanien','rotrud','berta','gisela']) assert.ok(born(id) <= '0783-04-30',`${id}: Hildegard died in 783`);
+  for (const id of ['teoderada','hiltrud']) assert.ok(born(id) > '0783-07-12' && year(id) <= 794,`${id}: Fastrada married 783, died 794`);
+  for (const id of DOCUMENTED_IDS.slice(1)) assert.ok(year(id) - year('karl') >= 18,`${id} is younger than an adult Charles`);
+});
+
+test('validateHistoricalScenario refuses a person whose birth date or kinship lacks a claim',() => {
+  for (const [name,mutate] of [
+    ['documented birth',c => { delete personIn(c,'karl').claims.bornAt; }],
+    ['generated birth',c => { delete personIn(c,'rotrud').claims.bornAt; }],
+    ['generated courtier birth',c => { delete personIn(c,'generated-courtier-1').claims.bornAt; }],
+    ['son kinship',c => { delete personIn(c,'karl-den-yngre').claims.legalParentIds; }],
+    ['daughter kinship',c => { delete personIn(c,'berta').claims.legalParentIds; }],
+    ['parent outside the court',c => { personIn(c,'karl').legalParentIds = ['hildegard']; personIn(c,'karl').claims.legalParentIds = { status: 'sourced',noteSv: 'Test.',sourceIds: ['hbm'] }; }],
+    ['sourced claim without a source',c => { personIn(c,'karl').claims.identity.sourceIds = []; }],
+  ]) {
+    const input = loadPackage();
+    mutate(input.court);
+    assert.equal(validate(input).code,'invalidCourt',name);
+  }
+});
+
+test('a family start offers a non-ruling house and never the ruler as representative',() => {
+  const { bundle,h,court,regions,cities } = loadPackage();
+  const option = historicalStartOption(bundle,regions,cities);
+  const polity = option.polities[0];
+  assert.equal(polity.id,POLITY);
+  const offered = polity.families.map(f => f.id);
+  const ruling = personIn(court,court.rulerId).familyId;
+  assert.notEqual(offered[0],ruling,'the start card preselects the first family');
+  assert.ok(offered.filter(id => id !== ruling).length >= 1);
+  for (const familyId of offered.filter(id => id !== ruling)) {
+    const state = createHistoricalCharacterSystem({ historicalScenario: h,date: DATE,polityId: POLITY,mode: 'family',familyId,seed: 9 });
+    const view = getCharacterPresentation(state);
+    assert.equal(state.identity.familyId,familyId);
+    assert.equal(view.representative.id,state.families[familyId].headId);
+    assert.notEqual(view.representative.id,court.rulerId);
+  }
+  const unnamed = createHistoricalCharacterSystem({ historicalScenario: h,date: DATE,polityId: POLITY,mode: 'family',seed: 9 });
+  assert.equal(unnamed.identity.familyId,offered[0]);
+  assert.notEqual(getCharacterPresentation(unnamed).representative.id,court.rulerId);
+  assert.equal(unnamed.offices.ruler.holderId,court.rulerId);
+});
+
+test('a prepared family start without a chosen house keeps the ruler in office and out of the player seat',() => {
+  const { bundle,regions,cities,court } = loadPackage();
+  const scenario = { data: bundle.data,meta: bundle.scenario,regions,cities };
+  const result = prepareHistoricalCampaignStart({ request: { historicalStart: { date: DATE,polityId: POLITY,mode: 'family' } },scenario });
+  assert.equal(result.ok,true,result.error);
+  const state = result.data.world.characterSystem;
+  assert.notEqual(state.identity.familyId,personIn(court,court.rulerId).familyId);
+  assert.notEqual(getCharacterPresentation(state).representative.id,court.rulerId);
+});
+
+test('a realm start follows Charles under the title of emperor',() => {
+  const { h,court } = loadPackage();
+  const state = createHistoricalCharacterSystem({ historicalScenario: h,date: DATE,polityId: POLITY,seed: 9 });
+  const view = getCharacterPresentation(state);
+  assert.equal(state.identity.familyId,'royal-house');
+  assert.equal(view.representative.id,'karl');
+  assert.equal(state.offices.ruler.name,'Kejsare');
+  assert.equal(state.offices.ruler.holderId,court.rulerId);
+  assert.equal(state.cities.aachen.familyId,'royal-house');
+});
+
+test('coverage notes state what each continent withholds and cite real sources',() => {
+  const { h } = loadPackage();
+  const note = area => h.coverage.find(c => c.area === area).noteSv;
+  assert.match(note('Africa'),/eftersom källan inte ger någon utbredning/);
+  assert.match(note('Asia'),/Parhae/);
+  assert.doesNotMatch(note('Asia'),/Balhae/);
+  assert.deepEqual(h.coverage.map(c => c.area),['Africa','Asia','Europe','Americas','Oceania','Antarctica']);
+  for (const row of h.coverage) {
+    assert.ok(row.sourceIds.length > 0,row.area);
+    for (const id of row.sourceIds) assert.ok(Object.hasOwn(h.sources,id),`${row.area}: ${id}`);
+  }
+  assert.match(note('Europe'),/Pippin puckelryggen/);
+  assert.match(note('Europe'),/Avar/i);
+  assert.match(note('Africa'),/Idris/);
+  assert.match(note('Africa'),/Makuria/);
+  assert.match(note('Asia'),/Valabhi/);
+  assert.match(note('Asia'),/Tibet/);
+  assert.match(note('Americas'),/Tolt/);
+  assert.match(note('Americas'),/Wari/);
+  assert.match(note('Oceania'),/okänd/i);
+  assert.equal(h.coverage.find(c => c.area === 'Americas').status,'unresolved');
+  assert.equal(h.coverage.find(c => c.area === 'Oceania').status,'unresolved');
+});
+
+test('player text keeps Swedish letters and the house style',() => {
+  const { h,court } = loadPackage();
+  const claims = rows => rows.flatMap(r => Object.values(r.claims).map(c => c.noteSv));
+  const texts = [h.contextSv,h.calendarNoteSv,h.coverageNoteSv,h.eraLabelSv,...h.coverage.map(c => c.noteSv),...h.polities.map(p => p.noteSv),
+    ...h.settlements.map(s => s.noteSv),...claims(court.people),...claims(court.offices),...claims(court.religions),...claims(court.families)].filter(Boolean);
+  for (const text of texts) {
+    assert.ok(!/[–—]/.test(text),text);
+    assert.ok(!/inte [^.]{1,60}, utan /i.test(text),text);
+    assert.ok(!/, inte att /i.test(text),text);
+    assert.ok(!/\b(manader|riksniva|fodelse|fodelsedatum|spelvarde|okand)\b/i.test(text),text);
+  }
+  assert.match(texts.join(' '),/[åäö]/);
+});
+
+test('the calendar note carries the annalist year',() => {
+  const { h } = loadPackage();
+  assert.match(h.calendarNoteSv,/801/);
+  assert.match(h.calendarNoteSv,/Startdagen är vald/);
+});

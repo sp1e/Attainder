@@ -15,16 +15,23 @@ export function publicHistoricalOrigin(value) {
     publicText(source, ['title', 'institution', 'url', 'locator', 'retrievedAt', 'license', 'chronology', 'uncertainty', 'review'])]));
   return result;
 }
-export function publicPersonOrigin(value) {
-  if (!value || typeof value !== 'object') return undefined;
+function publicClaims(value, keys) {
   const claims = {};
-  for (const key of ['identity', 'bornAt', 'sex', 'legalParentIds', 'spouseIds', 'kinship', 'mechanics', 'culture']) {
+  for (const key of keys) {
     const claim = value.claims?.[key];
     if (claim && ['sourced', 'uncertain', 'generated'].includes(claim.status)) claims[key] = {
       ...publicText(claim, ['status', 'noteSv']), sourceIds: publicSourceIds(claim.sourceIds),
     };
   }
-  return { ...publicText(value, ['identityOrigin', 'originLabelSv']), claims };
+  return claims;
+}
+export function publicPersonOrigin(value) {
+  if (!value || typeof value !== 'object') return undefined;
+  return { ...publicText(value, ['identityOrigin', 'originLabelSv']), claims: publicClaims(value, ['identity', 'bornAt', 'sex', 'legalParentIds', 'spouseIds', 'kinship', 'survival', 'mechanics', 'culture']) };
+}
+export function publicReligionOrigin(value) {
+  if (!value || typeof value !== 'object') return undefined;
+  return { claims: publicClaims(value, ['identity', 'mechanics']) };
 }
 export const ARCHETYPES = {
   commander: { name: 'Fältherren', ability: 'Samordnad mobilisering', action: 'mobilize', description: 'Stärk arméns beredskap under tre år. Kräver aktivt härskarmandat.', cost: 35 },

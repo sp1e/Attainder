@@ -13,7 +13,7 @@ const optionsFor = data => ({ historicalScenario: data.world.historicalScenario,
 const ok = result => { assert.equal(result.ok, true, result.error); return result.state; };
 const ledger = state => { const value = clone(state); delete value.revision; delete value.appliedCommandIds; return value; };
 
-for (const id of ['egypt-3000bc', 'john-1200']) {
+for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
   for (const mode of ['realm', 'family']) test(`${id} ${mode}: authored court initializes deterministically in the current engine`, () => {
     const data = load(id), options = { ...optionsFor(data), mode };
     const before = clone(options);
@@ -235,8 +235,37 @@ for (const [name, mutate] of [
   assert.deepEqual(options, before);
 });
 
+test('seeded religions keep their public claims through save, load and presentation', () => {
+  const options = optionsFor(load('charlemagne-800')), authored = options.historicalScenario.courtSeeds[options.polityId].religions[0];
+  const state = createHistoricalCharacterSystem(options);
+  assert.deepEqual(state.religions[authored.id].historicalOrigin.claims.identity, authored.claims.identity);
+  assert.match(authored.claims.identity.noteSv, /^Leo III/);
+  const loaded = normalizeCharacterSystem(clone(state));
+  loaded.religions[authored.id].historicalOrigin.privateNote = 'HIDDEN';
+  loaded.religions[authored.id].historicalOrigin.claims.research = { status: 'sourced', noteSv: 'HIDDEN', sourceIds: [] };
+  const presented = getCharacterPresentation(loaded).religions.find(r => r.id === authored.id);
+  assert.deepEqual(presented.historicalOrigin, state.religions[authored.id].historicalOrigin);
+  assert.doesNotMatch(JSON.stringify(presented), /HIDDEN/);
+});
+
+test('survival claims reach the presented person through save and load', () => {
+  const options = optionsFor(load('charlemagne-800')), court = options.historicalScenario.courtSeeds[options.polityId];
+  const people = getCharacterPresentation(normalizeCharacterSystem(clone(createHistoricalCharacterSystem(options)))).people;
+  const authored = court.people.filter(p => p.claims.survival);
+  assert.equal(authored.length, 5);
+  for (const person of authored) assert.deepEqual(people.find(p => p.id === person.id).historicalOrigin.claims.survival, person.claims.survival);
+});
+
+test('a saved historical religion without claims normalizes and presents as it did', () => {
+  const state = createHistoricalCharacterSystem(optionsFor(load('john-1200')));
+  for (const religion of Object.values(state.religions)) delete religion.historicalOrigin;
+  const loaded = normalizeCharacterSystem(clone(state));
+  assert.deepEqual(loaded.religions, state.religions);
+  assert.equal(getCharacterPresentation(loaded).religions.every(r => !Object.hasOwn(r, 'historicalOrigin')), true);
+});
+
 test('real assets and court agree at the accepted schema boundary', () => {
-  for (const id of ['egypt-3000bc', 'john-1200']) {
+  for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
     const data = load(id), options = optionsFor(data);
     const regions = JSON.parse(readFileSync(new URL(`../../../server/seed/historical/${id}/regions.geojson`, import.meta.url), 'utf8'));
     assert.equal(validateHistoricalScenario({ ...data, regions, assetManifest: options.historicalScenario.assetManifest }, options).ok, true);

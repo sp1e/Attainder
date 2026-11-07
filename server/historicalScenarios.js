@@ -53,6 +53,9 @@ function validClaims(claims, sources) {
 // Biography uses the shared calendar, not the permitted new-campaign year range.
 const validBirth = (value,date) => typeof value === 'string' && /^-?\d{1,6}-\d{2}-\d{2}$/.test(value)
   && formatGameDate(parseGameDate(value)) === value && compareGameDates(value,date) <= 0;
+// A documented person's family ties read as history, so a generated claim cannot carry them.
+const claimedRelation = (p, key) => !p[key].length
+  || (Object.hasOwn(p.claims,key) && (p.identityOrigin !== 'documented' || p.claims[key].status !== 'generated'));
 function validCourt(court, polityId, h, date) {
   if (!record(court) || court.polityId !== polityId || !h.settlements.some(s => s.id === court.seatId && s.polityId === polityId)) return false;
   if (!['people','families','religions','offices','cities'].every(k => validIds(court[k]))) return false;
@@ -64,8 +67,9 @@ function validCourt(court, polityId, h, date) {
     && p.claims.identity?.status === (p.identityOrigin === 'generated' ? 'generated' : 'sourced')
     && p.claims.mechanics?.status === 'generated'
     && (!Object.hasOwn(p,'bornAt') || (Object.hasOwn(p.claims,'bornAt') && validBirth(p.bornAt,date)))
+    && (p.identityOrigin !== 'documented' || Object.hasOwn(p.claims,'kinship'))
     && ['legalParentIds','spouseIds'].every(k => Array.isArray(p[k]) && unique(p[k])
-      && (!p[k].length || Object.hasOwn(p.claims,k)) && p[k].every(id => id !== p.id && people.has(id)))
+      && claimedRelation(p,k) && p[k].every(id => id !== p.id && people.has(id)))
     && p.spouseIds.every(id => list(people.get(id).spouseIds).includes(p.id)))) return false;
   if (!court.families.every(f => people.get(f.headId)?.familyId === f.id
     && (f.religionId === undefined || religions.has(f.religionId)) && validClaims(f.claims, h.sources))) return false;
