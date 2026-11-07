@@ -52,8 +52,8 @@
     {
       "startYear": 1500,
       "endYear": 1530,
-      "status": "unresearched",
-      "note": "Annual research has not started in this catalog."
+      "status": "partial",
+      "note": "38 independently checked event records cover selected acts in Europe, the Middle East and North Africa, Central Asia, sub-Saharan Africa, East Asia, South Asia, Southeast Asia, the Americas and Oceania. Europe and southern/eastern Asia are overrepresented. Sub-Saharan records concern Kongo and Ndongo; American records concern central Mexico. Oceania has three scoped records. Many regions, social history, science, technology and environmental history remain gaps. Approximate dates and the single source-supplied range preserve their limits; empty years remain research gaps. This batch ends at the maximum start year, 1530, and makes no whole-century completeness claim."
     }
   ]
 }
