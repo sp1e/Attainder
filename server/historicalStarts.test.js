@@ -42,7 +42,9 @@ test('server prepares both historical courts and refuses invalid requests withou
       assert.throws(()=>store.createGame({gamePatch:{gameDate:null}}));
       assert.deepEqual(fs.readdirSync(path.join(process.env.OH_DATA_DIR,'games')),[],'rejected first request creates no campaign');
       store.ensureGameStore();
-      const snapshot = () => { const out={}; const walk=p=>{for(const e of fs.readdirSync(p,{withFileTypes:true})){const q=path.join(p,e.name);if(e.isDirectory())walk(q);else out[q]=fs.readFileSync(q).toString('base64');}};walk(process.env.OH_DATA_DIR);return out; };
+      // A library read stores each scenario's start summary in its meta the first time, so the
+      // snapshot reads the library first and a refused request is held to writes of its own.
+      const snapshot = () => { store.getLibraryCatalog(); const out={}; const walk=p=>{for(const e of fs.readdirSync(p,{withFileTypes:true})){const q=path.join(p,e.name);if(e.isDirectory())walk(q);else out[q]=fs.readFileSync(q).toString('base64');}};walk(process.env.OH_DATA_DIR);return out; };
       { const before=snapshot(); assert.throws(()=>store.writeRuntimeJsonAsset('game',{gameDate:'2016-01-01'})); assert.deepEqual(snapshot(),before); }
       for (const request of [
         {gamePatch:{gameDate:'2016-01-01'}},{gamePatch:{gameDate:'-3301-01-01'}},{gamePatch:{startDate:'0000-01-01'}},
@@ -283,6 +285,9 @@ test('a desktop library read replaces an older shipped start in place and leaves
   // Content hash and modification time of every file under the given paths, so a rewrite with equal bytes still shows.
   const files = (...paths) => Object.fromEntries(paths.flatMap(p => statSync(p).isDirectory() ? readdirSync(p,{recursive:true}).map(name => path.join(p,name)) : [p])
     .filter(file => statSync(file).isFile()).map(file => [file,[statSync(file).mtimeMs,hash(readFileSync(file))]]));
+  // A library read stores the start summary in the meta again when world.json changed, so the meta
+  // is compared without that cache and every other file as it is.
+  const asideSummary = ({ [metaPath]: _meta, ...others }) => { const { historicalSummary: _summary, ...meta } = readJson(metaPath); return { others, meta }; };
   try {
     // An earlier release installed Charlemagne. The player chose Egypt and started a campaign at AD 800.
     const first = boot(`store.ensureScenarioStore(); store.setSelectedScenario('egypt-3000bc');
@@ -319,7 +324,7 @@ test('a desktop library read replaces an older shipped start in place and leaves
       ['the copy a restored campaign uses',() => { writeFileSync(worldPath,shipped); editJson(worldPath,world => { world.historicalScenario.contentVersion = '1.0.0'; }); editJson(metaPath,meta => { meta.restoreOnly = true; }); }],
     ]) {
       change();
-      const before = files(dir); boot(); assert.deepEqual(files(dir),before,label);
+      const before = asideSummary(files(dir)); boot(); assert.deepEqual(asideSummary(files(dir)),before,label);
     }
     // (b) A start the player deleted stays deleted.
     assert.equal(JSON.parse(boot(`store.deleteGame('${first[0]}'); store.deleteScenario('${id}');`).at(-1)).includes(id),false);

@@ -1,0 +1,136 @@
+// The desktop library keeps a historical start summary in each scenario meta, stamped with the
+// size and modification time of the scenario's world.json and game.json, so a catalog read
+// rebuilds a summary only when those files changed.
+//
+// Each step runs in its own child process because OH_DATA_DIR is read once, at import time, and
+// because a fresh process has no catalog in memory: what it reads comes from the files on disk.
+// The child counts how often it reads each scenario's world.json by wrapping fs.readFileSync,
+// which is what the store's readJsonFile calls.
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+
+const STORE_URL = new URL('./libraryStore.js', import.meta.url).href;
+
+const runStore = (root, body) => execFileSync(process.execPath, ['--input-type=module', '-e', `
+  import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path';
+  const scenariosDir = path.join(process.env.OH_DATA_DIR, 'scenarios');
+  const worldReads = new Map(), readFileSync = fs.readFileSync;
+  fs.readFileSync = (file, ...rest) => {
+    const name = String(file);
+    if (name.startsWith(scenariosDir) && path.basename(name) === 'world.json') {
+      const id = path.basename(path.dirname(name));
+      worldReads.set(id, (worldReads.get(id) ?? 0) + 1);
+    }
+    return readFileSync(file, ...rest);
+  };
+  const reads = id => worldReads.get(id) ?? 0;
+  const store = await import(${JSON.stringify(STORE_URL)});
+  const entry = id => store.getScenarioCatalog().scenarios.find(s => s.id === id);
+  ${body}
+`], { env: { ...process.env, OH_DATA_DIR: root }, stdio: 'pipe', encoding: 'utf8' });
+
+const withLibrary = (run) => {
+  const root = mkdtempSync(path.join(os.tmpdir(), 'attainder-summary-'));
+  try {
+    runStore(root, 'store.ensureScenarioStore();');
+    return run(root);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+};
+
+const scenarioFile = (root, id, name) => path.join(root, 'scenarios', id, name);
+const readJson = file => JSON.parse(readFileSync(file, 'utf8'));
+const editJson = (file, change) => { const value = readJson(file); change(value); writeFileSync(file, JSON.stringify(value, null, 2)); };
+
+test('the catalog carries a summary for each start and a later read builds none again', () => withLibrary(root => {
+  runStore(root, `
+    store.ensureScenarioStore(); worldReads.clear();
+    const karl = entry('charlemagne-800'), john = entry('default'), egypt = entry('egypt-3000bc');
+    assert.deepEqual(karl.historicalSummary.polities.map(p => p.id), ['carolingian-realm', 'papal-states']);
+    assert.deepEqual(karl.historicalStart, { date: '0800-12-25', contentId: 'charlemagne-800' });
+    assert.equal(john.historicalSummary.eraId, 'high-middle-ages');
+    assert.deepEqual(john.historicalStart, { date: '1200-12-31', contentId: 'john-1200' });
+    assert.equal(egypt.historicalSummary.eraId, 'bronze-age');
+    assert.equal(reads('charlemagne-800'), 1, 'the first read builds the summary from world.json');
+    const library = store.getLibraryCatalog().scenarios.find(s => s.id === 'charlemagne-800');
+    assert.deepEqual(library.historicalSummary, karl.historicalSummary);
+  `);
+  const stored = readJson(scenarioFile(root, 'charlemagne-800', 'scenario.json')).historicalSummary;
+  assert.equal(stored.schema, 1);
+  assert.match(stored.sourceStamp, /^\d+:[\d.]+:\d+:[\d.]+$/);
+  // ensureScenarioStore reads the default world.json on every call (syncBuiltInScenarioSeedDate),
+  // so for the default the check is that its meta, where a rebuild writes, is left alone.
+  const ids = ['default', 'egypt-3000bc', 'charlemagne-800'];
+  const metaTimes = () => ids.map(id => statSync(scenarioFile(root, id, 'scenario.json')).mtimeMs);
+  const before = metaTimes();
+  runStore(root, `
+    store.ensureScenarioStore(); worldReads.clear();
+    const karl = entry('charlemagne-800');
+    assert.deepEqual(karl.historicalSummary.polities.map(p => p.id), ['carolingian-realm', 'papal-states']);
+    assert.equal(entry('default').historicalSummary.eraId, 'high-middle-ages');
+    assert.equal(reads('charlemagne-800'), 0);
+    assert.equal(reads('egypt-3000bc'), 0);
+  `);
+  assert.deepEqual(metaTimes(), before, 'no summary is built or written again');
+}));
+
+test('a game date edited on disk without a meta write shows on the next catalog read', () => withLibrary(root => {
+  runStore(root, 'assert.equal(entry("charlemagne-800").historicalStart.date, "0800-12-25");');
+  const metaPath = scenarioFile(root, 'charlemagne-800', 'scenario.json');
+  const updatedAt = readJson(metaPath).updatedAt;
+  editJson(scenarioFile(root, 'charlemagne-800', 'game.json'), game => { game.gameDate = '0801-01-01'; });
+  runStore(root, `
+    const karl = entry('charlemagne-800');
+    assert.equal(karl.historicalStart.date, '0801-01-01');
+    assert.equal(karl.historicalSummary.date, '0801-01-01');
+  `);
+  assert.equal(readJson(metaPath).historicalSummary.date, '0801-01-01');
+  assert.equal(readJson(metaPath).updatedAt, updatedAt);
+  // A rename changes only the meta, so the stamp alone would keep the old name in the summary.
+  editJson(metaPath, meta => { meta.name = 'Karl den store'; });
+  runStore(root, 'assert.equal(entry("charlemagne-800").historicalSummary.name, "Karl den store");');
+}));
+
+test('a meta from before summaries gains one on the first catalog read and keeps every other field', () => withLibrary(root => {
+  // Installing writes the metas as the code before summaries did; no catalog has been read yet.
+  const metaPath = scenarioFile(root, 'charlemagne-800', 'scenario.json');
+  const before = readJson(metaPath);
+  assert.equal(Object.hasOwn(before, 'historicalSummary'), false);
+  // The shipped default meta has no createdAt or updatedAt; the store reads a pair it mints as
+  // "never edited", so the cache write must not store any.
+  const defaultPath = scenarioFile(root, 'default', 'scenario.json');
+  const defaultMeta = readJson(defaultPath);
+  editJson(scenarioFile(root, 'egypt-3000bc', 'scenario.json'), meta => { meta.restoreOnly = true; });
+  runStore(root, `
+    assert.equal(entry('charlemagne-800').historicalSummary.contentId, 'charlemagne-800');
+    const egypt = entry('egypt-3000bc');
+    assert.equal(egypt.historicalSummary.contentId, 'egypt-3000bc');
+    assert.equal(egypt.historicalStart, null, 'the copy a restored campaign uses is not offered');
+  `);
+  const { historicalSummary, ...after } = readJson(metaPath);
+  assert.equal(historicalSummary.schema, 1);
+  assert.deepEqual(after, before, 'updatedAt and the other fields are as they were');
+  const { historicalSummary: johnSummary, ...defaultAfter } = readJson(defaultPath);
+  assert.equal(johnSummary.contentId, 'john-1200');
+  assert.deepEqual(defaultAfter, defaultMeta, 'a meta without timestamps gains none');
+}));
+
+test('a stored start whose papal ruler is gone from the court is left off and the others stay', () => withLibrary(root => {
+  editJson(scenarioFile(root, 'charlemagne-800', 'world.json'), world => {
+    const court = world.historicalScenario.courtSeeds['papal-states'];
+    court.people = court.people.filter(person => person.id !== court.rulerId);
+  });
+  runStore(root, `
+    const karl = entry('charlemagne-800');
+    assert.equal(karl.historicalSummary.invalid, true);
+    assert.equal(karl.historicalStart, null);
+    for (const [id, contentId] of [['default', 'john-1200'], ['egypt-3000bc', 'egypt-3000bc']]) {
+      assert.equal(entry(id).historicalSummary.contentId, contentId);
+      assert.equal(entry(id).historicalStart.contentId, contentId);
+    }
+    assert.equal(store.getLibraryCatalog().scenarios.find(s => s.id === 'charlemagne-800').historicalSummary.invalid, true);
+  `);
+}));
