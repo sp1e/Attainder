@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import LocalModelConnect from './Characters/LocalModelConnect.jsx';
+import HistoricalStartPicker from './HistoricalStartPicker.jsx';
 import { loadHistoricalStartOptions, startDynastyCampaign } from '../runtime/startDynastyCampaign.js';
 import { isFallbackListConfigured } from './AI/providerConfig.js';
 import './dynastyStart.css';
@@ -26,9 +27,10 @@ export default function DynastyStartCard({ onStart, errorMessage = '' }) {
     }).catch(failure => { if (alive) setError(failure.message); });
     return () => { alive = false; };
   },[]);
-  const chooseBookmark = id => {
-    const bookmark = bookmarks.find(b => b.scenarioId === id);
-    setScenarioId(id); setPolityId(bookmark.polities[0].id); setFamilyId(bookmark.polities[0].families[0].id);
+  const chooseStart = choice => {
+    const chosen = bookmarks.find(b => b.scenarioId === choice.scenarioId)?.polities.find(p => p.id === choice.polityId);
+    if (!chosen) return;
+    setScenarioId(choice.scenarioId); setPolityId(chosen.id); setFamilyId(chosen.families[0].id);
   };
   const [mode,setMode] = useState('realm');
   const [seed,setSeed] = useState('');
@@ -53,9 +55,7 @@ export default function DynastyStartCard({ onStart, errorMessage = '' }) {
     <div className="dynasty-start-layout"><div>
       <h1 id="dynasty-start-heading">Vem för du vidare?</h1>
       <p className="dynasty-start-intro">Välj en historisk start och följ människorna som formar din kampanj.</p>
-      <div className="dynasty-difficulty"><label htmlFor="historical-bookmark">Startdatum och scenario</label><select id="historical-bookmark" value={scenarioId} onChange={e=>chooseBookmark(e.target.value)} disabled={busy || !bookmarks.length}>{bookmarks.map(b=><option key={b.scenarioId} value={b.scenarioId}>{b.label} · {b.name}</option>)}</select></div>
-      <div className="dynasty-difficulty"><label htmlFor="historical-polity">Rike</label><select id="historical-polity" value={polityId} onChange={e=>{setPolityId(e.target.value);setFamilyId(selected.polities.find(p=>p.id===e.target.value).families[0].id);}} disabled={busy || !selected}>{selected?.polities.map(p=><option key={p.id} value={p.id}>{p.name}</option>)}</select></div>
-      {polity?.ruler && <p>{polity.ruler.name} · {polity.ruler.originLabelSv}</p>}
+      <HistoricalStartPicker options={bookmarks} value={{scenarioId,polityId}} onChange={chooseStart} disabled={busy} />
       {mode === 'family' && <div className="dynasty-difficulty"><label htmlFor="historical-family">Familj</label><select id="historical-family" value={familyId} onChange={e=>setFamilyId(e.target.value)} disabled={busy}>{polity?.families.map(f=><option key={f.id} value={f.id}>{f.name}</option>)}</select></div>}
       <div className="dynasty-start-modes" role="radiogroup" aria-label="Kampanjens identitet" onKeyDown={event=>{
         if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(event.key)) return;
