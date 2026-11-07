@@ -6,6 +6,7 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
 import { applyRealmDissolution, createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation } from "../../runtime/characters/index.js";
+import { createHistoricalCharacterSystem } from "../../runtime/characters/scenarioSeed.js";
 import { REASONS as ODDS_REASONS } from "../../runtime/characters/actionOdds.js";
 import * as realDates from "../../runtime/gameDates.js";
 import { CONVERSATION_REQUESTS } from "../../runtime/characters/conversation.js";
@@ -17,7 +18,7 @@ import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testi
 // Render the real JSX with supplied presentation data. Runtime and portrait
 // loading are stubs; these checks do not exercise the core or a browser.
 const source = readFileSync(new URL("./CharactersPanel.jsx", import.meta.url), "utf8");
-const compiled = transformSync(`${source}\nexport { ChronicleView, CouncilView, PeopleView, GovernanceSummary, ActionCard, StoryCard, ChainHistory };`, {
+const compiled = transformSync(`${source}\nexport { ChronicleView, CouncilView, FamiliesView, PeopleView, GovernanceSummary, ActionCard, StoryCard, ChainHistory };`, {
   loader: "jsx", format: "cjs", jsx: "transform",
 }).code;
 const compileFile = (name) => transformSync(readFileSync(new URL(`./${name}`, import.meta.url), "utf8"), {
@@ -1443,6 +1444,72 @@ function mountPeople({ selectedId, view = engineCampaign().view } = {}) {
   return { driver, props, draw, get tree() { return tree; } };
 }
 const talkButtons = (tree) => findAll(tree, (node) => node.type === "button" && textOf(node) === "Samtala");
+
+// The real seeded court through the real presentation: what getCharacterPresentation
+// hands the panel for a campaign started from the package.
+function seededView(id) {
+  const { data } = JSON.parse(readFileSync(new URL(`../../../server/seed/historical/${id}/scenario.json`, import.meta.url), "utf8"));
+  return getCharacterPresentation(createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 }));
+}
+const survivalTags = (tree) => findAll(tree, (node) => node.type === "span" && textOf(node) === "Överlevnad osäker");
+const families = (view) => {
+  const { FamiliesView } = loadPanel(view, { panelState: false });
+  return renderToStaticMarkup(React.createElement(FamiliesView, { view }));
+};
+
+test("the real Charlemagne court tags each person whose survival is uncertain, with the claim as the title", () => {
+  const view = seededView("charlemagne-800");
+  const uncertain = view.people.filter((person) => person.historicalOrigin?.claims?.survival?.status === "uncertain");
+  assert.deepEqual(uncertain.map((person) => person.id), ["berta", "gisela", "teoderada", "hiltrud", "ruodhaid"]);
+  for (const person of uncertain) {
+    const tags = survivalTags(mountPeople({ selectedId: person.id, view }).tree);
+    assert.equal(tags.length, 1, person.id);
+    assert.equal(tags[0].props.title, person.historicalOrigin.claims.survival.noteSv);
+  }
+  for (const id of ["karl", "rotrud", "generated-courtier-1"]) assert.equal(survivalTags(mountPeople({ selectedId: id, view }).tree).length, 0, id);
+});
+
+test("a person who has died in the campaign loses the survival tag", () => {
+  const view = seededView("charlemagne-800");
+  const dead = { ...view, people: view.people.map((person) => person.id === "berta" ? { ...person, alive: false, diedAt: "0805-01-01" } : person) };
+  assert.equal(survivalTags(mountPeople({ selectedId: "berta", view: dead }).tree).length, 0);
+});
+
+test("John, Egypt and a non-historical court show no survival tag", () => {
+  for (const view of [seededView("john-1200"), seededView("egypt-3000bc"), engineCampaign().view]) {
+    for (const person of view.people) assert.equal(survivalTags(mountPeople({ selectedId: person.id, view }).tree).length, 0, person.id);
+  }
+});
+
+test("a historical religion names the representative at court and shows its sourced claim, with no added person", () => {
+  const view = seededView("charlemagne-800");
+  const html = families(view);
+  assert.match(html, /Företrädare vid hovet <strong>Rikulf \(genererad\)<\/strong>/);
+  assert.doesNotMatch(html, /Ledare/);
+  assert.match(html, /Leo III, biskop av Rom sedan 795, krönte Karl/);
+  assert.equal(view.people.some((person) => /Leo/.test(person.name)), false);
+  const john = families(seededView("john-1200"));
+  assert.match(john, /Företrädare vid hovet <strong>William \(genererad\)<\/strong>/);
+  assert.match(john, /Kunglig kröning vid Westminster/);
+  assert.match(families(seededView("egypt-3000bc")), /Företrädare vid hovet/);
+});
+
+test("a saved historical campaign without religion claims keeps the label and shows no claim", () => {
+  const view = seededView("john-1200");
+  const old = { ...view, religions: view.religions.map(({ historicalOrigin, ...religion }) => religion) };
+  const html = families(old);
+  assert.match(html, /Företrädare vid hovet/);
+  assert.doesNotMatch(html, /Kunglig kröning vid Westminster/);
+});
+
+test("a non-historical game keeps the religion leader label and no claim line", () => {
+  const { view } = engineCampaign();
+  const html = families(view);
+  assert.ok(view.religions.length);
+  assert.match(html, /Ledare <strong>/);
+  assert.doesNotMatch(html, /Företrädare vid hovet/);
+  assert.equal(families({ ...view, religions: view.religions.map(({ historicalOrigin, ...religion }) => religion) }), html);
+});
 
 test("a person's skills carry Swedish labels, prowess included", () => {
   const text = textOf(mountPeople({ selectedId: "person-0-2" }).tree);

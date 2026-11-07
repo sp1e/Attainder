@@ -1,6 +1,6 @@
 import { activateGame, createGame, ensureLibraryCatalog, loadScenarioDetails, downloadScenarioJsonAsset } from './library.js';
 import { normalizeCampaignSeed } from './campaignSeed.js';
-import { historicalStartOption } from './historicalStartOptions.js';
+import { historicalStartOption, orderHistoricalStarts } from './historicalStartOptions.js';
 
 export async function loadHistoricalStartOptions() {
   const catalog = await ensureLibraryCatalog();
@@ -12,13 +12,13 @@ export async function loadHistoricalStartOptions() {
       options.push(historicalStartOption(details,regions,cities));
     } catch { /* Invalid templates cannot offer a start. */ }
   }
-  return options;
+  return orderHistoricalStarts(options);
 }
 
 export async function startDynastyCampaign({ mode = 'realm', scenarioId, date, polityId, familyId, difficulty = 'normal', characterDifficulty, seed = 104729 } = {}) {
   seed = normalizeCampaignSeed(seed);
   const options = await loadHistoricalStartOptions();
-  const scenario = scenarioId ? options.find(s => s.scenarioId === scenarioId) : options.find(s => s.scenarioId === 'default') ?? options[0];
+  const scenario = scenarioId ? options.find(s => s.scenarioId === scenarioId) : options[0];
   if (!scenario) throw new Error('Det finns inget giltigt historiskt scenario att starta.');
   const selectedPolity = polityId ?? scenario.polities[0]?.id;
   const selectedDate = date ?? scenario.date;

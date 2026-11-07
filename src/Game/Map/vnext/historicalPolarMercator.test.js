@@ -27,7 +27,7 @@ const inTriangle=(p,[a,b,c])=>{
 };
 const contains=(triangles,p)=>triangles.some(t=>inTriangle(p,t));
 
-for(const bookmark of ['egypt-3000bc','john-1200']) test(`${bookmark} retains Antarctic land coverage in the Mercator tile`,async()=>{
+for(const bookmark of ['egypt-3000bc','john-1200','charlemagne-800']) test(`${bookmark} retains Antarctic land coverage in the Mercator tile`,async()=>{
   const data=JSON.parse(readFileSync(new URL(`../../../../server/seed/historical/${bookmark}/regions.geojson`,import.meta.url),'utf8'));
   const original=data.features.find(f=>f.properties.id==='physical-1378'); assert.ok(original);
   const before=JSON.stringify(original);

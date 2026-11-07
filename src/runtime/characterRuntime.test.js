@@ -239,7 +239,7 @@ test("origin converse is set in exactly one place in the source", () => {
   assert.deepEqual(found, [["characterRuntime.js", 1]]);
 });
 
-for (const bookmark of ['egypt-3000bc', 'john-1200']) test(`historical initialization opts in to ${bookmark}, preserves existing people and fails before writes`, async () => {
+for (const bookmark of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) test(`historical initialization opts in to ${bookmark}, preserves existing people and fails before writes`, async () => {
   const originalFetch = globalThis.fetch;
   const base = new URL(`../../server/seed/historical/${bookmark}/`, import.meta.url);
   const authored = JSON.parse(readFileSync(new URL('scenario.json', base), 'utf8')).data;

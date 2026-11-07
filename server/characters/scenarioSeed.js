@@ -1,6 +1,6 @@
 import { addGameMonths } from '../gameDates.js';
 import { validateHistoricalCourt } from '../historicalScenarios.js';
-import { ADULT_AGE, ARCHETYPES, TRAITS, SKILL_LABELS, publicHistoricalOrigin, publicPersonOrigin } from './content.js';
+import { ADULT_AGE, ARCHETYPES, TRAITS, SKILL_LABELS, publicHistoricalOrigin, publicPersonOrigin, publicReligionOrigin } from './content.js';
 import { completeCharacterState, createCharacterState, getCharacterAge, normalizeCharacterSystem } from './index.js';
 
 const refusal = () => new Error('Det historiska hovets uppgifter kan inte användas av karaktärssystemet.');
@@ -66,7 +66,7 @@ function seedCourt(state, court) {
     guardianId: null, treasury: 110, estates: 2, influence: 45, grievance: 0, exiled: false,
     hostFamilyId: null, claims: [], cooldowns: {},
   };
-  for (const religion of court.religions) state.religions[religion.id] = { id: religion.id, name: religion.name || religion.id, support: 55, leaderId: religion.leaderId ?? null };
+  for (const religion of court.religions) state.religions[religion.id] = { id: religion.id, name: religion.name || religion.id, support: 55, leaderId: religion.leaderId ?? null, historicalOrigin: publicReligionOrigin(religion) };
   for (const [id, name] of [['ruler', 'Härskare'], ['general', 'Överbefälhavare'], ['chancellor', 'Kansler'], ['priest', 'Religiös företrädare']]) {
     state.offices[id] = { id, name, kind: id, holderId: null, regentId: null, history: [], publicBudget: 30 };
   }

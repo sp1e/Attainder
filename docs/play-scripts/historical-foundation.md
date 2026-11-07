@@ -120,6 +120,23 @@ The table records panel observations. All 16 cells were inspected on the recorde
 
 Desktop was 1280 × 720; narrow was requested at 390 × 844 with an observed inner width of 391. Start-card selectors and provenance were inspected in both themes and widths on each adapter. The shared refusal dialog was inspected on desktop server and narrow web. Public and household submissions followed by reload were observed for each realm adapter/bookmark, plus representative narrow light and dark interactions. No extra pair of submissions or separate error dialog is required in every matrix cell. This matrix does not replace the longer Phase 3 play script.
 
+## Charlemagne start, AD 800
+
+The third start is the default: the card preselects it, and John and Egypt stay offered. The scenario `default` still holds John, so existing John saves stay bound to it. Catalog order sets the default in `HISTORICAL_START_ORDER`.
+
+| ID | Adapter | Start card | Map at Aachen | Household command | Reload | One turn |
+| --- | --- | --- | --- | --- | --- | --- |
+| S-K-R | Server | not yet run | not yet run | not yet run | not yet run | not yet run |
+| W-K-R | Web | not yet run | not yet run | not yet run | not yet run | not yet run |
+
+- Start card: `Startdatum och scenario` opens on `800 e.Kr. · Karls rike (karolingiska riket), 800 e.Kr.`, and `Rike` shows `Karls rike (karolingiska riket)`. A start records date `0800-12-25` and polity `carolingian-realm`.
+- Map: the seat marker is Aachen at `[6.1053, 50.7708]`, an approximate Getty placement. Karl stands in Rome on the bookmark date, and the map keeps the game seat at Aachen.
+- Court: Berta, Gisela, Teoderada, Hiltrud and Ruodhaid each carry the tag `Överlevnad osäker` on their person card, and the tag title shows the package note. Karl and his sons carry no such tag.
+- Religion: under `Familjer`, `Religiösa samfund`, the Latin Church shows `Företrädare vid hovet` with Rikulf (genererad), and the caption above it names Leo III. A John campaign started on this build shows the same label with its own representative. An older saved campaign shows the label and no caption.
+- Turn: run it against the local provider if one answers. Otherwise the cell stays open for the owner.
+
+An upgraded library gains the start once, keeps a scenario the player selected and keeps a deleted start deleted. Each start has its own marker for this: `historical-bookmarks-charlemagne-800.json` on the server and the key of that name in the web store.
+
 ## Closure
 
 The controller accepted Task 6 with the documented limits, and final documentation review approved publication subject to current-head CI. CI passed at `2066a55`; the PR tracks the current head and merge state. Preserve source attribution and licenses, and exclude private material from publication. The annual 3300 BC–AD 1200 historical-reference research and turn-end popup remain a separate pending milestone.

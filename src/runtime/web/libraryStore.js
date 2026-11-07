@@ -1,4 +1,5 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "../../../server/historicalPreparation.js";
+import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER } from "../../../server/historicalStarts.js";
 import { withScenarioLicense, preserveComponentProvenance } from "../scenarioLicense.js";
 /*! Open Historia — web-mode library/scenario/game/runtime store © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 // Browser (IndexedDB) port of server/libraryStore.js. Backs /api/library,
@@ -1483,15 +1484,20 @@ export const ensureSeeded = async () => {
     await kvPut("seeded", true);
   }
   await syncBuiltInScenarioFromSeed();
-  if (!(await kvGet("historical-bookmarks-v1",false))) {
+  const pending = [];
+  for (const entry of HISTORICAL_BOOKMARKS) if (!(await kvGet(entry.marker,false))) pending.push(entry);
+  if (pending.length) {
     const { default: bookmarks } = await import("./generated/historicalBookmarks.js");
     for (const bundle of bookmarks) {
-      const id=await ensureUniqueId(bundle.scenario.id,"scenario");
+      const entry=pending.find((candidate) => candidate.id === bundle.scenario.id);
+      if (!entry) continue;
+      const id=await ensureUniqueId(entry.id,"scenario");
       const record=bundleScenarioRecord(bundle,id);
       requirePrepared(validatePlayableScenario(await scenarioCandidate(record)));
-      await persistScenarioRecord(record);
+      const { selectedScenarioId } = await getScenarioManifest();
+      await persistScenarioRecord(record,entry.id === HISTORICAL_START_ORDER[0] && selectedScenarioId === DEFAULT_SCENARIO_ID);
+      await kvPut(entry.marker,true);
     }
-    await kvPut("historical-bookmarks-v1",true);
   }
 };
 

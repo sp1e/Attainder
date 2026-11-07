@@ -21,7 +21,7 @@ export default function DynastyStartCard({ onStart, errorMessage = '' }) {
     loadHistoricalStartOptions().then(options => {
       if (!alive) return;
       setBookmarks(options);
-      const first = options.find(b => b.scenarioId === 'default') ?? options[0];
+      const first = options[0];
       if (first) { setScenarioId(first.scenarioId); setPolityId(first.polities[0].id); setFamilyId(first.polities[0].families[0].id); }
     }).catch(failure => { if (alive) setError(failure.message); });
     return () => { alive = false; };

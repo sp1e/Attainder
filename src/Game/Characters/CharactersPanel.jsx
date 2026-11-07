@@ -87,15 +87,22 @@ function Empty({ title, children }) {
   return <div className="char-empty"><strong>{title}</strong><p>{children}</p></div>;
 }
 
+// The package doubts that this person outlived the start. A death in the campaign settles it.
+const uncertainSurvival = (person) => {
+  const claim = person.historicalOrigin?.claims?.survival;
+  return claim?.status === "uncertain" && isAlive(person) ? claim : null;
+};
+
 // `headingRef` makes the name heading a focus target (tabIndex -1) for PeopleView.
 function PersonSummary({ person, compact = false, headingRef }) {
   if (!person) return <Empty title="Ingen behörig företrädare">Ingen person kan företräda dig just nu. Läs mandatets status under Ämbeten & arv.</Empty>;
+  const survival = uncertainSurvival(person);
   return <div className={`char-person-summary${compact ? " char-person-summary--compact" : ""}`}>
     <Portrait person={person} size={compact ? "small" : "large"} />
     <div><span className="char-eyebrow">{person.familyName || "Familj"}{Number.isFinite(person.age) ? ` · ${person.age} år` : ""}</span>
       <h3 ref={headingRef} tabIndex={headingRef ? -1 : undefined}>{person.name}{person.nickname ? ` ${person.nickname}` : ""}</h3><p>{person.archetypeLabel || humanize(person.archetype)}{!isAlive(person) ? " · Avliden" : ""}</p>
       {person.portraitState?.visualState !== "healthy" && person.portraitState?.reasons?.length > 0 && <p className="char-health-summary">{person.portraitState.reasons.filter((reason) => reason.key !== "healthy").map((reason) => reason.label).join(" · ")}</p>}
-      <div className="char-tags">{entries(person.traitLabels || person.traits || person.personality).map((trait, index) => <span key={text(trait, index)}>{humanize(text(trait))}</span>)}</div>
+      <div className="char-tags">{survival && <span title={survival.noteSv}>Överlevnad osäker</span>}{entries(person.traitLabels || person.traits || person.personality).map((trait, index) => <span key={text(trait, index)}>{humanize(text(trait))}</span>)}</div>
     </div>
   </div>;
 }
@@ -270,7 +277,7 @@ function FamiliesView({ view }) {
       {family.supportReasons?.length > 0 && <details className="char-explanation"><summary>Varför detta stöd?</summary><ul>{family.supportReasons.map((reason, index) => <li key={index}>{text(reason)}{reason.value != null ? `: ${signed(reason.value)}` : ""}</li>)}</ul></details>}
     </article>)}</div>
     <DemandList demands={view.court?.demands} />
-    <div className="char-section-heading"><div><span className="char-eyebrow">Tro och institutioner</span><h3>Religiösa samfund</h3></div></div><div className="char-family-grid">{entries(view.religions).map((religion) => <article className="char-card" key={religion.id}><h4>{religion.name}</h4><p>{religion.description || "Samfundets politiska stöd påverkar rikets sammanhållning."}</p><div className="char-inline-stats"><span>Stöd <strong>{signed(religion.support)}</strong></span>{religion.leaderId && <span>Ledare <strong>{people[religion.leaderId]?.name || "Okänd"}</strong></span>}</div></article>)}</div>
+    <div className="char-section-heading"><div><span className="char-eyebrow">Tro och institutioner</span><h3>Religiösa samfund</h3></div></div><div className="char-family-grid">{entries(view.religions).map((religion) => <article className="char-card" key={religion.id}><h4>{religion.name}</h4><p>{religion.description || "Samfundets politiska stöd påverkar rikets sammanhållning."}</p>{religion.historicalOrigin?.claims?.identity?.noteSv && <p className="char-caption">{religion.historicalOrigin.claims.identity.noteSv}</p>}<div className="char-inline-stats"><span>Stöd <strong>{signed(religion.support)}</strong></span>{religion.leaderId && <span>{view.historicalOrigin ? "Företrädare vid hovet" : "Ledare"} <strong>{people[religion.leaderId]?.name || "Okänd"}</strong></span>}</div></article>)}</div>
   </>;
 }
 
