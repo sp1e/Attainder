@@ -1,0 +1,1841 @@
+{
+  "schema": "attainder-court-dossiers-v1",
+  "bookmark": "1200-12-31",
+  "reviewFile": "ad1200-review.json",
+  "calendarHandling": "Sources keep their own chronology; this file converts no day unless a cited source does. January 1 game birth dates are simulation placeholders. Approximate cultural periods and undated dynastic sequences supply no converted accession day.",
+  "sourceAttribution": {
+    "gettyTgn": "Coordinate data: J. Paul Getty Trust, Getty Research Institute, Getty Thesaurus of Geographic Names (TGN), under ODC-By 1.0.",
+    "sourceIds": [
+      "a2-getty-data-license"
+    ]
+  },
+  "geometryCheck": {
+    "status": "checked",
+    "checkedOn": "2026-11-07",
+    "method": "Shapely covers check against the exact pinned Historical Basemaps GeoJSON bytes and accepted feature indexes.",
+    "sourceMapCommit": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+    "sourceFile": "world_1200.geojson",
+    "sourceSha256": "2d6913ecedb38e269e41d249c87874d81e3e8d7351754821f57e627442d91525",
+    "pointsChecked": 5,
+    "pointsInside": 5
+  },
+  "reviewSummary": {
+    "status": "checked",
+    "initialBlind": {
+      "status": "checked",
+      "checkedBy": "Codex independent check",
+      "checkedOn": "2026-11-07",
+      "claimsChecked": 103,
+      "confirmed": 90,
+      "corrected": 1,
+      "dropped": 12,
+      "countScope": "Initial blind-review occurrences. Dropped maps the initial unsupported verdicts. Later recovery, narrowing or substantive blockage does not rewrite these original counts."
+    },
+    "followUp": {
+      "status": "checked",
+      "checkedBy": "Codex independent check",
+      "checkedOn": "2026-11-07",
+      "claimsChecked": 13,
+      "confirmed": 10,
+      "corrected": 0,
+      "dropped": 3,
+      "countScope": "Separate scoped-review occurrences, including rechecks of initial claims; no additional unique-claim total. Dropped maps the three unsupported Xia linkage occurrences.",
+      "note": "Eight Almohad and two Chimú occurrences were confirmed. Three Xia historical place-linkage occurrences remained unsupported because the Cambridge table returned 503. The final context omits the linkage; the author-read attribution remains uncertain and blocks the court."
+    },
+    "note": "Initial audit preserved: 103 checked, 90 confirmed, one corrected, twelve unsupported mapped to dropped. The separate follow-up checked thirteen occurrences, confirmed ten and left three Xia linkage occurrences unsupported. The controller checked Khmer repository omission and geometry separately. Final research outcomes are three ready courts and two blocked courts. Repeated access failure and bounded absence do not count as confirmation."
+  },
+  "publication": {
+    "status": "pending",
+    "pullRequest": null,
+    "mergeCommit": null,
+    "note": "Research review is complete with three ready courts and two blocked courts. Final controller structural validation passed. Publication remains pending. No game integration is claimed."
+  },
+  "sources": {
+    "a2-galambos-tangut": {
+      "title": "Imre Galambos, Translating Chinese Tradition and Teaching Tangut Culture: Manuscripts and Printed Books from Khara-khoto (2015)",
+      "institution": "De Gruyter; Library of Congress digital copy",
+      "url": "https://tile.loc.gov/storage-services/master/gdc/gdcebookspublic/20/20/71/85/13/2020718513/2020718513.pdf",
+      "locator": "Printed pp. 112–116, sections 3.3 and 3.4 (PDF pages 120–124), including notes 411–420.",
+      "scopedClaim": "Chunyou (1177–1206) succeeded his father Renxiao in 1193 and ruled until 1206; his mother was Empress Luo, who supported Buddhist printing under Renxiao and remained politically active in 1206. Sutra printing continued under Chunyou. His cousin Anquan seized the throne in 1206; in 1211 another cousin, Zunxu, succeeded despite Anquan having a son.",
+      "chronology": "1177–1206; r. 1193–1206; 1193; 1206; 1211; copies dating to the 1190s.",
+      "uncertainty": "The author gives year-level dates. Luo's birth and whereabouts on 31 December 1200 are absent. The later coup proves survival but does not establish an office held by Anquan in 1200. Direct download and pypdf reading succeeded after browser fetch timed out.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-shen-xia-seat": {
+      "title": "Zhongwei Shen, A Phonological History of Chinese (2020), frontmatter",
+      "institution": "Cambridge University Press",
+      "url": "https://assets.cambridge.org/97811071/35840/frontmatter/9781107135840_frontmatter.pdf",
+      "locator": "Printed p. xxxv, PDF page 35/36, Major Periods of Chinese History table, Western Xià dynasty row, Years and Capital city columns.",
+      "scopedClaim": "Author-read attribution, not independently verified: the researcher reports that Shen lists the Western Xia dynasty at AD 1038–1227 and its capital as Xingqing (Yinchuan).",
+      "chronology": "As worded: AD 1038–1227.",
+      "uncertainty": "Only public frontmatter was read by the authoring researcher. The fresh independent checker could not obtain the intended table: two Python requests, PowerShell Invoke-WebRequest and direct web opening returned 503. The submitted 1038–1227 range and Xingqing–Yinchuan identification remain independently unverified. Retain them only as uncertain attribution. The table establishes no palace or exact-day ruler location; no alternate historical seat is proposed.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-getty-yinchuan": {
+      "title": "Getty TGN 1073544, Yinchuan",
+      "institution": "Getty Research Institute, Vocabulary Program",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=1073544",
+      "locator": "Record 1073544, Coordinates and Names fields.",
+      "scopedClaim": "The inhabited-place marker for Yinchuan has latitude 38.4681 and longitude 106.2731.",
+      "chronology": "Current gazetteer record; no medieval palace date.",
+      "uncertainty": "Getty confirms modern Yinchuan and its coordinates. It establishes neither the historical Xingqing identification nor a medieval palace or ruler itinerary. The historical capital linkage attributed to Shen remains uncertain after failed independent access.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-met-china-chronology": {
+      "title": "China, 1000–1400 A.D., Heilbrunn Timeline of Art History",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/zh/toah/ht/07/eac",
+      "locator": "Key Events, 1032–1227 entry.",
+      "scopedClaim": "The Met places the Tangut Western Xia in northwestern China across the bookmark year.",
+      "chronology": "1032–1227.",
+      "uncertainty": "The Met 1032–1227 range was independently inspected. The authoring researcher attributes a 1038 start to Shen, but the independent reader could not obtain that table. No inspected passage explains the difference; preserve the second date only as uncertain attribution.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-getty-data-license": {
+      "title": "Getty Vocabularies: Data & Services",
+      "institution": "J. Paul Getty Trust, Getty Research Institute",
+      "url": "https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/",
+      "locator": "Licensing and Citations, Licensing and General attribution subsections.",
+      "scopedClaim": "Getty makes all Getty Vocabulary data, including TGN, available under ODC-By 1.0 and requests attribution to the Getty vocabulary and record.",
+      "chronology": "Current terms read on 2026-11-07.",
+      "uncertainty": "This concerns vocabulary data; it grants no rights to unrelated website prose or images.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-getty-angkor-thom": {
+      "title": "Getty TGN 7004075, Prasat Angkor Thom",
+      "institution": "Getty Research Institute, Vocabulary Program",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7004075",
+      "locator": "Record 7004075, Coordinates, Names and Related geographic places fields.",
+      "scopedClaim": "The Angkor Thom settlement marker has latitude 13.4406 and longitude 103.8590; Getty records it as a Khmer capital.",
+      "chronology": "Current gazetteer marker; capital relationship labelled 9th–15th centuries.",
+      "uncertainty": "Only the point and name/capital relationship are used. The broad dates do not establish the construction sequence or the king's exact location.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-getty-gods-angkor": {
+      "title": "Gods of Angkor: Bronzes from the National Museum of Cambodia",
+      "institution": "J. Paul Getty Museum; exhibition organized with the Smithsonian and National Museum of Cambodia",
+      "url": "https://www.getty.edu/art/exhibitions/gods_angkor/",
+      "locator": "The Angkor Period and Bronzes in the Reign of Jayavarman VII sections.",
+      "scopedClaim": "Jayavarman VII ruled from 1181 to about 1218, built the walled capital Angkor Thom with Bayon as his state temple, and elevated the Buddha within a religious system that retained Hindu gods.",
+      "chronology": "1181–about 1218; late 1100s–early 1200s for the illustrated triad.",
+      "uncertainty": "This museum gives an approximate end year. It does not name an overall religious leader or establish the ruler's location on 31 December 1200.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-met-khmer-chronology": {
+      "title": "Southeast Asia, 1000–1400 A.D., Heilbrunn Timeline of Art History",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/fr/toah/ht/07/sse.html",
+      "locator": "Key Events, 1181–ca. 1243 entry; Timeline, Angkor period.",
+      "scopedClaim": "The Met assigns the heading 1181–ca. 1243 to its Jayavarman VII entry and dates the Angkor period 802–1431.",
+      "chronology": "1181–ca. 1243; 802–1431.",
+      "uncertainty": "The printed end year conflicts with Getty's about 1218, the Met collection object's 1218, and the National Museum of Cambodia's c.1220. The dossier preserves the conflict without assuming its cause.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-met-naga-buddha": {
+      "title": "Buddha Protected by a Seven-headed Naga, object 36.96.5",
+      "institution": "The Metropolitan Museum of Art, Asian Art Department",
+      "url": "https://www.metmuseum.org/art/collection/search/38451",
+      "locator": "Opening curatorial paragraph immediately below the title and display location.",
+      "scopedClaim": "The Met identifies Jayavarman VII as a king, dates his reign 1181–1218 and describes him as a committed Mahayana Buddhist.",
+      "chronology": "r. 1181–1218; object dated late 12th–early 13th century.",
+      "uncertainty": "This object record conflicts with the Met regional chronology's ca.1243 endpoint; it gives no precise day of death.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-jcu-nietupski-abstract": {
+      "title": "Paul K. Nietupski, Medieval Khmer Society: The Life and Times of Jayavarman VII (ca. 1120–1218) (2019)",
+      "institution": "John Carroll University, institutional bibliography; ASIANetwork Exchange 26(1)",
+      "url": "https://collected.jcu.edu/fac_bib_2019/34/",
+      "locator": "Article title and public Abstract.",
+      "scopedClaim": "Nietupski places Jayavarman VII's life at about 1120–1218, his reign at 1181–1218 and his patronage in Mahayana Buddhism.",
+      "chronology": "ca. 1120–1218; 1181–1218.",
+      "uncertainty": "Only the public institutional abstract and title were accessible. Full text at the repository and publisher returned access challenges; no household details are attributed to the unread full text.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-nmc-angkor-complex": {
+      "title": "Khmer Art History: Angkor complex and neighbouring temple groups",
+      "institution": "National Museum of Cambodia",
+      "url": "https://www.cambodiamuseum.info/en_khmer_art_history/angkor_complex.html",
+      "locator": "ANGKOR THOM ENCLOSURE & GATES and BAYON entries.",
+      "scopedClaim": "The museum dates the Angkor Thom enclosure and Bayon to the late twelfth century, names Jayavarman VII and successors as builders or rebuilders, and gives his reign as 1181-c.1220.",
+      "chronology": "late 12th C; 1181-c.1220.",
+      "uncertainty": "The catalogue does not separate each surviving phase by day or year. Its approximate reign endpoint differs from Getty's about 1218.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-berkeley-lowman-succession": {
+      "title": "The Savior King: Buddhist Self-Representation in Angkorian Cambodia (2009 lecture summary)",
+      "institution": "University of California, Berkeley, ORIAS; Ian Lowman lecture summarized by Timothy Doran",
+      "url": "https://orias.berkeley.edu/sites/default/files/2009-summary-lowman.pdf",
+      "locator": "Printed p. 4 (PDF page 4), paragraph beginning with divisions among Cambodian clans.",
+      "scopedClaim": "The university lecture summary describes Khmer claims to kingship through both male and female family lines, with competing dynastic claims.",
+      "chronology": "General Angkorian discussion, including the eleventh and twelfth centuries.",
+      "uncertainty": "This is an institutional lecture summary, not a dated succession code. Its parenthetical example mixes nephew with daughter; that example is not used. Mapping the general description to the engine is an inference.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-thai-k485-abstract": {
+      "title": "Nipat Yamdate and Chirapat Prapandvidya, Pimeanākas Inscription of śrīindradevī (K.485): Contents and Significance as Eulogy for King Jayavarman VII (2018)",
+      "institution": "The Journal of the Thai Khadi Research Institute; authors affiliated with Silpakorn University",
+      "url": "https://so06.tci-thaijo.org/index.php/thaikhadijournal/article/view/164835",
+      "locator": "English Abstract, first two findings.",
+      "scopedClaim": "The inscription study names Jayarajadevi as Jayavarman VII's first wife and Indradevi as his second wife after Jayarajadevi's death, and associates both queens with Buddhist patronage.",
+      "chronology": "The abstract gives no death dates or exact inscription date; article published 28 December 2018.",
+      "uncertainty": "The accessible abstract establishes the relationships but cannot place either queen alive on 31 December 1200.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-treccani-philip": {
+      "title": "Filippo II Augusto re di Francia",
+      "institution": "Istituto della Enciclopedia Italiana, Treccani",
+      "url": "https://www.treccani.it/enciclopedia/filippo-ii-augusto-re-di-francia/",
+      "locator": "Opening sentence; final paragraph",
+      "scopedClaim": "Philip II was the son of Louis VII and Adele of Champagne, born in 1165, succeeded in 1180, and died in 1223; he married Ingeborg in 1193.",
+      "chronology": "Parigi 1165 - Mantes-Gassicourt 1223;1180;1193",
+      "uncertainty": "Only years in the opening lifespan; no location on 31 December 1200.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-treccani-louis": {
+      "title": "Luigi VIII re di Francia, detto il Leone",
+      "institution": "Istituto della Enciclopedia Italiana, Treccani",
+      "url": "https://www.treccani.it/enciclopedia/luigi-viii-re-di-francia-detto-il-leone/",
+      "locator": "Opening paragraph; sentence beginning Sali sul trono",
+      "scopedClaim": "Louis, Philip Augustus's son, lived 1187–1226, married Blanche in 1200 and became king in 1223.",
+      "chronology": "Parigi 1187 - Montpensier, Alvernia,1226;1200;1223",
+      "uncertainty": "No exact birth day or location on the bookmark.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-epistolae-blanche": {
+      "title": "Blanche of Castile, queen of France",
+      "institution": "Epistolae, University of Siena; collection founded at Columbia University",
+      "url": "https://epistolae.unisi.it/woman/77.html",
+      "locator": "Overview; Biography paragraphs 1–3",
+      "scopedClaim": "Blanche lived 1188–1252, was the daughter of Alfonso VIII and Eleanor, and married Louis in 1200.",
+      "chronology": "1188;1252;1200",
+      "uncertainty": "Her later queenship and children do not describe her status at the 1200 bookmark.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-lex-ingeborg": {
+      "title": "Ingeborg, by Niels Henrik Holmqvist-Larsen",
+      "institution": "Dansk Kvindebiografisk Leksikon, KVINFO/Lex",
+      "url": "https://kvindebiografiskleksikon.lex.dk/Ingeborg/",
+      "locator": "Faktaboks: Levetid, Familie; Biography paragraphs on 1199–1201",
+      "scopedClaim": "Ingeborg was born around 1175 and died in 1237 or 1238; Philip married her in 1193. Innocent opposed repudiation; the 1200 interdict ended after a September reconciliation, and legitimation of children of the third marriage came in 1201. The family box dates Philip's birth to 21 August 1165.",
+      "chronology": "1175; omtrentligt fødselsår, død juli 1237 eller 1238; 14. august 1193; 21. august 1165; 14. juli 1223; januar 1200; september; 1201",
+      "uncertainty": "The precise birth day and death year remain uncertain; a formal reconciliation did not settle the marriage litigation.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-epistolae-ingeborg": {
+      "title": "Ingeborg of Denmark, queen of France",
+      "institution": "Epistolae, University of Siena; collection founded at Columbia University",
+      "url": "https://epistolae.unisi.it/woman/68.html",
+      "locator": "Biography paragraphs 1–7, especially Agnes and the 1200 interdict",
+      "scopedClaim": "Philip attempted to repudiate Ingeborg and married Agnes of Meran, who bore children and died in 1201; the pope opposed him and Philip feigned reconciliation.",
+      "chronology": "August 1193;November 1193;1195;1200;1201;1213",
+      "uncertainty": "The biography gives no birth dates for Agnes's children and no exact whereabouts for 31 December 1200. Its later 1239 appearance conflicts with its death metadata; this draft relies on earlier marriage evidence and post 1200 survival, not that appearance.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-met-france": {
+      "title": "France,1000–1400 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/fr/toah/ht/07/euwf.html",
+      "locator": "Overview paragraphs 1–3; Key Events 1180",
+      "scopedClaim": "Philip II reigned 1180–1223; the Met dates establishment of his Paris court to 1194 and describes clerical links and divided jurisdictions.",
+      "chronology": "1180–1223;1194",
+      "uncertainty": "A museum overview cannot establish exact-day presence, complete royal control or frontier vertices.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-treccani-capetians": {
+      "title": "Capetingi, Giulio Bertoni, Enciclopedia Italiana 1930",
+      "institution": "Istituto della Enciclopedia Italiana, Treccani",
+      "url": "https://www.treccani.it/enciclopedia/capetingi_(Enciclopedia-Italiana)/",
+      "locator": "Historical narrative paragraph beginning I primi re C.",
+      "scopedClaim": "The early Capetians associated sons by election and coronation; designation and primogeniture later prevailed over election.",
+      "chronology": "987–1328; succession discussion before Philip I 1060–1108",
+      "uncertainty": "The 1930 overview gives a historical trend, not a full legal rule for 1200 or the game's gender-neutral algorithm.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-vatican-innocent": {
+      "title": "Innocent III",
+      "institution": "The Holy See",
+      "url": "https://www.vatican.va/content/vatican/en/holy-father/innocenzo-iii.html",
+      "locator": "Pontificate table",
+      "scopedClaim": "Innocent III held the Catholic papal office across the bookmark.",
+      "chronology": "Beginning Pontificate 8.I,22.II.1198;End Pontificate 16.VII.1216",
+      "uncertainty": "The table prints election and consecration dates together; no conversion of either date occurs.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-getty-paris": {
+      "title": "TGN 7008038: Paris",
+      "institution": "J. Paul Getty Trust, Getty Research Institute, Vocabulary Program; record contributors and cited gazetteers",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=Paris&nation=&place=&subjectid=7008038",
+      "locator": "Coordinates, decimal degrees; ID 7008038",
+      "scopedClaim": "Getty's Paris record gives longitude 2.3333 and latitude 48.8667.",
+      "chronology": "Modern vocabulary record, opened 2026-11-07",
+      "uncertainty": "Settlement marker; no medieval palace or exact-day presence.",
+      "license": "ODC-By-1.0; Getty TGN data attribution required",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-getty-marrakech": {
+      "title": "TGN 7000354: Marrakech",
+      "institution": "J. Paul Getty Trust, Getty Research Institute, Vocabulary Program; record contributors and cited gazetteers",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=Marrakech&nation=&place=&subjectid=7000354",
+      "locator": "Coordinates, decimal degrees; ID 7000354",
+      "scopedClaim": "Getty's Marrakech record gives longitude-8.0090 and latitude 31.6330.",
+      "chronology": "Modern vocabulary record, opened 2026-11-07",
+      "uncertainty": "Settlement marker; no medieval palace or exact-day presence.",
+      "license": "ODC-By-1.0; Getty TGN data attribution required",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-ans-almohads": {
+      "title": "Harry W. Hazard, Numismatic History of Late Medieval North Africa (1952)",
+      "institution": "American Numismatic Society, Digital Library",
+      "url": "https://numismatics.org/digitallibrary/ark:/53695/nnan106529.xml",
+      "locator": "Official TEI XML, div2 xml:id d1e10756, The Muwaḥḥid Sect. Count all descendant p elements from 1: paragraphs 12 and 15, rulers 3 and 4; paragraph 16, ruler 5; paragraphs 18 and 20, rulers 7 and 8; paragraph 35, coin legends; paragraphs 42–43, designation, replacement and election; paragraphs 47–48, Muhammad and Yusuf II.",
+      "scopedClaim": "Hazard identifies ruler 4 as Abu Abd Allah Muhammad ibn Yaqub, reigning 595–610 AH/1199–1213 AD, and links him to ruler 3, Abu Yusuf Yaqub. He identifies successor Abu Yaqub Yusuf II as Muhammad's son, reigning 1213–1224. Earlier succession involved replacing a designated son and later caliphal election. Coin legends included the Mahdi and caliphal names and claims. The consulted Abd Allah and Idris ruler entries establish kinship and later reigns but provide no birth date or pre-1200 action.",
+      "chronology": "As worded: A.H. 595–610; A.D. 1199–1213; A.H. 610–620; A.D. 1213–1224; 551; 558; 563; 1224; 1227.",
+      "uncertainty": "Earlier successions do not establish a complete rule for 1200. The collateral-household gap is limited to the consulted ruler entries. The Yusuf II passages give no birth date. The source does not explicitly identify manuscript R.33's dedicatee by the combined name Yusuf al-Mustansir. The independent follow-up inspected the official TEI passages and confirmed the scoped claims.",
+      "accessNote": "The HTTPS ARK XML route redirects to the publisher's HTTP XML route. Fresh requests returned HTTP 200 with 1,870,960 bytes using Python requests timeout=(20,120); readers must allow the public redirect and a 120-second read timeout. The initial independent reader could not inspect the former HTML route.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-ministerio-alnasir": {
+      "title": "Muhammad al-Nasir, Diccionario de Contextos Culturales",
+      "institution": "Ministerio de Cultura, Spain",
+      "url": "https://tesauros.cultura.gob.es/tesauros/tesauros/alfabetico/m?termino=https%3A%2F%2Ftesauros.cultura.gob.es%2Ftesauros%2Fcontextosculturales%2F1011732&tesauro=https%3A%2F%2Ftesauros.cultura.gob.es%2Ftesauros%2Fcontextosculturales",
+      "locator": "Diccionario de Contextos Culturales > Término: Muhammad al-Nasir > Definición; following Referencias bibliográficas.",
+      "scopedClaim": "Muhammad al-Nasir was an Almohad caliph 1199–1213, son and successor of Abu Yusuf Yaqub al-Mansur.",
+      "chronology": "1199–1213;1212",
+      "uncertainty": "The definition gives no birth date or bookmark-day location. Its bibliography names books not independently inspected here. The independent follow-up retrieved the substantive definition with the documented PowerShell method after the initial access failures.",
+      "accessNote": "PowerShell Invoke-WebRequest with Headers @{Accept='text/html'} and TimeoutSec 30 returned HTTP 200 and 71,202 characters for this exact URL with normal certificate validation. Verify the substantive Definición beginning Califa almohade rather than the HTTP status alone.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-bongianino2020": {
+      "title": "Umberto Bongianino, A Rediscovered Almoravid Qur'an in the Bavarian State Library, Munich (Cod. arab. 4) (2020)",
+      "institution": "Journal of Islamic Manuscripts 11(3), Brill; University of Oxford ORA",
+      "url": "https://ora.ox.ac.uk/objects/uuid:3be48dfc-f7d7-47c0-9f8a-fa1a31919f0f/files/s8910jt96v",
+      "locator": "Printed p. 268, PDF page 6, first full paragraph and footnote 9, Topkapi Palace Library R.33; printed p. 291, PDF page 29, catalogue xxvii.",
+      "scopedClaim": "Bongianino dates a Quran produced at Marrakech to 599/1203 and connects it to celebration of the birth of Abu Yaqub, al-Nasir's son and heir. He dates the father's reign 595/1199–610/1213.",
+      "chronology": "As worded: 599/1203; 595/1199–610/1213; Jumada II 599/1203.",
+      "uncertainty": "The paragraph supplies no separately stated birth year for the prince. Equating the codex date with his birth year is an inference; Le Tourneau's competing accession ages prevent a certain post-1200 birth claim. Bongianino does not give the dedicatee the personal name Yusuf or epithet al-Mustansir in the consulted paragraph; connecting R.33's dedicatee with that successor remains an inference. The PDF's corrupt text mapping required a rendered-page reading. The independent follow-up confirmed the narrowed withholding rationale and retained the manuscript identification as inference.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-letourneau1969-preview": {
+      "title": "Roger Le Tourneau, The Almohad Movement in North Africa in the Twelfth and Thirteenth Centuries (1969), public preview",
+      "institution": "Princeton University Press; JSTOR public book preview",
+      "url": "https://www.jstor.org/stable/j.ctt183pvjv",
+      "locator": "Chapter Three, Decay and Collapse, pp. 89–114, opening preview: sentences naming the fifth caliph, placing his recognition at the end of 1213 and discussing his age. The chapter link redirects to this public book preview.",
+      "scopedClaim": "Le Tourneau identifies the fifth caliph as Yusuf al-Mustansir, recognized after his father's death at the end of 1213, and offers competing accession ages of at most sixteen or possibly ten while warning that the information is unsound.",
+      "chronology": "As worded: end of 1213; sixteen at most; perhaps only a boy of ten.",
+      "uncertainty": "Only the public opening preview was read; full chapter access and footnote 1 were unavailable. The alternative ages place possible birth on different sides of the bookmark and establish no exact birthday or secure survival in 1200. The preview does not explicitly connect the combined name Yusuf al-Mustansir to manuscript R.33. The independent follow-up inspected the preview at the query-free book URL after the query URL failed.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-archnet-almohads": {
+      "title": "Timeline: Almohad{1130–1269}",
+      "institution": "Archnet, Aga Khan Documentation Center at MIT / Aga Khan Trust for Culture",
+      "url": "https://www.archnet.org/collections/2353",
+      "locator": "Introductory narrative; Additional Archnet Resources > Rulers and Major Cities",
+      "scopedClaim": "Archnet names Muhammad ibn Yaqub al-Nasir 1199–1213 and describes a move of the capital to Seville in 1170; it lists Marrakech 1147–1269.",
+      "chronology": "1170/565 AH;1199–1213/599–609 AH;Marrakech 1147–1269/541–667 AH",
+      "uncertainty": "Its reign's printed AH pairing differs from Hazard and Bongianino. The capital statement needs distinction from Marrakech as another court seat.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-larousse-alnasir": {
+      "title": "Muhammad ibn Yaqub al-Nasir",
+      "institution": "Encyclopedie Larousse",
+      "url": "https://www.larousse.fr/encyclopedie/personnage/Muhammad_ibn_Yaqub_al-Nasir/134302",
+      "locator": "Opening biographical line",
+      "scopedClaim": "Larousse gives birth 1179 inSeville, death 1214 inMorocco and a 1199–1212 caliphate.",
+      "chronology": "Seville 1179-auMaroc 1214;1199–1212",
+      "uncertainty": "Reign end and death differ from Hazard/Bongianino's 1213 end. Birth year lacks corroboration in this packet and remains uncertain.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-unesco-marrakech": {
+      "title": "Medina of Marrakesh",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/331/",
+      "locator": "Outstanding Universal Value > Brief synthesis, opening sentence",
+      "scopedClaim": "UNESCO identifies Marrakech as an Almohad capital for 1147–1269.",
+      "chronology": "1147–1269",
+      "uncertainty": "Broad dynasty-level seat statement; it does not locate this ruler on 31 December 1200 or settle the Seville capital terminology.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-iranica-disambiguation": {
+      "title": "ISFAHAN vi. MEDIEVAL PERIOD, Hossein Kamaly",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/isfahan-vi-medieval-period/",
+      "locator": "After the Saljuqs, paragraph beginning In Rabi I 590/March 1194",
+      "scopedClaim": "Iranica identifies a contemporary Abbasid caliph in Baghdad named Abu'l-Abbas al-Naser le-Din-Allah, distinct from the Almohad Muhammad ibn Yaqub.",
+      "chronology": "r. 575-622/1180-225, as printed",
+      "uncertainty": "The printed AD end year is truncated. This record supports disambiguation only; it supplies no date for the Almohad ruler.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-west-met-maghrib": {
+      "title": "Western North Africa (The Maghrib),1000–1400 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/pt/toah/ht/07/afw",
+      "locator": "Key Events 1147–1269",
+      "scopedClaim": "The Almohads governed in the Maghrib and Islamic Spain; their religious reform accompanied their establishment, and their courts at Marrakech and Seville supported Islamic learning.",
+      "chronology": "1147–1269",
+      "uncertainty": "Broad period summary; it supports two court centers, not exact 1200 borders or ruler presence.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-getty-chan-chan": {
+      "title": "Getty Thesaurus of Geographic Names: Chan Chan, record 1099735",
+      "institution": "Getty Research Institute",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=1099735",
+      "locator": "Record ID 1099735, Coordinates decimal-degree rows; Names; Related geographic places, capital of Chimu.",
+      "scopedClaim": "Getty identifies Chan Chan as a deserted settlement and archaeological site, relates it to Chimu as capital, and gives latitude -8.1050 and longitude -79.0740.",
+      "chronology": "Current geographic authority record; archaeological capital relationship has no reign dates.",
+      "uncertainty": "The coordinates identify an approximate site marker. They do not identify a palace or a person's whereabouts on 31 December 1200.",
+      "license": "ODC-By-1.0",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-chimu-unesco": {
+      "title": "Chan Chan Archaeological Zone",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/366/",
+      "locator": "Outstanding Universal Value, Brief synthesis paragraphs 1-4; Authenticity paragraph 1.",
+      "scopedClaim": "UNESCO identifies Chan Chan as Chimú capital and describes hierarchical urban organization, royal or palatial complexes, temples and funerary platforms; it dates Chimú social complexity broadly between the ninth and fifteenth centuries and the kingdom's apogee to the fifteenth century.",
+      "chronology": "As worded: ninth and fifteenth centuries; 15th century.",
+      "uncertainty": "The broad chronology includes 1200 but gives no named ruler, court roster, building phase or exact political extent for that year. The apogee belongs to a later century.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-chimu-daltroy2014": {
+      "title": "Terence N. D'Altroy, The Late Intermediate Period and Late Horizon",
+      "institution": "Cambridge University Press; The Cambridge World Prehistory",
+      "url": "https://www.cambridge.org/core/books/abs/cambridge-world-prehistory/late-intermediate-period-and-late-horizon/9A14663BC28C9A62832FA4514791FF65",
+      "locator": "Public Summary, subsection The Late Intermediate Period: 1000-1400 ce, paragraph beginning Research over the past few decades; chapter pp. 1142-1159, DOI 10.1017/CHO9781139017831.074.",
+      "scopedClaim": "D'Altroy places the emergence of the power that developed into the Chimú Empire after approximately 1200, with imperial development over the following two centuries.",
+      "chronology": "As worded: Sometime after c. 1200 ce; over the next two centuries.",
+      "uncertainty": "Only the publisher's public Summary was read. This chronology cannot supply an annual foundation date or prove absence of earlier settlement or local rulers. Its political periodization differs from UNESCO's broader cultural chronology.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-chimu-uceda-king2012": {
+      "title": "Santiago Uceda and Heidi King, Chimú Feathered Offerings from the Huaca de la Luna",
+      "institution": "The Metropolitan Museum of Art; in Peruvian Featherworks: Art of the Precolumbian Era, 2012",
+      "url": "https://cdn.sanity.io/files/cctd4ker/production/31c8a06702fb75f8691def6166415395be8eea9b.pdf",
+      "locator": "Printed p. 69, PDF page 81 of 236, opening paragraph. Current PDF linked by the museum's Peruvian Featherworks publication page.",
+      "scopedClaim": "The authors describe Chimú kings, their extended family, retainers and administrators in palace compounds, and split inheritance separating succession to office from the deceased king's estate and mortuary obligations.",
+      "chronology": "As worded: roughly between the twelfth and the late fifteenth century; about 1400.",
+      "uncertainty": "This broad institutional reconstruction gives no named ruler, hereditary priority rule or court roster at 1200. Its city-scale description includes a later milestone around 1400. It does not establish whether the eldest child succeeded or whether a council chose the ruler.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-chimu-volakova2004": {
+      "title": "Sylvie Voláková, Chimu Ceramics in the Naprstek Museum",
+      "institution": "National Museum, Prague; Annals of the Náprstek Museum 25, 2004",
+      "url": "https://publikace.nm.cz/en/file/852dfc9c985d17c1af78d37dde55d127/29686/ANpM_2004_4_Volakova_ocred.pdf",
+      "locator": "Printed pp. 57-58, PDF pages 1-2, Brief Characteristics of the Chimu Culture; p. 58 paragraphs on ciudadelas, Taycanamo, the Moon and Minchangaman.",
+      "scopedClaim": "Voláková treats Taycanamo as a mythical founder, describes the dynasty's claimed celestial ancestry and connection to the Moon, and places the last independent ruler Minchangaman's defeat in the 1460s.",
+      "chronology": "As worded: ca. 1000-1476 A. D.; 1460's.",
+      "uncertainty": "The author summarizes ethnohistory and archaeology; the lunar connection and palace-mausoleum interpretation include qualification. The passage gives no reign that includes 1200 and does not date the celestial tradition to that year.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-chimu-campana2018": {
+      "title": "Cristóbal Campana, Visión de Trujillo",
+      "institution": "Universidad Privada Antenor Orrego; Pueblo Continente 29(1), 2018",
+      "url": "https://upao.edu.pe/pdf/Pueblo%20continente%202018%20Finalllll.pdf",
+      "locator": "Printed p. 223, PDF page 223, section 7 El imperio de los hijos del mar; discussion of the anonymous chronicle of 1604 and its dynastic passage attributed to Vargas Ugarte 1942.",
+      "scopedClaim": "Campana presents Taycanamo/Tacaynamo as the founder in a legend recorded in 1604 and reproduces the sequence from him to his son Guacricaur and grandson Nañcenpinco, without reign dates.",
+      "chronology": "As worded: 1604. This dates the written account, not the founder's arrival or the reigns.",
+      "uncertainty": "Read as a scholarly discussion and reproduction of a colonial source, not as the original manuscript. The sequence supplies no absolute date or survival evidence at 1200. Campana's broader territorial and interpretive claims are outside this source record's scope.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-chimu-zevallos1993-metadata": {
+      "title": "Jorge Zevallos Quiñones, Onomástica Chimú: repository abstract",
+      "institution": "Pontificia Universidad Católica del Perú, Instituto Riva-Agüero repository; Fundación Alfredo Pinillos Goicochea, 1993",
+      "url": "https://repositorio.pucp.edu.pe/index/handle/123456789/185626",
+      "locator": "Public Abstract, sole paragraph displayed by reader proxy, including the final sentence about Tacaynamo; the proxy reports the current repository item URL.",
+      "scopedClaim": "The public abstract describes a compilation of Chimú/Quingnam names from colonial manuscripts concerning Chicama, Chimo and Guañape and late prehistory, and mentions the legend of Tacaynamo's arrival.",
+      "chronology": "As worded: prehistoria tardía; antiguos manuscritos virreynales. Publication date: 1993.",
+      "uncertainty": "Only the public abstract was inspected through a reader proxy; direct repository requests returned access denial. The abstract mentions Tacaynamo's arrival legend but supplies no usable list of ordinary personal names, genders or dated attestations for AD 1200. Publication metadata, full-text restrictions and full text were not independently reverified in this follow-up.",
+      "accessNote": "The inspected reader response was https://r.jina.ai/https://repositorio.pucp.edu.pe/index/handle/123456789/185626 and reported the current origin as https://repositorio.pucp.edu.pe/items/44d38d9e-76d7-439b-8b19-e1153bd2bbde. The initial independent report inspected this abstract and corrected the no-person assertion; no full-text restriction claim remains.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    },
+    "a2-chimu-urban2017": {
+      "title": "Matthias Urban, Observaciones etimológicas acerca del nombre de la ciudad antigua de Chan Chan y sus estructuras arquitectónicas",
+      "institution": "Universidad Nacional Mayor de San Marcos; Letras 88(128), 2017",
+      "url": "https://www.scielo.org.pe/scielo.php?pid=S2071-50722017000200006&script=sci_arttext",
+      "locator": "Introducción > Chan Chan y sus estructuras arquitectónicas, first two paragraphs; La problemática ante la diversidad lingüística de la costa norte prehispánica, paragraphs 1–4; Letras (Lima) 88(128), 2017, pp. 126–148, DOI 10.30920/letras.88.128.6. HTML full text.",
+      "scopedClaim": "Urban dates Chan Chan's foundation broadly to 900-1000, describes it as Chimú capital, and cautions that modern invented Mochica compound names lack historical grounding while Quingnam evidence is scarce.",
+      "chronology": "As worded: entre 900 y 1000 A. D.; tiempos prehispánicos; tempranos tiempos coloniales.",
+      "uncertainty": "Full HTML text on SciELO was inspected; the former publisher PDF URL was inaccessible to the initial independent checker. Urban attributes the 900–1000 foundation range to Moore and Mackey 2008, p. 783; that cited work was not independently inspected. The settlement foundation does not resolve D'Altroy's later political-emergence chronology or identify a ruler. The linguistic discussion supplies no ordinary-name list and establishes no single language for every inhabitant at 1200. The independent follow-up inspected the SciELO full text and confirmed the bounded claims.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07"
+    }
+  },
+  "polities": [
+    {
+      "polityId": "western-xia",
+      "nameSv": "Västra Xia",
+      "sourceFeatureIndexes": [
+        22
+      ],
+      "status": "blocked",
+      "blockedReason": "The modern Yinchuan point is independently verified, but the historical Xingqing–Yinchuan capital linkage remains independently unverified after repeated Cambridge 503 responses. No alternate historical seat has been established.",
+      "rulerTitleSv": "Kejsare",
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a2-galambos-tangut"
+        ],
+        "noteSv": "Svensk översättning av kejsartiteln i den historiska framställningen."
+      },
+      "successionLaw": "none-fits",
+      "successionNoteSv": "Tronen kunde gå från far till son eller till en sidolinje genom en kupp; varken primogenitur eller rådets val efter förmåga återger dessa förlopp.",
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a2-galambos-tangut"
+        ],
+        "noteSv": "Källan belägger far–son-skiftet 1193 och sidolinjernas maktövertaganden 1206 och 1211. Bedömningen av spelets lagar är en förenkling, och den senare kuppen är ingen händelse som redan har skett vid starten."
+      },
+      "engineLimits": [],
+      "contextSv": "Li Chunyou regerar över tanguternas Västra Xia sedan 1193. Under hans regering fortsätter tryckningen av buddhistiska texter. Hans mor heter Luo.",
+      "contextSourceIds": [
+        "a2-galambos-tangut",
+        "a2-met-china-chronology"
+      ],
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a2-galambos-tangut"
+        ],
+        "noteSv": "Den granskade källan belägger regeringstiden, den fortsatta sutratryckningen och Luos moderskap. Kontexten gör inget påstående om ett historiskt hovsäte."
+      },
+      "seat": {
+        "settlementId": "yinchuan",
+        "nameSv": "Yinchuan",
+        "coordinates": [
+          106.2731,
+          38.4681
+        ],
+        "gettyTgnId": "1073544",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=1073544",
+        "insideAcceptedPolygon": true,
+        "coordinateClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "a2-getty-yinchuan"
+          ],
+          "noteSv": "Getty belägger dagens Yinchuan och koordinaterna. Uppgiften fastställer ingen medeltida huvudstadskoppling."
+        },
+        "sourceIds": [
+          "a2-getty-yinchuan",
+          "a2-shen-xia-seat"
+        ],
+        "seatClaim": {
+          "status": "uncertain",
+          "sourceIds": [
+            "a2-getty-yinchuan",
+            "a2-shen-xia-seat"
+          ],
+          "noteSv": "Getty belägger dagens Yinchuan och koordinaterna. Forskaren tillskriver Shens tabell kopplingen Xingqing (Yinchuan), men den oberoende granskaren kunde inte läsa tabellen efter upprepade 503-svar. Den historiska huvudstadskopplingen förblir osäker och blockerar hovet."
+        },
+        "noteSv": "Ungefärlig ortsmarkör från Getty för dagens Yinchuan. Kopplingen till den historiska huvudstaden Xingqing är en osäker uppgift från forskarens läsning av Shen; den kunde inte verifieras oberoende. Markören anger ingen palatsbyggnad.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd vistelseort den 31 december 1200",
+          "status": "uncertain",
+          "sourceIds": [],
+          "noteSv": "Ingen oberoende granskad passage fastställer den historiska huvudstadskopplingen här eller kejsarens vistelseort på bokmärkets dag."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a2-getty-data-license"
+          ],
+          "claimSv": "Getty tillhandahåller sina vokabulärdata, däribland TGN, enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "western-xia-court-buddhism",
+        "nameSv": "Buddhismen vid Västra Xias hov",
+        "status": "sourced",
+        "claimSv": "Under Li Chunyou fortsätter tryckningen av buddhistiska sutror; hans mor Luo har stött sådana projekt under den föregående regeringen.",
+        "sourceIds": [
+          "a2-galambos-tangut"
+        ],
+        "leaderPersonId": null,
+        "noteSv": "Källan belägger hovets stöd till buddhistiska texter. Den utser ingen gemensam religiös ledare för år 1200 och anger inget exakt tillfälle för kejsarens egen trosutövning."
+      },
+      "people": [
+        {
+          "id": "li-chunyou",
+          "nameSv": "Li Chunyou",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kejsare av Västra Xia",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-galambos-tangut"
+            ],
+            "noteSv": "Galambos identifierar Chunyou som Renxiaos son och efterträdare. Huanzong är hans senare tempelnamn."
+          },
+          "reign": {
+            "asWorded": "1177–1206; r. 1193–1206",
+            "startYear": 1193,
+            "endYear": 1206,
+            "status": "sourced",
+            "sourceIds": [
+              "a2-galambos-tangut"
+            ],
+            "noteSv": "Källan anger årtal utan att översätta en kalenderdag."
+          },
+          "birth": {
+            "asWorded": "1177–1206",
+            "gameValue": "1177-01-01",
+            "status": "uncertain",
+            "sourceIds": [
+              "a2-galambos-tangut"
+            ],
+            "noteSv": "Livsintervallet anger födelseåret 1177. Den 1 januari är en simulerad dag; källan saknar födelsemånad och födelsedag."
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-galambos-tangut"
+            ],
+            "noteSv": "Han regerar till 1206 och dör då, efter bokmärket."
+          },
+          "legalParentIds": [
+            "luo"
+          ],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": "luo",
+              "ofSv": "Luo",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-galambos-tangut"
+              ]
+            },
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Li Renxiao",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-galambos-tangut"
+              ]
+            },
+            {
+              "relation": "cousin",
+              "ofPersonId": null,
+              "ofSv": "Li Anquan",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-galambos-tangut"
+              ]
+            }
+          ],
+          "uncertaintySv": "Urvalet omfattar kejsaren och hans belagda mor. Källorna anger ingen fullständig familj eller vistelseort på bokmärkets dag."
+        },
+        {
+          "id": "luo",
+          "nameSv": "Luo",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kejsarens mor",
+          "sex": "female",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-galambos-tangut"
+            ],
+            "noteSv": "Källan namnger henne som kejsarinna Luo och som mor till Chunyou."
+          },
+          "birth": {
+            "asWorded": null,
+            "gameValue": "1150-01-01",
+            "status": "generated",
+            "sourceIds": [],
+            "noteSv": "Födelsedatum saknas i de lästa källorna. Året 1150 och den 1 januari är genererade spelvärden utan historiskt anspråk."
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-galambos-tangut"
+            ],
+            "noteSv": "Hon är mor till Chunyou, född 1177, och deltar i tronbytet 1206. Därmed lever hon över bokmärkets datum."
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "mother",
+              "ofPersonId": "li-chunyou",
+              "ofSv": "Li Chunyou",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-galambos-tangut"
+              ]
+            },
+            {
+              "relation": "spouse",
+              "ofPersonId": null,
+              "ofSv": "Li Renxiao",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-galambos-tangut"
+              ]
+            }
+          ],
+          "uncertaintySv": "Födelsedatum och vistelseort den 31 december 1200 är okända. Rollen som kejsarens mor beläggs; hennes närvaro i Xingqing på den exakta dagen förblir osäker."
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Li Renxiao",
+          "reason": "He died in 1193, before the bookmark. The retained people record their relationships to him in kinship fields.",
+          "sourceIds": [
+            "a2-galambos-tangut"
+          ]
+        },
+        {
+          "who": "Li Anquan",
+          "reason": "The source gives his lifespan as 1170–1211 and his kinship, but describes his seizure of power in 1206. It does not assign him a specified court office in 1200.",
+          "sourceIds": [
+            "a2-galambos-tangut"
+          ]
+        },
+        {
+          "who": "Spouses, children and advisers of Li Chunyou",
+          "reason": "The opened sources did not establish both a dated household or court role and survival at the bookmark for an additional person.",
+          "sourceIds": []
+        }
+      ],
+      "namePoolId": "tangut-western-xia",
+      "namePoolStatus": "proposed-unbuilt",
+      "searchLog": [
+        "Searched scholarly and institutional sources for Li Chunyou/Huanzong, Renzong, Luo, household, advisers, reign chronology, Buddhist patronage and Xingqing/Yinchuan.",
+        "Read Galambos 2015, printed pp. 113–116, from the complete Library of Congress PDF using direct download and pypdf after web-fetch timeouts.",
+        "Opened the British Library IDP Tangut timeline. Its Tianqing row begins in 1194, while Galambos places Chunyou's accession in 1193. The table supplies era periods; did not treat the era's first year as a contradictory accession year.",
+        "The Met 1032–1227 Xixia entry was independently inspected. The authoring researcher read a Shen table giving 1038–1227, but the fresh independent checker could not obtain it. The second range remains uncertain attribution; the accessible evidence explains no difference in start dates.",
+        "Replaced the initially inaccessible Brill dependency with the author-read Cambridge frontmatter table. Fresh independent attempts returned 503 through Python, PowerShell and direct web opening. The historical Xingqing–Yinchuan linkage remains unverified, has been removed from the context and blocks court readiness. The modern Getty Yinchuan point remains verified; no alternate historical seat was invented.",
+        "Opened Getty TGN 1073544; copied its displayed decimals. Search-engine results first returned Yingchuan 1073785 in Henan, a different city; excluded it.",
+        "Retained Luo because maternity before 1200 and a named act in 1206 establish survival across the bookmark. No source fixes her location or establishes a regency on 31 December 1200.",
+        "The roster omits later rulers, unnamed advisers and fabricated spouses or children. The proposed name pool has no built asset."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 22,
+        "confirmed": 19,
+        "corrected": 0,
+        "dropped": 3,
+        "countScope": "Initial blind-review occurrences; dropped maps the initial unsupported verdicts. Follow-up occurrences do not change these counts.",
+        "followUp": {
+          "status": "checked",
+          "checkedBy": "Codex independent check",
+          "checkedOn": "2026-11-07",
+          "claimsChecked": 3,
+          "confirmed": 0,
+          "corrected": 0,
+          "dropped": 3,
+          "countScope": "Separate follow-up occurrences, not additional unique initial claims.",
+          "note": "Three historical seat-linkage occurrences remained unsupported after repeated Cambridge 503 responses. The final context omits the assertion; the author-read attribution remains uncertain and the court is blocked."
+        }
+      },
+      "readiness": {
+        "research": "blocked-historical-seat-linkage",
+        "engine": "not-integrated"
+      }
+    },
+    {
+      "polityId": "khmer-angkor",
+      "nameSv": "Khmerriket",
+      "sourceFeatureIndexes": [
+        217
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Kung",
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a2-met-naga-buddha",
+          "a2-getty-gods-angkor"
+        ],
+        "noteSv": "Svensk översättning av kungatiteln i museernas texter."
+      },
+      "successionLaw": "none-fits",
+      "successionNoteSv": "Anspråk på tronen kunde gå genom både faderns och moderns släkt och leda till konkurrerande dynastiska krav; spelets båda successionslagar förenklar detta.",
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a2-berkeley-lowman-succession"
+        ],
+        "noteSv": "Universitetets föreläsningssammandrag beskriver släktskap genom båda linjerna. Det anger ingen kodifierad ordning för år 1200 och belägger inget råd som väljer efter förmåga."
+      },
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "contextSv": "Jayavarman VII regerar över Khmerriket. Han stödjer mahayanabuddhismen och bygger Angkor Thom med Bayon som kungligt tempel. Hovets kungliga kult rymmer också hinduiska gudar.",
+      "contextSourceIds": [
+        "a2-getty-gods-angkor",
+        "a2-met-naga-buddha",
+        "a2-nmc-angkor-complex"
+      ],
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a2-getty-gods-angkor",
+          "a2-met-naga-buddha",
+          "a2-nmc-angkor-complex"
+        ]
+      },
+      "seat": {
+        "settlementId": "angkor-thom",
+        "nameSv": "Angkor Thom",
+        "coordinates": [
+          103.859,
+          13.4406
+        ],
+        "gettyTgnId": "7004075",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=7004075",
+        "insideAcceptedPolygon": true,
+        "sourceIds": [
+          "a2-getty-angkor-thom",
+          "a2-getty-gods-angkor",
+          "a2-nmc-angkor-complex"
+        ],
+        "seatClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "a2-getty-angkor-thom",
+            "a2-getty-gods-angkor",
+            "a2-nmc-angkor-complex"
+          ]
+        },
+        "noteSv": "Ungefärlig ortsmarkör från Getty för Angkor Thom. Gettymuseet kallar platsen Jayavarman VII:s befästa huvudstad, och Kambodjas nationalmuseum daterar inhägnaden till slutet av 1100-talet. Markören anger ingen palatsbyggnad.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd vistelseort den 31 december 1200",
+          "status": "uncertain",
+          "sourceIds": [],
+          "noteSv": "Källorna belägger huvudstaden, men anger ingen vistelseort för kungen den exakta dagen."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a2-getty-data-license"
+          ],
+          "claimSv": "Getty tillhandahåller sina vokabulärdata, däribland TGN, enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "khmer-mahayana-court",
+        "nameSv": "Mahayanabuddhismen vid hovet i Angkor",
+        "status": "sourced",
+        "claimSv": "Jayavarman VII stödjer mahayanabuddhismen och ger Buddha högsta platsen i en kunglig kult där hinduiska gudar finns kvar.",
+        "sourceIds": [
+          "a2-getty-gods-angkor",
+          "a2-met-naga-buddha"
+        ],
+        "leaderPersonId": null,
+        "noteSv": "De öppnade källorna namnger ingen övergripande religiös ledare som kan placeras i ämbetet den 31 december 1200."
+      },
+      "people": [
+        {
+          "id": "jayavarman-vii",
+          "nameSv": "Jayavarman VII",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kung av Khmerriket",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-getty-gods-angkor",
+              "a2-met-naga-buddha"
+            ]
+          },
+          "reign": {
+            "asWorded": "Getty: 1181–about 1218; Met chronology: 1181–ca. 1243; Met object: r. 1181–1218; National Museum of Cambodia: 1181-c.1220",
+            "startYear": 1181,
+            "endYear": 1218,
+            "status": "uncertain",
+            "sourceIds": [
+              "a2-getty-gods-angkor",
+              "a2-met-khmer-chronology",
+              "a2-met-naga-buddha",
+              "a2-nmc-angkor-complex"
+            ],
+            "noteSv": "Slutåret är omtvistat: Getty anger omkring 1218, Mets kronologi omkring 1243, Mets föremålspost 1218 och Kambodjas nationalmuseum omkring 1220. Spelfältet 1218 följer Gettys ungefärliga datering. Samtliga intervall omfattar bokmärket; ingen exakt dödsdag har fastställts."
+          },
+          "birth": {
+            "asWorded": "ca. 1120–1218",
+            "gameValue": "1120-01-01",
+            "status": "uncertain",
+            "sourceIds": [
+              "a2-jcu-nietupski-abstract"
+            ],
+            "noteSv": "Artikelns titel och sammanfattning anger ungefärlig livstid från cirka 1120. Året är osäkert och den 1 januari är en simulerad dag utan historiskt anspråk."
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-getty-gods-angkor",
+              "a2-met-naga-buddha",
+              "a2-nmc-angkor-complex"
+            ],
+            "noteSv": "De angivna regeringstiderna fortsätter till efter år 1200 och omfattar bokmärkets dag."
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "spouse",
+              "ofPersonId": null,
+              "ofSv": "Jayarajadevi",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-thai-k485-abstract"
+              ]
+            },
+            {
+              "relation": "spouse",
+              "ofPersonId": null,
+              "ofSv": "Indradevi",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-thai-k485-abstract"
+              ]
+            }
+          ],
+          "uncertaintySv": "Hustrurnas identiteter och ordningsföljd beläggs, men ingen av dem kan placeras levande på bokmärkets datum med det lästa materialet. Deras externa släktskap beskriver äktenskap under hans liv och innebär inget påstående om samtidiga makar år 1200."
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Jayarajadevi",
+          "reason": "The inscription study identifies her as the first wife and places her death before the marriage to Indradevi. Its public abstract provides no date that establishes her survival at the bookmark.",
+          "sourceIds": [
+            "a2-thai-k485-abstract"
+          ]
+        },
+        {
+          "who": "Indradevi",
+          "reason": "The source identifies the second marriage and her inscription. The public abstract provides no evidence of survival to 31 December 1200.",
+          "sourceIds": [
+            "a2-thai-k485-abstract"
+          ]
+        },
+        {
+          "who": "Children and advisers of Jayavarman VII",
+          "reason": "The opened passages did not establish both a relationship or court role and survival at the bookmark for an additional person.",
+          "sourceIds": []
+        }
+      ],
+      "namePoolId": "khmer-angkor",
+      "namePoolStatus": "proposed-unbuilt",
+      "searchLog": [
+        "Searched institutional and scholarly sources for Jayavarman VII, Indradevi, Jayarajadevi, sons, advisers, succession, religion and Angkor Thom.",
+        "Opened the exact Met Southeast Asia chronology URL from the old review and read its 1181–ca. 1243 Jayavarman VII entry. Preserved its wording; compared it with Getty 1181–about 1218, Met object 36.96.5 (r. 1181–1218), and the National Museum of Cambodia 1181-c.1220.",
+        "Read the public John Carroll University article title and abstract for approximate lifetime and reign. Its download endpoint returned 403; ASIANetwork Exchange full-text endpoints returned Anubis access-denied pages. The dossier omits household details visible only in search snippets or unexamined mirrors.",
+        "Read the English abstract of the 2018 Thai Khadi inscription study for the two wives and the order of marriage. It supplies no bookmark survival dates; withheld both people.",
+        "Attempted the ANU institutional PDF of Coedes' Indianized States; the browser returned 403 and direct download did not complete. No claim uses that unread PDF.",
+        "Read Berkeley ORIAS lecture summary p. 4 for bilateral dynastic claims. Excluded its inconsistent parenthetical kinship example and its broader claims about inevitable civil war.",
+        "Read National Museum of Cambodia Angkor Thom and Bayon catalogue entries for late-twelfth-century construction. Opened Getty TGN 7004075 and copied the displayed decimal coordinates.",
+        "Found no cited source fixing the king's whereabouts on 31 December 1200, a dated religious head, or an additional household member with dated role and survival evidence. The proposed name pool has no built asset."
+      ],
+      "reviewCorrections": [
+        {
+          "file": "ad1200-review.json",
+          "path": "sources.khmer",
+          "problem": "The quoted Met 1181–ca. 1243 entry is genuine, but the review omits conflicting institutional reign endpoints for Jayavarman VII.",
+          "proposal": "Keep the Met source and its printed 1181–ca. 1243 wording. Add Getty 1181–about 1218, Met object 36.96.5 (r. 1181–1218), National Museum of Cambodia 1181-c.1220, and an uncertainty note. Do not infer the cause of the discrepancy. All cited spans include 1200.",
+          "technicalVerification": "On 2026-11-07 the controller inspected sources.khmer in the existing review file and confirmed that the competing 1218/1220 endpoints are absent. The accepted feature 217 mapping and seat inclusion were checked against repository/map data separately. These checks do not count as historical source-review confirmation.",
+          "sourceIds": [
+            "a2-met-khmer-chronology",
+            "a2-getty-gods-angkor",
+            "a2-met-naga-buddha",
+            "a2-nmc-angkor-complex"
+          ]
+        }
+      ],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 17,
+        "confirmed": 16,
+        "corrected": 0,
+        "dropped": 1,
+        "countScope": "Initial blind-review occurrences; dropped maps unsupported. The historical reign spans were confirmed. The repository/polygon component received a separate controller technical check, without changing initial counts.",
+        "followUp": {
+          "status": "checked",
+          "checkedBy": "Codex independent check",
+          "checkedOn": "2026-11-07",
+          "claimsChecked": 0,
+          "confirmed": 0,
+          "corrected": 0,
+          "dropped": 0,
+          "countScope": "No additional source-only occurrence; repository omission and geometry were checked separately."
+        }
+      },
+      "readiness": {
+        "research": "ready",
+        "engine": "not-integrated"
+      }
+    },
+    {
+      "polityId": "almohad",
+      "nameSv": "Almohaderna",
+      "sourceFeatureIndexes": [
+        271
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Kalif",
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a2-west-ministerio-alnasir",
+          "a2-west-ans-almohads",
+          "a2-west-bongianino2020"
+        ],
+        "noteSv": "Kalif återger källornas titel för den almohadiske härskaren."
+      },
+      "successionLaw": "none-fits",
+      "successionNoteSv": "Dynastin utser arvingar och har också bytt utsedd son och valt kalif; varken spelets automatiska primogenitur eller rådets rena meritval återger detta.",
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a2-west-ans-almohads"
+        ],
+        "noteSv": "Hazard beskriver tidigare skiften och arvsutnämningar, men fastställer ingen fullständig successionsregel för år 1200. Valet none-fits är en bedömning av spelets två alternativ."
+      },
+      "engineLimits": [
+        "elective-rule",
+        "no-sourced-household"
+      ],
+      "contextSv": "Muhammad al-Nasir har efterträtt sin far Abu Yusuf Yaqub al-Mansur som almohadisk kalif. Almohaderna regerar i Maghreb och det muslimska Spanien. De har hov i Marrakech och Sevilla, där de stöder islamisk lärdom. Religionsreform hör till dynastins grundande.",
+      "contextSourceIds": [
+        "a2-west-ministerio-alnasir",
+        "a2-west-met-maghrib"
+      ],
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a2-west-ministerio-alnasir",
+          "a2-west-met-maghrib"
+        ],
+        "noteSv": "Den oberoende uppföljningen belägger kulturministeriets uppgift om far och efterträdare samt Mets regionala hov- och religionsuppgifter."
+      },
+      "seat": {
+        "settlementId": "marrakech",
+        "nameSv": "Marrakech",
+        "coordinates": [
+          -8.009,
+          31.633
+        ],
+        "gettyTgnId": "7000354",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=Marrakech&nation=&place=&subjectid=7000354",
+        "insideAcceptedPolygon": true,
+        "sourceIds": [
+          "a2-west-getty-marrakech",
+          "a2-west-unesco-marrakech",
+          "a2-west-met-maghrib",
+          "a2-west-archnet-almohads"
+        ],
+        "seatClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "a2-west-unesco-marrakech",
+            "a2-west-met-maghrib",
+            "a2-west-getty-marrakech"
+          ]
+        },
+        "noteSv": "Ungefärlig ortsmarkör från Getty för ett belagt hovsäte. Met nämner också hovet i Sevilla. UNESCO kallar Marrakech huvudstad under 1147–1269, medan Archnet beskriver en huvudstadsflytt till Sevilla 1170. Markören anger ingen bestämd palatsbyggnad.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd vistelseort den 31 december 1200",
+          "status": "uncertain",
+          "sourceIds": [],
+          "noteSv": "Hovsätet belägger ingen vistelseort för Muhammad al-Nasir på bokmärkets dag."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a2-getty-data-license"
+          ],
+          "claimSv": "Getty tillhandahåller sina vokabulärdata enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "almohad-islam",
+        "nameSv": "Almohadisk islam",
+        "status": "sourced",
+        "claimSv": "Muhammad al-Nasir bär den almohadiska kaliftiteln. Almohaderna knyter sin makt till religionsreform; deras mynt nämner Mahdin och kaliferna.",
+        "sourceIds": [
+          "a2-west-ministerio-alnasir",
+          "a2-west-met-maghrib",
+          "a2-west-ans-almohads"
+        ],
+        "leaderPersonId": "muhammad-al-nasir",
+        "noteSv": "Den oberoende uppföljningen belägger dynastins religiösa och politiska anspråk och Hazards uppgift om myntlegender. Ingen uppgift ger honom ledarskap över alla muslimer."
+      },
+      "people": [
+        {
+          "id": "muhammad-al-nasir",
+          "nameSv": "Muhammad al-Nasir",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Almohadisk kalif",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-ministerio-alnasir",
+              "a2-west-ans-almohads",
+              "a2-west-bongianino2020",
+              "a2-west-iranica-disambiguation"
+            ],
+            "noteSv": "Muhammad ibn Yaqub är den almohadiske kalifen. Iranica nämner en annan, samtida kalif med namnet al-Nasir i det abbasidiska Bagdad."
+          },
+          "birth": {
+            "asWorded": "Séville 1179-au Maroc 1214",
+            "status": "uncertain",
+            "gameValue": "1179-01-01",
+            "noteSv": "Larousse anger födelseåret 1179. Ingen annan läst källa här styrker året. Den 1 januari är en spelteknisk dag.",
+            "sourceIds": [
+              "a2-west-larousse-alnasir"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-ministerio-alnasir",
+              "a2-west-ans-almohads",
+              "a2-west-bongianino2020"
+            ],
+            "noteSv": "Han regerar 1199–1213 enligt dessa källor; intervallet omsluter bokmärket."
+          },
+          "legalParentIds": [],
+          "spouseIds": [],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Abu Yusuf Yaqub al-Mansur",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-west-ministerio-alnasir"
+              ],
+              "noteSv": "Den oberoende uppföljningen läste kulturministeriets definition, som anger faderskapet."
+            }
+          ],
+          "uncertaintySv": "Personen är almohaden Muhammad ibn Yaqub, även kallad Abu Abd Allah i Hazards tabell. Hans patronymikon och dynasti måste följa namnet så att han inte blandas ihop med andra härskare med titeln al-Nasir.",
+          "reign": {
+            "asWorded": "A.H. 595–610; A.D. 1199–1213; 595/1199–610/1213",
+            "startYear": 1199,
+            "endYear": 1213,
+            "status": "uncertain",
+            "sourceIds": [
+              "a2-west-ans-almohads",
+              "a2-west-bongianino2020",
+              "a2-west-ministerio-alnasir",
+              "a2-west-archnet-almohads",
+              "a2-west-larousse-alnasir"
+            ],
+            "noteSv": "Hazard, Bongianino och Spaniens kulturministerium anger 1199–1213. Larousse anger regering 1199–1212 och död 1214. Archnet anger 1199–1213 men parar det med 599–609 AH. Skillnaderna ändrar inte härskarvalet för år 1200. Inga kalenderdagar har räknats om."
+          },
+          "uncertaintyClaim": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-ans-almohads",
+              "a2-west-ministerio-alnasir",
+              "a2-west-iranica-disambiguation"
+            ]
+          }
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Abu Yaqub, the caliph's son and later heir",
+          "status": "uncertain",
+          "reason": "The sources identify al-Nasir's son and later successor, but do not establish whether he was born before 1200-12-31. Le Tourneau gives competing accession ages of at most sixteen or possibly ten at the end of 1213 and warns that the information is unsound. Bongianino connects a manuscript dated 599/1203 with a birth celebration without stating a separate birth year. Identification of R.33's dedicatee with Yusuf al-Mustansir remains an inference from name, parentage, dynastic position and reign. Withhold for unresolved birth before the bookmark, rather than a proved later birth.",
+          "sourceIds": [
+            "a2-west-bongianino2020",
+            "a2-west-ans-almohads",
+            "a2-west-letourneau1969-preview"
+          ],
+          "noteSv": "Källorna belägger al-Nasirs son och senare efterträdare, men hans födelse före bokmärket är osäker. Le Tourneau anger motstridiga åldersuppgifter vid tronbestigningen 1213. Bongianino knyter ett manuskript från 599/1203 till ett födelsefirande utan att ange en separat födelsetid. Personen utelämnas tills kronologin kan fastställas. Att identifiera R.33:s mottagare som Yusuf al-Mustansir förblir en osäker slutsats även efter uppföljningen."
+        },
+        {
+          "who": "Abd Allah and Idris, later rulers from Yaqub's family",
+          "status": "uncertain",
+          "reason": "Hazard's consulted ruler entries 7 and 8 identify Abd Allah ibn Yaqub and Idris ibn Yaqub, link both to ruler 3, and place their reigns from 1224 and 1227. Those entries give no birth date or action before 1200. This bounded gap supports withholding from the present roster; it makes no claim about the whole book or other scholarship. The independent follow-up confirmed this bounded limitation.",
+          "sourceIds": [
+            "a2-west-ans-almohads"
+          ]
+        }
+      ],
+      "namePoolId": "almohad-maghrebi-ad1200-proposed",
+      "namePoolStatus": "proposed-unbuilt",
+      "searchLog": [
+        "Opened the Spanish Ministry of Culture term through PowerShell HTTP 200 with Accept:text/html after TLS and browser errors. Read its definition and bibliography.",
+        "The initial independent reader could not inspect Hazard's HTML. Recovered the official ANS TEI XML route with a 120-second read timeout; the independent follow-up inspected div2 xml:id d1e10756 and confirmed the specified succession, ruler and coin-legend claims.",
+        "Downloaded Oxford ORA's Bongianino 2020 PDF HTTP 200 and read a rendering of printed page 268, PDF page 6, because of corrupt text mapping. The dated 599/1203 codex and birth celebration supply no separately stated birth year. Removed the categorical post-1200 birth inference.",
+        "Read Le Tourneau's public JSTOR book preview, Chapter Three opening, for the fifth caliph Yusuf al-Mustansir, his recognition at the end of 1213, and competing ages of at most sixteen or possibly ten. The author warns that the information is unsound; full chapter and footnote access were unavailable. The ages leave pre-bookmark birth unresolved.",
+        "Hazard's successor entry and Le Tourneau identify the later ruler through name, parentage, dynastic position and reign. Bongianino calls R.33's dedicatee Abu Yaqub, al-Nasir's son and heir, but does not print Yusuf al-Mustansir in the consulted paragraph. Retained the manuscript-to-successor identification as an inference.",
+        "Compared Larousse birth/reign wording with Hazard, Ministry, Bongianino and Archnet; retained the chronology disagreement.",
+        "Read Met Maghrib, UNESCO Marrakech and Archnet together; retained Marrakech as one court seat and kept exact-day residence unknown.",
+        "No consulted passage supplies a spouse or adviser with a dated birth or action before 1200 and survival after it. No generated household fills that gap.",
+        "The proposed name pool is unbuilt; no generated people or name-pool assets were created."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 15,
+        "confirmed": 8,
+        "corrected": 0,
+        "dropped": 7,
+        "countScope": "Initial blind-review occurrences; dropped maps the initial unsupported verdicts. Follow-up occurrences do not change these counts, including the initially confirmed birth inference later narrowed.",
+        "followUp": {
+          "status": "checked",
+          "checkedBy": "Codex independent check",
+          "checkedOn": "2026-11-07",
+          "claimsChecked": 8,
+          "confirmed": 8,
+          "corrected": 0,
+          "dropped": 0,
+          "countScope": "Separate follow-up occurrences, not additional unique initial claims."
+        }
+      },
+      "readiness": {
+        "research": "ready",
+        "engine": "not-integrated"
+      }
+    },
+    {
+      "polityId": "france-capetian",
+      "nameSv": "Frankrike",
+      "sourceFeatureIndexes": [
+        277
+      ],
+      "status": "ready",
+      "blockedReason": null,
+      "rulerTitleSv": "Kung",
+      "titleClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a2-west-treccani-philip"
+        ],
+        "noteSv": "Kung är svensk återgivning av källans kungatitel."
+      },
+      "successionLaw": "primogeniture",
+      "successionNoteSv": "Capetingerna ger kungens son företräde genom dynastisk tronföljd; spelets primogenitur förenklar utnämning, kröning och den historiska manslinjen.",
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a2-west-treccani-capetians",
+          "a2-west-treccani-louis"
+        ],
+        "noteSv": "Treccanis översikt från 1930 beskriver hur utnämning och primogenitur tränger undan val. Spelets könsneutrala regel motsvarar inte hela den historiska ordningen."
+      },
+      "engineLimits": [
+        "multiple-spouses"
+      ],
+      "engineLimitNoteSv": "Filips vigsel med Agnes 1196 och hans bestående äktenskapstvist med Ingeborg kräver fler rättsliga relationsstatusar än en enda makepost. Koden anger denna begränsning, ingen kyrkorättsligt godkänd månggiftesordning.",
+      "engineLimitClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a2-west-lex-ingeborg",
+          "a2-west-epistolae-ingeborg"
+        ]
+      },
+      "contextSv": "Filip II regerar sedan 1180 och har sitt hov i Paris. Hans son Ludvig har gift sig med Blanka av Kastilien under året. Filip söker skilsmässa från Ingeborg, men påven Innocentius III motsätter sig det. Efter en försoning i september har påven hävt årets interdikt. Äktenskapstvisten fortsätter.",
+      "contextSourceIds": [
+        "a2-west-met-france",
+        "a2-west-treccani-louis",
+        "a2-west-lex-ingeborg"
+      ],
+      "contextClaim": {
+        "status": "sourced",
+        "sourceIds": [
+          "a2-west-met-france",
+          "a2-west-treccani-louis",
+          "a2-west-lex-ingeborg"
+        ]
+      },
+      "seat": {
+        "settlementId": "paris",
+        "nameSv": "Paris",
+        "coordinates": [
+          2.3333,
+          48.8667
+        ],
+        "gettyTgnId": "7008038",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=Paris&nation=&place=&subjectid=7008038",
+        "insideAcceptedPolygon": true,
+        "sourceIds": [
+          "a2-west-getty-paris",
+          "a2-west-met-france"
+        ],
+        "seatClaim": {
+          "status": "sourced",
+          "sourceIds": [
+            "a2-west-getty-paris",
+            "a2-west-met-france"
+          ]
+        },
+        "noteSv": "Ungefärlig ortsmarkör från Getty. Met daterar kungens fasta hov i Paris till 1194. Markören anger ingen bestämd palatsbyggnad.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd vistelseort den 31 december 1200",
+          "status": "uncertain",
+          "sourceIds": [],
+          "noteSv": "De lästa källorna anger hovsätet men ingen vistelseort för kungen på denna dag."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a2-getty-data-license"
+          ],
+          "claimSv": "Getty tillhandahåller sina vokabulärdata enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "latin-christianity",
+        "nameSv": "Latinska kyrkan",
+        "status": "sourced",
+        "claimSv": "Påven Innocentius III motsätter sig Filips försök att förskjuta Ingeborg. Han innehar påveämbetet under bokmärket.",
+        "sourceIds": [
+          "a2-west-lex-ingeborg",
+          "a2-west-vatican-innocent"
+        ],
+        "leaderPersonId": null,
+        "leaderNameSv": "Innocentius III",
+        "noteSv": "Påven är en extern ämbetsinnehavare och ingår inte i det franska hushållets personlista."
+      },
+      "people": [
+        {
+          "id": "philip-ii",
+          "nameSv": "Filip II August",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kung av Frankrike",
+          "sex": "male",
+          "isRuler": true,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-treccani-philip"
+            ]
+          },
+          "birth": {
+            "asWorded": "født 21. august 1165 i Paris",
+            "status": "sourced",
+            "gameValue": "1165-08-21",
+            "noteSv": "Datumet följer källans skrivning. Ingen omräkning mellan kalendrar har gjorts.",
+            "sourceIds": [
+              "a2-west-lex-ingeborg"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-treccani-philip"
+            ],
+            "noteSv": "Källan anger en livstid från 1165 till 1223 och regering från 1180; bokmärket ligger däremellan."
+          },
+          "legalParentIds": [],
+          "spouseIds": [
+            "ingeborg-denmark"
+          ],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Ludvig VII",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-west-treccani-philip"
+              ]
+            },
+            {
+              "relation": "son",
+              "ofPersonId": null,
+              "ofSv": "Adèle av Champagne",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-west-treccani-philip"
+              ]
+            },
+            {
+              "relation": "father",
+              "ofPersonId": "louis-viii",
+              "ofSv": "Ludvig VIII",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-west-treccani-louis"
+              ]
+            }
+          ],
+          "uncertaintySv": "Agnes av Meranien ingår inte som en andra hustru i personlistan. Källorna belägger förbindelsen och den påvliga invändningen, men hennes ställning efter försoningen i september 1200 förblir osäker. Inga senare legitimeringar förs tillbaka till bokmärket.",
+          "uncertaintyClaim": {
+            "status": "uncertain",
+            "sourceIds": [
+              "a2-west-lex-ingeborg",
+              "a2-west-epistolae-ingeborg"
+            ]
+          },
+          "reign": {
+            "asWorded": "1180–1223",
+            "startYear": 1180,
+            "endYear": 1223,
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-met-france",
+              "a2-west-treccani-philip"
+            ],
+            "noteSv": "Årsintervallet omsluter bokmärket; inga tillträdes- eller slutdagar har lagts till."
+          }
+        },
+        {
+          "id": "ingeborg-denmark",
+          "nameSv": "Ingeborg av Danmark",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Drottning och part i kungens äktenskapstvist",
+          "sex": "female",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-lex-ingeborg"
+            ]
+          },
+          "birth": {
+            "asWorded": "1175; omtrentligt fødselsår",
+            "status": "uncertain",
+            "gameValue": "1175-01-01",
+            "noteSv": "Födelseåret är ungefärligt. Den 1 januari är en spelteknisk dag och saknar historiskt belägg.",
+            "sourceIds": [
+              "a2-west-lex-ingeborg"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-lex-ingeborg"
+            ],
+            "noteSv": "Källan anger hennes födelse omkring 1175, giftermål 1193 och död 1237 eller 1238."
+          },
+          "legalParentIds": [],
+          "spouseIds": [
+            "philip-ii"
+          ],
+          "kinship": [],
+          "uncertaintySv": "Hon hävdar sina rättigheter som hustru och drottning medan Filip söker skilsmässa. Källan visar ingen vanlig roll som aktiv gemål vid hovet på bokmärkets dag.",
+          "uncertaintyClaim": {
+            "status": "uncertain",
+            "sourceIds": [
+              "a2-west-lex-ingeborg",
+              "a2-west-epistolae-ingeborg"
+            ]
+          }
+        },
+        {
+          "id": "louis-viii",
+          "nameSv": "Ludvig VIII",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Kungens son, gift med Blanka av Kastilien",
+          "sex": "male",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-treccani-louis"
+            ]
+          },
+          "birth": {
+            "asWorded": "Parigi 1187 - Montpensier, Alvernia, 1226",
+            "status": "uncertain",
+            "gameValue": "1187-01-01",
+            "noteSv": "Källans livsintervall ger födelseåret 1187. Den 1 januari är en spelteknisk dag.",
+            "sourceIds": [
+              "a2-west-treccani-louis"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-treccani-louis"
+            ],
+            "noteSv": "Han föds 1187 och dör 1226 enligt källan."
+          },
+          "legalParentIds": [
+            "philip-ii"
+          ],
+          "spouseIds": [
+            "blanche-castile"
+          ],
+          "kinship": [
+            {
+              "relation": "son",
+              "ofPersonId": "philip-ii",
+              "ofSv": "Filip II August",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-west-treccani-louis"
+              ]
+            }
+          ],
+          "uncertaintySv": "Ludvig VIII är det historiska kunganamnet. Han blir kung först 1223 enligt källan; han är kungens son vid bokmärket."
+        },
+        {
+          "id": "blanche-castile",
+          "nameSv": "Blanka av Kastilien",
+          "identityOrigin": "documented",
+          "originLabelSv": "Dokumenterad person; spelvärden är genererade",
+          "roleSv": "Gift med Ludvig, kungens son",
+          "sex": "female",
+          "isRuler": false,
+          "identity": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-epistolae-blanche"
+            ]
+          },
+          "birth": {
+            "asWorded": "1188",
+            "status": "uncertain",
+            "gameValue": "1188-01-01",
+            "noteSv": "Källan anger födelseåret 1188. Den 1 januari är en spelteknisk dag.",
+            "sourceIds": [
+              "a2-west-epistolae-blanche"
+            ]
+          },
+          "aliveOnBookmark": {
+            "status": "sourced",
+            "sourceIds": [
+              "a2-west-epistolae-blanche"
+            ],
+            "noteSv": "Hon föds 1188 och dör 1252 enligt källan."
+          },
+          "legalParentIds": [],
+          "spouseIds": [
+            "louis-viii"
+          ],
+          "kinship": [
+            {
+              "relation": "daughter",
+              "ofPersonId": null,
+              "ofSv": "Alfonso VIII av Kastilien",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-west-epistolae-blanche"
+              ]
+            },
+            {
+              "relation": "daughter",
+              "ofPersonId": null,
+              "ofSv": "Eleonora av England",
+              "status": "sourced",
+              "sourceIds": [
+                "a2-west-epistolae-blanche"
+              ]
+            }
+          ],
+          "uncertaintySv": "Källan daterar giftermålet till 1200. Hennes senare drottningvärdighet, regentskap och barn förs inte tillbaka till bokmärket."
+        }
+      ],
+      "peopleWithheld": [
+        {
+          "who": "Agnes av Meranien",
+          "reason": "Epistolae names her, connects her to Philip and gives her death in 1201. Lex dates his new marriage to 1196. The read passages leave her relationship status after the reconciliation with Ingeborg in September 1200 unresolved, so the roster has no active spouse record for her.",
+          "sourceIds": [
+            "a2-west-epistolae-ingeborg",
+            "a2-west-lex-ingeborg"
+          ]
+        },
+        {
+          "who": "Children of Philip and Agnes",
+          "reason": "Epistolae states that Agnes bore children but gives no birth dates in the read passage. Lex dates papal legitimation to 1201. The dossier assumes neither a birth before the bookmark nor earlier legal recognition.",
+          "sourceIds": [
+            "a2-west-epistolae-ingeborg",
+            "a2-west-lex-ingeborg"
+          ]
+        }
+      ],
+      "namePoolId": "capetian-french-ad1200-proposed",
+      "namePoolStatus": "proposed-unbuilt",
+      "searchLog": [
+        "Opened Treccani Philip II and Louis VIII articles, Met France chronology, Lex/KVINFO Ingeborg, Epistolae Ingeborg and Blanche, Treccani Capetians and the Vatican's Innocent III office table.",
+        "Retained four people with lifespan evidence before and after 1200. No source passage fixes their presence at Paris on 31 December 1200.",
+        "Kept 1201 legitimation out of 1200 legal status and withheld Agnes's unresolved post-September partnership.",
+        "Read Getty Paris through direct requests HTTP 200 after the web tool failed.",
+        "The proposed name pool is unbuilt; no generated courtiers or name-pool assets were created."
+      ],
+      "reviewCorrections": [],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 36,
+        "confirmed": 36,
+        "corrected": 0,
+        "dropped": 0,
+        "countScope": "Initial blind-review occurrences. No additional source-only follow-up occurrence was required for this polity.",
+        "followUp": {
+          "status": "checked",
+          "checkedBy": "Codex independent check",
+          "checkedOn": "2026-11-07",
+          "claimsChecked": 0,
+          "confirmed": 0,
+          "corrected": 0,
+          "dropped": 0,
+          "countScope": "No additional source-only follow-up occurrence."
+        }
+      },
+      "readiness": {
+        "research": "ready",
+        "engine": "not-integrated"
+      }
+    },
+    {
+      "polityId": "chimu",
+      "nameSv": "Chimú",
+      "sourceFeatureIndexes": [
+        59
+      ],
+      "status": "blocked",
+      "blockedReason": "No opened institutional or scholarly source identifies a ruler alive and ruling on 1200-12-31. The attested ordinary personal-name pool required for a generated ruler is unavailable. Do not fabricate a person to satisfy the one-ruler template.",
+      "rulerTitleSv": "Kung",
+      "titleClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a2-chimu-uceda-king2012"
+        ],
+        "noteSv": "Kung återger forskarnas benämning på Chimús härskare. Källan belägger inget namngivet ämbetsinnehav år 1200."
+      },
+      "successionLaw": "none-fits",
+      "successionNoteSv": "Forskarna skiljer arvet av kungens ämbete från arvet av hans egendom och gravkult, men belägger ingen regel för vem som skulle efterträda honom år 1200.",
+      "successionClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a2-chimu-uceda-king2012",
+          "a2-chimu-campana2018"
+        ],
+        "noteSv": "En senare dynastisk berättelse anger far, son och sonson utan regeringstider. Den visar ingen säker turordning för år 1200. Varken primogenitur eller val efter förmåga får därför historiskt källstöd här."
+      },
+      "engineLimits": [
+        "no-sourced-household"
+      ],
+      "contextSv": "Chan Chan i Mochedalen var Chimús huvudstad. Arkeologer beskriver palats, magasin och gravplattformar där härskarnas hushåll verkade. Källorna ger olika tidsramar för kulturens utveckling och rikets framväxt. De räcker inte för att namnge en härskare eller hans familj den 31 december 1200.",
+      "contextSourceIds": [
+        "a2-chimu-unesco",
+        "a2-chimu-daltroy2014",
+        "a2-chimu-uceda-king2012",
+        "a2-chimu-campana2018"
+      ],
+      "contextClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a2-chimu-unesco",
+          "a2-chimu-daltroy2014",
+          "a2-chimu-uceda-king2012",
+          "a2-chimu-campana2018"
+        ],
+        "noteSv": "UNESCO beskriver samhället under 800- till 1400-talet. D'Altroy placerar framväxten av den makt som blev Chimúriket efter omkring 1200. Ingen av uppgifterna ger ett exakt grundläggningsår eller en daterad hovlista."
+      },
+      "seat": {
+        "settlementId": "chan-chan",
+        "nameSv": "Chan Chan",
+        "coordinates": [
+          -79.074,
+          -8.105
+        ],
+        "gettyTgnId": "1099735",
+        "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?english=Y&find=&nation=&place=&subjectid=1099735",
+        "insideAcceptedPolygon": true,
+        "sourceIds": [
+          "a2-getty-chan-chan",
+          "a2-chimu-unesco",
+          "a2-chimu-urban2017",
+          "a2-chimu-daltroy2014"
+        ],
+        "seatClaim": {
+          "status": "uncertain",
+          "sourceIds": [
+            "a2-getty-chan-chan",
+            "a2-chimu-unesco",
+            "a2-chimu-urban2017",
+            "a2-chimu-daltroy2014"
+          ],
+          "noteSv": "Getty och UNESCO identifierar Chan Chan som huvudstad. Urban daterar stadens grundläggning till mellan 900 och 1000. Uppgifterna daterar varken en viss härskares hov eller ett bestämt palats till år 1200."
+        },
+        "noteSv": "Gettys punkt anger en ungefärlig ortsmarkör för lämningarna av Chan Chan. Källorna anger inget namngivet palats för bokmärkets dag.",
+        "rulerOnBookmark": {
+          "placeSv": "Okänd vistelseort den 31 december 1200",
+          "status": "uncertain",
+          "sourceIds": [],
+          "noteSv": "Ingen granskad källa placerar en identifierad härskare på en bestämd ort den dagen."
+        },
+        "coordinateLicense": {
+          "id": "ODC-By-1.0",
+          "status": "sourced",
+          "sourceIds": [
+            "a2-getty-data-license"
+          ],
+          "claimSv": "Getty gör TGN:s data tillgängliga enligt ODC-By 1.0."
+        }
+      },
+      "religion": {
+        "id": "chimu-ritual-traditions",
+        "nameSv": "Chimús kult av månen och de döda härskarna",
+        "status": "uncertain",
+        "claimSv": "Forskarna förknippar Chimús dynastiska tradition med månen och beskriver hur kungens släkt skötte hans kvarlevor efter döden.",
+        "sourceIds": [
+          "a2-chimu-volakova2004",
+          "a2-chimu-uceda-king2012"
+        ],
+        "leaderPersonId": null,
+        "noteSv": "Uppgifterna gäller breda rekonstruktioner av Chimús traditioner. Källorna belägger ingen namngiven religiös ledare, fast organisation eller viss härskares kultutövning år 1200."
+      },
+      "people": [],
+      "peopleWithheld": [
+        {
+          "who": "Tacaynamo / Taycanamo",
+          "status": "uncertain",
+          "reason": "The founder belongs to a dynastic legend recorded in 1604. No opened passage places him alive or ruling in 1200; he is also unsuitable as an ordinary generated name.",
+          "sourceIds": [
+            "a2-chimu-campana2018",
+            "a2-chimu-volakova2004"
+          ]
+        },
+        {
+          "who": "Guacricaur",
+          "status": "uncertain",
+          "reason": "The dynastic narrative names him as Taycanamo's son but supplies no absolute reign or survival date. Do not assign him to 1200 or recycle his name for a generated ruler.",
+          "sourceIds": [
+            "a2-chimu-campana2018"
+          ]
+        },
+        {
+          "who": "Nañcenpinco",
+          "status": "uncertain",
+          "reason": "Campana reproduces this spelling for Guacricaur's son in an undated dynastic sequence. No opened passage anchors him to the bookmark. Later conquests cannot supply an AD 1200 identification.",
+          "sourceIds": [
+            "a2-chimu-campana2018"
+          ]
+        },
+        {
+          "who": "Minchangaman",
+          "status": "uncertain",
+          "reason": "Voláková places the last independent ruler's defeat in the 1460s, over two centuries after the bookmark. The source does not support his presence in 1200.",
+          "sourceIds": [
+            "a2-chimu-volakova2004"
+          ]
+        }
+      ],
+      "namePoolId": "chimu-quingnam",
+      "namePoolStatus": "proposed-unbuilt",
+      "namePoolClaim": {
+        "status": "uncertain",
+        "sourceIds": [
+          "a2-chimu-zevallos1993-metadata",
+          "a2-chimu-urban2017"
+        ],
+        "noteSv": "Ingen användbar namnlista för personer omkring år 1200 har sammanställts. Zevallos bok bygger på koloniala handskrifter, men det öppna sammandraget ger ingen användbar lista över vanliga personnamn för år 1200. Moderna namn på byggnader och namn på berömda härskare får inte fylla luckan."
+      },
+      "searchLog": [
+        "Searched Chimú/Chimu, Tacaynamo/Taycanamo, Guacricaur, Nancempinco/Nañcenpinco, 1200, dynastic chronology, Rowe 1948, kingship, succession, moon worship and Chan Chan across institutional and scholarly results.",
+        "Reopened UNESCO's Chan Chan record and read Brief synthesis and Authenticity. They give a broad cultural span and a fifteenth-century apogee, with no ruler for 1200.",
+        "Opened D'Altroy's Cambridge public Summary. Its political emergence after c. 1200 differs in scope and chronology from earlier broad cultural spans; no annual succession follows.",
+        "Downloaded and read Voláková's National Museum paper, printed pp. 57-58, and Campana's university journal article, printed p. 223. Their legendary founder and dynastic sequence do not identify a living ruler at 1200. The final independent king belongs to the fifteenth century.",
+        "Searched for Rowe's The Kingdom of Chimor and the anonymous 1604 Trujillo history. Search results led to user-uploaded copies and scholarly discussions. Cited the opened university discussion of the chronicle rather than claiming to have read the original manuscript.",
+        "The Met's retired resources PDF URL returned an HTML error. Followed the museum publication page's current download link, downloaded the PDF from the linked CDN, and read printed p. 69 / PDF p. 81 for kingship, court composition and split inheritance.",
+        "Opened eHRAF's public abstract for Zuidema's Dynastic structures in Andean culture. It discusses testing dynastic myths and covers 1400-1600; no bookmark ruler emerged. The general Chimu summary did not load its text and direct retrieval returned HTTP 451, so its search snippets were not cited as evidence.",
+        "Searched attested ordinary and elite Chimú/Quingnam personal names, Muchik names, colonial genealogies and Zevallos Onomástica Chimú. Direct PUCP origin access returned denial; a reader proxy exposed the public abstract, which mentions Tacaynamo. The abstract supplies no usable ordinary-name list, gender assignments or individual attestations for 1200. Removed the unsupported no-person assertion and unverified full-text-restriction claim.",
+        "A Nanzan paper about surviving family names returned HTTP 429/503 and was not cited. Modern or colonial surnames, dynasty names and modern invented building names were not treated as ordinary personal names for 1200. No name pool file or generated person was created.",
+        "Reopened Urban's scholarly article as full HTML on SciELO after the former publisher PDF was inaccessible to the initial independent reader. The independent follow-up inspected the introductory settlement chronology and linguistic discussion. Urban attributes the foundation range to Moore and Mackey 2008, p. 783; that underlying work was not inspected.",
+        "Fetched Getty TGN 1099735 over HTTPS, read the Coordinates block and capital relationship, and retained decimal coordinates in longitude-latitude order. Independent source review is complete with the substantive ruler/name-pool blocker retained."
+      ],
+      "reviewCorrections": [
+        {
+          "file": "ad1200-review.json",
+          "path": "sources.chimu.scopedClaim",
+          "problem": "UNESCO's ninth-to-fifteenth-century wording describes Chimú society's complexity. It does not establish a continuously dated political constitution, a named king in 1200 or imperial control at the later apogee.",
+          "proposal": "Retain the accepted approximate core as a prior map ruling. Limit this source claim to Chan Chan as capital and broad Chimú social complexity; record D'Altroy's later political periodization and the unresolved AD 1200 ruler in the court dossier.",
+          "sourceIds": [
+            "a2-chimu-unesco",
+            "a2-chimu-daltroy2014"
+          ]
+        }
+      ],
+      "review": {
+        "status": "checked",
+        "checkedBy": "Codex independent check",
+        "checkedOn": "2026-11-07",
+        "claimsChecked": 13,
+        "confirmed": 11,
+        "corrected": 1,
+        "dropped": 1,
+        "countScope": "Initial blind-review occurrences; dropped maps the initial unsupported verdict. The separate follow-up confirms Urban's bounded seat/foundation component and the corrected PUCP ordinary-name limitation. Chimú retains its substantive ruler/name-pool blocker.",
+        "followUp": {
+          "status": "checked",
+          "checkedBy": "Codex independent check",
+          "checkedOn": "2026-11-07",
+          "claimsChecked": 2,
+          "confirmed": 2,
+          "corrected": 0,
+          "dropped": 0,
+          "countScope": "Separate follow-up occurrences, not additional unique initial claims."
+        }
+      },
+      "readiness": {
+        "research": "blocked-ruler-and-name-pool",
+        "engine": "not-integrated"
+      }
+    }
+  ]
+}

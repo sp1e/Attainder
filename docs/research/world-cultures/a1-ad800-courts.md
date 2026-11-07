@@ -2,7 +2,7 @@
 
 Codex prepared this research batch on 7 November 2026 against main `547b23c9`. The bookmark is `0800-12-25`. The [court dossier](../../../server/seed/historical/courts/ad800-courts.json) covers the eight polities required by batch A1. Its 46 source records support 18 documented people. It adds no generated person.
 
-The researchers completed independent source review and applied its corrections. All eight polities are research-ready. Publication is pending. The researchers opened the cited sources during this session; fresh Codex reviewers received the claims and source records without the draft reasoning.
+The researchers completed independent source review and applied its corrections. All eight polities are research-ready. [PR #18](https://github.com/sp1e/Attainder/pull/18) merged at `806ca6eeddfc9ab414e95d303261fb78b3342fa2` after the required test check and build passed. The remote commit was verified. The researchers opened the cited sources during this session; fresh Codex reviewers received the claims and source records without the draft reasoning.
 
 The dossier supplies research for Claude's court importer. Research acceptance does not establish engine integration, a built scenario, gameplay verification or deployment. Claude owns those changes.
 
@@ -70,4 +70,4 @@ The dossier preserves the initial counts by polity as audit history. Later round
 
 ## Next work
 
-The controller will complete publication checks. Claude needs to wire the court importer, implement or resolve the listed engine limits, add the proposed name pools in the appropriate workstream, and verify built scenarios in play. A2 covers the five AD 1200 courts after A1 publication.
+Claude needs to wire the court importer, implement or resolve the listed engine limits, add the proposed name pools in the appropriate workstream, and verify built scenarios in play. A2 is researching the five AD 1200 courts.
