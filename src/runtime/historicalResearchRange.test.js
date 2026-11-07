@@ -5,9 +5,14 @@ import { researchEndYear } from "./historicalResearchRange.js";
 
 const range = (startYear, endYear, status) => ({ startYear, endYear, status, note: "" });
 
-test("the real coverage file researches up to year 999", () => {
+// Codex extends the coverage file as research lands, so this test checks the shape of the
+// answer instead of a fixed year: a researched range ends there and none ends later.
+test("the real coverage file ends research at the last researched range", () => {
   const coverage = JSON.parse(readFileSync(new URL("../../server/seed/historical/events/coverage.json", import.meta.url), "utf8"));
-  assert.equal(researchEndYear(coverage), 999);
+  const year = researchEndYear(coverage);
+  const researched = coverage.ranges.filter((r) => r.status !== "unresearched");
+  assert.ok(researched.some((r) => r.endYear === year));
+  assert.ok(researched.every((r) => r.endYear <= year));
 });
 
 test("a later researched range wins over earlier ones", () => {

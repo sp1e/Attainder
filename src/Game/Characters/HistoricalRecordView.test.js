@@ -102,9 +102,10 @@ test("the catalog loads when the view is shown, not before", async () => {
 
 test("the research note appears only once the game has passed the researched range", async () => {
   const note = /Forskningen sträcker sig till år 999\./;
-  const before = await mountView({ startDate: "0990-01-01", gameDate: "0999-06-01" });
+  const coverageOverride = { ranges: [{ startYear: 800, endYear: 999, status: "partial" }, { startYear: 1000, endYear: 1530, status: "unresearched" }] };
+  const before = await mountView({ startDate: "0990-01-01", gameDate: "0999-06-01" }, { coverageOverride });
   assert.doesNotMatch(textOf(before.render()), note);
-  const after = await mountView({ startDate: "0990-01-01", gameDate: "1000-01-01" });
+  const after = await mountView({ startDate: "0990-01-01", gameDate: "1000-01-01" }, { coverageOverride });
   assert.match(textOf(after.render()), note);
 });
 
