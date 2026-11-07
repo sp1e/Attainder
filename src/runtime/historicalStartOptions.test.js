@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { historicalStartOption, orderHistoricalStarts } from './historicalStartOptions.js';
+import { historicalCampaignName, historicalStartOption, orderHistoricalStarts } from './historicalStartOptions.js';
 test('visible choices follow real bookmark courts and empty catalogs fail closed', () => {
   for (const id of ['egypt-3000bc','john-1200','charlemagne-800']) {
     const b=JSON.parse(readFileSync(new URL(`../../server/seed/historical/${id}/scenario.json`,import.meta.url),'utf8'));
@@ -18,4 +18,14 @@ test('the catalog order puts Charlemagne first, then John under his stored id, E
   assert.deepEqual(ids(['default','egypt-3000bc','imported','charlemagne-800']),['charlemagne-800','default','egypt-3000bc','imported']);
   assert.deepEqual(ids(['imported','egypt-3000bc','default']),['default','egypt-3000bc','imported'],'John leads once a player has deleted Charlemagne');
   assert.deepEqual(ids([]),[]);
+});
+test('a campaign carries the chosen polity in its name', () => {
+  const b=JSON.parse(readFileSync(new URL('../../server/seed/historical/charlemagne-800/scenario.json',import.meta.url),'utf8'));
+  const option=historicalStartOption(b,b.assets.regionsGeojson.data,b.assets.citiesGeojson.data);
+  assert.equal(historicalCampaignName(option,'carolingian-realm','realm'),'Karls rike (karolingiska riket), 800 e.Kr. · Riket');
+  assert.equal(historicalCampaignName(option,'papal-states','realm'),'Kyrkostaten, 800 e.Kr. · Riket');
+  assert.equal(historicalCampaignName(option,'papal-states','family'),'Kyrkostaten, 800 e.Kr. · Familjen');
+  assert.equal(historicalCampaignName(option,undefined,'realm'),'Karls rike (karolingiska riket), 800 e.Kr. · Riket');
+  const imported={name:'Egen start',polities:[{id:'a',name:'A'},{id:'b',name:'B'}]};
+  assert.equal(historicalCampaignName(imported,'b','realm'),'B · Egen start · Riket');
 });

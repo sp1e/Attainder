@@ -1,6 +1,6 @@
 import { activateGame, createGame, ensureLibraryCatalog, loadScenarioDetails, downloadScenarioJsonAsset } from './library.js';
 import { normalizeCampaignSeed } from './campaignSeed.js';
-import { historicalStartOption, orderHistoricalStarts } from './historicalStartOptions.js';
+import { historicalCampaignName, historicalStartOption, orderHistoricalStarts } from './historicalStartOptions.js';
 
 export async function loadHistoricalStartOptions() {
   const catalog = await ensureLibraryCatalog();
@@ -23,7 +23,7 @@ export async function startDynastyCampaign({ mode = 'realm', scenarioId, date, p
   const selectedPolity = polityId ?? scenario.polities[0]?.id;
   const selectedDate = date ?? scenario.date;
   const engineDifficulty = characterDifficulty ?? (difficulty === 'standard' ? 'normal' : difficulty);
-  const created = await createGame({ name: `${scenario.name} · ${mode === 'family' ? 'Familjen' : 'Riket'}`,
+  const created = await createGame({ name: historicalCampaignName(scenario, selectedPolity, mode),
     scenarioId: scenario.scenarioId, setActive: false,
     historicalStart: { date: selectedDate, polityId: selectedPolity, mode, ...(familyId ? {familyId} : {}), seed, difficulty: engineDifficulty },
     gamePatch: { country: selectedPolity, difficulty: engineDifficulty === 'normal' ? 'standard' : engineDifficulty, language: 'Swedish' } });

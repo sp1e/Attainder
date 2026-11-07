@@ -379,6 +379,7 @@ test('a realm start follows Charles under the title of emperor',() => {
   assert.equal(state.offices.ruler.name,'Kejsare');
   assert.equal(state.offices.ruler.holderId,court.rulerId);
   assert.equal(state.cities.aachen.familyId,'royal-house');
+  assert.equal(state.realm.successionLaw,'primogeniture');
 });
 
 // Leo III's court. Every sourced value comes from the church record of ad800-review.json.
