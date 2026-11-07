@@ -1,6 +1,6 @@
 # Research status
 
-Updated by Codex on 7 November 2026 at main `4c1c95d1d40ef97e65090f64df5db844a881a994`.
+Updated by Codex on 7 November 2026 at main `cbbdd0141e126ba232c9f728350869c4953d54cf`.
 
 | Batch | State | PR | Files | Counts | Waiting for Claude |
 |---|---|---|---|---|---|
@@ -10,12 +10,15 @@ Updated by Codex on 7 November 2026 at main `4c1c95d1d40ef97e65090f64df5db844a88
 | B2: AD 1500 courts | Merged at `5117f17c`; remote commit verified; 2 research-ready courts | [#23](https://github.com/sp1e/Attainder/pull/23) | `server/seed/historical/courts/ad1500-courts.json`; `docs/research/world-cultures/b2-ad1500-courts.md` | 2 polities; 5 documented identities; 19 retained sources; 7 withheld entries; 2 of 2 seat points inside accepted polygons; initial 54/51/2/1; separate follow-up 3/3/0/0, in checked/confirmed/corrected/unsupported order | Court importer, uncertain households and succession, generated birth labels, proposed name pools, built-scenario and gameplay checks |
 | Rome / AD 800 wording | Merged at `4c1c95d1`; remote commit verified | [#24](https://github.com/sp1e/Attainder/pull/24) | `docs/research/world-cultures/rome800-shared-wording.md`; corrections below | 2 Swedish literals; 6 source records; independent historical check 7/7/0/0; separate implementation inspection | Apply both literals, align duplicate review note, Charlemagne 1.2.0 provenance/rebuild and gameplay checks |
 | C1: regional inventory | Reviewed and published in the separate private workspace; remote commit verified | Private workspace | Private research only | Initial 92/91/0/1; separate follow-up 1/1/0/0 | C2 source checks, C3 corrections and C4 start portfolio; no inventory content copied here |
-| E800–899: year events | Source-approved; repository checks passed; awaiting publication | None yet | Event catalog, coverage and report; `docs/research/world-cultures/e0800-year-events.md` | 44 events; 39 sources; initial 44/41/1/2; separate follow-up 3/3/0/0; 29 existing tests passed | Visible chronicle/turn-end checks, stale coverage label; no runtime change supplied |
+| E800–899: year events | Merged at `cbbdd014`; remote commit verified | [#25](https://github.com/sp1e/Attainder/pull/25) | Event catalog, coverage and report; `docs/research/world-cultures/e0800-year-events.md` | 44 events; 39 sources; initial 44/41/1/2; separate follow-up 3/3/0/0; 29 existing tests passed | Visible chronicle/turn-end checks, stale coverage label; no runtime change supplied |
+| E900–999: year events | Source-approved; repository checks passed; awaiting publication | None yet | Event catalog, coverage and report; `docs/research/world-cultures/e0900-year-events.md` | 44 added events; 43 added sources; initial 45/40/4/1; separate follow-up 5/5/0/0; 2 withheld candidates; 29 existing tests passed | Visible chronicle/turn-end checks and coverage label; catalog totals 88 events and 82 sources |
 
 ## Rulings
 
 - Ruling: publish 44 source-approved E800 events with partial coverage. Regional and subject gaps remain, including Oceania. Filling empty years or declaring complete research would invent coverage.
 - Ruling: preserve the initial E800 audit and its separate three-event follow-up. Two replacement source sets and one attribution correction passed fresh checks; overwriting the original failures would conceal the review history. Genuine ranges remain single records even when they extend beyond 899.
+- Ruling: publish E900 with partial coverage and withhold Shanga and Kokinshū. The two unresolved chronology problems require further evidence; assigning a convenient year would invent precision. Retain the initial 45-event audit separately from five confirmed follow-up occurrences.
+- Ruling: preserve source-supplied Mansuriya bounds, Schroda's differing occupation accounts and the full Tula phase. Reuse the existing scoped Met source and correct the NPS locator from the follow-up's rendered-page inspection. Neither data integration nor source approval establishes gameplay verification.
 - Ruling: publish research files through the dedicated research branch. Codex and Claude own different files under the research brief. Reversing that split would risk collisions with implementation work.
 - Ruling: preserve partial households and empty spouse arrays without inferring celibacy. The opened sources leave gaps. Filling those gaps would invent family history.
 - Ruling: preserve January 1 birth placeholders and their uncertain or generated statuses. The simulation requires dates beyond the evidence's precision. Dropping the labels would turn game values into historical claims.
@@ -100,4 +103,6 @@ Rome wording and C1 publication are complete. [PR #24](https://github.com/sp1e/A
 
 ## Next batch
 
-Publish the source-approved E800–899 catalog, finish E900–999 as a separate event batch, then complete C2's private East and South Asia source checks. E800 contains 44 approved events and 39 sources; the catalog and generated coverage checks passed, as did all 29 existing event tests. E900 remains in independent review, with chronology corrections and regional gaps under investigation. Codex researches; Claude implements and verifies the game.
+E800 publication is complete through [PR #25](https://github.com/sp1e/Attainder/pull/25), merged at verified main `cbbdd0141e126ba232c9f728350869c4953d54cf`. Its required test check passed with 4,915 total, 4,913 passed, zero failed and two TODO; the build took 38.46 seconds.
+
+Publish the source-approved E900–999 batch, then complete C2's private East and South Asia source checks. The integrated catalog has 88 approved events and 82 sources, with both centuries partial; catalog regeneration/check and all 29 existing event tests passed. C2 source checks and later-century research are proceeding privately. Codex researches; Claude implements and verifies the game.

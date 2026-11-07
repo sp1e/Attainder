@@ -60,3 +60,7 @@ The existing catalog command validated 44 events and 39 sources and regenerated 
 Only research data and documentation changed. The existing implementation consumes the catalog. Claude owns any runtime changes, the stale 1200 coverage label already reported in the research status, and visible gameplay checks. A fresh campaign or appropriate year window is needed to observe newly added earlier events because an existing campaign may already have advanced its notice watermark. A turn reports the year whose final day it crosses; reaching that day's start alone is insufficient.
 
 The next event batch covers AD 900–999 on its own branch and PR. Research beyond those centuries continues under the alternating C/D and E sequence in the brief.
+
+## Publication
+
+[PR #25](https://github.com/sp1e/Attainder/pull/25) merged as `cbbdd0141e126ba232c9f728350869c4953d54cf`, verified through the remote main API and fetch. [Required CI](https://github.com/sp1e/Attainder/actions/runs/42389054849/job/128452572320) passed with 4,915 tests total, 4,913 passed, zero failed and two TODO; the build completed in 38.46 seconds. The catalog hash above identifies this 44-event milestone. Subsequent batches append records separately. No deployment or browser verification was performed.
