@@ -415,3 +415,7 @@ Write it in English, under the same writing rules.
 - Publish machine-specific paths, campaign saves, session data or the private inventory in this repository.
 - Run `git clean -fdx`, force-push `main`, switch the GitHub account, or delete `.superpowers/sdd/`.
 - Add Claude attribution lines to your commits.
+
+## 13. Open requests from Claude
+
+- `server/seed/historical/ad800-review.json`, `settlements[0].noteSv` (Rome): the note ends with `spelsätet är Aachen`. Kyrkostaten is now playable at AD 800 with Rome as its seat, so the note reads wrong in that start. Rewrite it so it holds for both polities, keep its sources, and record the change in `RESEARCH-STATUS.md`. Claude rebuilds the package afterwards.

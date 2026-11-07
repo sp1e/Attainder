@@ -146,6 +146,17 @@ Server run: `http://localhost:3000` with an isolated `OH_DATA_DIR` and the real 
 
 An upgraded library gains the start once, keeps a selected scenario other than John, because `default` reads as no choice, and keeps a deleted start deleted. Each start has its own marker for this: `historical-bookmarks-charlemagne-800.json` on the server and the key of that name in the web store.
 
+## Kyrkostaten start, AD 800
+
+Run on `018c823c` with Playwright Chromium on 7 November 2026. Server: `node server/server.js` on port 4167 with an isolated `OH_DATA_DIR` and local Claude selected. Web: `vite --mode web` on port 5199 with `/api/local-models/status` stubbed.
+
+| ID | Adapter | Start card | Realm start | Family start | Reload |
+| --- | --- | --- | --- | --- | --- |
+| S-P | Server | Observed | Observed: Leo III, 50, office `Påve`, Rome; legal heir Sergius (genererad) | Observed: Hovhus 1 (genererat), representative Sergius (genererad), 44 | Not run |
+| W-P | Web | Observed | Observed: Leo III, 50, Rome | Observed: Leos hushåll, representative Leo III | Observed: the realm campaign stayed in the library |
+
+The heading reads `HISTORISKA DYNASTIER · 3300 F.KR.–1530 E.KR.`, and the AD 800 start lists Karls rike and Kyrkostaten. The campaigns are named `Kyrkostaten, 800 e.Kr. · Riket` and `Kyrkostaten, 800 e.Kr. · Familjen`. The server console showed 0 errors. The web console showed one 500 from `/api/local-models/generate`, because the vite server has no model bridge. No model turn was run. The upgrade of an installed Charlemagne 1.0.0 start has automated coverage only.
+
 ## Closure
 
 The controller accepted Task 6 with the documented limits, and final documentation review approved publication subject to current-head CI. CI passed at `2066a55`; the PR tracks the current head and merge state. Preserve source attribution and licenses, and exclude private material from publication. The annual 3300 BC–AD 1200 historical-reference research and turn-end popup remain a separate pending milestone.
