@@ -1542,9 +1542,11 @@ const ensureScenarioStore = () => {
   for (const { id, marker } of HISTORICAL_BOOKMARKS) {
     const bookmarkMarker = path.join(SERVER_DATA_DIR,`${marker}.json`);
     if (fs.existsSync(bookmarkMarker)) continue;
+    // The manifest is written last, so an id in it means a complete install that lost only its marker.
+    if (getScenarioManifest().order.includes(id)) { writeJsonFile(bookmarkMarker,{installed:true}); continue; }
     const candidate = bundleCandidate(readJsonFile(path.join(__dirname,"seed/historical",id,"scenario.json"),null));
     requirePrepared(validatePlayableScenario(candidate));
-    persistScenarioBundle(candidate,{selected:id === HISTORICAL_START_ORDER[0] && getScenarioManifest().selectedScenarioId === DEFAULT_SCENARIO_ID});
+    persistScenarioBundle(candidate,{id,selected:id === HISTORICAL_START_ORDER[0] && getScenarioManifest().selectedScenarioId === DEFAULT_SCENARIO_ID});
     writeJsonFile(bookmarkMarker,{installed:true});
   }
 };

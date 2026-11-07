@@ -93,6 +93,17 @@ const uncertainSurvival = (person) => {
   return claim?.status === "uncertain" && isAlive(person) ? claim : null;
 };
 
+const BIRTH_DATE_TAGS = { uncertain: "Födelsedatum osäkert", generated: "Genererat födelsedatum" };
+// The package's origin label and the standing of a birth date. A name that says "(genererad)" already tells both.
+const provenanceTags = (person) => {
+  const origin = person.historicalOrigin;
+  if (!origin || /genererad/i.test(person.name ?? "")) return [];
+  const birth = origin.claims?.bornAt, tags = [];
+  if (origin.originLabelSv) tags.push({ label: origin.originLabelSv });
+  if (BIRTH_DATE_TAGS[birth?.status]) tags.push({ label: BIRTH_DATE_TAGS[birth.status], title: birth.noteSv });
+  return tags;
+};
+
 // `headingRef` makes the name heading a focus target (tabIndex -1) for PeopleView.
 function PersonSummary({ person, compact = false, headingRef }) {
   if (!person) return <Empty title="Ingen behörig företrädare">Ingen person kan företräda dig just nu. Läs mandatets status under Ämbeten & arv.</Empty>;
@@ -102,7 +113,7 @@ function PersonSummary({ person, compact = false, headingRef }) {
     <div><span className="char-eyebrow">{person.familyName || "Familj"}{Number.isFinite(person.age) ? ` · ${person.age} år` : ""}</span>
       <h3 ref={headingRef} tabIndex={headingRef ? -1 : undefined}>{person.name}{person.nickname ? ` ${person.nickname}` : ""}</h3><p>{person.archetypeLabel || humanize(person.archetype)}{!isAlive(person) ? " · Avliden" : ""}</p>
       {person.portraitState?.visualState !== "healthy" && person.portraitState?.reasons?.length > 0 && <p className="char-health-summary">{person.portraitState.reasons.filter((reason) => reason.key !== "healthy").map((reason) => reason.label).join(" · ")}</p>}
-      <div className="char-tags">{survival && <span title={survival.noteSv}>Överlevnad osäker</span>}{entries(person.traitLabels || person.traits || person.personality).map((trait, index) => <span key={text(trait, index)}>{humanize(text(trait))}</span>)}</div>
+      <div className="char-tags">{survival && <span title={survival.noteSv}>Överlevnad osäker</span>}{provenanceTags(person).map(({ label, title }) => <span key={label} title={title}>{label}</span>)}{entries(person.traitLabels || person.traits || person.personality).map((trait, index) => <span key={text(trait, index)}>{humanize(text(trait))}</span>)}</div>
     </div>
   </div>;
 }

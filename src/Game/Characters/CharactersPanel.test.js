@@ -1469,6 +1469,40 @@ test("the real Charlemagne court tags each person whose survival is uncertain, w
   for (const id of ["karl", "rotrud", "generated-courtier-1"]) assert.equal(survivalTags(mountPeople({ selectedId: id, view }).tree).length, 0, id);
 });
 
+const provenanceTags = (tree) => findAll(tree, (node) => node.type === "span" && /^(Födelsedatum osäkert|Genererat födelsedatum|Dokumenterad person.*|Genererad person)$/.test(textOf(node)));
+
+test("the real Charlemagne court shows where a birth date comes from, and the origin of each person", () => {
+  const view = seededView("charlemagne-800");
+  const tagsOf = (id) => provenanceTags(mountPeople({ selectedId: id, view }).tree);
+  const label = "Dokumenterad person; spelvärden är genererade";
+  const person = (id) => view.people.find((candidate) => candidate.id === id);
+  const karl = tagsOf("karl"), rotrud = tagsOf("rotrud");
+  assert.deepEqual(karl.map(textOf), [label, "Födelsedatum osäkert"]);
+  assert.equal(karl[1].props.title, person("karl").historicalOrigin.claims.bornAt.noteSv);
+  assert.deepEqual(rotrud.map(textOf), [label, "Genererat födelsedatum"]);
+  assert.equal(rotrud[1].props.title, person("rotrud").historicalOrigin.claims.bornAt.noteSv);
+});
+
+test("a sourced birth date shows no birth tag, and a claim without a note gets no title", () => {
+  const view = seededView("charlemagne-800");
+  const withBorn = (bornAt) => ({ ...view, people: view.people.map((person) => person.id === "rotrud" ? { ...person, historicalOrigin: { ...person.historicalOrigin, claims: { ...person.historicalOrigin.claims, bornAt } } } : person) });
+  assert.deepEqual(provenanceTags(mountPeople({ selectedId: "rotrud", view: withBorn({ status: "sourced", noteSv: "Belagd.", sourceIds: ["a"] }) }).tree).map(textOf), ["Dokumenterad person; spelvärden är genererade"]);
+  const [, birth] = provenanceTags(mountPeople({ selectedId: "rotrud", view: withBorn({ status: "uncertain", sourceIds: ["a"] }) }).tree);
+  assert.equal(textOf(birth), "Födelsedatum osäkert");
+  assert.equal(birth.props.title, undefined);
+});
+
+test("a court member whose name says generated gets no doubled label, and a non-historical court shows nothing new", () => {
+  for (const id of ["charlemagne-800", "john-1200", "egypt-3000bc"]) {
+    const view = seededView(id);
+    const generated = view.people.filter((person) => / \(genererad\)$/.test(person.name));
+    assert.ok(generated.length >= 3, id);
+    for (const person of generated) assert.deepEqual(provenanceTags(mountPeople({ selectedId: person.id, view }).tree).map(textOf), [], person.id);
+  }
+  const hadara = engineCampaign().view;
+  for (const person of hadara.people) assert.deepEqual(provenanceTags(mountPeople({ selectedId: person.id, view: hadara }).tree).map(textOf), [], person.id);
+});
+
 test("a person who has died in the campaign loses the survival tag", () => {
   const view = seededView("charlemagne-800");
   const dead = { ...view, people: view.people.map((person) => person.id === "berta" ? { ...person, alive: false, diedAt: "0805-01-01" } : person) };

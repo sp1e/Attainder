@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -150,6 +150,37 @@ test('server prepares both historical courts and refuses invalid requests withou
     `], { env: { ...process.env, OH_DATA_DIR: root }, stdio: 'pipe', encoding: 'utf8' });
   } finally { rmSync(root,{recursive:true,force:true}); }
   assert.ok(true);
+});
+
+test('an interrupted desktop install finishes in place and never adds a second copy', () => {
+  const root = mkdtempSync(path.join(os.tmpdir(),'attainder-historical-'));
+  const id = 'charlemagne-800', dir = path.join(root,'scenarios',id), meta = path.join(dir,'scenario.json');
+  const marker = path.join(root,'historical-bookmarks-charlemagne-800.json'), manifestPath = path.join(root,'scenario-manifest.json');
+  const manifest = () => JSON.parse(readFileSync(manifestPath,'utf8'));
+  const boot = () => execFileSync(process.execPath,['--input-type=module','-e',`
+    import * as store from ${JSON.stringify(new URL('./libraryStore.js',import.meta.url).href)};
+    store.ensureScenarioStore();
+    console.log(JSON.stringify(store.getScenarioCatalog().scenarios.map(s=>s.id)));
+  `],{ env: { ...process.env,OH_DATA_DIR: root },stdio: 'pipe',encoding: 'utf8' });
+  const catalog = () => JSON.parse(boot().trim().split('\n').at(-1));
+  try {
+    assert.deepEqual(catalog(),['default','egypt-3000bc',id]);
+    // Crash after the meta write: the directory is partial and the manifest lacks the id.
+    const partial = path.join(dir,'world.json');
+    assert.ok(existsSync(partial));
+    rmSync(partial); rmSync(marker);
+    const before = manifest();
+    writeFileSync(manifestPath,JSON.stringify({ ...before,order: before.order.filter(entry => entry !== id),activeScenarioId: 'default',selectedScenarioId: 'default' }));
+    assert.deepEqual(catalog().sort(),['charlemagne-800','default','egypt-3000bc']);
+    assert.ok(manifest().order.includes(id)); assert.ok(existsSync(partial),'the install finishes the partial directory');
+    assert.ok(existsSync(marker)); assert.equal(manifest().selectedScenarioId,id);
+    // Crash after the manifest write: the scenario is complete and only the marker is absent.
+    rmSync(marker);
+    const written = readFileSync(meta,'utf8');
+    assert.deepEqual(catalog(),['default','egypt-3000bc',id]);
+    assert.ok(existsSync(marker)); assert.equal(readFileSync(meta,'utf8'),written,'a complete scenario is left as it stands');
+    assert.deepEqual(readdirSync(path.join(root,'scenarios')).sort(),['charlemagne-800','default','egypt-3000bc']);
+  } finally { rmSync(root,{recursive:true,force:true}); }
 });
 
 test('a desktop library offers three starts with Charlemagne as the default, and the upgrade leaves John saves alone', () => {

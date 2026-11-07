@@ -33,7 +33,7 @@ The authored mapping accepts both components of upstream Angevin feature 275. Re
 
 ## Charlemagne AD 800 research
 
-This section records research for the `charlemagne-800` package. Independent checkers opened each source, and the review took their corrections. A second check covers the changed rows, and Task 3 still has to build the package.
+This section records research for the `charlemagne-800` package. Independent checkers opened each source, and the review took their corrections. A second check covers the changed rows, and the package ships as the scenario `charlemagne-800`.
 
 `server/seed/historical/sources/hbm-world_800.geojson` copies `geojson/world_800.geojson` from Historical Basemaps commit `4b5039e50d8d2464b065bd76ad6086cd4597108d`. Its SHA-256 is `9d046cdc4662109c3f803ae46e2c8cba941aa092ec86eccc7823e6cf1554920c`. `server/seed/historical/ad800-review.json` records a decision for each of its 225 features.
 
@@ -66,7 +66,7 @@ The package withholds these points:
 
 ## Worldwide political coverage
 
-The packages preserve a record for each of the 424 upstream features: original properties, geometry hash, review classification, evidence IDs, mapping decision and any quarantine. `ad1200-review.json` and `bc3000-review.json` hold authored research inputs. The build ships their scoped decisions in `world.historicalScenario.regionReview`, alongside the referenced sources. An unresolved label remains unresolved after review; a recognizable name does not establish its chronology or frontier.
+The packages preserve a record for each of the 649 upstream features: original properties, geometry hash, review classification, evidence IDs, mapping decision and any quarantine. `ad1200-review.json` and `bc3000-review.json` hold authored research inputs. The build ships their scoped decisions in `world.historicalScenario.regionReview`, alongside the referenced sources. An unresolved label remains unresolved after review; a recognizable name does not establish its chronology or frontier.
 
 | Area | Around 3000 BC | AD 1200 |
 | --- | --- | --- |
