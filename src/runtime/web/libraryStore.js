@@ -1,5 +1,5 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "../../../server/historicalPreparation.js";
-import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER } from "../../../server/historicalStarts.js";
+import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade, withLibraryFields } from "../../../server/historicalStarts.js";
 import { withScenarioLicense, preserveComponentProvenance } from "../scenarioLicense.js";
 /*! Open Historia — web-mode library/scenario/game/runtime store © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 // Browser (IndexedDB) port of server/libraryStore.js. Backs /api/library,
@@ -1473,6 +1473,48 @@ const syncBuiltInScenarioFromSeed = async () => {
   console.info(`[built-in scenario] Modern Day updated to ${BUILT_IN_MAP}`);
 };
 
+// The generated module holds both packages, so it loads only when a start is installed or replaced.
+const shippedStartBundle = async (id) => {
+  const { default: bookmarks } = await import("./generated/historicalBookmarks.js");
+  const bundle=bookmarks.find((candidate) => candidate.scenario.id === id);
+  if (!bundle) console.warn(`Historical start ${id} is missing from the generated bookmarks.`);
+  return bundle ?? null;
+};
+
+const installShippedStart = async (entry) => {
+  // A second tab or an interrupted install got here first, so this start only needs its marker.
+  if (await getScenario(entry.id)) { await kvPut(entry.marker,true); return; }
+  const bundle=await shippedStartBundle(entry.id);
+  if (!bundle) return;
+  const id=await ensureUniqueId(entry.id,"scenario");
+  const record=bundleScenarioRecord(bundle,id);
+  requirePrepared(validatePlayableScenario(await scenarioCandidate(record)));
+  const { selectedScenarioId } = await getScenarioManifest();
+  await persistScenarioRecord(record,entry.id === HISTORICAL_START_ORDER[0] && selectedScenarioId === DEFAULT_SCENARIO_ID);
+  await kvPut(entry.marker,true);
+};
+
+// An installed copy older than the shipped start is replaced where it stands: its place in the
+// order, the selection and the library's own meta fields (createdAt, playCount and the rest) stay.
+// A start the player deleted is absent from the manifest and stays deleted. Campaigns keep their own game and world data, which this never writes.
+const upgradeShippedStart = async (entry) => {
+  if (!(await getScenarioManifest()).order.includes(entry.id)) return;
+  const stored=await getScenario(entry.id);
+  if (!stored || !shippedStartNeedsUpgrade({ meta: stored.meta, data: stored.json },entry)) return;
+  const bundle=await shippedStartBundle(entry.id);
+  if (!bundle) return;
+  // A bundle at another version than the list names would be replaced again on every start.
+  if (bundle.data?.world?.historicalScenario?.contentVersion !== entry.contentVersion) {
+    console.warn(`[historical start] ${entry.id}: the generated bookmark is not ${entry.contentVersion}, so the installed copy stays`);
+    return;
+  }
+  const record=bundleScenarioRecord(bundle,entry.id);
+  record.meta=withLibraryFields(stored.meta,record.meta);
+  requirePrepared(validatePlayableScenario(await scenarioCandidate(record)));
+  await persistScenarioRecord(record);
+  console.info(`[historical start] ${entry.id} updated to ${entry.contentVersion}`);
+};
+
 export const ensureSeeded = async () => {
   if (!(await kvGet("seeded", false))) {
     if (!(await getScenario(DEFAULT_SCENARIO_ID))) {
@@ -1484,22 +1526,9 @@ export const ensureSeeded = async () => {
     await kvPut("seeded", true);
   }
   await syncBuiltInScenarioFromSeed();
-  const pending = [];
-  for (const entry of HISTORICAL_BOOKMARKS) if (!(await kvGet(entry.marker,false))) pending.push(entry);
-  if (pending.length) {
-    const { default: bookmarks } = await import("./generated/historicalBookmarks.js");
-    for (const entry of pending) {
-      // A second tab or an interrupted install got here first, so this start only needs its marker.
-      if (await getScenario(entry.id)) { await kvPut(entry.marker,true); continue; }
-      const bundle=bookmarks.find((candidate) => candidate.scenario.id === entry.id);
-      if (!bundle) { console.warn(`Historical start ${entry.id} is missing from the generated bookmarks.`); continue; }
-      const id=await ensureUniqueId(entry.id,"scenario");
-      const record=bundleScenarioRecord(bundle,id);
-      requirePrepared(validatePlayableScenario(await scenarioCandidate(record)));
-      const { selectedScenarioId } = await getScenarioManifest();
-      await persistScenarioRecord(record,entry.id === HISTORICAL_START_ORDER[0] && selectedScenarioId === DEFAULT_SCENARIO_ID);
-      await kvPut(entry.marker,true);
-    }
+  for (const entry of HISTORICAL_BOOKMARKS) {
+    if (await kvGet(entry.marker,false)) await upgradeShippedStart(entry);
+    else await installShippedStart(entry);
   }
 };
 

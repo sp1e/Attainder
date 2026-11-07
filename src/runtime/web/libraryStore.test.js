@@ -15,6 +15,7 @@ import test from "node:test";
 import { readFileSync } from "node:fs";
 import { restoreScenarioFileForGame } from '../scenarioFile.js';
 import { zipBundle } from '../bundleZip.js';
+import { SHIPPED_START_FOLDERS } from '../testing/shippedHistoricalStarts.js';
 
 const db = new Map();
 globalThis.__ohWebStoreTestDb = db;
@@ -228,7 +229,7 @@ test('historical web starts create a complete court and invalid requests make no
     const response=await store.handleRuntimeJson({method:'PUT',segments:['json','game'],body:{gameDate:'2016-01-01'}});
     assert.equal(response.status,400); assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes); }
   const { readFile } = await import('node:fs/promises');
-  for (const bookmark of ['egypt-3000bc','john-1200','charlemagne-800']) {
+  for (const bookmark of SHIPPED_START_FOLDERS) {
     const bundle = JSON.parse(await readFile(new URL(`../../../server/seed/historical/${bookmark}/scenario.json`,import.meta.url),'utf8'));
     const invalid=structuredClone(bundle); invalid.data.world.polityOverrides.modern={name:'Modern'};
     { const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;
@@ -238,7 +239,7 @@ test('historical web starts create a complete court and invalid requests make no
     const malformed=structuredClone(bundle); malformed.data.game.gameDate=null;
     const badCover=structuredClone(bundle); badCover.assets.cover={mode:'embedded',encoding:'base64',data:'@@@'};
     const forged=structuredClone(bundle); forged.data.game.startDate=forged.data.game.gameDate='2016-01-01'; forged.restoreOnly=true; forged.skipValidation=true;
-    for (const run of [()=>scenarios('POST','',{gamePatch:{gameDate:null}}),()=>scenarios('PUT',scenarioId,{gamePatch:{startDate:'1201-01-01'}}),
+    for (const run of [()=>scenarios('POST','',{gamePatch:{gameDate:null}}),()=>scenarios('PUT',scenarioId,{gamePatch:{startDate:'1531-01-01'}}),
       ()=>scenarios('POST','import',malformed),()=>scenarios('POST','import',badCover),()=>scenarios('POST','import',forged),()=>scenarios('PUT',`${scenarioId}/import`,malformed),
       ()=>store.handleScenarios({method:'DELETE',segments:[scenarioId,'assets','citiesGeojson'],query:new URLSearchParams()})]) {
       const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;
@@ -261,7 +262,7 @@ test('historical web starts create a complete court and invalid requests make no
     assert.equal(created.data.world.simulationHistory,undefined); assert.deepEqual(created.data.events,[]);
     for (const request of [
       {scenarioId,gamePatch:{gameDate:null}},{scenarioId,gamePatch:{startDate:'0000-01-01'}},
-      {scenarioId,gamePatch:{gameDate:'1201-01-01'}},{scenarioId,gamePatch:{gameDate:'-3301-01-01'}},
+      {scenarioId,gamePatch:{gameDate:'1531-01-01'}},{scenarioId,gamePatch:{gameDate:'-3301-01-01'}},
       {scenarioId,gamePatch:{gameDate:'1200-12-31junk'}},{scenarioId,gamePatch:null},
       {scenarioId,seedGameId:'missing'},{scenarioId,historicalStart:null},
       {scenarioId,historicalStart:{mode:'bad'}},{scenarioId,historicalStart:{polityId:'unknown'}},
@@ -630,4 +631,68 @@ test('unresolved saved stats never come from a colliding scenario', async () => 
     assert.equal(result.status,200); assert.deepEqual(await result.json(),savedStats ?? {});
     assert.deepEqual(db,before); assert.equal(globalThis.__ohWebStoreWrites,writes);
   }
+});
+
+test('a web library read replaces an older shipped start in place and leaves deleted starts, player copies and campaigns alone', async t => {
+  await reset();
+  // The upgrade reports itself on console.info; the test keeps the lines instead of printing them.
+  const info = console.info, logged = [];
+  console.info = (...args) => { logged.push(args.join(' ')); };
+  t.after(() => { console.info = info; });
+  const id = 'charlemagne-800';
+  const record = () => db.get('scenarios').get(id), manifest = () => db.get('kv').get('scenario-manifest').value;
+  // The stored city file is an object, or its JSON text when the asset arrived encoded.
+  const rome = () => { const stored = record().geojson.citiesGeojson, cities = typeof stored === 'string' ? JSON.parse(stored) : stored;
+    return { cities, feature: cities.features.find(f => f.id === 'rome') }; };
+  const shipped = structuredClone(record());
+  ok(await scenarios('PUT','selected',{scenarioId:'egypt-3000bc'}));
+  // An earlier release installed Charlemagne. The player chose Egypt and started a campaign at AD 800.
+  const gameId = ok(await games('POST','',{name:'Karl',scenarioId:id,setActive:false,
+    historicalStart:{date:'0800-12-25',polityId:'carolingian-realm',mode:'realm',seed:7,difficulty:'normal'},
+    gamePatch:{country:'carolingian-realm',difficulty:'standard',language:'Swedish'}})).game.id;
+  // That release shipped 1.0.0, so the installed start and the campaign both carry it.
+  record().json.world.historicalScenario.contentVersion = '1.0.0';
+  { const { cities, feature } = rome(); feature.properties.seat = false;
+    if (typeof record().geojson.citiesGeojson === 'string') record().geojson.citiesGeojson = JSON.stringify(cities); }
+  db.get('games').get(gameId).json.world.historicalScenario.contentVersion = '1.0.0';
+  // The player has started this start five times and renamed a country on it.
+  Object.assign(record().meta,{ playCount: 5, countryNameOverrides: { 'papal-states': 'Påvens land' } });
+  const before = { manifest: structuredClone(manifest()), campaign: JSON.stringify(db.get('games').get(gameId)),
+    campaignMeta: structuredClone(db.get('gameMeta').get(gameId)), egypt: structuredClone(db.get('scenarios').get('egypt-3000bc')) };
+  assert.equal(before.manifest.selectedScenarioId,'egypt-3000bc');
+  // (a) The next read replaces the old copy where it stands, map files included.
+  await store.ensureSeeded();
+  assert.equal(record().json.world.historicalScenario.contentVersion,'1.1.0');
+  assert.ok(JSON.stringify(record().json) === JSON.stringify(shipped.json),'the installed copy is the shipped 1.1.0');
+  assert.equal(rome().feature.properties.seat,true,'the 1.1.0 city file makes Rome a seat');
+  assert.deepEqual(logged,['[historical start] charlemagne-800 updated to 1.1.0']);
+  assert.equal(record().meta.createdAt,shipped.meta.createdAt);
+  assert.equal(record().meta.playCount,5,'the play count stays');
+  assert.deepEqual(record().meta.countryNameOverrides,{ 'papal-states': 'Påvens land' },'the renamed country stays');
+  assert.equal(record().meta.name,shipped.meta.name,'the name comes from the package');
+  assert.deepEqual(manifest(),before.manifest,'order and selection stand');
+  // (d) The campaign started from 1.0.0 keeps its own data, and Egypt, already current, is not written.
+  assert.ok(JSON.stringify(db.get('games').get(gameId)) === before.campaign,'the campaign keeps its own scenario data');
+  assert.deepEqual(db.get('gameMeta').get(gameId),before.campaignMeta);
+  assert.ok(JSON.stringify(db.get('scenarios').get('egypt-3000bc')) === JSON.stringify(before.egypt),'Egypt is not written');
+  // (c) A current copy is not written at all.
+  { const snapshot = JSON.stringify([...db.get('scenarios')]), writes = globalThis.__ohWebStoreWrites;
+    await store.ensureSeeded();
+    assert.ok(JSON.stringify([...db.get('scenarios')]) === snapshot); assert.equal(globalThis.__ohWebStoreWrites,writes); }
+  // (e) A scenario under the id that is not this start, and the copy a restored campaign uses, stay as they are.
+  for (const [label,change] of [
+    ['a player import that reuses the id',stored => { Object.assign(stored.json.world.historicalScenario,{ contentId: 'player-start',contentVersion: '1.0.0' }); }],
+    ['a scenario without historical content',stored => { delete stored.json.world.historicalScenario; }],
+    ['the copy a restored campaign uses',stored => { stored.json.world.historicalScenario = { ...shipped.json.world.historicalScenario,contentVersion: '1.0.0' }; stored.meta.restoreOnly = true; }],
+  ]) {
+    change(record());
+    const snapshot = JSON.stringify(record()), writes = globalThis.__ohWebStoreWrites;
+    await store.ensureSeeded();
+    assert.ok(JSON.stringify(record()) === snapshot,label); assert.equal(globalThis.__ohWebStoreWrites,writes,label);
+  }
+  // (b) A start the player deleted stays deleted.
+  ok(await games('DELETE',gameId)); ok(await scenarios('DELETE',id));
+  await store.ensureSeeded();
+  assert.equal(record(),undefined); assert.equal(manifest().order.includes(id),false);
+  assert.equal(db.get('kv').get('historical-bookmarks-charlemagne-800').value,true);
 });

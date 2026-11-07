@@ -27,6 +27,7 @@ async function roundtripWorker() {
   const { normalizeWorldState } = await import("./src/runtime/gameState.js");
   const { characterTransitionEvents } = await import("./src/runtime/characterWorld.js");
   const { installFakeIndexedDb } = await import("./src/runtime/web/fakeIndexedDb.js");
+  const { HISTORICAL_BOOKMARKS } = await import("./server/historicalStarts.js");
   const clone = (value) => JSON.parse(JSON.stringify(value));
   const hash = (value) => createHash("sha256").update(JSON.stringify(value)).digest("hex");
   const response = (value) => new Response(JSON.stringify(value), { headers: { "Content-Type": "application/json" } });
@@ -75,7 +76,7 @@ async function roundtripWorker() {
   console.warn = (...parts) => warnings.push(parts.join(" "));
   await webStore.ensureSeeded();
   console.warn = warn;
-  for (const id of ["egypt-3000bc", "charlemagne-800"]) {
+  for (const { id } of HISTORICAL_BOOKMARKS) {
     if (warnings.filter(line => line.includes(id)).length !== 1) throw new Error(`Expected one warning for ${id}: ${JSON.stringify(warnings)}`);
   }
   const webCall = async (resource, method, route, body) => {

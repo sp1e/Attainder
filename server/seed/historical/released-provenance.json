@@ -92,5 +92,52 @@
         "sha256": "441714004843b39a5e122848b2ed74ec2e7af6f2437745e53c584d24e1bf6f8c"
       }
     ]
+  },
+  "charlemagne-800": {
+    "generator": {
+      "file": "scripts/build-historical-scenarios.mjs",
+      "sha256": "254b512d22db675ac06fa22107902d86ae36eac4a62785aab1a7eda7fbc92462",
+      "polygonClipping": "0.15.7"
+    },
+    "sourceFiles": [
+      {
+        "fileName": "hbm-world_800.geojson",
+        "sha256": "9d046cdc4662109c3f803ae46e2c8cba941aa092ec86eccc7823e6cf1554920c"
+      },
+      {
+        "fileName": "hbm-world_1200.geojson",
+        "sha256": "2d6913ecedb38e269e41d249c87874d81e3e8d7351754821f57e627442d91525"
+      },
+      {
+        "fileName": "hbm-world_bc3000.geojson",
+        "sha256": "2cf107e2f0d4f9b5427b293f19b11fffe7c1134f52320df4f94b4889b978f033"
+      },
+      {
+        "fileName": "hbm-LICENSE",
+        "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+      },
+      {
+        "fileName": "hbm-README.md",
+        "sha256": "4a6d137790d3aea8c2a53c26d6a3fe4a43485f90d48b7751c5e53b65b2a8d6fe"
+      },
+      {
+        "fileName": "hbm-CONTRIBUTING.md",
+        "sha256": "e039e33384bfc0cb7eae4ef2508002ac1d7369a0199823dc8a78db6ab38354d4"
+      },
+      {
+        "fileName": "ne_50m_land.geojson",
+        "sha256": "e874b27a51d146452be360cafb3cc50c86001074a67d534113e6534682f9826b"
+      }
+    ],
+    "authoredInputs": [
+      {
+        "fileName": "authored-scenarios.mjs",
+        "sha256": "7f110ec2cd938207e65f4fd44aaed7d17d2bbb684da5c6f7cad331b779efcefc"
+      },
+      {
+        "fileName": "ad800-review.json",
+        "sha256": "20a2fcef9ab17ebd1f0efc1faeda9fb58c8cf8d81d0e7514b94815b0c6292d43"
+      }
+    ]
   }
 }

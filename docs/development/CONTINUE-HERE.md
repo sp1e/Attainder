@@ -14,9 +14,21 @@ The popup after a closed calendar year and the chronicle segment `I verkligheten
 
 [PR #15](https://github.com/sp1e/Attainder/pull/15) merged the Charlemagne start as `0192a1e9`. It offers the package as a third start on both adapters, and the start card preselects it. The scenario `default` still holds John, so `HISTORICAL_START_ORDER` sets the default and existing John saves stay bound. Each shipped start has its own install marker in `HISTORICAL_BOOKMARKS`. The character panel shows `Överlevnad osäker` from `claims.survival` and `Företrädare vid hovet` on historical religions, and seeded religions keep their public claims, so the panel names Leo III without a person for him. The full serial suite on `efe9f11` ran 4,815 tests: 4,812 passed, 0 failed, 1 skipped and 2 TODO. The build and `build-historical-scenarios.mjs --check` exited 0. The browser run on 7 November 2026 is recorded in the [play script](../play-scripts/historical-foundation.md). Both adapters have now run the start card, the map at Aachen, a household command, a reload and one real year turn.
 
-## Every culture playable (paused)
+## Every culture playable: Phase 1
 
-The owner decided on 7 November 2026 that every culture of the world in the period must be playable, and moved the upper start year to AD 1530 so the Aztec and Inca empires fit. Development is paused. Today each start has one playable polity, a culture without a single ruler cannot be started, and the start card lists polities without search. Three changes come before new research: several playable polities per start, a validator rule that requires the Swedish generated label on a generated ruler, and the 1530 range in `server/historicalStarts.js`. Historical Basemaps has 30 snapshots from `bc3000` to `1530` at the pinned commit.
+The owner decided on 7 November 2026 that every culture of the world in the period must be playable, and moved the upper start year to AD 1530. The design is `docs/superpowers/specs/2026-11-07-world-cultures-design.md` and the Phase 1 plan is `docs/superpowers/plans/2026-11-07-world-cultures-phase-1.md`. Codex does the research under `docs/development/CODEX-RESEARCH-BRIEF.md`, and Claude writes the code.
+
+Phase 1 is built on `feature/world-cultures`:
+
+- New campaigns start from 3300 BC through AD 1530. The chronicle note `Forskningen sträcker sig till år 1200.` stays until research reaches further.
+- A package can list several playable polities. Charlemagne 1.1.0 adds Kyrkostaten, with Leo III as the documented pope in Rome and merit succession. A Kyrkostaten campaign is named `Kyrkostaten, 800 e.Kr. · Riket`.
+- The validator refuses every court the start-time seed refuses, a generated person without the label `Genererad person`, and any succession law other than primogeniture or merit.
+- A library read upgrades an installed shipped start with an older content version. A deleted start stays deleted. The desktop store writes the versioned world file last, so an interrupted upgrade runs again on the next read.
+- Tests that cover every start read the list from `HISTORICAL_BOOKMARKS` plus `default`. `src/runtime/historicalPlayables.test.js` starts every playable polity in realm and family mode.
+
+Evidence at `018c823c`: the full serial suite ran 4,913 tests, with 4,910 passed, 0 failed, 1 skipped and 2 TODO. The build, `build-historical-scenarios.mjs --check` and `check-historical-events.mjs --check` exited 0. Lint reported 18 errors and 71 warnings, all in 40 files this branch does not touch. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md).
+
+Known limit: the Kyrkostaten court has four men aged 42 to 50 and no women. Nobody is born, and the realm ends between 813 and 838 on eight seeds. Charlemagne's court has the same cause and ends between 856 and 868. Phase 5 adds elective succession and courts that renew themselves. Next: Phase 2, the searchable picker and per-start loading.
 
 ## Branch state
 

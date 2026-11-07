@@ -3,10 +3,11 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion } from './historicalPreparation.js';
 import { validateHistoricalStartDate, validateHistoricalStartDates } from './historicalStarts.js';
+import { SHIPPED_START_FOLDERS } from '../src/runtime/testing/shippedHistoricalStarts.js';
 
 const read = id => JSON.parse(readFileSync(new URL(`./seed/historical/${id}/scenario.json`, import.meta.url), 'utf8'));
 const candidate = bundle => ({ data: bundle.data, meta: bundle.scenario, regions: bundle.assets.regionsGeojson.data, cities: bundle.assets.citiesGeojson.data });
-for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) test(`${id} prepares one complete detached court`, () => {
+for (const id of SHIPPED_START_FOLDERS) test(`${id} prepares one complete detached court`, () => {
   const scenario = candidate(read(id)), before = structuredClone(scenario);
   const result = prepareHistoricalCampaignStart({ request: {}, scenario });
   assert.equal(result.ok, true, result.error);
@@ -30,9 +31,27 @@ test('the Charlemagne date passes every new-game guard', () => {
     assert.equal(prepareHistoricalCampaignStart({ request: { ...request, historicalStart: { ...request.historicalStart, date: other } }, scenario }).ok, false, other);
   }
 });
+test('each AD 800 polity starts in realm and family mode with its own ruler and succession law', () => {
+  const scenario = candidate(read('charlemagne-800')), before = structuredClone(scenario), h = scenario.data.world.historicalScenario;
+  const started = {};
+  for (const polityId of h.playablePolityIds) for (const mode of ['realm', 'family']) {
+    const request = { historicalStart: { date: '0800-12-25', polityId, mode, seed: 7, difficulty: 'normal' }, gamePatch: { country: polityId, difficulty: 'standard', language: 'Swedish' } };
+    const result = prepareHistoricalCampaignStart({ request, scenario });
+    assert.equal(result.ok, true, `${polityId} ${mode}: ${result.error}`);
+    const { identity, realm } = result.data.world.characterSystem;
+    assert.deepEqual([result.data.game.country, result.data.game.characterMode, identity.polityId, identity.mode], [polityId, mode, polityId, mode]);
+    assert.equal(realm.lawfulRulerId, h.courtSeeds[polityId].rulerId, `${polityId} ${mode}`);
+    started[`${polityId} ${mode}`] = [realm.lawfulRulerId, realm.successionLaw];
+  }
+  assert.deepEqual(started, {
+    'carolingian-realm realm': ['karl', 'primogeniture'], 'carolingian-realm family': ['karl', 'primogeniture'],
+    'papal-states realm': ['leo-iii', 'merit'], 'papal-states family': ['leo-iii', 'merit'],
+  });
+  assert.deepEqual(scenario, before);
+});
 test('raw dates, conflicting options, missing sources and actual assets fail before preparation', () => {
   const scenario = candidate(read('john-1200'));
-  for (const gamePatch of [{ gameDate: null }, { startDate: '1200-12-31junk' }, { gameDate: '1201-01-01' }, { country: 'France' }]) {
+  for (const gamePatch of [{ gameDate: null }, { startDate: '1200-12-31junk' }, { gameDate: '1531-01-01' }, { country: 'France' }]) {
     assert.equal(prepareHistoricalCampaignStart({ request: { gamePatch }, scenario }).ok, false);
   }
   assert.equal(prepareHistoricalCampaignStart({ request: { seedGameId: 'missing' }, scenario }).ok, false);

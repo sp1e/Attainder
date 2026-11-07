@@ -3,9 +3,11 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHistoricalCharacterSystem } from './scenarioSeed.js';
 import { advanceCharacters, executeCharacterCommand, getCharacterPresentation, normalizeCharacterSystem } from './index.js';
+import { SUCCESSION_LAWS } from './content.js';
 import { addGameMonths } from '../gameDates.js';
 import { validateHistoricalScenario } from '../historicalScenarios.js';
 import { projectCharacterWorld } from '../characterWorld.js';
+import { SHIPPED_START_FOLDERS } from '../testing/shippedHistoricalStarts.js';
 
 const clone = value => JSON.parse(JSON.stringify(value));
 const load = id => JSON.parse(readFileSync(new URL(`../../../server/seed/historical/${id}/scenario.json`, import.meta.url), 'utf8')).data;
@@ -13,7 +15,7 @@ const optionsFor = data => ({ historicalScenario: data.world.historicalScenario,
 const ok = result => { assert.equal(result.ok, true, result.error); return result.state; };
 const ledger = state => { const value = clone(state); delete value.revision; delete value.appliedCommandIds; return value; };
 
-for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
+for (const id of SHIPPED_START_FOLDERS) {
   for (const mode of ['realm', 'family']) test(`${id} ${mode}: authored court initializes deterministically in the current engine`, () => {
     const data = load(id), options = { ...optionsFor(data), mode };
     const before = clone(options);
@@ -85,6 +87,45 @@ for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
   });
 }
 
+test('every person in every playable court of every package carries the label of its origin', () => {
+  for (const id of SHIPPED_START_FOLDERS) {
+    const h = load(id).world.historicalScenario;
+    for (const polityId of h.playablePolityIds) for (const person of h.courtSeeds[polityId].people) {
+      const where = `${id} ${polityId} ${person.id}`;
+      if (person.identityOrigin === 'generated') {
+        assert.equal(person.originLabelSv, 'Genererad person', where);
+        assert.ok(person.name.endsWith(' (genererad)'), where);
+      } else {
+        assert.equal(person.identityOrigin, 'documented', where);
+        assert.match(person.originLabelSv, /^Dokumenterad person/, where);
+      }
+    }
+  }
+});
+
+for (const mode of ['realm', 'family']) test(`charlemagne-800 papal-states ${mode}: Leo III's court initializes deterministically under merit succession`, () => {
+  const data = load('charlemagne-800'), h = data.world.historicalScenario;
+  assert.deepEqual(h.playablePolityIds, ['carolingian-realm', 'papal-states']);
+  const options = { historicalScenario: h, date: data.game.startDate, polityId: 'papal-states', mode, seed: 321 };
+  const before = clone(options);
+  const state = createHistoricalCharacterSystem(options);
+  assert.deepEqual(options, before);
+  assert.deepEqual(createHistoricalCharacterSystem(options), state);
+  assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
+  const court = h.courtSeeds['papal-states'];
+  assert.equal(state.realm.id, 'papal-states');
+  assert.equal(state.identity.polityId, 'papal-states');
+  assert.equal(state.offices.ruler.holderId, 'leo-iii');
+  assert.equal(state.people['leo-iii'].originLabelSv.startsWith('Dokumenterad person'), true);
+  assert.equal(state.realm.successionLaw, 'merit');
+  assert.equal(state.identity.familyId, mode === 'family' ? court.families[0].id : 'leo-household');
+  assert.deepEqual(Object.keys(state.people), court.people.map(p => p.id));
+  const heirClaims = Object.values(state.families).flatMap(f => f.claims).filter(c => c.kind === 'heir' && c.status === 'active');
+  assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt merit')));
+  const projected = projectCharacterWorld({ ...data.world, characterSystem: state });
+  assert.equal(projected.countryStats['papal-states'].leader, 'Leo III');
+});
+
 test('missing biography uses a labeled generated birth date and invents no recorded culture or genealogy', () => {
   const options = optionsFor(load('john-1200'));
   const person = options.historicalScenario.courtSeeds[options.polityId].people[0];
@@ -111,6 +152,43 @@ test('court size is authored data; a one-family court works with vacant generate
   assert.equal(state.offices.general.holderId, null);
   assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
   assert.ok(getCharacterPresentation(state).ruler);
+});
+
+test('SUCCESSION_LAWS is frozen and lists primogeniture and merit', () => {
+  assert.deepEqual(SUCCESSION_LAWS, ['primogeniture', 'merit']);
+  assert.ok(Object.isFrozen(SUCCESSION_LAWS));
+});
+
+for (const mode of ['realm', 'family']) test(`${mode}: the authored succession law seeds the realm, draws nothing, and an absent law keeps primogeniture`, () => {
+  for (const id of SHIPPED_START_FOLDERS) {
+    const merit = { ...optionsFor(load(id)), mode }, absent = { ...optionsFor(load(id)), mode };
+    merit.historicalScenario.courtSeeds[merit.polityId].successionLaw = 'merit';
+    delete absent.historicalScenario.courtSeeds[absent.polityId].successionLaw;
+    const state = createHistoricalCharacterSystem(merit), unchanged = createHistoricalCharacterSystem(absent);
+    assert.equal(state.realm.successionLaw, 'merit', id);
+    // The opening heir claim is recorded under the authored law, so the law is in place before the court completes.
+    const heirClaims = Object.values(state.families).flatMap(f => f.claims).filter(c => c.kind === 'heir' && c.status === 'active');
+    assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt merit')), id);
+    assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
+    assert.equal(getCharacterPresentation(state).succession.law, 'merit', id);
+    assert.equal(unchanged.realm.successionLaw, 'primogeniture', id);
+    // Setting the law draws no randomness: the merit start consumes the same rng values and logs the same events.
+    assert.deepEqual(state.rngState, unchanged.rngState, id);
+    assert.deepEqual(state.log, unchanged.log, id);
+  }
+});
+
+test('an explicit primogeniture law draws no randomness and seeds the same court as an absent law', () => {
+  for (const id of SHIPPED_START_FOLDERS) {
+    const absent = optionsFor(load(id)), explicit = optionsFor(load(id));
+    delete absent.historicalScenario.courtSeeds[absent.polityId].successionLaw;
+    explicit.historicalScenario.courtSeeds[explicit.polityId].successionLaw = 'primogeniture';
+    const unchanged = createHistoricalCharacterSystem(absent), seeded = createHistoricalCharacterSystem(explicit);
+    assert.deepEqual(seeded.rngState, unchanged.rngState, id);
+    assert.deepEqual(seeded.people, unchanged.people, id);
+    assert.deepEqual(seeded.log, unchanged.log, id);
+    assert.deepEqual(seeded, unchanged, id);
+  }
 });
 
 test('sourced young spouse retains her birth date and relationship without weakening action adulthood gates', () => {
@@ -158,7 +236,7 @@ test('normalization checks optional historical metadata without changing save co
   assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
 });
 
-test('schema-valid person-4 court is refused before a generated birth can overwrite its identity', () => {
+test('a person-4 court is refused by the validator and by the seed', () => {
   const data = load('egypt-3000bc'), options = { ...optionsFor(data), seed: 1 };
   const h = options.historicalScenario, court = h.courtSeeds[options.polityId];
   const remap = id => id === 'generated-courtier-3' ? 'person-4' : id;
@@ -171,7 +249,7 @@ test('schema-valid person-4 court is refused before a generated birth can overwr
   for (const religion of court.religions) religion.leaderId = remap(religion.leaderId);
   for (const office of court.offices) office.holderId = remap(office.holderId);
   const regions = JSON.parse(readFileSync(new URL('../../../server/seed/historical/egypt-3000bc/regions.geojson', import.meta.url), 'utf8'));
-  assert.equal(validateHistoricalScenario({ ...data, regions, assetManifest: h.assetManifest }, options).ok, true);
+  assert.equal(validateHistoricalScenario({ ...data, regions, assetManifest: h.assetManifest }, options).code, 'invalidCourt');
   const before = clone(options);
   assert.throws(() => createHistoricalCharacterSystem(options), /Det historiska hovets uppgifter.*\./);
   assert.deepEqual(options, before);
@@ -229,6 +307,8 @@ for (const [name, mutate] of [
   ['invalid mechanics', o => { o.historicalScenario.courtSeeds[o.polityId].people[0].mechanics.skills.command = -1; }],
   ['missing family', o => { o.historicalScenario.courtSeeds[o.polityId].people[0].familyId = 'missing'; }],
   ['unsupported spouse shape', o => { o.historicalScenario.courtSeeds[o.polityId].people[0].spouseIds.push('generated-courtier-1'); }],
+  ['unsupported succession law', o => { o.historicalScenario.courtSeeds[o.polityId].successionLaw = 'tanistry'; }],
+  ['null succession law', o => { o.historicalScenario.courtSeeds[o.polityId].successionLaw = null; }],
 ]) test(`factory rejects ${name} without mutating input`, () => {
   const options = optionsFor(load('john-1200')); mutate(options); const before = clone(options);
   assert.throws(() => createHistoricalCharacterSystem(options), /historiska.*[.]/i);
@@ -265,7 +345,7 @@ test('a saved historical religion without claims normalizes and presents as it d
 });
 
 test('real assets and court agree at the accepted schema boundary', () => {
-  for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
+  for (const id of SHIPPED_START_FOLDERS) {
     const data = load(id), options = optionsFor(data);
     const regions = JSON.parse(readFileSync(new URL(`../../../server/seed/historical/${id}/regions.geojson`, import.meta.url), 'utf8'));
     assert.equal(validateHistoricalScenario({ ...data, regions, assetManifest: options.historicalScenario.assetManifest }, options).ok, true);

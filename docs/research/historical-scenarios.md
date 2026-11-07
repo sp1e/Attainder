@@ -64,6 +64,20 @@ The package withholds these points:
 - Every frontier. Barcelona lies outside feature 151: Zatun commended the city to Charles in 797, and on the bookmark date it stood under a two-year siege that ended in summer 801, out of Frankish hands. Venice lies inside feature 151: its dukes came to Charles in 806, Pepin attacked it in 810, and Charles returned it to Nikephoros in the peace of that year.
 - Polities with unopened or insufficient evidence, including Makuria, Japan, the Bulgars, Wari, Tiwanaku, Tibet, the Khazars, the Idrisids and the Indian kingdoms.
 
+### Papal States at AD 800
+
+From content version `1.1.0` the package also lets you play the Papal States (`papal-states`, Kyrkostaten). The polity record and map feature 222 come from the review's `mapMappings`, and the seat is the reviewed Rome settlement at Getty's `[12.4833, 41.9]`. The court takes its sourced facts from the review's `church` record:
+
+- Leo III appears as a documented person. His role, bishop of Rome since 795, cites `ce-leo3` (elected 26 December 795, died 816), `osborne-rome` (reign 795–816, coronation of Charles on 25 December 800) and `rfa-801-coronation` (Leo crowns Charles at the Christmas mass).
+- The ruler office carries the title Påve and cites `ce-leo3` for the election date.
+- The Latin church names Leo as its leader and cites `ce-leo3` and `rfa-801-coronation`.
+
+The package cites `ce-papal-states` on the polity record and the Rome settlement and leaves it out of Leo's identity claim: its scoped claim covers the papal lands and their tie to Frankish protection and does not name Leo.
+
+The rest of the court is generated. Leo's birth date, 1 January 750, is a game value, since no reviewed source gives a birth year. He has no parents, spouse or household in the court. His family group, Leos hushåll, is a game grouping. The three courtiers Sergius, Johannes and Theodorus and their houses are generated, and their names say so.
+
+The Papal States court sets `successionLaw: 'merit'`. The engine has no elective law. Merit ranks adult courtiers by diplomacy, stewardship and family support, which comes closest to a papal election. A later phase can add an elective law; removing the `extraPlayables` entry in `authored-scenarios.mjs` and rebuilding withdraws the polity.
+
 ## Worldwide political coverage
 
 The packages preserve a record for each of the 649 upstream features: original properties, geometry hash, review classification, evidence IDs, mapping decision and any quarantine. `ad1200-review.json` and `bc3000-review.json` hold authored research inputs. The build ships their scoped decisions in `world.historicalScenario.regionReview`, alongside the referenced sources. An unresolved label remains unresolved after review; a recognizable name does not establish its chronology or frontier.

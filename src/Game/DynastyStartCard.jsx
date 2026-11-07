@@ -49,7 +49,7 @@ export default function DynastyStartCard({ onStart, errorMessage = '' }) {
     catch (failure) { setError(failure.message); setBusy(false); }
   };
   return <section className="dynasty-start" data-theme={theme} aria-labelledby="dynasty-start-heading" data-no-translate>
-    <div className="dynasty-start-heading"><span>HISTORISKA DYNASTIER · 3300 F.KR.–1200 E.KR.</span><button type="button" onClick={toggleTheme} aria-label="Växla mellan ljust och mörkt tema">Ljust / mörkt</button></div>
+    <div className="dynasty-start-heading"><span>HISTORISKA DYNASTIER · 3300 F.KR.–1530 E.KR.</span><button type="button" onClick={toggleTheme} aria-label="Växla mellan ljust och mörkt tema">Ljust / mörkt</button></div>
     <div className="dynasty-start-layout"><div>
       <h1 id="dynasty-start-heading">Vem för du vidare?</h1>
       <p className="dynasty-start-intro">Välj en historisk start och följ människorna som formar din kampanj.</p>

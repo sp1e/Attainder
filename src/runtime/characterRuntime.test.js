@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { JSON_URLS, readJson, setRuntimeAssetEndpoints } from "./assets.js";
+import { SHIPPED_START_FOLDERS } from "./testing/shippedHistoricalStarts.js";
 import { createCharacterSystem, estimateCharacterAction, estimateConversation, getCharacterPresentation } from "./characters/index.js";
 import { initializeCampaignCharacters, advanceCharacterYear, submitCharacterCommand,
   readVisibleCharacterState, getCharacterRuntimeStatus, revealLatestCharacterTurn,
@@ -239,7 +240,7 @@ test("origin converse is set in exactly one place in the source", () => {
   assert.deepEqual(found, [["characterRuntime.js", 1]]);
 });
 
-for (const bookmark of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) test(`historical initialization opts in to ${bookmark}, preserves existing people and fails before writes`, async () => {
+for (const bookmark of SHIPPED_START_FOLDERS) test(`historical initialization opts in to ${bookmark}, preserves existing people and fails before writes`, async () => {
   const originalFetch = globalThis.fetch;
   const base = new URL(`../../server/seed/historical/${bookmark}/`, import.meta.url);
   const authored = JSON.parse(readFileSync(new URL('scenario.json', base), 'utf8')).data;
@@ -320,7 +321,7 @@ test('historical initialization refuses the reserved generated-person namespace 
   try {
     const result = await initializeCampaignCharacters({ seed: 1 });
     assert.equal(result.ok, false);
-    assert.match(result.error, /Det historiska hovets uppgifter.*\./);
+    assert.equal(result.error, 'Det historiska scenariot saknar giltiga källor, kartdata eller hov för den valda starten.');
     assert.deepEqual(puts, []);
     assert.deepEqual(data, before);
   } finally { globalThis.fetch = originalFetch; }
