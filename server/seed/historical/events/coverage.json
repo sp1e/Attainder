@@ -21,6 +21,12 @@
     },
     {
       "startYear": -2900,
+      "endYear": -2801,
+      "status": "partial",
+      "note": "Five independently checked records concern engraved stones deposited at Vasagard, Dholavira wall reinforcement, a particular Sumerian mace head, a qualified dietary interpretation at Narensu, and grave M118 at Liangwangcheng. Approximate dates, construction periods, object intervals and grave-phase dates remain distinct. Ashqelon abandonment is withheld because the published slash date does not establish the chosen continuous interval. No exact annual occurrence or first cultivation is established. Sub-Saharan Africa, the Americas, Southeast Asia, Oceania and most other areas remain gaps. Full intervals extending beyond this block establish no researched coverage of later centuries. Empty years remain research gaps."
+    },
+    {
+      "startYear": -2800,
       "endYear": 799,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
