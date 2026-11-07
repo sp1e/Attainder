@@ -13,3 +13,11 @@ Open the HTML files from a complete checkout so their relative image links resol
 A project-folder audit found no additional unique character originals or source/retry variants outside the tracked images. Build copies matched the tracked assets. Browser QA screenshots and a third-party skill collection banner are not character assets and are excluded from this archive.
 
 The portable source tools are in [scripts/portraits](../../scripts/portraits/README.md). See [artwork provenance](../../public/dynasties/ARTWORK.md) for generation details and limitations.
+
+## Historical portraits generated with GPT imagegen
+
+The [7 November 2026 production batch](gpt-imagegen-2026-11-07.md) adds eight
+historical originals and eight 36-cell atlases in a separate asset directory.
+OpenAI's built-in imagegen produced these files. Their delivery manifest and
+prompts accompany the images; runtime integration remains separate. The archive
+counts and galleries above continue to cover the original 24 characters.

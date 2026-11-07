@@ -31,3 +31,12 @@ of combination images.
 
 Generated artwork remains subject to the applicable OpenArt/provider terms.
 This file makes no separate claim of exclusivity or legal clearance.
+
+## OpenAI imagegen historical batch
+
+On 7 November 2026, OpenAI's built-in imagegen generated eight additional original
+portraits and eight 36-cell atlases under `portraits/gpt-imagegen-2026-11-07/`.
+This batch made no OpenArt calls. The [production notes](../../docs/artwork/gpt-imagegen-2026-11-07.md)
+record prompts, hashes, actual dimensions, visual limits and the separate runtime
+integration requirement. The faces, clothing and hypothetical age/condition
+variants are artistic interpretations of documented historical identities.
