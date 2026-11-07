@@ -51,7 +51,7 @@ Use a separate named campaign for each row and record the viewport and theme. Th
 ### Selection and creation
 
 - Before starting, switch Egypt → John → Egypt. Check that the displayed date, polity, context and court preview change together, and expand `Källor och osäkerhet`. Confirm that modern and Hadara campaigns are not offered as new starts. Record uncertainty and source labels as displayed.
-- The source defines `Startdatum och scenario` (`#historical-bookmark`), `Rike` (`#historical-polity`), the `Kampanjens identitet` radio group (`Följ riket` / `Följ familjen`), and, in family mode, `Familj` (`#historical-family`). Check the selected labels and identities, including a generated nonroyal household where used. Submit with `Starta som riket` or `Starta som familjen` after the provider is ready.
+- The source defines the search field `Sök rike, härskare eller tid` (`#historical-search`) over a radio group of start rows grouped by region and era (each row carries `data-start-key="<scenarioId>/<polityId>"`), the `Kampanjens identitet` radio group (`Följ riket` / `Följ familjen`), and, in family mode, `Familj` (`#historical-family`). Check the selected labels and identities, including a generated nonroyal household where used. Submit with `Starta som riket` or `Starta som familjen` after the provider is ready.
 - Record start and current game dates and character dates, controlled polity, ruler, family, representative, seat and origin labels. Egypt starts at `-3000-01-01`, polity `egypt-early-dynastic`; John starts at `1200-12-31`, polity `johns-realms`. Check that generated people are identified as generated and documented identities are distinguished. Isabella's approximate birth year gives age 12 at this bookmark; do not require an adult-only action from her.
 
 ### Map and court
@@ -156,6 +156,19 @@ Run on `018c823c` with Playwright Chromium on 7 November 2026. Server: `node ser
 | W-P | Web | Observed | Observed: Leo III, 50, Rome | Observed: Leos hushåll, representative Leo III | Observed: the realm campaign stayed in the library |
 
 The heading reads `HISTORISKA DYNASTIER · 3300 F.KR.–1530 E.KR.`, and the AD 800 start lists Karls rike and Kyrkostaten. The campaigns are named `Kyrkostaten, 800 e.Kr. · Riket` and `Kyrkostaten, 800 e.Kr. · Familjen`. The server console showed 0 errors. The web console showed one 500 from `/api/local-models/generate`, because the vite server has no model bridge. No model turn was run. The upgrade of an installed Charlemagne 1.0.0 start has automated coverage only.
+
+## Searchable picker
+
+Run on `8176bf1b` and `9d8605de` with Playwright Chromium on 7 November 2026, with the same server and web setup as the Kyrkostaten run.
+
+| ID | Adapter | Grouping | Search `leo` | Realm start | Save |
+| --- | --- | --- | --- | --- | --- |
+| P-S | Server | Observed | Observed: Kyrkostaten only | Observed: Leo III, 50, Rome | Observed: `playablePolityIds` and `courtSeeds` hold `papal-states` only |
+| P-W | Web | Observed | Observed: Kyrkostaten only | Observed: Leo III, 50, Rome | Not inspected |
+
+The card shows `EUROPA` with `Tidig medeltid` (Karls rike, Kyrkostaten) and `Högmedeltid` (Johns riken), then `MELLANÖSTERN OCH NORDAFRIKA` with `Bronsålder` (Egypten). On the web, the first boot imported `generated/historical/index.js`, `egypt-3000bc.js` and `charlemagne-800.js` to install the shipped starts. Both consoles showed 0 errors and the existing hillshade warning.
+
+On `8176bf1b` the web session summary read `Riket / papal-states` after a start within 15 seconds of the menu, because the polity-name cache still held John's world. On `9d8605de` the same flow read `Riket / Kyrkostaten` 3 seconds after the click. No model turn was run.
 
 ## Closure
 

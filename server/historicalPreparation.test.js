@@ -1,8 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion } from './historicalPreparation.js';
+import { historicalAssetManifest, prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion } from './historicalPreparation.js';
 import { validateHistoricalStartDate, validateHistoricalStartDates } from './historicalStarts.js';
+import { validateHistoricalScenario } from './historicalScenarios.js';
+import { createHistoricalCharacterSystem } from './characters/scenarioSeed.js';
 import { SHIPPED_START_FOLDERS } from '../src/runtime/testing/shippedHistoricalStarts.js';
 
 const read = id => JSON.parse(readFileSync(new URL(`./seed/historical/${id}/scenario.json`, import.meta.url), 'utf8'));
@@ -47,6 +49,28 @@ test('each AD 800 polity starts in realm and family mode with its own ruler and 
     'carolingian-realm realm': ['karl', 'primogeniture'], 'carolingian-realm family': ['karl', 'primogeniture'],
     'papal-states realm': ['leo-iii', 'merit'], 'papal-states family': ['leo-iii', 'merit'],
   });
+  assert.deepEqual(scenario, before);
+});
+test('a new Charlemagne campaign keeps only the chosen court and still validates', () => {
+  const scenario = candidate(read('charlemagne-800')), before = structuredClone(scenario), h = scenario.data.world.historicalScenario;
+  const date = '0800-12-25';
+  for (const polityId of ['papal-states', 'carolingian-realm']) for (const mode of ['realm', 'family']) {
+    const label = `${polityId} ${mode}`;
+    const request = { historicalStart: { date, polityId, mode, seed: 7, difficulty: 'normal' }, gamePatch: { country: polityId, difficulty: 'standard', language: 'Swedish' } };
+    const result = prepareHistoricalCampaignStart({ request, scenario });
+    assert.equal(result.ok, true, `${label}: ${result.error}`);
+    const saved = result.data.world.historicalScenario;
+    assert.deepEqual(saved.playablePolityIds, [polityId], label);
+    assert.deepEqual(Object.keys(saved.courtSeeds), [polityId], label);
+    assert.deepEqual(saved.courtSeeds[polityId], h.courtSeeds[polityId], label);
+    assert.equal(saved.polities.length, 10, label);
+    assert.deepEqual({ ...saved, playablePolityIds: h.playablePolityIds, courtSeeds: h.courtSeeds }, h, `${label}: other fields stay whole`);
+    assert.deepEqual(result.data.world.characterSystem,
+      createHistoricalCharacterSystem({ historicalScenario: h, date, polityId, mode, seed: 7, difficulty: 'normal' }), `${label}: same draws as the full scenario`);
+    const checked = validateHistoricalScenario({ game: result.data.game, world: result.data.world, regions: scenario.regions,
+      assetManifest: historicalAssetManifest(result.data.world) }, { date, polityId });
+    assert.equal(checked.ok, true, `${label}: ${checked.error}`);
+  }
   assert.deepEqual(scenario, before);
 });
 test('raw dates, conflicting options, missing sources and actual assets fail before preparation', () => {

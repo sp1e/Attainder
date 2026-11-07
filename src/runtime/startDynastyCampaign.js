@@ -1,24 +1,24 @@
-import { activateGame, createGame, ensureLibraryCatalog, loadScenarioDetails, downloadScenarioJsonAsset } from './library.js';
+import { activateGame, createGame, ensureLibraryCatalog } from './library.js';
 import { normalizeCampaignSeed } from './campaignSeed.js';
-import { historicalCampaignName, historicalStartOption, orderHistoricalStarts } from './historicalStartOptions.js';
+import { historicalCampaignName, historicalStartOptionFromSummary, offersHistoricalStart, orderHistoricalStarts } from './historicalStartOptions.js';
 
+// The card's starts come from the summaries the library catalog carries; no package is loaded.
 export async function loadHistoricalStartOptions() {
   const catalog = await ensureLibraryCatalog();
-  const scenarios = (catalog?.scenarios ?? []).filter(s => s.historicalStart && !s.restoreOnly);
-  const options = [];
-  for (const scenario of scenarios) {
-    try {
-      const [details,regions,cities] = await Promise.all([loadScenarioDetails(scenario.id),downloadScenarioJsonAsset(scenario.id,'regionsGeojson'),downloadScenarioJsonAsset(scenario.id,'citiesGeojson')]);
-      options.push(historicalStartOption(details,regions,cities));
-    } catch { /* Invalid templates cannot offer a start. */ }
-  }
+  const options = (catalog?.scenarios ?? []).filter(offersHistoricalStart)
+    .map(scenario => historicalStartOptionFromSummary(scenario.id, scenario.historicalSummary));
   return orderHistoricalStarts(options);
 }
 
-export async function startDynastyCampaign({ mode = 'realm', scenarioId, date, polityId, familyId, difficulty = 'normal', characterDifficulty, seed = 104729 } = {}) {
-  seed = normalizeCampaignSeed(seed);
+const findHistoricalStart = async scenarioId => {
   const options = await loadHistoricalStartOptions();
-  const scenario = scenarioId ? options.find(s => s.scenarioId === scenarioId) : options[0];
+  return scenarioId ? options.find(s => s.scenarioId === scenarioId) : options[0];
+};
+
+// option is the start the card shows; without it the catalog is read and scenarioId picks the start.
+export async function startDynastyCampaign({ option, mode = 'realm', scenarioId, date, polityId, familyId, difficulty = 'normal', characterDifficulty, seed = 104729 } = {}) {
+  seed = normalizeCampaignSeed(seed);
+  const scenario = option ?? await findHistoricalStart(scenarioId);
   if (!scenario) throw new Error('Det finns inget giltigt historiskt scenario att starta.');
   const selectedPolity = polityId ?? scenario.polities[0]?.id;
   const selectedDate = date ?? scenario.date;

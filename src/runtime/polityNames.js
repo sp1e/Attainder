@@ -5,6 +5,7 @@
 // code itself as a last resort, and caches the lookup for cheap sync access.
 import { useEffect, useState } from "react";
 import { JSON_URLS, loadCountryNames, readJson } from "./assets.js";
+import { shouldRefreshPolityNames } from "./polityNamesRefresh.js";
 
 let nameByCode = new Map();
 let refreshedAt = 0;
@@ -28,13 +29,26 @@ const refresh = async () => {
   refreshedAt = Date.now();
 };
 
-export const ensurePolityNames = async () => {
-  if (Date.now() - refreshedAt > 15000) {
-    inflight = inflight ?? refresh().finally(() => {
-      inflight = null;
-    });
-    await inflight;
-  }
+// Codes a reload came back without, mapped to that reload's refreshedAt (polityNamesRefresh.js).
+const missedAt = new Map();
+
+const runRefresh = () => {
+  inflight = inflight ?? refresh().finally(() => {
+    inflight = null;
+  });
+  return inflight;
+};
+
+// A code passed in reloads the cache early when the cache does not know it (polityNamesRefresh.js).
+// A reload that was already running may have read the world before a new game became active, so a
+// code it does not resolve gets one reload of its own before it counts as missing.
+export const ensurePolityNames = async (code) => {
+  if (!shouldRefreshPolityNames({ now: Date.now(), refreshedAt, code, known: nameByCode, missedAt })) return;
+  const key = String(code ?? "").trim();
+  const joined = inflight !== null;
+  await runRefresh();
+  if (key && joined && !nameByCode.has(key)) await runRefresh();
+  if (key && !nameByCode.has(key)) missedAt.set(key, refreshedAt);
 };
 
 // Sync lookup — falls back to the code until ensurePolityNames has run.
@@ -51,7 +65,7 @@ export const useCountryDisplayName = (code) => {
   useEffect(() => {
     let cancelled = false;
     setName(polityDisplayName(code));
-    ensurePolityNames().then(() => {
+    ensurePolityNames(code).then(() => {
       if (!cancelled) setName(polityDisplayName(code));
     });
     return () => {

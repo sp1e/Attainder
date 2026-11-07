@@ -9,6 +9,7 @@ import { initializeCampaignCharacters, advanceCharacterYear, submitCharacterComm
   readVisibleCharacterState, getCharacterRuntimeStatus, revealLatestCharacterTurn,
   commitCharacterCampaign, recordCharacterNarrative, estimateCharacterActionForView,
   estimateConversationForView, submitConversationRequest, getConversationViewForModel } from "./characterRuntime.js";
+import { prepareHistoricalCampaignStart } from "../../server/historicalPreparation.js";
 
 test("runtime campaign start, command, date, shared save and failed-write recovery use the same world", async () => {
   const originalFetch = globalThis.fetch;
@@ -325,4 +326,51 @@ test('historical initialization refuses the reserved generated-person namespace 
     assert.deepEqual(puts, []);
     assert.deepEqual(data, before);
   } finally { globalThis.fetch = originalFetch; }
+});
+
+const preparedCharlemagne = (polityId) => {
+  const bundle = JSON.parse(readFileSync(new URL('../../server/seed/historical/charlemagne-800/scenario.json', import.meta.url), 'utf8'));
+  const scenario = { data: bundle.data, meta: bundle.scenario, regions: bundle.assets.regionsGeojson.data, cities: bundle.assets.citiesGeojson.data };
+  const request = { historicalStart: { date: '0800-12-25', polityId, mode: 'realm', seed: 7, difficulty: 'normal' },
+    gamePatch: { country: polityId, difficulty: 'standard', language: 'Swedish' } };
+  const prepared = prepareHistoricalCampaignStart({ request, scenario });
+  assert.equal(prepared.ok, true, prepared.error);
+  return { full: bundle.data.world.historicalScenario,
+    data: { ...prepared.data, regionsGeojson: scenario.regions, colors: {}, snapshots: [] } };
+};
+
+const loadAndAdvanceYear = async (data, token) => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url, options = {}) => {
+    const key = new URL(String(url), 'http://runtime.test').pathname.split('/').at(-1);
+    if (options.method === 'PUT') data[key] = JSON.parse(options.body);
+    return new Response(JSON.stringify(data[key] ?? {}), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  };
+  setRuntimeAssetEndpoints({ token });
+  try {
+    const loaded = await initializeCampaignCharacters({ mode: 'realm', seed: 7 });
+    assert.equal(loaded.ok, true, `${token}: ${loaded.error}`);
+    return await advanceCharacterYear();
+  } finally { globalThis.fetch = originalFetch; }
+};
+
+test('older saves with every court and new single-court saves both load and play a year', async () => {
+  const narrowed = preparedCharlemagne('papal-states');
+  const older = structuredClone(narrowed.data);
+  older.world.historicalScenario = { ...older.world.historicalScenario,
+    playablePolityIds: narrowed.full.playablePolityIds, courtSeeds: narrowed.full.courtSeeds };
+  const uninitialized = structuredClone(narrowed.data);
+  delete uninitialized.world.characterSystem;
+  const saves = { 'older-two-court-save': older, 'single-court-save': narrowed.data, 'single-court-save-without-characters': uninitialized };
+  for (const [token, data] of Object.entries(saves)) {
+    const scenarioBefore = structuredClone(data.world.historicalScenario);
+    const year = await loadAndAdvanceYear(data, token);
+    assert.equal(year.ok, true, `${token}: ${year.error}`);
+    assert.equal(data.game.gameDate, '0801-12-25', token);
+    assert.equal(data.world.characterSystem.date, data.game.gameDate, token);
+    assert.equal(data.world.characterSystem.identity.polityId, 'papal-states', token);
+    assert.deepEqual(data.world.historicalScenario, scenarioBefore, `${token}: the saved courts stay as they were`);
+  }
+  assert.deepEqual(Object.keys(older.world.historicalScenario.courtSeeds), ['carolingian-realm', 'papal-states']);
+  assert.deepEqual(Object.keys(narrowed.data.world.historicalScenario.courtSeeds), ['papal-states']);
 });

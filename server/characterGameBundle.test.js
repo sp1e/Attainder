@@ -57,21 +57,21 @@ async function roundtripWorker() {
   const seed = createDynastyScenarioBundle();
   seed.data.world.ownerSchema = 4;
   const generated = {
-    "historicalBookmarks.js": "export default [];",
+    "historical/index.js": "export const HISTORICAL_BUNDLE_LOADERS = {};",
     "countryNames.js": "export default {};",
     "fallbackColors.js": "export default {Hadara:'#b99755'};",
     "defaultScenarioMeta.js": "export const builtInMap='test-map'; export const builtInRevision=1; export const regionsUrl=''; export const earlierMaps={};",
     "defaultScenario.js": `export default ${JSON.stringify({ meta: { name: "Isolated test" }, data: seed.data, colors: { Hadara: "#b99755" } })};`,
   };
   registerHooks({ resolve(specifier, context, nextResolve) {
-    const match = /\/generated\/([^/]+)$/.exec(specifier);
+    const match = /\/generated\/(.+)$/.exec(specifier);
     if (String(context.parentURL).includes("/runtime/web/") && match && generated[match[1]]) {
       return { url: `data:text/javascript,${encodeURIComponent(generated[match[1]])}`, shortCircuit: true };
     }
     return nextResolve(specifier, context);
   } });
   webStore = await import("./src/runtime/web/libraryStore.js");
-  // The stubbed chunk holds no bookmark, so each start the store cannot install says so.
+  // The stubbed index lists no package module, so each start the store cannot install says so.
   const warnings = [], warn = console.warn;
   console.warn = (...parts) => warnings.push(parts.join(" "));
   await webStore.ensureSeeded();

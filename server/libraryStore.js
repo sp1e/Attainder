@@ -1,5 +1,6 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "./historicalPreparation.js";
 import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade, withLibraryFields } from "./historicalStarts.js";
+import { HISTORICAL_SUMMARY_SCHEMA, historicalStartFromSummary, historicalStartSummary } from "./historicalStartSummary.js";
 import { withScenarioLicense, preserveComponentProvenance } from "./scenarioLicense.js";
 /*! Open Historia — portions (regions.geojson scenario asset + custom-map seeding) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 import fs from "fs";
@@ -1893,6 +1894,58 @@ const getScenarioSummary = (scenarioId) => {
   return scenario;
 };
 
+// The size and modification time of the two files a historical summary is built from. A file
+// that is not there stamps as "-:-", so its arrival changes the stamp. A stat that fails otherwise,
+// as with EPERM while Windows replaces a file or a scanner holds it, gives null: the summary is
+// built from the files and not cached, and the rest of the catalog still loads.
+const scenarioSourceStamp = (scenarioId) => {
+  try {
+    return ["world", "game"].map((assetKey) => {
+      const stat = fs.statSync(getScenarioJsonPath(scenarioId, assetKey), { throwIfNoEntry: false });
+      return stat ? `${stat.size}:${stat.mtimeMs}` : "-:-";
+    }).join(":");
+  } catch (error) {
+    console.warn(`[library] could not stamp the files of ${scenarioId}: ${error.message}`);
+    return null;
+  }
+};
+
+// The summary carries the scenario name from the meta, which a rename changes without touching
+// world.json or game.json, so a cached summary must also still carry the current name.
+const cachedSummaryFits = (cached, sourceStamp, meta) =>
+  sourceStamp !== null && cached?.schema === HISTORICAL_SUMMARY_SCHEMA && cached.sourceStamp === sourceStamp
+  && (cached.invalid === true || cached.notHistorical === true || cached.name === meta.name);
+
+// Adds the summary to the meta file as it stands on disk. writeScenarioMeta would store the
+// normalised meta instead, with the createdAt and updatedAt that readScenarioMeta mints for a meta
+// without them, and a built-in scenario whose stored pair differs reads as edited by the player.
+// A cache that cannot be written is rebuilt on the next read, so a failure only warns.
+const storeHistoricalSummary = (scenarioId, historicalSummary) => {
+  const metaPath = getScenarioMetaPath(scenarioId);
+  const raw = readJsonFile(metaPath, null);
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return;
+  try { writeJsonFileWhole(metaPath, { ...raw, historicalSummary }); }
+  catch (error) { console.warn(`[library] could not store the historical summary of ${scenarioId}: ${error.message}`); }
+};
+
+// The historical start summary for the library catalog: the one cached in the scenario meta while
+// world.json and game.json are unchanged, otherwise built from them and cached again. Null for a
+// scenario that is not historical; { invalid: true } for one whose court data the card cannot show.
+const scenarioHistoricalSummary = (scenarioId, meta) => {
+  const sourceStamp = scenarioSourceStamp(scenarioId);
+  let summary = readJsonFile(getScenarioMetaPath(scenarioId), {})?.historicalSummary;
+  if (!cachedSummaryFits(summary, sourceStamp, meta)) {
+    const data = {
+      world: readJsonFile(getScenarioJsonPath(scenarioId, "world"), {}),
+      game: readJsonFile(getScenarioJsonPath(scenarioId, "game"), {}),
+    };
+    summary = historicalStartSummary({ meta, data, sourceStamp })
+      ?? { schema: HISTORICAL_SUMMARY_SCHEMA, sourceStamp, notHistorical: true };
+    if (sourceStamp !== null) storeHistoricalSummary(scenarioId, summary);
+  }
+  return summary.notHistorical === true ? null : summary;
+};
+
 // A scenario as the library describes it, whether it is in the catalog
 // (buildScenarioCatalog) or only named by a game (getGameScenarioSummary,
 // buildGameCatalog): one shape, built here and nowhere else.
@@ -1902,10 +1955,12 @@ const buildScenarioCatalogEntry = (scenarioId, { gameCount = 0, canDelete = true
   // A scenario that is not there has no updatedAt of its own — readScenarioMeta
   // mints one per read — so its token is fixed, or it would differ on every call.
   const cacheToken = missing ? `${scenarioId}-missing` : `${scenarioId}-${meta.updatedAt}`;
-  const h = readJsonFile(getScenarioJsonPath(scenarioId,"world"),{}).historicalScenario;
+  // A scenario that is gone has nothing to summarise, and a cache write would create its directory.
+  const historicalSummary = missing ? null : scenarioHistoricalSummary(scenarioId, meta);
   return {
     ...meta,
-    historicalStart: h?.kind === "historical" && !meta.restoreOnly ? { date: readJsonFile(getScenarioJsonPath(scenarioId,"game"),{}).gameDate, contentId: h.contentId } : null,
+    historicalSummary,
+    historicalStart: historicalStartFromSummary(historicalSummary, meta),
     assetStatus,
     cacheToken,
     canDelete,

@@ -1,5 +1,6 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "../../../server/historicalPreparation.js";
 import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade, withLibraryFields } from "../../../server/historicalStarts.js";
+import { HISTORICAL_SUMMARY_SCHEMA, historicalStartFromSummary, historicalStartSummary } from "../../../server/historicalStartSummary.js";
 import { withScenarioLicense, preserveComponentProvenance } from "../scenarioLicense.js";
 /*! Open Historia — web-mode library/scenario/game/runtime store © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 // Browser (IndexedDB) port of server/libraryStore.js. Backs /api/library,
@@ -20,6 +21,7 @@ import {
 import FALLBACK_COLORS from "./generated/fallbackColors.js";
 import { builtInMap as BUILT_IN_MAP, builtInRevision as BUILT_IN_REVISION, earlierMaps as EARLIER_BUILT_IN_MAPS, regionsUrl as BUILT_IN_REGIONS_URL } from "./generated/defaultScenarioMeta.js";
 import * as BUILT_IN_META from "./generated/defaultScenarioMeta.js";
+import { HISTORICAL_BUNDLE_LOADERS } from "./generated/historical/index.js";
 import {
   DEFAULT_SCENARIO_ID, DEFAULT_GAME_ID, EMPTY_FEATURE_COLLECTION, COVER_IMAGE_ASSET_KEY,
   JSON_ASSET_KEYS, STORAGE_JSON_ASSET_KEYS, OPTIONAL_JSON_ASSET_KEYS, RUNTIME_ONLY_JSON_ASSET_KEYS,
@@ -64,13 +66,21 @@ const getGame = (id) => idbGet(STORES.games, id);
 // record so getLibraryCatalog builds the menu from these instead of structured-
 // cloning the full ~100MB records into memory (the reported laptop menu OOM).
 // jsonAsset / getScenarioAssetStatus / getGameAssetStatus resolve at call time.
+// historicalSummary is what the start card reads (null when the scenario is not historical); the
+// catalog derives historicalStart from it. The summary takes its name from the meta as the catalog
+// shows it, as the desktop store does. The web store has no files to stamp, so sourceStamp is null:
+// every scenario write goes through putScenario and projects the summary again.
 const projectScenarioMeta = (record) => ({
   id: record.id,
   meta: record.meta ?? {},
   cover: record.cover ?? null,
   assetStatus: getScenarioAssetStatus(record),
-  historicalStart: record.json?.world?.historicalScenario?.kind === "historical" && !record.meta?.restoreOnly ? { date: record.json.game?.gameDate, contentId: record.json.world.historicalScenario.contentId } : null,
+  historicalSummary: historicalStartSummary({ meta: readScenarioMeta(record.id, record.meta ?? {}), data: record.json, sourceStamp: null }),
 });
+// A row projected before metas carried historicalSummary, or under another summary schema.
+// A stored null means "not historical" and stays.
+const scenarioMetaIsStale = (proj) =>
+  proj.historicalSummary !== null && proj.historicalSummary?.schema !== HISTORICAL_SUMMARY_SCHEMA;
 const projectGameMeta = (record) => {
   const game = jsonAsset(record, "game");
   const actions = jsonAsset(record, "actions");
@@ -219,12 +229,14 @@ const ensureUniqueId = async (requested, kind) => {
 // by loading it ONE AT A TIME (peak = a single record, not the whole store at once,
 // which is the OOM), and drop index rows whose record was deleted out-of-band. After
 // the first build the index is populated, so the menu loads NO full records at all.
-const reconcileMeta = async (recordStore, metaStore, project) => {
+// `isStale` marks an index row to project again from its record, the same way: the
+// migration path for a row an earlier release wrote without a field it now needs.
+const reconcileMeta = async (recordStore, metaStore, project, isStale = () => false) => {
   const [keys, metas] = await Promise.all([idbGetAllKeys(recordStore), idbGetAll(metaStore)]);
   const byId = new Map(metas.map((m) => [m.id, m]));
   const live = new Set(keys);
   for (const id of keys) {
-    if (byId.has(id)) continue;
+    if (byId.has(id) && !isStale(byId.get(id))) continue;
     const record = await idbGet(recordStore, id); // released before the next iteration
     if (!record) continue;
     const proj = project(record);
@@ -238,7 +250,7 @@ const reconcileMeta = async (recordStore, metaStore, project) => {
   }
   return [...byId.values()];
 };
-const readScenarioMetas = () => reconcileMeta(STORES.scenarios, STORES.scenarioMeta, projectScenarioMeta);
+const readScenarioMetas = () => reconcileMeta(STORES.scenarios, STORES.scenarioMeta, projectScenarioMeta, scenarioMetaIsStale);
 const readGameMetas = () => reconcileMeta(STORES.games, STORES.gameMeta, projectGameMeta);
 
 const getScenarioCatalog = async (scenarioMetas, gameMetas) => {
@@ -254,9 +266,11 @@ const getScenarioCatalog = async (scenarioMetas, gameMetas) => {
     const meta = readScenarioMeta(id, proj.meta ?? {});
     const assetStatus = proj.assetStatus ?? {};
     const cacheToken = `${id}-${meta.updatedAt}`;
+    const historicalSummary = proj.historicalSummary ?? null;
     return {
       ...meta,
-      historicalStart: proj.historicalStart ?? null,
+      historicalSummary,
+      historicalStart: historicalStartFromSummary(historicalSummary, meta),
       assetStatus,
       cacheToken,
       canDelete: true,
@@ -1473,18 +1487,27 @@ const syncBuiltInScenarioFromSeed = async () => {
   console.info(`[built-in scenario] Modern Day updated to ${BUILT_IN_MAP}`);
 };
 
-// The generated module holds both packages, so it loads only when a start is installed or replaced.
+// Each shipped package is its own generated module, so only the start being installed or
+// replaced is fetched.
 const shippedStartBundle = async (id) => {
-  const { default: bookmarks } = await import("./generated/historicalBookmarks.js");
-  const bundle=bookmarks.find((candidate) => candidate.scenario.id === id);
-  if (!bundle) console.warn(`Historical start ${id} is missing from the generated bookmarks.`);
-  return bundle ?? null;
+  const load = Object.hasOwn(HISTORICAL_BUNDLE_LOADERS, id) ? HISTORICAL_BUNDLE_LOADERS[id] : null;
+  if (!load) throw new Error(`Historical start ${id} has no generated module; run scripts/seed-web-defaults.mjs.`);
+  const { default: bundle } = await load();
+  if (bundle?.scenario?.id !== id) throw new Error(`The generated module for historical start ${id} holds ${bundle?.scenario?.id ?? "no scenario"}.`);
+  return bundle;
+};
+
+// A start whose module is missing or fails to load is skipped with a warning. Its marker stays
+// unset, so the next library boot tries again, and the other starts still install.
+const loadShippedStart = async (id) => {
+  try { return await shippedStartBundle(id); }
+  catch (error) { console.warn(`[historical start] ${id} was not loaded: ${error.message}`); return null; }
 };
 
 const installShippedStart = async (entry) => {
   // A second tab or an interrupted install got here first, so this start only needs its marker.
   if (await getScenario(entry.id)) { await kvPut(entry.marker,true); return; }
-  const bundle=await shippedStartBundle(entry.id);
+  const bundle=await loadShippedStart(entry.id);
   if (!bundle) return;
   const id=await ensureUniqueId(entry.id,"scenario");
   const record=bundleScenarioRecord(bundle,id);
@@ -1501,7 +1524,7 @@ const upgradeShippedStart = async (entry) => {
   if (!(await getScenarioManifest()).order.includes(entry.id)) return;
   const stored=await getScenario(entry.id);
   if (!stored || !shippedStartNeedsUpgrade({ meta: stored.meta, data: stored.json },entry)) return;
-  const bundle=await shippedStartBundle(entry.id);
+  const bundle=await loadShippedStart(entry.id);
   if (!bundle) return;
   // A bundle at another version than the list names would be replaced again on every start.
   if (bundle.data?.world?.historicalScenario?.contentVersion !== entry.contentVersion) {

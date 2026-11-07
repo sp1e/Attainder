@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { historicalCampaignName, historicalStartOption, orderHistoricalStarts, pickerCampaignName } from './historicalStartOptions.js';
+import { historicalCampaignName, historicalStartOption, historicalStartOptionFromSummary, offersHistoricalStart, orderHistoricalStarts, pickerCampaignName } from './historicalStartOptions.js';
+import { historicalStartSummary } from '../../server/historicalStartSummary.js';
 import { SHIPPED_START_FOLDERS } from './testing/shippedHistoricalStarts.js';
 test('visible choices follow real bookmark courts and empty catalogs fail closed', () => {
   for (const id of SHIPPED_START_FOLDERS) {
@@ -42,4 +43,34 @@ test('the library bar picker names a campaign after the chosen polity and keeps 
   const bar=readFileSync(new URL('../Game/GameUI/libraryBar.jsx',import.meta.url),'utf8');
   assert.match(bar,/name: pickerCampaignName\(scenario\.name, countryOptions\.filter\(\(option\) => option\.historical\), countryCode\)/);
   assert.match(bar,/nameSv \?\? id,historical:true\}/);
+});
+test('an option built from the library summary matches the one built from the package', () => {
+  for (const id of SHIPPED_START_FOLDERS) {
+    const b=JSON.parse(readFileSync(new URL(`../../server/seed/historical/${id}/scenario.json`,import.meta.url),'utf8'));
+    const full=historicalStartOption(b,b.assets.regionsGeojson.data,b.assets.citiesGeojson.data);
+    const summary=historicalStartSummary({meta:b.scenario,data:b.data});
+    const option=historicalStartOptionFromSummary(`${id}-copy`,summary);
+    assert.equal(option.scenarioId,`${id}-copy`);
+    for (const key of ['name','date','label','context','coverage','calendarNote']) assert.equal(option[key],full[key],`${id} ${key}`);
+    assert.equal(option.eraId,summary.eraId);
+    assert.deepEqual(option.polities.map(p=>[p.id,p.name,p.ruler.name,p.ruler.originLabelSv,p.families]),
+      full.polities.map(p=>[p.id,p.name,p.ruler.name,p.ruler.originLabelSv,p.families]));
+    for (const polity of option.polities) assert.equal(polity.regionId,summary.polities.find(p=>p.id===polity.id).regionId);
+  }
+  const b=JSON.parse(readFileSync(new URL('../../server/seed/historical/charlemagne-800/scenario.json',import.meta.url),'utf8'));
+  const option=historicalStartOptionFromSummary('charlemagne-800',historicalStartSummary({meta:b.scenario,data:b.data}));
+  assert.equal(option.eraId,'early-middle-ages');
+  assert.deepEqual(option.polities.map(p=>p.regionId),['europe','europe']);
+  assert.equal(historicalCampaignName(option,'papal-states','realm'),'Kyrkostaten, 800 e.Kr. · Riket');
+});
+test('the card offers a scenario only for a valid summary of the current schema that is not restore-only', () => {
+  const b=JSON.parse(readFileSync(new URL('../../server/seed/historical/charlemagne-800/scenario.json',import.meta.url),'utf8'));
+  const summary=historicalStartSummary({meta:b.scenario,data:b.data});
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:summary}),true);
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:summary,restoreOnly:true}),false);
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{schema:1,sourceStamp:null,invalid:true}}),false);
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:2}}),false);
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,polities:[]}}),false);
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:null}),false);
+  assert.equal(offersHistoricalStart({id:'a'}),false);
 });
