@@ -3934,6 +3934,426 @@
       "reuseTerms": "Reference only; no source prose or images redistributed",
       "scopedClaim": "The agreement between the Castilian-Aragonese and Portuguese crowns and its Atlantic demarcation line.",
       "asWorded": "7 June 1494"
+    },
+    {
+      "id": "e1500e-met-china",
+      "title": "China, 1400–1600 A.D., Heilbrunn Timeline of Art History, October 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/eac.html",
+      "locator": "Key Events, 1517: Portuguese ship at the Pearl River estuary.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "A ship reaches the estuary in 1517; this does not date an embassy’s reception or every earlier Portuguese voyage.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1517",
+      "scopedClaim": "A Portuguese ship reaches the Pearl River estuary; omit the source’s broader first-European superlative."
+    },
+    {
+      "id": "e1500e-met-japan",
+      "title": "Japan, 1400–1600 A.D., Heilbrunn Timeline of Art History, October 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/eaj.html",
+      "locator": "Key Events, 1513: paragraph on Motonobu’s six-panel Zen-patriarch depiction, expressly introduced with approximate timing.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Motonobu painting approximately1513. The historical timeline heading is qualified by the paragraph’s approximate wording.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1513; At about this time",
+      "scopedClaim": "Motonobu paints Zen patriarchs for a Daitokuji subtemple; the approximate artwork date does not establish the invention of a painting school."
+    },
+    {
+      "id": "e1500e-met-sea",
+      "title": "Southeast Asia, 1400–1600 A.D., Heilbrunn Timeline of Art History, October 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/sse.html",
+      "locator": "Key Events, ca. 1511: mission to Ayudhya requesting trade rights.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Mission approximately 1511. A request is not a signed treaty or completed firearms transfer.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "ca. 1511",
+      "scopedClaim": "Portuguese diplomatic mission seeking trade privileges in exchange for firearms and ammunition."
+    },
+    {
+      "id": "e1500e-aks-jungjong",
+      "title": "Samindae Pavilion, Sunchang / 순창 삼인대",
+      "institution": "Academy of Korean Studies, HeritageWiki",
+      "url": "https://dh.aks.ac.kr/~heritage/wiki/index.php/%EC%88%9C%EC%B0%BD_%EC%82%BC%EC%9D%B8%EB%8C%80",
+      "locator": "English heritage explanation, paragraph beginning In 1506; Korean explanation and English discussion separate the 1744 monument from earlier events.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Coup and replacement of Yeonsangun by Jungjong in 1506. Do not use the monument’s 1744 construction date for the coup.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1506",
+      "scopedClaim": "The royal coup and replacement by the former king’s younger half-brother; unrelated later English-name typo is not adopted."
+    },
+    {
+      "id": "e1500e-aks-literati",
+      "title": "Tomb of Jo Uk / 조욱 선생 묘",
+      "institution": "Academy of Korean Studies, HeritageWiki",
+      "url": "https://dh.aks.ac.kr/~heritage/wiki/index.php/%EC%A1%B0%EC%9A%B1_%EC%84%A0%EC%83%9D_%EB%AC%98",
+      "locator": "English explanation, paragraph on Jo Gwang-jo and the Literati Purge of 1519; corresponding Korean paragraph.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Purge dated 1519; exile or dismissal of followers is explicit. No exact execution day inferred.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1519",
+      "scopedClaim": "Persecution of Jo Gwang-jo and exile or dismissal of followers."
+    },
+    {
+      "id": "e1500e-ditan",
+      "title": "Morning Stroll around Ditan Park, 8 July 2016",
+      "institution": "Promotional Centre of Beijing Municipal Bureau of Culture and Tourism",
+      "url": "https://english.visitbeijing.com.cn/article/47ONbrTX5Kx",
+      "locator": "Opening historical paragraph: Temple of Earth construction and summer-solstice sacrifices.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Temple of Earth built 1530; public park conversion is a separate 1925 act outside this event.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1530",
+      "scopedClaim": "Construction of Ditan and its subsequent imperial earth-sacrifice function; modern directions are not evidence for historical geography."
+    },
+    {
+      "id": "e1500e-guam-trade",
+      "title": "The Matao Iron Trade Part 1: Contact and Commerce, Frank Quimby",
+      "institution": "Guampedia",
+      "url": "https://www.guampedia.com/the-matao-iron-trade-part-i-contact-and-commerce/",
+      "locator": "Matao controlled trade: paragraphs on the 1521 encounter, then 1526 trading ship and abduction for pump work.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Encounter 6–9 March 1521; separate ship visit and abduction in 1526. Event draft retains March/year precision, with no independent circumnavigation day adjustment.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "6-9 March 1521; 1526",
+      "scopedClaim": "Islanders’ trade amid violence; later abduction of eleven island men to work a ship’s pumps."
+    },
+    {
+      "id": "e1500e-guam-landfall",
+      "title": "On the Question of Tattoo by Ancestral Chamorus",
+      "institution": "Guampedia",
+      "url": "https://www.guampedia.com/on-the-question-of-tattoo-by-ancestral-chamorros-2/",
+      "locator": "Early written accounts of body modifications, opening paragraphs on March 1521 and possible landing at Guam or Rota.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Arrival March 1521; precise landfall uncertain between Guam and Rota, with a cited scholarly argument favoring Guam’s west-central coast.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "March 1521",
+      "scopedClaim": "Landfall uncertainty and contact with CHamoru communities; no absence-of-tattoo assertion included in the draft."
+    },
+    {
+      "id": "e1500e-wang",
+      "title": "Wang Yangming, Bryan Van Norden, revised 17 September 2024",
+      "institution": "Stanford Encyclopedia of Philosophy",
+      "url": "https://plato.stanford.edu/entries/wang-yangming/",
+      "locator": "Section 1 Life: exile in 1506, philosophical awakening in 1508, and explanation of moral insight.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Biographical philosophical awakening dated 1508; not a dated book publication or empirically measurable inner state.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1508",
+      "scopedClaim": "A biographically reported turning point in Wang’s philosophy during exile."
+    },
+    {
+      "id": "e1500e-chaitanya",
+      "title": "Chaitanya, Sri, Tony K Stewart",
+      "institution": "Banglapedia, Asiatic Society of Bangladesh",
+      "url": "https://en.banglapedia.org/index.php?title=Chaitanya,_Sri",
+      "locator": "Main biography: paragraph on Keshava Bharati initiating Vishvambhara at Katwa in 1510 and the new religious name.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Initiation dated 1510 (shaka 1431) by the publication. No independent conversion of Shaka chronology or exact day.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1510 (shaka 1431)",
+      "scopedClaim": "Ascetic initiation and adoption of the name Krishna Chaitanya, with narrative tradition distinguished from miraculous claims."
+    },
+    {
+      "id": "e1500e-mactan",
+      "title": "Lapulapu, historical marker installed 1951",
+      "institution": "National Historical Commission of the Philippines, registry of Philippines Historical Committee marker",
+      "url": "https://philhistoricsites.nhcp.gov.ph/registry_database/lapulapu/",
+      "locator": "Marker text, first sentence; marker metadata dates installation to 1951.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Battle dated 27 April 1521; marker installation 1951. The latter does not date the battle.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "27 APRIL 1521",
+      "scopedClaim": "Lapulapu’s forces repulse Magellan’s attack and kill him; no first-Filipino superlative adopted."
+    },
+    {
+      "id": "e1500e-mac",
+      "title": "Commemorating the 485th anniversary of the death of Emperor Mạc Đăng Dung, 2 October 2026",
+      "institution": "Vietnam.vn, Ministry of Culture, Sports and Tourism; Báo Hải Phòng report",
+      "url": "https://www.vietnam.vn/en/ky-niem-485-nam-ngay-mat-thai-to-mac-dang-dung",
+      "locator": "Historical paragraph beginning Mạc Đăng Dung, describing accession and reign name in 1527.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Accession and Minh Duc reign name in 1527. The 2026 commemoration and later abdication are not part of the submitted act.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1527",
+      "scopedClaim": "Mac Dang Dung becomes emperor and begins the Mac dynasty; do not infer unified control over all later Vietnam."
+    },
+    {
+      "id": "e1500e-melaka",
+      "title": "Melaka and George Town (Malaysia), No. 1223, ICOMOS evaluation approved 11 March 2008",
+      "institution": "ICOMOS / UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/document/152086",
+      "locator": "PDF page 2, printed page 74, History and development, paragraph beginning In 1511.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Portuguese conquest of Melaka in 1511. Later construction phases and 1641 Dutch capture remain distinct.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1511",
+      "scopedClaim": "Dated conquest of the city; surviving fortification phases not all assigned to 1511."
+    },
+    {
+      "id": "e1500e-goa",
+      "title": "History of Goa",
+      "institution": "Department of Information and Publicity, Government of Goa",
+      "url": "https://dip.goa.gov.in/history-of-goa/",
+      "locator": "History narrative, paragraph beginning In 1510, immediately after the Bijapur/Adil Shahi discussion.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Portuguese defeat of Bijapur rulers and settlement at Old Goa in 1510. No specific attack day or modern state-wide territorial extent inferred.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1510",
+      "scopedClaim": "Conquest aided by Timayya and establishment at Old Goa."
+    },
+    {
+      "id": "e1500e-sewell",
+      "title": "A Forgotten Empire (Vijayanagar): A Contribution to the History of India, Robert Sewell; with translated chronicles by Domingos Paes and Fernão Nuniz",
+      "institution": "Robert Sewell’s historical study and primary-source translations, Project Gutenberg eBook 3310",
+      "url": "https://www.gutenberg.org/cache/epub/3310/pg3310-images.html",
+      "locator": "Chapter 10 opening accession chronology; Chapter 11 siege/battle narrative and critical discussion of the 1520 dating, including divergent chroniclers.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Accession considered probably 1509; coronation inscription dates and accession are distinguished. Sewell argues for battle 1520 against older 1521/1522 chronologies; no own astronomical calculation or new day conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1509; 1520; 1521; 1522",
+      "scopedClaim": "Qualified accession year and Sewell’s stated battle-year conclusion. Old scholarship and translated chronicles are identified separately from a present consensus claim."
+    },
+    {
+      "id": "e1500e-babur",
+      "title": "Babur, MANAS",
+      "institution": "University of California, Los Angeles, Social Sciences",
+      "url": "https://southasia.ucla.edu/history-politics/mughals-and-medieval/babur/",
+      "locator": "Opening historical narrative: Panipat in 1526 and the following-year victory over Rana Sanga’s confederacy.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Panipat dated 1526; next sentence explicitly puts Rajput-confederacy victory in the following year, represented as 1527. This is textual succession, not an independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1526; In the following year",
+      "scopedClaim": "Two separate victories; do not adopt unverified army totals, the later death-day statement or unrelated disputed mosque narrative."
+    },
+    {
+      "id": "e1500e-taranaki",
+      "title": "Historic volcanic activity, Eileen McSaveney, Carol Stewart and Graham Leonard, print view",
+      "institution": "Te Ara – The Encyclopedia of New Zealand, Ministry for Culture and Heritage",
+      "url": "https://teara.govt.nz/en/historic-volcanic-activity/print",
+      "locator": "Eruptions in early history, Mt Taranaki subsection; sentence on Māori ovens between eruption ash deposits.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Eruptions around 1450, 1500 and 1655; only the approximate 1500 event is selected. Do not assign the undated Karakatonga oral-history destruction to this particular eruption.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "around 1450, 1500 and 1655",
+      "scopedClaim": "Approximate eruption around 1500 and archaeological ovens between ash deposits, without inventing casualty or settlement-destruction dates."
+    },
+    {
+      "id": "e1500e-review-raichur",
+      "title": "How to Reach — Raichur District Website",
+      "institution": "District Administration, Raichur; National Informatics Centre, Government of India",
+      "url": "https://raichur.nic.in/en/how-to-reach/",
+      "locator": "By Train, sentence identifying Raichur Railway Station as a junction in Karnataka; page heading and Government of Karnataka header; District Administration/NIC footer (web lines 147–155, 170–172).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Contemporary geographic orientation only. No historical battle date or administrative-border equivalence is taken from this page.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "in the state of Karnataka",
+      "scopedClaim": "The modern Karnataka/India locator for Raichur only; no battle-year claim."
+    },
+    {
+      "id": "e1500e-review-dai-viet",
+      "title": "Nguyen Thi My Hanh, Controversial border and territory issues between the Mac dynasty (Dai Viet) and Ming dynasty (China), Humanities and Social Sciences Communications 9, 259 (2022)",
+      "institution": "Hanoi National University of Education; Springer Nature / Palgrave",
+      "url": "https://www.nature.com/articles/s41599-022-01281-7",
+      "locator": "The position and correlation of forces between Dai Viet and China in the first half of the sixteenth century, first paragraph, first sentence; Notes, note 3. DOI 10.1057/s41599-022-01281-7. Actual article passages read through Firecrawl; direct web open failed at cookie/authentication redirect.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "The first paragraph places the Mac dynasty's beginning in Dai Viet in 1527; note 3 identifies Dai Viet as a historical national title of Vietnam. This source is cited for the polity name and geographic orientation only.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "In 1527; Dai Viet",
+      "scopedClaim": "Dai Viet as the historical polity name for the Mac dynasty, with Vietnam as present-day orientation; no claims about territorial extent or the later border dispute."
+    },
+    {
+      "id": "e1500e-review-mch",
+      "title": "Homepage — Manatū Taonga | Ministry for Culture & Heritage",
+      "institution": "Manatū Taonga, Ministry for Culture & Heritage, New Zealand",
+      "url": "https://www.mch.govt.nz/",
+      "locator": "Our websites Ō mātou paetukutuku, English paragraph pairing Aotearoa New Zealand; page title identifies the ministry (web lines 62–66).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Contemporary institutional identity and geographic name pairing. This page supplies no date for a historical eruption.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "Aotearoa New Zealand",
+      "scopedClaim": "The Aotearoa/New Zealand name pairing and the ministry's identity only; zero support for the historical eruption year."
+    },
+    {
+      "id": "supp-katwa-location",
+      "title": "Municipality | Purba Bardhaman District, Govt. of WB | India",
+      "institution": "Purba Bardhaman District Administration, Government of West Bengal; National Informatics Centre, Government of India",
+      "url": "https://purbabardhaman.nic.in/municipality/",
+      "locator": "Government of West Bengal header; Municipality > Municipalities of Purba Bardhaman Distict, Katwa Municipality address row; District Administration/NIC/Government of India footer. Web rendering lines 21–24, 99–108 and 111–115; saved origin HTML and transformed text.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Contemporary geographic orientation only. Katwa is listed in Purba Bardhaman, West Bengal, India. This page supplies no 1510 initiation date and does not define historical Bengal borders.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "Katwa Municipality; Katwa Dak Bunglow Road, Katwa, Purba Bardhaman, Pin-713130; Government of West Bengal",
+      "scopedClaim": "Contemporary location of Katwa in Purba Bardhaman, West Bengal, India; no 1510 chronology or historical frontier claim."
+    },
+    {
+      "id": "e1500w-iranica-ismail",
+      "title": "Roger M. Savory, ESMĀʿĪL I ṢAFAWĪ i. Biography, 1998, VIII/6, pp. 628–636",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/esmail-i-safawi/esmail-i-safawi-i-biography/",
+      "locator": "Opening biography L43 (Twelver Shiism) and L98 (coronation); establishment/consolidation section L178–199 (Marv, especially L185); campaign paragraph L274–278 and battle sequel L278–282 (Chaldiran); final assessment L327–332 (death and succession). Numbered independent extraction A01.extracted.txt.",
+      "asWorded": "906-7/1501; 30 Šaʿbān 916/2 December 1510; 1514; 930/1524",
+      "scopedClaim": "Ismail's coronation and religious proclamation, victory at Marv, defeat at Chaldiran, and death followed by Tahmasp.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "906-7/1501; 30 Šaʿbān 916/2 December 1510; 1514; 930/1524; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1500w-met-mexico",
+      "title": "Mexico, 1400–1600 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/08/canm.html",
+      "locator": "Key Events entries 1502, 1519, 1521 and 1524; Overview paragraph on Cortés.",
+      "asWorded": "1502; 1519; 1521; 1524",
+      "scopedClaim": "Montezuma II's coronation, Cortés's landing and reception, Tenochtitlan's siege and fall, and arrival of twelve Franciscans.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1502; 1519; 1521; 1524; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1500w-vatican-sistine",
+      "title": "Sistine Chapel",
+      "institution": "The Holy See",
+      "url": "https://www.vatican.va/content/vatican/en/ra/cappella-sistina.html",
+      "locator": "Friar’s text, second paragraph, beginning A first phase of decoration.",
+      "asWorded": "All Saints Day in 1512",
+      "scopedClaim": "Julius II inaugurated Michelangelo's Genesis-inspired ceiling in 1512.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "All Saints Day in 1512; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1500w-luther-theses",
+      "title": "Mirko Gutjahr, Hat er oder hat er nicht? (30 October 2024)",
+      "institution": "Stiftung Luthergedenkstätten in Sachsen-Anhalt, LutherMuseen",
+      "url": "https://www.luthermuseen.de/news/hat-er-oder-hat-er-nicht",
+      "locator": "Reformationstag 2024, opening paragraph and the following discussion of letter versus door posting.",
+      "asWorded": "31.10.1517",
+      "scopedClaim": "Luther sent his indulgence theses to Albrecht of Brandenburg in a dated letter; personally posting them on a church door remains disputed.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "31.10.1517; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1500w-luther-september",
+      "title": "Mirko Gutjahr, Luthers Septembertestament (14 September 2022)",
+      "institution": "Stiftung Luthergedenkstätten in Sachsen-Anhalt, LutherMuseen",
+      "url": "https://www.luthermuseen.de/en/node/243",
+      "locator": "Paragraph beginning Das fertige Manuskript, including the later sentence beginning Das Newe Testament Deutzsch within that same paragraph; A05.extracted.txt L46.",
+      "asWorded": "März 1522; im September",
+      "scopedClaim": "Luther brought his manuscript to Wittenberg in 1522, revised it with Melanchthon and had the German New Testament printed that September without naming the translator.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "März 1522; im September; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1500w-memoria-magellan",
+      "title": "Hernando de Magallanes (1480–1521)",
+      "institution": "Memoria Chilena, Biblioteca Nacional de Chile",
+      "url": "https://www.memoriachilena.gob.cl/602/w3-article-95895.html",
+      "locator": "Departure: paragraph beginning Con una capitulación, with Tras un año y medio later in that paragraph (A06.extracted.txt L79). Return: paragraph beginning Hernando de Magallanes murió, including Elcano and return to Spain (L86–88).",
+      "asWorded": "20 de septiembre de 1519; 6 de septiembre de 1522",
+      "scopedClaim": "Departure from Sanlúcar toward the spice islands in 1519 and return to Spain under Elcano after circumnavigation in 1522.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "20 de septiembre de 1519; 6 de septiembre de 1522; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1500w-met-central-africa",
+      "title": "Central Africa, 1400–1600 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/08/afc.html",
+      "locator": "Key Events, 1520 entry.",
+      "asWorded": "1520",
+      "scopedClaim": "A Portuguese royal decree called for conversion of Ndongo's Mbundu peoples; the passage also describes resistance to missionaries.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1520; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1500w-stockholm-bloodbath",
+      "title": "Stockholms blodbad 1520",
+      "institution": "Stockholmskällan, Stockholms stad",
+      "url": "https://stockholmskallan.stockholm.se/teman/stockholmshandelser/stockholms-blodbad-1520/",
+      "locator": "Opening paragraphs; Blodbadet började med kröning och fest, final sentence on Stortorget.",
+      "asWorded": "8-9 november 1520",
+      "scopedClaim": "Executions after Christian II's coronation, the affected bishops, nobles and civic officials, and the Stortorget execution site.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "8-9 november 1520; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1500w-riksarkivet-vasa",
+      "title": "Sverige 1523 (2023), Riksarkivets årsbok, edited by Claes Gejrot",
+      "institution": "Riksarkivet",
+      "url": "https://webbutik.riksarkivet.se/se/produkter/bocker/sverige-1523.html",
+      "locator": "Public publisher description, first sentence under Beskrivning, article 5162; bibliographic fields above. Only this description was read, not the book.",
+      "asWorded": "6 juni 1523",
+      "scopedClaim": "The regent Gustav Eriksson Vasa was elected king of Sweden at a meeting in Strängnäs on the supplied date.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "6 juni 1523; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1500w-met-mamluk-conquest",
+      "title": "The Eastern Mediterranean, 1400–1600 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/08/wae.html",
+      "locator": "Key Events, 1516–1517 entry, first sentence.",
+      "asWorded": "1516–1517",
+      "scopedClaim": "Ottoman armies under Selim conquered Syria and Egypt and ended the Mamluk sultanate during the supplied interval.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1516–1517; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1500w-afonso-letters",
+      "title": "4.10: Primary Source: King Affonso of Congo; excerpts translated by Basil Davidson in The African Past (1964)",
+      "institution": "Lumen Learning, hosted by Humanities LibreTexts",
+      "url": "https://human.libretexts.org/Courses/Lumen_Learning/Book:_History_of_World_Civilization_II-2_(Lumen)/04:_2:_African_Slave_Trade/04.10:_Primary_Source:_King_Affonso_of_Congo",
+      "locator": "FIRST LETTER and SECOND LETTER; particularly the kidnapping/free-person paragraphs and paragraph beginning And to avoid such a great evil; date and attribution lines.",
+      "asWorded": "Letters written in 1526",
+      "scopedClaim": "The translated letters complain of kidnapping and selling free subjects and describe official checks to distinguish free people from captives.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Letters written in 1526; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1500w-augsburg-confession",
+      "title": "Augsburger Bekenntnis (Confessio Augustana) 1530",
+      "institution": "Österreichische UNESCO-Kommission",
+      "url": "https://www.unesco.at/kommunikation/dokumentenerbe/memory-of-austria/verzeichnis/detail/article/augsburger-bekenntnis-confessio-augustana-1530/",
+      "locator": "Entry under Österreichisches Staatsarchiv: first three descriptive paragraphs, restricted to Melanchthon, presentation date/place and defence against heresy allegations.",
+      "asWorded": "25. Juni 1530",
+      "scopedClaim": "Melanchthon's confession was presented to the emperor and imperial princes at Augsburg and defended the Reformation against heresy allegations.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "25. Juni 1530; source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "additional-luther-letter-1915",
+      "title": "Martin Luther, Letter to the Archbishop Albrecht of Mainz, October 31, 1517, in Works of Martin Luther, with Introductions and Notes, Volume I",
+      "institution": "A. J. Holman Company (1915 edition); Project Gutenberg digital transcription",
+      "url": "https://www.gutenberg.org/cache/epub/31604/pg31604.html",
+      "locator": "Project Gutenberg ebook #31604: imprint after START marker (Philadelphia, A. J. Holman Company, 1915); section I, Letter to the Archbishop Albrecht of Mainz, with separate edition heading October 31, 1517. Salutation names Albrecht and his archbishopric. Full translated letter through Brother Martin Luther, including closing From Wittenberg with Vigil of All Saints, MDXVII, and postscript offering the Disputations. Selected front matter and this letter were read; the whole volume and underlying manuscript were not.",
+      "asWorded": "OCTOBER 31, 1517 (edition heading); Vigil of All Saints, MDXVII (letter closing)",
+      "scopedClaim": "The translated letter addresses Albrecht as archbishop of Mainz, identifies Wittenberg in its closing and refers to the enclosed disputations. The edition heading supplies the calendar date. The excerpt does not establish personal door posting.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "OCTOBER 31, 1517 (edition heading); Vigil of All Saints, MDXVII (letter closing); source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "additional-ndb-albrecht",
+      "title": "Heinrich Grimm, Albrecht, Neue Deutsche Biographie 1 (1953), pp. 166–167",
+      "institution": "Deutsche Biographie, Neue Deutsche Biographie",
+      "url": "https://www.deutsche-biographie.de/sfz52646.html?language=de",
+      "locator": "Deutsche Biographie, NDB tab #ndbcontent: opening Albrecht subtitle before Genealogie gives Mainz offices since 1514 and cardinalate since 1.8.1518; biography under #ndbcontent_leben. Attribution/citation under #ndbcontent_autor and #ndbcontent_zitierweise identify Heinrich Grimm, Neue Deutsche Biographie 1 (1953), pages 166–167. The adjacent ADB tab is a separate work.",
+      "asWorded": "Erzbischof und Kurfürst von Mainz (seit 1514); Kardinal (seit 1.8.1518)",
+      "scopedClaim": "The NDB opening dates Albrecht's archbishopric of Mainz from 1514 and cardinal office from 1518. This batch uses the year of cardinal appointment only and does not reconcile an exact appointment day.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Erzbischof und Kurfürst von Mainz (seit 1514); Kardinal (seit 1.8.1518); source-supplied chronology retained without independent conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
     }
   ],
   "events": [
@@ -12562,6 +12982,899 @@
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1500-taranaki-utbrott",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1500,
+        "endYear": 1500,
+        "displaySv": "cirka 1500"
+      },
+      "titleSv": "Taranaki får ett utbrott",
+      "summarySv": "Ett utbrott vid Taranaki dateras till omkring 1500. På vulkanens sluttningar ligger māoriska jordugnar mellan asklager från flera utbrott.",
+      "geographySv": "Taranaki, Aotearoa/Nya Zeeland",
+      "category": "nature",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-taranaki",
+        "e1500e-review-mch"
+      ],
+      "selectionNote": "A source-dated approximate natural event and archaeological human context; not a dated legend of settlement destruction.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, F01)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Dateringen är ungefärlig och anger inte ett säkert kalenderår."
+    },
+    {
+      "id": "ev-1501-ismail-krons-i-tabriz",
+      "date": {
+        "kind": "exact",
+        "startYear": 1501,
+        "endYear": 1501,
+        "displaySv": "1501"
+      },
+      "titleSv": "Ismail kröns till shah i Tabriz",
+      "summarySv": "Ismail kröns till shah i Tabriz. Den nye härskaren gör tolvshiismen till statsreligion.",
+      "geographySv": "Tabriz",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-iranica-ismail"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, followup)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1502-montezuma-ii-krons",
+      "date": {
+        "kind": "exact",
+        "startYear": 1502,
+        "endYear": 1502,
+        "displaySv": "1502"
+      },
+      "titleSv": "Montezuma II kröns i Tenochtitlan",
+      "summarySv": "Aztekernas nye härskare är Motecuhzoma Xocoyotzin, även kallad Montezuma II. Kröningen sker i Tenochtitlan.",
+      "geographySv": "Tenochtitlan",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1500w-met-mexico"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1506-jungjong-kupp",
+      "date": {
+        "kind": "exact",
+        "startYear": 1506,
+        "endYear": 1506,
+        "displaySv": "1506"
+      },
+      "titleSv": "En kupp för Jungjong till tronen",
+      "summarySv": "Yeonsangun störtas genom en kupp 1506. Hans yngre halvbror sätts på tronen som kung Jungjong.",
+      "geographySv": "Joseon, Korea",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-aks-jungjong"
+      ],
+      "selectionNote": "A discrete royal replacement, distinguished from a later memorial monument.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, F01)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1508-wang-yangming-genombrott",
+      "date": {
+        "kind": "exact",
+        "startYear": 1508,
+        "endYear": 1508,
+        "displaySv": "1508"
+      },
+      "titleSv": "Wang Yangmings filosofiska genombrott dateras till 1508",
+      "summarySv": "Wang Yangming får enligt den biografiska framställningen en filosofisk insikt under sin förvisning 1508. Han börjar söka den moraliska insikten i människans eget sinne.",
+      "geographySv": "Guizhou i nuvarande Kina",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-wang"
+      ],
+      "selectionNote": "A biographically reported philosophical turning point, with attribution retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, initial)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Årtalet gäller en återgiven inre erfarenhet och daterar ingen bokutgivning."
+    },
+    {
+      "id": "ev-1509-krishnadevaraya-tilltrade",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1509,
+        "endYear": 1509,
+        "displaySv": "cirka 1509"
+      },
+      "titleSv": "Krishnadevaraya tillträder i Vijayanagara",
+      "summarySv": "Krishnadevaraya tar enligt Sewells bedömning över tronen omkring 1509. Han blir härskare i Vijayanagara.",
+      "geographySv": "Vijayanagara, södra Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-sewell"
+      ],
+      "selectionNote": "Preserves the historical study’s probable accession dating; coronation inscriptions are not silently substituted for accession.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, initial)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Sewell skiljer mellan tillträde och kröning och beskriver osäkra uppgifter om kröningsfestens datum."
+    },
+    {
+      "id": "ev-1510-chaitanya-asket",
+      "date": {
+        "kind": "exact",
+        "startYear": 1510,
+        "endYear": 1510,
+        "displaySv": "1510"
+      },
+      "titleSv": "Chaitanya avlägger asketiska löften",
+      "summarySv": "Vishvambhara invigs till asket av Keshava Bharati i Katwa 1510. Han antar det religiösa namnet Krishna Chaitanya.",
+      "geographySv": "Katwa i Bengalen, nuvarande Indien",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-chaitanya",
+        "supp-katwa-location"
+      ],
+      "selectionNote": "A dated religious change in a South Asian devotional movement, without adopting miraculous claims.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, F01)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Källan anger 1510 och shaka 1431; någon egen kalenderomräkning har inte gjorts."
+    },
+    {
+      "id": "ev-1510-goa-erovras",
+      "date": {
+        "kind": "exact",
+        "startYear": 1510,
+        "endYear": 1510,
+        "displaySv": "1510"
+      },
+      "titleSv": "Portugiserna tar Gamla Goa",
+      "summarySv": "Portugisiska styrkor besegrar Bijapurs härskare med hjälp av Timayya 1510. De etablerar ett varaktigt fäste i Gamla Goa.",
+      "geographySv": "Gamla Goa, Indien",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1500e-goa"
+      ],
+      "selectionNote": "Dated conquest with local alliance explicitly visible; not an assertion that all modern Goa was acquired at once.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1510-ismail-besegrar-shaybani-vid-marv",
+      "date": {
+        "kind": "exact",
+        "startYear": 1510,
+        "endYear": 1510,
+        "displaySv": "1510"
+      },
+      "titleSv": "Ismail besegrar Muhammad Shaybani vid Marv",
+      "summarySv": "Ismails styrkor besegrar Muhammad Shaybani vid Marv. Segern driver tillbaka uzbekerna från Khorasan.",
+      "geographySv": "Marv och Khorasan",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-iranica-ismail"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, followup)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1511-ayutthaya-portugisisk-beskickning",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1511,
+        "endYear": 1511,
+        "displaySv": "cirka 1511"
+      },
+      "titleSv": "Portugiserna söker handelsrätt i Ayutthaya",
+      "summarySv": "En portugisisk beskickning sänds till Ayutthaya omkring 1511. Den begär handelsrättigheter i utbyte mot skjutvapen och ammunition.",
+      "geographySv": "Ayutthaya, nuvarande Thailand",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-met-sea"
+      ],
+      "selectionNote": "A diplomatic request, not a claim that a treaty was concluded or arms delivered in the same year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1511-melaka-erovras",
+      "date": {
+        "kind": "exact",
+        "startYear": 1511,
+        "endYear": 1511,
+        "displaySv": "1511"
+      },
+      "titleSv": "Portugiserna erövrar Melaka",
+      "summarySv": "Portugiserna erövrar staden Melaka 1511. Staden ligger vid det strategiska Malackasundet.",
+      "geographySv": "Melaka, nuvarande Malaysia",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1500e-melaka"
+      ],
+      "selectionNote": "Conquest of an existing trading city, without treating later fort buildings as completed that year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1512-sixtinska-takmalningarna-invigs",
+      "date": {
+        "kind": "exact",
+        "startYear": 1512,
+        "endYear": 1512,
+        "displaySv": "1512"
+      },
+      "titleSv": "Sixtinska kapellets takmålningar invigs",
+      "summarySv": "Påven Julius II inviger Michelangelos takmålningar i Sixtinska kapellet. Bildsviten hämtar motiv ur Första Moseboken.",
+      "geographySv": "Sixtinska kapellet",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1500w-vatican-sistine"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1513-motonobu-zenpatriarker",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1513,
+        "endYear": 1513,
+        "displaySv": "cirka 1513"
+      },
+      "titleSv": "Kanō Motonobu målar zenpatriarker",
+      "summarySv": "Kanō Motonobu målar omkring 1513 sex paneler med zenpatriarker. De är avsedda för ett undertempel till Daitokuji i Kyoto.",
+      "geographySv": "Kyoto, Japan",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-met-japan"
+      ],
+      "selectionNote": "Approximate painting act retained; not an invented foundation date for the Kano school.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, initial)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Museets formulering gör tidpunkten ungefärlig."
+    },
+    {
+      "id": "ev-1514-osmanerna-segrar-vid-chaldiran",
+      "date": {
+        "kind": "exact",
+        "startYear": 1514,
+        "endYear": 1514,
+        "displaySv": "1514"
+      },
+      "titleSv": "Osmanerna besegrar safaviderna vid Chaldiran",
+      "summarySv": "Selim I:s armé slår Ismails styrkor vid Chaldiran. Det osmanska artilleriet orsakar stora förluster bland qizilbashkavalleriet.",
+      "geographySv": "Chaldiran",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-iranica-ismail"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, followup)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1516-osmanerna-erovrar-syrien-egypten",
+      "date": {
+        "kind": "range",
+        "startYear": 1516,
+        "endYear": 1517,
+        "displaySv": "1516–1517"
+      },
+      "titleSv": "Osmanerna erövrar Syrien och Egypten",
+      "summarySv": "Selim I:s osmanska arméer erövrar Syrien och Egypten. Fälttågen avslutar det mamlukiska sultanatets styre.",
+      "geographySv": "Syrien och Egypten",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-met-mamluk-conquest"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, initial)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Källan daterar det samlade erövringsförloppet till 1516–1517. Notisen anger ingen gemensam erövringsdag för båda områdena."
+    },
+    {
+      "id": "ev-1517-luther-sander-sina-teser",
+      "date": {
+        "kind": "exact",
+        "startYear": 1517,
+        "endYear": 1517,
+        "displaySv": "1517"
+      },
+      "titleSv": "Luther sänder sina teser mot avlaten",
+      "summarySv": "Martin Luther skickar sina teser mot avlaten till ärkebiskop Albrecht av Mainz. Brevet är daterat den 31 oktober 1517.",
+      "geographySv": "Wittenberg",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-luther-theses",
+        "additional-luther-letter-1915",
+        "additional-ndb-albrecht"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, followup)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Brevet är belagt. Om Luther själv spikade upp teserna på slottskyrkans dörr är omstritt."
+    },
+    {
+      "id": "ev-1517-portugisiskt-fartyg-parlfloden",
+      "date": {
+        "kind": "exact",
+        "startYear": 1517,
+        "endYear": 1517,
+        "displaySv": "1517"
+      },
+      "titleSv": "Ett portugisiskt fartyg når Pärlflodens mynning",
+      "summarySv": "Ett portugisiskt fartyg når Pärlflodens mynning 1517. Resan för portugisiska sjöfarare till Kinas kust.",
+      "geographySv": "Pärlflodens mynning, Kina",
+      "category": "discovery",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-met-china"
+      ],
+      "selectionNote": "A specific arrival, without an unsupported universal first-arrival claim or embassy reception date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1519-cortes-landstiger-vid-cempoala",
+      "date": {
+        "kind": "exact",
+        "startYear": 1519,
+        "endYear": 1519,
+        "displaySv": "1519"
+      },
+      "titleSv": "Cortés landstiger nära Cempoala",
+      "summarySv": "Hernán Cortés landstiger nära Cempoala med omkring 500 soldater. Montezuma II:s sändebud möter expeditionen med gåvor.",
+      "geographySv": "Kusten nära Cempoala",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-met-mexico"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1519-joseon-lardomspurgen",
+      "date": {
+        "kind": "exact",
+        "startYear": 1519,
+        "endYear": 1519,
+        "displaySv": "1519"
+      },
+      "titleSv": "Konfucianska lärda förföljs i Joseon",
+      "summarySv": "Jo Gwang-jo förföljs under lärdomspurgen 1519. Hans anhängare förvisas eller avsätts från sina ämbeten.",
+      "geographySv": "Joseon, Korea",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-aks-literati"
+      ],
+      "selectionNote": "Political repression dated independently of the later tomb and heritage designation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, F01)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1519-magellans-flotta-avseglar",
+      "date": {
+        "kind": "exact",
+        "startYear": 1519,
+        "endYear": 1519,
+        "displaySv": "1519"
+      },
+      "titleSv": "Magellans flotta lämnar Sanlúcar",
+      "summarySv": "Ferdinand Magellans flotta lämnar Sanlúcar de Barrameda. Målet är att nå kryddöarna i dagens indonesiska övärld.",
+      "geographySv": "Sanlúcar de Barrameda",
+      "category": "discovery",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-memoria-magellan"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, followup)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1520-portugisiskt-missionsdekret-ndongo",
+      "date": {
+        "kind": "exact",
+        "startYear": 1520,
+        "endYear": 1520,
+        "displaySv": "1520"
+      },
+      "titleSv": "Portugisiskt dekret kräver kristnande i Ndongo",
+      "summarySv": "Ett portugisiskt kungligt dekret kräver att mbundufolken i Ndongo kristnas. Museets skildring beskriver också hur rikets ledare motsätter sig missionärernas verksamhet.",
+      "geographySv": "Ndongo",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1500w-met-central-africa"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, initial)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Årtalet gäller dekretet. Källans bredare beskrivning av motståndet ger inget separat årtal för varje handling."
+    },
+    {
+      "id": "ev-1520-raichur-vijayanagara",
+      "date": {
+        "kind": "exact",
+        "startYear": 1520,
+        "endYear": 1520,
+        "displaySv": "1520"
+      },
+      "titleSv": "Vijayanagara besegrar Bijapur vid Raichur",
+      "summarySv": "Krishnadevarayas styrkor besegrar Bijapurs armé vid Raichur. Sewell daterar slaget till 1520.",
+      "geographySv": "Raichur, nuvarande Karnataka i Indien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-sewell",
+        "e1500e-review-raichur"
+      ],
+      "selectionNote": "Uses the historian’s explicit source comparison; does not recompute astronomical or calendar dates.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, F01)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Sewell argumenterar för 1520 och avvisar äldre källors dateringar till 1521 och 1522."
+    },
+    {
+      "id": "ev-1520-stockholms-blodbad",
+      "date": {
+        "kind": "exact",
+        "startYear": 1520,
+        "endYear": 1520,
+        "displaySv": "1520"
+      },
+      "titleSv": "Stockholms blodbad",
+      "summarySv": "Efter Kristian II:s kröning avrättas biskopar, adelsmän och personer ur Stockholms stadsledning. Avrättningarna sker på Stortorget.",
+      "geographySv": "Stockholm",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-stockholm-bloodbath"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1521-mactan-lapulapu",
+      "date": {
+        "kind": "exact",
+        "startYear": 1521,
+        "endYear": 1521,
+        "displaySv": "27 april 1521"
+      },
+      "titleSv": "Lapulapus styrkor slår tillbaka Magellan",
+      "summarySv": "Lapulapu och hans styrkor slår tillbaka Magellans angrepp vid Mactan den 27 april 1521. Magellan dödas i striden.",
+      "geographySv": "Mactan, nuvarande Filippinerna",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1500e-mactan"
+      ],
+      "selectionNote": "Local defense and a dated battle, not the entire circumnavigation as a duplicate event.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, initial)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Årtalet avser slaget; det citerade minnesmärket restes 1951."
+    },
+    {
+      "id": "ev-1521-marianerna-magellan-kontakt",
+      "date": {
+        "kind": "exact",
+        "startYear": 1521,
+        "endYear": 1521,
+        "displaySv": "mars 1521"
+      },
+      "titleSv": "CHamorus möter Magellans expedition",
+      "summarySv": "CHamorus möter Magellans expedition på Marianasöarna i mars 1521. Öborna byter livsmedel med besättningen samtidigt som våldsamheter bryter ut.",
+      "geographySv": "Marianasöarna i Mikronesien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-guam-trade",
+        "e1500e-guam-landfall"
+      ],
+      "selectionNote": "Local contact, commerce and violence; neither discovery of an empty land nor immediate colonial control.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, initial)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Den exakta landstigningsplatsen är osäker; den lästa framställningen nämner Guam eller Rota."
+    },
+    {
+      "id": "ev-1521-tenochtitlan-faller",
+      "date": {
+        "kind": "exact",
+        "startYear": 1521,
+        "endYear": 1521,
+        "displaySv": "1521"
+      },
+      "titleSv": "Tenochtitlan faller",
+      "summarySv": "Spanska trupper och tlaxcaltekiska allierade belägrar Tenochtitlan. Cuauhtémoc tillfångatas när staden faller.",
+      "geographySv": "Tenochtitlan",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-met-mexico"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1522-elcano-atervander-till-spanien",
+      "date": {
+        "kind": "exact",
+        "startYear": 1522,
+        "endYear": 1522,
+        "displaySv": "1522"
+      },
+      "titleSv": "Elcanos expedition fullbordar resan runt jorden",
+      "summarySv": "Juan Sebastián Elcano för expeditionen tillbaka till Spanien. Resan har då gått runt jorden.",
+      "geographySv": "Spanien",
+      "category": "discovery",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-memoria-magellan"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, followup)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1522-luthers-nya-testamente-trycks",
+      "date": {
+        "kind": "exact",
+        "startYear": 1522,
+        "endYear": 1522,
+        "displaySv": "1522"
+      },
+      "titleSv": "Luthers tyska Nya testamente trycks",
+      "summarySv": "Luthers översättning av Nya testamentet trycks efter bearbetning tillsammans med Philipp Melanchthon. Septemberutgåvan anger inte översättarens namn.",
+      "geographySv": "Wittenberg",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-luther-september"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, followup)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1523-gustav-vasa-valjs-till-kung",
+      "date": {
+        "kind": "exact",
+        "startYear": 1523,
+        "endYear": 1523,
+        "displaySv": "1523"
+      },
+      "titleSv": "Gustav Vasa väljs till kung",
+      "summarySv": "Riksföreståndaren Gustav Eriksson Vasa blir vald till kung av Sverige. Valmötet hålls i Strängnäs den 6 juni.",
+      "geographySv": "Strängnäs",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-riksarkivet-vasa"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1524-ismail-dor-tahmasp-eftertrader",
+      "date": {
+        "kind": "exact",
+        "startYear": 1524,
+        "endYear": 1524,
+        "displaySv": "1524"
+      },
+      "titleSv": "Tahmasp efterträder shah Ismail",
+      "summarySv": "Shah Ismail dör. Hans son Tahmasp efterträder honom.",
+      "geographySv": "Persien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1500w-iranica-ismail"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, followup)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1524-tolv-franciskaner-anlander-mexiko",
+      "date": {
+        "kind": "exact",
+        "startYear": 1524,
+        "endYear": 1524,
+        "displaySv": "1524"
+      },
+      "titleSv": "Tolv franciskaner anländer till Mexiko",
+      "summarySv": "Tolv franciskanbröder anländer till Mexiko. De inleder missionsarbete för att omvända ursprungsbefolkningen till katolicismen.",
+      "geographySv": "Mexiko",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1500w-met-mexico"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1526-afonso-klagar-over-kidnappningar",
+      "date": {
+        "kind": "exact",
+        "startYear": 1526,
+        "endYear": 1526,
+        "displaySv": "1526"
+      },
+      "titleSv": "Kongos kung protesterar mot kidnappningar",
+      "summarySv": "Kongos kung Afonso klagar i brev över att fria undersåtar rövas bort och säljs. Han beskriver även kontroll genom kungliga ämbetsmän för att skilja fria människor från fångar.",
+      "geographySv": "Kongo",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-afonso-letters"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, initial)",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Den lästa utgåvan daterar brevutdragen till 1526 utan att ange dag för vart och ett. Brevens beskrivning av kontrollåtgärder daterar inte deras införande."
+    },
+    {
+      "id": "ev-1526-guam-elva-man-bortfors",
+      "date": {
+        "kind": "exact",
+        "startYear": 1526,
+        "endYear": 1526,
+        "displaySv": "1526"
+      },
+      "titleSv": "En fartygsbesättning för bort elva män från Guam",
+      "summarySv": "Ett besökande fartyg handlar med öbor vid Guam 1526. Kaptenen för bort elva män för att bemanna fartygets pumpar och seglar mot Mindanao.",
+      "geographySv": "Guam i Mikronesien",
+      "category": "migration",
+      "importance": 1,
+      "sourceIds": [
+        "e1500e-guam-trade"
+      ],
+      "selectionNote": "A separate later coercive maritime encounter, with forced removal stated plainly and without inventing names or exact dates.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1526-panipat-babur",
+      "date": {
+        "kind": "exact",
+        "startYear": 1526,
+        "endYear": 1526,
+        "displaySv": "1526"
+      },
+      "titleSv": "Babur besegrar Ibrahim Lodi vid Panipat",
+      "summarySv": "Baburs armé besegrar sultan Ibrahim Lodi vid Panipat 1526. Denna seger och den följande segern över Rana Sangas förbund ger tillsammans Babur en grund för att befästa sitt styre i norra Indien.",
+      "geographySv": "Panipat, Indien",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1500e-babur"
+      ],
+      "selectionNote": "A major political turning point; omit uncertain army totals and claims about the later maximum empire.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, F01)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1527-babur-rana-sanga",
+      "date": {
+        "kind": "exact",
+        "startYear": 1527,
+        "endYear": 1527,
+        "displaySv": "1527"
+      },
+      "titleSv": "Babur besegrar Rana Sangas förbund",
+      "summarySv": "Babur besegrar 1527 ett förbund av rajputiska kungar under Rana Sanga. Denne är härskare i Mewar.",
+      "geographySv": "Norra Indien, med Mewar i nuvarande Rajasthan",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-babur"
+      ],
+      "selectionNote": "The source puts this distinct victory in the year after Panipat; no separate battle-site label is invented.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, F01)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1527-mac-dang-dung-kejsare",
+      "date": {
+        "kind": "exact",
+        "startYear": 1527,
+        "endYear": 1527,
+        "displaySv": "1527"
+      },
+      "titleSv": "Mạc Đăng Dung blir kejsare",
+      "summarySv": "Mạc Đăng Dung bestiger kejsartronen 1527. Han antar regeringsnamnet Minh Đức och inleder Mạcdynastin.",
+      "geographySv": "Dai Viet, nuvarande Vietnam",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-mac",
+        "e1500e-review-dai-viet"
+      ],
+      "selectionNote": "A dated dynastic change from a Vietnamese institutional historical account; no whole-country control inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, F01)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1530-augsburgska-bekannelsen-laggs-fram",
+      "date": {
+        "kind": "exact",
+        "startYear": 1530,
+        "endYear": 1530,
+        "displaySv": "1530"
+      },
+      "titleSv": "Augsburgska bekännelsen läggs fram",
+      "summarySv": "Philipp Melanchthons bekännelseskrift läggs fram för kejsaren och riksfurstarna vid riksdagen i Augsburg. Texten försvarar den reformatoriska läran mot anklagelser om kätteri.",
+      "geographySv": "Augsburg",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "e1500w-augsburg-confession"
+      ],
+      "selectionNote": "Editorial selection of a documented act; category and importance are curatorial choices. Coverage remains partial.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 West, initial)",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1530-ditan-byggs",
+      "date": {
+        "kind": "exact",
+        "startYear": 1530,
+        "endYear": 1530,
+        "displaySv": "1530"
+      },
+      "titleSv": "Jordens altare byggs i Peking",
+      "summarySv": "Jordens altare, Ditan, byggs i Peking 1530. Anläggningen används för kejserliga offer till jorden vid sommarsolståndet.",
+      "geographySv": "Peking, Kina",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1500e-ditan"
+      ],
+      "selectionNote": "A new ritual complex, distinct from the earlier Temple of Heaven and its later public-park conversion.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Independent Codex source review (E1500 East, initial)",
         "reviewedOn": "2026-11-07"
       }
     }
