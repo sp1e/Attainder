@@ -121,6 +121,45 @@ test('choosing Kyrkostaten starts the papal court from the Charlemagne start', a
   assert.equal(startRows(render()).length,1,'the search stays after a choice');
 });
 
+test('a choice the search hides is named under the list and still starts', async () => {
+  const driver=createHookDriver(), started=[], options=shippedOptions();
+  const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>options,startDynastyCampaign:async()=>{}}});
+  const render=()=>driver.render(React.createElement(card.default,{onStart:async o=>started.push(o)}));
+  render(); await settle(); let tree=render();
+  const hiddenLine=()=>findAll(tree,n=>n.type==='p' && textOf(n).startsWith('Vald start:')).map(textOf);
+  startRows(tree).find(r=>r.props['data-start-key']==='charlemagne-800/papal-states').props.onClick(); tree=render();
+  assert.deepEqual(hiddenLine(),[],'a visible choice needs no line');
+  searchField(tree).props.onChange({target:{value:'egypt'}}); tree=render();
+  assert.deepEqual(hiddenLine(),['Vald start: Kyrkostaten · 800 e.Kr.']);
+  searchField(tree).props.onChange({target:{value:'zzz'}}); tree=render();
+  assert.deepEqual(hiddenLine(),['Vald start: Kyrkostaten · 800 e.Kr.']);
+  const start=buttonNamed(tree,'Starta som riket'); assert.equal(start.props.disabled,false);
+  await start.props.onClick();
+  assert.equal(started[0].scenarioId,'charlemagne-800'); assert.equal(started[0].polityId,'papal-states');
+  searchField(tree).props.onChange({target:{value:''}}); tree=render();
+  assert.deepEqual(hiddenLine(),[]);
+});
+
+test('choosing the chosen start again keeps the family picked in family mode', async () => {
+  const driver=createHookDriver(), started=[], options=shippedOptions();
+  const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>options,startDynastyCampaign:async()=>{}}});
+  const render=()=>driver.render(React.createElement(card.default,{onStart:async o=>started.push(o)}));
+  render(); await settle(); let tree=render();
+  const families=options[0].polities[0].families.map(f=>f.id);
+  assert.ok(families.length>=2); const picked=families[1];
+  findAll(tree,n=>n.props?.['data-mode']==='family')[0].props.onClick(); tree=render();
+  const familySelect=()=>findAll(tree,n=>n.type==='select' && n.props.id==='historical-family')[0];
+  familySelect().props.onChange({target:{value:picked}}); tree=render();
+  startRows(tree).find(r=>r.props['aria-checked']).props.onClick(); tree=render();
+  assert.equal(familySelect().props.value,picked,'a click on the chosen row');
+  searchField(tree).props.onChange({target:{value:'karl den store'}}); tree=render();
+  assert.equal(startRows(tree).length,1);
+  findAll(tree,n=>n.props?.role==='radiogroup' && startRows(n).length)[0].props.onKeyDown({key:'ArrowDown',preventDefault(){},currentTarget:{querySelector:()=>null}});
+  tree=render(); assert.equal(familySelect().props.value,picked,'an arrow key on the only shown row');
+  await buttonNamed(tree,'Starta som familjen').props.onClick();
+  assert.equal(started[0].polityId,'carolingian-realm'); assert.equal(started[0].familyId,picked);
+});
+
 test('arrow keys move the chosen start with a roving tab stop', async () => {
   const driver=createHookDriver(), options=shippedOptions(), focused=[];
   const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>options,startDynastyCampaign:async()=>{}}});

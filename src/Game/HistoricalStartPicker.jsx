@@ -31,8 +31,12 @@ export default function HistoricalStartPicker({ options, value, onChange, disabl
   const groups = groupHistoricalStartRows(rows, query);
   const shown = groups.flatMap(region => region.eras.flatMap(era => era.rows));
   const chosenKey = keyOf(value);
-  const tabKey = shown.some(row => row.key === chosenKey) ? chosenKey : shown[0]?.key;
-  const choose = row => onChange({ scenarioId: row.scenarioId, polityId: row.polityId });
+  const chosenShown = shown.some(row => row.key === chosenKey);
+  const tabKey = chosenShown ? chosenKey : shown[0]?.key;
+  // A choice the search hides still goes to Start, so the card names it under the list.
+  const hiddenChoice = chosenShown ? null : rows.find(row => row.key === chosenKey);
+  // Choosing the chosen row again is no change; the card would otherwise reset the picked family.
+  const choose = row => { if (row.key !== chosenKey) onChange({ scenarioId: row.scenarioId, polityId: row.polityId }); };
   const onKeyDown = event => {
     if (disabled || !NAV_KEYS.includes(event.key) || shown.length === 0) return;
     event.preventDefault();
@@ -52,5 +56,6 @@ export default function HistoricalStartPicker({ options, value, onChange, disabl
         </div>)}
       </div>)}
     </div>}
+    {hiddenChoice && <p className="dynasty-start-detail">{`Vald start: ${hiddenChoice.polityName} · ${hiddenChoice.eraLabelSv}`}</p>}
   </div>;
 }
