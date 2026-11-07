@@ -1,0 +1,979 @@
+{
+  "schema": "attainder-name-pool-v1",
+  "id": "frankish-saint-germain-823-829",
+  "cultureSv": "Godsbefolkning kring Paris i Frankerriket",
+  "period": {
+    "startYear": 823,
+    "endYear": 829,
+    "meaning": "Conventional survey documentation/compilation window. The bounds do not establish individual record years, lifespans, continuous name use or AD 800 use.",
+    "mainSource": {
+      "sourceId": "d1-frankish-survey-date",
+      "asWorded": "823-829"
+    },
+    "alternativeSourceWindow": {
+      "startYear": 823,
+      "endYear": 828,
+      "sourceId": "d1-frankish-devroey-date",
+      "asWorded": "entre 823 et 828"
+    }
+  },
+  "sources": {
+    "d1-frankish-primary-walateus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n18/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.1, chapter I Gaugiacum, §2; PDF page 19; Archive leaf n18",
+      "scopedClaim": "The located Latin survey entry attests Walateus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-walateus": {
+      "title": "Individual citation: Walateus",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Walateus/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 2, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Walateus as Latin nominative, male, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-gisleboldus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n18/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.1, chapter I Gaugiacum, §3; PDF page 19; Archive leaf n18",
+      "scopedClaim": "The located Latin survey entry attests Gisleboldus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-gisleboldus": {
+      "title": "Individual citation: Gisleboldus",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Gisleboldus/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 3, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Gisleboldus as Latin nominative, male, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-gerosmus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n19/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.2, chapter I Gaugiacum, §9; PDF page 20; Archive leaf n19",
+      "scopedClaim": "The located Latin survey entry attests Gerosmus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-gerosmus": {
+      "title": "Individual citation: Gerosmus",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Gerosmus/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 9, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Gerosmus as Latin nominative, male, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-wintboldus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n19/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.2, chapter I Gaugiacum, §12; PDF page 20; Archive leaf n19",
+      "scopedClaim": "The located Latin survey entry attests Wintboldus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-wintboldus": {
+      "title": "Individual citation: Wintboldus",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Wintboldus/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 12, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Wintboldus as Latin nominative, male, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-alanteus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n20/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.3, chapter I Gaugiacum, §14; PDF page 21; Archive leaf n20",
+      "scopedClaim": "The located Latin survey entry attests Alanteus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-alanteus": {
+      "title": "Individual citation: Alanteus",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Alanteus/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 14, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Alanteus as Latin nominative, male, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-restoldus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n20/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.3, chapter I Gaugiacum, §16; PDF page 21; Archive leaf n20",
+      "scopedClaim": "The located Latin survey entry attests Restoldus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-primary-caladulfus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n20/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.3, chapter I Gaugiacum, §18; PDF page 21; Archive leaf n20",
+      "scopedClaim": "The located Latin survey entry attests Caladulfus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-primary-eureboldus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n21/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.4, chapter I Gaugiacum, §20; PDF page 22; Archive leaf n21",
+      "scopedClaim": "The located Latin survey entry attests Eureboldus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-eureboldus": {
+      "title": "Individual citation: Eureboldus",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Eureboldus/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 20, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Eureboldus as Latin nominative, male, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-adremarus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n21/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.4, chapter I Gaugiacum, §23; PDF page 22; Archive leaf n21",
+      "scopedClaim": "The located Latin survey entry attests Adremarus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-adremarus": {
+      "title": "Individual citation: Adremarus",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Adremarus/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 23, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Adremarus as Latin nominative, male, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-frotgarius": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n21/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.4, chapter I Gaugiacum, §24; PDF page 22; Archive leaf n21",
+      "scopedClaim": "The located Latin survey entry attests Frotgarius as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-frotgarius": {
+      "title": "Individual citation: Frotgarius",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Frotgarius/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 24, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Frotgarius as Latin nominative, male, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-agenulfus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n21/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.4, chapter I Gaugiacum, §28; PDF page 22; Archive leaf n21",
+      "scopedClaim": "The located Latin survey entry attests Agenulfus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-agenulfus": {
+      "title": "Individual citation: Agenulfus",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Agenulfus/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 28, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Agenulfus as Latin nominative, male, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-leutgaudus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n21/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.4, chapter I Gaugiacum, §32; PDF page 22; Archive leaf n21",
+      "scopedClaim": "The located Latin survey entry attests Leutgaudus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-leutgaudus": {
+      "title": "Individual citation: Leutgaudus",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Leutgaudus/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 32, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Leutgaudus as Latin nominative, male, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-itharius": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n24/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.7, chapter II Palatiolum, §5; PDF page 25; Archive leaf n24",
+      "scopedClaim": "The located Latin survey entry attests Itharius as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-itharius": {
+      "title": "Individual citation: Itharius",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Itharius/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 5, Palatiolum",
+      "scopedClaim": "The individual citation records the spelling Itharius as Latin nominative, male, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-trutgingus": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n25/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.8, chapter II Palatiolum, §11; PDF page 26; Archive leaf n25",
+      "scopedClaim": "The located Latin survey entry attests Trutgingus as a male personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-primary-framengildis": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n18/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.1, chapter I Gaugiacum, §2; PDF page 19; Archive leaf n18",
+      "scopedClaim": "The located Latin survey entry attests Framengildis as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-framengildis": {
+      "title": "Individual citation: Framengildis",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Framengildis/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 2, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Framengildis as Latin nominative, female, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-winegardis": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n19/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.2, chapter I Gaugiacum, §5; PDF page 20; Archive leaf n19",
+      "scopedClaim": "The located Latin survey entry attests Winegardis as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-winegardis": {
+      "title": "Individual citation: Winegardis",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Winegardis/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 5, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Winegardis as Latin nominative, female, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-landedrudis": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n19/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.2, chapter I Gaugiacum, §6; PDF page 20; Archive leaf n19",
+      "scopedClaim": "The located Latin survey entry attests Landedrudis as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-landedrudis": {
+      "title": "Individual citation: Landedrudis",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Landedrudis/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 6, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Landedrudis as Latin nominative, female, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-ingberta": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n20/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.3, chapter I Gaugiacum, §14; PDF page 21; Archive leaf n20",
+      "scopedClaim": "The located Latin survey entry attests Ingberta as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-ingberta": {
+      "title": "Individual citation: Ingberta",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Ingberta/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 14, Gaugiacum",
+      "scopedClaim": "The individual citation records the spelling Ingberta as Latin nominative, female, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-handoildis": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n20/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.3, chapter I Gaugiacum, §19; PDF page 21; Archive leaf n20",
+      "scopedClaim": "The located Latin survey entry attests Handoildis as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-primary-siclebolda": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n21/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.4, chapter I Gaugiacum, §25; PDF page 22; Archive leaf n21",
+      "scopedClaim": "The located Latin survey entry attests Siclebolda as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-primary-eudimia": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n23/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.6, chapter II Palatiolum, §2; PDF page 24; Archive leaf n23",
+      "scopedClaim": "The located Latin survey entry attests Eudimia as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-eudimia": {
+      "title": "Individual citation: Eudimia",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Eudimia/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 2, Palatiolum",
+      "scopedClaim": "The individual citation records the spelling Eudimia as Latin nominative, female, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-haldrada": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n23/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.6, chapter II Palatiolum, §3; PDF page 24; Archive leaf n23",
+      "scopedClaim": "The located Latin survey entry attests Haldrada as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-haldrada": {
+      "title": "Individual citation: Haldrada",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Haldrada/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 3, Palatiolum",
+      "scopedClaim": "The individual citation records the spelling Haldrada as Latin nominative, female, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-adalgaria": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n24/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.7, chapter II Palatiolum, §6; PDF page 25; Archive leaf n24",
+      "scopedClaim": "The located Latin survey entry attests Adalgaria as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-adalgaria": {
+      "title": "Individual citation: Adalgaria",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Adalgaria/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 6, Palatiolum",
+      "scopedClaim": "The individual citation records the spelling Adalgaria as Latin nominative, female, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-cristoina": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n24/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.7, chapter II Palatiolum, §6; PDF page 25; Archive leaf n24",
+      "scopedClaim": "The located Latin survey entry attests Cristoina as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-cristoina": {
+      "title": "Individual citation: Cristoina",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Cristoina/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 6, Palatiolum",
+      "scopedClaim": "The individual citation records the spelling Cristoina as Latin nominative, female, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-balsma": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n24/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.7, chapter II Palatiolum, §7; PDF page 25; Archive leaf n24",
+      "scopedClaim": "The located Latin survey entry attests Balsma as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-balsma": {
+      "title": "Individual citation: Balsma",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Balsma/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 7, Palatiolum",
+      "scopedClaim": "The individual citation records the spelling Balsma as Latin nominative, female, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-eldrada": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n24/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.7, chapter II Palatiolum, §7; PDF page 25; Archive leaf n24",
+      "scopedClaim": "The located Latin survey entry attests Eldrada as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-eldrada": {
+      "title": "Individual citation: Eldrada",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Eldrada/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 7, Palatiolum",
+      "scopedClaim": "The individual citation records the spelling Eldrada as Latin nominative, female, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-primary-nolgia": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n25/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.8, chapter II Palatiolum, §17; PDF page 26; Archive leaf n25",
+      "scopedClaim": "The located Latin survey entry attests Nolgia as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-primary-ingalrada": {
+      "title": "Polyptyque de l’abbé Irminon, volume II (1844), ed.Benjamin Guérard",
+      "institution": "Imprimerie Royale, scholarly primary-source edition; Harvard University copy digitized by Google, Internet Archive",
+      "url": "https://archive.org/details/polyptyquedelab01gugoog/page/n26/mode/1up",
+      "locator": "Guérard, volume II (1844), printed p.9, chapter II Palatiolum, §20; PDF page 27; Archive leaf n26",
+      "scopedClaim": "The located Latin survey entry attests Ingalrada as a female personal-name form. No biography or use in AD 800 is inferred.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": {
+          "Geschichtsquellen": "823-829",
+          "Devroey2011": "entre 823 et 828"
+        },
+        "scope": "survey interval, not exact date of an individual household record;1844 is edition date"
+      }
+    },
+    "d1-frankish-dmnes-ingalrada": {
+      "title": "Individual citation: Ingalrada",
+      "institution": "Dictionary of Medieval Names from European Sources, Sara L.Uckelman, editor",
+      "url": "https://dmnes.org/cite/Ingalrada/c823/irminon-vol2",
+      "locator": "Individual citation; irminon-vol2 20, Palatiolum",
+      "scopedClaim": "The individual citation records the spelling Ingalrada as Latin nominative, female, Paris, France, c823.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "c823",
+        "scope": "approximate dictionary citation date; no proof of use in 800"
+      }
+    },
+    "d1-frankish-survey-date": {
+      "title": "Polyptychum Sancti Germani in Pratis",
+      "institution": "Bayerische Akademie der Wissenschaften, Geschichtsquellen des deutschen Mittelalters",
+      "url": "https://www.geschichtsquellen.de/werk/4032",
+      "locator": "Entstehungszeit; Berichtszeit; Beschreibung; Ausgaben",
+      "scopedClaim": "The Saint-Germain-des-Prés survey is an estate and income inventory, with compilation/reporting dated 823–829; the record identifies Guérard II (1844) as an edition.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "823-829",
+        "scope": "survey compilation and reporting interval"
+      }
+    },
+    "d1-frankish-devroey-date": {
+      "title": "Perception de la nature productive et aspects des paysages ruraux à Saint-Remi de Reims au IXe siècle",
+      "institution": "Jean-Pierre Devroey, Université Libre de Bruxelles; Revue belge de philologie et d’histoire89(1),2011; Persée",
+      "url": "https://www.persee.fr/doc/rbph_0035-0818_2011_num_89_1_8172",
+      "locator": "Printed p.267, opening paragraph contrasting Saint-Germain and Saint-Remi",
+      "scopedClaim": "The opening paragraph dates the Saint-Germain-des-Prés survey to 823–828; the rest of this article is not treated as evidence for individual names here.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "originalChronology": {
+        "asWorded": "entre 823 et 828",
+        "scope": "Saint-Germain survey compilation"
+      }
+    }
+  },
+  "male": [
+    {
+      "nameSv": "Walateus",
+      "sourceIds": [
+        "d1-frankish-primary-walateus",
+        "d1-frankish-dmnes-walateus"
+      ]
+    },
+    {
+      "nameSv": "Gisleboldus",
+      "sourceIds": [
+        "d1-frankish-primary-gisleboldus",
+        "d1-frankish-dmnes-gisleboldus"
+      ]
+    },
+    {
+      "nameSv": "Gerosmus",
+      "sourceIds": [
+        "d1-frankish-primary-gerosmus",
+        "d1-frankish-dmnes-gerosmus"
+      ]
+    },
+    {
+      "nameSv": "Wintboldus",
+      "sourceIds": [
+        "d1-frankish-primary-wintboldus",
+        "d1-frankish-dmnes-wintboldus"
+      ]
+    },
+    {
+      "nameSv": "Alanteus",
+      "sourceIds": [
+        "d1-frankish-primary-alanteus",
+        "d1-frankish-dmnes-alanteus"
+      ]
+    },
+    {
+      "nameSv": "Restoldus",
+      "sourceIds": [
+        "d1-frankish-primary-restoldus"
+      ]
+    },
+    {
+      "nameSv": "Caladulfus",
+      "sourceIds": [
+        "d1-frankish-primary-caladulfus"
+      ]
+    },
+    {
+      "nameSv": "Eureboldus",
+      "sourceIds": [
+        "d1-frankish-primary-eureboldus",
+        "d1-frankish-dmnes-eureboldus"
+      ]
+    },
+    {
+      "nameSv": "Adremarus",
+      "sourceIds": [
+        "d1-frankish-primary-adremarus",
+        "d1-frankish-dmnes-adremarus"
+      ]
+    },
+    {
+      "nameSv": "Frotgarius",
+      "sourceIds": [
+        "d1-frankish-primary-frotgarius",
+        "d1-frankish-dmnes-frotgarius"
+      ]
+    },
+    {
+      "nameSv": "Agenulfus",
+      "sourceIds": [
+        "d1-frankish-primary-agenulfus",
+        "d1-frankish-dmnes-agenulfus"
+      ]
+    },
+    {
+      "nameSv": "Leutgaudus",
+      "sourceIds": [
+        "d1-frankish-primary-leutgaudus",
+        "d1-frankish-dmnes-leutgaudus"
+      ]
+    },
+    {
+      "nameSv": "Itharius",
+      "sourceIds": [
+        "d1-frankish-primary-itharius",
+        "d1-frankish-dmnes-itharius"
+      ]
+    },
+    {
+      "nameSv": "Trutgingus",
+      "sourceIds": [
+        "d1-frankish-primary-trutgingus"
+      ]
+    }
+  ],
+  "female": [
+    {
+      "nameSv": "Framengildis",
+      "sourceIds": [
+        "d1-frankish-primary-framengildis",
+        "d1-frankish-dmnes-framengildis"
+      ]
+    },
+    {
+      "nameSv": "Winegardis",
+      "sourceIds": [
+        "d1-frankish-primary-winegardis",
+        "d1-frankish-dmnes-winegardis"
+      ]
+    },
+    {
+      "nameSv": "Landedrudis",
+      "sourceIds": [
+        "d1-frankish-primary-landedrudis",
+        "d1-frankish-dmnes-landedrudis"
+      ]
+    },
+    {
+      "nameSv": "Ingberta",
+      "sourceIds": [
+        "d1-frankish-primary-ingberta",
+        "d1-frankish-dmnes-ingberta"
+      ]
+    },
+    {
+      "nameSv": "Handoildis",
+      "sourceIds": [
+        "d1-frankish-primary-handoildis"
+      ]
+    },
+    {
+      "nameSv": "Siclebolda",
+      "sourceIds": [
+        "d1-frankish-primary-siclebolda"
+      ]
+    },
+    {
+      "nameSv": "Eudimia",
+      "sourceIds": [
+        "d1-frankish-primary-eudimia",
+        "d1-frankish-dmnes-eudimia"
+      ]
+    },
+    {
+      "nameSv": "Haldrada",
+      "sourceIds": [
+        "d1-frankish-primary-haldrada",
+        "d1-frankish-dmnes-haldrada"
+      ]
+    },
+    {
+      "nameSv": "Adalgaria",
+      "sourceIds": [
+        "d1-frankish-primary-adalgaria",
+        "d1-frankish-dmnes-adalgaria"
+      ]
+    },
+    {
+      "nameSv": "Cristoina",
+      "sourceIds": [
+        "d1-frankish-primary-cristoina",
+        "d1-frankish-dmnes-cristoina"
+      ]
+    },
+    {
+      "nameSv": "Balsma",
+      "sourceIds": [
+        "d1-frankish-primary-balsma",
+        "d1-frankish-dmnes-balsma"
+      ]
+    },
+    {
+      "nameSv": "Eldrada",
+      "sourceIds": [
+        "d1-frankish-primary-eldrada",
+        "d1-frankish-dmnes-eldrada"
+      ]
+    },
+    {
+      "nameSv": "Nolgia",
+      "sourceIds": [
+        "d1-frankish-primary-nolgia"
+      ]
+    },
+    {
+      "nameSv": "Ingalrada",
+      "sourceIds": [
+        "d1-frankish-primary-ingalrada",
+        "d1-frankish-dmnes-ingalrada"
+      ]
+    }
+  ],
+  "familyNames": [],
+  "namingNoteSv": "Urvalet återger latinska personnamn ur Saint-Germain-des-Prés inventering, vars sammanställning dateras till 823–829 med ett separat forskningsalternativ på 823–828. Årtalen gäller sammanställningen; vid en framtida generering får bara namnformen återanvändas, utan efternamn eller den belagda personens identitet, och belägg för år 800 saknas.",
+  "excluded": "Editorially withheld from the 40 reviewed documentary forms: Stadius, Landoinus, Bertoinus, Teudhardus, Madalulfus, Ermenoldus, Adalburgs, Erlindis and Osanna retain earlier exact-form, related-form or homograph concerns; Godelindis and Ardinga retain unresolved personal candidates; Ingardis has an exact royal-name concern. The finite screen gives no universal absence-of-fame guarantee. See docs/research/world-cultures/frankish-saint-germain-823-829.md for scope and the selection of 14 male and 14 female forms, six short of the target for each sex."
+}

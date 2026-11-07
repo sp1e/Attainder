@@ -3,6 +3,18 @@
   "ranges": [
     {
       "startYear": -3300,
+      "endYear": -3101,
+      "status": "unresearched",
+      "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": -3100,
+      "endYear": -3001,
+      "status": "partial",
+      "note": "Six independently checked records concern Egyptian political unification, the Stenness henge, high dams at Liangzhu, the approximate start of the Thach Lac sequence, early weighing objects, and a qualified cattle-husbandry interpretation north of the Black Sea. These are approximate archaeological attestations, constructions or processes; no strict single-calendar-year occurrence is established. Full date intervals, competing chronologies and later endpoints remain in single records. Their spans establish no annual occurrence or researched coverage of later years. The Americas, Oceania, South Asia, much of Africa and other regions remain gaps. Empty years are research gaps."
+    },
+    {
+      "startYear": -3000,
       "endYear": 799,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
@@ -39,9 +51,21 @@
     },
     {
       "startYear": 1300,
+      "endYear": 1399,
+      "status": "partial",
+      "note": "62 independently checked event records cover selected acts in Europe, the Middle East and North Africa, the steppe and Central Asia, sub-Saharan Africa, East Asia, South Asia, Southeast Asia and central Mexico. Oceania has no retained event. The strict sub-Saharan selection has Husuni Kubwa and two Ibn Battuta visits; Mansa Musa is counted at his Cairo visit. Most African and American regions, maritime Southeast Asia, science, technology, social history and environmental events need more research. Tenochtitlan retains an approximate foundation tradition distinct from earlier occupation; Tlatelolco and Acamapichtli retain competing chronologies. Luang Prabang dates capital status, not foundation. Long phases remain single records. Empty years are research gaps."
+    },
+    {
+      "startYear": 1400,
+      "endYear": 1499,
+      "status": "partial",
+      "note": "55 independently checked event records cover selected acts in Europe, the Middle East and North Africa, Central Asia, sub-Saharan Africa, East Asia, South Asia, Southeast Asia, the Americas and Oceania. Europe and East Asia are overrepresented. Oceania has only an approximate Rangitoto eruption; the Americas concern Mexico and the Andes. Other regions, social history, science, technology and environmental history need further work. Source disagreements and full uncertainty intervals remain visible. Approximate dates and long processes do not establish an event in every year; empty years remain research gaps."
+    },
+    {
+      "startYear": 1500,
       "endYear": 1530,
-      "status": "unresearched",
-      "note": "Annual research has not started in this catalog for events beginning in these years. Earlier records whose ranges extend into later years do not establish researched annual coverage."
+      "status": "partial",
+      "note": "38 independently checked event records cover selected acts in Europe, the Middle East and North Africa, Central Asia, sub-Saharan Africa, East Asia, South Asia, Southeast Asia, the Americas and Oceania. Europe and southern/eastern Asia are overrepresented. Sub-Saharan records concern Kongo and Ndongo; American records concern central Mexico. Oceania has three scoped records. Many regions, social history, science, technology and environmental history remain gaps. Approximate dates and the single source-supplied range preserve their limits; empty years remain research gaps. This batch ends at the maximum start year, 1530, and makes no whole-century completeness claim."
     }
   ]
 }

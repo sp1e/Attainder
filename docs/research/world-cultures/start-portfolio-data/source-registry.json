@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "retrievedOn": "2026-11-07",
+  "status": "Independent source review complete for the bounded references: ten metadata records confirmed and one publication-date correction applied; C4 remains incomplete.",
+  "sources": [
+    {
+      "id": "c4-tudors",
+      "title": "An Introduction to Tudor England (1485–1603)",
+      "institution": "English Heritage",
+      "author": "English Heritage",
+      "publicationDate": null,
+      "url": "https://www.english-heritage.org.uk/learn/story-of-england/tudors/introduction/",
+      "locator": "Two Henrys, first two paragraphs",
+      "originalChronology": [
+        "r.1485–1509",
+        "r.1509–47"
+      ],
+      "readingExtent": "Actual institutional article paragraphs; no court dossier assembled",
+      "retrievedAt": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The Tudor England account gives Henry VII's reign as 1485–1509 and Henry VIII's as 1509–47, supporting England research leads for 1492 and 1530. It does not establish exact bookmark dates, complete courts, Ireland or correspondence to composite map features."
+    },
+    {
+      "id": "c4-anastasius",
+      "title": "The Eastern Empire in the sixth century, chapter 4, The New Cambridge Medieval History, pp. 91–117",
+      "institution": "Cambridge University Press",
+      "author": "Andrew Louth; edited by Paul Fouracre",
+      "publicationDate": "2005; online 28 March 2008",
+      "url": "https://www.cambridge.org/core/books/abs/new-cambridge-medieval-history/eastern-empire-in-the-sixth-century/AD724AA81FEE18748CEBF8A1A8016E7E",
+      "locator": "Public Summary, opening paragraph; bibliographic Information",
+      "originalChronology": [
+        "491–518"
+      ],
+      "readingExtent": "Public chapter summary and bibliographic page only; complete chapter not accessed",
+      "retrievedAt": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The public chapter summary places Anastasius on the throne in 491–518, ruling from Constantinople, supporting a research lead for 500. Only the summary and bibliographic page were read; the evidence does not establish all former Roman territory or a complete court. Publication and online dates describe the modern chapter, not the reign."
+    },
+    {
+      "id": "c4-artaxerxes",
+      "title": "ARTAXERXES II, Encyclopaedia Iranica II/6, pp. 656–658",
+      "institution": "Encyclopaedia Iranica",
+      "author": "Rüdiger Schmitt",
+      "publicationDate": "15 December 1986; updated 8 March 2013",
+      "url": "https://www.iranicaonline.org/articles/artaxerxes-ii-achaemenid-king/",
+      "locator": "Opening biographical paragraph identifying Achaemenid Great King and reign",
+      "originalChronology": [
+        "405-04 to 359-58 B.C."
+      ],
+      "readingExtent": "Actual scholarly entry opening and publication metadata; uncertain reign boundaries retained",
+      "retrievedAt": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The entry identifies Artaxerxes II as an Achaemenid Great King and dates his reign to 405-04 to 359-58 B.C., supporting a research lead for 400 BC. The qualified boundaries remain unresolved; no exact accession or end year is selected. Publication and update dates describe the modern entry."
+    },
+    {
+      "id": "c4-timurids",
+      "title": "The Art of the Timurid Period (ca. 1370–1507)",
+      "institution": "The Metropolitan Museum of Art",
+      "author": "Suzan Yalman, based on original work by Linda Komaroff",
+      "publicationDate": "October 2002",
+      "url": "https://www.metmuseum.org/essays/the-art-of-the-timurid-period-ca-1370-1507",
+      "locator": "First historical paragraph, beginning The Timurids were",
+      "originalChronology": [
+        "1370",
+        "1400–1402",
+        "1405"
+      ],
+      "readingExtent": "Historical paragraph and contributor/citation metadata in the public essay.",
+      "retrievedAt": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The essay dates Timur's mastery of Transoxiana to 1370, military operations to 1400–1402 and his death to 1405. This is dated context for a Timur research lead in 1400; it does not establish empire-wide control, frontiers or a complete court."
+    },
+    {
+      "id": "c4-umayyads",
+      "title": "The Art of the Umayyad Period (661–750)",
+      "institution": "The Metropolitan Museum of Art",
+      "author": "Suzan Yalman, based on original work by Linda Komaroff",
+      "publicationDate": "October 2001",
+      "url": "https://www.metmuseum.org/essays/the-art-of-the-umayyad-period-661-750",
+      "locator": "Opening historical paragraph; architecture paragraph naming caliph Abd al-Malik",
+      "originalChronology": [
+        "661–750",
+        "r. 685–705"
+      ],
+      "readingExtent": "Actual essay historical and architecture paragraphs; no frontier inference",
+      "retrievedAt": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The essay gives caliph Abd al-Malik's reign as 685–705, supporting a research lead for 700. Jurisdiction, court and geometry remain unestablished."
+    },
+    {
+      "id": "c4-song",
+      "title": "Song dynasty (960–1279)",
+      "institution": "Smithsonian National Museum of Asian Art",
+      "author": "National Museum of Asian Art",
+      "publicationDate": null,
+      "url": "https://asia.si.edu/education/educator-resources/teaching-china-with-the-smithsonian/explore-by-dynasty/song-dynasty/",
+      "locator": "Opening paragraph, period divisions only",
+      "originalChronology": [
+        "960–1279",
+        "Northern Song (960–1126)"
+      ],
+      "readingExtent": "Actual official article opening; no adoption of founder attribution or an emperor for 1100",
+      "retrievedAt": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The article distinguishes Northern Song 960–1126 from Southern Song 1127–1279, supporting a Northern Song research lead for 1100. This reading supplies no ruler for 1100 and establishes no political map correspondence."
+    },
+    {
+      "id": "c4-han",
+      "title": "Han Dynasty (206 B.C.–220 A.D.)",
+      "institution": "The Metropolitan Museum of Art",
+      "author": "Department of Asian Art",
+      "publicationDate": "October 2000",
+      "url": "https://www.metmuseum.org/essays/han-dynasty-206-b-c-220-a-d",
+      "locator": "Opening historical paragraph; Emperor Wu paragraph; Eastern Han paragraph",
+      "originalChronology": [
+        "Western or Former Han (206 B.C.–9 A.D.)",
+        "Eastern or Later Han (25–220 A.D.)",
+        "Emperor Wu (141–87 B.C.)"
+      ],
+      "readingExtent": "Actual essay historical paragraphs and contributor/citation metadata; no uniform-control inference",
+      "retrievedAt": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The essay distinguishes Western or Former Han 206 B.C.–9 A.D. from Eastern or Later Han 25–220 A.D. and gives Emperor Wu's dates as 141–87 B.C. It supports separate research leads for Western Han/Emperor Wu in 100 BC and Eastern Han in AD 200. This reading supplies no ruler for AD 200 and establishes no uniform political control."
+    },
+    {
+      "id": "c4-tang",
+      "title": "Tang Dynasty (618–907)",
+      "institution": "The Metropolitan Museum of Art",
+      "author": "Department of Asian Art",
+      "publicationDate": "October 2001",
+      "url": "https://www.metmuseum.org/essays/tang-dynasty-618-906",
+      "locator": "Heading; opening historical paragraph; paragraph on restored government",
+      "originalChronology": [
+        "618–907"
+      ],
+      "readingExtent": "Actual heading and essay body; the URL slug does not replace the heading chronology",
+      "retrievedAt": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The article heading gives the Tang period as 618–907, supporting a period research lead for 900. The URL's 906 suffix does not replace the heading chronology. This reading supplies no ruler for 900 and establishes no uniform political control or geometry."
+    },
+    {
+      "id": "c4-assyria-context",
+      "title": "Mesopotamia, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "author": "The Metropolitan Museum of Art",
+      "publicationDate": "October 2000",
+      "url": "https://www.metmuseum.org/toah/ht/04/wam.html",
+      "locator": "Key Events entry ca. 704–681 B.C.",
+      "originalChronology": [
+        "ca. 704–681 B.C."
+      ],
+      "readingExtent": "Actual dated timeline entry concerning Sennacherib and Nineveh; approximation retained",
+      "retrievedAt": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The timeline places an entry about Sennacherib and Nineveh under ca. 704–681 B.C.; the approximation is retained. It supplies dated context alongside Toledo's explicit reign statement and does not approve the Assyria map feature. October 2000 is the modern timeline's publication date, not historical chronology."
+    },
+    {
+      "id": "c4-sennacherib",
+      "title": "Southwest Palace Relief with Warriors Marching Through Stream, object 1921.83",
+      "institution": "Toledo Museum of Art",
+      "author": "Toledo Museum of Art",
+      "publicationDate": null,
+      "url": "https://emuseum.toledomuseum.org/objects/56364/southwest-palace-relief-with-warriors-marching-through-strea",
+      "locator": "Label Text, first paragraph; object number 1921.83",
+      "originalChronology": [
+        "704 to 681 BCE"
+      ],
+      "readingExtent": "Institutional label, including the explicit reign statement.",
+      "retrievedAt": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The label for object 1921.83 explicitly states that Sennacherib ruled from 704 to 681 BCE, supporting a research lead for 700 BC. It does not approve the Assyria map feature's geometry."
+    },
+    {
+      "id": "c4-gupta-style",
+      "title": "Gupta (culture and style), AAT 300018904",
+      "institution": "Getty Research Institute, Art & Architecture Thesaurus",
+      "author": "Getty Vocabulary Program",
+      "publicationDate": null,
+      "url": "https://www.getty.edu/vow/AATFullDisplay?find=&logic=AND&note=chinese&subjectid=300018904",
+      "locator": "Record Type concept; descriptor; Note sentence naming Chandra Gupta II",
+      "originalChronology": [
+        "Chandra Gupta II (375-415 CE)"
+      ],
+      "readingExtent": "Actual culture/style concept note, not a political history or polity dossier",
+      "retrievedAt": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Getty AAT 300018904 is a Gupta culture/style concept whose note names Chandra Gupta II with 375-415 CE dates in a reign context. It supports a dated culture/style research lead for 400; it does not establish a political entity's identity or correspondence to the map's Gupta Empire feature."
+    }
+  ],
+  "metadataLimits": "A null publicationDate means not established from the inspected record. No copyright year substitutes for publication. No independent era/calendar conversion, open reuse licence or image/map rights are inferred.",
+  "independentSourceReview": {
+    "reviewedOn": "2026-11-07",
+    "sourceRecords": 11,
+    "initiallyConfirmedMetadataRecords": 10,
+    "correctedMetadataRecords": 1,
+    "correctionsApplied": 1,
+    "scope": "Bibliographic records and located historical passages only; no whole-year, culture, court, political correspondence or geometry approval."
+  }
+}

@@ -1,0 +1,754 @@
+{
+  "schemaVersion": 1,
+  "preparedOn": "2026-11-07",
+  "scope": "Twelve prospective new start years; one bounded representative source case per year",
+  "status": "Research proposal with independently reviewed representative source contexts; full start approval pending; C4 remains incomplete.",
+  "counts": {
+    "retainedInventoryRows": 1011,
+    "excludedWithheldRows": 400,
+    "pendingCohortDenominator": 611,
+    "existingFourVersionExactLabelUnion": 155,
+    "newTwelveVersionExactLabelUnion": 334,
+    "combinedExistingAndNewExactLabelUnion": 350,
+    "marginalNewRowsBeyondExistingFourVersions": 195,
+    "newlyApprovedPlayableCultures": 0,
+    "certifiedHistoricalNumerator": null,
+    "certifiedHistoricalShare": null
+  },
+  "rankingScope": "Initial technical priority by marginal literal-label reach; no historical quality or benefit ranking",
+  "candidates": [
+    {
+      "id": "c4-prospect-1492",
+      "snapshot": "1492",
+      "candidateYear": 1492,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 1,
+      "technicalExactLabelRows": 112,
+      "technicalMarginalRowsAtSelectionStep": 42,
+      "representativeCase": {
+        "entityLabel": "England",
+        "prospectiveRuler": "Henry VII",
+        "rulerEvidenceScope": "Named in a dated source interval or context; full court and exact-day eligibility unreviewed",
+        "sourceIds": [
+          "c4-tudors"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-tudors",
+            "asWorded": [
+              "r.1485–1509",
+              "r.1509–47"
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 6,
+            "rawMapLabel": "England"
+          }
+        ],
+        "limitation": "Named ruler in the source interval; full 1492 court unreviewed.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "1492",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_1492.geojson",
+        "sourcePath": "geojson/world_1492.geojson",
+        "gitBlobSha1": "7a415ea2f68aa2f010fff3830cab76203699e6a9",
+        "featureCount": 1946,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    },
+    {
+      "id": "c4-prospect-500",
+      "snapshot": "500",
+      "candidateYear": 500,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 2,
+      "technicalExactLabelRows": 44,
+      "technicalMarginalRowsAtSelectionStep": 32,
+      "representativeCase": {
+        "entityLabel": "Eastern Roman Empire",
+        "prospectiveRuler": "Anastasius",
+        "rulerEvidenceScope": "Named in a dated source interval or context; full court and exact-day eligibility unreviewed",
+        "sourceIds": [
+          "c4-anastasius"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-anastasius",
+            "asWorded": [
+              "491–518"
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 23,
+            "rawMapLabel": "Eastern Roman Empire"
+          }
+        ],
+        "limitation": "The source's Eastern Empire description does not establish all former Roman territory.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "500",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_500.geojson",
+        "sourcePath": "geojson/world_500.geojson",
+        "gitBlobSha1": "9583a0c3fbbb5454664f5a05814b5d7866fc8282",
+        "featureCount": 205,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    },
+    {
+      "id": "c4-prospect-bc400",
+      "snapshot": "bc400",
+      "candidateYear": -400,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 3,
+      "technicalExactLabelRows": 36,
+      "technicalMarginalRowsAtSelectionStep": 28,
+      "representativeCase": {
+        "entityLabel": "Achaemenid rulership",
+        "prospectiveRuler": "Artaxerxes II",
+        "rulerEvidenceScope": "Named in a dated source interval or context; full court and exact-day eligibility unreviewed",
+        "sourceIds": [
+          "c4-artaxerxes"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-artaxerxes",
+            "asWorded": [
+              "405-04 to 359-58 B.C."
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 13,
+            "rawMapLabel": "Achaemenid Empire"
+          }
+        ],
+        "limitation": "Qualified reign boundaries are retained without selecting a single exact accession year.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "bc400",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_bc400.geojson",
+        "sourcePath": "geojson/world_bc400.geojson",
+        "gitBlobSha1": "7605f63fab39dd0f8c1f8e2c8a93886ff34a9fd9",
+        "featureCount": 190,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    },
+    {
+      "id": "c4-prospect-1530",
+      "snapshot": "1530",
+      "candidateYear": 1530,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 4,
+      "technicalExactLabelRows": 62,
+      "technicalMarginalRowsAtSelectionStep": 15,
+      "representativeCase": {
+        "entityLabel": "England",
+        "prospectiveRuler": "Henry VIII",
+        "rulerEvidenceScope": "Named in a dated source interval or context; full court and exact-day eligibility unreviewed",
+        "sourceIds": [
+          "c4-tudors"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-tudors",
+            "asWorded": [
+              "r.1485–1509",
+              "r.1509–47"
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 69,
+            "rawMapLabel": "England and Ireland"
+          },
+          {
+            "featureIndex": 71,
+            "rawMapLabel": "England and Ireland"
+          }
+        ],
+        "limitation": "Evidence concerns England. Composite labels do not approve Ireland or either feature geometry.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "1530",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_1530.geojson",
+        "sourcePath": "geojson/world_1530.geojson",
+        "gitBlobSha1": "743b3db1fd414891e5d9e9eb868c2aaf2b04810e",
+        "featureCount": 494,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    },
+    {
+      "id": "c4-prospect-1400",
+      "snapshot": "1400",
+      "candidateYear": 1400,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 5,
+      "technicalExactLabelRows": 61,
+      "technicalMarginalRowsAtSelectionStep": 13,
+      "representativeCase": {
+        "entityLabel": "Timurid rulership",
+        "prospectiveRuler": "Timur",
+        "rulerEvidenceScope": "Named in a dated source interval or context; full court and exact-day eligibility unreviewed",
+        "sourceIds": [
+          "c4-timurids"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-timurids",
+            "asWorded": [
+              "1370",
+              "1400–1402",
+              "1405"
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 224,
+            "rawMapLabel": "Timurid Empire"
+          }
+        ],
+        "limitation": "Named ruler and dated context are research leads; empire-wide control in 1400 is unreviewed.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "1400",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_1400.geojson",
+        "sourcePath": "geojson/world_1400.geojson",
+        "gitBlobSha1": "290b30d8a1d4936ea94f61583fb52559e057d50a",
+        "featureCount": 233,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    },
+    {
+      "id": "c4-prospect-700",
+      "snapshot": "700",
+      "candidateYear": 700,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 6,
+      "technicalExactLabelRows": 50,
+      "technicalMarginalRowsAtSelectionStep": 13,
+      "representativeCase": {
+        "entityLabel": "Umayyad caliphate",
+        "prospectiveRuler": "Abd al-Malik",
+        "rulerEvidenceScope": "Named in a dated source interval or context; full court and exact-day eligibility unreviewed",
+        "sourceIds": [
+          "c4-umayyads"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-umayyads",
+            "asWorded": [
+              "661–750",
+              "r. 685–705"
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 142,
+            "rawMapLabel": "Umayyad Caliphate"
+          }
+        ],
+        "limitation": "Court, succession, jurisdiction and map correspondence require separate review.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "700",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_700.geojson",
+        "sourcePath": "geojson/world_700.geojson",
+        "gitBlobSha1": "7a061dc13aa9ea6dc2f0a47fe225c624b2b42029",
+        "featureCount": 253,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    },
+    {
+      "id": "c4-prospect-1100",
+      "snapshot": "1100",
+      "candidateYear": 1100,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 7,
+      "technicalExactLabelRows": 70,
+      "technicalMarginalRowsAtSelectionStep": 11,
+      "representativeCase": {
+        "entityLabel": "Northern Song",
+        "prospectiveRuler": null,
+        "rulerEvidenceScope": "Unestablished in the selected read",
+        "sourceIds": [
+          "c4-song"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-song",
+            "asWorded": [
+              "960–1279",
+              "Northern Song (960–1126)"
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 26,
+            "rawMapLabel": "Song Empire"
+          }
+        ],
+        "limitation": "Ruler at 1100 remains unestablished in this bounded read.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "1100",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_1100.geojson",
+        "sourcePath": "geojson/world_1100.geojson",
+        "gitBlobSha1": "91bf7f8ccf391a3c7cdbfc903df26601f7c5771b",
+        "featureCount": 235,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    },
+    {
+      "id": "c4-prospect-bc100",
+      "snapshot": "bc100",
+      "candidateYear": -100,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 8,
+      "technicalExactLabelRows": 28,
+      "technicalMarginalRowsAtSelectionStep": 11,
+      "representativeCase": {
+        "entityLabel": "Western Han",
+        "prospectiveRuler": "Emperor Wu",
+        "rulerEvidenceScope": "Named in a dated source interval or context; full court and exact-day eligibility unreviewed",
+        "sourceIds": [
+          "c4-han"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-han",
+            "asWorded": [
+              "Western or Former Han (206 B.C.–9 A.D.)",
+              "Eastern or Later Han (25–220 A.D.)",
+              "Emperor Wu (141–87 B.C.)"
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 31,
+            "rawMapLabel": "Han Empire"
+          }
+        ],
+        "limitation": "Western Han is kept distinct from the Eastern Han phase; geometry unreviewed.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "bc100",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_bc100.geojson",
+        "sourcePath": "geojson/world_bc100.geojson",
+        "gitBlobSha1": "74cc5b5c4a1412b3ceb5179b8c3875ed2035e5e7",
+        "featureCount": 233,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    },
+    {
+      "id": "c4-prospect-900",
+      "snapshot": "900",
+      "candidateYear": 900,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 9,
+      "technicalExactLabelRows": 63,
+      "technicalMarginalRowsAtSelectionStep": 10,
+      "representativeCase": {
+        "entityLabel": "Tang dynasty",
+        "prospectiveRuler": null,
+        "rulerEvidenceScope": "Unestablished in the selected read",
+        "sourceIds": [
+          "c4-tang"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-tang",
+            "asWorded": [
+              "618–907"
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 39,
+            "rawMapLabel": "Tang Empire"
+          }
+        ],
+        "limitation": "Ruler at 900 remains unestablished. The dynasty interval is not a map of control.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "900",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_900.geojson",
+        "sourcePath": "geojson/world_900.geojson",
+        "gitBlobSha1": "7278850058019e30979e6cb3374c8eb191eeb71c",
+        "featureCount": 244,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    },
+    {
+      "id": "c4-prospect-bc700",
+      "snapshot": "bc700",
+      "candidateYear": -700,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 10,
+      "technicalExactLabelRows": 36,
+      "technicalMarginalRowsAtSelectionStep": 8,
+      "representativeCase": {
+        "entityLabel": "Neo-Assyrian kingship",
+        "prospectiveRuler": "Sennacherib",
+        "rulerEvidenceScope": "Named in a dated source interval or context; full court and exact-day eligibility unreviewed",
+        "sourceIds": [
+          "c4-sennacherib",
+          "c4-assyria-context"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-sennacherib",
+            "asWorded": [
+              "704 to 681 BCE"
+            ]
+          },
+          {
+            "sourceId": "c4-assyria-context",
+            "asWorded": [
+              "ca. 704–681 B.C."
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 19,
+            "rawMapLabel": "Assyria"
+          }
+        ],
+        "limitation": "Explicit reign evidence and an approximate timeline entry remain separate source statements.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "bc700",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_bc700.geojson",
+        "sourcePath": "geojson/world_bc700.geojson",
+        "gitBlobSha1": "d6303f72176ec21cc7762c536225bf5da3cb2612",
+        "featureCount": 174,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    },
+    {
+      "id": "c4-prospect-400",
+      "snapshot": "400",
+      "candidateYear": 400,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 11,
+      "technicalExactLabelRows": 32,
+      "technicalMarginalRowsAtSelectionStep": 7,
+      "representativeCase": {
+        "entityLabel": "Gupta culture/style context",
+        "prospectiveRuler": "Chandra Gupta II",
+        "rulerEvidenceScope": "Named in a dated source interval or context; full court and exact-day eligibility unreviewed",
+        "sourceIds": [
+          "c4-gupta-style"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-gupta-style",
+            "asWorded": [
+              "Chandra Gupta II (375-415 CE)"
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 365,
+            "rawMapLabel": "Gupta Empire"
+          }
+        ],
+        "limitation": "Getty AAT describes culture/style. Polity identity and state geometry are unresolved.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "400",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_400.geojson",
+        "sourcePath": "geojson/world_400.geojson",
+        "gitBlobSha1": "f1ee4b8a7b7327a39e70f919b146471bc473ef04",
+        "featureCount": 367,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    },
+    {
+      "id": "c4-prospect-200",
+      "snapshot": "200",
+      "candidateYear": 200,
+      "candidateMonth": null,
+      "candidateDay": null,
+      "dateScope": "Year-level research proposal; exact bookmark date unselected",
+      "initialTechnicalPriorityRank": 12,
+      "technicalExactLabelRows": 25,
+      "technicalMarginalRowsAtSelectionStep": 5,
+      "representativeCase": {
+        "entityLabel": "Eastern Han",
+        "prospectiveRuler": null,
+        "rulerEvidenceScope": "Unestablished in the selected read",
+        "sourceIds": [
+          "c4-han"
+        ],
+        "sourceChronology": [
+          {
+            "sourceId": "c4-han",
+            "asWorded": [
+              "Western or Former Han (206 B.C.–9 A.D.)",
+              "Eastern or Later Han (25–220 A.D.)",
+              "Emperor Wu (141–87 B.C.)"
+            ]
+          }
+        ],
+        "mapFeatureReferences": [
+          {
+            "featureIndex": 46,
+            "rawMapLabel": "Han"
+          }
+        ],
+        "limitation": "Ruler at 200 remains unestablished. A dynasty interval does not prove uniform control.",
+        "polityCorrespondenceApproved": false,
+        "courtApproved": false,
+        "geometryApproved": false
+      },
+      "map": {
+        "snapshot": "200",
+        "sourceRevision": "4b5039e50d8d2464b065bd76ad6086cd4597108d",
+        "sourceUrl": "https://github.com/aourednik/historical-basemaps/blob/4b5039e50d8d2464b065bd76ad6086cd4597108d/geojson/world_200.geojson",
+        "sourcePath": "geojson/world_200.geojson",
+        "gitBlobSha1": "8a2fe3fee3524d776c4ea235215f9449264ee540",
+        "featureCount": 354,
+        "verificationScope": "Independent source review confirmed the pinned GitHub path/blob pointer. A separate technical readback checked feature count and referenced index/labels against the frozen feature index. The source reviewer did not verify polygon bytes or feature counts. Historical correspondence, borders and usable geometry remain unapproved.",
+        "reuseScope": "Public source link and metadata only; no polygon, image or map copied into this public draft."
+      },
+      "furtherReview": [
+        "Political entity and culture distinction",
+        "Source-to-map feature correspondence",
+        "Exact-date ruler survival and authority",
+        "Succession, marriage and kin at the top",
+        "Court, seat and Getty TGN location",
+        "Geometry rights, historical scope and engine limits"
+      ],
+      "playableNow": false,
+      "reviewStatus": "representative-source-context-confirmed-only",
+      "sourceReviewScope": "One bounded representative interval or dated context. Candidate-year inclusion is an inference within that context; whole-year eligibility, other map labels, exact bookmark date, court and political correspondence remain unapproved."
+    }
+  ],
+  "independentReview": {
+    "reviewedOn": "2026-11-07",
+    "representativeCasesConfirmed": 12,
+    "historicalClaimsConfirmed": 25,
+    "sourceMetadataRecords": 11,
+    "initiallyConfirmedMetadataRecords": 10,
+    "metadataCorrectionsApplied": 1,
+    "pinnedMapPathBlobPointersConfirmed": 12,
+    "mapFeatureCountsCheckedBySourceReviewer": 0,
+    "mapFeatureCountsRecheckedAgainstTechnicalIndex": 12,
+    "politicalMapCorrespondencesApproved": 0,
+    "courtsApproved": 0,
+    "geometryApproved": 0,
+    "newlyApprovedPlayableCultures": 0,
+    "scope": "Bounded public-source contexts and technical pinned pointers only; no whole-start or certified historical coverage approval."
+  }
+}
