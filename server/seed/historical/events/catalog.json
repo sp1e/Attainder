@@ -2013,6 +2013,580 @@
       "originalChronology": "As worded in heading and introduction: 1122. No month or day adopted.",
       "scopedClaim": "Henry V renounced investiture with ring and staff; Calixtus II allowed royal presence at German episcopal elections and grants of regalia through the lance.",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-byzantium",
+      "title": "Byzantium: Faith and Power (1261–1557), publication description",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/met-publications/byzantium-faith-and-power-1261-1557",
+      "locator": "Public publication description, first two paragraphs",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1204; 1261. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "1204",
+        "1261"
+      ],
+      "scopedClaim": "Fourth Crusade capture of Constantinople in 1204 and Michael VIII’s return in 1261; public description only, not unread book chapters.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-michael-entry",
+      "title": "Byzantium: Faith and Power, exhibition overview",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/exhibitions/listings/2004/byzantium-faith-and-power",
+      "locator": "Exhibition Overview, paragraph beginning As the triumphant Byzantine general",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: August 15, 1261. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "August 15, 1261"
+      ],
+      "scopedClaim": "Michael VIII enters Constantinople on15 August 1261; entry distinguished from military capture.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-navas",
+      "title": "Prospección arqueológica superficial en la zona de desarrollo de la batalla de las Navas de Tolosa",
+      "institution": "M.G. López Payer, M.D. Rosado Llamas, M. Soria Lerma, J.M. Gallardo Fuentes, R. Villegas Sánchez; Junta de Andalucía",
+      "url": "https://www.juntadeandalucia.es/cultura/tabula/bitstream/20.500.11947/17501/1/AAA_1999_066_lopezpayer_batallanavasdetolosa_jaen.pdf",
+      "locator": "PDF page 4, abstract and introductory date; PDF page 9, paragraph discussing Muslim flight after defeat",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 16 de julio de 1212. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "16 de julio de 1212"
+      ],
+      "scopedClaim": "Christian crusaders fight Almohads near Santa Elena on16 July 1212; Muslim defeat mentioned in archaeological discussion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-magna",
+      "title": "Magna Carta",
+      "institution": "U.S. National Archives and Records Administration",
+      "url": "https://www.archives.gov/exhibits/featured-documents/magna-carta",
+      "locator": "Opening historical paragraphs immediately after Roosevelt quotation",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: June 15, 1215; 10 weeks later. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "June 15, 1215",
+        "10 weeks later"
+      ],
+      "scopedClaim": "John seals Magna Carta at Runnymede; papal annulment follows, rather than immediate permanent settlement.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-salamanca",
+      "title": "Historia",
+      "institution": "Universidad de Salamanca",
+      "url": "https://usal.es/historia",
+      "locator": "Fundada en 1218, opening paragraph; Del siglo XIII al siglo XX, first paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1218. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "1218"
+      ],
+      "scopedClaim": "Alfonso IX establishes the Salamanca schools in 1218, institutional precursor to the university.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-francis-approval",
+      "title": "Official Capuchin Documents",
+      "institution": "Capuchin Franciscans",
+      "url": "https://www.capuchins.org/official-capuchin-documents",
+      "locator": "The Rule of St. Francis, descriptive paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 29 November 1223. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "29 November 1223"
+      ],
+      "scopedClaim": "Honorius III approves Francis’s Regula bullata.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-francis-rule",
+      "title": "Rule of St. Francis of Assisi (1223): bull and rule",
+      "institution": "Capuchin Franciscans; primary-rule translation linked from Official Capuchin Documents",
+      "url": "https://img.hghlnd.com/imgix/https://capuchins.nyc3.digitaloceanspaces.com/Documents/RuleofStFrancis.pdf",
+      "locator": "PDF page1, dating header, confirmation paragraph and Chapter I; page5, closing Lateran dating clause",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: November 29, 1223 A. D.; third day of the Kalens of December; eight year of Our Pontificate. Header supplies the modern equivalent of the closing clause; no independent calendar calculation.",
+      "asWorded": [
+        "November 29, 1223 A. D.",
+        "third day of the Kalens of December",
+        "eight year of Our Pontificate"
+      ],
+      "scopedClaim": "The confirmation by Honorius III and Chapter I requirements of obedience, lack of personal property and chastity.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-sainte-chapelle",
+      "title": "Les verrières de la Sainte-Chapelle",
+      "institution": "French Ministry of Culture; resource supplied by Centre des monuments nationaux",
+      "url": "https://histoiredesarts.culture.gouv.fr/Toutes-les-ressources/Centre-des-monuments-nationaux-CMN/Les-verrieres-de-la-Sainte-Chapelle",
+      "locator": "Description, first paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: entre 1241 et 1248. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "entre 1241 et 1248"
+      ],
+      "scopedClaim": "Louis IX’s Sainte-Chapelle construction interval, Passion-relic purpose and royal symbolism; does not date consecration.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-parliament",
+      "title": "Simon de Montfort’s Parliament",
+      "institution": "UK Parliament",
+      "url": "https://www.parliament.uk/about/living-heritage/evolutionofparliament/originsofparliament/birthofparliament/overview/simondemontfort/",
+      "locator": "Opening two paragraphs",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1265. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "1265"
+      ],
+      "scopedClaim": "Representatives of shires and towns attend Montfort’s parliament; no claim of modern universal democracy.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-swiss",
+      "title": "The Federal Charter of 1291",
+      "institution": "Swiss Federal Council",
+      "url": "https://www.admin.ch/en/federal-charter-1291",
+      "locator": "Opening paragraph; Summary of the Latin text; concluding dating clause",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: early August 1291; at the beginning of August 1291. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "early August 1291",
+        "at the beginning of August 1291"
+      ],
+      "scopedClaim": "Uri, Schwyz and Nidwalden agree mutual assistance and judicial rules; modern founding-document interpretation is later.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-stirling",
+      "title": "Battle of Stirling Bridge BTL28",
+      "institution": "Historic Environment Scotland",
+      "url": "https://portal.historicenvironment.scot/apex/f?p=1505:300:::::VIEWTYPE,VIEWREF:designation,BTL28",
+      "locator": "Date of Battle; Overview and Statement of Significance; The Armies",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 11 September 1297. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "11 September 1297"
+      ],
+      "scopedClaim": "Wallace and Moray’s Scottish army defeats the English at Stirling Bridge.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-mongols",
+      "title": "Mongols",
+      "institution": "Peter Jackson; Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/mongols/",
+      "locator": "Origins and early history: assembly paragraph and administrative paragraph; The conquest of Iran, first three paragraphs",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1204; about 1206; 615-621/1218-1224; 1238-9; 654/1256; 656/1258. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "1204",
+        "about 1206",
+        "615-621/1218-1224",
+        "1238-9",
+        "654/1256",
+        "656/1258"
+      ],
+      "scopedClaim": "Chancery script adoption, assembly, western campaign, Caucasus conquest, Nizari strongholds and Baghdad fall; each event retains its own date scope.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-royal-mongols",
+      "title": "Rise of the Mongols",
+      "institution": "Royal Armouries",
+      "url": "https://royalarmouries.org/objects-and-stories/stories/the-mongols/rise-of-the-mongols",
+      "locator": "The Unification of Mongolia, paragraph beginning By 1206; Mongol Expansion, paragraph beginning Using the shelter",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: By 1206; Qara Khitai lands in 1218. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "By 1206",
+        "Qara Khitai lands in 1218"
+      ],
+      "scopedClaim": "Proclamation by 1206 and invasion of Qara Khitai in 1218 only; neighboring chronology is not endorsed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-mamluks",
+      "title": "The Art of the Mamluk Period (1250–1517)",
+      "institution": "Suzan Yalman; The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/essays/the-art-of-the-mamluk-period-1250-1517",
+      "locator": "Opening historical paragraphs before Art and Architecture under the Bahri Mamluks",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1250–1517; 1250–60; Turan Shah (r. 1249–50); ‘Ain Jalut (1260). Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "1250–1517",
+        "1250–60",
+        "Turan Shah (r. 1249–50)",
+        "‘Ain Jalut (1260)"
+      ],
+      "scopedClaim": "Mamluk overthrow of Turan Shah and rule in Egypt, and defeat of Mongol forces at Ayn Jalut; regional transition distinguished from Egyptian coup.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-maragha",
+      "title": "The Maragha Observatory Complex in Ilkhanid Iran",
+      "institution": "Hadi Joráti; Max Planck Institute for the History of Science",
+      "url": "https://www.mpiwg-berlin.mpg.de/research/projects/maragha-observatory-complex-ilkhanid-iran",
+      "locator": "Project description, first three paragraphs",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: founded in 1259. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "founded in 1259"
+      ],
+      "scopedClaim": "Tusi’s observatory project supported by Hülegü, founded 1259 to produce astronomical tables; no exact operational-start claim.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-acre",
+      "title": "Acre (Israel), No 1042, advisory-body evaluation",
+      "institution": "ICOMOS evaluation reproducing State Party justification; UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/archive/advisory_body_evaluation/1042.pdf",
+      "locator": "English PDF page 1, Justification by State Party,1291 paragraph; page 2, History, beginning of Mameluke period",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1291. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "1291"
+      ],
+      "scopedClaim": "Mamluk conquest of Acre in 1291 and destruction under Sultan al-Ashraf; no exact day supplied.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-rubruck",
+      "title": "William of Rubruck’s Account of the Mongols",
+      "institution": "University of Washington Silk Road Seattle; primary translation W.W. Rockhill1900,  checked against Jackson/Morgan1990",
+      "url": "https://depts.washington.edu/silkroad/texts/rubruck.html",
+      "locator": "Daniel Waugh Introduction paragraphs 1–6; account’s opening departure; Khan’s palace at Karakorum",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1253-55; 1253-1255; Nones of May (7th May); one thousand two hundred and fifty-three. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "1253-55",
+        "1253-1255",
+        "Nones of May (7th May)",
+        "one thousand two hundred and fifty-three"
+      ],
+      "scopedClaim": "Rubruck’s1253–1255 journey through western Mongol lands to Möngke’s court and account; editorial calendar equivalents retained.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-mali",
+      "title": "Western and Central Sudan, 1000–1400 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/07/afu.html",
+      "locator": "Key Events, ca. 1230–1235 entry",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: ca. 1230–1235. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "ca. 1230–1235"
+      ],
+      "scopedClaim": "Sundiata defeats Soso, an event associated with Mali’s emergence; approximate interval and oral-tradition context preserved.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-mapungubwe",
+      "title": "Mapungubwe (South Africa), No 1099, advisory-body evaluation",
+      "institution": "ICOMOS; UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/archive/advisory_body_evaluation/1099.pdf",
+      "locator": "English printed pp. 92–93, Description and Remains of palaces; PDF pages 1–2",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1220-1290 AD; between 1220 and 1300. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "1220-1290 AD",
+        "between 1220 and 1300"
+      ],
+      "scopedClaim": "Palace-remains phase 1220–1290, elite residence on hill and commoners below; wider kingdom height 1220–1300 is a separate scope.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-ethiopia",
+      "title": "Demarginalizing Medieval Africa: Images, texts, and identity in early Solomonic Ethiopia",
+      "institution": "University College London, AHRC-DFG ITIESE project",
+      "url": "https://www.ucl.ac.uk/social-historical-sciences/art-history/research/demarginalizing-medieval-africa-images-texts-and-identity-early-solomonic-ethiopia-1270-1527",
+      "locator": "Opening project-description paragraph; Objectives opening",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: 1270; 1270–1527. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "1270",
+        "1270–1527"
+      ],
+      "scopedClaim": "New Ethiopian dynasty rises in 1270 and claims descent from Solomon; claim of descent is not validated genealogy.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-paquime",
+      "title": "Paquimé",
+      "institution": "Instituto Nacional de Antropología e Historia, Mexico",
+      "url": "https://lugares.inah.gob.mx/en/node/4353",
+      "locator": "Site history immediately after VISIT US, paragraph beginning Thanks to the development",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: around the year 1200. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "around the year 1200"
+      ],
+      "scopedClaim": "Irrigation-linked architectural expansion around 1200, including multistorey family complexes, workshops and hydraulic works; not first occupation.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-mesa-study",
+      "title": "The Social Consequences of Climate Change in the Central Mesa Verde Region",
+      "institution": "Schwindt, Bocinsky, Ortman, Glowacki, Varien and Kohler; American Antiquity81(1),2016, pp. 74–96; PMC author manuscript",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7523884/",
+      "locator": "Population-history results, paragraph beginning Since regional population; Discussion and Conclusions, final regional-collapse paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: within a few years of A.D. 1280; by A.D. 1285. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "within a few years of A.D. 1280",
+        "by A.D. 1285"
+      ],
+      "scopedClaim": "Final depopulation around 1280, with processes beginning earlier; climate alone does not explain the regional change.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-mesa-nps",
+      "title": "People",
+      "institution": "U.S. National Park Service, Mesa Verde National Park",
+      "url": "https://home.nps.gov/meve/learn/historyculture/people.htm",
+      "locator": "A Time to Leave; We Are Still Here; The Pueblo and Hopi People",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: mid 1200s; Over the course of several decades. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "mid 1200s",
+        "Over the course of several decades"
+      ],
+      "scopedClaim": "Pueblo people migrate south over decades and continue life in other communities; no extinction or single drought cause.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-west-maya",
+      "title": "Maya Area, 1000–1400 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/07/caa.html",
+      "locator": "Key Events: first ca. 1250 entry and ca. 1280 entry",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "As worded: ca. 1250; ca. 1280. Source-supplied chronology; no independent calendar conversion.",
+      "asWorded": [
+        "ca. 1250",
+        "ca. 1280"
+      ],
+      "scopedClaim": "Mayapan’s political-capital status around 1250 and K’iche’ state formation around 1280 with tribute to Utatlán; no new Mayapan founding date.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "e1200-east-delhi-dalziel",
+      "title": "Delhi Sultanate, The Encyclopedia of Empire (2016)",
+      "institution": "Nigel R. Dalziel; Wiley",
+      "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118455074.wbeoe423",
+      "locator": "Public Abstract, first paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Mamluk dynasty (1206–1290); Khalji (1290–1320)",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Founding of the Mamluk dynasty by Aibak and succession of the Khalji dynasty; no detailed ruler biography.",
+      "accessExtent": "Public abstract only"
+    },
+    {
+      "id": "e1200-east-ncert-delhi",
+      "title": "Delhi: 12th to 15th Century, Our Pasts–II",
+      "institution": "NCERT, Government of India",
+      "url": "https://ncert.nic.in/textbook/pdf/gess103.pdf",
+      "locator": "Understanding Delhi under the Sultans; paragraph beginning In 1236 Sultan Iltutmish’s daughter, Raziyya",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1236;1240",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Raziyya became sultan in 1236 and was removed in 1240.",
+      "accessExtent": "Actual PDF body recovered with live Firecrawl after web timeout; specified paragraph read"
+    },
+    {
+      "id": "e1200-east-reddy-mamluk",
+      "title": "The slave dynasty (1206–1290), Outlines of Indian History, chapter 20",
+      "institution": "P. Bhaskar Reddy; INFLIBNET Centre",
+      "url": "https://ebooks.inflibnet.ac.in/icp01/chapter/the-slave-dynasty-1206-1290/",
+      "locator": "Nasiruddin Mahmud (1246–1266), last paragraph; Balban, Early Life",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1266",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Nasiruddin’s death followed by Balban’s accession; no regnal end year adopted.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-reddy-khalji",
+      "title": "The khilji(khalji) dynasty (1290–1320), Outlines of Indian History, chapter 21",
+      "institution": "P. Bhaskar Reddy; INFLIBNET Centre",
+      "url": "https://ebooks.inflibnet.ac.in/icp01/chapter/the-khilji-khalji-dynasty-1290-1320/",
+      "locator": "Introduction; Jalaluddin Khilji; Alauddin Khilji",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1290;1296",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Khalji regime began in 1290; Alauddin killed Jalaluddin and seized power in 1296.",
+      "accessExtent": "Actual page paragraphs read with native PowerShell"
+    },
+    {
+      "id": "e1200-east-hambly-gujarat",
+      "title": "ʿAlāʾ-ud-Dīn Muhammad Khaljī Conquers Gujarat (2022)",
+      "institution": "Gavin R.G. Hambly; EBSCO scholarly reference",
+      "url": "https://www.ebsco.com/research-starters/history/ala-ud-din-muhammad-khalji-conquers-gujarat",
+      "locator": "DATE; Summary of Event, paragraphs beginning In 1299 Gujarat and Thus,in 1299; paragraph beginning The two army commanders",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1299",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Ulugh Khan and Nusrat Khan led the Gujarat raid; withdrawal without permanent garrison distinguishes this campaign from subsequent annexation.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-columbia-eastern-campaigns",
+      "title": "Three Invasions Led by Chinggis, The Mongols in World History",
+      "institution": "Asia for Educators, Columbia University",
+      "url": "https://afe.easia.columbia.edu/mongols/conquests/conquests_2c.htm",
+      "locator": "Tanguts; Jin",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1209;By 1215",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Dates the Tangut campaign and seizure of the Beijing area; no claim that the Jin state ended in 1215.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-columbia-jin",
+      "title": "Chinggis’s Successor and Further Expansion of the Empire",
+      "institution": "Asia for Educators, Columbia University",
+      "url": "https://afe.easia.columbia.edu/mongols/conquests/conquests_2d.htm",
+      "locator": "Paragraph beginning Ögödei oversaw",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "by 1234",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Jin dynasty was destroyed by 1234; regional statement only.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-wright-dali",
+      "title": "Re-Writing Dali: the Construction of an Imperial Locality in the Borderlands,1253–1679 (2019)",
+      "institution": "Eloise Elizabeth Wright; UC Berkeley dissertation, eScholarship",
+      "url": "https://escholarship.org/uc/item/80h5n4j0",
+      "locator": "Public Abstract, second sentence",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1253",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Mongol armies conquered the city of Dali, former capital of the independent Dali Kingdom.",
+      "accessExtent": "Actual public abstract body retrieved with live Firecrawl after direct web bot challenge; dissertation body not read"
+    },
+    {
+      "id": "e1200-east-npm-kublai",
+      "title": "Kublai Khan and His Era",
+      "institution": "National Palace Museum, Southern Branch",
+      "url": "https://south.npm.gov.tw/english/ExhibitionsDetailE003110.aspx?Cond=1c5670c9-d992-404a-8f8a-7b9427473b69&State=1&appname=Exhibition3111EN",
+      "locator": "Opening historical paragraph; Imperial Portrait: Emperor Shizu description",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1260;1271;by 1279",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Kublai became Great Khan in 1260, proclaimed Great Yuan in 1271 and completed the Southern Song conquest by 1279.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-naj-mongol-japan",
+      "title": "Relations between Japan and Mongolia in the 13th century: archival-record exhibition",
+      "institution": "National Archives of Japan and Mongolian archival partners",
+      "url": "https://www.archives.go.jp/about/activity/international/jp_mn50/english/ch01.html",
+      "locator": "Diplomatic correspondence; Mongol Invasions of Japan, Illustrated account",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1268;1274;1281",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Records arrival of Kublai’s letter in Japan and the two invasions; no independent month/day conversion.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-nikh-kim-yunhu",
+      "title": "김윤후: 화살로 몽골 살리타이를 격퇴하다 (Kim Yun-hu)",
+      "institution": "National Institute of Korean History, Korean History Chronology",
+      "url": "https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_n201500",
+      "locator": "Sections 2 Mongol first invasion and Ganghwa move;3 Cheoin battle",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1231년(고종18);1232년(고종19)",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Dates first invasion, court move and Cheoin battle; explicitly leaves uncertain whether Kim personally shot the commander.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-unesco-tripitaka",
+      "title": "Haeinsa Temple Janggyeong Panjeon, the Depositories for the Tripitaka Koreana Woodblocks",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/737/",
+      "locator": "English Description; Outstanding Universal Value, Brief synthesis",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "between 1237 and 1248",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Dates carving of the woodblocks, not construction of their later Haeinsa depositories.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-vnmh-bach-dang",
+      "title": "Bach Dang wooden stakes",
+      "institution": "Vietnam National Museum of History",
+      "url": "https://baotanglichsu.vn/en/Articles/1005/28187/bach-dang-wooden-stakes.html",
+      "locator": "Opening object identification and first explanatory paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1288 AD",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Stakes are associated with the 1288 naval battle commanded by Tran Hung Dao; no precise day asserted.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-columbia-java",
+      "title": "Military Successes and Failures, The Mongols in World History",
+      "institution": "Asia for Educators, Columbia University",
+      "url": "https://afe.easia.columbia.edu/mongols/china/china4_a.htm",
+      "locator": "Paragraph beginning Expeditions such as these",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "a 1292 expedition against Java",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Dates the expedition as 1292 and describes landing/withdrawal; no computed 1293 endpoint.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-bartlett-zhou",
+      "title": "Gerald of Wales and the Ethnographic Imagination, Kathleen Hughes Memorial Lectures 12 (2013)",
+      "institution": "Robert Bartlett; Hughes Hall and Department of Anglo-Saxon,Norse and Celtic, University of Cambridge",
+      "url": "https://www.asnc.cam.ac.uk/publications/Hughes/KH%20Vol%2012%202013%20Bartlett.pdf",
+      "locator": "Printed pp.7–8 (PDF pages 13–14), Zhou Daguan discussion beginning The Chinese were not only objects; notes 22–24; following paragraph on court rank.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1296–7",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Zhou Daguan journeyed in Cambodia in 1296–1297 and described customs; no composition day or exclusive uniqueness claim.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-bunbury-settlement",
+      "title": "A new chronology for the Māori settlement of Aotearoa(NZ) and the potential role of climate change in demographic developments,PNAS 119(46),e 2207609119 (2022)",
+      "institution": "Magdalena M.E. Bunbury,Fiona Petchey and Simon H. Bickler; PNAS; James Cook University repository",
+      "url": "https://researchonline.jcu.edu.au/76732/1/76732.pdf",
+      "locator": "p.1 Abstract and Significance; pp.1–2 modeling method and chronology caveats",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "AD 1250 to 1275",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Models initial North Island settlement in this interval; not an observed arrival day or named-voyage date.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-mcivor-chronology",
+      "title": "Genealogies and oral histories as chronological networks: interfacing whakapapa (Māori genealogies) with Gregorian calendar year archaeological radiocarbon dates (2025)",
+      "institution": "Isaac H.McIvor and coauthors; Archaeometry 67(S 1),131–153; Wiley",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1111/arcm.13074",
+      "locator": "Initial human settlement of Waikato and the arrival of Tainui, paragraph beginning The earliest radiocarbon dates",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1250–1275 CE;c.1280 CE",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Distinguishes the early statistical model from individual North Island dates, none precisely before c.1280; no Tainui voyage year derived.",
+      "accessExtent": "Actual cited passage read"
+    },
+    {
+      "id": "e1200-east-unicode-phags-pa",
+      "title": "The Unicode Standard 17.0, chapter 14, section 14.4 Phags-pa",
+      "institution": "Unicode Consortium",
+      "url": "https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-14/",
+      "locator": "14.4 Phags-pa, History paragraph",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1269",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Imperial edict promulgated the new Mongolian script devised by Phags-pa at Kublai’s request.",
+      "accessExtent": "Actual cited passage read"
     }
   ],
   "events": [
@@ -6492,6 +7066,1340 @@
         "e1100-west-alarcos"
       ],
       "selectionNote": "The battle demonstrates Almohad military power against a major Castilian fortified position.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1200-paquime-utvidgas",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1200,
+        "endYear": 1200,
+        "displaySv": "cirka 1200",
+        "noteSv": "INAH anger omkring 1200 för denna byggnadsutveckling. Platsen hade varit bebodd långt tidigare; året anger ingen första grundläggning."
+      },
+      "titleSv": "Invånarna bygger ut Paquimé",
+      "summarySv": "Invånarna bygger större bostadskomplex i Paquimé omkring år 1200. De anlägger också verkstäder, tempel och vattenanläggningar i den växande staden.",
+      "geographySv": "Paquimé, nuvarande Chihuahua i Mexiko",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-paquime"
+      ],
+      "selectionNote": "A major architectural and infrastructural expansion in a northern Mexican exchange centre.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1204-korsfarare-intar-konstantinopel",
+      "date": {
+        "kind": "exact",
+        "startYear": 1204,
+        "endYear": 1204,
+        "displaySv": "1204",
+        "noteSv": "Museet anger 1204. Posten anger inget exakt datum och påstår inte att alla bysantinska efterföljarstater upphör."
+      },
+      "titleSv": "Korsfararna intar Konstantinopel",
+      "summarySv": "Korsfararna intar den bysantinska huvudstaden Konstantinopel under det fjärde korståget. Erövringen bryter stadens långa kontinuitet som centrum för det bysantinska hovets konst och kultur.",
+      "geographySv": "Konstantinopel, nuvarande Istanbul i Turkiet",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-west-byzantium"
+      ],
+      "selectionNote": "The Fourth Crusade redirects Mediterranean power and disrupts the imperial capital.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1204-mongolkansliet-antar-uigurisk-skrift",
+      "date": {
+        "kind": "exact",
+        "startYear": 1204,
+        "endYear": 1204,
+        "displaySv": "1204",
+        "noteSv": "Iranica daterar kansliets antagande till 1204. Posten gäller administrativ användning, inte uppfinningen av skriften."
+      },
+      "titleSv": "Mongolkansliet antar uigurisk skrift",
+      "summarySv": "Mongolernas framväxande kansli antar uigurisk skrift. Skriften blir ett redskap för rikets administration.",
+      "geographySv": "Mongoliet",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-mongols"
+      ],
+      "selectionNote": "Writing and administration matter alongside conquest in the early Mongol state.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1206-aybak-blir-sultan",
+      "date": {
+        "kind": "exact",
+        "startYear": 1206,
+        "endYear": 1206,
+        "displaySv": "1206"
+      },
+      "titleSv": "Qutb al-Din Aybak blir sultan",
+      "summarySv": "Qutb al-Din Aybak blir sultan i norra Indien. Han grundar den mamlukiska dynastin i Delhisultanatet.",
+      "geographySv": "Norra Indien",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-east-delhi-dalziel"
+      ],
+      "selectionNote": "Marks the establishment of a new regional ruling dynasty, rather than all later territorial expansion.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1206-temudjin-utropas-till-djingis-khan",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1206,
+        "endYear": 1206,
+        "displaySv": "cirka 1206",
+        "noteSv": "Iranica skriver omkring 1206, medan Royal Armouries anger att proklamationen hade skett senast 1206. Posten behåller en ungefärlig datering."
+      },
+      "titleSv": "Temudjin utropas till Djingis khan",
+      "summarySv": "En stamförsamling utropar Temudjin till mongolernas härskare. Han antar titeln Djingis khan.",
+      "geographySv": "Mongoliet",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-west-mongols",
+        "e1200-west-royal-mongols"
+      ],
+      "selectionNote": "The assembly consolidates a new centre of steppe power.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1209-mongolerna-angriper-xia",
+      "date": {
+        "kind": "exact",
+        "startYear": 1209,
+        "endYear": 1209,
+        "displaySv": "1209"
+      },
+      "titleSv": "Mongolerna angriper Västra Xia",
+      "summarySv": "Djingis khan leder ett fälttåg mot tanguternas Xiarike i nordvästra Kina. Han får eftergifter i handelsfrågor och återvänder till Mongoliet.",
+      "geographySv": "Nordvästra Kina",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-columbia-eastern-campaigns"
+      ],
+      "selectionNote": "An eastern campaign; this is not the later destruction of Western Xia.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1212-korsfarare-segrar-vid-las-navas",
+      "date": {
+        "kind": "exact",
+        "startYear": 1212,
+        "endYear": 1212,
+        "displaySv": "16 juli 1212",
+        "noteSv": "Rapportens inledning anger den 16 juli 1212. Hänvisningen till muslimsk flykt efter nederlaget finns i materialdiskussionen; inga truppstyrkor eller förlusttal tas med."
+      },
+      "titleSv": "Kristna korsfarare besegrar almohaderna vid Las Navas de Tolosa",
+      "summarySv": "Kristna korsfarare besegrar almohaderna vid Las Navas de Tolosa. Slaget utkämpas nära Santa Elena i nuvarande provinsen Jaén.",
+      "geographySv": "Las Navas de Tolosa, nuvarande Spanien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-navas"
+      ],
+      "selectionNote": "A major encounter between Iberian crusaders and Almohad power, supported by battlefield research.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1215-johan-forseglar-magna-carta",
+      "date": {
+        "kind": "exact",
+        "startYear": 1215,
+        "endYear": 1215,
+        "displaySv": "15 juni 1215",
+        "noteSv": "Arkivet anger den 15 juni 1215 och ett påvligt upphävande tio veckor senare. Posten beskriver inte stadgan som en omedelbart bestående fred."
+      },
+      "titleSv": "Johan utan land förseglar Magna Carta",
+      "summarySv": "Johan utan land förseglar Magna Carta i Runnymede efter baronernas uppror. Överenskommelsen begränsar kungens handlingsutrymme, men påven upphäver den tio veckor senare.",
+      "geographySv": "Runnymede, England",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-west-magna"
+      ],
+      "selectionNote": "A major charter settlement within an unresolved conflict over royal authority.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1215-mongolerna-intar-zhongdu",
+      "date": {
+        "kind": "exact",
+        "startYear": 1215,
+        "endYear": 1215,
+        "displaySv": "1215",
+        "noteSv": "Källan skriver att området var taget senast 1215. Posten daterar det belagda utfallet, inte ett exakt stormningsdygn."
+      },
+      "titleSv": "Mongolerna intar området kring Zhongdu",
+      "summarySv": "Djingis khans trupper intar området kring dagens Peking i ett fälttåg mot Jindynastin. Jins härskare fortsätter att styra längre söderut.",
+      "geographySv": "Zhongdu, dagens Peking, Kina",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-east-columbia-eastern-campaigns"
+      ],
+      "selectionNote": "A major northern conquest, kept distinct from the Jin state’s later end.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1218-alfonso-inrattar-skolor-i-salamanca",
+      "date": {
+        "kind": "exact",
+        "startYear": 1218,
+        "endYear": 1218,
+        "displaySv": "1218",
+        "noteSv": "Universitetets historik anger 1218 för skolornas tillkomst. Senare organisationsregler och påvliga privilegier räknas inte som samma händelse."
+      },
+      "titleSv": "Alfonso IX inrättar skolor i Salamanca",
+      "summarySv": "Alfonso IX av León inrättar högre skolor i Salamanca. Skolorna blir grunden för det senare universitetet.",
+      "geographySv": "Salamanca, nuvarande Spanien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-salamanca"
+      ],
+      "selectionNote": "An enduring institutional development in higher learning.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1218-djingis-for-krig-mot-khwarazm",
+      "date": {
+        "kind": "range",
+        "startYear": 1218,
+        "endYear": 1224,
+        "displaySv": "1218–1224",
+        "noteSv": "Iranica anger hela västfälttåget som 615–621/1218–1224. Detta breda fälttåg skiljs från de första invasionerna 1219–1220; ingen egen omräkning görs."
+      },
+      "titleSv": "Djingis khan för krig mot Khwarazm",
+      "summarySv": "Djingis khan inleder ett långvarigt fälttåg mot Khwarazms välde efter dödandet av hans sändebud. Mongolerna erövrar och plundrar städer i Centralasien och Iran.",
+      "geographySv": "Centralasien och Iran",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-west-mongols"
+      ],
+      "selectionNote": "The western campaign transforms Central Asian and Iranian political centres.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1218-mongolerna-angriper-qara-khitai",
+      "date": {
+        "kind": "exact",
+        "startYear": 1218,
+        "endYear": 1218,
+        "displaySv": "1218",
+        "noteSv": "Royal Armouries anger 1218 för invasionen. Året används inte som ett exakt slutdatum för varje del av Qara Khitais styre."
+      },
+      "titleSv": "Mongolerna angriper Qara Khitai",
+      "summarySv": "Mongolerna går in i Qara Khitais områden i Centralasien. Angreppet följer på att besegrade motståndare till Djingis khan har sökt skydd hos grannarna.",
+      "geographySv": "Qara Khitai, Centralasien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-royal-mongols"
+      ],
+      "selectionNote": "The invasion extends Mongol power toward Central Asian routes.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1220-eliten-bor-pa-mapungubweberget",
+      "date": {
+        "kind": "range",
+        "startYear": 1220,
+        "endYear": 1290,
+        "displaySv": "1220–1290",
+        "noteSv": "ICOMOS daterar palatslämningarna till 1220–1290. Rapportens bredare höjdpunkt för kungadömet är 1220–1300; posten gäller palatsfasen och fastställer inget enskilt grundläggningsår."
+      },
+      "titleSv": "Eliten bor på Mapungubweberget",
+      "summarySv": "Härskarna vid Mapungubwe bor på berget medan vanliga invånare lever på terrassen nedanför. Jordbruk och långväga handel försörjer det hierarkiska samhället.",
+      "geographySv": "Limpopo–Shasheområdet, nuvarande Sydafrika",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-mapungubwe"
+      ],
+      "selectionNote": "A distinct hilltop political-residential phase after K2, which is already represented in the catalog.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1223-honorius-godkanner-franciskus-regel",
+      "date": {
+        "kind": "exact",
+        "startYear": 1223,
+        "endYear": 1223,
+        "displaySv": "29 november 1223",
+        "noteSv": "Godkännandet dateras till den 29 november 1223. Regelns innehåll stöds av kapitel I i den publicerade primärtexten."
+      },
+      "titleSv": "Honorius III godkänner Franciskus ordensregel",
+      "summarySv": "Påven Honorius III godkänner Franciskus regel för minoriterna. Regeln föreskriver lydnad, egendomslöshet och kyskhet.",
+      "geographySv": "Rom och franciskanernas gemenskaper",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-francis-approval",
+        "e1200-west-francis-rule"
+      ],
+      "selectionNote": "Formal approval gives an enduring rule to a major religious movement.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1230-sundiata-besegrar-soso",
+      "date": {
+        "kind": "range",
+        "startYear": 1230,
+        "endYear": 1235,
+        "displaySv": "cirka 1230–1235",
+        "noteSv": "Museet anger cirka 1230–1235. Spannet är en ungefärlig datering av segern, inte en belagd femårig strid eller ett exakt grundläggningsår."
+      },
+      "titleSv": "Sundiata besegrar Soso",
+      "summarySv": "Sundiata Keita besegrar Sosos kung Sumanguru Kante. Segern förknippas med Malirikets framväxt och lever vidare i mandefolkens muntliga traditioner.",
+      "geographySv": "Västafrika, främst nuvarande Mali",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-west-mali"
+      ],
+      "selectionNote": "An important West African transfer of power with explicit oral-tradition and chronological limits.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1231-mongolerna-invaderar-goryeo",
+      "date": {
+        "kind": "exact",
+        "startYear": 1231,
+        "endYear": 1231,
+        "displaySv": "1231"
+      },
+      "titleSv": "Mongolerna invaderar Goryeo",
+      "summarySv": "Mongoliska styrkor angriper Goryeo och når fram till huvudorten Gaegyeong. Hovet söker därefter en uppgörelse med angriparna.",
+      "geographySv": "Goryeo, Koreahalvön",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-nikh-kim-yunhu"
+      ],
+      "selectionNote": "The first invasion opens a major phase of direct conflict, represented as its initial campaign only.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1232-forsvararna-segrar-vid-cheoin",
+      "date": {
+        "kind": "exact",
+        "startYear": 1232,
+        "endYear": 1232,
+        "displaySv": "1232"
+      },
+      "titleSv": "Lokala försvarare hejdar mongolerna vid Cheoin",
+      "summarySv": "Försvararna vid Cheoin dödar den mongoliske befälhavaren Saritai. Kim Yun-hu deltar i ledningen av motståndet, men det är osäkert om han själv skjuter den dödande pilen.",
+      "geographySv": "Cheoin, Korea",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-nikh-kim-yunhu"
+      ],
+      "selectionNote": "A distinct campaign outcome; preserves the institution’s explicit uncertainty about the individual fatal shot.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1232-goryeos-hov-flyttar-till-ganghwa",
+      "date": {
+        "kind": "exact",
+        "startYear": 1232,
+        "endYear": 1232,
+        "displaySv": "1232"
+      },
+      "titleSv": "Goryeos hov flyttar till Ganghwa",
+      "summarySv": "Choe U driver igenom att Goryeos hov flyttar till ön Ganghwa. Flytten gör det möjligt att fortsätta motståndet mot mongolerna från en mer skyddad plats.",
+      "geographySv": "Ganghwa, Korea",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-nikh-kim-yunhu"
+      ],
+      "selectionNote": "A specific court relocation; no automatic territorial or popular evacuation boundaries are inferred.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1234-jindynastin-besegras",
+      "date": {
+        "kind": "exact",
+        "startYear": 1234,
+        "endYear": 1234,
+        "displaySv": "1234",
+        "noteSv": "Den citerade översikten anger att Jindynastin hade krossats senast 1234; inget exakt dygn anges."
+      },
+      "titleSv": "Mongolerna krossar Jindynastins välde",
+      "summarySv": "Mongolerna slår sönder Jindynastins stat i norra Kina. Erövringen är ett nytt steg i deras expansion söderut.",
+      "geographySv": "Norra Kina",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-east-columbia-jin"
+      ],
+      "selectionNote": "Ends a major northern state; it does not describe the end of the Jurchen people.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1236-raziyya-blir-sultan",
+      "date": {
+        "kind": "exact",
+        "startYear": 1236,
+        "endYear": 1236,
+        "displaySv": "1236"
+      },
+      "titleSv": "Raziyya blir sultan i Delhi",
+      "summarySv": "Iltutmishs dotter Raziyya blir sultan i Delhi. Hon försöker utöva makten självständigt trots motstånd bland rikets stormän.",
+      "geographySv": "Delhi, Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-ncert-delhi"
+      ],
+      "selectionNote": "A succession with direct consequences for the court and its relationship with powerful nobles.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1237-tripitaka-koreana-snids",
+      "date": {
+        "kind": "range",
+        "startYear": 1237,
+        "endYear": 1248,
+        "displaySv": "1237–1248",
+        "noteSv": "Åren gäller framställningen av träblocken. De daterar inte uppförandet av de senare förvaringsbyggnaderna i Haeinsa."
+      },
+      "titleSv": "Träsnidare framställer Tripitaka Koreana",
+      "summarySv": "Träsnidare framställer omkring 80 000 träblock med buddhistiska texter. Arbetet dateras till 1237–1248 och förbinds med vädjanden om Buddhas hjälp under kriget mot mongolerna.",
+      "geographySv": "Goryeo, Koreahalvön",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-unesco-tripitaka"
+      ],
+      "selectionNote": "A bounded documented production phase, distinct from the later Haeinsa storage buildings.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1238-chormaqan-kuvar-georgien-och-armenien",
+      "date": {
+        "kind": "range",
+        "startYear": 1238,
+        "endYear": 1239,
+        "displaySv": "1238–1239",
+        "noteSv": "Iranica anger 1238–1239 för denna underkuvningsfas. Posten daterar inte de första mongoliska kontakterna med Kaukasus eller varje lokal erövring till samma år."
+      },
+      "titleSv": "Čormaḡuns mongolarmé kuvar Georgien och Armenien",
+      "summarySv": "Den mongoliske befälhavaren Čormaḡun kuvar områden i Georgien och Armenien. Fälttågen ingår i mongolernas fortsatta expansion i Kaukasus.",
+      "geographySv": "Georgien och Armenien, Kaukasus",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-mongols"
+      ],
+      "selectionNote": "A specifically dated Caucasian phase, distinct from the earlier Khwarazm campaign.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1240-raziyya-avsatts",
+      "date": {
+        "kind": "exact",
+        "startYear": 1240,
+        "endYear": 1240,
+        "displaySv": "1240"
+      },
+      "titleSv": "Raziyya avsätts från Delhis tron",
+      "summarySv": "Raziyya förlorar sultanämbetet i Delhi. Hennes försök att styra självständigt har mött stormännens motstånd.",
+      "geographySv": "Delhi, Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-ncert-delhi"
+      ],
+      "selectionNote": "Separates removal from the earlier accession without importing an unsourced death narrative.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1241-louis-later-bygga-sainte-chapelle",
+      "date": {
+        "kind": "range",
+        "startYear": 1241,
+        "endYear": 1248,
+        "displaySv": "1241–1248",
+        "noteSv": "Den lästa CMN-resursen anger byggnadstiden 1241–1248. Posten gäller byggandet och väljer ingen exakt invigningsdag."
+      },
+      "titleSv": "Ludvig IX låter bygga Sainte-Chapelle",
+      "summarySv": "Ludvig IX låter bygga Sainte-Chapelle i Paris för att förvara reliker av Kristi lidande. Kapellets utsmyckning knyter kungamakten till bibliska förebilder.",
+      "geographySv": "Paris, Frankrike",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-sainte-chapelle"
+      ],
+      "selectionNote": "A major royal commission joining architecture, relic devotion and dynastic representation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1250-mamluker-tar-makten-i-egypten",
+      "date": {
+        "kind": "exact",
+        "startYear": 1250,
+        "endYear": 1250,
+        "displaySv": "1250",
+        "noteSv": "Museet anger 1250 som mamluksultanatets början och Turan Shahs sista regeringsår. Den bredare omdaningen i Egypten och Syrien anges som 1250–1260."
+      },
+      "titleSv": "Mamlukerna tar makten i Egypten",
+      "summarySv": "Mamlukerna störtar den ayyubidiske sultanen Turan Shah och upprättar eget styre i Egypten. De hade tidigare utgjort en central del av ayyubidernas militära organisation.",
+      "geographySv": "Egypten",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-west-mamluks"
+      ],
+      "selectionNote": "The Egyptian transfer of power establishes a major later-medieval ruling order.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1250-mayapan-leder-provinsforbund",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1250,
+        "endYear": 1250,
+        "displaySv": "cirka 1250",
+        "noteSv": "Museet beskriver denna ställning omkring 1250. Posten gäller en daterad politisk situation och anger varken ett exakt tillträde eller Mayapáns grundläggning."
+      },
+      "titleSv": "Mayapán leder ett förbund av provinser",
+      "summarySv": "Mayapán fungerar som politisk huvudstad för ett förbund av provinser i nordvästra Yucatán. Staden har försvarsmur, tempel och palats.",
+      "geographySv": "Nordvästra Yucatán, nuvarande Mexiko",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-maya"
+      ],
+      "selectionNote": "A sourced political snapshot broadens coverage beyond European and Mongol state changes.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1250-tidiga-bosattningar-pa-nya-zeeland",
+      "date": {
+        "kind": "range",
+        "startYear": 1250,
+        "endYear": 1275,
+        "displaySv": "Modellförslag: 1250–1275",
+        "noteSv": "Intervallet kommer från en statistisk modell. En senare studie framhåller att inga enskilda dateringar på Nordön precist ligger före cirka 1280. Det är inget säkert ankomstspann för en viss båt eller grupp."
+      },
+      "titleSv": "Modellförslag: tidig polynesisk bosättning på Nordön",
+      "summarySv": "De första polynesiska bosättningarna på Nordön i Nya Zeeland kan enligt en statistisk dateringsmodell ha etablerats 1250–1275. Senare forskning skiljer detta modellförslag från enskilda daterade fynd och från ett exakt ankomstår.",
+      "geographySv": "Nordön, Aotearoa/Nya Zeeland",
+      "category": "migration",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-bunbury-settlement",
+        "e1200-east-mcivor-chronology"
+      ],
+      "selectionNote": "Preserves the published model and its limits instead of creating an exact arrival or a named ancestral voyage.",
+      "certainty": "uncertain",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1253-mongolerna-erovrar-dali",
+      "date": {
+        "kind": "exact",
+        "startYear": 1253,
+        "endYear": 1253,
+        "displaySv": "1253"
+      },
+      "titleSv": "Mongolerna erövrar Dali",
+      "summarySv": "Mongoliska arméer erövrar Dali, som varit huvudort i ett självständigt kungarike. Staden införlivas därefter i det mongoliska Yuanväldets politiska ordning.",
+      "geographySv": "Dali, Yunnan, Kina",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-wright-dali"
+      ],
+      "selectionNote": "A conquest linking the southwestern region to a new imperial administration; no single-day complete assimilation claim.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1253-rubruck-reser-till-mongolerna",
+      "date": {
+        "kind": "range",
+        "startYear": 1253,
+        "endYear": 1255,
+        "displaySv": "1253–1255",
+        "noteSv": "Den publicerade primärtextens redaktionella ram anger resan som 1253–1255. Rubrucks inledande latinska kalenderuppgift återges med den publicerade översättningens motsvarighet; ingen egen kalenderberäkning görs."
+      },
+      "titleSv": "Vilhelm av Rubruck reser till mongolernas hov",
+      "summarySv": "Franciskanmunken Vilhelm av Rubruck reser genom mongolernas välde till Möngkes hov. Han beskriver resan och mötena i en redogörelse för Ludvig IX.",
+      "geographySv": "Svartahavsområdet, den eurasiska stäppen och Karakorum",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-rubruck"
+      ],
+      "selectionNote": "A well-documented journey links western courts with the Mongol imperial centre.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1256-mongolerna-intar-nizari-fasten",
+      "date": {
+        "kind": "exact",
+        "startYear": 1256,
+        "endYear": 1256,
+        "displaySv": "1256",
+        "noteSv": "Iranica anger 654/1256. Posten gäller fästena i den angivna regionen och påstår inte att alla ismailitiska gemenskaper upphör."
+      },
+      "titleSv": "Mongolerna intar nizari-ismailitiska fästen",
+      "summarySv": "Hülegüs mongolarmé intar nizari-ismailitiska fästen i Alborzbergen. Erövringen ingår i den nya offensiv som Möngke har anförtrott sin bror.",
+      "geographySv": "Alborzbergen, Iran",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-mongols"
+      ],
+      "selectionNote": "A major stage in Hülegü’s western campaign before Baghdad.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1258-mongolerna-intar-bagdad",
+      "date": {
+        "kind": "exact",
+        "startYear": 1258,
+        "endYear": 1258,
+        "displaySv": "1258",
+        "noteSv": "Iranica anger 656/1258. Posten gäller kalifatet i Bagdad; inga osäkra massakertal eller senare abbasidiska anspråk räknas in."
+      },
+      "titleSv": "Mongolerna intar Bagdad",
+      "summarySv": "Hülegüs mongolarmé intar Bagdad. Abbasidernas kalifat med säte i staden upphör.",
+      "geographySv": "Bagdad, nuvarande Irak",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-west-mongols"
+      ],
+      "selectionNote": "The fall of a major political and intellectual capital has continental consequences.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1259-tusi-grundar-observatorium-i-maragha",
+      "date": {
+        "kind": "exact",
+        "startYear": 1259,
+        "endYear": 1259,
+        "displaySv": "1259",
+        "noteSv": "Max Planck-institutet anger grundandet till 1259. Årtalet används inte som ett exakt datum för när alla byggnader eller observationer blev färdiga."
+      },
+      "titleSv": "Ṭūsī grundar observatoriet i Maragha",
+      "summarySv": "Naṣīr al-Dīn Ṭūsī grundar ett observatorieprojekt i Maragha med Hülegüs stöd. Forskarna ska ta fram uppdaterade astronomiska tabeller för hovets behov.",
+      "geographySv": "Maragha, Iran",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-maragha"
+      ],
+      "selectionNote": "Scientific patronage and organized observation accompany the political changes of the Mongol period.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1260-kublai-blir-storkhan",
+      "date": {
+        "kind": "exact",
+        "startYear": 1260,
+        "endYear": 1260,
+        "displaySv": "1260",
+        "noteSv": "Posten påstår inte att alla mongoliska furstar erkände Kublai eller att tronföljdsstriden var avgjord."
+      },
+      "titleSv": "Kublai blir mongolisk storkhan",
+      "summarySv": "Kublai blir mongolisk storkhan. Hans maktutövning kommer att förena mongoliska traditioner med kinesiska förvaltningsformer.",
+      "geographySv": "Mongoliet och norra Kina",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-east-npm-kublai"
+      ],
+      "selectionNote": "A new claimant’s accession matters for the eastern empire; no universal uncontested recognition is asserted.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1260-mamlukerna-segrar-vid-ayn-jalut",
+      "date": {
+        "kind": "exact",
+        "startYear": 1260,
+        "endYear": 1260,
+        "displaySv": "1260",
+        "noteSv": "Museet anger 1260. Posten anger ingen exakt dag och gör inte nederlaget till slutet på alla mongoliska angrepp."
+      },
+      "titleSv": "Mamlukerna besegrar mongolerna vid Ayn Jalut",
+      "summarySv": "Mamlukerna besegrar en mongolisk styrka vid Ayn Jalut. Därefter övertar de de sista ayyubidiska fästena i östra Medelhavsområdet.",
+      "geographySv": "Ayn Jalut, Levanten",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-west-mamluks"
+      ],
+      "selectionNote": "A major check on Mongol expansion and a consolidation of Mamluk regional power.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1261-mikael-atervander-till-konstantinopel",
+      "date": {
+        "kind": "exact",
+        "startYear": 1261,
+        "endYear": 1261,
+        "displaySv": "15 augusti 1261",
+        "noteSv": "Museet daterar Mikaels intåg till den 15 augusti 1261. Posten skiljer intåget från den tidigare militära återerövringen och tillskriver honom ingen personlig ledning av den operationen."
+      },
+      "titleSv": "Mikael VIII återvänder till Konstantinopel",
+      "summarySv": "Mikael VIII Palaiologos tågar in i Konstantinopel sedan staden har återgått till bysantinskt styre. Den kejserliga huvudstaden återupprättas efter det latinska styret.",
+      "geographySv": "Konstantinopel, nuvarande Istanbul i Turkiet",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-west-michael-entry",
+        "e1200-west-byzantium"
+      ],
+      "selectionNote": "Restoration of the imperial seat changes the political and cultural balance of the eastern Mediterranean.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1265-montfort-samlar-parlament",
+      "date": {
+        "kind": "exact",
+        "startYear": 1265,
+        "endYear": 1265,
+        "displaySv": "1265",
+        "noteSv": "Parlamentets egen historik anger 1265. Posten beskriver ingen allmän rösträtt eller färdig modern demokrati."
+      },
+      "titleSv": "Simon de Montfort samlar ett parlament med stadsrepresentanter",
+      "summarySv": "Simon de Montfort samlar ett parlament där både riddare från grevskapen och borgare från städerna deltar. Representationen breddas till grupper som tidigare inte hade samlats på detta sätt.",
+      "geographySv": "England",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-parliament"
+      ],
+      "selectionNote": "A notable expansion in representation within an elite political institution.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1266-balban-tar-makten",
+      "date": {
+        "kind": "exact",
+        "startYear": 1266,
+        "endYear": 1266,
+        "displaySv": "1266"
+      },
+      "titleSv": "Balban tar makten i Delhi",
+      "summarySv": "Efter sultan Nasiruddin Mahmuds död övertar Balban tronen i Delhi. Han har tidigare haft en ledande roll i rikets styre.",
+      "geographySv": "Delhi, Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-reddy-mamluk"
+      ],
+      "selectionNote": "The former deputy’s accession changes the ruling household; no disputed end year is included.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1268-kublai-sander-brev-till-japan",
+      "date": {
+        "kind": "exact",
+        "startYear": 1268,
+        "endYear": 1268,
+        "displaySv": "1268"
+      },
+      "titleSv": "Kublai khans brev når Japan",
+      "summarySv": "Ett sändebud från Goryeo för med sig Kublai khans brev till Japan. Brevet begär närmare förbindelser och antyder att vägran kan leda till våld.",
+      "geographySv": "Dazaifu och det japanska hovet",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-naj-mongol-japan"
+      ],
+      "selectionNote": "A dated diplomatic demand preceding the invasions; no invented Gregorian day.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1269-phags-pa-skriften-infors",
+      "date": {
+        "kind": "exact",
+        "startYear": 1269,
+        "endYear": 1269,
+        "displaySv": "1269"
+      },
+      "titleSv": "Kublai inför Phags-pa-skriften",
+      "summarySv": "Kublai utfärdar ett påbud som gör Phags-pa-skriften till rikets officiella skrift. Den tibetanske laman Phags-pa har utformat den på khanens uppdrag för bruk i ett flerspråkigt välde.",
+      "geographySv": "Mongolväldet, Östasien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-unicode-phags-pa"
+      ],
+      "selectionNote": "A dated court policy in written administration; invention and promulgation are not conflated.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1270-ny-dynasti-tar-makten-i-etiopien",
+      "date": {
+        "kind": "exact",
+        "startYear": 1270,
+        "endYear": 1270,
+        "displaySv": "1270",
+        "noteSv": "UCL daterar den nya dynastins uppkomst till 1270. Härstamningen återges som ett politiskt anspråk, inte som styrkt släktskap; ingen namngiven grundare läggs till utan separat belägg."
+      },
+      "titleSv": "En ny dynasti tar makten i Etiopien",
+      "summarySv": "En ny dynasti tar makten i Etiopien. Härskarna gör anspråk på härstamning från den bibliske kung Salomo.",
+      "geographySv": "Etiopiska höglandet",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-ethiopia"
+      ],
+      "selectionNote": "A dynastic change introduces the conventionally named early Solomonic period.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1271-kublai-utropar-yuan",
+      "date": {
+        "kind": "exact",
+        "startYear": 1271,
+        "endYear": 1271,
+        "displaySv": "1271"
+      },
+      "titleSv": "Kublai utropar Yuandynastin",
+      "summarySv": "Kublai ger sitt välde det kinesiska dynastinamnet Stora Yuan. Södra Songriket är ännu inte slutligt erövrat.",
+      "geographySv": "Kina",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-east-npm-kublai"
+      ],
+      "selectionNote": "Separates dynastic proclamation from the completion of conquest in 1279.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1274-yuan-angriper-japan",
+      "date": {
+        "kind": "exact",
+        "startYear": 1274,
+        "endYear": 1274,
+        "displaySv": "1274"
+      },
+      "titleSv": "Yuan och Goryeo angriper Japan",
+      "summarySv": "En gemensam styrka från Yuan och Goryeo angriper öar och kustorter i norra Kyushu. Expeditionen drar sig tillbaka utan att erövra Japan.",
+      "geographySv": "Tsushima, Iki och norra Kyushu, Japan",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-east-naj-mongol-japan"
+      ],
+      "selectionNote": "The first invasion affects Japanese defense and regional diplomacy; no unsupported casualty totals.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1279-sodra-song-besegras",
+      "date": {
+        "kind": "exact",
+        "startYear": 1279,
+        "endYear": 1279,
+        "displaySv": "1279",
+        "noteSv": "Museet anger att erövringen var fullbordad senast 1279. Inget exakt dygn anges."
+      },
+      "titleSv": "Södra Songriket besegras",
+      "summarySv": "Kublai khans styrkor fullbordar erövringen av Södra Songriket. Kina förenas därmed under den mongoliska Yuandynastins överhöghet.",
+      "geographySv": "Södra Kina",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-east-npm-kublai"
+      ],
+      "selectionNote": "A major state conquest; does not imply that every locality or all society changed on one day.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1280-kiche-upprattar-stat",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1280,
+        "endYear": 1280,
+        "displaySv": "cirka 1280",
+        "noteSv": "Museet anger omkring 1280. Året är ungefärligt och daterar varken varje lokal erövring eller alla äldre k’iche’-bosättningar."
+      },
+      "titleSv": "K’iche’ upprättar en stat i Guatemalas högland",
+      "summarySv": "K’iche’ upprättar en stat i Guatemalas högland. Underkuvade städer levererar tribut till huvudstaden Utatlán.",
+      "geographySv": "Guatemalas högland",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-maya"
+      ],
+      "selectionNote": "A distinct highland Maya political development with a source-supplied approximate date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1280-pueblofolk-lamnar-mesa-verde",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1280,
+        "endYear": 1280,
+        "displaySv": "cirka 1280",
+        "noteSv": "Forskarna placerar den slutliga avfolkningen inom några år kring 1280 och beskriver samhällsomvandlingen som avslutad senast 1285. Cirka 1280 markerar förloppets slutskede, inte början på all migration eller folkens försvinnande."
+      },
+      "titleSv": "Pueblofolk lämnar centrala Mesa Verde",
+      "summarySv": "Pueblofolk lämnar centrala Mesa Verde efter en längre period av utflyttning. Många ansluter sig till samhällen längre söderut och fortsätter sina traditioner där.",
+      "geographySv": "Centrala Mesa Verde, nuvarande sydvästra USA",
+      "category": "migration",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-mesa-study",
+        "e1200-west-mesa-nps"
+      ],
+      "selectionNote": "A major regional population movement with continuing descendant communities and multiple causes.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1281-andra-invasionen-av-japan",
+      "date": {
+        "kind": "exact",
+        "startYear": 1281,
+        "endYear": 1281,
+        "displaySv": "1281"
+      },
+      "titleSv": "En andra invasionsflotta angriper Japan",
+      "summarySv": "Yuan och Goryeo sänder en ny invasionsflotta mot Japan. Japans försvarare gör motstånd, och en storm skadar stora delar av flottan innan den återstående styrkan drar sig tillbaka.",
+      "geographySv": "Norra Kyushu och Hakata, Japan",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-east-naj-mongol-japan"
+      ],
+      "selectionNote": "A distinct second expedition; storm damage is supported but is not treated as the sole factor.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1288-yuanflottan-besegras-vid-bach-dang",
+      "date": {
+        "kind": "exact",
+        "startYear": 1288,
+        "endYear": 1288,
+        "displaySv": "1288"
+      },
+      "titleSv": "Yuanflottan besegras vid Bach Dang",
+      "summarySv": "Dai Viets styrkor under Tran Hung Dao besegrar en mongolisk flottstyrka vid Bach Dang. Försvararna använder träpålar i floden och drar fördel av tidvattnet.",
+      "geographySv": "Bach Dangfloden, norra Vietnam",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-vnmh-bach-dang"
+      ],
+      "selectionNote": "A dated naval defeat; museum identification is used without treating every excavated stake as independently dated.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1290-khaljidynastin-tar-makten",
+      "date": {
+        "kind": "exact",
+        "startYear": 1290,
+        "endYear": 1290,
+        "displaySv": "1290"
+      },
+      "titleSv": "Khaljidynastin tar makten i Delhi",
+      "summarySv": "Jalaluddin Firuz Khalji blir sultan och inleder Khaljidynastins styre. Den tidigare mamlukiska dynastin förlorar makten i Delhisultanatet.",
+      "geographySv": "Delhi, Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-delhi-dalziel",
+        "e1200-east-reddy-khalji"
+      ],
+      "selectionNote": "A dynastic replacement affecting the Delhi court.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1291-alpdalarnas-samhallen-sluter-forbund",
+      "date": {
+        "kind": "exact",
+        "startYear": 1291,
+        "endYear": 1291,
+        "displaySv": "början av augusti 1291",
+        "noteSv": "Förbundsbrevet är daterat till början av augusti 1291. Dess ställning som nationellt grundläggningsdokument är en senare tolkning, och inget exakt datum den 1 augusti förs in. Posten följer brevets egen datering; dess tillkomsthistoria har öppna frågor enligt den lästa källan."
+      },
+      "titleSv": "Uri, Schwyz och Nidwalden sluter ett förbund",
+      "summarySv": "Samhällena i Uri, Schwyz och Nidwalden lovar varandra hjälp mot våld och orätt. De avtalar också om domare och hur tvister ska lösas.",
+      "geographySv": "Centrala Alperna, nuvarande Schweiz",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-swiss"
+      ],
+      "selectionNote": "A documented Alpine alliance merits inclusion without projecting the modern Swiss state backward.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1291-mamlukerna-intar-acre",
+      "date": {
+        "kind": "exact",
+        "startYear": 1291,
+        "endYear": 1291,
+        "displaySv": "1291",
+        "noteSv": "ICOMOS anger 1291. Den lästa passagen ger ingen exakt dag; posten daterar ingen allmän avslutning på alla senare korståg."
+      },
+      "titleSv": "Mamlukerna intar Acre",
+      "summarySv": "Mamlukerna intar korsfararstaden Acre. Sultan al-Ashraf beordrar att staden ska förstöras.",
+      "geographySv": "Acre, Levanten",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1200-west-acre"
+      ],
+      "selectionNote": "The loss of a major crusader port changes the eastern Mediterranean balance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1292-yuan-sander-expedition-till-java",
+      "date": {
+        "kind": "exact",
+        "startYear": 1292,
+        "endYear": 1292,
+        "displaySv": "1292",
+        "noteSv": "Källan daterar expeditionen till 1292. Posten räknar inte själv fram ett slutår ur uppgiften om reträtt inom ett år."
+      },
+      "titleSv": "Yuan sänder en expedition mot Java",
+      "summarySv": "Yuanväldet sänder en expedition mot Java. Styrkan landstiger men tvingas senare lämna ön.",
+      "geographySv": "Java, Indonesien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-columbia-java"
+      ],
+      "selectionNote": "Uses the source’s 1292 expedition date without calculating a 1293 endpoint or a Majapahit foundation.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1296-alauddin-tar-tronen",
+      "date": {
+        "kind": "exact",
+        "startYear": 1296,
+        "endYear": 1296,
+        "displaySv": "1296"
+      },
+      "titleSv": "Alauddin Khalji griper Delhis tron",
+      "summarySv": "Alauddin Khalji låter döda sin farbror Jalaluddin och tar makten i Delhi. Därmed ersätts den föregående sultanen inom Khaljidynastin.",
+      "geographySv": "Delhi, Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-reddy-khalji",
+        "e1200-east-hambly-gujarat"
+      ],
+      "selectionNote": "A violent succession directly changes the ruler.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1296-zhou-daguan-besoker-angkor",
+      "date": {
+        "kind": "range",
+        "startYear": 1296,
+        "endYear": 1297,
+        "displaySv": "1296–1297"
+      },
+      "titleSv": "Zhou Daguan besöker Angkor",
+      "summarySv": "Den kinesiske resenären Zhou Daguan vistas i Kambodja och beskriver livet kring Angkor. Hans skildring behandlar bland annat hovets rangordning, handel och vardagliga seder.",
+      "geographySv": "Angkor, Kambodja",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-bartlett-zhou"
+      ],
+      "selectionNote": "A bounded journey and observation period, not an inferred composition day or a complete account of all Khmer society.",
+      "certainty": "sourced",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1297-skottarna-segrar-vid-stirling-bridge",
+      "date": {
+        "kind": "exact",
+        "startYear": 1297,
+        "endYear": 1297,
+        "displaySv": "11 september 1297",
+        "noteSv": "Historic Environment Scotland anger den 11 september 1297. Osäkra truppstyrkor och förlusttal utelämnas."
+      },
+      "titleSv": "Skottarna besegrar engelsmännen vid Stirling Bridge",
+      "summarySv": "William Wallace och Andrew Moray leder skottarna till seger vid Stirling Bridge. De angriper när en del av den engelska armén har korsat floden Forth.",
+      "geographySv": "Stirling, Skottland",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-west-stirling"
+      ],
+      "selectionNote": "An important Scottish victory in the Wars of Independence.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1299-delhis-arme-angriper-gujarat",
+      "date": {
+        "kind": "exact",
+        "startYear": 1299,
+        "endYear": 1299,
+        "displaySv": "1299"
+      },
+      "titleSv": "Delhis armé angriper Gujarat",
+      "summarySv": "Alauddin Khalji sänder Ulugh Khan och Nusrat Khan mot Gujarat. Armén plundrar bland annat huvudorten Anhilwara men lämnar ingen stadigvarande garnison efter sig i detta fälttåg.",
+      "geographySv": "Gujarat, västra Indien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1200-east-hambly-gujarat"
+      ],
+      "selectionNote": "Distinguishes the 1299 raid from subsequent campaigns and permanent provincial administration.",
+      "certainty": "sourced",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",
