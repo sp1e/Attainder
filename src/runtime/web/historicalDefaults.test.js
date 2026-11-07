@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { mkdtempSync, rmSync, statSync } from 'node:fs';
+import { existsSync, mkdtempSync, rmSync, statSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { installFakeIndexedDb } from './fakeIndexedDb.js';
@@ -36,10 +36,16 @@ test('fresh web store starts the three shipped historical bookmarks with their c
     const offered=[['default','john-1200','1200-12-31'],['egypt-3000bc','egypt-3000bc','-3000-01-01'],['charlemagne-800','charlemagne-800','0800-12-25']];
     assert.deepEqual(await starts(),offered);
     assert.equal((await library()).selectedScenarioId,'charlemagne-800');
-    const generated=new URL('./generated/historicalBookmarks.js',import.meta.url);
-    const {default:bookmarks}=await import(generated);
-    assert.deepEqual(bookmarks.map(b=>b.scenario.id),['egypt-3000bc','charlemagne-800']);
-    assert.ok(statSync(generated).size < 25*1024*1024,'Cloudflare Pages refuses a file over 25 MiB');
+    // One module per shipped package, so the web build fetches only the start it installs.
+    const {HISTORICAL_BOOKMARKS}=await import('../../../server/historicalStarts.js');
+    const {HISTORICAL_BUNDLE_LOADERS:loaders}=await import('./generated/historical/index.js');
+    assert.deepEqual(Object.keys(loaders),HISTORICAL_BOOKMARKS.map(b=>b.id));
+    for (const {id} of HISTORICAL_BOOKMARKS) {
+      const file=new URL(`./generated/historical/${id}.js`,import.meta.url);
+      assert.ok(statSync(file).size < 25*1024*1024,`${id}: Cloudflare Pages refuses a file over 25 MiB`);
+      assert.equal((await loaders[id]()).default.scenario.id,id);
+    }
+    assert.equal(existsSync(new URL('./generated/historicalBookmarks.js',import.meta.url)),false,'the single bookmarks module is gone');
     const games={};
     for (const [request,date] of [[{},'1200-12-31'],[{scenarioId:'egypt-3000bc'},'-3000-01-01'],[{scenarioId:'charlemagne-800'},'0800-12-25']]) {
       const made=await call('POST',[],request);
