@@ -33,15 +33,15 @@
     },
     {
       "startYear": 1200,
-      "endYear": 1200,
-      "status": "unresearched",
-      "note": "Annual research has not started in this catalog for events beginning in this year. Earlier records whose ranges extend into this year do not establish researched annual coverage."
+      "endYear": 1299,
+      "status": "partial",
+      "note": "55 independently checked event records cover selected acts in Europe, the Middle East, North Africa and Caucasus, the steppe and Central Asia, sub-Saharan Africa, East Asia, South Asia, Southeast Asia, the Americas and Oceania. Warfare and changes of rulers dominate. Sub-Saharan Africa has only Mapungubwe, Sundiata and the Ethiopian dynastic change; Oceania has one explicitly modeled North Island settlement interval, not an exact arrival. Much of Africa and the Americas, Burma, Thailand, maritime Southeast Asia and other Pacific islands remain gaps, alongside economic, social, religious and natural history. Ram Khamhaeng and a separate Majapahit foundation date remain withheld; access gaps prevented proposed Xiangyang/Hangzhou additions. Mapungubwe1220–1290, the Khwarazm campaign1218–1224 and other phases remain single records. Empty years are research gaps."
     },
     {
-      "startYear": 1201,
+      "startYear": 1300,
       "endYear": 1530,
       "status": "unresearched",
-      "note": "Annual research has not started in this catalog."
+      "note": "Annual research has not started in this catalog for events beginning in these years. Earlier records whose ranges extend into later years do not establish researched annual coverage."
     }
   ]
 }
