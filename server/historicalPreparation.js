@@ -61,9 +61,15 @@ export function validatePlayableScenario({ data, meta, regions, cities } = {}) {
 }
 
 // A new campaign saves only the chosen polity's court. Polities, settlements and
-// sources stay whole because the country list and the map read them.
-export function narrowToChosenCourt(historicalScenario, polityId) {
-  return { ...historicalScenario, playablePolityIds: [polityId], courtSeeds: { [polityId]: historicalScenario.courtSeeds[polityId] } };
+// sources stay whole because the country list and the map read them. A court with its own
+// start text replaces the package text in the campaign record and in the world briefing, which
+// keeps the builder's layout: context, calendar note, coverage note.
+export function narrowToChosenCourt(world, polityId) {
+  const h = world.historicalScenario, court = h.courtSeeds[polityId];
+  const historicalScenario = { ...h, playablePolityIds: [polityId], courtSeeds: { [polityId]: court } };
+  if (typeof court?.contextSv !== 'string') return { ...world, historicalScenario };
+  return { ...world, historicalScenario: { ...historicalScenario, contextSv: court.contextSv },
+    startingTimelineText: [court.contextSv, h.calendarNoteSv, h.coverageNoteSv].filter(part => typeof part === 'string').join('\n') };
 }
 
 const ENGINE_DIFFICULTY = Object.freeze({ easy: 'easy', standard: 'normal', normal: 'normal', hard: 'hard' });
@@ -108,7 +114,7 @@ export function prepareHistoricalCampaignStart({ request = {}, sourceGame = null
   if (!checked.ok) return checked;
   try {
     const state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: dates.gameDate, polityId, mode, familyId: options.familyId, seed: data.game.characterSeed, difficulty });
-    data.world.historicalScenario = narrowToChosenCourt(data.world.historicalScenario, polityId);
+    data.world = narrowToChosenCourt(data.world, polityId);
     data.world = projectPreparedCharacterWorld(data.world, state);
     if ([state.startedAt, state.date].some(d => d !== data.game.startDate) || state.identity.polityId !== data.game.country) return conflict();
     return { ok: true, kind: 'new', data, scenarioId: scenario.meta?.id };

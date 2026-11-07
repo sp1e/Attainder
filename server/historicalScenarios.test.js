@@ -265,6 +265,10 @@ function rename(court,kind,from,to) {
   for (const [row,key] of REFERENCES[kind](court)) if (row[key] === from) row[key] = to;
   for (const p of kind === 'people' ? court.people : []) for (const key of ['legalParentIds','spouseIds']) p[key] = p[key].map(id => id === from ? to : id);
 }
+// A court start text citing the source behind Charles's identity, which the package carries.
+const withCourtContext = (c,contextSv,sourceIds = personIn(c,'karl').claims.identity.sourceIds.slice(0,1)) => {
+  c.contextSv = contextSv; c.contextSourceIds = sourceIds;
+};
 const ACCEPTED = [
   ['the bare documented prefix',c => { personIn(c,'rotrud').originLabelSv = 'Dokumenterad person'; }],
   ['a person id that only resembles the runtime sequence',c => rename(c,'people','generated-courtier-3','person-7a')],
@@ -278,6 +282,7 @@ const ACCEPTED = [
   ['successionLaw merit',c => { c.successionLaw = 'merit'; }],
   ['successionLaw primogeniture',c => { c.successionLaw = 'primogeniture'; }],
   ['an absent successionLaw',c => { delete c.successionLaw; }],
+  ['a court start text of 600 characters citing a package source',c => withCourtContext(c,'å'.repeat(600))],
 ];
 for (const [name,mutate] of ACCEPTED) test(`both validators accept ${name}`,() => {
   for (const result of probe(mutate)) assert.equal(result.ok,true,`${name}: ${result.code}`);
@@ -308,6 +313,12 @@ const REFUSED = [
   ...Object.keys(RENAMED).flatMap(kind => ['with space','__proto__','constructor','prototype'].map(id => [`the ${kind} id "${id}"`,c => rename(c,kind,RENAMED[kind],id)])),
   ['successionLaw tanistry',c => { c.successionLaw = 'tanistry'; }],
   ['a null successionLaw',c => { c.successionLaw = null; }],
+  ['a court start text of 601 characters',c => withCourtContext(c,'å'.repeat(601))],
+  ['a blank court start text',c => withCourtContext(c,'   ')],
+  ['a court start text citing an unknown source',c => withCourtContext(c,'Karl i Rom.',['no-such-source'])],
+  ['a court start text citing no source',c => withCourtContext(c,'Karl i Rom.',[])],
+  ['a court start text without source ids',c => { c.contextSv = 'Karl i Rom.'; }],
+  ['court start source ids without a text',c => { c.contextSourceIds = personIn(c,'karl').claims.identity.sourceIds.slice(0,1); }],
 ];
 for (const [name,mutate] of REFUSED) test(`both validators refuse ${name}`,() => {
   for (const result of probe(mutate)) assert.equal(result.code,'invalidCourt',name);

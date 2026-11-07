@@ -706,7 +706,7 @@ test('the web catalog carries each historical start summary and derives historic
   await reset();
   const entry = catalogEntry(await library(),'charlemagne-800');
   assert.deepEqual(entry.historicalSummary.polities.map(p => p.id),['carolingian-realm','papal-states']);
-  assert.equal(entry.historicalSummary.schema,1);
+  assert.equal(entry.historicalSummary.schema,2);
   assert.equal(entry.historicalSummary.sourceStamp,null);
   assert.equal(entry.historicalSummary.name,entry.name);
   assert.deepEqual(entry.historicalStart,{ date: '0800-12-25', contentId: entry.historicalSummary.contentId });
@@ -726,11 +726,12 @@ test('a scenario meta stored without a summary gains one on the next catalog rea
   assert.deepEqual(metas.get(id).historicalSummary,historicalSummary);
   assert.deepEqual(entry.historicalSummary,historicalSummary);
   assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[`scenarios:${id}`]);
-  // An older summary schema is projected again too; a current one is not.
-  metas.get(id).historicalSummary = { ...historicalSummary, schema: 0 };
+  // A summary stored under schema 1, without per-polity start text, is projected again; a current one is not.
+  metas.get(id).historicalSummary = { ...historicalSummary, schema: 1, polities: historicalSummary.polities.map(polity => { const old = { ...polity }; delete old.contextSv; return old; }) };
   globalThis.__ohWebStoreReads = [];
   await library();
-  assert.equal(metas.get(id).historicalSummary.schema,1);
+  assert.equal(metas.get(id).historicalSummary.schema,2);
+  assert.deepEqual(metas.get(id).historicalSummary.polities.map(p => p.contextSv),[null,null]);
   assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[`scenarios:${id}`]);
   globalThis.__ohWebStoreReads = [];
   await library();

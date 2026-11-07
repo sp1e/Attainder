@@ -121,6 +121,24 @@ test('choosing Kyrkostaten starts the papal court from the Charlemagne start', a
   assert.equal(startRows(render()).length,1,'the search stays after a choice');
 });
 
+test('the card shows the chosen polity text and falls back to the start text without one', async () => {
+  const driver=createHookDriver(), options=shippedOptions();
+  const charlemagne=options.find(o=>o.scenarioId==='charlemagne-800'), john=options.find(o=>o.scenarioId==='default');
+  charlemagne.polities.find(p=>p.id==='carolingian-realm').context='Karl övervintrar i Rom.';
+  const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>options,startDynastyCampaign:async()=>{}}});
+  const render=()=>driver.render(React.createElement(card.default,{}));
+  const detail=tree=>textOf(findAll(tree,n=>n.props?.className==='dynasty-start-detail')[0]);
+  const choose=(tree,key)=>startRows(tree).find(r=>r.props['data-start-key']===key).props.onClick();
+  render(); await settle(); let tree=render();
+  assert.equal(detail(tree),'Karl övervintrar i Rom.');
+  choose(tree,'charlemagne-800/papal-states'); tree=render();
+  assert.equal(detail(tree),charlemagne.context,'a polity without text shows the start text');
+  choose(tree,'default/johns-realms'); tree=render();
+  assert.equal(detail(tree),john.context);
+  choose(tree,'charlemagne-800/carolingian-realm'); tree=render();
+  assert.equal(detail(tree),'Karl övervintrar i Rom.');
+});
+
 test('a choice the search hides is named under the list and still starts', async () => {
   const driver=createHookDriver(), started=[], options=shippedOptions();
   const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>options,startDynastyCampaign:async()=>{}}});

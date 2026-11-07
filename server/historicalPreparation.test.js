@@ -73,6 +73,27 @@ test('a new Charlemagne campaign keeps only the chosen court and still validates
   }
   assert.deepEqual(scenario, before);
 });
+test('a court start text becomes the campaign text and the world briefing; without one both stay', () => {
+  const scenario = candidate(read('charlemagne-800')), h = scenario.data.world.historicalScenario, date = '0800-12-25';
+  const papalText = 'Leo III styr Kyrkostaten från Rom.';
+  h.courtSeeds['papal-states'].contextSv = papalText;
+  h.courtSeeds['papal-states'].contextSourceIds = Object.keys(h.sources).slice(0, 1);
+  const before = structuredClone(scenario);
+  const prepare = polityId => prepareHistoricalCampaignStart({ scenario, request: {
+    historicalStart: { date, polityId, mode: 'realm', seed: 7, difficulty: 'normal' }, gamePatch: { country: polityId, difficulty: 'standard', language: 'Swedish' } } });
+  const papal = prepare('papal-states');
+  assert.equal(papal.ok, true, papal.error);
+  assert.equal(papal.data.world.historicalScenario.contextSv, papalText);
+  assert.equal(papal.data.world.startingTimelineText, [papalText, h.calendarNoteSv, h.coverageNoteSv].join('\n'));
+  const checked = validateHistoricalScenario({ game: papal.data.game, world: papal.data.world, regions: scenario.regions,
+    assetManifest: historicalAssetManifest(papal.data.world) }, { date, polityId: 'papal-states' });
+  assert.equal(checked.ok, true, checked.error);
+  const karl = prepare('carolingian-realm');
+  assert.equal(karl.ok, true, karl.error);
+  assert.equal(karl.data.world.historicalScenario.contextSv, h.contextSv);
+  assert.equal(karl.data.world.startingTimelineText, scenario.data.world.startingTimelineText);
+  assert.deepEqual(scenario, before);
+});
 test('raw dates, conflicting options, missing sources and actual assets fail before preparation', () => {
   const scenario = candidate(read('john-1200'));
   for (const gamePatch of [{ gameDate: null }, { startDate: '1200-12-31junk' }, { gameDate: '1531-01-01' }, { country: 'France' }]) {

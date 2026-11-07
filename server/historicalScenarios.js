@@ -95,8 +95,14 @@ function validEngineShape(court, people) {
     && court.offices.every(o => ENGINE_OFFICE_IDS.includes(o.id))
     && (court.successionLaw === undefined || SUCCESSION_LAWS.includes(court.successionLaw));
 }
+// A court may carry the start text for its own polity. Text and source ids come together, and
+// the ids name sources the package carries.
+const COURT_CONTEXT_MAX_LENGTH = 600;
+const validCourtContext = (court, sources) => (!Object.hasOwn(court,'contextSv') && !Object.hasOwn(court,'contextSourceIds'))
+  || (text(court.contextSv) && court.contextSv.length <= COURT_CONTEXT_MAX_LENGTH && sourceRefs(court.contextSourceIds, sources));
 function validCourt(court, polityId, h, date) {
   if (!record(court) || court.polityId !== polityId || !h.settlements.some(s => s.id === court.seatId && s.polityId === polityId)) return false;
+  if (!validCourtContext(court, h.sources)) return false;
   if (!['people','families','religions','offices','cities'].every(k => validIds(court[k]))) return false;
   const people = new Map(court.people.map(p => [p.id,p]));
   const families = new Set(ids(court.families)), religions = new Set(ids(court.religions));

@@ -53,8 +53,8 @@ test('an option built from the library summary matches the one built from the pa
     assert.equal(option.scenarioId,`${id}-copy`);
     for (const key of ['name','date','label','context','coverage','calendarNote']) assert.equal(option[key],full[key],`${id} ${key}`);
     assert.equal(option.eraId,summary.eraId);
-    assert.deepEqual(option.polities.map(p=>[p.id,p.name,p.ruler.name,p.ruler.originLabelSv,p.families]),
-      full.polities.map(p=>[p.id,p.name,p.ruler.name,p.ruler.originLabelSv,p.families]));
+    assert.deepEqual(option.polities.map(p=>[p.id,p.name,p.ruler.name,p.ruler.originLabelSv,p.families,p.context]),
+      full.polities.map(p=>[p.id,p.name,p.ruler.name,p.ruler.originLabelSv,p.families,p.context]));
     for (const polity of option.polities) assert.equal(polity.regionId,summary.polities.find(p=>p.id===polity.id).regionId);
   }
   const b=JSON.parse(readFileSync(new URL('../../server/seed/historical/charlemagne-800/scenario.json',import.meta.url),'utf8'));
@@ -63,13 +63,26 @@ test('an option built from the library summary matches the one built from the pa
   assert.deepEqual(option.polities.map(p=>p.regionId),['europe','europe']);
   assert.equal(historicalCampaignName(option,'papal-states','realm'),'Kyrkostaten, 800 e.Kr. · Riket');
 });
+test('each option polity carries its court start text, null without one, from the package and the summary alike', () => {
+  const b=JSON.parse(readFileSync(new URL('../../server/seed/historical/charlemagne-800/scenario.json',import.meta.url),'utf8'));
+  const h=b.data.world.historicalScenario;
+  h.courtSeeds['papal-states'].contextSv='Leo III styr Kyrkostaten från Rom.';
+  h.courtSeeds['papal-states'].contextSourceIds=Object.keys(h.sources).slice(0,1);
+  const full=historicalStartOption(b,b.assets.regionsGeojson.data,b.assets.citiesGeojson.data);
+  const option=historicalStartOptionFromSummary('charlemagne-800',historicalStartSummary({meta:b.scenario,data:b.data}));
+  for (const built of [full,option]) {
+    assert.equal(built.context,h.contextSv);
+    assert.deepEqual(built.polities.map(p=>[p.id,p.context]),[['carolingian-realm',null],['papal-states','Leo III styr Kyrkostaten från Rom.']]);
+  }
+});
 test('the card offers a scenario only for a valid summary of the current schema that is not restore-only', () => {
   const b=JSON.parse(readFileSync(new URL('../../server/seed/historical/charlemagne-800/scenario.json',import.meta.url),'utf8'));
   const summary=historicalStartSummary({meta:b.scenario,data:b.data});
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:summary}),true);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:summary,restoreOnly:true}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{schema:1,sourceStamp:null,invalid:true}}),false);
-  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:2}}),false);
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:1}}),false,'a summary from before per-polity start text');
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:3}}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,polities:[]}}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:null}),false);
   assert.equal(offersHistoricalStart({id:'a'}),false);

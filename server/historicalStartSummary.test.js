@@ -12,7 +12,7 @@ const readPackage = id => JSON.parse(readFileSync(new URL(`./seed/historical/${i
 const summaryOf = pkg => historicalStartSummary({ meta: pkg.scenario, data: pkg.data });
 
 test('regions and eras keep the agreed ids, labels and order', () => {
-  assert.equal(HISTORICAL_SUMMARY_SCHEMA, 1);
+  assert.equal(HISTORICAL_SUMMARY_SCHEMA, 2);
   assert.deepEqual(HISTORICAL_REGIONS.map(r => r.id), ['europe','mena','sub-saharan-africa','central-asia','south-asia','east-asia','southeast-asia','americas','oceania','other']);
   assert.deepEqual(HISTORICAL_REGIONS.map(r => r.labelSv), ['Europa','Mellanöstern och Nordafrika','Afrika söder om Sahara','Centralasien','Sydasien','Östasien','Sydostasien','Amerika','Oceanien','Övriga']);
   assert.deepEqual(HISTORICAL_ERAS.map(e => e.id), ['bronze-age','antiquity','early-middle-ages','high-middle-ages','late-middle-ages']);
@@ -43,7 +43,7 @@ test('a polity takes its region from the region file and other when absent', () 
 
 test('the Charlemagne package summarises both playable courts', () => {
   const summary = summaryOf(readPackage('charlemagne-800'));
-  assert.equal(summary.schema, 1);
+  assert.equal(summary.schema, 2);
   assert.equal(summary.invalid, undefined);
   assert.equal(summary.sourceStamp, null);
   assert.equal(summary.contentId, 'charlemagne-800');
@@ -60,12 +60,23 @@ test('the Charlemagne package summarises both playable courts', () => {
   }
 });
 
+test('each polity carries its court start text and null when the court has none', () => {
+  const pkg = readPackage('charlemagne-800');
+  const h = pkg.data.world.historicalScenario;
+  h.courtSeeds['papal-states'].contextSv = 'Leo III styr Kyrkostaten från Rom.';
+  h.courtSeeds['papal-states'].contextSourceIds = Object.keys(h.sources).slice(0, 1);
+  const summary = summaryOf(pkg);
+  assert.equal(summary.contextSv, h.contextSv, 'the package text stays as the fallback');
+  assert.deepEqual(summary.polities.map(p => [p.id, p.contextSv]),
+    [['carolingian-realm', null], ['papal-states', 'Leo III styr Kyrkostaten från Rom.']]);
+});
+
 test('a broken court makes the summary invalid and a non-historical world gives null', () => {
   const pkg = readPackage('charlemagne-800');
   const court = pkg.data.world.historicalScenario.courtSeeds['papal-states'];
   court.people = court.people.filter(person => person.id !== court.rulerId);
   const broken = historicalStartSummary({ meta: pkg.scenario, data: pkg.data, sourceStamp: 'stamp' });
-  assert.deepEqual(broken, { schema: 1, sourceStamp: 'stamp', invalid: true, date: '0800-12-25', contentId: 'charlemagne-800' });
+  assert.deepEqual(broken, { schema: 2, sourceStamp: 'stamp', invalid: true, date: '0800-12-25', contentId: 'charlemagne-800' });
   // The library bar still lists a broken start, so the player can open or delete it.
   assert.deepEqual(historicalStartFromSummary(broken, pkg.scenario), { date: '0800-12-25', contentId: 'charlemagne-800' });
   assert.equal(historicalStartFromSummary(broken, { ...pkg.scenario, restoreOnly: true }), null);
