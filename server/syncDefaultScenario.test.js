@@ -5,12 +5,12 @@ import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:f
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { DEFAULT_DIR, SYNCED_FILES } from './sync-default-scenario.mjs';
+import { DEFAULT_DIR, SYNCED_FILES } from '../scripts/sync-default-scenario.mjs';
 
-const SCRIPT = fileURLToPath(new URL('./sync-default-scenario.mjs', import.meta.url));
+const SCRIPT = fileURLToPath(new URL('../scripts/sync-default-scenario.mjs', import.meta.url));
 const run = (...args) => spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8' });
 const readDefault = name => JSON.parse(readFileSync(path.join(DEFAULT_DIR, name), 'utf8'));
-const johnBundle = () => JSON.parse(readFileSync(new URL('../server/seed/historical/john-1200/scenario.json', import.meta.url), 'utf8'));
+const johnBundle = () => JSON.parse(readFileSync(new URL('./seed/historical/john-1200/scenario.json', import.meta.url), 'utf8'));
 
 test('the committed default scenario matches the John package', () => {
   const result = run('--check');
