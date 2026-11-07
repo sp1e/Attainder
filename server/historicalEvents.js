@@ -36,7 +36,14 @@ export const eventAnchorYear = (event, campaignStartYear) => {
   return startYear < campaignStartYear ? campaignStartYear : startYear;
 };
 
-const byImportanceThenId = (a, b) => (b.importance - a.importance) || String(a.id).localeCompare(String(b.id));
+// Code-point order, so the same ids sort the same way on every device and locale.
+const byCodePoint = (a, b) => {
+  const left = String(a);
+  const right = String(b);
+  if (left === right) return 0;
+  return left < right ? -1 : 1;
+};
+const byImportanceThenId = (a, b) => (b.importance - a.importance) || byCodePoint(a.id, b.id);
 
 export const eventsForYears = (catalog, years, campaignStartYear) => {
   const events = Array.isArray(catalog?.events) ? catalog.events : [];
@@ -51,6 +58,16 @@ export const eventsForYears = (catalog, years, campaignStartYear) => {
     .filter((year) => byYear.has(year))
     .map((year) => ({ year, events: byYear.get(year).sort(byImportanceThenId) }));
 };
+
+// Flattens the per-year groups of eventsForYears into the order a capped list
+// shows: importance first, then the year the event is reported in, then id. A
+// long jump keeps its important events instead of its earliest ones.
+export const noticeEvents = (groups) => (Array.isArray(groups) ? groups : [])
+  .flatMap((group) => group.events.map((event) => ({ event, year: group.year })))
+  .sort((a, b) => (b.event.importance - a.event.importance)
+    || (a.year - b.year)
+    || byCodePoint(a.event.id, b.event.id))
+  .map((entry) => entry.event);
 
 // Events for every year the game has closed since the campaign start, newest first.
 export const historicalRecord = (catalog, startDate, gameDate) => {

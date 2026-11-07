@@ -9,12 +9,32 @@ export const SOURCE_FIELDS = Object.freeze(["id", "title", "institution", "url",
 const { minYear, maxYear } = HISTORICAL_START_RANGE;
 const filled = (value) => typeof value === "string" && value.trim() !== "";
 const validYear = (year) => Number.isInteger(year) && year !== 0 && year >= minYear && year <= maxYear;
+// A calendar day written YYYY-MM-DD that exists (2026-02-30 does not).
+const validDay = (value) => {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+};
+const urlError = (value) => {
+  try {
+    return new URL(value).hostname === "" ? "has no host" : null;
+  } catch {
+    return "is not a valid URL";
+  }
+};
 const done = (errors, extra = {}) => (errors.length ? { ok: false, errors } : { ok: true, ...extra });
 
 export const validateSource = (source, label) => {
   if (source === null || typeof source !== "object") return [`${label}: not an object`];
   const errors = SOURCE_FIELDS.filter((field) => !filled(source[field])).map((field) => `${label}: missing ${field}`);
-  if (filled(source.url) && !/^https?:\/\//.test(source.url)) errors.push(`${label}: url must start with https:// or http://`);
+  if (filled(source.url)) {
+    if (!/^https?:\/\//.test(source.url)) errors.push(`${label}: url must start with https:// or http://`);
+    else {
+      const problem = urlError(source.url);
+      if (problem) errors.push(`${label}: url ${problem}`);
+    }
+  }
+  if (filled(source.retrievedOn) && !validDay(source.retrievedOn)) errors.push(`${label}: retrievedOn is not a valid date`);
   return errors;
 };
 
@@ -26,6 +46,7 @@ const dateErrors = (date, label) => {
   if (!validYear(date.endYear)) errors.push(`${label}: endYear ${date.endYear} is not a year in ${minYear}..${maxYear} (no year zero)`);
   if (errors.length) return errors;
   if (astronomicalYear(date.startYear) > astronomicalYear(date.endYear)) errors.push(`${label}: startYear is after endYear`);
+  if (date.kind === "range" && date.startYear === date.endYear) errors.push(`${label}: range date must span more than one year`);
   if (date.kind === "exact" && date.startYear !== date.endYear) errors.push(`${label}: exact date must have startYear equal to endYear`);
   if (!filled(date.displaySv)) errors.push(`${label}: missing date.displaySv`);
   return errors;
@@ -46,6 +67,7 @@ const eventErrors = (event, label, sourceIds) => {
   const review = event.review;
   if (review?.status !== "approved") errors.push(`${label}: review status must be approved`);
   else if (!filled(review.reviewedBy) || !filled(review.reviewedOn)) errors.push(`${label}: review needs reviewedBy and reviewedOn`);
+  else if (!validDay(review.reviewedOn)) errors.push(`${label}: reviewedOn is not a valid date`);
   return errors;
 };
 
@@ -67,6 +89,10 @@ export const validateEventCatalog = (catalog) => {
     errors.push(...eventErrors(event, `event[${i}] ${event?.id ?? ""}`.trim(), sourceIds));
     if (eventIds.has(event?.id)) errors.push(`event[${i}]: duplicate id ${event.id}`);
     eventIds.add(event?.id);
+  });
+  const cited = new Set(catalog.events.flatMap((event) => (Array.isArray(event?.sourceIds) ? event.sourceIds : [])));
+  catalog.sources.forEach((source, i) => {
+    if (filled(source?.id) && !cited.has(source.id)) errors.push(`source[${i}]: ${source.id} is cited by no event`);
   });
   return done(errors);
 };
@@ -110,11 +136,17 @@ export const validateCoverage = (coverage, catalog) => {
   if (errors.length) return { ok: false, errors };
   errors.push(...partitionErrors(coverage.ranges));
   const events = Array.isArray(catalog?.events) ? catalog.events : [];
-  for (const range of coverage.ranges.filter((r) => r.status === "no-secure-event")) {
-    for (const event of events) {
-      const year = event?.date?.startYear;
-      if (Number.isInteger(year) && year >= range.startYear && year <= range.endYear) {
-        errors.push(`event ${event.id} (${year}) lies in range ${range.startYear}..${range.endYear} marked no-secure-event`);
+  for (const event of events) {
+    const startYear = event?.date?.startYear;
+    if (!Number.isInteger(startYear)) continue;
+    const endYear = Number.isInteger(event.date.endYear) ? event.date.endYear : startYear;
+    for (const range of coverage.ranges) {
+      if (range.status === "no-secure-event" && startYear <= range.endYear && endYear >= range.startYear) {
+        errors.push(`event ${event.id} (${startYear}..${endYear}) overlaps range ${range.startYear}..${range.endYear} marked no-secure-event`);
+      }
+      // An unresearched range holds no reviewed events; the event's own first year decides.
+      if (range.status === "unresearched" && startYear >= range.startYear && startYear <= range.endYear) {
+        errors.push(`event ${event.id} (${startYear}) lies in range ${range.startYear}..${range.endYear} marked unresearched`);
       }
     }
   }
