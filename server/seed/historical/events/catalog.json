@@ -3406,6 +3406,534 @@
         "conversionPerformed": false
       },
       "accessExtent": "Actual location introduction, first historical paragraph, address and HTML licence metadata read by F01 reviewer and reopened during finalization."
+    },
+    {
+      "id": "e1400e-met-china",
+      "title": "China, 1400–1600 A.D., Heilbrunn Timeline of Art History, October 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/eac.html",
+      "locator": "Key Events: 1405–1433; 1417; Forbidden City entry ca. 1406–1408 with first-use sentence; 1474. Ming dynasty timeline (reviewed web lines 40–57).",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1405–1433 voyages; 1417 publication; palace first used 1420; wall extensions 1474. Source years retained without calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1405–1433; 1417; 1420; 1474",
+      "scopedClaim": "Voyage series, compendium publication, palace use and wall extension start, with their distinct temporal scopes. The Ming chronology identifies the dynasty for the Vietnam control record."
+    },
+    {
+      "id": "e1400e-loc-yongle",
+      "title": "Discovering the Library’s Older Chinese Collection, Online, Qi Qiu, 2 December 2017",
+      "institution": "Library of Congress, Asian Division",
+      "url": "https://blogs.loc.gov/international-collections/2017/12/discovering-the-librarys-older-chinese-collection-online/",
+      "locator": "Caption for Yongle dadian; following discussion of Ming editions and Jiajing-period recopied manuscript.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Compilation dated 1404–1407. The pictured collection item is a later Ming Jiajing-period recopy, not asserted to be the original compilation manuscript.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1404-1407",
+      "scopedClaim": "Compilation by imperial order; distinguish compilation chronology from the surviving recopy."
+    },
+    {
+      "id": "e1400e-met-korea",
+      "title": "Korea, 1400–1600 A.D., Heilbrunn Timeline of Art History, October 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/eak.html",
+      "locator": "Key Events, foreign-relations discussion, sentence on Sejong ordering the Tsushima attack in 1419.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Attack order dated 1419; later trading privileges not assigned to that year here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1419",
+      "scopedClaim": "Sejong orders attack on Tsushima, described as a raider base."
+    },
+    {
+      "id": "e1400e-hangeul",
+      "title": "About the Hangeul, Museum Overview",
+      "institution": "National Hangeul Museum, Republic of Korea",
+      "url": "https://m.hangeul.go.kr/lang/en/html/education/Hangeul.do",
+      "locator": "Hunminjeongeum subsection: first record in Sejong Shilok, then book publication paragraph.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "First annal record is lunar twelfth month of 1443; book published 1446. Retain source year and lunar qualifier; no conversion to a Gregorian day or year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1443; 1446",
+      "scopedClaim": "Distinguishes creation of the script from publication of the explanatory book."
+    },
+    {
+      "id": "e1400e-met-japan",
+      "title": "Japan, 1400–1600 A.D., Heilbrunn Timeline of Art History, October 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/eaj.html",
+      "locator": "Overview; Key Events 1423, 1450, and Onin War entry 1466–1477.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1423 mission; 1450 temple establishment; war ends 1477. Internal discrepancy: overview begins war in 1467, key-event heading in 1466.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1423; 1450; 1467–77; 1466–1477",
+      "scopedClaim": "Mission purpose, temple foundation distinct from garden dating, and war endpoint with inconsistent start years preserved."
+    },
+    {
+      "id": "e1400e-ginkakuji",
+      "title": "ABOUT: Ginkaku-ji, History",
+      "institution": "Shokoku-ji Group / Ginkaku-ji",
+      "url": "https://www.shokoku-ji.jp/en/ginkakuji/about/",
+      "locator": "History, Ginkaku-ji and Yoshimasa 1; Higashiyama villa construction and next-year residence.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Higashiyama villa construction begins 1482; Eternity Palace completed following year. This event is the villa start, not completion of the later Silver Pavilion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1482",
+      "scopedClaim": "Construction of Yoshimasa’s villa begins on the former Jodo-ji site."
+    },
+    {
+      "id": "e1400e-ahmadabad",
+      "title": "Historic City of Ahmadabad, Outstanding Universal Value",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/1551/",
+      "locator": "Outstanding Universal Value, Brief synthesis, first sentence.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Foundation explicitly given as 1411 AD.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1411 AD",
+      "scopedClaim": "Sultan Ahmad Shah founds city on eastern Sabarmati bank."
+    },
+    {
+      "id": "e1400e-met-south-asia",
+      "title": "South Asia, 1400–1600 A.D., Heilbrunn Timeline of Art History, October 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/ssa.html",
+      "locator": "Key Events, paragraph under 1398: Sayyids from 1414, succeeded by Lodis in 1451.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Sayyid rule from 1414; Lodi succession 1451. Do not use heading 1398 as date for these later clauses.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1414; 1451",
+      "scopedClaim": "Two distinct Delhi dynastic successions."
+    },
+    {
+      "id": "e1400e-mehrangarh",
+      "title": "Architecture",
+      "institution": "Mehrangarh Museum Trust",
+      "url": "https://www.mehrangarh.org/mehrangarh-2/architecture/",
+      "locator": "Opening architectural chronology; paragraph beginning After the foundation by Rao Jodha.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Foundation dated 1459; major surviving building phases are later.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1459",
+      "scopedClaim": "Foundation of the fort only, not completion of its later palaces and walls."
+    },
+    {
+      "id": "e1400e-nanak",
+      "title": "Guru Nanak, MANAS",
+      "institution": "University of California, Los Angeles, Social Sciences",
+      "url": "https://southasia.ucla.edu/religions/gurus-saints/guru-nanak/",
+      "locator": "Opening prose paragraph, birth year and location; no hagiographic signs adopted.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Birth year 1469; no specific birthday inferred and no founding act assigned to that year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1469",
+      "scopedClaim": "Nanak’s birth at Talwandi, located in present-day Pakistan."
+    },
+    {
+      "id": "e1400e-gawan",
+      "title": "Khawaja Mahmud Gawan Madrasa, digital architectural record",
+      "institution": "Massachusetts Institute of Technology, Digital Collections",
+      "url": "https://dome.mit.edu/entities/picture/6c0e947c-e131-4f7e-b696-3a8e01f34a5b",
+      "locator": "Time period: creation date; Location: site; Work type. Photograph itself is captioned 1986.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Architectural creation date 1472/877 AH as supplied together by catalogue; photograph dated 1986. No independent AH conversion or exact completion-day claim.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1472/877 AH",
+      "scopedClaim": "Catalogue dating of the madrasa at Bidar; limited metadata evidence is explicitly attributed and requires independent review."
+    },
+    {
+      "id": "e1400e-met-sea",
+      "title": "Southeast Asia, 1400–1600 A.D., Heilbrunn Timeline of Art History, October 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/sse.html",
+      "locator": "Key Events: 1404–1406, 1406–1428, 1431, 1438 and 1453–1472.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1404–1406 trading emergence; 1406–1428 Chinese control; 1431 sack; 1438 incorporation; 1453–1472 reign. Keep ranges and distinct acts.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1404–1406; 1406–1428; 1431; 1438; 1453–1472",
+      "scopedClaim": "Selected political and trading changes; no universal Khmer extinction, exact Malacca foundation or surviving monument completion inferred."
+    },
+    {
+      "id": "e1400e-rangitoto",
+      "title": "Historic volcanic activity – Eruptions in early history, Eileen McSaveney, Carol Stewart and Graham Leonard, 2009",
+      "institution": "Te Ara – The Encyclopedia of New Zealand, Ministry for Culture and Heritage",
+      "url": "https://teara.govt.nz/en/historic-volcanic-activity/page-1",
+      "locator": "Rangitoto subsection, paragraph on radiocarbon dating and Motutapu evidence.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Eruption dated around 1400 CE using radiocarbon and other methods; approximate date retained.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "around 1400 CE",
+      "scopedClaim": "Approximate eruption date, with ash and human footprints on nearby Motutapu as contextual evidence."
+    },
+    {
+      "id": "e1400e-gawan-india",
+      "title": "Mahmud Gawan Madrasa, Incredible India",
+      "institution": "Ministry of Tourism, Government of India",
+      "url": "https://www.incredibleindia.gov.in/en/karnataka/bidar/mahmud-gawan-madrasa",
+      "locator": "A testament to the fusion of Indo-Islamic architecture, construction paragraph and description of library and teaching spaces.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Construction assigned to 1472; this is the monument chronology, not the date of a photograph.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1472",
+      "scopedClaim": "Narrative construction date and educational function, independently from the MIT catalogue metadata."
+    },
+    {
+      "id": "e1400e-husain-banglapedia",
+      "title": "Husain Shah, AM Chowdhury",
+      "institution": "Banglapedia, Asiatic Society of Bangladesh",
+      "url": "https://en.banglapedia.org/index.php?title=Husain_Shah",
+      "locator": "Opening paragraph, election by leading nobles.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Election as sultan dated 1494 AD; retain discrepancy with Eaton’s 1493 reign start.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1494 AD",
+      "scopedClaim": "Bengal accession chronology as one of two differing scholarly accounts."
+    },
+    {
+      "id": "e1400e-husain-eaton",
+      "title": "The Rise of Islam and the Bengal Frontier, 1204–1760, Richard M. Eaton, 1993",
+      "institution": "University of California Press / California Digital Library",
+      "url": "https://publishing.cdlib.org/ucpressebooks/public/book/the-rise-of-islam-and-the-bengal-frontier-1204-1760.html",
+      "locator": "Chapter 2, The Indigenization of Royal Authority, 1433–1538: palace coup paragraph and following reign paragraph; Appendix 2, Principal Muslim Rulers of Bengal.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Reign begins 1493; following paragraph calls 1494 the second reign year. No attempt to reconcile independently with Banglapedia’s 1494 election.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "1493–1519; 1494",
+      "scopedClaim": "Competing accession year, not a continuous two-year accession process."
+    },
+    {
+      "id": "e1400e-razzaq-sewell-f01",
+      "title": "A Forgotten Empire (Vijayanagar): A Contribution to the History of India, Robert Sewell, Project Gutenberg eBook 3310",
+      "institution": "Project Gutenberg, edition released 1 July 2002 and updated 8 January 2021",
+      "url": "https://www.gutenberg.org/cache/epub/3310/pg3310-images.html",
+      "locator": "Historical introduction, Chapter 7, The City of Vijayanagar in the Reign of Deva Raya II; paragraph beginning Abdur Razzak also visited (web line 615); translated narrative excerpts at lines 623–649.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Sewell dates residence in Vijayanagar from the end of April until 5 December of the same year, following explicit April 1443. This is the edition’s supplied civil chronology, not an independent conversion from its quoted lunar date. The older synthesis and translated extracts are distinct from a modern critical edition.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "April 1443; end of April",
+      "scopedClaim": "Embassy from Persia, visit to Vijayanagar in April 1443, and translated observations of its city and court; no new act inferred from a reign boundary."
+    },
+    {
+      "id": "e1400e-razzaq-iranica-f01",
+      "title": "ʿABD-AL-RAZZĀQ SAMARQANDĪ, Claus-Pete Haase, Encyclopaedia Iranica, 1982; updated 2018",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/abd-al-razzaq-samarqandi-historian-and-scholar-1413-82/",
+      "locator": "Biographical paragraph on official mission to India (web line 34); paragraph beginning To the same genre belongs the personal account (line 48); article metadata lines 25–31.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Official India mission January 1442–December 1444, as paired with source-supplied Islamic dates. This mission span does not independently date the particular Vijayanagar arrival. The personal account describes the court and city of Vijayanagar.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "January, 1442; December, 1444",
+      "scopedClaim": "Official mission, invitation to Vijayanagar, and the surviving personal account’s court/city subject matter; no exact arrival month inferred from the mission interval."
+    },
+    {
+      "id": "e1400e-hampi-unesco-f01",
+      "title": "Group of Monuments at Hampi, Outstanding Universal Value",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/241/",
+      "locator": "Outstanding Universal Value > Brief synthesis, first paragraph (web line 55); India property country label and Karnataka/Bellary location metadata.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Modern site identity and geographic locator only. The first Brief synthesis paragraph identifies Hampi’s remains with the Vijayanagara capital and locates the property in Central Karnataka; country India. No 1443 borders, itinerary or arrival date inferred.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "Hampi; Capital City of Vijayanagara Empire; Central Karnataka",
+      "scopedClaim": "Modern Hampi/Vijayanagara site identity and Karnataka/India locator only."
+    },
+    {
+      "id": "e1400w-met-timur",
+      "title": "The Art of the Timurid Period (ca. 1370–1507), Suzan Yalman after Linda Komaroff, 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/essays/the-art-of-the-timurid-period-ca-1370-1507",
+      "locator": "Historical narrative, paragraph beginning To the west, followed by the succession discussion.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1405; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Timur died while preparing a China campaign; later Timurid princes sought separate kingdoms.",
+      "asWorded": "1405"
+    },
+    {
+      "id": "e1400w-uw-timurids",
+      "title": "The Timurids, Daniel C. Waugh",
+      "institution": "University of Washington",
+      "url": "https://depts.washington.edu/silkroad/exhibit/timurids/essay.html",
+      "locator": "First narrative paragraph, beginning The disintegration of the Mongol Empire, including the Ankara sentence. Second narrative paragraph, beginning While some of the popular images, including the Clavijo visit and commerce. Daniel C. Waugh signature.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1402; 1404; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Defeat of the Ottoman sultan at Ankara; Clavijo’s Samarkand visit and account of commerce.",
+      "asWorded": "1402; 1404"
+    },
+    {
+      "id": "e1400w-gulbenkian-iskandar",
+      "title": "Anthology of Iskandar Sultan, inventory LA161",
+      "institution": "Museu Calouste Gulbenkian",
+      "url": "https://gulbenkian.pt/museu/en/works/miniature-from-the-anthology-of-sultan-iskandar/",
+      "locator": "Heading date; manuscript commission paragraph; Object details, Origin and Date.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1411 (AH 813); dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The manuscript's object date and Shiraz origin, its two volumes and commissioning patron; no separate commission year is supplied.",
+      "asWorded": "1411 (AH 813)"
+    },
+    {
+      "id": "e1400w-mcgill-ulugh",
+      "title": "Ulugh Beg: Muḥammad Ṭaraghāy ibn Shāhrukh ibn Tīmūr, Benno van Dalen, 2007, pp. 1157–1159",
+      "institution": "The Biographical Encyclopedia of Astronomers, Springer; hosted by McGill University",
+      "url": "https://www.islamsci.mcgill.ca/RASI/BEA/Ulugh_Beg_BEA.htm",
+      "locator": "Paragraph beginning By 1411, especially the 1417 madrasa sentence and following sentence on teaching.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1417; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Ulugh Beg founded a Samarkand madrasa where mathematics and astronomy held an important teaching place.",
+      "asWorded": "1417"
+    },
+    {
+      "id": "e1400w-unesco-baysunghur",
+      "title": "Bayasanghori Shâhnâmeh (Prince Bayasanghor’s Book of the Kings)",
+      "institution": "UNESCO, Memory of the World; nomination by Iran",
+      "url": "https://www.unesco.org/en/memory-world/bayasanghori-shahnameh-prince-bayasanghors-book-kings",
+      "locator": "Main description paragraph beginning The Shâhnâmeh has also become; caption for the illuminated double frontispiece.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1430; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "A Shahnameh copy made for the Timurid prince in 1430; caption identifies Ja’far Baysonqori and nasta’liq script.",
+      "asWorded": "1430"
+    },
+    {
+      "id": "e1400w-iranica-hosayn",
+      "title": "ḤOSAYN BĀYQARĀ, Hans R. Roemer, 2004, XII/5, pp. 508–511",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/hosayn-bayqara/",
+      "locator": "Career as warrior and ruler, paragraph beginning In the race for power, and following paragraph.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "10 Ramażān 873/24 March 1469; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Husayn’s throne claim at Herat; his continuing competition with Timurid princes and Aq Qoyunlu.",
+      "asWorded": "10 Ramażān 873/24 March 1469"
+    },
+    {
+      "id": "e1400w-met-eastern-med",
+      "title": "The Eastern Mediterranean, 1400–1600 A.D., 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/wae.html",
+      "locator": "Key Events: ca. 1400–1401; 1468–1496, including the dated Madrasa Ashrafiyya commission.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "ca. 1400–1401; 1480–82; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Timur’s Syrian devastation and deportation of artists; Qaitbay’s Ashrafiyya building project in Jerusalem.",
+      "asWorded": "ca. 1400–1401; 1480–82"
+    },
+    {
+      "id": "e1400w-iranica-aq-qoyunlu",
+      "title": "AQ QOYUNLŪ, Rosemarie Quiring-Zoche, 1986, II/2, pp. 163–168",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/aq-qoyunlu-confederation/",
+      "locator": "Narrative paragraph beginning In Qaraman, Ottoman and Mamluk interests, including the August 1473 battle sentence and its territorial-loss assessment.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "Rabīʿa I, 878/August, 1473; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Mehmed II defeated Uzun Hasan at Otlukbeli, using artillery and muskets.",
+      "asWorded": "Rabīʿa I, 878/August, 1473"
+    },
+    {
+      "id": "e1400w-met-egypt",
+      "title": "Egypt, 1400–1600 A.D., 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/afe.html",
+      "locator": "Key Events, 1468–1496: Qaitbay’s Northern Cemetery funerary complex and other commissions.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1472–74; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Qaitbay’s Cairo funerary complex and patronage of religious and commercial buildings.",
+      "asWorded": "1472–74"
+    },
+    {
+      "id": "e1400w-met-mexico",
+      "title": "Mexico, 1400–1600 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/canm.html",
+      "locator": "Key Events entries ca. 1427, ca. 1454 and ca. 1487.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "ca. 1427; ca. 1454; 1 Rabbit (1454 A.D.); ca. 1487; 8 Reed; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The Triple Alliance and Azcapotzalco defeat; two dated Main Temple enlargements and their calendrical labels.",
+      "asWorded": "ca. 1427; ca. 1454; 1 Rabbit (1454 A.D.); ca. 1487; 8 Reed"
+    },
+    {
+      "id": "e1400w-albany-mayapan",
+      "title": "Study: Collapse of Ancient Mayan Capital Linked to Drought, 18 August 2022",
+      "institution": "University at Albany, State University of New York",
+      "url": "https://www.albany.edu/news-center/news/2022-study-collapse-ancient-mayan-capital-linked-drought",
+      "locator": "Opening three paragraphs, especially the 1441–1461 interval; later discussion of drought as a possible contribution.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "between 1441 and 1461; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Mayapan’s political collapse and abandonment, and the qualified drought-conflict interpretation.",
+      "asWorded": "between 1441 and 1461"
+    },
+    {
+      "id": "e1400w-met-andes",
+      "title": "Central and Southern Andes, 1400–1600 A.D., 2006",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/sanc.html",
+      "locator": "Key Events, ca. 1470, paragraph beginning The Inca conquer Chan Chan; compare Timeline, Coastal Lowlands.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "ca. 1470; Chimú kingdom, 1150–1450; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Chan Chan’s conquest and movement of metalsmiths to Cuzco; preserve the page’s differing overview chronology.",
+      "asWorded": "ca. 1470; Chimú kingdom, 1150–1450"
+    },
+    {
+      "id": "e1400w-loc-chimu",
+      "title": "Pizarro and the Incas: Chimú Vessel Flute",
+      "institution": "Library of Congress, Exploring the Early Americas",
+      "url": "https://wwws.loc.gov/exhibits/exploring-the-early-americas/pizarro-and-the-incas.html",
+      "locator": "Chimú Vessel Flute, first paragraph, sentence beginning In 1470.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1470; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The Inca conquest of the Chimú in the source’s stated chronology.",
+      "asWorded": "1470"
+    },
+    {
+      "id": "e1400w-artic-ewuare",
+      "title": "Oba Ewuare and the Portuguese",
+      "institution": "The Art Institute of Chicago, Benin—Kings and Rituals exhibition",
+      "url": "https://archive.artic.edu/benin/oba/",
+      "locator": "Opening paragraph, including the enthronement qualification and attributed institutional changes.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "enthroned c. 1440; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Ewuare’s approximate accession and attributed improvements to Benin kingship and its capital.",
+      "asWorded": "enthroned c. 1440"
+    },
+    {
+      "id": "e1400w-uct-timbuktu",
+      "title": "Timbuktu’s History",
+      "institution": "University of Cape Town, Tombouctou Manuscripts Project",
+      "url": "https://tombouctoumanuscripts.uct.ac.za/overview/timbuktus-history",
+      "locator": "Paragraph beginning The city is not mentioned, especially the final 1468 clause.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1468; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Songhay incorporation of Timbuktu under Sonni Ali and expulsion of the Tuareg rulers.",
+      "asWorded": "1468"
+    },
+    {
+      "id": "e1400w-unesco-elmina",
+      "title": "Forts and Castles, Volta, Greater Accra, Central and Western Regions",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/34/",
+      "locator": "Outstanding Universal Value, Brief synthesis: St. George’s d’Elmina built in 1482, and surrounding trade discussion.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1482; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Elmina’s dated castle and the African-European coastal trading context.",
+      "asWorded": "1482"
+    },
+    {
+      "id": "e1400w-dias-museum",
+      "title": "The Complex",
+      "institution": "Bartolomeu Dias Museum, Mossel Bay",
+      "url": "https://diasmuseum.co.za/complex/",
+      "locator": "The Complex, opening paragraph; Historical Background identifies the provincial museum.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1488; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Dias’s rounding of southern Africa and landing at Mossel Bay in 1488.",
+      "asWorded": "1488"
+    },
+    {
+      "id": "e1400w-met-kongo",
+      "title": "Central Africa, 1400–1600 A.D., 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/08/afc.html",
+      "locator": "Key Events, 1491, opening sentence.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1491; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Kongo’s king was baptized as João I and strengthened ties with Portugal.",
+      "asWorded": "1491"
+    },
+    {
+      "id": "e1400w-unesco-askia",
+      "title": "Tomb of Askia",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/1139/",
+      "locator": "Description, opening two paragraphs; Outstanding Universal Value, Brief synthesis.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1495; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Askia Mohamed’s pyramidal building at Gao and the complex’s mosque, cemetery and assembly components.",
+      "asWorded": "1495"
+    },
+    {
+      "id": "e1400w-museum-grunwald",
+      "title": "Bitwa pod Grunwaldem 1410",
+      "institution": "Muzeum Oręża Polskiego w Kołobrzegu",
+      "url": "https://bitwy.muzeum.kolobrzeg.pl/grunwald/",
+      "locator": "Opening paragraph; Kalendarium, 1410 r., entry 15.07.1410.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "15.07.1410 r.; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Polish-Lithuanian victory over the Teutonic Order and death of Ulrich von Jungingen.",
+      "asWorded": "15.07.1410 r."
+    },
+    {
+      "id": "e1400w-armouries-hundred-years",
+      "title": "The Hundred Years’ War 1337–1453",
+      "institution": "Royal Armouries",
+      "url": "https://royalarmouries.org/objects-and-stories/stories/the-hundred-years-war-1337-1453",
+      "locator": "Key battles: The Battle of Agincourt, 25 October 1415; Siege of Orléans, paragraphs on 6–8 May 1429.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "25 October 1415; 8 May 1429; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Henry V’s Agincourt victory; French assaults led by Joan and the English withdrawal from Orléans.",
+      "asWorded": "25 October 1415; 8 May 1429"
+    },
+    {
+      "id": "e1400w-catholic-martin-v",
+      "title": "Pope Martin V, Michael Ott, The Catholic Encyclopedia, volume 9, 1910",
+      "institution": "Robert Appleton Company; transcription hosted by New Advent",
+      "url": "https://www.newadvent.org/cathen/09725a.htm",
+      "locator": "Opening election paragraph and immediately following coronation paragraph; About this page gives author and 1910 edition.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "11 November, 1417; 21 November; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Oddone Colonna’s election at Constance, papal name and coronation in the same month.",
+      "asWorded": "11 November, 1417; 21 November"
+    },
+    {
+      "id": "e1400w-met-ottomans",
+      "title": "The Art of the Ottomans before 1600, Suzan Yalman, 2002",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/essays/the-art-of-the-ottomans-before-1600",
+      "locator": "Historical narrative: 1453 capture; paragraphs on the new capital, Hagia Sophia and Mehmed II’s rebuilding.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1453; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Ottoman capture of Constantinople and Mehmed II’s subsequent rebuilding patronage.",
+      "asWorded": "1453"
+    },
+    {
+      "id": "e1400w-loc-gutenberg",
+      "title": "The Gutenberg Bible at the Library of Congress: A Resource Guide, Introduction",
+      "institution": "Library of Congress",
+      "url": "https://guides.loc.gov/gutenberg/introduction",
+      "locator": "Introduction, heading statement and first paragraph; later paragraph on finishing printed sheets by hand.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "1454/1455; [1454-1455]; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Gutenberg and Fust’s Mainz Bible printing in the source’s two-year date and its hand finishing.",
+      "asWorded": "1454/1455; [1454-1455]"
+    },
+    {
+      "id": "e1400w-unesco-tordesillas",
+      "title": "Treaty of Tordesillas, Memory of the World nomination 2006-43",
+      "institution": "Spanish and Portuguese archival authorities; UNESCO Memory of the World",
+      "url": "https://media.unesco.org/sites/default/files/webform/mtd001/spain_portugal_treaty_tordesillas.pdf",
+      "locator": "PDF page 1, Part A, section 1 Summary; page 2, sections 3.1–3.2, agreement date.",
+      "retrievedOn": "2026-11-07",
+      "originalChronology": "7 June 1494; dates retained as supplied by the source; no independent calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The agreement between the Castilian-Aragonese and Portuguese crowns and its Atlantic demarcation line.",
+      "asWorded": "7 June 1494"
     }
   ],
   "events": [
@@ -10738,6 +11266,1299 @@
         "e1300-east-nios-delhi"
       ],
       "selectionNote": "A major destructive invasion of the Delhi Sultanate, distinct from Timur's rise and Golden Horde campaign owned by West.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1400-rangitoto-utbrott",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1400,
+        "endYear": 1400,
+        "displaySv": "Cirka 1400"
+      },
+      "titleSv": "Rangitoto får ett utbrott",
+      "summarySv": "Rangitotos utbrott dateras till omkring 1400. På grannön Motutapu har mänskliga fotspår hittats i askan.",
+      "geographySv": "Vid nuvarande Auckland, Nya Zeeland",
+      "category": "nature",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-rangitoto"
+      ],
+      "selectionNote": "Retains an approximate geological event and archaeological human context without inventing an exact year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Dateringen bygger på kol-14 och andra metoder och är ungefärlig."
+    },
+    {
+      "id": "ev-1400-timurs-armeer-harjar-syrien",
+      "date": {
+        "kind": "range",
+        "startYear": 1400,
+        "endYear": 1401,
+        "displaySv": "cirka 1400–1401"
+      },
+      "titleSv": "Timurs arméer härjar Syrien",
+      "summarySv": "Timurs arméer bränner Aleppo och Damaskus under fälttågen i Syrien. Han för bort konstnärer till sin huvudstad Samarkand.",
+      "geographySv": "Aleppo och Damaskus",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-met-eastern-med"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "uncertaintySv": "Museets kronologi anger cirka 1400–1401. Intervallet ger en ungefärlig ram för flera angrepp.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1402-timur-besegrar-osmanerna-vid-ankara",
+      "date": {
+        "kind": "exact",
+        "startYear": 1402,
+        "endYear": 1402,
+        "displaySv": "1402"
+      },
+      "titleSv": "Timur besegrar osmanerna vid Ankara",
+      "summarySv": "Timurs armé besegrar den osmanske sultanens styrkor vid Ankara 1402. Timur har under sina fälttåg utvidgat sitt välde över Iran och Irak.",
+      "geographySv": "Ankara",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-uw-timurids"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1404-clavijo-besoker-samarkand",
+      "date": {
+        "kind": "exact",
+        "startYear": 1404,
+        "endYear": 1404,
+        "displaySv": "1404"
+      },
+      "titleSv": "Clavijo besöker Samarkand",
+      "summarySv": "Det spanska sändebudet Ruy González de Clavijo besöker Samarkand 1404. Han beskriver stadens handel och hantverk samt varor från flera delar av Asien.",
+      "geographySv": "Samarkand",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-uw-timurids"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1404-malacka-handelscentrum",
+      "date": {
+        "kind": "range",
+        "startYear": 1404,
+        "endYear": 1406,
+        "displaySv": "1404–1406"
+      },
+      "titleSv": "Malacka växer som handelscentrum",
+      "summarySv": "Malacka blir ett viktigt handelscentrum 1404–1406. Staden ligger på Malackahalvön.",
+      "geographySv": "Malacka, nuvarande Malaysia",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-met-sea"
+      ],
+      "selectionNote": "Trading emergence rather than a certain traditional foundation date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1404-yongle-dadian",
+      "date": {
+        "kind": "range",
+        "startYear": 1404,
+        "endYear": 1407,
+        "displaySv": "1404–1407"
+      },
+      "titleSv": "Yongle dadian sammanställs",
+      "summarySv": "Encyklopedin Yongle dadian sammanställs på Yonglekejsarens order. Arbetet dateras till 1404–1407.",
+      "geographySv": "Mingriket, Kina",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-loc-yongle"
+      ],
+      "selectionNote": "A dated compilation, distinguished from surviving later recopied manuscripts.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Bibliotekets avbildade exemplar är en senare avskrift från Jiajingperioden."
+    },
+    {
+      "id": "ev-1405-timur-dor-infor-falttaget-mot-kina",
+      "date": {
+        "kind": "exact",
+        "startYear": 1405,
+        "endYear": 1405,
+        "displaySv": "1405"
+      },
+      "titleSv": "Timur dör inför fälttåget mot Kina",
+      "summarySv": "Timur dör 1405 under förberedelserna för ett fälttåg mot Kina. Hans efterkommande söker under de följande årtiondena egna riken och försvagar det timuridiska väldet.",
+      "geographySv": "Timuridernas rike",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-met-timur"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1405-zheng-he-expeditioner",
+      "date": {
+        "kind": "range",
+        "startYear": 1405,
+        "endYear": 1433,
+        "displaySv": "1405–1433"
+      },
+      "titleSv": "Zheng He leder sjöexpeditioner",
+      "summarySv": "Zheng He leder sju stora sjöexpeditioner 1405–1433. Resorna har främst diplomatiska syften.",
+      "geographySv": "Mingriket och Indiska oceanens sjövägar",
+      "category": "discovery",
+      "importance": 3,
+      "sourceIds": [
+        "e1400e-met-china"
+      ],
+      "selectionNote": "One voyage-series event; no arrival date inferred from any departure date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Intervallet gäller hela expeditionsserien och anger inga enskilda ankomstår."
+    },
+    {
+      "id": "ev-1406-ming-vietnam",
+      "date": {
+        "kind": "range",
+        "startYear": 1406,
+        "endYear": 1428,
+        "displaySv": "1406–1428"
+      },
+      "titleSv": "Ming tar kontroll över Vietnam",
+      "summarySv": "Kina tar kontroll över Vietnam under perioden 1406–1428. Ingripandet motiveras med att Trandynastin ska återställas.",
+      "geographySv": "Vietnam",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400e-met-sea",
+        "e1400e-met-china"
+      ],
+      "selectionNote": "Retains the cited chronological span without choosing an unstated conquest day.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1410-polsk-litauisk-seger-vid-grunwald",
+      "date": {
+        "kind": "exact",
+        "startYear": 1410,
+        "endYear": 1410,
+        "displaySv": "15 juli 1410"
+      },
+      "titleSv": "Polsk-litauiska styrkor segrar vid Grunwald",
+      "summarySv": "Polsk-litauiska styrkor och deras allierade besegrar Tyska orden vid Grunwald den 15 juli 1410. Ordens stormästare Ulrich von Jungingen dör i slaget.",
+      "geographySv": "Grunwald",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-museum-grunwald"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1411-ahmadabad-grundas",
+      "date": {
+        "kind": "exact",
+        "startYear": 1411,
+        "endYear": 1411,
+        "displaySv": "1411"
+      },
+      "titleSv": "Ahmad Shah grundar Ahmadabad",
+      "summarySv": "Sultan Ahmad Shah grundar Ahmadabad 1411. Staden anläggs på Sabarmatiflodens östra strand.",
+      "geographySv": "Ahmadabad, nuvarande Gujarat i Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-ahmadabad"
+      ],
+      "selectionNote": "Regional South Asian urban foundation supported by an explicit institutional date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1411-iskandar-sultans-antologi-framstalls",
+      "date": {
+        "kind": "exact",
+        "startYear": 1411,
+        "endYear": 1411,
+        "displaySv": "1411"
+      },
+      "titleSv": "Iskandar Sultans antologi från Shiraz",
+      "summarySv": "Museet daterar Iskandar Sultans illustrerade antologi från Shiraz till 1411, även angivet som 813 AH. Handskriften omfattar två band och beställdes av Iskandar Sultan när han var guvernör där.",
+      "geographySv": "Shiraz",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-gulbenkian-iskandar"
+      ],
+      "selectionNote": "Editorial selection for court culture and cultural production. Importance is a curatorial ranking.",
+      "uncertaintySv": "Årtalen avser museets datering av handskriften. Källan anger inget separat beställningsår; ingen självständig kalenderomräkning har gjorts.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1414-sayyid-delhi",
+      "date": {
+        "kind": "exact",
+        "startYear": 1414,
+        "endYear": 1414,
+        "displaySv": "1414"
+      },
+      "titleSv": "Sayyiddynastin tar över i Delhi",
+      "summarySv": "Sayyidsultanerna börjar regera i Delhi 1414. De efterträder Tughluqdynastin.",
+      "geographySv": "Delhi, Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-met-south-asia"
+      ],
+      "selectionNote": "Uses the dated succession clause, not the 1398 event heading.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1415-henrik-v-segrar-vid-agincourt",
+      "date": {
+        "kind": "exact",
+        "startYear": 1415,
+        "endYear": 1415,
+        "displaySv": "25 oktober 1415"
+      },
+      "titleSv": "Henrik V segrar vid Agincourt",
+      "summarySv": "Henrik V:s engelska armé besegrar fransmännen vid Agincourt den 25 oktober 1415. Engelska bågskyttar bakom träpålar bryter det franska anfallet.",
+      "geographySv": "Agincourt",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-armouries-hundred-years"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1417-konfuciansk-kompendium",
+      "date": {
+        "kind": "exact",
+        "startYear": 1417,
+        "endYear": 1417,
+        "displaySv": "1417"
+      },
+      "titleSv": "Ett konfucianskt kompendium publiceras",
+      "summarySv": "Ett stort kompendium om människans natur publiceras 1417. Det blir ett standardverk för ämbetsexamina.",
+      "geographySv": "Mingriket, Kina",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-met-china"
+      ],
+      "selectionNote": "Text publication and examination use, without treating publication as creation of Confucianism.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1417-martin-v-valjs-i-konstanz",
+      "date": {
+        "kind": "exact",
+        "startYear": 1417,
+        "endYear": 1417,
+        "displaySv": "11 november 1417"
+      },
+      "titleSv": "Kyrkomötets väljare utser Martin V",
+      "summarySv": "Väljarna vid kyrkomötet i Konstanz utser Oddone Colonna till påve den 11 november 1417. Han tar namnet Martin V och kröns senare samma månad.",
+      "geographySv": "Konstanz",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-catholic-martin-v"
+      ],
+      "selectionNote": "Editorial selection for religious and institutional change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1417-ulugh-beg-grundar-madrasa-i-samarkand",
+      "date": {
+        "kind": "exact",
+        "startYear": 1417,
+        "endYear": 1417,
+        "displaySv": "1417"
+      },
+      "titleSv": "Ulugh Beg grundar en madrasa i Samarkand",
+      "summarySv": "Ulugh Beg grundar en madrasa i Samarkand 1417. Lärarna ger matematik och astronomi en viktig plats i undervisningen.",
+      "geographySv": "Samarkand",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-mcgill-ulugh"
+      ],
+      "selectionNote": "Editorial selection for court culture and cultural production. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1419-tsushima-attackorder",
+      "date": {
+        "kind": "exact",
+        "startYear": 1419,
+        "endYear": 1419,
+        "displaySv": "1419"
+      },
+      "titleSv": "Sejong beordrar ett angrepp på Tsushima",
+      "summarySv": "Kung Sejong beordrar ett angrepp på Tsushima 1419. Ön används som bas av japanska sjörövare.",
+      "geographySv": "Tsushima, mellan Korea och Japan",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-met-korea"
+      ],
+      "selectionNote": "Dates the attack order; does not assign later trade arrangements to the same year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1420-forbjudna-staden-bruk",
+      "date": {
+        "kind": "exact",
+        "startYear": 1420,
+        "endYear": 1420,
+        "displaySv": "1420"
+      },
+      "titleSv": "Yongle tar Förbjudna staden i bruk",
+      "summarySv": "Yonglekejsaren använder Förbjudna staden för första gången 1420. Palatskomplexet ligger i Peking.",
+      "geographySv": "Peking, Kina",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1400e-met-china"
+      ],
+      "selectionNote": "First imperial use rather than an exact date for every construction phase.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1423-shubun-korea",
+      "date": {
+        "kind": "exact",
+        "startYear": 1423,
+        "endYear": 1423,
+        "displaySv": "1423"
+      },
+      "titleSv": "Shūbun reser till Korea",
+      "summarySv": "Zenmunken och målaren Shūbun reser till Korea 1423. Beskickningen ska skaffa en avskrift av den buddhistiska kanon.",
+      "geographySv": "Från Japan till Korea",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-met-japan"
+      ],
+      "selectionNote": "Mission purpose is explicit; acquisition success is not inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1427-trippelalliansen-besegrar-azcapotzalco",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1427,
+        "endYear": 1427,
+        "displaySv": "cirka 1427"
+      },
+      "titleSv": "Trippelalliansen besegrar Azcapotzalco",
+      "summarySv": "Tenochtitlan förenar sina styrkor med Texcoco och Tlacopan och besegrar Azcapotzalco. Mexica i Tenochtitlan får en ledande ställning inom alliansen.",
+      "geographySv": "Mexikodalen",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-met-mexico"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "uncertaintySv": "Metmuseet daterar alliansen till cirka 1427. Årtalet behålls som en uppskattning.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1429-fransmannen-haver-orleans-belagring",
+      "date": {
+        "kind": "exact",
+        "startYear": 1429,
+        "endYear": 1429,
+        "displaySv": "8 maj 1429"
+      },
+      "titleSv": "Fransmännen häver belägringen av Orléans",
+      "summarySv": "Jeanne d’Arc leder franska anfall mot engelska ställningar vid Orléans i början av maj 1429. Engelsmännen medger nederlag och drar sig tillbaka den 8 maj.",
+      "geographySv": "Orléans",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-armouries-hundred-years"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1430-baysunghurs-shahnameh-framstalls",
+      "date": {
+        "kind": "exact",
+        "startYear": 1430,
+        "endYear": 1430,
+        "displaySv": "1430"
+      },
+      "titleSv": "Skrivare framställer Baysunghurs Shahnameh",
+      "summarySv": "Skrivare framställer en illustrerad avskrift av Ferdousis Shahnameh för den timuridiske prinsen Baysunghur 1430. Kalligrafen Ja’far Baysonqori skriver texten med nasta’liq-skrift.",
+      "geographySv": "Timuridernas hov",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-unesco-baysunghur"
+      ],
+      "selectionNote": "Editorial selection for court culture and cultural production. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1431-angkor-plundras",
+      "date": {
+        "kind": "exact",
+        "startYear": 1431,
+        "endYear": 1431,
+        "displaySv": "1431"
+      },
+      "titleSv": "Angkor plundras",
+      "summarySv": "Thailändska styrkor plundrar Angkor 1431. Händelsen försvagar khmerernas maktcentrum.",
+      "geographySv": "Angkor, nuvarande Kambodja",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400e-met-sea"
+      ],
+      "selectionNote": "Narrow sack event; no claim that Khmer society or all occupation ends.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Årtalet avser plundringen och används inte som slutdatum för all bosättning i Angkor."
+    },
+    {
+      "id": "ev-1438-sukhothai-ayutthaya",
+      "date": {
+        "kind": "exact",
+        "startYear": 1438,
+        "endYear": 1438,
+        "displaySv": "1438"
+      },
+      "titleSv": "Sukhothai införlivas med Ayutthaya",
+      "summarySv": "Sukhothai införlivas med Ayutthaya 1438. Staden är ett centrum för keramik och bronsskulptur.",
+      "geographySv": "Nuvarande Thailand",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-met-sea"
+      ],
+      "selectionNote": "Dated political incorporation, without dating the origin of local crafts.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1440-ewuare-bestiger-benins-tron",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1440,
+        "endYear": 1440,
+        "displaySv": "cirka 1440"
+      },
+      "titleSv": "Ewuare bestiger Benins tron",
+      "summarySv": "Oba Ewuare bestiger Benins tron omkring 1440. Museet tillskriver honom förbättringar av Benin City och förändringar i palatschefernas organisation.",
+      "geographySv": "Benin City",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-artic-ewuare"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "uncertaintySv": "Museet anger en ungefärlig tronbestigning och tillskriver Ewuare flera förändringar. Ett exakt år för reformerna anges inte.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1441-mayapans-politiska-styre-bryter-samman",
+      "date": {
+        "kind": "range",
+        "startYear": 1441,
+        "endYear": 1461,
+        "displaySv": "1441–1461"
+      },
+      "titleSv": "Mayapáns politiska styre bryter samman",
+      "summarySv": "Rivaliserande grupper angriper Cocomfamiljen och Mayapáns politiska styre bryter samman under perioden 1441–1461. Forskare bedömer att långvarig torka kan ha bidragit till konflikterna.",
+      "geographySv": "Mayapán, Yucatán",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-albany-mayapan"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "uncertaintySv": "Källan anger ett intervall för sammanbrottet. Torkans bidrag är en forskningshypotes.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1443-hunminjeongeum-skapas",
+      "date": {
+        "kind": "exact",
+        "startYear": 1443,
+        "endYear": 1443,
+        "displaySv": "1443, källans månkalender"
+      },
+      "titleSv": "Sejong skapar Hunminjeongeum",
+      "summarySv": "Joseonannalerna antecknar att kung Sejong har skapat ett nytt skriftsystem. Anteckningen hör till den tolfte månmånaden 1443.",
+      "geographySv": "Joseon, Korea",
+      "category": "technology",
+      "importance": 3,
+      "sourceIds": [
+        "e1400e-hangeul"
+      ],
+      "selectionNote": "Creation record retained in source lunar chronology; distinct from 1446 book publication.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Året följer källans månkalender och har inte räknats om till ett gregorianskt datum."
+    },
+    {
+      "id": "ev-1443-razzaq-vijayanagara",
+      "date": {
+        "kind": "exact",
+        "startYear": 1443,
+        "endYear": 1443,
+        "displaySv": "1443"
+      },
+      "titleSv": "Abd al-Razzaq besöker Vijayanagara",
+      "summarySv": "Det persiska sändebudet Abd al-Razzaq når Hampi i april 1443. Han beskriver Vijayanagaras hov och stadsliv i sin reseskildring.",
+      "geographySv": "Vijayanagara vid Hampi, nuvarande Karnataka i Indien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-razzaq-sewell-f01",
+        "e1400e-razzaq-iranica-f01",
+        "e1400e-hampi-unesco-f01"
+      ],
+      "selectionNote": "Persian envoy and personal travel account; accessible historical edition and scholarly biography, with the modern Hampi locator separately bound to UNESCO.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1446-hunminjeongeum-bok",
+      "date": {
+        "kind": "exact",
+        "startYear": 1446,
+        "endYear": 1446,
+        "displaySv": "1446"
+      },
+      "titleSv": "Hunminjeongeum förklaras i bokform",
+      "summarySv": "Boken Hunminjeongeum publiceras 1446. Den förklarar skriftsystemets tillkomst och principer.",
+      "geographySv": "Joseon, Korea",
+      "category": "culture",
+      "importance": 3,
+      "sourceIds": [
+        "e1400e-hangeul"
+      ],
+      "selectionNote": "Publication of the explanatory book, separate from the script’s 1443 creation record.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1450-ryoanji-grundas",
+      "date": {
+        "kind": "exact",
+        "startYear": 1450,
+        "endYear": 1450,
+        "displaySv": "1450"
+      },
+      "titleSv": "Ryōanji grundas",
+      "summarySv": "Templet Ryōanji grundas 1450. Det ligger i kullarna nordväst om Kyoto.",
+      "geographySv": "Kyoto, Japan",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-met-japan"
+      ],
+      "selectionNote": "Foundation of the temple; no claim that its present rock garden was completed in 1450.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Årtalet gäller templets grundande, inte en datering av den nuvarande stenträdgården."
+    },
+    {
+      "id": "ev-1451-lodi-delhi",
+      "date": {
+        "kind": "exact",
+        "startYear": 1451,
+        "endYear": 1451,
+        "displaySv": "1451"
+      },
+      "titleSv": "Lodidynastin tar över i Delhi",
+      "summarySv": "Lodidynastin efterträder Sayyidsultanerna 1451. Delhi är centrum för maktskiftet.",
+      "geographySv": "Delhi, Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-met-south-asia"
+      ],
+      "selectionNote": "Dated dynastic succession supported in a full sentence.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1453-osmanerna-erovrar-konstantinopel",
+      "date": {
+        "kind": "exact",
+        "startYear": 1453,
+        "endYear": 1453,
+        "displaySv": "1453"
+      },
+      "titleSv": "Osmanerna erövrar Konstantinopel",
+      "summarySv": "Osmanerna intar Konstantinopel 1453. Mehmed II gör staden till centrum för sitt välde och inleder ett omfattande byggnadsprogram.",
+      "geographySv": "Konstantinopel",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-met-ottomans"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1453-shin-sawbu-bago",
+      "date": {
+        "kind": "range",
+        "startYear": 1453,
+        "endYear": 1472,
+        "displaySv": "1453–1472"
+      },
+      "titleSv": "Shin Sawbu stärker Bago",
+      "summarySv": "Under Shin Sawbus regering 1453–1472 främjas Bago som buddhistiskt centrum. Även handeln blomstrar.",
+      "geographySv": "Bago, nuvarande Myanmar",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-met-sea"
+      ],
+      "selectionNote": "Retains a reign-long policy and trade process rather than assigning it to the accession day.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1454-gutenberg-och-fust-trycker-bibeln",
+      "date": {
+        "kind": "range",
+        "startYear": 1454,
+        "endYear": 1455,
+        "displaySv": "1454–1455"
+      },
+      "titleSv": "Gutenberg och Fust trycker bibeln i Mainz",
+      "summarySv": "Johannes Gutenberg och Johannes Fust framställer sin tryckta latinska bibel i Mainz under 1454–1455. Hantverkare färdigställer exemplarens initialer och andra delar av utsmyckningen för hand.",
+      "geographySv": "Mainz",
+      "category": "technology",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-loc-gutenberg"
+      ],
+      "selectionNote": "Editorial selection for the transmission of technology. Importance is a curatorial ranking.",
+      "uncertaintySv": "Library of Congress anger 1454/1455. Intervallet bevarar källans bibliografiska datering.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1454-mexica-bygger-ut-huvudtemplet",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1454,
+        "endYear": 1454,
+        "displaySv": "cirka 1454, året 1 Kanin"
+      },
+      "titleSv": "Mexica bygger ut huvudtemplet i Tenochtitlan",
+      "summarySv": "Byggare utvidgar huvudtemplet i Tenochtitlan under året 1 Kanin. De smyckar pyramiden med stora rökelsekar och ormhuvuden.",
+      "geographySv": "Tenochtitlan",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-met-mexico"
+      ],
+      "selectionNote": "Editorial selection for court culture and cultural production. Importance is a curatorial ranking.",
+      "uncertaintySv": "Metmuseet återger året 1 Kanin som 1454 e.Kr. och placerar händelsen under cirka 1454.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1459-mehrangarh-grundlaggs",
+      "date": {
+        "kind": "exact",
+        "startYear": 1459,
+        "endYear": 1459,
+        "displaySv": "1459"
+      },
+      "titleSv": "Rao Jodha grundlägger Mehrangarh",
+      "summarySv": "Rao Jodha grundlägger Mehrangarh 1459. Fortet byggs sedan ut i flera etapper.",
+      "geographySv": "Jodhpur, nuvarande Rajasthan i Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-mehrangarh"
+      ],
+      "selectionNote": "Foundation only; surviving architecture includes later building phases.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Årtalet daterar grundläggningen och inte hela det nuvarande fortkomplexet."
+    },
+    {
+      "id": "ev-1468-sonni-alis-styrkor-tar-timbuktu",
+      "date": {
+        "kind": "exact",
+        "startYear": 1468,
+        "endYear": 1468,
+        "displaySv": "1468"
+      },
+      "titleSv": "Sonni Alis styrkor tar Timbuktu",
+      "summarySv": "Sonni Alis Songhaystyrkor tar över Timbuktu 1468. De driver bort stadens tuaregiska härskare och införlivar staden i Songhayriket.",
+      "geographySv": "Timbuktu",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-uct-timbuktu"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1469-guru-nanak-fods",
+      "date": {
+        "kind": "exact",
+        "startYear": 1469,
+        "endYear": 1469,
+        "displaySv": "1469"
+      },
+      "titleSv": "Guru Nanak föds i Talwandi",
+      "summarySv": "Nanak föds i Talwandi 1469. Han blir senare den centrala grundargestalten för sikhismen.",
+      "geographySv": "Talwandi i nuvarande Pakistan",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "e1400e-nanak"
+      ],
+      "selectionNote": "Birth milestone; no religious foundation act or legendary birth signs assigned to 1469.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1469-husayn-bayqara-gor-ansprak-pa-herat",
+      "date": {
+        "kind": "exact",
+        "startYear": 1469,
+        "endYear": 1469,
+        "displaySv": "24 mars 1469"
+      },
+      "titleSv": "Husayn Bayqara gör anspråk på tronen i Herat",
+      "summarySv": "Husayn Bayqara gör anspråk på tronen i Herat den 24 mars 1469. Han möter fortsatt konkurrens från timuridiska furstar och Aq Qoyunlu.",
+      "geographySv": "Herat",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-iranica-hosayn"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "uncertaintySv": "Iranica återger datumet som 10 ramadan 873 och 24 mars 1469. Samma artikel beskriver ett avbrott i hans kontroll under 1470.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1470-inkastyrkor-erovrar-chan-chan",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1470,
+        "endYear": 1470,
+        "displaySv": "cirka 1470"
+      },
+      "titleSv": "Inkastyrkor erövrar Chan Chan",
+      "summarySv": "Inkastyrkor erövrar Chan Chan, Chimúrikets huvudstad, omkring 1470. De för metallhantverkare till Cuzco.",
+      "geographySv": "Chan Chan och Cuzco",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-met-andes",
+        "e1400w-loc-chimu"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "uncertaintySv": "Metmuseets händelselista anger cirka 1470 och Library of Congress anger 1470. Metmuseets övergripande tidslinje avslutar samtidigt Chimúriket vid 1450.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1472-gawan-madrasa",
+      "date": {
+        "kind": "exact",
+        "startYear": 1472,
+        "endYear": 1472,
+        "displaySv": "1472"
+      },
+      "titleSv": "Mahmud Gawans madrasa byggs i Bidar",
+      "summarySv": "Mahmud Gawans madrasa i Bidar dateras till 1472. Den rymmer bland annat bibliotek och undervisningslokaler.",
+      "geographySv": "Bidar, nuvarande Karnataka i Indien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-gawan",
+        "e1400e-gawan-india"
+      ],
+      "selectionNote": "Institutional construction narrative paired with architectural catalogue dating, not image creation date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "MIT anger byggnadsdateringen som 1472/877 AH; någon egen kalenderomräkning har inte gjorts."
+    },
+    {
+      "id": "ev-1472-qaitbay-bygger-gravkomplex-i-kairo",
+      "date": {
+        "kind": "range",
+        "startYear": 1472,
+        "endYear": 1474,
+        "displaySv": "1472–1474"
+      },
+      "titleSv": "Qaitbay låter bygga sitt gravkomplex i Kairo",
+      "summarySv": "Qaitbay låter uppföra sitt gravkomplex i Kairos norra begravningsområde under 1472–1474. Under sin regering bekostar han även religiösa stiftelser och kommersiella byggnader.",
+      "geographySv": "Kairo",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-met-egypt"
+      ],
+      "selectionNote": "Editorial selection for court culture and cultural production. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1473-mehmed-besegrar-uzun-hasan-vid-otlukbeli",
+      "date": {
+        "kind": "exact",
+        "startYear": 1473,
+        "endYear": 1473,
+        "displaySv": "augusti 1473"
+      },
+      "titleSv": "Mehmed II besegrar Uzun Hasan vid Otlukbeli",
+      "summarySv": "Mehmed II besegrar Aq Qoyunlus härskare Uzun Hasan vid Otlukbeli i augusti 1473. Osmanerna använder artilleri och musköter i slaget.",
+      "geographySv": "Otlukbeli",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-iranica-aq-qoyunlu"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "uncertaintySv": "Iranica anger månaden som rabi al-awwal 878 och augusti 1473. Källans omräkning behålls.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1474-ming-mur-utvidgas",
+      "date": {
+        "kind": "exact",
+        "startYear": 1474,
+        "endYear": 1474,
+        "displaySv": "1474"
+      },
+      "titleSv": "Ming bygger ut den kinesiska muren",
+      "summarySv": "Utbyggnader av den kinesiska muren inleds 1474. Arbetet sätts i samband med mongoliska intrång i norra Kina.",
+      "geographySv": "Norra Kina",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-met-china"
+      ],
+      "selectionNote": "A cited extension campaign, not invention or initial building of the Great Wall.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1477-onin-slutar",
+      "date": {
+        "kind": "exact",
+        "startYear": 1477,
+        "endYear": 1477,
+        "displaySv": "1477"
+      },
+      "titleSv": "Ōninkriget slutar",
+      "summarySv": "Ōninkriget slutar 1477 utan något avgörande. Kyoto har ödelagts av striderna.",
+      "geographySv": "Kyoto, Japan",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "e1400e-met-japan",
+        "e1400e-ginkakuji"
+      ],
+      "selectionNote": "Common endpoint retained; inconsistent start headings are not silently resolved.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Metropolitan Museum anger början som 1467 i översikten men 1466 i händelselistan."
+    },
+    {
+      "id": "ev-1480-qaitbay-bekostar-ashrafiyya-i-jerusalem",
+      "date": {
+        "kind": "range",
+        "startYear": 1480,
+        "endYear": 1482,
+        "displaySv": "1480–1482"
+      },
+      "titleSv": "Qaitbay bekostar Ashrafiyyamadrassan",
+      "summarySv": "Qaitbay bekostar Ashrafiyyamadrassan i Jerusalem under 1480–1482. Han låter även förstärka befästningarna i Aleppo under sin regering.",
+      "geographySv": "Jerusalem och Aleppo",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-met-eastern-med"
+      ],
+      "selectionNote": "Editorial selection for court culture and cultural production. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1482-handelsman-bygger-faste-i-elmina",
+      "date": {
+        "kind": "exact",
+        "startYear": 1482,
+        "endYear": 1482,
+        "displaySv": "1482"
+      },
+      "titleSv": "Handelsmän bygger ett fäste i Elmina",
+      "summarySv": "Handelsmän uppför Sankt Georgs slott i Elmina på Ghanas kust 1482. Afrikanska och europeiska handelsmän utvecklar varuutbytet längs kusten.",
+      "geographySv": "Elmina",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-unesco-elmina"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1482-higashiyama-villa",
+      "date": {
+        "kind": "exact",
+        "startYear": 1482,
+        "endYear": 1482,
+        "displaySv": "1482"
+      },
+      "titleSv": "Yoshimasa börjar bygga sin Higashiyamavilla",
+      "summarySv": "Ashikaga Yoshimasa börjar bygga sin Higashiyamavilla 1482. Den anläggs på Jōdojitemplets tidigare område.",
+      "geographySv": "Kyoto, Japan",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-ginkakuji"
+      ],
+      "selectionNote": "Villa construction start, not completion of the Silver Pavilion.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1487-mexica-markerar-tempelutbyggnad",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1487,
+        "endYear": 1487,
+        "displaySv": "cirka 1487, året 8 Vass"
+      },
+      "titleSv": "Mexica markerar en tempelutbyggnad",
+      "summarySv": "En grönstensplatta med datumet 8 Vass markerar en utbyggnad av huvudhelgedomen i Tenochtitlan. Metmuseet återger detta år som 1487.",
+      "geographySv": "Tenochtitlan",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-met-mexico"
+      ],
+      "selectionNote": "Editorial selection for religious and institutional change. Importance is a curatorial ranking.",
+      "uncertaintySv": "Metmuseets kronologiska rubrik anger cirka 1487. Översättningen till årtalet följer källan.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1488-dias-rundar-afrikas-sydspets",
+      "date": {
+        "kind": "exact",
+        "startYear": 1488,
+        "endYear": 1488,
+        "displaySv": "1488"
+      },
+      "titleSv": "Dias seglar runt Afrikas sydspets",
+      "summarySv": "Bartolomeu Dias seglar runt Afrikas sydspets 1488. Han landstiger vid Mossel Bay under resan.",
+      "geographySv": "Mossel Bay och södra Afrikas kust",
+      "category": "discovery",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-dias-museum"
+      ],
+      "selectionNote": "Editorial selection for maritime contacts. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1491-kongos-kung-dops-som-joao",
+      "date": {
+        "kind": "exact",
+        "startYear": 1491,
+        "endYear": 1491,
+        "displaySv": "1491"
+      },
+      "titleSv": "Kongos kung döps som João I",
+      "summarySv": "Kongos kung döps 1491 och tar namnet João I. Han knyter genom dopet närmare band till Portugal.",
+      "geographySv": "Kongoriket",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-met-kongo"
+      ],
+      "selectionNote": "Editorial selection for religious and institutional change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1493-husain-shah-bengal",
+      "date": {
+        "kind": "disputed",
+        "startYear": 1493,
+        "endYear": 1494,
+        "displaySv": "1493 eller 1494"
+      },
+      "titleSv": "Husain Shah tar makten i Bengalen",
+      "summarySv": "Husain Shah tar makten i Bengalen efter en palatskupp. De lästa källorna anger olika år för hans tillträde.",
+      "geographySv": "Bengalen, nuvarande Bangladesh och östra Indien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "e1400e-husain-banglapedia",
+        "e1400e-husain-eaton"
+      ],
+      "selectionNote": "Explicitly disputed accession chronology preserves two scholarly accounts.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      },
+      "uncertaintySv": "Eaton anger regeringsstart 1493, medan Banglapedia daterar valet till sultan till 1494."
+    },
+    {
+      "id": "ev-1494-kronorna-avtalar-i-tordesillas",
+      "date": {
+        "kind": "exact",
+        "startYear": 1494,
+        "endYear": 1494,
+        "displaySv": "7 juni 1494"
+      },
+      "titleSv": "Kronornas sändebud avtalar i Tordesillas",
+      "summarySv": "Kastiliens och Portugals företrädare sluter ett avtal i Tordesillas den 7 juni 1494. De drar en nord-sydlig skiljelinje väster om Kap Verdeöarna för kronornas anspråk i Atlanten.",
+      "geographySv": "Tordesillas och Atlanten",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "e1400w-unesco-tordesillas"
+      ],
+      "selectionNote": "Editorial selection for regional political change. Importance is a curatorial ranking.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-1495-askia-later-bygga-monument-i-gao",
+      "date": {
+        "kind": "exact",
+        "startYear": 1495,
+        "endYear": 1495,
+        "displaySv": "1495"
+      },
+      "titleSv": "Askia Muhammad låter bygga ett monument i Gao",
+      "summarySv": "Askia Muhammad låter bygga den pyramidformade gravbyggnaden i Gao 1495. Anläggningen omfattar moskéer, en gravplats och en samlingsyta.",
+      "geographySv": "Gao",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "e1400w-unesco-askia"
+      ],
+      "selectionNote": "Editorial selection for religious and institutional change. Importance is a curatorial ranking.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",

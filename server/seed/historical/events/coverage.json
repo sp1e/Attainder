@@ -45,9 +45,15 @@
     },
     {
       "startYear": 1400,
+      "endYear": 1499,
+      "status": "partial",
+      "note": "55 independently checked event records cover selected acts in Europe, the Middle East and North Africa, Central Asia, sub-Saharan Africa, East Asia, South Asia, Southeast Asia, the Americas and Oceania. Europe and East Asia are overrepresented. Oceania has only an approximate Rangitoto eruption; the Americas concern Mexico and the Andes. Other regions, social history, science, technology and environmental history need further work. Source disagreements and full uncertainty intervals remain visible. Approximate dates and long processes do not establish an event in every year; empty years remain research gaps."
+    },
+    {
+      "startYear": 1500,
       "endYear": 1530,
       "status": "unresearched",
-      "note": "Annual research has not started in this catalog for events beginning in these years. Earlier records whose ranges extend into later years do not establish researched annual coverage."
+      "note": "Annual research has not started in this catalog."
     }
   ]
 }
