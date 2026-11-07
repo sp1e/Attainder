@@ -1,25 +1,38 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { validateHistoricalCourt } from './historicalScenarios.js';
-import { authoredScenario, namePlayables, sources as sharedSources } from './seed/historical/authored-scenarios.mjs';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { validateHistoricalCourt, validateHistoricalScenario } from './historicalScenarios.js';
+import { authoredScenario, sources as sharedSources } from './seed/historical/authored-scenarios.mjs';
 
-// World 1500 before the builder: Aztekriket is the dossier primary and Inkariket a dossier extra.
+// World 1500: Aztekriket is the dossier primary and Inkariket a dossier extra.
 const DATE = '1500-12-31', ID = 'world-1500';
-const dossier = JSON.parse(readFileSync(new URL('./seed/historical/courts/ad1500-courts.json', import.meta.url), 'utf8'));
+const readJson = name => JSON.parse(readFileSync(new URL(`./seed/historical/${name}`, import.meta.url), 'utf8'));
+const dossier = readJson('courts/ad1500-courts.json');
+const review = readJson('ad1500-review.json');
 const authored = () => authoredScenario(ID, { dossier });
-// The builder adds the extra's polity record and the names; this mirrors that step for the court validator.
-const named = () => {
-  const h = authored();
-  h.polities.push({ id: 'inca-empire', nameSv: 'Inkariket', sourceIds: ['hbm'], boundary: 'approximate', noteSv: 'Testpost.' });
-  namePlayables(h);
-  return h;
+const loadPackage = () => {
+  const bundle = readJson(`${ID}/scenario.json`);
+  const regions = readJson(`${ID}/regions.geojson`), cities = readJson(`${ID}/cities.geojson`), assetManifest = readJson(`${ID}/manifest.json`);
+  const { game, world } = bundle.data;
+  return { bundle, regions, cities, assetManifest, game, world, h: world.historicalScenario };
 };
 const COURTIERS = {
   'aztec-empire': [['Itztli', 1458], ['Cuetzpalin', 1462], ['Mazatl', 1467]],
   'inca-empire': [['Kuntur Rimaq', 1456], ['Qori Puma', 1461], ['Rumi Sunqu', 1466]],
 };
 const AD800_BASE_NOTE_SV = 'Världens land visas med en generaliserad nutida kustlinje. Granskade historiska områden har ungefärliga gränser. Okänd kontroll betyder att underlag saknas och säger inget om marken var bebodd eller ledig.';
+const SEAT_RECORDS = ['b2-aztec-getty-tenochtitlan', 'b2-inca-getty-cuzco'];
+// The spec's coverage table, with the regional- prefix the builder adds to review source ids.
+const COVERAGE = [
+  { area: 'Africa', status: 'unresolved', sourceIds: ['hbm', 'naturalEarth'], noteSv: 'Granskningen av år 1500 har ingen källa för Afrika. Formerna saknar godkänd ägare och kontrollen är okänd.' },
+  { area: 'Asia', status: 'unresolved', sourceIds: ['regional-palace-hongzhi-range', 'regional-ming-empire-diversity', 'regional-ming-korea-border-song'], noteSv: 'Hongzhi regerar i Mingriket år 1500, men Mingrikets form står i karantän: källorna löser inte en överlappande kontroll eller utbredningen i sydväst och nordväst. Övriga former saknar godkänd ägare.' },
+  { area: 'Europe', status: 'unresolved', sourceIds: ['regional-ottoman-bayezid', 'regional-ottoman-rhodes', 'regional-ottoman-kos', 'regional-ottoman-santorini', 'regional-ottoman-crimea'], noteSv: 'Osmanska rikets form avvisas för år 1500 eftersom den omfattar öar som källorna ger osmanskt styre först senare, som Rhodos och Kos 1522 och Santorini 1537. Krimkhanatets form är olöst. Övriga former saknar godkänd ägare.' },
+  { area: 'Americas', status: 'partial', sourceIds: ['regional-met-aztec-autonomy-west', 'regional-smith-1990-aztec-provinces', 'regional-nmai-inka-expansion-map', 'regional-parssinen-southern-limits-614'], noteSv: 'Aztekriket och Inkariket visas ungefärligt. Tlaxcala låg självständigt inom Aztekrikets form, och Inkarikets östra kant saknar belagd gräns. Övriga samhällens kontroll är okänd.' },
+  { area: 'Oceania', status: 'unresolved', sourceIds: ['hbm', 'naturalEarth'], noteSv: 'Granskningen av år 1500 har ingen källa för Oceanien, och kontrollen är okänd.' },
+  { area: 'Antarctica', status: 'unresolved', sourceIds: ['naturalEarth'], noteSv: 'Fysisk geografi visas. Inget historiskt ägande eller någon befolkning tillskrivs området.' },
+];
 
 test('World 1500 lists Aztekriket first and Inkariket second, with the ruled laws', () => {
   const h = authored();
@@ -30,6 +43,10 @@ test('World 1500 lists Aztekriket first and Inkariket second, with the ruled law
   assert.equal(h.polities[0].id, 'aztec-empire');
   assert.equal(h.polities[0].nameSv, 'Aztekriket');
   assert.equal(h.polities.length, 1);
+});
+
+test('the dossier primary refuses to build without the dossier', () => {
+  assert.throws(() => authoredScenario(ID), /world-1500: the primary aztec-empire comes from a court dossier/);
 });
 
 test('the package carries the AD 1500 bookmark, era label and first content version', () => {
@@ -78,20 +95,6 @@ test('no generated name shares a word with a documented or withheld person in th
   }
 });
 
-test('both court seeds pass the court validator once the builder names the playables', () => {
-  const h = named();
-  for (const polityId of h.playablePolityIds) {
-    const checked = validateHistoricalCourt(h, { date: DATE, polityId });
-    assert.equal(checked.ok, true, `${polityId}: ${checked.code}`);
-  }
-});
-
-test('the package texts name both realms and state the review counts', () => {
-  const h = named();
-  assert.equal(h.contextSv, 'Nyårsafton 1500. Spelbara riken: Aztekriket och Inkariket. Du möter dokumenterade personer med genererade spelvärden och genererade hovmän.');
-  assert.equal(h.coverageNoteSv, 'Av 291 former i källkartan har 2 godkänts som ungefärliga områden. Mingriket och Osmanska riket saknar godkänd form och är inte spelbara. 2 riken är spelbara. ' + AD800_BASE_NOTE_SV);
-});
-
 test('the package has its own Historical Basemaps and Natural Earth records for AD 1500; the shared records stay as they were', () => {
   const h = authored();
   assert.match(h.sources.hbm.locator, /^geojson\/world_1500\.geojson; /);
@@ -100,5 +103,90 @@ test('the package has its own Historical Basemaps and Natural Earth records for 
   assert.match(h.sources.naturalEarth.uncertainty, /1500/);
   assert.equal(sharedSources.hbm.chronology, 'Snapshot labels 3000 BC and AD 1200');
   assert.match(sharedSources.naturalEarth.uncertainty, /ancient delta/);
-  for (const seatSource of ['b2-aztec-getty-tenochtitlan', 'b2-inca-getty-cuzco']) assert.match(h.sources[seatSource].license, /^ODC-By-1\.0/, seatSource);
+  for (const seatSource of SEAT_RECORDS) assert.match(h.sources[seatSource].license, /^ODC-By-1\.0/, seatSource);
+});
+
+// ---- The built package ----
+
+test('both playable polities pass the scenario and court validators in the built package', () => {
+  const input = loadPackage(), { h, game, bundle } = input;
+  assert.equal(game.country, 'aztec-empire');
+  assert.equal(bundle.scenario.name, 'Aztekriket, 1500 e.Kr.');
+  for (const polityId of h.playablePolityIds) {
+    assert.deepEqual(validateHistoricalScenario(input, { date: DATE, polityId }), { ok: true, contentId: ID, contentVersion: '1.0.0', date: DATE, polityId });
+    const checked = validateHistoricalCourt(h, { date: DATE, polityId });
+    assert.equal(checked.ok, true, `${polityId}: ${checked.code}`);
+  }
+});
+
+test('the built polity records come from the review mappings, with hbm first and no Getty record', () => {
+  const { h } = loadPackage(), aztec = h.polities[0], mapping = review.mapMappings.find(m => m.index === 80);
+  assert.deepEqual(h.polities.map(p => p.id), ['aztec-empire', 'inca-empire']);
+  assert.equal(aztec.sourceIds[0], 'hbm');
+  assert.ok(aztec.sourceIds.includes('regional-met-aztec-reign-1486-1502'));
+  assert.ok(!aztec.sourceIds.some(id => /getty/.test(id)), aztec.sourceIds.join());
+  assert.equal(aztec.noteSv, mapping.noteSv);
+  assert.equal(aztec.nameSv, 'Aztekriket');
+  assert.ok(!h.polities[1].sourceIds.some(id => /getty/.test(id)));
+});
+
+test('features 80 and 83 belong to the two realms; four features are quarantined with the review statuses', () => {
+  const { regions, h } = loadPackage();
+  const owner = i => regions.features.find(f => f.properties.id === `hbm-ad1500-${i}`)?.properties.owner;
+  assert.equal(owner(80), 'aztec-empire');
+  assert.equal(owner(83), 'inca-empire');
+  assert.deepEqual(regions.features.filter(f => f.properties.owner).map(f => f.properties.id).sort(), ['hbm-ad1500-80', 'hbm-ad1500-83']);
+  const status = i => h.regionReview[i].geometryStatus;
+  assert.deepEqual([77, 193, 223, 290].map(status), ['quarantined-unresolved', 'quarantined-invalid-source-geometry', 'quarantined-invalid-source-geometry', 'quarantined-rejected-for-1500']);
+  assert.equal(h.regionReview.filter(r => r.geometryStatus).length, 4);
+  assert.equal(h.regionReview.length, review.allFeatures.length);
+  for (const row of h.regionReview) for (const id of row.sourceIds) assert.ok(Object.hasOwn(h.sources, id), `${row.sourceIndex}: ${id}`);
+});
+
+test('the review sources keep their worded chronology, fall back where the review is silent, and only cited ones enter', () => {
+  const { h } = loadPackage();
+  assert.equal(h.sources['regional-met-aztec-reign-1486-1502'].chronology, 'ca. 1486; r. 1486–1502');
+  assert.equal(h.sources['regional-met-aztec-autonomy-west'].chronology, 'Overview period; no exact day');
+  assert.equal(h.sources['regional-met-aztec-autonomy-west'].uncertainty, 'The review records no separate uncertainty for this source.');
+  assert.equal(h.sources['regional-ottoman-rhodes'].uncertainty, review.sources['ottoman-rhodes'].uncertainty);
+  assert.match(h.sources['regional-met-aztec-autonomy-west'].review, /^AD 1500 map review: checked by Codex independent check on 2026-11-07\. Locator read: /);
+  for (const id of ['regional-ming-seat-unesco', 'regional-ottoman-modon', 'regional-getty-tenochtitlan-7668941', 'regional-getty-cuzco-7005819']) assert.ok(!Object.hasOwn(h.sources, id), id);
+  const cited = new Set([...h.polities.flatMap(p => p.sourceIds), ...h.coverage.flatMap(c => c.sourceIds),
+    ...review.geometryQuarantine.flatMap(q => q.sourceIds.map(id => `regional-${id}`))]);
+  assert.deepEqual(Object.keys(h.sources).filter(id => id.startsWith('regional-') && !cited.has(id)), []);
+});
+
+test('the six coverage rows follow the spec table', () => {
+  assert.deepEqual(loadPackage().h.coverage, COVERAGE);
+});
+
+test('the package texts name both realms and state the review counts', () => {
+  const { h, bundle } = loadPackage();
+  assert.equal(h.contextSv, 'Nyårsafton 1500. Spelbara riken: Aztekriket och Inkariket. Du möter dokumenterade personer med genererade spelvärden och genererade hovmän.');
+  assert.equal(bundle.scenario.description, h.contextSv);
+  assert.equal(h.coverageNoteSv, 'Av 291 former i källkartan har 2 godkänts som ungefärliga områden. Mingriket och Osmanska riket saknar godkänd form och är inte spelbara. 2 riken är spelbara. ' + AD800_BASE_NOTE_SV);
+});
+
+test('both Getty seat records are city sources and appear in the ODC-By notice', () => {
+  const { h, assetManifest, world } = loadPackage();
+  const cityAsset = assetManifest.assets.find(a => a.id === 'citiesGeojson'), getty = world.componentLicenses.find(c => c.id === 'getty-tgn');
+  assert.deepEqual(cityAsset.sourceIds, SEAT_RECORDS);
+  for (const id of SEAT_RECORDS) {
+    assert.match(h.sources[id].license, /^ODC-By-1\.0/, id);
+    assert.ok(getty.modifications.some(line => line.includes(h.sources[id].url)), id);
+  }
+});
+
+test('releases.json pins world_1500 and keeps the Egypt, Charlemagne and John rows', () => {
+  const releases = readJson('releases.json');
+  const source = releases.sources.find(s => s.file === 'sources/hbm-world_1500.geojson');
+  assert.equal(source.sha256, 'd01ffc9b80629787f13d2b1c2f881f005bc0164433548e30f5c058ddee0bfc7b');
+  const repo = fileURLToPath(new URL('../', import.meta.url));
+  const head = JSON.parse(execFileSync('git', ['show', 'HEAD:server/seed/historical/releases.json'], { cwd: repo, encoding: 'utf8', maxBuffer: 1 << 24 }));
+  const rows = (index, prefix) => index.outputs.filter(o => o.file.startsWith(prefix));
+  for (const prefix of ['egypt-3000bc/', 'charlemagne-800/', 'john-1200/']) {
+    assert.equal(rows(head, prefix).length, 4, prefix);
+    assert.deepEqual(rows(releases, prefix), rows(head, prefix), prefix);
+  }
+  assert.deepEqual(releases.outputs.filter(o => o.file.startsWith(`${ID}/`)).map(o => o.file), ['regions.geojson', 'cities.geojson', 'scenario.json', 'manifest.json'].map(f => `${ID}/${f}`));
 });

@@ -156,8 +156,8 @@ const AD1200_DOSSIER_PLAYABLES = [
 const listSv = names => `${names.slice(0,-1).join(', ')} och ${names.at(-1)}`;
 
 const COVERAGE_BASE_NOTE_SV = 'Världens land visas med en generaliserad nutida kustlinje. Granskade historiska områden har ungefärliga gränser. Okänd kontroll betyder att underlag saknas, inte att marken är obebodd eller ledig.';
-// The AD 800 wording of the base note; later packages share it.
-const COVERAGE_BASE_NOTE_AD800_SV = 'Världens land visas med en generaliserad nutida kustlinje. Granskade historiska områden har ungefärliga gränser. Okänd kontroll betyder att underlag saknas och säger inget om marken var bebodd eller ledig.';
+// The base note that makes no claim about settlement; the AD 800 package introduced it and later packages share it.
+const COVERAGE_BASE_NOTE_NO_CLAIM_SV = 'Världens land visas med en generaliserad nutida kustlinje. Granskade historiska områden har ungefärliga gränser. Okänd kontroll betyder att underlag saknas och säger inget om marken var bebodd eller ledig.';
 
 // The AD 1500 courts come from courts/ad1500-courts.json; Aztekriket is primary because it comes first there.
 // The dossier names no temple leader on the bookmark, so the Aztec religion has none.
@@ -221,7 +221,7 @@ const AUTHORED_PACKAGES = {
     contextSv: names => `Juldagen år 800. Spelbara riken: ${listSv(names)}. Du möter dokumenterade personer med genererade spelvärden och genererade hovmän.`,
     calendarNoteSuffixSv: ' Riksannalerna räknar året från jul och för kröningen under 801.',
     coverageNotePrefixSv: names => `Av 225 former i källkartan har 11 godkänts som ungefärliga områden. ${names.length} riken är spelbara. Karls hov visar Bertas, Giselas, Teoderadas, Hiltruds och Ruodhaids överlevnad som osäker. Leo III:s födelsedatum och hovmän är genererade. `,
-    coverageBaseNoteSv: COVERAGE_BASE_NOTE_AD800_SV,
+    coverageBaseNoteSv: COVERAGE_BASE_NOTE_NO_CLAIM_SV,
     polity: { nameSv: 'Karls rike (karolingiska riket)',sourceIds: ['hbm',...evidence('einhard-15','rfa-781-kings','rfa-800-itinerary','rfa-800-italy','rfa-797-barcelona','rfa-801-barcelona','rfa-799-brittany','rfa-806-venice','rfa-810-venice','rfa-810-treaty','rfa-801-aftermath','ce-papal-states')],extra: {},noteSv: 'Spelaggregat över Karls områden. Pippin och Ludvig smordes 781 till kungar i Italien och Akvitanien. Likformigt styre är inte belagt, och kartan ger ingen exakt gräns.' },
     court: {
       religionId: 'latin-church',rulerId: 'karl',partnerId: null,
@@ -246,13 +246,13 @@ const AUTHORED_PACKAGES = {
       religionClaim: claim('sourced','Leo III, biskop av Rom sedan 795, krönte Karl. Leo angreps i Rom 25 april 799 och sökte upp Karl i Paderborn. I december 800 hördes anklagelser mot honom i Rom inför Karl. Ingen anklagare styrkte dem och Leo svor sig fri två dagar före kröningen. Hovets religiösa företrädare vid starten är genererad.',evidence('ce-leo3','osborne-rome','adelson-baker','rfa-800-rome','rfa-801-coronation')),
     },
   },
-  // The builder replaces the polity's sourceIds and noteSv with the review's mapping of feature 80.
+  // The builder writes the polity's name, sourceIds and noteSv from the review's mapping of feature 80.
   'world-1500': {
     sources: WORLD_1500_SOURCES,...AZTEC_1500,bookmarkDate: '1500-12-31',eraLabelSv: '1500 e.Kr.',
     extraPlayables: [INCA_1500],
     contextSv: names => `Nyårsafton 1500. Spelbara riken: ${listSv(names)}. Du möter dokumenterade personer med genererade spelvärden och genererade hovmän.`,
     coverageNotePrefixSv: names => `Av 291 former i källkartan har 2 godkänts som ungefärliga områden. Mingriket och Osmanska riket saknar godkänd form och är inte spelbara. ${names.length} riken är spelbara. `,
-    coverageBaseNoteSv: COVERAGE_BASE_NOTE_AD800_SV,
+    coverageBaseNoteSv: COVERAGE_BASE_NOTE_NO_CLAIM_SV,
     polity: { nameSv: 'Aztekriket',sourceIds: ['hbm'],extra: {},noteSv: 'Ungefärligt område i källkartan.' },
   },
 };
@@ -298,6 +298,7 @@ export function authoredScenario(contentId,{ dossier = null } = {}) {
   const a = AUTHORED_PACKAGES[contentId], polityId = a.polityId, extras = a.extraPlayables ?? [], year = Number(a.bookmarkDate.slice(0,4));
   const calendarNoteSv = 'Startdagen är vald för simuleringen. Källornas datering och kalenderkonventioner finns kvar i proveniensen.' + (a.calendarNoteSuffixSv ?? '');
   const sources = { ...a.sources }, seats = {};
+  if (a.dossier && !dossier) throw new Error(`${contentId}: the primary ${polityId} comes from a court dossier; pass the parsed dossier file`);
   // A dossier primary builds exactly as a dossier extra does, before the extras, so its sources come first.
   const primary = a.dossier ? dossierPlayableCourt(a,dossier,year,sources) : null, seat = primary?.seat ?? settlement(a.seat,polityId);
   const courtSeeds = { [polityId]: primary?.court ?? court({ polityId,seat,spec: a.court }) };

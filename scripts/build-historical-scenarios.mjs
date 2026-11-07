@@ -23,6 +23,8 @@ const feature = (id,geometry,owner,sourceIds,noteSv,status = 'owned') => ({ type
 
 // ---- Shared steps. Nothing below the package records names a specific package. ----
 const regionalSourceBase = { license: 'Reference only; source prose and images not redistributed',retrievedAt: '2026-11-05' };
+const REGIONAL = 'regional-';
+const regional = ids => ids.map(id => `${REGIONAL}${id}`);
 // Regional sources keyed by named feature of the review file.
 function sourcesFromNamedFeatures(h,review) {
   for (const row of review.namedFeatures) row.references.forEach((s,i) => {
@@ -44,6 +46,24 @@ function sourcesFromAd800Review(h,review) {
   const cited = Object.fromEntries(Object.entries(review.sources).filter(([id]) => !id.startsWith('getty-')));
   sourcesFromEvidence(h,{ sources: cited },'2026-11-07');
 }
+// The AD 1500 review gives each source an originalChronology object and its own independent review record.
+function ad1500ReviewSource(id,s) {
+  const checked = s.independentReview;
+  if (!['checked','corrected'].includes(checked?.status)) throw new Error(`AD 1500 review source ${id} has no independent review`);
+  return { title: s.title,institution: s.institution,url: s.url,locator: s.locator,
+    chronology: s.originalChronology.asWorded ?? s.originalChronology.precision,
+    uncertainty: s.uncertainty ?? 'The review records no separate uncertainty for this source.',
+    license: s.license,retrievedAt: s.retrievedAt,
+    review: `AD 1500 map review: ${checked.status} by ${checked.checkedBy} on ${checked.checkedOn}. Locator read: ${checked.locatorRead}` };
+}
+// Imports only the review sources the package cites: its map mappings, its coverage rows and the review's rows for its quarantined features.
+function sourcesFromAd1500Review(h,review,pkg) {
+  const quarantined = review.geometryQuarantine.filter(q => pkg.quarantine[q.sourceFeatureIndex]);
+  const cited = new Set([...pkg.mapMappings(review).flatMap(m => m.sourceIds),...pkg.coverage.flatMap(c => c.sourceIds),...quarantined.flatMap(q => regional(q.sourceIds))]);
+  const missing = [...cited].filter(id => id.startsWith(REGIONAL) && !Object.hasOwn(review.sources,id.slice(REGIONAL.length)));
+  if (missing.length) throw new Error(`${h.contentId}: cited review sources missing from the review file: ${missing.join(', ')}`);
+  for (const [id,s] of Object.entries(review.sources)) if (cited.has(`${REGIONAL}${id}`)) h.sources[`${REGIONAL}${id}`] = ad1500ReviewSource(id,s);
+}
 const ANTARCTICA_COVERAGE = { area: 'Antarctica',status: 'unresolved',sourceIds: ['naturalEarth'],noteSv: 'Fysisk geografi visas. Inget historiskt ägande eller någon befolkning tillskrivs området.' };
 
 const releasedProvenance = JSON.parse(await read('released-provenance.json'));
@@ -53,6 +73,7 @@ const releasedProvenance = JSON.parse(await read('released-provenance.json'));
 const SOURCE_HASHES = {
   'hbm-world_800.geojson': '9d046cdc4662109c3f803ae46e2c8cba941aa092ec86eccc7823e6cf1554920c',
   'hbm-world_1200.geojson': '2d6913ecedb38e269e41d249c87874d81e3e8d7351754821f57e627442d91525',
+  'hbm-world_1500.geojson': 'd01ffc9b80629787f13d2b1c2f881f005bc0164433548e30f5c058ddee0bfc7b',
   'hbm-world_bc3000.geojson': '2cf107e2f0d4f9b5427b293f19b11fffe7c1134f52320df4f94b4889b978f033',
   'hbm-LICENSE': '8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903',
   'hbm-README.md': '4a6d137790d3aea8c2a53c26d6a3fe4a43485f90d48b7751c5e53b65b2a8d6fe',
@@ -61,11 +82,13 @@ const SOURCE_HASHES = {
 };
 // A package with a releasedProvenance entry keeps the build record of the release that published it.
 // Fields: idPrefix (region id prefix), coverage (area rows), addRegionalSources, mapMappings (extra polities from the review file),
-// coreIndex and coreSourceIds (the playable polity feature; a review mapping for coreIndex supplies its sources and note instead), selectiveCore (clip transform, or null) with selectiveCoreNoteSv,
+// coreIndex and coreSourceIds (the playable polity feature; a review mapping for coreIndex supplies its sources and note instead),
+// dossierPrimary (the primary polity comes from the court dossier, so the core mapping also writes its polity record), selectiveCore (clip transform, or null) with selectiveCoreNoteSv,
 // compositeNote (appended to the playable polity note, or null), quarantine (source index to geometry status),
 // selectionTransformation and quarantineTransformation (manifest lines), seatId (the primary seat's Getty source id),
 // citySourceIds (when settlements go beyond the seat), gettyRetrievedAt, gettyTransformation and gettyNotice
 // (wording for a package whose settlements go beyond one seat), and three review readers.
+// addRegionalSources(h, review, pkg) and unmappedSourceIds(reviewRow, index, h) may ignore their last argument.
 const PACKAGE_RECORDS = [
   { contentId: 'egypt-3000bc',idPrefix: 'hbm-bc3000',sourceFile: 'hbm-world_bc3000.geojson',reviewFile: 'bc3000-review.json',
     authored: () => authoredScenario('egypt-3000bc'),addRegionalSources: sourcesFromNamedFeatures,
@@ -86,7 +109,7 @@ const PACKAGE_RECORDS = [
     unmappedSourceIds: (r,index) => (r?.references ?? []).map((_,i) => `regional-${index}-${i}`),
     mappedBoundaryDecision: 'developer-authored-selective-core' },
   { contentId: 'john-1200',idPrefix: 'hbm-ad1200',sourceFile: 'hbm-world_1200.geojson',reviewFile: 'ad1200-review.json',dossierFile: 'courts/ad1200-courts.json',
-    authored: dossier => authoredScenario('john-1200',{ dossier }),addRegionalSources: sourcesFromEvidence,
+    authored: dossier => authoredScenario('john-1200',{ dossier }),addRegionalSources: (h,review) => sourcesFromEvidence(h,review),
     coverage: [
       { area: 'Africa',status: 'partial',sourceIds: ['regional-almohad'],noteSv: 'Almohadernas täckning är partiell. Fatimidernas gamla område byter inte automatiskt ägare; ayyubidiska och andra lokala gränser återstår.' },
       { area: 'Asia',status: 'partial',sourceIds: ['regional-china','regional-khmer'],noteSv: 'Västra Xia och Khmerriket visas ungefärligt. Song, Liao, Chola, Pyu, Delhi, Buyid och mongoliska kartanspråk innehåller olösta eller felaktiga delar. Goryeos trasiga polygon används inte.' },
@@ -127,6 +150,28 @@ const PACKAGE_RECORDS = [
     reviewFeature: (review,index) => review.allFeatures[index],
     unmappedSourceIds: (r) => (r?.sourceEvidenceIds ?? []).map(id => `regional-${id}`),
     mappedBoundaryDecision: 'accepted-world-scale-approximation' },
+  // Both courts and seats come from the dossier. The seats cite their own Getty records, so the mappings drop the review's.
+  { contentId: 'world-1500',idPrefix: 'hbm-ad1500',sourceFile: 'hbm-world_1500.geojson',reviewFile: 'ad1500-review.json',dossierFile: 'courts/ad1500-courts.json',
+    authored: dossier => authoredScenario('world-1500',{ dossier }),addRegionalSources: sourcesFromAd1500Review,
+    coverage: [
+      { area: 'Africa',status: 'unresolved',sourceIds: ['hbm','naturalEarth'],noteSv: 'Granskningen av år 1500 har ingen källa för Afrika. Formerna saknar godkänd ägare och kontrollen är okänd.' },
+      { area: 'Asia',status: 'unresolved',sourceIds: regional(['palace-hongzhi-range','ming-empire-diversity','ming-korea-border-song']),noteSv: 'Hongzhi regerar i Mingriket år 1500, men Mingrikets form står i karantän: källorna löser inte en överlappande kontroll eller utbredningen i sydväst och nordväst. Övriga former saknar godkänd ägare.' },
+      { area: 'Europe',status: 'unresolved',sourceIds: regional(['ottoman-bayezid','ottoman-rhodes','ottoman-kos','ottoman-santorini','ottoman-crimea']),noteSv: 'Osmanska rikets form avvisas för år 1500 eftersom den omfattar öar som källorna ger osmanskt styre först senare, som Rhodos och Kos 1522 och Santorini 1537. Krimkhanatets form är olöst. Övriga former saknar godkänd ägare.' },
+      { area: 'Americas',status: 'partial',sourceIds: regional(['met-aztec-autonomy-west','smith-1990-aztec-provinces','nmai-inka-expansion-map','parssinen-southern-limits-614']),noteSv: 'Aztekriket och Inkariket visas ungefärligt. Tlaxcala låg självständigt inom Aztekrikets form, och Inkarikets östra kant saknar belagd gräns. Övriga samhällens kontroll är okänd.' },
+      { area: 'Oceania',status: 'unresolved',sourceIds: ['hbm','naturalEarth'],noteSv: 'Granskningen av år 1500 har ingen källa för Oceanien, och kontrollen är okänd.' },
+      ANTARCTICA_COVERAGE,
+    ],
+    coreIndex: 80,coreSourceIds: null,dossierPrimary: true,
+    mapMappings: review => review.mapMappings.map(m => ({ ...m,sourceIds: ['hbm',...regional(m.sourceIds.filter(id => !id.startsWith('getty-')))] })),
+    selectiveCore: null,selectiveCoreNoteSv: null,compositeNote: null,
+    quarantine: { 77: 'quarantined-unresolved',193: 'quarantined-invalid-source-geometry',223: 'quarantined-invalid-source-geometry',290: 'quarantined-rejected-for-1500' },
+    selectionTransformation: 'Preserve accepted source coordinates and component structure; assign stable historical IDs.',
+    quarantineTransformation: 'Quarantine AD1500 source features 77, 193, 223 and 290; no unsupported repair or owner assignment.',
+    seatId: 'b2-aztec-getty-tenochtitlan',...dossierGettyFields([]),
+    reviewFeature: (review,index) => review.allFeatures[index],
+    // Evidence the package does not import stays in the review file; the region review cites only imported records.
+    unmappedSourceIds: (r,index,h) => regional(r?.sourceEvidenceIds ?? []).filter(id => Object.hasOwn(h.sources,id)),
+    mappedBoundaryDecision: 'accepted-world-scale-approximation' },
 ];
 // The Getty record of every settlement besides the authored seats (those come from the dossier), as [sourceId, seat name].
 function dossierGettyRecords(h,authoredSeatIds) {
@@ -161,10 +206,17 @@ async function loadInputs() {
   return inputs;
 }
 
+// A dossier primary has only a placeholder polity record; the review's mapping of the core feature writes it.
+function primaryPolityFromReview(h,core) {
+  if (core?.polityId !== h.playablePolityIds[0]) throw new Error(`${h.contentId}: the dossier primary ${h.playablePolityIds[0]} has no reviewed core mapping`);
+  Object.assign(h.polities[0],{ nameSv: core.nameSv,sourceIds: core.sourceIds,noteSv: core.noteSv });
+}
+
 // The polity features of one package: the primary polity first, then the review file's mapped polities.
 // An extra playable polity keeps its reviewed feature, polity record and list position, so polity colours stay put.
 function polityMappings(pkg,h,review) {
   const reviewed = pkg.mapMappings(review), core = reviewed.find(m => m.index === pkg.coreIndex);
+  if (pkg.dossierPrimary) primaryPolityFromReview(h,core);
   const mappings = [{ index: pkg.coreIndex,polityId: h.playablePolityIds[0],nameSv: h.polities[0].nameSv,sourceIds: core?.sourceIds ?? pkg.coreSourceIds,noteSv: core?.noteSv ?? h.polities[0].noteSv },...reviewed.filter(m => m !== core)];
   const unmapped = h.playablePolityIds.filter(id => !mappings.some(m => m.polityId === id));
   if (unmapped.length) throw new Error(`${h.contentId}: no reviewed map feature for playable polity ${unmapped.join(', ')}`);
@@ -209,13 +261,13 @@ function citiesFor(h) {
   return { type: 'FeatureCollection',features: h.settlements.map(s => ({ type: 'Feature',id: s.id,properties: { id: s.id,name: s.nameSv,city: s.nameSv,owner: s.polityId,tier: 3,seat: seats.has(s.id),placementNoteSv: s.noteSv,sourceIds: s.sourceIds },geometry: { type: 'Point',coordinates: s.coordinates } })) };
 }
 
-function regionReviewFor(pkg,source,review,mappings) {
+function regionReviewFor(pkg,h,source,review,mappings) {
   return source.features.map((f,index) => {
     const r = pkg.reviewFeature(review,index);
     const m = mappings.find(m => m.index === index);
     return { sourceIndex: index,sourceName: f.properties.NAME ?? null,sourceProperties: f.properties,geometrySha256: sha(JSON.stringify(f.geometry)),
       classification: r?.status ?? 'unresolved',ownerPolityId: m?.polityId ?? null,
-      sourceIds: m?.sourceIds ?? pkg.unmappedSourceIds(r,index),
+      sourceIds: m?.sourceIds ?? pkg.unmappedSourceIds(r,index,h),
       boundaryDecision: m ? pkg.mappedBoundaryDecision : 'withheld-control',
       ...(pkg.selectiveCore && m ? { geometryTransform: pkg.selectiveCore } : {}),
       note: r?.decision ?? r?.notes?.join(' ') ?? 'No supported ownership assignment.',
@@ -284,7 +336,7 @@ async function buildPackage(pkg,{ inputs,physical,land }) {
   const h = pkg.authored(pkg.dossierFile ? await readJson(pkg.dossierFile) : null);
   const source = JSON.parse(inputs[pkg.sourceFile]);
   const review = await readJson(pkg.reviewFile);
-  pkg.addRegionalSources(h,review);
+  pkg.addRegionalSources(h,review,pkg);
   h.coverage = structuredClone(pkg.coverage);
   h.mapPolicy = { ...MAP_POLICY };
   const mappings = polityMappings(pkg,h,review);
@@ -292,7 +344,7 @@ async function buildPackage(pkg,{ inputs,physical,land }) {
   const owned = ownedFeatures(pkg,h,source,mappings);
   const regions = { type: 'FeatureCollection',features: [...backgroundFeatures(land,owned),...owned] };
   const cities = citiesFor(h);
-  h.regionReview = regionReviewFor(pkg,source,review,mappings);
+  h.regionReview = regionReviewFor(pkg,h,source,review,mappings);
   const { list: transformations,naturalEarth } = transformationsFor(pkg);
   const assetManifest = await manifestFor(pkg,h,physical,regions,cities,transformations);
   h.assetManifest = assetManifest;

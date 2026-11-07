@@ -43,11 +43,14 @@ const SOURCE_800 = '9d046cdc4662109c3f803ae46e2c8cba941aa092ec86eccc7823e6cf1554
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const seedJson = async name => JSON.parse(await fs.readFile(new URL(name,SEED),'utf8'));
 
-test('every shipped start keeps the build record of its release',async () => {
+test('every built package and shipped start keeps the build record of its release',async () => {
   const released = await seedJson('released-provenance.json');
-  // Exactly the shipped starts: a stale entry for a removed start would freeze nothing and hide the removal.
-  assert.deepEqual(Object.keys(released).sort(),[...HISTORICAL_BOOKMARKS.map(b => b.id),'john-1200'].sort());
-  for (const contentId of [...HISTORICAL_BOOKMARKS.map(b => b.id),'john-1200']) {
+  // releases.json lists the outputs of every package the builder makes; --check keeps it current.
+  const built = [...new Set((await seedJson('releases.json')).outputs.map(o => o.file.split('/')[0]))];
+  // Exactly the built packages: a stale entry for a removed package would freeze nothing and hide the removal.
+  assert.deepEqual(Object.keys(released).sort(),[...built].sort());
+  for (const contentId of [...HISTORICAL_BOOKMARKS.map(b => b.id),'john-1200']) assert.ok(built.includes(contentId),`${contentId}: shipped but not built`);
+  for (const contentId of built) {
     const manifest = await seedJson(`${contentId}/manifest.json`);
     assert.ok(released[contentId],`${contentId}: no released provenance`);
     for (const field of ['generator','sourceFiles','authoredInputs']) assert.deepEqual(released[contentId][field],manifest[field],`${contentId}: ${field}`);
