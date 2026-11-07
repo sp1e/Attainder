@@ -1,0 +1,1911 @@
+{
+  "schema": "attainder-d3-political-forms-research-v1",
+  "status": "source-review-complete-with-explicit-uncertainty",
+  "scope": "Two dated institutional cases and one explicitly bounded source-account case withheld for an exact-day historical implementation.",
+  "calendarHandling": "Original source chronology is retained. No century, BP, lunar or relative-duration conversion supplies a date. Campaign narrative dating is distinguished from source composition and actual observation. The BCE account case retains the source wording 53 BC and supplies no converted signed game date.",
+  "publicationBoundary": "Public-source research only; no private inventory or machine-specific paths.",
+  "sources": {
+    "d3-mackerras": {
+      "title": "Relations between the Uighurs and Tang China, 744–840; adapted from Uygur-Tang Relations, Central Asian Survey 19(2), 223–234 (2000)",
+      "institution": "Colin Mackerras, Griffith University; DergiPark institutional journal repository",
+      "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+      "locator": "Printed p.94 and note 4; pp.98–99 Diplomatic Relations; pp.100–101 Relations Through Diplomatic Marriages",
+      "scopedClaim": "Identifies Huaixin’s 795 accession and 808 death preference, explains the 805 alternative and Tang recognition, and describes Princess Xian’an’s successive marriages and 808 death.",
+      "chronology": {
+        "asWorded": [
+          "795",
+          "805",
+          "808",
+          "787"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "The chronology disagreement is explicit. Succession by coup is not a statutory electoral law. Later 807 priestly activity and 821 marriage delegations are not projected onto 800.",
+      "accessExtent": "Actual cited passages read"
+    },
+    "d3-iranica-inscription": {
+      "title": "Karabalgasun ii.The Inscription (2010)",
+      "institution": "Yutaka Yoshida; Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/karabalgasun-the-inscription/",
+      "locator": "Opening identification of the eighth qaghan; paragraph beginning The rest of the inscription; Sogdian line 16 / Chinese columnXIII discussion",
+      "scopedClaim": "Distinguishes the eighth-qaghan dedication from the seventh qaghan’s 795–808 achievements, describes the seventh’s non-Yaghlaqar origin and earlier chief-minister title, and gives the nine-tribe inscription designation.",
+      "chronology": {
+        "asWorded": [
+          "795–808",
+          "821 CE"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "The monument is later than 800; its high-official list is not an 800 roster. The name/title of the eighth dedicatee must not be assigned to the seventh ruler.",
+      "accessExtent": "Actual live Firecrawl article body recovered after focused web timeouts and native bot challenge."
+    },
+    "d3-thierry": {
+      "title": "Les monnaies de Boquq qaghan des Ouighours (795–808), Turcica 30, 263–278 (1998)",
+      "institution": "François Thierry; Peeters scholarly journal",
+      "url": "https://poj.peeters-leuven.be/content.php?id=2004301&journal_code=TURC&url=article",
+      "locator": "Public French and English abstracts; identity argument in final paragraphs",
+      "scopedClaim": "Proposes identifying the coin-named Boquq with Huaixin qaghan 795–808, against earlier or later coin attributions.",
+      "chronology": {
+        "asWorded": [
+          "795–808"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "Abstract only. The proposed numismatic identification is not treated as a universally settled personal-name equivalence.",
+      "accessExtent": "Actual public abstracts and bibliographic front matter only; full article not read."
+    },
+    "d3-dai-capital": {
+      "title": "Nomads in the Orkhon Valley: The ancient Uyghur capital Karabalgasun (745–840)",
+      "institution": "German Archaeological Institute (DAI), Mongolian-German Orkhon Expedition",
+      "url": "https://www.dainst.org/en/research/projects/noslug/5297",
+      "locator": "Opening project summary; Overview",
+      "scopedClaim": "Identifies Karabalgasun as the Uyghur imperial capital for 745–840; settlement research context only.",
+      "chronology": {
+        "asWorded": [
+          "745–840"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "A capital-site span does not locate a ruler physically there on 800-12-25 or approve an imperial polygon.",
+      "accessExtent": "Actual cited passages read"
+    },
+    "d3-kovalev": {
+      "title": "Uyghur Khaganate, The Encyclopedia of Empire (2016)",
+      "institution": "Roman K.Kovalev; Wiley",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1002/9781118455074.wbeoe093",
+      "locator": "Public Abstract",
+      "scopedClaim": "Describes the 744–840 state as a complex pastoral-nomadic empire with sedentary features, not a society without government.",
+      "chronology": {
+        "asWorded": [
+          "744–840"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "Only abstract read; it supplies no exact office roster or confederate voting constitution.",
+      "accessExtent": "Actual public abstract only."
+    },
+    "d3-althingi": {
+      "title": "Althingi (2017 English institutional booklet)",
+      "institution": "Alþingi, Parliament of Iceland",
+      "url": "https://www.althingi.is/pdf/Althingi2017_enska.pdf",
+      "locator": "Printed pp.6–7: The History of Althingi; Law Council; Law Speaker; Royal rule",
+      "scopedClaim": "Describes the law council and its voting/advisory roles, summer assembly, law-speaker functions and transition to Norwegian authority in 1262.",
+      "chronology": {
+        "asWorded": [
+          "930",
+          "1262",
+          "1122–33"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "Institutional overview; not a named 1200 office roster or evidence of a December assembly.",
+      "accessExtent": "Actual cited passages read"
+    },
+    "d3-byock": {
+      "title": "The Icelandic Althing: Dawn of Parliamentary Democracy, in Heritage and Identity: Shaping the Nations of the North (2002), pp.1–18",
+      "institution": "Jesse Byock; scholarly chapter hosted by UCLA",
+      "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+      "locator": "Printed pp.3–6, The Institution, Its Components and Roles; pp.11–14, late twelfth-century concentration and private enforcement",
+      "scopedClaim": "Explains differentiated council, law-speaker and ceremonial functions, elected three-year chairmanship, private enforcement and late-twelfth/thirteenth-century concentration of chiefly power.",
+      "chronology": {
+        "asWorded": [
+          "930",
+          "1264",
+          "late twelfth century",
+          "three-year term"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "Early egalitarian patterns are not frozen at 1200. The article gives 1264 for final independence loss, where the parliamentary overview emphasizes 1262 submission; neither difference affects the 1200 institutional case.",
+      "accessExtent": "Actual cited passages read"
+    },
+    "d3-snorrastofa": {
+      "title": "Snorri’s Saga Exhibition in Reykholt, English/Icelandic guide",
+      "institution": "Óskar Guðmundsson; Snorrastofa research and heritage institution",
+      "url": "https://www.snorrastofa.is/media/1/snorri-syningarskra-vefur-01.pdf",
+      "locator": "PDF pp.7–8, timeline entries 1199, from 1206, and 1215–1218; opening biography",
+      "scopedClaim": "Dates Snorri’s marriage to Herdís in 1199 and later lawspeaker term 1215–1218; the latter is not backdated to 1200.",
+      "chronology": {
+        "asWorded": [
+          "1179–1241",
+          "1199",
+          "From 1206",
+          "1215–1218"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "Timeline does not name the lawspeaker in 1200, or establish every kin relationship/household member on the exact day.",
+      "accessExtent": "Actual cited passages read"
+    },
+    "d3-caesar-york": {
+      "title": "The Gallic Wars, Book 6, English translation by W.A.McDevitte and W.S.Bohn",
+      "institution": "Julius Caesar; text hosted by York University",
+      "url": "https://www.yorku.ca/pswarney/Texts/bel-gal-6.htm",
+      "locator": "Book 6, chapters 21–23; especially chapter 23, paragraphs 2–4",
+      "scopedClaim": "Caesar describes local chiefs rendering justice in peace, chosen wartime magistrates with coercive authority, and leaders recruiting followers in assembly; not universal absence of rulers.",
+      "chronology": {
+        "asWorded": [
+          "Book 6; no exact observation date for chapter 23"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "An outsider Roman account using broad Germani categories; no exact-day constitutional census or named tribe can be recovered from this passage.",
+      "accessExtent": "Actual cited passages read"
+    },
+    "d3-caesar-fordham": {
+      "title": "Julius Caesar: The Germans, c.51 BCE; Ogg 1907 selection",
+      "institution": "Julius Caesar; Frederic Austin Ogg edition; Fordham Internet History Sourcebooks Project",
+      "url": "https://sourcebooks.fordham.edu/source/51caesar-germans.asp",
+      "locator": "Ogg Introduction and sections 22–23; source/rights notice",
+      "scopedClaim": "Supplies an explicit limitation on Caesar’s geographic knowledge and a primary-source translation of conditional local/war leadership.",
+      "chronology": {
+        "asWorded": [
+          "c.51 BCE"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "The heading is source/account dating, not proof that the description was observed on 53 BCE December 31. The introduction warns against extrapolation to remote peoples.",
+      "accessExtent": "Actual cited passages read"
+    },
+    "d3-caesar-chronology": {
+      "title": "Caesar: Gallic War VI, edited by E.C.Kennedy; Bristol Classical Press/Bloomsbury",
+      "institution": "Bloomsbury Academic",
+      "url": "https://www.bloomsbury.com/uk/caesar-gallic-war-vi-9780862920883/",
+      "locator": "Publisher Description, first paragraph",
+      "scopedClaim": "Identifies BookVI’s campaign narrative as events of 53 BC; does not date its general ethnographic excursus to a specific day.",
+      "chronology": {
+        "asWorded": [
+          "53 BC"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "Publisher description only; no full commentary reading claimed.",
+      "accessExtent": "Actual publisher description only."
+    },
+    "d3-tgn-8711890": {
+      "title": "Getty TGN 8711890: Ordu-Baliq",
+      "institution": "Getty Research Institute, J.Paul Getty Trust",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=8711890",
+      "locator": "Full record: preferred/alternate names, decimal Coordinates, place types and hierarchy",
+      "scopedClaim": "Decimal locality point and name identity only; not an exact court/assembly position.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "ODC-By-1.0",
+      "uncertainty": "No polygon acceptance or daily personal presence follows from an authority record.",
+      "accessExtent": "Actual full record body read with native PowerShell.",
+      "coordinates": [
+        102.659,
+        47.431
+      ],
+      "attribution": "Getty Research Institute, J.Paul Getty Trust; Getty Thesaurus of Geographic Names; ODC Attribution 1.0."
+    },
+    "d3-tgn-1042555": {
+      "title": "Getty TGN 1042555: Þingvellir",
+      "institution": "Getty Research Institute, J.Paul Getty Trust",
+      "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=1042555",
+      "locator": "Full record: preferred/alternate names, decimal Coordinates, place types and hierarchy",
+      "scopedClaim": "Decimal locality point and name identity only; not an exact court/assembly position.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "ODC-By-1.0",
+      "uncertainty": "No polygon acceptance or daily personal presence follows from an authority record.",
+      "accessExtent": "Actual full record body read with native PowerShell.",
+      "coordinates": [
+        -21.1,
+        64.25
+      ],
+      "attribution": "Getty Research Institute, J.Paul Getty Trust; Getty Thesaurus of Geographic Names; ODC Attribution 1.0."
+    },
+    "d3-getty-rights": {
+      "title": "Data & Services for Vocabularies",
+      "institution": "Getty Research Institute, J.Paul Getty Trust",
+      "url": "https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/",
+      "locator": "Licensing and Citations, Licensing and General",
+      "scopedClaim": "Getty vocabulary data is reusable under ODC-By 1.0 with attribution and appropriate contributor credit.",
+      "chronology": {
+        "asWorded": [],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "Licenses vocabulary data, not unrelated maps or source images.",
+      "accessExtent": "Actual cited passages read"
+    },
+    "d3-cambridge-uighurs": {
+      "title": "The Uighurs, chapter 12, The Cambridge History of Early Inner Asia (1990), pp.317–342",
+      "institution": "Colin Mackerras; Cambridge University Press",
+      "url": "https://www.cambridge.org/core/books/abs/cambridge-history-of-early-inner-asia/uighurs/5EDCA8414EB81B737294DA7F21575D72",
+      "locator": "Public Summary, three opening paragraphs",
+      "scopedClaim": "Describes the 742 coalition, subsequent subjection of former allies and strengthening of monarchy; founding context is not equal power-sharing in 800.",
+      "chronology": {
+        "asWorded": [
+          "742",
+          "744",
+          "747",
+          "744 to 840"
+        ],
+        "conversion": "None; no independent calendar or relative-date arithmetic."
+      },
+      "retrievedAt": "2026-11-07",
+      "license": "Reference only; no source prose or images redistributed",
+      "uncertainty": "Only summary read; the founding coalition must not be frozen as an unchanged AD 800 constitution.",
+      "accessExtent": "Actual public chapter summary only; full chapter not read."
+    },
+    "review-bloomsbury-us": {
+      "sourceId": "review-bloomsbury-us",
+      "title": "Caesar: Gallic War VI",
+      "author": "Julius Caesar",
+      "editor": "E.C. Kennedy",
+      "institution": "Bloomsbury Publishing / Bristol Classical Press",
+      "series": "Latin Texts",
+      "publicationDateAsWorded": "Jun 01 1991",
+      "isbn": "9780862920883",
+      "url": "https://www.bloomsbury.com/us/caesar-gallic-war-vi-9780862920883/",
+      "retrievedOn": "2026-11-07",
+      "type": "Same-publisher regional page; recovery of d3-caesar-chronology",
+      "actualReadLocator": "Description, first paragraph; Product details, ISBN and imprint. Web-reader lines 168–171 and 215–225.",
+      "publicExtent": "Public publisher description and bibliographic metadata only; annotated volume not read.",
+      "supportsClaimIds": [
+        "g-date"
+      ],
+      "evidenceScope": "Identifies the Book VI campaign narrative as events of 53 BC; does not date the ethnographic observation or any exact-day polity.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedAt": "2026-11-07",
+      "locator": "Description, first paragraph; Product details, ISBN and imprint. Web-reader lines 168–171 and 215–225.",
+      "scopedClaim": "Identifies the Book VI campaign narrative as events of 53 BC; does not date the ethnographic observation or any exact-day polity.",
+      "chronology": {
+        "asWorded": [
+          "53 BC"
+        ],
+        "conversion": "None; this is the publisher’s campaign-narrative date, not an observation or exact-day polity date."
+      },
+      "reviewReportedLicense": "Reference only; no full source prose or images redistributed.",
+      "sourcePayloadBinding": {
+        "reviewReportSha256": "26c99490c0e56f5c2bbdaa48364921b29728951aa8125ec8d43d494f1c27316a",
+        "rawAddedSourceCanonicalSha256": "68d662234f68c508120371bde6cb3e900ded8004fed8da1a3dd0f1ce6e2102b5",
+        "originalRequestedSourceId": "d3-caesar-chronology",
+        "samePublisherSameIsbn": true
+      }
+    }
+  },
+  "cases": [
+    {
+      "caseId": "uyghur-khaganate-800",
+      "caseRole": "Steppe confederation / imperial centre",
+      "bookmark": "0800-12-25",
+      "status": "pending-independent-source-review",
+      "claims": [
+        {
+          "id": "u-form",
+          "field": "powerHeld",
+          "value": {
+            "model": "A khagan-headed pastoral-nomadic empire with subordinate tribal components, urban capital and differentiated offices",
+            "confederationMeaning": "A layered imperial/tribal organization; not an equal council of sovereign co-rulers",
+            "exact800Constitution": null
+          },
+          "status": "uncertain",
+          "claimScope": "Broad empire span contains 800; formal voting and member-autonomy details on the exact date remain unclaimed",
+          "sourceIds": [
+            "d3-kovalev",
+            "d3-cambridge-uighurs",
+            "d3-iranica-inscription",
+            "d3-mackerras"
+          ],
+          "noteSv": "Källorna visar både monarki och flera grupper. Grundläggningskoalitionen från 742 får inte bli ett oförändrat förbundsråd år 800."
+        },
+        {
+          "id": "u-holder",
+          "field": "documentedHolder",
+          "value": {
+            "displayName": "Huaixin qaghan",
+            "nameType": "Tang-conferred title, not a verified birth name",
+            "roleSv": "Khagan",
+            "reignStartAsWorded": "795",
+            "preferredReignEndAsWorded": "808",
+            "competingEndAsWorded": "805",
+            "aliveOnBookmark": "sourced",
+            "inOfficeOnBookmark": "sourced",
+            "birthDate": null,
+            "dailyResidence": null,
+            "identityStatus": "sourced",
+            "reignChronologyStatus": "uncertain"
+          },
+          "status": "uncertain",
+          "claimScope": "The named ruler and office in 800 are sourced; the preferred reign endpoint and competing endpoint remain uncertain. No birth or daily residence supplied",
+          "sourceIds": [
+            "d3-mackerras"
+          ],
+          "noteSv": "Mackerras föredrar 808 framför 805. Båda alternativen ligger efter bokmärket; födelsedatum och vistelseort fylls inte i."
+        },
+        {
+          "id": "u-names",
+          "field": "identityEquivalences",
+          "value": {
+            "huaixin": "Safe source display designation for the 795 founder",
+            "boquq": "Thierry’s numismatic identification with Huaixin; retained as an attributed interpretation",
+            "eighthQaghanDedication": "The stele’s Ay Tängridä Qut Bulmïš Alp Bilgä dedication identifies the eighth ruler, not automatically Huaixin",
+            "fullUnqualifiedAliasList": []
+          },
+          "status": "uncertain",
+          "claimScope": "Source-attributed name/title equivalence; similar titulature is not treated as unique personal identity",
+          "sourceIds": [
+            "d3-thierry",
+            "d3-iranica-inscription"
+          ],
+          "noteSv": "Myntidentifieringen är en forskningsslutsats. Den senare stelen prisar också en annan khagan; likartade titlar får inte slå ihop personerna."
+        },
+        {
+          "id": "u-succession",
+          "field": "succession",
+          "value": {
+            "engineLaw": "none-fits",
+            "observedTransition": "In 795 the chief adviser displaced the previous dynasty; the seventh ruler was not Yaghlaqar by origin",
+            "formalElectionProcedure": null,
+            "universalHereditaryRule": null
+          },
+          "status": "uncertain",
+          "claimScope": "Specific observed regime transition; not a proved general constitutional succession law",
+          "sourceIds": [
+            "d3-mackerras",
+            "d3-iranica-inscription"
+          ],
+          "noteSv": "Ett maktövertagande av en rådgivare styrker varken förstfödslorätt eller ett regelbundet råd som väljer efter förmåga."
+        },
+        {
+          "id": "u-marriage",
+          "field": "marriageAndKin",
+          "value": {
+            "contextPerson": "Princess Xian’an, daughter of Tang Emperor Dezong",
+            "contextAsWorded": [
+              "787",
+              "808"
+            ],
+            "sourceReportedPractice": "She became katun of Dun Bagha and subsequent khagans by remarrying the reigning ruler",
+            "alive800": "sourced in the cited narrative",
+            "exactNamedHuaixinSpouseEdge": null,
+            "childrenOnBookmark": [],
+            "courtHousehold": []
+          },
+          "status": "uncertain",
+          "claimScope": "A published successive-marriage narrative; the exact named couple edge in 800 is withheld rather than reconstructed as a fully sourced household",
+          "sourceIds": [
+            "d3-mackerras"
+          ],
+          "noteSv": "Prinsessan är levande under det angivna spannet. Källans allmänna uppgift om efterföljande khaganer förs inte över till en fullständig hovfamilj med barn eller andra makar."
+        },
+        {
+          "id": "u-agency",
+          "field": "rankAndAgency",
+          "value": {
+            "centralKhagan": true,
+            "chiefAdviserBefore795": "The future Huaixin held the chief advisory office",
+            "laterInscriptionOfficials": "A later inscription names court offices including an inner prime minister",
+            "named800OfficeRoster": [],
+            "tangRecognition": "Tang-conferred titles are diplomatic recognition, not proof that Tang delegated all sovereign power",
+            "collectiveSovereigntyOfAllTribes": null
+          },
+          "status": "uncertain",
+          "claimScope": "Office differentiation and source chronology retained; later officials and 807 religious interventions are not backdated to 800",
+          "sourceIds": [
+            "d3-mackerras",
+            "d3-iranica-inscription"
+          ],
+          "noteSv": "Khagan, rådgivare och religiösa aktörer har olika roller. En senare ämbetslista blir inte en lista över personer i tjänst år 800."
+        },
+        {
+          "id": "u-seat",
+          "field": "seat",
+          "value": {
+            "nameSv": "Karabalghasun / Ordu-Baliq",
+            "capitalFunctionStatus": "sourced",
+            "capitalAsWorded": "745–840",
+            "coordinates": [
+              102.659,
+              47.431
+            ],
+            "gettyTgnId": "8711890",
+            "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=8711890",
+            "coordinateStatus": "sourced",
+            "exactPalacePoint": null,
+            "rulerPresentOnBookmark": null,
+            "insideAcceptedPolygon": null
+          },
+          "status": "sourced",
+          "claimScope": "Capital-site identity/span and Getty decimal locality marker only; no exact-day presence or accepted territory",
+          "sourceIds": [
+            "d3-dai-capital",
+            "d3-tgn-8711890",
+            "d3-getty-rights"
+          ],
+          "noteSv": "Punkten är en ungefärlig ortsmarkör. Khaganens närvaro där just den 25 december 800 är obestyrkt."
+        },
+        {
+          "id": "u-engine",
+          "field": "engineLimits",
+          "value": {
+            "codes": [
+              "no-sourced-household"
+            ],
+            "scope": "Incomplete securely linked household; no collective, elective or co-ruler code assigned merely from confederation language",
+            "representationNeeds": [
+              "Separate authority and agency for the khagan, subordinate groups and court offices"
+            ],
+            "newCode": null
+          },
+          "status": "uncertain",
+          "claimScope": "Research-to-engine mapping only; no new code applied",
+          "sourceIds": [
+            "d3-mackerras",
+            "d3-iranica-inscription",
+            "d3-kovalev"
+          ],
+          "noteSv": "Ett hierarkiskt förbund är inte automatiskt ett kollektivt kungadöme. En namngiven khagan ger inte en färdig hovfamilj."
+        }
+      ]
+    },
+    {
+      "caseId": "iceland-commonwealth-1200",
+      "caseRole": "Council / elective office",
+      "bookmark": "1200-12-31",
+      "status": "pending-independent-source-review",
+      "claims": [
+        {
+          "id": "i-form",
+          "field": "powerHeld",
+          "value": {
+            "model": "Althing with a law council, courts, chieftains and an elected lawspeaker; no sovereign executive monarch assigned",
+            "lawCouncil": "Goðar and later bishops legislate and adjudicate with non-voting advisers",
+            "voting": "Law council decisions by majority; not universal popular suffrage"
+          },
+          "status": "sourced",
+          "claimScope": "Commonwealth institutional context contains 1200; not a modern democratic constitution",
+          "sourceIds": [
+            "d3-althingi",
+            "d3-byock"
+          ],
+          "noteSv": "Lagrådet utövar kollektiv beslutanderätt. Deltagande, rösträtt och faktisk makt är skilda frågor."
+        },
+        {
+          "id": "i-lawspeaker",
+          "field": "lawSpeakerRole",
+          "value": {
+            "roleSv": "Lagman / lagsagoman",
+            "selection": "Elected chair of the law council",
+            "termAsWorded": "three-year term",
+            "tasks": [
+              "State law and procedural rules",
+              "Chair the council",
+              "Answer legal questions"
+            ],
+            "sovereignExecutivePower": null
+          },
+          "status": "sourced",
+          "claimScope": "Office functions over the Commonwealth span; no promotion to king or single all-purpose executive",
+          "sourceIds": [
+            "d3-byock",
+            "d3-althingi"
+          ],
+          "noteSv": "Lagmannen är vald och rättsligt viktig, men rollen kan inte ges en monarks allmänna befogenheter."
+        },
+        {
+          "id": "i-holder",
+          "field": "documentedOfficeHolder",
+          "value": {
+            "lawSpeakerOn1200_12_31": null,
+            "namedVotingCouncilRoster": [],
+            "sovereignMonarch": null,
+            "reason": "No exact-date officeholder chain recovered in the bounded actual-read corpus"
+          },
+          "status": "uncertain",
+          "claimScope": "Withholding of names; not a claim that the office was vacant or that historical records name nobody",
+          "sourceIds": [
+            "d3-althingi",
+            "d3-byock"
+          ],
+          "noteSv": "De lästa avsnitten styrker ämbetet men ger ingen säker innehavare för datumet. Snorris senare tjänst flyttas inte bakåt."
+        },
+        {
+          "id": "i-kin",
+          "field": "chieftaincyAndKin",
+          "value": {
+            "earlyPattern": "Kin alliances and local prominence mattered; some chieftaincies could be shared",
+            "around1200": "Large chieftains were emerging unevenly from the late twelfth into the thirteenth century",
+            "unchangingEqualityOfAllChieftains": null,
+            "exact1200HereditaryRule": null
+          },
+          "status": "uncertain",
+          "claimScope": "Diachronic scholarly account; no fixed early constitutional/social balance projected onto 1200",
+          "sourceIds": [
+            "d3-byock"
+          ],
+          "noteSv": "Tidiga former av delat hövdingaskap och jämbördighet får inte dölja maktkoncentrationen kring år 1200."
+        },
+        {
+          "id": "i-marriage",
+          "field": "marriageAndKin",
+          "value": {
+            "datedExample": {
+              "people": [
+                "Snorri Sturluson",
+                "Herdís Bersadóttir"
+              ],
+              "event": "Marriage",
+              "asWorded": "1199"
+            },
+            "snorriLawSpeakerTermAsWorded": "1215–1218",
+            "nationalRulingHousehold": null,
+            "allNamedCoupleMembersAtAssemblyOnBookmark": null
+          },
+          "status": "sourced",
+          "claimScope": "A dated marriage example and later office term; no 1200 lawspeaker appointment or national royal family asserted",
+          "sourceIds": [
+            "d3-snorrastofa"
+          ],
+          "noteSv": "Äktenskapet 1199 är ett konkret familjehistoriskt exempel. Det gör inte Snorri till landets härskare eller lagman år 1200."
+        },
+        {
+          "id": "i-agency",
+          "field": "rankAndAgency",
+          "value": {
+            "formalRoles": [
+              "Voting chieftains",
+              "Non-voting advisers",
+              "Judges",
+              "Law-speaking chair",
+              "Ceremonial allsherjargoði"
+            ],
+            "enforcement": "Judicial outcomes often depended on private parties, advocates, kin and negotiated support",
+            "allOrdersExecuteThroughOneActor": false
+          },
+          "status": "sourced",
+          "claimScope": "Functional differentiation in the scholarly Commonwealth account; not a named office roster",
+          "sourceIds": [
+            "d3-byock",
+            "d3-althingi"
+          ],
+          "noteSv": "Lagrådets beslut, domstolens avgörande och verkställigheten har olika aktörer. En ceremoniell ledare är inte ensam regeringschef."
+        },
+        {
+          "id": "i-succession",
+          "field": "succession",
+          "value": {
+            "engineLaw": "none-fits",
+            "officeSpecificRule": "Election to a three-year lawspeaker term",
+            "chieftainSuccessionRuleOnBookmark": null,
+            "meritSelectionCriterionEstablished": false
+          },
+          "status": "uncertain",
+          "claimScope": "An elected legal office is not automatically the engine’s council-by-ability monarch succession",
+          "sourceIds": [
+            "d3-byock"
+          ],
+          "noteSv": "Valbarhet och mandattid hör till ett visst ämbete. Källan styrker inte spelets allmänna förmågebaserade kungaval."
+        },
+        {
+          "id": "i-seat",
+          "field": "seat",
+          "value": {
+            "nameSv": "Þingvellir",
+            "function": "Seasonal assembly site, not permanent royal court",
+            "meetingSeasonAsWorded": "two weeks in June",
+            "coordinates": [
+              -21.1,
+              64.25
+            ],
+            "gettyTgnId": "1042555",
+            "coordinateRecordUrl": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=1042555",
+            "coordinateStatus": "sourced",
+            "exactLawRockPoint": null,
+            "assemblySittingOnBookmark": null,
+            "rulerPresentOnBookmark": null,
+            "insideAcceptedPolygon": null
+          },
+          "status": "sourced",
+          "claimScope": "Historical assembly site and modern Getty locality point; no winter session or palace presence",
+          "sourceIds": [
+            "d3-byock",
+            "d3-althingi",
+            "d3-tgn-1042555",
+            "d3-getty-rights"
+          ],
+          "noteSv": "Ortspunkten visar området för tingsplatsen, inte en exakt talarstol. Sommartinget innebär inte att församlingen sitter den 31 december."
+        },
+        {
+          "id": "i-engine",
+          "field": "engineLimits",
+          "value": {
+            "codes": [
+              "collective-rule",
+              "elective-rule"
+            ],
+            "officeScope": {
+              "collective-rule": "Law council",
+              "elective-rule": "Lawspeaker office"
+            },
+            "singleRoyalHousehold": null,
+            "representationNeeds": [
+              "Distinguish law, council vote, judicial authority and private enforcement",
+              "Represent term-bound office rather than a lifelong monarch"
+            ]
+          },
+          "status": "sourced",
+          "claimScope": "Existing-code mapping is strictly scoped to the sourced council and elected office",
+          "sourceIds": [
+            "d3-byock",
+            "d3-althingi"
+          ],
+          "noteSv": "Koderna gäller lagrådet respektive lagmannens val. De innebär inte jämbördiga samkungar eller ett centralt kungahov."
+        }
+      ]
+    },
+    {
+      "caseId": "caesar-germani-53bce-account",
+      "caseRole": "People described without a common peacetime magistrate;bounded withheld historical case",
+      "candidateBookmark": null,
+      "status": "withheld-exact-date-case",
+      "claims": [
+        {
+          "id": "g-positive",
+          "field": "sourceDescribedPoliticalForm",
+          "value": {
+            "sourceSpeaker": "Julius Caesar",
+            "describedCategory": "Communities he labels Germani",
+            "peacetime": "No common magistrate; local district and canton chiefs administer justice",
+            "wartime": "Magistrates are chosen to conduct a war and possess coercive life-and-death authority",
+            "expeditions": "A chief may seek followers publicly in an assembly"
+          },
+          "status": "sourced",
+          "claimScope": "What Caesar’s Book 6.23 says; conditional and source-attributed, not universal historical certification",
+          "sourceIds": [
+            "d3-caesar-york",
+            "d3-caesar-fordham"
+          ],
+          "noteSv": "Det är ett positivt textbelägg för en villkorad maktform. Källan säger inte att samhället saknar alla ledare eller att krigsmakten alltid är decentraliserad."
+        },
+        {
+          "id": "g-date",
+          "field": "chronologicalFit",
+          "value": {
+            "campaignNarrativeAsWorded": "53 BC",
+            "fordhamAccountHeadingAsWorded": "c.51 BCE",
+            "exactObservationDay": null,
+            "politicalStateOnCandidateBookmark": null
+          },
+          "status": "uncertain",
+          "claimScope": "Book-campaign date and source/account heading are different temporal scopes; neither dates the ethnographic claim to December 31",
+          "sourceIds": [
+            "d3-caesar-chronology",
+            "d3-caesar-fordham",
+            "d3-caesar-york"
+          ],
+          "noteSv": "Fälttågsåret 53 f.Kr. och rubrikens ungefärliga källdatering 51 f.Kr. avser olika saker. Ingen av dem styrker fredstillstånd eller en viss författning på den valda dagen."
+        },
+        {
+          "id": "g-scope",
+          "field": "peopleAndGeographicScope",
+          "value": {
+            "specificNamedCommunity": null,
+            "boundedHistoricalControlArea": null,
+            "allGermanicPeoplesAcrossTime": false,
+            "sourceKnowledgeLimit": "The edition’s introduction warns that Caesar’s Rhine-frontier observations do not establish remote peoples’ practices"
+          },
+          "status": "uncertain",
+          "claimScope": "Outsider Roman ethnographic category, not a mapped pan-Germanic state or uniform polity",
+          "sourceIds": [
+            "d3-caesar-fordham"
+          ],
+          "noteSv": "Benämningen Germani återger Caesars kategori. Den görs inte till ett enhetligt folk med samma politiska ordning över alla tider och områden."
+        },
+        {
+          "id": "g-holder",
+          "field": "holdersAndSuccession",
+          "value": {
+            "commonPeacetimeMonarch": null,
+            "namedLocalChiefs": [],
+            "namedWartimeMagistrates": [],
+            "wartimeSelectionMechanism": "Chosen for the particular war; no proof of merit-based succession to a permanent throne",
+            "permanentSuccessionLaw": null,
+            "engineLaw": "none-fits"
+          },
+          "status": "uncertain",
+          "claimScope": "No exact-date holder or general succession law exported; conditional chosen offices remain a source-report fact",
+          "sourceIds": [
+            "d3-caesar-york",
+            "d3-caesar-fordham"
+          ],
+          "noteSv": "Okända namn används inte som bevis för centralmaktens frånvaro. Textens freds- och krigsroller är själva belägget; ett permanent kungaval är obestyrkt."
+        },
+        {
+          "id": "g-kin",
+          "field": "marriageAndKin",
+          "value": {
+            "eliteMarriageRule": null,
+            "namedCouplesOnBookmark": [],
+            "sourceContext": "Book 6.22 describes annual land allocation to kin/family groups by leading men; this does not establish an elite marriage system"
+          },
+          "status": "uncertain",
+          "claimScope": "Limited primary-source kin grouping context; no household or marriage rule reconstructed",
+          "sourceIds": [
+            "d3-caesar-york"
+          ],
+          "noteSv": "Släktgrupper i markfördelningen blir inte en kunglig familj. Äktenskapsregler och relationer vid bokmärket är öppna."
+        },
+        {
+          "id": "g-seat",
+          "field": "seat",
+          "value": {
+            "centralRoyalSeat": null,
+            "coordinates": null,
+            "gettyTgnId": null,
+            "exactCommunityLocation": null,
+            "insideAcceptedPolygon": null
+          },
+          "status": "uncertain",
+          "claimScope": "No sourced central seat or specific community identified in the passage; does not assert that gathering places or important settlements were absent",
+          "sourceIds": [
+            "d3-caesar-york",
+            "d3-caesar-fordham"
+          ],
+          "noteSv": "Ingen ortspunkt väljs för en ospecificerad grupp i en allmän beskrivning. Detta är ingen utsaga om att platser för möten eller lokala ledare saknades."
+        },
+        {
+          "id": "g-engine",
+          "field": "engineLimits",
+          "value": {
+            "codes": [],
+            "conditionalExistingCode": {
+              "code": "elective-rule",
+              "appliesOnly": "Selection of a wartime command, if that sourced condition is represented",
+              "status": "uncertain at the candidate bookmark"
+            },
+            "exactCaseImplementation": "withheld",
+            "representationNeeds": [
+              "Permit local legal actors without a common peacetime executive",
+              "Switch to a specifically chosen wartime command only when the condition is evidenced"
+            ]
+          },
+          "status": "uncertain",
+          "claimScope": "No permanent elective monarchy or central council inferred from this text; exact-date case withheld",
+          "sourceIds": [
+            "d3-caesar-york",
+            "d3-caesar-fordham"
+          ],
+          "noteSv": "Krigsbefälens val kan behöva egen representation. Det får inte bli ett ständigt förmågebaserat kungaval eller ett påhittat centralt råd."
+        }
+      ],
+      "candidatePeriodAsWorded": "53 BC",
+      "candidateExactDay": null,
+      "bookmarkWithheldReason": "The cited corpus dates the campaign narrative, not the observation or a named community on an exact day; no signed game-calendar conversion is supplied."
+    }
+  ],
+  "engineLimitProposal": {
+    "code": "no-common-executive",
+    "labelSv": "Ingen gemensam verkställande ledning",
+    "status": "proposed-not-an-existing-code",
+    "appliedToAnyCase": false,
+    "scope": "Potential representation of explicitly sourced absence of a common executive in a specified condition;not absence of local authority",
+    "evidenceClaimIds": [
+      "g-positive",
+      "i-agency"
+    ],
+    "historyQualification": "Caesar case is peace-only and exact-date withheld;Iceland has central legal institutions but limited centralized enforcement.",
+    "existingCodesInsufficientBecause": "Collective-rule identifies a council but does not by itself define the absence or limits of an all-purpose executive actor. Elective-rule describes selection,not the scope of command.",
+    "rulingRequiredBeforeImplementation": true
+  },
+  "geometry": {
+    "acceptedPolygons": [],
+    "radii": [],
+    "pointInAcceptedPolygonCheck": "Not applicable:no polity polygon is accepted.",
+    "unresolvedControlLabelSv": "Okänd historisk kontroll"
+  },
+  "review": {
+    "reviewedBy": {
+      "role": "Fresh independent source-only reviewer",
+      "agent": "Codex, current reviewer session",
+      "nestedModelsOrSubagentsLaunched": false,
+      "historicalInputs": "claims.json and independently reopened public source corpus only",
+      "excludedInputs": "No author notes, reports, read-log files, prior verdicts, reasoning, project memories or draft content inspected."
+    },
+    "reviewedOn": "2026-11-07",
+    "status": "complete-for-scoped-source-claims",
+    "counts": {
+      "cases": 3,
+      "scopedClaims": 24,
+      "confirmed": 24,
+      "corrected": 0,
+      "unsupported": 0,
+      "fieldCorrections": 0,
+      "sourceRecordsAttempted": 15,
+      "sourceRecordsWithActualSupportingPassagesIncludingRecovery": 15,
+      "originalSourceUrlsRead": 14,
+      "originalSourceUrlsStillInaccessible": 1,
+      "addedRecoverySources": 1,
+      "separateEngineProposalRulings": 1,
+      "internalHashOrPointerMismatches": 0
+    },
+    "inputDraftSha256": "5fd3f2f94026393c4b1c2ebbee7c7961147c6c979da7b9bf719cca2fd1a599d8",
+    "inputClaimsSha256": "7c85d730ac90f0a2e0604229d55c82b3d58646ccb7f12ae28e48109ed37e5f22",
+    "reportSha256": "26c99490c0e56f5c2bbdaa48364921b29728951aa8125ec8d43d494f1c27316a",
+    "processCompletion": {
+      "exitCode": 0,
+      "receiptSha256": "40da20e8bfe0e20720c25b310981a75022b8e1337ca69afd63425c80550464c0",
+      "basis": "Controller recorded OS process completion for the existing reviewer. The original launch tool result was unavailable after a context transition; no duplicate reviewer was launched."
+    },
+    "submittedClaimStatusesPreserved": {
+      "sourced": 8,
+      "uncertain": 16
+    },
+    "scope": "All 24 complete scoped values and their explicit uncertainty were confirmed. Confirmation does not fill unknowns, certify whole cases or approve an implementation.",
+    "sourceRecordCount": 16,
+    "originalSourceRecords": 15,
+    "addedRegionalRecoveryRecords": 1,
+    "historicalFieldCorrections": 0,
+    "sourcePassagesNewlyResearchedDuringFinalization": false
+  },
+  "notComplete": [
+    "No release-ready court dossier or generated household.",
+    "Huaixin’s birth and exact-day physical location remain unknown.",
+    "Princess Xian’an’s specific named bookmark spouse edge remains qualified.",
+    "No exact 1200 lawspeaker/council roster recovered.",
+    "Caesar’s general account does not establish a named community’s constitution on 53 BCE December 31.",
+    "Venice, Procopius and other possible noncentral cases were not expanded after the bounded three-case selection.",
+    "The proposed engine label remains outside existing codes and unapplied; implementation taxonomy still requires a ruling."
+  ],
+  "preparedOn": "2026-11-07",
+  "notDropInCourtSeed": true,
+  "sourceRecoveryBindings": [
+    {
+      "originalSourceId": "d3-caesar-chronology",
+      "originalRequestedUrl": "https://www.bloomsbury.com/uk/caesar-gallic-war-vi-9780862920883/",
+      "originalUrlAccess": "Failed during independent review: native HTTP403 and repeated web-reader timeout",
+      "actualReadSourceId": "review-bloomsbury-us",
+      "actualReadUrl": "https://www.bloomsbury.com/us/caesar-gallic-war-vi-9780862920883/",
+      "publicationIdentity": {
+        "title": "Caesar: Gallic War VI",
+        "editor": "E.C. Kennedy",
+        "isbn": "9780862920883",
+        "institution": "Bloomsbury Publishing / Bristol Classical Press"
+      },
+      "claimIds": [
+        "g-date"
+      ],
+      "actualReadLocator": "Description, first paragraph; Product details, ISBN and imprint. Web-reader lines 168–171 and 215–225.",
+      "publicExtent": "Public publisher description and bibliographic metadata only; annotated volume not read.",
+      "evidenceScope": "Identifies the Book VI campaign narrative as events of 53 BC; does not date the ethnographic observation or any exact-day polity.",
+      "originalRecordAndClaimSourceIdsPreserved": true
+    }
+  ],
+  "claimReviewIndex": [
+    {
+      "claimId": "u-form",
+      "caseId": "uyghur-khaganate-800",
+      "targetPointer": "/cases/0/claims/0/value",
+      "valueType": "object",
+      "valueSha256": "52bea13aee6e259e049ffa694eea2e010f540a30b1e69de34314a1ab9cbdda1c",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "Broad empire span contains 800; formal voting and member-autonomy details on the exact date remain unclaimed",
+      "sourceIds": [
+        "d3-kovalev",
+        "d3-cambridge-uighurs",
+        "d3-iranica-inscription",
+        "d3-mackerras"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-kovalev",
+          "readSourceId": "d3-kovalev",
+          "url": "https://onlinelibrary.wiley.com/doi/10.1002/9781118455074.wbeoe093",
+          "locator": "Public Abstract, first and second sentences/paragraphs; recovered through web reader, lines 60–63 in saved extraction",
+          "publicExtent": "Public abstract and bibliographic metadata only. Full reference-work entry not read."
+        },
+        {
+          "requestedSourceId": "d3-cambridge-uighurs",
+          "readSourceId": "d3-cambridge-uighurs",
+          "url": "https://www.cambridge.org/core/books/abs/cambridge-history-of-early-inner-asia/uighurs/5EDCA8414EB81B737294DA7F21575D72",
+          "locator": "Public Summary, first three paragraphs: 742 coalition, 744 defeat of Basmil, Karluk subjection and monarchy strengthened after 747",
+          "publicExtent": "Public chapter Summary, metadata and references available; only Summary and metadata used. Full chapter pp.317–342 not read."
+        },
+        {
+          "requestedSourceId": "d3-iranica-inscription",
+          "readSourceId": "d3-iranica-inscription",
+          "url": "https://www.iranicaonline.org/articles/karabalgasun-the-inscription/",
+          "locator": "Paragraph beginning This opening is followed, Chin. I–II / Sogd. 1–3: court officials and inner prime minister",
+          "publicExtent": "Complete public article body and bibliography accessible; inscription quotations are mediated by Yoshida, not a new reading of the stones or the underlying scholarly editions."
+        },
+        {
+          "requestedSourceId": "d3-iranica-inscription",
+          "readSourceId": "d3-iranica-inscription",
+          "url": "https://www.iranicaonline.org/articles/karabalgasun-the-inscription/",
+          "locator": "Paragraph beginning The rest of the inscription, especially seventh qaghan (r. 795–808), non-Yaghlaqar origin, Chin. XIII and Sogd. line 16",
+          "publicExtent": "Complete public article body and bibliography accessible; inscription quotations are mediated by Yoshida, not a new reading of the stones or the underlying scholarly editions."
+        },
+        {
+          "requestedSourceId": "d3-mackerras",
+          "readSourceId": "d3-mackerras",
+          "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+          "locator": "PDF page 2, printed p.94: second paragraph and footnote 4; dynastic transition, Huaixin recognition, death-date disagreement",
+          "publicExtent": "Complete 14-page PDF publicly downloaded. Cited passages read; its references to other books/primary histories were not themselves consulted."
+        }
+      ],
+      "reviewUncertainty": [
+        "Earlier coalition history and a later stele do not supply an 800 voting rule or membership list. The negative co-ruler wording constrains the model; it does not establish that every consultative practice was absent."
+      ]
+    },
+    {
+      "claimId": "u-holder",
+      "caseId": "uyghur-khaganate-800",
+      "targetPointer": "/cases/0/claims/1/value",
+      "valueType": "object",
+      "valueSha256": "a160bd2627fb7c463d483a5e8ab6a00c9633587a756fbd51ce1668a76dfabf4b",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "The named ruler and office in 800 are sourced; the preferred reign endpoint and competing endpoint remain uncertain. No birth or daily residence supplied",
+      "sourceIds": [
+        "d3-mackerras"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-mackerras",
+          "readSourceId": "d3-mackerras",
+          "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+          "locator": "PDF page 2, printed p.94: second paragraph and footnote 4; dynastic transition, Huaixin recognition, death-date disagreement",
+          "publicExtent": "Complete 14-page PDF publicly downloaded. Cited passages read; its references to other books/primary histories were not themselves consulted."
+        },
+        {
+          "requestedSourceId": "d3-mackerras",
+          "readSourceId": "d3-mackerras",
+          "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+          "locator": "PDF page 6, printed p.98, Diplomatic Relations, opening paragraph; PDF page 7, printed p.99, diplomatic hiatus and 807 embassy paragraphs",
+          "publicExtent": "Complete 14-page PDF publicly downloaded. Cited passages read; its references to other books/primary histories were not themselves consulted."
+        }
+      ],
+      "reviewUncertainty": [
+        "The 808 endpoint remains preferred and disputed, not converted into certain fact. The cited reasons rely on earlier scholarship not independently read here. Birth and daily residence remain null."
+      ]
+    },
+    {
+      "claimId": "u-names",
+      "caseId": "uyghur-khaganate-800",
+      "targetPointer": "/cases/0/claims/2/value",
+      "valueType": "object",
+      "valueSha256": "7d3d8238d2245bb85c4491c4209d9a7612bf724d1c96ce1f9feca52467324310",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "Source-attributed name/title equivalence; similar titulature is not treated as unique personal identity",
+      "sourceIds": [
+        "d3-thierry",
+        "d3-iranica-inscription",
+        "d3-mackerras"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-thierry",
+          "readSourceId": "d3-thierry",
+          "url": "https://poj.peeters-leuven.be/content.php?id=2004301&journal_code=TURC&url=article",
+          "locator": "Public French abstract: paragraph beginning La clef du problème; public English abstract: final paragraph beginning The main question; bibliographic front matter",
+          "publicExtent": "Bibliographic front matter and both public abstracts only. Full pp.263–278 not read."
+        },
+        {
+          "requestedSourceId": "d3-iranica-inscription",
+          "readSourceId": "d3-iranica-inscription",
+          "url": "https://www.iranicaonline.org/articles/karabalgasun-the-inscription/",
+          "locator": "Opening paragraph; paragraph beginning The first line of the stele, including the three dedication versions and the following identification/dating sentence",
+          "publicExtent": "Complete public article body and bibliography accessible; inscription quotations are mediated by Yoshida, not a new reading of the stones or the underlying scholarly editions."
+        },
+        {
+          "requestedSourceId": "d3-iranica-inscription",
+          "readSourceId": "d3-iranica-inscription",
+          "url": "https://www.iranicaonline.org/articles/karabalgasun-the-inscription/",
+          "locator": "Paragraph beginning The rest of the inscription, especially seventh qaghan (r. 795–808), non-Yaghlaqar origin, Chin. XIII and Sogd. line 16",
+          "publicExtent": "Complete public article body and bibliography accessible; inscription quotations are mediated by Yoshida, not a new reading of the stones or the underlying scholarly editions."
+        },
+        {
+          "requestedSourceId": "d3-mackerras",
+          "readSourceId": "d3-mackerras",
+          "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+          "locator": "PDF page 2, printed p.94: second paragraph and footnote 4; dynastic transition, Huaixin recognition, death-date disagreement",
+          "publicExtent": "Complete 14-page PDF publicly downloaded. Cited passages read; its references to other books/primary histories were not themselves consulted."
+        }
+      ],
+      "reviewUncertainty": [
+        "No unqualified personal-name alias list follows. Similar titulature is insufficient by itself. The stele’s date is during the eighth reign or shortly after the death in 821, not a fixed year certified here."
+      ]
+    },
+    {
+      "claimId": "u-succession",
+      "caseId": "uyghur-khaganate-800",
+      "targetPointer": "/cases/0/claims/3/value",
+      "valueType": "object",
+      "valueSha256": "a2e7f669e14b4e7e6eb5085e8b0a6da12da3e0d9d2599412d355673eddb914e2",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "Specific observed regime transition; not a proved general constitutional succession law",
+      "sourceIds": [
+        "d3-mackerras",
+        "d3-iranica-inscription"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-mackerras",
+          "readSourceId": "d3-mackerras",
+          "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+          "locator": "PDF page 2, printed p.94: second paragraph and footnote 4; dynastic transition, Huaixin recognition, death-date disagreement",
+          "publicExtent": "Complete 14-page PDF publicly downloaded. Cited passages read; its references to other books/primary histories were not themselves consulted."
+        },
+        {
+          "requestedSourceId": "d3-iranica-inscription",
+          "readSourceId": "d3-iranica-inscription",
+          "url": "https://www.iranicaonline.org/articles/karabalgasun-the-inscription/",
+          "locator": "Paragraph beginning The rest of the inscription, especially seventh qaghan (r. 795–808), non-Yaghlaqar origin, Chin. XIII and Sogd. line 16",
+          "publicExtent": "Complete public article body and bibliography accessible; inscription quotations are mediated by Yoshida, not a new reading of the stones or the underlying scholarly editions."
+        }
+      ],
+      "reviewUncertainty": [
+        "A particular takeover establishes neither a statutory election nor a universal hereditary rule. The sixth-qaghan identification in Yoshida’s translated Sogdian sentence retains its question mark."
+      ]
+    },
+    {
+      "claimId": "u-marriage",
+      "caseId": "uyghur-khaganate-800",
+      "targetPointer": "/cases/0/claims/4/value",
+      "valueType": "object",
+      "valueSha256": "5a3bacf32303cecd349a8d2cee9536a12a4cb34749884c8d68b536fb95960398",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "A published successive-marriage narrative; the exact named couple edge in 800 is withheld rather than reconstructed as a fully sourced household",
+      "sourceIds": [
+        "d3-mackerras"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-mackerras",
+          "readSourceId": "d3-mackerras",
+          "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+          "locator": "PDF page 8, printed p.100, Relations Through Diplomatic Marriages, second paragraph; PDF page 9, printed p.101, second paragraph on Xian’an",
+          "publicExtent": "Complete 14-page PDF publicly downloaded. Cited passages read; its references to other books/primary histories were not themselves consulted."
+        }
+      ],
+      "reviewUncertainty": [
+        "This confirms an attributed published account, not independently corroborated exact-day marriage status. No named Huaixin spouse edge, children or household are created. Source wording 787 and 808 is retained without relative-date arithmetic."
+      ]
+    },
+    {
+      "claimId": "u-agency",
+      "caseId": "uyghur-khaganate-800",
+      "targetPointer": "/cases/0/claims/5/value",
+      "valueType": "object",
+      "valueSha256": "a47af693c991c3be8fd0266d30f94c4d9dfdb37cf6593f9ca982af73da38b2ce",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "Office differentiation and source chronology retained; later officials and 807 religious interventions are not backdated to 800",
+      "sourceIds": [
+        "d3-mackerras",
+        "d3-iranica-inscription"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-mackerras",
+          "readSourceId": "d3-mackerras",
+          "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+          "locator": "PDF page 2, printed p.94: second paragraph and footnote 4; dynastic transition, Huaixin recognition, death-date disagreement",
+          "publicExtent": "Complete 14-page PDF publicly downloaded. Cited passages read; its references to other books/primary histories were not themselves consulted."
+        },
+        {
+          "requestedSourceId": "d3-mackerras",
+          "readSourceId": "d3-mackerras",
+          "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+          "locator": "PDF page 6, printed p.98, Diplomatic Relations, opening paragraph; PDF page 7, printed p.99, diplomatic hiatus and 807 embassy paragraphs",
+          "publicExtent": "Complete 14-page PDF publicly downloaded. Cited passages read; its references to other books/primary histories were not themselves consulted."
+        },
+        {
+          "requestedSourceId": "d3-iranica-inscription",
+          "readSourceId": "d3-iranica-inscription",
+          "url": "https://www.iranicaonline.org/articles/karabalgasun-the-inscription/",
+          "locator": "Paragraph beginning This opening is followed, Chin. I–II / Sogd. 1–3: court officials and inner prime minister",
+          "publicExtent": "Complete public article body and bibliography accessible; inscription quotations are mediated by Yoshida, not a new reading of the stones or the underlying scholarly editions."
+        },
+        {
+          "requestedSourceId": "d3-iranica-inscription",
+          "readSourceId": "d3-iranica-inscription",
+          "url": "https://www.iranicaonline.org/articles/karabalgasun-the-inscription/",
+          "locator": "Paragraph beginning The rest of the inscription, especially seventh qaghan (r. 795–808), non-Yaghlaqar origin, Chin. XIII and Sogd. line 16",
+          "publicExtent": "Complete public article body and bibliography accessible; inscription quotations are mediated by Yoshida, not a new reading of the stones or the underlying scholarly editions."
+        },
+        {
+          "requestedSourceId": "d3-mackerras",
+          "readSourceId": "d3-mackerras",
+          "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+          "locator": "PDF pages 7–9, printed pp.99–101: 807 religious embassy, Taihe marriage negotiations and 821 delegation context",
+          "publicExtent": "Complete 14-page PDF publicly downloaded. Cited passages read; its references to other books/primary histories were not themselves consulted."
+        }
+      ],
+      "reviewUncertainty": [
+        "Inner-prime-minister and other stele names cannot become an 800 office roster. The 807 embassy/actions and 821 marriage context do not establish officeholding in 800."
+      ]
+    },
+    {
+      "claimId": "u-seat",
+      "caseId": "uyghur-khaganate-800",
+      "targetPointer": "/cases/0/claims/6/value",
+      "valueType": "object",
+      "valueSha256": "60b675e4f7938dbf6dc8e22694b25070a0c3974c11f938e6faa0e05958b59744",
+      "claimStatusPreserved": "sourced",
+      "verdict": "confirmed",
+      "scope": "Capital-site identity/span and Getty decimal locality marker only; no exact-day presence or accepted territory",
+      "sourceIds": [
+        "d3-dai-capital",
+        "d3-tgn-8711890",
+        "d3-getty-rights"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-dai-capital",
+          "readSourceId": "d3-dai-capital",
+          "url": "https://www.dainst.org/en/research/projects/noslug/5297",
+          "locator": "Project heading and opening project-summary paragraph; Overview opening paragraphs; recovered through web reader, lines 213–250 in saved extraction",
+          "publicExtent": "Public institutional project summary and Overview only; no excavation report or unpublished site data read."
+        },
+        {
+          "requestedSourceId": "d3-tgn-8711890",
+          "readSourceId": "d3-tgn-8711890",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=8711890",
+          "locator": "Full record ID 8711890: Coordinates decimal values, preferred/alternate Names, Note, Hierarchical Position, Place Types, capital-of relationship, Sources and Contributors",
+          "publicExtent": "Entire public authority-record body, including coordinates, names, hierarchy, place types and contributors; locality metadata only."
+        },
+        {
+          "requestedSourceId": "d3-getty-rights",
+          "readSourceId": "d3-getty-rights",
+          "url": "https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/",
+          "locator": "Licensing and Citations > Licensing; Citations > General, required credit line and following contributor/source-credit paragraph",
+          "publicExtent": "Public data-services page, Licensing and Citations sections inspected. Vocabulary-data permission only; no map/image permission inferred."
+        }
+      ],
+      "reviewUncertainty": [
+        "A settlement marker establishes no palace coordinate, daily ruler presence, approved territorial extent or polygon containment. DAI’s capital span and the separate 744 empire-start chronology remain distinct source wordings."
+      ]
+    },
+    {
+      "claimId": "u-engine",
+      "caseId": "uyghur-khaganate-800",
+      "targetPointer": "/cases/0/claims/7/value",
+      "valueType": "object",
+      "valueSha256": "7c9dbe4d62e204578718f4a372ae5aa50121ea14ddda3940c0c4984d28ccc3f7",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "Research-to-engine mapping only; no new code applied",
+      "sourceIds": [
+        "d3-mackerras",
+        "d3-iranica-inscription",
+        "d3-kovalev"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-mackerras",
+          "readSourceId": "d3-mackerras",
+          "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+          "locator": "PDF page 2, printed p.94: second paragraph and footnote 4; dynastic transition, Huaixin recognition, death-date disagreement",
+          "publicExtent": "Complete 14-page PDF publicly downloaded. Cited passages read; its references to other books/primary histories were not themselves consulted."
+        },
+        {
+          "requestedSourceId": "d3-mackerras",
+          "readSourceId": "d3-mackerras",
+          "url": "https://dergipark.org.tr/en/download/article-file/3797515",
+          "locator": "PDF page 8, printed p.100, Relations Through Diplomatic Marriages, second paragraph; PDF page 9, printed p.101, second paragraph on Xian’an",
+          "publicExtent": "Complete 14-page PDF publicly downloaded. Cited passages read; its references to other books/primary histories were not themselves consulted."
+        },
+        {
+          "requestedSourceId": "d3-iranica-inscription",
+          "readSourceId": "d3-iranica-inscription",
+          "url": "https://www.iranicaonline.org/articles/karabalgasun-the-inscription/",
+          "locator": "Paragraph beginning This opening is followed, Chin. I–II / Sogd. 1–3: court officials and inner prime minister",
+          "publicExtent": "Complete public article body and bibliography accessible; inscription quotations are mediated by Yoshida, not a new reading of the stones or the underlying scholarly editions."
+        },
+        {
+          "requestedSourceId": "d3-iranica-inscription",
+          "readSourceId": "d3-iranica-inscription",
+          "url": "https://www.iranicaonline.org/articles/karabalgasun-the-inscription/",
+          "locator": "Paragraph beginning The rest of the inscription, especially seventh qaghan (r. 795–808), non-Yaghlaqar origin, Chin. XIII and Sogd. line 16",
+          "publicExtent": "Complete public article body and bibliography accessible; inscription quotations are mediated by Yoshida, not a new reading of the stones or the underlying scholarly editions."
+        },
+        {
+          "requestedSourceId": "d3-kovalev",
+          "readSourceId": "d3-kovalev",
+          "url": "https://onlinelibrary.wiley.com/doi/10.1002/9781118455074.wbeoe093",
+          "locator": "Public Abstract, first and second sentences/paragraphs; recovered through web reader, lines 60–63 in saved extraction",
+          "publicExtent": "Public abstract and bibliographic metadata only. Full reference-work entry not read."
+        }
+      ],
+      "reviewUncertainty": [
+        "Code semantics and implementation are engineering choices. The bounded household gap is not proof that historical spouse/child records do not exist; no new code is applied."
+      ]
+    },
+    {
+      "claimId": "i-form",
+      "caseId": "iceland-commonwealth-1200",
+      "targetPointer": "/cases/1/claims/0/value",
+      "valueType": "object",
+      "valueSha256": "8b58e9ad76f1901ffcbcbb682189ee5b1e45d560b5bd91fac5340605b41041fa",
+      "claimStatusPreserved": "sourced",
+      "verdict": "confirmed",
+      "scope": "Commonwealth institutional context contains 1200; not a modern democratic constitution",
+      "sourceIds": [
+        "d3-althingi",
+        "d3-byock"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-althingi",
+          "readSourceId": "d3-althingi",
+          "url": "https://www.althingi.is/pdf/Althingi2017_enska.pdf",
+          "locator": "Printed/PDF p.6, The History of Althingi: assembly season, Law Council and courts paragraphs; web-reader lines 88–103",
+          "publicExtent": "Public booklet PDF, historical text on pp.6–7 inspected through web PDF extraction; unrelated modern parliamentary sections not used."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.6 / printed p.5: Law Council voting/advisers, treaties, assembly benches and elected three-year lawspeaker paragraphs",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.12 / printed p.11: distinct court panels and judge appointment; PDF p.13 / printed p.12: verdicts, political support and fifth court",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.13 / printed p.12: final paragraph before The Proto-Democratic Factors, bishops and uneven emergence of big chieftains in late twelfth/thirteenth centuries",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.2 / printed p.1: Commonwealth independence to 1264; PDF pp.4–7 / printed pp.3–6: evolving institutions and differentiated offices",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        }
+      ],
+      "reviewUncertainty": [
+        "Council legal-dispute functions do not merge judges into the council. Participation is not universal suffrage; the 1200 model cannot preserve early equality unchanged."
+      ]
+    },
+    {
+      "claimId": "i-lawspeaker",
+      "caseId": "iceland-commonwealth-1200",
+      "targetPointer": "/cases/1/claims/1/value",
+      "valueType": "object",
+      "valueSha256": "2f73cb576bc957635c3a2799dafae614fc6eec5c7a301ca1db3901406a16edd9",
+      "claimStatusPreserved": "sourced",
+      "verdict": "confirmed",
+      "scope": "Office functions over the Commonwealth span; no promotion to king or single all-purpose executive",
+      "sourceIds": [
+        "d3-byock",
+        "d3-althingi"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.6 / printed p.5: Law Council voting/advisers, treaties, assembly benches and elected three-year lawspeaker paragraphs",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.7 / printed p.6: lawspeaker’s limited official power and legal questions; ceremonial allsherjargoði paragraph; sources preserve lawspeaker names",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-althingi",
+          "readSourceId": "d3-althingi",
+          "url": "https://www.althingi.is/pdf/Althingi2017_enska.pdf",
+          "locator": "Printed/PDF p.7, Law Speaker paragraph and Royal rule opening paragraphs; web-reader lines 140–168",
+          "publicExtent": "Public booklet PDF, historical text on pp.6–7 inspected through web PDF extraction; unrelated modern parliamentary sections not used."
+        }
+      ],
+      "reviewUncertainty": [
+        "The Swedish role label is read in its stated Commonwealth lawspeaker context. It does not collapse this office into the later royal Law Men distinguished by the booklet. No named 1200 incumbent is inferred."
+      ]
+    },
+    {
+      "claimId": "i-holder",
+      "caseId": "iceland-commonwealth-1200",
+      "targetPointer": "/cases/1/claims/2/value",
+      "valueType": "object",
+      "valueSha256": "e44640dfb3f091981d378ce108a664aacc036888d1031326d08015c3e636067c",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "Withholding of names; not a claim that the office was vacant or that historical records name nobody",
+      "sourceIds": [
+        "d3-althingi",
+        "d3-byock"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.7 / printed p.6: lawspeaker’s limited official power and legal questions; ceremonial allsherjargoði paragraph; sources preserve lawspeaker names",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.6 / printed p.5: Law Council voting/advisers, treaties, assembly benches and elected three-year lawspeaker paragraphs",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-althingi",
+          "readSourceId": "d3-althingi",
+          "url": "https://www.althingi.is/pdf/Althingi2017_enska.pdf",
+          "locator": "Printed/PDF p.6, The History of Althingi: assembly season, Law Council and courts paragraphs; web-reader lines 88–103",
+          "publicExtent": "Public booklet PDF, historical text on pp.6–7 inspected through web PDF extraction; unrelated modern parliamentary sections not used."
+        },
+        {
+          "requestedSourceId": "d3-althingi",
+          "readSourceId": "d3-althingi",
+          "url": "https://www.althingi.is/pdf/Althingi2017_enska.pdf",
+          "locator": "Printed/PDF p.7, Law Speaker paragraph and Royal rule opening paragraphs; web-reader lines 140–168",
+          "publicExtent": "Public booklet PDF, historical text on pp.6–7 inspected through web PDF extraction; unrelated modern parliamentary sections not used."
+        }
+      ],
+      "reviewUncertainty": [
+        "This is a bounded research gap, not a vacant office or a claim that names are unavailable in all historical records. Snorri’s later term is not used as a substitute."
+      ]
+    },
+    {
+      "claimId": "i-kin",
+      "caseId": "iceland-commonwealth-1200",
+      "targetPointer": "/cases/1/claims/3/value",
+      "valueType": "object",
+      "valueSha256": "db5b5af2da5a6f553d24efa77a9e2ada3eed5fcc7339d909bc1870a51a29af3c",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "Diachronic scholarly account; no fixed early constitutional/social balance projected onto 1200",
+      "sourceIds": [
+        "d3-byock"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.5 / printed p.4: paragraph on shared chieftaincies, kinship alliances and local prominence; opening of The Institution, Its Components and Roles",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.13 / printed p.12: final paragraph before The Proto-Democratic Factors, bishops and uneven emergence of big chieftains in late twelfth/thirteenth centuries",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        }
+      ],
+      "reviewUncertainty": [
+        "No unchanged equality or exact 1200 hereditary rule follows. The source’s broad institutional interpretation is retained as a scholarly account."
+      ]
+    },
+    {
+      "claimId": "i-marriage",
+      "caseId": "iceland-commonwealth-1200",
+      "targetPointer": "/cases/1/claims/4/value",
+      "valueType": "object",
+      "valueSha256": "0f30e4268e6eca1ed92fe275fc2970b9b81ca0277a52fa19277da1785c524923",
+      "claimStatusPreserved": "sourced",
+      "verdict": "confirmed",
+      "scope": "A dated marriage example and later office term; no 1200 lawspeaker appointment or national royal family asserted",
+      "sourceIds": [
+        "d3-snorrastofa"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-snorrastofa",
+          "readSourceId": "d3-snorrastofa",
+          "url": "https://www.snorrastofa.is/media/1/snorri-syningarskra-vefur-01.pdf",
+          "locator": "PDF p.7, bilingual timeline entries 1199, Frá 1206 and 1215–1218; PDF p.2 biographical dates; PDF p.3 author credit and p.10 July 2017 publication credit",
+          "publicExtent": "Complete public 10-page bilingual exhibition guide; biography, timeline, author/publication credits inspected. No later office dates backdated."
+        }
+      ],
+      "reviewUncertainty": [
+        "A timeline event does not establish a national household, an office in 1200, all members of a household or assembly presence on December 31. No full office-career chronology is claimed."
+      ]
+    },
+    {
+      "claimId": "i-agency",
+      "caseId": "iceland-commonwealth-1200",
+      "targetPointer": "/cases/1/claims/5/value",
+      "valueType": "object",
+      "valueSha256": "cc49b891de60edbe190923fa711d7c33b1b7e93d246ec880457ded458e581785",
+      "claimStatusPreserved": "sourced",
+      "verdict": "confirmed",
+      "scope": "Functional differentiation in the scholarly Commonwealth account; not a named office roster",
+      "sourceIds": [
+        "d3-byock",
+        "d3-althingi"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.6 / printed p.5: Law Council voting/advisers, treaties, assembly benches and elected three-year lawspeaker paragraphs",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.7 / printed p.6: lawspeaker’s limited official power and legal questions; ceremonial allsherjargoði paragraph; sources preserve lawspeaker names",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.12 / printed p.11: distinct court panels and judge appointment; PDF p.13 / printed p.12: verdicts, political support and fifth court",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.15 / printed p.14: opening paragraph on private enforcement, advocates, fines and kin; PDF p.14 / printed p.13: negotiated dispute-resolution options",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-althingi",
+          "readSourceId": "d3-althingi",
+          "url": "https://www.althingi.is/pdf/Althingi2017_enska.pdf",
+          "locator": "Printed/PDF p.6, The History of Althingi: assembly season, Law Council and courts paragraphs; web-reader lines 88–103",
+          "publicExtent": "Public booklet PDF, historical text on pp.6–7 inspected through web PDF extraction; unrelated modern parliamentary sections not used."
+        }
+      ],
+      "reviewUncertainty": [
+        "Formal office differentiation does not establish a complete named roster, equal practical power or the absence of emerging powerful chieftains around 1200."
+      ]
+    },
+    {
+      "claimId": "i-succession",
+      "caseId": "iceland-commonwealth-1200",
+      "targetPointer": "/cases/1/claims/6/value",
+      "valueType": "object",
+      "valueSha256": "6a15ce43b83128db0e989255b9cd6c40080eb4c649346a129a169132680fb95a",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "An elected legal office is not automatically the engine’s council-by-ability monarch succession",
+      "sourceIds": [
+        "d3-byock"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.6 / printed p.5: Law Council voting/advisers, treaties, assembly benches and elected three-year lawspeaker paragraphs",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.7 / printed p.6: lawspeaker’s limited official power and legal questions; ceremonial allsherjargoði paragraph; sources preserve lawspeaker names",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        }
+      ],
+      "reviewUncertainty": [
+        "Election to this office does not determine chiefly succession or a merit criterion. The false value is read as criterion-not-established in this corpus, not proof that ability never influenced a choice."
+      ]
+    },
+    {
+      "claimId": "i-seat",
+      "caseId": "iceland-commonwealth-1200",
+      "targetPointer": "/cases/1/claims/7/value",
+      "valueType": "object",
+      "valueSha256": "eb8cbc681fcd990710199a05def7352b8ca24539ca3e2a72fe1009e055dcba5d",
+      "claimStatusPreserved": "sourced",
+      "verdict": "confirmed",
+      "scope": "Historical assembly site and modern Getty locality point; no winter session or palace presence",
+      "sourceIds": [
+        "d3-byock",
+        "d3-althingi",
+        "d3-tgn-1042555",
+        "d3-getty-rights"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.5 / printed p.4: paragraph on shared chieftaincies, kinship alliances and local prominence; opening of The Institution, Its Components and Roles",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.6 / printed p.5: Law Council voting/advisers, treaties, assembly benches and elected three-year lawspeaker paragraphs",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-althingi",
+          "readSourceId": "d3-althingi",
+          "url": "https://www.althingi.is/pdf/Althingi2017_enska.pdf",
+          "locator": "Printed/PDF p.6, The History of Althingi: assembly season, Law Council and courts paragraphs; web-reader lines 88–103",
+          "publicExtent": "Public booklet PDF, historical text on pp.6–7 inspected through web PDF extraction; unrelated modern parliamentary sections not used."
+        },
+        {
+          "requestedSourceId": "d3-tgn-1042555",
+          "readSourceId": "d3-tgn-1042555",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=&place=&nation=&logic=&note=&role=&subjectid=1042555",
+          "locator": "Full record ID 1042555: Coordinates decimal values, preferred/alternate Names, Hierarchical Position, Place Types, Sources and Contributors",
+          "publicExtent": "Entire public authority-record body, including coordinates, names, hierarchy, place types and contributors; inhabited-place metadata only."
+        },
+        {
+          "requestedSourceId": "d3-getty-rights",
+          "readSourceId": "d3-getty-rights",
+          "url": "https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/",
+          "locator": "Licensing and Citations > Licensing; Citations > General, required credit line and following contributor/source-credit paragraph",
+          "publicExtent": "Public data-services page, Licensing and Citations sections inspected. Vocabulary-data permission only; no map/image permission inferred."
+        }
+      ],
+      "reviewUncertainty": [
+        "The modern inhabited-place point is approximate site context. No exact Law Rock, December sitting, personal presence or containment conclusion follows. The booklet’s about-two-week wording does not certify every annual session."
+      ]
+    },
+    {
+      "claimId": "i-engine",
+      "caseId": "iceland-commonwealth-1200",
+      "targetPointer": "/cases/1/claims/8/value",
+      "valueType": "object",
+      "valueSha256": "71421a1d068de83a4096e92996cd746ff0fabbee62c3751eebb1090f4e0dc947",
+      "claimStatusPreserved": "sourced",
+      "verdict": "confirmed",
+      "scope": "Existing-code mapping is strictly scoped to the sourced council and elected office",
+      "sourceIds": [
+        "d3-byock",
+        "d3-althingi"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.6 / printed p.5: Law Council voting/advisers, treaties, assembly benches and elected three-year lawspeaker paragraphs",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.7 / printed p.6: lawspeaker’s limited official power and legal questions; ceremonial allsherjargoði paragraph; sources preserve lawspeaker names",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.12 / printed p.11: distinct court panels and judge appointment; PDF p.13 / printed p.12: verdicts, political support and fifth court",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.15 / printed p.14: opening paragraph on private enforcement, advocates, fines and kin; PDF p.14 / printed p.13: negotiated dispute-resolution options",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        },
+        {
+          "requestedSourceId": "d3-byock",
+          "readSourceId": "d3-byock",
+          "url": "https://www.viking.ucla.edu/publications/articles/icelandic_allthing.pdf",
+          "locator": "PDF p.13 / printed p.12: final paragraph before The Proto-Democratic Factors, bishops and uneven emergence of big chieftains in late twelfth/thirteenth centuries",
+          "publicExtent": "Complete public 18-page author-hosted scholarly chapter available. Printed pp.1–6 and 10–14 inspected for this review; bibliography/front matter checked as relevant."
+        }
+      ],
+      "reviewUncertainty": [
+        "The codes are an analytical mapping, not wording from the sources. They do not imply co-kings, equal chiefly power, a royal household or automatic centralized enforcement."
+      ]
+    },
+    {
+      "claimId": "g-positive",
+      "caseId": "caesar-germani-53bce-account",
+      "targetPointer": "/cases/2/claims/0/value",
+      "valueType": "object",
+      "valueSha256": "fdf63302c5a758e3115420f6fe652944e6c8c120baca49fb86a3ccff65d8be72",
+      "claimStatusPreserved": "sourced",
+      "verdict": "confirmed",
+      "scope": "What Caesar’s Book 6.23 says; conditional and source-attributed, not universal historical certification",
+      "sourceIds": [
+        "d3-caesar-york",
+        "d3-caesar-fordham"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-caesar-york",
+          "readSourceId": "d3-caesar-york",
+          "url": "https://www.yorku.ca/pswarney/Texts/bel-gal-6.htm",
+          "locator": "Book VI, chapter 23: wartime appointments, peace-time local justice and assembly recruitment; downloaded text lines 434–457; chapter 21 introduction to Germani context",
+          "publicExtent": "Complete public Book VI translation available; chapters 21–23 inspected. No Latin manuscript or archaeological corroboration claimed."
+        },
+        {
+          "requestedSourceId": "d3-caesar-fordham",
+          "readSourceId": "d3-caesar-fordham",
+          "url": "https://sourcebooks.fordham.edu/source/51caesar-germans.asp",
+          "locator": "Numbered section 23, from When a tribe is either repelling an invasion through assembly recruitment; section 22 for contrast with land allocation",
+          "publicExtent": "Complete public extract §§21–23, editorial introduction and source/rights notice inspected. Ogg’s introduction is distinguished from Caesar’s words."
+        }
+      ],
+      "reviewUncertainty": [
+        "Roman outsider testimony is not universal constitutional certification. Wartime appointment is conditional on a community waging or repelling war; expedition followers’ approval is a distinct described action."
+      ]
+    },
+    {
+      "claimId": "g-date",
+      "caseId": "caesar-germani-53bce-account",
+      "targetPointer": "/cases/2/claims/1/value",
+      "valueType": "object",
+      "valueSha256": "4e6f669a78c874f8dc288961fe2aac377bd7d7556fa239cdd50841f9bc907f80",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "Book-campaign date and source/account heading are different temporal scopes; neither dates the ethnographic claim to December 31",
+      "sourceIds": [
+        "d3-caesar-chronology",
+        "d3-caesar-fordham",
+        "d3-caesar-york",
+        "review-bloomsbury-us"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-caesar-chronology",
+          "readSourceId": "review-bloomsbury-us",
+          "url": "https://www.bloomsbury.com/us/caesar-gallic-war-vi-9780862920883/",
+          "locator": "Original UK URL blocked; same publisher’s US edition page, Description first paragraph and Product details ISBN 9780862920883; web-reader lines 168–171 and 215–225",
+          "publicExtent": "Original UK page inaccessible; actual US publisher Description and ISBN metadata inspected. Full annotated volume not read."
+        },
+        {
+          "requestedSourceId": "d3-caesar-fordham",
+          "readSourceId": "d3-caesar-fordham",
+          "url": "https://sourcebooks.fordham.edu/source/51caesar-germans.asp",
+          "locator": "Heading Julius Caesar: The Germans, c. 51 BCE; entire Ogg Introduction immediately below heading; final Source and rights notice",
+          "publicExtent": "Complete public extract §§21–23, editorial introduction and source/rights notice inspected. Ogg’s introduction is distinguished from Caesar’s words."
+        },
+        {
+          "requestedSourceId": "d3-caesar-york",
+          "readSourceId": "d3-caesar-york",
+          "url": "https://www.yorku.ca/pswarney/Texts/bel-gal-6.htm",
+          "locator": "Book VI, chapter 23: wartime appointments, peace-time local justice and assembly recruitment; downloaded text lines 434–457; chapter 21 introduction to Germani context",
+          "publicExtent": "Complete public Book VI translation available; chapters 21–23 inspected. No Latin manuscript or archaeological corroboration claimed."
+        }
+      ],
+      "reviewUncertainty": [
+        "Campaign narrative, editorial account date and observation date are separate. No calendar conversion, era arithmetic or December 31 implementation has been performed."
+      ]
+    },
+    {
+      "claimId": "g-scope",
+      "caseId": "caesar-germani-53bce-account",
+      "targetPointer": "/cases/2/claims/2/value",
+      "valueType": "object",
+      "valueSha256": "2de8471d1e3b0e895fa93e6b888b36ae7bfaa7b67a5ba7ce598d338e2ed9ce9a",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "Outsider Roman ethnographic category, not a mapped pan-Germanic state or uniform polity",
+      "sourceIds": [
+        "d3-caesar-fordham",
+        "d3-caesar-york"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-caesar-fordham",
+          "readSourceId": "d3-caesar-fordham",
+          "url": "https://sourcebooks.fordham.edu/source/51caesar-germans.asp",
+          "locator": "Heading Julius Caesar: The Germans, c. 51 BCE; entire Ogg Introduction immediately below heading; final Source and rights notice",
+          "publicExtent": "Complete public extract §§21–23, editorial introduction and source/rights notice inspected. Ogg’s introduction is distinguished from Caesar’s words."
+        },
+        {
+          "requestedSourceId": "d3-caesar-york",
+          "readSourceId": "d3-caesar-york",
+          "url": "https://www.yorku.ca/pswarney/Texts/bel-gal-6.htm",
+          "locator": "Book VI, chapter 23: wartime appointments, peace-time local justice and assembly recruitment; downloaded text lines 434–457; chapter 21 introduction to Germani context",
+          "publicExtent": "Complete public Book VI translation available; chapters 21–23 inspected. No Latin manuscript or archaeological corroboration claimed."
+        }
+      ],
+      "reviewUncertainty": [
+        "The limitation is attributed to an early twentieth-century editor, not a modern archaeological census or Caesar’s own methodological statement. No pan-Germanic map or uniform polity is certified."
+      ]
+    },
+    {
+      "claimId": "g-holder",
+      "caseId": "caesar-germani-53bce-account",
+      "targetPointer": "/cases/2/claims/3/value",
+      "valueType": "object",
+      "valueSha256": "82c1403b79bdfa21c63e39a1b68a286666ea51b3461d8adbfda3c756c96c845f",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "No exact-date holder or general succession law exported; conditional chosen offices remain a source-report fact",
+      "sourceIds": [
+        "d3-caesar-york",
+        "d3-caesar-fordham"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-caesar-york",
+          "readSourceId": "d3-caesar-york",
+          "url": "https://www.yorku.ca/pswarney/Texts/bel-gal-6.htm",
+          "locator": "Book VI, chapter 23: wartime appointments, peace-time local justice and assembly recruitment; downloaded text lines 434–457; chapter 21 introduction to Germani context",
+          "publicExtent": "Complete public Book VI translation available; chapters 21–23 inspected. No Latin manuscript or archaeological corroboration claimed."
+        },
+        {
+          "requestedSourceId": "d3-caesar-fordham",
+          "readSourceId": "d3-caesar-fordham",
+          "url": "https://sourcebooks.fordham.edu/source/51caesar-germans.asp",
+          "locator": "Numbered section 23, from When a tribe is either repelling an invasion through assembly recruitment; section 22 for contrast with land allocation",
+          "publicExtent": "Complete public extract §§21–23, editorial introduction and source/rights notice inspected. Ogg’s introduction is distinguished from Caesar’s words."
+        }
+      ],
+      "reviewUncertainty": [
+        "Chosen does not by itself identify electors, a merit test, electoral procedure or permanent office. Missing names are not the evidence for peace-time institutional differentiation."
+      ]
+    },
+    {
+      "claimId": "g-kin",
+      "caseId": "caesar-germani-53bce-account",
+      "targetPointer": "/cases/2/claims/4/value",
+      "valueType": "object",
+      "valueSha256": "b0beaada56a4f3bb28388d9d968043a53a5daef82c379a40d4747ae28d7ee238",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "Limited primary-source kin grouping context; no household or marriage rule reconstructed",
+      "sourceIds": [
+        "d3-caesar-york"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-caesar-york",
+          "readSourceId": "d3-caesar-york",
+          "url": "https://www.yorku.ca/pswarney/Texts/bel-gal-6.htm",
+          "locator": "Book VI, chapter 22, opening land-allocation sentences; downloaded text lines 418–433",
+          "publicExtent": "Complete public Book VI translation available; chapters 21–23 inspected. No Latin manuscript or archaeological corroboration claimed."
+        }
+      ],
+      "reviewUncertainty": [
+        "The text is a generalized external account; no elite marriage rule, couple, royal family or dated household can be recovered from this passage."
+      ]
+    },
+    {
+      "claimId": "g-seat",
+      "caseId": "caesar-germani-53bce-account",
+      "targetPointer": "/cases/2/claims/5/value",
+      "valueType": "object",
+      "valueSha256": "7198084a439d3fa35d88255764a1ca101afdbe3b680cb79afedb70e2cc62ff84",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "No sourced central seat or specific community identified in the passage; does not assert that gathering places or important settlements were absent",
+      "sourceIds": [
+        "d3-caesar-york",
+        "d3-caesar-fordham"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-caesar-york",
+          "readSourceId": "d3-caesar-york",
+          "url": "https://www.yorku.ca/pswarney/Texts/bel-gal-6.htm",
+          "locator": "Book VI, chapter 23: wartime appointments, peace-time local justice and assembly recruitment; downloaded text lines 434–457; chapter 21 introduction to Germani context",
+          "publicExtent": "Complete public Book VI translation available; chapters 21–23 inspected. No Latin manuscript or archaeological corroboration claimed."
+        },
+        {
+          "requestedSourceId": "d3-caesar-fordham",
+          "readSourceId": "d3-caesar-fordham",
+          "url": "https://sourcebooks.fordham.edu/source/51caesar-germans.asp",
+          "locator": "Numbered section 23, from When a tribe is either repelling an invasion through assembly recruitment; section 22 for contrast with land allocation",
+          "publicExtent": "Complete public extract §§21–23, editorial introduction and source/rights notice inspected. Ogg’s introduction is distinguished from Caesar’s words."
+        }
+      ],
+      "reviewUncertainty": [
+        "This confirms disciplined withholding, not the historical nonexistence of settlements, gathering places, important local seats or other records. No Getty point or polygon is invented."
+      ]
+    },
+    {
+      "claimId": "g-engine",
+      "caseId": "caesar-germani-53bce-account",
+      "targetPointer": "/cases/2/claims/6/value",
+      "valueType": "object",
+      "valueSha256": "3b5ce33e6f05f02c0bffd7980be0f941a9f29ad485b435de27b1204364a38dcf",
+      "claimStatusPreserved": "uncertain",
+      "verdict": "confirmed",
+      "scope": "No permanent elective monarchy or central council inferred from this text; exact-date case withheld",
+      "sourceIds": [
+        "d3-caesar-york",
+        "d3-caesar-fordham"
+      ],
+      "actualReads": [
+        {
+          "requestedSourceId": "d3-caesar-york",
+          "readSourceId": "d3-caesar-york",
+          "url": "https://www.yorku.ca/pswarney/Texts/bel-gal-6.htm",
+          "locator": "Book VI, chapter 23: wartime appointments, peace-time local justice and assembly recruitment; downloaded text lines 434–457; chapter 21 introduction to Germani context",
+          "publicExtent": "Complete public Book VI translation available; chapters 21–23 inspected. No Latin manuscript or archaeological corroboration claimed."
+        },
+        {
+          "requestedSourceId": "d3-caesar-fordham",
+          "readSourceId": "d3-caesar-fordham",
+          "url": "https://sourcebooks.fordham.edu/source/51caesar-germans.asp",
+          "locator": "Numbered section 23, from When a tribe is either repelling an invasion through assembly recruitment; section 22 for contrast with land allocation",
+          "publicExtent": "Complete public extract §§21–23, editorial introduction and source/rights notice inspected. Ogg’s introduction is distinguished from Caesar’s words."
+        }
+      ],
+      "reviewUncertainty": [
+        "The hypothetical condition is not evidence that it held on any candidate day. The text establishes neither a permanent elective monarchy nor a central council; implementation remains withheld."
+      ]
+    }
+  ],
+  "editorialEngineProposalRuling": {
+    "separateFrom24SourceClaimVerdicts": true,
+    "proposalCode": "no-common-executive",
+    "proposalStatus": "unapplied; no new existing game code",
+    "evidentialVerdict": "confirmed-with-scope-qualification",
+    "ruling": "Historically defensible only as an unapplied, condition-specific representation proposal. It is not approved as a general historical label for both cases.",
+    "scope": "Caesar’s reported peace-time absence of a common magistrate and Iceland’s separated legal institutions/private enforcement are distinct premises. No common historical label is applied to both cases.",
+    "implementationPolicy": "No code is added or applied. Choice of engine taxonomy is outside source adjudication. Any later use must distinguish no common peace-time magistrate from decentralized enforcement, retain local authority, and evidence the relevant period/condition.",
+    "appliedToAnyCase": false,
+    "implementationRulingPending": true,
+    "newHistoricalClaim": false
+  },
+  "submittedCaseStatusSemantics": "Case status fields are preserved from the submitted packet. Completed scoped source review is recorded in the top-level review; no case is approved as a playable court."
+}
