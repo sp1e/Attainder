@@ -28,7 +28,7 @@ The owner decided on 7 November 2026 that every culture of the world in the peri
 
 Evidence at `018c823c`: the full serial suite ran 4,913 tests, with 4,910 passed, 0 failed, 1 skipped and 2 TODO. The build, `build-historical-scenarios.mjs --check` and `check-historical-events.mjs --check` exited 0. Lint reported 18 errors and 71 warnings, all in 40 files this branch does not touch. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md).
 
-Known limit: the Kyrkostaten court has four men aged 42 to 50 and no women. Nobody is born, and the realm ends between 813 and 838 on eight seeds. Charlemagne's court has the same cause and ends between 856 and 868. Phase 5 adds elective succession and courts that renew themselves.
+Known limit, updated in Phase 5: the Kyrkostaten court has four men aged 42 to 50 and no women, and nobody is born. Under merit succession the realm ended between 813 and 838 on eight seeds. Since Charlemagne 1.3.0 the court elects a generated outsider when it dies out, and the realm lives to 900 on the same seeds (see Phase 5 below). Charlemagne's court keeps primogeniture and ended between 856 and 868 for the same cause. Births at court remain open in backlog row 7.
 
 ## Every culture playable: Phase 2
 
@@ -68,6 +68,18 @@ The design is `docs/superpowers/specs/2026-11-07-world-cultures-phase-4-design.m
 - `HISTORICAL_BOOKMARKS` installs the start with marker `historical-bookmarks-world-1500`; the card lists both polities under `AMERIKA`, era `Senmedeltid`. Charlemagne stays the default start.
 
 Evidence at `670af54d`: the full serial suite ran 5,082 tests, with 5,077 passed, 2 failed, 1 skipped and 2 TODO. Both failures are `scripts/test-local-model-*.mjs`, which call this machine's Codex CLI (`config.toml` line 9 and the rejected `--ignore-user-config` flag); `npm test` does not run them. The build and the four `--check` scripts exited 0. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md). Next: Phase 5, engine depth (polity kinds, elective succession, culture name pools).
+
+## Every culture playable: Phase 5
+
+The design is `docs/superpowers/specs/2026-11-07-world-cultures-phase-5-design.md` and the plan is `docs/superpowers/plans/2026-11-07-world-cultures-phase-5.md`. Phase 4 merged as `02aea551` in PR #34. Phase 5 is built on `feature/world-cultures-phase-5`:
+
+- A package polity may carry `kind`: `state`, `city-state`, `confederation`, `chiefdom` or `non-state`, with `state` when absent. Both validators refuse other values and a playable `non-state` polity. A campaign stores the kind as `realm.kind`, and `ensureRealmKind` gives older saves `state`. The card shows a Swedish kind label after the era for every kind except `state`; `HISTORICAL_SUMMARY_SCHEMA` is 3.
+- `SUCCESSION_LAWS` is `primogeniture`, `merit`, `elective`, and the legislator's reform cycles the three. Under `elective` the engine ranks adults of the old ruler's house by merit, then the house's minors by age, then the other adults by merit; the old ruler's spouse and co-parents stand with the other adults. With nobody left, `electOutsider` crowns `Vald härskare <n> (genererad)` of `Valt hus <n> (genererat)`, aged 40, and draws no randomness. The forecast reports `electionFromOutside` and creates nobody. `Ämbeten & arv` shows `Tronföljd: <label>`.
+- Kyrkostaten, Kungariket Asturien, Almohaderna, Aztekriket and Inkariket elect their ruler in Charlemagne 1.3.0, John 1.2.0 and world-1500 1.1.0. `server/seed/default` follows John 1.2.0 with `builtInRevision` 3. At the world-1500 bookmark the election after Huayna Capac goes to Huáscar under a regency. Egypt keeps its package bytes and release rows.
+- `server/fixtures/` holds patches for Charlemagne 1.1.0 and 1.2.0, John 1.0.0 and 1.1.0 and world-1500 1.0.0, so campaigns saved under every earlier release restore.
+- On the eight seeds of `src/runtime/characters/courtBalance.test.js`, Kyrkostaten plays 100 years from the built package. The last of the four opening courtiers dies and the first outsider is elected between 817 and 836. On 25 December 900 every seed has an elected ruler, three to five elections behind it and a living realm.
+
+Evidence at `2155f8cc` with the century test: the full serial suite ran 5,122 tests, with 5,119 passed, 0 failed, 1 skipped and 2 TODO, in 440 seconds. The build and the four `--check` scripts exited 0, and eslint reported no errors in the changed files. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md). Births at court, name pools and several spouses per person remain open.
 
 ## Branch state
 

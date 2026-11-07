@@ -199,6 +199,22 @@ A second run on `edf7fbef` covered the two starts the first run left out.
 
 Choosing Aztekriket shows the dossier text that opens `Ahuitzotl styr från Tenochtitlan inom trippelalliansen.` Both consoles showed 0 errors in both runs. No model turn was run.
 
+## Elective succession, Phase 5
+
+Charlemagne 1.3.0, John 1.2.0 and world-1500 1.1.0 give Kyrkostaten, Kungariket Asturien, Almohaderna, Aztekriket and Inkariket the elective law. The browser run checks these rows on both adapters:
+
+| ID | Check | Expected |
+| --- | --- | --- |
+| E-1 | Card rows | `Kyrkostaten · 800 e.Kr.` and `Inkariket · 1500 e.Kr.`, with no kind label |
+| E-2 | Kyrkostaten, realm mode | `Ämbeten & arv` shows `Tronföljd: val` |
+| E-3 | Inkariket, realm mode | `Ämbeten & arv` shows `Tronföljd: val` and Huáscar as legal heir |
+| E-4 | Library installed before the upgrade | Charlemagne 1.3.0 after one read |
+| E-5 | Console | 0 errors |
+
+Browser check: pending (controller)
+
+A century in Kyrkostaten has automated coverage only. `src/runtime/characters/courtBalance.test.js` plays 100 years on eight seeds from the built package. The first outsider is elected between 817 and 836, and on 25 December 900 every seed has an elected ruler and a living realm.
+
 ## Closure
 
 The controller accepted Task 6 with the documented limits, and final documentation review approved publication subject to current-head CI. CI passed at `2066a55`; the PR tracks the current head and merge state. Preserve source attribution and licenses, and exclude private material from publication. The annual 3300 BC–AD 1530 historical-reference research and turn-end popup remain a separate pending milestone.
