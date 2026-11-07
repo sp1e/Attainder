@@ -1,7 +1,7 @@
 import { compareGameDates, formatGameDate, parseGameDate } from "./gameDates.js";
 
-export const HISTORICAL_START_RANGE = Object.freeze({ minYear: -3300, maxYear: 1200 });
-export const HISTORICAL_START_REFUSAL = "Välj ett giltigt startdatum mellan 3300 f.Kr. och 1200 e.Kr.";
+export const HISTORICAL_START_RANGE = Object.freeze({ minYear: -3300, maxYear: 1530 });
+export const HISTORICAL_START_REFUSAL = "Välj ett giltigt startdatum mellan 3300 f.Kr. och 1530 e.Kr.";
 
 // The shipped starts installed beside the built-in scenario `default`, which holds John.
 // Each start has its own marker, so an upgrade adds a new one once and a start the

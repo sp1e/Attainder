@@ -75,7 +75,7 @@ test('lookup leaves the catalog unchanged and draws no randomness', () => {
 
 const emptyCatalog = { schemaVersion: 1, sources: [], events: [] };
 const range = (startYear, endYear, status = 'unresearched') => ({ startYear, endYear, status, note: 'test' });
-const fixtureCoverage = { schemaVersion: 1, ranges: [range(-3300, -1), range(1, 1200, 'partial')] };
+const fixtureCoverage = { schemaVersion: 1, ranges: [range(-3300, -1), range(1, 1530, 'partial')] };
 const source = { id: 's1', title: 'T', institution: 'I', url: 'https://example.org', locator: 'p. 1', retrievedOn: '2026-11-07', originalChronology: 'BC', reuseTerms: 'cite' };
 const goodEvent = {
   id: 'e1', titleSv: 'Rubrik', summarySv: 'Sammanfattning', geographySv: 'Egypten', category: 'politics', importance: 2,
@@ -84,24 +84,29 @@ const goodEvent = {
 };
 const catalogWith = (event, sources = [source]) => ({ schemaVersion: 1, sources, events: [event] });
 
-test('the coverage index partitions all 4,500 years', () => {
+test('the coverage index partitions all 4,830 years', () => {
   const result = validateCoverage(fixtureCoverage, emptyCatalog);
   assert.equal(result.ok, true);
-  assert.equal(Object.values(result.totals).reduce((a, b) => a + b), 4500);
-  assert.equal(result.totals.partial, 1200);
+  assert.equal(Object.values(result.totals).reduce((a, b) => a + b), 4830);
+  assert.equal(result.totals.partial, 1530);
 });
 test('a gap, an overlap or a range holding year zero alone is refused', () => {
   const refused = (ranges) => validateCoverage({ schemaVersion: 1, ranges }, emptyCatalog).ok === false;
-  assert.ok(refused([range(-3300, -2), range(1, 1200)]));
-  assert.ok(refused([range(-3300, 5), range(5, 1200)]));
-  assert.ok(refused([range(-3300, -1), range(0, 0), range(1, 1200)]));
+  assert.ok(refused([range(-3300, -2), range(1, 1530)]));
+  assert.ok(refused([range(-3300, 5), range(5, 1530)]));
+  assert.ok(refused([range(-3300, -1), range(0, 0), range(1, 1530)]));
 });
 const errorsOf = (catalog) => validateEventCatalog(catalog).errors ?? [];
 const hasError = (errors, text) => errors.some((error) => error.includes(text));
+test('coverage that stops at AD 1200 leaves a gap before the start range ends', () => {
+  const errors = validateCoverage({ schemaVersion: 1, ranges: [range(-3300, -1), range(1, 1200)] }, emptyCatalog).errors ?? [];
+  assert.ok(hasError(errors, 'gap: ranges stop before 1530'), JSON.stringify(errors));
+});
 test('an event is refused for each defect, with the error that names it', () => {
   const withDate = (patch) => ({ ...goodEvent, date: { ...goodEvent.date, ...patch } });
   const cases = {
     'year outside the range': [withDate({ startYear: -3400, endYear: -3400 }), 'startYear -3400 is not a year'],
+    'year past the range': [withDate({ startYear: 1531, endYear: 1531 }), 'startYear 1531 is not a year in -3300..1530'],
     'start year zero': [withDate({ startYear: 0, endYear: 5, kind: 'range' }), 'startYear 0 is not a year'],
     'start after end': [withDate({ startYear: -3000, endYear: -3100, kind: 'range' }), 'startYear is after endYear'],
     'exact with start != end': [withDate({ endYear: -3000 }), 'exact date must have startYear equal to endYear'],
@@ -146,13 +151,13 @@ test('an empty catalog stays valid, with no sources to cite', () => {
   assert.equal(validateEventCatalog(emptyCatalog).ok, true);
 });
 test('an event inside a range marked no-secure-event is refused', () => {
-  const coverage = { schemaVersion: 1, ranges: [range(-3300, -3000, 'no-secure-event'), range(-2999, -1), range(1, 1200)] };
+  const coverage = { schemaVersion: 1, ranges: [range(-3300, -3000, 'no-secure-event'), range(-2999, -1), range(1, 1530)] };
   const errors = validateCoverage(coverage, catalogWith(goodEvent)).errors ?? [];
   assert.ok(hasError(errors, 'marked no-secure-event'), JSON.stringify(errors));
   assert.equal(validateCoverage(coverage, emptyCatalog).ok, true);
 });
 test('a range event that overlaps a no-secure-event range at either end is refused', () => {
-  const coverage = { schemaVersion: 1, ranges: [range(-3300, -3000, 'no-secure-event'), range(-2999, -1, 'partial'), range(1, 1200, 'partial')] };
+  const coverage = { schemaVersion: 1, ranges: [range(-3300, -3000, 'no-secure-event'), range(-2999, -1, 'partial'), range(1, 1530, 'partial')] };
   const spanning = (startYear, endYear) => catalogWith({ ...goodEvent, date: { kind: 'range', startYear, endYear, displaySv: 'x' } });
   const startsEarlier = validateCoverage(coverage, spanning(-3200, -3050)).errors ?? [];
   assert.ok(hasError(startsEarlier, 'marked no-secure-event'), `inside: ${JSON.stringify(startsEarlier)}`);
@@ -163,13 +168,13 @@ test('a range event that overlaps a no-secure-event range at either end is refus
   assert.equal(validateCoverage(coverage, spanning(-2900, -2500)).ok, true, 'a range clear of it passes');
 });
 test('a range whose end year falls inside a no-secure-event range is refused', () => {
-  const coverage = { schemaVersion: 1, ranges: [range(-3300, -3200, 'partial'), range(-3199, -3000, 'no-secure-event'), range(-2999, -1, 'partial'), range(1, 1200, 'partial')] };
-  const event = { ...goodEvent, date: { kind: 'range', startYear: -3250, endYear: -3100, displaySv: 'x' } };
+  const coverage = { schemaVersion: 1, ranges: [range(-3300, -3200, 'partial'), range(-3199, -3000, 'no-secure-event'), range(-2999, -1, 'partial'), range(1, 1530, 'partial')] };
+  const event ={ ...goodEvent, date: { kind: 'range', startYear: -3250, endYear: -3100, displaySv: 'x' } };
   const errors = validateCoverage(coverage, catalogWith(event)).errors ?? [];
   assert.ok(hasError(errors, 'marked no-secure-event'), JSON.stringify(errors));
 });
 test('an event inside a range marked unresearched is refused', () => {
-  const coverage = { schemaVersion: 1, ranges: [range(-3300, -1), range(1, 1200, 'partial')] };
+  const coverage = { schemaVersion: 1, ranges: [range(-3300, -1), range(1, 1530, 'partial')] };
   const errors = validateCoverage(coverage, catalogWith(goodEvent)).errors ?? [];
   assert.ok(hasError(errors, 'marked unresearched'), JSON.stringify(errors));
 });
@@ -182,7 +187,7 @@ test('the committed catalog and coverage pass', () => {
 test('the coverage report is stable', () => {
   const first = renderCoverageReport(fixtureCoverage, emptyCatalog);
   assert.equal(first, renderCoverageReport(fixtureCoverage, emptyCatalog));
-  assert.match(first, /4500 calendar years/);
+  assert.match(first, /4830 calendar years/);
 });
 
 test('the committed coverage report matches the catalog', async () => {

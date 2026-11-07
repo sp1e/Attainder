@@ -25,7 +25,7 @@ test('synthetic fixture validates without mutation', () => {
 for (const [name, mutate] of [
   ['missing source', x => { delete x.world.historicalScenario.sources.test; }],
   ['duplicate ids', x => x.world.historicalScenario.polities.push(x.world.historicalScenario.polities[0])],
-  ['unsupported date', x => { x.world.historicalScenario.bookmarkDate = '1201-01-01'; }],
+  ['unsupported date', x => { x.world.historicalScenario.bookmarkDate = '1531-01-01'; }],
   ['invalid coordinates', x => { x.regions.features[0].geometry.coordinates[0][0] = [181, 0]; }],
   ['open ring', x => { x.regions.features[0].geometry.coordinates[0].pop(); }],
   ['dangling owner', x => { x.regions.features[0].properties.owner = 'missing'; }],

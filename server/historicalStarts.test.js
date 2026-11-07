@@ -35,7 +35,7 @@ test('server prepares both historical courts and refuses invalid requests withou
       const invalidBundle=structuredClone(authored); invalidBundle.data.game.gameDate=null;
       const invalidScenarioCover=structuredClone(authored); invalidScenarioCover.assets.cover={mode:'embedded',encoding:'base64',data:'@@@'};
       const forged=structuredClone(authored); forged.data.game.startDate=forged.data.game.gameDate='2016-01-01'; forged.restoreOnly=true; forged.skipValidation=true;
-      for (const run of [()=>store.createScenario({gamePatch:{gameDate:null}}),()=>store.updateScenario('default',{gamePatch:{startDate:'1201-01-01'}}),
+      for (const run of [()=>store.createScenario({gamePatch:{gameDate:null}}),()=>store.updateScenario('default',{gamePatch:{startDate:'1531-01-01'}}),
         ()=>store.importScenarioBundle(invalidBundle),()=>store.importScenarioBundle(invalidScenarioCover),()=>store.importScenarioBundle(forged),()=>store.updateScenarioFromBundle('default',invalidBundle)]) {
         const before=snapshot(); assert.throws(run); assert.deepEqual(snapshot(),before);
       }

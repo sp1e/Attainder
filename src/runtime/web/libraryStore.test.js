@@ -238,7 +238,7 @@ test('historical web starts create a complete court and invalid requests make no
     const malformed=structuredClone(bundle); malformed.data.game.gameDate=null;
     const badCover=structuredClone(bundle); badCover.assets.cover={mode:'embedded',encoding:'base64',data:'@@@'};
     const forged=structuredClone(bundle); forged.data.game.startDate=forged.data.game.gameDate='2016-01-01'; forged.restoreOnly=true; forged.skipValidation=true;
-    for (const run of [()=>scenarios('POST','',{gamePatch:{gameDate:null}}),()=>scenarios('PUT',scenarioId,{gamePatch:{startDate:'1201-01-01'}}),
+    for (const run of [()=>scenarios('POST','',{gamePatch:{gameDate:null}}),()=>scenarios('PUT',scenarioId,{gamePatch:{startDate:'1531-01-01'}}),
       ()=>scenarios('POST','import',malformed),()=>scenarios('POST','import',badCover),()=>scenarios('POST','import',forged),()=>scenarios('PUT',`${scenarioId}/import`,malformed),
       ()=>store.handleScenarios({method:'DELETE',segments:[scenarioId,'assets','citiesGeojson'],query:new URLSearchParams()})]) {
       const before=structuredClone(db), writes=globalThis.__ohWebStoreWrites;
@@ -261,7 +261,7 @@ test('historical web starts create a complete court and invalid requests make no
     assert.equal(created.data.world.simulationHistory,undefined); assert.deepEqual(created.data.events,[]);
     for (const request of [
       {scenarioId,gamePatch:{gameDate:null}},{scenarioId,gamePatch:{startDate:'0000-01-01'}},
-      {scenarioId,gamePatch:{gameDate:'1201-01-01'}},{scenarioId,gamePatch:{gameDate:'-3301-01-01'}},
+      {scenarioId,gamePatch:{gameDate:'1531-01-01'}},{scenarioId,gamePatch:{gameDate:'-3301-01-01'}},
       {scenarioId,gamePatch:{gameDate:'1200-12-31junk'}},{scenarioId,gamePatch:null},
       {scenarioId,seedGameId:'missing'},{scenarioId,historicalStart:null},
       {scenarioId,historicalStart:{mode:'bad'}},{scenarioId,historicalStart:{polityId:'unknown'}},

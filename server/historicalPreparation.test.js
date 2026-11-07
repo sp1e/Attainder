@@ -32,7 +32,7 @@ test('the Charlemagne date passes every new-game guard', () => {
 });
 test('raw dates, conflicting options, missing sources and actual assets fail before preparation', () => {
   const scenario = candidate(read('john-1200'));
-  for (const gamePatch of [{ gameDate: null }, { startDate: '1200-12-31junk' }, { gameDate: '1201-01-01' }, { country: 'France' }]) {
+  for (const gamePatch of [{ gameDate: null }, { startDate: '1200-12-31junk' }, { gameDate: '1531-01-01' }, { country: 'France' }]) {
     assert.equal(prepareHistoricalCampaignStart({ request: { gamePatch }, scenario }).ok, false);
   }
   assert.equal(prepareHistoricalCampaignStart({ request: { seedGameId: 'missing' }, scenario }).ok, false);

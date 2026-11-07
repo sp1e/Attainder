@@ -6,7 +6,7 @@ import React from 'react';
 import { transformSync } from 'esbuild';
 import * as campaignSeed from '../runtime/campaignSeed.js';
 import { orderHistoricalStarts } from '../runtime/historicalStartOptions.js';
-import { buttonNamed, createHookDriver, findAll, settle } from './testing/hookDriver.js';
+import { buttonNamed, createHookDriver, findAll, settle, textOf } from './testing/hookDriver.js';
 
 const bookmark = { scenarioId:'default', name:'John', date:'1200-12-31', label:'1200 e.Kr.', polities:[{id:'johns-realms',name:'Riket',families:[{id:'plantagenet',name:'Plantagenet'}]}] };
 const compile = (file, loader) => transformSync(readFileSync(new URL(file,import.meta.url),'utf8'),{loader,format:'cjs',jsx:'transform'}).code;
@@ -29,6 +29,19 @@ test('the start card sends the selected historical bookmark, identity and diffic
   tree=render(); await buttonNamed(tree,'Starta som riket').props.onClick();
   assert.deepEqual(JSON.parse(JSON.stringify(started)),[{mode:'realm',seed:'',difficulty:'hard',scenarioId:'default',date:'1200-12-31',polityId:'johns-realms'}]);
   assert.deepEqual(JSON.parse(JSON.stringify(card.DYNASTY_DIFFICULTIES)),[['easy','Lätt'],['normal','Normal'],['hard','Svår']]);
+});
+
+test('the start card heading names the supported start range', async () => {
+  const driver=createHookDriver();
+  const card=load('./DynastyStartCard.jsx','jsx',{
+    react:driver.react, './Characters/LocalModelConnect.jsx':{default:()=>null,__esModule:true},
+    '../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>[bookmark],startDynastyCampaign:async()=>{}},
+    './AI/providerConfig.js':{isFallbackListConfigured:()=>true}, './dynastyStart.css':{},
+  });
+  const render=()=>driver.render(React.createElement(card.default,{}));
+  render(); await settle();
+  const heading=findAll(render(),n=>n.props?.className==='dynasty-start-heading');
+  assert.equal(heading.length,1); assert.equal(textOf(heading[0].props.children[0]),'HISTORISKA DYNASTIER · 3300 F.KR.–1530 E.KR.');
 });
 
 test('orchestrator creates once with the selected historical options before activation', async () => {

@@ -6,6 +6,12 @@
       "endYear": 1200,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": 1201,
+      "endYear": 1530,
+      "status": "unresearched",
+      "note": "Annual research has not started in this catalog."
     }
   ]
 }

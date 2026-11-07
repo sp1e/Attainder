@@ -16,7 +16,7 @@ The popup after a closed calendar year and the chronicle segment `I verkligheten
 
 ## Every culture playable (paused)
 
-The owner decided on 7 November 2026 that every culture of the world in the period must be playable, and moved the upper start year to AD 1530 so the Aztec and Inca empires fit. Development is paused. Today each start has one playable polity, a culture without a single ruler cannot be started, and the start card lists polities without search. Three changes come before new research: several playable polities per start, a validator rule that requires the Swedish generated label on a generated ruler, and the 1530 range in `server/historicalStarts.js`. Historical Basemaps has 30 snapshots from `bc3000` to `1530` at the pinned commit.
+The owner decided on 7 November 2026 that every culture of the world in the period must be playable, and moved the upper start year to AD 1530 so the Aztec and Inca empires fit. Development is paused. Today each start has one playable polity, a culture without a single ruler cannot be started, and the start card lists polities without search. Three changes come before new research: several playable polities per start, a validator rule that requires the Swedish generated label on a generated ruler, and the 1530 range in `server/historicalStarts.js`. On `feature/world-cultures`, new campaigns can start from 3300 BC through AD 1530, and the start card heading and the coverage index name that range. The chronicle note `Forskningen sträcker sig till år 1200.` stays until research reaches further. Historical Basemaps has 30 snapshots from `bc3000` to `1530` at the pinned commit.
 
 ## Branch state
 

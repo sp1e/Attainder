@@ -69,11 +69,11 @@ Reproduce new findings before fixing them and write the failing test first.
 
 ### 2. Historical foundation: implementation and review accepted
 
-Follow `docs/superpowers/specs/2026-11-05-historical-world-direction.md`: real geography and historical polities, new starts from the Bronze Age through about AD 1200, and no modern starts. The written plan `docs/superpowers/plans/2026-11-05-historical-campaign-foundation.md` is prepared. Tasks 1–5 are accepted through `1addf27`. Task 6 and final documentation review are accepted with the limits in the play script. Final review approved publication subject to current-head CI; PR #13 tracks merge state. The six ordered tasks cover: campaign-start policy, historical content, initializer, prompts, combined guards/defaults/UI, then browser evidence. Preserve existing campaigns. Year-by-year research for approximately 3300 BC through AD 1200 and the turn-end historical-reference popup are the next separate pending milestone in `docs/development/DEVELOPMENT-BACKLOG.md`.
+Follow `docs/superpowers/specs/2026-11-05-historical-world-direction.md`: real geography and historical polities, new starts from 3300 BC through AD 1530, and no modern starts. The written plan `docs/superpowers/plans/2026-11-05-historical-campaign-foundation.md` is prepared. Tasks 1–5 are accepted through `1addf27`. Task 6 and final documentation review are accepted with the limits in the play script. Final review approved publication subject to current-head CI; PR #13 tracks merge state. The six ordered tasks cover: campaign-start policy, historical content, initializer, prompts, combined guards/defaults/UI, then browser evidence. Preserve existing campaigns. Year-by-year research for approximately 3300 BC through AD 1200 and the turn-end historical-reference popup are the next separate pending milestone in `docs/development/DEVELOPMENT-BACKLOG.md`.
 
 ### 3. Next: annual historical reference
 
-Write a separate research and implementation plan for the 4,500-year coverage and turn-end reference popup in `docs/development/DEVELOPMENT-BACKLOG.md`. No year is fully reviewed for release, no event is release-approved and the popup is not implemented.
+Write a separate research and implementation plan for the 4,830-year coverage and turn-end reference popup in `docs/development/DEVELOPMENT-BACKLOG.md`. No year is fully reviewed for release, no event is release-approved and the popup is not implemented.
 
 ### 4. Deferred: run `docs/play-scripts/phase-3.md` in a browser
 

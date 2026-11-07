@@ -13,9 +13,9 @@ import {
 const refusal = (code) => ({ ok: false, code, error: HISTORICAL_START_REFUSAL });
 
 test("exports the inclusive start range and Swedish refusal", () => {
-  assert.deepEqual(HISTORICAL_START_RANGE, { minYear: -3300, maxYear: 1200 });
+  assert.deepEqual(HISTORICAL_START_RANGE, { minYear: -3300, maxYear: 1530 });
   assert.equal(Object.isFrozen(HISTORICAL_START_RANGE), true);
-  assert.equal(HISTORICAL_START_REFUSAL, "Välj ett giltigt startdatum mellan 3300 f.Kr. och 1200 e.Kr.");
+  assert.equal(HISTORICAL_START_REFUSAL, "Välj ett giltigt startdatum mellan 3300 f.Kr. och 1530 e.Kr.");
 });
 
 for (const [value, date, year] of [
@@ -23,6 +23,9 @@ for (const [value, date, year] of [
   ["-3300-12-31", "-3300-12-31", -3300],
   ["1200-01-01", "1200-01-01", 1200],
   ["1200-12-31", "1200-12-31", 1200],
+  ["1201-01-01", "1201-01-01", 1201],
+  ["1530-01-01", "1530-01-01", 1530],
+  ["1530-12-31", "1530-12-31", 1530],
   ["-1-1-1", "-0001-01-01", -1],
   ["1-1-1", "0001-01-01", 1],
   [" \t-218-3-1\r\n", "-0218-03-01", -218],
@@ -40,7 +43,7 @@ for (const [value, date, year] of [
   });
 }
 
-for (const value of ["-3301-12-31", "1201-01-01", "2016-01-01", "-999999-01-01", "999999-01-01"]) {
+for (const value of ["-3301-12-31", "1531-01-01", "2016-01-01", "-999999-01-01", "999999-01-01"]) {
   test(`refuses out-of-range start ${value}`, () => {
     assert.deepEqual(validateHistoricalStartDate(value), refusal("outOfRange"));
     assert.deepEqual(validateHistoricalStartDates({ startDate: value, gameDate: "1200-01-01" }), refusal("outOfRange"));
@@ -90,11 +93,11 @@ test("canonicalizes date pairs without mutating the input", () => {
   assert.equal(input.startDate, " \t-1-2-29 ");
 });
 
-test("reuses the no-year-zero calendar while running games can pass AD 1200", () => {
+test("reuses the no-year-zero calendar while running games can pass AD 1530", () => {
   const bcEnd = validateHistoricalStartDate("-1-12-31").date;
   assert.equal(addGameDays(bcEnd, 1), "0001-01-01");
   assert.equal(addGameDays("0001-01-01", -1), bcEnd);
-  assert.equal(addGameDays(validateHistoricalStartDate("1200-12-31").date, 1), "1201-01-01");
+  assert.equal(addGameDays(validateHistoricalStartDate("1530-12-31").date, 1), "1531-01-01");
 });
 
 const sourceGame = Object.freeze({
