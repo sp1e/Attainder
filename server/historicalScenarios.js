@@ -2,10 +2,13 @@
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { validateHistoricalStartDate } from './historicalStarts.js';
 import { compareGameDates, parseGameDate, formatGameDate } from './gameDates.js';
-import { ARCHETYPES, TRAITS, SKILL_LABELS, SUCCESSION_LAWS } from './characters/content.js';
+import { ARCHETYPES, TRAITS, SKILL_LABELS, SUCCESSION_LAWS, POLITY_KINDS } from './characters/content.js';
 
 export const HISTORICAL_SCHEMA_VERSION = 1;
 export const isHistoricalWorld = world => world?.historicalScenario?.kind === 'historical';
+// An absent kind reads as a state, so packages written before polity kinds keep validating.
+export const validPolityKind = p => p.kind === undefined || POLITY_KINDS.includes(p.kind);
+export const playablePolityKind = p => validPolityKind(p) && p.kind !== 'non-state';
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const text = x => typeof x === 'string' && x.trim().length > 0;
 const list = x => Array.isArray(x) ? x : [];
@@ -153,7 +156,8 @@ export function validateHistoricalCourt(h, { date, polityId } = {}) {
       if (!sourceRefs(h.dateSourceIds, h.sources) || compareGameDates(h.validFrom, h.validTo) > 0
         || compareGameDates(date, h.validFrom) < 0 || compareGameDates(date, h.validTo) > 0) return failure('unsupportedDate');
     } else if (date !== h.bookmarkDate) return failure('unsupportedDate');
-    if (!safeId(polityId) || !h.playablePolityIds?.includes(polityId) || !h.polities?.some(p => p.id === polityId && text(p.nameSv))) return failure('invalidPolity');
+    if (!safeId(polityId) || !h.playablePolityIds?.includes(polityId)
+      || !h.polities?.some(p => p.id === polityId && text(p.nameSv) && playablePolityKind(p))) return failure('invalidPolity');
     if (!validCourt(h.courtSeeds?.[polityId], polityId, h, date)) return failure('invalidCourt');
     return { ok: true, contentId: h.contentId, contentVersion: h.contentVersion, date, polityId };
   } catch { return failure('invalidContent'); }
@@ -178,11 +182,13 @@ export function validateHistoricalScenario(input, options = {}) {
     if (game?.startDate !== date || (game?.currentDate ?? game?.gameDate) !== date
       || (game?.gameDate !== undefined && game.gameDate !== date)) return failure('dateMismatch');
     if (!validSources(h.sources)) return failure('invalidSources');
-    if (!validIds(h.polities) || !h.polities.every(p => text(p.nameSv) && sourceRefs(p.sourceIds,h.sources) && ['approximate','uncertain'].includes(p.boundary))) return failure('invalidPolities');
+    if (!validIds(h.polities) || !h.polities.every(p => text(p.nameSv) && sourceRefs(p.sourceIds,h.sources)
+      && ['approximate','uncertain'].includes(p.boundary) && validPolityKind(p))) return failure('invalidPolities');
     const polityIds = new Set(ids(h.polities));
     if (!Object.keys(world.polityOverrides ?? {}).every(id => polityIds.has(id))) return failure('invalidPolities');
+    const playable = id => polityIds.has(id) && safeId(id) && playablePolityKind(h.polities.find(p => p.id === id));
     if (!Array.isArray(h.playablePolityIds) || !h.playablePolityIds.length || !unique(h.playablePolityIds)
-      || !h.playablePolityIds.every(id => polityIds.has(id) && safeId(id)) || !h.playablePolityIds.includes(polityId)) return failure('invalidPolity');
+      || !h.playablePolityIds.every(playable) || !h.playablePolityIds.includes(polityId)) return failure('invalidPolity');
     if (regions?.type !== 'FeatureCollection' || !Array.isArray(regions.features) || !regions.features.length) return failure('invalidGeometry');
     const regionMap = new Map();
     for (const region of regions.features) {

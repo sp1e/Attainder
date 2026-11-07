@@ -294,6 +294,7 @@ const ACCEPTED = [
   ['a 151-character city id, whose governor office id fits 160 characters',c => rename(c,'cities','aachen','a'.repeat(151))],
   ['successionLaw merit',c => { c.successionLaw = 'merit'; }],
   ['successionLaw primogeniture',c => { c.successionLaw = 'primogeniture'; }],
+  ['successionLaw elective',c => { c.successionLaw = 'elective'; }],
   ['an absent successionLaw',c => { delete c.successionLaw; }],
   ['a court start text of 600 characters citing a package source',c => withCourtContext(c,'å'.repeat(600))],
 ];
@@ -349,6 +350,28 @@ test('both validators accept a renamed playable polity id with every allowed cha
 });
 for (const id of ['carolingian realm','__proto__']) test(`both validators refuse the playable polity id "${id}"`,() => {
   for (const result of renamedPolity(id)) assert.equal(result.code,'invalidPolity',id);
+});
+
+// Mutates the chosen playable polity record, then runs both validators.
+const probePolity = mutate => { const input = loadPackage(); mutate(input.h.polities.find(p => p.id === POLITY)); return bothResults(input); };
+test('both validators accept each polity kind',() => {
+  for (const kind of ['state','city-state','confederation','chiefdom']) {
+    for (const result of probePolity(p => { p.kind = kind; })) assert.equal(result.ok,true,`${kind}: ${result.code}`);
+  }
+});
+test('both validators refuse an unknown polity kind',() => {
+  for (const kind of ['empire',null]) {
+    assert.deepEqual(probePolity(p => { p.kind = kind; }).map(r => r.code),['invalidPolities','invalidPolity'],String(kind));
+  }
+});
+test('both validators refuse a playable non-state polity',() => {
+  for (const result of probePolity(p => { p.kind = 'non-state'; })) assert.equal(result.code,'invalidPolity');
+});
+test('a non-playable polity of kind non-state is accepted',() => {
+  const input = loadPackage(), { h } = input;
+  assert.ok(!h.playablePolityIds.includes('probe-people'));
+  h.polities.push({ id: 'probe-people',nameSv: 'Prov',sourceIds: [Object.keys(h.sources)[0]],boundary: 'approximate',kind: 'non-state' });
+  assert.equal(validate(input).ok,true,validate(input).code);
 });
 
 // Both validators over every playable polity of every shipped package: src/runtime/historicalPlayables.test.js.

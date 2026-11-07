@@ -88,6 +88,11 @@ export const FAMILY_SEEDS = [
   { id: 'family-safra', name: 'Safra', color: '#7b648e', religionId: 'dawn', names: ['Safra', 'Amat', 'Danel', 'Reva', 'Tamar', 'Zuri'], traits: ['devout', 'compassionate'], archetype: 'guardian' },
 ];
 // The engine's succession laws; the historical validator and the authored-court seed both check against this list.
-export const SUCCESSION_LAWS = Object.freeze(['primogeniture', 'merit']);
+// The order is the reform cycle.
+export const SUCCESSION_LAWS = Object.freeze(['primogeniture', 'merit', 'elective']);
+export const SUCCESSION_LAW_LABELS_SV = Object.freeze({ primogeniture: 'förstfödslorätt', merit: 'förtjänst', elective: 'val' });
+// Kinds of historical polity; a non-state polity can stand on the map but is never playable.
+export const POLITY_KINDS = Object.freeze(['state', 'city-state', 'confederation', 'chiefdom', 'non-state']);
+export const POLITY_KIND_LABELS_SV = Object.freeze({ state: 'stat', 'city-state': 'stadsstat', confederation: 'förbund', chiefdom: 'hövdingadöme', 'non-state': 'statslöst samhälle' });
 export const SKILL_LABELS = { command: 'Befäl', stewardship: 'Förvaltning', diplomacy: 'Diplomati', learning: 'Lärdom', intrigue: 'Intrig', prowess: 'Kampförmåga' };
 export const NAME_POOL = ['Adara', 'Belen', 'Ciran', 'Dema', 'Eris', 'Fara', 'Galen', 'Hessa', 'Ilan', 'Jara', 'Keris', 'Luma', 'Meran', 'Nara', 'Orin', 'Pella', 'Ramin', 'Sela', 'Tiran', 'Vera'];

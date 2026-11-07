@@ -154,9 +154,28 @@ test('court size is authored data; a one-family court works with vacant generate
   assert.ok(getCharacterPresentation(state).ruler);
 });
 
-test('SUCCESSION_LAWS is frozen and lists primogeniture and merit', () => {
-  assert.deepEqual(SUCCESSION_LAWS, ['primogeniture', 'merit']);
+test('SUCCESSION_LAWS is frozen and lists primogeniture, merit and elective in reform order', () => {
+  assert.deepEqual(SUCCESSION_LAWS, ['primogeniture', 'merit', 'elective']);
   assert.ok(Object.isFrozen(SUCCESSION_LAWS));
+});
+
+const chosenPolity = options => options.historicalScenario.polities.find(p => p.id === options.polityId);
+test('a chosen polity of kind non-state is refused by the seed', () => {
+  const options = optionsFor(load('john-1200'));
+  chosenPolity(options).kind = 'non-state';
+  assert.throws(() => createHistoricalCharacterSystem(options), { message: 'Det historiska hovets uppgifter kan inte användas av karaktärssystemet.' });
+});
+
+test('a chosen polity of kind chiefdom starts', () => {
+  const options = optionsFor(load('john-1200'));
+  chosenPolity(options).kind = 'chiefdom';
+  assert.equal(createHistoricalCharacterSystem(options).realm.id, options.polityId);
+});
+
+test('an authored elective law starts and seeds the realm', () => {
+  const options = optionsFor(load('john-1200'));
+  options.historicalScenario.courtSeeds[options.polityId].successionLaw = 'elective';
+  assert.equal(createHistoricalCharacterSystem(options).realm.successionLaw, 'elective');
 });
 
 for (const mode of ['realm', 'family']) test(`${mode}: the authored succession law seeds the realm, draws nothing, and an absent law keeps primogeniture`, () => {
