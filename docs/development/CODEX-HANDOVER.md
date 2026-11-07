@@ -1,5 +1,7 @@
 # Codex handover
 
+**Research split from 7 November 2026:** Codex does all historical research and Claude writes all code. Read `docs/development/CODEX-RESEARCH-BRIEF.md` first; it replaces the work queue below while the split lasts.
+
 Written by Claude on 5 November 2026 at `main` = `b655e2b`. Codex develops Attainder on the owner's private desktop until the owner's weekly Claude tokens reset. Read this file from top to bottom before you change anything.
 
 **Updated by Claude on 7 November 2026, development paused by the owner.** `main` holds the Charlemagne AD 800 start ([PR #15](https://github.com/sp1e/Attainder/pull/15), `0192a1e9`) and the year-events popup ([PR #14](https://github.com/sp1e/Attainder/pull/14)). The owner then decided two things: every culture of the world within the period becomes playable, and the upper start year moves from AD 1200 to **AD 1530**, so the Aztec and Inca empires can be played. Nothing of that is built yet. Work resumes on `feature/world-cultures`. The owner's private workspace holds the Swedish handover with the full state, an unfinished world inventory of 939 cultures and a code map of what one more playable polity costs. Read it before you start. Next step: write `docs/superpowers/specs/2026-11-07-world-cultures-design.md` from those two decisions, then plan phase 1 (several playable polities per start, a validator rule for the generated label, the 1530 range) before any new history.
