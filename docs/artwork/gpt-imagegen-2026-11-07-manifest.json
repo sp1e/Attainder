@@ -1,0 +1,3930 @@
+{
+  "schema": "attainder-portrait-production-v1",
+  "date": "2026-11-07",
+  "provider": "OpenAI built-in imagegen",
+  "integrationStatus": "delivery-only-not-wired-to-runtime",
+  "researchCommit": "806ca6eeddfc9ab414e95d303261fb78b3342fa2",
+  "researchDossier": "server/seed/historical/courts/ad800-courts.json",
+  "historicalScope": "Identities from the reviewed dossier; appearances, costumes, conditions and hypothetical ages are artistic interpretations.",
+  "layout": {
+    "states": [
+      "healthy",
+      "smallpox",
+      "smallpox-recovering",
+      "smallpox-scars",
+      "fever",
+      "wounded",
+      "injury-recovering",
+      "injury-scars",
+      "frail",
+      "stressed",
+      "grieving",
+      "exiled"
+    ],
+    "ageGroups": [
+      "child",
+      "adult",
+      "elder"
+    ]
+  },
+  "counts": {
+    "characters": 8,
+    "originals": 8,
+    "atlases": 8,
+    "atlasFrames": 288,
+    "totalPortraits": 296,
+    "successfulImageGenerations": 16,
+    "attemptedImageGenerations": 17
+  },
+  "geometryMethod": "Visual six-by-six grid review and local pixel discontinuities within four pixels of expected grid seams; manual review rejects unrelated high-contrast internal features. Rectangle insets exclude seam pixels without modifying image bytes.",
+  "characters": [
+    {
+      "id": "eirene-of-athens",
+      "originalAgeGroup": "adult",
+      "appearanceEvidence": "artistic-interpretation",
+      "childMedicalDetail": "non-graphic",
+      "original": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/eirene-of-athens.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/eirene-of-athens.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2696658,
+        "sha256": "9f44667eaf6d4f4df4c6f529c58e1148c64036321ff7d86226690dadbb58266b"
+      },
+      "atlas": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/variants/eirene-of-athens.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/eirene-of-athens.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2737304,
+        "sha256": "491af289ab994e4d8ea80e4b3ab2e38631bdf70fdad82b98b8be6da1ba58c441",
+        "rowBounds": [
+          0,
+          241,
+          482,
+          724,
+          965,
+          1206,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          182,
+          363,
+          544,
+          723,
+          906,
+          1086
+        ],
+        "viewBoxInsetPixels": 2,
+        "frames": [
+          {
+            "ageGroup": "child",
+            "state": "healthy",
+            "row": 0,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 2,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox",
+            "row": 0,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-recovering",
+            "row": 0,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-scars",
+            "row": 0,
+            "column": 3,
+            "rect": {
+              "x": 546,
+              "y": 2,
+              "width": 175,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "fever",
+            "row": 0,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 2,
+              "width": 179,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "wounded",
+            "row": 0,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 2,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-recovering",
+            "row": 1,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 243,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-scars",
+            "row": 1,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 243,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "frail",
+            "row": 1,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 243,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "stressed",
+            "row": 1,
+            "column": 3,
+            "rect": {
+              "x": 546,
+              "y": 243,
+              "width": 175,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "grieving",
+            "row": 1,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 243,
+              "width": 179,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "exiled",
+            "row": 1,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 243,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "healthy",
+            "row": 2,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 484,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox",
+            "row": 2,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 484,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-recovering",
+            "row": 2,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 484,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-scars",
+            "row": 2,
+            "column": 3,
+            "rect": {
+              "x": 546,
+              "y": 484,
+              "width": 175,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "fever",
+            "row": 2,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 484,
+              "width": 179,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "wounded",
+            "row": 2,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 484,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-recovering",
+            "row": 3,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 726,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-scars",
+            "row": 3,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "frail",
+            "row": 3,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "stressed",
+            "row": 3,
+            "column": 3,
+            "rect": {
+              "x": 546,
+              "y": 726,
+              "width": 175,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "grieving",
+            "row": 3,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 726,
+              "width": 179,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "exiled",
+            "row": 3,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 726,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "healthy",
+            "row": 4,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 967,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox",
+            "row": 4,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 967,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-recovering",
+            "row": 4,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 967,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-scars",
+            "row": 4,
+            "column": 3,
+            "rect": {
+              "x": 546,
+              "y": 967,
+              "width": 175,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "fever",
+            "row": 4,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 967,
+              "width": 179,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "wounded",
+            "row": 4,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 967,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-recovering",
+            "row": 5,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 1208,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-scars",
+            "row": 5,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 1208,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "frail",
+            "row": 5,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 1208,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "stressed",
+            "row": 5,
+            "column": 3,
+            "rect": {
+              "x": 546,
+              "y": 1208,
+              "width": 175,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "grieving",
+            "row": 5,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 1208,
+              "width": 179,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "exiled",
+            "row": 5,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 1208,
+              "width": 176,
+              "height": 238
+            }
+          }
+        ]
+      },
+      "visualReview": {
+        "all36CellsInspected": true,
+        "sixBySixGrid": true,
+        "identityConsistent": true,
+        "ageOrderCorrect": true,
+        "noTextLabels": true,
+        "limitations": [
+          "Healed scars and some expressions are subtle at native cell size.",
+          "Child medical detail is restrained and non-graphic."
+        ]
+      }
+    },
+    {
+      "id": "harun-ar-rashid",
+      "originalAgeGroup": "adult",
+      "appearanceEvidence": "artistic-interpretation",
+      "childMedicalDetail": "expression-only",
+      "original": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/harun-ar-rashid.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/harun-ar-rashid.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2739314,
+        "sha256": "c05e70d2056fa22ef6a1814c27d48fdb9a25dab7a02bb09d950b12cb8f0e8a47"
+      },
+      "atlas": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/variants/harun-ar-rashid.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/harun-ar-rashid.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2652989,
+        "sha256": "66ab20c6de9474051e60ddc996e27f6fca51f39fc5ad91492c7cc0bb9d109c53",
+        "rowBounds": [
+          0,
+          242,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          182,
+          363,
+          542,
+          723,
+          906,
+          1086
+        ],
+        "viewBoxInsetPixels": 2,
+        "frames": [
+          {
+            "ageGroup": "child",
+            "state": "healthy",
+            "row": 0,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 2,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox",
+            "row": 0,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 2,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-recovering",
+            "row": 0,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 2,
+              "width": 175,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-scars",
+            "row": 0,
+            "column": 3,
+            "rect": {
+              "x": 544,
+              "y": 2,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "fever",
+            "row": 0,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 2,
+              "width": 179,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "wounded",
+            "row": 0,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 2,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-recovering",
+            "row": 1,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 244,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-scars",
+            "row": 1,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 244,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "frail",
+            "row": 1,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 244,
+              "width": 175,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "stressed",
+            "row": 1,
+            "column": 3,
+            "rect": {
+              "x": 544,
+              "y": 244,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "grieving",
+            "row": 1,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 244,
+              "width": 179,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "exiled",
+            "row": 1,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 244,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "healthy",
+            "row": 2,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 485,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox",
+            "row": 2,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-recovering",
+            "row": 2,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 485,
+              "width": 175,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-scars",
+            "row": 2,
+            "column": 3,
+            "rect": {
+              "x": 544,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "fever",
+            "row": 2,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 485,
+              "width": 179,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "wounded",
+            "row": 2,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 485,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-recovering",
+            "row": 3,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 726,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-scars",
+            "row": 3,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "frail",
+            "row": 3,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 726,
+              "width": 175,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "stressed",
+            "row": 3,
+            "column": 3,
+            "rect": {
+              "x": 544,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "grieving",
+            "row": 3,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 726,
+              "width": 179,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "exiled",
+            "row": 3,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 726,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "healthy",
+            "row": 4,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 967,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox",
+            "row": 4,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-recovering",
+            "row": 4,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 967,
+              "width": 175,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-scars",
+            "row": 4,
+            "column": 3,
+            "rect": {
+              "x": 544,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "fever",
+            "row": 4,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 967,
+              "width": 179,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "wounded",
+            "row": 4,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 967,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-recovering",
+            "row": 5,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 1209,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-scars",
+            "row": 5,
+            "column": 1,
+            "rect": {
+              "x": 184,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "frail",
+            "row": 5,
+            "column": 2,
+            "rect": {
+              "x": 365,
+              "y": 1209,
+              "width": 175,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "stressed",
+            "row": 5,
+            "column": 3,
+            "rect": {
+              "x": 544,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "grieving",
+            "row": 5,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 1209,
+              "width": 179,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "exiled",
+            "row": 5,
+            "column": 5,
+            "rect": {
+              "x": 908,
+              "y": 1209,
+              "width": 176,
+              "height": 237
+            }
+          }
+        ]
+      },
+      "visualReview": {
+        "all36CellsInspected": true,
+        "sixBySixGrid": true,
+        "identityConsistent": true,
+        "ageOrderCorrect": true,
+        "noTextLabels": true,
+        "limitations": [
+          "Healed scars and some expressions are subtle at native cell size.",
+          "Child condition frames use symbolic expressions."
+        ]
+      }
+    },
+    {
+      "id": "dezong",
+      "originalAgeGroup": "adult",
+      "appearanceEvidence": "artistic-interpretation",
+      "childMedicalDetail": "expression-only",
+      "original": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/dezong.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/dezong.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2673252,
+        "sha256": "7cdbb9c9e8f0e8c3e608be93d5ec4a3cb232df2eb923ce0157cd248a5107d687"
+      },
+      "atlas": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/variants/dezong.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/dezong.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2523562,
+        "sha256": "b7b983b320d6cf02a2fe1c733848200b69aae7273864d132f6c486c44e281d42",
+        "rowBounds": [
+          0,
+          241,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          724,
+          905,
+          1086
+        ],
+        "viewBoxInsetPixels": 2,
+        "frames": [
+          {
+            "ageGroup": "child",
+            "state": "healthy",
+            "row": 0,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox",
+            "row": 0,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-recovering",
+            "row": 0,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-scars",
+            "row": 0,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "fever",
+            "row": 0,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "wounded",
+            "row": 0,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-recovering",
+            "row": 1,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-scars",
+            "row": 1,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "frail",
+            "row": 1,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "stressed",
+            "row": 1,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "grieving",
+            "row": 1,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "exiled",
+            "row": 1,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "healthy",
+            "row": 2,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox",
+            "row": 2,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-recovering",
+            "row": 2,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-scars",
+            "row": 2,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "fever",
+            "row": 2,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "wounded",
+            "row": 2,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-recovering",
+            "row": 3,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-scars",
+            "row": 3,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "frail",
+            "row": 3,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "stressed",
+            "row": 3,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "grieving",
+            "row": 3,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "exiled",
+            "row": 3,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "healthy",
+            "row": 4,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox",
+            "row": 4,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-recovering",
+            "row": 4,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-scars",
+            "row": 4,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "fever",
+            "row": 4,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "wounded",
+            "row": 4,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-recovering",
+            "row": 5,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-scars",
+            "row": 5,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "frail",
+            "row": 5,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "stressed",
+            "row": 5,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "grieving",
+            "row": 5,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "exiled",
+            "row": 5,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          }
+        ]
+      },
+      "visualReview": {
+        "all36CellsInspected": true,
+        "sixBySixGrid": true,
+        "identityConsistent": true,
+        "ageOrderCorrect": true,
+        "noTextLabels": true,
+        "limitations": [
+          "Healed scars and some expressions are subtle at native cell size.",
+          "Child condition frames use symbolic expressions."
+        ]
+      }
+    },
+    {
+      "id": "aejang",
+      "originalAgeGroup": "child",
+      "appearanceEvidence": "artistic-interpretation",
+      "childMedicalDetail": "expression-only",
+      "original": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/aejang.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/aejang.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2637604,
+        "sha256": "f5f336157775760a8d0837fe039b5ccfe1ac4895423695da3103503c516ab784"
+      },
+      "atlas": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/variants/aejang.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/aejang.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2429565,
+        "sha256": "86192066b9ff3bf3edb38366d885e2ad23b3635bd8a730dbfc810379b1bb1002",
+        "rowBounds": [
+          0,
+          241,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          723,
+          905,
+          1086
+        ],
+        "viewBoxInsetPixels": 2,
+        "frames": [
+          {
+            "ageGroup": "child",
+            "state": "healthy",
+            "row": 0,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox",
+            "row": 0,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-recovering",
+            "row": 0,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-scars",
+            "row": 0,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 2,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "fever",
+            "row": 0,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 2,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "wounded",
+            "row": 0,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-recovering",
+            "row": 1,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-scars",
+            "row": 1,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "frail",
+            "row": 1,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "stressed",
+            "row": 1,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 243,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "grieving",
+            "row": 1,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 243,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "exiled",
+            "row": 1,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "healthy",
+            "row": 2,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox",
+            "row": 2,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-recovering",
+            "row": 2,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-scars",
+            "row": 2,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 485,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "fever",
+            "row": 2,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 485,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "wounded",
+            "row": 2,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-recovering",
+            "row": 3,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-scars",
+            "row": 3,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "frail",
+            "row": 3,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "stressed",
+            "row": 3,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 726,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "grieving",
+            "row": 3,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 726,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "exiled",
+            "row": 3,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "healthy",
+            "row": 4,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox",
+            "row": 4,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-recovering",
+            "row": 4,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-scars",
+            "row": 4,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 967,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "fever",
+            "row": 4,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 967,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "wounded",
+            "row": 4,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-recovering",
+            "row": 5,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-scars",
+            "row": 5,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "frail",
+            "row": 5,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "stressed",
+            "row": 5,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 1209,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "grieving",
+            "row": 5,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 1209,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "exiled",
+            "row": 5,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          }
+        ]
+      },
+      "visualReview": {
+        "all36CellsInspected": true,
+        "sixBySixGrid": true,
+        "identityConsistent": true,
+        "ageOrderCorrect": true,
+        "noTextLabels": true,
+        "limitations": [
+          "Healed scars and some expressions are subtle at native cell size.",
+          "Child condition frames use symbolic expressions."
+        ]
+      }
+    },
+    {
+      "id": "al-hakam-i",
+      "originalAgeGroup": "adult",
+      "appearanceEvidence": "artistic-interpretation",
+      "childMedicalDetail": "expression-only",
+      "original": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/al-hakam-i.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/al-hakam-i.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2938132,
+        "sha256": "b44f967e5504635406bb01d0af47264b23453d93e004e1596402106595e1391b"
+      },
+      "atlas": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/variants/al-hakam-i.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/al-hakam-i.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2777979,
+        "sha256": "907b19429e168f05c72957f5f9fd1d08d8e722b3bbca4b1c882a8d9d088f0c17",
+        "rowBounds": [
+          0,
+          241,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          723,
+          904,
+          1086
+        ],
+        "viewBoxInsetPixels": 2,
+        "frames": [
+          {
+            "ageGroup": "child",
+            "state": "healthy",
+            "row": 0,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox",
+            "row": 0,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-recovering",
+            "row": 0,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-scars",
+            "row": 0,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 2,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "fever",
+            "row": 0,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "wounded",
+            "row": 0,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 2,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-recovering",
+            "row": 1,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-scars",
+            "row": 1,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "frail",
+            "row": 1,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "stressed",
+            "row": 1,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 243,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "grieving",
+            "row": 1,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "exiled",
+            "row": 1,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 243,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "healthy",
+            "row": 2,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox",
+            "row": 2,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-recovering",
+            "row": 2,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-scars",
+            "row": 2,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 485,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "fever",
+            "row": 2,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "wounded",
+            "row": 2,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 485,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-recovering",
+            "row": 3,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-scars",
+            "row": 3,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "frail",
+            "row": 3,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "stressed",
+            "row": 3,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 726,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "grieving",
+            "row": 3,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "exiled",
+            "row": 3,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 726,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "healthy",
+            "row": 4,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox",
+            "row": 4,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-recovering",
+            "row": 4,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-scars",
+            "row": 4,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 967,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "fever",
+            "row": 4,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "wounded",
+            "row": 4,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 967,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-recovering",
+            "row": 5,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-scars",
+            "row": 5,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "frail",
+            "row": 5,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "stressed",
+            "row": 5,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 1209,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "grieving",
+            "row": 5,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "exiled",
+            "row": 5,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 1209,
+              "width": 178,
+              "height": 237
+            }
+          }
+        ]
+      },
+      "visualReview": {
+        "all36CellsInspected": true,
+        "sixBySixGrid": true,
+        "identityConsistent": true,
+        "ageOrderCorrect": true,
+        "noTextLabels": true,
+        "limitations": [
+          "Healed scars and some expressions are subtle at native cell size.",
+          "Child condition frames use symbolic expressions."
+        ]
+      }
+    },
+    {
+      "id": "ibrahim-ibn-al-aghlab",
+      "originalAgeGroup": "adult",
+      "appearanceEvidence": "artistic-interpretation",
+      "childMedicalDetail": "expression-only",
+      "original": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/ibrahim-ibn-al-aghlab.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/ibrahim-ibn-al-aghlab.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2835902,
+        "sha256": "838a646dc91e4dd384dd6f6b5281816f901a8fddcfa10d86cd00af9d6dc081d8"
+      },
+      "atlas": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/variants/ibrahim-ibn-al-aghlab.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/ibrahim-ibn-al-aghlab.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2757767,
+        "sha256": "898145e6aba0bc2d806a803a140f5ad07b23a409be23d1d6e1ddf6eec4ae4fc9",
+        "rowBounds": [
+          0,
+          241,
+          483,
+          723,
+          965,
+          1206,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          723,
+          904,
+          1086
+        ],
+        "viewBoxInsetPixels": 2,
+        "frames": [
+          {
+            "ageGroup": "child",
+            "state": "healthy",
+            "row": 0,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox",
+            "row": 0,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-recovering",
+            "row": 0,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-scars",
+            "row": 0,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 2,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "fever",
+            "row": 0,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "wounded",
+            "row": 0,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 2,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-recovering",
+            "row": 1,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-scars",
+            "row": 1,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "frail",
+            "row": 1,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "stressed",
+            "row": 1,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 243,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "grieving",
+            "row": 1,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "exiled",
+            "row": 1,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 243,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "healthy",
+            "row": 2,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 485,
+              "width": 177,
+              "height": 236
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox",
+            "row": 2,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 485,
+              "width": 177,
+              "height": 236
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-recovering",
+            "row": 2,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 485,
+              "width": 177,
+              "height": 236
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-scars",
+            "row": 2,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 485,
+              "width": 176,
+              "height": 236
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "fever",
+            "row": 2,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 485,
+              "width": 177,
+              "height": 236
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "wounded",
+            "row": 2,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 485,
+              "width": 178,
+              "height": 236
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-recovering",
+            "row": 3,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 725,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-scars",
+            "row": 3,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 725,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "frail",
+            "row": 3,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 725,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "stressed",
+            "row": 3,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 725,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "grieving",
+            "row": 3,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 725,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "exiled",
+            "row": 3,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 725,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "healthy",
+            "row": 4,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 967,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox",
+            "row": 4,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 967,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-recovering",
+            "row": 4,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 967,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-scars",
+            "row": 4,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 967,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "fever",
+            "row": 4,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 967,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "wounded",
+            "row": 4,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 967,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-recovering",
+            "row": 5,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 1208,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-scars",
+            "row": 5,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 1208,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "frail",
+            "row": 5,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 1208,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "stressed",
+            "row": 5,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 1208,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "grieving",
+            "row": 5,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 1208,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "exiled",
+            "row": 5,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 1208,
+              "width": 178,
+              "height": 238
+            }
+          }
+        ]
+      },
+      "visualReview": {
+        "all36CellsInspected": true,
+        "sixBySixGrid": true,
+        "identityConsistent": true,
+        "ageOrderCorrect": true,
+        "noTextLabels": true,
+        "limitations": [
+          "Healed scars and some expressions are subtle at native cell size.",
+          "Child condition frames use symbolic expressions."
+        ]
+      }
+    },
+    {
+      "id": "alfonso-ii-asturias",
+      "originalAgeGroup": "adult",
+      "appearanceEvidence": "artistic-interpretation",
+      "childMedicalDetail": "expression-only",
+      "original": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/alfonso-ii-asturias.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/alfonso-ii-asturias.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2862000,
+        "sha256": "3a9a6dda3eca1dafc8b7005fbbe64c8e20c9de10274605cc9322e46489ce64fe"
+      },
+      "atlas": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/variants/alfonso-ii-asturias.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/alfonso-ii-asturias.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2749994,
+        "sha256": "5ba52c7c7777aa352cc3e38b673d269dcce0089c04ea3deba13fbab8dfd62bcf",
+        "rowBounds": [
+          0,
+          241,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          724,
+          905,
+          1086
+        ],
+        "viewBoxInsetPixels": 2,
+        "frames": [
+          {
+            "ageGroup": "child",
+            "state": "healthy",
+            "row": 0,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox",
+            "row": 0,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-recovering",
+            "row": 0,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-scars",
+            "row": 0,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "fever",
+            "row": 0,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "wounded",
+            "row": 0,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-recovering",
+            "row": 1,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-scars",
+            "row": 1,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "frail",
+            "row": 1,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "stressed",
+            "row": 1,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "grieving",
+            "row": 1,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "exiled",
+            "row": 1,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "healthy",
+            "row": 2,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox",
+            "row": 2,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-recovering",
+            "row": 2,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-scars",
+            "row": 2,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "fever",
+            "row": 2,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "wounded",
+            "row": 2,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-recovering",
+            "row": 3,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-scars",
+            "row": 3,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "frail",
+            "row": 3,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "stressed",
+            "row": 3,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "grieving",
+            "row": 3,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "exiled",
+            "row": 3,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "healthy",
+            "row": 4,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox",
+            "row": 4,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-recovering",
+            "row": 4,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-scars",
+            "row": 4,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "fever",
+            "row": 4,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "wounded",
+            "row": 4,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-recovering",
+            "row": 5,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-scars",
+            "row": 5,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "frail",
+            "row": 5,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "stressed",
+            "row": 5,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "grieving",
+            "row": 5,
+            "column": 4,
+            "rect": {
+              "x": 726,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "exiled",
+            "row": 5,
+            "column": 5,
+            "rect": {
+              "x": 907,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          }
+        ]
+      },
+      "visualReview": {
+        "all36CellsInspected": true,
+        "sixBySixGrid": true,
+        "identityConsistent": true,
+        "ageOrderCorrect": true,
+        "noTextLabels": true,
+        "limitations": [
+          "Healed scars and some expressions are subtle at native cell size.",
+          "Child condition frames use symbolic expressions."
+        ]
+      }
+    },
+    {
+      "id": "grimoald-iii-benevento",
+      "originalAgeGroup": "adult",
+      "appearanceEvidence": "artistic-interpretation",
+      "childMedicalDetail": "expression-only",
+      "original": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/grimoald-iii-benevento.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/grimoald-iii-benevento.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2671804,
+        "sha256": "fdb7f5dab02e653bd39229d279f50e3bd3ef4e3c0411f8dd9b6436fed527d17e"
+      },
+      "atlas": {
+        "path": "public/dynasties/portraits/gpt-imagegen-2026-11-07/variants/grimoald-iii-benevento.png",
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/grimoald-iii-benevento.png",
+        "width": 1086,
+        "height": 1448,
+        "bytes": 2589576,
+        "sha256": "a47fe540035c424b098b94f623663a799fcefa46ff2e32236ceaf28bd9be1fd8",
+        "rowBounds": [
+          0,
+          241,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          723,
+          904,
+          1086
+        ],
+        "viewBoxInsetPixels": 2,
+        "frames": [
+          {
+            "ageGroup": "child",
+            "state": "healthy",
+            "row": 0,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox",
+            "row": 0,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-recovering",
+            "row": 0,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "smallpox-scars",
+            "row": 0,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 2,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "fever",
+            "row": 0,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 2,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "wounded",
+            "row": 0,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 2,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-recovering",
+            "row": 1,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "injury-scars",
+            "row": 1,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "frail",
+            "row": 1,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "stressed",
+            "row": 1,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 243,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "grieving",
+            "row": 1,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 243,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "child",
+            "state": "exiled",
+            "row": 1,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 243,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "healthy",
+            "row": 2,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox",
+            "row": 2,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-recovering",
+            "row": 2,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "smallpox-scars",
+            "row": 2,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 485,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "fever",
+            "row": 2,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 485,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "wounded",
+            "row": 2,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 485,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-recovering",
+            "row": 3,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "injury-scars",
+            "row": 3,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "frail",
+            "row": 3,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "stressed",
+            "row": 3,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 726,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "grieving",
+            "row": 3,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 726,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "adult",
+            "state": "exiled",
+            "row": 3,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 726,
+              "width": 178,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "healthy",
+            "row": 4,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox",
+            "row": 4,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-recovering",
+            "row": 4,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "smallpox-scars",
+            "row": 4,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 967,
+              "width": 176,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "fever",
+            "row": 4,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 967,
+              "width": 177,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "wounded",
+            "row": 4,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 967,
+              "width": 178,
+              "height": 238
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-recovering",
+            "row": 5,
+            "column": 0,
+            "rect": {
+              "x": 2,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "injury-scars",
+            "row": 5,
+            "column": 1,
+            "rect": {
+              "x": 183,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "frail",
+            "row": 5,
+            "column": 2,
+            "rect": {
+              "x": 364,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "stressed",
+            "row": 5,
+            "column": 3,
+            "rect": {
+              "x": 545,
+              "y": 1209,
+              "width": 176,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "grieving",
+            "row": 5,
+            "column": 4,
+            "rect": {
+              "x": 725,
+              "y": 1209,
+              "width": 177,
+              "height": 237
+            }
+          },
+          {
+            "ageGroup": "elder",
+            "state": "exiled",
+            "row": 5,
+            "column": 5,
+            "rect": {
+              "x": 906,
+              "y": 1209,
+              "width": 178,
+              "height": 237
+            }
+          }
+        ]
+      },
+      "visualReview": {
+        "all36CellsInspected": true,
+        "sixBySixGrid": true,
+        "identityConsistent": true,
+        "ageOrderCorrect": true,
+        "noTextLabels": true,
+        "limitations": [
+          "Healed scars and some expressions are subtle at native cell size.",
+          "Child condition frames use symbolic expressions."
+        ]
+      }
+    }
+  ]
+}
