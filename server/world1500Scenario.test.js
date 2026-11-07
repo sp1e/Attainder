@@ -81,6 +81,19 @@ test('the Aztec religion has no leader; the Inca religion keeps the generated pr
   for (const id of h.playablePolityIds) assert.equal(h.courtSeeds[id].offices.find(o => o.id === 'priest').holderId, 'generated-courtier-3', id);
 });
 
+test('no Swedish text in the built AD 1500 courts contains null or undefined', () => {
+  const swedish = [];
+  const walk = (value, key) => {
+    if (typeof value === 'string') { if (/Sv$/.test(key)) swedish.push(value); return; }
+    if (value && typeof value === 'object') for (const [k, v] of Object.entries(value)) walk(v, Array.isArray(value) ? key : k);
+  };
+  walk(loadPackage().h.courtSeeds, '');
+  assert.ok(swedish.length > 50, `found ${swedish.length} Swedish texts`);
+  for (const text of swedish) assert.doesNotMatch(text, /\b(null|undefined)\b/);
+  const araua = loadPackage().h.courtSeeds['inca-empire'].people.find(p => p.id === 'araua-ocllo');
+  assert.ok(araua.claims.kinship.noteSv.startsWith('Araua Ocllo: hustru till Huayna Capac. '), araua.claims.kinship.noteSv);
+});
+
 test('the generated courtiers carry the ruled names and game birth years', () => {
   const h = authored();
   for (const [id, names] of Object.entries(COURTIERS)) {
@@ -250,14 +263,17 @@ test('the Inca realm start puts Huayna Capac on the throne with Huáscar as heir
   assert.equal(state.people.huascar.name, 'Huáscar');
 });
 
-test('the Aztec realm start plays one game year without error, with its leaderless religion', () => {
+test('the Aztec religion is leaderless on the bookmark, and the generated priest leads it after one played year', () => {
   const start = prepared('aztec-empire', 'realm').data.world.characterSystem;
   assert.equal(start.offices.ruler.holderId, 'ahuitzotl');
+  const faithId = dossier.polities.find(p => p.polityId === 'aztec-empire').religion.id;
+  assert.equal(start.religions[faithId].leaderId, null);
   const year = advanceCharacters(start, addGameMonths(DATE, 12), { id: 'aztec-first-year' });
   assert.equal(year.error, null);
   assert.equal(year.ok, true);
   assert.equal(year.state.date, addGameMonths(DATE, 12));
   assert.ok(year.events.length > 0, 'the year leaves events');
+  assert.equal(year.state.religions[faithId].leaderId, 'generated-courtier-3');
   assert.ok(getCharacterPresentation(year.state));
 });
 

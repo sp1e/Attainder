@@ -62,7 +62,7 @@ Evidence at `7ccef350`: the full serial suite ran 5,029 tests, with 5,026 passed
 The design is `docs/superpowers/specs/2026-11-07-world-cultures-phase-4-design.md` and the plan is `docs/superpowers/plans/2026-11-07-world-cultures-phase-4.md`. Phase 4 is built on `feature/world-cultures-phase-4`:
 
 - A new built-in package, `world-1500` 1.0.0 (bookmark `1500-12-31`, map `world_1500` pinned), offers Aztekriket and Inkariket. Both courts come from Codex's `courts/ad1500-courts.json`; the primary polity can now be a dossier polity.
-- Aztekriket: Ahuitzotl as `Huey tlatoani`, Cuauhtémoc, merit succession, and a religion with no leader because the dossier names nobody for the temple office. Inkariket: Huayna Capac as `Sapa inka`, Huáscar and Araua Ocllo, primogeniture.
+- Aztekriket: Ahuitzotl as `Huey tlatoani`, Cuauhtémoc, merit succession, and a temple cult with no leader on the bookmark because the dossier names nobody for the temple office. The generated priest takes the leadership at the first mandate refresh. Inkariket: Huayna Capac as `Sapa inka`, Huáscar and Araua Ocllo, primogeniture.
 - The importer reads object chronologies, the `collective-rule` engine limit and `engineLimitNotesSv`. Charlemagne 1.2.0, John 1.1.0 and Egypt keep their bytes; `server/world1500Scenario.test.js` pins their twelve release rows by size and sha256.
 - Ming and the Ottoman Empire stay off the card: the AD 1500 review keeps Ming 77 quarantined and rejects Ottoman 290 for 1500. The coverage rows say so.
 - `HISTORICAL_BOOKMARKS` installs the start with marker `historical-bookmarks-world-1500`; the card lists both polities under `AMERIKA`, era `Senmedeltid`. Charlemagne stays the default start.

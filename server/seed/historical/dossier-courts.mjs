@@ -41,13 +41,19 @@ function relationPhrase(entry,subject) {
   if (!phrase) throw new Error(`dossier person ${subject.id} has unknown kinship relation ${entry.relation}`);
   return phrase;
 }
-const entryNote = (entry,subject) => [`${subject.nameSv}: ${relationPhrase(entry,subject)} ${entry.ofSv}.`,entry.noteSv].filter(Boolean).join(' ');
+// The other person's name: the entry's own ofSv, else the court person its ofPersonId points to.
+function otherName(entry,subject,byId) {
+  const name = entry.ofSv ?? byId.get(entry.ofPersonId)?.nameSv;
+  if (typeof name !== 'string' || !name.trim()) throw new Error(`dossier person ${subject.id} has a ${entry.relation} kinship entry without ofSv or a court person`);
+  return name;
+}
+const entryNote = (entry,subject,byId) => [`${subject.nameSv}: ${relationPhrase(entry,subject)} ${otherName(entry,subject,byId)}.`,entry.noteSv].filter(Boolean).join(' ');
 
 // Merges kinship entries: every source id, the weakest status, the notes joined.
-function mergedClaim(pairs) {
+function mergedClaim(pairs,byId) {
   const status = pairs.map(([e]) => e.status).reduce((a,b) => STATUS_RANK[b] < STATUS_RANK[a] ? b : a);
   const sourceIds = [...new Set(pairs.flatMap(([e]) => e.sourceIds))];
-  return claim(status,pairs.map(([e,subject]) => entryNote(e,subject)).join(' '),sourceIds);
+  return claim(status,pairs.map(([e,subject]) => entryNote(e,subject,byId)).join(' '),sourceIds);
 }
 
 // The entries on either side of the tie that name it; without one, the identity sources carry an uncertain claim.
@@ -57,19 +63,19 @@ function relationClaim(p,ids,words,byId) {
   const own = p.kinship.filter(k => ids.includes(k.ofPersonId) && words.own.includes(k.relation)).map(k => [k,p]);
   const reverse = ids.flatMap(id => byId.get(id).kinship.filter(k => k.ofPersonId === p.id && words.reverse.includes(k.relation)).map(k => [k,byId.get(id)]));
   const pairs = [...own,...reverse];
-  if (pairs.length) return mergedClaim(pairs);
+  if (pairs.length) return mergedClaim(pairs,byId);
   return claim('uncertain','Ingen släktpost i underlaget namnger relationen. Stödet är personens identitetskällor, och relationen räknas därför som osäker.',p.identity.sourceIds);
 }
 
-function kinshipClaim(p) {
+function kinshipClaim(p,byId) {
   if (!p.kinship.length) return generated('Underlaget har ingen egen släktpost för personen. Familjegruppen är en spelabstraktion.');
-  return mergedClaim(p.kinship.map(k => [k,p]));
+  return mergedClaim(p.kinship.map(k => [k,p]),byId);
 }
 
 function documentedPerson(p,familyId,religionId,byId) {
   if (p.identity.status !== 'sourced') throw new Error(`dossier person ${p.id} has no sourced identity`);
   const claims = { identity: claim('sourced',[p.roleSv.endsWith('.') ? p.roleSv : `${p.roleSv}.`,p.identity.noteSv].filter(Boolean).join(' '),p.identity.sourceIds),
-    bornAt: claim(p.birth.status,p.birth.noteSv,p.birth.sourceIds),kinship: kinshipClaim(p) };
+    bornAt: claim(p.birth.status,p.birth.noteSv,p.birth.sourceIds),kinship: kinshipClaim(p,byId) };
   if (p.legalParentIds.length) claims.legalParentIds = relationClaim(p,p.legalParentIds,PARENT_WORDS,byId);
   if (p.spouseIds.length) claims.spouseIds = relationClaim(p,p.spouseIds,SPOUSE_WORDS,byId);
   claims.mechanics = mechanics;

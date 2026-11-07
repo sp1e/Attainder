@@ -172,3 +172,25 @@ test('both AD 1500 courts pass the court validator', () => {
     assert.equal(checked.ok,true,`${polityId}: ${checked.code}`);
   }
 });
+
+// Araua Ocllo's wife entry gives ofPersonId huayna-capac and ofSv null.
+const withArauaEntry = patch => {
+  const dossier = structuredClone(AD1500);
+  const araua = dossierPolity(dossier,'inca-empire').people.find(p => p.id === 'araua-ocllo');
+  Object.assign(araua.kinship[0],patch);
+  return dossier;
+};
+
+test('a kinship entry without ofSv names the court person its ofPersonId points to', () => {
+  assert.equal(dossierPolity(AD1500,'inca-empire').people.find(p => p.id === 'araua-ocllo').kinship[0].ofSv,null);
+  const note = person(build1500('inca-empire').court,'araua-ocllo').claims.kinship.noteSv;
+  assert.ok(note.startsWith('Araua Ocllo: hustru till Huayna Capac. '),note);
+});
+
+test('a kinship entry with neither ofSv nor a court person refuses to import', () => {
+  for (const ofPersonId of [null,'nobody-at-court']) {
+    const dossier = withArauaEntry({ ofPersonId });
+    assert.throws(() => dossierCourt({ dossier,polityId: 'inca-empire',bookmarkYear: 1500,successionLaw: 'primogeniture',courtierNames,courtierBornAt: i => `${1455 + i}-01-01` }),
+      /dossier person araua-ocllo has a wife kinship entry without ofSv or a court person/);
+  }
+});
