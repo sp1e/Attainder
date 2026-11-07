@@ -1,8 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { execFileSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { validateHistoricalCourt, validateHistoricalScenario } from './historicalScenarios.js';
 import { authoredScenario, sources as sharedSources } from './seed/historical/authored-scenarios.mjs';
 
@@ -177,16 +176,31 @@ test('both Getty seat records are city sources and appear in the ODC-By notice',
   }
 });
 
-test('releases.json pins world_1500 and keeps the Egypt, Charlemagne and John rows', () => {
+// The released rows of Egypt 1.0.0, John 1.1.0 and Charlemagne 1.2.0 as [file, bytes, sha256]; a change needs a version bump.
+const RELEASED_ROWS = [
+  ['egypt-3000bc/regions.geojson', 2033872, '324681692eda15eb8d8927cdec6b3a2f72f279da6ab37ef046927c7e198fcefd'],
+  ['egypt-3000bc/cities.geojson', 406, '9640cbde26814a1ca01560d66f9a4b67a87a47c75471513b39dc03acc0fca3a8'],
+  ['egypt-3000bc/scenario.json', 3895181, 'd7e8f7919262a91cae5c875039b390be02adbfb734f9ddaa488ba0fccda0524e'],
+  ['egypt-3000bc/manifest.json', 2489, 'addff0749e22622951840a5859c91ed73c8227d61338ea63b9cfc9a46ba5c716'],
+  ['john-1200/regions.geojson', 2077205, '94308b5d9fabf18b87b3742f82dbc35d7286beb03a4d61e65e86f725d4c2d440'],
+  ['john-1200/cities.geojson', 1953, 'cefed90d6abde489be1fde2273d97ab54336a2825c24dc928b412c7e0cf0ece5'],
+  ['john-1200/scenario.json', 4552378, 'ddd7eeb3dd615a0e1e6deaf1aa6fae842b47952983958fc6ac8083acf93d3a40'],
+  ['john-1200/manifest.json', 2757, 'e4885980bd6b950e56074e04d1dabe78bbb736e1e1f156aab42c9616a94b11e2'],
+  ['charlemagne-800/regions.geojson', 2191514, '83cd982d563954d49d110bd616e71196a4369b0f7f659c209945514514e3217c'],
+  ['charlemagne-800/cities.geojson', 4560, 'eef2d09798684f6f5dd83a16d791a206b307ced19a7416468e6fa0f1564d5d7b'],
+  ['charlemagne-800/scenario.json', 4631554, '7a4019ad938e9ae105a195cd241534322a10bd4ffe499397a299b0298bc8f8ae'],
+  ['charlemagne-800/manifest.json', 2816, '5793b016409cf53f5cfea6763c62dc5ac6301e4d0e00e2229a36b1a720043a14'],
+];
+
+test('releases.json pins world_1500 and keeps the Egypt, Charlemagne and John rows and bytes', () => {
   const releases = readJson('releases.json');
   const source = releases.sources.find(s => s.file === 'sources/hbm-world_1500.geojson');
   assert.equal(source.sha256, 'd01ffc9b80629787f13d2b1c2f881f005bc0164433548e30f5c058ddee0bfc7b');
-  const repo = fileURLToPath(new URL('../', import.meta.url));
-  const head = JSON.parse(execFileSync('git', ['show', 'HEAD:server/seed/historical/releases.json'], { cwd: repo, encoding: 'utf8', maxBuffer: 1 << 24 }));
-  const rows = (index, prefix) => index.outputs.filter(o => o.file.startsWith(prefix));
-  for (const prefix of ['egypt-3000bc/', 'charlemagne-800/', 'john-1200/']) {
-    assert.equal(rows(head, prefix).length, 4, prefix);
-    assert.deepEqual(rows(releases, prefix), rows(head, prefix), prefix);
+  const released = releases.outputs.filter(o => !o.file.startsWith(`${ID}/`));
+  assert.deepEqual(released.map(o => [o.file, o.bytes, o.sha256]), RELEASED_ROWS);
+  for (const [file, bytes, sha256] of RELEASED_ROWS) {
+    const content = readFileSync(new URL(`./seed/historical/${file}`, import.meta.url));
+    assert.deepEqual([content.length, createHash('sha256').update(content).digest('hex')], [bytes, sha256], file);
   }
   assert.deepEqual(releases.outputs.filter(o => o.file.startsWith(`${ID}/`)).map(o => o.file), ['regions.geojson', 'cities.geojson', 'scenario.json', 'manifest.json'].map(f => `${ID}/${f}`));
 });

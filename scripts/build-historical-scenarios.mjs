@@ -62,6 +62,9 @@ function sourcesFromAd1500Review(h,review,pkg) {
   const cited = new Set([...pkg.mapMappings(review).flatMap(m => m.sourceIds),...pkg.coverage.flatMap(c => c.sourceIds),...quarantined.flatMap(q => regional(q.sourceIds))]);
   const missing = [...cited].filter(id => id.startsWith(REGIONAL) && !Object.hasOwn(review.sources,id.slice(REGIONAL.length)));
   if (missing.length) throw new Error(`${h.contentId}: cited review sources missing from the review file: ${missing.join(', ')}`);
+  // The region review drops evidence the package does not import; an id the review file lacks altogether is a typo.
+  const unknown = review.allFeatures.flatMap(f => f.sourceEvidenceIds ?? []).filter(id => !Object.hasOwn(review.sources,id));
+  if (unknown.length) throw new Error(`${h.contentId}: region evidence missing from the review file: ${[...new Set(unknown)].join(', ')}`);
   for (const [id,s] of Object.entries(review.sources)) if (cited.has(`${REGIONAL}${id}`)) h.sources[`${REGIONAL}${id}`] = ad1500ReviewSource(id,s);
 }
 const ANTARCTICA_COVERAGE = { area: 'Antarctica',status: 'unresolved',sourceIds: ['naturalEarth'],noteSv: 'Fysisk geografi visas. Inget historiskt ägande eller någon befolkning tillskrivs området.' };
