@@ -10,7 +10,7 @@ import { HISTORICAL_BOOKMARKS, shippedStartNeedsUpgrade } from './historicalStar
 import { charlemagneRelease110 } from './fixtures/releaseFixtures.js';
 
 test('each shipped start names the content version its built package carries', () => {
-  assert.deepEqual(HISTORICAL_BOOKMARKS.map(({ id, contentVersion }) => [id,contentVersion]),[['egypt-3000bc','1.0.0'],['charlemagne-800','1.2.0']]);
+  assert.deepEqual(HISTORICAL_BOOKMARKS.map(({ id, contentVersion }) => [id,contentVersion]),[['egypt-3000bc','1.0.0'],['charlemagne-800','1.2.0'],['world-1500','1.0.0']]);
   for (const { id, contentVersion } of HISTORICAL_BOOKMARKS) {
     const built = JSON.parse(readFileSync(new URL(`./seed/historical/${id}/scenario.json`,import.meta.url),'utf8'));
     const manifest = JSON.parse(readFileSync(new URL(`./seed/historical/${id}/manifest.json`,import.meta.url),'utf8'));
@@ -194,26 +194,27 @@ test('an interrupted desktop install finishes in place and never adds a second c
   `],{ env: { ...process.env,OH_DATA_DIR: root },stdio: 'pipe',encoding: 'utf8' });
   const catalog = () => JSON.parse(boot().trim().split('\n').at(-1));
   try {
-    assert.deepEqual(catalog(),['default','egypt-3000bc',id]);
+    assert.deepEqual(catalog(),['default','egypt-3000bc',id,'world-1500']);
     // Crash after the meta write: the directory is partial and the manifest lacks the id.
     const partial = path.join(dir,'world.json');
     assert.ok(existsSync(partial));
     rmSync(partial); rmSync(marker);
     const before = manifest();
     writeFileSync(manifestPath,JSON.stringify({ ...before,order: before.order.filter(entry => entry !== id),activeScenarioId: 'default',selectedScenarioId: 'default' }));
-    assert.deepEqual(catalog().sort(),['charlemagne-800','default','egypt-3000bc']);
+    assert.deepEqual(catalog().sort(),['charlemagne-800','default','egypt-3000bc','world-1500']);
     assert.ok(manifest().order.includes(id)); assert.ok(existsSync(partial),'the install finishes the partial directory');
     assert.ok(existsSync(marker)); assert.equal(manifest().selectedScenarioId,id);
     // Crash after the manifest write: the scenario is complete and only the marker is absent.
     rmSync(marker);
     const written = readFileSync(meta,'utf8');
-    assert.deepEqual(catalog(),['default','egypt-3000bc',id]);
+    // The finished install appended Charlemagne to the order after the AD 1500 start.
+    assert.deepEqual(catalog(),['default','egypt-3000bc','world-1500',id]);
     assert.ok(existsSync(marker)); assert.equal(readFileSync(meta,'utf8'),written,'a complete scenario is left as it stands');
-    assert.deepEqual(readdirSync(path.join(root,'scenarios')).sort(),['charlemagne-800','default','egypt-3000bc']);
+    assert.deepEqual(readdirSync(path.join(root,'scenarios')).sort(),['charlemagne-800','default','egypt-3000bc','world-1500']);
   } finally { rmSync(root,{recursive:true,force:true}); }
 });
 
-test('a desktop library offers three starts with Charlemagne as the default, and the upgrade leaves John saves alone', () => {
+test('a desktop library offers four starts with Charlemagne as the default, and the upgrade leaves John saves alone', () => {
   const root = mkdtempSync(path.join(os.tmpdir(),'attainder-historical-'));
   try {
     execFileSync(process.execPath, ['--input-type=module','-e', `
@@ -221,7 +222,8 @@ test('a desktop library offers three starts with Charlemagne as the default, and
       import * as store from ${JSON.stringify(new URL('./libraryStore.js',import.meta.url).href)};
       const charlemagneMarker=path.join(process.env.OH_DATA_DIR,'historical-bookmarks-charlemagne-800.json');
       const starts=()=>store.getScenarioCatalog().scenarios.filter(s=>s.historicalStart).map(s=>[s.id,s.historicalStart.contentId,s.historicalStart.date]);
-      const offered=[['default','john-1200','1200-12-31'],['egypt-3000bc','egypt-3000bc','-3000-01-01'],['charlemagne-800','charlemagne-800','0800-12-25']];
+      const offered=[['default','john-1200','1200-12-31'],['egypt-3000bc','egypt-3000bc','-3000-01-01'],['charlemagne-800','charlemagne-800','0800-12-25'],['world-1500','world-1500','1500-12-31']];
+      const withoutKarl=offered.filter(([id])=>id!=='charlemagne-800');
       store.ensureScenarioStore();
       assert.deepEqual(starts(),offered);
       assert.equal(store.getScenarioCatalog().selectedScenarioId,'charlemagne-800');
@@ -229,7 +231,7 @@ test('a desktop library offers three starts with Charlemagne as the default, and
       const savedGame=store.getGameDetails(john.game.id), savedBundle=store.exportGameBundle(john.game.id);
       // An install from before this start: the Egypt marker stands, Charlemagne is absent.
       store.deleteScenario('charlemagne-800'); fs.rmSync(charlemagneMarker);
-      assert.deepEqual(starts(),offered.slice(0,2));
+      assert.deepEqual(starts(),withoutKarl);
       // Selecting a scenario moves it to the front of the stored order, so these compare by id.
       const byId=list=>[...list].sort((a,b)=>a[0].localeCompare(b[0]));
       store.setSelectedScenario('egypt-3000bc');
@@ -246,7 +248,7 @@ test('a desktop library offers three starts with Charlemagne as the default, and
       assert.deepEqual(store.getGameDetails(imported.game.id).data.events,oldBundle.data.events);
       // A deleted start stays deleted: the marker, not the scenario, records the installation.
       store.deleteScenario('charlemagne-800'); store.ensureScenarioStore();
-      assert.deepEqual(byId(starts()),byId(offered.slice(0,2)));
+      assert.deepEqual(byId(starts()),byId(withoutKarl));
       fs.rmSync(charlemagneMarker); store.ensureScenarioStore();
       const karl=store.createGame({name:'Karl',scenarioId:'charlemagne-800',setActive:false,
         historicalStart:{date:'0800-12-25',polityId:'carolingian-realm',mode:'realm',seed:7,difficulty:'normal'},

@@ -139,7 +139,7 @@ test("the seed is a complete scenario whose world matches its map", () => {
 test("a fresh data directory gets the whole seed", () => {
   const root = freshRoot();
   const result = runStore(root, `store.ensureScenarioStore(); ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id) }")}`);
-  assert.deepEqual(result.catalog, ["default", "egypt-3000bc", "charlemagne-800"]);
+  assert.deepEqual(result.catalog, ["default", "egypt-3000bc", "charlemagne-800", "world-1500"]);
   const dir = path.join(root, "scenarios", "default");
   assert.equal(readJson(path.join(dir, "world.json")).builtInMap, STAMP);
   assert.equal(statSync(path.join(dir, "regions.geojson")).size, seedRegionsBytes);
@@ -158,7 +158,7 @@ test("an older install keeps its campaigns on the previous map and moves the sto
     const runtime = store.readRuntimeJsonAsset("regionsGeojson");
     ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id), runtimeSource: runtime.sourcePath }")}
   `);
-  assert.deepEqual([...result.catalog].sort(), ["charlemagne-800", "default", "egypt-3000bc", "modern-day-classic"]);
+  assert.deepEqual([...result.catalog].sort(), ["charlemagne-800", "default", "egypt-3000bc", "modern-day-classic", "world-1500"]);
   assert.equal(readJson(path.join(root, "games", "old-campaign", "game-instance.json")).scenarioId, "modern-day-classic");
 
   const classic = path.join(root, "scenarios", "modern-day-classic");
@@ -174,19 +174,19 @@ test("an older install keeps its campaigns on the previous map and moves the sto
   const dir = path.join(root, "scenarios", "default");
   assert.equal(readJson(path.join(dir, "world.json")).builtInMap, STAMP);
   assert.equal(statSync(path.join(dir, "regions.geojson")).size, seedRegionsBytes);
-  assert.deepEqual(readJson(path.join(root, "scenario-manifest.json")).order, ["default", "modern-day-classic", "egypt-3000bc", "charlemagne-800"]);
+  assert.deepEqual(readJson(path.join(root, "scenario-manifest.json")).order, ["default", "modern-day-classic", "egypt-3000bc", "charlemagne-800", "world-1500"]);
 });
 
 test("a copy the player edited is kept as the classic scenario even without campaigns", () => {
   const root = legacyRoot({ touched: true });
   const result = runStore(root, `store.ensureScenarioStore(); ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id) }")}`);
-  assert.deepEqual([...result.catalog].sort(), ["charlemagne-800", "default", "egypt-3000bc", "modern-day-classic"]);
+  assert.deepEqual([...result.catalog].sort(), ["charlemagne-800", "default", "egypt-3000bc", "modern-day-classic", "world-1500"]);
 });
 
 test("an untouched older install with no campaigns is simply reset", () => {
   const root = legacyRoot();
   const result = runStore(root, `store.ensureScenarioStore(); ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id) }")}`);
-  assert.deepEqual(result.catalog, ["default", "egypt-3000bc", "charlemagne-800"]);
+  assert.deepEqual(result.catalog, ["default", "egypt-3000bc", "charlemagne-800", "world-1500"]);
   assert.equal(statSync(path.join(root, "stock", "regions.geojson")).size, STOCK_BYTES);
   const dir = path.join(root, "scenarios", "default");
   assert.equal(readJson(path.join(dir, "world.json")).builtInMap, STAMP);
@@ -257,7 +257,7 @@ test("a built-in that already holds the seed's map but lost its record is comple
   writeJson(path.join(root, "game-manifest.json"), { activeGameId: "new-campaign", order: ["new-campaign"], version: 2 });
 
   const result = runStore(root, `store.ensureScenarioStore(); ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id), world: store.getScenarioDetails('default').data.world }")}`);
-  assert.deepEqual(result.catalog, ["default", "egypt-3000bc", "charlemagne-800"], "no classic fork: the map was already the seed's");
+  assert.deepEqual(result.catalog, ["default", "egypt-3000bc", "charlemagne-800", "world-1500"], "no classic fork: the map was already the seed's");
   assert.equal(result.world.builtInMap, STAMP);
   assert.equal(result.world.customRegions, true);
   assert.deepEqual(result.world.historicalScenario.polities, seedWorld.historicalScenario.polities, "the world came back with its historical polities");
@@ -285,7 +285,7 @@ test("a packaged install from before the redraw — meta and the stock map, no w
     const runtime = store.readRuntimeJsonAsset("regionsGeojson");
     ${report("{ catalog: store.getScenarioCatalog().scenarios.map((s) => s.id), runtimeSource: runtime.sourcePath }")}
   `);
-  assert.deepEqual([...result.catalog].sort(), ["charlemagne-800", "default", "egypt-3000bc", "modern-day-classic"]);
+  assert.deepEqual([...result.catalog].sort(), ["charlemagne-800", "default", "egypt-3000bc", "modern-day-classic", "world-1500"]);
   assert.equal(readJson(path.join(gameDir, "game-instance.json")).scenarioId, "modern-day-classic");
   assert.equal(path.resolve(result.runtimeSource), path.resolve(path.join(root, "stock", "regions.geojson")));
   assert.equal(readJson(path.join(dir, "world.json")).builtInMap, STAMP);
@@ -301,7 +301,7 @@ test("a running server whose built-in loses its record completes it on the next 
     store.ensureScenarioStore();
     ${report("{ world: store.getScenarioDetails('default').data.world, catalog: store.getScenarioCatalog().scenarios.map((s) => s.id) }")}
   `);
-  assert.deepEqual(result.catalog, ["default", "egypt-3000bc", "charlemagne-800"]);
+  assert.deepEqual(result.catalog, ["default", "egypt-3000bc", "charlemagne-800", "world-1500"]);
   assert.equal(result.world.builtInMap, STAMP);
   assert.equal(result.world.customRegions, true);
   assert.ok(existsSync(path.join(root, "scenarios", "default", "colors.json")));

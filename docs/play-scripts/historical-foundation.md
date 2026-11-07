@@ -181,6 +181,24 @@ Run on `7ccef350` with Playwright Chromium on 7 November 2026, with the same ser
 
 The card groups the polities under `EUROPA`, `MELLANÖSTERN OCH NORDAFRIKA`, `ÖSTASIEN` and `SYDOSTASIEN`. Choosing Tangriket shows `Kejsar Dezong regerar över Tangriket sedan 779.` and the rest of the Tang text; choosing Frankrike shows `Filip II regerar sedan 1180 och har sitt hov i Paris.` and the rest of the French text. The web library came from the Phase 2 run on the same origin, so the web run also exercised the upgrade from Charlemagne 1.1.0 and John revision 1. Both consoles showed 0 errors and the existing hillshade warning. No model turn was run.
 
+## AD 1500 start, Phase 4
+
+Run on `670af54d` with Playwright Chromium on 7 November 2026, with the same server and web setup as the Kyrkostaten run and a fresh `OH_DATA_DIR`.
+
+| ID | Adapter | Card | Aztekriket start | Inkariket start |
+| --- | --- | --- | --- | --- |
+| A-S | Server | Observed: `AMERIKA`, `Senmedeltid`, Aztekriket with Ahuitzotl and Inkariket with Huayna Capac | Observed in realm mode: Ahuitzotl, 50, header `Riket / Aztekriket / 1500-12-31`; `Ämbeten & arv` shows `Huey tlatoani` and Tenochtitlan | Observed in family mode: families Hovhus 1–3 (genererat) and Huayna Capacs hus; representative Kuntur Rimaq (genererad), 44 |
+| A-W | Web | Observed: the same `AMERIKA` rows | Not run | Observed in realm mode: header `Riket / Inkariket / 1500-12-31`; `Ämbeten & arv` shows `Sapa inka`, Huáscar and Cusco |
+
+A second run on `edf7fbef` covered the two starts the first run left out.
+
+| ID | Adapter | Start | Observed |
+| --- | --- | --- | --- |
+| A-S2 | Server | Inkariket, realm mode | `Huayna Capacs hus · 43 år`; `Ämbeten & arv` shows `Sapa inka` held by Huayna Capac; Cusco under `Förvaltning` |
+| A-W2 | Web | Aztekriket, realm mode | `Ahuitzotls hus · 50 år`; `Ämbeten & arv` shows `Huey tlatoani` held by Ahuitzotl; Tenochtitlan under `Förvaltning` |
+
+Choosing Aztekriket shows the dossier text that opens `Ahuitzotl styr från Tenochtitlan inom trippelalliansen.` Both consoles showed 0 errors in both runs. No model turn was run.
+
 ## Closure
 
 The controller accepted Task 6 with the documented limits, and final documentation review approved publication subject to current-head CI. CI passed at `2066a55`; the PR tracks the current head and merge state. Preserve source attribution and licenses, and exclude private material from publication. The annual 3300 BC–AD 1530 historical-reference research and turn-end popup remain a separate pending milestone.

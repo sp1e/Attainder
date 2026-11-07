@@ -15,9 +15,9 @@ test('visible choices follow real bookmark courts and empty catalogs fail closed
   }
   assert.throws(()=>historicalStartOption({data:{world:{},game:{}}},null,null));
 });
-test('the catalog order puts Charlemagne first, then John under his stored id, Egypt and imported starts', () => {
+test('the catalog order puts Charlemagne first, then John under his stored id, Egypt, AD 1500 and imported starts', () => {
   const ids=list=>orderHistoricalStarts(list.map(scenarioId=>({scenarioId}))).map(option=>option.scenarioId);
-  assert.deepEqual(ids(['default','egypt-3000bc','imported','charlemagne-800']),['charlemagne-800','default','egypt-3000bc','imported']);
+  assert.deepEqual(ids(['default','world-1500','egypt-3000bc','imported','charlemagne-800']),['charlemagne-800','default','egypt-3000bc','world-1500','imported']);
   assert.deepEqual(ids(['imported','egypt-3000bc','default']),['default','egypt-3000bc','imported'],'John leads once a player has deleted Charlemagne');
   assert.deepEqual(ids([]),[]);
 });

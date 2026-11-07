@@ -18,13 +18,13 @@ test('the catalog names every package shipped under server/seed/historical', () 
   const onDisk = readdirSync(SEED, { withFileTypes: true })
     .filter(entry => entry.isDirectory() && existsSync(new URL(`${entry.name}/scenario.json`, SEED))).map(entry => entry.name);
   assert.deepEqual([...SHIPPED_START_FOLDERS].sort(), onDisk.sort());
-  for (const folder of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) assert.ok(SHIPPED_START_FOLDERS.includes(folder), folder);
+  for (const folder of ['egypt-3000bc', 'john-1200', 'charlemagne-800', 'world-1500']) assert.ok(SHIPPED_START_FOLDERS.includes(folder), folder);
 });
 
-test('the shipped packages offer fifteen playable polities: Egypt, ten at AD 800 and four at AD 1200', () => {
+test('the shipped packages offer seventeen playable polities: Egypt, ten at AD 800, four at AD 1200 and two at AD 1500', () => {
   const counts = Object.fromEntries(SHIPPED_START_FOLDERS.map(folder => [folder, loadPackage(folder).world.historicalScenario.playablePolityIds.length]));
-  assert.deepEqual(counts, { 'egypt-3000bc': 1, 'charlemagne-800': 10, 'john-1200': 4 });
-  assert.equal(Object.values(counts).reduce((sum, count) => sum + count, 0), 15);
+  assert.deepEqual(counts, { 'egypt-3000bc': 1, 'charlemagne-800': 10, 'world-1500': 2, 'john-1200': 4 });
+  assert.equal(Object.values(counts).reduce((sum, count) => sum + count, 0), 17);
 });
 
 const startsEveryMode = (h, polityId) => {

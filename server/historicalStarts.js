@@ -11,9 +11,10 @@ export const HISTORICAL_START_REFUSAL = "Välj ett giltigt startdatum mellan 330
 export const HISTORICAL_BOOKMARKS = Object.freeze([
   Object.freeze({ id: "egypt-3000bc", marker: "historical-bookmarks-v1", contentVersion: "1.0.0" }),
   Object.freeze({ id: "charlemagne-800", marker: "historical-bookmarks-charlemagne-800", contentVersion: "1.2.0" }),
+  Object.freeze({ id: "world-1500", marker: "historical-bookmarks-world-1500", contentVersion: "1.0.0" }),
 ]);
 // Catalog order by scenario id. The first start present is the default.
-export const HISTORICAL_START_ORDER = Object.freeze(["charlemagne-800", "default", "egypt-3000bc"]);
+export const HISTORICAL_START_ORDER = Object.freeze(["charlemagne-800", "default", "egypt-3000bc", "world-1500"]);
 
 // What the library records about an installed start, as opposed to what the package ships.
 // An upgrade keeps these from the stored meta and takes every other field from the package.

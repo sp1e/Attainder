@@ -9,6 +9,7 @@ export const ENGINE_LIMIT_TEXT_SV = Object.freeze({
   'elective-rule': 'Spelet har ingen valordning för tronen. Efterträdaren utses enligt spelets arvslag.',
   'no-sourced-household': 'Underlaget belägger inget hushåll vid hovet. De tre hovmännen är genererade för spelet.',
   'multiple-spouses': 'Spelet tillåter en make eller maka per person. Hovet visar högst ett äktenskap för varje person.',
+  'collective-rule': 'Spelet har ett ensamt härskarämbete. Råd och delat styre visas inte som egna ämbeten.',
 });
 
 // Shared with court() in authored-scenarios.mjs, so hand-authored and dossier courts stay alike.
@@ -40,13 +41,19 @@ function relationPhrase(entry,subject) {
   if (!phrase) throw new Error(`dossier person ${subject.id} has unknown kinship relation ${entry.relation}`);
   return phrase;
 }
-const entryNote = (entry,subject) => [`${subject.nameSv}: ${relationPhrase(entry,subject)} ${entry.ofSv}.`,entry.noteSv].filter(Boolean).join(' ');
+// The other person's name: the entry's own ofSv, else the court person its ofPersonId points to.
+function otherName(entry,subject,byId) {
+  const name = entry.ofSv ?? byId.get(entry.ofPersonId)?.nameSv;
+  if (typeof name !== 'string' || !name.trim()) throw new Error(`dossier person ${subject.id} has a ${entry.relation} kinship entry without ofSv or a court person`);
+  return name;
+}
+const entryNote = (entry,subject,byId) => [`${subject.nameSv}: ${relationPhrase(entry,subject)} ${otherName(entry,subject,byId)}.`,entry.noteSv].filter(Boolean).join(' ');
 
 // Merges kinship entries: every source id, the weakest status, the notes joined.
-function mergedClaim(pairs) {
+function mergedClaim(pairs,byId) {
   const status = pairs.map(([e]) => e.status).reduce((a,b) => STATUS_RANK[b] < STATUS_RANK[a] ? b : a);
   const sourceIds = [...new Set(pairs.flatMap(([e]) => e.sourceIds))];
-  return claim(status,pairs.map(([e,subject]) => entryNote(e,subject)).join(' '),sourceIds);
+  return claim(status,pairs.map(([e,subject]) => entryNote(e,subject,byId)).join(' '),sourceIds);
 }
 
 // The entries on either side of the tie that name it; without one, the identity sources carry an uncertain claim.
@@ -56,19 +63,19 @@ function relationClaim(p,ids,words,byId) {
   const own = p.kinship.filter(k => ids.includes(k.ofPersonId) && words.own.includes(k.relation)).map(k => [k,p]);
   const reverse = ids.flatMap(id => byId.get(id).kinship.filter(k => k.ofPersonId === p.id && words.reverse.includes(k.relation)).map(k => [k,byId.get(id)]));
   const pairs = [...own,...reverse];
-  if (pairs.length) return mergedClaim(pairs);
+  if (pairs.length) return mergedClaim(pairs,byId);
   return claim('uncertain','Ingen släktpost i underlaget namnger relationen. Stödet är personens identitetskällor, och relationen räknas därför som osäker.',p.identity.sourceIds);
 }
 
-function kinshipClaim(p) {
+function kinshipClaim(p,byId) {
   if (!p.kinship.length) return generated('Underlaget har ingen egen släktpost för personen. Familjegruppen är en spelabstraktion.');
-  return mergedClaim(p.kinship.map(k => [k,p]));
+  return mergedClaim(p.kinship.map(k => [k,p]),byId);
 }
 
 function documentedPerson(p,familyId,religionId,byId) {
   if (p.identity.status !== 'sourced') throw new Error(`dossier person ${p.id} has no sourced identity`);
   const claims = { identity: claim('sourced',[p.roleSv.endsWith('.') ? p.roleSv : `${p.roleSv}.`,p.identity.noteSv].filter(Boolean).join(' '),p.identity.sourceIds),
-    bornAt: claim(p.birth.status,p.birth.noteSv,p.birth.sourceIds),kinship: kinshipClaim(p) };
+    bornAt: claim(p.birth.status,p.birth.noteSv,p.birth.sourceIds),kinship: kinshipClaim(p,byId) };
   if (p.legalParentIds.length) claims.legalParentIds = relationClaim(p,p.legalParentIds,PARENT_WORDS,byId);
   if (p.spouseIds.length) claims.spouseIds = relationClaim(p,p.spouseIds,SPOUSE_WORDS,byId);
   claims.mechanics = mechanics;
@@ -144,6 +151,9 @@ function citedSourceIds(court,seat,contextSourceIds) {
   return [...cited];
 }
 
+// The AD 1500 dossier gives chronology as { asWorded, precision }; the record keeps the worded text. Strings pass as they are.
+const sourceField = (s,k) => k === 'chronology' && s.chronology && typeof s.chronology === 'object' ? s.chronology.asWorded : s[k];
+
 // Dossier sources lack the validator's review field; the polity's review block supplies it.
 function sourcesFor(dossier,polity,ids) {
   const { review } = polity;
@@ -151,41 +161,44 @@ function sourcesFor(dossier,polity,ids) {
   return Object.fromEntries(ids.map(id => {
     const s = dossier.sources[id];
     if (!s) throw new Error(`dossier polity ${polity.polityId} cites unknown source ${id}`);
-    const missing = SOURCE_FIELDS.find(k => typeof s[k] !== 'string' || !s[k].trim());
+    const record = Object.fromEntries(SOURCE_FIELDS.map(k => [k,sourceField(s,k)]));
+    const missing = SOURCE_FIELDS.find(k => typeof record[k] !== 'string' || !record[k].trim());
     if (missing) throw new Error(`dossier source ${id} lacks ${missing}`);
-    const record = Object.fromEntries(SOURCE_FIELDS.map(k => [k,s[k]]));
     return [id,{ ...record,review: `Dossier review: checked by ${review.checkedBy} on ${review.checkedOn}.` }];
   }));
 }
 
+// engineLimitNotesSv comes only from the AD 1500 dossier, so older imports keep their lines.
 function coverageLines(polity) {
-  const notes = [polity.successionNoteSv,polity.engineLimitNoteSv,polity.engineRepresentationNoteSv].filter(Boolean);
+  const notes = [polity.successionNoteSv,polity.engineLimitNoteSv,polity.engineRepresentationNoteSv,polity.engineLimitNotesSv].flat().filter(Boolean);
   return [...notes,...(polity.engineLimits ?? []).map(id => {
     if (!ENGINE_LIMIT_TEXT_SV[id]) throw new Error(`dossier polity ${polity.polityId} has unknown engine limit ${id}`);
     return ENGINE_LIMIT_TEXT_SV[id];
   })];
 }
 
-function courtFor(polity,polityId,seat,{ successionLaw,courtierNames,courtierBornAt }) {
+// religionLeader: absent keeps the dossier leader or the generated priest; null leaves the religion without a leader.
+function courtFor(polity,polityId,seat,{ successionLaw,courtierNames,courtierBornAt,religionLeader }) {
   const rulers = polity.people.filter(p => p.isRuler);
   if (rulers.length !== 1) throw new Error(`dossier polity ${polityId} needs exactly one ruler`);
   const ruler = rulers[0], religion = polity.religion, religionId = religion.id;
+  const leaderId = religionLeader === undefined ? religion.leaderPersonId ?? 'generated-courtier-3' : religionLeader;
   const byId = new Map(polity.people.map(p => [p.id,p]));
   const { families,familyOf,rulingFamilyId } = familiesFor(polity,ruler,religionId);
   const people = polity.people.map(p => documentedPerson(p,familyOf.get(p.id),religionId,byId));
   const courtiers = generatedCourtiers({ courtierNames,courtierBornAt },religionId);
   people.push(...courtiers.people); families.push(...courtiers.families);
   return { polityId,rulerId: ruler.id,seatId: seat.id,...(successionLaw ? { successionLaw } : {}),people,families,offices: officesFor(polity,ruler.id),
-    religions: [{ id: religionId,name: religion.nameSv,leaderId: religion.leaderPersonId ?? 'generated-courtier-3',
+    religions: [{ id: religionId,name: religion.nameSv,leaderId,
       claims: { identity: claim(religion.status,religion.claimSv,religion.sourceIds),mechanics } }],
     cities: [{ id: seat.id,settlementId: seat.id,name: seat.nameSv,regionId: seat.regionId,familyId: rulingFamilyId,claims: { mechanics } }],
     mechanics: { status: 'generated',noteSv: 'Resurser, succession, familjegrupper, myndighetsålder och hovämbeten följer spelets regler. De beskriver inte belagda historiska värden.' } };
 }
 
-export function dossierCourt({ dossier,polityId,bookmarkYear,successionLaw,courtierNames,courtierBornAt }) {
+export function dossierCourt({ dossier,polityId,bookmarkYear,successionLaw,courtierNames,courtierBornAt,religionLeader }) {
   const polity = dossierPolity(dossier,polityId);
   const seat = seatFor(polity,polityId,bookmarkYear);
-  const court = courtFor(polity,polityId,seat,{ successionLaw,courtierNames,courtierBornAt });
+  const court = courtFor(polity,polityId,seat,{ successionLaw,courtierNames,courtierBornAt,religionLeader });
   const contextSourceIds = [...polity.contextSourceIds];
   return { seat,court,sources: sourcesFor(dossier,polity,citedSourceIds(court,seat,contextSourceIds)),
     contextSv: polity.contextSv,contextSourceIds,coverageLinesSv: coverageLines(polity) };

@@ -130,3 +130,67 @@ test('every engine limit in the dossiers has a Swedish game-rule sentence and re
   const abbasid = dossierPolity(dossierOf('abbasid-caliphate'),'abbasid-caliphate');
   assert.deepEqual(buildFor('abbasid-caliphate').coverageLinesSv,[abbasid.successionNoteSv,abbasid.engineRepresentationNoteSv]);
 });
+
+const AD1500 = readDossier('ad1500');
+const AD1500_COURTS = {
+  'aztec-empire': { successionLaw: 'merit',names: ['Itztli','Cuetzpalin','Mazatl'],born: [1458,1462,1467] },
+  'inca-empire': { successionLaw: 'primogeniture',names: ['Kuntur Rimaq','Qori Puma','Rumi Sunqu'],born: [1456,1461,1466] },
+};
+const build1500 = (polityId,options = {}) => {
+  const { successionLaw,names,born } = AD1500_COURTS[polityId];
+  return dossierCourt({ dossier: AD1500,polityId,bookmarkYear: 1500,successionLaw,courtierNames: names.map(n => `${n} (genererad)`),
+    courtierBornAt: i => `${born[i-1]}-01-01`,...options });
+};
+
+test('an AD 1500 dossier source with an object chronology imports its asWorded text', () => {
+  const { sources } = build1500('aztec-empire');
+  assert.equal(typeof AD1500.sources['b2-aztec-met-chronology'].chronology,'object');
+  assert.equal(sources['b2-aztec-met-chronology'].chronology,AD1500.sources['b2-aztec-met-chronology'].chronology.asWorded);
+  for (const s of Object.values(sources)) assert.equal(typeof s.chronology,'string');
+});
+
+test('collective-rule has a Swedish game-rule sentence', () => {
+  assert.equal(ENGINE_LIMIT_TEXT_SV['collective-rule'],'Spelet har ett ensamt härskarämbete. Råd och delat styre visas inte som egna ämbeten.');
+  assert.ok(build1500('aztec-empire').coverageLinesSv.includes(ENGINE_LIMIT_TEXT_SV['collective-rule']));
+});
+
+test('the polity\'s engineLimitNotesSv joins the coverage lines', () => {
+  const polity = dossierPolity(AD1500,'aztec-empire');
+  assert.equal(typeof polity.engineLimitNotesSv,'string');
+  assert.ok(build1500('aztec-empire').coverageLinesSv.includes(polity.engineLimitNotesSv));
+});
+
+test('religionLeader null leaves the religion without a leader', () => {
+  assert.equal(build1500('aztec-empire',{ religionLeader: null }).court.religions[0].leaderId,null);
+  assert.equal(build1500('inca-empire').court.religions[0].leaderId,'generated-courtier-3');
+});
+
+test('both AD 1500 courts pass the court validator', () => {
+  for (const polityId of Object.keys(AD1500_COURTS)) {
+    const result = build1500(polityId,polityId === 'aztec-empire' ? { religionLeader: null } : {});
+    const checked = validateHistoricalCourt(scenarioFor(AD1500,polityId,result),{ date: AD1500.bookmark,polityId });
+    assert.equal(checked.ok,true,`${polityId}: ${checked.code}`);
+  }
+});
+
+// Araua Ocllo's wife entry gives ofPersonId huayna-capac and ofSv null.
+const withArauaEntry = patch => {
+  const dossier = structuredClone(AD1500);
+  const araua = dossierPolity(dossier,'inca-empire').people.find(p => p.id === 'araua-ocllo');
+  Object.assign(araua.kinship[0],patch);
+  return dossier;
+};
+
+test('a kinship entry without ofSv names the court person its ofPersonId points to', () => {
+  assert.equal(dossierPolity(AD1500,'inca-empire').people.find(p => p.id === 'araua-ocllo').kinship[0].ofSv,null);
+  const note = person(build1500('inca-empire').court,'araua-ocllo').claims.kinship.noteSv;
+  assert.ok(note.startsWith('Araua Ocllo: hustru till Huayna Capac. '),note);
+});
+
+test('a kinship entry with neither ofSv nor a court person refuses to import', () => {
+  for (const ofPersonId of [null,'nobody-at-court']) {
+    const dossier = withArauaEntry({ ofPersonId });
+    assert.throws(() => dossierCourt({ dossier,polityId: 'inca-empire',bookmarkYear: 1500,successionLaw: 'primogeniture',courtierNames,courtierBornAt: i => `${1455 + i}-01-01` }),
+      /dossier person araua-ocllo has a wife kinship entry without ofSv or a court person/);
+  }
+});

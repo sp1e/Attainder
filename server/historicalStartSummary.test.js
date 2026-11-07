@@ -99,7 +99,7 @@ test('a broken court makes the summary invalid and a non-historical world gives 
 });
 
 test('every shipped package gives a valid summary', () => {
-  for (const id of ['egypt-3000bc','charlemagne-800','john-1200']) {
+  for (const id of ['egypt-3000bc','charlemagne-800','john-1200','world-1500']) {
     const summary = summaryOf(readPackage(id));
     assert.equal(summary.invalid, undefined, id);
     assert.ok(summary.polities.every(p => p.regionId !== 'other'), id);

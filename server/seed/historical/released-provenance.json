@@ -155,5 +155,64 @@
         "sha256": "9cd676dc1a295539f231cc0dc29c6686b2515df98c01272f5c3f124223488588"
       }
     ]
+  },
+  "world-1500": {
+    "generator": {
+      "file": "scripts/build-historical-scenarios.mjs",
+      "sha256": "e55017058cf4ef0143f65a8e995e52bda78abb3d13efe2829f20aae3b0504282",
+      "polygonClipping": "0.15.7"
+    },
+    "sourceFiles": [
+      {
+        "fileName": "hbm-world_800.geojson",
+        "sha256": "9d046cdc4662109c3f803ae46e2c8cba941aa092ec86eccc7823e6cf1554920c"
+      },
+      {
+        "fileName": "hbm-world_1200.geojson",
+        "sha256": "2d6913ecedb38e269e41d249c87874d81e3e8d7351754821f57e627442d91525"
+      },
+      {
+        "fileName": "hbm-world_1500.geojson",
+        "sha256": "d01ffc9b80629787f13d2b1c2f881f005bc0164433548e30f5c058ddee0bfc7b"
+      },
+      {
+        "fileName": "hbm-world_bc3000.geojson",
+        "sha256": "2cf107e2f0d4f9b5427b293f19b11fffe7c1134f52320df4f94b4889b978f033"
+      },
+      {
+        "fileName": "hbm-LICENSE",
+        "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+      },
+      {
+        "fileName": "hbm-README.md",
+        "sha256": "4a6d137790d3aea8c2a53c26d6a3fe4a43485f90d48b7751c5e53b65b2a8d6fe"
+      },
+      {
+        "fileName": "hbm-CONTRIBUTING.md",
+        "sha256": "e039e33384bfc0cb7eae4ef2508002ac1d7369a0199823dc8a78db6ab38354d4"
+      },
+      {
+        "fileName": "ne_50m_land.geojson",
+        "sha256": "e874b27a51d146452be360cafb3cc50c86001074a67d534113e6534682f9826b"
+      }
+    ],
+    "authoredInputs": [
+      {
+        "fileName": "authored-scenarios.mjs",
+        "sha256": "c16463f7172670f4c5d2b012a761a50ee8714ae67b5a58ec2a40237cbc5a1468"
+      },
+      {
+        "fileName": "ad1500-review.json",
+        "sha256": "7aa290b4ad079307573a76a7dedb6ec3e1685ab24ff6fea0df661fad5524e2ed"
+      },
+      {
+        "fileName": "dossier-courts.mjs",
+        "sha256": "fb24b41f92a5c0be14c190939e8ea82df3da255028429c05edd0850d49045032"
+      },
+      {
+        "fileName": "courts/ad1500-courts.json",
+        "sha256": "7d19df3c432fcfd0aca26104d0610c7a99752a7d5748f03bcc2ab9cd930755a2"
+      }
+    ]
   }
 }

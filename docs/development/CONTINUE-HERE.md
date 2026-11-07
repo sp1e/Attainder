@@ -57,6 +57,18 @@ The design is `docs/superpowers/specs/2026-11-07-world-cultures-phase-3-design.m
 
 Evidence at `7ccef350`: the full serial suite ran 5,029 tests, with 5,026 passed, 0 failed, 1 skipped and 2 TODO, in 445 seconds. The build and the four `--check` scripts exited 0, and eslint reported no errors in the changed files. Egypt's package and its release rows are byte-identical. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md). Next: Phase 4, the AD 1500 package (Aztec and Inca courts).
 
+## Every culture playable: Phase 4
+
+The design is `docs/superpowers/specs/2026-11-07-world-cultures-phase-4-design.md` and the plan is `docs/superpowers/plans/2026-11-07-world-cultures-phase-4.md`. Phase 4 is built on `feature/world-cultures-phase-4`:
+
+- A new built-in package, `world-1500` 1.0.0 (bookmark `1500-12-31`, map `world_1500` pinned), offers Aztekriket and Inkariket. Both courts come from Codex's `courts/ad1500-courts.json`; the primary polity can now be a dossier polity.
+- Aztekriket: Ahuitzotl as `Huey tlatoani`, Cuauhtémoc, merit succession, and a temple cult with no leader on the bookmark because the dossier names nobody for the temple office. The generated priest takes the leadership at the first mandate refresh. Inkariket: Huayna Capac as `Sapa inka`, Huáscar and Araua Ocllo, primogeniture.
+- The importer reads object chronologies, the `collective-rule` engine limit and `engineLimitNotesSv`. Charlemagne 1.2.0, John 1.1.0 and Egypt keep their bytes; `server/world1500Scenario.test.js` pins their twelve release rows by size and sha256.
+- Ming and the Ottoman Empire stay off the card: the AD 1500 review keeps Ming 77 quarantined and rejects Ottoman 290 for 1500. The coverage rows say so.
+- `HISTORICAL_BOOKMARKS` installs the start with marker `historical-bookmarks-world-1500`; the card lists both polities under `AMERIKA`, era `Senmedeltid`. Charlemagne stays the default start.
+
+Evidence at `670af54d`: the full serial suite ran 5,082 tests, with 5,077 passed, 2 failed, 1 skipped and 2 TODO. Both failures are `scripts/test-local-model-*.mjs`, which call this machine's Codex CLI (`config.toml` line 9 and the rejected `--ignore-user-config` flag); `npm test` does not run them. The build and the four `--check` scripts exited 0. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md). Next: Phase 5, engine depth (polity kinds, elective succession, culture name pools).
+
 ## Branch state
 
 Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The whole-branch review found two reproduced issues; both now have reviewed fixes. The final follow-up review of `08d3518..55283dc` approved the branch with no new Critical, Important or Minor findings. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295). [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the fixes, and the remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`. The retained remote branch `fix/phase-3-review` ends at `55283dc`; its tested production code remains `cfa225238c5065441e4642481ab507629e498e73`. Nobody has run the Phase 3 play script; the owner deferred the Hadara script behind the historical foundation.
