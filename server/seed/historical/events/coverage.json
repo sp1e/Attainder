@@ -21,6 +21,12 @@
     },
     {
       "startYear": 1000,
+      "endYear": 1099,
+      "status": "partial",
+      "note": "45 independently checked events cover selected acts in Europe, the Middle East and North Africa, the steppe and Central Asia, southern Africa, East Asia, South Asia, Southeast Asia and the Americas. Oceania has no retained event; sub-Saharan Africa has only the approximate K2 phase. Iberia, Scandinavia beyond Cnut, Egyptian and South Arabian politics, western and central steppe, Sri Lanka, Nepal, Bangladesh, the Philippines, much of Africa and the Americas require more research. Shanga and the proposed Ghana1076 conquest remain withheld. K2 retains its full approximate 1000–1220 phase once; that endpoint does not establish researched coverage of later years. Empty years are research gaps, not evidence that no event occurred."
+    },
+    {
+      "startYear": 1100,
       "endYear": 1200,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog. Earlier records whose date ranges extend into these years do not establish researched annual coverage."
