@@ -20,6 +20,8 @@ import { SHIPPED_START_FOLDERS } from '../testing/shippedHistoricalStarts.js';
 const db = new Map();
 globalThis.__ohWebStoreTestDb = db;
 globalThis.__ohWebStoreWrites = 0;
+// Every idbGet ("store:key") and idbGetAll ("store:*"), in order.
+globalThis.__ohWebStoreReads = [];
 
 const IDB_STUB = `
 export const STORES = {
@@ -29,8 +31,8 @@ export const STORES = {
 const db = globalThis.__ohWebStoreTestDb;
 const table = (name) => { if (!db.has(name)) db.set(name, new Map()); return db.get(name); };
 const copy = (value) => (value === undefined ? undefined : structuredClone(value));
-export const idbGet = async (store, key) => copy(table(store).get(key));
-export const idbGetAll = async (store) => [...table(store).values()].map(copy);
+export const idbGet = async (store, key) => { globalThis.__ohWebStoreReads.push(store + ":" + key); return copy(table(store).get(key)); };
+export const idbGetAll = async (store) => { globalThis.__ohWebStoreReads.push(store + ":*"); return [...table(store).values()].map(copy); };
 export const idbGetAllKeys = async (store) => [...table(store).keys()];
 export const idbPut = async (store, value) => { globalThis.__ohWebStoreWrites++; table(store).set(store === "kv" ? value.key : value.id, copy(value)); };
 export const idbPutPair = async (storeA, valueA, storeB, valueB) => { await idbPut(storeA, valueA); await idbPut(storeB, valueB); };
@@ -695,4 +697,58 @@ test('a web library read replaces an older shipped start in place and leaves del
   await store.ensureSeeded();
   assert.equal(record(),undefined); assert.equal(manifest().order.includes(id),false);
   assert.equal(db.get('kv').get('historical-bookmarks-charlemagne-800').value,true);
+});
+
+const library = async () => ok(await call(store.handleLibrary,'GET',''));
+const catalogEntry = (catalog, id) => catalog.scenarios.find(s => s.id === id);
+
+test('the web catalog carries each historical start summary and derives historicalStart from it', async () => {
+  await reset();
+  const entry = catalogEntry(await library(),'charlemagne-800');
+  assert.deepEqual(entry.historicalSummary.polities.map(p => p.id),['carolingian-realm','papal-states']);
+  assert.equal(entry.historicalSummary.schema,1);
+  assert.equal(entry.historicalSummary.sourceStamp,null);
+  assert.equal(entry.historicalSummary.name,entry.name);
+  assert.deepEqual(entry.historicalStart,{ date: '0800-12-25', contentId: entry.historicalSummary.contentId });
+  assert.equal(db.get('scenarioMeta').get('charlemagne-800').historicalStart,undefined,'the meta row keeps the summary only');
+  const modern = catalogEntry(await library(),'default');
+  assert.equal(modern.historicalSummary,null); assert.equal(modern.historicalStart,null);
+});
+
+test('a scenario meta stored without a summary gains one on the next catalog read, from one record read', async () => {
+  await reset();
+  const id = 'charlemagne-800', metas = db.get('scenarioMeta');
+  // The row an earlier release wrote: historicalStart, no historicalSummary.
+  const { historicalSummary, ...old } = metas.get(id);
+  metas.set(id,{ ...old, historicalStart: { date: '0800-12-25', contentId: historicalSummary.contentId } });
+  globalThis.__ohWebStoreReads = [];
+  const entry = catalogEntry(await library(),id);
+  assert.deepEqual(metas.get(id).historicalSummary,historicalSummary);
+  assert.deepEqual(entry.historicalSummary,historicalSummary);
+  assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[`scenarios:${id}`]);
+  // An older summary schema is projected again too; a current one is not.
+  metas.get(id).historicalSummary = { ...historicalSummary, schema: 0 };
+  globalThis.__ohWebStoreReads = [];
+  await library();
+  assert.equal(metas.get(id).historicalSummary.schema,1);
+  assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[`scenarios:${id}`]);
+  globalThis.__ohWebStoreReads = [];
+  await library();
+  assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[]);
+});
+
+test('a stored start whose papal ruler is gone stays in the catalog as invalid without a historicalStart', async () => {
+  await reset();
+  const id = 'charlemagne-800', court = db.get('scenarios').get(id).json.world.historicalScenario.courtSeeds['papal-states'];
+  court.people = court.people.filter(person => person.id !== court.rulerId);
+  // A record written past putScenario has no meta row until the next catalog read projects one.
+  db.get('scenarioMeta').delete(id);
+  const catalog = await library();
+  const entry = catalogEntry(catalog,id);
+  assert.equal(entry.historicalSummary.invalid,true);
+  assert.equal(entry.historicalStart,null);
+  for (const other of ['egypt-3000bc']) {
+    assert.equal(catalogEntry(catalog,other).historicalSummary.invalid,undefined,other);
+    assert.ok(catalogEntry(catalog,other).historicalStart,other);
+  }
 });

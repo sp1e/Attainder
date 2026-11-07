@@ -74,6 +74,12 @@ const polityEntry = (scenario, polityId) => {
   };
 };
 
+// The historicalStart field of a library catalog entry, read from the scenario's summary: the
+// start's date and content id while the summary is valid and the scenario is not a restore-only copy.
+export const historicalStartFromSummary = (summary, meta) =>
+  summary && summary.invalid !== true && summary.notHistorical !== true && meta?.restoreOnly !== true
+    ? { date: summary.date, contentId: summary.contentId } : null;
+
 // Null for a scenario that is not historical. A historical scenario whose card data is broken
 // gives { schema, sourceStamp, invalid: true } and is left off the card; this never throws.
 export const historicalStartSummary = ({ meta, data, sourceStamp = null }) => {
