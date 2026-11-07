@@ -211,7 +211,17 @@ Charlemagne 1.3.0, John 1.2.0 and world-1500 1.1.0 give Kyrkostaten, Kungariket 
 | E-4 | Library installed before the upgrade | Charlemagne 1.3.0 after one read |
 | E-5 | Console | 0 errors |
 
-Browser check: pending (controller)
+The controller ran Playwright at `9aba7bbc` on 2026-11-07. The server used port 4167 with a copy of a data folder installed under Phase 4, which held Charlemagne 1.2.0 with summary schema 2. The web adapter used port 5199 with fresh browser storage.
+
+| ID | Server | Web |
+| --- | --- | --- |
+| E-1 | `Kyrkostaten · 800 e.Kr.` and `Inkariket · 1500 e.Kr.` | Same rows |
+| E-2 | `Tronföljd: val`; `Påve` held by Leo III | Same |
+| E-3 | `Tronföljd: val`; `Rättslig arvinge` Huáscar (9 år); `Sapa inka` held by Huayna Capac | Same |
+| E-4 | `/api/scenarios` lists charlemagne-800 1.3.0, schema 3, and the file on disk holds 1.3.0 after the first read | Lists charlemagne-800 1.3.0, schema 3; fresh storage, so no pre-upgrade library |
+| E-5 | 0 errors | 0 errors |
+
+The candidate list under `Tronföljd` names Huáscar first and Araua Ocllo (30 år) second.
 
 A century in Kyrkostaten has automated coverage only. `src/runtime/characters/courtBalance.test.js` plays 100 years on eight seeds from the built package. The first outsider is elected between 817 and 836, and on 25 December 900 every seed has an elected ruler and a living realm.
 
