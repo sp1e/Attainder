@@ -1,6 +1,6 @@
 # Research status
 
-Updated by Codex on 7 November 2026 at main `2128ee11a4ef1586159a1b4620cfc0413430e5d2`.
+Updated by Codex on 7 November 2026 at main `3a513dde4fa70acb884e259168ed674360c3fa2e`.
 
 | Batch | State | PR | Files | Counts | Waiting for Claude |
 |---|---|---|---|---|---|
@@ -13,7 +13,8 @@ Updated by Codex on 7 November 2026 at main `2128ee11a4ef1586159a1b4620cfc041343
 | C2: Asia source checks | Reviewed and published in the separate private workspace; remote commit verified | Private workspace | Private research only | 308 initial rows: 93 confirmed, 70 corrected, 145 unsupported; 212 initial correction records; 4 separate targeted checks and 1 narrower proposal | C3 applies corrections and withholds unsupported data; C4 assesses correspondence and starts |
 | E800–899: year events | Merged at `cbbdd014`; remote commit verified | [#25](https://github.com/sp1e/Attainder/pull/25) | Event catalog, coverage and report; `docs/research/world-cultures/e0800-year-events.md` | 44 events; 39 sources; initial 44/41/1/2; separate follow-up 3/3/0/0; 29 existing tests passed | Visible chronicle/turn-end checks, stale coverage label; no runtime change supplied |
 | E900–999: year events | Merged at `3a2adac6`; remote commit verified | [#26](https://github.com/sp1e/Attainder/pull/26) | Event catalog, coverage and report; `docs/research/world-cultures/e0900-year-events.md` | 44 added events; 43 added sources; initial 45/40/4/1; separate follow-up 5/5/0/0; 2 withheld candidates; 29 existing tests passed | Visible chronicle/turn-end checks and coverage label; catalog totals 88 events and 82 sources |
-| E1000–1099: year events | Source-approved; repository and independent final review passed; awaiting publication | None yet | Event catalog, coverage and report; `docs/research/world-cultures/e1000-year-events.md` | 45 added events; 48 added sources; initial 45/38/6/1; separate follow-up 8/8/0/0; 29 existing tests passed | Visible chronicle/turn-end checks; catalog totals 133 events and 130 sources |
+| E1000–1099: year events | Merged at `3a513dde`; remote commit verified | [#28](https://github.com/sp1e/Attainder/pull/28) | Event catalog, coverage and report; `docs/research/world-cultures/e1000-year-events.md` | 45 added events; 48 added sources; initial 45/38/6/1; separate follow-up 8/8/0/0; 29 existing tests passed | Visible chronicle/turn-end checks; catalog totals 133 events and 130 sources |
+| E1100–1199: year events | Source-approved; independent batch and integrated-data reviews passed; repository checks passed; publication pending | None yet | Event catalog, coverage and report; `docs/research/world-cultures/e1100-year-events.md` | 56 added events; 53 added sources; initial 56/39/15/2; separate follow-ups 17/15/2/0 and 2/2/0/0; 29 existing tests passed | Visible chronicle/turn-end checks; catalog totals 189 events and 183 sources |
 
 ## Rulings
 
@@ -105,8 +106,10 @@ Rome wording and C1 publication are complete. [PR #24](https://github.com/sp1e/A
 
 ## Next batch
 
-E900 publication is complete through [PR #26](https://github.com/sp1e/Attainder/pull/26), merged at verified main `3a2adac6766db1e6f9bfdc86a1a28abbaabe0d8a`. Its required test check passed with 4,915 total, 4,913 passed, zero failed and two TODO; the build took 29.10 seconds.
+E1000 publication is complete through [PR #28](https://github.com/sp1e/Attainder/pull/28), merged at verified main `3a513dde4fa70acb884e259168ed674360c3fa2e`. Its required test check passed with 4,963 total, 4,961 passed, zero failed and two TODO; the build took 27.18 seconds.
 
-C2's private East and South Asia source-check batch is published and its remote main commit verified. All 308 culture values remain unchanged; C3 owns the recorded corrections. The E1000 integrated catalog contains 133 events and 130 sources, with all three centuries partial; catalog validation/report checks and 29 existing event tests passed; independent final data/document review approved the integration. Publish E1000 next, then integrate the source-approved E1100 batch. C3 correction and completeness work continues privately. Claude's Phase 2 start picker is on main through PR #27; no Codex code change is supplied.
+C2's private East and South Asia source-check batch is published and its remote main commit verified. All 308 culture values remain unchanged; C3 owns the recorded corrections. C3 correction and completeness work continues privately, alongside Maya political-form research for D2.
+
+Publish the E1100 batch; its independent integrated-data review approved the five-file change with no findings. Catalog generation/check mode and all 29 existing historical-event tests passed. The combined catalog contains 189 events and 183 sources, with all four centuries partial. Research for events starting in 1200 and later must preserve the existing start horizon through 1530 and the remaining annual coverage gaps. Claude owns visible chronicle and turn-end verification and the previously reported stale coverage label.
 
 Ruling: preserve partial coverage, separately recorded review rounds and long archaeological phases. Codex researches; Claude implements and verifies the game.

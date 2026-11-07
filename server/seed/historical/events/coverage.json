@@ -27,9 +27,15 @@
     },
     {
       "startYear": 1100,
+      "endYear": 1199,
+      "status": "partial",
+      "note": "56 independently checked event records cover selected acts in Europe, the Middle East, North Africa and the Caucasus, the steppe and Central Asia, sub-Saharan Africa, East Asia, South Asia, Southeast Asia, the Americas including Greenland, and Oceania. Oceania has only Nan Madol; sub-Saharan Africa has Timbuktu, Maryam Nazret and Soso. China and Japan dominate East Asia. Most African regions, the Andes and Caribbean, much of South Asia and maritime Southeast Asia remain gaps. Goryeo1170, Nalanda1193 and proposed exact Oceanian arrivals are withheld; other candidates such as Lalibela remain outside this batch. Maryam Nazret1101–1200, Nan Madol1180–1200 and Cliff Palace1190–1280 retain their complete uncertain or phased intervals once. Their endpoints do not establish researched later years. Empty years are research gaps, not evidence that no event occurred."
+    },
+    {
+      "startYear": 1200,
       "endYear": 1200,
       "status": "unresearched",
-      "note": "Annual research has not started in this catalog. Earlier records whose date ranges extend into these years do not establish researched annual coverage."
+      "note": "Annual research has not started in this catalog for events beginning in this year. Earlier records whose ranges extend into this year do not establish researched annual coverage."
     },
     {
       "startYear": 1201,
