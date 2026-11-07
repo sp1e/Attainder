@@ -48,3 +48,7 @@ The private validator verifies structure, actual point containment and hash-boun
 Ruling: keep `mexica-nahuatl-1500` and `inca-ad1500` as proposed, unbuilt name-pool IDs. No generated identity or name-pool asset enters this batch. An importer must preserve that distinction or it could create a missing asset dependency.
 
 Claude owns the importer, runtime, tests, builders, built scenarios and gameplay verification. The importer must preserve partial households, uncertain survival, generated birth labels, original chronology and the succession limits. Codex's research-ready state describes the dossier's research status. This batch supplies no integrated playable court.
+
+## Publication
+
+[PR #23](https://github.com/sp1e/Attainder/pull/23) merged as `5117f17c5d7f048ffcec851cbb4e3ac029b7e5c8`, and the remote main commit was verified. [CI run 42385308122, job 128441311703](https://github.com/sp1e/Attainder/actions/runs/42385308122/job/128441311703) passed: 4,915 tests total, 4,913 passed, zero failed and two TODO; the build completed in 31.25 seconds. These checks establish research publication and repository compatibility. Game integration remains Claude’s work.
