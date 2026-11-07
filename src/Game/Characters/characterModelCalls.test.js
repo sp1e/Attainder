@@ -13,19 +13,20 @@ const REP = 'person-0-0';
 const TARGET = 'person-1-0';
 const view = () => getCharacterPresentation(createCharacterSystem({ seed: 321 }));
 
-for (const id of ['egypt-3000bc', 'john-1200']) {
+for (const id of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) {
   for (const progressed of [false, true]) test(`${id}: four captured historical requests preserve visible context${progressed ? ' after progression' : ''}`, async () => {
     const data = JSON.parse(readFileSync(new URL(`../../../server/seed/historical/${id}/scenario.json`, import.meta.url), 'utf8')).data;
     let state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 });
-    if (progressed) state = advanceCharacters(state, id === 'john-1200' ? '1201-09-01' : '-2999-01-01', { id: 'progress' }).state;
+    if (progressed) state = advanceCharacters(state, { 'john-1200': '1201-09-01', 'charlemagne-800': '0801-09-01', 'egypt-3000bc': '-2999-01-01' }[id], { id: 'progress' }).state;
     state.historicalOrigin.sources.private = { chronology: 'HIDDEN_RESEARCH_1215' };
     state.people[state.offices.ruler.holderId].historicalOrigin.claims.identity.noteSv = 'HIDDEN_PERSON_CLAIM';
+    Object.values(state.religions)[0].historicalOrigin.claims.identity.noteSv = 'HIDDEN_RELIGION_CLAIM';
     createSecret(state, { type: 'murder', subjectId: state.offices.ruler.holderId, holderIds: ['generated-courtier-3'] });
     const hiddenPerson = state.people['generated-courtier-2'];
     hiddenPerson.loyalty = 37.24689;
     const before = JSON.stringify(state);
     const v = getCharacterPresentation(state);
-    const target = v.people.find(p => p.alive && p.age >= 18 && p.id !== v.representative.id);
+    const target = v.people.find(p => p.alive && p.age >= 18 && p.id !== v.representative.id && p.historicalOrigin?.identityOrigin === 'generated');
     const resolution = { actionLabel: 'Samtal', date: state.date, tier: 'success', tierLabel: 'Framgång', actorName: v.representative.name, targetNames: [target.name], agentNames: [], effects: [] };
     const requests = [
       [interpretCharacterAction, { text: 'Vila' }, { status: 'no_match', catalogId: '', targetIds: [], explanation: 'Välj en handling.' }],
@@ -46,7 +47,7 @@ for (const id of ['egypt-3000bc', 'john-1200']) {
       assert.equal(payload.historicalContext.contextSv, data.world.historicalScenario.contextSv);
       const all = JSON.stringify(captured);
       assert.match(all, /Genererad person/);
-      if (id === 'john-1200') assert.match(all, /Dokumenterad person/);
+      if (id !== 'egypt-3000bc') assert.match(all, /Dokumenterad person/);
       else {
         assert.match(all, /utvecklarna/);
         assert.match(all, /Kontroll längre söderut är oklar/);

@@ -16,6 +16,7 @@ import { ChoiceOdds, CouncilSeats, DemandList, ReignCard } from "./CourtSections
 import IntrigueView from "./IntrigueView.jsx";
 import LocalModelConnect from "./LocalModelConnect.jsx";
 import Portrait from "./Portrait.jsx";
+import HistoricalRecordView, { holdFocus, useChronicleRequest } from "./HistoricalRecordView.jsx";
 
 const THEME_KEY = "oh:characters:theme";
 const ACTION_FAILED = "Handlingen kunde inte genomföras.";
@@ -86,15 +87,33 @@ function Empty({ title, children }) {
   return <div className="char-empty"><strong>{title}</strong><p>{children}</p></div>;
 }
 
+// The package doubts that this person outlived the start. A death in the campaign settles it.
+const uncertainSurvival = (person) => {
+  const claim = person.historicalOrigin?.claims?.survival;
+  return claim?.status === "uncertain" && isAlive(person) ? claim : null;
+};
+
+const BIRTH_DATE_TAGS = { uncertain: "Födelsedatum osäkert", generated: "Genererat födelsedatum" };
+// The package's origin label and the standing of a birth date. A name that says "(genererad)" already tells both.
+const provenanceTags = (person) => {
+  const origin = person.historicalOrigin;
+  if (!origin || /genererad/i.test(person.name ?? "")) return [];
+  const birth = origin.claims?.bornAt, tags = [];
+  if (origin.originLabelSv) tags.push({ label: origin.originLabelSv });
+  if (BIRTH_DATE_TAGS[birth?.status]) tags.push({ label: BIRTH_DATE_TAGS[birth.status], title: birth.noteSv });
+  return tags;
+};
+
 // `headingRef` makes the name heading a focus target (tabIndex -1) for PeopleView.
 function PersonSummary({ person, compact = false, headingRef }) {
   if (!person) return <Empty title="Ingen behörig företrädare">Ingen person kan företräda dig just nu. Läs mandatets status under Ämbeten & arv.</Empty>;
+  const survival = uncertainSurvival(person);
   return <div className={`char-person-summary${compact ? " char-person-summary--compact" : ""}`}>
     <Portrait person={person} size={compact ? "small" : "large"} />
     <div><span className="char-eyebrow">{person.familyName || "Familj"}{Number.isFinite(person.age) ? ` · ${person.age} år` : ""}</span>
       <h3 ref={headingRef} tabIndex={headingRef ? -1 : undefined}>{person.name}{person.nickname ? ` ${person.nickname}` : ""}</h3><p>{person.archetypeLabel || humanize(person.archetype)}{!isAlive(person) ? " · Avliden" : ""}</p>
       {person.portraitState?.visualState !== "healthy" && person.portraitState?.reasons?.length > 0 && <p className="char-health-summary">{person.portraitState.reasons.filter((reason) => reason.key !== "healthy").map((reason) => reason.label).join(" · ")}</p>}
-      <div className="char-tags">{entries(person.traitLabels || person.traits || person.personality).map((trait, index) => <span key={text(trait, index)}>{humanize(text(trait))}</span>)}</div>
+      <div className="char-tags">{survival && <span title={survival.noteSv}>Överlevnad osäker</span>}{provenanceTags(person).map(({ label, title }) => <span key={label} title={title}>{label}</span>)}{entries(person.traitLabels || person.traits || person.personality).map((trait, index) => <span key={text(trait, index)}>{humanize(text(trait))}</span>)}</div>
     </div>
   </div>;
 }
@@ -269,7 +288,7 @@ function FamiliesView({ view }) {
       {family.supportReasons?.length > 0 && <details className="char-explanation"><summary>Varför detta stöd?</summary><ul>{family.supportReasons.map((reason, index) => <li key={index}>{text(reason)}{reason.value != null ? `: ${signed(reason.value)}` : ""}</li>)}</ul></details>}
     </article>)}</div>
     <DemandList demands={view.court?.demands} />
-    <div className="char-section-heading"><div><span className="char-eyebrow">Tro och institutioner</span><h3>Religiösa samfund</h3></div></div><div className="char-family-grid">{entries(view.religions).map((religion) => <article className="char-card" key={religion.id}><h4>{religion.name}</h4><p>{religion.description || "Samfundets politiska stöd påverkar rikets sammanhållning."}</p><div className="char-inline-stats"><span>Stöd <strong>{signed(religion.support)}</strong></span>{religion.leaderId && <span>Ledare <strong>{people[religion.leaderId]?.name || "Okänd"}</strong></span>}</div></article>)}</div>
+    <div className="char-section-heading"><div><span className="char-eyebrow">Tro och institutioner</span><h3>Religiösa samfund</h3></div></div><div className="char-family-grid">{entries(view.religions).map((religion) => <article className="char-card" key={religion.id}><h4>{religion.name}</h4><p>{religion.description || "Samfundets politiska stöd påverkar rikets sammanhållning."}</p>{religion.historicalOrigin?.claims?.identity?.noteSv && <p className="char-caption">{religion.historicalOrigin.claims.identity.noteSv}</p>}<div className="char-inline-stats"><span>Stöd <strong>{signed(religion.support)}</strong></span>{religion.leaderId && <span>{view.historicalOrigin ? "Företrädare vid hovet" : "Ledare"} <strong>{people[religion.leaderId]?.name || "Okänd"}</strong></span>}</div></article>)}</div>
   </>;
 }
 
@@ -330,17 +349,16 @@ function MemoryList({ memories, people = {} }) {
   return <ol className="char-memory-list">{memories.map((memory, index) => <li key={memory.id || index}><span className="char-memory-date">{dateLabel(memory.date || memory.createdAt)}</span><div><strong>{memory.title || humanize(memory.type)}</strong><p>{memory.description || memory.text}</p>{memory.participants?.length > 0 && <small>{memory.participants.map((id) => people[id]?.name).filter(Boolean).join(" · ")}</small>}{memory.causeId && <small className="char-memory-cause">Följd av: {memory.causeTitle || titles[memory.causeId] || "ett tidigare beslut"}</small>}</div></li>)}</ol>;
 }
 
-function ChronicleView({ view }) {
-  const [filter, setFilter] = useState("memories");
+function ChronicleView({ view, filter, setFilter, historical = false, startDate, gameDate }) {
   const people = Object.fromEntries(entries(view.people).map((person) => [person.id, person]));
   const records = [...(filter === "memories" ? entries(view.memories) : entries(view.log))].sort((a, b) => compareGameDates(b.date || b.createdAt, a.date || a.createdAt));
-  return <><div className="char-section-heading"><div><span className="char-eyebrow">Besluten som världen minns</span><h3>Kampanjens krönika</h3></div><div className="char-segment" aria-label="Typ av historik"><button type="button" aria-pressed={filter === "memories"} onClick={() => setFilter("memories")}>Minnen</button><button type="button" aria-pressed={filter === "log"} onClick={() => setFilter("log")}>Årskrönika</button></div></div><p className="char-intro">En tillfällig känsla kan blekna medan minnet, ett löfte eller ett anspråk består. Här visas det din sida känner till.</p>
-    <div className="char-card">{records.length ? <MemoryList memories={records} people={people} /> : <Empty title="En historia tar sin början">Beslut, relationer och generationsskiften kommer att lämna spår här.</Empty>}</div>
+  return <><div className="char-section-heading"><div><span className="char-eyebrow">Besluten som världen minns</span><h3>Kampanjens krönika</h3></div><div className="char-segment" aria-label="Typ av historik"><button type="button" aria-pressed={filter === "memories"} onClick={() => setFilter("memories")}>Minnen</button><button type="button" aria-pressed={filter === "log"} onClick={() => setFilter("log")}>Årskrönika</button>{historical && <button type="button" aria-pressed={filter === "history"} onClick={() => setFilter("history")}>I verklighetens historia</button>}</div></div><p className="char-intro">En tillfällig känsla kan blekna medan minnet, ett löfte eller ett anspråk består. Här visas det din sida känner till.</p>
+    {historical && filter === "history" ? <HistoricalRecordView startDate={startDate} gameDate={gameDate} /> : <div className="char-card">{records.length ? <MemoryList memories={records} people={people} /> : <Empty title="En historia tar sin början">Beslut, relationer och generationsskiften kommer att lämna spår här.</Empty>}</div>}
     <details className="char-explanation char-rules"><summary>Kampanjens regelversion</summary><dl className="char-facts">{Object.entries(view.versions || {}).filter(([key]) => key !== "provenance").map(([key, value]) => <div key={key}><dt>{({ schema: "Sparformat", rules: "Spelregler", content: "Innehåll" })[key] || key}</dt><dd>{text(value)}</dd></div>)}</dl><p>Regler och balans är egna anpassningar, med inspiration från Old World och Crusader Kings III.</p></details>
   </>;
 }
 
-export default function CharactersPanel({ open, onClose }) {
+export default function CharactersPanel({ open, onClose, chronicleRequest = 0 }) {
   const worldRevision = useRuntimeState("world", (world) => world?.characterSystem?.revision ?? null);
   const game = useRuntimeState("game");
   const events = useRuntimeState("events");
@@ -361,6 +379,8 @@ export default function CharactersPanel({ open, onClose }) {
   const [talks, setTalks] = useState({});
   // True while a conversation's confirmation card is open: time stays put so its odds cannot go stale.
   const [talkHold, setTalkHold] = useState(false);
+  const [chronicleFilter, setChronicleFilter] = useState("memories");
+  const historical = Boolean(useRuntimeState("world", (world) => world?.historicalScenario));
   const busyRef = useRef(false);
   const readSequence = useRef(0);
   const panelRef = useRef(null);
@@ -389,6 +409,8 @@ export default function CharactersPanel({ open, onClose }) {
     panelRef.current?.querySelector("button")?.focus();
     return () => previousFocus?.focus?.();
   }, [open]);
+  // The popup's "Visa alla i krönikan" link: open the record, and keep focus in the panel.
+  useChronicleRequest(chronicleRequest, () => { setTab("chronicle"); setChronicleFilter("history"); holdFocus(panelRef.current, document.activeElement); });
   useEffect(() => { panelRef.current?.querySelector(".char-content")?.scrollTo({ top: 0 }); }, [tab, yearEvents]);
   useEffect(() => subscribeModelCalls((counts) => setModelCalls(counts.total)), []);
   useEffect(() => {
@@ -476,7 +498,7 @@ export default function CharactersPanel({ open, onClose }) {
           {tab === "offices" && <OfficesView view={view} setTab={setTab} />}
            {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Olika personer kan företräda riket och hushållet. Varje handling följer den ansvariga aktörens mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}<ChainHistory chains={view.chainHistory} /></>}
           {tab === "intrigue" && <IntrigueView view={view} busy={busy} onCommand={command} />}
-          {tab === "chronicle" && <ChronicleView view={view} />}
+          {tab === "chronicle" && <ChronicleView view={view} filter={chronicleFilter} setFilter={setChronicleFilter} historical={historical} startDate={game?.startDate} gameDate={game?.gameDate} />}
         </>}
       </div>
       <footer className="char-footer"><span>{view?.mode === "family" ? "Din familj består genom maktskiften." : "Dina ledare skiftar. Riket består."}</span><span>Modellanrop denna session: {modelCalls}</span><span>{busy ? "Arbetar med kampanjen…" : "Beslut sparas automatiskt"}</span></footer>

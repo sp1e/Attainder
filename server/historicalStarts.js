@@ -3,6 +3,16 @@ import { compareGameDates, formatGameDate, parseGameDate } from "./gameDates.js"
 export const HISTORICAL_START_RANGE = Object.freeze({ minYear: -3300, maxYear: 1200 });
 export const HISTORICAL_START_REFUSAL = "Välj ett giltigt startdatum mellan 3300 f.Kr. och 1200 e.Kr.";
 
+// The shipped starts installed beside the built-in scenario `default`, which holds John.
+// Each start has its own marker, so an upgrade adds a new one once and a start the
+// player deleted stays deleted. `historical-bookmarks-v1` predates the list.
+export const HISTORICAL_BOOKMARKS = Object.freeze([
+  Object.freeze({ id: "egypt-3000bc", marker: "historical-bookmarks-v1" }),
+  Object.freeze({ id: "charlemagne-800", marker: "historical-bookmarks-charlemagne-800" }),
+]);
+// Catalog order by scenario id. The first start present is the default.
+export const HISTORICAL_START_ORDER = Object.freeze(["charlemagne-800", "default", "egypt-3000bc"]);
+
 const isPlainObject = (value) => value !== null && typeof value === "object"
   && (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
 

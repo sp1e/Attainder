@@ -1,4 +1,5 @@
 import { validatePlayableScenario, requirePrepared } from '../../server/historicalPreparation.js';
+import { HISTORICAL_START_ORDER } from '../../server/historicalStarts.js';
 
 // The same content used for creation supplies every visible choice.
 export function historicalStartOption(details, regions, cities) {
@@ -12,4 +13,10 @@ export function historicalStartOption(details, regions, cities) {
       ruler: h.courtSeeds[id].people.find(p => p.id === h.courtSeeds[id].rulerId),
       families: h.courtSeeds[id].families.map(f => ({ id: f.id, name: f.name ?? f.id })) })),
   };
+}
+
+// Starts outside the catalog order, such as imported ones, keep their order after it.
+export function orderHistoricalStarts(options) {
+  const rank = option => { const at = HISTORICAL_START_ORDER.indexOf(option.scenarioId); return at < 0 ? HISTORICAL_START_ORDER.length : at; };
+  return [...options].sort((a, b) => rank(a) - rank(b));
 }

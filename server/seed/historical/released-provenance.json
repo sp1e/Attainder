@@ -1,0 +1,96 @@
+{
+  "egypt-3000bc": {
+    "generator": {
+      "file": "scripts/build-historical-scenarios.mjs",
+      "sha256": "0b95800dbe3e37901e0f8951cfc5979411feda5edc97ea2c1763279297244029",
+      "polygonClipping": "0.15.7"
+    },
+    "sourceFiles": [
+      {
+        "fileName": "hbm-world_1200.geojson",
+        "sha256": "2d6913ecedb38e269e41d249c87874d81e3e8d7351754821f57e627442d91525"
+      },
+      {
+        "fileName": "hbm-world_bc3000.geojson",
+        "sha256": "2cf107e2f0d4f9b5427b293f19b11fffe7c1134f52320df4f94b4889b978f033"
+      },
+      {
+        "fileName": "hbm-LICENSE",
+        "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+      },
+      {
+        "fileName": "hbm-README.md",
+        "sha256": "4a6d137790d3aea8c2a53c26d6a3fe4a43485f90d48b7751c5e53b65b2a8d6fe"
+      },
+      {
+        "fileName": "hbm-CONTRIBUTING.md",
+        "sha256": "e039e33384bfc0cb7eae4ef2508002ac1d7369a0199823dc8a78db6ab38354d4"
+      },
+      {
+        "fileName": "ne_50m_land.geojson",
+        "sha256": "e874b27a51d146452be360cafb3cc50c86001074a67d534113e6534682f9826b"
+      }
+    ],
+    "authoredInputs": [
+      {
+        "fileName": "authored-scenarios.mjs",
+        "sha256": "ab4e86bb08db49d501bf70b6f298ec4477ae25fc21347e3f68754252e01ba7bb"
+      },
+      {
+        "fileName": "ad1200-review.json",
+        "sha256": "2a3b75188313ad65b62b255fa4a661c5fa16da57307ff8c8970b9a5f0990ce24"
+      },
+      {
+        "fileName": "bc3000-review.json",
+        "sha256": "441714004843b39a5e122848b2ed74ec2e7af6f2437745e53c584d24e1bf6f8c"
+      }
+    ]
+  },
+  "john-1200": {
+    "generator": {
+      "file": "scripts/build-historical-scenarios.mjs",
+      "sha256": "0b95800dbe3e37901e0f8951cfc5979411feda5edc97ea2c1763279297244029",
+      "polygonClipping": "0.15.7"
+    },
+    "sourceFiles": [
+      {
+        "fileName": "hbm-world_1200.geojson",
+        "sha256": "2d6913ecedb38e269e41d249c87874d81e3e8d7351754821f57e627442d91525"
+      },
+      {
+        "fileName": "hbm-world_bc3000.geojson",
+        "sha256": "2cf107e2f0d4f9b5427b293f19b11fffe7c1134f52320df4f94b4889b978f033"
+      },
+      {
+        "fileName": "hbm-LICENSE",
+        "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+      },
+      {
+        "fileName": "hbm-README.md",
+        "sha256": "4a6d137790d3aea8c2a53c26d6a3fe4a43485f90d48b7751c5e53b65b2a8d6fe"
+      },
+      {
+        "fileName": "hbm-CONTRIBUTING.md",
+        "sha256": "e039e33384bfc0cb7eae4ef2508002ac1d7369a0199823dc8a78db6ab38354d4"
+      },
+      {
+        "fileName": "ne_50m_land.geojson",
+        "sha256": "e874b27a51d146452be360cafb3cc50c86001074a67d534113e6534682f9826b"
+      }
+    ],
+    "authoredInputs": [
+      {
+        "fileName": "authored-scenarios.mjs",
+        "sha256": "ab4e86bb08db49d501bf70b6f298ec4477ae25fc21347e3f68754252e01ba7bb"
+      },
+      {
+        "fileName": "ad1200-review.json",
+        "sha256": "2a3b75188313ad65b62b255fa4a661c5fa16da57307ff8c8970b9a5f0990ce24"
+      },
+      {
+        "fileName": "bc3000-review.json",
+        "sha256": "441714004843b39a5e122848b2ed74ec2e7af6f2437745e53c584d24e1bf6f8c"
+      }
+    ]
+  }
+}

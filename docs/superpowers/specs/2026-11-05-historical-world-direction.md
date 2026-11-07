@@ -39,3 +39,9 @@ The exact end date of a running campaign remains a separate design decision. Thi
 ## Historical events at turn end
 
 The owner added a research and gameplay requirement on 5 November: research notable real events for each year in the supported historical period and show the current year's real events in a popup when a turn ends, alongside dynamic campaign events. `docs/development/DEVELOPMENT-BACKLOG.md` records the research deliverable and acceptance criteria. Distinguish historical reference from alternate campaign outcomes; source the events and preserve dating uncertainty. Research and implementation are pending.
+
+## Owner decisions on 7 November 2026
+
+- Every culture of the world within the supported period must be playable, including Latin America (Maya, Aztec, Inca), China and the Middle East.
+- The upper start year moves from AD 1200 to AD 1530, inclusive. The owner chose this when told that the Aztec and Inca empires postdate AD 1200. This supersedes the AD 1200 upper bound in the rulings above; the lower bound of 3300 BC stays.
+- The research rules above still apply: a culture whose ruler at the start date has no source gets a generated ruler with the Swedish generated label.

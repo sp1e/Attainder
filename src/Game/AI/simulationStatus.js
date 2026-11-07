@@ -19,13 +19,35 @@ let pendingProjectsJump = null;
 // The idle chat poll is mid-generation ("someone might be typing").
 let chatGenerationInFlight = false;
 const chatGenerationListeners = new Set();
+const simulationIdleListeners = new Set();
 
 export const beginSimulation = () => {
   activeSimulations += 1;
 };
 
+// Tells every idle listener, each in its own try so one failure stops no other.
+const notifyIdle = () => {
+  for (const listener of simulationIdleListeners) {
+    try {
+      listener();
+    } catch {
+      // A listener's failure is its own; the counter is already settled.
+    }
+  }
+};
+
 export const endSimulation = () => {
   activeSimulations = Math.max(0, activeSimulations - 1);
+  if (activeSimulations !== 0) return;
+  notifyIdle();
+};
+
+// Told when the last running simulation ends. Returns the unsubscribe.
+export const subscribeSimulationIdle = (listener) => {
+  simulationIdleListeners.add(listener);
+  return () => {
+    simulationIdleListeners.delete(listener);
+  };
 };
 
 export const getPendingJumpSegment = () => pendingJumpSegment;
@@ -84,6 +106,8 @@ export const discardPendingJumpSegment = () => {
   const had = pendingJumpSegment !== null;
   pendingJumpSegment = null;
   if (had) logDebugEvent("turn", "Held jump discarded; nothing was written and its finished segments are gone.");
+  // A discard can be what ends the busy state, so a waiting listener hears it.
+  if (had && !isSimulationBusy()) notifyIdle();
   return had;
 };
 
@@ -91,6 +115,7 @@ export const discardPendingProjectsJump = () => {
   const had = pendingProjectsJump !== null;
   pendingProjectsJump = null;
   if (had) logDebugEvent("turn", "Held turn discarded; the board was never updated and nothing was written.");
+  if (had && !isSimulationBusy()) notifyIdle();
   return had;
 };
 

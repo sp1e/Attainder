@@ -1,10 +1,22 @@
 # Development checkpoint: Phase 3 of the AI game master
 
-Updated on 5 November 2026.
+Updated on 7 November 2026.
 
 ## Historical foundation checkpoint
 
 Task 6 and final documentation review are accepted with the limits in the [play script](../play-scripts/historical-foundation.md). Final review approved publication subject to current-head CI; [PR #13](https://github.com/sp1e/Attainder/pull/13) tracks merge state. Merge does not deploy the game. The globe-render and clean-Linux fixture fixes passed scoped review and were pushed at `2066a55`. [CI run 42102593161](https://github.com/sp1e/Attainder/actions/runs/42102593161) passed: 4,656 total, 4,654 passed, 0 failed, 0 skipped and 2 TODO, in 127,190.421065 ms; the build passed in 24.97 seconds. The last full local lint measurement reported 18 errors and 71 warnings; the final globe-fix files passed targeted lint without diagnostics. The separate annual 4,500-year research and turn-end popup remain pending.
+
+## Historical year events
+
+The popup after a closed calendar year and the chronicle segment `I verklighetens historia` are built on `feature/historical-events`. The segment lists the closed years of a historical campaign, newest first, from the same catalog as the popup. The popup link `Visa alla i krönikan` opens it. The catalog ships empty until the research round, so no popup appears yet. The full suite ran 4,724 tests at `03da98e9` with one failure, the Windows EPERM in `server/payloadUpdate.test.js`, which passes 17 of 17 alone, and the build exited 0. The run after the final fix wave and the research round are the open items.
+
+## Charlemagne AD 800 start
+
+[PR #15](https://github.com/sp1e/Attainder/pull/15) merged the Charlemagne start as `0192a1e9`. It offers the package as a third start on both adapters, and the start card preselects it. The scenario `default` still holds John, so `HISTORICAL_START_ORDER` sets the default and existing John saves stay bound. Each shipped start has its own install marker in `HISTORICAL_BOOKMARKS`. The character panel shows `Överlevnad osäker` from `claims.survival` and `Företrädare vid hovet` on historical religions, and seeded religions keep their public claims, so the panel names Leo III without a person for him. The full serial suite on `efe9f11` ran 4,815 tests: 4,812 passed, 0 failed, 1 skipped and 2 TODO. The build and `build-historical-scenarios.mjs --check` exited 0. The browser run on 7 November 2026 is recorded in the [play script](../play-scripts/historical-foundation.md). Both adapters have now run the start card, the map at Aachen, a household command, a reload and one real year turn.
+
+## Every culture playable (paused)
+
+The owner decided on 7 November 2026 that every culture of the world in the period must be playable, and moved the upper start year to AD 1530 so the Aztec and Inca empires fit. Development is paused. Today each start has one playable polity, a culture without a single ruler cannot be started, and the start card lists polities without search. Three changes come before new research: several playable polities per start, a validator rule that requires the Swedish generated label on a generated ruler, and the 1530 range in `server/historicalStarts.js`. Historical Basemaps has 30 snapshots from `bc3000` to `1530` at the pinned commit.
 
 ## Branch state
 

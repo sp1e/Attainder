@@ -1,4 +1,5 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "./historicalPreparation.js";
+import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER } from "./historicalStarts.js";
 import { withScenarioLicense, preserveComponentProvenance } from "./scenarioLicense.js";
 /*! Open Historia — portions (regions.geojson scenario asset + custom-map seeding) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 import fs from "fs";
@@ -1537,11 +1538,15 @@ const ensureScenarioStore = () => {
   ensureDirectory(SERVER_DATA_DIR);
   ensureDirectory(SCENARIOS_DIR);
   ensureDefaultScenario();
-  const bookmarkMarker = path.join(SERVER_DATA_DIR,"historical-bookmarks-v1.json");
-  if (!process.env.OH_BUILT_IN_SEED_DIR && !fs.existsSync(bookmarkMarker)) {
-    const candidate = bundleCandidate(readJsonFile(path.join(__dirname,"seed/historical/egypt-3000bc/scenario.json"),null));
+  if (process.env.OH_BUILT_IN_SEED_DIR) return;
+  for (const { id, marker } of HISTORICAL_BOOKMARKS) {
+    const bookmarkMarker = path.join(SERVER_DATA_DIR,`${marker}.json`);
+    if (fs.existsSync(bookmarkMarker)) continue;
+    // The manifest is written last, so an id in it means a complete install that lost only its marker.
+    if (getScenarioManifest().order.includes(id)) { writeJsonFile(bookmarkMarker,{installed:true}); continue; }
+    const candidate = bundleCandidate(readJsonFile(path.join(__dirname,"seed/historical",id,"scenario.json"),null));
     requirePrepared(validatePlayableScenario(candidate));
-    persistScenarioBundle(candidate);
+    persistScenarioBundle(candidate,{id,selected:id === HISTORICAL_START_ORDER[0] && getScenarioManifest().selectedScenarioId === DEFAULT_SCENARIO_ID});
     writeJsonFile(bookmarkMarker,{installed:true});
   }
 };

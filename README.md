@@ -2,7 +2,7 @@
 
 An ancient empire strategy game built on [Open Historia](https://github.com/Open-Historia/open-historia). Choose whether your campaign follows the state through successive rulers or a family that can survive losing power.
 
-The current development branch offers two historical bookmarks: Egypt around 3000 BC and John of England on 31 December AD 1200. The character interface uses Swedish. Public project documentation is in English.
+The current development branch offers three historical bookmarks: Charlemagne on 25 December AD 800, which is the default, Egypt around 3000 BC and John of England on 31 December AD 1200. The character interface uses Swedish. Public project documentation is in English.
 
 The historical foundation implements the [historical-world direction](docs/superpowers/specs/2026-11-05-historical-world-direction.md): real geography and historical polities, with new starts from the Bronze Age through about AD 1200 and no modern starts. The [implementation plan](docs/superpowers/plans/2026-11-05-historical-campaign-foundation.md), Task 6 browser evidence and final documentation review are accepted with documented limits. [PR #13](https://github.com/sp1e/Attainder/pull/13) tracks the merge state; its current head must pass CI before merge. The [play script](docs/play-scripts/historical-foundation.md) records the observed and pending checks. The [development backlog](docs/development/DEVELOPMENT-BACKLOG.md) retains the separate 4,500-year research and turn-end reference popup requirement.
 
