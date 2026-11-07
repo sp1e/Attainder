@@ -12,7 +12,7 @@ const readPackage = id => JSON.parse(readFileSync(new URL(`./seed/historical/${i
 const summaryOf = pkg => historicalStartSummary({ meta: pkg.scenario, data: pkg.data });
 
 test('regions and eras keep the agreed ids, labels and order', () => {
-  assert.equal(HISTORICAL_SUMMARY_SCHEMA, 1);
+  assert.equal(HISTORICAL_SUMMARY_SCHEMA, 2);
   assert.deepEqual(HISTORICAL_REGIONS.map(r => r.id), ['europe','mena','sub-saharan-africa','central-asia','south-asia','east-asia','southeast-asia','americas','oceania','other']);
   assert.deepEqual(HISTORICAL_REGIONS.map(r => r.labelSv), ['Europa','Mellanöstern och Nordafrika','Afrika söder om Sahara','Centralasien','Sydasien','Östasien','Sydostasien','Amerika','Oceanien','Övriga']);
   assert.deepEqual(HISTORICAL_ERAS.map(e => e.id), ['bronze-age','antiquity','early-middle-ages','high-middle-ages','late-middle-ages']);
@@ -41,23 +41,40 @@ test('a polity takes its region from the region file and other when absent', () 
   assert.equal(regionForPolity('nowhere'), 'other');
 });
 
-test('the Charlemagne package summarises both playable courts', () => {
+test('the Charlemagne package summarises its ten playable courts', () => {
   const summary = summaryOf(readPackage('charlemagne-800'));
-  assert.equal(summary.schema, 1);
+  assert.equal(summary.schema, 2);
   assert.equal(summary.invalid, undefined);
   assert.equal(summary.sourceStamp, null);
   assert.equal(summary.contentId, 'charlemagne-800');
   assert.equal(summary.eraId, 'early-middle-ages');
-  assert.equal(summary.contentVersion, '1.1.0');
+  assert.equal(summary.contentVersion, '1.2.0');
   assert.equal(summary.date, '0800-12-25');
   assert.equal(summary.name, 'Karls rike (karolingiska riket), 800 e.Kr.');
-  assert.deepEqual(summary.polities.map(p => p.id), ['carolingian-realm','papal-states']);
+  assert.deepEqual(summary.polities.map(p => [p.id, p.regionId]), [['carolingian-realm', 'europe'], ['papal-states', 'europe'],
+    ['tang-empire', 'east-asia'], ['abbasid-caliphate', 'mena'], ['byzantine-empire', 'europe'], ['silla', 'east-asia'], ['emirate-of-cordoba', 'europe'],
+    ['aghlabid-emirate', 'mena'], ['kingdom-of-asturias', 'europe'], ['duchy-of-benevento', 'europe']]);
   assert.equal(summary.polities.find(p => p.id === 'papal-states').ruler.name, 'Leo III');
+  assert.equal(summary.polities.find(p => p.id === 'byzantine-empire').ruler.name, 'Eirene av Aten');
   for (const polity of summary.polities) {
-    assert.equal(polity.regionId, 'europe', polity.id);
     assert.ok(polity.families.length >= 1, polity.id);
     assert.ok(polity.nameSv && polity.ruler.originLabelSv, polity.id);
   }
+});
+
+test('each polity carries its court start text and null when the court has none', () => {
+  const pkg = readPackage('charlemagne-800');
+  const h = pkg.data.world.historicalScenario;
+  h.courtSeeds['papal-states'].contextSv = 'Leo III styr Kyrkostaten från Rom.';
+  h.courtSeeds['papal-states'].contextSourceIds = Object.keys(h.sources).slice(0, 1);
+  delete h.courtSeeds['carolingian-realm'].contextSv;
+  delete h.courtSeeds['carolingian-realm'].contextSourceIds;
+  const summary = summaryOf(pkg);
+  assert.equal(summary.contextSv, h.contextSv, 'the package text stays as the fallback');
+  assert.deepEqual(summary.polities.map(p => [p.id, p.contextSv]),
+    [['carolingian-realm', null], ['papal-states', 'Leo III styr Kyrkostaten från Rom.'],
+      ...h.playablePolityIds.slice(2).map(id => [id, h.courtSeeds[id].contextSv])]);
+  for (const polity of summary.polities.slice(2)) assert.ok(polity.contextSv.length > 50, polity.id);
 });
 
 test('a broken court makes the summary invalid and a non-historical world gives null', () => {
@@ -65,7 +82,7 @@ test('a broken court makes the summary invalid and a non-historical world gives 
   const court = pkg.data.world.historicalScenario.courtSeeds['papal-states'];
   court.people = court.people.filter(person => person.id !== court.rulerId);
   const broken = historicalStartSummary({ meta: pkg.scenario, data: pkg.data, sourceStamp: 'stamp' });
-  assert.deepEqual(broken, { schema: 1, sourceStamp: 'stamp', invalid: true, date: '0800-12-25', contentId: 'charlemagne-800' });
+  assert.deepEqual(broken, { schema: 2, sourceStamp: 'stamp', invalid: true, date: '0800-12-25', contentId: 'charlemagne-800' });
   // The library bar still lists a broken start, so the player can open or delete it.
   assert.deepEqual(historicalStartFromSummary(broken, pkg.scenario), { date: '0800-12-25', contentId: 'charlemagne-800' });
   assert.equal(historicalStartFromSummary(broken, { ...pkg.scenario, restoreOnly: true }), null);

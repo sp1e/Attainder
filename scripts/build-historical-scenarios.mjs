@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import polygonClipping from 'polygon-clipping';
-import { authoredScenario, SOURCE_REVISION, EGYPT_CORE_NOTE_SV, EGYPT_CORE_SOURCE_IDS, EGYPT_CORE_TRANSFORM } from '../server/seed/historical/authored-scenarios.mjs';
+import { authoredScenario, namePlayables, SOURCE_REVISION, EGYPT_CORE_NOTE_SV, EGYPT_CORE_SOURCE_IDS, EGYPT_CORE_TRANSFORM } from '../server/seed/historical/authored-scenarios.mjs';
 import { historicalGeometryCenter, validateHistoricalScenario } from '../src/runtime/historicalScenarios.js';
 import { withScenarioLicense } from '../src/runtime/scenarioLicense.js';
 
@@ -85,8 +85,8 @@ const PACKAGE_RECORDS = [
     reviewFeature: (review,index) => review.namedFeatures.find(r => r.sourceFeatureIndex === index),
     unmappedSourceIds: (r,index) => (r?.references ?? []).map((_,i) => `regional-${index}-${i}`),
     mappedBoundaryDecision: 'developer-authored-selective-core' },
-  { contentId: 'john-1200',idPrefix: 'hbm-ad1200',sourceFile: 'hbm-world_1200.geojson',reviewFile: 'ad1200-review.json',
-    authored: () => authoredScenario('john-1200'),addRegionalSources: sourcesFromEvidence,
+  { contentId: 'john-1200',idPrefix: 'hbm-ad1200',sourceFile: 'hbm-world_1200.geojson',reviewFile: 'ad1200-review.json',dossierFile: 'courts/ad1200-courts.json',
+    authored: dossier => authoredScenario('john-1200',{ dossier }),addRegionalSources: sourcesFromEvidence,
     coverage: [
       { area: 'Africa',status: 'partial',sourceIds: ['regional-almohad'],noteSv: 'Almohadernas täckning är partiell. Fatimidernas gamla område byter inte automatiskt ägare; ayyubidiska och andra lokala gränser återstår.' },
       { area: 'Asia',status: 'partial',sourceIds: ['regional-china','regional-khmer'],noteSv: 'Västra Xia och Khmerriket visas ungefärligt. Song, Liao, Chola, Pyu, Delhi, Buyid och mongoliska kartanspråk innehåller olösta eller felaktiga delar. Goryeos trasiga polygon används inte.' },
@@ -102,12 +102,12 @@ const PACKAGE_RECORDS = [
     quarantine: { 214: 'quarantined-self-intersection',240: 'quarantined-degenerate' },
     selectionTransformation: 'Preserve accepted source coordinates and component structure; assign stable historical IDs.',
     quarantineTransformation: 'Quarantine AD1200 source features214 and240; no unsupported repair or owner assignment.',
-    seatId: 'windsor',gettyRetrievedAt: '2026-11-05',
+    seatId: 'windsor',...dossierGettyFields([['Windsor','windsor']]),
     reviewFeature: (review,index) => review.allFeatures[index],
     unmappedSourceIds: (r) => (r?.sourceEvidenceIds ?? []).map(id => `regional-${id}`),
     mappedBoundaryDecision: 'accepted-world-scale-approximation' },
-  { contentId: 'charlemagne-800',idPrefix: 'hbm-ad800',sourceFile: 'hbm-world_800.geojson',reviewFile: 'ad800-review.json',
-    authored: () => authoredScenario('charlemagne-800'),addRegionalSources: sourcesFromAd800Review,
+  { contentId: 'charlemagne-800',idPrefix: 'hbm-ad800',sourceFile: 'hbm-world_800.geojson',reviewFile: 'ad800-review.json',dossierFile: 'courts/ad800-courts.json',
+    authored: dossier => authoredScenario('charlemagne-800',{ dossier }),addRegionalSources: sourcesFromAd800Review,
     coverage: [
       { area: 'Africa',status: 'partial',sourceIds: ['regional-qantara-aghlabids','regional-qantara-idrisids','regional-virtual-nubia','regional-soba'],noteSv: 'Aghlabidernas emirat har en ungefärlig form. Idrisidernas form används inte eftersom källan inte ger någon utbredning för år 800 och formen når in i Sahara. Makuria och Alwa saknar belagda gränser. Ghana, Aksum och Kanem har ingen granskad källa och står som okänd kontroll.' },
       { area: 'Asia',status: 'partial',sourceIds: ['regional-qantara-abbasids','regional-columbia-china','regional-columbia-korea','regional-rubin-jug','regional-waugh-tibet','regional-daniels-nanzhao','regional-columbia-japan','regional-virji-valabhi'],noteSv: 'Abbasidiska kalifatet, Tang och Silla har ungefärliga former. Parhae, Nanzhao, Japan, Tibet och uigurerna saknar ägare eftersom källorna inte stöder deras former. Valabhi avvisas eftersom Virji räknar riket som utslocknat 783. Övriga former har ingen godkänd ägare.' },
@@ -123,14 +123,29 @@ const PACKAGE_RECORDS = [
     quarantine: {},
     selectionTransformation: 'Preserve accepted source coordinates and component structure; assign stable historical IDs. Source features151 and221 share one polity.',
     quarantineTransformation: null,
-    seatId: 'aachen',citySourceIds: ['aachen','rome'],gettyRetrievedAt: '2026-11-07',
-    gettyTransformation: 'Use Getty modern place coordinates as approximate settlement markers; no physical royal-presence claim and no frontier claim.',
-    gettyNotice: h => ({ sourceUrl: 'https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/',
-      modifications: ['Modern place coordinates retained; settlement markers explicitly approximate.',`Records used: Aachen ${h.sources.aachen.url}; Rome ${h.sources.rome.url}`] }),
+    seatId: 'aachen',...dossierGettyFields([['Aachen','aachen'],['Rome','rome']]),
     reviewFeature: (review,index) => review.allFeatures[index],
     unmappedSourceIds: (r) => (r?.sourceEvidenceIds ?? []).map(id => `regional-${id}`),
     mappedBoundaryDecision: 'accepted-world-scale-approximation' },
 ];
+// The Getty record of every settlement besides the authored seats (those come from the dossier), as [sourceId, seat name].
+function dossierGettyRecords(h,authoredSeatIds) {
+  return h.settlements.filter(s => !authoredSeatIds.includes(s.id)).map(s => {
+    const getty = s.sourceIds.filter(id => /^ODC-By-1\.0/.test(h.sources[id]?.license ?? ''));
+    if (getty.length !== 1) throw new Error(`${h.contentId}: seat ${s.id} needs exactly one Getty record`);
+    return [getty[0],s.nameSv];
+  });
+}
+// citySourceIds, gettyRetrievedAt, gettyTransformation and gettyNotice of a package whose dossier adds Getty-cited seats
+// to the authored ones, given as [English name, source id] in notice order.
+function dossierGettyFields(authoredSeats) {
+  const authoredIds = authoredSeats.map(([,id]) => id);
+  return { citySourceIds: h => [...authoredIds,...dossierGettyRecords(h,authoredIds).map(([id]) => id)],gettyRetrievedAt: '2026-11-07',
+    gettyTransformation: 'Use Getty modern place coordinates as approximate settlement markers; no physical royal-presence claim and no frontier claim.',
+    gettyNotice: h => ({ sourceUrl: 'https://www.getty.edu/research-conservation/tools-databases/vocabularies/data-services/',
+      modifications: ['Modern place coordinates retained; settlement markers explicitly approximate.',
+        `Records used: ${[...authoredSeats,...dossierGettyRecords(h,authoredIds).map(([id,name]) => [name,id])].map(([name,id]) => `${name} ${h.sources[id].url}`).join('; ')}`] }) };
+}
 export const SCENARIO_PACKAGES = PACKAGE_RECORDS.map(pkg => ({ ...pkg,releasedProvenance: releasedProvenance[pkg.contentId] ?? null }));
 
 // ---- Per-package build steps ----
@@ -221,7 +236,8 @@ function transformationsFor(pkg) {
 }
 
 async function liveAuthoredInputs(pkg) {
-  return Promise.all(['authored-scenarios.mjs',pkg.reviewFile].map(async fileName => ({ fileName,sha256: sha(await read(fileName)) })));
+  const dossierInputs = pkg.dossierFile ? ['dossier-courts.mjs',pkg.dossierFile] : [];
+  return Promise.all(['authored-scenarios.mjs',pkg.reviewFile,...dossierInputs].map(async fileName => ({ fileName,sha256: sha(await read(fileName)) })));
 }
 
 async function manifestFor(pkg,h,physical,regions,cities,transformations) {
@@ -230,7 +246,7 @@ async function manifestFor(pkg,h,physical,regions,cities,transformations) {
     generator: released?.generator ?? { file: 'scripts/build-historical-scenarios.mjs',sha256: sha(await fs.readFile(fileURLToPath(import.meta.url))),polygonClipping: '0.15.7' },
     sourceFiles: released?.sourceFiles ?? Object.entries(SOURCE_HASHES).map(([fileName,sha256]) => ({ fileName,sha256 })),
     assets: [{ id: 'regionsGeojson',sourceIds: ['hbm','naturalEarth'],crs: 'OGC:CRS84',revision: `${SOURCE_REVISION}+${physical.revision}`,sha256: sha(json(regions)),license: 'GPL-3.0-only AND public-domain',transformations },
-      { id: 'citiesGeojson',sourceIds: pkg.citySourceIds ?? [pkg.seatId],crs: 'OGC:CRS84',revision: `Getty records retrieved${pkg.gettyRetrievedAt}`,sha256: sha(json(cities)),license: 'ODC-By-1.0',transformations: ['Copy the decimal modern-place reference; describe its historical placement limit.'] }],
+      { id: 'citiesGeojson',sourceIds: pkg.citySourceIds?.(h) ?? [pkg.seatId],crs: 'OGC:CRS84',revision: `Getty records retrieved${pkg.gettyRetrievedAt}`,sha256: sha(json(cities)),license: 'ODC-By-1.0',transformations: ['Copy the decimal modern-place reference; describe its historical placement limit.'] }],
     authoredInputs: released?.authoredInputs ?? await liveAuthoredInputs(pkg),
   };
 }
@@ -265,13 +281,14 @@ function bundleFor(h,world,game,regions,cities) {
 }
 
 async function buildPackage(pkg,{ inputs,physical,land }) {
-  const h = pkg.authored();
+  const h = pkg.authored(pkg.dossierFile ? await readJson(pkg.dossierFile) : null);
   const source = JSON.parse(inputs[pkg.sourceFile]);
   const review = await readJson(pkg.reviewFile);
   pkg.addRegionalSources(h,review);
   h.coverage = structuredClone(pkg.coverage);
   h.mapPolicy = { ...MAP_POLICY };
   const mappings = polityMappings(pkg,h,review);
+  namePlayables(h);
   const owned = ownedFeatures(pkg,h,source,mappings);
   const regions = { type: 'FeatureCollection',features: [...backgroundFeatures(land,owned),...owned] };
   const cities = citiesFor(h);

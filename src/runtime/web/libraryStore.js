@@ -13,6 +13,7 @@ import { STORES, idbGet, idbGetAll, idbGetAllKeys, idbPut, idbPutPair, idbDelete
 import { ASSETS_BASE } from "../assetsBase.js";
 import { serializeWrite } from "./writeQueue.js";
 import { coarsenFeatureCollection } from "../../../server/coarseGeometry.js";
+import { builtInMetaEdited } from "../../../server/builtInStamps.js";
 import { layOutScenarioBundle } from "../../../server/mapProjection.js";
 import {
   cloneJson, nowIso, jsonResponse, errorResponse, binaryResponse, base64ToBytes, bytesToBase64,
@@ -1354,8 +1355,9 @@ let _defaultSeedPromise = null;
 const loadDefaultSeed = () => (_defaultSeedPromise ??= import("./generated/defaultScenario.js").then((m) => m.default));
 const defaultScenarioSeedRecord = async () => {
   const DEFAULT_SEED = await loadDefaultSeed();
-  const record = emptyScenarioRecord(DEFAULT_SCENARIO_ID);
-  record.meta = { ...DEFAULT_SCENARIO_META, ...(DEFAULT_SEED.meta ?? {}), countryNameOverrides: {}, createdAt: nowIso(), updatedAt: nowIso() };
+  const record = emptyScenarioRecord(DEFAULT_SCENARIO_ID), now = nowIso();
+  // One timestamp for both: refreshBuiltInContent takes a later updatedAt as the player's edit.
+  record.meta = { ...DEFAULT_SCENARIO_META, ...(DEFAULT_SEED.meta ?? {}), countryNameOverrides: {}, createdAt: now, updatedAt: now };
   record.json = {
     actions: cloneJson(DEFAULT_SEED.data?.actions ?? []), advisor: cloneJson(DEFAULT_SEED.data?.advisor ?? []),
     chat: cloneJson(DEFAULT_SEED.data?.chat ?? []), events: cloneJson(DEFAULT_SEED.data?.events ?? []),
@@ -1393,7 +1395,7 @@ const refreshBuiltInContent = async (current) => {
   const games = (await idbGetAll(STORES.games)).filter(
     (game) => readGameMeta(game.id, game.meta ?? {}).scenarioId === DEFAULT_SCENARIO_ID,
   );
-  if (current.meta?.updatedAt !== current.meta?.createdAt) {
+  if (builtInMetaEdited(current.meta)) {
     const forkId = await ensureUniqueId("modern-day-edited", "scenario");
     const name = current.meta?.name || DEFAULT_SCENARIO_META.name;
     const now = nowIso();
@@ -1448,7 +1450,7 @@ const syncBuiltInScenarioFromSeed = async () => {
   const games = (await idbGetAll(STORES.games)).filter(
     (game) => readGameMeta(game.id, game.meta ?? {}).scenarioId === DEFAULT_SCENARIO_ID,
   );
-  const touched = current.meta?.updatedAt !== current.meta?.createdAt;
+  const touched = builtInMetaEdited(current.meta);
   if (games.length || touched) {
     const forkId = await ensureUniqueId("modern-day-classic", "scenario");
     const name = current.meta?.name || DEFAULT_SCENARIO_META.name;

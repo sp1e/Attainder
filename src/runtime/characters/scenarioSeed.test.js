@@ -105,7 +105,7 @@ test('every person in every playable court of every package carries the label of
 
 for (const mode of ['realm', 'family']) test(`charlemagne-800 papal-states ${mode}: Leo III's court initializes deterministically under merit succession`, () => {
   const data = load('charlemagne-800'), h = data.world.historicalScenario;
-  assert.deepEqual(h.playablePolityIds, ['carolingian-realm', 'papal-states']);
+  assert.deepEqual(h.playablePolityIds, ['carolingian-realm', 'papal-states', 'tang-empire', 'abbasid-caliphate', 'byzantine-empire', 'silla', 'emirate-of-cordoba', 'aghlabid-emirate', 'kingdom-of-asturias', 'duchy-of-benevento']);
   const options = { historicalScenario: h, date: data.game.startDate, polityId: 'papal-states', mode, seed: 321 };
   const before = clone(options);
   const state = createHistoricalCharacterSystem(options);

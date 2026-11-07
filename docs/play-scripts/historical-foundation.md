@@ -170,6 +170,17 @@ The card shows `EUROPA` with `Tidig medeltid` (Karls rike, Kyrkostaten) and `Hö
 
 On `8176bf1b` the web session summary read `Riket / papal-states` after a start within 15 seconds of the menu, because the polity-name cache still held John's world. On `9d8605de` the same flow read `Riket / Kyrkostaten` 3 seconds after the click. No model turn was run.
 
+## Reviewed courts, Phase 3
+
+Run on `7ccef350` with Playwright Chromium on 7 November 2026, with the same server and web setup as the Kyrkostaten run and a fresh `OH_DATA_DIR`.
+
+| ID | Adapter | Card | Tangriket realm start | Frankrike start | Save |
+| --- | --- | --- | --- | --- | --- |
+| R-S | Server | Observed: 15 polities | Observed: Dezong, 58, header `Riket / Tangriket / 0800-12-25` | Observed in family mode: Hovhus 1 (genererat), representative Hugues de Montfort (genererad), 43 | Observed: `playablePolityIds` and `courtSeeds` hold `tang-empire` only; `contextSv` and `startingTimelineText` open with the Tang text |
+| R-W | Web | Observed: 15 polities | Observed: Dezong, 58, `Riket / Tangriket / 0800-12-25` | Observed in realm mode: Filip II August, 35, `Riket / Frankrike / 1200-12-31` | Not inspected |
+
+The card groups the polities under `EUROPA`, `MELLANÖSTERN OCH NORDAFRIKA`, `ÖSTASIEN` and `SYDOSTASIEN`. Choosing Tangriket shows `Kejsar Dezong regerar över Tangriket sedan 779.` and the rest of the Tang text; choosing Frankrike shows `Filip II regerar sedan 1180 och har sitt hov i Paris.` and the rest of the French text. The web library came from the Phase 2 run on the same origin, so the web run also exercised the upgrade from Charlemagne 1.1.0 and John revision 1. Both consoles showed 0 errors and the existing hillshade warning. No model turn was run.
+
 ## Closure
 
 The controller accepted Task 6 with the documented limits, and final documentation review approved publication subject to current-head CI. CI passed at `2066a55`; the PR tracks the current head and merge state. Preserve source attribution and licenses, and exclude private material from publication. The annual 3300 BC–AD 1530 historical-reference research and turn-end popup remain a separate pending milestone.

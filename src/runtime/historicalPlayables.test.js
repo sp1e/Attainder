@@ -21,6 +21,12 @@ test('the catalog names every package shipped under server/seed/historical', () 
   for (const folder of ['egypt-3000bc', 'john-1200', 'charlemagne-800']) assert.ok(SHIPPED_START_FOLDERS.includes(folder), folder);
 });
 
+test('the shipped packages offer fifteen playable polities: Egypt, ten at AD 800 and four at AD 1200', () => {
+  const counts = Object.fromEntries(SHIPPED_START_FOLDERS.map(folder => [folder, loadPackage(folder).world.historicalScenario.playablePolityIds.length]));
+  assert.deepEqual(counts, { 'egypt-3000bc': 1, 'charlemagne-800': 10, 'john-1200': 4 });
+  assert.equal(Object.values(counts).reduce((sum, count) => sum + count, 0), 15);
+});
+
 const startsEveryMode = (h, polityId) => {
   const court = h.courtSeeds[polityId], date = h.bookmarkDate;
   for (const mode of ['realm', 'family']) {

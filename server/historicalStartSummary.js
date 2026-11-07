@@ -8,7 +8,8 @@
 import polityRegions from "./seed/historical/polity-regions.json" with { type: "json" };
 import { parseGameDate } from "./gameDates.js";
 
-export const HISTORICAL_SUMMARY_SCHEMA = 1;
+// 2: each polity carries its court's start text (contextSv). A summary of another schema is rebuilt.
+export const HISTORICAL_SUMMARY_SCHEMA = 2;
 
 export const HISTORICAL_REGIONS = Object.freeze([
   Object.freeze({ id: "europe", labelSv: "Europa" }),
@@ -70,6 +71,8 @@ const polityEntry = (scenario, polityId) => {
     nameSv: text(polity.nameSv) ?? polityId,
     regionId: regionForPolity(polityId),
     ruler: { name: text(ruler.name) ?? ruler.id, originLabelSv: text(ruler.originLabelSv) },
+    // Null when the court has none; the card then shows the package's contextSv.
+    contextSv: text(court.contextSv),
     families: court.families.map(family => ({ id: family?.id, name: text(family?.name) ?? family?.id })),
   };
 };

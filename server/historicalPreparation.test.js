@@ -33,6 +33,11 @@ test('the Charlemagne date passes every new-game guard', () => {
     assert.equal(prepareHistoricalCampaignStart({ request: { ...request, historicalStart: { ...request.historicalStart, date: other } }, scenario }).ok, false, other);
   }
 });
+// The ten AD 800 playables in package order: [polity, lawful ruler, succession law].
+const AD800_PLAYABLES = [['carolingian-realm', 'karl', 'primogeniture'], ['papal-states', 'leo-iii', 'merit'],
+  ['tang-empire', 'dezong', 'primogeniture'], ['abbasid-caliphate', 'harun-ar-rashid', 'merit'], ['byzantine-empire', 'eirene-of-athens', 'merit'],
+  ['silla', 'aejang', 'primogeniture'], ['emirate-of-cordoba', 'al-hakam-i', 'primogeniture'], ['aghlabid-emirate', 'ibrahim-ibn-al-aghlab', 'primogeniture'],
+  ['kingdom-of-asturias', 'alfonso-ii-asturias', 'merit'], ['duchy-of-benevento', 'grimoald-iii-benevento', 'merit']];
 test('each AD 800 polity starts in realm and family mode with its own ruler and succession law', () => {
   const scenario = candidate(read('charlemagne-800')), before = structuredClone(scenario), h = scenario.data.world.historicalScenario;
   const started = {};
@@ -45,16 +50,15 @@ test('each AD 800 polity starts in realm and family mode with its own ruler and 
     assert.equal(realm.lawfulRulerId, h.courtSeeds[polityId].rulerId, `${polityId} ${mode}`);
     started[`${polityId} ${mode}`] = [realm.lawfulRulerId, realm.successionLaw];
   }
-  assert.deepEqual(started, {
-    'carolingian-realm realm': ['karl', 'primogeniture'], 'carolingian-realm family': ['karl', 'primogeniture'],
-    'papal-states realm': ['leo-iii', 'merit'], 'papal-states family': ['leo-iii', 'merit'],
-  });
+  assert.deepEqual(started, Object.fromEntries(AD800_PLAYABLES.flatMap(([polityId, rulerId, law]) =>
+    ['realm', 'family'].map(mode => [`${polityId} ${mode}`, [rulerId, law]]))));
   assert.deepEqual(scenario, before);
 });
 test('a new Charlemagne campaign keeps only the chosen court and still validates', () => {
   const scenario = candidate(read('charlemagne-800')), before = structuredClone(scenario), h = scenario.data.world.historicalScenario;
   const date = '0800-12-25';
-  for (const polityId of ['papal-states', 'carolingian-realm']) for (const mode of ['realm', 'family']) {
+  assert.deepEqual(h.playablePolityIds, AD800_PLAYABLES.map(([polityId]) => polityId));
+  for (const polityId of h.playablePolityIds) for (const mode of ['realm', 'family']) {
     const label = `${polityId} ${mode}`;
     const request = { historicalStart: { date, polityId, mode, seed: 7, difficulty: 'normal' }, gamePatch: { country: polityId, difficulty: 'standard', language: 'Swedish' } };
     const result = prepareHistoricalCampaignStart({ request, scenario });
@@ -64,7 +68,9 @@ test('a new Charlemagne campaign keeps only the chosen court and still validates
     assert.deepEqual(Object.keys(saved.courtSeeds), [polityId], label);
     assert.deepEqual(saved.courtSeeds[polityId], h.courtSeeds[polityId], label);
     assert.equal(saved.polities.length, 10, label);
-    assert.deepEqual({ ...saved, playablePolityIds: h.playablePolityIds, courtSeeds: h.courtSeeds }, h, `${label}: other fields stay whole`);
+    // Every AD 800 court ships its own start text, which replaces the package text in the campaign.
+    assert.equal(saved.contextSv, h.courtSeeds[polityId].contextSv, label);
+    assert.deepEqual({ ...saved, playablePolityIds: h.playablePolityIds, courtSeeds: h.courtSeeds, contextSv: h.contextSv }, h, `${label}: other fields stay whole`);
     assert.deepEqual(result.data.world.characterSystem,
       createHistoricalCharacterSystem({ historicalScenario: h, date, polityId, mode, seed: 7, difficulty: 'normal' }), `${label}: same draws as the full scenario`);
     const checked = validateHistoricalScenario({ game: result.data.game, world: result.data.world, regions: scenario.regions,
@@ -72,6 +78,46 @@ test('a new Charlemagne campaign keeps only the chosen court and still validates
     assert.equal(checked.ok, true, `${label}: ${checked.error}`);
   }
   assert.deepEqual(scenario, before);
+});
+test('a court start text becomes the campaign text and the world briefing; without one both stay', () => {
+  const scenario = candidate(read('charlemagne-800')), h = scenario.data.world.historicalScenario, date = '0800-12-25';
+  const papalText = 'Leo III styr Kyrkostaten från Rom.';
+  h.courtSeeds['papal-states'].contextSv = papalText;
+  h.courtSeeds['papal-states'].contextSourceIds = Object.keys(h.sources).slice(0, 1);
+  // Karls rike ships a start text; without it the court shows the package text.
+  delete h.courtSeeds['carolingian-realm'].contextSv;
+  delete h.courtSeeds['carolingian-realm'].contextSourceIds;
+  const before = structuredClone(scenario);
+  const prepare = polityId => prepareHistoricalCampaignStart({ scenario, request: {
+    historicalStart: { date, polityId, mode: 'realm', seed: 7, difficulty: 'normal' }, gamePatch: { country: polityId, difficulty: 'standard', language: 'Swedish' } } });
+  const papal = prepare('papal-states');
+  assert.equal(papal.ok, true, papal.error);
+  assert.equal(papal.data.world.historicalScenario.contextSv, papalText);
+  assert.equal(papal.data.world.startingTimelineText, [papalText, h.calendarNoteSv, h.coverageNoteSv].join('\n'));
+  const checked = validateHistoricalScenario({ game: papal.data.game, world: papal.data.world, regions: scenario.regions,
+    assetManifest: historicalAssetManifest(papal.data.world) }, { date, polityId: 'papal-states' });
+  assert.equal(checked.ok, true, checked.error);
+  const karl = prepare('carolingian-realm');
+  assert.equal(karl.ok, true, karl.error);
+  assert.equal(karl.data.world.historicalScenario.contextSv, h.contextSv);
+  assert.equal(karl.data.world.startingTimelineText, scenario.data.world.startingTimelineText);
+  assert.deepEqual(scenario, before);
+});
+for (const id of SHIPPED_START_FOLDERS) test(`${id} ships the briefing in the builder layout that a court text replaces`, () => {
+  const { world } = read(id).data, h = world.historicalScenario;
+  assert.equal(world.startingTimelineText, [h.contextSv, h.calendarNoteSv, h.coverageNoteSv].join('\n'));
+});
+test('a briefing the player edited survives the court start text', () => {
+  const scenario = candidate(read('charlemagne-800')), h = scenario.data.world.historicalScenario, date = '0800-12-25';
+  const edited = 'Min egen inledning: Karl kröns i Rom och Europa håller andan.';
+  scenario.data.world.startingTimelineText = edited;
+  const polityId = 'papal-states', courtText = h.courtSeeds[polityId].contextSv;
+  assert.equal(typeof courtText, 'string');
+  const result = prepareHistoricalCampaignStart({ scenario, request: {
+    historicalStart: { date, polityId, mode: 'realm', seed: 7, difficulty: 'normal' }, gamePatch: { country: polityId, difficulty: 'standard', language: 'Swedish' } } });
+  assert.equal(result.ok, true, result.error);
+  assert.equal(result.data.world.startingTimelineText, edited);
+  assert.equal(result.data.world.historicalScenario.contextSv, courtText);
 });
 test('raw dates, conflicting options, missing sources and actual assets fail before preparation', () => {
   const scenario = candidate(read('john-1200'));
@@ -141,4 +187,21 @@ test('a matching companion without usable map geometry is refused', () => {
   const absent=structuredClone(companion); delete absent.assets.regionsGeojson;
   const modified=structuredClone(saved); modified.data.world={assetProvenance:{regionsGeojson:{currentAssetStatus:'modified'}}};
   assert.equal(validateCompanion(modified,absent,{fallbackRegions:companion.assets.regionsGeojson.data}).ok,false);
+});
+
+// Spec ruling: a built-in save restores with a companion of a later revision on the same map; any other edition is refused.
+test('a companion of a later built-in revision on the same map binds; another map or an earlier revision does not', () => {
+  const companion=structuredClone(read('john-1200'));
+  Object.assign(companion.data.world,{builtInMap:'historical-john-1200-v1',builtInRevision:2});
+  const saved=revision=>({schema:'open-historia-game-bundle/1',scenarioRef:{scenarioId:companion.scenario.id},
+    data:{game:{gameDate:'1201-12-31'},world:{builtInMap:'historical-john-1200-v1',builtInRevision:revision}}});
+  assert.equal(validateCompanion(saved(1),companion).ok,true,'revision 1 save, revision 2 companion');
+  assert.equal(validateCompanion(saved(2),companion).ok,true,'same revision');
+  assert.equal(validateCompanion(saved(3),companion).code,'wrongEdition','a companion older than the save');
+  const otherMap=saved(1); otherMap.data.world.builtInMap='modern-day-world-2026-10-v1';
+  assert.equal(validateCompanion(otherMap,companion).code,'wrongEdition','another map');
+  const unstampedCompanion=structuredClone(companion); delete unstampedCompanion.data.world.builtInMap;
+  assert.equal(validateCompanion(saved(1),unstampedCompanion).code,'wrongEdition','a companion without the map stamp');
+  const unrevisedSave=saved(1); delete unrevisedSave.data.world.builtInRevision;
+  assert.equal(validateCompanion(unrevisedSave,companion).ok,true,'an unstamped revision counts as 1');
 });

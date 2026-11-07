@@ -664,10 +664,10 @@ test('a web library read replaces an older shipped start in place and leaves del
   assert.equal(before.manifest.selectedScenarioId,'egypt-3000bc');
   // (a) The next read replaces the old copy where it stands, map files included.
   await store.ensureSeeded();
-  assert.equal(record().json.world.historicalScenario.contentVersion,'1.1.0');
-  assert.ok(JSON.stringify(record().json) === JSON.stringify(shipped.json),'the installed copy is the shipped 1.1.0');
-  assert.equal(rome().feature.properties.seat,true,'the 1.1.0 city file makes Rome a seat');
-  assert.deepEqual(logged,['[historical start] charlemagne-800 updated to 1.1.0']);
+  assert.equal(record().json.world.historicalScenario.contentVersion,'1.2.0');
+  assert.ok(JSON.stringify(record().json) === JSON.stringify(shipped.json),'the installed copy is the shipped 1.2.0');
+  assert.equal(rome().feature.properties.seat,true,'the shipped city file makes Rome a seat');
+  assert.deepEqual(logged,['[historical start] charlemagne-800 updated to 1.2.0']);
   assert.equal(record().meta.createdAt,shipped.meta.createdAt);
   assert.equal(record().meta.playCount,5,'the play count stays');
   assert.deepEqual(record().meta.countryNameOverrides,{ 'papal-states': 'Påvens land' },'the renamed country stays');
@@ -705,8 +705,8 @@ const catalogEntry = (catalog, id) => catalog.scenarios.find(s => s.id === id);
 test('the web catalog carries each historical start summary and derives historicalStart from it', async () => {
   await reset();
   const entry = catalogEntry(await library(),'charlemagne-800');
-  assert.deepEqual(entry.historicalSummary.polities.map(p => p.id),['carolingian-realm','papal-states']);
-  assert.equal(entry.historicalSummary.schema,1);
+  assert.deepEqual(entry.historicalSummary.polities.map(p => p.id),['carolingian-realm','papal-states','tang-empire','abbasid-caliphate','byzantine-empire','silla','emirate-of-cordoba','aghlabid-emirate','kingdom-of-asturias','duchy-of-benevento']);
+  assert.equal(entry.historicalSummary.schema,2);
   assert.equal(entry.historicalSummary.sourceStamp,null);
   assert.equal(entry.historicalSummary.name,entry.name);
   assert.deepEqual(entry.historicalStart,{ date: '0800-12-25', contentId: entry.historicalSummary.contentId });
@@ -726,11 +726,15 @@ test('a scenario meta stored without a summary gains one on the next catalog rea
   assert.deepEqual(metas.get(id).historicalSummary,historicalSummary);
   assert.deepEqual(entry.historicalSummary,historicalSummary);
   assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[`scenarios:${id}`]);
-  // An older summary schema is projected again too; a current one is not.
-  metas.get(id).historicalSummary = { ...historicalSummary, schema: 0 };
+  // A summary stored under schema 1, without per-polity start text, is projected again; a current one is not.
+  metas.get(id).historicalSummary = { ...historicalSummary, schema: 1, polities: historicalSummary.polities.map(polity => { const old = { ...polity }; delete old.contextSv; return old; }) };
   globalThis.__ohWebStoreReads = [];
   await library();
-  assert.equal(metas.get(id).historicalSummary.schema,1);
+  assert.equal(metas.get(id).historicalSummary.schema,2);
+  // Every AD 800 court ships its own start text, and the projection carries each one.
+  const { courtSeeds,playablePolityIds } = db.get('scenarios').get(id).json.world.historicalScenario;
+  assert.deepEqual(metas.get(id).historicalSummary.polities.map(p => p.contextSv),playablePolityIds.map(polityId => courtSeeds[polityId].contextSv));
+  assert.ok(metas.get(id).historicalSummary.polities.every(p => typeof p.contextSv === 'string' && p.contextSv.length > 50));
   assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[`scenarios:${id}`]);
   globalThis.__ohWebStoreReads = [];
   await library();
@@ -751,4 +755,36 @@ test('a stored start whose papal ruler is gone stays in the catalog as invalid a
     assert.equal(catalogEntry(catalog,other).historicalSummary.invalid,undefined,other);
     assert.ok(catalogEntry(catalog,other).historicalStart,other);
   }
+});
+
+// A default record written before both stamps shared one clock read, on the first content revision,
+// with one campaign on it, stored as the old code left it. gapMs is how far its updatedAt sits past its createdAt.
+const legacyDefaultOnRevisionOne = async (gapMs) => {
+  await reset();
+  const record = db.get("scenarios").get("default"), createdAt = "2026-09-07T12:00:00.000Z", gameId = "legacy-campaign";
+  if (!db.has("games")) db.set("games", new Map());
+  db.get("games").set(gameId, { id: gameId, meta: { id: gameId, name: "Campaign", scenarioId: "default", createdAt, updatedAt: createdAt },
+    json: { game: { country: "Testland", gameDate: "2016-05-01" }, world: { builtInMap: "test-map" } } });
+  record.meta = { ...record.meta, createdAt, updatedAt: new Date(Date.parse(createdAt) + gapMs).toISOString() };
+  record.json.world = { ...record.json.world, builtInRevision: 1, polityOverrides: { Oldland: { name: "Oldland" } } };
+  await store.ensureSeeded();
+  const scenarioIds = [...db.get("scenarios").keys()];
+  const bound = db.get("games").get(gameId).meta.scenarioId;
+  return { scenarioIds, bound, world: db.get("scenarios").get("default").json.world };
+};
+
+test("a web default whose stamps sit 1 ms apart is refreshed in place and keeps its campaign", async () => {
+  const { scenarioIds, bound, world } = await legacyDefaultOnRevisionOne(1);
+  assert.deepEqual(scenarioIds.filter((id) => id.startsWith("modern-day-")), [], "an untouched default is not forked");
+  assert.equal(bound, "default", "its campaign stays on the built-in");
+  assert.equal(world.builtInRevision, 2);
+  assert.equal(world.polityOverrides.Oldland, undefined, "the built-in has the seed's content");
+});
+
+test("a web default whose stamps sit 5 s apart is kept as the player's edited copy", async () => {
+  const { scenarioIds, bound, world } = await legacyDefaultOnRevisionOne(5000);
+  assert.deepEqual(scenarioIds.filter((id) => id.startsWith("modern-day-")), ["modern-day-edited"]);
+  assert.equal(bound, "modern-day-edited", "its campaign goes with the edited copy");
+  assert.equal(world.builtInRevision, 2);
+  assert.equal(db.get("scenarios").get("modern-day-edited").json.world.polityOverrides.Oldland.name, "Oldland");
 });

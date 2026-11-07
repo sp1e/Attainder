@@ -6,8 +6,10 @@ import React from "react";
 import { transformSync } from "esbuild";
 import * as realEvents from "../../runtime/historicalEvents.js";
 import * as realDates from "../../runtime/gameDates.js";
+import * as realRange from "../../runtime/historicalResearchRange.js";
 import { createHookDriver, findAll, settle, textOf } from "../testing/hookDriver.js";
 
+const coverage = JSON.parse(readFileSync(new URL("../../../server/seed/historical/events/coverage.json", import.meta.url), "utf8"));
 const compileFile = (name) => transformSync(readFileSync(new URL(`./${name}`, import.meta.url), "utf8"), {
   loader: "jsx", format: "cjs", jsx: "transform",
 }).code;
@@ -30,7 +32,7 @@ const event = (id, year, patch = {}) => ({
   sourceIds: ["s1"], date: { kind: "exact", startYear: year, endYear: year, displaySv: String(year) }, ...patch,
 });
 
-function load({ catalog = { schemaVersion: 1, sources: [source], events: [] }, loadError = null } = {}) {
+function load({ catalog = { schemaVersion: 1, sources: [source], events: [] }, loadError = null, coverageOverride = coverage } = {}) {
   const driver = createHookDriver();
   const control = { loads: 0, listeners: [], removed: [], writes: [] };
   const modules = {
@@ -38,6 +40,8 @@ function load({ catalog = { schemaVersion: 1, sources: [source], events: [] }, l
     "../../runtime/historicalEvents.js": realEvents,
     "../../runtime/gameDates.js": realDates,
     "../../runtime/historicalEventCatalog.js": { loadHistoricalEventCatalog: async () => { control.loads += 1; if (loadError) throw loadError; return catalog; } },
+    "../../runtime/historicalResearchRange.js": realRange,
+    "../../../server/seed/historical/events/coverage.json": coverageOverride,
     "./characters.css": {},
   };
   modules["./HistoricalEventCard.jsx"] = runModule(cardCompiled, { ...modules });
@@ -96,12 +100,18 @@ test("the catalog loads when the view is shown, not before", async () => {
   assert.equal(m.control.loads, 0);
 });
 
-test("the research note appears only once the game has passed AD 1200", async () => {
-  const note = /Forskningen sträcker sig till år 1200\./;
-  const before = await mountView({ startDate: "1190-01-01", gameDate: "1200-06-01" });
+test("the research note appears only once the game has passed the researched range", async () => {
+  const note = /Forskningen sträcker sig till år 999\./;
+  const coverageOverride = { ranges: [{ startYear: 800, endYear: 999, status: "partial" }, { startYear: 1000, endYear: 1530, status: "unresearched" }] };
+  const before = await mountView({ startDate: "0990-01-01", gameDate: "0999-06-01" }, { coverageOverride });
   assert.doesNotMatch(textOf(before.render()), note);
-  const after = await mountView({ startDate: "1190-01-01", gameDate: "1201-01-01" });
+  const after = await mountView({ startDate: "0990-01-01", gameDate: "1000-01-01" }, { coverageOverride });
   assert.match(textOf(after.render()), note);
+});
+
+test("no research note is shown when no range is researched", async () => {
+  const m = await mountView({ startDate: "0990-01-01", gameDate: "1300-01-01" }, { coverageOverride: { ranges: [{ startYear: -3300, endYear: 1530, status: "unresearched" }] } });
+  assert.doesNotMatch(textOf(m.render()), /Forskningen/);
 });
 
 const loadRequestHook = () => {

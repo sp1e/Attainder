@@ -371,6 +371,6 @@ test('older saves with every court and new single-court saves both load and play
     assert.equal(data.world.characterSystem.identity.polityId, 'papal-states', token);
     assert.deepEqual(data.world.historicalScenario, scenarioBefore, `${token}: the saved courts stay as they were`);
   }
-  assert.deepEqual(Object.keys(older.world.historicalScenario.courtSeeds), ['carolingian-realm', 'papal-states']);
+  assert.deepEqual(Object.keys(older.world.historicalScenario.courtSeeds), ['carolingian-realm', 'papal-states', 'tang-empire', 'abbasid-caliphate', 'byzantine-empire', 'silla', 'emirate-of-cordoba', 'aghlabid-emirate', 'kingdom-of-asturias', 'duchy-of-benevento']);
   assert.deepEqual(Object.keys(narrowed.data.world.historicalScenario.courtSeeds), ['papal-states']);
 });
