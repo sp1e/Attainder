@@ -9,6 +9,7 @@ export const ENGINE_LIMIT_TEXT_SV = Object.freeze({
   'elective-rule': 'Spelet har ingen valordning för tronen. Efterträdaren utses enligt spelets arvslag.',
   'no-sourced-household': 'Underlaget belägger inget hushåll vid hovet. De tre hovmännen är genererade för spelet.',
   'multiple-spouses': 'Spelet tillåter en make eller maka per person. Hovet visar högst ett äktenskap för varje person.',
+  'collective-rule': 'Spelet har ett ensamt härskarämbete. Råd och delat styre visas inte som egna ämbeten.',
 });
 
 // Shared with court() in authored-scenarios.mjs, so hand-authored and dossier courts stay alike.
@@ -144,6 +145,9 @@ function citedSourceIds(court,seat,contextSourceIds) {
   return [...cited];
 }
 
+// The AD 1500 dossier gives chronology as { asWorded, precision }; the record keeps the worded text. Strings pass as they are.
+const sourceField = (s,k) => k === 'chronology' && s.chronology && typeof s.chronology === 'object' ? s.chronology.asWorded : s[k];
+
 // Dossier sources lack the validator's review field; the polity's review block supplies it.
 function sourcesFor(dossier,polity,ids) {
   const { review } = polity;
@@ -151,41 +155,44 @@ function sourcesFor(dossier,polity,ids) {
   return Object.fromEntries(ids.map(id => {
     const s = dossier.sources[id];
     if (!s) throw new Error(`dossier polity ${polity.polityId} cites unknown source ${id}`);
-    const missing = SOURCE_FIELDS.find(k => typeof s[k] !== 'string' || !s[k].trim());
+    const record = Object.fromEntries(SOURCE_FIELDS.map(k => [k,sourceField(s,k)]));
+    const missing = SOURCE_FIELDS.find(k => typeof record[k] !== 'string' || !record[k].trim());
     if (missing) throw new Error(`dossier source ${id} lacks ${missing}`);
-    const record = Object.fromEntries(SOURCE_FIELDS.map(k => [k,s[k]]));
     return [id,{ ...record,review: `Dossier review: checked by ${review.checkedBy} on ${review.checkedOn}.` }];
   }));
 }
 
+// engineLimitNotesSv comes only from the AD 1500 dossier, so older imports keep their lines.
 function coverageLines(polity) {
-  const notes = [polity.successionNoteSv,polity.engineLimitNoteSv,polity.engineRepresentationNoteSv].filter(Boolean);
+  const notes = [polity.successionNoteSv,polity.engineLimitNoteSv,polity.engineRepresentationNoteSv,polity.engineLimitNotesSv].flat().filter(Boolean);
   return [...notes,...(polity.engineLimits ?? []).map(id => {
     if (!ENGINE_LIMIT_TEXT_SV[id]) throw new Error(`dossier polity ${polity.polityId} has unknown engine limit ${id}`);
     return ENGINE_LIMIT_TEXT_SV[id];
   })];
 }
 
-function courtFor(polity,polityId,seat,{ successionLaw,courtierNames,courtierBornAt }) {
+// religionLeader: absent keeps the dossier leader or the generated priest; null leaves the religion without a leader.
+function courtFor(polity,polityId,seat,{ successionLaw,courtierNames,courtierBornAt,religionLeader }) {
   const rulers = polity.people.filter(p => p.isRuler);
   if (rulers.length !== 1) throw new Error(`dossier polity ${polityId} needs exactly one ruler`);
   const ruler = rulers[0], religion = polity.religion, religionId = religion.id;
+  const leaderId = religionLeader === undefined ? religion.leaderPersonId ?? 'generated-courtier-3' : religionLeader;
   const byId = new Map(polity.people.map(p => [p.id,p]));
   const { families,familyOf,rulingFamilyId } = familiesFor(polity,ruler,religionId);
   const people = polity.people.map(p => documentedPerson(p,familyOf.get(p.id),religionId,byId));
   const courtiers = generatedCourtiers({ courtierNames,courtierBornAt },religionId);
   people.push(...courtiers.people); families.push(...courtiers.families);
   return { polityId,rulerId: ruler.id,seatId: seat.id,...(successionLaw ? { successionLaw } : {}),people,families,offices: officesFor(polity,ruler.id),
-    religions: [{ id: religionId,name: religion.nameSv,leaderId: religion.leaderPersonId ?? 'generated-courtier-3',
+    religions: [{ id: religionId,name: religion.nameSv,leaderId,
       claims: { identity: claim(religion.status,religion.claimSv,religion.sourceIds),mechanics } }],
     cities: [{ id: seat.id,settlementId: seat.id,name: seat.nameSv,regionId: seat.regionId,familyId: rulingFamilyId,claims: { mechanics } }],
     mechanics: { status: 'generated',noteSv: 'Resurser, succession, familjegrupper, myndighetsålder och hovämbeten följer spelets regler. De beskriver inte belagda historiska värden.' } };
 }
 
-export function dossierCourt({ dossier,polityId,bookmarkYear,successionLaw,courtierNames,courtierBornAt }) {
+export function dossierCourt({ dossier,polityId,bookmarkYear,successionLaw,courtierNames,courtierBornAt,religionLeader }) {
   const polity = dossierPolity(dossier,polityId);
   const seat = seatFor(polity,polityId,bookmarkYear);
-  const court = courtFor(polity,polityId,seat,{ successionLaw,courtierNames,courtierBornAt });
+  const court = courtFor(polity,polityId,seat,{ successionLaw,courtierNames,courtierBornAt,religionLeader });
   const contextSourceIds = [...polity.contextSourceIds];
   return { seat,court,sources: sourcesFor(dossier,polity,citedSourceIds(court,seat,contextSourceIds)),
     contextSv: polity.contextSv,contextSourceIds,coverageLinesSv: coverageLines(polity) };
