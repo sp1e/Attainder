@@ -5,6 +5,7 @@
 // code itself as a last resort, and caches the lookup for cheap sync access.
 import { useEffect, useState } from "react";
 import { JSON_URLS, loadCountryNames, readJson } from "./assets.js";
+import { shouldRefreshPolityNames } from "./polityNamesRefresh.js";
 
 let nameByCode = new Map();
 let refreshedAt = 0;
@@ -28,8 +29,9 @@ const refresh = async () => {
   refreshedAt = Date.now();
 };
 
-export const ensurePolityNames = async () => {
-  if (Date.now() - refreshedAt > 15000) {
+// A code passed in reloads the cache early when the cache does not know it (polityNamesRefresh.js).
+export const ensurePolityNames = async (code) => {
+  if (shouldRefreshPolityNames({ now: Date.now(), refreshedAt, code, known: nameByCode })) {
     inflight = inflight ?? refresh().finally(() => {
       inflight = null;
     });
@@ -51,7 +53,7 @@ export const useCountryDisplayName = (code) => {
   useEffect(() => {
     let cancelled = false;
     setName(polityDisplayName(code));
-    ensurePolityNames().then(() => {
+    ensurePolityNames(code).then(() => {
       if (!cancelled) setName(polityDisplayName(code));
     });
     return () => {
