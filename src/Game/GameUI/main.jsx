@@ -236,8 +236,6 @@ const Main = ({
   const [shouldLoadDebugConsole, setShouldLoadDebugConsole] = useState(false);
   const [isInteractiveOpen, setIsInteractiveOpen] = useState(false);
   const [isCharactersOpen, setIsCharactersOpen] = useState(false);
-  // The year popup's link to the chronicle: opens the panel and counts each request.
-  const chronicleRequest = useHistoryRecordRequest(activeGame?.id, () => { if (hasCharacters) setIsCharactersOpen(true); });
   const hasCharacters = useRuntimeState("world", (world) => Boolean(world?.characterSystem));
   const isHistoricalCampaign = useRuntimeState("world", (world) => Boolean(world?.historicalScenario));
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
@@ -255,6 +253,8 @@ const Main = ({
 
   const [aiSetup, setAiSetup] = useState(readAiSetup);
   const { activeGame, games, loaded, runtimeScenario } = useLibraryState();
+  // The year popup's link to the chronicle: opens the panel and counts each request.
+  const chronicleRequest = useHistoryRecordRequest(activeGame?.id, () => { if (hasCharacters) setIsCharactersOpen(true); });
   // The game menu names the campaign the way the library does.
   const activeCountryName = useCountryDisplayName(activeGame?.country || "");
   // No games -> nothing to simulate (the main menu covers the empty world).
