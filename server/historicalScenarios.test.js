@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import { validateHistoricalScenario } from './historicalScenarios.js';
+import { validateHistoricalCourt, validateHistoricalScenario } from './historicalScenarios.js';
 import { prepareHistoricalCampaignStart } from './historicalPreparation.js';
 import { createHistoricalCharacterSystem } from './characters/scenarioSeed.js';
 import { getCharacterPresentation } from './characters/index.js';
@@ -226,6 +226,80 @@ test('validateHistoricalScenario refuses a person whose birth date or kinship la
     const input = loadPackage();
     mutate(input.court);
     assert.equal(validate(input).code,'invalidCourt',name);
+  }
+});
+
+// Both validators must refuse what the engine refuses at start time, so the start card never offers a failing start.
+const bothResults = input => [validate(input),validateHistoricalCourt(input.h,{ date: DATE,polityId: POLITY })];
+const probe = mutate => { const input = loadPackage(); mutate(input.court); return bothResults(input); };
+const generatedClaim = () => ({ status: 'generated',noteSv: 'Prov.',sourceIds: [] });
+const relate = (court,id,key,ids) => { const person = personIn(court,id); person[key] = ids; person.claims[key] = generatedClaim(); };
+const marry = (court,a,b) => { for (const [x,y] of [[a,b],[b,a]]) relate(court,x,'spouseIds',[...personIn(court,x).spouseIds,y]); };
+const mechanicsOf = court => personIn(court,'karl').mechanics;
+// Renames one entity and every reference to it, so a probe changes the id and nothing else.
+const REFERENCES = {
+  people: c => [[c,'rulerId'],...c.offices.map(o => [o,'holderId']),...c.families.map(f => [f,'headId']),...c.religions.map(r => [r,'leaderId'])],
+  families: c => [...c.people,...c.cities].map(x => [x,'familyId']),
+  religions: c => [...c.people,...c.families].map(x => [x,'religionId']),
+  offices: () => [],cities: () => [],
+};
+const RENAMED = { people: 'generated-courtier-3',families: 'generated-house-3',religions: 'latin-church',offices: 'priest',cities: 'aachen' };
+function rename(court,kind,from,to) {
+  court[kind].find(e => e.id === from).id = to;
+  for (const [row,key] of REFERENCES[kind](court)) if (row[key] === from) row[key] = to;
+  for (const p of kind === 'people' ? court.people : []) for (const key of ['legalParentIds','spouseIds']) p[key] = p[key].map(id => id === from ? to : id);
+}
+const ACCEPTED = [
+  ['the bare documented prefix',c => { personIn(c,'rotrud').originLabelSv = 'Dokumenterad person'; }],
+  ['a person id that only resembles the runtime sequence',c => rename(c,'people','generated-courtier-3','person-7a')],
+  ['one reciprocal spouse',c => marry(c,'generated-courtier-1','generated-courtier-2')],
+  ['an absent sex',c => { delete personIn(c,'rotrud').sex; }],
+  ['absent mechanics',c => { delete personIn(c,'karl').mechanics; }],
+  ['a three-generation parent chain',c => { relate(c,'generated-courtier-2','legalParentIds',['generated-courtier-1']); relate(c,'generated-courtier-3','legalParentIds',['generated-courtier-2']); }],
+  ['the office spymaster',c => { c.offices.find(o => o.id === 'priest').id = 'spymaster'; }],
+  ...['people','families','religions','cities'].map(kind => [`a renamed ${kind} id with every allowed character`,c => rename(c,kind,RENAMED[kind],'renamed_id:1.x-y')]),
+  ['successionLaw merit',c => { c.successionLaw = 'merit'; }],
+  ['successionLaw primogeniture',c => { c.successionLaw = 'primogeniture'; }],
+  ['an absent successionLaw',c => { delete c.successionLaw; }],
+];
+for (const [name,mutate] of ACCEPTED) test(`both validators accept ${name}`,() => {
+  for (const result of probe(mutate)) assert.equal(result.ok,true,`${name}: ${result.code}`);
+});
+const REFUSED = [
+  ['a generated person labelled Kung',c => { personIn(c,'generated-courtier-1').originLabelSv = 'Kung'; }],
+  ['a generated person with an extended label',c => { personIn(c,'generated-courtier-1').originLabelSv = 'Genererad person, kung'; }],
+  ['a documented person without the documented prefix',c => { personIn(c,'rotrud').originLabelSv = 'Prinsessa'; }],
+  ['a documented person with the generated label',c => { personIn(c,'rotrud').originLabelSv = 'Genererad person'; }],
+  ['the runtime person id person-7',c => rename(c,'people','generated-courtier-3','person-7')],
+  ['a blank name',c => { personIn(c,'rotrud').name = '  '; }],
+  ['a second reciprocal spouse',c => { marry(c,'generated-courtier-1','generated-courtier-2'); marry(c,'generated-courtier-1','generated-courtier-3'); }],
+  ['sex other',c => { personIn(c,'rotrud').sex = 'other'; }],
+  ['an unknown trait',c => { mechanicsOf(c).traits.push('unknown-trait'); }],
+  ['an empty trait list',c => { mechanicsOf(c).traits = []; }],
+  ['an inherited trait key',c => { mechanicsOf(c).traits = ['toString']; }],
+  ['an unknown archetype',c => { mechanicsOf(c).archetype = 'wizard'; }],
+  ['an inherited archetype key',c => { mechanicsOf(c).archetype = 'constructor'; }],
+  ['a negative skill',c => { mechanicsOf(c).skills.command = -1; }],
+  ['a missing skill',c => { delete mechanicsOf(c).skills.prowess; }],
+  ['null mechanics',c => { personIn(c,'karl').mechanics = null; }],
+  ['a two-person parent cycle',c => { relate(c,'generated-courtier-2','legalParentIds',['generated-courtier-1']); relate(c,'generated-courtier-1','legalParentIds',['generated-courtier-2']); }],
+  ['a three-person parent cycle',c => { relate(c,'generated-courtier-2','legalParentIds',['generated-courtier-1']); relate(c,'generated-courtier-3','legalParentIds',['generated-courtier-2']); relate(c,'generated-courtier-1','legalParentIds',['generated-courtier-3']); }],
+  ['the office steward',c => { c.offices.find(o => o.id === 'priest').id = 'steward'; }],
+  ...Object.keys(RENAMED).flatMap(kind => ['with space','__proto__','constructor','prototype'].map(id => [`the ${kind} id "${id}"`,c => rename(c,kind,RENAMED[kind],id)])),
+  ['successionLaw tanistry',c => { c.successionLaw = 'tanistry'; }],
+  ['a null successionLaw',c => { c.successionLaw = null; }],
+];
+for (const [name,mutate] of REFUSED) test(`both validators refuse ${name}`,() => {
+  for (const result of probe(mutate)) assert.equal(result.code,'invalidCourt',name);
+});
+
+test('the Egypt, John and Charlemagne packages pass both validators',() => {
+  for (const id of ['egypt-3000bc','john-1200','charlemagne-800']) {
+    const bundle = readJson(`${id}/scenario.json`), { game,world } = bundle.data, h = world.historicalScenario;
+    const options = { date: h.bookmarkDate,polityId: h.playablePolityIds[0] };
+    const input = { game,world,regions: readJson(`${id}/regions.geojson`),assetManifest: readJson(`${id}/manifest.json`) };
+    assert.equal(validateHistoricalScenario(input,options).ok,true,id);
+    assert.equal(validateHistoricalCourt(h,options).ok,true,id);
   }
 });
 

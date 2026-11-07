@@ -2,6 +2,7 @@
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { validateHistoricalStartDate } from './historicalStarts.js';
 import { compareGameDates, parseGameDate, formatGameDate } from './gameDates.js';
+import { ARCHETYPES, TRAITS, SKILL_LABELS } from './characters/content.js';
 
 export const HISTORICAL_SCHEMA_VERSION = 1;
 export const isHistoricalWorld = world => world?.historicalScenario?.kind === 'historical';
@@ -56,13 +57,45 @@ const validBirth = (value,date) => typeof value === 'string' && /^-?\d{1,6}-\d{2
 // A documented person's family ties read as history, so a generated claim cannot carry them.
 const claimedRelation = (p, key) => !p[key].length
   || (Object.hasOwn(p.claims,key) && (p.identityOrigin !== 'documented' || p.claims[key].status !== 'generated'));
+const validLabel = p => p.identityOrigin === 'generated' ? p.originLabelSv === 'Genererad person'
+  : p.identityOrigin === 'documented' && text(p.originLabelSv) && p.originLabelSv.startsWith('Dokumenterad person');
+
+// Mirrors validateEngineSeed in characters/scenarioSeed.js, which stays as defence in depth,
+// so the start card never offers a court that the engine refuses on click.
+const safeId = x => typeof x === 'string' && /^[a-zA-Z0-9_:.-]{1,160}$/.test(x) && !['__proto__','constructor','prototype'].includes(x);
+const known = (table, key) => typeof key === 'string' && Object.hasOwn(table,key);
+const validMechanics = m => m === undefined || (record(m) && known(ARCHETYPES,m.archetype)
+  && Array.isArray(m.traits) && m.traits.length > 0 && m.traits.every(t => known(TRAITS,t))
+  && Object.keys(SKILL_LABELS).every(k => Number.isFinite(m.skills?.[k]) && m.skills[k] >= 0));
+// The runtime allocator owns person-<number>; a later birth would overwrite such an authored person.
+const enginePerson = p => !/^person-\d+$/.test(p.id) && text(p.name) && p.spouseIds.length <= 1
+  && (p.sex === undefined || ['female','male'].includes(p.sex)) && validMechanics(p.mechanics);
+// Callers have checked that every legal parent id names a person in the court.
+function acyclicParents(people) {
+  const done = new Set(), path = new Set();
+  const visit = id => {
+    if (path.has(id)) return false;
+    if (done.has(id)) return true;
+    path.add(id);
+    const ok = people.get(id).legalParentIds.every(visit);
+    path.delete(id); done.add(id);
+    return ok;
+  };
+  return [...people.keys()].every(visit);
+}
+function validEngineShape(court, people) {
+  return ['people','families','religions','offices','cities'].every(k => court[k].every(e => safeId(e.id)))
+    && court.people.every(enginePerson) && acyclicParents(people)
+    && court.offices.every(o => ['ruler','general','chancellor','priest','spymaster'].includes(o.id))
+    && (court.successionLaw === undefined || ['primogeniture','merit'].includes(court.successionLaw));
+}
 function validCourt(court, polityId, h, date) {
   if (!record(court) || court.polityId !== polityId || !h.settlements.some(s => s.id === court.seatId && s.polityId === polityId)) return false;
   if (!['people','families','religions','offices','cities'].every(k => validIds(court[k]))) return false;
   const people = new Map(court.people.map(p => [p.id,p]));
   const families = new Set(ids(court.families)), religions = new Set(ids(court.religions));
   if (!people.has(court.rulerId) || court.offices.find(o => o.id === 'ruler')?.holderId !== court.rulerId) return false;
-  if (!court.people.every(p => ['documented','generated'].includes(p.identityOrigin) && text(p.originLabelSv)
+  if (!court.people.every(p => ['documented','generated'].includes(p.identityOrigin) && validLabel(p)
     && families.has(p.familyId) && religions.has(p.religionId) && validClaims(p.claims, h.sources)
     && p.claims.identity?.status === (p.identityOrigin === 'generated' ? 'generated' : 'sourced')
     && p.claims.mechanics?.status === 'generated'
@@ -71,6 +104,7 @@ function validCourt(court, polityId, h, date) {
     && ['legalParentIds','spouseIds'].every(k => Array.isArray(p[k]) && unique(p[k])
       && claimedRelation(p,k) && p[k].every(id => id !== p.id && people.has(id)))
     && p.spouseIds.every(id => list(people.get(id).spouseIds).includes(p.id)))) return false;
+  if (!validEngineShape(court, people)) return false;
   if (!court.families.every(f => people.get(f.headId)?.familyId === f.id
     && (f.religionId === undefined || religions.has(f.religionId)) && validClaims(f.claims, h.sources))) return false;
   if (!court.offices.every(o => (o.holderId === null || people.has(o.holderId)) && validClaims(o.claims, h.sources))) return false;

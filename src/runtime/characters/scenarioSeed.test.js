@@ -158,7 +158,7 @@ test('normalization checks optional historical metadata without changing save co
   assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
 });
 
-test('schema-valid person-4 court is refused before a generated birth can overwrite its identity', () => {
+test('a person-4 court is refused by the validator and by the seed', () => {
   const data = load('egypt-3000bc'), options = { ...optionsFor(data), seed: 1 };
   const h = options.historicalScenario, court = h.courtSeeds[options.polityId];
   const remap = id => id === 'generated-courtier-3' ? 'person-4' : id;
@@ -171,7 +171,7 @@ test('schema-valid person-4 court is refused before a generated birth can overwr
   for (const religion of court.religions) religion.leaderId = remap(religion.leaderId);
   for (const office of court.offices) office.holderId = remap(office.holderId);
   const regions = JSON.parse(readFileSync(new URL('../../../server/seed/historical/egypt-3000bc/regions.geojson', import.meta.url), 'utf8'));
-  assert.equal(validateHistoricalScenario({ ...data, regions, assetManifest: h.assetManifest }, options).ok, true);
+  assert.equal(validateHistoricalScenario({ ...data, regions, assetManifest: h.assetManifest }, options).code, 'invalidCourt');
   const before = clone(options);
   assert.throws(() => createHistoricalCharacterSystem(options), /Det historiska hovets uppgifter.*\./);
   assert.deepEqual(options, before);
