@@ -664,10 +664,10 @@ test('a web library read replaces an older shipped start in place and leaves del
   assert.equal(before.manifest.selectedScenarioId,'egypt-3000bc');
   // (a) The next read replaces the old copy where it stands, map files included.
   await store.ensureSeeded();
-  assert.equal(record().json.world.historicalScenario.contentVersion,'1.1.0');
-  assert.ok(JSON.stringify(record().json) === JSON.stringify(shipped.json),'the installed copy is the shipped 1.1.0');
-  assert.equal(rome().feature.properties.seat,true,'the 1.1.0 city file makes Rome a seat');
-  assert.deepEqual(logged,['[historical start] charlemagne-800 updated to 1.1.0']);
+  assert.equal(record().json.world.historicalScenario.contentVersion,'1.2.0');
+  assert.ok(JSON.stringify(record().json) === JSON.stringify(shipped.json),'the installed copy is the shipped 1.2.0');
+  assert.equal(rome().feature.properties.seat,true,'the shipped city file makes Rome a seat');
+  assert.deepEqual(logged,['[historical start] charlemagne-800 updated to 1.2.0']);
   assert.equal(record().meta.createdAt,shipped.meta.createdAt);
   assert.equal(record().meta.playCount,5,'the play count stays');
   assert.deepEqual(record().meta.countryNameOverrides,{ 'papal-states': 'Påvens land' },'the renamed country stays');
@@ -705,7 +705,7 @@ const catalogEntry = (catalog, id) => catalog.scenarios.find(s => s.id === id);
 test('the web catalog carries each historical start summary and derives historicalStart from it', async () => {
   await reset();
   const entry = catalogEntry(await library(),'charlemagne-800');
-  assert.deepEqual(entry.historicalSummary.polities.map(p => p.id),['carolingian-realm','papal-states']);
+  assert.deepEqual(entry.historicalSummary.polities.map(p => p.id),['carolingian-realm','papal-states','tang-empire','abbasid-caliphate','byzantine-empire','silla','emirate-of-cordoba','aghlabid-emirate','kingdom-of-asturias','duchy-of-benevento']);
   assert.equal(entry.historicalSummary.schema,2);
   assert.equal(entry.historicalSummary.sourceStamp,null);
   assert.equal(entry.historicalSummary.name,entry.name);
@@ -731,7 +731,10 @@ test('a scenario meta stored without a summary gains one on the next catalog rea
   globalThis.__ohWebStoreReads = [];
   await library();
   assert.equal(metas.get(id).historicalSummary.schema,2);
-  assert.deepEqual(metas.get(id).historicalSummary.polities.map(p => p.contextSv),[null,null]);
+  // Every AD 800 court ships its own start text, and the projection carries each one.
+  const { courtSeeds,playablePolityIds } = db.get('scenarios').get(id).json.world.historicalScenario;
+  assert.deepEqual(metas.get(id).historicalSummary.polities.map(p => p.contextSv),playablePolityIds.map(polityId => courtSeeds[polityId].contextSv));
+  assert.ok(metas.get(id).historicalSummary.polities.every(p => typeof p.contextSv === 'string' && p.contextSv.length > 50));
   assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[`scenarios:${id}`]);
   globalThis.__ohWebStoreReads = [];
   await library();

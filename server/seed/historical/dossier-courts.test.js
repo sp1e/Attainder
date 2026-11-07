@@ -89,7 +89,7 @@ test('Byzantium: Eirene rules as Kejsarinna and Tarasios and Aetios keep generat
     assert.equal(family(court,id).claims.identity.status,'generated');
   }
   assert.equal(court.religions[0].leaderId,'tarasios');
-  assert.equal(court.families[0].id,person(court,'eirene-of-athens').familyId,'family mode follows the ruler');
+  assert.equal(court.families[0].id,person(court,'eirene-of-athens').familyId,'the dossier court lists the ruling family first; authored-scenarios.mjs moves the generated houses ahead of it');
 });
 
 test('Silla: the regent uncle joins the young king\'s family through a kinship entry', () => {

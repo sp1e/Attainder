@@ -2,5 +2,13 @@
   "egypt-early-dynastic": "mena",
   "carolingian-realm": "europe",
   "papal-states": "europe",
+  "tang-empire": "east-asia",
+  "abbasid-caliphate": "mena",
+  "byzantine-empire": "europe",
+  "silla": "east-asia",
+  "emirate-of-cordoba": "europe",
+  "aghlabid-emirate": "mena",
+  "kingdom-of-asturias": "europe",
+  "duchy-of-benevento": "europe",
   "johns-realms": "europe"
 }

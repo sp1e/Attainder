@@ -60,7 +60,9 @@ test('an option built from the library summary matches the one built from the pa
   const b=JSON.parse(readFileSync(new URL('../../server/seed/historical/charlemagne-800/scenario.json',import.meta.url),'utf8'));
   const option=historicalStartOptionFromSummary('charlemagne-800',historicalStartSummary({meta:b.scenario,data:b.data}));
   assert.equal(option.eraId,'early-middle-ages');
-  assert.deepEqual(option.polities.map(p=>p.regionId),['europe','europe']);
+  assert.deepEqual(option.polities.map(p=>[p.id,p.regionId]),[['carolingian-realm','europe'],['papal-states','europe'],['tang-empire','east-asia'],
+    ['abbasid-caliphate','mena'],['byzantine-empire','europe'],['silla','east-asia'],['emirate-of-cordoba','europe'],['aghlabid-emirate','mena'],
+    ['kingdom-of-asturias','europe'],['duchy-of-benevento','europe']]);
   assert.equal(historicalCampaignName(option,'papal-states','realm'),'Kyrkostaten, 800 e.Kr. · Riket');
 });
 test('each option polity carries its court start text, null without one, from the package and the summary alike', () => {
@@ -68,11 +70,15 @@ test('each option polity carries its court start text, null without one, from th
   const h=b.data.world.historicalScenario;
   h.courtSeeds['papal-states'].contextSv='Leo III styr Kyrkostaten från Rom.';
   h.courtSeeds['papal-states'].contextSourceIds=Object.keys(h.sources).slice(0,1);
+  // Every AD 800 court ships a start text; Karls rike loses its own here to show null.
+  delete h.courtSeeds['carolingian-realm'].contextSv;
+  delete h.courtSeeds['carolingian-realm'].contextSourceIds;
   const full=historicalStartOption(b,b.assets.regionsGeojson.data,b.assets.citiesGeojson.data);
   const option=historicalStartOptionFromSummary('charlemagne-800',historicalStartSummary({meta:b.scenario,data:b.data}));
   for (const built of [full,option]) {
     assert.equal(built.context,h.contextSv);
-    assert.deepEqual(built.polities.map(p=>[p.id,p.context]),[['carolingian-realm',null],['papal-states','Leo III styr Kyrkostaten från Rom.']]);
+    assert.deepEqual(built.polities.map(p=>[p.id,p.context]),[['carolingian-realm',null],['papal-states','Leo III styr Kyrkostaten från Rom.'],
+      ...h.playablePolityIds.slice(2).map(id=>[id,h.courtSeeds[id].contextSv])]);
   }
 });
 test('the card offers a scenario only for a valid summary of the current schema that is not restore-only', () => {

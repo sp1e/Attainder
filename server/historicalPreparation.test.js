@@ -33,6 +33,11 @@ test('the Charlemagne date passes every new-game guard', () => {
     assert.equal(prepareHistoricalCampaignStart({ request: { ...request, historicalStart: { ...request.historicalStart, date: other } }, scenario }).ok, false, other);
   }
 });
+// The ten AD 800 playables in package order: [polity, lawful ruler, succession law].
+const AD800_PLAYABLES = [['carolingian-realm', 'karl', 'primogeniture'], ['papal-states', 'leo-iii', 'merit'],
+  ['tang-empire', 'dezong', 'primogeniture'], ['abbasid-caliphate', 'harun-ar-rashid', 'merit'], ['byzantine-empire', 'eirene-of-athens', 'merit'],
+  ['silla', 'aejang', 'primogeniture'], ['emirate-of-cordoba', 'al-hakam-i', 'primogeniture'], ['aghlabid-emirate', 'ibrahim-ibn-al-aghlab', 'primogeniture'],
+  ['kingdom-of-asturias', 'alfonso-ii-asturias', 'merit'], ['duchy-of-benevento', 'grimoald-iii-benevento', 'merit']];
 test('each AD 800 polity starts in realm and family mode with its own ruler and succession law', () => {
   const scenario = candidate(read('charlemagne-800')), before = structuredClone(scenario), h = scenario.data.world.historicalScenario;
   const started = {};
@@ -45,16 +50,15 @@ test('each AD 800 polity starts in realm and family mode with its own ruler and 
     assert.equal(realm.lawfulRulerId, h.courtSeeds[polityId].rulerId, `${polityId} ${mode}`);
     started[`${polityId} ${mode}`] = [realm.lawfulRulerId, realm.successionLaw];
   }
-  assert.deepEqual(started, {
-    'carolingian-realm realm': ['karl', 'primogeniture'], 'carolingian-realm family': ['karl', 'primogeniture'],
-    'papal-states realm': ['leo-iii', 'merit'], 'papal-states family': ['leo-iii', 'merit'],
-  });
+  assert.deepEqual(started, Object.fromEntries(AD800_PLAYABLES.flatMap(([polityId, rulerId, law]) =>
+    ['realm', 'family'].map(mode => [`${polityId} ${mode}`, [rulerId, law]]))));
   assert.deepEqual(scenario, before);
 });
 test('a new Charlemagne campaign keeps only the chosen court and still validates', () => {
   const scenario = candidate(read('charlemagne-800')), before = structuredClone(scenario), h = scenario.data.world.historicalScenario;
   const date = '0800-12-25';
-  for (const polityId of ['papal-states', 'carolingian-realm']) for (const mode of ['realm', 'family']) {
+  assert.deepEqual(h.playablePolityIds, AD800_PLAYABLES.map(([polityId]) => polityId));
+  for (const polityId of h.playablePolityIds) for (const mode of ['realm', 'family']) {
     const label = `${polityId} ${mode}`;
     const request = { historicalStart: { date, polityId, mode, seed: 7, difficulty: 'normal' }, gamePatch: { country: polityId, difficulty: 'standard', language: 'Swedish' } };
     const result = prepareHistoricalCampaignStart({ request, scenario });
@@ -64,7 +68,9 @@ test('a new Charlemagne campaign keeps only the chosen court and still validates
     assert.deepEqual(Object.keys(saved.courtSeeds), [polityId], label);
     assert.deepEqual(saved.courtSeeds[polityId], h.courtSeeds[polityId], label);
     assert.equal(saved.polities.length, 10, label);
-    assert.deepEqual({ ...saved, playablePolityIds: h.playablePolityIds, courtSeeds: h.courtSeeds }, h, `${label}: other fields stay whole`);
+    // Every AD 800 court ships its own start text, which replaces the package text in the campaign.
+    assert.equal(saved.contextSv, h.courtSeeds[polityId].contextSv, label);
+    assert.deepEqual({ ...saved, playablePolityIds: h.playablePolityIds, courtSeeds: h.courtSeeds, contextSv: h.contextSv }, h, `${label}: other fields stay whole`);
     assert.deepEqual(result.data.world.characterSystem,
       createHistoricalCharacterSystem({ historicalScenario: h, date, polityId, mode, seed: 7, difficulty: 'normal' }), `${label}: same draws as the full scenario`);
     const checked = validateHistoricalScenario({ game: result.data.game, world: result.data.world, regions: scenario.regions,
@@ -78,6 +84,9 @@ test('a court start text becomes the campaign text and the world briefing; witho
   const papalText = 'Leo III styr Kyrkostaten från Rom.';
   h.courtSeeds['papal-states'].contextSv = papalText;
   h.courtSeeds['papal-states'].contextSourceIds = Object.keys(h.sources).slice(0, 1);
+  // Karls rike ships a start text; without it the court shows the package text.
+  delete h.courtSeeds['carolingian-realm'].contextSv;
+  delete h.courtSeeds['carolingian-realm'].contextSourceIds;
   const before = structuredClone(scenario);
   const prepare = polityId => prepareHistoricalCampaignStart({ scenario, request: {
     historicalStart: { date, polityId, mode: 'realm', seed: 7, difficulty: 'normal' }, gamePatch: { country: polityId, difficulty: 'standard', language: 'Swedish' } } });

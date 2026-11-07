@@ -96,7 +96,7 @@
   "charlemagne-800": {
     "generator": {
       "file": "scripts/build-historical-scenarios.mjs",
-      "sha256": "254b512d22db675ac06fa22107902d86ae36eac4a62785aab1a7eda7fbc92462",
+      "sha256": "138fa1f35175a37333acfe3a60e173cafd29a0de2b61184f242c5e127914a7fa",
       "polygonClipping": "0.15.7"
     },
     "sourceFiles": [
@@ -132,11 +132,19 @@
     "authoredInputs": [
       {
         "fileName": "authored-scenarios.mjs",
-        "sha256": "7f110ec2cd938207e65f4fd44aaed7d17d2bbb684da5c6f7cad331b779efcefc"
+        "sha256": "131cddd86b42531b32ece013e2d0283b799bead1487a6fcbe25f04bd7ccb1736"
       },
       {
         "fileName": "ad800-review.json",
-        "sha256": "20a2fcef9ab17ebd1f0efc1faeda9fb58c8cf8d81d0e7514b94815b0c6292d43"
+        "sha256": "ecc6a23ee5bf358f04e314854c32d1e51fb633b0a0183c922b3d9e83444a10a6"
+      },
+      {
+        "fileName": "dossier-courts.mjs",
+        "sha256": "c892c9304f976fc51d62c4b3b24d820d3b19060132b358cac1d2a67e55600f7a"
+      },
+      {
+        "fileName": "courts/ad800-courts.json",
+        "sha256": "9cd676dc1a295539f231cc0dc29c6686b2515df98c01272f5c3f124223488588"
       }
     ]
   }

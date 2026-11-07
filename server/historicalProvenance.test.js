@@ -56,8 +56,8 @@ test('every shipped start keeps the build record of its release',async () => {
 
 test('the 800 package pins world_800',async () => {
   const manifest = await seedJson('charlemagne-800/manifest.json');
-  assert.equal(manifest.contentVersion,'1.1.0');
-  assert.deepEqual(manifest.authoredInputs.map(i => i.fileName),['authored-scenarios.mjs','ad800-review.json']);
+  assert.equal(manifest.contentVersion,'1.2.0');
+  assert.deepEqual(manifest.authoredInputs.map(i => i.fileName),['authored-scenarios.mjs','ad800-review.json','dossier-courts.mjs','courts/ad800-courts.json']);
   assert.equal(manifest.sourceFiles.find(f => f.fileName === 'hbm-world_800.geojson').sha256,SOURCE_800);
   assert.equal(sha(await fs.readFile(new URL('sources/hbm-world_800.geojson',SEED))),SOURCE_800);
 });
@@ -77,14 +77,16 @@ test('the 800 package keeps the source, licence and notices of its map',async ()
   assert.equal(bundle.license.scope,'authored-content');
   const h = bundle.data.world.historicalScenario;
   assert.match(h.sources.hbm.chronology,/800/);
-  for (const id of ['aachen','rome']) assert.match(h.sources[id].license,/^ODC-By-1\.0/,id);
-  assert.deepEqual(h.assetManifest.assets.find(a => a.id === 'citiesGeojson').sourceIds,['aachen','rome']);
-  for (const id of ['aachen','rome']) assert.ok(getty.modifications.some(line => line.includes(h.sources[id].url)),id);
+  // Aachen, Rome and the Getty record of each dossier seat, in settlement order.
+  const gettyIds = ['aachen','rome','a1-getty-xian','getty-raqqa','a1-getty-constantinople','a1-getty-gyeongju','a1-west-getty-cordoba','getty-kairouan','a1-west-getty-oviedo','a1-west-getty-benevento'];
+  for (const id of gettyIds) assert.match(h.sources[id].license,/^ODC-By-1\.0/,id);
+  assert.deepEqual(h.assetManifest.assets.find(a => a.id === 'citiesGeojson').sourceIds,gettyIds);
+  for (const id of gettyIds) assert.ok(getty.modifications.some(line => line.includes(h.sources[id].url)),id);
   for (const line of hbm.modifications) assert.doesNotMatch(line,/seat markers/);
 });
 
 test('the build reads no clock, locale or machine value',async () => {
-  for (const file of ['../scripts/build-historical-scenarios.mjs','./seed/historical/authored-scenarios.mjs']) {
+  for (const file of ['../scripts/build-historical-scenarios.mjs','./seed/historical/authored-scenarios.mjs','./seed/historical/dossier-courts.mjs']) {
     const text = await fs.readFile(new URL(file,import.meta.url),'utf8');
     for (const pattern of [/Date\.now/,/new Date/,/toLocale/,/localeCompare/,/\bIntl\./,/Math\.random/,/process\.platform/,/process\.cwd/,/homedir|hostname\(\)/,/process\.env/])
       assert.ok(!pattern.test(text),`${file}: ${pattern}`);

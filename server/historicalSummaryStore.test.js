@@ -45,11 +45,14 @@ const scenarioFile = (root, id, name) => path.join(root, 'scenarios', id, name);
 const readJson = file => JSON.parse(readFileSync(file, 'utf8'));
 const editJson = (file, change) => { const value = readJson(file); change(value); writeFileSync(file, JSON.stringify(value, null, 2)); };
 
+const AD800_POLITIES = ['carolingian-realm', 'papal-states', 'tang-empire', 'abbasid-caliphate', 'byzantine-empire', 'silla',
+  'emirate-of-cordoba', 'aghlabid-emirate', 'kingdom-of-asturias', 'duchy-of-benevento'];
+
 test('the catalog carries a summary for each start and a later read builds none again', () => withLibrary(root => {
   runStore(root, `
     store.ensureScenarioStore(); worldReads.clear();
     const karl = entry('charlemagne-800'), john = entry('default'), egypt = entry('egypt-3000bc');
-    assert.deepEqual(karl.historicalSummary.polities.map(p => p.id), ['carolingian-realm', 'papal-states']);
+    assert.deepEqual(karl.historicalSummary.polities.map(p => p.id), ${JSON.stringify(AD800_POLITIES)});
     assert.deepEqual(karl.historicalStart, { date: '0800-12-25', contentId: 'charlemagne-800' });
     assert.equal(john.historicalSummary.eraId, 'high-middle-ages');
     assert.deepEqual(john.historicalStart, { date: '1200-12-31', contentId: 'john-1200' });
@@ -69,7 +72,7 @@ test('the catalog carries a summary for each start and a later read builds none 
   runStore(root, `
     store.ensureScenarioStore(); worldReads.clear();
     const karl = entry('charlemagne-800');
-    assert.deepEqual(karl.historicalSummary.polities.map(p => p.id), ['carolingian-realm', 'papal-states']);
+    assert.deepEqual(karl.historicalSummary.polities.map(p => p.id), ${JSON.stringify(AD800_POLITIES)});
     assert.equal(entry('default').historicalSummary.eraId, 'high-middle-ages');
     assert.equal(reads('charlemagne-800'), 0);
     assert.equal(reads('egypt-3000bc'), 0);
@@ -126,11 +129,15 @@ test('a summary stored under schema 1 is built again from world.json on the next
     meta.historicalSummary.schema = 1;
     for (const polity of meta.historicalSummary.polities) delete polity.contextSv;
   });
+  // Every AD 800 court ships its own start text, so the rebuilt summary carries each one from world.json.
+  const { courtSeeds } = readJson(scenarioFile(root, 'charlemagne-800', 'world.json')).historicalScenario;
+  const courtTexts = AD800_POLITIES.map(id => courtSeeds[id].contextSv);
+  assert.ok(courtTexts.every(text => typeof text === 'string' && text.length > 50));
   runStore(root, `
     store.ensureScenarioStore(); worldReads.clear();
     const karl = entry('charlemagne-800');
     assert.equal(karl.historicalSummary.schema, 2);
-    assert.deepEqual(karl.historicalSummary.polities.map(p => p.contextSv), [null, null]);
+    assert.deepEqual(karl.historicalSummary.polities.map(p => p.contextSv), ${JSON.stringify(courtTexts)});
     assert.equal(reads('charlemagne-800'), 1, 'the old summary is rebuilt from world.json');
   `);
   const stored = readJson(metaPath).historicalSummary;
@@ -165,7 +172,7 @@ test('a stat error on one scenario leaves the catalog loading and caches nothing
     const egypt = entry('egypt-3000bc');
     assert.equal(egypt.historicalSummary.eraId, 'bronze-age', 'the summary is built from the files');
     assert.equal(egypt.historicalSummary.sourceStamp, null);
-    assert.equal(entry('charlemagne-800').historicalSummary.polities.length, 2, 'the other starts still load');
+    assert.equal(entry('charlemagne-800').historicalSummary.polities.length, 10, 'the other starts still load');
     const meta = JSON.parse(fs.readFileSync(path.join(scenariosDir, 'egypt-3000bc', 'scenario.json'), 'utf8'));
     assert.notEqual(meta.historicalSummary?.sourceStamp, null, 'no summary with an unknown stamp is cached');
   `);

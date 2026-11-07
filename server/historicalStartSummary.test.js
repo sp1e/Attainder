@@ -41,20 +41,22 @@ test('a polity takes its region from the region file and other when absent', () 
   assert.equal(regionForPolity('nowhere'), 'other');
 });
 
-test('the Charlemagne package summarises both playable courts', () => {
+test('the Charlemagne package summarises its ten playable courts', () => {
   const summary = summaryOf(readPackage('charlemagne-800'));
   assert.equal(summary.schema, 2);
   assert.equal(summary.invalid, undefined);
   assert.equal(summary.sourceStamp, null);
   assert.equal(summary.contentId, 'charlemagne-800');
   assert.equal(summary.eraId, 'early-middle-ages');
-  assert.equal(summary.contentVersion, '1.1.0');
+  assert.equal(summary.contentVersion, '1.2.0');
   assert.equal(summary.date, '0800-12-25');
   assert.equal(summary.name, 'Karls rike (karolingiska riket), 800 e.Kr.');
-  assert.deepEqual(summary.polities.map(p => p.id), ['carolingian-realm','papal-states']);
+  assert.deepEqual(summary.polities.map(p => [p.id, p.regionId]), [['carolingian-realm', 'europe'], ['papal-states', 'europe'],
+    ['tang-empire', 'east-asia'], ['abbasid-caliphate', 'mena'], ['byzantine-empire', 'europe'], ['silla', 'east-asia'], ['emirate-of-cordoba', 'europe'],
+    ['aghlabid-emirate', 'mena'], ['kingdom-of-asturias', 'europe'], ['duchy-of-benevento', 'europe']]);
   assert.equal(summary.polities.find(p => p.id === 'papal-states').ruler.name, 'Leo III');
+  assert.equal(summary.polities.find(p => p.id === 'byzantine-empire').ruler.name, 'Eirene av Aten');
   for (const polity of summary.polities) {
-    assert.equal(polity.regionId, 'europe', polity.id);
     assert.ok(polity.families.length >= 1, polity.id);
     assert.ok(polity.nameSv && polity.ruler.originLabelSv, polity.id);
   }
@@ -65,10 +67,14 @@ test('each polity carries its court start text and null when the court has none'
   const h = pkg.data.world.historicalScenario;
   h.courtSeeds['papal-states'].contextSv = 'Leo III styr Kyrkostaten från Rom.';
   h.courtSeeds['papal-states'].contextSourceIds = Object.keys(h.sources).slice(0, 1);
+  delete h.courtSeeds['carolingian-realm'].contextSv;
+  delete h.courtSeeds['carolingian-realm'].contextSourceIds;
   const summary = summaryOf(pkg);
   assert.equal(summary.contextSv, h.contextSv, 'the package text stays as the fallback');
   assert.deepEqual(summary.polities.map(p => [p.id, p.contextSv]),
-    [['carolingian-realm', null], ['papal-states', 'Leo III styr Kyrkostaten från Rom.']]);
+    [['carolingian-realm', null], ['papal-states', 'Leo III styr Kyrkostaten från Rom.'],
+      ...h.playablePolityIds.slice(2).map(id => [id, h.courtSeeds[id].contextSv])]);
+  for (const polity of summary.polities.slice(2)) assert.ok(polity.contextSv.length > 50, polity.id);
 });
 
 test('a broken court makes the summary invalid and a non-historical world gives null', () => {

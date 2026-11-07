@@ -83,9 +83,9 @@ test('the start card lists the shipped starts under region headings with a searc
   render(); await settle(); const tree=render();
   const label=findAll(tree,n=>n.type==='label' && n.props.htmlFor==='historical-search');
   assert.equal(label.length,1); assert.equal(textOf(label[0]),'Sök rike, härskare eller tid'); assert.ok(searchField(tree));
-  assert.deepEqual(findAll(tree,n=>n.type==='h2').map(textOf),['Europa','Mellanöstern och Nordafrika']);
-  assert.deepEqual(findAll(tree,n=>n.type==='h3').map(textOf),['Tidig medeltid','Högmedeltid','Bronsålder']);
-  assert.equal(startRows(tree).length,4);
+  assert.deepEqual(findAll(tree,n=>n.type==='h2').map(textOf),['Europa','Mellanöstern och Nordafrika','Östasien']);
+  assert.deepEqual(findAll(tree,n=>n.type==='h3').map(textOf),['Tidig medeltid','Högmedeltid','Bronsålder','Tidig medeltid','Tidig medeltid']);
+  assert.equal(startRows(tree).length,12);
   const papal=startRows(tree).find(r=>r.props['data-start-key']==='charlemagne-800/papal-states');
   assert.equal(textOf(papal.props.children[0]),'Kyrkostaten · 800 e.Kr.');
   assert.ok(textOf(papal.props.children[1]).startsWith('Leo III · '));
@@ -125,6 +125,10 @@ test('the card shows the chosen polity text and falls back to the start text wit
   const driver=createHookDriver(), options=shippedOptions();
   const charlemagne=options.find(o=>o.scenarioId==='charlemagne-800'), john=options.find(o=>o.scenarioId==='default');
   charlemagne.polities.find(p=>p.id==='carolingian-realm').context='Karl övervintrar i Rom.';
+  // Every AD 800 court ships a start text; Kyrkostaten loses its own here to show the fallback.
+  charlemagne.polities.find(p=>p.id==='papal-states').context=null;
+  const byzantium=charlemagne.polities.find(p=>p.id==='byzantine-empire');
+  assert.ok(byzantium.context.startsWith('Eirene '));
   const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>options,startDynastyCampaign:async()=>{}}});
   const render=()=>driver.render(React.createElement(card.default,{}));
   const detail=tree=>textOf(findAll(tree,n=>n.props?.className==='dynasty-start-detail')[0]);
@@ -133,6 +137,8 @@ test('the card shows the chosen polity text and falls back to the start text wit
   assert.equal(detail(tree),'Karl övervintrar i Rom.');
   choose(tree,'charlemagne-800/papal-states'); tree=render();
   assert.equal(detail(tree),charlemagne.context,'a polity without text shows the start text');
+  choose(tree,'charlemagne-800/byzantine-empire'); tree=render();
+  assert.equal(detail(tree),byzantium.context,'a dossier court shows its own text');
   choose(tree,'default/johns-realms'); tree=render();
   assert.equal(detail(tree),john.context);
   choose(tree,'charlemagne-800/carolingian-realm'); tree=render();
@@ -188,12 +194,13 @@ test('arrow keys move the chosen start with a roving tab stop', async () => {
   const checked=()=>startRows(tree).filter(r=>r.props['aria-checked']).map(r=>r.props['data-start-key']);
   const tabStops=()=>startRows(tree).filter(r=>r.props.tabIndex===0).map(r=>r.props['data-start-key']);
   assert.deepEqual(tabStops(),checked());
-  press('ArrowDown'); tree=render(); assert.deepEqual(checked(),['charlemagne-800/papal-states']); assert.deepEqual(tabStops(),checked());
-  assert.ok(focused.at(-1).includes('charlemagne-800/papal-states'));
-  press('End'); tree=render(); assert.deepEqual(checked(),['egypt-3000bc/egypt-early-dynastic']);
-  press('ArrowDown'); tree=render(); assert.deepEqual(checked(),['charlemagne-800/carolingian-realm'],'the last row wraps to the first');
-  press('ArrowUp'); tree=render(); assert.deepEqual(checked(),['egypt-3000bc/egypt-early-dynastic']);
-  press('Home'); tree=render(); assert.deepEqual(checked(),['charlemagne-800/carolingian-realm']);
+  // Rows follow the list: Europa sorts Bysantinska riket first and Kungariket Asturien after Karls rike; Östasien ends with Tangriket.
+  press('ArrowDown'); tree=render(); assert.deepEqual(checked(),['charlemagne-800/kingdom-of-asturias']); assert.deepEqual(tabStops(),checked());
+  assert.ok(focused.at(-1).includes('charlemagne-800/kingdom-of-asturias'));
+  press('End'); tree=render(); assert.deepEqual(checked(),['charlemagne-800/tang-empire']);
+  press('ArrowDown'); tree=render(); assert.deepEqual(checked(),['charlemagne-800/byzantine-empire'],'the last row wraps to the first');
+  press('ArrowUp'); tree=render(); assert.deepEqual(checked(),['charlemagne-800/tang-empire']);
+  press('Home'); tree=render(); assert.deepEqual(checked(),['charlemagne-800/byzantine-empire']);
   searchField(tree).props.onChange({target:{value:'egypt'}}); tree=render();
   assert.deepEqual(tabStops(),['egypt-3000bc/egypt-early-dynastic'],'a filtered list keeps one tab stop');
 });
