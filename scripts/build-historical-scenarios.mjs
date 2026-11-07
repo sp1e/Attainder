@@ -90,7 +90,8 @@ const SOURCE_HASHES = {
 // compositeNote (appended to the playable polity note, or null), quarantine (source index to geometry status),
 // selectionTransformation and quarantineTransformation (manifest lines), seatId (the primary seat's Getty source id),
 // citySourceIds (when settlements go beyond the seat), gettyRetrievedAt, gettyTransformation and gettyNotice
-// (wording for a package whose settlements go beyond one seat), and three review readers.
+// (wording for a package whose settlements go beyond one seat), polityKinds (every polity record without a kind becomes a state),
+// and three review readers.
 // addRegionalSources(h, review, pkg) and unmappedSourceIds(reviewRow, index, h) may ignore their last argument.
 const PACKAGE_RECORDS = [
   { contentId: 'egypt-3000bc',idPrefix: 'hbm-bc3000',sourceFile: 'hbm-world_bc3000.geojson',reviewFile: 'bc3000-review.json',
@@ -111,7 +112,7 @@ const PACKAGE_RECORDS = [
     reviewFeature: (review,index) => review.namedFeatures.find(r => r.sourceFeatureIndex === index),
     unmappedSourceIds: (r,index) => (r?.references ?? []).map((_,i) => `regional-${index}-${i}`),
     mappedBoundaryDecision: 'developer-authored-selective-core' },
-  { contentId: 'john-1200',idPrefix: 'hbm-ad1200',sourceFile: 'hbm-world_1200.geojson',reviewFile: 'ad1200-review.json',dossierFile: 'courts/ad1200-courts.json',
+  { contentId: 'john-1200',polityKinds: true,idPrefix: 'hbm-ad1200',sourceFile: 'hbm-world_1200.geojson',reviewFile: 'ad1200-review.json',dossierFile: 'courts/ad1200-courts.json',
     authored: dossier => authoredScenario('john-1200',{ dossier }),addRegionalSources: (h,review) => sourcesFromEvidence(h,review),
     coverage: [
       { area: 'Africa',status: 'partial',sourceIds: ['regional-almohad'],noteSv: 'Almohadernas täckning är partiell. Fatimidernas gamla område byter inte automatiskt ägare; ayyubidiska och andra lokala gränser återstår.' },
@@ -132,7 +133,7 @@ const PACKAGE_RECORDS = [
     reviewFeature: (review,index) => review.allFeatures[index],
     unmappedSourceIds: (r) => (r?.sourceEvidenceIds ?? []).map(id => `regional-${id}`),
     mappedBoundaryDecision: 'accepted-world-scale-approximation' },
-  { contentId: 'charlemagne-800',idPrefix: 'hbm-ad800',sourceFile: 'hbm-world_800.geojson',reviewFile: 'ad800-review.json',dossierFile: 'courts/ad800-courts.json',
+  { contentId: 'charlemagne-800',polityKinds: true,idPrefix: 'hbm-ad800',sourceFile: 'hbm-world_800.geojson',reviewFile: 'ad800-review.json',dossierFile: 'courts/ad800-courts.json',
     authored: dossier => authoredScenario('charlemagne-800',{ dossier }),addRegionalSources: sourcesFromAd800Review,
     coverage: [
       { area: 'Africa',status: 'partial',sourceIds: ['regional-qantara-aghlabids','regional-qantara-idrisids','regional-virtual-nubia','regional-soba'],noteSv: 'Aghlabidernas emirat har en ungefärlig form. Idrisidernas form används inte eftersom källan inte ger någon utbredning för år 800 och formen når in i Sahara. Makuria och Alwa saknar belagda gränser. Ghana, Aksum och Kanem har ingen granskad källa och står som okänd kontroll.' },
@@ -154,7 +155,7 @@ const PACKAGE_RECORDS = [
     unmappedSourceIds: (r) => (r?.sourceEvidenceIds ?? []).map(id => `regional-${id}`),
     mappedBoundaryDecision: 'accepted-world-scale-approximation' },
   // Both courts and seats come from the dossier. The seats cite their own Getty records, so the mappings drop the review's.
-  { contentId: 'world-1500',idPrefix: 'hbm-ad1500',sourceFile: 'hbm-world_1500.geojson',reviewFile: 'ad1500-review.json',dossierFile: 'courts/ad1500-courts.json',
+  { contentId: 'world-1500',polityKinds: true,idPrefix: 'hbm-ad1500',sourceFile: 'hbm-world_1500.geojson',reviewFile: 'ad1500-review.json',dossierFile: 'courts/ad1500-courts.json',
     authored: dossier => authoredScenario('world-1500',{ dossier }),addRegionalSources: sourcesFromAd1500Review,
     coverage: [
       { area: 'Africa',status: 'unresolved',sourceIds: ['hbm','naturalEarth'],noteSv: 'Granskningen av år 1500 har ingen källa för Afrika. Formerna saknar godkänd ägare och kontrollen är okänd.' },
@@ -344,6 +345,7 @@ async function buildPackage(pkg,{ inputs,physical,land }) {
   h.mapPolicy = { ...MAP_POLICY };
   const mappings = polityMappings(pkg,h,review);
   namePlayables(h);
+  if (pkg.polityKinds) for (const polity of h.polities) polity.kind ??= 'state';
   const owned = ownedFeatures(pkg,h,source,mappings);
   const regions = { type: 'FeatureCollection',features: [...backgroundFeatures(land,owned),...owned] };
   const cities = citiesFor(h);

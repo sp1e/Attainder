@@ -2,6 +2,7 @@
 // then by era, and filtered by a search that ignores case, diacritics and stray whitespace.
 import { HISTORICAL_ERAS, HISTORICAL_REGIONS, foldSearchText, historicalEraFor, regionForPolity } from '../../server/historicalStartSummary.js';
 import { compareGameDates } from '../../server/gameDates.js';
+import { POLITY_KIND_LABELS_SV } from './characters/content.js';
 
 const REGION_IDS = new Set(HISTORICAL_REGIONS.map(region => region.id));
 const ERA_BY_ID = new Map(HISTORICAL_ERAS.map(era => [era.id, era]));
@@ -14,15 +15,19 @@ const rowRegion = polity => {
 
 const rowEraId = option => (ERA_BY_ID.has(option.eraId) ? option.eraId : historicalEraFor(option.date)?.id ?? HISTORICAL_ERAS[0].id);
 
+// A state, or a polity from an option without a kind, shows no kind; another kind shows its label.
+const kindLabel = kind => (kind !== 'state' && Object.hasOwn(POLITY_KIND_LABELS_SV, kind ?? '') ? POLITY_KIND_LABELS_SV[kind] : '');
+
 // eraLabelSv is the start's own label ("800 e.Kr."); the search also matches the era group's name.
 function startRow(option, polity) {
   const eraId = rowEraId(option);
   const rulerName = polity.ruler?.name ?? '', rulerOrigin = polity.ruler?.originLabelSv ?? '';
   const eraLabelSv = option.label ?? ERA_BY_ID.get(eraId).labelSv;
+  const kindLabelSv = kindLabel(polity.kind);
   return {
     key: `${option.scenarioId}/${polity.id}`, scenarioId: option.scenarioId, polityId: polity.id,
-    polityName: polity.name, eraLabelSv, eraId, regionId: rowRegion(polity), rulerName, rulerOrigin, date: option.date,
-    searchText: foldSearchText([polity.name, option.name, eraLabelSv, ERA_BY_ID.get(eraId).labelSv, rulerName].join(' ')),
+    polityName: polity.name, eraLabelSv, eraId, regionId: rowRegion(polity), kindLabelSv, rulerName, rulerOrigin, date: option.date,
+    searchText: foldSearchText([polity.name, option.name, eraLabelSv, ERA_BY_ID.get(eraId).labelSv, rulerName, kindLabelSv].join(' ')),
   };
 }
 

@@ -1,12 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { addGameMonths } from '../gameDates.js';
 import { actionHooks, advanceCharacters, createCharacterSystem, executeCharacterCommand, getCharacterPresentation, normalizeCharacterSystem } from './index.js';
 import { chancellorYield, readerIntrigue, serviceOf } from './council.js';
 import { dreadOf } from './dread.js';
+import { ELECTION_REASON_SV } from './election.js';
 import { spymasterOf } from './extensions.js';
 import { isImprisoned } from './prisoners.js';
 import { MAX_ACTIVE_GOALS } from './reign.js';
+import { createHistoricalCharacterSystem } from './scenarioSeed.js';
 
 // One playthrough of ten years on Normal sees each court system at least once. playYear is a scripted player: it never looks at a seed and never adapts to a result.
 // A step the script cannot take, for want of a target or an order, is simply left out that year. A reign can end on the way, so each step reads the current ruler and family.
@@ -162,4 +165,28 @@ test('the final state survives a save, and a whole-year and a month-by-month rep
 test('a spymaster of low loyalty reads worse than the same spymaster at ease', () => {
   const [seed] = SEEDS, [faithful] = run(seed).intrigue, [forced] = campaign(seed, { spymasterLoyalty: LOW_LOYALTY }).intrigue;
   assert.ok(forced < faithful, `${forced} against ${faithful}`);
+});
+
+// Kyrkostaten opens with four people and an elective law. Nobody is born at court, so the court dies out within a century and the engine elects generated outsiders.
+const CENTURY = 100;
+const CHARLEMAGNE = JSON.parse(readFileSync(new URL('../../../server/seed/historical/charlemagne-800/scenario.json', import.meta.url), 'utf8')).data;
+const PAPAL_COURT = ['leo-iii', 'generated-courtier-1', 'generated-courtier-2', 'generated-courtier-3'];
+
+function papalCentury(seed) {
+  let state = createHistoricalCharacterSystem({ historicalScenario: CHARLEMAGNE.world.historicalScenario, date: CHARLEMAGNE.game.startDate, polityId: 'papal-states', mode: 'realm', seed });
+  for (let year = 1; year <= CENTURY; year++) state = ok(advanceCharacters(state, addGameMonths(state.date, 12), { id: `papal:${seed}:${year}` }));
+  return state;
+}
+
+test('Kyrkostaten stays alive for a century under an elected ruler on every seed', () => {
+  for (const seed of SEEDS) {
+    const state = papalCentury(seed), ruler = state.people[state.offices.ruler.holderId];
+    assert.equal(state.date, '0900-12-25', `${seed}`);
+    assert.equal(state.status.ended, false, `${seed}`);
+    assert.equal(state.realm.alive, true, `${seed}`);
+    for (const id of PAPAL_COURT) assert.ok(state.people[id].diedAt, `${seed}: ${id} alive`);
+    assert.match(ruler.name, /^Vald härskare \d+ \(genererad\)$/, `${seed}`);
+    assert.equal(ruler.originLabelSv, 'Genererad person', `${seed}`);
+    assert.ok(state.offices.ruler.history.some((entry) => entry.reason === ELECTION_REASON_SV), `${seed}: no election`);
+  }
 });

@@ -103,7 +103,7 @@ test('every person in every playable court of every package carries the label of
   }
 });
 
-for (const mode of ['realm', 'family']) test(`charlemagne-800 papal-states ${mode}: Leo III's court initializes deterministically under merit succession`, () => {
+for (const mode of ['realm', 'family']) test(`charlemagne-800 papal-states ${mode}: Leo III's court initializes deterministically under elective succession`, () => {
   const data = load('charlemagne-800'), h = data.world.historicalScenario;
   assert.deepEqual(h.playablePolityIds, ['carolingian-realm', 'papal-states', 'tang-empire', 'abbasid-caliphate', 'byzantine-empire', 'silla', 'emirate-of-cordoba', 'aghlabid-emirate', 'kingdom-of-asturias', 'duchy-of-benevento']);
   const options = { historicalScenario: h, date: data.game.startDate, polityId: 'papal-states', mode, seed: 321 };
@@ -117,13 +117,25 @@ for (const mode of ['realm', 'family']) test(`charlemagne-800 papal-states ${mod
   assert.equal(state.identity.polityId, 'papal-states');
   assert.equal(state.offices.ruler.holderId, 'leo-iii');
   assert.equal(state.people['leo-iii'].originLabelSv.startsWith('Dokumenterad person'), true);
-  assert.equal(state.realm.successionLaw, 'merit');
+  assert.equal(state.realm.successionLaw, 'elective');
   assert.equal(state.identity.familyId, mode === 'family' ? court.families[0].id : 'leo-household');
   assert.deepEqual(Object.keys(state.people), court.people.map(p => p.id));
   const heirClaims = Object.values(state.families).flatMap(f => f.claims).filter(c => c.kind === 'heir' && c.status === 'active');
-  assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt merit')));
+  assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt val')));
   const projected = projectCharacterWorld({ ...data.world, characterSystem: state });
   assert.equal(projected.countryStats['papal-states'].leader, 'Leo III');
+});
+
+// The five courts that elect their ruler, by package.
+const ELECTIVE_COURTS = [['charlemagne-800', 'papal-states'], ['charlemagne-800', 'kingdom-of-asturias'], ['john-1200', 'almohad'], ['world-1500', 'aztec-empire'], ['world-1500', 'inca-empire']];
+for (const mode of ['realm', 'family']) test(`${mode}: the five elective courts open with heir claims made by election`, () => {
+  for (const [id, polityId] of ELECTIVE_COURTS) {
+    const data = load(id), label = `${id} ${polityId}`;
+    const state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId, mode, seed: 321 });
+    assert.equal(state.realm.successionLaw, 'elective', label);
+    const heirClaims = Object.values(state.families).flatMap(f => f.claims).filter(c => c.kind === 'heir' && c.status === 'active');
+    assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt val')), label);
+  }
 });
 
 test('missing biography uses a labeled generated birth date and invents no recorded culture or genealogy', () => {
@@ -154,9 +166,28 @@ test('court size is authored data; a one-family court works with vacant generate
   assert.ok(getCharacterPresentation(state).ruler);
 });
 
-test('SUCCESSION_LAWS is frozen and lists primogeniture and merit', () => {
-  assert.deepEqual(SUCCESSION_LAWS, ['primogeniture', 'merit']);
+test('SUCCESSION_LAWS is frozen and lists primogeniture, merit and elective in reform order', () => {
+  assert.deepEqual(SUCCESSION_LAWS, ['primogeniture', 'merit', 'elective']);
   assert.ok(Object.isFrozen(SUCCESSION_LAWS));
+});
+
+const chosenPolity = options => options.historicalScenario.polities.find(p => p.id === options.polityId);
+test('a chosen polity of kind non-state is refused by the seed', () => {
+  const options = optionsFor(load('john-1200'));
+  chosenPolity(options).kind = 'non-state';
+  assert.throws(() => createHistoricalCharacterSystem(options), { message: 'Det historiska hovets uppgifter kan inte användas av karaktärssystemet.' });
+});
+
+test('a chosen polity of kind chiefdom starts', () => {
+  const options = optionsFor(load('john-1200'));
+  chosenPolity(options).kind = 'chiefdom';
+  assert.equal(createHistoricalCharacterSystem(options).realm.id, options.polityId);
+});
+
+test('an authored elective law starts and seeds the realm', () => {
+  const options = optionsFor(load('john-1200'));
+  options.historicalScenario.courtSeeds[options.polityId].successionLaw = 'elective';
+  assert.equal(createHistoricalCharacterSystem(options).realm.successionLaw, 'elective');
 });
 
 for (const mode of ['realm', 'family']) test(`${mode}: the authored succession law seeds the realm, draws nothing, and an absent law keeps primogeniture`, () => {
@@ -168,7 +199,7 @@ for (const mode of ['realm', 'family']) test(`${mode}: the authored succession l
     assert.equal(state.realm.successionLaw, 'merit', id);
     // The opening heir claim is recorded under the authored law, so the law is in place before the court completes.
     const heirClaims = Object.values(state.families).flatMap(f => f.claims).filter(c => c.kind === 'heir' && c.status === 'active');
-    assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt merit')), id);
+    assert.ok(heirClaims.length && heirClaims.every(c => c.origin.endsWith('enligt förtjänst')), id);
     assert.deepEqual(normalizeCharacterSystem(clone(state)), state);
     assert.equal(getCharacterPresentation(state).succession.law, 'merit', id);
     assert.equal(unchanged.realm.successionLaw, 'primogeniture', id);

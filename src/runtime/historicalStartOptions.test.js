@@ -88,7 +88,8 @@ test('the card offers a scenario only for a valid summary of the current schema 
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:summary,restoreOnly:true}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{schema:1,sourceStamp:null,invalid:true}}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:1}}),false,'a summary from before per-polity start text');
-  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:3}}),false);
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:2}}),false,'a summary from before polity kinds');
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:4}}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,polities:[]}}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:null}),false);
   assert.equal(offersHistoricalStart({id:'a'}),false);

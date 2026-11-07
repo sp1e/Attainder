@@ -5,7 +5,7 @@ import vm from "node:vm";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
-import { applyRealmDissolution, createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation } from "../../runtime/characters/index.js";
+import { actionHooks, applyRealmDissolution, createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation } from "../../runtime/characters/index.js";
 import { createHistoricalCharacterSystem } from "../../runtime/characters/scenarioSeed.js";
 import { REASONS as ODDS_REASONS } from "../../runtime/characters/actionOdds.js";
 import * as realDates from "../../runtime/gameDates.js";
@@ -19,7 +19,7 @@ import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testi
 // Render the real JSX with supplied presentation data. Runtime and portrait
 // loading are stubs; these checks do not exercise the core or a browser.
 const source = readFileSync(new URL("./CharactersPanel.jsx", import.meta.url), "utf8");
-const compiled = transformSync(`${source}\nexport { ChronicleView, CouncilView, FamiliesView, PeopleView, GovernanceSummary, ActionCard, StoryCard, ChainHistory };`, {
+const compiled = transformSync(`${source}\nexport { ChronicleView, CouncilView, FamiliesView, PeopleView, GovernanceSummary, OfficesView, ActionCard, StoryCard, ChainHistory };`, {
   loader: "jsx", format: "cjs", jsx: "transform",
 }).code;
 const compileFile = (name) => transformSync(readFileSync(new URL(`./${name}`, import.meta.url), "utf8"), {
@@ -1502,6 +1502,35 @@ test("a court member whose name says generated gets no doubled label, and a non-
   }
   const hadara = engineCampaign().view;
   for (const person of hadara.people) assert.deepEqual(provenanceTags(mountPeople({ selectedId: person.id, view: hadara }).tree).map(textOf), [], person.id);
+});
+
+// Ämbeten & arv as plain text, so a line split by markup reads as one.
+const officesText = (view) => {
+  const { OfficesView } = loadPanel(view, { panelState: false });
+  return renderToStaticMarkup(React.createElement(OfficesView, { view, setTab: () => {} })).replace(/<[^>]+>/g, "");
+};
+// Kyrkostaten's court from the Charlemagne package under the given succession law.
+const papalView = (law, deadIds = []) => {
+  const { data } = JSON.parse(readFileSync(new URL("../../../server/seed/historical/charlemagne-800/scenario.json", import.meta.url), "utf8"));
+  const state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: "papal-states", seed: 321 });
+  state.realm.successionLaw = law;
+  if (deadIds.length) actionHooks(state).kill(deadIds, [], "Prov");
+  return getCharacterPresentation(state);
+};
+
+test("Ämbeten & arv names the succession order, and a presentation without a realm shows no such line", () => {
+  assert.match(officesText(papalView("elective")), /Tronföljd: val/);
+  assert.match(officesText(papalView("merit")), /Tronföljd: förtjänst/);
+  const legacy = papalView("merit");
+  delete legacy.realm;
+  assert.doesNotMatch(officesText(legacy), /Tronföljd:/);
+});
+
+test("the forecast announces the election from outside in place of an empty successor", () => {
+  const text = officesText(papalView("elective", ["generated-courtier-1", "generated-courtier-2", "generated-courtier-3"]));
+  assert.match(text, /Väntad faktisk efterträdareEn genererad person utanför hovet väljs\./);
+  assert.doesNotMatch(text, /Ingen levande innehavare/);
+  assert.match(text, /Valet faller på en genererad person utanför hovet\./);
 });
 
 test("a person who has died in the campaign loses the survival tag", () => {

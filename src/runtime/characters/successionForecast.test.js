@@ -150,6 +150,9 @@ test('dissolved, vacant and exhausted populations do not invent a successor', ()
   for (const person of Object.values(state.people)) if (person.id !== rulerId) person.diedAt = state.date;
   assert.equal(getSuccessionForecast(state).status, 'no-successor');
   assert.equal(getSuccessionForecast(state).expectedRuler, null);
+  // Only the elective law elects from outside the court.
+  assert.equal(getSuccessionForecast(state).electionFromOutside, false);
+  assert.equal(getSuccessionForecast(state).authority, 'Ingen levande kandidat finns i dagens successionsordning.');
 });
 
 test('viewing forecast does not expose stored illness outcomes or predict simultaneous deaths', () => {

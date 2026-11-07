@@ -11,7 +11,7 @@ export function historicalStartOption(details, regions, cities) {
   return {
     scenarioId: meta.id, name: meta.name, date: data.game.gameDate, label: h.eraLabelSv,
     context: h.contextSv, coverage: h.coverageNoteSv, calendarNote: h.calendarNoteSv,
-    polities: h.playablePolityIds.map(id => ({ id, name: h.polities.find(p => p.id === id).nameSv,
+    polities: h.playablePolityIds.map(id => h.polities.find(p => p.id === id)).map(({ id, nameSv, kind }) => ({ id, name: nameSv, kind: kind ?? 'state',
       ruler: h.courtSeeds[id].people.find(p => p.id === h.courtSeeds[id].rulerId),
       context: h.courtSeeds[id].contextSv ?? null,
       families: h.courtSeeds[id].families.map(f => ({ id: f.id, name: f.name ?? f.id })) })),
@@ -32,7 +32,7 @@ export function historicalStartOptionFromSummary(scenarioId, summary) {
   return {
     scenarioId, name: summary.name ?? scenarioId, date: summary.date, label: summary.eraLabelSv, eraId: summary.eraId,
     context: summary.contextSv, coverage: summary.coverageNoteSv, calendarNote: summary.calendarNoteSv,
-    polities: summary.polities.map(p => ({ id: p.id, name: p.nameSv, regionId: p.regionId, ruler: { ...p.ruler },
+    polities: summary.polities.map(p => ({ id: p.id, name: p.nameSv, kind: p.kind ?? 'state', regionId: p.regionId, ruler: { ...p.ruler },
       context: p.contextSv ?? null,
       families: p.families.map(f => ({ id: f.id, name: f.name })) })),
   };

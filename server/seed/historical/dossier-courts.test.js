@@ -133,8 +133,8 @@ test('every engine limit in the dossiers has a Swedish game-rule sentence and re
 
 const AD1500 = readDossier('ad1500');
 const AD1500_COURTS = {
-  'aztec-empire': { successionLaw: 'merit',names: ['Itztli','Cuetzpalin','Mazatl'],born: [1458,1462,1467] },
-  'inca-empire': { successionLaw: 'primogeniture',names: ['Kuntur Rimaq','Qori Puma','Rumi Sunqu'],born: [1456,1461,1466] },
+  'aztec-empire': { successionLaw: 'elective',names: ['Itztli','Cuetzpalin','Mazatl'],born: [1458,1462,1467] },
+  'inca-empire': { successionLaw: 'elective',names: ['Kuntur Rimaq','Qori Puma','Rumi Sunqu'],born: [1456,1461,1466] },
 };
 const build1500 = (polityId,options = {}) => {
   const { successionLaw,names,born } = AD1500_COURTS[polityId];
@@ -147,6 +147,11 @@ test('an AD 1500 dossier source with an object chronology imports its asWorded t
   assert.equal(typeof AD1500.sources['b2-aztec-met-chronology'].chronology,'object');
   assert.equal(sources['b2-aztec-met-chronology'].chronology,AD1500.sources['b2-aztec-met-chronology'].chronology.asWorded);
   for (const s of Object.values(sources)) assert.equal(typeof s.chronology,'string');
+});
+
+test('elective-rule describes the game\'s election and reaches the coverage lines of both AD 1500 courts', () => {
+  assert.equal(ENGINE_LIMIT_TEXT_SV['elective-rule'],'Spelets valordning väljer först bland vuxna i härskarens hus efter förmåga, sedan bland husets barn efter ålder och sist bland hovets övriga vuxna efter förmåga. Ett barn styr genom en förmyndare. Finns ingen behörig väljs en genererad person utanför hovet. Valet återger inte rådets eller väljarnas egen ordning.');
+  for (const polityId of ['aztec-empire','inca-empire']) assert.ok(build1500(polityId).coverageLinesSv.includes(ENGINE_LIMIT_TEXT_SV['elective-rule']),polityId);
 });
 
 test('collective-rule has a Swedish game-rule sentence', () => {

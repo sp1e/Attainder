@@ -1,5 +1,5 @@
 import { addGameMonths } from '../gameDates.js';
-import { ENGINE_OFFICE_IDS, safeId, validateHistoricalCourt } from '../historicalScenarios.js';
+import { ENGINE_OFFICE_IDS, playablePolityKind, safeId, validateHistoricalCourt } from '../historicalScenarios.js';
 import { ADULT_AGE, ARCHETYPES, TRAITS, SKILL_LABELS, SUCCESSION_LAWS, publicHistoricalOrigin, publicPersonOrigin, publicReligionOrigin } from './content.js';
 import { completeCharacterState, createCharacterState, getCharacterAge, normalizeCharacterSystem } from './index.js';
 
@@ -7,7 +7,9 @@ const refusal = () => new Error('Det historiska hovets uppgifter kan inte använ
 const copy = value => JSON.parse(JSON.stringify(value));
 const generatedClaim = noteSv => ({ status: 'generated', noteSv, sourceIds: [] });
 
-function validateEngineSeed(court, familyId) {
+function validateEngineSeed(court, familyId, polity) {
+  // A non-state polity has no court the engine can rule.
+  if (!polity || !playablePolityKind(polity)) throw refusal();
   for (const kind of ['people', 'families', 'religions', 'offices', 'cities']) {
     if (!court[kind].every(entry => safeId(entry.id))) throw refusal();
   }
@@ -34,7 +36,7 @@ function validateEngineSeed(court, familyId) {
   for (const person of court.people) checkParents(person.id);
   // Current engine supports its council roles and one generated governor per city.
   if (court.offices.some(office => !ENGINE_OFFICE_IDS.includes(office.id))) throw refusal();
-  // The engine knows two succession laws; null counts as a present value and is refused like the validator does.
+  // The engine knows the laws in SUCCESSION_LAWS; null counts as a present value and is refused like the validator does.
   if (court.successionLaw !== undefined && !SUCCESSION_LAWS.includes(court.successionLaw)) throw refusal();
 }
 
@@ -90,13 +92,14 @@ export function createHistoricalCharacterSystem({ historicalScenario, date, poli
     const checked = validateHistoricalCourt(historicalScenario, { date, polityId });
     if (!checked.ok || !safeId(polityId) || !['realm', 'family'].includes(mode)) throw refusal();
     const h = historicalScenario, court = h.courtSeeds[polityId];
-    validateEngineSeed(court, familyId);
     const polity = h.polities.find(entry => entry.id === polityId);
+    validateEngineSeed(court, familyId, polity);
     // A family start without a choice takes the family the start card preselects, the first one listed.
     const chosenFamily = familyId ?? (mode === 'family' ? court.families[0].id : court.people.find(person => person.id === court.rulerId).familyId);
     const state = createCharacterState({ date, polityId, polityName: polity.nameSv, mode, seed }, { familyId: chosenFamily, religions: {} });
     // Set before completeCharacterState so the opening heir claims follow the authored law; draws no randomness.
     state.realm.successionLaw = court.successionLaw ?? 'primogeniture';
+    state.realm.kind = polity.kind ?? 'state';
     state.historicalOrigin = publicHistoricalOrigin({ ...h, polityNoteSv: polity.noteSv, mechanicsNoteSv: court.mechanics.noteSv });
     seedCourt(state, court);
     completeCharacterState(state, difficulty);

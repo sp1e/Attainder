@@ -1,6 +1,7 @@
 import { addGameMonths, compareGameDates, normalizeGameDate } from '../gameDates.js';
 import { canExerciseMandate } from './characterCapacity.js';
 import { grantMatchesMandate, reconcileMandateEpisode } from './mandateEpisodes.js';
+import { SUCCESSION_LAW_LABELS_SV } from './content.js';
 
 const values = (map) => Object.values(map || {});
 const alive = (person) => Boolean(person && !person.diedAt);
@@ -45,7 +46,7 @@ export function refreshLegalClaims(state, candidates) {
     const previous = lawful;
     lawful = candidates(state, previous)[0] || state.people[state.offices.ruler.holderId] || null;
     state.realm.lawfulRulerId = lawful?.id || null;
-    if (lawful) state.realm.claimHistory.push({ date: state.date, type: 'legal_succession', fromId: previous?.id || null, toId: lawful.id, reason: 'Den rättsliga successionsordningen förs vidare separat från faktisk kontroll.' });
+    if (lawful && lawful.id !== previous?.id) state.realm.claimHistory.push({ date: state.date, type: 'legal_succession', fromId: previous?.id || null, toId: lawful.id, reason: 'Den rättsliga successionsordningen förs vidare separat från faktisk kontroll.' });
   }
   const heir = lawful ? candidates(state, lawful)[0] : null;
   state.realm.legalHeirId = heir?.id || null;
@@ -55,7 +56,7 @@ export function refreshLegalClaims(state, candidates) {
     if (!valid) { claim.status = alive(person) ? person.familyId !== family.id ? 'transferred' : 'superseded' : 'deceased'; claim.endedAt = state.date; }
   }
   if (lawful) claimRecord(state, lawful.id, 'lawful-ruler', 'Erkänd succession eller återupprättad rätt');
-  if (heir) claimRecord(state, heir.id, 'heir', `Efterträdare till ${lawful.id} enligt ${state.realm.successionLaw}`);
+  if (heir) claimRecord(state, heir.id, 'heir', `Efterträdare till ${lawful.id} enligt ${SUCCESSION_LAW_LABELS_SV[state.realm.successionLaw] ?? state.realm.successionLaw}`);
 }
 
 export function registerAccession(state, { previousId, newId, lawful = true, reason }) {

@@ -19,9 +19,10 @@ const steppedIndex = (count, at, key) => {
 
 function StartRow({ row, chosen, tabStop, disabled, onChoose }) {
   const ruler = row.rulerOrigin ? `${row.rulerName} · ${row.rulerOrigin}` : row.rulerName;
+  const kind = row.kindLabelSv ? ` · ${row.kindLabelSv}` : '';
   return <button type="button" role="radio" data-start-key={row.key} tabIndex={tabStop ? 0 : -1} aria-checked={chosen}
     className={chosen ? 'selected' : ''} onClick={() => onChoose(row)} disabled={disabled}>
-    <strong>{`${row.polityName} · ${row.eraLabelSv}`}</strong><span>{ruler}</span>
+    <strong>{`${row.polityName} · ${row.eraLabelSv}${kind}`}</strong><span>{ruler}</span>
   </button>;
 }
 
