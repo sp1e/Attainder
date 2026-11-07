@@ -5,30 +5,15 @@ import { loadHistoricalEventCatalog } from "../../runtime/historicalEventCatalog
 import HistoricalEventCard from "./HistoricalEventCard.jsx";
 import "./characters.css";
 
-// The popup's "Visa alla i krönikan" link dispatches this window event.
-export const HISTORY_RECORD_EVENT = "oh:open-history-record";
 const RESEARCH_END_YEAR = 1200;
 
-// Lives in the always-mounted game UI, because the character panel is a lazy
-// chunk that may not have loaded when the event fires. Each event bumps the
-// returned counter and runs `onRequest`; the panel reacts to a changed counter.
-export function useHistoryRecordRequest(onRequest) {
-  const [count, setCount] = useState(0);
-  const onRequestRef = useRef(onRequest);
-  onRequestRef.current = onRequest;
-  useEffect(() => {
-    const listener = () => { setCount((value) => value + 1); onRequestRef.current?.(); };
-    window.addEventListener(HISTORY_RECORD_EVENT, listener);
-    return () => window.removeEventListener(HISTORY_RECORD_EVENT, listener);
-  }, []);
-  return count;
-}
-
-// Runs `select` when the request counter changes to a value above zero.
+// Runs `select` once each time the request counter changes to a value above zero.
 export function useChronicleRequest(request, select) {
-  const selectRef = useRef(select);
-  selectRef.current = select;
-  useEffect(() => { if (request > 0) selectRef.current(); }, [request]);
+  const handled = useRef(0);
+  useEffect(() => {
+    if (request > 0 && request !== handled.current) select();
+    handled.current = request;
+  });
 }
 
 // Moves focus into the panel when it is somewhere else, so the keyboard stays

@@ -12,6 +12,7 @@ const compileFile = (name) => transformSync(readFileSync(new URL(`./${name}`, im
   loader: "jsx", format: "cjs", jsx: "transform",
 }).code;
 const recordCompiled = compileFile("HistoricalRecordView.jsx");
+const requestCompiled = compileFile("historyRecordRequest.js");
 const cardCompiled = compileFile("HistoricalEventCard.jsx");
 
 function runModule(code, modules, globals = {}) {
@@ -103,18 +104,49 @@ test("the research note appears only once the game has passed AD 1200", async ()
   assert.match(textOf(after.render()), note);
 });
 
+const loadRequestHook = () => {
+  const driver = createHookDriver();
+  const listeners = [];
+  const win = {
+    addEventListener: (name, listener) => listeners.push({ name, listener }),
+    removeEventListener: () => {},
+  };
+  const exports = runModule(requestCompiled, { react: driver.react }, { window: win });
+  return { exports, driver, listeners };
+};
+
 test("the chronicle request hook calls back once per event and counts them", () => {
-  const m = load();
+  const m = loadRequestHook();
   const seen = [];
-  const Probe = () => { const count = m.exports.useHistoryRecordRequest(() => seen.push("open")); return React.createElement("i", null, String(count)); };
-  const render = () => m.driver.render(React.createElement(Probe));
+  const Probe = ({ gameId }) => { const count = m.exports.useHistoryRecordRequest(gameId, () => seen.push("open")); return React.createElement("i", null, String(count)); };
+  const render = (gameId = "A") => m.driver.render(React.createElement(Probe, { gameId }));
   assert.equal(textOf(render()), "0");
-  const entry = m.control.listeners.find((l) => l.name === "oh:open-history-record");
+  const entry = m.listeners.find((l) => l.name === "oh:open-history-record");
   assert.ok(entry, "listens for the popup's window event");
   entry.listener();
   entry.listener();
   assert.equal(textOf(render()), "2");
   assert.deepEqual(seen, ["open", "open"]);
+});
+
+test("a request made in campaign A has no effect in campaign B", () => {
+  const m = loadRequestHook();
+  const Probe = ({ gameId }) => React.createElement("i", null, String(m.exports.useHistoryRecordRequest(gameId, () => {})));
+  const render = (gameId) => m.driver.render(React.createElement(Probe, { gameId }));
+  render("A");
+  m.listeners.at(-1).listener();
+  assert.equal(textOf(render("A")), "1");
+  assert.equal(textOf(render("B")), "0", "campaign B starts with no pending request");
+  m.listeners.at(-1).listener();
+  assert.equal(textOf(render("B")), "1", "a request in B counts from zero");
+});
+
+test("the main chunk imports only the request file, which pulls in neither the view nor the card", () => {
+  const request = readFileSync(new URL("./historyRecordRequest.js", import.meta.url), "utf8");
+  assert.deepEqual([...request.matchAll(/from "([^"]+)"/g)].map((m) => m[1]), ["react"]);
+  const main = readFileSync(new URL("../GameUI/main.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(main, /HistoricalRecordView|HistoricalEventCard/);
+  assert.match(main, /Characters\/historyRecordRequest\.js/);
 });
 
 test("a changed request value selects the segment; an unchanged one does not", () => {
