@@ -34,3 +34,12 @@ export const charlemagneRelease110 = () => releaseFromPatch('charlemagne-800-1.1
 
 // The John bundle as release 1.0.0 shipped it (main at 2128ee11), which the built-in scenario `default` held at revision 1.
 export const johnRelease100 = () => releaseFromPatch('john-1200-1.0.0.patch.json');
+
+// The Charlemagne bundle as release 1.2.0 shipped it (Phase 3 at 47fa170f; Phase 4 kept its bytes).
+export const charlemagneRelease120 = () => releaseFromPatch('charlemagne-800-1.2.0.patch.json');
+
+// The John bundle as release 1.1.0 shipped it (Phase 3 at 47fa170f), which the built-in scenario `default` held at revision 2.
+export const johnRelease110 = () => releaseFromPatch('john-1200-1.1.0.patch.json');
+
+// The world-1500 bundle as release 1.0.0 shipped it (Phase 4 at 02aea551).
+export const world1500Release100 = () => releaseFromPatch('world-1500-1.0.0.patch.json');

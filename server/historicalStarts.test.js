@@ -7,7 +7,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { HISTORICAL_BOOKMARKS, shippedStartNeedsUpgrade } from './historicalStarts.js';
-import { charlemagneRelease110 } from './fixtures/releaseFixtures.js';
+import { charlemagneRelease110, charlemagneRelease120, world1500Release100 } from './fixtures/releaseFixtures.js';
 
 test('each shipped start names the content version its built package carries', () => {
   assert.deepEqual(HISTORICAL_BOOKMARKS.map(({ id, contentVersion }) => [id,contentVersion]),[['egypt-3000bc','1.0.0'],['charlemagne-800','1.3.0'],['world-1500','1.1.0']]);
@@ -266,8 +266,8 @@ const hash = text => createHash('sha256').update(text).digest('hex');
 const romeIsSeat = file => readJson(file).features.find(f => f.id === 'rome').properties.seat;
 // A desktop data folder and the paths into its Charlemagne copy. Each boot is a separate start of the app:
 // it runs `body`, then a library read, unless `body` ends the process first.
-const desktopLibrary = () => {
-  const root = mkdtempSync(path.join(os.tmpdir(),'attainder-historical-')), dir = path.join(root,'scenarios','charlemagne-800');
+const desktopLibrary = (id = 'charlemagne-800') => {
+  const root = mkdtempSync(path.join(os.tmpdir(),'attainder-historical-')), dir = path.join(root,'scenarios',id);
   const boot = (body = '') => execFileSync(process.execPath,['--input-type=module','-e',`
     import fs from 'node:fs';
     import * as store from ${JSON.stringify(new URL('./libraryStore.js',import.meta.url).href)};
@@ -356,6 +356,26 @@ test('the installed 1.1.0 copy, as that release shipped it, is replaced in place
     assert.equal(readJson(worldPath).historicalScenario.playablePolityIds.length,10);
     assert.equal(readJson(metaPath).createdAt,createdAt);
   } finally { rmSync(root,{recursive:true,force:true}); }
+});
+
+test('an installed Charlemagne 1.2.0 copy and an installed world-1500 1.0.0 copy are each replaced in place by the shipped release', () => {
+  for (const [id,release,from,to] of [['charlemagne-800',charlemagneRelease120(),'1.2.0','1.3.0'],['world-1500',world1500Release100(),'1.0.0','1.1.0']]) {
+    const { root, boot, worldPath, citiesPath, metaPath } = desktopLibrary(id);
+    try {
+      boot('store.ensureScenarioStore();');
+      const shipped = readFileSync(worldPath,'utf8'), shippedCities = readFileSync(citiesPath,'utf8'), { createdAt } = readJson(metaPath);
+      // The copy that release installed: its world and city files.
+      writeFileSync(worldPath,JSON.stringify(release.data.world,null,2));
+      writeFileSync(citiesPath,JSON.stringify(release.assets.citiesGeojson.data,null,2));
+      assert.equal(readJson(worldPath).historicalScenario.contentVersion,from,id);
+      assert.notEqual(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${id}: the ${from} world differs from the shipped one`);
+      boot();
+      assert.equal(readJson(worldPath).historicalScenario.contentVersion,to,id);
+      assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${id}: the installed copy is the shipped ${to}`);
+      assert.equal(hash(readFileSync(citiesPath,'utf8')),hash(shippedCities),`${id}: the city file is the shipped one`);
+      assert.equal(readJson(metaPath).createdAt,createdAt,id);
+    } finally { rmSync(root,{recursive:true,force:true}); }
+  }
 });
 
 test('a desktop upgrade cut short before world.json is repeated on the next read', () => {
