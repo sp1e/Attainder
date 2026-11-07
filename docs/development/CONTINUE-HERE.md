@@ -1,6 +1,6 @@
 # Development checkpoint: Phase 3 of the AI game master
 
-Updated on 5 November 2026.
+Updated on 7 November 2026.
 
 ## Historical foundation checkpoint
 
@@ -8,7 +8,7 @@ Task 6 and final documentation review are accepted with the limits in the [play 
 
 ## Historical year events
 
-The popup after a closed calendar year and the chronicle segment `I verklighetens historia` are built on `feature/historical-events`. The segment lists the closed years of a historical campaign, newest first, from the same catalog as the popup. The popup link `Visa alla i krönikan` opens it. The catalog ships empty until the research round, so no popup appears yet. Research and the full-suite and build check on the branch are the open items.
+The popup after a closed calendar year and the chronicle segment `I verklighetens historia` are built on `feature/historical-events`. The segment lists the closed years of a historical campaign, newest first, from the same catalog as the popup. The popup link `Visa alla i krönikan` opens it. The catalog ships empty until the research round, so no popup appears yet. The full suite ran 4,724 tests at `03da98e9` with one failure, the Windows EPERM in `server/payloadUpdate.test.js`, which passes 17 of 17 alone, and the build exited 0. The run after the final fix wave and the research round are the open items.
 
 ## Branch state
 

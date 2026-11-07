@@ -43,7 +43,7 @@ Ruling: the catalog holds approved events only, and an empty catalog is valid �
 
 Ruling: years after AD 1200 have no coverage and show no popup — the research range ends there and a campaign may run past it — John's start at `1200-12-31` reports only year 1200, so the owner asked for a better start and `2026-11-07-charlemagne-800-start.md` adds one at AD 800.
 
-Ruling: research batch 1 waits for the owner's answer on the private Codex pilot — the pilot is on no reachable machine or repository, and redoing it wastes work — tasks 1 to 5 go ahead without it.
+Ruling: research batch 1 waits for the owner's answer on the research pilot. The pilot is on no reachable machine or repository, and redoing it wastes work, so tasks 1 to 5 go ahead without it.
 
 ## Review Focus
 
@@ -211,13 +211,13 @@ Add a segment `I verklighetens historia` to `ChronicleView` for historical campa
 - [ ] **Step 6: Run** the full serial suite and the build: `node --test --test-concurrency=1 "server/**/*.test.js" "src/**/*.test.js"`, then `npm run build`. Expected: 0 fail, exit 0, and a separate chunk for `catalog.json`.
 - [ ] **Step 7: Commit:** `git commit -m "Keep the real history in the chronicle"`. Whole-branch review, PR, merge on green `test`.
 
-### Task 6: Research batch 1 (blocked on the owner's pilot answer)
+### Task 6: Research batch 1 (blocked on the owner's answer on the research pilot)
 
 **Files:**
 - Create: `docs/research/historical-events-method.md`
 - Modify: `server/seed/historical/events/catalog.json`, `server/seed/historical/events/coverage.json`, `docs/research/historical-events-coverage.md`
 
-Scope: `-3000` through `-2900` (the Egypt start walks forward from here), AD 800 through 900 (the Charlemagne start) and AD 1200 (the John start). If the owner hands over the pilot, build on it and recheck each record.
+Scope: `-3000` through `-2900` (the Egypt start walks forward from here), AD 800 through 900 (the Charlemagne start) and AD 1200 (the John start). If the owner hands over the research pilot, build on it and recheck each record.
 
 - [ ] **Step 1: Write the method:** selection criteria, source order (primary evidence, then institutional and scholarly sources), how competing chronologies are recorded, when a year is `no-secure-event`, and the review gate.
 - [ ] **Step 2: Research each year** and draft records. Check competing chronologies and record each locator.
