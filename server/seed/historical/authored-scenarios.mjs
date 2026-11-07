@@ -133,8 +133,9 @@ const PAPAL_STATES_800 = { polityId: 'papal-states',seat: ROME_800,successionLaw
 
 // The eight reviewed AD 800 dossier courts, in dossier order. Each court is built from courts/ad800-courts.json;
 // the succession law and the three generated courtiers (courtier-names.md) are game choices.
-const dossierPlayable = (polityId,successionLaw,courtierNames,courtierYears) => ({ polityId,successionLaw,
-  dossier: { courtierNames: courtierNames.map(name => `${name} (genererad)`),courtierBornAt: i => `${String(courtierYears[i-1]).padStart(4,'0')}-01-01` } });
+// options pass on to dossierCourt; { religionLeader: null } leaves the religion without a leader.
+const dossierPlayable = (polityId,successionLaw,courtierNames,courtierYears,options = {}) => ({ polityId,successionLaw,
+  dossier: { courtierNames: courtierNames.map(name => `${name} (genererad)`),courtierBornAt: i => `${String(courtierYears[i-1]).padStart(4,'0')}-01-01`,...options } });
 const AD800_DOSSIER_PLAYABLES = [
   dossierPlayable('tang-empire','primogeniture',['Zhao Huaiyuan','Li Shouyi','Chen Junzhi'],[760,764,768]),
   dossierPlayable('abbasid-caliphate','merit',['Sa\'id ibn Mansur','Ali ibn Hamza','Hasan ibn Ziyad'],[758,763,767]),
@@ -155,10 +156,22 @@ const AD1200_DOSSIER_PLAYABLES = [
 const listSv = names => `${names.slice(0,-1).join(', ')} och ${names.at(-1)}`;
 
 const COVERAGE_BASE_NOTE_SV = 'Världens land visas med en generaliserad nutida kustlinje. Granskade historiska områden har ungefärliga gränser. Okänd kontroll betyder att underlag saknas, inte att marken är obebodd eller ledig.';
+// The AD 800 wording of the base note; later packages share it.
+const COVERAGE_BASE_NOTE_AD800_SV = 'Världens land visas med en generaliserad nutida kustlinje. Granskade historiska områden har ungefärliga gränser. Okänd kontroll betyder att underlag saknas och säger inget om marken var bebodd eller ledig.';
+
+// The AD 1500 courts come from courts/ad1500-courts.json; Aztekriket is primary because it comes first there.
+// The dossier names no temple leader on the bookmark, so the Aztec religion has none.
+const WORLD_1500_SOURCES = {
+  hbm: { ...sources.hbm,locator: 'geojson/world_1500.geojson; README: Polygons, Conceptual limitations, Credits; CONTRIBUTING: Precision',chronology: 'Snapshot label AD 1500',retrievedAt: '2026-11-07' },
+  naturalEarth: { ...sources.naturalEarth,uncertainty: 'Physical reference only; neither the coastline of 1500 nor proof of settlement or sovereignty.',retrievedAt: '2026-11-07' },
+};
+const AZTEC_1500 = dossierPlayable('aztec-empire','merit',['Itztli','Cuetzpalin','Mazatl'],[1458,1462,1467],{ religionLeader: null });
+const INCA_1500 = dossierPlayable('inca-empire','primogeniture',['Kuntur Rimaq','Qori Puma','Rumi Sunqu'],[1456,1461,1466]);
 
 // One authored record per package. Everything that differs between packages lives here.
 // extraPlayables: further playable polities as { polityId, seat, court, successionLaw? }; seat has the primary seat's fields.
-// A dossier playable is { polityId, successionLaw, dossier: { courtierNames, courtierBornAt } } and takes its seat and court from the dossier.
+// A dossier playable is { polityId, successionLaw, dossier: { courtierNames, courtierBornAt, religionLeader? } } and takes its seat and court from the dossier.
+// The primary may be one too: the package then carries successionLaw and dossier in place of seat and court.
 // contextSv and coverageNotePrefixSv may be functions of the playable polity names; namePlayables() fills them in.
 const AUTHORED_PACKAGES = {
   'egypt-3000bc': {
@@ -208,7 +221,7 @@ const AUTHORED_PACKAGES = {
     contextSv: names => `Juldagen år 800. Spelbara riken: ${listSv(names)}. Du möter dokumenterade personer med genererade spelvärden och genererade hovmän.`,
     calendarNoteSuffixSv: ' Riksannalerna räknar året från jul och för kröningen under 801.',
     coverageNotePrefixSv: names => `Av 225 former i källkartan har 11 godkänts som ungefärliga områden. ${names.length} riken är spelbara. Karls hov visar Bertas, Giselas, Teoderadas, Hiltruds och Ruodhaids överlevnad som osäker. Leo III:s födelsedatum och hovmän är genererade. `,
-    coverageBaseNoteSv: 'Världens land visas med en generaliserad nutida kustlinje. Granskade historiska områden har ungefärliga gränser. Okänd kontroll betyder att underlag saknas och säger inget om marken var bebodd eller ledig.',
+    coverageBaseNoteSv: COVERAGE_BASE_NOTE_AD800_SV,
     polity: { nameSv: 'Karls rike (karolingiska riket)',sourceIds: ['hbm',...evidence('einhard-15','rfa-781-kings','rfa-800-itinerary','rfa-800-italy','rfa-797-barcelona','rfa-801-barcelona','rfa-799-brittany','rfa-806-venice','rfa-810-venice','rfa-810-treaty','rfa-801-aftermath','ce-papal-states')],extra: {},noteSv: 'Spelaggregat över Karls områden. Pippin och Ludvig smordes 781 till kungar i Italien och Akvitanien. Likformigt styre är inte belagt, och kartan ger ingen exakt gräns.' },
     court: {
       religionId: 'latin-church',rulerId: 'karl',partnerId: null,
@@ -232,6 +245,15 @@ const AUTHORED_PACKAGES = {
       contextSourceIds: evidence('rfa-801-coronation','osborne-rome','einhard-28','rfa-800-itinerary'),
       religionClaim: claim('sourced','Leo III, biskop av Rom sedan 795, krönte Karl. Leo angreps i Rom 25 april 799 och sökte upp Karl i Paderborn. I december 800 hördes anklagelser mot honom i Rom inför Karl. Ingen anklagare styrkte dem och Leo svor sig fri två dagar före kröningen. Hovets religiösa företrädare vid starten är genererad.',evidence('ce-leo3','osborne-rome','adelson-baker','rfa-800-rome','rfa-801-coronation')),
     },
+  },
+  // The builder replaces the polity's sourceIds and noteSv with the review's mapping of feature 80.
+  'world-1500': {
+    sources: WORLD_1500_SOURCES,...AZTEC_1500,bookmarkDate: '1500-12-31',eraLabelSv: '1500 e.Kr.',
+    extraPlayables: [INCA_1500],
+    contextSv: names => `Nyårsafton 1500. Spelbara riken: ${listSv(names)}. Du möter dokumenterade personer med genererade spelvärden och genererade hovmän.`,
+    coverageNotePrefixSv: names => `Av 291 former i källkartan har 2 godkänts som ungefärliga områden. Mingriket och Osmanska riket saknar godkänd form och är inte spelbara. ${names.length} riken är spelbara. `,
+    coverageBaseNoteSv: COVERAGE_BASE_NOTE_AD800_SV,
+    polity: { nameSv: 'Aztekriket',sourceIds: ['hbm'],extra: {},noteSv: 'Ungefärligt område i källkartan.' },
   },
 };
 
@@ -273,11 +295,14 @@ function dossierPlayableCourt(e,dossier,bookmarkYear,sources) {
 // dossier: the parsed court dossier, required when the package has dossier playables.
 export function authoredScenario(contentId,{ dossier = null } = {}) {
   if (!Object.hasOwn(AUTHORED_PACKAGES,contentId)) throw new Error(`Unknown historical scenario: ${contentId}`);
-  const a = AUTHORED_PACKAGES[contentId], polityId = a.polityId, seat = settlement(a.seat,polityId), extras = a.extraPlayables ?? [];
+  const a = AUTHORED_PACKAGES[contentId], polityId = a.polityId, extras = a.extraPlayables ?? [], year = Number(a.bookmarkDate.slice(0,4));
   const calendarNoteSv = 'Startdagen är vald för simuleringen. Källornas datering och kalenderkonventioner finns kvar i proveniensen.' + (a.calendarNoteSuffixSv ?? '');
-  const sources = { ...a.sources }, seats = {}, courtSeeds = { [polityId]: court({ polityId,seat,spec: a.court }) };
+  const sources = { ...a.sources }, seats = {};
+  // A dossier primary builds exactly as a dossier extra does, before the extras, so its sources come first.
+  const primary = a.dossier ? dossierPlayableCourt(a,dossier,year,sources) : null, seat = primary?.seat ?? settlement(a.seat,polityId);
+  const courtSeeds = { [polityId]: primary?.court ?? court({ polityId,seat,spec: a.court }) };
   for (const e of extras) {
-    if (e.dossier) ({ seat: seats[e.polityId],court: courtSeeds[e.polityId] } = dossierPlayableCourt(e,dossier,Number(a.bookmarkDate.slice(0,4)),sources));
+    if (e.dossier) ({ seat: seats[e.polityId],court: courtSeeds[e.polityId] } = dossierPlayableCourt(e,dossier,year,sources));
     else { seats[e.polityId] = settlement(e.seat,e.polityId); courtSeeds[e.polityId] = court({ polityId: e.polityId,seat: seats[e.polityId],spec: { ...e.court,successionLaw: e.successionLaw } }); }
   }
   const namedLater = typeof a.contextSv === 'function';
