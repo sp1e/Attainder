@@ -751,7 +751,7 @@ test('a stored start whose papal ruler is gone stays in the catalog as invalid a
   const entry = catalogEntry(catalog,id);
   assert.equal(entry.historicalSummary.invalid,true);
   assert.deepEqual(entry.historicalStart,{date:'0800-12-25',contentId:'charlemagne-800'});
-  for (const other of ['egypt-3000bc']) {
+  for (const other of ['egypt-3000bc','world-1500']) {
     assert.equal(catalogEntry(catalog,other).historicalSummary.invalid,undefined,other);
     assert.ok(catalogEntry(catalog,other).historicalStart,other);
   }

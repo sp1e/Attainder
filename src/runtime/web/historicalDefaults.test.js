@@ -8,7 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { installFakeIndexedDb } from './fakeIndexedDb.js';
 
-test('fresh web store starts the three shipped historical bookmarks with their courts', async () => {
+test('fresh web store starts the four shipped historical bookmarks with their courts', async () => {
   execFileSync(process.execPath,[fileURLToPath(new URL('../../../scripts/seed-web-defaults.mjs',import.meta.url))]);
   const fake=installFakeIndexedDb();
   const originalFetch=globalThis.fetch;
@@ -33,7 +33,8 @@ test('fresh web store starts the three shipped historical bookmarks with their c
     };
     const library=async()=>(await store.handleLibrary({method:'GET'})).json();
     const starts=async()=>(await library()).scenarios.filter(s=>s.historicalStart).map(s=>[s.id,s.historicalStart.contentId,s.historicalStart.date]);
-    const offered=[['default','john-1200','1200-12-31'],['egypt-3000bc','egypt-3000bc','-3000-01-01'],['charlemagne-800','charlemagne-800','0800-12-25']];
+    const offered=[['default','john-1200','1200-12-31'],['egypt-3000bc','egypt-3000bc','-3000-01-01'],['charlemagne-800','charlemagne-800','0800-12-25'],['world-1500','world-1500','1500-12-31']];
+    const withoutKarl=offered.filter(([id])=>id!=='charlemagne-800');
     assert.deepEqual(await starts(),offered);
     assert.equal((await library()).selectedScenarioId,'charlemagne-800');
     // One module per shipped package, so the web build fetches only the start it installs.
@@ -47,7 +48,7 @@ test('fresh web store starts the three shipped historical bookmarks with their c
     }
     assert.equal(existsSync(new URL('./generated/historicalBookmarks.js',import.meta.url)),false,'the single bookmarks module is gone');
     const games={};
-    for (const [request,date] of [[{},'1200-12-31'],[{scenarioId:'egypt-3000bc'},'-3000-01-01'],[{scenarioId:'charlemagne-800'},'0800-12-25']]) {
+    for (const [request,date] of [[{},'1200-12-31'],[{scenarioId:'egypt-3000bc'},'-3000-01-01'],[{scenarioId:'charlemagne-800'},'0800-12-25'],[{scenarioId:'world-1500'},'1500-12-31']]) {
       const made=await call('POST',[],request);
       games[request.scenarioId ?? 'john']=made.game.id;
       assert.equal(made.data.game.startDate,date); assert.equal(made.data.game.gameDate,date);
@@ -74,23 +75,37 @@ test('fresh web store starts the three shipped historical bookmarks with their c
     const remove=async id=>assert.ok((await store.handleScenarios({method:'DELETE',segments:[id],query:new URLSearchParams()})).ok);
     await call('DELETE',[games['charlemagne-800']]);
     await remove('charlemagne-800'); await idbDelete(STORES.kv,'historical-bookmarks-charlemagne-800');
-    assert.deepEqual(await starts(),offered.slice(0,2));
+    assert.deepEqual(await starts(),withoutKarl);
     assert.equal(await kvGet('historical-bookmarks-v1',false),true);
     const johnBefore=await call('GET',[games.john]);
     await store.ensureSeeded();
-    assert.deepEqual(await starts(),offered,'the upgrade adds Charlemagne once and leaves Egypt installed');
+    // The reinstalled Charlemagne joins the end of the order, after the AD 1500 start.
+    const karlAgain=[...withoutKarl,offered[2]];
+    assert.deepEqual(await starts(),karlAgain,'the upgrade adds Charlemagne once and leaves Egypt installed');
     assert.equal((await library()).selectedScenarioId,'charlemagne-800');
     const johnAfter=await call('GET',[games.john]);
     assert.equal(johnAfter.game.scenarioId,'default'); assert.deepEqual(johnAfter.data,johnBefore.data);
     // A second tab or an interrupted install: the scenario stands and its marker is unset.
     await idbDelete(STORES.kv,'historical-bookmarks-charlemagne-800');
     await store.ensureSeeded();
-    assert.deepEqual(await starts(),offered,'an installed start gains no second copy');
-    assert.equal((await library()).scenarios.some(s=>s.id==='charlemagne-800-2'),false);
+    assert.deepEqual(await starts(),karlAgain,'an installed start gains no second copy');
+    assert.equal((await library()).scenarios.some(s=>s.id==='charlemagne-800-2' || s.id==='world-1500-2'),false);
     assert.equal(await kvGet('historical-bookmarks-charlemagne-800',false),true);
     // A deleted start stays deleted: the marker, not the scenario, records the installation.
     await remove('charlemagne-800'); await store.ensureSeeded();
-    assert.deepEqual(await starts(),offered.slice(0,2));
+    assert.deepEqual(await starts(),withoutKarl);
+    // AD 1500 starts both realms in realm and family mode, and its deleted copy stays deleted.
+    for (const polityId of ['aztec-empire','inca-empire']) for (const mode of ['realm','family']) {
+      const made=await call('POST',[],{scenarioId:'world-1500',historicalStart:{date:'1500-12-31',polityId,mode,seed:7,difficulty:'normal'},
+        gamePatch:{country:polityId,difficulty:'standard',language:'Swedish'}});
+      const {identity,date}=made.data.world.characterSystem;
+      assert.deepEqual([identity.polityId,identity.mode,date,made.data.game.country],[polityId,mode,'1500-12-31',polityId],`${polityId} ${mode}`);
+      await call('DELETE',[made.game.id]);
+    }
+    await call('DELETE',[games['world-1500']]);
+    await remove('world-1500'); await store.ensureSeeded();
+    assert.deepEqual(await starts(),withoutKarl.filter(([id])=>id!=='world-1500'));
+    assert.equal(await kvGet('historical-bookmarks-world-1500',false),true);
     // Upgrade an existing web install whose geometry used the previous bundled map.
     fake.clear();
     const oldWorld={builtInMap:'modern-day-world-2026-10-v1',ownerSchema:4,regionOwnershipOverrides:{legacy:'Old'},characterSystem:{people:{a:{name:'A'}}}};

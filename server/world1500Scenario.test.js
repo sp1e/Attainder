@@ -1,8 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import os from 'node:os';
+import path from 'node:path';
 import { validateHistoricalCourt, validateHistoricalScenario } from './historicalScenarios.js';
+import { prepareHistoricalCampaignStart } from './historicalPreparation.js';
+import { historicalStartSummary } from './historicalStartSummary.js';
+import { advanceCharacters, getCharacterPresentation } from './characters/index.js';
+import { addGameMonths } from './gameDates.js';
 import { authoredScenario, sources as sharedSources } from './seed/historical/authored-scenarios.mjs';
 
 // World 1500: Aztekriket is the dossier primary and Inkariket a dossier extra.
@@ -204,3 +211,83 @@ test('releases.json pins world_1500 and keeps the Egypt, Charlemagne and John ro
   }
   assert.deepEqual(releases.outputs.filter(o => o.file.startsWith(`${ID}/`)).map(o => o.file), ['regions.geojson', 'cities.geojson', 'scenario.json', 'manifest.json'].map(f => `${ID}/${f}`));
 });
+
+// ---- Installed, listed and played ----
+
+const prepared = (polityId, mode) => {
+  const { bundle, regions, cities } = loadPackage();
+  const scenario = { data: bundle.data, meta: { ...bundle.scenario, id: ID }, regions, cities };
+  return prepareHistoricalCampaignStart({ request: { historicalStart: { date: DATE, polityId, mode }, gamePatch: { country: polityId } }, scenario });
+};
+
+test('the start summary lists Aztekriket and Inkariket under Amerika in the late Middle Ages', () => {
+  const { bundle } = loadPackage();
+  const summary = historicalStartSummary({ meta: bundle.scenario, data: bundle.data });
+  assert.equal(summary.invalid, undefined);
+  assert.deepEqual([summary.contentId, summary.date, summary.eraId, summary.eraLabelSv], [ID, DATE, 'late-middle-ages', '1500 e.Kr.']);
+  assert.deepEqual(summary.polities.map(p => [p.id, p.nameSv, p.regionId, p.ruler.name]),
+    [['aztec-empire', 'Aztekriket', 'americas', 'Ahuitzotl'], ['inca-empire', 'Inkariket', 'americas', 'Huayna Capac']]);
+});
+
+test('a prepared start reaches each AD 1500 realm in realm and family mode', () => {
+  const { h } = loadPackage();
+  for (const polityId of h.playablePolityIds) for (const mode of ['realm', 'family']) {
+    const result = prepared(polityId, mode), label = `${polityId} ${mode}`;
+    assert.equal(result.ok, true, `${label}: ${result.error}`);
+    const state = result.data.world.characterSystem;
+    assert.deepEqual([state.identity.polityId, state.identity.mode, state.date], [polityId, mode, DATE], label);
+    assert.equal(state.offices.ruler.holderId, h.courtSeeds[polityId].rulerId, label);
+    assert.deepEqual(result.data.world.historicalScenario.playablePolityIds, [polityId], label);
+    assert.equal(result.data.game.country, polityId, label);
+  }
+});
+
+test('the Inca realm start puts Huayna Capac on the throne with Huáscar as heir', () => {
+  const state = prepared('inca-empire', 'realm').data.world.characterSystem;
+  assert.equal(state.offices.ruler.holderId, 'huayna-capac');
+  assert.equal(state.people['huayna-capac'].name, 'Huayna Capac');
+  assert.equal(state.realm.legalHeirId, 'huascar');
+  assert.equal(state.people.huascar.name, 'Huáscar');
+});
+
+test('the Aztec realm start plays one game year without error, with its leaderless religion', () => {
+  const start = prepared('aztec-empire', 'realm').data.world.characterSystem;
+  assert.equal(start.offices.ruler.holderId, 'ahuitzotl');
+  const year = advanceCharacters(start, addGameMonths(DATE, 12), { id: 'aztec-first-year' });
+  assert.equal(year.error, null);
+  assert.equal(year.ok, true);
+  assert.equal(year.state.date, addGameMonths(DATE, 12));
+  assert.ok(year.events.length > 0, 'the year leaves events');
+  assert.ok(getCharacterPresentation(year.state));
+});
+
+// A desktop data folder; each boot is a separate start of the app that runs `body`, then prints the start ids in the catalog.
+const bootDesktop = (root, body = '') => JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', `
+  import * as store from ${JSON.stringify(new URL('./libraryStore.js', import.meta.url).href)};
+  store.ensureScenarioStore();
+  ${body}
+  console.log(JSON.stringify(store.getScenarioCatalog().scenarios.filter(s => s.historicalStart).map(s => s.id)));
+`], { env: { ...process.env, OH_DATA_DIR: root }, stdio: 'pipe', encoding: 'utf8' }).trim().split('\n').at(-1));
+
+const withDesktopLibrary = run => {
+  const root = mkdtempSync(path.join(os.tmpdir(), 'attainder-world-1500-'));
+  try { run(root); } finally { rmSync(root, { recursive: true, force: true }); }
+};
+const INSTALLED = ['default', 'egypt-3000bc', 'charlemagne-800', ID];
+
+test('a desktop library read installs AD 1500 once beside the three starts, and a deleted copy stays deleted', () => withDesktopLibrary(root => {
+  assert.deepEqual(bootDesktop(root), INSTALLED);
+  assert.deepEqual(bootDesktop(root), INSTALLED, 'a second read adds nothing');
+  assert.deepEqual(bootDesktop(root, `store.deleteScenario('${ID}');`), INSTALLED.slice(0, 3));
+  assert.deepEqual(bootDesktop(root), INSTALLED.slice(0, 3), 'the marker keeps a deleted start deleted');
+}));
+
+test('the installed desktop copy starts both AD 1500 realms in realm and family mode', () => withDesktopLibrary(root => {
+  const starts = bootDesktop(root, `for (const polityId of ['aztec-empire', 'inca-empire']) for (const mode of ['realm', 'family']) {
+    const made = store.createGame({ scenarioId: '${ID}', setActive: false, historicalStart: { date: '${DATE}', polityId, mode, seed: 7, difficulty: 'normal' },
+      gamePatch: { country: polityId, difficulty: 'standard', language: 'Swedish' } });
+    const { identity, date } = store.getGameDetails(made.game.id).data.world.characterSystem;
+    if (identity.polityId !== polityId || identity.mode !== mode || date !== '${DATE}') throw new Error(polityId + ' ' + mode + ' started as ' + JSON.stringify(identity));
+  }`);
+  assert.deepEqual(starts, INSTALLED);
+}));

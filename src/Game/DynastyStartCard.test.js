@@ -24,8 +24,8 @@ const loadCard = (driver, modules) => load('./DynastyStartCard.jsx','jsx',{
   './HistoricalStartPicker.jsx':load('./HistoricalStartPicker.jsx','jsx',{react:driver.react,'../runtime/historicalStartPicker.js':startPicker}),
   ...modules,
 });
-// The three shipped starts as the option loader returns them; John installs as `default`.
-const shippedOptions = () => orderHistoricalStarts(Object.entries({'charlemagne-800':'charlemagne-800',default:'john-1200','egypt-3000bc':'egypt-3000bc'}).map(([scenarioId,folder]) => {
+// The four shipped starts as the option loader returns them; John installs as `default`.
+const shippedOptions = () => orderHistoricalStarts(Object.entries({'charlemagne-800':'charlemagne-800',default:'john-1200','egypt-3000bc':'egypt-3000bc','world-1500':'world-1500'}).map(([scenarioId,folder]) => {
   const pkg=JSON.parse(readFileSync(new URL(`../../server/seed/historical/${folder}/scenario.json`,import.meta.url),'utf8'));
   return historicalStartOptionFromSummary(scenarioId,historicalStartSummary({meta:pkg.scenario,data:pkg.data}));
 }));
@@ -83,9 +83,9 @@ test('the start card lists the shipped starts under region headings with a searc
   render(); await settle(); const tree=render();
   const label=findAll(tree,n=>n.type==='label' && n.props.htmlFor==='historical-search');
   assert.equal(label.length,1); assert.equal(textOf(label[0]),'Sök rike, härskare eller tid'); assert.ok(searchField(tree));
-  assert.deepEqual(findAll(tree,n=>n.type==='h2').map(textOf),['Europa','Mellanöstern och Nordafrika','Östasien','Sydostasien']);
-  assert.deepEqual(findAll(tree,n=>n.type==='h3').map(textOf),['Tidig medeltid','Högmedeltid','Bronsålder','Tidig medeltid','Högmedeltid','Tidig medeltid','Högmedeltid']);
-  assert.equal(startRows(tree).length,15);
+  assert.deepEqual(findAll(tree,n=>n.type==='h2').map(textOf),['Europa','Mellanöstern och Nordafrika','Östasien','Sydostasien','Amerika']);
+  assert.deepEqual(findAll(tree,n=>n.type==='h3').map(textOf),['Tidig medeltid','Högmedeltid','Bronsålder','Tidig medeltid','Högmedeltid','Tidig medeltid','Högmedeltid','Senmedeltid']);
+  assert.equal(startRows(tree).length,17);
   const papal=startRows(tree).find(r=>r.props['data-start-key']==='charlemagne-800/papal-states');
   assert.equal(textOf(papal.props.children[0]),'Kyrkostaten · 800 e.Kr.');
   assert.ok(textOf(papal.props.children[1]).startsWith('Leo III · '));
@@ -196,25 +196,25 @@ test('arrow keys move the chosen start with a roving tab stop', async () => {
   const checked=()=>startRows(tree).filter(r=>r.props['aria-checked']).map(r=>r.props['data-start-key']);
   const tabStops=()=>startRows(tree).filter(r=>r.props.tabIndex===0).map(r=>r.props['data-start-key']);
   assert.deepEqual(tabStops(),checked());
-  // Rows follow the list: Europa sorts Bysantinska riket first and Kungariket Asturien after Karls rike; Sydostasien ends with Khmerriket.
+  // Rows follow the list: Europa sorts Bysantinska riket first and Kungariket Asturien after Karls rike; Amerika ends with Inkariket.
   press('ArrowDown'); tree=render(); assert.deepEqual(checked(),['charlemagne-800/kingdom-of-asturias']); assert.deepEqual(tabStops(),checked());
   assert.ok(focused.at(-1).includes('charlemagne-800/kingdom-of-asturias'));
-  press('End'); tree=render(); assert.deepEqual(checked(),['default/khmer-angkor']);
+  press('End'); tree=render(); assert.deepEqual(checked(),['world-1500/inca-empire']);
   press('ArrowDown'); tree=render(); assert.deepEqual(checked(),['charlemagne-800/byzantine-empire'],'the last row wraps to the first');
-  press('ArrowUp'); tree=render(); assert.deepEqual(checked(),['default/khmer-angkor']);
+  press('ArrowUp'); tree=render(); assert.deepEqual(checked(),['world-1500/inca-empire']);
   press('Home'); tree=render(); assert.deepEqual(checked(),['charlemagne-800/byzantine-empire']);
   searchField(tree).props.onChange({target:{value:'egypt'}}); tree=render();
   assert.deepEqual(tabStops(),['egypt-3000bc/egypt-early-dynastic'],'a filtered list keeps one tab stop');
 });
 
-test('a start with no chosen scenario takes Charlemagne from the three-start catalog', async () => {
+test('a start with no chosen scenario takes Charlemagne from the four-start catalog', async () => {
   const calls=[];
-  const library={ensureLibraryCatalog:async()=>({scenarios:['default','egypt-3000bc','charlemagne-800'].map(id=>({id,historicalStart:{}}))}),
+  const library={ensureLibraryCatalog:async()=>({scenarios:['default','egypt-3000bc','charlemagne-800','world-1500'].map(id=>({id,historicalStart:{}}))}),
     loadScenarioDetails:async id=>({id}), downloadScenarioJsonAsset:async()=>({}),
     createGame:async request=>{calls.push(request);return {game:{id:'game-1'}};}, activateGame:async()=>{}};
   const historicalStartOptionFromSummary=id=>({scenarioId:id,name:id,date:'0800-12-25',polities:[{id:`${id}-realm`}]});
   const mod=load('../runtime/startDynastyCampaign.js','js',{'./library.js':library,'./campaignSeed.js':campaignSeed,'./historicalStartOptions.js':{offersHistoricalStart:()=>true,historicalStartOptionFromSummary,orderHistoricalStarts,historicalCampaignName}});
-  assert.deepEqual([...await mod.loadHistoricalStartOptions()].map(o=>o.scenarioId),['charlemagne-800','default','egypt-3000bc']);
+  assert.deepEqual([...await mod.loadHistoricalStartOptions()].map(o=>o.scenarioId),['charlemagne-800','default','egypt-3000bc','world-1500']);
   await mod.startDynastyCampaign({});
   assert.equal(calls[0].scenarioId,'charlemagne-800'); assert.equal(calls[0].historicalStart.polityId,'charlemagne-800-realm');
 });

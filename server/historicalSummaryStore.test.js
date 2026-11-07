@@ -57,6 +57,8 @@ test('the catalog carries a summary for each start and a later read builds none 
     assert.equal(john.historicalSummary.eraId, 'high-middle-ages');
     assert.deepEqual(john.historicalStart, { date: '1200-12-31', contentId: 'john-1200' });
     assert.equal(egypt.historicalSummary.eraId, 'bronze-age');
+    assert.deepEqual(entry('world-1500').historicalSummary.polities.map(p => [p.id, p.regionId]), [['aztec-empire', 'americas'], ['inca-empire', 'americas']]);
+    assert.deepEqual(entry('world-1500').historicalStart, { date: '1500-12-31', contentId: 'world-1500' });
     assert.equal(reads('charlemagne-800'), 1, 'the first read builds the summary from world.json');
     const library = store.getLibraryCatalog().scenarios.find(s => s.id === 'charlemagne-800');
     assert.deepEqual(library.historicalSummary, karl.historicalSummary);
@@ -66,7 +68,7 @@ test('the catalog carries a summary for each start and a later read builds none 
   assert.match(stored.sourceStamp, /^\d+:[\d.]+:\d+:[\d.]+$/);
   // ensureScenarioStore reads the default world.json on every call (syncBuiltInScenarioSeedDate),
   // so for the default the check is that its meta, where a rebuild writes, is left alone.
-  const ids = ['default', 'egypt-3000bc', 'charlemagne-800'];
+  const ids = ['default', 'egypt-3000bc', 'charlemagne-800', 'world-1500'];
   const metaTimes = () => ids.map(id => statSync(scenarioFile(root, id, 'scenario.json')).mtimeMs);
   const before = metaTimes();
   runStore(root, `
@@ -76,6 +78,7 @@ test('the catalog carries a summary for each start and a later read builds none 
     assert.equal(entry('default').historicalSummary.eraId, 'high-middle-ages');
     assert.equal(reads('charlemagne-800'), 0);
     assert.equal(reads('egypt-3000bc'), 0);
+    assert.equal(reads('world-1500'), 0);
   `);
   assert.deepEqual(metaTimes(), before, 'no summary is built or written again');
 }));
@@ -154,7 +157,7 @@ test('a stored start whose papal ruler is gone from the court is left off and th
     const karl = entry('charlemagne-800');
     assert.equal(karl.historicalSummary.invalid, true);
     assert.deepEqual(karl.historicalStart, { date: '0800-12-25', contentId: 'charlemagne-800' }, 'the library bar keeps the broken start');
-    for (const [id, contentId] of [['default', 'john-1200'], ['egypt-3000bc', 'egypt-3000bc']]) {
+    for (const [id, contentId] of [['default', 'john-1200'], ['egypt-3000bc', 'egypt-3000bc'], ['world-1500', 'world-1500']]) {
       assert.equal(entry(id).historicalSummary.contentId, contentId);
       assert.equal(entry(id).historicalStart.contentId, contentId);
     }
