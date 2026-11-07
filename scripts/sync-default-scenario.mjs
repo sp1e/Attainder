@@ -14,7 +14,7 @@ const ROOT = fileURLToPath(new URL('../', import.meta.url));
 const PACKAGE_DIR = path.join(ROOT, 'server', 'seed', 'historical', 'john-1200');
 export const DEFAULT_DIR = path.join(ROOT, 'server', 'seed', 'default');
 export const BUILT_IN_MAP = 'historical-john-1200-v1';
-export const BUILT_IN_REVISION = 2;
+export const BUILT_IN_REVISION = 3;
 export const SYNCED_FILES = Object.freeze(['world.json', 'game.json', 'scenario.json', 'cities.geojson', 'regions.geojson']);
 
 const line = value => JSON.stringify(value) + '\n';

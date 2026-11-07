@@ -115,8 +115,8 @@ function annotateLeoCourt(people) {
   leo.claims.identity = claim('sourced','Biskop av Rom sedan 795.',evidence('ce-leo3','osborne-rome','rfa-801-coronation'));
   leo.claims.bornAt = generated('Ingen källa ger födelseår. Den första januari 750 är ett spelvärde.');
 }
-// Merit is the engine's closest analogue to a papal election; a later phase adds an elective law.
-const PAPAL_STATES_800 = { polityId: 'papal-states',seat: ROME_800,successionLaw: 'merit',
+// The pope is elected, so the Papal States follow the elective law.
+const PAPAL_STATES_800 = { polityId: 'papal-states',seat: ROME_800,successionLaw: 'elective',
   court: {
     religionId: 'latin-church',rulerId: 'leo-iii',partnerId: null,household: [],
     rulerName: 'Leo III',rulerBornAt: '0750-01-01',rulerOfficeName: 'Påve',familyId: 'leo-household',familyName: 'Leos hushåll',
@@ -143,13 +143,13 @@ const AD800_DOSSIER_PLAYABLES = [
   dossierPlayable('silla','primogeniture',['Kim Yeong-jong','Pak Sun-won','Seol Gye-hun'],[762,765,768]),
   dossierPlayable('emirate-of-cordoba','primogeniture',['Sulayman ibn Umar','Yahya ibn Hakam','Isa ibn Faraj'],[759,764,769]),
   dossierPlayable('aghlabid-emirate','primogeniture',['Asad ibn Musa','Muhammad ibn Salim','Abd Allah ibn Rashid'],[758,761,766]),
-  dossierPlayable('kingdom-of-asturias','merit',['Gundemaro','Sisnando','Teodomiro'],[760,763,771]),
+  dossierPlayable('kingdom-of-asturias','elective',['Gundemaro','Sisnando','Teodomiro'],[760,763,771]),
   dossierPlayable('duchy-of-benevento','merit',['Ansfrid','Rodoald','Garibald'],[756,762,767]),
 ];
 // The three reviewed AD 1200 dossier courts in the ruled order; Western Xia and Chimú stay blocked in the dossier.
 const AD1200_DOSSIER_PLAYABLES = [
   dossierPlayable('khmer-angkor','merit',['Mratan Shivadasa','Mratan Rudrapala','Vap Kirtindra'],[1160,1165,1170]),
-  dossierPlayable('almohad','merit',['Ali ibn Yintan','Umar ibn Wakkak','Abd al-Haqq ibn Ziyad'],[1158,1163,1168]),
+  dossierPlayable('almohad','elective',['Ali ibn Yintan','Umar ibn Wakkak','Abd al-Haqq ibn Ziyad'],[1158,1163,1168]),
   dossierPlayable('france-capetian','primogeniture',['Hugues de Montfort','Raoul de Beaumont','Pierre de Chaumont'],[1157,1162,1166]),
 ];
 // "A, B och C"
@@ -165,8 +165,8 @@ const WORLD_1500_SOURCES = {
   hbm: { ...sources.hbm,locator: 'geojson/world_1500.geojson; README: Polygons, Conceptual limitations, Credits; CONTRIBUTING: Precision',chronology: 'Snapshot label AD 1500',retrievedAt: '2026-11-07' },
   naturalEarth: { ...sources.naturalEarth,uncertainty: 'Physical reference only; neither the coastline of 1500 nor proof of settlement or sovereignty.',retrievedAt: '2026-11-07' },
 };
-const AZTEC_1500 = dossierPlayable('aztec-empire','merit',['Itztli','Cuetzpalin','Mazatl'],[1458,1462,1467],{ religionLeader: null });
-const INCA_1500 = dossierPlayable('inca-empire','primogeniture',['Kuntur Rimaq','Qori Puma','Rumi Sunqu'],[1456,1461,1466]);
+const AZTEC_1500 = dossierPlayable('aztec-empire','elective',['Itztli','Cuetzpalin','Mazatl'],[1458,1462,1467],{ religionLeader: null });
+const INCA_1500 = dossierPlayable('inca-empire','elective',['Kuntur Rimaq','Qori Puma','Rumi Sunqu'],[1456,1461,1466]);
 
 // One authored record per package. Everything that differs between packages lives here.
 // extraPlayables: further playable polities as { polityId, seat, court, successionLaw? }; seat has the primary seat's fields.
@@ -190,7 +190,7 @@ const AUTHORED_PACKAGES = {
     },
   },
   'john-1200': {
-    sources,polityId: 'johns-realms',contentVersion: '1.1.0',bookmarkDate: '1200-12-31',eraLabelSv: '1200 e.Kr.',
+    sources,polityId: 'johns-realms',contentVersion: '1.2.0',bookmarkDate: '1200-12-31',eraLabelSv: '1200 e.Kr.',
     seat: { id: 'windsor',nameSv: 'Windsor',coordinates: [-0.6,51.4833],regionId: 'hbm-ad1200-275',placement: 'inside',sourceIds: ['windsor','windsorResidence'],noteSv: 'Ungefärlig ortsmarkör. Vald som spelsäte; kungaparets närvaro denna dag är inte belagd.' },
     extraPlayables: AD1200_DOSSIER_PLAYABLES,
     contextSv: names => `Nyårsafton 1200. Spelbara riken: ${listSv(names)}. Du möter dokumenterade personer med genererade spelvärden och genererade hovmän.`,
@@ -214,7 +214,7 @@ const AUTHORED_PACKAGES = {
     },
   },
   'charlemagne-800': {
-    sources: CHARLEMAGNE_SOURCES,polityId: 'carolingian-realm',contentVersion: '1.2.0',bookmarkDate: '0800-12-25',eraLabelSv: '800 e.Kr.',
+    sources: CHARLEMAGNE_SOURCES,polityId: 'carolingian-realm',contentVersion: '1.3.0',bookmarkDate: '0800-12-25',eraLabelSv: '800 e.Kr.',
     seat: { id: 'aachen',nameSv: 'Aachen',coordinates: [6.1053,50.7708],regionId: 'hbm-ad800-151',placement: 'inside',sourceIds: ['aachen',...evidence('rfa-800-itinerary','rfa-801-coronation','einhard-28')],noteSv: 'Ungefärlig ortsmarkör från Getty. Vald som spelsäte. Karl lämnade Aachen i mars 800 och återvände under året, men på bokmärkets dag var han i Rom.' },
     otherSettlements: [settlement(ROME_800,'papal-states')],
     extraPlayables: [PAPAL_STATES_800,...AD800_DOSSIER_PLAYABLES],
@@ -248,7 +248,7 @@ const AUTHORED_PACKAGES = {
   },
   // The builder writes the polity's name, sourceIds and noteSv from the review's mapping of feature 80.
   'world-1500': {
-    sources: WORLD_1500_SOURCES,...AZTEC_1500,bookmarkDate: '1500-12-31',eraLabelSv: '1500 e.Kr.',
+    sources: WORLD_1500_SOURCES,...AZTEC_1500,contentVersion: '1.1.0',bookmarkDate: '1500-12-31',eraLabelSv: '1500 e.Kr.',
     extraPlayables: [INCA_1500],
     contextSv: names => `Nyårsafton 1500. Spelbara riken: ${listSv(names)}. Du möter dokumenterade personer med genererade spelvärden och genererade hovmän.`,
     coverageNotePrefixSv: names => `Av 291 former i källkartan har 2 godkänts som ungefärliga områden. Mingriket och Osmanska riket saknar godkänd form och är inte spelbara. ${names.length} riken är spelbara. `,

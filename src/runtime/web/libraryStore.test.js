@@ -664,10 +664,10 @@ test('a web library read replaces an older shipped start in place and leaves del
   assert.equal(before.manifest.selectedScenarioId,'egypt-3000bc');
   // (a) The next read replaces the old copy where it stands, map files included.
   await store.ensureSeeded();
-  assert.equal(record().json.world.historicalScenario.contentVersion,'1.2.0');
-  assert.ok(JSON.stringify(record().json) === JSON.stringify(shipped.json),'the installed copy is the shipped 1.2.0');
+  assert.equal(record().json.world.historicalScenario.contentVersion,'1.3.0');
+  assert.ok(JSON.stringify(record().json) === JSON.stringify(shipped.json),'the installed copy is the shipped 1.3.0');
   assert.equal(rome().feature.properties.seat,true,'the shipped city file makes Rome a seat');
-  assert.deepEqual(logged,['[historical start] charlemagne-800 updated to 1.2.0']);
+  assert.deepEqual(logged,['[historical start] charlemagne-800 updated to 1.3.0']);
   assert.equal(record().meta.createdAt,shipped.meta.createdAt);
   assert.equal(record().meta.playCount,5,'the play count stays');
   assert.deepEqual(record().meta.countryNameOverrides,{ 'papal-states': 'Påvens land' },'the renamed country stays');

@@ -34,10 +34,10 @@ test('the Charlemagne date passes every new-game guard', () => {
   }
 });
 // The ten AD 800 playables in package order: [polity, lawful ruler, succession law].
-const AD800_PLAYABLES = [['carolingian-realm', 'karl', 'primogeniture'], ['papal-states', 'leo-iii', 'merit'],
+const AD800_PLAYABLES = [['carolingian-realm', 'karl', 'primogeniture'], ['papal-states', 'leo-iii', 'elective'],
   ['tang-empire', 'dezong', 'primogeniture'], ['abbasid-caliphate', 'harun-ar-rashid', 'merit'], ['byzantine-empire', 'eirene-of-athens', 'merit'],
   ['silla', 'aejang', 'primogeniture'], ['emirate-of-cordoba', 'al-hakam-i', 'primogeniture'], ['aghlabid-emirate', 'ibrahim-ibn-al-aghlab', 'primogeniture'],
-  ['kingdom-of-asturias', 'alfonso-ii-asturias', 'merit'], ['duchy-of-benevento', 'grimoald-iii-benevento', 'merit']];
+  ['kingdom-of-asturias', 'alfonso-ii-asturias', 'elective'], ['duchy-of-benevento', 'grimoald-iii-benevento', 'merit']];
 test('each AD 800 polity starts in realm and family mode with its own ruler and succession law', () => {
   const scenario = candidate(read('charlemagne-800')), before = structuredClone(scenario), h = scenario.data.world.historicalScenario;
   const started = {};

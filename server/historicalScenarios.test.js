@@ -33,7 +33,7 @@ const DOSSIER_POLITIES = [
   ['tang-empire','Tangriket','dezong','primogeniture','changan'],['abbasid-caliphate','Abbasidiska kalifatet','harun-ar-rashid','merit','raqqa'],
   ['byzantine-empire','Bysantinska riket','eirene-of-athens','merit','constantinople'],['silla','Silla','aejang','primogeniture','gyeongju'],
   ['emirate-of-cordoba','Emiratet Córdoba','al-hakam-i','primogeniture','cordoba'],['aghlabid-emirate','Aghlabidiska emiratet','ibrahim-ibn-al-aghlab','primogeniture','kairouan'],
-  ['kingdom-of-asturias','Kungariket Asturien','alfonso-ii-asturias','merit','oviedo'],['duchy-of-benevento','Furstendömet Benevento','grimoald-iii-benevento','merit','benevento'],
+  ['kingdom-of-asturias','Kungariket Asturien','alfonso-ii-asturias','elective','oviedo'],['duchy-of-benevento','Furstendömet Benevento','grimoald-iii-benevento','merit','benevento'],
 ];
 const PLAYABLE_IDS = [POLITY,PAPAL,...DOSSIER_POLITIES.map(([id]) => id)];
 const dossier = readJson('courts/ad800-courts.json');
@@ -41,7 +41,7 @@ const dossierPolity = id => dossier.polities.find(p => p.polityId === id);
 
 test('the package validates for its bookmark and carries the reviewed names',() => {
   const input = loadPackage(), { h,game,bundle } = input;
-  assert.deepEqual(validate(input),{ ok: true,contentId: ID,contentVersion: '1.2.0',date: DATE,polityId: POLITY });
+  assert.deepEqual(validate(input),{ ok: true,contentId: ID,contentVersion: '1.3.0',date: DATE,polityId: POLITY });
   assert.equal(h.bookmarkDate,DATE);
   assert.equal(game.country,POLITY);
   assert.deepEqual(h.playablePolityIds,PLAYABLE_IDS);
@@ -53,13 +53,13 @@ test('the package validates for its bookmark and carries the reviewed names',() 
 test('every playable polity passes both validators, and polity order follows the source features',() => {
   const input = loadPackage(), { h } = input;
   for (const polityId of h.playablePolityIds) {
-    assert.deepEqual(validateHistoricalScenario(input,{ date: DATE,polityId }),{ ok: true,contentId: ID,contentVersion: '1.2.0',date: DATE,polityId });
+    assert.deepEqual(validateHistoricalScenario(input,{ date: DATE,polityId }),{ ok: true,contentId: ID,contentVersion: '1.3.0',date: DATE,polityId });
     assert.equal(validateHistoricalCourt(h,{ date: DATE,polityId }).ok,true,polityId);
   }
   // Polity colours are assigned by list position, so the Papal States addition must not move any polity.
   assert.deepEqual(h.polities.map(p => p.id),[...new Set([POLITY,...review.mapMappings.map(m => m.polityId)])]);
   const papal = review.mapMappings.find(m => m.polityId === PAPAL);
-  assert.deepEqual(h.polities.find(p => p.id === PAPAL),{ id: PAPAL,nameSv: 'Kyrkostaten',sourceIds: ['hbm',...regional(papal.sourceIds)],boundary: 'approximate',noteSv: papal.noteSv });
+  assert.deepEqual(h.polities.find(p => p.id === PAPAL),{ id: PAPAL,nameSv: 'Kyrkostaten',sourceIds: ['hbm',...regional(papal.sourceIds)],boundary: 'approximate',noteSv: papal.noteSv,kind: 'state' });
   assert.equal(h.courtSeeds[POLITY].successionLaw,undefined);
 });
 
@@ -430,7 +430,7 @@ test('Leo III rules the Papal States from Rome as a documented pope',() => {
   assert.equal(court.polityId,PAPAL);
   assert.equal(court.seatId,church.seatSettlementId);
   assert.equal(court.rulerId,'leo-iii');
-  assert.equal(court.successionLaw,'merit');
+  assert.equal(court.successionLaw,'elective');
   assert.equal(church.aliveOnBookmark,true);
   assert.equal(leo.name,church.popeNameSv);
   assert.equal(leo.identityOrigin,'documented');
@@ -476,19 +476,19 @@ test('Leo III keeps a generated household of his own and three generated courtie
     for (const claim of Object.values(row.claims)) for (const id of claim.sourceIds) assert.ok(Object.hasOwn(h.sources,id),`${row.id}: ${id}`);
 });
 
-test('a realm start of the Papal States follows Leo III under merit succession',() => {
+test('a realm start of the Papal States follows Leo III under elective succession',() => {
   const { h } = loadPackage();
   const state = createHistoricalCharacterSystem({ historicalScenario: h,date: DATE,polityId: PAPAL,seed: 9 });
   const view = getCharacterPresentation(state);
   assert.equal(state.realm.id,PAPAL);
-  assert.equal(state.realm.successionLaw,'merit');
+  assert.equal(state.realm.successionLaw,'elective');
   assert.equal(state.identity.familyId,'leo-household');
   assert.equal(view.representative.id,'leo-iii');
   assert.equal(state.offices.ruler.name,'Påve');
   assert.equal(state.offices.ruler.holderId,'leo-iii');
   assert.equal(state.religions['latin-church'].leaderId,'leo-iii');
   assert.equal(state.cities.rome.familyId,'leo-household');
-  assert.equal(view.succession.law,'merit');
+  assert.equal(view.succession.law,'elective');
 });
 
 test('a family start of the Papal States follows a generated house and keeps Leo III in office',() => {
@@ -497,7 +497,7 @@ test('a family start of the Papal States follows a generated house and keeps Leo
   assert.equal(state.identity.familyId,h.courtSeeds[PAPAL].families[0].id);
   assert.notEqual(getCharacterPresentation(state).representative.id,'leo-iii');
   assert.equal(state.offices.ruler.holderId,'leo-iii');
-  assert.equal(state.realm.successionLaw,'merit');
+  assert.equal(state.realm.successionLaw,'elective');
 });
 
 test('the start card offers both AD 800 polities and a prepared start reaches the Papal States',() => {
@@ -534,7 +534,7 @@ test('the eight dossier polities are playable in dossier order with the ruled su
   const { h } = loadPackage();
   assert.deepEqual(DOSSIER_POLITIES.map(([id]) => id),dossier.polities.filter(p => p.status === 'ready').map(p => p.polityId));
   assert.deepEqual(h.playablePolityIds.map(id => [id,h.courtSeeds[id].successionLaw ?? 'primogeniture']),
-    [[POLITY,'primogeniture'],[PAPAL,'merit'],...DOSSIER_POLITIES.map(([id,,,law]) => [id,law])]);
+    [[POLITY,'primogeniture'],[PAPAL,'elective'],...DOSSIER_POLITIES.map(([id,,,law]) => [id,law])]);
   for (const [id,name,ruler,,seat] of DOSSIER_POLITIES) {
     const court = h.courtSeeds[id], polity = dossierPolity(id);
     assert.equal(h.polities.find(p => p.id === id).nameSv,name,id);
@@ -556,6 +556,19 @@ test('each dossier court states what the game simplifies, in the dossier words, 
     assert.ok(note.startsWith(h.courtSeeds[POLITY].mechanics.noteSv),id);
     for (const line of lines) assert.ok(note.includes(line),`${id}: ${line}`);
   }
+});
+
+test('Asturien carries the elective-rule sentence in its mechanics note',() => {
+  assert.ok(loadPackage().h.courtSeeds['kingdom-of-asturias'].mechanics.noteSv.includes(ENGINE_LIMIT_TEXT_SV['elective-rule']));
+});
+
+test('the three released packages mark every polity record as a state; Egypt\'s records carry no kind',() => {
+  for (const id of ['charlemagne-800','john-1200','world-1500']) {
+    const { polities } = readJson(`${id}/scenario.json`).data.world.historicalScenario;
+    assert.ok(polities.length > 0,id);
+    for (const p of polities) assert.equal(p.kind,'state',`${id}: ${p.id}`);
+  }
+  for (const p of readJson('egypt-3000bc/scenario.json').data.world.historicalScenario.polities) assert.equal(Object.hasOwn(p,'kind'),false,p.id);
 });
 
 test('the generated courtiers of each dossier court have culture names and game birth years 20 to 45 years before 800',() => {

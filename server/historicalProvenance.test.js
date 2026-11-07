@@ -59,7 +59,7 @@ test('every built package and shipped start keeps the build record of its releas
 
 test('the 800 package pins world_800',async () => {
   const manifest = await seedJson('charlemagne-800/manifest.json');
-  assert.equal(manifest.contentVersion,'1.2.0');
+  assert.equal(manifest.contentVersion,'1.3.0');
   assert.deepEqual(manifest.authoredInputs.map(i => i.fileName),['authored-scenarios.mjs','ad800-review.json','dossier-courts.mjs','courts/ad800-courts.json']);
   assert.equal(manifest.sourceFiles.find(f => f.fileName === 'hbm-world_800.geojson').sha256,SOURCE_800);
   assert.equal(sha(await fs.readFile(new URL('sources/hbm-world_800.geojson',SEED))),SOURCE_800);

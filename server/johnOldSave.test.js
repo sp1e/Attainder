@@ -46,7 +46,7 @@ function writeRelease100Seed(dir) {
 const START = { date: '1200-12-31', seed: 7, difficulty: 'normal' };
 const MODES = ['realm', 'family'];
 
-test('a campaign started on the built-in John 1.0.0 loads, restores from its companion and plays a year after the 1.1.0 refresh', () => {
+test('a campaign started on the built-in John 1.0.0 loads, restores from its companion and plays a year after the 1.2.0 refresh', () => {
   const root = mkdtempSync(path.join(os.tmpdir(), 'attainder-john-100-')), run = desktop(root), seed100 = path.join(root, 'seed-1.0.0');
   writeRelease100Seed(seed100);
   try {
@@ -65,15 +65,15 @@ test('a campaign started on the built-in John 1.0.0 loads, restores from its com
       });
       keep({ campaigns, companion: store.exportScenarioBundle('default') });
     `, seed100);
-    // The next start runs the 1.1.0 app: same map stamp, revision 2, so the built-in refreshes in place.
+    // The next start runs the 1.2.0 app: same map stamp, revision 3, so the built-in refreshes in place.
     run(`
       store.ensureScenarioStore();
       const world = store.getScenarioDetails('default').data.world;
       assert.equal(world.builtInMap, 'historical-john-1200-v1');
-      assert.equal(world.builtInRevision, 2);
-      assert.equal(world.historicalScenario.contentVersion, '1.1.0');
+      assert.equal(world.builtInRevision, 3);
+      assert.equal(world.historicalScenario.contentVersion, '1.2.0');
       assert.deepEqual(world.historicalScenario.playablePolityIds, ['johns-realms', 'khmer-angkor', 'almohad', 'france-capetian']);
-      const { campaigns, companion: companion100 } = recall(), companion110 = store.exportScenarioBundle('default');
+      const { campaigns, companion: companion100 } = recall(), companion120 = store.exportScenarioBundle('default');
       for (const saved of campaigns) {
         const loaded = store.getGameDetails(saved.id);
         assert.equal(loaded.game.scenarioId, 'default', saved.id + ': the campaign stays on the built-in');
@@ -81,13 +81,13 @@ test('a campaign started on the built-in John 1.0.0 loads, restores from its com
         const bundle = store.exportGameBundle(saved.id);
         assert.deepEqual(bundle.data, saved.bundle.data);
         playsAYear(loaded.data.world, saved.id + ' loaded');
-        for (const [label, companion] of [['1.1.0', companion110], ['1.0.0', companion100]]) {
+        for (const [label, companion] of [['1.2.0', companion120], ['1.0.0', companion100]]) {
           const restored = store.restoreGameBundle({ bundle, scenarioBundle: companion });
           assert.deepEqual(restored.data.world, bundle.data.world, saved.id + ' restored with ' + label);
           playsAYear(restored.data.world, saved.id + ' restored with ' + label);
         }
-        const rebound = store.restoreScenarioForGame(saved.id, companion110);
-        assert.deepEqual(rebound.data.world, saved.data.world, saved.id + ': its companion is restored from the 1.1.0 export');
+        const rebound = store.restoreScenarioForGame(saved.id, companion120);
+        assert.deepEqual(rebound.data.world, saved.data.world, saved.id + ': its companion is restored from the 1.2.0 export');
         playsAYear(rebound.data.world, saved.id + ' rebound');
       }
       const khmer = store.createGame({ name: 'khmer', scenarioId: 'default', setActive: false,

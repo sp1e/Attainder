@@ -10,7 +10,7 @@ import { HISTORICAL_BOOKMARKS, shippedStartNeedsUpgrade } from './historicalStar
 import { charlemagneRelease110 } from './fixtures/releaseFixtures.js';
 
 test('each shipped start names the content version its built package carries', () => {
-  assert.deepEqual(HISTORICAL_BOOKMARKS.map(({ id, contentVersion }) => [id,contentVersion]),[['egypt-3000bc','1.0.0'],['charlemagne-800','1.2.0'],['world-1500','1.0.0']]);
+  assert.deepEqual(HISTORICAL_BOOKMARKS.map(({ id, contentVersion }) => [id,contentVersion]),[['egypt-3000bc','1.0.0'],['charlemagne-800','1.3.0'],['world-1500','1.1.0']]);
   for (const { id, contentVersion } of HISTORICAL_BOOKMARKS) {
     const built = JSON.parse(readFileSync(new URL(`./seed/historical/${id}/scenario.json`,import.meta.url),'utf8'));
     const manifest = JSON.parse(readFileSync(new URL(`./seed/historical/${id}/manifest.json`,import.meta.url),'utf8'));
@@ -307,8 +307,8 @@ test('a desktop library read replaces an older shipped start in place and leaves
     assert.equal(manifest.selectedScenarioId,'egypt-3000bc');
     // (a) The next read replaces the old copy where it stands, map files included.
     assert.deepEqual(boot().at(-1),first.at(-1),'the catalog keeps its order');
-    assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.2.0');
-    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the installed copy is the shipped 1.2.0');
+    assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.3.0');
+    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the installed copy is the shipped 1.3.0');
     assert.equal(romeIsSeat(citiesPath),true,'the shipped city file makes Rome a seat');
     assert.equal(readJson(metaPath).createdAt,createdAt);
     assert.equal(readJson(metaPath).playCount,5,'the play count stays');
@@ -337,7 +337,7 @@ test('a desktop library read replaces an older shipped start in place and leaves
   } finally { rmSync(root,{recursive:true,force:true}); }
 });
 
-test('the installed 1.1.0 copy, as that release shipped it, is replaced in place by 1.2.0 with its ten seats', () => {
+test('the installed 1.1.0 copy, as that release shipped it, is replaced in place by 1.3.0 with its ten seats', () => {
   const { root, boot, worldPath, citiesPath, metaPath } = desktopLibrary(), release = charlemagneRelease110();
   const seats = file => readJson(file).features.filter(f => f.properties.seat).map(f => f.id);
   try {
@@ -349,8 +349,8 @@ test('the installed 1.1.0 copy, as that release shipped it, is replaced in place
     assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.1.0');
     assert.deepEqual(seats(citiesPath),['aachen','rome']);
     boot();
-    assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.2.0');
-    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the installed copy is the shipped 1.2.0');
+    assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.3.0');
+    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the installed copy is the shipped 1.3.0');
     assert.equal(hash(readFileSync(citiesPath,'utf8')),hash(shippedCities),'the city file is the shipped one');
     assert.deepEqual(seats(citiesPath),['aachen','changan','raqqa','constantinople','gyeongju','cordoba','kairouan','oviedo','benevento','rome']);
     assert.equal(readJson(worldPath).historicalScenario.playablePolityIds.length,10);
@@ -380,7 +380,7 @@ test('a desktop upgrade cut short before world.json is repeated on the next read
       assert.equal(temporary.length,leftover,`${fsCall}: temporary world files after the crash`);
       for (const name of temporary) assert.match(name,/^world\.json\.[0-9]+\.[0-9]+\.tmp$/,fsCall);
       boot();
-      assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${fsCall}: the next read finishes at the shipped 1.2.0`);
+      assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${fsCall}: the next read finishes at the shipped 1.3.0`);
       assert.equal(romeIsSeat(citiesPath),true,fsCall);
       assert.deepEqual(readdirSync(path.dirname(worldPath)).filter(name => name.startsWith('world.json.')),[],`${fsCall}: no half-written world file is left`);
     } finally { rmSync(root,{recursive:true,force:true}); }

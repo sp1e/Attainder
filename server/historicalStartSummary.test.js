@@ -48,7 +48,7 @@ test('the Charlemagne package summarises its ten playable courts', () => {
   assert.equal(summary.sourceStamp, null);
   assert.equal(summary.contentId, 'charlemagne-800');
   assert.equal(summary.eraId, 'early-middle-ages');
-  assert.equal(summary.contentVersion, '1.2.0');
+  assert.equal(summary.contentVersion, '1.3.0');
   assert.equal(summary.date, '0800-12-25');
   assert.equal(summary.name, 'Karls rike (karolingiska riket), 800 e.Kr.');
   assert.deepEqual(summary.polities.map(p => [p.id, p.regionId]), [['carolingian-realm', 'europe'], ['papal-states', 'europe'],

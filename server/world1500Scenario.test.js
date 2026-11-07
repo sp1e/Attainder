@@ -11,6 +11,7 @@ import { historicalStartSummary } from './historicalStartSummary.js';
 import { advanceCharacters, getCharacterPresentation } from './characters/index.js';
 import { addGameMonths } from './gameDates.js';
 import { authoredScenario, sources as sharedSources } from './seed/historical/authored-scenarios.mjs';
+import { ENGINE_LIMIT_TEXT_SV } from './seed/historical/dossier-courts.mjs';
 
 // World 1500: Aztekriket is the dossier primary and Inkariket a dossier extra.
 const DATE = '1500-12-31', ID = 'world-1500';
@@ -40,11 +41,11 @@ const COVERAGE = [
   { area: 'Antarctica', status: 'unresolved', sourceIds: ['naturalEarth'], noteSv: 'Fysisk geografi visas. Inget historiskt ägande eller någon befolkning tillskrivs området.' },
 ];
 
-test('World 1500 lists Aztekriket first and Inkariket second, with the ruled laws', () => {
+test('World 1500 lists Aztekriket first and Inkariket second, both under the elective law', () => {
   const h = authored();
   assert.deepEqual(h.playablePolityIds, ['aztec-empire', 'inca-empire']);
-  assert.equal(h.courtSeeds['aztec-empire'].successionLaw, 'merit');
-  assert.equal(h.courtSeeds['inca-empire'].successionLaw, 'primogeniture');
+  assert.equal(h.courtSeeds['aztec-empire'].successionLaw, 'elective');
+  assert.equal(h.courtSeeds['inca-empire'].successionLaw, 'elective');
   assert.deepEqual(h.settlements.map(s => [s.id, s.polityId, s.regionId]), [['tenochtitlan', 'aztec-empire', 'hbm-ad1500-80'], ['cuzco', 'inca-empire', 'hbm-ad1500-83']]);
   assert.equal(h.polities[0].id, 'aztec-empire');
   assert.equal(h.polities[0].nameSv, 'Aztekriket');
@@ -55,12 +56,13 @@ test('the dossier primary refuses to build without the dossier', () => {
   assert.throws(() => authoredScenario(ID), /world-1500: the primary aztec-empire comes from a court dossier/);
 });
 
-test('the package carries the AD 1500 bookmark, era label and first content version', () => {
+test('the package carries the AD 1500 bookmark, era label and content version 1.1.0', () => {
   const h = authored();
   assert.equal(h.contentId, ID);
   assert.equal(h.bookmarkDate, DATE);
   assert.equal(h.eraLabelSv, '1500 e.Kr.');
-  assert.equal(h.contentVersion, '1.0.0');
+  assert.equal(h.contentVersion, '1.1.0');
+  assert.equal(loadPackage().assetManifest.contentVersion, '1.1.0');
 });
 
 test('the rulers hold their dossier titles, and Huáscar belongs to Huayna Capac\'s family', () => {
@@ -132,10 +134,16 @@ test('both playable polities pass the scenario and court validators in the built
   assert.equal(game.country, 'aztec-empire');
   assert.equal(bundle.scenario.name, 'Aztekriket, 1500 e.Kr.');
   for (const polityId of h.playablePolityIds) {
-    assert.deepEqual(validateHistoricalScenario(input, { date: DATE, polityId }), { ok: true, contentId: ID, contentVersion: '1.0.0', date: DATE, polityId });
+    assert.deepEqual(validateHistoricalScenario(input, { date: DATE, polityId }), { ok: true, contentId: ID, contentVersion: '1.1.0', date: DATE, polityId });
     const checked = validateHistoricalCourt(h, { date: DATE, polityId });
     assert.equal(checked.ok, true, `${polityId}: ${checked.code}`);
   }
+});
+
+test('every built polity record is a state, and both courts carry the elective-rule sentence in their mechanics note', () => {
+  const { h } = loadPackage();
+  assert.deepEqual(h.polities.map(p => [p.id, p.kind]), [['aztec-empire', 'state'], ['inca-empire', 'state']]);
+  for (const id of h.playablePolityIds) assert.ok(h.courtSeeds[id].mechanics.noteSv.includes(ENGINE_LIMIT_TEXT_SV['elective-rule']), id);
 });
 
 test('the built polity records come from the review mappings, with hbm first and no Getty record', () => {
@@ -196,7 +204,7 @@ test('both Getty seat records are city sources and appear in the ODC-By notice',
   }
 });
 
-// The released rows of Egypt 1.0.0, John 1.1.0 and Charlemagne 1.2.0 as [file, bytes, sha256]; a change needs a version bump.
+// The released rows of Egypt 1.0.0, John 1.2.0, Charlemagne 1.3.0 and world-1500 1.1.0 as [file, bytes, sha256]; a change needs a version bump.
 const RELEASED_ROWS = [
   ['egypt-3000bc/regions.geojson', 2033872, '324681692eda15eb8d8927cdec6b3a2f72f279da6ab37ef046927c7e198fcefd'],
   ['egypt-3000bc/cities.geojson', 406, '9640cbde26814a1ca01560d66f9a4b67a87a47c75471513b39dc03acc0fca3a8'],
@@ -204,25 +212,27 @@ const RELEASED_ROWS = [
   ['egypt-3000bc/manifest.json', 2489, 'addff0749e22622951840a5859c91ed73c8227d61338ea63b9cfc9a46ba5c716'],
   ['john-1200/regions.geojson', 2077205, '94308b5d9fabf18b87b3742f82dbc35d7286beb03a4d61e65e86f725d4c2d440'],
   ['john-1200/cities.geojson', 1953, 'cefed90d6abde489be1fde2273d97ab54336a2825c24dc928b412c7e0cf0ece5'],
-  ['john-1200/scenario.json', 4552378, 'ddd7eeb3dd615a0e1e6deaf1aa6fae842b47952983958fc6ac8083acf93d3a40'],
-  ['john-1200/manifest.json', 2757, 'e4885980bd6b950e56074e04d1dabe78bbb736e1e1f156aab42c9616a94b11e2'],
+  ['john-1200/scenario.json', 4552741, '719bf933e861e3368b6da8e496a88038e80b8535e43cface9d0248b3d12020e8'],
+  ['john-1200/manifest.json', 2871, '6d4d10137e02a46d48e1ebc0b84973892e4b0ecf29e1bc554d07516a48642e36'],
   ['charlemagne-800/regions.geojson', 2191514, '83cd982d563954d49d110bd616e71196a4369b0f7f659c209945514514e3217c'],
   ['charlemagne-800/cities.geojson', 4560, 'eef2d09798684f6f5dd83a16d791a206b307ced19a7416468e6fa0f1564d5d7b'],
-  ['charlemagne-800/scenario.json', 4631554, '7a4019ad938e9ae105a195cd241534322a10bd4ffe499397a299b0298bc8f8ae'],
-  ['charlemagne-800/manifest.json', 2816, '5793b016409cf53f5cfea6763c62dc5ac6301e4d0e00e2229a36b1a720043a14'],
+  ['charlemagne-800/scenario.json', 4631980, 'fba69f216138fddc8282c5b076598e086dcb93e88d188bda3488e44fb9eac726'],
+  ['charlemagne-800/manifest.json', 2930, 'b694b07e0b332857ad296996f82fb83307c0dff8c9946a042e3c9ff2d1c1a3cb'],
+  ['world-1500/regions.geojson', 2049578, 'd4e90914ae1fc8e8c37c060115d1dad5fb54506e7cc1b3fce04b68f40bfb99a9'],
+  ['world-1500/cities.geojson', 830, '5466fb0f0a5aa4ae067732dc405fa6a4e7c45eb95ea583b942da88507f31f52d'],
+  ['world-1500/scenario.json', 4748891, '8435710b9799700e8266ee30cd2769acd9e878bdec2aa542017f9f39b45d56f5'],
+  ['world-1500/manifest.json', 2854, 'ef392bb6d73aef48a5dfbd7558eff7bc6d92fd279ea702c3aab966d75626c073'],
 ];
 
-test('releases.json pins world_1500 and keeps the Egypt, Charlemagne and John rows and bytes', () => {
+test('releases.json pins world_1500 and every released row, and each file keeps its bytes', () => {
   const releases = readJson('releases.json');
   const source = releases.sources.find(s => s.file === 'sources/hbm-world_1500.geojson');
   assert.equal(source.sha256, 'd01ffc9b80629787f13d2b1c2f881f005bc0164433548e30f5c058ddee0bfc7b');
-  const released = releases.outputs.filter(o => !o.file.startsWith(`${ID}/`));
-  assert.deepEqual(released.map(o => [o.file, o.bytes, o.sha256]), RELEASED_ROWS);
+  assert.deepEqual(releases.outputs.map(o => [o.file, o.bytes, o.sha256]), RELEASED_ROWS);
   for (const [file, bytes, sha256] of RELEASED_ROWS) {
     const content = readFileSync(new URL(`./seed/historical/${file}`, import.meta.url));
     assert.deepEqual([content.length, createHash('sha256').update(content).digest('hex')], [bytes, sha256], file);
   }
-  assert.deepEqual(releases.outputs.filter(o => o.file.startsWith(`${ID}/`)).map(o => o.file), ['regions.geojson', 'cities.geojson', 'scenario.json', 'manifest.json'].map(f => `${ID}/${f}`));
 });
 
 // ---- Installed, listed and played ----

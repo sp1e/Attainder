@@ -22,7 +22,7 @@ const desktop = root => body => execFileSync(process.execPath, ['--input-type=mo
 const START = { date: '0800-12-25', seed: 7, difficulty: 'normal' };
 const CAMPAIGNS = [['carolingian-realm', 'realm'], ['papal-states', 'family']];
 
-test('a campaign started on the shipped Charlemagne 1.1.0 loads, restores from its companion and plays a year after the 1.2.0 upgrade', () => {
+test('a campaign started on the shipped Charlemagne 1.1.0 loads, restores from its companion and plays a year after the 1.3.0 upgrade', () => {
   const root = mkdtempSync(path.join(os.tmpdir(), 'attainder-charlemagne-110-')), run = desktop(root);
   const releaseFile = path.join(root, 'charlemagne-800-1.1.0.json');
   writeFileSync(releaseFile, JSON.stringify(charlemagneRelease110()));
@@ -42,12 +42,12 @@ test('a campaign started on the shipped Charlemagne 1.1.0 loads, restores from i
       });
       keep({ campaigns, companion: store.exportScenarioBundle('charlemagne-800') });
     `);
-    // The next start of the app reads the library, which replaces the installed copy with 1.2.0.
+    // The next start of the app reads the library, which replaces the installed copy with 1.3.0.
     run(`
       store.ensureScenarioStore();
-      assert.equal(store.getScenarioDetails('charlemagne-800').data.world.historicalScenario.contentVersion, '1.2.0');
-      const { campaigns, companion: companion110 } = recall(), companion120 = store.exportScenarioBundle('charlemagne-800');
-      assert.equal(companion120.data.world.historicalScenario.playablePolityIds.length, 10);
+      assert.equal(store.getScenarioDetails('charlemagne-800').data.world.historicalScenario.contentVersion, '1.3.0');
+      const { campaigns, companion: companion110 } = recall(), companion130 = store.exportScenarioBundle('charlemagne-800');
+      assert.equal(companion130.data.world.historicalScenario.playablePolityIds.length, 10);
       const playsAYear = (world, label) => {
         const state = world.characterSystem, target = addGameMonths(state.date, 12);
         const year = advanceCharacters(state, target, { id: 'after-upgrade' });
@@ -63,13 +63,13 @@ test('a campaign started on the shipped Charlemagne 1.1.0 loads, restores from i
         const bundle = store.exportGameBundle(saved.id);
         assert.deepEqual(bundle.data, saved.bundle.data);
         playsAYear(loaded.data.world, saved.id + ' loaded');
-        for (const [label, companion] of [['1.2.0', companion120], ['1.1.0', companion110]]) {
+        for (const [label, companion] of [['1.3.0', companion130], ['1.1.0', companion110]]) {
           const restored = store.restoreGameBundle({ bundle, scenarioBundle: companion });
           assert.deepEqual(restored.data.world, bundle.data.world, saved.id + ' restored with ' + label);
           playsAYear(restored.data.world, saved.id + ' restored with ' + label);
         }
-        const rebound = store.restoreScenarioForGame(saved.id, companion120);
-        assert.deepEqual(rebound.data.world, saved.data.world, saved.id + ': its companion is restored from the 1.2.0 export');
+        const rebound = store.restoreScenarioForGame(saved.id, companion130);
+        assert.deepEqual(rebound.data.world, saved.data.world, saved.id + ': its companion is restored from the 1.3.0 export');
         playsAYear(rebound.data.world, saved.id + ' rebound');
       }
     `);

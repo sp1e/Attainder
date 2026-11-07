@@ -43,7 +43,7 @@ async function storeJohn100(idb) {
   await idbDelete(STORES.scenarioMeta, 'default');
 }
 
-test('a web library holding John at revision 1 refreshes to 1.1.0, keeps the map stamp, and its campaigns load, restore and play a year', async () => {
+test('a web library holding John at revision 1 refreshes to 1.2.0, keeps the map stamp, and its campaigns load, restore and play a year', async () => {
   installFakeIndexedDb();
   const originalFetch = globalThis.fetch, restoreClock = tickingClock();
   globalThis.fetch = async input => String(input).startsWith('file:') ? new Response(await readFile(new URL(String(input)))) : originalFetch(input);
@@ -69,16 +69,16 @@ test('a web library holding John at revision 1 refreshes to 1.1.0, keeps the map
     await store.ensureSeeded();
     const world = await defaultWorld();
     assert.equal(world.builtInMap, 'historical-john-1200-v1');
-    assert.equal(world.builtInRevision, 2);
-    assert.equal(world.historicalScenario.contentVersion, '1.1.0');
+    assert.equal(world.builtInRevision, 3);
+    assert.equal(world.historicalScenario.contentVersion, '1.2.0');
     assert.deepEqual(world.historicalScenario.playablePolityIds, ['johns-realms', 'khmer-angkor', 'almohad', 'france-capetian']);
-    const companion110 = await (await store.handleScenarios({ method: 'GET', segments: ['default', 'export'], query: new URLSearchParams() })).json();
+    const companion120 = await (await store.handleScenarios({ method: 'GET', segments: ['default', 'export'], query: new URLSearchParams() })).json();
     for (const saved of campaigns) {
       const loaded = await call('GET', [saved.id]);
       assert.equal(loaded.game.scenarioId, 'default', `${saved.id}: the campaign stays on the built-in`);
       assert.deepEqual(loaded.data, saved.data, `${saved.id}: the campaign keeps its own 1.0.0 world`);
       playsAYear(loaded.data.world, `${saved.id} loaded`);
-      for (const [label, companion] of [['1.1.0', companion110], ['1.0.0', companion100]]) {
+      for (const [label, companion] of [['1.2.0', companion120], ['1.0.0', companion100]]) {
         const restored = await call('POST', ['restore'], { bundle: saved.bundle, scenarioBundle: companion });
         assert.deepEqual(restored.data.world, saved.bundle.data.world, `${saved.id} restored with ${label}`);
         playsAYear(restored.data.world, `${saved.id} restored with ${label}`);
