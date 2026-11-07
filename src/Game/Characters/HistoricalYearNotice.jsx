@@ -18,6 +18,9 @@ const readTheme = () => {
   return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 };
 
+// Elements the Tab key can reach inside the dialog.
+const FOCUSABLE = "a[href], button:not(:disabled), summary, [tabindex]:not([tabindex=\"-1\"])";
+
 const selectTurnKey = (world) => latestTurnEventIds(world).join("\n");
 const selectStart = (game) => game?.startDate ?? "";
 const selectNow = (game) => game?.gameDate ?? "";
@@ -36,21 +39,25 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
   const dialogRef = useRef(null);
   const openerRef = useRef(null);
   const checkRef = useRef(null);
+  const mountedRef = useRef(true);
 
-  // Looks again at everything that decides whether a window is due. A newer call
-  // makes an older one still waiting for the catalog stand down.
+  // Looks again at everything that decides whether a window is due. A newer
+  // call, a change of inputs or an unmount makes an older one that is still
+  // waiting for the catalog stand down.
   useEffect(() => {
+    const ready = () => !hidden && Boolean(gameId) && !noticeRef.current && !isSimulationBusy()
+      && unseenEvents.unseenInTurn(String(turnKey || "").split("\n").filter(Boolean)).length === 0;
     const check = async () => {
-      if (hidden || !gameId || noticeRef.current) return;
-      if (isSimulationBusy()) return;
-      if (unseenEvents.unseenInTurn(String(turnKey || "").split("\n").filter(Boolean)).length > 0) return;
+      if (!ready()) return;
       const start = parseGameDate(startDate);
       const due = historicalYearSeen.pendingWindow(gameId, { startDate, gameDate });
       if (!start || !due) return;
       const token = ++tokenRef.current;
+      // Taken before the wait, so closing returns focus to where the player was.
+      const opener = typeof document !== "undefined" ? document.activeElement : null;
       let catalog;
       try { catalog = await loadHistoricalEventCatalog(); } catch { return; }
-      if (token !== tokenRef.current || noticeRef.current || isSimulationBusy()) return;
+      if (token !== tokenRef.current || !mountedRef.current || !ready()) return;
       const groups = eventsForYears(catalog, yearsClosedBetween(due.from, due.to), start.year);
       const events = groups.flatMap((group) => group.events);
       if (events.length === 0) {
@@ -58,7 +65,7 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
         return;
       }
       noticeRef.current = { to: due.to };
-      openerRef.current = typeof document !== "undefined" ? document.activeElement : null;
+      openerRef.current = opener;
       setNotice({
         to: due.to,
         events: events.slice(0, MAX_NOTICE_EVENTS),
@@ -69,39 +76,82 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
     checkRef.current = check;
     tokenRef.current += 1;
     check();
+    return () => { tokenRef.current += 1; };
   }, [gameId, startDate, gameDate, turnKey, hidden]);
 
   useEffect(() => {
+    mountedRef.current = true;
     const again = () => checkRef.current?.();
     window.addEventListener(UNSEEN_EVENTS_CHANGED, again);
     const unsubscribe = subscribeSimulationIdle(again);
     return () => {
+      mountedRef.current = false;
       window.removeEventListener(UNSEEN_EVENTS_CHANGED, again);
       unsubscribe();
     };
   }, []);
 
-  useEffect(() => {
-    if (notice && !hidden) dialogRef.current?.focus();
-  }, [notice, hidden]);
-
-  if (!notice || hidden) return null;
-
+  const open = Boolean(notice) && !hidden;
   const close = () => {
     historicalYearSeen.markSeen(gameId, notice.to);
     noticeRef.current = null;
     setNotice(null);
     try { openerRef.current?.focus?.(); } catch { /* the opener is gone */ }
   };
-  const onKeyDown = (event) => {
-    if (event.key !== "Escape") return;
-    event.preventDefault();
-    event.stopPropagation();
+  const closeRef = useRef(close);
+  useEffect(() => { closeRef.current = close; });
+
+  useEffect(() => {
+    if (open) dialogRef.current?.focus();
+  }, [open]);
+
+  // The dialog is modal: Escape and Tab are taken in the capture phase, ahead of
+  // the character panel underneath, and focus cannot rest outside it.
+  useEffect(() => {
+    if (!open) return undefined;
+    const reachable = () => [...(dialogRef.current?.querySelectorAll(FOCUSABLE) ?? [])]
+      .filter((node) => node.tagName === "SUMMARY" || !node.closest("details:not([open])"));
+    const onKeyDown = (event) => {
+      if (event.defaultPrevented) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeRef.current();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const dialog = dialogRef.current;
+      const items = reachable();
+      if (items.length === 0) { event.preventDefault(); dialog?.focus(); return; }
+      const active = document.activeElement;
+      const outside = !dialog?.contains(active);
+      const atStart = event.shiftKey && (active === items[0] || active === dialog);
+      const atEnd = !event.shiftKey && active === items[items.length - 1];
+      if (outside || atStart || atEnd) {
+        event.preventDefault();
+        items[event.shiftKey ? items.length - 1 : 0].focus();
+      }
+    };
+    const onFocusIn = (event) => {
+      if (dialogRef.current && !dialogRef.current.contains(event.target)) (reachable()[0] ?? dialogRef.current).focus();
+    };
+    window.addEventListener("keydown", onKeyDown, true);
+    window.addEventListener("focusin", onFocusIn, true);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown, true);
+      window.removeEventListener("focusin", onFocusIn, true);
+    };
+  }, [open]);
+
+  // Close first: this dialog sits above the chronicle panel it opens.
+  const openChronicle = () => {
     close();
+    window.dispatchEvent(new CustomEvent("oh:open-history-record"));
   };
 
+  if (!open) return null;
+
   return <div className="char-backdrop hist-backdrop" data-char-theme={theme}>
-    <div ref={dialogRef} className="hist-notice" role="dialog" aria-modal="true" aria-labelledby="hist-notice-title" tabIndex={-1} onKeyDown={onKeyDown}>
+    <div ref={dialogRef} className="hist-notice" role="dialog" aria-modal="true" aria-labelledby="hist-notice-title" tabIndex={-1}>
       <header>
         <h2 id="hist-notice-title">I verklighetens historia</h2>
         <p>Det här hände i den verkliga världen. Din kampanj kan ha tagit en annan väg.</p>
@@ -110,7 +160,7 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
         {notice.events.map((event) => <HistoricalEventCard key={event.id} event={event} sources={notice.sources} />)}
       </div>
       <footer>
-        {notice.more > 0 && <button type="button" className="hist-link" onClick={() => window.dispatchEvent(new CustomEvent("oh:open-history-record"))}>Visa alla i krönikan</button>}
+        {notice.more > 0 && <button type="button" className="hist-link" onClick={openChronicle}>Visa alla i krönikan</button>}
         <button type="button" className="hist-close" onClick={close}>Stäng</button>
       </footer>
     </div>

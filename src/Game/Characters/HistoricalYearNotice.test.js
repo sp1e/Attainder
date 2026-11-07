@@ -41,13 +41,25 @@ const catalogOf = (events, sources = [source("s1")]) => ({ schemaVersion: 1, sou
 function mount({ startDate = "0800-01-01", gameDate = "0802-01-01", busy = false, unseen = [], catalog = catalogOf([event("e1")]),
   loadError = null, hidden = false, gameId = "g1", storage = createMemoryStorage(), turnKey = "" } = {}) {
   const driver = createHookDriver();
-  const control = { busy, unseen, listeners: [], idle: [], loads: 0, fetches: 0 };
+  const control = { busy, unseen, listeners: [], idle: [], loads: 0, fetches: 0, writes: [], cleanups: [], deferred: null, doc: { activeElement: { focus: () => { control.returned = true; } } } };
   const seen = createHistoricalYearSeen({ storage });
   // The player has been shown history through the campaign start, as on a fresh campaign.
   seen.seenThrough(gameId, { startDate, gameDate: startDate });
-  const docs = Object.freeze({ game: Object.freeze({ startDate, gameDate }), world: Object.freeze({}) });
+  // Every write to a runtime slice is recorded; the notice must make none.
+  const watch = (target) => new Proxy(target, {
+    set: (_, key) => { control.writes.push(String(key)); return false; },
+    defineProperty: (_, key) => { control.writes.push(String(key)); return false; },
+    deleteProperty: (_, key) => { control.writes.push(String(key)); return false; },
+  });
+  const live = { startDate, gameDate };
+  const docs = { game: watch(live), world: watch({}) };
+  // The hook driver drops effect cleanups; keep them so a test can unmount.
+  const react = { ...driver.react, useEffect: (effect, deps) => driver.react.useEffect(() => {
+    const cleanup = effect();
+    if (typeof cleanup === "function") control.cleanups.push(cleanup);
+  }, deps) };
   const modules = {
-    react: driver.react,
+    react,
     "../../runtime/useRuntimeState.js": { useRuntimeState: (key, select) => (key === "world" ? turnKey : select ? select(docs[key]) : docs[key]) },
     "../../runtime/unseenEvents.js": {
       UNSEEN_EVENTS_CHANGED: "oh:unseen-events-changed",
@@ -57,7 +69,7 @@ function mount({ startDate = "0800-01-01", gameDate = "0802-01-01", busy = false
     "../../runtime/historicalYearSeen.js": { historicalYearSeen: seen },
     "../../runtime/historicalEvents.js": realEvents,
     "../../runtime/gameDates.js": realDates,
-    "../../runtime/historicalEventCatalog.js": { loadHistoricalEventCatalog: async () => { control.loads += 1; if (loadError) throw loadError; return catalog; } },
+    "../../runtime/historicalEventCatalog.js": { loadHistoricalEventCatalog: async () => { control.loads += 1; if (control.deferred) await new Promise((resolve) => { control.deferred.push(resolve); }); if (loadError) throw loadError; return catalog; } },
     "../AI/simulationStatus.js": {
       isSimulationBusy: () => control.busy,
       subscribeSimulationIdle: (listener) => { control.idle.push(listener); return () => {}; },
@@ -67,18 +79,21 @@ function mount({ startDate = "0800-01-01", gameDate = "0802-01-01", busy = false
   modules["./HistoricalEventCard.jsx"] = runModule(cardCompiled, { ...modules });
   const win = {
     matchMedia: () => ({ matches: false }),
-    addEventListener: (name, listener) => control.listeners.push({ name, listener }),
-    removeEventListener: () => {},
+    addEventListener: (name, listener, options) => control.listeners.push({ name, listener, capture: options === true || Boolean(options?.capture) }),
+    removeEventListener: (name, listener) => { control.listeners = control.listeners.filter((entry) => entry.listener !== listener || entry.name !== name); },
     dispatchEvent: (e) => { control.dispatched = [...(control.dispatched ?? []), e.type]; return true; },
   };
   const exports = runModule(noticeCompiled, modules, {
-    window: win, document: { activeElement: { focus: () => { control.returned = true; } } }, localStorage: { getItem: () => null },
+    window: win, document: control.doc, localStorage: { getItem: () => null },
     CustomEvent: class { constructor(type) { this.type = type; } },
     fetch: () => { control.fetches += 1; throw new Error("no network in these tests"); },
   });
   const Notice = exports.default;
   const render = () => driver.render(React.createElement(Notice, { gameId, hidden }));
-  return { render, control, seen, storage, driver, docs, dates: { startDate, gameDate } };
+  const fire = (name, event = {}) => { for (const entry of [...control.listeners]) if (entry.name === name) entry.listener(event); };
+  const unmount = () => { for (const cleanup of control.cleanups.splice(0)) cleanup(); };
+  const release = () => { for (const resolve of control.deferred.splice(0)) resolve(); };
+  return { render, control, seen, storage, driver, docs, live, fire, unmount, release, dates: { startDate, gameDate } };
 }
 
 const shown = async (m) => { m.render(); await settle(); return m.render(); };
@@ -159,14 +174,15 @@ test("a reload before dismissal shows the card again; dismissal moves the waterm
   assert.equal(await shown(mount({ storage })), null);
 });
 
-test("13 events show 12 and the chronicle link, which dispatches its window event and leaves the dialog open", async () => {
+test("13 events show 12; the chronicle link closes the dialog, moves the watermark and dispatches its window event", async () => {
   const events = Array.from({ length: 13 }, (_, i) => event(`e${String(i).padStart(2, "0")}`));
   const m = mount({ catalog: catalogOf(events) });
   const tree = await shown(m);
   assert.equal(findAll(tree, (n) => n.type === "article").length, 12);
   buttonNamed(tree, "Visa alla i krönikan").props.onClick();
   assert.deepEqual(m.control.dispatched, ["oh:open-history-record"]);
-  assert.ok(dialogOf(m.render()));
+  assert.equal(m.render(), null);
+  assert.equal(m.seen.seenThrough("g1", m.dates), "0802-01-01");
 });
 
 test("12 events show no chronicle link", async () => {
@@ -187,15 +203,136 @@ test("hidden renders nothing and does not load the catalog", async () => {
   assert.equal(m.control.loads, 0);
 });
 
-test("Escape closes the dialog like Stäng and focus returns to the opener", async () => {
+const keydown = (key, extra = {}) => ({ key, defaultPrevented: false, shiftKey: false, preventDefault() { this.defaultPrevented = true; }, ...extra });
+
+test("the dialog element receives focus when it opens", async () => {
   const m = mount();
   const tree = await shown(m);
-  assert.equal(m.driver.focused.length > 0, true, "the dialog takes focus when it opens");
-  let prevented = false;
-  dialogOf(tree).props.onKeyDown({ key: "Escape", preventDefault: () => { prevented = true; }, stopPropagation: () => {} });
-  assert.ok(prevented);
+  assert.ok(m.driver.focused.some((host) => host.props.role === "dialog"));
+  assert.ok(dialogOf(tree));
+});
+
+test("Escape is taken in the capture phase, closes the dialog with focus on body, and returns focus to the opener", async () => {
+  const m = mount();
+  await shown(m);
+  const entry = m.control.listeners.find((l) => l.name === "keydown");
+  assert.ok(entry?.capture, "the popup must see Escape before the panel underneath");
+  m.control.doc.activeElement = { tagName: "BODY" };
+  const event = keydown("Escape");
+  m.fire("keydown", event);
+  assert.equal(event.defaultPrevented, true, "preventDefault keeps the panel underneath open");
   assert.equal(m.render(), null);
   assert.equal(m.control.returned, true);
+});
+
+test("an Escape another handler already took is ignored", async () => {
+  const m = mount();
+  await shown(m);
+  m.fire("keydown", keydown("Escape", { defaultPrevented: true }));
+  assert.ok(dialogOf(m.render()));
+});
+
+// Two focusable stand-ins inside the dialog, with focus() recorded.
+const withItems = async (m) => {
+  const tree = await shown(m);
+  const node = dialogOf(tree).props.ref.current;
+  const log = [];
+  const item = (name) => ({ name, tagName: "BUTTON", closest: () => null, focus() { log.push(name); m.control.doc.activeElement = this; } });
+  const first = item("first");
+  const last = item("last");
+  node.querySelectorAll = () => [first, last];
+  node.contains = (target) => target === first || target === last || target === node;
+  return { node, first, last, log };
+};
+
+test("Tab on the last item wraps to the first, Shift+Tab on the first wraps to the last", async () => {
+  const m = mount();
+  const { first, last, log } = await withItems(m);
+  m.control.doc.activeElement = last;
+  const forward = keydown("Tab");
+  m.fire("keydown", forward);
+  assert.equal(forward.defaultPrevented, true);
+  assert.deepEqual(log, ["first"]);
+  const backward = keydown("Tab", { shiftKey: true });
+  m.fire("keydown", backward);
+  assert.equal(backward.defaultPrevented, true);
+  assert.deepEqual(log, ["first", "last"]);
+  // Tab between the two ends is left to the browser.
+  m.control.doc.activeElement = first;
+  const inside = keydown("Tab");
+  m.fire("keydown", inside);
+  assert.equal(inside.defaultPrevented, false);
+});
+
+test("Tab with focus outside the dialog pulls it back in", async () => {
+  const m = mount();
+  const { log } = await withItems(m);
+  m.control.doc.activeElement = { tagName: "BODY" };
+  const event = keydown("Tab");
+  m.fire("keydown", event);
+  assert.equal(event.defaultPrevented, true);
+  assert.deepEqual(log, ["first"]);
+});
+
+test("focus landing outside the dialog is pulled back in", async () => {
+  const m = mount();
+  const { log } = await withItems(m);
+  m.fire("focusin", { target: { tagName: "BODY" } });
+  assert.deepEqual(log, ["first"]);
+});
+
+test("a gameDate change during the catalog load drops the stale result and shows the newer window", async () => {
+  const m = mount();
+  m.control.deferred = [];
+  m.render();
+  await settle();
+  m.live.gameDate = "0803-01-01";
+  m.render();
+  await settle();
+  assert.equal(m.control.loads, 2);
+  m.release();
+  await settle();
+  const tree = m.render();
+  assert.equal(findAll(tree, (n) => n.type === "article").length, 1);
+  buttonNamed(tree, "Stäng").props.onClick();
+  assert.equal(m.seen.seenThrough("g1", { startDate: "0800-01-01", gameDate: "0803-01-01" }), "0803-01-01");
+});
+
+test("unseen events that appear during the catalog load keep the dialog away", async () => {
+  const m = mount();
+  m.control.deferred = [];
+  m.render();
+  await settle();
+  m.control.unseen = ["x"];
+  m.release();
+  await settle();
+  assert.equal(m.render(), null);
+});
+
+test("an unmount during the catalog load shows nothing and moves nothing", async () => {
+  const m = mount();
+  m.control.deferred = [];
+  m.render();
+  await settle();
+  m.unmount();
+  m.release();
+  await settle();
+  assert.equal(m.render(), null);
+  assert.equal(m.seen.seenThrough("g1", m.dates), "0800-01-01");
+});
+
+test("the opener is the element focused before the catalog load, not after", async () => {
+  const m = mount();
+  const opener = { focus: () => { m.control.returnedTo = "opener"; } };
+  m.control.doc.activeElement = opener;
+  m.control.deferred = [];
+  m.render();
+  await settle();
+  m.control.doc.activeElement = { focus: () => { m.control.returnedTo = "other"; } };
+  m.release();
+  await settle();
+  buttonNamed(m.render(), "Stäng").props.onClick();
+  assert.equal(m.control.returnedTo, "opener");
 });
 
 test("the theme comes from the character panel key", async () => {
@@ -205,10 +342,15 @@ test("the theme comes from the character panel key", async () => {
   assert.match(backdrop.props.className, /char-backdrop/);
 });
 
-test("rendering makes no network or model call and leaves the runtime slices untouched", async () => {
+test("rendering and dismissing make no network call and write to no runtime slice", async () => {
   const m = mount();
-  const before = JSON.stringify(m.docs);
-  await shown(m);
+  // The recorder works: a write through a watched slice is seen.
+  try { m.docs.game.gameDate = "x"; } catch { /* a refused write throws in strict mode */ }
+  assert.deepEqual(m.control.writes, ["gameDate"]);
+  m.control.writes.length = 0;
+  const tree = await shown(m);
+  buttonNamed(tree, "Stäng").props.onClick();
   assert.equal(m.control.fetches, 0);
-  assert.equal(JSON.stringify(m.docs), before);
+  assert.deepEqual(m.control.writes, []);
+  assert.equal(m.live.gameDate, "0802-01-01");
 });
