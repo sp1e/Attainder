@@ -232,15 +232,34 @@ function secrecyOdds(entry, actor, target, means, situational) {
   return rows.bound('Hemlighållning: högsta möjliga nivå', 'Hemlighållning: lägsta möjliga nivå');
 }
 
+/** The band one step above the true one, the top band at most: what a flattering advisor shows. Only the band precisions have a band to move. */
+export function flatteredBand(value, precision) {
+  if (precision !== 'five' && precision !== 'three') throw new RangeError('flatteredBand needs a precision of five or three.');
+  const bands = PRECISION_BANDS[precision];
+  const index = bands.findIndex((entry) => entry.label === bandFor(value, precision));
+  return bands[Math.min(index + 1, bands.length - 1)].label;
+}
+
 const exactRow = ({ label, value }) => ({ label, value });
 const signedRow = ({ label, value }) => ({ label, sign: value > 0 ? '+' : '−' });
 
 // What the player may read. Exact shows numbers and every row, cut rows included. Five and three show band labels and only the label and sign (+ or the real minus U+2212) of each formula row; the cut rows stay out because they would reveal that a roll sits exactly at 5 or 95.
-function presentOdds(precision, success, secrecy) {
+// `advice` is the councillor who presents the odds (ctx.advisor), or null. The card names the advisor either way; a flattering advisor moves each band one step up. Exact odds show the true numbers.
+function presentOdds(precision, success, secrecy, advice = null) {
   const rows = [...success.modifiers, ...secrecy.modifiers];
-  if (precision === 'exact') return { success: success.value, secrecy: secrecy.value, modifiers: rows.map(exactRow) };
+  const named = advice ? { advisor: { name: advice.name, officeName: advice.officeName } } : {};
+  if (precision === 'exact') return { success: success.value, secrecy: secrecy.value, modifiers: rows.map(exactRow), ...named };
   const causes = rows.filter((row) => !CUT_ROWS.has(row));
-  return { success: bandFor(success.value, precision), secrecy: bandFor(secrecy.value, precision), modifiers: causes.map(signedRow) };
+  const band = advice?.flatters ? flatteredBand : bandFor;
+  return { success: band(success.value, precision), secrecy: band(secrecy.value, precision), modifiers: causes.map(signedRow), ...named };
+}
+
+// The odds card and, for the player's own action, the flattery to record: only when a shown band differs from the true one.
+function adviseOdds(entry, precision, success, secrecy, ctx) {
+  const advice = typeof ctx.advisor === 'function' ? ctx.advisor(entry) : null;
+  const display = presentOdds(precision, success, secrecy, advice);
+  const moved = precision !== 'exact' && (display.success !== bandFor(success.value, precision) || display.secrecy !== bandFor(secrecy.value, precision));
+  return { display, ...(moved && ctx.playerControlled === true ? { flattery: { advisorId: advice.personId, officeId: advice.officeId } } : {}) };
 }
 
 /**
@@ -272,6 +291,7 @@ function situationOf(entry, actor, target, means, ctx) {
  * `means.secretId` (blackmail), `means.hookId` (poison) and `means.topic` (spread_rumor) are accepted only for entries whose `uses` list them. A secret must be unexposed, about the target and held by the actor; a hook must be an active hook the actor owns over the target; a topic must be a key of RUMOR_TOPICS. A required one that is missing is refused.
  * Only contested catalog entries are accepted; a command id or an unknown id is refused. A ctx without its functions throws, because that is a bug in the caller and not a refusal.
  * The result carries the true values and rows (success, secrecy) for rolling, and `display` for the player: it follows `precision` and never carries a number at 'five' or 'three'.
+ * An optional `ctx.advisor(entry)` returns the councillor who presents the odds ({ personId, name, officeId, officeName, flatters }) or null. A flattering advisor moves the shown bands; the player's own estimate then carries `flattery: { advisorId, officeId }`.
  */
 export function estimateAction(state, intent, ctx) {
   requireContext(ctx);
@@ -302,7 +322,7 @@ export function estimateAction(state, intent, ctx) {
   return {
     ok: true, actionId: entry.id, actorId: actor.id, targetIds: [target.id],
     cost: { orders: entry.cost.orders, silver: price, wallet: entry.cost.wallet, stressTag: entry.cost.stressTag },
-    success, secrecy, precision, display: presentOdds(precision, success, secrecy),
+    success, secrecy, precision, ...adviseOdds(entry, precision, success, secrecy, ctx),
     ...(situation.occasionId ? { occasionId: situation.occasionId } : {}),
   };
 }

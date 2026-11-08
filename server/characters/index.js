@@ -22,7 +22,7 @@ import { presentRumors, validateRumors } from './rumors.js';
 import { conversationBrief, converse, estimateConversation as estimateConversationRequest, presentConversation, validateConversations } from './conversation.js';
 import { IMPRISONED, closePrisoner, executePrisoner, heldPrisoners, imprisonPerson, isImprisoned, passCrown, presentPrisoners, prisonerStep, ransomChoices, releasePrisoner, resolveRansom, validatePrisoners } from './prisoners.js';
 import { abortScheme, advanceSchemes, getSchemeDates, reinforceScheme, validateSchemes } from './schemes.js';
-import { COUNCIL_SEATS, filledSeats, presentLoyalty, rewardClosedReason, rewardCouncillor, serviceOf } from './council.js';
+import { COUNCIL_SEATS, advisorFor, filledSeats, flatteryRevealed, presentLoyalty, rewardClosedReason, rewardCouncillor, serviceOf } from './council.js';
 import { COURT_STORY_TYPES, courtAnnualStep, courtDeadlineText, courtStoryChoices, onAccession, presentCourt, refreshCourtStories, resolveCourtStory, validateCourt } from './court.js';
 import { breakdownDue, fitsNature, natureStress } from './breakdowns.js';
 import { dreadOf, dreadRows } from './dread.js';
@@ -462,14 +462,16 @@ function actionContext(state) {
   };
   const wallet = (kind) => kind === 'family' ? family?.treasury ?? 0 : kind === 'realm' && ruling ? state.realm.treasury : 0;
   // representativeId stays the household representative, who pays through charge(). activeRepresentativeId is the person the player acts through, who gives the orders: in realm mode the ruler or regent.
-  return { representativeId: representative?.id || null, activeRepresentativeId: activeRepresentative(state)?.id || null, playerControlled: true, canOrder, wallet, opinion: (fromId, toId) => getPersonalOpinion(state, fromId, toId),
+  // The crown's council advises only a player who rules.
+  const advisor = ruling ? (entry) => advisorFor(state, entry.skill, actionHooks(state)) : null;
+  return { representativeId: representative?.id || null, activeRepresentativeId: activeRepresentative(state)?.id || null, playerControlled: true, canOrder, wallet, advisor, opinion: (fromId, toId) => getPersonalOpinion(state, fromId, toId),
     situation: (entry, actor, target, means) => { const feast = feastRows(state, entry, actor, target, means, family?.id ?? null); return { ...feast, success: [...feast.success, ...dreadRows(entry, target)] }; } };
 }
 // npc_intent: an NPC acts on its own account. It orders only itself, pays from its own family's treasury and is never under the player's orders (no refusal draw). The difficulty row compares targets with the person the player acts through.
 function npcActionContext(state, actorId) {
   const actor = Object.hasOwn(state.people, actorId) ? state.people[actorId] : null;
   const family = actor && Object.hasOwn(state.families, actor.familyId) ? state.families[actor.familyId] : null;
-  return { ...actionContext(state), representativeId: activeRepresentative(state)?.id || null, playerControlled: false,
+  return { ...actionContext(state), representativeId: activeRepresentative(state)?.id || null, playerControlled: false, advisor: null,
     canOrder: (id) => id === actorId, wallet: (kind) => kind === 'family' ? family?.treasury ?? 0 : 0,
     situation: (entry, person, target, means) => feastRows(state, entry, person, target, means) };
 }
@@ -500,6 +502,7 @@ export function actionHooks(state) {
     activeRepresentative: () => activeRepresentative(state), householdRepresentative: () => householdRepresentative(state), controlledFamily: () => controlledFamily(state),
     getPersonalOpinion: (fromId, toId) => getPersonalOpinion(state, fromId, toId), opinionReasons: (fromId, toId) => opinionReasons(state, fromId, toId), canExerciseMandate: (person) => canExerciseMandate(person, state.date), adult: (person) => adult(state, person),
     estimateContext: () => actionContext(state), npcEstimateContext: (actorId) => npcActionContext(state, actorId), isCommandAction: (id) => COMMAND_TYPES.has(id),
+    flatteryRevealed: (advisorId) => flatteryRevealed(state, advisorId, actionHooks(state)),
     crown: (person, events, reason, legitimacy, lawful) => crown(state, person, events, reason, legitimacy, lawful), assignOffice: (office, candidate, events, reason) => assignOffice(state, office, candidate, events, reason),
     familySupport: (family) => familySupport(state, family), rulerCandidates: () => rulerCandidates(state), canRule: () => canRule(state), militaryReadiness: () => getCharacterWorldEffects(state).militaryReadiness, appointReason: () => royalDecisionReason(state, 'appoint'), consumeAppointConsent: () => consumeRoyalConsent(state, 'appoint'), stressFor: (person, tag) => stressFor(person, tag), councilService: () => COUNCIL_SEATS.map((seat) => serviceOf(state, seat, actionHooks(state))), dreadOf: () => dreadOf(state, actionHooks(state)) };
 }
