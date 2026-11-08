@@ -1,0 +1,48 @@
+# Swedish and English text
+
+The owner requires Swedish and English throughout the game, selected in Options. Codex supplies the translated text. Claude integrates it with the runtime, model calls and package builders. The [implementation plan](../../superpowers/plans/2026-11-08-bilingual-game-text.md) tracks the work.
+
+## First delivery
+
+[`server/seed/historical/locales/en.json`](../../../server/seed/historical/locales/en.json) contains English translations for all 2,055 Swedish display fields in the current 449-event catalog. The schema is `attainder-historical-translations-v1`; `locale` is `en`, `sourceLocale` is `sv`, and `sourceRevision` identifies the source snapshot. Each entry contains `id`, `sv`, `en` and `source`. Its source record provides `path`, `eventId`, an event-relative JSON `fieldPath` and `textSha256` for the exact Swedish string. IDs follow `event/<eventId>/<source-field-path>`.
+
+A separate bilingual reviewer checked every field. Two initial meaning issues were corrected and checked again: the Turkic soldiers at Ghazna and the uncertainty of an archaeological church identification. All nine input groups are approved with no unresolved findings. The integration readback matches all source values and translation keys, and the existing catalog check and 45 focused historical-event tests pass. This delivery covers event display text; other translation groups are still being prepared.
+
+## Translation contract
+
+Historical text is delivered as locale sidecars beside the authoritative historical data. Interface and rules text is delivered as data alongside the existing language packs. A translation entry retains both language forms, a stable ID, the source reference and a SHA-256 of the exact source string. UTF-8 source-text hashes remain useful across checkout line-ending conventions; a file's working-copy byte hash is not a portable identity.
+
+Historical event IDs and source field paths identify event text. Other historical records use entity IDs where available, with the original JSON pointer supplied for readback. Map features that share a polity use their distinct feature identity. Array position alone is not a durable identity for an entity.
+
+The translated text preserves numbers, dates, alternatives, uncertainty, attribution, generated-person labels and the scope of source evidence. Century wording is checked against the record's full numeric range; translation never changes the stored endpoints. A century-wide range does not become an exact event year. Translation does not approve new historical claims or repair existing research.
+
+Original quotations, bibliographic titles and attested personal-name forms keep their original language. Established English forms can be used for display names, while the canonical person or polity ID remains unchanged. Explanatory source locators receive Swedish text for the Swedish source panel; quoted section titles and archival identifiers remain recognizable.
+
+## Interface and rules text
+
+The authoritative rules text is under `server/characters/`. The corresponding runtime modules largely re-export it. Builders, court dossiers and review files supply historical start descriptions; generated scenarios and release files are copies, so they are not translated separately.
+
+The existing English and Swedish dictionaries are reused when the source text and context match. Some Swedish values correspond to several English keys, so reversing the entire dictionary would be ambiguous. A classification record distinguishes translated player text, reused entries, unchanged proper names, technical identifiers and development-only text.
+
+Template expressions require care. Variables and canonical values keep their meaning, and grammar-bearing alternatives need complete translated forms. A translated sentence surrounding an embedded Swedish noun or suffix is incomplete. Display translation must not rewrite saved state, rule identifiers, enum values, command payloads or randomness.
+
+Technical model instructions can remain English. The request for player-facing output must follow the selected locale. An English-mode variant must ask for English narration, refusals and reasons; simply translating an instruction to "write in Swedish" would preserve the defect. Structured response keys remain canonical in both modes.
+
+## Runtime integration requirements
+
+The source audit identified these existing paths for Claude to address:
+
+- `src/runtime/translator.js` returns immediately for English, so Swedish additions need an explicit translation path.
+- `src/Game/DynastyStartCard.jsx` excludes its whole card through `data-no-translate`.
+- `src/runtime/startDynastyCampaign.js` hardcodes the campaign language to Swedish.
+- `src/Game/Characters/characterModelCalls.js` uses `languageMode: 'none'` and several prompts require Swedish. `src/runtime/characterWorld.js` also requests a Swedish reason.
+- `src/Game/Characters/ActionBox.jsx` treats several ordinary English words as internal-error signals. This can hide valid English refusal messages.
+- Historical consumers explicitly read Swedish display fields. They need locale lookup with a defined fallback, including the start card's court mechanics notes.
+
+The source inventory is pinned to its recorded revision. Source-text hashes detect later wording changes. New source text needs a translated entry or an explicit retained-name or non-display classification before it is counted as covered.
+
+## Verification boundary
+
+Data verification checks source-field coverage, exact key closure, duplicate keys, empty translations, UTF-8 readback and unchanged variables and numbers. A separate bilingual reviewer checks meaning and English or Swedish quality. Numeric differences caused by century wording are reviewed rather than silently discarded.
+
+Prepared translations, merged data and tested runtime language switching are separate milestones. Runtime acceptance includes new and restored campaigns in both languages, an Options language change, a historical event popup with sources, an action outcome or refusal, and generated narration. The current text delivery does not establish that those runtime checks have passed.
