@@ -65,8 +65,9 @@ test('the catalog carries a summary for each start and a later read builds none 
     assert.deepEqual(library.historicalSummary, karl.historicalSummary);
   `);
   const stored = readJson(scenarioFile(root, 'charlemagne-800', 'scenario.json')).historicalSummary;
-  assert.equal(stored.schema, 4);
-  assert.match(stored.sourceStamp, /^\d+:[\d.]+:\d+:[\d.]+$/);
+  assert.equal(stored.schema, 5);
+  // Size and modification time of world.json, game.json, regions.geojson and cities.geojson.
+  assert.match(stored.sourceStamp, /^(\d+:[\d.]+:){3}\d+:[\d.]+$/);
   // The default world.json is parsed once per version on disk (syncBuiltInScenarioSeedDate), and
   // a rebuild writes the meta, so the check covers both.
   const ids = ['default', 'egypt-3000bc', 'charlemagne-800', 'world-1500'];
@@ -105,10 +106,14 @@ test('a game date edited on disk without a meta write shows on the next catalog 
     const karl = entry('charlemagne-800');
     assert.equal(karl.historicalStart.date, '0801-01-01');
     assert.equal(karl.historicalSummary.date, '0801-01-01');
+    // The package starts only on its bookmark day, so the start validation leaves the edited start off.
+    assert.equal(karl.historicalSummary.invalid, true);
   `);
   assert.equal(readJson(metaPath).historicalSummary.date, '0801-01-01');
   assert.equal(readJson(metaPath).updatedAt, updatedAt);
   // A rename changes only the meta, so the stamp alone would keep the old name in the summary.
+  editJson(scenarioFile(root, 'charlemagne-800', 'game.json'), game => { game.gameDate = '0800-12-25'; });
+  runStore(root, 'assert.equal(entry("charlemagne-800").historicalSummary.invalid, undefined);');
   editJson(metaPath, meta => { meta.name = 'Karl den store'; });
   runStore(root, 'assert.equal(entry("charlemagne-800").historicalSummary.name, "Karl den store");');
 }));
@@ -130,7 +135,7 @@ test('a meta from before summaries gains one on the first catalog read and keeps
     assert.equal(egypt.historicalStart, null, 'the copy a restored campaign uses is not offered');
   `);
   const { historicalSummary, ...after } = readJson(metaPath);
-  assert.equal(historicalSummary.schema, 4);
+  assert.equal(historicalSummary.schema, 5);
   assert.deepEqual(after, before, 'updatedAt and the other fields are as they were');
   const { historicalSummary: johnSummary, ...defaultAfter } = readJson(defaultPath);
   assert.equal(johnSummary.contentId, 'john-1200');
@@ -152,12 +157,12 @@ test('a summary stored under schema 1 is built again from world.json on the next
   runStore(root, `
     store.ensureScenarioStore(); worldReads.clear();
     const karl = entry('charlemagne-800');
-    assert.equal(karl.historicalSummary.schema, 4);
+    assert.equal(karl.historicalSummary.schema, 5);
     assert.deepEqual(karl.historicalSummary.polities.map(p => p.contextSv), ${JSON.stringify(courtTexts)});
     assert.equal(reads('charlemagne-800'), 1, 'the old summary is rebuilt from world.json');
   `);
   const stored = readJson(metaPath).historicalSummary;
-  assert.equal(stored.schema, 4);
+  assert.equal(stored.schema, 5);
   assert.ok(stored.polities.every(p => Object.hasOwn(p, 'contextSv')), 'the rebuilt summary is cached');
 }));
 
@@ -172,12 +177,12 @@ test('a summary stored under schema 2 is built again with each polity kind', () 
   runStore(root, `
     store.ensureScenarioStore(); worldReads.clear();
     const karl = entry('charlemagne-800');
-    assert.equal(karl.historicalSummary.schema, 4);
+    assert.equal(karl.historicalSummary.schema, 5);
     assert.deepEqual(karl.historicalSummary.polities.map(p => p.kind), ${JSON.stringify(AD800_POLITIES.map(() => 'state'))});
     assert.equal(reads('charlemagne-800'), 1, 'the old summary is rebuilt from world.json');
   `);
   const stored = readJson(metaPath).historicalSummary;
-  assert.equal(stored.schema, 4);
+  assert.equal(stored.schema, 5);
   assert.ok(stored.polities.every(p => p.kind === 'state'), 'the rebuilt summary is cached');
 }));
 
@@ -192,13 +197,46 @@ test('a summary stored under schema 3 is built again with map coverage', () => w
   runStore(root, `
     store.ensureScenarioStore(); worldReads.clear();
     const karl = entry('charlemagne-800');
-    assert.equal(karl.historicalSummary.schema, 4);
+    assert.equal(karl.historicalSummary.schema, 5);
     assert.equal(karl.historicalSummary.mapCoverage.unownedFeatureCount, 214);
     assert.equal(reads('charlemagne-800'), 1, 'the old summary is rebuilt from world.json');
   `);
   const stored = readJson(metaPath).historicalSummary;
-  assert.equal(stored.schema, 4);
+  assert.equal(stored.schema, 5);
   assert.ok(Object.hasOwn(stored, 'mapCoverage'), 'the rebuilt summary is cached');
+}));
+
+test('a summary stored under schema 4 is built again with each court mechanics note', () => withLibrary(root => {
+  runStore(root, 'entry("world-1500");');
+  const metaPath = scenarioFile(root, 'world-1500', 'scenario.json');
+  // The summary schema 4 wrote: the same stamp, polities without a mechanics note.
+  editJson(metaPath, meta => {
+    meta.historicalSummary.schema = 4;
+    for (const polity of meta.historicalSummary.polities) delete polity.mechanicsNoteSv;
+  });
+  const { courtSeeds } = readJson(scenarioFile(root, 'world-1500', 'world.json')).historicalScenario;
+  runStore(root, `
+    store.ensureScenarioStore(); worldReads.clear();
+    const aztec = entry('world-1500');
+    assert.equal(aztec.historicalSummary.schema, 5);
+    assert.deepEqual(aztec.historicalSummary.polities.map(p => p.mechanicsNoteSv), ${JSON.stringify(['aztec-empire', 'inca-empire'].map(id => courtSeeds[id].mechanics.noteSv))});
+    assert.equal(reads('world-1500'), 1, 'the old summary is rebuilt from world.json');
+  `);
+  assert.equal(readJson(metaPath).historicalSummary.schema, 5, 'the rebuilt summary is cached');
+}));
+
+test('a stored start whose map lacks a playable polity is left off, and a new map file rebuilds the summary', () => withLibrary(root => {
+  runStore(root, 'entry("charlemagne-800");');
+  const regionsPath = scenarioFile(root, 'charlemagne-800', 'regions.geojson'), regions = readJson(regionsPath);
+  editJson(regionsPath, value => { value.features = value.features.filter(f => f.properties.owner !== 'silla'); });
+  runStore(root, `
+    const karl = entry('charlemagne-800');
+    assert.equal(karl.historicalSummary.invalid, true, 'the summary passes the structural checks and fails the start validation');
+    assert.deepEqual(karl.historicalStart, { date: '0800-12-25', contentId: 'charlemagne-800' }, 'the library bar keeps the broken start');
+    for (const id of ['default', 'egypt-3000bc', 'world-1500']) assert.equal(entry(id).historicalSummary.invalid, undefined, id);
+  `);
+  writeFileSync(regionsPath, JSON.stringify(regions));
+  runStore(root, 'assert.equal(entry("charlemagne-800").historicalSummary.polities.length, 10);');
 }));
 
 test('a stored start whose papal ruler is gone from the court is left off and the others stay', () => withLibrary(root => {

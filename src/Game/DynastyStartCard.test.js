@@ -172,6 +172,27 @@ test('the sources block says what the chosen start covers', async () => {
   startRows(tree).find(r=>r.props['data-start-key']==='charlemagne-800/carolingian-realm').props.onClick(); tree=render();
   assert.ok(paragraphs(tree).includes('Spelbara riken i starten: 10. Kartområden utan granskad ägare: 214.'));
   assert.ok(paragraphs(tree).every(text=>!text.includes('På kartan utan spelbart hov')));
+  // The chosen court's note on what the game simplifies follows the coverage line and changes with the court.
+  const noteOf=(scenarioId,polityId)=>options.find(o=>o.scenarioId===scenarioId).polities.find(p=>p.id===polityId).mechanicsNote;
+  for (const key of ['world-1500/aztec-empire','world-1500/inca-empire','charlemagne-800/byzantine-empire']) {
+    startRows(tree).find(r=>r.props['data-start-key']===key).props.onClick(); tree=render();
+    const note=noteOf(...key.split('/')), shown=paragraphs(tree);
+    assert.ok(note.length>50,key);
+    assert.equal(shown[shown.indexOf(note)-1].startsWith('Spelbara riken i starten:'),true,key);
+    assert.equal(shown.filter(text=>text===note).length,1,key);
+  }
+  assert.notEqual(noteOf('world-1500','aztec-empire'),noteOf('world-1500','inca-empire'));
+});
+
+test('a court without a mechanics note adds no paragraph to the sources block', async () => {
+  const driver=createHookDriver(), options=shippedOptions();
+  for (const polity of options.find(o=>o.scenarioId==='egypt-3000bc').polities) polity.mechanicsNote=null;
+  const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>options,startDynastyCampaign:async()=>{}}});
+  const render=()=>driver.render(React.createElement(card.default,{}));
+  const sources=tree=>findAll(tree,n=>n.type==='details' && findAll(n,c=>c.type==='summary' && textOf(c)==='Källor och osäkerhet').length)[0];
+  render(); await settle(); let tree=render();
+  startRows(tree).find(r=>r.props['data-start-key']==='egypt-3000bc/egypt-early-dynastic').props.onClick(); tree=render();
+  assert.equal(findAll(sources(tree),n=>n.type==='p').length,4);
 });
 
 test('a choice the search hides is named under the list and still starts', async () => {

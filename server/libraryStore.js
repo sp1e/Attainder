@@ -1,6 +1,7 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "./historicalPreparation.js";
 import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade, withLibraryFields } from "./historicalStarts.js";
-import { HISTORICAL_SUMMARY_SCHEMA, historicalStartFromSummary, historicalStartSummary } from "./historicalStartSummary.js";
+import { HISTORICAL_SUMMARY_SCHEMA, historicalStartFromSummary } from "./historicalStartSummary.js";
+import { checkedHistoricalStartSummary } from "./historicalSummaryCheck.js";
 import { withScenarioLicense, preserveComponentProvenance } from "./scenarioLicense.js";
 /*! Open Historia — portions (regions.geojson scenario asset + custom-map seeding) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 import fs from "fs";
@@ -1921,14 +1922,17 @@ const getScenarioSummary = (scenarioId) => {
   return scenario;
 };
 
-// The size and modification time of the two files a historical summary is built from. A file
+// The size and modification time of the files a historical summary is built from: world.json and
+// game.json, and the regions and cities the full start validation reads. A file
 // that is not there stamps as "-:-", so its arrival changes the stamp. A stat that fails otherwise,
 // as with EPERM while Windows replaces a file or a scanner holds it, gives null: the summary is
 // built from the files and not cached, and the rest of the catalog still loads.
 const scenarioSourceStamp = (scenarioId) => {
   try {
-    return ["world", "game"].map((assetKey) => {
-      const stat = fs.statSync(getScenarioJsonPath(scenarioId, assetKey), { throwIfNoEntry: false });
+    const files = [getScenarioJsonPath(scenarioId, "world"), getScenarioJsonPath(scenarioId, "game"),
+      getScenarioUploadPath(scenarioId, "regionsGeojson"), getScenarioUploadPath(scenarioId, "citiesGeojson")];
+    return files.map((file) => {
+      const stat = fs.statSync(file, { throwIfNoEntry: false });
       return stat ? `${stat.size}:${stat.mtimeMs}` : "-:-";
     }).join(":");
   } catch (error) {
@@ -1965,7 +1969,9 @@ const scenarioHistoricalSummary = (scenarioId, meta, rawMeta) => {
       world: readJsonFile(getScenarioJsonPath(scenarioId, "world"), {}),
       game: readJsonFile(getScenarioJsonPath(scenarioId, "game"), {}),
     };
-    summary = historicalStartSummary({ meta, data, sourceStamp })
+    const loadMap = () => ({ regions: readJsonFile(getScenarioUploadPath(scenarioId, "regionsGeojson"), null),
+      cities: readJsonFile(getScenarioUploadPath(scenarioId, "citiesGeojson"), null) });
+    summary = checkedHistoricalStartSummary({ meta, data, sourceStamp, loadMap })
       ?? { schema: HISTORICAL_SUMMARY_SCHEMA, sourceStamp, notHistorical: true };
     if (sourceStamp !== null) storeHistoricalSummary(scenarioId, summary, rawMeta);
   }

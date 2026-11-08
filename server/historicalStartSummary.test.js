@@ -12,7 +12,7 @@ const readPackage = id => JSON.parse(readFileSync(new URL(`./seed/historical/${i
 const summaryOf = pkg => historicalStartSummary({ meta: pkg.scenario, data: pkg.data });
 
 test('regions and eras keep the agreed ids, labels and order', () => {
-  assert.equal(HISTORICAL_SUMMARY_SCHEMA, 4);
+  assert.equal(HISTORICAL_SUMMARY_SCHEMA, 5);
   assert.deepEqual(HISTORICAL_REGIONS.map(r => r.id), ['europe','mena','sub-saharan-africa','central-asia','south-asia','east-asia','southeast-asia','americas','oceania','other']);
   assert.deepEqual(HISTORICAL_REGIONS.map(r => r.labelSv), ['Europa','Mellanöstern och Nordafrika','Afrika söder om Sahara','Centralasien','Sydasien','Östasien','Sydostasien','Amerika','Oceanien','Övriga']);
   assert.deepEqual(HISTORICAL_ERAS.map(e => e.id), ['bronze-age','antiquity','early-middle-ages','high-middle-ages','late-middle-ages']);
@@ -43,7 +43,7 @@ test('a polity takes its region from the region file and other when absent', () 
 
 test('the Charlemagne package summarises its ten playable courts', () => {
   const summary = summaryOf(readPackage('charlemagne-800'));
-  assert.equal(summary.schema, 4);
+  assert.equal(summary.schema, 5);
   assert.equal(summary.invalid, undefined);
   assert.equal(summary.sourceStamp, null);
   assert.equal(summary.contentId, 'charlemagne-800');
@@ -85,7 +85,7 @@ test('a playable polity carries its kind, and an unknown or non-state kind leave
   for (const kind of ['empire', 'non-state']) {
     let summary;
     assert.doesNotThrow(() => { summary = withKind(kind); }, kind);
-    assert.deepEqual(summary, { schema: 4, sourceStamp: null, invalid: true, date: '0800-12-25', contentId: 'charlemagne-800' }, kind);
+    assert.deepEqual(summary, { schema: 5, sourceStamp: null, invalid: true, date: '0800-12-25', contentId: 'charlemagne-800' }, kind);
   }
 });
 
@@ -109,7 +109,7 @@ test('a broken court makes the summary invalid and a non-historical world gives 
   const court = pkg.data.world.historicalScenario.courtSeeds['papal-states'];
   court.people = court.people.filter(person => person.id !== court.rulerId);
   const broken = historicalStartSummary({ meta: pkg.scenario, data: pkg.data, sourceStamp: 'stamp' });
-  assert.deepEqual(broken, { schema: 4, sourceStamp: 'stamp', invalid: true, date: '0800-12-25', contentId: 'charlemagne-800' });
+  assert.deepEqual(broken, { schema: 5, sourceStamp: 'stamp', invalid: true, date: '0800-12-25', contentId: 'charlemagne-800' });
   // The library bar still lists a broken start, so the player can open or delete it.
   assert.deepEqual(historicalStartFromSummary(broken, pkg.scenario), { date: '0800-12-25', contentId: 'charlemagne-800' });
   assert.equal(historicalStartFromSummary(broken, { ...pkg.scenario, restoreOnly: true }), null);
@@ -131,6 +131,15 @@ test('every shipped package gives a valid summary', () => {
     assert.equal(summary.invalid, undefined, id);
     assert.ok(summary.polities.every(p => p.regionId !== 'other'), id);
   }
+});
+
+test('each polity carries its court mechanics note, null without one', () => {
+  const pkg = readPackage('world-1500');
+  const h = pkg.data.world.historicalScenario;
+  assert.deepEqual(summaryOf(pkg).polities.map(p => [p.id, p.mechanicsNoteSv]), h.playablePolityIds.map(id => [id, h.courtSeeds[id].mechanics.noteSv]));
+  assert.ok(summaryOf(pkg).polities[0].mechanicsNoteSv.includes('Ett barn styr genom en förmyndare.'), 'a dossier court carries its coverage lines');
+  delete h.courtSeeds[h.playablePolityIds[0]].mechanics.noteSv;
+  assert.equal(summaryOf(pkg).polities[0].mechanicsNoteSv, null);
 });
 
 test('the polity region check passes on the shipped packages', () => {
