@@ -6,11 +6,8 @@
 // Exits 0 when the file matches the packages and 1 with the problems listed otherwise.
 // It is separate from build-historical-scenarios.mjs so the frozen package builder stays untouched.
 import { readFileSync } from "node:fs";
-import { HISTORICAL_BOOKMARKS } from "../server/historicalStarts.js";
+import { SHIPPED_HISTORICAL_PACKAGES as PACKAGE_IDS } from "../server/historicalStarts.js";
 import { HISTORICAL_REGIONS } from "../server/historicalStartSummary.js";
-
-// John installs as scenario `default` and is not a bookmark, but ships as a package all the same.
-const PACKAGE_IDS = [...HISTORICAL_BOOKMARKS.map(entry => entry.id), "john-1200"];
 const historicalDir = new URL("../server/seed/historical/", import.meta.url);
 const readJson = (relative) => JSON.parse(readFileSync(new URL(relative, historicalDir), "utf8"));
 
