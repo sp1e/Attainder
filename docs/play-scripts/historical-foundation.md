@@ -245,6 +245,22 @@ Court renewal brings a generated newcomer to a historical court with fewer than 
 
 A century at both courts has automated coverage only. `src/runtime/characters/courtBalance.test.js` plays 100 years on eight seeds from the built package. Karls rike is alive on 25 December 900 on every seed; its first newcomer arrives between 838 and 848, and 16 to 28 children are born during the century. Kyrkostaten gets its first newcomer in 801 on every seed and has 12 to 29 court adults in 900; 21 to 57 children are born there during the century. The birth cap of 48 living people leaves these figures unchanged. The same file plays Kyrkostaten for 300 years on seeds 777 and 314159, which end 1100 with 48 and 40 living people.
 
+## Coverage per start
+
+The start card's `Källor och osäkerhet` block shows how many polities are playable, which polities are on the map without a playable court, and how many map areas lack a reviewed owner.
+
+| ID | Check | Expected |
+| --- | --- | --- |
+| C-1 | Select John, 1200 e.Kr., open `Källor och osäkerhet` | `Spelbara riken i starten: 4. På kartan utan spelbart hov: Västra Xia, Chimú. Kartområden utan granskad ägare: 280.` |
+| C-2 | Select Karls rike, 800 e.Kr., open `Källor och osäkerhet` | `Spelbara riken i starten: 10. Kartområden utan granskad ägare: 214.` |
+| C-3 | Console | 0 errors |
+
+| ID | Server | Web |
+| --- | --- | --- |
+| C-1 | | |
+| C-2 | | |
+| C-3 | | |
+
 ## Closure
 
 The controller accepted Task 6 with the documented limits, and final documentation review approved publication subject to current-head CI. CI passed at `2066a55`; the PR tracks the current head and merge state. Preserve source attribution and licenses, and exclude private material from publication. The annual 3300 BC–AD 1530 historical-reference research and turn-end popup remain a separate pending milestone.
