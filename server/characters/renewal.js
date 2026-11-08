@@ -136,6 +136,16 @@ function spouseWalk(state, events, hooks) {
   }
 }
 
+export const COURT_BIRTH_CAP = 48;
+
+/** True when a historical state has COURT_BIRTH_CAP or more living people, of any family and age. Hadara states never close. Draws nothing. */
+export function birthsClosed(state) {
+  if (!state.historicalOrigin) return false;
+  let living = 0;
+  for (const person of Object.values(state.people)) if (!person.diedAt) living++;
+  return living >= COURT_BIRTH_CAP;
+}
+
 /** Yearly court renewal on a historical campaign: one newcomer when fewer than COURT_FLOOR adults remain at court, then generated spouses. */
 export function courtRenewalStep(state, events, hooks) {
   if (!state.historicalOrigin || state.status.ended) return;

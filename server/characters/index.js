@@ -30,7 +30,7 @@ import { goalClosedReason, openGoals, recordDeed, setReignGoal } from './reign.j
 import { nicknameOf } from './nicknames.js';
 import { ELECTION_REASON_SV, electOutsider, electiveCandidates, nextSuccessionLaw } from './election.js';
 import { ensureRealmKind, presentRealm, validateRealmKind } from './realmKind.js';
-import { courtRenewalStep, ensureLineageState, validateLineageState } from './renewal.js';
+import { birthsClosed, courtRenewalStep, ensureLineageState, validateLineageState } from './renewal.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
 export { isImprisoned } from './prisoners.js';
@@ -816,7 +816,7 @@ function annualStep(state, events) {
   }
   killPeople(state, deaths, events);
   if (!state.status.ended) runAnnualHealth(state, events, { representativeId: activeRepresentative(state)?.id, playerFamilyId: controlledFamily(state)?.id, nominalId: state.identity.mode === 'realm' ? state.offices.ruler.holderId : state.families[state.identity.familyId]?.headId });
-  for (const mother of living(state).filter((p) => p.sex === 'female' && getCharacterAge(p, state.date) >= 20 && getCharacterAge(p, state.date) <= 42).sort((a, b) => a.id.localeCompare(b.id))) { const father = state.people[mother.spouseId]; if (!adult(state, father) || father.sex !== 'male') continue; if (mother.lastBirthAt && diffGameDays(mother.lastBirthAt, state.date) < 600) continue; const children = values(state.people).filter((p) => p.biologicalParentIds.includes(mother.id)); if (children.length >= 4) continue; if (random(state) < (mother.health > 50 ? 0.22 : 0.06)) newChild(state, mother, father, events); }
+  for (const mother of living(state).filter((p) => p.sex === 'female' && getCharacterAge(p, state.date) >= 20 && getCharacterAge(p, state.date) <= 42).sort((a, b) => a.id.localeCompare(b.id))) { if (birthsClosed(state)) break; const father = state.people[mother.spouseId]; if (!adult(state, father) || father.sex !== 'male') continue; if (mother.lastBirthAt && diffGameDays(mother.lastBirthAt, state.date) < 600) continue; const children = values(state.people).filter((p) => p.biologicalParentIds.includes(mother.id)); if (children.length >= 4) continue; if (random(state) < (mother.health > 50 ? 0.22 : 0.06)) newChild(state, mother, father, events); }
   const representativeId = activeRepresentative(state)?.id; const singles = living(state).filter((p) => adult(state, p) && getCharacterAge(p, state.date) < 40 && !alive(state.people[p.spouseId]) && p.id !== representativeId).sort((a, b) => a.id.localeCompare(b.id));
   for (const person of singles) { if (alive(state.people[person.spouseId])) continue; const partner = singles.find((p) => p.id !== person.id && p.sex !== person.sex && !alive(state.people[p.spouseId]) && !closeKin(state, person, p)); if (partner && random(state) < 0.2) { person.spouseId = partner.id; partner.spouseId = person.id; addBond(state, person.id, partner.id, 'partner'); logEvent(state, events, 'marriage', 'En ny familjeförbindelse', `${person.name} och ${partner.name} gifter sig.`, [person.id, partner.id]); memory(state, 'marriage', 'Äktenskap mellan familjer', [person.id, partner.id]); } }
   refreshMandates(state, events); aiAnnual(state, events);

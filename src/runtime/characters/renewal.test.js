@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHistoricalCharacterSystem } from './scenarioSeed.js';
 import { actionHooks, advanceCharacters, createCharacterSystem, getCharacterAge, normalizeCharacterSystem } from './index.js';
-import { courtAdults, courtRenewalStep, ensureLineageState, lineageRandom } from './renewal.js';
+import { birthsClosed, COURT_BIRTH_CAP, courtAdults, courtRenewalStep, ensureLineageState, lineageRandom } from './renewal.js';
 import { SKILL_LABELS } from './content.js';
 import { addGameMonths } from '../gameDates.js';
 
@@ -264,4 +264,41 @@ test('the active representative of a family campaign gains no generated spouse',
   step(state, LOW);
   assert.equal(state.people['generated-courtier-1'].spouseId, null);
   assert.equal(state.lineageRngState, LOW);
+});
+
+const livingCount = state => Object.values(state.people).filter(person => !person.diedAt).length;
+// Fertile couples: a woman of 25 married to a man of 30, both in full health and without children.
+const couples = (state, n) => {
+  for (let i = 1; i <= n; i++) {
+    probe(state, `wife-${i}`, { sex: 'female', bornAt: '0775-01-01', spouseId: `husband-${i}`, lastBirthAt: null, health: 100 });
+    probe(state, `husband-${i}`, { sex: 'male', bornAt: '0770-01-01', spouseId: `wife-${i}`, health: 100 });
+  }
+};
+const fill = (state, living) => { for (let i = 1; livingCount(state) < living; i++) probe(state, `filler-${i}`, { bornAt: '0775-01-01', health: 100 }); };
+const bornThisYear = state => Object.values(state.people).filter(person => person.bornAt > '0800-12-25');
+
+test('the birth cap closes a historical court at 48 living people', () => {
+  assert.equal(COURT_BIRTH_CAP, 48);
+  const state = papal(); couples(state, 4); fill(state, 47);
+  probe(state, 'dead', { diedAt: '0799-01-01' });
+  assert.equal(livingCount(state), 47);
+  assert.equal(birthsClosed(state), false);
+  probe(state, 'one-more');
+  assert.equal(birthsClosed(state), true);
+});
+test('a historical court at the birth cap has no births', () => {
+  // Twelve living people above the cap, so deaths in the year cannot reopen it before the birth loop.
+  // On seed 2 the same twelve couples have children when the court is below the cap, so the empty list is the cap's doing.
+  const capped = papal({ seed: 2 }); couples(capped, 12); fill(capped, COURT_BIRTH_CAP + 12);
+  const next = ok(advanceCharacters(capped, '0801-12-25'));
+  assert.deepEqual(bornThisYear(next).map(person => person.id), []);
+  const open = papal({ seed: 2 }); couples(open, 12);
+  assert.ok(livingCount(open) < COURT_BIRTH_CAP);
+  assert.ok(bornThisYear(ok(advanceCharacters(open, '0801-12-25'))).length >= 1);
+});
+test('a Hadara state ignores the birth cap', () => {
+  const state = createCharacterSystem({ seed: 321 });
+  for (let i = 1; livingCount(state) < COURT_BIRTH_CAP + 2; i++) state.people[`hadara-probe-${i}`] = { ...plain(state.people['person-0-0']), id: `hadara-probe-${i}`, spouseId: null };
+  assert.ok(livingCount(state) >= COURT_BIRTH_CAP);
+  assert.equal(birthsClosed(state), false);
 });

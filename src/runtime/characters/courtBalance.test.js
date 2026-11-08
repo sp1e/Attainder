@@ -8,7 +8,7 @@ import { dreadOf } from './dread.js';
 import { spymasterOf } from './extensions.js';
 import { isImprisoned } from './prisoners.js';
 import { MAX_ACTIVE_GOALS } from './reign.js';
-import { courtAdults } from './renewal.js';
+import { COURT_BIRTH_CAP, courtAdults } from './renewal.js';
 import { createHistoricalCharacterSystem } from './scenarioSeed.js';
 
 // One playthrough of ten years on Normal sees each court system at least once. playYear is a scripted player: it never looks at a seed and never adapts to a result.
@@ -172,9 +172,9 @@ test('a spymaster of low loyalty reads worse than the same spymaster at ease', (
 const CENTURY = 100;
 const CHARLEMAGNE = JSON.parse(readFileSync(new URL('../../../server/seed/historical/charlemagne-800/scenario.json', import.meta.url), 'utf8')).data;
 
-function century(polityId, seed) {
+function century(polityId, seed, years = CENTURY) {
   let state = createHistoricalCharacterSystem({ historicalScenario: CHARLEMAGNE.world.historicalScenario, date: CHARLEMAGNE.game.startDate, polityId, mode: 'realm', seed });
-  for (let year = 1; year <= CENTURY; year++) state = ok(advanceCharacters(state, addGameMonths(state.date, 12), { id: `${polityId}:${seed}:${year}` }));
+  for (let year = 1; year <= years && !state.status.ended; year++) state = ok(advanceCharacters(state, addGameMonths(state.date, 12), { id: `${polityId}:${seed}:${year}` }));
   return state;
 }
 
@@ -201,5 +201,16 @@ test('Kyrkostaten keeps at least four court adults and children at court through
     assert.ok(courtAdults(state).length >= 4, `${seed}: ${courtAdults(state).length} court adults`);
     assert.ok(generatedChildren(state).length >= 1, `${seed}: no generated child`);
     report(t, seed, state);
+  }
+});
+
+// The birth cap holds Kyrkostaten near 48 living people for three centuries. Births stop at the cap, and renewal can still add spouses while fewer than twelve adults remain at court.
+const livingPeople = (state) => Object.values(state.people).filter((person) => !person.diedAt).length;
+
+test('Kyrkostaten stays bounded over three centuries', (t) => {
+  for (const seed of [777, 314159]) {
+    const state = century('papal-states', seed, 300);
+    assert.ok(livingPeople(state) <= COURT_BIRTH_CAP + 12, `${seed}: ${livingPeople(state)} living`);
+    t.diagnostic(`${seed}: ${state.date}, ${state.status.ended ? `ended: ${state.status.reason}` : 'alive'}, living ${livingPeople(state)}, court adults ${courtAdults(state).length}`);
   }
 });
