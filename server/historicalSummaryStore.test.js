@@ -18,16 +18,17 @@ const STORE_URL = new URL('./libraryStore.js', import.meta.url).href;
 const runStore = (root, body) => execFileSync(process.execPath, ['--input-type=module', '-e', `
   import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path';
   const scenariosDir = path.join(process.env.OH_DATA_DIR, 'scenarios');
-  const worldReads = new Map(), readFileSync = fs.readFileSync;
+  const worldReads = new Map(), metaReads = new Map(), readFileSync = fs.readFileSync;
   fs.readFileSync = (file, ...rest) => {
-    const name = String(file);
-    if (name.startsWith(scenariosDir) && path.basename(name) === 'world.json') {
+    const name = String(file), counts = { 'world.json': worldReads, 'scenario.json': metaReads }[path.basename(name)];
+    if (name.startsWith(scenariosDir) && counts) {
       const id = path.basename(path.dirname(name));
-      worldReads.set(id, (worldReads.get(id) ?? 0) + 1);
+      counts.set(id, (counts.get(id) ?? 0) + 1);
     }
     return readFileSync(file, ...rest);
   };
   const reads = id => worldReads.get(id) ?? 0;
+  const metaReadsOf = id => metaReads.get(id) ?? 0;
   const store = await import(${JSON.stringify(STORE_URL)});
   const entry = id => store.getScenarioCatalog().scenarios.find(s => s.id === id);
   ${body}
@@ -82,6 +83,17 @@ test('the catalog carries a summary for each start and a later read builds none 
     assert.equal(reads('default'), 0, 'the default world is not parsed again while it is unchanged');
   `);
   assert.deepEqual(metaTimes(), before, 'no summary is built or written again');
+}));
+
+test('a catalog entry reads its scenario meta once, also when it rebuilds the summary', () => withLibrary(root => {
+  editJson(scenarioFile(root, 'charlemagne-800', 'game.json'), game => { game.gameDate = '0801-01-01'; });
+  runStore(root, `
+    store.ensureScenarioStore(); metaReads.clear();
+    assert.equal(entry('charlemagne-800').historicalSummary.date, '0801-01-01');
+    assert.equal(metaReadsOf('charlemagne-800'), 1, 'the rebuilt summary is stored from the meta already read');
+    assert.equal(metaReadsOf('egypt-3000bc'), 1, 'a cached summary comes from the meta already read');
+  `);
+  assert.equal(readJson(scenarioFile(root, 'charlemagne-800', 'scenario.json')).historicalSummary.date, '0801-01-01');
 }));
 
 test('a game date edited on disk without a meta write shows on the next catalog read', () => withLibrary(root => {
