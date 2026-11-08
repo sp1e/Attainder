@@ -100,6 +100,16 @@ export function playerText(message, fallback) {
 
 const failedOutcome = (result) => ({ ok: false, heading: "Handlingen kunde inte genomföras", text: playerText(result?.error, ACTION_FAILED) });
 
+// What the spymaster found about a flattering advisor, as the outcome card shows it, or nothing. Only a band that moved is named.
+function flatteryNote(resolution) {
+  const found = resolution.flattery;
+  if (!found || !resolution.odds) return {};
+  const moved = [["lyckas", resolution.odds.success, found.shown.success], ["hållas hemlig", resolution.odds.secrecy, found.shown.secrecy]]
+    .filter(([, real, shown]) => real !== shown).map(([what, real, shown]) => `chansen att ${what} var ${real} (visad som ${shown})`).join(", ");
+  if (!moved) return {};
+  return { revealed: `Spionmästaren fann att ${found.officeName.toLowerCase()} ${found.advisorName} förskönade rådet. ${moved[0].toUpperCase()}${moved.slice(1)}.` };
+}
+
 /**
  * Carries out a confirmed proposal. A command entry submits its own command. A contested entry submits attempt_action,
  * then asks the model for the story and saves it through recordNarrative (origin 'narrate'). A failed story leaves the
@@ -130,8 +140,9 @@ export async function executeProposal({ proposal, view, submit, narrate, recordN
   }
   if (resolution.refused) return { ok: true, heading: resolution.tierLabel || "Ordern vägrades", ...standard };
   const heading = TIER_HEADINGS[resolution.tier] || resolution.tierLabel || "Utfall";
+  const reveal = flatteryNote(resolution);
   // The tier is settled; show it while the model writes the story.
-  onProgress({ ok: true, heading, ...standard, pending: "Modellen skriver berättelsen…" });
+  onProgress({ ok: true, heading, ...standard, ...reveal, pending: "Modellen skriver berättelsen…" });
   let story = null;
   try {
     story = await narrate({ resolution, view: after });
@@ -140,10 +151,10 @@ export async function executeProposal({ proposal, view, submit, narrate, recordN
   }
   if (story?.ok) {
     const saved = await recordNarrative({ resolutionId: resolution.id, title: story.title, narrative: story.narrative, adjustments: story.adjustments });
-    if (saved?.ok) return { ok: true, heading, title: story.title, text: story.narrative };
+    if (saved?.ok) return { ok: true, heading, title: story.title, text: story.narrative, ...reveal };
     console.warn(`[character action] the narrative for ${resolution.id} was refused:`, saved?.error);
   }
-  return { ok: true, heading, ...standard, note: NARRATE_FAILED };
+  return { ok: true, heading, ...standard, ...reveal, note: NARRATE_FAILED };
 }
 
 function ProposalFacts({ proposal, view }) {
@@ -174,6 +185,7 @@ function ProposalFacts({ proposal, view }) {
     <ul className="char-confirm-odds">
       <li>Chans att lyckas: {oddsText(display.success)}</li>
       <li>Chans att hållas hemlig: {oddsText(display.secrecy)}</li>
+      {display.advisor && <li>Bedömt av: {display.advisor.officeName} {display.advisor.name}</li>}
     </ul>
     {entries(display.modifiers).length > 0 && <details className="char-explanation"><summary>Vad påverkar chansen?</summary>
       <ul>{entries(display.modifiers).map((row, index) => <li key={`${row.label}-${index}`}>{modifierText(row)}</li>)}</ul>
@@ -294,6 +306,7 @@ export function OutcomeCard({ outcome, onDone, focusRef }) {
     <h4 ref={focusRef} tabIndex={-1}>{outcome.heading}</h4>
     {outcome.title && <strong className="char-outcome-title">{outcome.title}</strong>}
     {paragraphs.map((part, index) => <p key={index}>{part}</p>)}
+    {outcome.revealed && <p className="char-caption">{outcome.revealed}</p>}
     {outcome.note && <p className="char-caption">{outcome.note}</p>}
     {outcome.pending && <p className="char-caption">{outcome.pending}</p>}
     {onDone && !outcome.pending && <button type="button" className="char-button" onClick={onDone}>Ny handling</button>}

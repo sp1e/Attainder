@@ -14,6 +14,8 @@ const DRIFT = Object.freeze({ warmOpinion: 20, warm: 1, coldOpinion: -20, cold: 
 const YIELD = Object.freeze({ divisor: 25, max: 12 });
 const REWARD = Object.freeze({ silver: 20, orders: 1, tag: 'generous', loyalty: 8, months: 12 });
 const THRONE_INFLUENCE = 50;
+// The seat that presents the odds of an action in each skill.
+const ADVISOR_SEATS = Object.freeze({ intrigue: 'spymaster', diplomacy: 'chancellor', prowess: 'general' });
 const SERVICE_DISPLAY = Object.freeze({ min: 5, max: 95 });
 const PRECISION_ORDER = Object.freeze(['three', 'five', 'exact']);
 const LOYALTY_LABELS = Object.freeze({
@@ -53,6 +55,14 @@ export function serviceOf(state, officeId, hooks) {
   if (!person) return null;
   const temper = (hasTrait(person, 'dutiful') ? SERVICE.dutiful : 0) - (hasTrait(person, 'ambitious') ? SERVICE.ambitious : 0);
   return clamp(Math.round(person.loyalty + opinionOfRuler(person, hooks) * SERVICE.opinionWeight + temper), 0, 100);
+}
+
+/** The councillor who presents the odds of an action in `skill`, or null when the skill has no seat or the seat is vacant. A holder who serves below 30 flatters. The caller decides whether the player rules. */
+export function advisorFor(state, skill, hooks) {
+  const officeId = Object.hasOwn(ADVISOR_SEATS, skill) ? ADVISOR_SEATS[skill] : null;
+  const person = officeId ? seatHolder(state, officeId) : null;
+  if (!person) return null;
+  return { personId: person.id, name: person.name, officeId, officeName: state.offices[officeId].name, flatters: serviceOf(state, officeId, hooks) < SERVICE.reluctant };
 }
 
 export function serviceTier(service) {
@@ -95,6 +105,12 @@ export function loyaltyLabel(value, precision) {
 /** The coarser of two precisions. */
 export function capPrecision(a, b) {
   return PRECISION_ORDER[Math.min(PRECISION_ORDER.indexOf(a), PRECISION_ORDER.indexOf(b))];
+}
+
+/** Whether the spymaster sees through an advisor's flattery: a living spymaster who is not the advisor and reads loyalty at five bands or better. */
+export function flatteryRevealed(state, advisorId, hooks) {
+  const spymaster = spymasterOf(state);
+  return Boolean(spymaster) && spymaster.id !== advisorId && loyaltyPrecision(state, hooks) !== 'three';
 }
 
 /** A person's loyalty as the player may read it, or null for the representative. Reads only. */

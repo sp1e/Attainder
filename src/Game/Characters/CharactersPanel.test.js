@@ -543,6 +543,28 @@ test("each tier has its own Swedish heading and a failed narrate keeps the defau
   assert.match(html, /Berättelsen kunde inte skrivas; utfallet gäller\./);
 });
 
+test("the odds card names its advisor, and the outcome card tells what the spymaster found", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const entry = view.catalog.find((item) => item.catalogId === "sway");
+  const estimate = { display: { success: "trolig", secrecy: "trolig", modifiers: [], advisor: { name: "Barek Eshmun", officeName: "Kansler" } } };
+  const proposal = { mode: "contested", catalogId: "sway", entry, payload: swayAnswer(view).payload, estimate };
+  const card = renderToStaticMarkup(React.createElement(box.ConfirmationCard, { proposal, view, onConfirm: () => {}, onCancel: () => {} }));
+  assert.match(card, /Bedömt av: Kansler Barek Eshmun/);
+  const flattered = { id: "resolution-2", tier: "quiet_failure", refused: false, effects: [], odds: { success: "osäker", secrecy: "osäker" },
+    flattery: { advisorName: "Barek Eshmun", officeName: "Kansler", shown: { success: "trolig", secrecy: "trolig" } } };
+  const outcome = await box.executeProposal({ proposal, view: { ...view, recentResolutions: [] },
+    submit: async () => ({ ok: true, state: { recentResolutions: [flattered], schemes: [] }, events: [{ title: "Påverka: misslyckat i det tysta", description: "Inget hände." }] }),
+    narrate: async () => ({ ok: false, reason: "Modellanropet misslyckades." }), recordNarrative: async () => assert.fail(), present: (state) => state });
+  const html = renderToStaticMarkup(React.createElement(box.OutcomeCard, { outcome }));
+  assert.match(html, /Spionmästaren fann att kansler Barek Eshmun förskönade rådet\. Chansen att lyckas var osäker \(visad som trolig\), chansen att hållas hemlig var osäker \(visad som trolig\)\./);
+  const oneBand = { ...flattered, odds: { success: "osäker", secrecy: "trolig" } };
+  const single = await box.executeProposal({ proposal, view: { ...view, recentResolutions: [] },
+    submit: async () => ({ ok: true, state: { recentResolutions: [oneBand], schemes: [] }, events: [] }),
+    narrate: async () => ({ ok: false, reason: "Modellanropet misslyckades." }), recordNarrative: async () => assert.fail(), present: (state) => state });
+  assert.equal(single.revealed, "Spionmästaren fann att kansler Barek Eshmun förskönade rådet. Chansen att lyckas var osäker (visad som trolig).");
+});
+
 test("a command proposal submits its own command and calls no model", async () => {
   const box = loadActionBox();
   const { view } = engineCampaign();
