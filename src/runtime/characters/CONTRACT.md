@@ -21,7 +21,7 @@ State has `schemaVersion:1`, `rulesVersion`, `contentVersion`, `revision`, `date
 
 Events returned by mutation: `{id,date,type,title,description,participants,public:true}`. Pure chronological outcomes. The runtime adapter owns their conversion to Open Historia impacts and replay; `events` never mutate the host world themselves.
 
-Progression can be invoked locally without an LLM. Realm/family commands, budgets, stresses, stories and succession share one state. Long hops use stable annual boundaries and saved randomness. State remains serializable to JSON. Original content and balance constants are our own design, not claimed copies of proprietary code.
+Progression can be invoked locally without an LLM. Realm/family commands, budgets, stresses, stories and succession share one state. Long hops use stable annual boundaries and saved randomness. State remains serializable to JSON. An accepted command, time step or host transition keeps `state.log` from the 120th public entry from the end (`CHARACTER_LOG_LIMIT`, `keptCharacterLog`), the entries the presentation shows; no rule reads the log. The runtime's replay diff records the dropped front as a `drop` change. Original content and balance constants are our own design, not claimed copies of proprietary code.
 
 ## Recurring character decisions
 

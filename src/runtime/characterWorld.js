@@ -96,11 +96,27 @@ export const reconcileCharacterPolity = (world, event) => {
   return { world: projectCharacterWorld({ ...next, characterSystem: result.state }), events };
 };
 
-// Append-only memories/logs are cheap deltas. Replacing a whole state on every
-// event made a century of history recur inside every rollback copy.
+// How many leading entries of `before` a step dropped, when `after` continues the rest of it: the
+// capped character log (CHARACTER_LOG_LIMIT) loses its oldest entries as new ones arrive. 0 otherwise.
+const droppedFront = (before, after) => {
+  if (!before.length || !after.length) return 0;
+  const first = JSON.stringify(after[0]);
+  if (JSON.stringify(before[0]) === first) return 0;
+  for (let drop = 1; drop < before.length; drop++) {
+    if (JSON.stringify(before[drop]) !== first) continue;
+    const kept = before.length - drop;
+    if (kept <= after.length && before.slice(drop).every((entry, index) => index === 0 || JSON.stringify(entry) === JSON.stringify(after[index]))) return drop;
+  }
+  return 0;
+};
+
+// Append-only memories/logs are cheap deltas, and so is a log that drops its oldest entries. Replacing
+// a whole state on every event made a century of history recur inside every rollback copy.
 export const diffCharacterState = (before, after, path = [], output = []) => {
   if (JSON.stringify(before) === JSON.stringify(after)) return output;
   if (Array.isArray(before) && Array.isArray(after)) {
+    const drop = droppedFront(before, after);
+    if (drop) { output.push({ path, drop }); before = before.slice(drop); }
     for (let i = 0; i < Math.min(before.length, after.length); i++) diffCharacterState(before[i], after[i], [...path, i], output);
     if (after.length < before.length) output.push({ path, truncate: after.length });
     if (after.length > before.length) output.push({ path, append: copy(after.slice(before.length)) });
@@ -111,7 +127,7 @@ export const diffCharacterState = (before, after, path = [], output = []) => {
   return output;
 };
 
-const patchCharacterData = (state, changes) => {
+export const patchCharacterData = (state, changes) => {
   const next = copy(state);
   for (const change of changes) {
     let holder = next;
@@ -122,7 +138,10 @@ const patchCharacterData = (state, changes) => {
     const key = change.path.at(-1);
     if (!holder || typeof holder !== "object") throw new Error("Karaktärshistorikens fält är ogiltigt.");
     if (change.remove) delete holder[key];
-    else if (Object.hasOwn(change, "truncate")) {
+    else if (Object.hasOwn(change, "drop")) {
+      if (!Array.isArray(holder[key])) throw new Error("Karaktärshistoriken förväntade en lista.");
+      holder[key].splice(0, change.drop);
+    } else if (Object.hasOwn(change, "truncate")) {
       if (!Array.isArray(holder[key])) throw new Error("Karaktärshistoriken förväntade en lista.");
       holder[key].length = change.truncate;
     } else if (change.append) {
@@ -144,7 +163,7 @@ export const normalizeCharacterOps = (value) => (Array.isArray(value) ? value : 
       const changes = op.changes.filter((change) => Array.isArray(change?.path) && change.path.length > 0
         && change.path.length < 20 && change.path.every((part) => (typeof part === "string" || Number.isInteger(part)) && !forbiddenPath.has(String(part)))
         && (Object.hasOwn(change, "value") || change.remove === true || Array.isArray(change.append)
-          || (Number.isInteger(change.truncate) && change.truncate >= 0)));
+          || (Number.isInteger(change.truncate) && change.truncate >= 0) || (Number.isInteger(change.drop) && change.drop > 0)));
       if (changes.length !== op.changes.length) throw new Error("Karaktärshistoriken innehåller en ogiltig förändring.");
       return [{ id: op.id, kind: "patch", ...(op.gate === true ? { gate: true } : {}),
         fromRevision: op.fromRevision, toRevision: op.toRevision, changes: copy(changes) }];
