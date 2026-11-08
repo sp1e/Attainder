@@ -60,3 +60,12 @@ The research needs an audited coverage report for the requested years. The featu
 - `docs/superpowers/specs/2026-11-05-historical-world-direction.md`: current setting and start-date authority.
 - `docs/superpowers/specs/2026-10-31-ai-game-master-design.md`: character and AI systems, subject to the newer setting direction.
 - `docs/development/CONTINUE-HERE.md`: measured progress and the next implementation step.
+
+
+## Swedish and English throughout the game
+
+Owner requirement, 8 November 2026: the player can choose Swedish or English in Options, and all game text follows that choice. Codex writes the actual translations now; Claude integrates them. See the [translation plan](../superpowers/plans/2026-11-08-bilingual-game-text.md).
+
+Coverage includes historical starts, culture names, court descriptions, event popups, actions and outcomes, generated narration, loading and refusal messages, tooltips, accessibility labels and in-game help. Original source quotations, bibliographic titles and attested personal names keep their original forms. Existing aligned language packages are reused; new Swedish content also needs English and new English content also needs Swedish.
+
+Acceptance requires a new campaign and a restored campaign in each language, a language change in Options, an annual historical popup with date qualifiers and sources, an action with its outcome or refusal, and a model-generated narrative in the selected language. Variables, numbers, historical uncertainty and saved campaign identifiers must survive translation. A data-only translation delivery is not a completed runtime language-switch test.
