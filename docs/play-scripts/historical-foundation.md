@@ -257,9 +257,11 @@ The start card's `Källor och osäkerhet` block shows how many polities are play
 
 | ID | Server | Web |
 | --- | --- | --- |
-| C-1 | | |
-| C-2 | | |
-| C-3 | | |
+| C-1 | `Frankrike · 1200 e.Kr.` selected: `Spelbara riken i starten: 4. På kartan utan spelbart hov: Västra Xia, Chimú. Kartområden utan granskad ägare: 280.` | Same |
+| C-2 | `Spelbara riken i starten: 10. Kartområden utan granskad ägare: 214.` | Same |
+| C-3 | 0 errors | 0 errors |
+
+The controller ran Playwright at `dc08c497` on 2026-11-08 after `npm run build`, with a fresh `OH_DATA_DIR` on the server (4167) and cleared browser storage on the web adapter (5199), `/api/local-models/status` stubbed on both. C-1 reads the John package through one of its four playable courts; the line is the same for each.
 
 ## Closure
 

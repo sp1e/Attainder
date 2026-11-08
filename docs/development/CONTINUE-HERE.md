@@ -108,7 +108,7 @@ The design is `docs/superpowers/specs/2026-11-08-world-cultures-phase-6-design.m
 
 Today's counts: playable 1, 10, 4 and 2 (Egypt, AD 800, AD 1200, AD 1500), map-only only Västra Xia and Chimú at AD 1200, and 137, 214, 280 and 289 review features withheld from ownership. The report gives counts and no percentage, because the coverage unit and the historical denominator are not defined yet.
 
-Evidence at `a9a599b8`: the full serial suite ran 5,186 tests, with 5,183 passed, 0 failed, 1 skipped and 2 TODO. The four `--check` scripts and `node scripts/check-start-coverage.mjs --check` exited 0. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md).
+Evidence at `a9a599b8`: the full serial suite ran 5,186 tests, with 5,183 passed, 0 failed, 1 skipped and 2 TODO. The four `--check` scripts and `node scripts/check-start-coverage.mjs --check` exited 0. At `dc08c497`, `npm run build` passed and the browser run on both adapters showed the expected lines with 0 console errors; it is recorded in the [play script](../play-scripts/historical-foundation.md).
 
 ## Branch state
 
