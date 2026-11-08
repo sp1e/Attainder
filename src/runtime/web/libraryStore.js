@@ -1,6 +1,7 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "../../../server/historicalPreparation.js";
 import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade, withLibraryFields } from "../../../server/historicalStarts.js";
 import { HISTORICAL_SUMMARY_SCHEMA, historicalStartFromSummary, historicalStartSummary } from "../../../server/historicalStartSummary.js";
+import { checkedHistoricalStartSummary } from "../../../server/historicalSummaryCheck.js";
 import { withScenarioLicense, preserveComponentProvenance } from "../scenarioLicense.js";
 /*! Open Historia — web-mode library/scenario/game/runtime store © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 // Browser (IndexedDB) port of server/libraryStore.js. Backs /api/library,
@@ -71,12 +72,21 @@ const getGame = (id) => idbGet(STORES.games, id);
 // catalog derives historicalStart from it. The summary takes its name from the meta as the catalog
 // shows it, as the desktop store does. The web store has no files to stamp, so sourceStamp is null:
 // every scenario write goes through putScenario and projects the summary again.
+// The full start validation needs the record's map. A record that borrows the bundled map of the web
+// build (the John 1200 default) keeps the structural checks: this projection is synchronous and that
+// map is fetched. The build checks that package, and every edit of it is validated before the write.
+const projectedHistoricalSummary = (record) => {
+  const meta = readScenarioMeta(record.id, record.meta ?? {}), data = record.json;
+  if (record.geojson?.regionsGeojson === undefined && usesBuiltInMap(record)) return historicalStartSummary({ meta, data, sourceStamp: null });
+  return checkedHistoricalStartSummary({ meta, data, sourceStamp: null, loadMap: () => ({
+    regions: parseJsonValue(record.geojson?.regionsGeojson, null), cities: parseJsonValue(record.geojson?.citiesGeojson, null) }) });
+};
 const projectScenarioMeta = (record) => ({
   id: record.id,
   meta: record.meta ?? {},
   cover: record.cover ?? null,
   assetStatus: getScenarioAssetStatus(record),
-  historicalSummary: historicalStartSummary({ meta: readScenarioMeta(record.id, record.meta ?? {}), data: record.json, sourceStamp: null }),
+  historicalSummary: projectedHistoricalSummary(record),
 });
 // A row projected before metas carried historicalSummary, or under another summary schema.
 // A stored null means "not historical" and stays.

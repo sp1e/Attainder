@@ -18,6 +18,7 @@ export function historicalStartOption(details, regions, cities) {
     polities: h.playablePolityIds.map(id => h.polities.find(p => p.id === id)).map(({ id, nameSv, kind }) => ({ id, name: nameSv, kind: kind ?? 'state',
       ruler: h.courtSeeds[id].people.find(p => p.id === h.courtSeeds[id].rulerId),
       context: h.courtSeeds[id].contextSv ?? null,
+      mechanicsNote: typeof h.courtSeeds[id].mechanics?.noteSv === 'string' ? h.courtSeeds[id].mechanics.noteSv : null,
       families: h.courtSeeds[id].families.map(f => ({ id: f.id, name: f.name ?? f.id })) })),
   };
 }
@@ -38,7 +39,7 @@ export function historicalStartOptionFromSummary(scenarioId, summary) {
     context: summary.contextSv, coverage: summary.coverageNoteSv, calendarNote: summary.calendarNoteSv,
     mapCoverage: copyMapCoverage(summary.mapCoverage),
     polities: summary.polities.map(p => ({ id: p.id, name: p.nameSv, kind: p.kind ?? 'state', regionId: p.regionId, ruler: { ...p.ruler },
-      context: p.contextSv ?? null,
+      context: p.contextSv ?? null, mechanicsNote: p.mechanicsNoteSv ?? null,
       families: p.families.map(f => ({ id: f.id, name: f.name })) })),
   };
 }
