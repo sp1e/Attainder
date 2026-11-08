@@ -249,6 +249,10 @@
 /* Own action: free text, confirmation, menu fallback, outcome and running schemes. */
 .char-difficulty { color: var(--char-muted); font-size: 12px; }
 .char-watches { position: relative; font-size: 12px; }
+.char-nickname-path ul { list-style: none; margin: 0 0 6px; padding: 0; display: grid; gap: 6px; }
+.char-nickname-path li { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.char-nickname-path li span { color: var(--char-muted); font-size: 13px; }
+.char-nickname-path li.is-earned strong { color: var(--char-gold); }
 .char-watches > summary { cursor: pointer; color: var(--char-muted); list-style: none; display: inline-flex; align-items: center; gap: 6px; }
 .char-watches > summary::-webkit-details-marker { display: none; }
 .char-watches > summary:focus-visible { outline: 2px solid var(--char-focus); outline-offset: 2px; }
