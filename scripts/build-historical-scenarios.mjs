@@ -259,9 +259,10 @@ function backgroundFeatures(land,owned) {
   return background;
 }
 
-// Every playable polity's court seat carries the seat flag.
-function citiesFor(h) {
-  const seats = new Set(h.playablePolityIds.map(id => h.courtSeeds[id].seatId));
+// Every playable polity's court seat carries the seat flag. A playable polity without a court gets no
+// seat here, so the validator reports invalidCourt instead of this throwing a TypeError.
+export function citiesFor(h) {
+  const seats = new Set(h.playablePolityIds.map(id => h.courtSeeds?.[id]?.seatId).filter(Boolean));
   return { type: 'FeatureCollection',features: h.settlements.map(s => ({ type: 'Feature',id: s.id,properties: { id: s.id,name: s.nameSv,city: s.nameSv,owner: s.polityId,tier: 3,seat: seats.has(s.id),placementNoteSv: s.noteSv,sourceIds: s.sourceIds },geometry: { type: 'Point',coordinates: s.coordinates } })) };
 }
 

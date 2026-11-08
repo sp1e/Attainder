@@ -8,6 +8,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { HISTORICAL_BOOKMARKS } from './historicalStarts.js';
+import { citiesFor } from '../scripts/build-historical-scenarios.mjs';
 
 test('desktop store preserves historical source, component terms and geometry through two imports',async () => {
   const root = await fs.mkdtemp(path.join(os.tmpdir(),'attainder-provenance-'));
@@ -104,4 +105,12 @@ test('a second build gives identical bytes under another clock zone and locale',
     const { stdout } = await run(process.execPath,['scripts/build-historical-scenarios.mjs','--check'],{ cwd: REPO,env: { ...process.env,...env },maxBuffer: 1 << 20 });
     assert.ok(JSON.parse(stdout).some(p => p.contentId === 'charlemagne-800'),JSON.stringify(env));
   }
+});
+
+// Backlog row 8: a playable polity without a court must reach the validator, which reports invalidCourt.
+test('the seat list skips a playable polity without a court instead of throwing', () => {
+  const settlement = { id: 'aachen', nameSv: 'Aachen', polityId: 'a', coordinates: [6, 50], sourceIds: [], noteSv: '' };
+  const h = { playablePolityIds: ['a', 'b'], courtSeeds: { a: { seatId: 'aachen' } }, settlements: [settlement] };
+  assert.equal(citiesFor(h).features[0].properties.seat, true);
+  assert.equal(citiesFor({ ...h, courtSeeds: undefined }).features[0].properties.seat, false);
 });
