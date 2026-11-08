@@ -310,11 +310,14 @@ test('three generation runs in both modes preserve referential integrity and rep
   for (const mode of ['realm', 'family']) for (const seed of [1, 71, 9876]) {
     let state = createCharacterSystem({ mode, seed });
     state = command(state, 'resolve_story', { storyId: state.stories[0].id, choiceId: 'promise' });
-    const first = advance(state, 65);
+    const run = advanceCharacters(state, addGameMonths(state.date, 65 * 12));
+    assert.equal(run.ok, true, run.error);
+    const first = run.state;
     const replay = advance(normalizeCharacterSystem(JSON.parse(JSON.stringify(state))), 65);
     assert.deepEqual(first, replay);
-    assert.ok(first.log.some((e) => e.type === 'birth'));
-    assert.ok(first.log.some((e) => e.type === 'succession'));
+    // The log keeps the last 120 public entries (CHARACTER_LOG_LIMIT); the run's events hold all 65 years.
+    assert.ok(run.events.some((e) => e.type === 'birth'));
+    assert.ok(run.events.some((e) => e.type === 'succession'));
     assert.ok(first.memories.some((m) => m.type === 'promise'));
     for (const office of Object.values(first.offices)) if (office.holderId) assert.equal(first.people[office.holderId].diedAt, null);
     assert.deepEqual(normalizeCharacterSystem(first), first);
