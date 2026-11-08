@@ -57,6 +57,12 @@
     },
     {
       "startYear": -2400,
+      "endYear": -2301,
+      "status": "partial",
+      "note": "Two records retain the independently supported historical cores of a rounded room at La Galgada and the funerary texts in Unas's pyramid. The room date remains a qualified published estimate with no individually identified sample or confidence interval. Two competing reign chronologies remain explicit for Unas, without fixing a carving year. All nine working regions were searched through 63 queries; the final records concern the Americas and North Africa/Middle East, with seven regions and many areas still missing. The jade object and Ebla palace fire are withheld after independent access limitations. Earlier retrieval acts remain unestablished and editorial importance is assessed under the brief. Full date qualifications remain in single records. Empty years remain research gaps."
+    },
+    {
+      "startYear": -2300,
       "endYear": 799,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."

@@ -5052,6 +5052,54 @@
       "originalChronology": "asWorded: \"Vers 2450 av. J. - C.\" and \"(-2450 - -2425)\" in the creation/fabrication date. These date the stele, not an independently fixed battle year.",
       "reuseTerms": "Reference only; no source prose or images redistributed",
       "scopedClaim": "The limestone victory stele commemorates Eannatum of Lagash's victory over neighboring Umma. Its inscription is Sumerian cuneiform, and the Louvre dates its manufacture to about 2450–2425 BC. Girsu/Tello is its findspot."
+    },
+    {
+      "id": "bc2400-bueno-la-galgada-2019",
+      "title": "La Galgada: Arquitectura compleja precerámica y arte en tránsito a Chavín",
+      "institution": "Alberto Bueno Mendoza, Universidad Nacional Mayor de San Marcos; Estudios Latinoamericanos 39 (2019), pp. 89–110",
+      "url": "https://estudioslatinoamericanos.pl/index.php/estudios/article/download/325/250",
+      "locator": "Section 3, Pirámide sur, printed p. 97 (PDF p. 9), paragraph on radiocarbon dates obtained in 1978–79, floor level 24. Location: printed p. 90 (PDF p. 2). DOI 10.36447/Estudios2019.v39.art6.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "2400 a.C.",
+      "originalChronology": "Bueno Mendoza reports 2400 BC for the rounded room built at floor level 24, within a paragraph describing radiocarbon results with dendrochronological calibration. He gives no laboratory identifier or confidence interval for this particular estimate. On the same page he places construction of the south-temple complex around 2500 BC and describes later superpositions; the 2400 estimate is not a foundation date for the whole site. The separately described square room is dated 2200 BC. No BP subtraction or recalibration has been performed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The excavator associates the rounded room at floor level 24 in the southern mound with a published calibrated estimate of 2400 BC. The location is La Galgada, Tauca-Pallasca, Ancash, Peru. This passage supports one room-level episode, with approximate dating."
+    },
+    {
+      "id": "bc2400-ministry-unas-tour",
+      "title": "A Virtual Tour through The Funerary Complex of King Unas",
+      "institution": "Ministry of Tourism and Antiquities, Egypt",
+      "url": "https://egymonuments.gov.eg/news/a-virtual-tour-through-the-funerary-complex-of-king-unas/",
+      "locator": "Main text, first paragraph on Unas and the Pyramid Texts, and second paragraph on the inscriptions; web representation lines 128–129.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "c.2375–2345 BC",
+      "originalChronology": "The ministry gives approximately 2375–2345 BC for Unas and identifies his pyramid as the first decorated with Pyramid Texts. This is a reign context for the inscriptions, not an individually dated inscription campaign. The Met's 1999 chronology instead gives approximately 2353–2323 BC. Both chronological schemes remain visible in the event.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Unas was the last king of the Fifth Dynasty. His pyramid bore funerary religious inscriptions intended to guide the deceased king in the afterlife. The ministry dates the king to approximately 2375–2345 BC."
+    },
+    {
+      "id": "bc2400-ministry-unas-monument",
+      "title": "Pyramid of Unas",
+      "institution": "Ministry of Tourism and Antiquities, Egypt",
+      "url": "https://egymonuments.gov.eg/monuments/pyramid-of-unas/",
+      "locator": "Saqqara location link and opening paragraph; web representation lines 129–132.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "5th Dynasty",
+      "originalChronology": "The page assigns the pyramid to the Fifth Dynasty without giving calendar years. The other cited source records supply the competing reign chronologies.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The Pyramid of Unas is at Saqqara. Its funerary texts were inscribed on the burial chamber walls and contained spells intended to assist the deceased king in the afterlife. This page does not date an individual inscription year."
+    },
+    {
+      "id": "bc2400-met-unas-chronology-1999",
+      "title": "Landmark Exhibition of Egyptian Art Opens at Metropolitan Museum on September 16",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/zh/press-releases/landmark-exhibition-of-egyptian-art-opens-at-metropolitan-museum-on-september-16-1999-exhibitions",
+      "locator": "July 19, 1999: Old Kingdom Chronology and List of Kings; statement that dates are approximate and the Unas row under Dynasty 5; web representation lines 101–102 and 131.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "Unas (ca. 2353-2323 B.C.E.)",
+      "originalChronology": "The museum's 1999 gallery chronology gives Unas approximately 2353–2323 BCE. Its introductory note calls the listed dates approximate. This source supports the alternative reign chronology only; it supplies no year for carving the Pyramid Texts. The ministry gives approximately 2375–2345 BC.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The Met's 1999 chronology dates Unas to approximately 2353–2323 BCE, differing from the ministry's 2375–2345 BC estimate. The event preserves both schemes and does not treat either as an inscription-year date."
     }
   ],
   "events": [
@@ -15716,6 +15764,56 @@
         "bc2500-louvre-vultures-stele"
       ],
       "selectionNote": "The commemorative object supplies a bounded record of interstate warfare. The event is the making of the victory stele, not a separately dated battle or an annual campaign.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source check and reconciliation",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2400-rundat-rum-i-la-galgada",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2400,
+        "endYear": -2400,
+        "displaySv": "omkring 2400 f.Kr. (publicerad kalibrerad uppskattning)",
+        "noteSv": "Alberto Bueno Mendoza anger 2400 f.Kr. för det rundade rummet vid den golvnivå han betecknar 24. Han beskriver dateringen som kol-14 med dendrokronologisk kalibrering, men redovisar inget provnummer eller osäkerhetsintervall för just denna uppskattning. Han placerar byggandet av det södra tempelkomplexet omkring 2500 f.Kr. Rummets uppskattade datering fastställer inget grundläggningsår för hela platsen."
+      },
+      "titleSv": "Byggare uppför ett rundat rum i La Galgada",
+      "summarySv": "Byggare uppför ett rundat rum i La Galgadas södra byggnadskomplex. Arkeologen Alberto Bueno Mendoza daterar rummet vid golvnivå 24 till omkring 2400 f.Kr.",
+      "geographySv": "La Galgada, Tauca-Pallasca, Ancash, Peru",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc2400-bueno-la-galgada-2019"
+      ],
+      "selectionNote": "A reported room-level architectural episode in the Andes, distinct from a site or temple foundation. Preserve the excavator's calibrated estimate and its missing sample-level information; do not infer a confidence interval or merge this room with the separately labelled rooms on p. 96.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source check and reconciliation",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2375-pyramidtexter-i-unas-grav",
+      "date": {
+        "kind": "disputed",
+        "startYear": -2375,
+        "endYear": -2323,
+        "displaySv": "under Unas: cirka 2375–2345 eller 2353–2323 f.Kr.",
+        "noteSv": "Egyptens antikvitetsmyndighet daterar Unas till omkring 2375–2345 f.Kr.; Metropolitan Museum anger i sin kronologi från 1999 omkring 2353–2323 f.Kr. Årtalen avser kungens regeringstid. Källorna fastställer inget enskilt år för när hantverkarna ristade texterna, och intervallet anger inte arbetets varaktighet."
+      },
+      "titleSv": "Hantverkare ristar pyramidtexter i Unas grav",
+      "summarySv": "Hantverkare ristar pyramidtexter på väggarna i kung Unas gravkammare i Saqqara. I texterna får den döde kungen vägledning för livet efter döden.",
+      "geographySv": "Saqqara, Egypten",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "bc2400-ministry-unas-tour",
+        "bc2400-ministry-unas-monument",
+        "bc2400-met-unas-chronology-1999"
+      ],
+      "selectionNote": "The earliest Pyramid Texts in a royal pyramid are a major development in surviving Egyptian funerary literature. The event is the inscription of Unas's chamber; it does not turn the accession date into a carving year. The alternative reign schemes are retained without claiming a continuous campaign across their combined envelope.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent source check and reconciliation",
