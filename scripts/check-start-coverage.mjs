@@ -45,7 +45,7 @@ export async function checkStartCoverage({ check = false, inventoryPath = INVENT
   const report = renderStartCoverageReport({ coverages: read.map(packageCoverage), inventory });
   if (check) {
     const committed = await readIfPresent(reportPath);
-    if (committed === null || !sameReport(committed, report)) throw new Error("Start coverage report differs from the committed file");
+    if (committed === null || !sameReport(committed, report)) throw new Error("Start coverage report differs from the committed file. Run node scripts/check-start-coverage.mjs and commit docs/coverage/start-coverage.md.");
   } else {
     await fs.mkdir(path.dirname(reportPath), { recursive: true });
     await fs.writeFile(reportPath, report, "utf8");

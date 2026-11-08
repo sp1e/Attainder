@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { DOSSIER_FILES, packageCoverage } from './historicalCoverage.js';
@@ -80,8 +80,12 @@ test('a cell keeps its pipes and newlines inside the table', () => {
   assert.match(renderStartCoverageReport({ coverages: [coverage], inventory: null }), /^\| m \| M \| state \| blocked \| a\\\|b c \|$/m);
 });
 
+// Codex publishes the inventory separately, so the expected row count follows the file on disk.
 test('the committed start coverage report matches the packages', async () => {
-  assert.deepEqual(await checkStartCoverage({ check: true }), { starts: 4, inventoryRows: null });
+  const inventoryUrl = new URL('./seed/historical/coverage/inventory.json', import.meta.url);
+  const text = existsSync(inventoryUrl) ? readFileSync(inventoryUrl, 'utf8') : null;
+  const inventoryRows = text === null ? null : JSON.parse(text.charCodeAt(0) === 0xfeff ? text.slice(1) : text).rows.length;
+  assert.deepEqual(await checkStartCoverage({ check: true }), { starts: 4, inventoryRows });
 });
 
 // Each test gets its own temp dir for the inventory and report, removed afterwards; the real

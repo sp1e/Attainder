@@ -94,6 +94,7 @@ Field rules, each a validation error when broken:
 - `researchStatus`: one of `playable-candidate`, `map-only`, `needs-engine-kind`, `no-source`, `pending` (the C4 vocabulary plus `pending` for unadjudicated rows).
 - `sourceUrl`: `null` or an `https://` URL. A `no-source` row must have `null`.
 - Unknown top-level keys or row keys are errors, so a private field cannot slip through unnoticed.
+- Ruling (final review): each row links to one start. When a culture appears in several shipped starts, `startId` names the start where it has a playable polity; otherwise the earliest start whose map shows it as an owned polity or a review feature; otherwise `null`. `polityId` is filled when that start has a polity record for the culture, else `featureIndex` when a review feature in that start shows it, else both stay `null`. A later schema version may allow several starts per row.
 
 Shipped status, computed by Claude's code, first match wins:
 
