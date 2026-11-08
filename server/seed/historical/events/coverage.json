@@ -69,6 +69,18 @@
     },
     {
       "startYear": -2200,
+      "endYear": 499,
+      "status": "unresearched",
+      "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": 500,
+      "endYear": 599,
+      "status": "partial",
+      "note": "Nineteen independently checked records cover selected events in Europe, East Asia, sub-Saharan Africa, Central Asia, South Asia, Southeast Asia and the Americas. Europe has nine records and East Asia five; the remaining represented regions have one each. The Middle East and North Africa and Oceania have no retained event. Rosalila is withheld because its dedication date and source metadata remain unestablished. Exact corrections preserve complete date intervals, source attribution and editorial importance limits. Earlier author retrieval assertions remain unverified. Empty years and regions remain research gaps."
+    },
+    {
+      "startYear": 600,
       "endYear": 699,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
