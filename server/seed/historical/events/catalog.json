@@ -4827,6 +4827,30 @@
       "reuseTerms": "Reference only; no source prose or images redistributed"
     },
     {
+      "id": "bc3300-pranckenaite-koorkula",
+      "title": "Pile dwellings in the Circum-Baltic area",
+      "institution": "Elena Pranckėnaitė, Ekaterina Dolbunova and Andrey Mazurkevich; Documenta Praehistorica 48 (2021), 102–116; University of Ljubljana Press",
+      "url": "https://journals.uni-lj.si/DocumentaPraehistorica/article/download/10016/9792",
+      "locator": "Printed p. 106 (PDF p. 5), Estonia, first paragraph, numbered habitation stage (1). DOI 10.4312/dp.48.14.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "c. 3300–3200 cal BC",
+      "originalChronology": "The authors assign the Neolithic habitation stage at Koorküla Valgjärv to about 3300–3200 cal BC and associate it with Late Comb Ware. They distinguish two later habitation stages. This estimate dates the Neolithic occupation evidence; it does not establish a foundation year, continuous occupation or the construction date of each surviving structure.",
+      "scopedClaim": "Supports Neolithic habitation at Koorküla Valgjärv in Estonia, its approximate calibrated range and its Late Comb Ware association. No building form, population size or named inhabitants are assigned to this stage.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc3234-zurich-opera-settlements",
+      "title": "Settlement and social organisation in the late fourth millennium BC in Central Europe: the waterlogged site of Zurich-Parkhaus Opéra",
+      "institution": "Niels Bleicher and Christian Harb; Antiquity 92, issue 365 (2018), 1210–1230; Cambridge University Press",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/32F0F3792ED5B9DD98628909EC8B04A7/S0003598X18001096a.pdf/settlement-and-social-organisation-in-the-late-fourth-millennium-bc-in-central-europe-the-waterlogged-site-of-zurich-parkhaus-opera.pdf",
+      "locator": "Printed p. 1218 (PDF p. 9), Results, first paragraph; p. 1216 (PDF p. 7), dendrochronological methods; p. 1212 (PDF p. 3), The Parkhaus Opéra site. DOI 10.15184/aqy.2018.109.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "phase 1 (3234–3226 BC; layer 12)",
+      "originalChronology": "Bleicher and Harb date settlement phase 1, associated with layer 12, to 3234–3226 BC and reconstruct 15 rectangular buildings within the excavated area. Their dendrochronological analysis groups and dates timber structures and links phases to stratigraphic layers. This is the complete interval for this phase, within a longer eight-phase sequence; it does not give each individual building the same construction date or imply uninterrupted occupation through the later phases.",
+      "scopedClaim": "Supports settlement construction at the Parkhaus Opéra site in Zürich, the phase 1 range of 3234–3226 BC and the reconstruction of 15 rectangular buildings in that phase. The older phase is kept separate from the door and other finds assigned to phase 3.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
       "id": "bc3200-opw-bru-na-boinne",
       "title": "Brú na Bóinne Visitor Centre: Newgrange, Knowth and Dowth",
       "institution": "Office of Public Works, Heritage Ireland",
@@ -15149,6 +15173,54 @@
         "bc2700-geus-sai-storage"
       ],
       "selectionNote": "A site-level food-storage practice in the Middle Nile region, distinct from the earlier Kerma burial already catalogued. The date is reproduced as the excavation report states it, without a modern recalibration or crop-arrival claim.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc3300-manniskor-bor-vid-koorkula-valgjarv",
+      "date": {
+        "kind": "range",
+        "startYear": -3300,
+        "endYear": -3200,
+        "displaySv": "cirka 3300–3200 f.Kr. (kalibrerad datering)",
+        "noteSv": "Forskarna daterar spåren efter den neolitiska bosättningen till detta ungefärliga intervall. De fastställer varken ett grundläggningsår eller att människor bodde här utan avbrott under hela perioden."
+      },
+      "titleSv": "Människor bor vid Koorküla Valgjärv",
+      "summarySv": "Människor bor vid sjön Koorküla Valgjärv i nuvarande Estland. Arkeologerna för denna bosättningsfas till den sena kamkeramiken och daterar den till omkring 3300–3200 f.Kr.",
+      "geographySv": "Koorküla Valgjärv, Estland",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc3300-pranckenaite-koorkula"
+      ],
+      "selectionNote": "A dated occupation assemblage at a named Baltic lake site. The full approximate range is retained. The entry avoids assigning later structures, a precise foundation or century-long continuous occupation to the Neolithic stage.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc3234-byggare-uppfor-hus-vid-zurichsjon",
+      "date": {
+        "kind": "range",
+        "startYear": -3234,
+        "endYear": -3226,
+        "displaySv": "3234–3226 f.Kr.",
+        "noteSv": "Årtalen avser den äldsta undersökta bosättningsfasen, som identifierats med dendrokronologi. De anger inte ett gemensamt byggnadsår för alla hus."
+      },
+      "titleSv": "Byggare uppför hus vid Zürichsjön",
+      "summarySv": "Vid Zürichsjön bygger människor en bosättning på platsen för dagens Parkhaus Opéra. I den äldsta undersökta fasen har arkeologerna urskilt 15 rektangulära byggnader. Med hjälp av trädens årsringar dateras fasen till 3234–3226 f.Kr.",
+      "geographySv": "Platsen för Parkhaus Opéra, Zürich, Schweiz",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc3234-zurich-opera-settlements"
+      ],
+      "selectionNote": "One record for the specifically dated first excavated settlement phase at Parkhaus Opéra. The author narrowed the earlier multi-phase candidate only after reading the excavators' primary study, which explicitly supplies the complete phase 1 range. No later door, trade object or building is assigned to phase 1.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",
