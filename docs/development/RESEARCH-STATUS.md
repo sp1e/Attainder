@@ -350,3 +350,16 @@ The remaining code-text queue contains 4,660 context-specific groups and 29,413 
 ## Bilingual help delivery — 2026-11-08
 
 Prepared 32 adapted Attainder help pages, navigation and shell text in `public/lang/attainder/help/`: 398 paired Swedish/English fields. Every page received bilingual and source review; all 561 page evidence references were checked against revision `8dd14ac4d22c6a693b5065a3dd533da500110462`. Publication checks and independent projection review are tracked with this delivery. Runtime help rendering, Options locale wiring and browser verification remain with Claude. The ongoing interface/rules translation package is separate. Historical source records and existing locale sidecars are unchanged.
+
+
+## BC2300 research resumed with bilingual display data, 8 November 2026
+
+The bilingual help delivery is published in [PR #64](https://github.com/sp1e/Attainder/pull/64), merged at verified main `182a0fc95d2e0525ae56879a1f354dae222698c8`. All 38 publication blobs matched the approved readback. CI passed 5,237 of 5,239 tests, with zero failures and two existing TODOs; the build took 40.23 seconds. The 32 help pages provide translation data. Runtime help rendering and language-switch verification remain with Claude.
+
+Research resumes on base `7b05d4520dcdb87b82561e9611b1541c166f8cee`. BC2300 adds three events and five sources concerning the Enheduanna disc, Shimao's political emergence and Naram-Sin's victory stele. The independent source reviewer confirmed all three historical payloads and five substantive source records. Five earlier author retrieval assertions remain separately unverified, and failed PDF image checks do not establish visual inspection. Reconciliation preserves those findings and changes only the three event review objects.
+
+The candidate preserves all 449 earlier events and 416 sources, reaching 452 events and 421 sources. Only 2300–2201 BC changes from unresearched to partial, for 1,731 partial years and 3,099 unresearched years. The author made 49 queries across nine working regions; the retained events concern Mesopotamia and East Asia. The other regions remain gaps. Approximate dates and the two competing reign chronologies remain explicit.
+
+The delivery includes 15 English event fields and ten Swedish source-panel fields. Ruling: commit the research data first, then pin both locale sidecars to that actual commit after checking every referenced source string. This uses the existing format and keeps the source revision reproducible; the research branch must remain available after the squash merge.
+
+The catalog validator, generated coverage report check and all 45 focused event and historical-record tests pass. Independent final DATA review approved the integration and all 25 bilingual display fields with no findings. Current-head CI remains the publication gate. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secret, binding or deployment configuration change is required.

@@ -63,6 +63,12 @@
     },
     {
       "startYear": -2300,
+      "endYear": -2201,
+      "status": "partial",
+      "note": "Three independently source-checked records concern the Enheduanna disc, the approximate emergence of Shimao as a political centre and Naram-Sin's victory stele. Competing reign chronologies and approximate object dates remain explicit; no exact foundation, battle or carving year is inferred. The author searched all nine working regions through 49 queries, retaining two Mesopotamian records and one East Asian record. Other regions remain gaps. Full date qualifications stay in single records and do not establish activity in each year. Earlier author retrieval assertions remain separately unverified. Empty years remain research gaps."
+    },
+    {
+      "startYear": -2200,
       "endYear": 799,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."

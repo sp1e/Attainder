@@ -5100,6 +5100,66 @@
       "originalChronology": "The museum's 1999 gallery chronology gives Unas approximately 2353–2323 BCE. Its introductory note calls the listed dates approximate. This source supports the alternative reign chronology only; it supplies no year for carving the Pyramid Texts. The ministry gives approximately 2375–2345 BC.",
       "reuseTerms": "Reference only; no source prose or images redistributed",
       "scopedClaim": "The Met's 1999 chronology dates Unas to approximately 2353–2323 BCE, differing from the ministry's 2375–2345 BC estimate. The event preserves both schemes and does not treat either as an inscription-year date."
+    },
+    {
+      "id": "bc2300-penn-enheduanna-disc",
+      "title": "Disc of Enheduanna, B16665",
+      "institution": "Penn Museum, University of Pennsylvania",
+      "url": "https://collections.penn.museum/collections/object/293415",
+      "locator": "Details table: Object Number, Provenience, Archaeology Area, Date Made, Materials and Description; web representation lines 84–98.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "ca. 2300 BCE",
+      "originalChronology": "The museum dates manufacture of B16665 to approximately 2300 BCE. Its find context belongs to the later Larsa temple at Ur; that context does not date original manufacture or establish the workshop. No poem, appointment or individual ritual receives a date here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "A white calcite disc carries an offering scene on one face and an inscription naming Enheduanna, daughter of Sargon of Akkad, on the other. Ur is the findspot. The approximate museum manufacture date supports this object alone."
+    },
+    {
+      "id": "bc2300-ucla-sun-shimao",
+      "title": "Loess, Stone and City: Loess Plateau in the 3rd millennium BC",
+      "institution": "UCLA Center for Chinese Studies; seminar by Zhouyong Sun, Shaanxi Academy of Archaeology, 19 November 2021",
+      "url": "https://www.international.ucla.edu/ccs/event/15301",
+      "locator": "English seminar synopsis, opening paragraph, and speaker biography; web representation lines 28–33 and 41–42. Public synopsis only; the lecture recording was not viewed.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "Around 2300 BC",
+      "originalChronology": "The synopsis places Shimao's emergence as a political centre around 2300 BC. This estimates a regional development. It provides no founding day, named founder or date for each wall and palace.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Sun's seminar synopsis places the emergence of Shimao as the centre of a political tradition on the northern Loess Plateau around 2300 BC. The claim concerns Shimao; it does not equate its people with a later dynasty."
+    },
+    {
+      "id": "bc2300-chen-shimao-2025",
+      "title": "Ancient DNA from Shimao city records kinship practices in Neolithic China",
+      "institution": "Zehui Chen and colleagues; Nature 648 (2025), 659–667; public article at PubMed Central",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12711557/",
+      "locator": "Abstract opening and Main opening paragraph; web representation lines 300 and 309–310. DOI 10.1038/s41586-025-09799-x. Cited scope excludes genomic tables and burial interpretations.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "around 2300–1800 bce",
+      "originalChronology": "The authors give approximately 2300–1800 BCE for Shimao city. This full site interval supplies context, rather than a construction year. No BP conversion, genome age or burial sample date supplies the event date.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Shimao is a fortified settlement in Shaanxi, China, on the northern Loess Plateau. The authors describe a stone-walled site with inner and outer enclosures. They give its broad chronology as around 2300–1800 BCE."
+    },
+    {
+      "id": "bc2300-louvre-naram-sin-list",
+      "title": "La classe, l'œuvre ! Liste des œuvres proposées",
+      "institution": "Musée du Louvre, 2025 educational object list",
+      "url": "https://api-www.louvre.fr/sites/default/files/2025-08/Liste%20oeuvres%20-%20la%20classe%20l%27oeuvre.pdf",
+      "locator": "PDF page 2 of 4, Thématique 2, Stèle de Naram-Sin, inventories SB 4 and AS 6065; date and iconography row; web representation lines 66–78. Text extraction read; page images not inspected.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "-2254 / -2218 (Akkad : Naram-sin)",
+      "originalChronology": "The Louvre assigns the stele to Naram-Sin's reign, 2254–2218 BC. This object-attribution interval dates no individual battle. Neumann instead uses 2261–2206 BC for the king associated with this stele; both schemes remain visible.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The Louvre identifies a victory scene with Naram-Sin, soldiers, enemies and a mountain. The king wears horned headgear. Its record gives inventory SB 4; AS 6065 and a reign-based interval of 2254–2218 BC."
+    },
+    {
+      "id": "bc2300-neumann-naram-sin-2018",
+      "title": "Vom wilden Luristan ins wilde Kurdistan: Karl May, Orientreisende und die Bewohner des Zagros",
+      "institution": "Georg Neumann, in Michael Kasper, Robert Rollinger and Andreas Rudigier, eds., Sterben in den Bergen (Böhlau, 2018); author offprint hosted by Universität Münster",
+      "url": "https://www.uni-muenster.de/imperia/md/content/altoriental/sterben_in_den_bergen_neumann.pdf",
+      "locator": "Printed pp. 216–218, section Die Lullubäer; PDF pages 16–18 of 30. Reign and stele: printed p. 217, paragraph with notes 50–52; royal imagery: p. 218, first two paragraphs. Figure caption has Sb 02; Louvre supplies SB 4.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "2261–2206 v. Chr.",
+      "originalChronology": "Neumann uses 2261–2206 BC for Naram-Sin while discussing his victory stele. The Louvre uses 2254–2218 BC. These are alternative reign schemes, with no individual carving or battle year. The later Elamite inscription belongs to a separate episode.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Neumann interprets the stele as glorifying Naram-Sin's victory over the Lullubians and describes the king and his troops in a mountain landscape. His reign chronology supports the alternative date envelope only."
     }
   ],
   "events": [
@@ -15817,6 +15877,80 @@
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent source check and reconciliation",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2300-enheduanna-pa-en-stenskiva",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2300,
+        "endYear": -2300,
+        "displaySv": "cirka 2300 f.Kr. (museets föremålsdatering)",
+        "noteSv": "Penn Museum daterar tillverkningen av stenskivan B16665 till omkring 2300 f.Kr. Arkeologerna fann den i ett senare tempelsammanhang från Larsatiden i Ur. Fyndplatsen anger ingen verkstad, och museet fastställer inget år för någon dikt eller utnämning av Enheduanna."
+      },
+      "titleSv": "En konstnär avbildar Enheduanna på en stenskiva",
+      "summarySv": "En konstnär hugger en offerscen på en skiva av vit kalcit. På den andra sidan ristar någon en inskrift som namnger Enheduanna, Sargons dotter.",
+      "geographySv": "Ur, nuvarande Irak (fyndplats; tillverkningsort okänd)",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc2300-penn-enheduanna-disc"
+      ],
+      "selectionNote": "One named-woman monument with a museum manufacture estimate. The event concerns the disc, not a conjectured first poem, a dated appointment or an observed ritual. The findspot and later archaeological context remain distinct from manufacture.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2300-shimao-utvecklas-till-politiskt-centrum",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2300,
+        "endYear": -2300,
+        "displaySv": "omkring 2300 f.Kr. (uppskattad framväxt)",
+        "noteSv": "Zhouyong Sun placerar Shimaos framväxt som politiskt centrum omkring 2300 f.Kr. i sin seminariesammanfattning. Chen med flera daterar staden som helhet till omkring 2300–1800 f.Kr. Den längre dateringen gäller platsens sammanhang. Forskarna fastställer inget gemensamt byggår för stadens murar eller något exakt grundläggningsår."
+      },
+      "titleSv": "Människor utvecklar Shimao till ett politiskt centrum",
+      "summarySv": "Människor utvecklar Shimao till ett regionalt politiskt centrum på den norra lössplatån. Arkeologen Zhouyong Sun placerar denna framväxt omkring 2300 f.Kr.",
+      "geographySv": "Shimao, Shaanxi, norra lössplatån, Kina",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc2300-ucla-sun-shimao",
+        "bc2300-chen-shimao-2025"
+      ],
+      "selectionNote": "The excavator's published institutional synopsis supplies an approximate emergence estimate, distinct from the full site chronology. The event avoids dating all construction, assigning a named ruler, using genetic samples as foundation dates or identifying a later dynasty.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2261-naram-sins-segerstele-huggs",
+      "date": {
+        "kind": "disputed",
+        "startYear": -2261,
+        "endYear": -2206,
+        "displaySv": "under Naram-Sin: cirka 2254–2218 eller 2261–2206 f.Kr.",
+        "noteSv": "Louvren daterar stelen till Naram-Sins regeringstid, 2254–2218 f.Kr. Georg Neumann använder 2261–2206 f.Kr. för kungen i sin genomgång av samma stele. Årtalen ger alternativa kronologiska ramar för föremålet. Källorna fastställer inget enskilt år för huggningen eller slaget, och det samlade intervallet anger ingen sammanhängande arbetsperiod."
+      },
+      "titleSv": "Hantverkare hugger en segerstele för Naram-Sin",
+      "summarySv": "Hantverkare avbildar Naram-Sin med hornprydd huvudbonad och soldater i ett bergslandskap. Georg Neumann tolkar framställningen som en hyllning till kungens seger över lullubéerna.",
+      "geographySv": "Tillverkningsort okänd; framställningen gäller Naram-Sin och Zagrosområdet",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc2300-louvre-naram-sin-list",
+        "bc2300-neumann-naram-sin-2018"
+      ],
+      "selectionNote": "A royal victory monument preserves a ruler's representation of warfare and divine status. Keep the Louvre object interval and Neumann's alternative reign chronology. This is one monument-making episode; a separate battle, deification or later Elamite removal is not added from the same image.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
         "reviewedOn": "2026-11-08"
       }
     }
