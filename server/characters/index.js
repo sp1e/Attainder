@@ -30,7 +30,7 @@ import { goalClosedReason, openGoals, recordDeed, setReignGoal } from './reign.j
 import { nicknameOf } from './nicknames.js';
 import { ELECTION_REASON_SV, electOutsider, electiveCandidates, nextSuccessionLaw } from './election.js';
 import { ensureRealmKind, presentRealm, validateRealmKind } from './realmKind.js';
-import { ensureLineageState, validateLineageState } from './renewal.js';
+import { courtRenewalStep, ensureLineageState, validateLineageState } from './renewal.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
 export { isImprisoned } from './prisoners.js';
@@ -830,6 +830,7 @@ function annualStep(state, events) {
   prisonerStep(state, events, actionHooks(state));
   npcPlotStep(state, events, actionHooks(state));
   annualRevenue = rounded(annualRevenue + courtAnnualStep(state, events, actionHooks(state)));
+  courtRenewalStep(state, events, actionHooks(state));
   // Fill the existing event after the payment, preserving its id and position in both logs.
   yearEvent.description = `Statskassan förändras med ${annualRevenue.toFixed(1).replace('.', ',').replace('-', '−')} silver. Nya personliga beslut, ålder och politiska förhållanden har behandlats.`;
 }
