@@ -9,7 +9,7 @@ export default function CharacterWatchToggles({ disabled = false }) {
   const watches = stored.campaignId === campaignId ? stored.watches : readCharacterWatches(campaignId);
   const toggle = (id) => setStored({ campaignId, watches: writeCharacterWatches(campaignId,
     watches.includes(id) ? watches.filter((entry) => entry !== id) : [...watches, id]) });
-  const closeOnEscape = (event) => { if (event.key === "Escape" && event.currentTarget.open) { event.currentTarget.open = false; event.currentTarget.querySelector("summary")?.focus(); } };
+  const closeOnEscape = (event) => { if (event.key === "Escape" && event.currentTarget.open) { event.preventDefault(); event.stopPropagation(); event.currentTarget.open = false; event.currentTarget.querySelector("summary")?.focus(); } };
   return <details className="char-watches" onKeyDown={closeOnEscape}>
     <summary aria-label={watches.length > 0 ? `Bevakningar, ${watches.length} påslagna` : undefined}>Bevakningar{watches.length > 0 && <span className="char-tab-count" aria-hidden="true">{watches.length}</span>}</summary>
     <div className="char-watches-menu">
