@@ -1,6 +1,6 @@
 import { compareGameDates, normalizeGameDate } from '../gameDates.js';
 import { ACTION_CATALOG, RUMOR_TOPICS, TIER_IDS, effectDefault } from './actionCatalog.js';
-import { ODDS_MAX, ODDS_MIN, bandFor, estimateAction } from './actionOdds.js';
+import { ODDS_MAX, ODDS_MIN, bandFor, estimateAction, flatteredBand } from './actionOdds.js';
 import { CRIME_LABELS, crimeOfSecret, exposeCrime } from './crimes.js';
 import { ensureStaff } from './courtStaff.js';
 import { actionRandom } from './extensions.js';
@@ -125,6 +125,7 @@ function openResolution(state, command, estimate, ctx) {
     agentIds: [], date: state.date, playerControlled: ctx.playerControlled === true, precision: estimate.precision, memoryId: null,
     estimate: { success: estimate.success.value, secrecy: estimate.secrecy.value, refusal: null },
     rolls: { refusal: null, success: null, secrecy: null }, tier: null, effects: [], narrative: null, refused: false,
+    ...(estimate.flattery && ctx.playerControlled === true ? { flattery: { ...estimate.flattery, revealed: false } } : {}),
   };
 }
 
@@ -185,6 +186,7 @@ export function completeResolution(state, resolution, entry, events, hooks, mean
   resolution.rolls.success = roll(state);
   resolution.rolls.secrecy = roll(state);
   resolution.tier = tierFor(resolution.rolls.success, resolution.rolls.secrecy, resolution.estimate.success, resolution.estimate.secrecy);
+  if (resolution.flattery) resolution.flattery.revealed = hooks.flatteryRevealed(resolution.flattery.advisorId) === true;
   spendHook(state, resolution, means);
   const participants = [resolution.actorId, ...resolution.targetIds];
   const event = hooks.logEvent(events, 'action_resolution', outcomeTitle(entry, resolution.tier), describeAttempt(state, resolution), participants, playerEvent(state, resolution, hooks));
@@ -508,6 +510,15 @@ function checkNarrative(entry) {
   if (told !== counted || (counted && !(Number.isInteger(entry.rejectedAdjustments) && entry.rejectedAdjustments >= 0))) fail(LOG.narrative);
 }
 
+// A flattered entry names its advisor and seat; only the player's own band-precision odds can be flattered.
+function checkFlattery(state, entry) {
+  if (!Object.hasOwn(entry, 'flattery')) return;
+  const item = entry.flattery;
+  const valid = plainObject(item) && Boolean(personOf(state, item.advisorId)) && typeof item.officeId === 'string' && Object.hasOwn(state.offices, item.officeId)
+    && typeof item.revealed === 'boolean' && entry.playerControlled === true && entry.precision !== 'exact';
+  if (!valid) fail(LOG.entry);
+}
+
 /** Validates state.actionLog on load: ids `resolution-<n>` unique and within state.sequence, known actions and tiers, existing people, agents, memories, hooks and secrets, finite odds and rolls consistent with the refusal and the tier, ranged effects inside their stored ranges, and narratives within their limits. Throws a Swedish sentence naming the action log. */
 export function validateActionLog(state) {
   if (!Array.isArray(state.actionLog)) fail(LOG.list);
@@ -519,6 +530,7 @@ export function validateActionLog(state) {
     checkDice(entry);
     checkEffects(state, entry, known);
     checkNarrative(entry);
+    checkFlattery(state, entry);
     if (ids.has(entry.id)) fail(LOG.id);
     ids.add(entry.id);
   }
@@ -532,6 +544,18 @@ export function resolutionVisible(state, entry, familyId) {
   return plainObject(entry) && (ownEntry(state, entry, familyId) || PUBLIC_TIERS.has(entry.tier));
 }
 
+// The bands the player was shown: the flattered ones until the spymaster reveals the flattery, then the true ones.
+function shownOdds(entry) {
+  const band = entry.flattery && entry.flattery.revealed !== true ? flatteredBand : bandFor;
+  return { success: band(entry.estimate.success, entry.precision), secrecy: band(entry.estimate.secrecy, entry.precision) };
+}
+
+function revealedFlattery(state, entry) {
+  const { advisorId, officeId } = entry.flattery;
+  return { flattery: { advisorName: personOf(state, advisorId)?.name || advisorId, officeName: state.offices[officeId]?.name || officeId,
+    shown: { success: flatteredBand(entry.estimate.success, entry.precision), secrecy: flatteredBand(entry.estimate.secrecy, entry.precision) } } };
+}
+
 // What the player reads about one resolution. Odds appear only for the player's own attempts and only as bandFor gives them at the stored precision: bands at 'five' and 'three', never the stored numbers. Rolls are never shown, since they would bound the hidden odds.
 function presentResolution(state, entry, familyId) {
   const own = ownEntry(state, entry, familyId);
@@ -541,7 +565,7 @@ function presentResolution(state, entry, familyId) {
     actorId: entry.actorId, actorName: name(state.people, entry.actorId), targetIds: [...entry.targetIds], targetNames: entry.targetIds.map((id) => name(state.people, id)),
     agentNames: own ? entry.agentIds.map((id) => name(state.courtStaff, id)) : [], date: entry.date, tier: entry.tier,
     tierLabel: entry.refused ? REFUSED_TITLE : TIER_TITLES[entry.tier] || '', refused: entry.refused,
-    odds: entry.playerControlled === true ? { success: bandFor(entry.estimate.success, entry.precision), secrecy: bandFor(entry.estimate.secrecy, entry.precision) } : null,
+    odds: entry.playerControlled === true ? shownOdds(entry) : null, ...(entry.flattery?.revealed === true ? revealedFlattery(state, entry) : {}),
     effects: own ? copy(entry.effects) : [], narrative: entry.narrative ? { ...entry.narrative } : null,
   };
 }
