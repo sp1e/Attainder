@@ -53,8 +53,8 @@ test('an option built from the library summary matches the one built from the pa
     assert.equal(option.scenarioId,`${id}-copy`);
     for (const key of ['name','date','label','context','coverage','calendarNote']) assert.equal(option[key],full[key],`${id} ${key}`);
     assert.equal(option.eraId,summary.eraId);
-    assert.deepEqual(option.polities.map(p=>[p.id,p.name,p.ruler.name,p.ruler.originLabelSv,p.families,p.context]),
-      full.polities.map(p=>[p.id,p.name,p.ruler.name,p.ruler.originLabelSv,p.families,p.context]));
+    assert.deepEqual(option.polities.map(p=>[p.id,p.name,p.ruler.name,p.ruler.originLabelSv,p.families,p.context,p.mechanicsNote]),
+      full.polities.map(p=>[p.id,p.name,p.ruler.name,p.ruler.originLabelSv,p.families,p.context,p.mechanicsNote]));
     for (const polity of option.polities) assert.equal(polity.regionId,summary.polities.find(p=>p.id===polity.id).regionId);
   }
   const b=JSON.parse(readFileSync(new URL('../../server/seed/historical/charlemagne-800/scenario.json',import.meta.url),'utf8'));
@@ -90,10 +90,21 @@ test('the card offers a scenario only for a valid summary of the current schema 
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:1}}),false,'a summary from before per-polity start text');
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:2}}),false,'a summary from before polity kinds');
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:3}}),false,'a summary from before map coverage');
-  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:5}}),false);
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:4}}),false,'a summary from before the mechanics note and the full check');
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:6}}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,polities:[]}}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:null}),false);
   assert.equal(offersHistoricalStart({id:'a'}),false);
+});
+test('both option builders carry each court\'s mechanics note, null without one', () => {
+  const b=JSON.parse(readFileSync(new URL('../../server/seed/historical/world-1500/scenario.json',import.meta.url),'utf8'));
+  const h=b.data.world.historicalScenario;
+  delete h.courtSeeds['inca-empire'].mechanics.noteSv;
+  const option=historicalStartOptionFromSummary('world-1500',historicalStartSummary({meta:b.scenario,data:b.data}));
+  assert.deepEqual(option.polities.map(p=>[p.id,p.mechanicsNote]),[['aztec-empire',h.courtSeeds['aztec-empire'].mechanics.noteSv],['inca-empire',null]]);
+  h.courtSeeds['inca-empire'].mechanics.noteSv='Spelets regler.';
+  const full=historicalStartOption(b,b.assets.regionsGeojson.data,b.assets.citiesGeojson.data);
+  assert.deepEqual(full.polities.map(p=>[p.id,p.mechanicsNote]),[['aztec-empire',h.courtSeeds['aztec-empire'].mechanics.noteSv],['inca-empire','Spelets regler.']]);
 });
 test('both option builders carry the map coverage, a copy of the summary\'s', () => {
   const b=JSON.parse(readFileSync(new URL('../../server/seed/historical/john-1200/scenario.json',import.meta.url),'utf8'));

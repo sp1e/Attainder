@@ -718,7 +718,7 @@ test('the web catalog carries each historical start summary and derives historic
   await reset();
   const entry = catalogEntry(await library(),'charlemagne-800');
   assert.deepEqual(entry.historicalSummary.polities.map(p => p.id),['carolingian-realm','papal-states','tang-empire','abbasid-caliphate','byzantine-empire','silla','emirate-of-cordoba','aghlabid-emirate','kingdom-of-asturias','duchy-of-benevento']);
-  assert.equal(entry.historicalSummary.schema,4);
+  assert.equal(entry.historicalSummary.schema,5);
   assert.equal(entry.historicalSummary.sourceStamp,null);
   assert.equal(entry.historicalSummary.name,entry.name);
   assert.deepEqual(entry.historicalStart,{ date: '0800-12-25', contentId: entry.historicalSummary.contentId });
@@ -742,7 +742,7 @@ test('a scenario meta stored without a summary gains one on the next catalog rea
   metas.get(id).historicalSummary = { ...historicalSummary, schema: 1, polities: historicalSummary.polities.map(polity => { const old = { ...polity }; delete old.contextSv; return old; }) };
   globalThis.__ohWebStoreReads = [];
   await library();
-  assert.equal(metas.get(id).historicalSummary.schema,4);
+  assert.equal(metas.get(id).historicalSummary.schema,5);
   // Every AD 800 court ships its own start text, and the projection carries each one.
   const { courtSeeds,playablePolityIds } = db.get('scenarios').get(id).json.world.historicalScenario;
   assert.deepEqual(metas.get(id).historicalSummary.polities.map(p => p.contextSv),playablePolityIds.map(polityId => courtSeeds[polityId].contextSv));
@@ -755,7 +755,7 @@ test('a scenario meta stored without a summary gains one on the next catalog rea
   metas.get(id).historicalSummary = { ...historicalSummary, schema: 2, polities: historicalSummary.polities.map(polity => { const old = { ...polity }; delete old.kind; return old; }) };
   globalThis.__ohWebStoreReads = [];
   await library();
-  assert.equal(metas.get(id).historicalSummary.schema,4);
+  assert.equal(metas.get(id).historicalSummary.schema,5);
   assert.ok(metas.get(id).historicalSummary.polities.every(p => p.kind === 'state'));
   assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[`scenarios:${id}`]);
   // A summary stored under schema 3, without map coverage, is projected again with it.
@@ -763,9 +763,30 @@ test('a scenario meta stored without a summary gains one on the next catalog rea
   metas.get(id).historicalSummary = schema3;
   globalThis.__ohWebStoreReads = [];
   await library();
-  assert.equal(metas.get(id).historicalSummary.schema,4);
+  assert.equal(metas.get(id).historicalSummary.schema,5);
   assert.equal(metas.get(id).historicalSummary.mapCoverage.unownedFeatureCount,214);
   assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[`scenarios:${id}`]);
+  // A summary stored under schema 4, without mechanics notes, is projected again with each court's note.
+  const schema4 = { ...historicalSummary, schema: 4, polities: historicalSummary.polities.map(polity => { const old = { ...polity }; delete old.mechanicsNoteSv; return old; }) };
+  metas.get(id).historicalSummary = schema4;
+  globalThis.__ohWebStoreReads = [];
+  await library();
+  assert.equal(metas.get(id).historicalSummary.schema,5);
+  assert.deepEqual(metas.get(id).historicalSummary.polities.map(p => p.mechanicsNoteSv),playablePolityIds.map(polityId => courtSeeds[polityId].mechanics.noteSv));
+  assert.deepEqual(globalThis.__ohWebStoreReads.filter(read => read.startsWith('scenarios:')),[`scenarios:${id}`]);
+});
+
+test('a stored start whose map lacks a playable polity stays in the catalog as invalid and in the library bar', async () => {
+  await reset();
+  const id = 'charlemagne-800', record = db.get('scenarios').get(id);
+  const regions = typeof record.geojson.regionsGeojson === 'string' ? JSON.parse(record.geojson.regionsGeojson) : record.geojson.regionsGeojson;
+  const lacking = { ...regions, features: regions.features.filter(f => f.properties.owner !== 'silla') };
+  record.geojson.regionsGeojson = typeof record.geojson.regionsGeojson === 'string' ? JSON.stringify(lacking) : lacking;
+  db.get('scenarioMeta').delete(id);
+  const catalog = await library();
+  assert.equal(catalogEntry(catalog,id).historicalSummary.invalid,true);
+  assert.deepEqual(catalogEntry(catalog,id).historicalStart,{date:'0800-12-25',contentId:'charlemagne-800'});
+  for (const other of ['egypt-3000bc','world-1500']) assert.equal(catalogEntry(catalog,other).historicalSummary.invalid,undefined,other);
 });
 
 test('a stored start whose papal ruler is gone stays in the catalog as invalid and in the library bar', async () => {

@@ -1,7 +1,8 @@
 // The small record the start card reads for one historical scenario, built from the stored
 // scenario data. Both library stores keep it in the scenario meta, so the card never has to load
 // and validate a whole package to show a start. The structural checks here cover only what the
-// card shows; the full validatePlayableScenario still runs when the player starts a campaign.
+// card shows; both stores add the full validatePlayableScenario through historicalSummaryCheck.js,
+// and it runs again when the player starts a campaign.
 //
 // Regions group the picker by geography, eras by the start year. Region ids for the playable
 // polities live in seed/historical/polity-regions.json, checked by scripts/check-polity-regions.mjs.
@@ -11,9 +12,10 @@ import { mapCoverage } from "./historicalMapCoverage.js";
 import { playablePolityKind } from "./historicalScenarios.js";
 
 // 2: each polity carries its court's start text (contextSv). 3: each polity carries its kind.
-// 4: each summary carries mapCoverage.
+// 4: each summary carries mapCoverage. 5: each polity carries its court's mechanics note, and both
+// stores mark a summary invalid when the full start validation fails.
 // A summary of another schema is rebuilt.
-export const HISTORICAL_SUMMARY_SCHEMA = 4;
+export const HISTORICAL_SUMMARY_SCHEMA = 5;
 
 export const HISTORICAL_REGIONS = Object.freeze([
   Object.freeze({ id: "europe", labelSv: "Europa" }),
@@ -80,6 +82,8 @@ const polityEntry = (scenario, polityId) => {
     ruler: { name: text(ruler.name) ?? ruler.id, originLabelSv: text(ruler.originLabelSv) },
     // Null when the court has none; the card then shows the package's contextSv.
     contextSv: text(court.contextSv),
+    // What the game simplifies at this court; a dossier court adds its coverage lines.
+    mechanicsNoteSv: text(court.mechanics?.noteSv),
     families: court.families.map(family => ({ id: family?.id, name: text(family?.name) ?? family?.id })),
   };
 };
