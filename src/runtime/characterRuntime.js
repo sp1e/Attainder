@@ -11,6 +11,7 @@ import { beginSimulation, endSimulation, isSimulationBusy } from "../Game/AI/sim
 import { unseenEvents, latestTurnEventIds } from "./unseenEvents.js";
 import { createCharacterSystem, estimateCharacterAction, estimateConversation, getCharacterPresentation, getConversationBrief } from "./characters/index.js";
 import { characterTransitionEvents, executeCharacterWorldCommand, planCharacterAdvance } from "./characterWorld.js";
+import { readCharacterWatches } from "./characterWatchSettings.js";
 import { commitCharacterTransaction, recoverCharacterTransaction } from "./characterPersistence.js";
 import { createHistoricalCharacterSystem } from "./characters/scenarioSeed.js";
 import { validateHistoricalScenario } from "./historicalScenarios.js";
@@ -198,7 +199,7 @@ export const advanceCharacterYear = () => withCharacterMutation(async (bundle) =
   if (bundle.world.characterSystem.status?.ended) return failure(bundle.world.characterSystem.status.reason || "Kampanjen är avslutad.");
   const operationId = idFor("character-year");
   const result = planCharacterAdvance(bundle.world, addGameMonths(bundle.world.characterSystem.date, 12), {
-    id: operationId, pauseForHealthDecisions: true, pauseForCharacterDecisions: true });
+    id: operationId, pauseForHealthDecisions: true, pauseForCharacterDecisions: true, watches: readCharacterWatches(campaignId()) });
   return { ok: true, ...result, operationId, error: "" };
 });
 
