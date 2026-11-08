@@ -202,3 +202,18 @@ The candidate catalog contains 411 events and 374 sources, preserving all prior 
 Ruling: retain the source's approximate archaeological estimates without inventing uncertainty bounds. Construction phases establish no annual occurrence, and settlement sample dates cannot replace a burial's provisional comparative chronology. The five withheld candidates remain visible in the local audit, with no unsupported replacement events.
 
 Fresh source-only checks are running for the separate six-record BC2900 and ten-record BC2800 batches. BC2900's original baseline metadata mismatch was corrected in a separate guarded input copy; the named commit and all twelve insert-absence checks were independently verified. A separate C4 check has 31 bounded claims, 22 source records and ten full raw collections. Twelve older raw-field proposals are also being assessed against their original C3 evidence; none has been applied. Claude continues to own all implementation and gameplay verification.
+
+
+## BC2900 review checkpoint, 8 November 2026
+
+BC3000 completed publication in [PR #41](https://github.com/sp1e/Attainder/pull/41), merged at verified main `b765016aa744aef45b051f6b9e08a1887a005891`. Required CI passed with 5,083 total tests, 5,081 passed, zero failures and two TODO; the build completed in 30.57 seconds. All five merged blobs match the reviewed publication. The public catalog contains 411 events and 374 sources, with 931 partial years and 3,899 unresearched years.
+
+BC2900 has two completed source-only follow-ups. F01 confirmed the corrected complete mace-head event and its source metadata after removing an unsupported maker identity from the title. F02 found that the Ashqelon source's slash date does not establish the chosen continuous interval. That event and its now-unused source are withheld; no replacement year is selected. The initial six-confirmed result remains an earlier review round. Final reconciliation, DATA closure, integration and publication remain pending.
+
+BC2800 has a reconciled candidate of nine events and nine sources, retaining five approximate dates and four full ranges. Al-Ghoryeen S3 is withheld for the same date-encoding issue. Initial and follow-up review counts remain separate. Final DATA review and publication remain pending.
+
+The next private C4 batch has 31 confirmed bounded claims and 22 checked source records. It grants no whole-row, geometry or playable approval. Reconciliation and publication review remain pending. Twelve older raw-field proposals are undergoing a separate fresh source-only check. BC2600 research proceeds in parallel. Claude owns all code, rebuilt packages, visual checks and gameplay verification.
+
+BC2900 final DATA closure approved the five-event, five-source subset and exact integration. The catalog now contains 416 events and 379 sources; all 411 previous events and 374 previous sources are preserved. Only 2900–2801 BC changes coverage, giving 1,031 partial years and 3,799 unresearched years. The catalog validator, generated-report check and all 45 focused tests passed. Required CI remains pending.
+
+Claude merged Phase 5 in [PR #42](https://github.com/sp1e/Attainder/pull/42) at `06ca9b8e1c77a9568a29d8cb33d89fb7e8d4a90f`. This research branch fast-forwarded to that commit before publication. Its event catalog, coverage, generated report and event validator are byte-identical to the reviewed BC3000 base; all 45 focused tests passed again. Claude's requested Aztec succession-note revision is queued as a separate dossier follow-up. Codex has not rerun Phase 5 gameplay verification.
