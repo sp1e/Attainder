@@ -45,6 +45,18 @@
     },
     {
       "startYear": -2600,
+      "endYear": -2501,
+      "status": "unresearched",
+      "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": -2500,
+      "endYear": -2401,
+      "status": "partial",
+      "note": "Nine independently checked records concern the central Stonehenge settings, the approximate creation of ancient Kerma, an Indus jar, a Shijiahe ornament, an attained settlement state at Real Alto, Silbury Hill construction, the probable millet diet of one Aigyrzhal individual, a Sahure statue and Eannatum's victory stele. All nine working regions were searched; Southeast Asia, Oceania and many other areas remain gaps. Approximate estimates, complete object and sample intervals, and commemorative claims remain distinct. The Aigyrzhal main article supports the event independently; its visually unverified supplement is withheld. Full ranges beyond the century establish no annual occurrence or researched coverage of later years. Empty years remain research gaps."
+    },
+    {
+      "startYear": -2400,
       "endYear": 799,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
