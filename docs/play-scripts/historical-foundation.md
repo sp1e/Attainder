@@ -223,7 +223,27 @@ The controller ran Playwright at `9aba7bbc` on 2026-11-07. The server used port 
 
 The candidate list under `Tronföljd` names Huáscar first and Araua Ocllo (30 år) second.
 
-A century in Kyrkostaten has automated coverage only. `src/runtime/characters/courtBalance.test.js` plays 100 years on eight seeds from the built package. The first outsider is elected between 817 and 836, and on 25 December 900 every seed has an elected ruler and a living realm.
+A century in Kyrkostaten has automated coverage only. `src/runtime/characters/courtBalance.test.js` plays 100 years on eight seeds from the built package. The first outsider is elected between 817 and 836, and on 25 December 900 every seed has an elected ruler and a living realm. These figures were measured before court renewal.
+
+## Court renewal
+
+Court renewal brings a generated newcomer to a historical court with fewer than six adults, and generated spouses to unmarried generated adults while the court has fewer than twelve. The browser run checks these rows on both adapters:
+
+| ID | Check | Expected |
+| --- | --- | --- |
+| R-1 | Start | Karls rike, 800 e.Kr., in realm mode |
+| R-2 | Advance one year | The year closes on 25 December 801, and `Krönikan`, segment `Årskrönika`, lists the year's entries |
+| R-3 | Console | 0 errors |
+
+| ID | Server | Web |
+| --- | --- | --- |
+| R-1 | `Karls rike (karolingiska riket)`, `25/12 800 e.Kr.`, `FÖLJ RIKET`; `Årskrönika` opens on `Det historiska hovet tar form` | Same |
+| R-2 | Engine run on the saved campaign file: `0801-12-25`, realm alive, `lineageRngState` present, three log entries dated 801, no newcomer | Engine run in the page through the Vite modules: Karls rike `0801-12-25` with 10 court adults and no newcomer; Kyrkostaten gains `Hovman 1 (genererad)` in `Hovhus 4 (genererat)` |
+| R-3 | 0 errors | 0 errors |
+
+`Nästa år med modellen` sends the year to a language model, so the browser run advanced the year in the engine and did not use the button. The model path has unit tests in `src/Game/Characters/CharactersPanel.test.js`.
+
+A century at both courts has automated coverage only. `src/runtime/characters/courtBalance.test.js` plays 100 years on eight seeds from the built package. Karls rike is alive on 25 December 900 on every seed; its first newcomer arrives between 838 and 848, and 16 to 28 children are born during the century. Kyrkostaten gets its first newcomer in 801 on every seed and has 12 to 29 court adults in 900; 21 to 57 children are born there during the century. The birth cap of 48 living people leaves these figures unchanged. The same file plays Kyrkostaten for 300 years on seeds 777 and 314159, which end 1100 with 48 and 40 living people.
 
 ## Closure
 

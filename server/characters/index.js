@@ -30,6 +30,7 @@ import { goalClosedReason, openGoals, recordDeed, setReignGoal } from './reign.j
 import { nicknameOf } from './nicknames.js';
 import { ELECTION_REASON_SV, electOutsider, electiveCandidates, nextSuccessionLaw } from './election.js';
 import { ensureRealmKind, presentRealm, validateRealmKind } from './realmKind.js';
+import { birthsClosed, courtRenewalStep, ensureLineageState, validateLineageState } from './renewal.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
 export { isImprisoned } from './prisoners.js';
@@ -302,7 +303,7 @@ export function createCharacterState(options, { familyId, religions }) {
 }
 
 export function completeCharacterState(state, difficulty) {
-  ensureGovernance(state); ensureHealthState(state); ensureMandateEpisodes(state); ensureStoryDirector(state); ensureEventChains(state); state.difficulty = normalizeDifficulty(difficulty); ensureCharacterExtensions(state); refreshLegalClaims(state, rulerCandidates);
+  ensureGovernance(state); ensureHealthState(state); ensureMandateEpisodes(state); ensureStoryDirector(state); ensureEventChains(state); ensureLineageState(state); state.difficulty = normalizeDifficulty(difficulty); ensureCharacterExtensions(state); refreshLegalClaims(state, rulerCandidates);
   return state;
 }
 
@@ -399,6 +400,7 @@ export function normalizeCharacterSystem(raw) {
   validateMandateEpisodes(state);
   ensureStoryDirector(state); validateStoryDirector(state);
   ensureEventChains(state); validateEventChains(state);
+  ensureLineageState(state); validateLineageState(state);
   validateCharacterExtensions(state);
   // Called here rather than from validateCharacterExtensions: actionResolution.js imports extensions.js, so the reverse import would be a cycle.
   validateActionLog(state);
@@ -476,6 +478,7 @@ function openStory(state, story) { const item = { ...story, id: nextId(state, 's
 /** The hooks the action gate, the schemes and the plot step use. Exported so the rules modules can be tested against the engine's own helpers. */
 export function actionHooks(state) {
   return { kill: (ids, events, reason) => killPeople(state, ids, events, reason), related: (aId, bId) => kin(state, aId, bId), ruler: () => ruler(state), openStory: (story) => openStory(state, story),
+    closeKin: (a, b) => closeKin(state, a, b), addBond: (aId, bId, kind) => addBond(state, aId, bId, kind),
     memory: (type, title, participants, options) => memory(state, type, title, participants, options),
     opinionCause: (fromId, toId, amount, label, causeId, years) => opinionCause(state, fromId, toId, amount, label, causeId, years),
     logEvent: (events, type, title, description, participants, extra) => logEvent(state, events, type, title, description, participants, extra),
@@ -813,7 +816,7 @@ function annualStep(state, events) {
   }
   killPeople(state, deaths, events);
   if (!state.status.ended) runAnnualHealth(state, events, { representativeId: activeRepresentative(state)?.id, playerFamilyId: controlledFamily(state)?.id, nominalId: state.identity.mode === 'realm' ? state.offices.ruler.holderId : state.families[state.identity.familyId]?.headId });
-  for (const mother of living(state).filter((p) => p.sex === 'female' && getCharacterAge(p, state.date) >= 20 && getCharacterAge(p, state.date) <= 42).sort((a, b) => a.id.localeCompare(b.id))) { const father = state.people[mother.spouseId]; if (!adult(state, father) || father.sex !== 'male') continue; if (mother.lastBirthAt && diffGameDays(mother.lastBirthAt, state.date) < 600) continue; const children = values(state.people).filter((p) => p.biologicalParentIds.includes(mother.id)); if (children.length >= 4) continue; if (random(state) < (mother.health > 50 ? 0.22 : 0.06)) newChild(state, mother, father, events); }
+  for (const mother of living(state).filter((p) => p.sex === 'female' && getCharacterAge(p, state.date) >= 20 && getCharacterAge(p, state.date) <= 42).sort((a, b) => a.id.localeCompare(b.id))) { if (birthsClosed(state)) break; const father = state.people[mother.spouseId]; if (!adult(state, father) || father.sex !== 'male') continue; if (mother.lastBirthAt && diffGameDays(mother.lastBirthAt, state.date) < 600) continue; const children = values(state.people).filter((p) => p.biologicalParentIds.includes(mother.id)); if (children.length >= 4) continue; if (random(state) < (mother.health > 50 ? 0.22 : 0.06)) newChild(state, mother, father, events); }
   const representativeId = activeRepresentative(state)?.id; const singles = living(state).filter((p) => adult(state, p) && getCharacterAge(p, state.date) < 40 && !alive(state.people[p.spouseId]) && p.id !== representativeId).sort((a, b) => a.id.localeCompare(b.id));
   for (const person of singles) { if (alive(state.people[person.spouseId])) continue; const partner = singles.find((p) => p.id !== person.id && p.sex !== person.sex && !alive(state.people[p.spouseId]) && !closeKin(state, person, p)); if (partner && random(state) < 0.2) { person.spouseId = partner.id; partner.spouseId = person.id; addBond(state, person.id, partner.id, 'partner'); logEvent(state, events, 'marriage', 'En ny familjeförbindelse', `${person.name} och ${partner.name} gifter sig.`, [person.id, partner.id]); memory(state, 'marriage', 'Äktenskap mellan familjer', [person.id, partner.id]); } }
   refreshMandates(state, events); aiAnnual(state, events);
@@ -828,6 +831,7 @@ function annualStep(state, events) {
   prisonerStep(state, events, actionHooks(state));
   npcPlotStep(state, events, actionHooks(state));
   annualRevenue = rounded(annualRevenue + courtAnnualStep(state, events, actionHooks(state)));
+  courtRenewalStep(state, events, actionHooks(state));
   // Fill the existing event after the payment, preserving its id and position in both logs.
   yearEvent.description = `Statskassan förändras med ${annualRevenue.toFixed(1).replace('.', ',').replace('-', '−')} silver. Nya personliga beslut, ålder och politiska förhållanden har behandlats.`;
 }
@@ -841,7 +845,7 @@ export function advanceCharacters(original, targetDate, options = {}) {
   if (date === original.date || original.status.ended) return { ok: true, state: original, events: [], error: null };
   if (diffGameDays(original.date, date) > 366 * 500) return { ok: false, state: original, events: [], error: 'Dela upp tidshopp som är längre än 500 år.' };
   try {
-  const state = copy(original); ensureHealthState(state); ensureEventChains(state); ensureCharacterExtensions(state); const events = [];
+  const state = copy(original); ensureHealthState(state); ensureEventChains(state); ensureLineageState(state); ensureCharacterExtensions(state); const events = [];
   refreshRepresentation(state, events, { silent: original.mandateVersion == null });
   for (let next = getNextCharacterTransitionDate(state, date); next; next = getNextCharacterTransitionDate(state, date)) {
     state.date = next;
