@@ -7,6 +7,7 @@ export { getCharacterAge } from './characterCapacity.js';
 import { ensureGovernance, refreshLegalClaims, registerAccession, familyRoyalClaim, claimSupportPenalty, relevantRegencies, royalRegency, regencyVeto, regencyVetoForRecord, consumeRegencyConsent, cleanHostCandidates, describeGovernance, validateGovernance } from './governance.js';
 import { ensurePortraitIdentity, freezeDeathAppearance, resolvePortraitState } from './portraitState.js';
 import { ensureHealthState, validateHealthState, runAnnualHealth, advanceHealthTransitions, getNextHealthTransitionDate, getTreatableConditions, treatCondition, recordBereavement, getConditionBurden, publicHealthConditions, HEALTH_CONDITION_LABELS } from './health.js';
+import { fadeMemories } from './memoryFade.js';
 import { STORY_DIRECTOR_VERSION, ensureStoryDirector, validateStoryDirector, scheduleDirectedStory, directedStoryChoices, resolveDirectedStory, refreshDirectedStories } from './storyDirector.js';
 import { DIFFICULTIES, ensureCharacterExtensions, normalizeDifficulty, validateCharacterExtensions } from './extensions.js';
 import { addSecretHolders, createSecret, exposeSecret, plotSecretFor, syncPlotSecrets } from './secrets.js';
@@ -35,6 +36,8 @@ import { birthsClosed, courtRenewalStep, ensureLineageState, validateLineageStat
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
 export { isImprisoned } from './prisoners.js';
+export { FADING_MEMORY_TYPES, fadeMemories } from './memoryFade.js';
+export { STORY_MEMORY_WINDOW } from './storyDirector.js';
 export { PORTRAIT_STATES, PORTRAIT_AGE_GROUPS, resolvePortraitState } from './portraitState.js';
 const copy = (value) => JSON.parse(JSON.stringify(value));
 const values = (map) => Object.values(map || {});
@@ -866,7 +869,7 @@ export function advanceCharacters(original, targetDate, options = {}) {
     refreshStories(state, events); updateStatus(state);
     if (state.status.ended) { if (compareGameDates(state.nextAnnualDate, state.date) <= 0) state.nextAnnualDate = addGameMonths(state.nextAnnualDate, 12); break; }
   }
-  if (!state.status.ended) state.date = date; state.appliedCommandIds.push(id); state.revision++; capLog(state); return { ok: true, state, events, error: null };
+  if (!state.status.ended) state.date = date; state.appliedCommandIds.push(id); state.revision++; fadeMemories(state); capLog(state); return { ok: true, state, events, error: null };
   } catch (error) { return { ok: false, state: original, events: [], error: error.message }; }
 }
 
