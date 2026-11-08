@@ -88,8 +88,57 @@ function addNewcomer(state, events, hooks) {
   hooks.logEvent(events, 'arrival', 'Ny person vid hovet', `${person.name} kommer till hovet som huvud för ${family.name}.`, [person.id]);
 }
 
-/** Yearly court renewal on a historical campaign: one newcomer when fewer than COURT_FLOOR adults remain at court. */
+export const SPOUSE_CEILING = 12;
+const SPOUSE_NOTE_SV = 'Spelet skapade personen som make eller maka.';
+const SPOUSELESS_OFFICES = new Set(['ruler', 'priest']);
+const hasLivingSpouse = (state, person) => Boolean(state.people[person.spouseId] && !state.people[person.spouseId].diedAt);
+
+/** True when matchmaking could pair the person at court: a living single of the other sex aged 18 to 39 who is neither the representative nor close kin. */
+function hasPartner(state, person, hooks, representativeId) {
+  return Object.values(state.people).some((other) => {
+    if (other.diedAt || other.id === person.id || other.id === representativeId || other.sex === person.sex) return false;
+    const age = getCharacterAge(other, state.date);
+    return age >= 18 && age <= 39 && !hasLivingSpouse(state, other) && !hooks.closeKin(person, other);
+  });
+}
+
+/** A generated single aged 18 to 35, not the representative, outside the ruler and priest offices, with no partner at court. Draws nothing. */
+function qualifiesForSpouse(state, person, hooks) {
+  const age = getCharacterAge(person, state.date), representativeId = hooks.activeRepresentative()?.id;
+  if (age < 18 || age > 35 || hasLivingSpouse(state, person) || person.id === representativeId) return false;
+  if (Object.values(state.offices).some((office) => office.holderId === person.id && SPOUSELESS_OFFICES.has(office.kind))) return false;
+  return !hasPartner(state, person, hooks, representativeId);
+}
+
+/** A generated spouse joining the person's family, married as matchmaking marries. Draws nothing. */
+function addSpouse(state, person, events, hooks) {
+  const g = ++state.courtRenewal.spouses, age = getCharacterAge(person, state.date);
+  const wife = person.sex !== 'female', spouseAge = wife ? Math.max(18, age - 3) : age + 3;
+  const spouse = markGeneratedOrigin(state, generatedAdultRecord(state, {
+    id: `person-${++state.sequence}`, name: `Gemål ${g} (genererad)`, familyId: person.familyId,
+    bornAt: formatGameDate({ year: shiftGameYear(gameDateYear(state.date), -spouseAge), month: 1, day: 1 }),
+    sex: wife ? 'female' : 'male', culture: person.culture, religionId: person.religionId, archetype: 'steward', skill: 4,
+  }), SPOUSE_NOTE_SV);
+  ensurePortraitIdentity(spouse, state.people);
+  state.people[spouse.id] = spouse;
+  person.spouseId = spouse.id; spouse.spouseId = person.id;
+  hooks.addBond(person.id, spouse.id, 'partner');
+  hooks.logEvent(events, 'marriage', 'En ny familjeförbindelse', `${person.name} och ${spouse.name} gifter sig.`, [person.id, spouse.id]);
+  hooks.memory('marriage', 'Äktenskap mellan familjer', [person.id, spouse.id]);
+}
+
+/** Each qualifying generated adult spends one lineage draw; below 0.25 a generated spouse arrives. Stops at SPOUSE_CEILING court adults. */
+function spouseWalk(state, events, hooks) {
+  const generated = Object.values(state.people).filter((person) => !person.diedAt && person.identityOrigin === 'generated').sort((a, b) => a.id.localeCompare(b.id));
+  for (const person of generated) {
+    if (courtAdults(state).length >= SPOUSE_CEILING) return;
+    if (qualifiesForSpouse(state, person, hooks) && lineageRandom(state) < 0.25) addSpouse(state, person, events, hooks);
+  }
+}
+
+/** Yearly court renewal on a historical campaign: one newcomer when fewer than COURT_FLOOR adults remain at court, then generated spouses. */
 export function courtRenewalStep(state, events, hooks) {
   if (!state.historicalOrigin || state.status.ended) return;
   if (courtAdults(state).length < COURT_FLOOR) addNewcomer(state, events, hooks);
+  spouseWalk(state, events, hooks);
 }

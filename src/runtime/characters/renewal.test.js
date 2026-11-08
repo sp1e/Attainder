@@ -79,6 +79,9 @@ const NEWCOMER_NOTE = 'Spelet skapade personen när hovet behövde fler vuxna.';
 const newcomerOf = (state, events) => state.people[events.find(event => event.type === 'arrival')?.participants[0]];
 const familyOf = (state, person) => state.families[person.familyId];
 const headcount = state => Object.keys(state.people).length;
+const crowd = (state, n) => { for (let i = 1; i <= n; i++) probe(state, `crowd-${i}`); };
+const SPOUSE_NOTE = 'Spelet skapade personen som make eller maka.';
+const spouses = state => Object.values(state.people).filter(person => /^Gemål \d+ \(genererad\)$/.test(person.name));
 
 test('a court below six adults gains exactly one newcomer a year', () => {
   const state = papal(), initial = headcount(state);
@@ -182,4 +185,83 @@ test('a year in Kyrkostaten brings Hovman 1 to court', () => {
   const arrivals = next.log.filter(event => event.type === 'arrival');
   assert.equal(arrivals.length, 1); assert.equal(arrivals[0].date, '0801-12-25');
   assert.deepEqual(normalizeCharacterSystem(plain(next)), next);
+});
+test('a generated adult with nobody to marry gains a spouse on a low draw', () => {
+  const state = papal(), seq = state.sequence, events = step(state, LOW);
+  const man = state.people[`person-${seq + 1}`], wife = state.people[`person-${seq + 4}`];
+  assert.deepEqual(events.map(e => e.type), ['arrival', 'marriage']);
+  assert.equal(wife.name, 'Gemål 1 (genererad)'); assert.equal(wife.sex, 'female');
+  assert.equal(wife.bornAt, '0778-01-01'); assert.equal(wife.familyId, man.familyId);
+  assert.equal(wife.archetype, 'steward'); assert.deepEqual(wife.traits, ['dutiful']);
+  assert.deepEqual(wife.skills, Object.fromEntries(Object.keys(SKILL_LABELS).map(key => [key, 4])));
+  assert.equal(wife.religionId, man.religionId); assert.equal(wife.culture, man.culture);
+  assert.equal(wife.historicalOrigin.claims.identity.noteSv, SPOUSE_NOTE);
+  assert.equal(man.spouseId, wife.id); assert.equal(wife.spouseId, man.id);
+  for (const key of [`${man.id}:${wife.id}`, `${wife.id}:${man.id}`]) assert.ok(state.relations[key].bonds.includes('partner'), key);
+  assert.equal(events[1].title, 'En ny familjeförbindelse');
+  assert.equal(events[1].description, 'Hovman 1 (genererad) och Gemål 1 (genererad) gifter sig.');
+  assert.deepEqual(events[1].participants, [man.id, wife.id]);
+  assert.deepEqual([state.memories.at(-1).type, state.memories.at(-1).title, state.memories.at(-1).participants], ['marriage', 'Äktenskap mellan familjer', [man.id, wife.id]]);
+  assert.equal(state.families[man.familyId].headId, man.id);
+  assert.deepEqual(state.courtRenewal, { newcomers: 1, spouses: 1, houses: 4 });
+  assert.deepEqual(normalizeCharacterSystem(plain(state)), state);
+});
+test('a high draw creates no spouse and spends one lineage draw', () => {
+  const state = papal(); step(state, HIGH);
+  assert.equal(Object.values(state.people).some(person => person.name === 'Gemål 1 (genererad)'), false);
+  assert.equal(state.lineageRngState, afterDraws(HIGH, 1));
+});
+test('the renewal step never touches the main or other streams', () => {
+  const state = papal(), before = streams(state); step(state, LOW);
+  assert.deepEqual(streams(state), before);
+});
+test('a matchmaking partner at court blocks the generated spouse and its draw', () => {
+  const state = papal(); crowd(state, 1);
+  state.people['generated-courtier-1'].bornAt = '0775-01-01';
+  probe(state, 'p-woman', { sex: 'female', bornAt: '0770-01-01' });
+  step(state, LOW);
+  assert.equal(state.people['generated-courtier-1'].spouseId, null);
+  assert.equal(state.lineageRngState, LOW);
+});
+test('rulers and priests gain no generated spouse and spend no draw', () => {
+  for (const [officeId, personId] of [['ruler', 'generated-courtier-1'], ['priest', 'generated-courtier-3']]) {
+    const state = papal({ mode: 'family', familyId: 'leo-household' }); crowd(state, 2);
+    state.offices[officeId].holderId = personId; state.people[personId].bornAt = '0775-01-01';
+    assert.equal(actionHooks(state).activeRepresentative().id, 'leo-iii');
+    step(state, LOW);
+    assert.equal(state.people[personId].spouseId, null, officeId);
+    assert.equal(state.lineageRngState, LOW, officeId);
+  }
+});
+test('the age window runs from 18 to 35', () => {
+  const run = changes => { const state = papal(); crowd(state, 2); Object.assign(state.people['generated-courtier-1'], changes); step(state, LOW); return state; };
+  const spouseOf = state => state.people[state.people['generated-courtier-1'].spouseId];
+  const old = run({ bornAt: '0764-01-01' });
+  assert.equal(old.people['generated-courtier-1'].spouseId, null); assert.equal(old.lineageRngState, LOW);
+  assert.equal(spouseOf(run({ bornAt: '0765-01-01' })).bornAt, '0768-01-01');
+  assert.equal(spouseOf(run({ bornAt: '0782-01-01' })).bornAt, '0782-01-01');
+  const husband = spouseOf(run({ sex: 'female', bornAt: '0765-01-01' }));
+  assert.deepEqual([husband.name, husband.sex, husband.bornAt], ['Gemål 1 (genererad)', 'male', '0762-01-01']);
+});
+test('the ceiling of twelve court adults stops the walk', () => {
+  const court = n => { const state = papal(); crowd(state, n); for (const id of ['generated-courtier-1', 'generated-courtier-2']) state.people[id].bornAt = '0775-01-01'; return state; };
+  const eleven = court(7);
+  assert.equal(courtAdults(eleven).length, 11);
+  step(eleven, LOW);
+  assert.equal(spouses(eleven).length, 1);
+  assert.equal(spouses(eleven)[0].spouseId, 'generated-courtier-1');
+  assert.equal(eleven.lineageRngState, afterDraws(LOW, 1));
+  const twelve = court(8);
+  assert.equal(courtAdults(twelve).length, 12);
+  step(twelve, LOW);
+  assert.equal(spouses(twelve).length, 0);
+  assert.equal(twelve.lineageRngState, LOW);
+});
+test('the active representative of a family campaign gains no generated spouse', () => {
+  const state = papal({ mode: 'family', familyId: 'generated-house-1' }); crowd(state, 2);
+  state.people['generated-courtier-1'].bornAt = '0775-01-01';
+  assert.equal(actionHooks(state).activeRepresentative().id, 'generated-courtier-1');
+  step(state, LOW);
+  assert.equal(state.people['generated-courtier-1'].spouseId, null);
+  assert.equal(state.lineageRngState, LOW);
 });

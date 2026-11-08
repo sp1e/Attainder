@@ -478,6 +478,7 @@ function openStory(state, story) { const item = { ...story, id: nextId(state, 's
 /** The hooks the action gate, the schemes and the plot step use. Exported so the rules modules can be tested against the engine's own helpers. */
 export function actionHooks(state) {
   return { kill: (ids, events, reason) => killPeople(state, ids, events, reason), related: (aId, bId) => kin(state, aId, bId), ruler: () => ruler(state), openStory: (story) => openStory(state, story),
+    closeKin: (a, b) => closeKin(state, a, b), addBond: (aId, bId, kind) => addBond(state, aId, bId, kind),
     memory: (type, title, participants, options) => memory(state, type, title, participants, options),
     opinionCause: (fromId, toId, amount, label, causeId, years) => opinionCause(state, fromId, toId, amount, label, causeId, years),
     logEvent: (events, type, title, description, participants, extra) => logEvent(state, events, type, title, description, participants, extra),
