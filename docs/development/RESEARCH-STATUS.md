@@ -315,3 +315,23 @@ BC3200 now builds on those 431 events and 395 sources. Its seven reviewed additi
 - The jade and Ebla records and their two sources are withheld after independent catalogue timeouts and HTTP 403 respectively. No earlier author passage replaces the missing fresh verification. Six earlier author retrieval assertions remain independently unestablished. The La Galgada origin download failed TLS verification; the reviewer read the native text and makes no page-image or original-body claim.
 - The candidate preserves all 447 earlier events and 412 sources, reaching 449 events and 416 sources. Only 2400–2301 BC changes to partial: 1,631 partial years and 3,199 unresearched years. Two records from two regions leave extensive gaps despite 63 queries across all nine regions.
 - AD700 and AD500 isolated checks continue. BC2300 authoring is complete and awaits an independent source check; AD400 research continues. AD600 and BC2600 remain held under their recorded limitations. Claude retains implementation, tests, built packages and deployment ownership. No Cloudflare, D1, R2, secret, binding or deployment change is needed.
+
+
+## Bilingual text priority and BC2400 publication, 8 November 2026
+
+PR #56 merged as `467ba0853da5c1c53fb9fd124ae118c3524615cf`. CI on exact head `cd5e9b270115f71bf0f8233a5a8ee4a93301be3c` passed 5,193 of 5,195 tests, with zero failures, zero skips and two existing TODOs. The build took 40.16 seconds. All five merged research blobs match the approved readback. The published catalog contains 449 events and 416 sources.
+
+The owner explicitly requires both Swedish and English in Options, and requires Codex to write the actual translations now. Translation has priority over the next research publication. Codex is preparing bilingual display data for events, courts, historical starts and names, rules, interface messages and explanations. Existing source research, approvals and original-language bibliography remain unchanged. New research must include English display text alongside Swedish before handoff.
+
+Ruling: new translation sidecars belong to Codex's data deliverables; Claude retains runtime, test and package ownership. Existing Swedish source text remains the comparison baseline. This avoids changing approved historical claims while giving Claude completed translations to integrate. The cost is a runtime adapter and language-switch verification.
+
+The live source inventory found several integration requirements: the English DOM translator returns immediately, the dynasty start card is excluded from translation, new campaigns hardcode Swedish, character model calls suppress the selected language, and the action panel treats several normal English words as internal-error signals. These require Claude's implementation changes. Existing language selection alone does not establish bilingual gameplay.
+
+BC2300 has a completed isolated source check and a private reconciliation candidate. AD700 has a private 34-event, 25-source candidate after its fresh check; AD500 has 19 events and 15 sources with one locator proposal unresolved. They still require final DATA review and integration. BC2200 has an author packet without its independent source check. AD400, AD600 and BC2600 retain their recorded holds. Translation does not change those gates.
+
+
+## Historical event translations prepared, 8 November 2026
+
+All 449 published historical events now have English translations for their 2,055 Swedish display fields in `server/seed/historical/locales/en.json`. Every title, summary, geography label, date display and date note is covered. A separate bilingual review approved all fields after two exact meaning corrections, with no unresolved findings. Source field values and source-text hashes match the unchanged catalog; the existing catalog check and all 45 focused event tests pass.
+
+The new file is a locale sidecar. It changes no event, chronology, source record, review approval, coverage interval or generated package. Runtime consumers still require Claude's language integration. Court and start descriptions, culture names, source-panel prose, rules and interface translations continue under the bilingual plan; this milestone does not claim complete bilingual gameplay.
