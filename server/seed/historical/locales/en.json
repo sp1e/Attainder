@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "75235d536afcf446d10ccf254c0449e3d73e9257",
+  "sourceRevision": "16cd0b2d943e325efa42b228ed436e2bcfbc6ea3",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -41065,6 +41065,996 @@
         "eventId": "ev-0794-kyoto-blir-kejsarens-huvudstad",
         "fieldPath": "/geographySv",
         "textSha256": "101ec302b0f1fcf79969152202cbdec063c0ccdc77cce1c6fb621e210fc3952b"
+      }
+    },
+    {
+      "id": "event/ev-0500-hunafurstar-erovrar-punjab-och-kashmir/date/displaySv",
+      "sv": "cirka 500–550 e.Kr.",
+      "en": "circa AD 500–550",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0500-hunafurstar-erovrar-punjab-och-kashmir",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "c36f9cf69ee1b9aa1c5c2b113d7636247c11abc6431d8c3cf52dbb03a4eb9838"
+      }
+    },
+    {
+      "id": "event/ev-0500-hunafurstar-erovrar-punjab-och-kashmir/date/noteSv",
+      "sv": "Källans ungefärliga intervall cirka 500–550 behålls i sin helhet. Den anger inget enskilt erövringsår.",
+      "en": "The source's approximate interval of circa 500–550 is retained in full. It gives no individual year of conquest.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0500-hunafurstar-erovrar-punjab-och-kashmir",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "8ab5d4a8ead31f8c4a69c4896599638e265a7a7977e8dd132bda5a7a1b5d48b1"
+      }
+    },
+    {
+      "id": "event/ev-0500-hunafurstar-erovrar-punjab-och-kashmir/titleSv",
+      "sv": "Hunafurstar erövrar Punjab och Kashmir",
+      "en": "Huna princes conquer Punjab and Kashmir",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0500-hunafurstar-erovrar-punjab-och-kashmir",
+        "fieldPath": "/titleSv",
+        "textSha256": "cca7754d42fa4a79adad28ca6b9ce86847754425a4db789ca2cd0b8c795266ce"
+      }
+    },
+    {
+      "id": "event/ev-0500-hunafurstar-erovrar-punjab-och-kashmir/summarySv",
+      "sv": "Hunafurstar erövrar tillfälligt Punjab och Kashmir. Deras framryckningar bidrar till Guptarikets sönderfall.",
+      "en": "Huna princes temporarily conquer Punjab and Kashmir. Their advances contribute to the breakup of the Gupta Empire.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0500-hunafurstar-erovrar-punjab-och-kashmir",
+        "fieldPath": "/summarySv",
+        "textSha256": "59cc9b658e3bff1cd2b3f0dfd2dcbca004791b277ac3ca2aea12dac5409cb263"
+      }
+    },
+    {
+      "id": "event/ev-0500-hunafurstar-erovrar-punjab-och-kashmir/geographySv",
+      "sv": "Punjab och Kashmir",
+      "en": "Punjab and Kashmir",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0500-hunafurstar-erovrar-punjab-och-kashmir",
+        "fieldPath": "/geographySv",
+        "textSha256": "b562a2e69239371e8357b5a45a336a66a492403d60c35747e34f96da1f8277be"
+      }
+    },
+    {
+      "id": "event/ev-0529-justinianus-ger-ut-och-reviderar-lagkod/date/displaySv",
+      "sv": "529–534 e.Kr.",
+      "en": "AD 529–534",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0529-justinianus-ger-ut-och-reviderar-lagkod",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b700f4c1c8759d7b9e910b9f48aa3ff0409d06c35ad3edb78efdbf8c253651fd"
+      }
+    },
+    {
+      "id": "event/ev-0529-justinianus-ger-ut-och-reviderar-lagkod/date/noteSv",
+      "sv": "Intervallet omfattar den första och den reviderade utgåvan. Det daterar inte alla delar av Corpus iuris civilis.",
+      "en": "The interval covers the first and revised editions. It does not date every part of the Corpus iuris civilis.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0529-justinianus-ger-ut-och-reviderar-lagkod",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "fefc79cb08f4a481ca2eacfc46c8ff980916ff6493515c625a3d87ced5012172"
+      }
+    },
+    {
+      "id": "event/ev-0529-justinianus-ger-ut-och-reviderar-lagkod/titleSv",
+      "sv": "Justinianus ger ut och reviderar sin lagkod",
+      "en": "Justinian issues and revises his law code",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0529-justinianus-ger-ut-och-reviderar-lagkod",
+        "fieldPath": "/titleSv",
+        "textSha256": "2924e20599655b7c515f8b2041c0d1feafdb43fdb49b8741522493dc13e1e52b"
+      }
+    },
+    {
+      "id": "event/ev-0529-justinianus-ger-ut-och-reviderar-lagkod/summarySv",
+      "sv": "Justinianus sammanför romerska lagar i en kod 529. Han låter införa senare lagstiftning i en reviderad utgåva 534.",
+      "en": "Justinian compiles Roman laws in a code in 529. He has later legislation added to a revised edition in 534.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0529-justinianus-ger-ut-och-reviderar-lagkod",
+        "fieldPath": "/summarySv",
+        "textSha256": "256fd8f7f46e5a08288be520133ead7376fdf06a2f686074bb28390e3d2d249d"
+      }
+    },
+    {
+      "id": "event/ev-0529-justinianus-ger-ut-och-reviderar-lagkod/geographySv",
+      "sv": "Östromerska riket",
+      "en": "Eastern Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0529-justinianus-ger-ut-och-reviderar-lagkod",
+        "fieldPath": "/geographySv",
+        "textSha256": "9ed077ff2c7abf321a219a3b7edc034fc79b47743409e0499af8232d6c66d720"
+      }
+    },
+    {
+      "id": "event/ev-0530-benedictus-grundar-monte-cassino/date/displaySv",
+      "sv": "cirka 530 e.Kr.",
+      "en": "circa AD 530",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0530-benedictus-grundar-monte-cassino",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d0274851c0ba5604ea679ba24d92cb3cf5d75fa0cccf964560ca0610aa172a0f"
+      }
+    },
+    {
+      "id": "event/ev-0530-benedictus-grundar-monte-cassino/titleSv",
+      "sv": "Benedictus grundar Monte Cassino",
+      "en": "Benedict founds Monte Cassino",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0530-benedictus-grundar-monte-cassino",
+        "fieldPath": "/titleSv",
+        "textSha256": "8cf0cc4ca53ab7eb3535c4e535396a213084cb7271c9f79d507c4acd8cad114b"
+      }
+    },
+    {
+      "id": "event/ev-0530-benedictus-grundar-monte-cassino/summarySv",
+      "sv": "Benedictus av Nursia grundar klostret Monte Cassino på platsen för ett äldre Apollontempel.",
+      "en": "Benedict of Nursia founds the monastery of Monte Cassino on the site of an older temple of Apollo.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0530-benedictus-grundar-monte-cassino",
+        "fieldPath": "/summarySv",
+        "textSha256": "295333ebdea40702f93cfbad41178fbbb862bc17445534e1b8a65a61583a985a"
+      }
+    },
+    {
+      "id": "event/ev-0530-benedictus-grundar-monte-cassino/geographySv",
+      "sv": "Monte Cassino, Italien",
+      "en": "Monte Cassino, Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0530-benedictus-grundar-monte-cassino",
+        "fieldPath": "/geographySv",
+        "textSha256": "6a928be7ff7418083303bd1b2ea2e7cc9588ced488f6d05c7e4c1b262333de32"
+      }
+    },
+    {
+      "id": "event/ev-0532-anthemios-isidoros-utformar-hagia-sofia/date/displaySv",
+      "sv": "532–537 e.Kr.",
+      "en": "AD 532–537",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0532-anthemios-isidoros-utformar-hagia-sofia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8f6850d9120ae5d7628902a92eccd8872c22e2d56fea8412048105eeb34e38a1"
+      }
+    },
+    {
+      "id": "event/ev-0532-anthemios-isidoros-utformar-hagia-sofia/date/noteSv",
+      "sv": "UNESCO anger 532–537 för arkitekternas arbete. Posten avser detta intervall och anger ingen separat invigningsdag.",
+      "en": "UNESCO gives 532–537 for the architects' work. The entry concerns this interval and gives no separate day of dedication.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0532-anthemios-isidoros-utformar-hagia-sofia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d26de521c9516cf7ea9cbb43de604e3380c78bcba03a47cd755facc4f8a96cd2"
+      }
+    },
+    {
+      "id": "event/ev-0532-anthemios-isidoros-utformar-hagia-sofia/titleSv",
+      "sv": "Anthemios och Isidoros utformar Hagia Sofia",
+      "en": "Anthemius and Isidore design Hagia Sophia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0532-anthemios-isidoros-utformar-hagia-sofia",
+        "fieldPath": "/titleSv",
+        "textSha256": "ed4766384015faeb9d368fff45d4aa413bb1616a48988c9f196458d081c903dd"
+      }
+    },
+    {
+      "id": "event/ev-0532-anthemios-isidoros-utformar-hagia-sofia/summarySv",
+      "sv": "Anthemios från Tralles och Isidoros från Miletos utformar Hagia Sofia i Konstantinopel.",
+      "en": "Anthemius of Tralles and Isidore of Miletus design Hagia Sophia in Constantinople.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0532-anthemios-isidoros-utformar-hagia-sofia",
+        "fieldPath": "/summarySv",
+        "textSha256": "f4f3029c1841f14d1b4ed1839bf81c50972b6350a3c3b52fecbf2c631ae15cf0"
+      }
+    },
+    {
+      "id": "event/ev-0532-anthemios-isidoros-utformar-hagia-sofia/geographySv",
+      "sv": "Konstantinopel",
+      "en": "Constantinople",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0532-anthemios-isidoros-utformar-hagia-sofia",
+        "fieldPath": "/geographySv",
+        "textSha256": "f9dc76f0677a31aee931f8c65165dcaa69f4b2cf48dfe642f6cf85bbafb2482e"
+      }
+    },
+    {
+      "id": "event/ev-0536-tva-vulkanutbrott-inleder-nedkylning/date/displaySv",
+      "sv": "536–540 e.Kr.",
+      "en": "AD 536–540",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0536-tva-vulkanutbrott-inleder-nedkylning",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "103acfee2f3e321b77a1fda93c4f88fa82ee358faa56773d911ecd55c2b3769a"
+      }
+    },
+    {
+      "id": "event/ev-0536-tva-vulkanutbrott-inleder-nedkylning/date/noteSv",
+      "sv": "Intervallet förenar två skilda utbrott. Nedkylningen fortsätter efter 540; dess längd och samhällsföljder är omdiskuterade.",
+      "en": "The interval combines two separate eruptions. The cooling continues after 540; its duration and consequences for society remain disputed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0536-tva-vulkanutbrott-inleder-nedkylning",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5f14a07b642b23908fdb9b304f105fac26790ba8379041b464b32545b4d03c10"
+      }
+    },
+    {
+      "id": "event/ev-0536-tva-vulkanutbrott-inleder-nedkylning/titleSv",
+      "sv": "Två vulkanutbrott inleder en kraftig nedkylning",
+      "en": "Two volcanic eruptions trigger severe cooling",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0536-tva-vulkanutbrott-inleder-nedkylning",
+        "fieldPath": "/titleSv",
+        "textSha256": "4539f5adf2bc8ae26c9f5afb3df1a37d70655ab2ac1fc41d61fa7dcb793f9bbc"
+      }
+    },
+    {
+      "id": "event/ev-0536-tva-vulkanutbrott-inleder-nedkylning/summarySv",
+      "sv": "Vulkanutbrott 536 och 540 inleder en kall period på norra halvklotet. Studier av södra Norge visar att följderna för odling och bosättning varierar mellan områden.",
+      "en": "Volcanic eruptions in 536 and 540 trigger a cold period in the Northern Hemisphere. Studies of southern Norway show that the effects on cultivation and settlement vary between areas.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0536-tva-vulkanutbrott-inleder-nedkylning",
+        "fieldPath": "/summarySv",
+        "textSha256": "4d58b30d00b63d3046ba43bff693d470fe54447684692ee6552396b471567f55"
+      }
+    },
+    {
+      "id": "event/ev-0536-tva-vulkanutbrott-inleder-nedkylning/geographySv",
+      "sv": "Norra halvklotet, med belägg från Skandinavien",
+      "en": "Northern Hemisphere, with evidence from Scandinavia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0536-tva-vulkanutbrott-inleder-nedkylning",
+        "fieldPath": "/geographySv",
+        "textSha256": "e4c2e0eb1d68bc2156bf7bb9a27486c9bebb1b4ef692162508ba31d018f8fda1"
+      }
+    },
+    {
+      "id": "event/ev-0538-seong-flyttar-huvudstad-till-sabi/date/displaySv",
+      "sv": "538 e.Kr.",
+      "en": "AD 538",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0538-seong-flyttar-huvudstad-till-sabi",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d208807260ebde0a6091ab08e134e55764fa65bfbecc31f36af0aca94ccc8f84"
+      }
+    },
+    {
+      "id": "event/ev-0538-seong-flyttar-huvudstad-till-sabi/titleSv",
+      "sv": "Seong flyttar Baekjes huvudstad till Sabi",
+      "en": "Seong moves Baekje's capital to Sabi",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0538-seong-flyttar-huvudstad-till-sabi",
+        "fieldPath": "/titleSv",
+        "textSha256": "9b3322079c806b8636b2b2c0b8b673ed45cb2a2b76ddfda50ee71d69d0b794cb"
+      }
+    },
+    {
+      "id": "event/ev-0538-seong-flyttar-huvudstad-till-sabi/summarySv",
+      "sv": "Kung Seong flyttar Baekjes huvudstad från Ungjin till Sabi, nuvarande Buyeo.",
+      "en": "King Seong moves Baekje's capital from Ungjin to Sabi, present-day Buyeo.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0538-seong-flyttar-huvudstad-till-sabi",
+        "fieldPath": "/summarySv",
+        "textSha256": "2ca0c2b9b88062501aed74ebc7d66b62d2372f90c7f374594fa10169a54ecbb8"
+      }
+    },
+    {
+      "id": "event/ev-0538-seong-flyttar-huvudstad-till-sabi/geographySv",
+      "sv": "Baekje, Koreahalvön",
+      "en": "Baekje, Korean Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0538-seong-flyttar-huvudstad-till-sabi",
+        "fieldPath": "/geographySv",
+        "textSha256": "1b00d092030957b75690a4b9c6e47e90d7fc2f53c7cc55019cc8bea17c9e69da"
+      }
+    },
+    {
+      "id": "event/ev-0538-baekje-sander-buddhistiska-gavor-till-japan/date/displaySv",
+      "sv": "538–552 e.Kr.",
+      "en": "AD 538–552",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0538-baekje-sander-buddhistiska-gavor-till-japan",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4a4365be97aa2126d7523636007f98b20b9f1ecfce3fdcb9443d6850611b343a"
+      }
+    },
+    {
+      "id": "event/ev-0538-baekje-sander-buddhistiska-gavor-till-japan/date/noteSv",
+      "sv": "De konkurrerande dateringarna är 538 och 552. Sifferintervallet täcker alternativen och betyder inte att gåvan pågick under hela perioden.",
+      "en": "The competing dates are 538 and 552. The numerical interval covers the alternatives and does not mean that the gift continued throughout the period.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0538-baekje-sander-buddhistiska-gavor-till-japan",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "87530180edfce385a3cd70cb74ae851785fe64117422b08726ec9c3e22b7383f"
+      }
+    },
+    {
+      "id": "event/ev-0538-baekje-sander-buddhistiska-gavor-till-japan/titleSv",
+      "sv": "Baekjes kung sänder buddhistiska gåvor till Japan",
+      "en": "Baekje's king sends Buddhist gifts to Japan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0538-baekje-sander-buddhistiska-gavor-till-japan",
+        "fieldPath": "/titleSv",
+        "textSha256": "27a0cc6a4ebcc4192d957df7ebaabbc6934024a2cbe0b3e52ca8b8ad56004cac"
+      }
+    },
+    {
+      "id": "event/ev-0538-baekje-sander-buddhistiska-gavor-till-japan/summarySv",
+      "sv": "Baekjes kung sänder buddhabilder och skrifter till kejsar Kinmei. Den kungliga gåvan räknas som buddhismens officiella överföring till Japan, där invandrare kan ha utövat religionen tidigare.",
+      "en": "Baekje's king sends images of the Buddha and scriptures to Emperor Kinmei. The royal gift is regarded as the official transmission of Buddhism to Japan, where immigrants may have practised the religion earlier.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0538-baekje-sander-buddhistiska-gavor-till-japan",
+        "fieldPath": "/summarySv",
+        "textSha256": "cd66c58c5d920a1f45ad0174edbda8900622904d67cd9e8a8915f274400c22dd"
+      }
+    },
+    {
+      "id": "event/ev-0538-baekje-sander-buddhistiska-gavor-till-japan/geographySv",
+      "sv": "Baekje och Japan",
+      "en": "Baekje and Japan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0538-baekje-sander-buddhistiska-gavor-till-japan",
+        "fieldPath": "/geographySv",
+        "textSha256": "dc6fe2c192ce2cb16a5065c8b0d7172a853e8b7a75ad98a31ac6a42f65cf743e"
+      }
+    },
+    {
+      "id": "event/ev-0542-pesten-nar-konstantinopel/date/displaySv",
+      "sv": "542 e.Kr.",
+      "en": "AD 542",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0542-pesten-nar-konstantinopel",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4304f81f2975a76dea30aaa81d2896a7241d603ff7f0f2de0ef8c95666a2b78b"
+      }
+    },
+    {
+      "id": "event/ev-0542-pesten-nar-konstantinopel/date/noteSv",
+      "sv": "Året följer den citerade diskussionen av Prokopios. Ingen exakt ankomstdag eller dödssiffra anges.",
+      "en": "The year follows the cited discussion of Procopius. It gives no exact arrival day or death toll.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0542-pesten-nar-konstantinopel",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "03744a3e10dbc5cfe654ab04777e2938b120f94a7ab676fcef182edc20855d62"
+      }
+    },
+    {
+      "id": "event/ev-0542-pesten-nar-konstantinopel/titleSv",
+      "sv": "Pesten når Konstantinopel",
+      "en": "The plague reaches Constantinople",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0542-pesten-nar-konstantinopel",
+        "fieldPath": "/titleSv",
+        "textSha256": "098ed670709096c5eb1dc0fc159c6f6876e6af23ab4103c5d007c1bc4fa48ad8"
+      }
+    },
+    {
+      "id": "event/ev-0542-pesten-nar-konstantinopel/summarySv",
+      "sv": "Pesten når Konstantinopel. Prokopios uppger att han befinner sig i staden när epidemin bryter ut.",
+      "en": "The plague reaches Constantinople. Procopius states that he is in the city when the epidemic breaks out.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0542-pesten-nar-konstantinopel",
+        "fieldPath": "/summarySv",
+        "textSha256": "4c59d037cb9f4c19cc4318d05c32b84a0aa184249b82f804e16994f9f0ce0686"
+      }
+    },
+    {
+      "id": "event/ev-0542-pesten-nar-konstantinopel/geographySv",
+      "sv": "Konstantinopel",
+      "en": "Constantinople",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0542-pesten-nar-konstantinopel",
+        "fieldPath": "/geographySv",
+        "textSha256": "f9dc76f0677a31aee931f8c65165dcaa69f4b2cf48dfe642f6cf85bbafb2482e"
+      }
+    },
+    {
+      "id": "event/ev-0544-ly-bi-utropar-van-xuan/date/displaySv",
+      "sv": "544 e.Kr.",
+      "en": "AD 544",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0544-ly-bi-utropar-van-xuan",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b9dc730d041c710a49cc1ceec6488e60613ae94976c3294e05c4b9c4af263953"
+      }
+    },
+    {
+      "id": "event/ev-0544-ly-bi-utropar-van-xuan/date/noteSv",
+      "sv": "Källan anger andra månmånaden i Giáp Tý och motsvarigheten 544. Posten använder endast årtalet.",
+      "en": "The source gives the second lunar month of Giáp Tý and its equivalent, 544. The entry uses only the year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0544-ly-bi-utropar-van-xuan",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c108c76a2379268fdbd6d306289826b9dd326ac7fd9100c552a201ae0c55f177"
+      }
+    },
+    {
+      "id": "event/ev-0544-ly-bi-utropar-van-xuan/titleSv",
+      "sv": "Lý Bí antar kejsartiteln och grundar Vạn Xuân",
+      "en": "Lý Bí assumes the imperial title and founds Vạn Xuân",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0544-ly-bi-utropar-van-xuan",
+        "fieldPath": "/titleSv",
+        "textSha256": "075fc2d82d9560ab7f597fff2cab20645b7beb60962305bd4c39e832d536ed93"
+      }
+    },
+    {
+      "id": "event/ev-0544-ly-bi-utropar-van-xuan/summarySv",
+      "sv": "Lý Bí antar kejsartiteln Lý Nam Đế, ger sitt rike namnet Vạn Xuân och gör Long Biên till huvudstad.",
+      "en": "Lý Bí assumes the imperial title Lý Nam Đế, names his realm Vạn Xuân and makes Long Biên its capital.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0544-ly-bi-utropar-van-xuan",
+        "fieldPath": "/summarySv",
+        "textSha256": "a864aef55dd3b92b47b156056c03e08857ff5db069cd39addef3f4447c7a3c47"
+      }
+    },
+    {
+      "id": "event/ev-0544-ly-bi-utropar-van-xuan/geographySv",
+      "sv": "Long Biên, norra Vietnam",
+      "en": "Long Biên, northern Vietnam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0544-ly-bi-utropar-van-xuan",
+        "fieldPath": "/geographySv",
+        "textSha256": "2195c2d0f230d522d5c9aed84871d64fafd32a9b6260beb82c2778b22537894e"
+      }
+    },
+    {
+      "id": "event/ev-0547-san-vitale-invigs/date/displaySv",
+      "sv": "547 e.Kr.",
+      "en": "AD 547",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0547-san-vitale-invigs",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ecb701834016fcc1520ead8d4178db933be083fec1e61c438e7aa38b502eed9b"
+      }
+    },
+    {
+      "id": "event/ev-0547-san-vitale-invigs/date/noteSv",
+      "sv": "547 anges uttryckligen i löptexten under en tidslinjerubrik märkt cirka 535.",
+      "en": "The body text explicitly gives 547 under a timeline heading marked circa 535.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0547-san-vitale-invigs",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9c1e648d6b5b1f64bd0824111c7e3b93edf73968e3d4ceee8dcc35526e406819"
+      }
+    },
+    {
+      "id": "event/ev-0547-san-vitale-invigs/titleSv",
+      "sv": "San Vitale invigs i Ravenna",
+      "en": "San Vitale is dedicated in Ravenna",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0547-san-vitale-invigs",
+        "fieldPath": "/titleSv",
+        "textSha256": "77b2e76d2f8e33a031e2b433f4e191ddb3effb2e8ea4bd8be0deaa9b8b248ba4"
+      }
+    },
+    {
+      "id": "event/ev-0547-san-vitale-invigs/summarySv",
+      "sv": "Kyrkan San Vitale i Ravenna invigs. Den åttkantiga kyrkan pryds av mosaiker.",
+      "en": "The church of San Vitale in Ravenna is dedicated. Mosaics adorn the octagonal church.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0547-san-vitale-invigs",
+        "fieldPath": "/summarySv",
+        "textSha256": "abba17a7f39d1d777054d03b9b8885bf586dbe9b23f398173a4dc2824b67ad16"
+      }
+    },
+    {
+      "id": "event/ev-0547-san-vitale-invigs/geographySv",
+      "sv": "Ravenna, Italien",
+      "en": "Ravenna, Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0547-san-vitale-invigs",
+        "fieldPath": "/geographySv",
+        "textSha256": "84cad07ea051b8d6be81a08942d2a69c57401c3e766d8b9847517774cbbed4c7"
+      }
+    },
+    {
+      "id": "event/ev-0553-silla-bryter-alliansen-med-baekje/date/displaySv",
+      "sv": "553 e.Kr.",
+      "en": "AD 553",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0553-silla-bryter-alliansen-med-baekje",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "720515c068a33954688455593acfb5828b3c629e73c8a873bf269624f3724602"
+      }
+    },
+    {
+      "id": "event/ev-0553-silla-bryter-alliansen-med-baekje/titleSv",
+      "sv": "Silla bryter alliansen med Baekje",
+      "en": "Silla breaks its alliance with Baekje",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0553-silla-bryter-alliansen-med-baekje",
+        "fieldPath": "/titleSv",
+        "textSha256": "411b5a37b7986258b1161475b2e59a6736e52a19f83bbb3e787cf2fd829f9cae"
+      }
+    },
+    {
+      "id": "event/ev-0553-silla-bryter-alliansen-med-baekje/summarySv",
+      "sv": "Silla angriper Baekjes områden vid Hangangflodens nedre lopp. Angreppet avslutar alliansen mellan de två rikena.",
+      "en": "Silla attacks Baekje's territories along the lower Hangang River. The attack ends the alliance between the two kingdoms.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0553-silla-bryter-alliansen-med-baekje",
+        "fieldPath": "/summarySv",
+        "textSha256": "53ee7f9df9f4bedcd13a1db7da80e5476b90ffb6bc05294c5b12cdd4c2bdaccc"
+      }
+    },
+    {
+      "id": "event/ev-0553-silla-bryter-alliansen-med-baekje/geographySv",
+      "sv": "Hangang, Koreahalvön",
+      "en": "Hangang, Korean Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0553-silla-bryter-alliansen-med-baekje",
+        "fieldPath": "/geographySv",
+        "textSha256": "a0db710b54778884b8d1c501c7a81caec78de395ea826f483969f27c8419da74"
+      }
+    },
+    {
+      "id": "event/ev-0554-perser-turkar-besegrar-heftaliterna/date/displaySv",
+      "sv": "554–569 e.Kr.",
+      "en": "AD 554–569",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0554-perser-turkar-besegrar-heftaliterna",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1f41dd73e89c44fb995f9661b976ce81be15c46ef6f2442dea2497bb56e73f82"
+      }
+    },
+    {
+      "id": "event/ev-0554-perser-turkar-besegrar-heftaliterna/date/noteSv",
+      "sv": "Felföldis engelska sammanfattning redovisar fem äldre huvuddateringar mellan 554 och 567. Hans rekonstruktion börjar sent 557 eller tidigt 558: perserna avslutar sitt fälttåg 561 och turkarna före slutet av 568 eller början av 569. Intervallet 554–569 sammanför dessa dateringar och gränser; det anger ingen sammanhängande krigsperiod och omfattar inte alla avvikande dateringar som nämns i studien.",
+      "en": "Felföldi's English summary lists five main dates proposed earlier, ranging from 554 to 567. His reconstruction begins in late 557 or early 558: the Persians finish their campaign in 561 and the Turks before the end of 568 or the beginning of 569. The interval 554–569 brings together these dates and limits; it indicates no continuous period of warfare and does not cover every divergent date mentioned in the study.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0554-perser-turkar-besegrar-heftaliterna",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ddae7372bd7f750ae9201ebb9b985ca9252d82b8d4853ce45bf7327e6827927b"
+      }
+    },
+    {
+      "id": "event/ev-0554-perser-turkar-besegrar-heftaliterna/titleSv",
+      "sv": "Persiska och turkiska styrkor besegrar heftaliterna",
+      "en": "Persian and Turkic forces defeat the Hephthalites",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0554-perser-turkar-besegrar-heftaliterna",
+        "fieldPath": "/titleSv",
+        "textSha256": "d3c62e89388be6484bc8ab714d106e4eefa917278fe97df792a86f4d0eb1f1f4"
+      }
+    },
+    {
+      "id": "event/ev-0554-perser-turkar-besegrar-heftaliterna/summarySv",
+      "sv": "Persiska och turkiska styrkor besegrar heftaliternas rike genom skilda fälttåg. Både krigets förlopp och dess datering är omstridda.",
+      "en": "Persian and Turkic forces defeat the Hephthalite Empire through separate campaigns. Both the course of the war and its dating are disputed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0554-perser-turkar-besegrar-heftaliterna",
+        "fieldPath": "/summarySv",
+        "textSha256": "f589165eca4a23c5b32f5c282c23f4e1f93a86cc6ce5d40169b7a01ce6f8a9ba"
+      }
+    },
+    {
+      "id": "event/ev-0554-perser-turkar-besegrar-heftaliterna/geographySv",
+      "sv": "Centralasien kring Amu-Darja",
+      "en": "Central Asia around the Amu Darya",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0554-perser-turkar-besegrar-heftaliterna",
+        "fieldPath": "/geographySv",
+        "textSha256": "b74b8edfda531e1977796a2f4975b1830dfe5430d04f1d2697422008a96d1586"
+      }
+    },
+    {
+      "id": "event/ev-0562-tikal-besegras-i-stjarnkrig/date/displaySv",
+      "sv": "562 e.Kr.",
+      "en": "AD 562",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0562-tikal-besegras-i-stjarnkrig",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "3858501610e1855b8c365b268f569ebf01ebded2239168bd153eae594245e14e"
+      }
+    },
+    {
+      "id": "event/ev-0562-tikal-besegras-i-stjarnkrig/date/noteSv",
+      "sv": "Året följer den citerade forskargruppen. Posten avgör inte vilka som ingick i den segrande koalitionen eller den besegrade kungens öde.",
+      "en": "The year follows the cited research team. The entry does not determine who belonged to the victorious coalition or the defeated king's fate.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0562-tikal-besegras-i-stjarnkrig",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "55ed376a2b0f536018f59b5c9c90433ef83c37acc5173ccb28df2241e4d51fe0"
+      }
+    },
+    {
+      "id": "event/ev-0562-tikal-besegras-i-stjarnkrig/titleSv",
+      "sv": "Tikal besegras i ett stjärnkrig",
+      "en": "Tikal is defeated in a star war",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0562-tikal-besegras-i-stjarnkrig",
+        "fieldPath": "/titleSv",
+        "textSha256": "56b77975fa771641c43d26e186965bd39427bb04e3ebd41d9891cbe4dc15b3d0"
+      }
+    },
+    {
+      "id": "event/ev-0562-tikal-besegras-i-stjarnkrig/summarySv",
+      "sv": "Tikal besegras i ett så kallat stjärnkrig. Caracolprojektets forskare tolkar nederlaget som att Caracol frigör sig från Tikals överhöghet.",
+      "en": "Tikal is defeated in a so-called star war. Researchers from the Caracol Project interpret the defeat as Caracol freeing itself from Tikal's overlordship.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0562-tikal-besegras-i-stjarnkrig",
+        "fieldPath": "/summarySv",
+        "textSha256": "48dfecaa4ad90176616358026874331aa72c3c3fac62768c4d428235c16fa0df"
+      }
+    },
+    {
+      "id": "event/ev-0562-tikal-besegras-i-stjarnkrig/geographySv",
+      "sv": "Tikal och Caracol, nuvarande Guatemala och Belize",
+      "en": "Tikal and Caracol, present-day Guatemala and Belize",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0562-tikal-besegras-i-stjarnkrig",
+        "fieldPath": "/geographySv",
+        "textSha256": "525be7a15030b6da387537eab18bceba76042e2e3047782fb5c37750809aa694"
+      }
+    },
+    {
+      "id": "event/ev-0568-langobarder-invaderar-italien/date/displaySv",
+      "sv": "cirka 568 e.Kr.",
+      "en": "circa AD 568",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0568-langobarder-invaderar-italien",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b3e8f5cca9caa9f2e352506d2bf0f91b2e5a0bd2d79fc832610b6cf63d3b17dc"
+      }
+    },
+    {
+      "id": "event/ev-0568-langobarder-invaderar-italien/date/noteSv",
+      "sv": "Museets tidslinje anger cirka 568.",
+      "en": "The museum's timeline gives circa 568.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0568-langobarder-invaderar-italien",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "0b0f646bc3278f6ac8d7b16ef2fa30e0f2dc994b38946f2192c96895f3a8d66a"
+      }
+    },
+    {
+      "id": "event/ev-0568-langobarder-invaderar-italien/titleSv",
+      "sv": "Langobarder invaderar Italien",
+      "en": "Lombards invade Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0568-langobarder-invaderar-italien",
+        "fieldPath": "/titleSv",
+        "textSha256": "cf92170fc656143ad9cf73253ad87ac67f4ae035eafbb010dabe243437ff0401"
+      }
+    },
+    {
+      "id": "event/ev-0568-langobarder-invaderar-italien/summarySv",
+      "sv": "Langobarder invaderar den italienska halvön och upprättar hertigdömen i norr och söder. Bysantinarna behåller flera områden.",
+      "en": "Lombards invade the Italian Peninsula and establish duchies in the north and south. The Byzantines retain several areas.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0568-langobarder-invaderar-italien",
+        "fieldPath": "/summarySv",
+        "textSha256": "4ef37c331b0f24f2c434fabc290b21a17e11ee569af2ff0750f45c5bd6d673c3"
+      }
+    },
+    {
+      "id": "event/ev-0568-langobarder-invaderar-italien/geographySv",
+      "sv": "Italienska halvön",
+      "en": "Italian Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0568-langobarder-invaderar-italien",
+        "fieldPath": "/geographySv",
+        "textSha256": "66c824f01daa615ffe8369c436643ab92c7bde23bc4815c602c0c41031b99ca2"
+      }
+    },
+    {
+      "id": "event/ev-0580-longinus-atervander-till-nobatia/date/displaySv",
+      "sv": "580 e.Kr.",
+      "en": "AD 580",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0580-longinus-atervander-till-nobatia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8ab1d300759d1c378399d3ad2ab1a61d91fa6ed7ed6429ae9e3b07edfab44afc"
+      }
+    },
+    {
+      "id": "event/ev-0580-longinus-atervander-till-nobatia/date/noteSv",
+      "sv": "580 avser återkomsten till Nobatia. Källan daterar fortsättningen till Alwa endast som kort därefter och anger inget exakt år för hela rikets kristnande.",
+      "en": "580 refers to the return to Nobatia. The source dates the onward journey to Alwa only as shortly afterwards and gives no exact year for the conversion of the entire kingdom to Christianity.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0580-longinus-atervander-till-nobatia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "43b4bfbd7e34ab388e5f41314642b118b1289b4b963d97e9cc131eb8ed41fdac"
+      }
+    },
+    {
+      "id": "event/ev-0580-longinus-atervander-till-nobatia/titleSv",
+      "sv": "Longinus återvänder till Nobatia",
+      "en": "Longinus returns to Nobatia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0580-longinus-atervander-till-nobatia",
+        "fieldPath": "/titleSv",
+        "textSha256": "ccfd3bb39e6727ec71de7858d01a482fd5b1c07c8b38d1f3c31fd8435fcb6366"
+      }
+    },
+    {
+      "id": "event/ev-0580-longinus-atervander-till-nobatia/summarySv",
+      "sv": "Missionären Longinus återvänder till Nobatia. Kort därefter fortsätter han mot Alwa, vars kung har bjudit in honom.",
+      "en": "The missionary Longinus returns to Nobatia. Shortly afterwards, he continues towards Alwa, whose king has invited him.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0580-longinus-atervander-till-nobatia",
+        "fieldPath": "/summarySv",
+        "textSha256": "521fd9aacc7c8916d46aa1585993271661e3bd23fe28bc081e1d191259d6596c"
+      }
+    },
+    {
+      "id": "event/ev-0580-longinus-atervander-till-nobatia/geographySv",
+      "sv": "Nobatia och Alwa, Nubien",
+      "en": "Nobatia and Alwa, Nubia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0580-longinus-atervander-till-nobatia",
+        "fieldPath": "/geographySv",
+        "textSha256": "4048237a21cc5128fcdd674e0c082da62c741d918279c13c538e7743c5466a2f"
+      }
+    },
+    {
+      "id": "event/ev-0581-yang-jian-enar-kina-under-sui/date/displaySv",
+      "sv": "581–589 e.Kr.",
+      "en": "AD 581–589",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0581-yang-jian-enar-kina-under-sui",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "c046bbf8fda5afcc7d0f826eb65593346038120ed9f7cf0e8f809f0621a8dac4"
+      }
+    },
+    {
+      "id": "event/ev-0581-yang-jian-enar-kina-under-sui/date/noteSv",
+      "sv": "Källan anger en process från maktövertagandet 581 till ett riksenande som är genomfört senast 589. Den ger här inget exakt datum för det sista fälttåget.",
+      "en": "The source describes a process from the seizure of power in 581 to the unification of the realm, completed by 589. It gives no exact date here for the final campaign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0581-yang-jian-enar-kina-under-sui",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "bbbaf8f9f06eb0575486723b178478f85b27c16d76bca0d55e630ae56af04ebf"
+      }
+    },
+    {
+      "id": "event/ev-0581-yang-jian-enar-kina-under-sui/titleSv",
+      "sv": "Yang Jian enar Kina under Suidynastin",
+      "en": "Yang Jian unites China under the Sui dynasty",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0581-yang-jian-enar-kina-under-sui",
+        "fieldPath": "/titleSv",
+        "textSha256": "209205b7e77ed8ddec522c3b08ee7bb0b3ca9d26c45921e287d73e1eae588e45"
+      }
+    },
+    {
+      "id": "event/ev-0581-yang-jian-enar-kina-under-sui/summarySv",
+      "sv": "Yang Jian tar makten i norra Kina 581. Senast 589 har han förenat Kina under Suidynastin.",
+      "en": "Yang Jian takes power in northern China in 581. By 589, he has united China under the Sui dynasty.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0581-yang-jian-enar-kina-under-sui",
+        "fieldPath": "/summarySv",
+        "textSha256": "2638755bc240298faeabb3c5a107da4ebd5535a8b36de3d8ff3f6c94035fd69e"
+      }
+    },
+    {
+      "id": "event/ev-0581-yang-jian-enar-kina-under-sui/geographySv",
+      "sv": "Kina",
+      "en": "China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0581-yang-jian-enar-kina-under-sui",
+        "fieldPath": "/geographySv",
+        "textSha256": "57e3795a3bddf3ecc09fd620078f1ace8c68974bf50e387e364d256bd9cb13ae"
+      }
+    },
+    {
+      "id": "event/ev-0590-gregorius-valjs-till-pave/date/displaySv",
+      "sv": "590 e.Kr.",
+      "en": "AD 590",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0590-gregorius-valjs-till-pave",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "62ae410ce21e2a3ebbb7a57f8a3755efce0e201b37004e977064b777a9bc7280"
+      }
+    },
+    {
+      "id": "event/ev-0590-gregorius-valjs-till-pave/titleSv",
+      "sv": "Gregorius den store väljs till påve",
+      "en": "Gregory the Great is elected pope",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0590-gregorius-valjs-till-pave",
+        "fieldPath": "/titleSv",
+        "textSha256": "f736de69f6346c1af81a4d18e234a8793cccfdb051afd90da5cd0182812a2f0d"
+      }
+    },
+    {
+      "id": "event/ev-0590-gregorius-valjs-till-pave/summarySv",
+      "sv": "Gregorius den store väljs till påve i Rom. Han har tidigare verkat som diplomat och grundat kloster.",
+      "en": "Gregory the Great is elected pope in Rome. He has previously served as a diplomat and founded monasteries.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0590-gregorius-valjs-till-pave",
+        "fieldPath": "/summarySv",
+        "textSha256": "d14dca7baafacd5fc8da68cd25d73792867a70663af8009b7c5ec6b2958cef5e"
+      }
+    },
+    {
+      "id": "event/ev-0590-gregorius-valjs-till-pave/geographySv",
+      "sv": "Rom",
+      "en": "Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0590-gregorius-valjs-till-pave",
+        "fieldPath": "/geographySv",
+        "textSha256": "1f268826c4d33921cbcec835bd71ab3bc2729936d3edb01befa02c46c41a71ed"
+      }
+    },
+    {
+      "id": "event/ev-0593-shotoku-blir-regent/date/displaySv",
+      "sv": "593 e.Kr.",
+      "en": "AD 593",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0593-shotoku-blir-regent",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0c2773d73665704f041b93fa005681316b4930be1c1c4966eea46d1f033a1a54"
+      }
+    },
+    {
+      "id": "event/ev-0593-shotoku-blir-regent/date/noteSv",
+      "sv": "593 är den citerade institutionens datering av regenttillträdet. Senare reformer dateras inte till detta år.",
+      "en": "593 is the cited institution's date for the accession to the regency. Later reforms are not dated to this year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0593-shotoku-blir-regent",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3ec02515d275415fe4c477fef2cf3230255cd333f6d4058c75b7359084713857"
+      }
+    },
+    {
+      "id": "event/ev-0593-shotoku-blir-regent/titleSv",
+      "sv": "Shōtoku blir regent åt kejsarinnan Suiko",
+      "en": "Shōtoku becomes regent to Empress Suiko",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0593-shotoku-blir-regent",
+        "fieldPath": "/titleSv",
+        "textSha256": "c9f73e8e94e637fe78ea7eec239fcafacbadd92da0570b16b31efe03684fb60c"
+      }
+    },
+    {
+      "id": "event/ev-0593-shotoku-blir-regent/summarySv",
+      "sv": "Prins Shōtoku tillträder som regent åt kejsarinnan Suiko enligt den historieskrivning som Shitennoji University återger.",
+      "en": "Prince Shōtoku becomes regent to Empress Suiko according to the historical account presented by Shitennoji University.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0593-shotoku-blir-regent",
+        "fieldPath": "/summarySv",
+        "textSha256": "440c0c8d69ea67ee88fd4605818ed8697b42d57dc9c57368e7abc946ae801007"
+      }
+    },
+    {
+      "id": "event/ev-0593-shotoku-blir-regent/geographySv",
+      "sv": "Japan",
+      "en": "Japan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0593-shotoku-blir-regent",
+        "fieldPath": "/geographySv",
+        "textSha256": "647294383b2cbc24b18f629498fc7c6f61d3819fb42a2287e93305aaa01b74e7"
+      }
+    },
+    {
+      "id": "event/ev-0597-augustinus-anlander-till-kent/date/displaySv",
+      "sv": "597 e.Kr.",
+      "en": "AD 597",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0597-augustinus-anlander-till-kent",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7fd4f4e78c48e86e71bb2ac1d4cb560054c7d9efb84e7115172b6ddcf312c71d"
+      }
+    },
+    {
+      "id": "event/ev-0597-augustinus-anlander-till-kent/titleSv",
+      "sv": "Augustinus anländer till Kent",
+      "en": "Augustine arrives in Kent",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0597-augustinus-anlander-till-kent",
+        "fieldPath": "/titleSv",
+        "textSha256": "d25f0c54cff838f8554b59ef21d257ca513dc5e297561d27388296bd178f28e1"
+      }
+    },
+    {
+      "id": "event/ev-0597-augustinus-anlander-till-kent/summarySv",
+      "sv": "Augustinus går i land på Thanet i Kent. Han har sänts av påven Gregorius för att missionera bland anglosaxarna.",
+      "en": "Augustine lands on Thanet in Kent. Pope Gregory has sent him to evangelise among the Anglo-Saxons.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0597-augustinus-anlander-till-kent",
+        "fieldPath": "/summarySv",
+        "textSha256": "c8b5d7f3e475229d2c4a3ccb363b2cec834edf3ec9368909cdd65c775ec5e1ce"
+      }
+    },
+    {
+      "id": "event/ev-0597-augustinus-anlander-till-kent/geographySv",
+      "sv": "Thanet, Kent, Britannien",
+      "en": "Thanet, Kent, Britain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0597-augustinus-anlander-till-kent",
+        "fieldPath": "/geographySv",
+        "textSha256": "11f070c36dd4007c1441383625f48c662af2fec85d5559ffe359e5adfea36a2f"
       }
     }
   ]
