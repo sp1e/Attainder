@@ -6,7 +6,7 @@ import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, w
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { HISTORICAL_BOOKMARKS, shippedStartNeedsUpgrade } from './historicalStarts.js';
+import { HISTORICAL_BOOKMARKS, contentFingerprint, shippedStartEdited, shippedStartNeedsUpgrade } from './historicalStarts.js';
 import { charlemagneRelease110, charlemagneRelease120, world1500Release100 } from './fixtures/releaseFixtures.js';
 
 test('each shipped start names the content version its built package carries', () => {
@@ -276,11 +276,18 @@ const desktopLibrary = (id = 'charlemagne-800') => {
   `],{ env: { ...process.env,OH_DATA_DIR: root },stdio: 'pipe',encoding: 'utf8' }).trim().split('\n');
   return { root, dir, boot, worldPath: path.join(dir,'world.json'), citiesPath: path.join(dir,'cities.geojson'), metaPath: path.join(dir,'scenario.json') };
 };
-// What the 1.0.0 release installed: that version, with Rome not yet a seat.
+// The fingerprint a store records for the copy as it now stands on disk.
+const fingerprintOnDisk = worldPath => contentFingerprint(readJson(worldPath),readJson(path.join(path.dirname(worldPath),'game.json')));
+const restamp = worldPath => editJson(path.join(path.dirname(worldPath),'scenario.json'),meta => { meta.shippedContentFingerprint = fingerprintOnDisk(worldPath); });
+// What the 1.0.0 release installed: that version, with Rome not yet a seat, and the fingerprint of what it wrote.
 const ageToFirstRelease = ({ worldPath, citiesPath }) => {
   editJson(worldPath,world => { world.historicalScenario.contentVersion = '1.0.0'; });
   editJson(citiesPath,cities => { cities.features.find(f => f.id === 'rome').properties.seat = false; });
+  restamp(worldPath);
 };
+// A release from before the stores recorded a fingerprint.
+const dropFingerprint = metaPath => editJson(metaPath,meta => { delete meta.shippedContentFingerprint; });
+const editCourtText = worldPath => editJson(worldPath,world => { world.historicalScenario.courtSeeds['papal-states'].contextSv = 'Min egen inledning till påvens hov.'; });
 
 test('a desktop library read replaces an older shipped start in place and leaves deleted starts, player copies and campaigns alone', () => {
   const { root, dir, boot, worldPath, citiesPath, metaPath } = desktopLibrary(), id = 'charlemagne-800', egypt = path.join(root,'scenarios','egypt-3000bc');
@@ -337,6 +344,97 @@ test('a desktop library read replaces an older shipped start in place and leaves
   } finally { rmSync(root,{recursive:true,force:true}); }
 });
 
+test('a copy counts as edited only when it carries a fingerprint its content no longer matches', () => {
+  const world = { historicalScenario: { contentId: 'charlemagne-800' } }, game = { country: 'carolingian-realm' };
+  const meta = { shippedContentFingerprint: contentFingerprint(world,game) };
+  assert.match(meta.shippedContentFingerprint,/^[0-9a-f]{16}$/);
+  assert.equal(shippedStartEdited({ meta, data: { world, game } }),false,'unedited');
+  assert.equal(shippedStartEdited({ meta, data: { world, game: { ...game, country: 'papal-states' } } }),true,'an edited game');
+  assert.equal(shippedStartEdited({ meta, data: { world: { ...world, note: 'x' }, game } }),true,'an edited world');
+  assert.equal(shippedStartEdited({ meta: {}, data: { world: { ...world, note: 'x' }, game } }),false,'no fingerprint');
+  // FNV-1a 64 over the code units of the text, as a BigInt reference computes it.
+  const reference = text => {
+    let h = 0xcbf29ce484222325n;
+    for (let i = 0; i < text.length; i += 1) h = ((h ^ BigInt(text.charCodeAt(i))) * 0x100000001b3n) & 0xffffffffffffffffn;
+    return h.toString(16).padStart(16,'0');
+  };
+  for (const [w,g] of [[world,game],[null,null],[{ name: 'Påvens land \u{1F451}' },{}]]) assert.equal(contentFingerprint(w,g),reference(JSON.stringify([w,g])));
+});
+
+test('a desktop upgrade keeps an edited start as a copy with its campaigns and replaces the start', () => {
+  const { root, dir, boot, worldPath, citiesPath, metaPath } = desktopLibrary(), id = 'charlemagne-800', keptDir = path.join(root,'scenarios',`${id}-edited`);
+  const manifestPath = path.join(root,'scenario-manifest.json');
+  try {
+    const [gameId] = boot(`store.ensureScenarioStore(); store.setSelectedScenario('egypt-3000bc');
+      console.log(store.createGame({ name: 'Karl', scenarioId: '${id}', setActive: false,
+        historicalStart: { date: '0800-12-25', polityId: 'carolingian-realm', mode: 'realm', seed: 7, difficulty: 'normal' },
+        gamePatch: { country: 'carolingian-realm', difficulty: 'standard', language: 'Swedish' } }).game.id);`);
+    const shipped = readFileSync(worldPath,'utf8');
+    assert.equal(readJson(metaPath).shippedContentFingerprint,fingerprintOnDisk(worldPath),'the install records what it wrote');
+    // The player renames the start, which keeps the fingerprint.
+    boot(`store.updateScenario('${id}', { name: 'Mitt Karl' });`);
+    assert.equal(readJson(metaPath).name,'Mitt Karl');
+    assert.equal(readJson(metaPath).shippedContentFingerprint,fingerprintOnDisk(worldPath),'a rename keeps the fingerprint');
+    // It was the 1.0.0 install, and the player edited a court's text in it.
+    ageToFirstRelease({ worldPath, citiesPath });
+    editCourtText(worldPath);
+    const edited = readFileSync(worldPath,'utf8'), order = readJson(manifestPath).order;
+    const catalog = JSON.parse(boot().at(-1));
+    // The edited copy is kept after the start, with its campaign; the start is the shipped 1.3.0.
+    const at = order.indexOf(id) + 1;
+    assert.deepEqual(catalog,[...order.slice(0,at),`${id}-edited`,...order.slice(at)]);
+    assert.equal(readFileSync(path.join(keptDir,'world.json'),'utf8'),edited,'the kept copy holds the edited world');
+    assert.equal(romeIsSeat(path.join(keptDir,'cities.geojson')),false,'and the map files it had');
+    const keptMeta = readJson(path.join(keptDir,'scenario.json'));
+    assert.equal(keptMeta.name,'Mitt Karl (din ändrade kopia)');
+    assert.equal(keptMeta.id,`${id}-edited`);
+    assert.equal(keptMeta.shippedContentFingerprint,undefined,'the kept copy is the player’s own');
+    assert.equal(readJson(path.join(root,'games',gameId,'game-instance.json')).scenarioId,`${id}-edited`,'the campaign goes with the kept copy');
+    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the start is the shipped 1.3.0');
+    assert.equal(readJson(metaPath).shippedContentFingerprint,fingerprintOnDisk(worldPath),'the upgrade records what it wrote');
+    assert.equal(readJson(manifestPath).selectedScenarioId,'egypt-3000bc','the selection stands');
+    // The next read writes no world: the start is current and the kept copy is never upgraded.
+    const before = statSync(path.join(keptDir,'world.json')).mtimeMs;
+    assert.deepEqual(JSON.parse(boot().at(-1)),catalog);
+    assert.equal(statSync(path.join(keptDir,'world.json')).mtimeMs,before);
+    assert.ok(existsSync(dir));
+  } finally { rmSync(root,{recursive:true,force:true}); }
+});
+
+test('a desktop upgrade replaces an unedited start and a start without a fingerprint in place, with no copy', () => {
+  for (const [label,prepare] of [
+    ['unedited',() => {}],
+    ['no fingerprint',({ metaPath, worldPath }) => { dropFingerprint(metaPath); editCourtText(worldPath); }],
+  ]) {
+    const library = desktopLibrary(), { root, boot, worldPath, citiesPath } = library;
+    try {
+      boot('store.ensureScenarioStore();');
+      const shipped = readFileSync(worldPath,'utf8');
+      ageToFirstRelease({ worldPath, citiesPath });
+      prepare(library);
+      boot();
+      assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${label}: the start is the shipped 1.3.0`);
+      assert.deepEqual(readdirSync(path.join(root,'scenarios')).filter(name => name.endsWith('-edited')),[],`${label}: no copy`);
+    } finally { rmSync(root,{recursive:true,force:true}); }
+  }
+});
+
+test('a current desktop copy without a fingerprint gets the shipped one, so an edit made before then still counts', () => {
+  for (const edited of [false,true]) {
+    const { root, boot, worldPath, metaPath } = desktopLibrary();
+    try {
+      boot('store.ensureScenarioStore();');
+      const shippedFingerprint = readJson(metaPath).shippedContentFingerprint;
+      // Installed before the stores recorded a fingerprint, or a write cut short before it.
+      dropFingerprint(metaPath);
+      if (edited) editCourtText(worldPath);
+      boot();
+      assert.equal(readJson(metaPath).shippedContentFingerprint,shippedFingerprint,`edited ${edited}: the shipped fingerprint`);
+      assert.equal(readJson(metaPath).shippedContentFingerprint === fingerprintOnDisk(worldPath),!edited,`edited ${edited}: counts as edited`);
+    } finally { rmSync(root,{recursive:true,force:true}); }
+  }
+});
+
 test('the installed 1.1.0 copy, as that release shipped it, is replaced in place by 1.3.0 with its ten seats', () => {
   const { root, boot, worldPath, citiesPath, metaPath } = desktopLibrary(), release = charlemagneRelease110();
   const seats = file => readJson(file).features.filter(f => f.properties.seat).map(f => f.id);
@@ -346,6 +444,7 @@ test('the installed 1.1.0 copy, as that release shipped it, is replaced in place
     // The copy that release installed: its world and city files.
     writeFileSync(worldPath,JSON.stringify(release.data.world,null,2));
     writeFileSync(citiesPath,JSON.stringify(release.assets.citiesGeojson.data,null,2));
+    dropFingerprint(metaPath);
     assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.1.0');
     assert.deepEqual(seats(citiesPath),['aachen','rome']);
     boot();
@@ -367,6 +466,7 @@ test('an installed Charlemagne 1.2.0 copy and an installed world-1500 1.0.0 copy
       // The copy that release installed: its world and city files.
       writeFileSync(worldPath,JSON.stringify(release.data.world,null,2));
       writeFileSync(citiesPath,JSON.stringify(release.assets.citiesGeojson.data,null,2));
+      dropFingerprint(metaPath);
       assert.equal(readJson(worldPath).historicalScenario.contentVersion,from,id);
       assert.notEqual(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${id}: the ${from} world differs from the shipped one`);
       boot();

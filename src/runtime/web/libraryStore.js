@@ -1,5 +1,6 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "../../../server/historicalPreparation.js";
-import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade, withLibraryFields } from "../../../server/historicalStarts.js";
+import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, contentFingerprint, keptEditedCopyMeta, orderWithAfter,
+  shippedStartEdited, shippedStartNeedsUpgrade, shippedStartUntracked, withLibraryFields } from "../../../server/historicalStarts.js";
 import { HISTORICAL_SUMMARY_SCHEMA, historicalStartFromSummary, historicalStartSummary } from "../../../server/historicalStartSummary.js";
 import { checkedHistoricalStartSummary } from "../../../server/historicalSummaryCheck.js";
 import { withScenarioLicense, preserveComponentProvenance } from "../scenarioLicense.js";
@@ -1444,7 +1445,10 @@ const refreshBuiltInContent = async (current) => {
       await putGame(game);
     }
   }
-  await putScenario(await defaultScenarioSeedRecord());
+  // The built-in keeps its play count, as an upgraded shipped start keeps its library fields. The
+  // seed's timestamps stay, since builtInMetaEdited compares them.
+  const seed = await defaultScenarioSeedRecord(), playCount = normalizePlayCount(current.meta?.playCount);
+  await putScenario(playCount > 0 ? { ...seed, meta: { ...seed.meta, playCount } } : seed);
   console.info(`[built-in scenario] Modern Day content updated to revision ${BUILT_IN_REVISION} (${BUILT_IN_MAP})`);
 };
 
@@ -1522,19 +1526,47 @@ const installShippedStart = async (entry) => {
   const bundle=await loadShippedStart(entry.id);
   if (!bundle) return;
   const id=await ensureUniqueId(entry.id,"scenario");
-  const record=bundleScenarioRecord(bundle,id);
+  const record=withShippedFingerprint(bundleScenarioRecord(bundle,id));
   requirePrepared(validatePlayableScenario(await scenarioCandidate(record)));
   const { selectedScenarioId } = await getScenarioManifest();
   await persistScenarioRecord(record,entry.id === HISTORICAL_START_ORDER[0] && selectedScenarioId === DEFAULT_SCENARIO_ID);
   await kvPut(entry.marker,true);
 };
 
+// The fingerprint of the content a shipped start is stored with (server/historicalStarts.js).
+function withShippedFingerprint(record) {
+  record.meta={ ...record.meta, shippedContentFingerprint: contentFingerprint(record.json?.world,record.json?.game) };
+  return record;
+}
+
+// Mirrors the server's keepEditedShippedStart: the player's edited copy becomes a scenario of its
+// own, after the start in the order, and the campaigns started on the start go with it.
+const keepEditedShippedStart = async (stored) => {
+  const keptId=await ensureUniqueId(`${stored.id}-edited`,"scenario");
+  await putScenario({ ...stored, id: keptId, meta: keptEditedCopyMeta(stored.meta,keptId,nowIso()) });
+  const games=(await idbGetAll(STORES.games)).filter((game) => readGameMeta(game.id,game.meta ?? {}).scenarioId === stored.id);
+  for (const game of games) { writeGameMeta(game,{ scenarioId: keptId }); await putGame(game); }
+  const manifest=await getScenarioManifest();
+  await saveScenarioManifest({ ...manifest, order: orderWithAfter(manifest.order,stored.id,keptId) });
+  console.info(`[historical start] kept the player's edited ${stored.id} as "${keptId}" for ${games.length} campaign(s)`);
+};
+
 // An installed copy older than the shipped start is replaced where it stands: its place in the
 // order, the selection and the library's own meta fields (createdAt, playCount and the rest) stay.
 // A start the player deleted is absent from the manifest and stays deleted. Campaigns keep their own game and world data, which this never writes.
+// A copy the player edited is kept first.
+// A current copy without a fingerprint gets the shipped package's (shippedStartUntracked).
+const trackShippedStart = async (entry, stored) => {
+  const bundle=await loadShippedStart(entry.id);
+  if (bundle?.data?.world?.historicalScenario?.contentVersion !== entry.contentVersion) return;
+  const { shippedContentFingerprint } = withShippedFingerprint(bundleScenarioRecord(bundle,entry.id)).meta;
+  await putScenario({ ...stored, meta: { ...stored.meta, shippedContentFingerprint } });
+};
+
 const upgradeShippedStart = async (entry) => {
   if (!(await getScenarioManifest()).order.includes(entry.id)) return;
   const stored=await getScenario(entry.id);
+  if (stored && shippedStartUntracked({ meta: stored.meta, data: stored.json },entry)) { await trackShippedStart(entry,stored); return; }
   if (!stored || !shippedStartNeedsUpgrade({ meta: stored.meta, data: stored.json },entry)) return;
   const bundle=await loadShippedStart(entry.id);
   if (!bundle) return;
@@ -1543,9 +1575,10 @@ const upgradeShippedStart = async (entry) => {
     console.warn(`[historical start] ${entry.id}: the generated bookmark is not ${entry.contentVersion}, so the installed copy stays`);
     return;
   }
-  const record=bundleScenarioRecord(bundle,entry.id);
+  const record=withShippedFingerprint(bundleScenarioRecord(bundle,entry.id));
   record.meta=withLibraryFields(stored.meta,record.meta);
   requirePrepared(validatePlayableScenario(await scenarioCandidate(record)));
+  if (shippedStartEdited({ meta: stored.meta, data: stored.json })) await keepEditedShippedStart(stored);
   await persistScenarioRecord(record);
   console.info(`[historical start] ${entry.id} updated to ${entry.contentVersion}`);
 };

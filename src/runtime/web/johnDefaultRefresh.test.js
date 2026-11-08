@@ -69,9 +69,12 @@ async function refreshFrom({ version, revision, release, campaigns, check = () =
       assert.equal(made.data.world.historicalScenario.contentVersion, version);
       started.push({ id: made.game.id, polityId, data: (await call('GET', [made.game.id])).data, bundle: await call('GET', [made.game.id, 'export']) });
     }
-    const companionOld = await companion();
+    const companionOld = await companion(), playCount = 3;
+    // The player has started the built-in three times.
+    { const current = await idb.idbGet(idb.STORES.scenarios, 'default'); await idb.idbPut(idb.STORES.scenarios, { ...current, meta: { ...current.meta, playCount } }); }
 
     await store.ensureSeeded();
+    assert.equal((await idb.idbGet(idb.STORES.scenarios, 'default')).meta.playCount, playCount, 'the refresh keeps the play count');
     const world = await defaultWorld();
     assert.equal(world.builtInMap, 'historical-john-1200-v1');
     assert.equal(world.builtInRevision, 3);
