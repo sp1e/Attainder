@@ -8,6 +8,16 @@ The owner requires Swedish and English throughout the game, selected in Options.
 
 A separate bilingual reviewer checked every field. Two initial meaning issues were corrected and checked again: the Turkic soldiers at Ghazna and the uncertainty of an archaeological church identification. All nine input groups are approved with no unresolved findings. The integration readback matches all source values and translation keys, and the existing catalog check and 45 focused historical-event tests pass. This delivery covers event display text; other translation groups are still being prepared.
 
+## Second delivery
+
+The English sidecar now has 3,716 entries: the unchanged 2,055 event entries plus 1,661 fields from court dossiers, map reviews, the culture inventory and the name pool. Record entries use `record/<source-file>/<stable-entity-path>` IDs. Their `source` contains `path`, a document-relative `jsonPointer` and `textSha256`. The pointer supports readback against the pinned source revision; the stable ID identifies the translation. An input whose text no longer matches its hash needs review before reuse.
+
+[`server/seed/historical/locales/sv.json`](../../../server/seed/historical/locales/sv.json) adds Swedish explanatory text for all 416 event-source locators and 416 institution fields. It uses the same schema with `locale: sv` and `sourceLocale: en`. Its entries retain both language forms and identify their source by `sourceId` plus a source-relative `fieldPath`. Here `textSha256` hashes the English original. Official institution names, bibliography titles, section quotations and archival identifiers retain their original forms.
+
+All 2,493 fields in this delivery received a separate bilingual review. Four exact corrections preserve the Swedish word discussed in a title explanation, institutional attribution, the attacking side in a military reference, and the electors' role in a succession reference. The original findings and the scoped correction checks remain in the review record. No findings remain open. Of the inventory's 1,011 names, 246 keep their original forms and 765 receive translated forms; this changes no research status or playable-country claim.
+
+This delivery leaves the historical source data and prior event translations unchanged. Rules, interface text and current-game help are the next translation groups. Runtime integration and visible language-switch testing remain separate work.
+
 ## Translation contract
 
 Historical text is delivered as locale sidecars beside the authoritative historical data. Interface and rules text is delivered as data alongside the existing language packs. A translation entry retains both language forms, a stable ID, the source reference and a SHA-256 of the exact source string. UTF-8 source-text hashes remain useful across checkout line-ending conventions; a file's working-copy byte hash is not a portable identity.
