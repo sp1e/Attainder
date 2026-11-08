@@ -2,6 +2,7 @@ import { compareGameDates, formatGameDate, gameDateYear, shiftGameYear } from '.
 import { SKILL_LABELS, SUCCESSION_LAWS, publicPersonOrigin } from './content.js';
 import { isAdultCharacter } from './characterCapacity.js';
 import { ensurePortraitIdentity } from './portraitState.js';
+import { childIndex, descendantLine, houseMarriedIn } from './succession.js';
 
 export const ELECTION_REASON_SV = 'Valet föll på en person utanför hovet';
 const ELECTION_NOTE_SV = 'Personen valdes i simuleringen när hovet saknade behöriga vuxna.';
@@ -29,14 +30,17 @@ export function marriedIn(state, oldRuler) {
 
 /**
  * Elective order: adults of the old ruler's house by merit, then its minors eldest first,
- * then every other adult by merit. The old ruler's legal children count as the house whatever
- * their family. Married-in persons stand with the outsiders. Draws nothing.
+ * then every other adult by merit. The old ruler's descendants at any depth count as the house
+ * whatever their family. Married-in persons stand with the outsiders: the old ruler's partners
+ * and every house member who married a member of the ruler's blood line. Draws nothing.
  */
 export function electiveCandidates(state, oldRuler, people, score) {
-  const outside = marriedIn(state, oldRuler);
+  const children = childIndex(state);
+  const outside = new Set([...marriedIn(state, oldRuler), ...houseMarriedIn(state, oldRuler, children)]);
+  const line = new Set(oldRuler ? descendantLine(state, oldRuler, children).map((p) => p.id) : []);
   const byScore = (a, b) => score(b) - score(a) || a.id.localeCompare(b.id);
   const byAge = (a, b) => compareGameDates(a.bornAt, b.bornAt) || a.id.localeCompare(b.id);
-  const isKin = (p) => p.legalParentIds?.includes(oldRuler.id) || (p.familyId === oldRuler.familyId && !outside.has(p.id));
+  const isKin = (p) => line.has(p.id) || (p.familyId === oldRuler.familyId && !outside.has(p.id));
   const kin = oldRuler ? people.filter(isKin) : [];
   const kinIds = new Set(kin.map((p) => p.id));
   const adults = kin.filter((p) => isAdultCharacter(p, state.date));
