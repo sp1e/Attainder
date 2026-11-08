@@ -18,6 +18,14 @@ All 2,493 fields in this delivery received a separate bilingual review. Four exa
 
 This delivery leaves the historical source data and prior event translations unchanged. Rules, interface text and current-game help are the next translation groups. Runtime integration and visible language-switch testing remain separate work.
 
+## Help delivery
+
+[`public/lang/attainder/help/manifest.json`](../../../public/lang/attainder/help/manifest.json) indexes 32 adapted guide pages, shared shell text and navigation. All 398 paired fields are available in Swedish and English. Pages keep the original canonical routes; each adapted section has a stable ID shared by both languages. Their Markdown bodies describe the current historical game and distinguish dynasty controls from general country panels that are unavailable in dynasty campaigns. The adapted sections do not preserve every upstream anchor; legacy anchor aliases remain an integration decision.
+
+The review checked every page in both languages and its source evidence. Corrections cover panel availability, movement examples for historical eras, the actual espionage detection formula, project secrecy, and the difference between confirming an action and confirming its outcome. All 561 page evidence references still occur verbatim in revision `8dd14ac4d22c6a693b5065a3dd533da500110462`. The source snapshot and upstream help hashes remain pinned separately.
+
+The [catalog README](../../../public/lang/attainder/help/README.md) describes the schemas and integration requirements. This delivery supplies JSON text; the wiki generator and runtime do not yet consume it. Claude still needs to connect the selected Options locale, both rendered help variants, navigation, search indexes and document language, then verify them in the browser. Original upstream help, attribution and AGPL notices remain in place. Interface and rules translations continue as a separate delivery.
+
 ## Translation contract
 
 Historical text is delivered as locale sidecars beside the authoritative historical data. Interface and rules text is delivered as data alongside the existing language packs. A translation entry retains both language forms, a stable ID, the source reference and a SHA-256 of the exact source string. UTF-8 source-text hashes remain useful across checkout line-ending conventions; a file's working-copy byte hash is not a portable identity.

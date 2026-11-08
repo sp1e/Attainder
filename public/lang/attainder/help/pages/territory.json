@@ -1,0 +1,229 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/territory",
+  "route": "/wiki/territory/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/territory.md",
+  "upstreamRawSha256": "ebd18d53884b7009e4ede377b3cfb0017d186666b8ebb2beb356c9e2ef67744a",
+  "title": {
+    "en": "Territory, control and claims",
+    "sv": "Territorium, kontroll och anspråk"
+  },
+  "nav": {
+    "en": "Territory",
+    "sv": "Territorium"
+  },
+  "description": {
+    "en": "Distinguish who holds a region from sovereignty and territorial claims.",
+    "sv": "Skilj mellan vem som kontrollerar en region, suveränitet och territoriella anspråk."
+  },
+  "sections": [
+    {
+      "id": "layers",
+      "title": {
+        "en": "Read the three layers",
+        "sv": "Läs de tre lagren"
+      },
+      "body": {
+        "en": "Select a region to read its current controller. For a region with a known controller, where control differs from sovereignty or a claim exists, the card also shows the sovereign, controller, status and claimants. Occupation and a contested claim can coexist.\n\nA change of control can preserve the earlier lawful sovereign. Claims are tracked separately, with up to four claimants per region. Check these records before treating a capture as a legal cession.",
+        "sv": "Välj en region för att läsa vem som kontrollerar den. För en region med känd kontrollinnehavare, där kontrollen skiljer sig från suveräniteten eller ett anspråk finns, visar kortet också suverän, kontrollinnehavare, status och anspråksställare. Ockupation och ett omstritt anspråk kan finnas samtidigt.\n\nEn kontrolländring kan bevara den tidigare rättsliga suveränen. Anspråk registreras separat, med högst fyra anspråksställare per region. Kontrollera uppgifterna innan du behandlar en erövring som en rättslig överlåtelse."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Selection/Regions.jsx",
+          "lineStart": 531,
+          "lineEnd": 560,
+          "claim": "Controller, sovereign, claimants and occupation/contest status"
+        },
+        {
+          "path": "src/Game/Selection/Regions.jsx",
+          "lineStart": 702,
+          "lineEnd": 717,
+          "claim": "Visible layer details"
+        },
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 4367,
+          "lineEnd": 4399,
+          "claim": "Control change preserves legal sovereign"
+        },
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 4204,
+          "lineEnd": 4212,
+          "claim": "Four-claimant cap"
+        }
+      ]
+    },
+    {
+      "id": "changes",
+      "title": {
+        "en": "Read the change on the map",
+        "sv": "Läs förändringen på kartan"
+      },
+      "body": {
+        "en": "Campaign event impacts can transfer territory, change de facto control, mark a contest or clear one. These operations update different layers. Clearing a contest does not erase a foreign sovereign’s position while another country still occupies the region.\n\nRead the event’s map-change summary and inspect the affected region after a turn. The region’s country and diplomacy controls use the current controller rather than the original map’s country label.",
+        "sv": "Kampanjhändelsers följder kan överlåta territorium, ändra faktisk kontroll, markera en tvist eller avsluta den. Åtgärderna uppdaterar olika lager. Att avsluta en tvist tar inte bort en annan suveräns ställning medan ett främmande land fortfarande kontrollerar regionen.\n\nLäs händelsens sammanställning av kartändringar och granska regionen efter en tur. Regionens land- och diplomatiknappar använder den aktuella kontrollinnehavaren i stället för originalkartans landsetikett."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 4330,
+          "lineEnd": 4364,
+          "claim": "Sovereignty transfer distinct from control operations"
+        },
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 4403,
+          "lineEnd": 4410,
+          "claim": "Clearing contest preserves occupied sovereignty"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 850,
+          "lineEnd": 896,
+          "claim": "Event map changes"
+        },
+        {
+          "path": "src/Game/Selection/Regions.jsx",
+          "lineStart": 414,
+          "lineEnd": 425,
+          "claim": "Country/diplomacy target current controller"
+        }
+      ]
+    },
+    {
+      "id": "groups",
+      "title": {
+        "en": "Groups and historical uncertainty",
+        "sv": "Grupper och historisk osäkerhet"
+      },
+      "body": {
+        "en": "A region can also show a controlling group and its name. Group control is read separately from country control. Use the region card to distinguish these records.\n\nIn historical campaigns, an area without established control is labelled as unknown historical control. Its note says that the evidence is missing; the area is not marked as free land. Historical region notes can also identify an approximate reconstruction.",
+        "sv": "En region kan också visa en kontrollerande grupp och dess namn. Gruppkontroll läses separat från landets kontroll. Använd regionkortet för att skilja uppgifterna åt.\n\nI historiska kampanjer betecknas ett område utan fastställd kontroll som okänd historisk kontroll. Noteringen anger att underlag saknas. Området markeras inte som ledig mark. Historiska regionnoteringar kan också ange att det handlar om en ungefärlig rekonstruktion."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Selection/Regions.jsx",
+          "lineStart": 549,
+          "lineEnd": 550,
+          "claim": "Group separate from country control"
+        },
+        {
+          "path": "src/Game/Selection/Regions.jsx",
+          "lineStart": 728,
+          "lineEnd": 734,
+          "claim": "Group name in region card"
+        },
+        {
+          "path": "src/Game/Selection/Regions.jsx",
+          "lineStart": 548,
+          "lineEnd": 548,
+          "claim": "Unknown historical control label"
+        },
+        {
+          "path": "src/Game/Selection/Regions.jsx",
+          "lineStart": 680,
+          "lineEnd": 680,
+          "claim": "Unknown is missing evidence, not free territory"
+        }
+      ]
+    },
+    {
+      "id": "identity",
+      "title": {
+        "en": "Identity, resources and editing",
+        "sv": "Identitet, resurser och redigering"
+      },
+      "body": {
+        "en": "A country’s identity can remain stable when its displayed name changes. Read [Countries](/wiki/countries/) for aliases and landless records. A supported historical start still uses its prepared playable-country list.\n\nIn a dynasty campaign, city taxes, production, unrest and governors are shown in the realm overview. Treasury and annual revenue are explicit resources, so the older general claim that territory has no income does not describe this flow. Direct changes with the region inspector belong to [Cheats](/wiki/cheats/); scenario geometry is edited in the [Editor](/wiki/editor/).",
+        "sv": "Ett lands identitet kan vara beständig när visningsnamnet ändras. Läs [Länder](/wiki/countries/) om alias och registrerade länder utan territorium. En historisk start som stöds använder fortfarande sin förberedda lista över spelbara länder.\n\nI en dynastikampanj visar rikets överblick städernas skatt, produktion, oro och guvernörer. Statskassa och årsintäkt är uttryckliga resurser, så det äldre allmänna påståendet att territorium saknar intäkter beskriver inte det här flödet. Direkta ändringar med regiongranskaren hör till [Fusk](/wiki/cheats/). Scenariots geometri ändras i [Redigeraren](/wiki/editor/)."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/polityIdentity.js",
+          "lineStart": 8,
+          "lineEnd": 11,
+          "claim": "Stable polity identity versus display name"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 218,
+          "lineEnd": 230,
+          "claim": "Treasury, annual revenue and city tax production/unrest/governor"
+        },
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 80,
+          "lineEnd": 85,
+          "claim": "Region inspector tool"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Control",
+      "upstreamLine": 5,
+      "status": "adapted",
+      "currentSectionId": "changes",
+      "reason": "Current controller/event impacts; no beta battlefield or narrative-match guarantee."
+    },
+    {
+      "upstreamHeading": "Claims and disputes",
+      "upstreamLine": 47,
+      "status": "retained",
+      "currentSectionId": "layers",
+      "reason": "Four-claimant cap and separate layers."
+    },
+    {
+      "upstreamHeading": "Groups",
+      "upstreamLine": 65,
+      "status": "retained",
+      "currentSectionId": "groups",
+      "reason": "Actual region card group field."
+    },
+    {
+      "upstreamHeading": "Playing the difference",
+      "upstreamLine": 74,
+      "status": "adapted",
+      "currentSectionId": "layers",
+      "reason": "Current controller versus sovereign versus claims."
+    },
+    {
+      "upstreamHeading": "Regions and owners",
+      "upstreamLine": 87,
+      "status": "retained",
+      "currentSectionId": "identity",
+      "reason": "Stable identity/current controller and editor linkage."
+    },
+    {
+      "upstreamHeading": "What territory does for you",
+      "upstreamLine": 99,
+      "status": "adapted",
+      "currentSectionId": "identity",
+      "reason": "Dynasty city taxes/treasury replace obsolete no-income claim."
+    },
+    {
+      "upstreamHeading": "Landless countries",
+      "upstreamLine": 116,
+      "status": "adapted",
+      "currentSectionId": "identity",
+      "reason": "Links qualified identity guide, no new unsupported start."
+    },
+    {
+      "upstreamHeading": "The sovereignty layer",
+      "upstreamLine": 122,
+      "status": "retained",
+      "currentSectionId": "layers",
+      "reason": "Sparse sovereignty and explicit control operations."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 152,
+      "status": "adapted",
+      "currentSectionId": "identity",
+      "reason": "Current navigation."
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/military",
+  "route": "/wiki/military/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/military.md",
+  "upstreamRawSha256": "663d8bba995bbec46533f21dbd43a2a86369acc95a34b0218d7ac2e66c0ffac2",
+  "title": {
+    "en": "Military readiness and formations",
+    "sv": "Militär beredskap och förband"
+  },
+  "nav": {
+    "en": "Military",
+    "sv": "Militär"
+  },
+  "description": {
+    "en": "Read military readiness, formation strength and movement in the current campaign.",
+    "sv": "Läs militär beredskap, förbandsstyrka och förflyttning i den aktuella kampanjen."
+  },
+  "sections": [
+    {
+      "id": "dynasty",
+      "title": {
+        "en": "Read the dynasty’s readiness",
+        "sv": "Läs dynastins beredskap"
+      },
+      "body": {
+        "en": "The realm overview shows military readiness as a percentage beside treasury, annual revenue and action capacity. Command and family support affect the outcome. Read the responsible actor and mandate before choosing an available military or court action.\n\nUse the action catalogue and decisions currently offered by your campaign. The general force panel is hidden when a character system is active. An available map formation and a character’s military skill are different records.",
+        "sv": "Rikets överblick visar militär beredskap i procent bredvid statskassa, årsintäkt och handlingsutrymme. Befäl och familjernas stöd påverkar utfallet. Läs ansvarig aktör och mandat innan du väljer en tillgänglig militär handling eller hovhandling.\n\nAnvänd handlingskatalogen och besluten som kampanjen erbjuder. Den allmänna förbandspanelen är dold när ett karaktärssystem är aktivt. Ett eventuellt kartförband och en karaktärs krigskonst är olika uppgifter."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 218,
+          "lineEnd": 225,
+          "claim": "Readiness and current action catalogue"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 499,
+          "lineEnd": 499,
+          "claim": "Actor mandate and available decisions"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 586,
+          "lineEnd": 589,
+          "claim": "Generic ForcesPanel hidden with characters"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 42,
+          "lineEnd": 43,
+          "claim": "Character military skill label"
+        }
+      ]
+    },
+    {
+      "id": "formations",
+      "title": {
+        "en": "Understand a formation",
+        "sv": "Förstå ett förband"
+      },
+      "body": {
+        "en": "General map formations have an owner, type, position, strength, composition and posture. Strength is a percentage of established strength; the display is green above 60, amber above 25 through 60, and red at 25 or below. Composition describes what the formation contains; posture describes what it is doing.\n\nInfantry, naval formations and garrisons illustrate different movement rules. Scenario restrictions can limit the deployment types offered by the general force tools.",
+        "sv": "Allmänna kartförband har ägare, typ, position, styrka, sammansättning och uppträdande. Styrkan är en procentandel av ordinarie styrka. Visningen är grön över 60, gul över 25 till och med 60 och röd vid 25 eller lägre. Sammansättningen beskriver vad förbandet består av. Uppträdandet beskriver vad det gör.\n\nInfanteri, flottförband och garnisoner har olika förflyttningsregler. Scenariots begränsningar kan styra vilka förbandstyper som erbjuds i de allmänna förbandsverktygen."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 903,
+          "lineEnd": 927,
+          "claim": "Formation type strength composition and posture"
+        },
+        {
+          "path": "src/Game/GameUI/forces.jsx",
+          "lineStart": 35,
+          "lineEnd": 38,
+          "claim": "Strength color bands"
+        },
+        {
+          "path": "src/Game/GameUI/forces.jsx",
+          "lineStart": 155,
+          "lineEnd": 161,
+          "claim": "Allowed scenario types"
+        },
+        {
+          "path": "src/runtime/unitMotion.js",
+          "lineStart": 130,
+          "lineEnd": 144,
+          "claim": "Movement by type"
+        }
+      ]
+    },
+    {
+      "id": "movement",
+      "title": {
+        "en": "Movement takes time",
+        "sv": "Förflyttning tar tid"
+      },
+      "body": {
+        "en": "General formation movement uses the game date’s era. An assault advances more slowly than an ordinary redeployment, and a journey partly by sea combines the land and sea travel times. Garrisons do not travel. A distant destination can remain a pending order across turns.\n\nFor example, before 1500 infantry redeploys over land at a sustained 25 kilometres per day and advances in an assault at 18. From 1500 through 1849 those rates are 28 and 20. The game date determines which era applies. These are formation movement rules; this version has no separate War Room troop-routing interface.",
+        "sv": "Allmänna förbandsförflyttningar använder speldatumets epok. Ett anfall går långsammare än en vanlig omgruppering, och en resa som delvis går till sjöss kombinerar land- och sjöresans tidsåtgång. Garnisoner förflyttar sig inte. Ett avlägset mål kan ligga kvar som en väntande order över flera turer.\n\nFöre 1500 omgrupperar infanteri exempelvis på land med en uthållig takt på 25 kilometer per dag och anfaller med 18. Från 1500 till och med 1849 är takterna 28 respektive 20. Speldatumet avgör vilken epok som gäller. Det är regler för förbandsförflyttning. Den här versionen saknar ett separat krigsrum för att rita truppvägar."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/unitMotion.js",
+          "lineStart": 88,
+          "lineEnd": 144,
+          "claim": "Exact infantry speed eras and mixed travel"
+        },
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 2737,
+          "lineEnd": 2765,
+          "claim": "Pending unit orders advance across turns"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 562,
+          "lineEnd": 589,
+          "claim": "Current panel availability"
+        }
+      ]
+    },
+    {
+      "id": "records",
+      "title": {
+        "en": "Check the war and the ground",
+        "sv": "Kontrollera kriget och marken"
+      },
+      "body": {
+        "en": "Battlefield combat events require an active recorded war and matching sides. A base, port or other map structure has its own operator; that alone does not transfer the surrounding region. Check [War](/wiki/war/), [Territory](/wiki/territory/) and [Cities and structures](/wiki/cities/).\n\nDirect formation editing is a game-master tool. The cheats menu keeps a force-manager entry, but the main interface offers its general force panel only for campaigns without a character system. Read [Cheats](/wiki/cheats/) for that limitation before looking for deployment controls.\n\nWhile the game is visible, an idle pulse can also update general formations when background AI and idle diplomacy allow it. It waits during simulation or an unfinished event reveal. This background activity is separate from the hidden general force panel in a dynasty campaign.",
+        "sv": "Stridshändelser kräver ett aktivt registrerat krig med rätt motstående sidor. En bas, hamn eller annan kartanläggning har en egen verksamhetsansvarig. Det överlåter inte i sig den omgivande regionen. Läs [Krig](/wiki/war/), [Territorium](/wiki/territory/) och [Städer och anläggningar](/wiki/cities/).\n\nDirekt redigering av förband är ett spelledarverktyg. Fuskmenyn har kvar ett val för styrkehanteraren, men huvudgränssnittet visar dess allmänna förbandspanel bara för kampanjer utan karaktärssystem. Läs [Fusk](/wiki/cheats/) om den begränsningen innan du letar efter placeringsreglage.\n\nNär spelet är synligt kan en bakgrundspuls också uppdatera allmänna förband när bakgrunds-AI och vilande diplomati tillåter det. Den väntar under simulering eller en ofärdig händelsevisning. Denna bakgrundsaktivitet är skild från den dolda allmänna förbandspanelen i en dynastikampanj."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/AI/nativeWarLedger.js",
+          "lineStart": 628,
+          "lineEnd": 637,
+          "claim": "Canonical combat war requirement"
+        },
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 4330,
+          "lineEnd": 4347,
+          "claim": "Territory transfer explicit separate operation"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 586,
+          "lineEnd": 589,
+          "claim": "Force-panel condition"
+        },
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 449,
+          "lineEnd": 456,
+          "claim": "Force manager callback"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 329,
+          "lineEnd": 344,
+          "claim": "Visible-minute idle pulse remains mounted independent of Toolbar"
+        },
+        {
+          "path": "src/Game/AI/gameplay.js",
+          "lineStart": 16598,
+          "lineEnd": 16615,
+          "claim": "Busy background allowance idle-diplomacy and unseen-reveal guards"
+        },
+        {
+          "path": "src/Game/AI/gameplay.js",
+          "lineStart": 16669,
+          "lineEnd": 16682,
+          "claim": "Actual inline idle unit operation application"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "The way to use your army",
+      "upstreamLine": 5,
+      "status": "adapted",
+      "currentSectionId": "dynasty",
+      "reason": "Current character actions and conditional general force tools."
+    },
+    {
+      "upstreamHeading": "Unit types",
+      "upstreamLine": 34,
+      "status": "retained",
+      "currentSectionId": "formations",
+      "reason": "Current type dispatch and scenario restrictions."
+    },
+    {
+      "upstreamHeading": "Strength and composition",
+      "upstreamLine": 48,
+      "status": "retained",
+      "currentSectionId": "formations",
+      "reason": "Current percentage and composition model."
+    },
+    {
+      "upstreamHeading": "Posture",
+      "upstreamLine": 65,
+      "status": "retained",
+      "currentSectionId": "formations",
+      "reason": "Current normalized posture separated from lifecycle."
+    },
+    {
+      "upstreamHeading": "Standing orders",
+      "upstreamLine": 82,
+      "status": "retained",
+      "currentSectionId": "movement",
+      "reason": "Current pending orders and era speeds."
+    },
+    {
+      "upstreamHeading": "Other countries' forces",
+      "upstreamLine": 109,
+      "status": "adapted",
+      "currentSectionId": "records",
+      "reason": "Inline gameplay idle formation operations remain under actual main.jsx/background/feature guards; missing idlePulse.js is not an absence proof for that behavior."
+    },
+    {
+      "upstreamHeading": "Men, money and military power",
+      "upstreamLine": 131,
+      "status": "unsupported",
+      "currentSectionId": "dynasty",
+      "reason": "Missing beta funding/manpower/military power sources; current readiness and treasury described."
+    },
+    {
+      "upstreamHeading": "Structures do not move borders",
+      "upstreamLine": 162,
+      "status": "adapted",
+      "currentSectionId": "records",
+      "reason": "Explicit territorial operations separate from structure operator."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 168,
+      "status": "adapted",
+      "currentSectionId": "records",
+      "reason": "Current navigation."
+    }
+  ]
+}

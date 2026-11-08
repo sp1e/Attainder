@@ -1,0 +1,297 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/projects",
+  "route": "/wiki/projects/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/projects.md",
+  "upstreamRawSha256": "811c9682f5e8905e104fb6450a999dabe53e9e8c7e9f72a838e839dff7f6af46",
+  "title": {
+    "en": "Projects and continuing commitments",
+    "sv": "Projekt och bestående åtaganden"
+  },
+  "nav": {
+    "en": "Projects",
+    "sv": "Projekt"
+  },
+  "description": {
+    "en": "Follow delayed schemes, construction and the general projects board.",
+    "sv": "Följ fördröjda intriger, byggen och den allmänna projekttavlan."
+  },
+  "sections": [
+    {
+      "id": "dynasty",
+      "title": {
+        "en": "Follow a dynasty’s continuing work",
+        "sv": "Följ dynastins pågående arbete"
+      },
+      "body": {
+        "en": "The dynasty overview lists running schemes with their actor, targets and resolution date. It also shows commitments that return later. A scheme’s abort control asks again before stopping it; silver and action capacity already spent are not returned.\n\nThe offices and succession view explains what happens to projects when a ruler dies. Personal effects end according to their owner and mandate. Public construction and family estates keep their schedules through a personal succession; a dissolved realm cannot continue public work. Read the forecast for the current campaign.",
+        "sv": "Dynastins överblick listar pågående intriger med aktör, mål och datum för avgörandet. Den visar också åtaganden som återkommer senare. Intrigens avbrytknapp ber om en ny bekräftelse innan den stoppas. Silver och handlingsutrymme som redan använts lämnas inte tillbaka.\n\nVyn för ämbeten och arv förklarar vad som händer med projekt när en härskare dör. Personliga effekter upphör enligt ägare och mandat. Offentliga byggen och familjeegendom behåller sina scheman genom ett personligt tronskifte. Ett upplöst rike kan inte fortsätta offentliga uppdrag. Läs prognosen för den aktuella kampanjen."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 348,
+          "lineEnd": 366,
+          "claim": "Schemes and nonrefundable abort"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 228,
+          "lineEnd": 228,
+          "claim": "Waiting commitments"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 326,
+          "lineEnd": 331,
+          "claim": "Project succession treatment"
+        }
+      ]
+    },
+    {
+      "id": "board",
+      "title": {
+        "en": "The general projects board",
+        "sv": "Den allmänna projekttavlan"
+      },
+      "body": {
+        "en": "Campaigns without a character system have a projects-and-operations board in the bottom toolbar. Its entries describe construction, research or other continuing programmes and operations. Proposed, active, stalled and paused work is open; complete, failed and cancelled work is closed.\n\nThe board opens on your own work. Foreign entries describe what you know of another power’s programme; you do not control it. The bottom toolbar and its board are unavailable in a dynasty campaign, whose schemes and construction follow the character views above.",
+        "sv": "Kampanjer utan karaktärssystem har en tavla för projekt och operationer i det nedre verktygsfältet. Posterna beskriver byggen, forskning eller andra pågående program och operationer. Föreslaget, aktivt, avstannat och pausat arbete är öppet. Färdigt, misslyckat och avbrutet arbete är avslutat.\n\nTavlan öppnas på ditt eget arbete. Utländska poster beskriver vad du vet om en annan makts program. Du styr det inte. Det nedre verktygsfältet och dess tavla visas inte i en dynastikampanj. Där följer intriger och byggen karaktärsvyerna ovan."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 578,
+          "lineEnd": 583,
+          "claim": "Generic toolbar condition"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 3538,
+          "lineEnd": 3552,
+          "claim": "Projects mounted inside toolbar"
+        },
+        {
+          "path": "src/runtime/projects.js",
+          "lineStart": 41,
+          "lineEnd": 48,
+          "claim": "Open project statuses"
+        },
+        {
+          "path": "src/Game/GameUI/projects.jsx",
+          "lineStart": 769,
+          "lineEnd": 772,
+          "claim": "Own work default"
+        },
+        {
+          "path": "src/runtime/projects.js",
+          "lineStart": 300,
+          "lineEnd": 313,
+          "claim": "Own control only"
+        }
+      ]
+    },
+    {
+      "id": "calendar",
+      "title": {
+        "en": "Milestones and the calendar",
+        "sv": "Milstolpar och kalendern"
+      },
+      "body": {
+        "en": "A general project can carry up to 8 milestones. The board marks an overdue target, a milestone due within 30 days, a passed pending milestone or work with no recent progress. An ongoing project has no final target date and cannot be overdue, although its milestones can slip.\n\nRepeating milestones can be weekly, monthly, quarterly, annual or biennial. Their next date is calculated from the milestone’s own date, preserving its calendar. Read the next pending milestone and the activity record when deciding what needs attention.",
+        "sv": "Ett allmänt projekt kan ha högst 8 milstolpar. Tavlan markerar ett försenat slutmål, en milstolpe inom 30 dagar, en passerad väntande milstolpe eller arbete utan nya framsteg. Ett fortlöpande projekt saknar slutdatum och kan inte vara försenat som helhet, men dess milstolpar kan passeras.\n\nÅterkommande milstolpar kan vara veckovisa, månatliga, kvartalsvisa, årliga eller vartannat år. Nästa datum beräknas från milstolpens eget datum så att dess kalender består. Läs nästa väntande milstolpe och aktivitetshistoriken när du avgör vad som behöver uppmärksamhet."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 1508,
+          "lineEnd": 1510,
+          "claim": "Eight milestone cap"
+        },
+        {
+          "path": "src/runtime/projects.js",
+          "lineStart": 83,
+          "lineEnd": 113,
+          "claim": "Derived calendar flags including ongoing"
+        },
+        {
+          "path": "src/runtime/projects.js",
+          "lineStart": 124,
+          "lineEnd": 124,
+          "claim": "Repeat values"
+        },
+        {
+          "path": "src/runtime/projects.js",
+          "lineStart": 162,
+          "lineEnd": 177,
+          "claim": "Repeat based on own date"
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Priority, closing and filtering",
+        "sv": "Prioritet, avslut och filtrering"
+      },
+      "body": {
+        "en": "On your own open board entries you can change priority or abandon the effort after confirmation. Abandoning preserves the entry under closed work with the progress it reached. Another country’s entry has neither control. Search, ownership, tags and sorting help you find a programme; selected tags match any of the selected values.\n\nA successful completion can release stored consequences once. Failure and cancellation do not release those completion effects. The board holds up to 120 projects, 8 milestones per project and 12 linked events per project. Closed work is evicted first when space is needed.",
+        "sv": "På dina egna öppna tavleposter kan du ändra prioritet eller överge arbetet efter bekräftelse. Att överge det bevarar posten bland avslutat arbete med de framsteg som uppnåtts. En annan makts post har inget av dessa reglage. Sökning, ägare, kategorier och sortering hjälper dig hitta ett program. Valda kategorier matchar vilket som helst av de valda värdena.\n\nEtt framgångsrikt avslut kan utlösa lagrade följder en gång. Misslyckande och avbrytande utlöser inte dessa avslutsföljder. Tavlan rymmer högst 120 projekt, 8 milstolpar per projekt och 12 länkade händelser per projekt. Avslutat arbete tas bort först när utrymme behövs."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/projects.jsx",
+          "lineStart": 654,
+          "lineEnd": 692,
+          "claim": "Own open priority and confirmed abandon"
+        },
+        {
+          "path": "src/runtime/projects.js",
+          "lineStart": 315,
+          "lineEnd": 353,
+          "claim": "Search and OR tags"
+        },
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 2013,
+          "lineEnd": 2054,
+          "claim": "Completion effects only successful transition once"
+        },
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 1508,
+          "lineEnd": 1510,
+          "claim": "Exact caps"
+        },
+        {
+          "path": "src/Game/GameUI/projects.jsx",
+          "lineStart": 1187,
+          "lineEnd": 1193,
+          "claim": "Closed-first cap notice"
+        }
+      ]
+    },
+    {
+      "id": "intelligence",
+      "title": {
+        "en": "Read foreign projects cautiously",
+        "sv": "Läs utländska projekt försiktigt"
+      },
+      "body": {
+        "en": "The general board can contain foreign efforts learned through intelligence. Verification can mark a report as doubtful, confirmed or fabricated. The current board may mark a project doubtful when its linked agent has been turned or suspected; this is distinct from the character intrigue system.\n\nUse the advisor briefing and read the source of a foreign entry before planning against it. On a general board, the advisor can also add or update entries and returns receipts describing what changed. See [Advisor](/wiki/advisor/) and [Espionage](/wiki/espionage/).\n\nGeneral board entries also carry a public, restricted or covert classification. Restricted and covert entries show their lock or spy marker. Read classification and verification separately: a secrecy marker does not establish that the report is correct.",
+        "sv": "Den allmänna tavlan kan innehålla utländska insatser som underrättelsetjänsten har fått kännedom om. Verifiering kan markera en uppgift som tvivelaktig, bekräftad eller fabricerad. Den aktuella tavlan kan markera ett projekt som tvivelaktigt när dess länkade agent har vänts eller blivit misstänkt. Detta är skilt från karaktärernas intrigsystem.\n\nAnvänd rådgivarens genomgång och läs källan till en utländsk post innan du planerar mot den. På en allmän projekttavla kan rådgivaren också lägga till eller uppdatera poster och lämnar kvitton som beskriver ändringarna. Se [Rådgivaren](/wiki/advisor/) och [Spionage](/wiki/espionage/).\n\nAllmänna tavleposter har också en klassning som offentlig, begränsad eller hemlig. Begränsade och hemliga poster visar en lås- eller spionmarkering. Läs klassning och verifiering var för sig. En sekretessmarkering fastställer inte att uppgiften är riktig."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/projects.js",
+          "lineStart": 539,
+          "lineEnd": 575,
+          "claim": "Current compromised-source doubtful handling"
+        },
+        {
+          "path": "src/Game/GameUI/projects.jsx",
+          "lineStart": 584,
+          "lineEnd": 607,
+          "claim": "Foreign briefing/options controls"
+        },
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1194,
+          "lineEnd": 1202,
+          "claim": "Advisor project mutations applied before reply finalized"
+        },
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 1643,
+          "lineEnd": 1673,
+          "claim": "Separate secrecy classification and normalized record"
+        },
+        {
+          "path": "src/Game/GameUI/projects.jsx",
+          "lineStart": 143,
+          "lineEnd": 143,
+          "claim": "Restricted/covert glyphs"
+        },
+        {
+          "path": "src/Game/GameUI/projects.jsx",
+          "lineStart": 411,
+          "lineEnd": 437,
+          "claim": "Separate secrecy and verification display"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Projects and operations",
+      "upstreamLine": 18,
+      "status": "adapted",
+      "currentSectionId": "board",
+      "reason": "Generic board availability qualified; character work primary."
+    },
+    {
+      "upstreamHeading": "Secrecy",
+      "upstreamLine": 45,
+      "status": "adapted",
+      "currentSectionId": "intelligence",
+      "reason": "Foreign knowledge/verification described; no secrecy guarantee beyond available records."
+    },
+    {
+      "upstreamHeading": "Milestones",
+      "upstreamLine": 56,
+      "status": "adapted",
+      "currentSectionId": "calendar",
+      "reason": "Current caps, repeat calendar and flags."
+    },
+    {
+      "upstreamHeading": "On each card",
+      "upstreamLine": 76,
+      "status": "adapted",
+      "currentSectionId": "calendar",
+      "reason": "Actual date/flag facts."
+    },
+    {
+      "upstreamHeading": "What you actually control",
+      "upstreamLine": 91,
+      "status": "adapted",
+      "currentSectionId": "controls",
+      "reason": "Own priority/abandon and closed history."
+    },
+    {
+      "upstreamHeading": "Completion has consequences",
+      "upstreamLine": 123,
+      "status": "adapted",
+      "currentSectionId": "controls",
+      "reason": "One-time successful completion release."
+    },
+    {
+      "upstreamHeading": "Foreign projects, and whether to believe them",
+      "upstreamLine": 131,
+      "status": "adapted",
+      "currentSectionId": "intelligence",
+      "reason": "Current compromised-source rule; beta timing excluded."
+    },
+    {
+      "upstreamHeading": "Limits",
+      "upstreamLine": 156,
+      "status": "adapted",
+      "currentSectionId": "controls",
+      "reason": "Exact120/8/12 and closed-first cap."
+    },
+    {
+      "upstreamHeading": "Filtering",
+      "upstreamLine": 167,
+      "status": "adapted",
+      "currentSectionId": "controls",
+      "reason": "Current owner/search/tag OR and sorting."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 182,
+      "status": "adapted",
+      "currentSectionId": "intelligence",
+      "reason": "Current routes."
+    }
+  ]
+}

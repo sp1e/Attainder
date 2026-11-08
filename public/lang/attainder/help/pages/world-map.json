@@ -1,0 +1,283 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/world-map",
+  "route": "/wiki/world-map/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/play/world-map.md",
+  "upstreamRawSha256": "add10392caef946780582a48d9cffa186a2cee0557bb0b1f6b0c63098e015e88",
+  "title": {
+    "en": "The world map",
+    "sv": "Världskartan"
+  },
+  "nav": {
+    "en": "World map",
+    "sv": "Världskarta"
+  },
+  "description": {
+    "en": "Read territorial overlays and adjust the map’s presentation.",
+    "sv": "Läs territoriella överlägg och justera kartans visning."
+  },
+  "sections": [
+    {
+      "id": "territory",
+      "title": {
+        "en": "Read colours and overlays",
+        "sv": "Läs färger och överlägg"
+      },
+      "body": {
+        "en": "Country colours show the map’s political layer. Stripes combine the current controller’s colour with claimant colours where at least two distinct colours are available. Read the region and country information for the difference between control, sovereignty and claims; see [territory](/wiki/territory/).\n\nA group area uses a tint, an outline and a name over the country layer. That overlay does not itself create a country border. Its presence depends on the group-area data in the campaign.",
+        "sv": "Ländernas färger visar kartans politiska lager. Ränder kombinerar den nuvarande kontrollörens färg med anspråksställarnas färger där minst två olika färger finns. Läs region- och landinformationen för skillnaden mellan kontroll, suveränitet och anspråk. Läs om [territorium](/wiki/territory/).\n\nEtt gruppområde har en toning, en kontur och ett namn ovanpå landslagret. Överlägget skapar inte i sig någon landsgräns. Om det visas beror på kampanjens data för gruppområden."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Map/Nations.jsx",
+          "lineStart": 2284,
+          "lineEnd": 2310,
+          "claim": "Controller/claimant stripe construction"
+        },
+        {
+          "path": "src/Game/Map/Nations.jsx",
+          "lineStart": 3476,
+          "lineEnd": 3485,
+          "claim": "Disputed fill layer"
+        },
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 167,
+          "lineEnd": 172,
+          "claim": "Control versus sovereignty"
+        },
+        {
+          "path": "src/Game/Map/GroupAreaLayers.jsx",
+          "lineStart": 1,
+          "lineEnd": 4,
+          "claim": "Group overlay semantics"
+        },
+        {
+          "path": "src/Game/Map/GroupAreaLayers.jsx",
+          "lineStart": 17,
+          "lineEnd": 19,
+          "claim": "No data means no overlay"
+        }
+      ]
+    },
+    {
+      "id": "camera",
+      "title": {
+        "en": "Camera and information",
+        "sv": "Kamera och information"
+      },
+      "body": {
+        "en": "Drag to pan. The camera is bounded from zoom **2.25** to **16** and from latitude **80° south** to **85° north**. Drag rotation and pitch gestures are disabled. A scenario can stop the map from repeating sideways.\n\nClick regions, countries and placed features to inspect them. Search moves to a selected place; historical campaigns use their local place entries rather than searching the modern world online. See [the interface](/wiki/interface/#map-and-search).",
+        "sv": "Dra för att panorera. Kameran är begränsad till zoom **2,25–16** och till latituderna **80° syd** och **85° nord**. Rotation med dragning och gester för lutning är avstängda. Ett scenario kan förhindra att kartan upprepas i sidled.\n\nKlicka på regioner, länder och utplacerade objekt för att granska dem. Sökningen flyttar till en vald ort. Historiska kampanjer använder sina lokala ortposter i stället för att söka den moderna världen på nätet. Läs om [gränssnittet](/wiki/interface/#map-and-search)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Map/World.jsx",
+          "lineStart": 1095,
+          "lineEnd": 1107,
+          "claim": "Zoom latitude and gesture configuration"
+        },
+        {
+          "path": "src/Game/Map/World.jsx",
+          "lineStart": 1114,
+          "lineEnd": 1119,
+          "claim": "Scenario map wrapping"
+        },
+        {
+          "path": "src/Game/GameUI/search.jsx",
+          "lineStart": 215,
+          "lineEnd": 226,
+          "claim": "Local search entries"
+        },
+        {
+          "path": "src/Game/GameUI/search.jsx",
+          "lineStart": 264,
+          "lineEnd": 293,
+          "claim": "Historical remote lookup guards"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 21,
+          "lineEnd": 25,
+          "claim": "Region/unit/feature selection integration"
+        }
+      ]
+    },
+    {
+      "id": "basemaps",
+      "title": {
+        "en": "Basemap and labels",
+        "sv": "Baskarta och etiketter"
+      },
+      "body": {
+        "en": "In Settings → Map, choose **Basemap** to change the background where the scenario allows it. **Scenario default** restores the author’s choice. A scenario with its own background keeps that background and disables the ordinary basemap picker.\n\nYou can override the country-label font with an installed font or leave the field empty to use the scenario’s choice. The label switch hides country names. These are display preferences; they do not redraw historical borders or change ownership.",
+        "sv": "Under Inställningar → Karta väljer du **Baskarta** för att ändra bakgrunden där scenariot tillåter det. **Scenariots standard** återställer författarens val. Ett scenario med en egen bakgrund behåller den och inaktiverar det vanliga baskartsvalet.\n\nDu kan välja ett installerat teckensnitt för landsetiketterna eller lämna fältet tomt för scenariots val. Etikettreglaget döljer landsnamnen. Detta är visningsinställningar. De ritar inte om historiska gränser och ändrar inte ägandet."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 316,
+          "lineEnd": 330,
+          "claim": "Basemap default override/custom background guard"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2101,
+          "lineEnd": 2123,
+          "claim": "Installed font override and country label switch"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2125,
+          "lineEnd": 2128,
+          "claim": "Presentation does not change world state"
+        }
+      ]
+    },
+    {
+      "id": "display-and-performance",
+      "title": {
+        "en": "Globe, terrain and performance",
+        "sv": "Jordglob, terräng och prestanda"
+      },
+      "body": {
+        "en": "The Map settings offer experimental globe and terrain presentation. A scenario may disable the globe. Terrain needs a network connection and is not raised over a declared custom background; when enabled its configured exaggeration is **15×**.\n\nIf drawing is slow, try turning off terrain or the globe and hide country labels. **Reduce motion** switches off idle globe rotation and event-camera movement together. For missing geography or a WebGL warning, use [troubleshooting](/wiki/troubleshooting/#map).",
+        "sv": "Kartinställningarna har experimentell visning med jordglob och terräng. Ett scenario kan stänga av jordgloben. Terräng kräver nätanslutning och höjs inte över en angiven egen bakgrund. När den används är den konfigurerade höjdförstärkningen **15×**.\n\nOm kartan ritas långsamt kan du prova att stänga av terrängen eller jordgloben och dölja landsetiketter. **Minska rörelse** stänger av både jordglobens rotation i vila och kamerans rörelse under händelser. Vid saknad geografi eller WebGL-varning använder du [felsökningen](/wiki/troubleshooting/#map)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 338,
+          "lineEnd": 345,
+          "claim": "Scenario may disable globe"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2125,
+          "lineEnd": 2132,
+          "claim": "Globe terrain camera controls"
+        },
+        {
+          "path": "src/Game/Map/World.jsx",
+          "lineStart": 709,
+          "lineEnd": 717,
+          "claim": "Terrain online/background predicates and exaggeration"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2081,
+          "lineEnd": 2089,
+          "claim": "Reduce motion combines both camera settings"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Political fills",
+      "upstreamLine": 4,
+      "status": "adapted",
+      "currentSectionId": "territory",
+      "reason": "Current political/stripe producer; old fixed fill percentages not assumed."
+    },
+    {
+      "upstreamHeading": "Striped regions mean a dispute",
+      "upstreamLine": 23,
+      "status": "retained",
+      "currentSectionId": "territory",
+      "reason": "Exact claimant stripes retained."
+    },
+    {
+      "upstreamHeading": "Groups' areas",
+      "upstreamLine": 31,
+      "status": "retained",
+      "currentSectionId": "territory",
+      "reason": "Retained group-area overlay with data condition."
+    },
+    {
+      "upstreamHeading": "Map modes",
+      "upstreamLine": 41,
+      "status": "unsupported",
+      "currentSectionId": "basemaps",
+      "reason": "Beta Diplomatic MapModeSelector/stance implementation missing; no mode-switch instruction."
+    },
+    {
+      "upstreamHeading": "War on the map",
+      "upstreamLine": 55,
+      "status": "unsupported",
+      "currentSectionId": "territory",
+      "reason": "Beta battlefield/air/sea/strike layers and War Room missing; no claims from beta screenshots."
+    },
+    {
+      "upstreamHeading": "Labels",
+      "upstreamLine": 67,
+      "status": "adapted",
+      "currentSectionId": "basemaps",
+      "reason": "Current font and hide controls retained; old zoom fade thresholds not assumed."
+    },
+    {
+      "upstreamHeading": "Zoom and bounds",
+      "upstreamLine": 83,
+      "status": "retained",
+      "currentSectionId": "camera",
+      "reason": "Exact current zoom/latitude limits."
+    },
+    {
+      "upstreamHeading": "Basemaps",
+      "upstreamLine": 89,
+      "status": "adapted",
+      "currentSectionId": "basemaps",
+      "reason": "Current baseline picker and custom-background guard; beta map-list/detail-download mechanism missing."
+    },
+    {
+      "upstreamHeading": "The 3D globe",
+      "upstreamLine": 127,
+      "status": "adapted",
+      "currentSectionId": "display-and-performance",
+      "reason": "Current globe predicates retained; no old real-time lighting/rotation performance claims."
+    },
+    {
+      "upstreamHeading": "3D terrain",
+      "upstreamLine": 142,
+      "status": "retained",
+      "currentSectionId": "display-and-performance",
+      "reason": "Actual online/custom-map terrain predicates and15 exaggeration."
+    },
+    {
+      "upstreamHeading": "Custom backgrounds",
+      "upstreamLine": 149,
+      "status": "adapted",
+      "currentSectionId": "basemaps",
+      "reason": "Existing custom map background qualified as scenario data, not fantasy onboarding."
+    },
+    {
+      "upstreamHeading": "Seasons and weather",
+      "upstreamLine": 168,
+      "status": "unsupported",
+      "currentSectionId": "display-and-performance",
+      "reason": "Season/weather/front layer files and climate implementation absent at pin."
+    },
+    {
+      "upstreamHeading": "Clicking things",
+      "upstreamLine": 189,
+      "status": "adapted",
+      "currentSectionId": "camera",
+      "reason": "Current selection/search links retained."
+    },
+    {
+      "upstreamHeading": "Performance",
+      "upstreamLine": 198,
+      "status": "adapted",
+      "currentSectionId": "display-and-performance",
+      "reason": "Actual settings; beta performance-mode option not present."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 216,
+      "status": "retained",
+      "currentSectionId": "camera",
+      "reason": "Current routes retained."
+    }
+  ]
+}

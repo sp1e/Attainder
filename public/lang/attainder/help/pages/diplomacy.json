@@ -1,0 +1,348 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/diplomacy",
+  "route": "/wiki/diplomacy/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/diplomacy.md",
+  "upstreamRawSha256": "75c97c89297204b30b780e71b7af8842dc7a79e5884bc6c9d5d20cd737faf131",
+  "title": {
+    "en": "Conversations and diplomacy",
+    "sv": "Samtal och diplomati"
+  },
+  "nav": {
+    "en": "Diplomacy",
+    "sv": "Diplomati"
+  },
+  "description": {
+    "en": "Talk to people at court or open a country’s diplomatic thread.",
+    "sv": "Samtala med personer vid hovet eller öppna ett lands diplomatiska samtal."
+  },
+  "sections": [
+    {
+      "id": "court",
+      "title": {
+        "en": "Start a court conversation",
+        "sv": "Börja ett samtal vid hovet"
+      },
+      "body": {
+        "en": "In the realm and families panel, open a person under people and use the conversation control when it is available. Write what you want to say; the field accepts up to 500 characters. Small talk receives a model-written reply without an engine roll.\n\nThe model can recognise a request for support, a secret or a pledge. Such a request opens a confirmation card rather than immediately committing the action. Check the recipient, any offered family silver, any hook and the displayed chance of agreement.",
+        "sv": "Öppna en person i personvyn i panelen för rike och familjer och använd samtalsknappen när den är tillgänglig. Skriv vad du vill säga. Fältet tar högst 500 tecken. Småprat får ett modellskrivet svar utan något slag i regelmotorn.\n\nModellen kan känna igen en begäran om stöd, en hemlighet eller ett löfte. En sådan förfrågan öppnar ett bekräftelsekort innan handlingen genomförs. Kontrollera mottagaren, eventuellt erbjudet silver ur familjekassan, eventuellt grepp och den visade chansen att få ja."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 248,
+          "lineEnd": 266,
+          "claim": "Eligible people and conversation entry"
+        },
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 123,
+          "lineEnd": 146,
+          "claim": "Small talk versus interpreted request"
+        },
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 46,
+          "lineEnd": 64,
+          "claim": "Confirmation recipient, gift, hook and odds"
+        },
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 171,
+          "lineEnd": 176,
+          "claim": "500-character input"
+        }
+      ]
+    },
+    {
+      "id": "requests",
+      "title": {
+        "en": "Confirm the request and read the result",
+        "sv": "Bekräfta förfrågan och läs utfallet"
+      },
+      "body": {
+        "en": "Confirm the request or cancel it before advancing the year. The rules decide whether the person agrees; the model then writes a reply about that settled result. If the reply fails, the result still applies. A rejected or stale engine request is shown as an error before a personal response is written.\n\nAn accepted support request changes opinion. A pledge gives a hook. A revealed secret appears under intrigues; someone who agrees to reveal may have nothing to tell. An offered gift is charged from the family treasury only on acceptance. Read the outcome notes to see what actually happened.",
+        "sv": "Bekräfta eller avbryt förfrågan innan du för året framåt. Reglerna avgör om personen säger ja. Modellen skriver sedan ett svar om det redan avgjorda resultatet. Om svaret misslyckas gäller utfallet ändå. En förfrågan som regelmotorn avvisar, exempelvis för att läget hunnit ändras, visas som ett fel innan något personligt svar skrivs.\n\nEn accepterad begäran om stöd ändrar åsikten. Ett löfte ger ett grepp. En avslöjad hemlighet visas under intriger. Den som går med på att berätta kan också sakna något att avslöja. En erbjuden gåva dras från familjekassan bara vid ett ja. Läs utfallsnoteringarna för att se vad som faktiskt hände."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 83,
+          "lineEnd": 86,
+          "claim": "Confirmation holds year clock"
+        },
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 149,
+          "lineEnd": 162,
+          "claim": "Engine first, then reply; failed reply preserves outcome"
+        },
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 33,
+          "lineEnd": 43,
+          "claim": "Outcome notes support, hook, secret and nothing to tell"
+        },
+        {
+          "path": "server/characters/conversation.js",
+          "lineStart": 230,
+          "lineEnd": 237,
+          "claim": "Gift charged only when accepted"
+        },
+        {
+          "path": "server/characters/conversation.js",
+          "lineStart": 286,
+          "lineEnd": 287,
+          "claim": "Support opinion, secret and pledge hook effect mapping"
+        }
+      ]
+    },
+    {
+      "id": "record",
+      "title": {
+        "en": "Keep track of commitments",
+        "sv": "Följ förpliktelserna"
+      },
+      "body": {
+        "en": "The court conversation transcript lives in the panel session. The rules’ conversation result is recorded in the campaign; the temporary exchange of lines is not saved as a durable chat transcript. Use the chronicle and intrigue views to check lasting effects such as memories, secrets and hooks.\n\nClosing a conversation ends the current conversation view. When you return to a person, check whether the conversation control is available; eligibility is determined by the current campaign state.",
+        "sv": "Hovets samtalsutskrift finns i panelens session. Reglernas samtalsutfall registreras i kampanjen, men det tillfälliga ordutbytet sparas inte som en beständig chattutskrift. Använd krönikan och intrigvyn för att kontrollera bestående följder som minnen, hemligheter och grepp.\n\nAtt avsluta ett samtal stänger den aktuella samtalsvyn. När du återvänder till en person kontrollerar du om samtalsknappen är tillgänglig. Tillgängligheten bestäms av kampanjens aktuella läge."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 7,
+          "lineEnd": 11,
+          "claim": "Transcript session-only versus committed engine outcome"
+        },
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 164,
+          "lineEnd": 176,
+          "claim": "Close conversation control"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 250,
+          "lineEnd": 266,
+          "claim": "Eligibility uses current conversationTargets"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 354,
+          "lineEnd": 356,
+          "claim": "Persistent known-side memories"
+        },
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 37,
+          "lineEnd": 42,
+          "claim": "Lasting hook/secret effects and intrigue location"
+        }
+      ]
+    },
+    {
+      "id": "countries",
+      "title": {
+        "en": "Open diplomatic talks with a country",
+        "sv": "Öppna diplomatiska samtal med ett land"
+      },
+      "body": {
+        "en": "In a campaign without a character system, select a country on the map and open diplomacy from its country panel. This opens or reuses a one-to-one diplomatic thread. An advisor-drafted letter lands in the composer for you to review; it is sent only when you press send.\n\nThe country chat also supports starting a thread with several selected countries. Read each participant’s reply and the thread’s recorded actions before treating a proposal as settled. A typing participant can be interrupted by sending a message; the text still waiting to be revealed is then not said.",
+        "sv": "I en kampanj utan karaktärssystem väljer du ett land på kartan och öppnar diplomatin från landpanelen. Då öppnas ett nytt eller befintligt enskilt diplomatiskt samtal. Ett brev som rådgivaren har skrivit läggs i skrivfältet så att du kan granska det. Det skickas först när du trycker på skicka.\n\nLandschatten stöder också att starta ett samtal med flera valda länder. Läs varje deltagares svar och samtalets registrerade handlingar innan du betraktar ett förslag som avgjort. Du kan avbryta en deltagare som skriver genom att skicka ett meddelande. Texten som fortfarande väntar på att visas blir då inte sagd."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 257,
+          "lineEnd": 263,
+          "claim": "Country panel requests diplomacy"
+        },
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 446,
+          "lineEnd": 452,
+          "claim": "Visible country diplomacy control"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 1887,
+          "lineEnd": 1894,
+          "claim": "Advisor draft is unsent"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 2506,
+          "lineEnd": 2528,
+          "claim": "Reuse or create one-to-one thread"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 2480,
+          "lineEnd": 2484,
+          "claim": "Thread with selected participants"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 1409,
+          "lineEnd": 1411,
+          "claim": "Cutting in drops unsaid reveal"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 578,
+          "lineEnd": 583,
+          "claim": "Toolbar not mounted with character system"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 3538,
+          "lineEnd": 3552,
+          "claim": "Chat panel exists only through toolbar child"
+        }
+      ]
+    },
+    {
+      "id": "threads",
+      "title": {
+        "en": "Read and close country threads",
+        "sv": "Läs och avsluta landsamtal"
+      },
+      "body": {
+        "en": "Country threads save messages and thread actions, including participant changes and polls. Closing a thread hides it from the active list while preserving its record as past negotiations. A later approach opens a fresh thread.\n\nCountry diplomacy is separate from the court’s personal conversation flow. Dynasty campaigns do not offer the general bottom toolbar or its country-chat panel. Country-panel diplomacy buttons and advisor letter drafts do not open that missing panel there. Use the confirmation cards in the court for personal requests and inspect campaign records for lasting political effects.",
+        "sv": "Landsamtal sparar meddelanden och samtalshandlingar, inklusive deltagarändringar och omröstningar. Att avsluta ett samtal döljer det från den aktiva listan men bevarar historiken som tidigare förhandlingar. En senare kontakt öppnar ett nytt samtal.\n\nLandsdiplomatin är skild från hovets personliga samtal. Dynastikampanjer visar varken det allmänna nedre verktygsfältet eller dess landschattpanel. Landpanelens diplomatiknappar och rådgivarens brevutkast öppnar inte den saknade panelen där. Använd hovets bekräftelsekort för personliga förfrågningar och granska kampanjhistoriken för bestående politiska följder."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 2454,
+          "lineEnd": 2477,
+          "claim": "Messages and thread actions saved"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 2487,
+          "lineEnd": 2503,
+          "claim": "Close preserves concluded negotiation history"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 578,
+          "lineEnd": 583,
+          "claim": "General toolbar hidden for character system"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 1887,
+          "lineEnd": 1894,
+          "claim": "Country popup and advisor bridge"
+        },
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 46,
+          "lineEnd": 64,
+          "claim": "Personal request card"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 3538,
+          "lineEnd": 3552,
+          "claim": "Mounted chat depends on Toolbar"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Talking to a country",
+      "upstreamLine": 12,
+      "status": "adapted",
+      "currentSectionId": "countries",
+      "reason": "Map country entry and actual current thread controls."
+    },
+    {
+      "upstreamHeading": "Leaders remember",
+      "upstreamLine": 29,
+      "status": "adapted",
+      "currentSectionId": "record",
+      "reason": "Separate session-only court transcript from persisted country threads and engine results."
+    },
+    {
+      "upstreamHeading": "Reactions",
+      "upstreamLine": 45,
+      "status": "adapted",
+      "currentSectionId": "countries",
+      "reason": "Country message reactions are displayable; no mechanical reaction rule asserted."
+    },
+    {
+      "upstreamHeading": "Group conversations",
+      "upstreamLine": 51,
+      "status": "retained",
+      "currentSectionId": "countries",
+      "reason": "Selected multi-country threads and cut-in behavior."
+    },
+    {
+      "upstreamHeading": "Institutions",
+      "upstreamLine": 75,
+      "status": "unsupported",
+      "currentSectionId": "threads",
+      "reason": "Missing InstitutionsWorkspace and formalAgenda; no institutional workspace promised."
+    },
+    {
+      "upstreamHeading": "They contact you",
+      "upstreamLine": 102,
+      "status": "adapted",
+      "currentSectionId": "threads",
+      "reason": "Country threads and current records retained; no beta inbox workflow asserted."
+    },
+    {
+      "upstreamHeading": "The world cannot sign for you",
+      "upstreamLine": 134,
+      "status": "adapted",
+      "currentSectionId": "requests",
+      "reason": "Personal commitment requires confirmation; generic proposal prose not treated as a substitute."
+    },
+    {
+      "upstreamHeading": "Peace and calls to arms",
+      "upstreamLine": 151,
+      "status": "unsupported",
+      "currentSectionId": "threads",
+      "reason": "Missing warAndPeace and peaceTerms specialized cards; no invented peace/call-to-arms workflow."
+    },
+    {
+      "upstreamHeading": "Turning talk into outcomes",
+      "upstreamLine": 172,
+      "status": "adapted",
+      "currentSectionId": "requests",
+      "reason": "Actual engine confirmation and effects replace universal narrative guarantee."
+    },
+    {
+      "upstreamHeading": "Reading everyone else's diplomacy",
+      "upstreamLine": 184,
+      "status": "adapted",
+      "currentSectionId": "threads",
+      "reason": "Saved diplomatic records and current map entry."
+    },
+    {
+      "upstreamHeading": "Listen in",
+      "upstreamLine": 190,
+      "status": "unsupported",
+      "currentSectionId": "threads",
+      "reason": "Missing ListenIn runtime and phone UI; espionage mapped separately."
+    },
+    {
+      "upstreamHeading": "The ledgers behind the talk",
+      "upstreamLine": 205,
+      "status": "adapted",
+      "currentSectionId": "threads",
+      "reason": "Actual thread actions and court campaign results, without missing alliance/stance UI."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 229,
+      "status": "adapted",
+      "currentSectionId": "threads",
+      "reason": "Current guides and records."
+    }
+  ]
+}

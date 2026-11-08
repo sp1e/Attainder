@@ -1,0 +1,141 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/war-at-sea",
+  "route": "/wiki/war-at-sea/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/war-at-sea.md",
+  "upstreamRawSha256": "3f867e2873280344e33c69b3a3c6d4978499c9ab0e0cfd8eabac552d103c6aa1",
+  "title": {
+    "en": "Fleets and war at sea",
+    "sv": "Flottor och krig till sjöss"
+  },
+  "nav": {
+    "en": "War at sea",
+    "sv": "Krig till sjöss"
+  },
+  "description": {
+    "en": "Read naval formations and the limits of the current naval interface.",
+    "sv": "Läs flottförband och det aktuella sjökrigsgränssnittets begränsningar."
+  },
+  "sections": [
+    {
+      "id": "fleets",
+      "title": {
+        "en": "Naval formations",
+        "sv": "Flottförband"
+      },
+      "body": {
+        "en": "The general formation model includes naval units with an owner, strength, composition, position and posture. Naval travel depends on the game date’s era. Before 1500 a naval formation travels at a sustained 130 kilometres per day.\n\nRead [Military](/wiki/military/) for formation strength and current panel availability. The dynasty campaign’s readiness and character actions remain in the realm and families panel.",
+        "sv": "Den allmänna förbandsmodellen innehåller flottförband med ägare, styrka, sammansättning, position och uppträdande. Förflyttning till sjöss beror på speldatumets epok. Före 1500 förflyttar sig ett flottförband med en uthållig takt på 130 kilometer per dag.\n\nLäs [Militär](/wiki/military/) om förbandsstyrka och vilka paneler som är tillgängliga. Dynastikampanjens beredskap och karaktärshandlingar finns i panelen för rike och familjer."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 903,
+          "lineEnd": 927,
+          "claim": "General formation model"
+        },
+        {
+          "path": "src/runtime/unitMotion.js",
+          "lineStart": 88,
+          "lineEnd": 118,
+          "claim": "Naval speed per era"
+        },
+        {
+          "path": "src/runtime/unitMotion.js",
+          "lineStart": 130,
+          "lineEnd": 134,
+          "claim": "Naval speed dispatch"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 218,
+          "lineEnd": 225,
+          "claim": "Dynasty readiness/actions"
+        }
+      ]
+    },
+    {
+      "id": "current-scope",
+      "title": {
+        "en": "Read naval outcomes in the campaign",
+        "sv": "Läs sjökrigets utfall i kampanjen"
+      },
+      "body": {
+        "en": "This version has no separate automatic sea-battle, convoy-escort or blockade-command interface. The older upstream beta instructions for fleet plates, daily engagements and automatic home fleets do not apply here.\n\nUse the actions currently offered by your campaign, read their confirmation and check the turn’s recorded consequences. Combat events still require an active recorded war. See [Actions](/wiki/orders/), [Events](/wiki/events/) and [War](/wiki/war/).",
+        "sv": "Den här versionen saknar ett separat gränssnitt för automatiska sjöslag, konvojeskort eller blockadorder. De äldre betainstruktionerna från originalprojektet om flottreglage, dagliga sjöslag och automatiska hemmaflottor gäller inte här.\n\nAnvänd handlingarna som kampanjen erbjuder, läs deras bekräftelse och kontrollera turens registrerade följder. Stridshändelser kräver fortfarande ett aktivt registrerat krig. Se [Handlingar](/wiki/orders/), [Händelser](/wiki/events/) och [Krig](/wiki/war/)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 562,
+          "lineEnd": 589,
+          "claim": "Current interface panel scope"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 499,
+          "lineEnd": 499,
+          "claim": "Current available actions"
+        },
+        {
+          "path": "src/Game/AI/nativeWarLedger.js",
+          "lineStart": 628,
+          "lineEnd": 637,
+          "claim": "Canonical active war combat requirement"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Fleets",
+      "upstreamLine": 11,
+      "status": "adapted",
+      "currentSectionId": "fleets",
+      "reason": "Actual general naval formation and movement model."
+    },
+    {
+      "upstreamHeading": "Commanding your fleets",
+      "upstreamLine": 26,
+      "status": "adapted",
+      "currentSectionId": "current-scope",
+      "reason": "Current actions replace unavailable War Room fleet plate."
+    },
+    {
+      "upstreamHeading": "Sea battles",
+      "upstreamLine": 48,
+      "status": "unsupported",
+      "currentSectionId": "current-scope",
+      "reason": "Dedicated beta naval/fronts implementation absent; no automatic mechanic copied."
+    },
+    {
+      "upstreamHeading": "Blockades",
+      "upstreamLine": 72,
+      "status": "unsupported",
+      "currentSectionId": "current-scope",
+      "reason": "Dedicated beta naval/fronts implementation absent; no automatic mechanic copied."
+    },
+    {
+      "upstreamHeading": "Convoys and escorts",
+      "upstreamLine": 95,
+      "status": "unsupported",
+      "currentSectionId": "current-scope",
+      "reason": "Dedicated beta naval/fronts implementation absent; no automatic mechanic copied."
+    },
+    {
+      "upstreamHeading": "A navy for every coast",
+      "upstreamLine": 103,
+      "status": "unsupported",
+      "currentSectionId": "current-scope",
+      "reason": "Dedicated beta naval/fronts implementation absent; no automatic mechanic copied."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 111,
+      "status": "adapted",
+      "currentSectionId": "current-scope",
+      "reason": "Current navigation."
+    }
+  ]
+}

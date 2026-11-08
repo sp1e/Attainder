@@ -1,0 +1,216 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/mobile",
+  "route": "/wiki/mobile/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/hosting/mobile.md",
+  "upstreamRawSha256": "09ac5533dceafce38d5f077911ec6b7b5c58a6c2639574605c8dd112578ec765",
+  "title": {
+    "en": "Phones, tablets and Android builds",
+    "sv": "Telefoner, surfplattor och Androidbyggen"
+  },
+  "nav": {
+    "en": "Mobile",
+    "sv": "Mobil"
+  },
+  "description": {
+    "en": "Use a mobile build or open your shared local campaign from another device.",
+    "sv": "Använd ett mobilbygge eller öppna din delade lokala kampanj från en annan enhet."
+  },
+  "sections": [
+    {
+      "id": "builds",
+      "title": {
+        "en": "What the repository provides",
+        "sv": "Vad projektet innehåller"
+      },
+      "body": {
+        "en": "For a mobile package, check which Attainder version its publisher includes. Follow [installation](/wiki/install/) for the local computer setup.\n\nThe Android project requires SDK `23` or later (Android 6.0). Its build scripts prepare local web and map assets. Keep a campaign export outside app storage before replacing or uninstalling the app.",
+        "sv": "Kontrollera vilken Attainder-version utgivaren har tagit med i ett mobilpaket. Följ [installationen](/wiki/install/) för starten på en lokal dator.\n\nAndroidprojektet kräver SDK `23` eller senare, motsvarande Android 6.0. Byggskripten förbereder lokala webb- och kartresurser. Behåll en kampanjexport utanför appens lagring innan du byter eller avinstallerar appen."
+      },
+      "evidence": [
+        {
+          "path": "mobile/android/app/build.gradle",
+          "lineStart": 3,
+          "lineEnd": 32,
+          "claim": "Inherited channels, application IDs and version configuration."
+        },
+        {
+          "path": "mobile/android/variables.gradle",
+          "lineStart": 1,
+          "lineEnd": 4,
+          "claim": "Minimum SDK23."
+        },
+        {
+          "path": "mobile/package.json",
+          "lineStart": 5,
+          "lineEnd": 11,
+          "claim": "Android asset preparation/build commands."
+        }
+      ]
+    },
+    {
+      "id": "models",
+      "title": {
+        "en": "Choose a transport that the device can reach",
+        "sv": "Välj en transport som enheten når"
+      },
+      "body": {
+        "en": "A phone cannot use the host computer's Codex/Claude CLI bridge: that route is restricted to loopback. A browser or retained Android build can instead use the configured API transport. For a model server on another computer, use that computer's network address, not the phone's `localhost`. Browser requests depend on the model server's CORS policy; the Android native HTTP adapter returns a complete response rather than streaming it.\n\nFor a phone acting as another screen for the host's campaign, read [network hosting](/wiki/self-hosting/#network). It accesses the same library; it does not create a second independent campaign or a multiplayer lobby.",
+        "sv": "En telefon kan inte använda värddatorns CLI-anslutning till Codex eller Claude. Den vägen är begränsad till den egna datorn. En webbläsare eller det behållna Androidbygget kan i stället använda den konfigurerade API-transporten. För en modellserver på en annan dator använder du den datorns nätverksadress, inte telefonens `localhost`. Webbläsarförfrågningar beror på modellserverns CORS-policy. Androids inbyggda HTTP-adapter lämnar hela svaret i stället för att strömma det.\n\nOm telefonen ska vara en annan skärm för värddatorns kampanj läser du om [nätverksdrift](/wiki/self-hosting/#network). Den når samma bibliotek. Det skapar ingen separat kampanj eller flerspelarlobby."
+      },
+      "evidence": [
+        {
+          "path": "server/localModelBridge.js",
+          "lineStart": 241,
+          "lineEnd": 250,
+          "claim": "Loopback CLI route."
+        },
+        {
+          "path": "src/runtime/native/http.js",
+          "lineStart": 3,
+          "lineEnd": 11,
+          "claim": "Native HTTP bypasses browser CORS but buffers response."
+        },
+        {
+          "path": "src/runtime/native/http.js",
+          "lineStart": 21,
+          "lineEnd": 38,
+          "claim": "Native endpoint request handling."
+        },
+        {
+          "path": "server/server.js",
+          "lineStart": 1120,
+          "lineEnd": 1148,
+          "claim": "Network access and host controls."
+        }
+      ]
+    },
+    {
+      "id": "files-and-background",
+      "title": {
+        "en": "Exports and background behaviour",
+        "sv": "Exporter och bakgrundsbeteende"
+      },
+      "body": {
+        "en": "In the Android shell, exports are written to `Download/Open Historia` when the filesystem plugin can do so. If writing there fails, the code saves a cache copy and offers the share sheet when available. Check the saved-file notice and keep a copy outside app storage before uninstalling an app.\n\nThe background-pause hook waits for generation to finish before requesting an idle pause. A native renderer restart can be recorded in diagnostics. Neither mechanism replaces a campaign backup.",
+        "sv": "I Androidskalet skrivs exporter till `Download/Open Historia` när filsystemstillägget kan göra det. Om skrivningen misslyckas sparar koden en cachekopia och erbjuder delningsrutan när den finns. Kontrollera meddelandet om sparad fil och behåll en kopia utanför appens lagring innan du avinstallerar en app.\n\nBakgrundspausen väntar på att genereringen ska avslutas innan den begär viloläge. En omstart av den inbyggda renderaren kan registreras i diagnostiken. Ingen av mekanismerna ersätter en säkerhetskopia av kampanjen."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/native/fileSave.js",
+          "lineStart": 81,
+          "lineEnd": 110,
+          "claim": "Downloads notice and cache/share fallback."
+        },
+        {
+          "path": "src/runtime/native/fileSave.js",
+          "lineStart": 22,
+          "lineEnd": 24,
+          "claim": "Exact export folder."
+        },
+        {
+          "path": "src/runtime/native/backgroundPause.js",
+          "lineStart": 8,
+          "lineEnd": 18,
+          "claim": "Pause follows active generation."
+        },
+        {
+          "path": "src/runtime/native/rendererRestart.js",
+          "lineStart": 35,
+          "lineEnd": 42,
+          "claim": "Restart report logged when native plugin provides it."
+        }
+      ]
+    },
+    {
+      "id": "small-screens",
+      "title": {
+        "en": "Using a small screen",
+        "sv": "Använda en liten skärm"
+      },
+      "body": {
+        "en": "The map enables drag panning and disables pitch gestures. Adjust map effects in [settings](/wiki/settings/) if the display is slow.\n\nA browser on another device can reach your explicitly shared local server, subject to its model and network limitations. See [self-hosting](/wiki/self-hosting/#network).",
+        "sv": "Kartan har dragpanorering och avstängda gester för lutning. Justera karteffekter i [inställningarna](/wiki/settings/) om visningen är långsam.\n\nEn webbläsare på en annan enhet kan nå din uttryckligen delade lokala server, med dess begränsningar för modeller och nätverk. Läs om [egen server](/wiki/self-hosting/#network)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Map/World.jsx",
+          "lineStart": 1104,
+          "lineEnd": 1110,
+          "claim": "Map code contains touch handling; no measured performance claim."
+        },
+        {
+          "path": "mobile/android/app/build.gradle",
+          "lineStart": 3,
+          "lineEnd": 32,
+          "claim": "Only inherited Android packaging/channel configuration established."
+        },
+        {
+          "path": "server/server.js",
+          "lineStart": 129,
+          "lineEnd": 141,
+          "claim": "Explicit sharing determines network access."
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Installing",
+      "upstreamLine": 4,
+      "status": "adapted",
+      "currentSectionId": "builds",
+      "reason": "Retained Android source is documented without inventing a published Attainder APK."
+    },
+    {
+      "upstreamHeading": "What it is",
+      "upstreamLine": 25,
+      "status": "adapted",
+      "currentSectionId": "files-and-background",
+      "reason": "Only source-proven native file and background features retained; blanket offline claim removed."
+    },
+    {
+      "upstreamHeading": "Setting up AI",
+      "upstreamLine": 42,
+      "status": "adapted",
+      "currentSectionId": "models",
+      "reason": "Explicit API versus local CLI reachability."
+    },
+    {
+      "upstreamHeading": "Updating",
+      "upstreamLine": 52,
+      "status": "unsupported",
+      "currentSectionId": "builds",
+      "reason": "Upstream update feeds do not establish current Attainder Android releases."
+    },
+    {
+      "upstreamHeading": "Playing on a small screen",
+      "upstreamLine": 64,
+      "status": "adapted",
+      "currentSectionId": "small-screens",
+      "reason": "Touch/settings advice qualified; no unmeasured performance promises."
+    },
+    {
+      "upstreamHeading": "iPhone and iPad",
+      "upstreamLine": 86,
+      "status": "unsupported",
+      "currentSectionId": "small-screens",
+      "reason": "No current Attainder iOS package or upstream website identity asserted."
+    },
+    {
+      "upstreamHeading": "Connecting to a machine instead",
+      "upstreamLine": 94,
+      "status": "retained",
+      "currentSectionId": "models",
+      "reason": "Existing server LAN access covered with its restrictions."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 104,
+      "status": "retained",
+      "currentSectionId": "models",
+      "reason": "Links to installation/settings/hosting retained."
+    }
+  ]
+}

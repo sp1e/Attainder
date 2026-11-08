@@ -1,0 +1,279 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/self-hosting",
+  "route": "/wiki/self-hosting/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/hosting/self-hosting.md",
+  "upstreamRawSha256": "c24b92863f423706c940a927dac72022062f21e94bdae0b65c637191f63e26da",
+  "title": {
+    "en": "Run your own server",
+    "sv": "Kör en egen server"
+  },
+  "nav": {
+    "en": "Self-hosting",
+    "sv": "Egen server"
+  },
+  "description": {
+    "en": "Build the local server, manage its data and understand what network access permits.",
+    "sv": "Bygg den lokala servern, hantera dess data och förstå vad nätverksåtkomst tillåter."
+  },
+  "sections": [
+    {
+      "id": "run",
+      "title": {
+        "en": "Run the built game",
+        "sv": "Kör det byggda spelet"
+      },
+      "body": {
+        "en": "Follow [installation](/wiki/install/) to install dependencies, fetch the map and build the game. `node server/server.js` serves `dist/` on port `3000` unless `PORT` overrides it. Open `http://127.0.0.1:3000` on that computer. Rebuild when the client code changes.\n\nThe Attainder launcher is a separate convenience route: it selects port `4167`, explicitly binds `127.0.0.1` and selects its `play-data/` directory. Its `OH_HOST` setting takes precedence over the network switch.",
+        "sv": "Följ [installationen](/wiki/install/) för att installera beroenden, hämta kartan och bygga spelet. `node server/server.js` serverar `dist/` på port `3000` om inte `PORT` anger något annat. Öppna `http://127.0.0.1:3000` på samma dator. Bygg om när klientkoden ändras.\n\nAttainder-startaren är en separat genväg. Den väljer port `4167`, binder uttryckligen till `127.0.0.1` och väljer sin `play-data/`-katalog. Dess `OH_HOST`-inställning har företräde framför nätverksreglaget."
+      },
+      "evidence": [
+        {
+          "path": "server/server.js",
+          "lineStart": 75,
+          "lineEnd": 82,
+          "claim": "Default port and dist path."
+        },
+        {
+          "path": "server/server.js",
+          "lineStart": 1442,
+          "lineEnd": 1446,
+          "claim": "HTTP listener."
+        },
+        {
+          "path": "scripts/launch-dynasties.mjs",
+          "lineStart": 38,
+          "lineEnd": 43,
+          "claim": "Launcher environment pins host, port and data directory."
+        },
+        {
+          "path": "server/server.js",
+          "lineStart": 129,
+          "lineEnd": 132,
+          "claim": "Environment host overrides saved LAN preference."
+        }
+      ]
+    },
+    {
+      "id": "network",
+      "title": {
+        "en": "Connect another device deliberately",
+        "sv": "Anslut en annan enhet medvetet"
+      },
+      "body": {
+        "en": "The ordinary server binds to this computer unless network sharing is enabled. On the host, the network control can enable access and display local addresses. `OH_HOST` can instead select a binding, such as `0.0.0.0`; when set, it locks that decision. Use the displayed host address and port from the other device.\n\nThis API has no password. Anyone able to reach the exposed server can read, change or delete its games. Keep it on a trusted network or behind authenticated private access. The origin guard blocks unrelated browser writes; it does not authenticate a network client. Opening another screen is access to the same library, not a documented multiplayer lobby system.",
+        "sv": "Den vanliga servern binder till den egna datorn om inte nätverksdelning aktiveras. På värddatorn kan nätverksreglaget slå på åtkomst och visa lokala adresser. `OH_HOST` kan i stället välja bindning, exempelvis `0.0.0.0`. När variabeln är satt låser den detta val. Använd den visade värdadressen och porten från den andra enheten.\n\nDetta API har inget lösenord. Alla som når den öppnade servern kan läsa, ändra eller radera dess spel. Håll den på ett betrott nätverk eller bakom autentiserad privat åtkomst. Ursprungskontrollen blockerar skrivningar från orelaterade webbsidor men autentiserar inte en nätverksklient. En annan skärm når samma bibliotek. Det är inget dokumenterat system för flerspelarlobbyer."
+      },
+      "evidence": [
+        {
+          "path": "server/server.js",
+          "lineStart": 90,
+          "lineEnd": 141,
+          "claim": "Loopback default, saved sharing setting, environment precedence and LAN addresses."
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 1331,
+          "lineEnd": 1436,
+          "claim": "Host network control and explicit no-password warning."
+        },
+        {
+          "path": "server/security.js",
+          "lineStart": 30,
+          "lineEnd": 64,
+          "claim": "Origin guard scope and limits."
+        }
+      ]
+    },
+    {
+      "id": "models",
+      "title": {
+        "en": "Model access from another screen",
+        "sv": "Modellåtkomst från en annan skärm"
+      },
+      "body": {
+        "en": "The Codex/Claude CLI bridge accepts only loopback requests. Enabling LAN access does not make that bridge available to a phone. API-provider settings are another transport; a client may need its own configuration. The general AI relay is also local-only by default. `OH_ALLOW_REMOTE_RELAY=1` deliberately permits remote relay calls; it does not remove the CLI bridge restriction.",
+        "sv": "CLI-anslutningen till Codex och Claude accepterar bara förfrågningar från den egna datorn. LAN-åtkomst gör inte denna anslutning tillgänglig för en telefon. Inställningar för API-leverantörer är en annan transport, och klienten kan behöva en egen konfiguration. Även det allmänna AI-reläet är lokalt som standard. `OH_ALLOW_REMOTE_RELAY=1` tillåter uttryckligen fjärranrop genom reläet. Det tar inte bort CLI-anslutningens begränsning."
+      },
+      "evidence": [
+        {
+          "path": "server/localModelBridge.js",
+          "lineStart": 241,
+          "lineEnd": 250,
+          "claim": "CLI loopback restriction."
+        },
+        {
+          "path": "server/server.js",
+          "lineStart": 956,
+          "lineEnd": 969,
+          "claim": "Remote relay opt-in distinct from CLI bridge."
+        },
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 133,
+          "lineEnd": 138,
+          "claim": "Provider settings read client localStorage."
+        }
+      ]
+    },
+    {
+      "id": "data-and-service",
+      "title": {
+        "en": "Data, configuration and unattended launch",
+        "sv": "Data, konfiguration och obevakad start"
+      },
+      "body": {
+        "en": "`OH_DATA_DIR` selects the writable server library; without it, the direct server uses `server/data`. The launcher chooses a different project data home as described on [installation](/wiki/install/#map-and-data). Back up that directory and use [campaign exports](/wiki/saves/) for portable copies. Do not hand-edit live campaign files.\n\nFor an unattended service, use a service manager or scheduled task that runs `node server/server.js` in the built checkout, with the intended data directory, port and host environment. Keep the working directory and account permissions explicit. `OH_RATE_LIMIT` changes the remote per-minute limit (default `1200`); `OH_ALLOW_CROSS_ORIGIN=1` relaxes the write-origin guard and should not be needed for the ordinary same-origin page.",
+        "sv": "`OH_DATA_DIR` väljer serverns skrivbara bibliotek. Utan variabeln använder den direktstartade servern `server/data`. Startaren väljer en annan projektdataplats enligt [installationen](/wiki/install/#map-and-data). Säkerhetskopiera katalogen och använd [kampanjexporter](/wiki/saves/) för flyttbara kopior. Redigera inte aktiva kampanjfiler för hand.\n\nFör en obevakad tjänst använder du en tjänstehanterare eller schemalagd aktivitet som kör `node server/server.js` i den byggda utcheckningen, med avsedd datakatalog, port och värdmiljö. Ange arbetskatalog och kontobehörigheter uttryckligen. `OH_RATE_LIMIT` ändrar minutgränsen för fjärrklienter, vars standard är `1200`. `OH_ALLOW_CROSS_ORIGIN=1` lättar på ursprungskontrollen för skrivningar och ska inte behövas för den vanliga sidan från samma ursprung."
+      },
+      "evidence": [
+        {
+          "path": "server/dataDir.js",
+          "lineStart": 8,
+          "lineEnd": 19,
+          "claim": "Direct-server writable data directory."
+        },
+        {
+          "path": "server/server.js",
+          "lineStart": 190,
+          "lineEnd": 197,
+          "claim": "Remote request default rate limit."
+        },
+        {
+          "path": "server/server.js",
+          "lineStart": 249,
+          "lineEnd": 269,
+          "claim": "Explicit cross-origin write override."
+        },
+        {
+          "path": "scripts/launch-dynasties.mjs",
+          "lineStart": 38,
+          "lineEnd": 43,
+          "claim": "Working directory/environment needed by source launcher."
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": {
+        "en": "Network activity and inherited services",
+        "sv": "Nätverkstrafik och ärvda tjänster"
+      },
+      "body": {
+        "en": "Model calls send campaign context to the selected model transport. Community downloads and update feeds use external services. Review [settings](/wiki/settings/) and read a diagnostic export before sharing it.\n\nPrivacy switches depend on the build: Count my visits appears where visit counting is available and requires consent; Discord activity is a separate desktop feature where supported. The source retains Open Historia’s AGPL-3.0-or-later notices.",
+        "sv": "Modellanrop skickar kampanjens sammanhang till den valda modelltransporten. Gemenskapshämtningar och uppdateringsflöden använder externa tjänster. Läs [inställningarna](/wiki/settings/) och granska diagnostikexporter innan du delar dem.\n\nSekretessreglagen beror på bygget. Räkna mina besök visas där besöksräkning finns och kräver samtycke. Discord-aktivitet är en separat skrivbordsfunktion där den stöds. Källkoden behåller Open Historias meddelanden om AGPL-3.0-or-later."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/characterModelCalls.js",
+          "lineStart": 80,
+          "lineEnd": 83,
+          "claim": "Character context passed to configured model call."
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 1907,
+          "lineEnd": 1918,
+          "claim": "Discord activity and opt-in counting controls."
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 1734,
+          "lineEnd": 1737,
+          "claim": "Logs can contain player and campaign data."
+        },
+        {
+          "path": "README.md",
+          "lineStart": 113,
+          "lineEnd": 115,
+          "claim": "Derivative license attribution."
+        },
+        {
+          "path": "src/runtime/visitConsent.js",
+          "lineStart": 25,
+          "lineEnd": 38,
+          "claim": "Visit-count capability predicate"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 1908,
+          "lineEnd": 1922,
+          "claim": "Build-gated Discord and visit controls"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "What you get",
+      "upstreamLine": 18,
+      "status": "adapted",
+      "currentSectionId": "run",
+      "reason": "Local source server retained; external model and hub traffic qualified."
+    },
+    {
+      "upstreamHeading": "Running it",
+      "upstreamLine": 26,
+      "status": "adapted",
+      "currentSectionId": "run",
+      "reason": "Use current Attainder checkout and build commands."
+    },
+    {
+      "upstreamHeading": "Connecting from another device",
+      "upstreamLine": 48,
+      "status": "retained",
+      "currentSectionId": "network",
+      "reason": "Actual loopback and LAN controls source-checked."
+    },
+    {
+      "upstreamHeading": "Read this before you open it up",
+      "upstreamLine": 74,
+      "status": "retained",
+      "currentSectionId": "network",
+      "reason": "No-password API warning retained with exact source scope."
+    },
+    {
+      "upstreamHeading": "Environment variables",
+      "upstreamLine": 96,
+      "status": "adapted",
+      "currentSectionId": "data-and-service",
+      "reason": "Only implemented environment controls documented; unsupported host allowlist omitted explicitly."
+    },
+    {
+      "upstreamHeading": "Running as a service",
+      "upstreamLine": 112,
+      "status": "adapted",
+      "currentSectionId": "data-and-service",
+      "reason": "Generic service-manager guidance uses actual server command without claiming installed service."
+    },
+    {
+      "upstreamHeading": "The map data",
+      "upstreamLine": 142,
+      "status": "retained",
+      "currentSectionId": "run",
+      "reason": "Map fetch/build order delegated to current install section."
+    },
+    {
+      "upstreamHeading": "Where your files are",
+      "upstreamLine": 155,
+      "status": "retained",
+      "currentSectionId": "data-and-service",
+      "reason": "Back up actual writable library."
+    },
+    {
+      "upstreamHeading": "Privacy",
+      "upstreamLine": 164,
+      "status": "adapted",
+      "currentSectionId": "privacy",
+      "reason": "Do not claim no data leaves machine; model context and optional external services distinguished."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 184,
+      "status": "retained",
+      "currentSectionId": "models",
+      "reason": "Links to current model, mobile and save routes."
+    }
+  ]
+}

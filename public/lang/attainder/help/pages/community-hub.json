@@ -1,0 +1,241 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/community-hub",
+  "route": "/wiki/community-hub/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/hosting/community-hub.md",
+  "upstreamRawSha256": "5e693fa4803017bfcf8d729570998ba44affe25b03219556f7f719fd9286a0e2",
+  "title": {
+    "en": "The Community Hub",
+    "sv": "Gemenskapshubben"
+  },
+  "nav": {
+    "en": "Community Hub",
+    "sv": "Gemenskapshubb"
+  },
+  "description": {
+    "en": "Browse checked scenario files, manage copies and understand sharing.",
+    "sv": "Bläddra bland granskade scenariofiler, hantera kopior och förstå delning."
+  },
+  "sections": [
+    {
+      "id": "browse",
+      "title": {
+        "en": "Browse the community catalogue",
+        "sv": "Bläddra i gemenskapskatalogen"
+      },
+      "body": {
+        "en": "The library’s Community tab reads the shared scenario hub. It shows pinned posts when there are any, followed by installed, liked and recent shelves. Search helps find a post; open its detail view to read the description before importing.\n\nThe catalogue is external to your local campaign library. For a supported start, use the prepared historical choices in [starting a game](/wiki/new-game/). A scenario offered by a remote catalogue still has to pass this game’s preparation checks.",
+        "sv": "Bibliotekets gemenskapsflik läser den gemensamma scenariohubben. Den visar fästa inlägg när sådana finns, följt av hyllor för installationer, gillanden och nyheter. Sök för att hitta ett inlägg och öppna dess detaljvy för att läsa beskrivningen innan du importerar.\n\nKatalogen ligger utanför ditt lokala kampanjbibliotek. För en start som stöds använder du de förberedda historiska valen under [starta ett spel](/wiki/new-game/). Även ett scenario i en extern katalog måste klara det här spelets förberedelsekontroller."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/communityHub.jsx",
+          "lineStart": 727,
+          "lineEnd": 742,
+          "claim": "Current pinned/installed/liked/recent shelves"
+        },
+        {
+          "path": "src/Game/GameUI/communityHub.jsx",
+          "lineStart": 490,
+          "lineEnd": 516,
+          "claim": "Detail import flow"
+        },
+        {
+          "path": "server/libraryStore.js",
+          "lineStart": 3695,
+          "lineEnd": 3700,
+          "claim": "Import requires prepared playable scenario"
+        },
+        {
+          "path": "src/runtime/web/libraryStore.js",
+          "lineStart": 1326,
+          "lineEnd": 1331,
+          "claim": "Browser import preparation validation"
+        }
+      ]
+    },
+    {
+      "id": "import-and-update",
+      "title": {
+        "en": "Import and update a copy",
+        "sv": "Importera och uppdatera en kopia"
+      },
+      "body": {
+        "en": "Import downloads the hub’s checked scenario file and tries to install it into your library. If it fails preparation or map validation, read the error rather than assuming the catalogue’s version is compatible. Keep using a prepared historical start while resolving the mismatch.\n\nAn update replaces the downloaded scenario copy. If you edited it, clone it first; the replacement warning says that your changes will be lost. Keep an export when existing campaigns depend on the scenario’s map. See [saves and matching maps](/wiki/saves/#map-restoration).",
+        "sv": "Importen hämtar hubbens granskade scenariofil och försöker installera den i ditt bibliotek. Om förberedelse- eller kartkontrollen misslyckas läser du felet i stället för att anta att katalogens version är kompatibel. Använd en förberedd historisk start medan du löser avvikelsen.\n\nEn uppdatering ersätter den hämtade scenariokopian. Klona den först om du har redigerat den. Ersättningsvarningen säger att dina ändringar kommer att försvinna. Behåll en export när befintliga kampanjer är beroende av scenariots karta. Läs om [sparfiler och matchande kartor](/wiki/saves/#map-restoration)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/communityHub.jsx",
+          "lineStart": 490,
+          "lineEnd": 521,
+          "claim": "Checked download/import failure display"
+        },
+        {
+          "path": "server/libraryStore.js",
+          "lineStart": 3695,
+          "lineEnd": 3700,
+          "claim": "Preparation validation"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 3514,
+          "lineEnd": 3527,
+          "claim": "Edited scenario replacement warning"
+        },
+        {
+          "path": "README.md",
+          "lineStart": 30,
+          "lineEnd": 30,
+          "claim": "Matching geometry requirement"
+        }
+      ]
+    },
+    {
+      "id": "publishing",
+      "title": {
+        "en": "Publish or suggest changes",
+        "sv": "Publicera eller föreslå ändringar"
+      },
+      "body": {
+        "en": "Publishing exports your chosen scenario and opens a prefilled GitHub post. Attach the downloaded bundle and any separately downloaded cover image, review the form and submit it yourself. Preparing these files does not publish the post automatically.\n\nA linked scenario can also prepare a suggestion file for its author. The suggestion controls save the file and optionally open the post; review what you are sending before attaching it. Work on an [editor copy](/wiki/editor/) and keep an export of your own version.",
+        "sv": "Publicering exporterar ditt valda scenario och öppnar ett förifyllt GitHub-inlägg. Bifoga det hämtade paketet och en eventuell separat hämtad omslagsbild, granska formuläret och skicka in det själv. Förberedelsen av filerna publicerar inte inlägget automatiskt.\n\nEtt länkat scenario kan också förbereda en förslagsfil till författaren. Förslagsreglagen sparar filen och kan öppna inlägget. Granska det du skickar innan du bifogar filen. Arbeta på en [redigeringskopia](/wiki/editor/) och behåll en export av din egen version."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/communityHub.jsx",
+          "lineStart": 527,
+          "lineEnd": 537,
+          "claim": "Publishing builds local export"
+        },
+        {
+          "path": "src/Game/GameUI/communityHub.jsx",
+          "lineStart": 600,
+          "lineEnd": 620,
+          "claim": "Prefilled post and manual attachment instruction"
+        },
+        {
+          "path": "src/Game/GameUI/ScenarioSuggestions.jsx",
+          "lineStart": 504,
+          "lineEnd": 507,
+          "claim": "Suggestion file/save/post controls"
+        }
+      ]
+    },
+    {
+      "id": "checks-and-licence",
+      "title": {
+        "en": "Checked files and sharing terms",
+        "sv": "Granskade filer och delningsvillkor"
+      },
+      "body": {
+        "en": "The client uses the hub’s index to find checked release files. It does not fall back to an unchecked post attachment when a file is missing from that index. The index cache lasts **five minutes**, so a new release may take time to appear. Basemap and flag downloads also use the hub’s checked-file mechanism where offered.\n\nThe application’s sharing notice releases scenarios made in Open Historia and posted or shared under **Creative Commons Attribution 4.0 International (CC BY 4.0)**. Suggestions follow those sharing terms. Bundles carry a licence record and ZIP files carry `LICENSE.txt`. Material the author does not own and separately referenced assets keep their own rights and terms. Preserve Open Historia attribution and the source code’s **AGPL-3.0-or-later** notices.",
+        "sv": "Klienten använder hubbens index för att hitta granskade utgivningsfiler. Den hämtar inte en ogranskad inläggsbilaga som reserv om filen saknas i indexet. Indexets cache gäller i **fem minuter**, så en ny utgåva kan dröja innan den syns. Även hämtningar av baskartor och flaggor använder hubbens mekanism för granskade filer där de erbjuds.\n\nProgrammets delningsmeddelande anger att scenarier som skapats i Open Historia och publiceras eller delas släpps under **Creative Commons Attribution 4.0 International (CC BY 4.0)**. Förslag följer dessa delningsvillkor. Paketen innehåller en licenspost och ZIP-filer innehåller `LICENSE.txt`. Material som författaren inte äger och separat refererade resurser behåller sina egna rättigheter och villkor. Bevara Open Historias tillskrivning och källkodens meddelanden om **AGPL-3.0-or-later**."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/hubFiles.js",
+          "lineStart": 17,
+          "lineEnd": 40,
+          "claim": "Checked-file gate and no attachment fallback including assets"
+        },
+        {
+          "path": "src/runtime/hubFiles.js",
+          "lineStart": 49,
+          "lineEnd": 52,
+          "claim": "Five-minute index cache"
+        },
+        {
+          "path": "src/runtime/hubFiles.js",
+          "lineStart": 195,
+          "lineEnd": 197,
+          "claim": "Actual cache predicate"
+        },
+        {
+          "path": "server/scenarioLicense.js",
+          "lineStart": 10,
+          "lineEnd": 31,
+          "claim": "Notice locations licenceID and scope exclusions"
+        },
+        {
+          "path": "server/scenarioLicense.js",
+          "lineStart": 19,
+          "lineEnd": 26,
+          "claim": "Third-party/separate asset rights"
+        },
+        {
+          "path": "README.md",
+          "lineStart": 113,
+          "lineEnd": 115,
+          "claim": "Source attribution/AGPL"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Browsing",
+      "upstreamLine": 9,
+      "status": "adapted",
+      "currentSectionId": "browse",
+      "reason": "Actual shelf layout, no beta date filters/detail-map inventory."
+    },
+    {
+      "upstreamHeading": "The official presets",
+      "upstreamLine": 39,
+      "status": "adapted",
+      "currentSectionId": "browse",
+      "reason": "Prepared local historical starts replace upstream official preset table as onboarding."
+    },
+    {
+      "upstreamHeading": "Importing",
+      "upstreamLine": 55,
+      "status": "adapted",
+      "currentSectionId": "import-and-update",
+      "reason": "Checked download plus actual preparation validation; no universal immediate-play guarantee."
+    },
+    {
+      "upstreamHeading": "Updates",
+      "upstreamLine": 73,
+      "status": "adapted",
+      "currentSectionId": "import-and-update",
+      "reason": "Actual replace-edits warning; no unconditional existing-map compatibility guarantee."
+    },
+    {
+      "upstreamHeading": "Suggesting changes",
+      "upstreamLine": 87,
+      "status": "retained",
+      "currentSectionId": "publishing",
+      "reason": "Linked scenario suggestion file/post flow."
+    },
+    {
+      "upstreamHeading": "Publishing your own",
+      "upstreamLine": 113,
+      "status": "retained",
+      "currentSectionId": "publishing",
+      "reason": "Local export + prefilled form + manual post, preserving licence meaning."
+    },
+    {
+      "upstreamHeading": "Basemaps and flags",
+      "upstreamLine": 142,
+      "status": "adapted",
+      "currentSectionId": "checks-and-licence",
+      "reason": "Checked basemap/flag mechanism retained; beta music/detailed maps absent at pin."
+    },
+    {
+      "upstreamHeading": "How it works underneath",
+      "upstreamLine": 153,
+      "status": "retained",
+      "currentSectionId": "checks-and-licence",
+      "reason": "Checked index source and cache rule verified; no live service-availability assertion."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 178,
+      "status": "retained",
+      "currentSectionId": "publishing",
+      "reason": "Current editor/save/start links."
+    }
+  ]
+}

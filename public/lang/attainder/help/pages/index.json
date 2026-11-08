@@ -1,0 +1,115 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/index",
+  "route": "/wiki/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/index.md",
+  "title": {
+    "en": "Attainder guide",
+    "sv": "Guide till Attainder"
+  },
+  "nav": {
+    "en": "Guide home",
+    "sv": "Guidens startsida"
+  },
+  "description": {
+    "en": "Choose a historical start, lead a realm or family, and read the consequences of your decisions.",
+    "sv": "Välj en historisk start, led ett rike eller en familj och följ konsekvenserna av dina beslut."
+  },
+  "sections": [
+    {
+      "id": "begin",
+      "title": {
+        "en": "Begin a campaign",
+        "sv": "Börja en kampanj"
+      },
+      "body": {
+        "en": "Choose a historical start from the start card, then decide whether to follow the realm or a family. New campaigns must begin between 3300 BC and AD 1530. The start card lists the playable starts available in your library; the date range does not mean that every year has a prepared start.\n\nRead [Starting a campaign](/wiki/new-game/) for the choices on the card, or follow [Your first campaign](/wiki/first-campaign/) through your opening decisions.",
+        "sv": "Välj en historisk start på startkortet och bestäm om du vill följa riket eller en familj. Nya kampanjer måste börja mellan 3300 f.Kr. och 1530 e.Kr. Startkortet visar de spelbara starter som finns i ditt bibliotek. Tidsgränserna betyder inte att varje år har en förberedd start.\n\nLäs [Starta en kampanj](/wiki/new-game/) om valen på kortet, eller följ [Din första kampanj](/wiki/first-campaign/) genom de första besluten."
+      },
+      "evidence": [
+        {
+          "path": "server/historicalStarts.js",
+          "lineStart": 3,
+          "lineEnd": 4,
+          "claim": "Permitted start-year range."
+        },
+        {
+          "path": "src/runtime/startDynastyCampaign.js",
+          "lineStart": 6,
+          "lineEnd": 11,
+          "claim": "Start options come from historical library summaries."
+        },
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 60,
+          "lineEnd": 68,
+          "claim": "Realm and family modes and their descriptions."
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": {
+        "en": "Make decisions and advance time",
+        "sv": "Fatta beslut och låt tiden gå"
+      },
+      "body": {
+        "en": "In the character panel, inspect the people, families, offices and resources involved in your next decision. You can describe an action in your own words or choose one from the action list. Read its confirmation card before committing.\n\nThe model interprets your words and narrates events. The game rules determine the effects. When you advance the year, read the report and handle any decision that interrupts the turn. [How to play](/wiki/how-to-play/) explains this loop.",
+        "sv": "I personpanelen kan du undersöka personer, familjer, ämbeten och resurser som berör ditt nästa beslut. Beskriv en handling med egna ord eller välj en från handlingslistan. Läs bekräftelsekortet innan du genomför den.\n\nModellen tolkar dina ord och berättar om händelserna. Spelreglerna avgör följderna. Läs rapporten när du går vidare ett år och hantera beslut som avbryter turen. [Så spelar du](/wiki/how-to-play/) beskriver förloppet."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 453,
+          "lineEnd": 471,
+          "claim": "Free text, list, confirmation and outcome stages."
+        },
+        {
+          "path": "src/Game/Characters/LocalModelConnect.jsx",
+          "lineStart": 58,
+          "lineEnd": 59,
+          "claim": "Model and rules have separate responsibilities."
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 432,
+          "lineEnd": 449,
+          "claim": "Annual report and interruption handling."
+        }
+      ]
+    },
+    {
+      "id": "historical-reference",
+      "title": {
+        "en": "Read the historical reference",
+        "sv": "Läs den historiska referensen"
+      },
+      "body": {
+        "en": "Open the start card's sources and uncertainty section before choosing a campaign. It describes the historical coverage and the limits of the start. Your campaign can develop differently from recorded history.\n\nAfter a turn closes a calendar year, the historical notice can show sourced events from the real world. The chronicle lists the available events for the years your campaign has passed. A year with no listed event is a gap in the catalog, not a claim that nothing happened. See [Events](/wiki/events/) for the distinction between campaign events and historical references.",
+        "sv": "Öppna avsnittet om källor och osäkerhet på startkortet innan du väljer kampanj. Där kan du läsa om det historiska underlaget och startens begränsningar. Din kampanj kan utvecklas annorlunda än verklig historia.\n\nNär en tur avslutar ett kalenderår kan historikmeddelandet visa källbelagda händelser från verkligheten. I krönikan kan du läsa de tillgängliga händelserna för år som kampanjen har passerat. Om ett år saknar listade händelser betyder det att katalogen har en lucka. Det säger inget om hur händelserikt året var. Läs [Händelser](/wiki/events/) om skillnaden mellan kampanjhändelser och historiska referenser."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 70,
+          "lineEnd": 71,
+          "claim": "Sources/uncertainty details and alternate-history notice."
+        },
+        {
+          "path": "src/Game/Characters/HistoricalYearNotice.jsx",
+          "lineStart": 54,
+          "lineEnd": 85,
+          "claim": "Closed-year lookup and no-event suppression."
+        },
+        {
+          "path": "src/Game/Characters/HistoricalRecordView.jsx",
+          "lineStart": 31,
+          "lineEnd": 52,
+          "claim": "Chronicle of closed campaign years and catalog absence."
+        }
+      ]
+    }
+  ],
+  "upstreamRawSha256": "40306041ae143d474bb0f66530e7197962e57f949ed8e03a48834518edc4bd41"
+}

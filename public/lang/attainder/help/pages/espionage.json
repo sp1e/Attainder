@@ -1,0 +1,356 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/espionage",
+  "route": "/wiki/espionage/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/espionage.md",
+  "upstreamRawSha256": "51b49f851f28715ffc0c9be1d3ee774a1e19755073216456cce17ec129eb0340",
+  "title": {
+    "en": "Espionage and intercepted reports",
+    "sv": "Spionage och avlyssningsrapporter"
+  },
+  "nav": {
+    "en": "Espionage",
+    "sv": "Spionage"
+  },
+  "description": {
+    "en": "Understand the general spy service and distinguish it from court intrigue.",
+    "sv": "Förstå den allmänna spiontjänsten och skilj den från hovets intriger."
+  },
+  "sections": [
+    {
+      "id": "access",
+      "title": {
+        "en": "Find the relevant system",
+        "sv": "Hitta rätt system"
+      },
+      "body": {
+        "en": "A dynasty campaign’s intrigue view belongs to its character system: it shows the secrets and hooks available to your side. Personal conversations can reveal secrets or create a pledge that gives a hook. Read [Diplomacy](/wiki/diplomacy/) for the confirmation flow.\n\nThe general country-spy interface is a separate system. It lives in the chat panel’s spy tab, visible when the espionage feature is enabled. That panel is available through the bottom toolbar only in campaigns without a character system. In a dynasty campaign, use the character intrigue controls; the country-spy tab is unavailable.",
+        "sv": "En dynastikampanjs intrigvy hör till karaktärssystemet. Den visar hemligheter och grepp som din sida har tillgång till. Personliga samtal kan avslöja hemligheter eller skapa ett löfte som ger ett grepp. Läs [Diplomati](/wiki/diplomacy/) om bekräftelseflödet.\n\nDet allmänna gränssnittet för landsspionage är ett separat system. Det finns i chattpanelens spionflik, som visas när spionagefunktionen är aktiverad. Panelen visas genom det nedre verktygsfältet bara i kampanjer utan karaktärssystem. Använd karaktärernas intrigreglage i en dynastikampanj. Fliken för landsspionage är inte tillgänglig där."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 500,
+          "lineEnd": 500,
+          "claim": "Character intrigue view"
+        },
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 37,
+          "lineEnd": 42,
+          "claim": "Secret and pledge effects"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 2193,
+          "lineEnd": 2198,
+          "claim": "Conditional spy tab"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 2591,
+          "lineEnd": 2603,
+          "claim": "Spy view mounting"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 3538,
+          "lineEnd": 3552,
+          "claim": "Chat owned by toolbar"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 578,
+          "lineEnd": 583,
+          "claim": "Toolbar not mounted in character campaign"
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "title": {
+        "en": "Deploy and recall country agents",
+        "sv": "Placera och kalla hem landsagenter"
+      },
+      "body": {
+        "en": "In a campaign with the general spy tab, choose a target country to deploy an agent. You can run at most 3 live agents per owner, with one per target and none in your own country. Recall one when you need its place for another target. These agents are separate from the court staff who assist a character action.\n\nThe service rating ranges from 0 to 100 and defaults to 40 until assessed. Detection depends on the gap between services, with a chance of at least 2% per jump. A strong service reduces risk; it never removes it.",
+        "sv": "Välj ett målland för att placera en agent i en kampanj som har den allmänna spionfliken. Du kan ha högst 3 verksamma agenter per ägare, med en per målland och ingen i ditt eget land. Kalla hem en när du behöver platsen för ett annat mål. Dessa agenter är skilda från hovpersonalen som hjälper till med en karaktärshandling.\n\nUnderrättelsetjänstens värde går från 0 till 100 och är 40 tills tjänsten har bedömts. Upptäcktsrisken beror på skillnaden mellan tjänsterna och är minst 2% per tidssteg. En stark tjänst minskar risken men tar aldrig bort den."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/spycraft.js",
+          "lineStart": 14,
+          "lineEnd": 27,
+          "claim": "Default rating and caps"
+        },
+        {
+          "path": "src/runtime/spycraft.js",
+          "lineStart": 109,
+          "lineEnd": 126,
+          "claim": "No self target, one target, three live agents"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 2057,
+          "lineEnd": 2059,
+          "claim": "Recall control handler"
+        },
+        {
+          "path": "src/runtime/spycraft.js",
+          "lineStart": 204,
+          "lineEnd": 210,
+          "claim": "Detection chance cap/floor"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 159,
+          "lineEnd": 167,
+          "claim": "Court assisting agent roles are different action means"
+        }
+      ]
+    },
+    {
+      "id": "capture",
+      "title": {
+        "en": "Caught and turned agents",
+        "sv": "Avslöjade och omvända agenter"
+      },
+      "body": {
+        "en": "A foreign agent discovered in your country stops reporting and waits for your decision. You can expel the agent or turn them. A turned agent reports the cover story you supply; you can write it before turning and update it afterward.\n\nAnother country can silently turn your agent. Your service may later become suspicious, but a report arriving is not proof that its source remains trustworthy. The general system allows at most 3 foreign agents in the player’s country at once.",
+        "sv": "En utländsk agent som upptäcks i ditt land slutar rapportera och väntar på ditt beslut. Du kan utvisa agenten eller vända den. En omvänd agent rapporterar täckhistorien som du anger. Du kan skriva den före omvändningen och uppdatera den efteråt.\n\nEtt annat land kan vända din agent utan att meddela dig. Din egen tjänst kan senare bli misstänksam, men en inkommande rapport bevisar inte att källan fortfarande är pålitlig. Det allmänna systemet tillåter högst 3 utländska agenter i spelarens land samtidigt."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/spycraft.js",
+          "lineStart": 261,
+          "lineEnd": 302,
+          "claim": "Discovered waits for player; AI silent turn and later suspicion"
+        },
+        {
+          "path": "src/runtime/spycraft.js",
+          "lineStart": 308,
+          "lineEnd": 319,
+          "claim": "Foreign agent cap"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 2136,
+          "lineEnd": 2156,
+          "claim": "Expel/turn and editable cover story controls"
+        }
+      ]
+    },
+    {
+      "id": "reports",
+      "title": {
+        "en": "Read reports with their limits",
+        "sv": "Läs rapporter med deras begränsningar"
+      },
+      "body": {
+        "en": "The readable part of an intercepted exchange depends on both services. The current clarity formula is `0.12 + yours/100 × 0.88 − theirs/100 × 0.35`, clamped to 6%–100%. Redaction uses stable word draws, so a higher clarity reveals more words rather than hiding words you could already read.\n\nAn active agent can bring a copy of a document held by its target government. A turned agent brings no genuine copy through this channel. Reports are sealed in storage with a per-game key; the key is also in the save, so this protects the play experience rather than creating a security boundary. Undoing or cutting short a turn also removes document copies that no longer belong to its record.\n\nDeployed country agents can report with a time jump’s answer. Between turns, the visible game checks once a minute whether to gather a report, subject to the espionage feature, background allowance, busy-state and unread-event guards. A check does not guarantee a report or a fixed interval per agent.",
+        "sv": "Hur stor del av ett avlyssnat samtal som går att läsa beror på båda underrättelsetjänsterna. Den aktuella formeln för läsbarhet är `0.12 + din/100 × 0.88 − deras/100 × 0.35`, begränsad till 6%–100%. Maskeringen använder samma dragning för varje ord, så högre läsbarhet visar fler ord i stället för att dölja sådant du redan kunde läsa.\n\nEn aktiv agent kan ta en kopia av ett dokument som mållandets regering har. En omvänd agent ger ingen verklig kopia genom den kanalen. Rapporterna är krypterade i lagringen med en nyckel per spel. Nyckeln finns också i sparningen, så detta skyddar spelupplevelsen och skapar ingen säkerhetsgräns. Att ångra eller korta en tur tar också bort dokumentkopior som inte längre hör till historiken.\n\nPlacerade landsagenter kan rapportera tillsammans med ett tidsstegs svar. Mellan turerna kontrollerar det synliga spelet en gång i minuten om en rapport ska hämtas, beroende på spionagefunktionen, bakgrundsutrymmet, pågående arbete och olästa händelser. En kontroll garanterar varken en rapport eller ett fast intervall per agent."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/spycraft.js",
+          "lineStart": 330,
+          "lineEnd": 357,
+          "claim": "Exact clarity formula and stable redaction"
+        },
+        {
+          "path": "src/runtime/reportDelivery.js",
+          "lineStart": 62,
+          "lineEnd": 101,
+          "claim": "Stolen copy delivery and active agent contract"
+        },
+        {
+          "path": "src/runtime/spySeal.js",
+          "lineStart": 1,
+          "lineEnd": 12,
+          "claim": "Encrypted storage and security limitation"
+        },
+        {
+          "path": "src/runtime/reportDelivery.js",
+          "lineStart": 194,
+          "lineEnd": 208,
+          "claim": "Undo/intervention removes orphan copies"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 346,
+          "lineEnd": 362,
+          "claim": "Visible-minute report poll independent of Toolbar"
+        },
+        {
+          "path": "src/Game/AI/gameplay.js",
+          "lineStart": 11489,
+          "lineEnd": 11513,
+          "claim": "Actual guarded random report selects one existing agent"
+        },
+        {
+          "path": "src/Game/AI/agentReports.js",
+          "lineStart": 50,
+          "lineEnd": 65,
+          "claim": "Reports folded into jump answer"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Intelligence rating",
+      "upstreamLine": 21,
+      "status": "adapted",
+      "currentSectionId": "agents",
+      "reason": "Current0–100/default40."
+    },
+    {
+      "upstreamHeading": "Limits",
+      "upstreamLine": 38,
+      "status": "adapted",
+      "currentSectionId": "agents",
+      "reason": "Actual three/one/no-self caps."
+    },
+    {
+      "upstreamHeading": "Sending an agent",
+      "upstreamLine": 49,
+      "status": "adapted",
+      "currentSectionId": "agents",
+      "reason": "Conditional general spy interface."
+    },
+    {
+      "upstreamHeading": "Getting caught",
+      "upstreamLine": 77,
+      "status": "adapted",
+      "currentSectionId": "agents",
+      "reason": "Current detection domain."
+    },
+    {
+      "upstreamHeading": "Caught, then what",
+      "upstreamLine": 105,
+      "status": "adapted",
+      "currentSectionId": "capture",
+      "reason": "Actual discovered/turned/exposed flow."
+    },
+    {
+      "upstreamHeading": "Who sent them",
+      "upstreamLine": 118,
+      "status": "unsupported",
+      "currentSectionId": "capture",
+      "reason": "No beta unidentified-death branch in current resolver."
+    },
+    {
+      "upstreamHeading": "The turned agent",
+      "upstreamLine": 135,
+      "status": "adapted",
+      "currentSectionId": "capture",
+      "reason": "Actual silent turn and suspicion."
+    },
+    {
+      "upstreamHeading": "Being spied on",
+      "upstreamLine": 160,
+      "status": "adapted",
+      "currentSectionId": "capture",
+      "reason": "Foreign cap and player decision."
+    },
+    {
+      "upstreamHeading": "Reading intercepts",
+      "upstreamLine": 193,
+      "status": "adapted",
+      "currentSectionId": "reports",
+      "reason": "Exact current formula and stable redaction."
+    },
+    {
+      "upstreamHeading": "Clarity on beta",
+      "upstreamLine": 221,
+      "status": "unsupported",
+      "currentSectionId": "reports",
+      "reason": "Beta curve absent; current formula explicitly given."
+    },
+    {
+      "upstreamHeading": "Stolen documents",
+      "upstreamLine": 247,
+      "status": "adapted",
+      "currentSectionId": "reports",
+      "reason": "Current report delivery and sealed copy."
+    },
+    {
+      "upstreamHeading": "Agents report in real time",
+      "upstreamLine": 264,
+      "status": "adapted",
+      "currentSectionId": "reports",
+      "reason": "Current visible-minute poll and guards described; random checks do not guarantee per-agent20minute cadence."
+    },
+    {
+      "upstreamHeading": "Agents at war",
+      "upstreamLine": 276,
+      "status": "unsupported",
+      "currentSectionId": "access",
+      "reason": "No battlefield-plan interface."
+    },
+    {
+      "upstreamHeading": "Orders and operations",
+      "upstreamLine": 288,
+      "status": "unsupported",
+      "currentSectionId": "access",
+      "reason": "Beta network operation UI missing; court intrigue distinguished."
+    },
+    {
+      "upstreamHeading": "What a network collects on",
+      "upstreamLine": 295,
+      "status": "unsupported",
+      "currentSectionId": "access",
+      "reason": "No collect-on selector in current spy view."
+    },
+    {
+      "upstreamHeading": "Ordering an operation",
+      "upstreamLine": 303,
+      "status": "unsupported",
+      "currentSectionId": "access",
+      "reason": "No beta operation confirmation UI."
+    },
+    {
+      "upstreamHeading": "What the world sees",
+      "upstreamLine": 339,
+      "status": "unsupported",
+      "currentSectionId": "capture",
+      "reason": "Current detection and attribution only; beta operations omitted."
+    },
+    {
+      "upstreamHeading": "Recruited sources",
+      "upstreamLine": 359,
+      "status": "unsupported",
+      "currentSectionId": "access",
+      "reason": "No current recruited-source collection."
+    },
+    {
+      "upstreamHeading": "The Operations log",
+      "upstreamLine": 369,
+      "status": "unsupported",
+      "currentSectionId": "access",
+      "reason": "Beta operation log absent."
+    },
+    {
+      "upstreamHeading": "Using them well",
+      "upstreamLine": 377,
+      "status": "adapted",
+      "currentSectionId": "capture",
+      "reason": "Trust/recall advice limited to implemented agents."
+    },
+    {
+      "upstreamHeading": "Playing it well",
+      "upstreamLine": 386,
+      "status": "adapted",
+      "currentSectionId": "agents",
+      "reason": "Actual capacity and persistent risk."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 395,
+      "status": "adapted",
+      "currentSectionId": "access",
+      "reason": "Current diplomacy/character distinction."
+    }
+  ]
+}

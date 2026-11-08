@@ -1,0 +1,266 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/orders",
+  "route": "/wiki/orders/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/play/orders.md",
+  "upstreamRawSha256": "90c58339103b6dd49ddd7b47acd82c6751985dc2424da0bb72dbf50a34c72783",
+  "title": {
+    "en": "Actions and orders",
+    "sv": "Handlingar och order"
+  },
+  "nav": {
+    "en": "Actions",
+    "sv": "Handlingar"
+  },
+  "description": {
+    "en": "Prepare a character action, inspect its cost and confirm the action.",
+    "sv": "Förbered en karaktärshandling, granska kostnaden och bekräfta genomförandet."
+  },
+  "sections": [
+    {
+      "id": "prepare",
+      "title": {
+        "en": "Prepare an action",
+        "sv": "Förbered en handling"
+      },
+      "body": {
+        "en": "In the realm and families overview, describe what your representative should do, then ask the model to interpret it. You can also choose an action directly from the list. The text field accepts up to 500 characters. If interpretation fails, the action list remains available.\n\nInterpretation prepares a proposal. Read the confirmation before carrying it out: who acts, who is affected, which resources are used and what the action costs. The decisions tab also lists available matters and commands with their own actor, mandate and resource requirements.",
+        "sv": "Beskriv i överblicken för rike och familjer vad din företrädare ska göra och låt modellen tolka texten. Du kan också välja en handling direkt ur listan. Textfältet tar högst 500 tecken. Om tolkningen misslyckas finns handlingslistan kvar.\n\nTolkningen förbereder ett förslag. Läs bekräftelsen innan du genomför det: vem som agerar, vem som berörs, vilka resurser som används och vad handlingen kostar. Beslutsfliken visar också tillgängliga ärenden och handlingar med egna krav på aktör, mandat och resurser."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 417,
+          "lineEnd": 439,
+          "claim": "Interpretation, proposal and confirmed execution"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 453,
+          "lineEnd": 470,
+          "claim": "500-character input and menu fallback"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 149,
+          "lineEnd": 193,
+          "claim": "Confirmation facts and confirm/cancel"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 499,
+          "lineEnd": 499,
+          "claim": "Decisions, responsible actor and mandate"
+        }
+      ]
+    },
+    {
+      "id": "chance",
+      "title": {
+        "en": "Read the chance before committing",
+        "sv": "Läs chansen innan du bestämmer dig"
+      },
+      "body": {
+        "en": "For a contested action, choose the target and any available means, then request an estimate. The confirmation shows the chance of success, the chance of secrecy and the modifiers the representative can discern. Read the displayed precision rather than assuming every estimate is exact.\n\nYou can cancel the proposal before execution. If the world changes after preparation, the card asks you to prepare it again or recalculate the chance. The confirmed attempt uses the revision on which the estimate was made.",
+        "sv": "Välj mål och tillgängliga medel för en omstridd handling och begär sedan en uppskattning. Bekräftelsen visar chansen att lyckas, chansen att förbli hemlig och de faktorer som företrädaren kan urskilja. Läs den precision som visas och utgå inte från att varje uppskattning är exakt.\n\nDu kan avbryta förslaget före genomförandet. Om världen ändras efter förberedelsen ber kortet dig förbereda handlingen igen eller beräkna chansen på nytt. Det bekräftade försöket använder den version av läget som uppskattningen byggde på."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 231,
+          "lineEnd": 257,
+          "claim": "Target, silver, agents and estimate control"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 159,
+          "lineEnd": 180,
+          "claim": "Displayed odds and discernible modifiers"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 374,
+          "lineEnd": 386,
+          "claim": "Stale proposal requires fresh preparation"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 432,
+          "lineEnd": 441,
+          "claim": "Submission bound to estimated revision"
+        }
+      ]
+    },
+    {
+      "id": "outcome",
+      "title": {
+        "en": "Read the result and running schemes",
+        "sv": "Läs utfallet och pågående intriger"
+      },
+      "body": {
+        "en": "The rules settle a contested attempt before the model writes its story. The result can succeed or fail, remain quiet, become exposed or backfire. If narration fails, the settled outcome still applies and the panel shows the standard account with a note.\n\nSome actions begin a scheme with a future resolution date. Read its actor, targets and due date under running schemes. Aborting asks for a second confirmation. Silver and action capacity already spent are not returned.",
+        "sv": "Reglerna avgör ett omstritt försök innan modellen skriver berättelsen. Försöket kan lyckas eller misslyckas, förbli dolt, avslöjas eller slå tillbaka. Om berättelsen inte kan skrivas gäller det avgjorda utfallet ändå och panelen visar standardtexten med en notering.\n\nVissa handlingar inleder en intrig som avgörs senare. Läs aktör, mål och slutdatum under pågående intriger. Att avbryta kräver ytterligare en bekräftelse. Silver och handlingsutrymme som redan har använts lämnas inte tillbaka."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 12,
+          "lineEnd": 19,
+          "claim": "Outcome tiers"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 104,
+          "lineEnd": 146,
+          "claim": "Rules settle before narration; failure preserves outcome; future schemes"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 348,
+          "lineEnd": 366,
+          "claim": "Scheme display and nonrefundable cancellation"
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "title": {
+        "en": "Write a usable intention",
+        "sv": "Skriv en tydlig avsikt"
+      },
+      "body": {
+        "en": "Name a concrete target and the change you want to attempt. Then check that the proposed action matches your intention. Use the available list when you need to see what your representative can currently do. Disabled entries explain what is missing.\n\nA request to another person follows the conversation flow and may need a separate confirmation. A pending story offers its own choices and deadline. Read those controls before advancing time. See [Diplomacy](/wiki/diplomacy/) and [Events](/wiki/events/).",
+        "sv": "Ange ett konkret mål och den förändring du vill försöka åstadkomma. Kontrollera sedan att den föreslagna handlingen stämmer med din avsikt. Använd listan när du behöver se vad företrädaren kan göra just nu. Inaktiva alternativ förklarar vad som saknas.\n\nEn förfrågan till en annan person följer samtalsflödet och kan kräva en separat bekräftelse. Ett pågående ärende har egna val och en tidsgräns. Läs dem innan du låter tiden gå. Se [Diplomati](/wiki/diplomacy/) och [Händelser](/wiki/events/)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 268,
+          "lineEnd": 285,
+          "claim": "Catalogue preserves disabled options and reason"
+        },
+        {
+          "path": "src/Game/Characters/ConversationView.jsx",
+          "lineStart": 144,
+          "lineEnd": 153,
+          "claim": "Conversation estimate and confirmed request"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 188,
+          "lineEnd": 196,
+          "claim": "Story choices and deadline"
+        }
+      ]
+    },
+    {
+      "id": "legacy",
+      "title": {
+        "en": "Queued orders in other campaigns",
+        "sv": "Köade order i andra kampanjer"
+      },
+      "body": {
+        "en": "Campaigns without a character system show the bottom toolbar’s general action panel. There you can queue orders for a later turn, refine a draft, request suggestions and set a standing goal. Suggestions enter the queue only when selected; refining changes the draft before submission.\n\nThe standing goal guides the advisor, simulation and action suggestions. It is locked while a turn runs. A dynasty campaign uses the character action controls described above; its bottom toolbar is hidden.",
+        "sv": "Kampanjer utan karaktärssystem visar det nedre verktygsfältets allmänna handlingspanel. Där kan du köa order inför en senare tur, bearbeta ett utkast, begära förslag och ange ett övergripande mål. Förslag läggs i kön när du väljer dem. Bearbetning ändrar utkastet före inlämning.\n\nDet övergripande målet vägleder rådgivaren, simuleringen och handlingsförslagen. Det är låst medan en tur pågår. En dynastikampanj använder karaktärernas handlingsreglage som beskrivs ovan. Där är det nedre verktygsfältet dolt."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 578,
+          "lineEnd": 583,
+          "claim": "Generic toolbar only without characterSystem"
+        },
+        {
+          "path": "src/Game/GameUI/actions.jsx",
+          "lineStart": 280,
+          "lineEnd": 286,
+          "claim": "Standing goal purpose and lock"
+        },
+        {
+          "path": "src/Game/GameUI/actions.jsx",
+          "lineStart": 550,
+          "lineEnd": 562,
+          "claim": "Queue order persistence"
+        },
+        {
+          "path": "src/Game/GameUI/actions.jsx",
+          "lineStart": 577,
+          "lineEnd": 581,
+          "claim": "Refine returns editable draft"
+        },
+        {
+          "path": "src/Game/GameUI/actions.jsx",
+          "lineStart": 617,
+          "lineEnd": 640,
+          "claim": "Selected suggestion queued; generation separate"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Queuing an order",
+      "upstreamLine": 8,
+      "status": "adapted",
+      "currentSectionId": "prepare",
+      "reason": "Character confirmation flow primary; generic queue explicitly qualified."
+    },
+    {
+      "upstreamHeading": "The standing goal",
+      "upstreamLine": 29,
+      "status": "retained",
+      "currentSectionId": "legacy",
+      "reason": "Standing goal remains in non-character action panel."
+    },
+    {
+      "upstreamHeading": "The ✦ sparkle: refining a draft",
+      "upstreamLine": 48,
+      "status": "retained",
+      "currentSectionId": "legacy",
+      "reason": "Refine modifies draft before queue."
+    },
+    {
+      "upstreamHeading": "AI suggestions",
+      "upstreamLine": 56,
+      "status": "retained",
+      "currentSectionId": "legacy",
+      "reason": "Suggestions remain opt-in queue entries."
+    },
+    {
+      "upstreamHeading": "Writing orders that work",
+      "upstreamLine": 66,
+      "status": "adapted",
+      "currentSectionId": "plan",
+      "reason": "Concrete target advice tied to current proposal verification."
+    },
+    {
+      "upstreamHeading": "What happens at the jump",
+      "upstreamLine": 90,
+      "status": "adapted",
+      "currentSectionId": "outcome",
+      "reason": "Immediate engine attempts and delayed schemes replace universal next-jump execution."
+    },
+    {
+      "upstreamHeading": "Orders that touch other systems",
+      "upstreamLine": 108,
+      "status": "adapted",
+      "currentSectionId": "plan",
+      "reason": "Current conversation and story controls linked; missing beta front/annexation modules not promised."
+    },
+    {
+      "upstreamHeading": "Orders are not the only lever",
+      "upstreamLine": 139,
+      "status": "adapted",
+      "currentSectionId": "plan",
+      "reason": "Other current decision paths retained."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 145,
+      "status": "adapted",
+      "currentSectionId": "plan",
+      "reason": "Current navigation."
+    }
+  ]
+}

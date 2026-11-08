@@ -1,0 +1,272 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/saves",
+  "route": "/wiki/saves/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/tools/saves.md",
+  "upstreamRawSha256": "d8ec9a33c7646108326730647aaa9ccf70e5022456b0671595c195e177e85825",
+  "title": {
+    "en": "Saves and backups",
+    "sv": "Sparfiler och säkerhetskopior"
+  },
+  "nav": {
+    "en": "Saves",
+    "sv": "Sparfiler"
+  },
+  "description": {
+    "en": "Clone a campaign, export its files and restore the matching map.",
+    "sv": "Klona en kampanj, exportera filerna och återställ den matchande kartan."
+  },
+  "sections": [
+    {
+      "id": "library",
+      "title": {
+        "en": "Games, scenarios and copies",
+        "sv": "Spel, scenarier och kopior"
+      },
+      "body": {
+        "en": "A scenario supplies the starting world and map; a game is a campaign made from it. Use the library’s game-card menu to edit, clone or export a campaign. A clone gives you a separate branch to keep before trying a risky decision. Scenario cards have their own clone action.\n\nArchiving hides a game from the ordinary library shelf; unarchiving brings it back. Deleting removes its stored record. Export first if you may want it again.",
+        "sv": "Ett scenario ger startvärlden och kartan. Ett spel är en kampanj som har skapats från scenariot. Använd menyn på spelkortet för att redigera, klona eller exportera en kampanj. En klon ger dig en separat gren att behålla innan du provar ett riskfyllt beslut. Scenariokort har en egen kloningsfunktion.\n\nArkivering döljer ett spel från den vanliga bibliotekshyllan. Avarkivering tar fram det igen. Radering tar bort den lagrade posten. Exportera först om du kan vilja återvända till den."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 932,
+          "lineEnd": 936,
+          "claim": "Edit Clone Export menu"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 835,
+          "lineEnd": 838,
+          "claim": "Scenario clone"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 2252,
+          "lineEnd": 2257,
+          "claim": "Archive save flag"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 3055,
+          "lineEnd": 3062,
+          "claim": "Archived shelf separation"
+        },
+        {
+          "path": "src/runtime/web/libraryStore.js",
+          "lineStart": 1120,
+          "lineEnd": 1126,
+          "claim": "Deletion removes record"
+        }
+      ]
+    },
+    {
+      "id": "export",
+      "title": {
+        "en": "Move and back up a campaign",
+        "sv": "Flytta och säkerhetskopiera en kampanj"
+      },
+      "body": {
+        "en": "Choose **Export** on a game card to build its ZIP file. It includes the campaign bundle and available rollback snapshots, plus a settings report when available. The library’s game import reads that ZIP and restores a campaign. Keep the file outside the application’s storage.\n\nAn export can contain private campaign conversations, advisor exchanges and events. Read it before posting it publicly. On Android, file saving uses the Downloads folder or a share fallback; see [mobile](/wiki/mobile/#files-and-background).",
+        "sv": "Välj **Exportera** på ett spelkort för att skapa dess ZIP-fil. Den innehåller kampanjpaketet och tillgängliga återställningspunkter samt en inställningsrapport när den kan skapas. Bibliotekets spelimport läser ZIP-filen och återställer en kampanj. Behåll filen utanför programmets lagring.\n\nEn export kan innehålla privata kampanjsamtal, rådgivarutbyten och händelser. Granska den innan du publicerar den. På Android används hämtningarnas mapp eller delning som reserv. Läs om [mobilen](/wiki/mobile/#files-and-background)."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/gameZip.js",
+          "lineStart": 63,
+          "lineEnd": 76,
+          "claim": "Bundle snapshots settings export"
+        },
+        {
+          "path": "src/runtime/gameZip.js",
+          "lineStart": 111,
+          "lineEnd": 117,
+          "claim": "ZIP entries"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 2337,
+          "lineEnd": 2341,
+          "claim": "ZIP game import"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 1105,
+          "lineEnd": 1108,
+          "claim": "Conversation privacy notice"
+        },
+        {
+          "path": "src/runtime/native/fileSave.js",
+          "lineStart": 81,
+          "lineEnd": 110,
+          "claim": "Native save/share fallback"
+        }
+      ]
+    },
+    {
+      "id": "map-restoration",
+      "title": {
+        "en": "When the map does not travel",
+        "sv": "När kartan inte följer med"
+      },
+      "body": {
+        "en": "The exporter tries to carry every available matching map, including a built-in or community map. A scenario larger than **32 MiB** is left out before fetching it for the ZIP. Missing or invalid map data is also reported. Send the matching scenario separately when the export says the map was omitted.\n\nImport preserves the campaign’s people and replay data even if its map is unresolved. A scenario with the same identifier is insufficient: its geography must match the campaign. Restore that matching scenario before trying to play on the map. Scenario bundles can be exported as ZIP or JSON from their editor drawer.",
+        "sv": "Exporten försöker ta med varje tillgänglig matchande karta, även en inbyggd karta eller gemenskapskarta. Ett scenario som är större än **32 MiB** lämnas utanför innan det hämtas till ZIP-filen. Saknade eller ogiltiga kartdata redovisas också. Skicka det matchande scenariot separat när exporten meddelar att kartan utelämnades.\n\nImporten behåller kampanjens personer och återspelningsdata även om kartan inte kan kopplas. Samma scenarioidentifierare räcker inte. Geografin måste stämma med kampanjen. Återställ det matchande scenariot innan du försöker spela på kartan. Scenariopaket kan exporteras som ZIP eller JSON från redigeringspanelen."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/gameZip.js",
+          "lineStart": 48,
+          "lineEnd": 56,
+          "claim": "32MiB cap and every-map policy"
+        },
+        {
+          "path": "src/runtime/gameZip.js",
+          "lineStart": 76,
+          "lineEnd": 96,
+          "claim": "Missing oversize invalid companion conditions"
+        },
+        {
+          "path": "README.md",
+          "lineStart": 30,
+          "lineEnd": 30,
+          "claim": "Matching geography and preserved people/replay"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 1606,
+          "lineEnd": 1612,
+          "claim": "Scenario ZIP and JSON controls"
+        }
+      ]
+    },
+    {
+      "id": "storage-and-undo",
+      "title": {
+        "en": "Storage and undo",
+        "sv": "Lagring och ångring"
+      },
+      "body": {
+        "en": "The local launcher uses `play-data` under its selected data home. Changing the data home can therefore show a different library. A standalone server uses `OH_DATA_DIR` when set; browser-only storage keeps game records in the browser. Clearing that site’s storage can remove those records. Persistence permission is requested where the browser supports it, but an external backup remains useful.\n\nThe timeline’s undo uses available pre-turn snapshots. The snapshot archive is capped at **12**, and capture is best-effort. Check the available undo count; a snapshot is not a substitute for an exported backup. Read [time](/wiki/time/) for the campaign’s turn controls.",
+        "sv": "Den lokala starten använder `play-data` under vald datarot. En annan datarot kan därför visa ett annat bibliotek. En fristående server använder `OH_DATA_DIR` när den har angetts. Ren webbläsarlagring behåller spelposterna i webbläsaren. Rensning av webbplatsens lagring kan ta bort dessa poster. Beständig lagring begärs där webbläsaren stöder det, men en extern säkerhetskopia är fortfarande användbar.\n\nTidslinjens ångring använder tillgängliga ögonblicksbilder från före turen. Arkivet har en gräns på **12**, och sparandet av en ögonblicksbild kan misslyckas. Kontrollera hur många ångringar som finns. En ögonblicksbild ersätter inte en exporterad säkerhetskopia. Läs om [tid](/wiki/time/) för kampanjens tidsreglage."
+      },
+      "evidence": [
+        {
+          "path": "scripts/launch-dynasties.mjs",
+          "lineStart": 9,
+          "lineEnd": 12,
+          "claim": "Selected data home"
+        },
+        {
+          "path": "scripts/launch-dynasties.mjs",
+          "lineStart": 40,
+          "lineEnd": 42,
+          "claim": "Launcher play-data directory"
+        },
+        {
+          "path": "server/dataDir.js",
+          "lineStart": 15,
+          "lineEnd": 19,
+          "claim": "Server data directory"
+        },
+        {
+          "path": "src/runtime/web/libraryStore.js",
+          "lineStart": 65,
+          "lineEnd": 70,
+          "claim": "Browser game records"
+        },
+        {
+          "path": "src/runtime/web/index.js",
+          "lineStart": 28,
+          "lineEnd": 38,
+          "claim": "Best-effort persistence"
+        },
+        {
+          "path": "src/Game/AI/gameplay.js",
+          "lineStart": 7355,
+          "lineEnd": 7360,
+          "claim": "Snapshot cap best-effort"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 1351,
+          "lineEnd": 1353,
+          "claim": "Undo available count"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Games and scenarios",
+      "upstreamLine": 7,
+      "status": "adapted",
+      "currentSectionId": "library",
+      "reason": "Current library/export/storage implementation; no unconditional crash-proof autosave or beta trash guarantee."
+    },
+    {
+      "upstreamHeading": "Autosave",
+      "upstreamLine": 28,
+      "status": "adapted",
+      "currentSectionId": "storage-and-undo",
+      "reason": "Current library/export/storage implementation; no unconditional crash-proof autosave or beta trash guarantee."
+    },
+    {
+      "upstreamHeading": "Undo and rollback",
+      "upstreamLine": 36,
+      "status": "adapted",
+      "currentSectionId": "storage-and-undo",
+      "reason": "Current library/export/storage implementation; no unconditional crash-proof autosave or beta trash guarantee."
+    },
+    {
+      "upstreamHeading": "Cloning",
+      "upstreamLine": 51,
+      "status": "adapted",
+      "currentSectionId": "library",
+      "reason": "Current library/export/storage implementation; no unconditional crash-proof autosave or beta trash guarantee."
+    },
+    {
+      "upstreamHeading": "Where saves live",
+      "upstreamLine": 60,
+      "status": "adapted",
+      "currentSectionId": "storage-and-undo",
+      "reason": "Current library/export/storage implementation; no unconditional crash-proof autosave or beta trash guarantee."
+    },
+    {
+      "upstreamHeading": "Moving a campaign between machines",
+      "upstreamLine": 81,
+      "status": "adapted",
+      "currentSectionId": "export",
+      "reason": "Current library/export/storage implementation; no unconditional crash-proof autosave or beta trash guarantee."
+    },
+    {
+      "upstreamHeading": "Syncing between devices",
+      "upstreamLine": 111,
+      "status": "adapted",
+      "currentSectionId": "export",
+      "reason": "Current library/export/storage implementation; no unconditional crash-proof autosave or beta trash guarantee."
+    },
+    {
+      "upstreamHeading": "Archiving and deleting",
+      "upstreamLine": 123,
+      "status": "adapted",
+      "currentSectionId": "library",
+      "reason": "Current library/export/storage implementation; no unconditional crash-proof autosave or beta trash guarantee."
+    },
+    {
+      "upstreamHeading": "What a save contains",
+      "upstreamLine": 142,
+      "status": "adapted",
+      "currentSectionId": "export",
+      "reason": "Current library/export/storage implementation; no unconditional crash-proof autosave or beta trash guarantee."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 151,
+      "status": "adapted",
+      "currentSectionId": "export",
+      "reason": "Current library/export/storage implementation; no unconditional crash-proof autosave or beta trash guarantee."
+    }
+  ]
+}

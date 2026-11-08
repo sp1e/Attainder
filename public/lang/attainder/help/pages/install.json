@@ -1,0 +1,238 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/install",
+  "route": "/wiki/install/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/start/install.md",
+  "upstreamRawSha256": "a056f44c0f7bb153f4ba48a2b0356e89bf3ef6899027fc02e8b8b8bcb15c1368",
+  "title": {
+    "en": "Install and launch Attainder",
+    "sv": "Installera och starta Attainder"
+  },
+  "nav": {
+    "en": "Install",
+    "sv": "Installation"
+  },
+  "description": {
+    "en": "Install and launch a local historical campaign.",
+    "sv": "Installera och starta en historisk kampanj lokalt."
+  },
+  "sections": [
+    {
+      "id": "local-start",
+      "title": {
+        "en": "Start from the project checkout",
+        "sv": "Starta från projektets källkod"
+      },
+      "body": {
+        "en": "The documented Attainder route uses Node.js 24, npm, and an installed, signed-in Codex CLI or Claude Code. In a terminal, run:\n\n```sh\ngit clone https://github.com/sp1e/Attainder.git\ncd Attainder\nnpm ci\nnode scripts/fetch-map-assets.mjs --ensure\nnpm run build\nnode scripts/launch-dynasties.mjs\n```\n\nOn Windows, after the first build you can double-click `Start-Attainder.cmd`. The launcher opens `http://127.0.0.1:4167`. Connect a model, then choose a historical start and whether to follow the realm or the family.",
+        "sv": "Den dokumenterade vägen för Attainder använder Node.js 24, npm och en installerad, inloggad Codex CLI eller Claude Code. Kör följande i en terminal:\n\n```sh\ngit clone https://github.com/sp1e/Attainder.git\ncd Attainder\nnpm ci\nnode scripts/fetch-map-assets.mjs --ensure\nnpm run build\nnode scripts/launch-dynasties.mjs\n```\n\nPå Windows kan du efter den första byggningen dubbelklicka på `Start-Attainder.cmd`. Startaren öppnar `http://127.0.0.1:4167`. Anslut en modell och välj sedan en historisk start och om du vill följa riket eller familjen."
+      },
+      "evidence": [
+        {
+          "path": "README.md",
+          "lineStart": 13,
+          "lineEnd": 30,
+          "claim": "Documented current checkout installation, Node24, CLI login, build/map order and Windows launcher."
+        },
+        {
+          "path": "scripts/launch-dynasties.mjs",
+          "lineStart": 9,
+          "lineEnd": 14,
+          "claim": "Loopback URL and data-home selection."
+        },
+        {
+          "path": "Start-Attainder.cmd",
+          "lineStart": 1,
+          "lineEnd": 4,
+          "claim": "Windows launcher calls launch-dynasties."
+        }
+      ]
+    },
+    {
+      "id": "map-and-data",
+      "title": {
+        "en": "Map files and your library",
+        "sv": "Kartfiler och ditt bibliotek"
+      },
+      "body": {
+        "en": "Fetch the map files before building: the build copies them into `dist/`. The documented download is about 290 MB; missing files lead to failed map requests. The fetch command can be run again when files are missing or outdated.\n\nFresh checkouts keep campaigns in `play-data/` and launcher logs in `reports/launcher/`. `ATTAINDER_DATA_HOME` selects another data home; the older `TIDES_DATA_HOME` name is still accepted. Back up your library and [export important campaigns](/wiki/saves/) before replacing an installation.",
+        "sv": "Hämta kartfilerna före byggningen: byggningen kopierar dem till `dist/`. Den dokumenterade hämtningen är cirka 290 MB. Saknade filer gör att kartförfrågningar misslyckas. Du kan köra hämtningskommandot igen när filer saknas eller är inaktuella.\n\nNya utcheckningar lagrar kampanjer i `play-data/` och startloggar i `reports/launcher/`. `ATTAINDER_DATA_HOME` väljer en annan dataplats. Det äldre namnet `TIDES_DATA_HOME` fungerar också. Säkerhetskopiera biblioteket och [exportera viktiga kampanjer](/wiki/saves/) innan du ersätter en installation."
+      },
+      "evidence": [
+        {
+          "path": "README.md",
+          "lineStart": 23,
+          "lineEnd": 30,
+          "claim": "Map download/build order and launcher data locations."
+        },
+        {
+          "path": "scripts/launch-dynasties.mjs",
+          "lineStart": 8,
+          "lineEnd": 15,
+          "claim": "Current and legacy data-home handling."
+        }
+      ]
+    },
+    {
+      "id": "platforms",
+      "title": {
+        "en": "Desktop, web and Android builds",
+        "sv": "Skrivbords-, webb- och Androidbyggen"
+      },
+      "body": {
+        "en": "Use the source launch above for the documented setup. If you choose a desktop, web or Android package, check which Attainder version its publisher includes.\n\nA static website cannot start the local CLI bridge on your computer. API-provider configuration is available through settings. Read [model setup](/wiki/ai-setup/), [mobile limitations](/wiki/mobile/) and [self-hosting](/wiki/self-hosting/) for the available connections.",
+        "sv": "Använd källkodsstarten ovan för den dokumenterade installationen. Om du väljer ett skrivbords-, webb- eller Androidpaket kontrollerar du vilken Attainder-version utgivaren har tagit med.\n\nEn statisk webbplats kan inte starta den lokala CLI-anslutningen på din dator. Inställningarna har konfiguration för API-leverantörer. Läs om [modellanslutning](/wiki/ai-setup/), [mobilens begränsningar](/wiki/mobile/) och [egen server](/wiki/self-hosting/) för de tillgängliga anslutningarna."
+      },
+      "evidence": [
+        {
+          "path": "package.json",
+          "lineStart": 11,
+          "lineEnd": 36,
+          "claim": "Retained web/Android/Electron build targets."
+        },
+        {
+          "path": "package.json",
+          "lineStart": 90,
+          "lineEnd": 115,
+          "claim": "Inherited Electron product and upstream publication configuration."
+        },
+        {
+          "path": "server/localModelBridge.js",
+          "lineStart": 241,
+          "lineEnd": 250,
+          "claim": "Local CLI bridge restricts caller to loopback."
+        },
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 33,
+          "lineEnd": 73,
+          "claim": "API and compatible providers alongside local CLI providers."
+        }
+      ]
+    },
+    {
+      "id": "updates-and-license",
+      "title": {
+        "en": "Updates and attribution",
+        "sv": "Uppdateringar och erkännanden"
+      },
+      "body": {
+        "en": "For a source checkout, install the updated dependencies, refresh map assets and rebuild before launching the new code. The inherited automatic updater targets upstream release feeds; it is not an Attainder update guarantee. Keep a backup before changing versions.\n\nAttainder is an independent derivative of Open Historia. The code retains **AGPL-3.0-or-later** and upstream copyright notices. Scenario sharing uses **CC BY 4.0**; separately referenced maps, artwork and other material retain their own terms.",
+        "sv": "För en källkodsutcheckning installerar du uppdaterade beroenden, hämtar aktuella kartfiler och bygger om innan du startar den nya koden. Den ärvda automatiska uppdateraren använder utgivningsflöden uppströms. Den är ingen garanti för Attainder-uppdateringar. Behåll en säkerhetskopia när du byter version.\n\nAttainder är ett självständigt derivat av Open Historia. Koden behåller **AGPL-3.0-or-later** och uppströms upphovsrättsmeddelanden. Delning av scenarier använder **CC BY 4.0**. Separat hänvisade kartor, bilder och annat material behåller sina egna villkor."
+      },
+      "evidence": [
+        {
+          "path": "README.md",
+          "lineStart": 13,
+          "lineEnd": 30,
+          "claim": "Source dependency/map/build chain."
+        },
+        {
+          "path": "server/server.js",
+          "lineStart": 459,
+          "lineEnd": 466,
+          "claim": "Inherited desktop update feed."
+        },
+        {
+          "path": "README.md",
+          "lineStart": 82,
+          "lineEnd": 84,
+          "claim": "Scenario sharing license."
+        },
+        {
+          "path": "README.md",
+          "lineStart": 113,
+          "lineEnd": 115,
+          "claim": "Independent derivative attribution, upstream copyright and AGPL-3.0-or-later."
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Which one do I want?",
+      "upstreamLine": 4,
+      "status": "adapted",
+      "currentSectionId": "platforms",
+      "reason": "Project-specific source launch replaces universal upstream platform recommendation."
+    },
+    {
+      "upstreamHeading": "Desktop",
+      "upstreamLine": 16,
+      "status": "adapted",
+      "currentSectionId": "platforms",
+      "reason": "Electron targets retained; upstream downloads do not establish Attainder packaging."
+    },
+    {
+      "upstreamHeading": "Windows",
+      "upstreamLine": 21,
+      "status": "adapted",
+      "currentSectionId": "local-start",
+      "reason": "Current Windows command launcher replaces upstream installer instructions."
+    },
+    {
+      "upstreamHeading": "macOS",
+      "upstreamLine": 30,
+      "status": "unsupported",
+      "currentSectionId": "platforms",
+      "reason": "No verified current Attainder macOS release or signing state; source route applies."
+    },
+    {
+      "upstreamHeading": "Linux",
+      "upstreamLine": 46,
+      "status": "unsupported",
+      "currentSectionId": "platforms",
+      "reason": "No verified current Attainder Linux package distribution; source route applies."
+    },
+    {
+      "upstreamHeading": "First launch",
+      "upstreamLine": 67,
+      "status": "adapted",
+      "currentSectionId": "map-and-data",
+      "reason": "Explicit map fetch before build replaces automatic-first-launch guarantee."
+    },
+    {
+      "upstreamHeading": "Updating",
+      "upstreamLine": 78,
+      "status": "adapted",
+      "currentSectionId": "updates-and-license",
+      "reason": "Source rebuild and backup instructions; upstream updater is qualified."
+    },
+    {
+      "upstreamHeading": "The beta build",
+      "upstreamLine": 106,
+      "status": "unsupported",
+      "currentSectionId": "updates-and-license",
+      "reason": "Upstream beta availability is not a current Attainder distribution promise."
+    },
+    {
+      "upstreamHeading": "Browser",
+      "upstreamLine": 125,
+      "status": "adapted",
+      "currentSectionId": "platforms",
+      "reason": "Static target retained; local CLI capability differs."
+    },
+    {
+      "upstreamHeading": "Android",
+      "upstreamLine": 146,
+      "status": "adapted",
+      "currentSectionId": "platforms",
+      "reason": "Retained Android infrastructure is covered on mobile route."
+    },
+    {
+      "upstreamHeading": "From source",
+      "upstreamLine": 180,
+      "status": "adapted",
+      "currentSectionId": "local-start",
+      "reason": "Use sp1e/Attainder and current launcher."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 212,
+      "status": "retained",
+      "currentSectionId": "local-start",
+      "reason": "Continue to model setup after installation."
+    }
+  ]
+}

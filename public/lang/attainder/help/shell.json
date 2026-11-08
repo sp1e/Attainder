@@ -1,0 +1,343 @@
+{
+  "schema": "attainder-help-shell-v1",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "sourceFileBlobSha256": "a1090c71c9056af2269e50fdc4355f4d5a67384fdb37eaad7a8183737e5ca7bd",
+  "entries": [
+    {
+      "id": "contents",
+      "originalText": "On this page",
+      "text": {
+        "en": "On this page",
+        "sv": "På den här sidan"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 166,
+        "textSha256": "b5658fc8edda24f9c94eabac9e536e0a18e3055a8ca255f9d1b8f256ea02a6cc"
+      },
+      "disposition": "translated"
+    },
+    {
+      "id": "pagination",
+      "originalText": "Pagination",
+      "text": {
+        "en": "Page navigation",
+        "sv": "Sidnavigering"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 173,
+        "textSha256": "7b3f674b625e7226021fc07d6f2aaf437f44f1fd6afaf5d885ad8d63210c0b46"
+      },
+      "disposition": "adapted",
+      "adaptationReason": "Current Attainder guide navigation; preserve purpose while matching guide terminology."
+    },
+    {
+      "id": "previous",
+      "originalText": "← Previous",
+      "text": {
+        "en": "← Previous",
+        "sv": "← Föregående"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 174,
+        "textSha256": "435567b142898cc2ba3e8c44bfe72cba4698dcab72c33c96e7f352ac7b6fbf60"
+      },
+      "disposition": "translated"
+    },
+    {
+      "id": "next",
+      "originalText": "Next →",
+      "text": {
+        "en": "Next →",
+        "sv": "Nästa →"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 175,
+        "textSha256": "bcf0489a7b45328d3015041f98600c51355fca1bcbbaf50bd20f712726c576db"
+      },
+      "disposition": "translated"
+    },
+    {
+      "id": "features",
+      "originalText": "Features",
+      "text": {
+        "en": "Features",
+        "sv": "Funktioner"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 239,
+        "textSha256": "5697d03daef4de9cf8db7cb11755f71358a32b4acca94909a9d449f71040d2dd"
+      },
+      "disposition": "translated",
+      "contextNote": "Product features navigation. Existing generic dictionary Features=>Objekt describes map objects and is unsuitable here."
+    },
+    {
+      "id": "guide",
+      "originalText": "Wiki",
+      "text": {
+        "en": "Guide",
+        "sv": "Guide"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 240,
+        "textSha256": "63ec69fde300e6d6040089df9d6f27ab61f1d07933c6cb04985963386b9ed4b6"
+      },
+      "disposition": "adapted",
+      "adaptationReason": "Current Attainder guide navigation; preserve purpose while matching guide terminology."
+    },
+    {
+      "id": "download",
+      "originalText": "Download",
+      "text": {
+        "en": "Download",
+        "sv": "Ladda ner"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 241,
+        "textSha256": "d6eafe82359100423c93c5ce53c352c1b51ca1e699215fcec3f5c5dd9bf12d24"
+      },
+      "disposition": "translated"
+    },
+    {
+      "id": "github",
+      "originalText": "GitHub",
+      "text": {
+        "en": "GitHub",
+        "sv": "GitHub"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 242,
+        "textSha256": "f911e414cf6bdfc595532ab166b5ba0f63d73c021452fcdacbda363dda6ad8fb"
+      },
+      "disposition": "preserved-name"
+    },
+    {
+      "id": "play",
+      "originalText": "▶ Play",
+      "text": {
+        "en": "▶ Play",
+        "sv": "▶ Spela"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 243,
+        "textSha256": "b3b60a22a04fa2e7908d5c99bd5e750c1f75e0ca5de8abddd92a683f396588f6"
+      },
+      "disposition": "translated"
+    },
+    {
+      "id": "search-placeholder",
+      "originalText": "Search the wiki…",
+      "text": {
+        "en": "Search the guide…",
+        "sv": "Sök i guiden…"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 251,
+        "textSha256": "66bf17e13d7fb4938e889f60e17a350ec0b787788e6c7f13806f5fbfb3f6ba5b"
+      },
+      "disposition": "adapted",
+      "adaptationReason": "Current Attainder guide navigation; preserve purpose while matching guide terminology."
+    },
+    {
+      "id": "search-label",
+      "originalText": "Search the wiki",
+      "text": {
+        "en": "Search the guide",
+        "sv": "Sök i guiden"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 251,
+        "textSha256": "2f940045d0ffa7e2fc89d1619d6c37582a3e9c06756ee82a6c3caa93aaa5e9c5"
+      },
+      "disposition": "adapted",
+      "adaptationReason": "Current Attainder guide navigation; preserve purpose while matching guide terminology."
+    },
+    {
+      "id": "breadcrumb",
+      "originalText": "Breadcrumb",
+      "text": {
+        "en": "Breadcrumb navigation",
+        "sv": "Brödsmulenavigering"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 258,
+        "textSha256": "2bd873d6c734e63ea80e163a6a643f75bf87a3d24e3164987d176a2e3e5c567e"
+      },
+      "disposition": "adapted",
+      "adaptationReason": "Current Attainder guide navigation; preserve purpose while matching guide terminology."
+    },
+    {
+      "id": "home",
+      "originalText": "Home",
+      "text": {
+        "en": "Home",
+        "sv": "Startsida"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 279,
+        "textSha256": "3a78695388b38b5cceefaf6796b0137877514593543b91af2752d5a17e3d736c"
+      },
+      "disposition": "translated"
+    },
+    {
+      "id": "privacy",
+      "originalText": "Privacy",
+      "text": {
+        "en": "Privacy",
+        "sv": "Integritet"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 283,
+        "textSha256": "54a57c3147c49f33de5898b87084ad2b14c4ab308f762454bf92aca907478ad5"
+      },
+      "disposition": "translated"
+    },
+    {
+      "id": "privacy-choices",
+      "originalText": "Privacy choices",
+      "text": {
+        "en": "Privacy choices",
+        "sv": "Integritetsval"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 284,
+        "textSha256": "fa1a9c947c799077e5cd14daaa06628723d8c8e4a10530224b1399eeba17ad7c"
+      },
+      "disposition": "translated"
+    },
+    {
+      "id": "sitemap",
+      "originalText": "Sitemap",
+      "text": {
+        "en": "Sitemap",
+        "sv": "Webbplatskarta"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 285,
+        "textSha256": "4db550cd984016b916bbb7da01f5150efa7c0045fbf3b317eade9f39cbd4b3ba"
+      },
+      "disposition": "translated"
+    },
+    {
+      "id": "no-matches",
+      "originalText": "No matches",
+      "text": {
+        "en": "No matches",
+        "sv": "Inga träffar"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 320,
+        "textSha256": "2df01a03ff43400b2c833c81b6240c1878abdfc99b258c624bc1605329255f6f"
+      },
+      "disposition": "translated"
+    },
+    {
+      "id": "license",
+      "originalText": "AGPL-3.0 licensed",
+      "text": {
+        "en": "AGPL-3.0 licensed",
+        "sv": "Licensierat enligt AGPL-3.0"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 278,
+        "textSha256": "62b00d481cf13f406324d72c3596cf8ad361411fa84cdf5d7eed28532743975f"
+      },
+      "disposition": "translated"
+    },
+    {
+      "id": "upstream-name",
+      "originalText": "Open Historia",
+      "text": {
+        "en": "Open Historia",
+        "sv": "Open Historia"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 278,
+        "textSha256": "9ac7ba67544628764b0fc4df45c826cce2c9a972a4d6162cb20bab6ac1257241"
+      },
+      "disposition": "preserved-name"
+    },
+    {
+      "id": "upstream-discord",
+      "originalText": "Discord",
+      "text": {
+        "en": "Discord",
+        "sv": "Discord"
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 282,
+        "textSha256": "053bc65874ad6098e58c41c57b378a2f36b0220e5e0b46722245e6c2f796818c"
+      },
+      "disposition": "preserved-name"
+    },
+    {
+      "id": "upstream-legal-notice",
+      "originalText": "Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.",
+      "text": {
+        "en": "Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.",
+        "sv": "Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia."
+      },
+      "source": {
+        "path": "scripts/build-wiki.mjs",
+        "line": 286,
+        "textSha256": "8c745fbe8fc610610fc4f8723e9196aba1cb003f804c016b8ecfc8f087b39837"
+      },
+      "disposition": "translated",
+      "preservationNote": "Retain this upstream legal notice with Open Historia as its named subject; do not substitute Attainder into the original statement."
+    }
+  ],
+  "adaptationDecisions": [
+    {
+      "sourceLines": [
+        194,
+        215,
+        223,
+        237,
+        259
+      ],
+      "decision": "Use Attainder guide branding for the new adapted help; retain Open Historia attribution and the complete upstream legal notice. Existing upstream pages remain unchanged."
+    },
+    {
+      "sourceLines": [
+        263,
+        264,
+        265
+      ],
+      "decision": "Do not carry upstream beta-only availability banners into current Attainder help. Availability must follow the verified current page; old notices remain in original upstream pages."
+    },
+    {
+      "sourceLines": [
+        269,
+        270,
+        271,
+        272
+      ],
+      "decision": "Replace obsolete two-channel status prose and Discord-as-primary-support with the separately paired current guide note below; retain upstream Discord as an attributed community link."
+    }
+  ],
+  "currentGuideNote": {
+    "en": "If these instructions differ from your game, include the game version and the affected screen when reporting the issue.",
+    "sv": "Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet."
+  },
+  "primaryProjectUrl": "https://github.com/sp1e/Attainder",
+  "primaryIssueUrl": "https://github.com/sp1e/Attainder/issues"
+}
