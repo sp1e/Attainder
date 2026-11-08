@@ -147,9 +147,9 @@ test('an argument that refers to nothing earns nothing', () => {
 test('a memory counts only when both people took part and both know it', () => {
   const state = plain();
   const hooks = actionHooks(state);
-  const shared = hooks.memory('gift', 'En gåva', [REP, NAMAR], { knownBy: [REP, NAMAR] });
+  const shared = hooks.memory('marriage', 'Ett bröllop', [REP, NAMAR], { knownBy: [REP, NAMAR] });
   const secret = hooks.memory('plot', 'En hemlig plan', [REP, NAMAR], { knownBy: [REP] });
-  const other = hooks.memory('gift', 'En annan gåva', [REP, BAREK], { knownBy: [REP, BAREK] });
+  const other = hooks.memory('marriage', 'Ett annat bröllop', [REP, BAREK], { knownBy: [REP, BAREK] });
   const open = hooks.memory('feast', 'Ett gästabud', [REP, NAMAR]);
   const score = (refId) => estimate(state, ask({ arguments: [{ kind: 'shared_memory', refId }], argumentScore: 7 }));
   assert.equal(score(shared.id).value, 45 + 7);
