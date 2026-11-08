@@ -1,5 +1,6 @@
 import { prepareHistoricalCampaignStart, validatePlayableScenario, validateRawStartFields, validateSavedGameBundle, validateCompanion, companionMap, companionCoverType, requirePrepared, sameJson } from "./historicalPreparation.js";
-import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, shippedStartNeedsUpgrade, withLibraryFields } from "./historicalStarts.js";
+import { HISTORICAL_BOOKMARKS, HISTORICAL_START_ORDER, contentFingerprint, keptEditedCopyMeta, orderWithAfter, shippedFingerprintField,
+  shippedStartEdited, shippedStartNeedsUpgrade, shippedStartUntracked, withLibraryFields } from "./historicalStarts.js";
 import { HISTORICAL_SUMMARY_SCHEMA, historicalStartFromSummary } from "./historicalStartSummary.js";
 import { checkedHistoricalStartSummary } from "./historicalSummaryCheck.js";
 import { withScenarioLicense, preserveComponentProvenance } from "./scenarioLicense.js";
@@ -829,6 +830,7 @@ const readScenarioMeta = (scenarioId, raw = readJsonFile(getScenarioMetaPath(sce
     playCount: normalizePlayCount(raw?.playCount),
     subtitle,
     updatedAt: raw?.updatedAt ?? now,
+    ...shippedFingerprintField(raw),
   };
 };
 
@@ -1468,6 +1470,12 @@ const refreshBuiltInContent = (stamp) => {
     for (const gameId of gamesOnBuiltIn) keepScenarioJsonForGame(gameId, DEFAULT_SCENARIO_ID);
   }
   seedBuiltInScenarioFiles(stamp);
+  // The built-in keeps its play count, as an upgraded shipped start keeps its library fields. The
+  // seed's timestamps stay, since builtInMetaEdited compares them.
+  if (meta.playCount > 0) {
+    const metaPath = getScenarioMetaPath(DEFAULT_SCENARIO_ID);
+    writeJsonFileWhole(metaPath, { ...readJsonFile(metaPath, {}), playCount: meta.playCount });
+  }
   console.warn(`[built-in scenario] Modern Day content updated to revision ${readInstalledBuiltInRevision()} (${stamp})`);
 };
 
@@ -1600,15 +1608,38 @@ const shippedStartCandidate = (id) => bundleCandidate(readJsonFile(path.join(__d
 // every poll. So each start is compared with its installed copy once per process.
 const checkedShippedStarts = new Set();
 
-// A start the player deleted is absent from the manifest and stays deleted.
-const installedShippedStartIsOlder = (entry) => getScenarioManifest().order.includes(entry.id)
-  && shippedStartNeedsUpgrade({ meta: readJsonFile(getScenarioMetaPath(entry.id),{}),
-    data: { world: readJsonFile(getScenarioJsonPath(entry.id,"world"),{}) } },entry);
+// The fingerprint of what the store wrote for a shipped start, recorded after the whole write.
+// A write cut short leaves the meta without one, so the next read replaces the copy again.
+const recordShippedFingerprint = (id, candidate) => {
+  const metaPath = getScenarioMetaPath(id);
+  const fingerprint = contentFingerprint(candidate.data.world ?? JSON_ASSET_DEFAULTS.world, candidate.data.game ?? JSON_ASSET_DEFAULTS.game);
+  writeJsonFile(metaPath, { ...readJsonFile(metaPath,{}), shippedContentFingerprint: fingerprint });
+};
+
+const storedShippedStart = (id) => ({ meta: readJsonFile(getScenarioMetaPath(id),{}),
+  data: { world: readJsonFile(getScenarioJsonPath(id,"world"),{}), game: readJsonFile(getScenarioJsonPath(id,"game"),{}) } });
+
+// The player's edited copy of a shipped start becomes a scenario of its own, after the start in the
+// order, and the campaigns started on the start go with it. The upgrade then replaces the start.
+// The copy is built outside the scenarios folder and moved in whole, so a crash leaves no half copy
+// in the catalog; the next read builds it again.
+const keepEditedShippedStart = (id, storedMeta) => {
+  const keptId = ensureUniqueId(`${id}-edited`, "scenario"), partial = path.join(SERVER_DATA_DIR, `.${keptId}.partial`);
+  fs.rmSync(partial, { recursive: true, force: true });
+  fs.cpSync(getScenarioDirectory(id), partial, { recursive: true });
+  writeJsonFile(path.join(partial, path.basename(getScenarioMetaPath(keptId))), keptEditedCopyMeta(storedMeta, keptId, new Date().toISOString()));
+  fs.renameSync(partial, getScenarioDirectory(keptId));
+  const gameIds = listGameIdsOnDisk().filter((gameId) => readGameMeta(gameId).scenarioId === id);
+  for (const gameId of gameIds) writeGameMeta(gameId, { scenarioId: keptId });
+  const manifest = getScenarioManifest();
+  saveScenarioManifest({ ...manifest, order: orderWithAfter(manifest.order, id, keptId) });
+  console.warn(`[historical start] kept the player's edited ${id} as "${keptId}" for ${gameIds.length} campaign(s)`);
+};
 
 // The copy is replaced where it stands: its place in the order, the selection and the library's
 // own meta fields (createdAt, playCount and the rest) stay. Campaigns keep their own game and
-// world files, which this never writes.
-const replaceShippedStart = (entry) => {
+// world files, which this never writes. A copy the player edited is kept first.
+const replaceShippedStart = (entry, stored) => {
   const candidate = shippedStartCandidate(entry.id);
   // A package at another version than the list names would be replaced again on every start.
   if (candidate.data.world?.historicalScenario?.contentVersion !== entry.contentVersion) {
@@ -1616,14 +1647,26 @@ const replaceShippedStart = (entry) => {
     return;
   }
   requirePrepared(validatePlayableScenario(candidate));
-  const meta = withLibraryFields(readJsonFile(getScenarioMetaPath(entry.id),{}),candidate.meta);
-  persistScenarioBundle({ ...candidate, meta },{id:entry.id});
+  if (shippedStartEdited(stored)) keepEditedShippedStart(entry.id, stored.meta);
+  persistScenarioBundle({ ...candidate, meta: withLibraryFields(stored.meta,candidate.meta) },{id:entry.id});
+  recordShippedFingerprint(entry.id, candidate);
   console.info(`[historical start] ${entry.id} updated to ${entry.contentVersion}`);
 };
 
+// A current copy without a fingerprint gets the shipped package's (shippedStartUntracked).
+const trackShippedStart = (entry) => {
+  const candidate = shippedStartCandidate(entry.id);
+  if (candidate.data.world?.historicalScenario?.contentVersion === entry.contentVersion) recordShippedFingerprint(entry.id, candidate);
+};
+
+// A start the player deleted is absent from the manifest and stays deleted.
 const upgradeShippedStart = (entry) => {
   if (checkedShippedStarts.has(entry.id)) return;
-  if (installedShippedStartIsOlder(entry)) replaceShippedStart(entry);
+  if (getScenarioManifest().order.includes(entry.id)) {
+    const stored = storedShippedStart(entry.id);
+    if (shippedStartNeedsUpgrade(stored, entry)) replaceShippedStart(entry, stored);
+    else if (shippedStartUntracked(stored, entry)) trackShippedStart(entry);
+  }
   checkedShippedStarts.add(entry.id);
 };
 
@@ -1640,6 +1683,7 @@ const ensureScenarioStore = () => {
     const candidate = shippedStartCandidate(id);
     requirePrepared(validatePlayableScenario(candidate));
     persistScenarioBundle(candidate,{id,selected:id === HISTORICAL_START_ORDER[0] && getScenarioManifest().selectedScenarioId === DEFAULT_SCENARIO_ID});
+    recordShippedFingerprint(id, candidate);
     writeJsonFile(bookmarkMarker,{installed:true});
   }
 };

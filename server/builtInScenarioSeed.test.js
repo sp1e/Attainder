@@ -316,11 +316,11 @@ const revisedSeed = () => {
   writeJson(path.join(seed, "world.json"), { ...seedWorld, builtInRevision: 2 });
   return seed;
 };
-const revisionOneRoot = ({ touched = false, updatedAt } = {}) => {
+const revisionOneRoot = ({ touched = false, updatedAt, playCount } = {}) => {
   const root = freshRoot();
   const dir = path.join(root, "scenarios", "default");
   const createdAt = "2026-09-07T12:00:00.000Z";
-  writeJson(path.join(dir, "scenario.json"), { id: "default", name: "Modern Day", createdAt, updatedAt: updatedAt ?? (touched ? "2026-09-10T08:00:00.000Z" : createdAt) });
+  writeJson(path.join(dir, "scenario.json"), { id: "default", name: "Modern Day", createdAt, updatedAt: updatedAt ?? (touched ? "2026-09-10T08:00:00.000Z" : createdAt), ...(playCount ? { playCount } : {}) });
   writeJson(path.join(dir, "world.json"), {
     ownerSchema: OWNER_SCHEMA,
     builtInMap: STAMP,
@@ -382,6 +382,20 @@ test("a copy the player edited is kept with its campaigns before the content is 
   assert.equal(world.builtInRevision, 2);
   assert.deepEqual(world.polityOverrides, seedWorld.polityOverrides);
   assert.deepEqual(readJson(path.join(root, "scenario-manifest.json")).order, ["default", "modern-day-edited"]);
+});
+
+test("a refresh keeps the built-in's play count and the seed's stamps, and an edited copy takes its own", () => {
+  const seedMeta = readJson(path.join(SEED_DIR, "scenario.json"));
+  for (const touched of [false, true]) {
+    const root = revisionOneRoot({ touched, playCount: 4 });
+    catalogOf(root, revisedSeed());
+    const meta = readJson(path.join(root, "scenarios", "default", "scenario.json"));
+    assert.equal(meta.playCount, 4, `touched ${touched}: the built-in keeps its play count`);
+    assert.equal(meta.createdAt, seedMeta.createdAt, `touched ${touched}: the seed's stamps`);
+    assert.equal(meta.updatedAt, seedMeta.updatedAt, `touched ${touched}: the seed's stamps`);
+    if (touched) assert.equal(readJson(path.join(root, "scenarios", "modern-day-edited", "scenario.json")).playCount, 4, "the edited copy keeps its meta");
+    assert.deepEqual(catalogOf(root, revisedSeed()).filter((id) => id.startsWith("modern-day-edited")), touched ? ["modern-day-edited"] : [], `touched ${touched}: a second start forks nothing`);
+  }
 });
 
 // An install written before both stamps shared one clock read: they sit a millisecond apart.
