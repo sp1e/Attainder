@@ -4584,6 +4584,179 @@
       "scopedClaim": "Grave M118 at Liangwangcheng contained a female individual, earthen ledges and relatively abundant grave goods. Raman analysis identified cinnabar in red pigment on her bone. The authors assign M118 to phase A, dated 2880–2700 cal BC.",
       "retrievedOn": "2026-11-07",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2800-ness-ten",
+      "title": "The rise and fall of the Ness complex",
+      "institution": "Ness of Brodgar Project / Ness of Brodgar Trust",
+      "url": "https://www.nessofbrodgar.co.uk/about/rise-and-fall/",
+      "locator": "The bigger picture: paragraph beginning Back at the Ness complex, and following paragraph.",
+      "retrievedOn": "2026-11-07",
+      "asWorded": "c2800BC",
+      "originalChronology": "Structure Ten collapse and rebuilding: c 2800 BC.",
+      "scopedClaim": "A collapse in Structure Ten around 2800 BC required rebuilding; the remodelled building had a more domestic character.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2800-ness-twentysix",
+      "title": "Structure Twenty-Six",
+      "institution": "Ness of Brodgar Project / Ness of Brodgar Trust",
+      "url": "https://www.nessofbrodgar.co.uk/about/the-structures/structure-twenty-six/",
+      "locator": "Structure Twenty-Six – a later addition, paragraphs 2–4 describing shape, dimensions, date, entrance and hearth.",
+      "retrievedOn": "2026-11-07",
+      "asWorded": "perhaps around 2800-2700BC",
+      "originalChronology": "Possible construction of Structure Twenty-Six: perhaps around 2800–2700 BC.",
+      "scopedClaim": "The D-shaped Structure Twenty-Six measures about 6.5 by 4.5 m; its possible construction belongs to 2800–2700 BC. Its interior included a rectangular hearth beside a stone slab decorated on both sides.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2800-kenoyer-harappa",
+      "title": "Indus Urbanism: New Perspectives on its Origin and Character (final revisions: October 1, 2005)",
+      "institution": "Jonathan Mark Kenoyer, University of Wisconsin–Madison; Harappa Archaeological Research Project",
+      "url": "https://www.harappa.com/sites/default/files/pdf/Kenoyer2008%20Indus%20Cities%20Sackler%20Colloquiumfinalrevised.pdf",
+      "locator": "PDF/printed p.9, first three paragraphs, especially paragraph beginning The original Ravi phase division.",
+      "retrievedOn": "2026-11-07",
+      "asWorded": "between approximately 2800 and 2600 BC",
+      "originalChronology": "Kot Diji/Harappa Period 2: approximately 2800–2600 BC.",
+      "scopedClaim": "During the Kot Diji phase the two Harappa settlements at Mounds AB and E appear to have acquired massive mud-brick perimeter walls. Streets and houses followed north–south and east–west directions.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2800-harp-rim",
+      "title": "Inscribed rim sherd, Around the Indus in 90 Slides 2, slide 44",
+      "institution": "Harappa.com; photograph credited to Harappa Archaeological Research Project",
+      "url": "https://www.harappa.com/slide/inscribed-rim-sherd",
+      "locator": "Inscribed rim sherd: sole descriptive paragraph beneath the title; slide 44 of 90.",
+      "retrievedOn": "2026-11-07",
+      "asWorded": "around 2800 BCE",
+      "originalChronology": "The specific Early Harappan/Kot Dijian rim sherd: around 2800 BCE.",
+      "scopedClaim": "The Harappa.com object page describes three inscribed signs on an Early Harappan rim sherd from Harappa and dates it around 2800 BCE.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2800-mei-linjia",
+      "title": "Cultural Interaction between China and Central Asia during the Bronze Age (Jianjun Mei,2003)",
+      "institution": "British Academy; Needham Research Institute, Cambridge",
+      "url": "https://www.thebritishacademy.ac.uk/documents/3098/Mei-China-central-asia-bronze-age.pdf",
+      "locator": "PDF/printed p.13, New finds from scientific examination of the Qijia and Siba metals, first paragraph; Fig.2:1.",
+      "retrievedOn": "2026-11-07",
+      "asWorded": "c.2800 BC",
+      "originalChronology": "Linjia, Dongxiang Majiayao knife: c.2800 BC.",
+      "scopedClaim": "Mei reports laboratory identification of the Linjia knife as tin bronze and places the Majiayao specimen around 2800 BC.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2800-met-yarim",
+      "title": "Bracelet, object 63.102.16",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/art/collection/search/325600",
+      "locator": "Opening description; Artwork Details, Date, Geography, Medium and Object Number fields.",
+      "retrievedOn": "2026-11-07",
+      "asWorded": "ca. 2800 BCE",
+      "originalChronology": "Object 63.102.16: ca.2800 BCE. Description calls it bronze; Medium field says Copper.",
+      "scopedClaim": "The museum dates bracelet 63.102.16 around 2800 BCE and states that excavators found it in a child’s grave at Yarim Tepe in northeastern Iran. Its material labels differ between description and metadata.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2800-met-kandila",
+      "title": "Marble vase with high foot and four lug handles, object 1995.604",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/art/collection/search/256896",
+      "locator": "Public metadata rendition: https://collectionapi.metmuseum.org/public/collection/v1/objects/256896; JSON fields title, period, objectDate, culture, medium and accessionNumber; objectID and objectURL verify the original museum-page binding. The original webpage returned a browser checkpoint on 2026-11-08.",
+      "retrievedOn": "2026-11-07",
+      "asWorded": "ca. 2800–2700 BCE",
+      "originalChronology": "Object 1995.604: ca.2800–2700 BCE, Early CycladicI.",
+      "scopedClaim": "The museum attributes the marble vase with a high foot and four lug handles,1995.604, to Cycladic culture and dates it ca.2800–2700 BCE.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2800-met-dawenkou",
+      "title": "Pedestalled cup, object 1992.297.3",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/art/collection/search/36447",
+      "locator": "Public metadata rendition: https://collectionapi.metmuseum.org/public/collection/v1/objects/36447; JSON fields title, period, objectDate, culture, medium and accessionNumber; objectID and objectURL verify the original museum-page binding. The original webpage returned a browser checkpoint on 2026-11-08.",
+      "retrievedOn": "2026-11-07",
+      "asWorded": "2800–2400 BCE",
+      "originalChronology": "Object 1992.297.3:2800–2400 BCE, late Dawenkou culture.",
+      "scopedClaim": "The museum dates white-earthenware pedestalled cup 1992.297.3 to 2800–2400 BCE and assigns it to late Dawenkou culture in China.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2750-toohey-callacpuma",
+      "title": "A monumental stone plaza at 4750 B.P. in the Cajamarca Valley of Peru (Toohey et al.,2024)",
+      "institution": "Science Advances 10, eadl0572; University of Wyoming; University of California, Santa Barbara; University of New Hampshire",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10866561/",
+      "locator": "Abstract, sentence beginning We present three radiocarbon dates; Introduction, paragraph after Fig.1; Table 1, all three rows; Callacpuma, paragraph describing diameter and concentric walls.",
+      "retrievedOn": "2026-11-07",
+      "asWorded": "approximately 2750 calibrated years before the common era (cal BCE); ranging from 2632 to 2884 BCE",
+      "originalChronology": "Abstract estimate: approximately 2750 cal BCE. Introduction construction range as printed: 2632 to 2884 BCE. The dating discussion reports a combined trimodal distribution separately from Table 1 individual sample intervals. Combined probabilities/ranges, Figure 5B median and all original sample intervals are retained separately in chronologyDetails; no endpoint conversion or repair is made.",
+      "scopedClaim": "The authors date initial construction of Callacpuma’s megalithic circular plaza to approximately 2750 calBCE in the abstract, give 2632–2884 BCE in the introduction and publish three charcoal dates in Table 1. The plaza has two concentric walls of upright, unmortared stones.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "chronologyDetails": {
+        "constructionEstimateAsWorded": "approximately 2750 calibrated years before the common era (cal BCE)",
+        "constructionRangeAsWorded": "ranging from 2632 to 2884 BCE",
+        "table1Context": "Construction of the circular plaza UA100",
+        "table1Material": "Wood charcoal",
+        "samples": [
+          {
+            "labCode": "Beta-587512",
+            "conventionalAgeAsWorded": "4240 ± 30 B.P.",
+            "oneSigma68_2AsWorded": "2791–2890 cal BC",
+            "twoSigma95_4AsWorded": "2634–2901 cal BC",
+            "oneSigmaBpAsWorded": "4839–4650 cal B.P.",
+            "twoSigmaBpAsWorded": "4850–4583 cal B.P."
+          },
+          {
+            "labCode": "Beta-587511",
+            "conventionalAgeAsWorded": "4230 ± 30 B.P.",
+            "oneSigma68_2AsWorded": "2698–2886 cal BC",
+            "twoSigma95_4AsWorded": "2632–2896 cal BC",
+            "oneSigmaBpAsWorded": "4835–4647 cal B.P.",
+            "twoSigmaBpAsWorded": "4845–4581 cal B.P."
+          },
+          {
+            "labCode": "Beta-587513",
+            "conventionalAgeAsWorded": "4150 ± 30 B.P.",
+            "oneSigma68_2AsWorded": "2582–2852 cal BC",
+            "twoSigma95_4AsWorded": "2505–2872 cal BC",
+            "oneSigmaBpAsWorded": "4801–4531 cal B.P.",
+            "twoSigmaBpAsWorded": "4821–4454 cal B.P."
+          }
+        ],
+        "combinedDistribution": {
+          "locator": "THE DATES AND THEIR CONTEXTS first paragraph; Figure 5A–B and caption",
+          "relationship": "Published combined/averaged calibration of three original dates, distinct from individual Table 1 sample intervals and the approximate abstract construction estimate.",
+          "softwareAsWorded": "OxCal v4.4.4",
+          "calibrationCurveAsWorded": "SHCal20",
+          "discussionIntervalsInPrintedOrder": [
+            {
+              "probabilityAsWorded": "3.9%",
+              "rangeAsWorded": "between 2653 and 2632 calibrated years BCE (cal BCE)"
+            },
+            {
+              "probabilityAsWorded": "70.7%",
+              "rangeAsWorded": "between 2823 and 2662 cal BCE"
+            },
+            {
+              "probabilityAsWorded": "20.8%",
+              "rangeAsWorded": "between 2884 and 2830 cal BCE"
+            }
+          ],
+          "figure5B": {
+            "combinedLabelAsWorded": "R_Combine(4207,18)",
+            "probabilityAsWorded": "95.4% probability",
+            "intervalsInPrintedOrderAsWorded": [
+              "2884 (20.8%) 2830 cal BC",
+              "2823 (70.7%) 2662 cal BC",
+              "2653 (3.9%) 2632 cal BC"
+            ],
+            "medianAsWorded": "Median 2764 cal BC",
+            "testAnnotationAsWorded": "X2-test: df = 2 T = 5.4(5% 6.0)",
+            "testAnnotationMeaning": "Printed statistical annotation recorded separately; not a calendar interval or an additional construction date."
+          },
+          "discussionCaution": "DISCUSSION describes likely Late Preceramic construction, as early as 2850 BCE. This is a qualified discussion statement, not a replacement date envelope or another sample."
+        }
+      }
     }
   ],
   "events": [
@@ -14502,6 +14675,222 @@
         "bc2880-dong-liangwangcheng"
       ],
       "selectionNote": "One identified female burial with a phase-bounded date and analyzed pigment. No rank, priesthood, matriarchy or cause of death is inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2800-byggare-gor-om-hus-tio-vid-ness",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2800,
+        "endYear": -2800,
+        "displaySv": "cirka 2800 f.Kr.",
+        "noteSv": "Projektet anger cirka 2800 f.Kr. för raset som ledde till ombyggnaden. Dateringen fastställer inget enskilt år."
+      },
+      "titleSv": "Byggare återställer hus 10 vid Ness of Brodgar",
+      "summarySv": "Efter ett ras bygger människor vid Ness of Brodgar om hus 10. Projektets arkeologer daterar raset och ombyggnaden till omkring 2800 f.Kr. De beskriver den ombyggda byggnaden som mer inriktad på hushållsbruk.",
+      "geographySv": "Ness of Brodgar, Orkneyöarna, Skottland",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc2800-ness-ten"
+      ],
+      "selectionNote": "A specific collapse and rebuilding episode, distinct from the site’s original establishment and the Stenness stone circle.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2800-hus-tjugosex-byggs-vid-ness",
+      "date": {
+        "kind": "range",
+        "startYear": -2800,
+        "endYear": -2700,
+        "displaySv": "möjligen omkring 2800–2700 f.Kr.",
+        "noteSv": "Projektets datering är uttryckligen möjlig. Hela intervallet 2800–2700 f.Kr. finns kvar och slutar utanför detta arbetsblocks sista år."
+      },
+      "titleSv": "Byggare uppför hus 26 vid Ness of Brodgar",
+      "summarySv": "Byggare uppför ett mindre, D-format hus vid Ness of Brodgar. Huset rymmer en rektangulär eldstad intill en stenplatta med dekor på båda sidor. Arkeologerna förlägger byggandet till möjligen omkring 2800–2700 f.Kr.",
+      "geographySv": "Ness of Brodgar, Orkneyöarna, Skottland",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc2800-ness-twentysix"
+      ],
+      "selectionNote": "A separately identified late building with a possible dated construction episode; not a repeat of StructureTen’s rebuilding.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2800-harappas-bosattningar-far-murar",
+      "date": {
+        "kind": "range",
+        "startYear": -2800,
+        "endYear": -2600,
+        "displaySv": "cirka 2800–2600 f.Kr.",
+        "noteSv": "Kenoyer skriver att murarna tycks ha avgränsat bosättningarna under Kot Diji-fasen. Intervallet daterar fasen och ger inget enskilt byggår."
+      },
+      "titleSv": "Två bosättningar i Harappa tycks ha omgetts av tegelmurar",
+      "summarySv": "Bosättningarna vid höjderna AB och E i Harappa tycks ha avgränsats av kraftiga murar av soltorkat tegel under Kot Diji-fasen. Jonathan Mark Kenoyer daterar fasen till omkring 2800–2600 f.Kr. Han beskriver även gator och hus längs nord–sydliga och öst–västliga riktningar.",
+      "geographySv": "Harappa, Punjab, Pakistan",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "bc2800-kenoyer-harappa"
+      ],
+      "selectionNote": "A specified architectural change at MoundsAB andE during the full phase; no generalized invention of urbanism and no inferred military conflict.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2800-tre-tecken-ristas-pa-karl-i-harappa",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2800,
+        "endYear": -2800,
+        "displaySv": "omkring 2800 f.Kr.",
+        "noteSv": "Föremålstexten på Harappa.com anger omkring 2800 f.Kr. och Kot Diji-fasen. Tecknens läsning fastställs inte i texten. Platsen där tecknen ristades anges inte."
+      },
+      "titleSv": "En mynningsskärva från Harappa bär tre inristade tecken",
+      "summarySv": "En bevarad mynningsskärva från Harappa bär tre inristade tecken. Föremålstexten på Harappa.com daterar skärvan till omkring 2800 f.Kr. och hänför den till den tidigharappanska Kot Diji-fasen.",
+      "geographySv": "Harappa, Punjab, Pakistan",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc2800-harp-rim"
+      ],
+      "selectionNote": "A specific inscribed sherd with its own approximate project date. It makes no claim that writing was invented in this year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2800-en-tennbronskniv-tillverkas-vid-linjia",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2800,
+        "endYear": -2800,
+        "displaySv": "cirka 2800 f.Kr.",
+        "noteSv": "Dateringen följer Meis hänförande av kniven till Majiayao-kulturen omkring 2800 f.Kr. Den anger inget exakt tillverkningsår. Linjia anger fyndplatsen; forskaren fastställer ingen tillverkningsplats."
+      },
+      "titleSv": "En hantverkare tillverkar en kniv av tennbrons",
+      "summarySv": "En hantverkare tillverkar den kniv som arkeologer senare hittar vid Linjia i Dongxiang. Jianjun Mei daterar kniven till omkring 2800 f.Kr. och redovisar laboratorieanalysen som identifierar materialet som tennbrons.",
+      "geographySv": "Linjia, Dongxiang, Gansu, Kina",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "bc2800-mei-linjia"
+      ],
+      "selectionNote": "A specific early tin-bronze object with a scholarly date and composition attribution. No unsupported claim to China’s first bronze or independent invention.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2800-armband-i-en-barngrav-vid-yarim-tepe",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2800,
+        "endYear": -2800,
+        "displaySv": "cirka 2800 f.Kr.",
+        "noteSv": "Museet daterar föremålet, som arkeologer fann i en barngrav. Materialuppgifterna skiljer sig åt mellan sidans löptext och metadata."
+      },
+      "titleSv": "Ett metallarmband hör till en barngrav vid Yarim Tepe",
+      "summarySv": "En hantverkare tillverkar ett metallarmband som arkeologer senare hittar i en barngrav vid Yarim Tepe. Metropolitan Museum daterar armbandet till omkring 2800 f.Kr. Museets löptext kallar materialet brons, medan föremålsuppgifterna anger koppar.",
+      "geographySv": "Yarim Tepe, nordöstra Iran",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc2800-met-yarim"
+      ],
+      "selectionNote": "A named-provenance grave artifact with a specific approximate museum date; the public wording preserves the material discrepancy.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2800-kykladiskt-marmorkarls-tillverkning",
+      "date": {
+        "kind": "range",
+        "startYear": -2800,
+        "endYear": -2700,
+        "displaySv": "cirka 2800–2700 f.Kr.",
+        "noteSv": "Dateringen gäller det enskilda föremålet. Någon bestämd fyndort eller användning för just detta kärl framgår inte av de citerade föremålsuppgifterna."
+      },
+      "titleSv": "En hantverkare gör ett marmorkärl med fyra fästen",
+      "summarySv": "En hantverkare tillverkar ett marmorkärl med hög fot och fyra fästen. Metropolitan Museum hänför föremål 1995.604 till kykladisk kultur och daterar det till omkring 2800–2700 f.Kr.",
+      "geographySv": "Kykladisk kulturtillhörighet; fynd- och tillverkningsort anges inte i föremålsposten",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc2800-met-kandila"
+      ],
+      "selectionNote": "One identifiable surviving vessel with a complete attribution range. No inferred grave, owner or ritual use for this particular artifact.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2800-fotbagare-i-vit-keramik-tillverkas",
+      "date": {
+        "kind": "range",
+        "startYear": -2800,
+        "endYear": -2400,
+        "displaySv": "2800–2400 f.Kr.",
+        "noteSv": "Museet anger ett tillverkningsintervall för det enskilda föremålet. Hela intervallet finns kvar; det anger ingen ny kulturperiod eller något bestämt tillverkningsår."
+      },
+      "titleSv": "En keramiker tillverkar en vit fotbägare",
+      "summarySv": "Den bevarade fotbägaren 1992.297.3 är gjord av vit keramik. Metropolitan Museum hänför den till sen Dawenkou-kultur och daterar föremålet till 2800–2400 f.Kr.",
+      "geographySv": "Kina (museets kulturtillhörighet; tillverkningsort anges inte)",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc2800-met-dawenkou"
+      ],
+      "selectionNote": "One catalogued artifact, not a culture-period onset. The museum’s full400-year attribution range is retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2750-callacpumas-runda-stenplats-byggs",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2750,
+        "endYear": -2750,
+        "displaySv": "cirka 2750 f.Kr.",
+        "noteSv": "Abstractet anger cirka 2750 kalibrerade år f.Kr. Inledningen anger byggnadsintervallet 2632–2884 f.Kr. Avsnittet om dateringarna beskriver en kombinerad kalibrerad fördelning för de tre kolproven. Tabell 1 redovisar provens separata intervall; skillnader mot det kombinerade intervallet visar i sig ingen motsägelse. Källposten bevarar samtliga publicerade provintervall i källans ordning, även BP-uppgifterna. Ingen egen kalenderomräkning, harmonisering av tabellvärden eller ny yttergräns har gjorts."
+      },
+      "titleSv": "Byggare anlägger den runda stenplatsen vid Callacpuma",
+      "summarySv": "Byggare vid Callacpuma anlägger en rund plats med två koncentriska murar av upprättstående stenar utan murbruk. Forskarna anger omkring 2750 f.Kr. som central datering för det första byggandet. De daterar träkol från byggnadens grund.",
+      "geographySv": "Callacpuma, Cajamarcadalen, Peru",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc2750-toohey-callacpuma"
+      ],
+      "selectionNote": "A specific initial construction episode with the authors’ own central estimate. All prose and sample chronology members are preserved; numeric sample bounds do not substitute for the construction estimate.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",
