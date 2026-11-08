@@ -69,9 +69,15 @@
     },
     {
       "startYear": -2200,
-      "endYear": 799,
+      "endYear": 699,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": 700,
+      "endYear": 799,
+      "status": "partial",
+      "note": "Thirty-four independently checked events cover selected acts in Europe, the Middle East and North Africa, sub-Saharan Africa, Central Asia, South Asia, East Asia, Southeast Asia and the Americas. Oceania has no retained event. Europe has ten records; African coverage is limited to a broadly dated Wanar object, American coverage to Copan and Quirigua, and Southeast Asian coverage to Java. Full intervals and date qualifications remain intact. Two unsupported records are withheld, and earlier author retrieval assertions remain unestablished. Empty years and regions remain research gaps."
     },
     {
       "startYear": 800,
