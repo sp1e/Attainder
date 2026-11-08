@@ -7,9 +7,9 @@ import { childIndex, descendantLine, houseMarriedIn } from './succession.js';
 export const ELECTION_REASON_SV = 'Valet föll på en person utanför hovet';
 const ELECTION_NOTE_SV = 'Personen valdes i simuleringen när hovet saknade behöriga vuxna.';
 
-/** Children the ruler adopted, from the adoption memory (participants: adopter, child). */
+/** Children the ruler adopted, from the adoption record. */
 function adoptedBy(state, rulerId) {
-  return new Set((state.memories || []).filter((m) => m.type === 'adoption' && m.participants?.[0] === rulerId).map((m) => m.participants[1]));
+  return new Set((state.adoptions || []).filter((entry) => entry.adopterId === rulerId).map((entry) => entry.childId));
 }
 
 /**

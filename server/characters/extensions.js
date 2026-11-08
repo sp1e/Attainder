@@ -3,6 +3,7 @@ import { getCharacterAge } from './characterCapacity.js';
 import { validateCourtStaff } from './courtStaff.js';
 import { defaultReign } from './reign.js';
 import { syncPlotSecrets, validateSecrets } from './secrets.js';
+import { ensureAdoptions, validateAdoptions } from './succession.js';
 
 export const EXTENSIONS_VERSION = 3;
 export const DIFFICULTIES = Object.freeze({ easy: 'Lätt', normal: 'Normal', hard: 'Svår' });
@@ -45,6 +46,7 @@ export function ensureCharacterExtensions(state) {
   if (!Object.hasOwn(state, 'courtStaff')) state.courtStaff = {};
   if (plainObject(state.offices) && !Object.hasOwn(state.offices, 'spymaster')) state.offices.spymaster = spymasterOffice();
   if (!Object.hasOwn(state, 'reign')) state.reign = defaultReign(state);
+  ensureAdoptions(state);
   if (state.extensionsVersion === 1 || state.extensionsVersion === 2) state.extensionsVersion = EXTENSIONS_VERSION; // any other version is left for validation to refuse
   for (const person of Object.values(state.people || {})) {
     if (!plainObject(person) || !plainObject(person.skills)) continue;
@@ -67,6 +69,7 @@ export function validateCharacterExtensions(state) {
   }
   validateSecrets(state);
   validateCourtStaff(state);
+  validateAdoptions(state);
 }
 
 /** Separate xorshift stream for actions. Same algorithm as random() in index.js but it only ever touches state.actionRngState. */
