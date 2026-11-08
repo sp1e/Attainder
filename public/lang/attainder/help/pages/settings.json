@@ -1,0 +1,322 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/settings",
+  "route": "/wiki/settings/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/tools/settings.md",
+  "upstreamRawSha256": "06d85ad16c8b0039419e18b36e206bd47513ca3266714c411d6c998293837a5c",
+  "title": {
+    "en": "Settings",
+    "sv": "Inställningar"
+  },
+  "nav": {
+    "en": "Settings",
+    "sv": "Inställningar"
+  },
+  "description": {
+    "en": "Configure models, map presentation, privacy and diagnostic records.",
+    "sv": "Ställ in modeller, kartvisning, sekretess och diagnostik."
+  },
+  "sections": [
+    {
+      "id": "workspace",
+      "title": {
+        "en": "Find a setting",
+        "sv": "Hitta en inställning"
+      },
+      "body": {
+        "en": "Open the game menu, then Settings. Its four sections are **General**, **Map**, **AI** and **Advanced**. Game Management opens the library, while Tools opens Cheats, the timeline and the AI debug console.\n\nStart with [model setup](/wiki/ai-setup/). Use [map settings](/wiki/world-map/#basemaps) for appearance and [self-hosting](/wiki/self-hosting/) for another device’s access.",
+        "sv": "Öppna spelmenyn och sedan Inställningar. De fyra avsnitten är **Allmänt**, **Karta**, **AI** och **Avancerad**. Spelhantering öppnar biblioteket. Verktyg öppnar Fusk, tidslinjen och AI-felsökningskonsolen.\n\nBörja med [modellanslutningen](/wiki/ai-setup/). Använd [kartinställningarna](/wiki/world-map/#basemaps) för utseendet och guiden för [egen server](/wiki/self-hosting/) för åtkomst från en annan enhet."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2476,
+          "lineEnd": 2524,
+          "claim": "Four settings sections and menu actions"
+        }
+      ]
+    },
+    {
+      "id": "models",
+      "title": {
+        "en": "Models and requests",
+        "sv": "Modeller och anrop"
+      },
+      "body": {
+        "en": "AI settings separate saved connections from model entries. Entries can share a connection and form a fallback order. **Per-task models**, in Advanced, selects the entry a task tries first. OpenAI-compatible connections additionally offer **Strict tool schema**.\n\nThe AI section also contains request-budget controls and generation preferences: waiting limits, segmented long skips, lookup functions, live event display and background batching. Their availability does not give an account a larger provider allowance or make each interaction cost one call. For a historical character campaign, a failed model year is rejected rather than replaced with a completed canned character turn. Diagnose the failure before retrying.",
+        "sv": "AI-inställningarna skiljer sparade anslutningar från modellposter. Poster kan dela en anslutning och bilda en reservordning. **Modeller per uppgift**, under Avancerad, väljer vilken post en uppgift prövar först. OpenAI-kompatibla anslutningar har dessutom **Strikt verktygsschema**.\n\nAI-avsnittet har också reglage för anropsbudget och generering: väntetidsgränser, uppdelade långa tidshopp, uppslagsfunktioner, löpande händelsevisning och bakgrundsbatchning. Reglagen ger inte kontot en större kvot hos leverantören och innebär inte att varje interaktion kostar ett enda anrop. I en historisk rollfigurskampanj avvisas ett misslyckat modellår i stället för att ersättas med en färdig förskriven rollfigurstur. Undersök felet innan du försöker igen."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2137,
+          "lineEnd": 2163,
+          "claim": "Actual request/generation controls"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2170,
+          "lineEnd": 2184,
+          "claim": "Per-task model selection"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 787,
+          "lineEnd": 794,
+          "claim": "Strict schema condition"
+        },
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 556,
+          "lineEnd": 600,
+          "claim": "Connection entry split"
+        },
+        {
+          "path": "src/Game/AI/gameplay.js",
+          "lineStart": 13353,
+          "lineEnd": 13358,
+          "claim": "Character-system jumps have no canned fallback"
+        },
+        {
+          "path": "src/runtime/characterWorld.js",
+          "lineStart": 39,
+          "lineEnd": 42,
+          "claim": "Reject invalid generation"
+        }
+      ]
+    },
+    {
+      "id": "display-and-privacy",
+      "title": {
+        "en": "General, map and privacy",
+        "sv": "Allmänt, karta och sekretess"
+      },
+      "body": {
+        "en": "General contains separate interface and AI-chat language controls, fullscreen and **Reduce motion**. Reduce motion switches off idle globe rotation and event-camera movement together. Map contains basemap, country-label font, label visibility, globe and terrain controls.\n\nPrivacy controls depend on the build. Visit counting requires consent where it is available. Discord activity is a separate desktop capability. A build that supports neither has no such switch to change.",
+        "sv": "Allmänt har separata reglage för gränssnittsspråk och språk för AI-chatt, helskärm och **Minska rörelse**. Minska rörelse stänger av både jordglobens rotation i vila och kamerans rörelse under händelser. Karta har baskarta, teckensnitt för landsetiketter, etikettvisning, jordglob och terräng.\n\nSekretessreglagen beror på bygget. Besöksräkning kräver samtycke där den finns. Discord-aktivitet är en separat skrivbordsfunktion. Ett bygge som saknar båda funktionerna har inga sådana reglage att ändra."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2072,
+          "lineEnd": 2095,
+          "claim": "Language fullscreen motion privacy controls"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2101,
+          "lineEnd": 2132,
+          "claim": "Map controls"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 1908,
+          "lineEnd": 1922,
+          "claim": "Build-capability privacy predicates"
+        }
+      ]
+    },
+    {
+      "id": "detailed-logging",
+      "title": {
+        "en": "Diagnostics and telemetry",
+        "sv": "Diagnostik och telemetri"
+      },
+      "body": {
+        "en": "Advanced → Diagnostics has **Keep a diagnostics log**, **Detailed logging**, and controls to read, clear, copy or save the log. Detailed logging is off by default. Turn it on, reproduce the problem, then save the file. It can include full conversations, model requests and replies, save activity and error stacks. Read the export before sharing it.\n\nAI telemetry is a separate switch for the debug console. Persistent recording retains the latest **200** calls across sessions; with it off, the console shows the current session. [Troubleshooting](/wiki/troubleshooting/#reporting-a-bug) explains what to include in a report.",
+        "sv": "Avancerad → Diagnostik har **För en diagnostiklogg**, **Detaljerad loggning** och funktioner för att läsa, rensa, kopiera eller spara loggen. Detaljerad loggning är av som standard. Slå på den, återskapa problemet och spara sedan filen. Den kan innehålla hela samtal, modellförfrågningar och svar, sparaktivitet och felstackar. Läs exporten innan du delar den.\n\nAI-telemetri har ett separat reglage för felsökningskonsolen. Beständig inspelning behåller de senaste **200** anropen mellan sessioner. När den är av visar konsolen den aktuella sessionen. [Felsökningen](/wiki/troubleshooting/#reporting-a-bug) beskriver vad en rapport bör innehålla."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 1710,
+          "lineEnd": 1760,
+          "claim": "Diagnostics switches defaults and content warning"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2186,
+          "lineEnd": 2203,
+          "claim": "Persistent telemetry separate switch"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2214,
+          "lineEnd": 2216,
+          "claim": "Advanced diagnostics placement"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 1664,
+          "lineEnd": 1672,
+          "claim": "Save log control"
+        }
+      ]
+    },
+    {
+      "id": "storage",
+      "title": {
+        "en": "Device settings and network access",
+        "sv": "Enhetsinställningar och nätverksåtkomst"
+      },
+      "body": {
+        "en": "Connection settings use this client’s local storage. Map preferences also belong to the device profile. Check them again when moving a campaign to another browser or installation. A campaign export can include a diagnostic settings report; that is not a transfer of your configured connections.\n\nThe Network section is shown outside the static web build. Its sharing controls depend on the local server and can be locked by server configuration. Read the warning before allowing another device to reach the same library.",
+        "sv": "Anslutningsinställningarna använder den här klientens lokala lagring. Kartinställningarna hör också till enhetsprofilen. Kontrollera dem igen när du flyttar en kampanj till en annan webbläsare eller installation. En kampanjexport kan innehålla en diagnostisk inställningsrapport. Den överför inte dina konfigurerade anslutningar.\n\nNätverksavsnittet visas utanför det statiska webbbygget. Delningsreglagen beror på den lokala servern och kan låsas av serverkonfigurationen. Läs varningen innan du låter en annan enhet nå samma bibliotek."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 329,
+          "lineEnd": 345,
+          "claim": "Client localStorage connection settings"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2388,
+          "lineEnd": 2392,
+          "claim": "Map value persistence"
+        },
+        {
+          "path": "src/runtime/gameZip.js",
+          "lineStart": 71,
+          "lineEnd": 72,
+          "claim": "Diagnostic settings report in game export"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2209,
+          "lineEnd": 2212,
+          "claim": "Static web network section guard"
+        },
+        {
+          "path": "server/server.js",
+          "lineStart": 1120,
+          "lineEnd": 1148,
+          "claim": "Network settings local-only/env-lock behavior"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "The game menu",
+      "upstreamLine": 10,
+      "status": "retained",
+      "currentSectionId": "workspace",
+      "reason": "Actual four quick-menu tabs."
+    },
+    {
+      "upstreamHeading": "Where things are",
+      "upstreamLine": 34,
+      "status": "adapted",
+      "currentSectionId": "workspace",
+      "reason": "Current location reference consolidated."
+    },
+    {
+      "upstreamHeading": "AI",
+      "upstreamLine": 54,
+      "status": "retained",
+      "currentSectionId": "models",
+      "reason": "Current model setup links."
+    },
+    {
+      "upstreamHeading": "Models and connections",
+      "upstreamLine": 59,
+      "status": "retained",
+      "currentSectionId": "models",
+      "reason": "Actual entries/connections/task selection and strict condition."
+    },
+    {
+      "upstreamHeading": "AI requests",
+      "upstreamLine": 105,
+      "status": "adapted",
+      "currentSectionId": "models",
+      "reason": "Budget controls retained without frozen provider allowance or fixed call-cost claims."
+    },
+    {
+      "upstreamHeading": "Generation behaviour",
+      "upstreamLine": 123,
+      "status": "adapted",
+      "currentSectionId": "models",
+      "reason": "Generation controls retained; strict historical failure path qualified."
+    },
+    {
+      "upstreamHeading": "General",
+      "upstreamLine": 140,
+      "status": "adapted",
+      "currentSectionId": "display-and-privacy",
+      "reason": "Current controls; no claim new bilingual data is runtime integrated."
+    },
+    {
+      "upstreamHeading": "Sound",
+      "upstreamLine": 171,
+      "status": "unsupported",
+      "currentSectionId": "display-and-privacy",
+      "reason": "Sound tile/ambientMusic/keptMusic implementation missing at pin; no soundtrack controls claimed."
+    },
+    {
+      "upstreamHeading": "Map",
+      "upstreamLine": 188,
+      "status": "retained",
+      "currentSectionId": "display-and-privacy",
+      "reason": "Current map options."
+    },
+    {
+      "upstreamHeading": "Advanced",
+      "upstreamLine": 217,
+      "status": "retained",
+      "currentSectionId": "storage",
+      "reason": "Actual telemetry/network/diagnostics controls."
+    },
+    {
+      "upstreamHeading": "What to change first",
+      "upstreamLine": 235,
+      "status": "adapted",
+      "currentSectionId": "workspace",
+      "reason": "Current actionable setup order; subjective globe/performance recommendations removed."
+    },
+    {
+      "upstreamHeading": "Where settings are stored",
+      "upstreamLine": 246,
+      "status": "retained",
+      "currentSectionId": "storage",
+      "reason": "Device local storage; export report is not credentials transfer."
+    },
+    {
+      "upstreamHeading": "Detailed logging",
+      "upstreamLine": 255,
+      "status": "retained",
+      "currentSectionId": "detailed-logging",
+      "reason": "Exact diagnostic controls and default."
+    },
+    {
+      "upstreamHeading": "Please turn it on before reporting a bug",
+      "upstreamLine": 262,
+      "status": "retained",
+      "currentSectionId": "detailed-logging",
+      "reason": "Enable then reproduce then export."
+    },
+    {
+      "upstreamHeading": "What it adds",
+      "upstreamLine": 269,
+      "status": "retained",
+      "currentSectionId": "detailed-logging",
+      "reason": "Full content warning/source record scope."
+    },
+    {
+      "upstreamHeading": "What it means for your privacy",
+      "upstreamLine": 294,
+      "status": "adapted",
+      "currentSectionId": "detailed-logging",
+      "reason": "Read before sharing; no blanket privacy guarantee inferred."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 306,
+      "status": "retained",
+      "currentSectionId": "workspace",
+      "reason": "Current help route links."
+    }
+  ]
+}

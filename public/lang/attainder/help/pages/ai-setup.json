@@ -1,0 +1,403 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/ai-setup",
+  "route": "/wiki/ai-setup/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/start/ai-setup.md",
+  "upstreamRawSha256": "66d3e4f3c2ac46cba732daa029dc144219bbe1e246a15a5d45e6a574bb50f42d",
+  "title": {
+    "en": "Connect a model",
+    "sv": "Anslut en modell"
+  },
+  "nav": {
+    "en": "Model setup",
+    "sv": "Modellanslutning"
+  },
+  "description": {
+    "en": "Use an existing CLI login or configure an API connection, then verify the selected model.",
+    "sv": "Använd en befintlig CLI-inloggning eller konfigurera en API-anslutning och kontrollera sedan den valda modellen."
+  },
+  "sections": [
+    {
+      "id": "local-cli",
+      "title": {
+        "en": "Codex or Claude on this computer",
+        "sv": "Codex eller Claude på den här datorn"
+      },
+      "body": {
+        "en": "The start card and character panel offer a local connection card for **Codex** and **Claude**. Install and sign in to the corresponding CLI on the computer running the game. Refresh its status, then select an available, authenticated provider that does not require an update. The game starts the CLI request using that existing login.\n\nLeave the optional model name empty to use the account's default, or enter a model available to that account. If the card reports an outdated Codex, its displayed update command is `npm install -g @openai/codex@latest`; refresh status afterwards. This bridge is available only from the host computer's loopback connection.",
+        "sv": "Startkortet och personpanelen erbjuder ett lokalt anslutningskort för **Codex** och **Claude**. Installera och logga in i motsvarande CLI på datorn som kör spelet. Uppdatera statusen och välj sedan en tillgänglig, autentiserad leverantör som inte behöver uppdateras. Spelet startar CLI-förfrågan med denna befintliga inloggning.\n\nLämna det valfria modellnamnet tomt för kontots förval eller ange en modell som kontot har tillgång till. Om kortet visar en för gammal Codex är uppdateringskommandot `npm install -g @openai/codex@latest`. Uppdatera statusen efteråt. Denna anslutning fungerar bara genom värddatorns lokala loopback-anslutning."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/LocalModelConnect.jsx",
+          "lineStart": 5,
+          "lineEnd": 13,
+          "claim": "Local provider choices and optional model state."
+        },
+        {
+          "path": "src/Game/Characters/LocalModelConnect.jsx",
+          "lineStart": 46,
+          "lineEnd": 71,
+          "claim": "Connect, status requirements and update/login instructions."
+        },
+        {
+          "path": "server/localModelBridge.js",
+          "lineStart": 185,
+          "lineEnd": 198,
+          "claim": "CLI login status probe."
+        },
+        {
+          "path": "server/localModelBridge.js",
+          "lineStart": 241,
+          "lineEnd": 250,
+          "claim": "Loopback-only access."
+        }
+      ]
+    },
+    {
+      "id": "api-connection",
+      "title": {
+        "en": "API connections and provider types",
+        "sv": "API-anslutningar och leverantörstyper"
+      },
+      "body": {
+        "en": "Open the advanced model connection settings to use an API provider. The retained provider list includes Gemini, OpenAI, Anthropic, OpenAI Compatible and Anthropic Compatible, alongside the two local CLI transports. A native API connection needs a key; a compatible endpoint needs its server URL and may also require a key. Store each connection once, then choose a model entry that uses it.\n\nKeys and model settings are stored in this client profile's local storage. Do not assume a key configured in one browser is present in another. Availability, billing and account limits come from the provider; a model name in the game's defaults is not proof that your account can use it.",
+        "sv": "Öppna de avancerade modellinställningarna för att använda en API-leverantör. Den behållna leverantörslistan omfattar Gemini, OpenAI, Anthropic, OpenAI-kompatibel och Anthropic-kompatibel utöver de två lokala CLI-transporterna. En inbyggd API-anslutning behöver en nyckel. En kompatibel anslutning behöver serverns URL och kan också kräva en nyckel. Spara anslutningen en gång och välj sedan en modellpost som använder den.\n\nNycklar och modellinställningar lagras i den här klientprofilens lokala lagring. Utgå inte från att en nyckel i en webbläsare finns i en annan. Tillgänglighet, debitering och kontogränser bestäms av leverantören. Ett modellnamn i spelets förval bevisar inte att ditt konto kan använda det."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 33,
+          "lineEnd": 73,
+          "claim": "Actual seven provider types."
+        },
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 265,
+          "lineEnd": 271,
+          "claim": "Key versus endpoint setup requirements."
+        },
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 329,
+          "lineEnd": 345,
+          "claim": "Connection settings localStorage persistence."
+        },
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 683,
+          "lineEnd": 710,
+          "claim": "Quick setup connection and entry creation."
+        }
+      ]
+    },
+    {
+      "id": "compatible-endpoints",
+      "title": {
+        "en": "Local and compatible model servers",
+        "sv": "Lokala och kompatibla modellservrar"
+      },
+      "body": {
+        "en": "For an OpenAI-compatible local server, enter its `/v1` base URL and the model it serves. The configured local default is `http://localhost:11434/v1`. On another device, replace `localhost` with the model computer's address. The game can discover models from a compatible server when no model is specified.\n\nRequests normally go directly to the provider. A local page can use its relay when a browser request is blocked, and remembers that route for the affected server. The Android adapter goes directly through native HTTP for local servers and buffers the reply. A static web build has no local Node relay. Check the server’s address, browser access policy and loaded context window when setup fails.",
+        "sv": "För en lokal OpenAI-kompatibel server anger du dess `/v1`-basadress och den modell den serverar. Den konfigurerade lokala standardadressen är `http://localhost:11434/v1`. På en annan enhet ersätter du `localhost` med modelldatorns adress. Spelet kan hitta modeller från en kompatibel server när inget modellnamn anges.\n\nFörfrågningar går normalt direkt till leverantören. En lokalt körd sida kan använda det lokala reläet när en webbläsarförfrågan blockeras och kommer ihåg den vägen för den berörda servern. Androids adapter använder inbyggd HTTP direkt för lokala servrar och buffrar svaret. Ett statiskt webbbygge har inget lokalt Node-relä. Kontrollera serveradressen, policyn för webbläsaråtkomst och det laddade kontextfönstret om anslutningen misslyckas."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 106,
+          "lineEnd": 116,
+          "claim": "Configured compatible local URL and blank model."
+        },
+        {
+          "path": "src/Game/AI/main.jsx",
+          "lineStart": 522,
+          "lineEnd": 592,
+          "claim": "Direct provider attempt with relay/native transport handling."
+        },
+        {
+          "path": "src/Game/AI/main.jsx",
+          "lineStart": 826,
+          "lineEnd": 861,
+          "claim": "Configured model or discovery handling."
+        },
+        {
+          "path": "src/runtime/native/http.js",
+          "lineStart": 3,
+          "lineEnd": 11,
+          "claim": "Native transport buffers responses."
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 553,
+          "lineEnd": 575,
+          "claim": "Context-window override and local endpoint treatment."
+        }
+      ]
+    },
+    {
+      "id": "backup-models",
+      "title": {
+        "en": "Connections and the fallback list",
+        "sv": "Anslutningar och reservlistan"
+      },
+      "body": {
+        "en": "A connection holds the provider, endpoint and credentials. A model entry references a connection. Add or reorder entries in the Models settings to set the order of attempts; removing a connection also removes entries that use it. Clearing the model list keeps the connections but leaves no model to answer.\n\nThe fallback runner normally starts at the top, or at the entry assigned to the current task. It distinguishes an exhausted allowance, an unusable configuration, a busy provider and a short rate limit. The status display and reset control help you fix the affected entry. The rate-limit policy can try the next entry or wait. This is fallback after a failure, not a rotation that spreads requests across accounts.",
+        "sv": "En anslutning innehåller leverantör, adress och autentiseringsuppgifter. En modellpost hänvisar till en anslutning. Lägg till eller ordna om poster i modellinställningarna för att styra försöksordningen. Om en anslutning tas bort försvinner även posterna som använder den. Att tömma modellistan behåller anslutningarna men lämnar ingen modell som kan svara.\n\nReservhanteringen börjar normalt överst eller med den post som tilldelats den aktuella uppgiften. Den skiljer på förbrukad kvot, oanvändbar konfiguration, upptagen leverantör och kortvarig anropsbegränsning. Statusvisningen och återställningsreglaget hjälper dig rätta den berörda posten. Vid anropsbegränsning kan policyn välja nästa post eller vänta. Detta är reservhantering efter ett fel, inte en rotation som fördelar förfrågningar mellan konton."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 556,
+          "lineEnd": 600,
+          "claim": "Connections and resolved model entries."
+        },
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 875,
+          "lineEnd": 899,
+          "claim": "Connection/list removal effects."
+        },
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 921,
+          "lineEnd": 954,
+          "claim": "Task picks and rate-limit policy."
+        },
+        {
+          "path": "src/Game/AI/fallbackRunner.js",
+          "lineStart": 1,
+          "lineEnd": 8,
+          "claim": "Fallback not request rotation."
+        },
+        {
+          "path": "src/Game/AI/fallbackRunner.js",
+          "lineStart": 204,
+          "lineEnd": 239,
+          "claim": "Runner chooses configured entries and handles failures."
+        }
+      ]
+    },
+    {
+      "id": "rules-and-failures",
+      "title": {
+        "en": "What a model may change",
+        "sv": "Vad en modell får ändra"
+      },
+      "body": {
+        "en": "The model interprets free-text actions and writes narration; the character engine validates and resolves outcomes. You still confirm your own proposed action before it runs. A failed model year is not silently accepted as a completed character turn. Use the menu when interpretation fails and read [troubleshooting](/wiki/troubleshooting/) for connection or validation errors.",
+        "sv": "Modellen tolkar fritexthandlingar och skriver berättelsen. Personmotorn validerar och avgör utfallen. Du bekräftar fortfarande din egen föreslagna handling innan den utförs. Ett misslyckat modellår godtas inte tyst som en färdig persontur. Använd menyn när tolkningen misslyckas och läs [felsökningen](/wiki/troubleshooting/) vid anslutnings- eller valideringsfel."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/characterModelCalls.js",
+          "lineStart": 235,
+          "lineEnd": 240,
+          "claim": "Interpreted action may fail and return menu fallback."
+        },
+        {
+          "path": "src/runtime/characterWorld.js",
+          "lineStart": 39,
+          "lineEnd": 42,
+          "claim": "Rejects failed model generation before applying character turn."
+        },
+        {
+          "path": "server/localModelBridge.js",
+          "lineStart": 81,
+          "lineEnd": 96,
+          "claim": "Actual automatically invoked CLI arguments."
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 167,
+          "lineEnd": 193,
+          "claim": "Proposal facts and confirmation before commit."
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "What the AI actually does",
+      "upstreamLine": 8,
+      "status": "adapted",
+      "currentSectionId": "rules-and-failures",
+      "reason": "Character rules engine, not upstream model-only territory/combat promises."
+    },
+    {
+      "upstreamHeading": "Where to put the key",
+      "upstreamLine": 26,
+      "status": "adapted",
+      "currentSectionId": "api-connection",
+      "reason": "Current local CLI card plus retained advanced API settings."
+    },
+    {
+      "upstreamHeading": "The five provider types",
+      "upstreamLine": 49,
+      "status": "adapted",
+      "currentSectionId": "api-connection",
+      "reason": "Actual seven-type provider list replaces upstream five/six count."
+    },
+    {
+      "upstreamHeading": "A note on browser restrictions",
+      "upstreamLine": 66,
+      "status": "retained",
+      "currentSectionId": "compatible-endpoints",
+      "reason": "Actual direct/relay/native transport handling."
+    },
+    {
+      "upstreamHeading": "Google Gemini — free, and the quickest start",
+      "upstreamLine": 75,
+      "status": "adapted",
+      "currentSectionId": "api-connection",
+      "reason": "Provider configuration retained without asserting live free-tier terms."
+    },
+    {
+      "upstreamHeading": "Anthropic Claude",
+      "upstreamLine": 92,
+      "status": "retained",
+      "currentSectionId": "api-connection",
+      "reason": "Anthropic API option exists; no price/quality promise."
+    },
+    {
+      "upstreamHeading": "OpenAI",
+      "upstreamLine": 102,
+      "status": "retained",
+      "currentSectionId": "api-connection",
+      "reason": "OpenAI API option exists separately from Codex CLI login."
+    },
+    {
+      "upstreamHeading": "A local model — free, private, offline",
+      "upstreamLine": 110,
+      "status": "retained",
+      "currentSectionId": "compatible-endpoints",
+      "reason": "Compatible server setup retained with reachability/context conditions."
+    },
+    {
+      "upstreamHeading": "Ollama (easiest)",
+      "upstreamLine": 115,
+      "status": "adapted",
+      "currentSectionId": "compatible-endpoints",
+      "reason": "Ollama endpoint retained; installation/model recommendation omitted as external provider guidance."
+    },
+    {
+      "upstreamHeading": "LM Studio",
+      "upstreamLine": 125,
+      "status": "adapted",
+      "currentSectionId": "compatible-endpoints",
+      "reason": "LM Studio retained as compatible service without version-specific external UI instructions."
+    },
+    {
+      "upstreamHeading": "llama.cpp",
+      "upstreamLine": 131,
+      "status": "adapted",
+      "currentSectionId": "compatible-endpoints",
+      "reason": "llama.cpp retained as compatible service without assuming model/path naming."
+    },
+    {
+      "upstreamHeading": "Context windows",
+      "upstreamLine": 145,
+      "status": "retained",
+      "currentSectionId": "compatible-endpoints",
+      "reason": "Actual configured context-window controls."
+    },
+    {
+      "upstreamHeading": "Be realistic about model size",
+      "upstreamLine": 154,
+      "status": "unsupported",
+      "currentSectionId": "compatible-endpoints",
+      "reason": "Upstream 3B/7–14B quality benchmarks are not current Attainder evidence."
+    },
+    {
+      "upstreamHeading": "Other cloud services",
+      "upstreamLine": 163,
+      "status": "adapted",
+      "currentSectionId": "api-connection",
+      "reason": "Compatible protocol support retained without stale service URL catalogue."
+    },
+    {
+      "upstreamHeading": "Backup models",
+      "upstreamLine": 177,
+      "status": "retained",
+      "currentSectionId": "backup-models",
+      "reason": "Fallback list implemented."
+    },
+    {
+      "upstreamHeading": "Adding backups",
+      "upstreamLine": 198,
+      "status": "retained",
+      "currentSectionId": "backup-models",
+      "reason": "Entry creation/reordering/removal implemented."
+    },
+    {
+      "upstreamHeading": "Connections",
+      "upstreamLine": 216,
+      "status": "retained",
+      "currentSectionId": "backup-models",
+      "reason": "Connection reuse and removal implemented."
+    },
+    {
+      "upstreamHeading": "What each entry says",
+      "upstreamLine": 229,
+      "status": "retained",
+      "currentSectionId": "backup-models",
+      "reason": "Failure statuses documented by behavior instead of unverified timing claims."
+    },
+    {
+      "upstreamHeading": "When a model can't answer",
+      "upstreamLine": 243,
+      "status": "adapted",
+      "currentSectionId": "backup-models",
+      "reason": "Actual runner controls govern failure handling; no beta timing assumption."
+    },
+    {
+      "upstreamHeading": "Rate limits: wait, or move on",
+      "upstreamLine": 275,
+      "status": "retained",
+      "currentSectionId": "backup-models",
+      "reason": "Rate-limit policy retained."
+    },
+    {
+      "upstreamHeading": "A model for each task",
+      "upstreamLine": 286,
+      "status": "retained",
+      "currentSectionId": "backup-models",
+      "reason": "Task entry preference retained."
+    },
+    {
+      "upstreamHeading": "If you set up AI before the list existed",
+      "upstreamLine": 293,
+      "status": "adapted",
+      "currentSectionId": "backup-models",
+      "reason": "Migration remains internal; new guide explains resulting connections/entries."
+    },
+    {
+      "upstreamHeading": "Using more than one Google account",
+      "upstreamLine": 307,
+      "status": "adapted",
+      "currentSectionId": "backup-models",
+      "reason": "Fallback not rotation retained without quoting external legal terms."
+    },
+    {
+      "upstreamHeading": "Your own Agent",
+      "upstreamLine": 319,
+      "status": "unsupported",
+      "currentSectionId": "local-cli",
+      "reason": "Old Agent folder and /answer workflow absent; mapped to actual local CLI setup."
+    },
+    {
+      "upstreamHeading": "Worth knowing",
+      "upstreamLine": 347,
+      "status": "adapted",
+      "currentSectionId": "rules-and-failures",
+      "reason": "No canned-success or fixed request-cost guarantee for character turns."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 366,
+      "status": "retained",
+      "currentSectionId": "rules-and-failures",
+      "reason": "Current help routes linked."
+    }
+  ]
+}

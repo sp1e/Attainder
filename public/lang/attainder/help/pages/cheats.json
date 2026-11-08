@@ -1,0 +1,268 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/cheats",
+  "route": "/wiki/cheats/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/tools/cheats.md",
+  "upstreamRawSha256": "eb6577648fc42bba919db65eb139d089c42cf15bf8c71798e0b81290a902f72b",
+  "title": {
+    "en": "Cheats and world-editing tools",
+    "sv": "Fusk och verktyg för världsredigering"
+  },
+  "nav": {
+    "en": "Cheats",
+    "sv": "Fusk"
+  },
+  "description": {
+    "en": "Preview interventions, record reminders and inspect direct world edits.",
+    "sv": "Förhandsgranska ingripanden, skriv påminnelser och granska direkta världsändringar."
+  },
+  "sections": [
+    {
+      "id": "gm-console",
+      "title": {
+        "en": "Preview an intervention",
+        "sv": "Förhandsgranska ett ingripande"
+      },
+      "body": {
+        "en": "Open Tools → **Cheats**. These tools edit the running world, so clone or [export the campaign](/wiki/saves/) before a large intervention. In **GM Console**, describe the intended change, choose a mode, generate a preview and inspect it before applying it.\n\nApply uses the prepared transaction and checks the current world again. It makes no second model call and does not advance the date or round. A refused or stale preview must be corrected or regenerated.",
+        "sv": "Öppna Verktyg → **Fusk**. Verktygen ändrar den pågående världen. Klona eller [exportera kampanjen](/wiki/saves/) före ett större ingripande. I **Spelledarkonsol** beskriver du den avsedda ändringen, väljer läge, skapar en förhandsgranskning och granskar den innan du genomför den.\n\nGenomförandet använder den förberedda transaktionen och kontrollerar den aktuella världen igen. Det gör inget andra modellanrop och flyttar inte datum eller omgång. En avvisad eller inaktuell förhandsgranskning behöver rättas eller skapas om."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2514,
+          "lineEnd": 2515,
+          "claim": "Cheats menu launcher"
+        },
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 2698,
+          "lineEnd": 2699,
+          "claim": "Preview apply invariants"
+        },
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 2751,
+          "lineEnd": 2761,
+          "claim": "Generate preview action"
+        },
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 3068,
+          "lineEnd": 3083,
+          "claim": "Apply preview action"
+        },
+        {
+          "path": "src/Game/AI/gameplay.js",
+          "lineStart": 15360,
+          "lineEnd": 15376,
+          "claim": "Identity/fingerprint revalidation"
+        }
+      ]
+    },
+    {
+      "id": "reminders",
+      "title": {
+        "en": "Reminders and direct changes",
+        "sv": "Påminnelser och direkta ändringar"
+      },
+      "body": {
+        "en": "**Simulation Reminders** stores standing facts until you withdraw them. They are shared simulation context, so use them for public facts rather than secrets. The panel also shows the direct changes recorded for the next time skip.\n\nThe change note is best-effort: the edit can succeed even if recording its note fails. Check the resulting world and use the appropriate character action for a historical person’s authority or family decision. A note in this toolbox does not grant a mandate.",
+        "sv": "**Påminnelser till simuleringen** lagrar stående fakta tills du drar tillbaka dem. De är gemensamt sammanhang för simuleringen. Använd dem därför för offentliga fakta och inte för hemligheter. Panelen visar också de direkta ändringar som har registrerats inför nästa tidshopp.\n\nÄndringsanteckningen kan misslyckas även när själva redigeringen lyckas. Kontrollera den ändrade världen och använd rätt rollfigurshandling för en historisk persons befogenheter eller familjebeslut. En anteckning i denna verktygslåda ger inget mandat."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/gmChanges.js",
+          "lineStart": 23,
+          "lineEnd": 28,
+          "claim": "Public standing facts and withdrawal semantics"
+        },
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 1321,
+          "lineEnd": 1324,
+          "claim": "Reminder/pending changes display"
+        },
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 58,
+          "lineEnd": 70,
+          "claim": "Best-effort note after edit"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 167,
+          "lineEnd": 193,
+          "claim": "Character proposal/confirmation flow"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 562,
+          "lineEnd": 568,
+          "claim": "Historical character panel access"
+        }
+      ]
+    },
+    {
+      "id": "world-tools",
+      "title": {
+        "en": "Map, countries and history",
+        "sv": "Karta, länder och historia"
+      },
+      "body": {
+        "en": "The toolbox includes country and region editors, annexation tools, map-feature editing, event editing and the history document. The country tools operate on world records; feature tools distinguish runtime markers from scenario cities. Use the region inspector to check control, sovereignty and claims before changing territory.\n\nThe event editor and history document concern the timeline and the model’s historical context. They are separate from a character’s legal rights. For scenario geography use [the map editor](/wiki/editor/); for a running world see [countries](/wiki/countries/) and [territory](/wiki/territory/).",
+        "sv": "Verktygslådan innehåller lands- och regionredigering, annekteringsverktyg, kartobjektsredigering, händelseredigering och historiedokumentet. Landsverktygen arbetar med världsposter. Objektverktygen skiljer markörer i spelvärlden från scenariots städer. Använd regiongranskaren för att kontrollera kontroll, suveränitet och anspråk innan du ändrar territorium.\n\nHändelseredigeraren och historiedokumentet gäller tidslinjen och modellens historiska sammanhang. De är skilda från en rollfigurs rättsliga befogenheter. För scenariots geografi använder du [kartredigeraren](/wiki/editor/). För den pågående världen läser du om [länder](/wiki/countries/) och [territorium](/wiki/territory/)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 79,
+          "lineEnd": 89,
+          "claim": "World/country/feature/event/history tool registration"
+        },
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 2482,
+          "lineEnd": 2486,
+          "claim": "Actual feature/history loaders"
+        },
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 167,
+          "lineEnd": 172,
+          "claim": "Control/sovereignty distinction"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 562,
+          "lineEnd": 568,
+          "claim": "Character authority interface"
+        }
+      ]
+    },
+    {
+      "id": "restore-and-control",
+      "title": {
+        "en": "Restore points and campaign controls",
+        "sv": "Återställningspunkter och kampanjreglage"
+      },
+      "body": {
+        "en": "**Roll Back Turn** lists available snapshots. Selecting an earlier turn discards the turns after it. Export first if you want to keep both branches. The archive is bounded and snapshot capture is best-effort; see [saves](/wiki/saves/#storage-and-undo).\n\nThe generic Play As Country editor writes the game’s selected-country field. Historical family identity and mandates are managed in Realm & families. In character campaigns the standalone Forces panel is hidden, so use the campaign’s military decisions rather than expecting the generic Force Manager to provide a normal command panel. Difficulty information for a historical start is in [starting a game](/wiki/new-game/).",
+        "sv": "**Rulla tillbaka omgång** listar tillgängliga ögonblicksbilder. Om du väljer en tidigare omgång försvinner omgångarna efter den. Exportera först om du vill behålla båda grenarna. Arkivet är begränsat och sparandet av ögonblicksbilder kan misslyckas. Läs om [sparfiler](/wiki/saves/#storage-and-undo).\n\nDen generella redigeraren Spela som land skriver spelets fält för valt land. Historisk familjeidentitet och mandat hanteras i Rike & familjer. I rollfigurskampanjer är den fristående styrkepanelen dold. Använd därför kampanjens militära beslut i stället för att räkna med den generella styrkehanteraren som en vanlig befälspanel. Svårighetsgraden för en historisk start beskrivs under [starta ett spel](/wiki/new-game/)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 3262,
+          "lineEnd": 3276,
+          "claim": "Rollback destructive later-turn behavior"
+        },
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 3340,
+          "lineEnd": 3356,
+          "claim": "Generic country field write"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 578,
+          "lineEnd": 589,
+          "claim": "Character toolbar/Forces predicates"
+        },
+        {
+          "path": "src/Game/AI/gameplay.js",
+          "lineStart": 7355,
+          "lineEnd": 7360,
+          "claim": "Bounded best-effort snapshots"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "GM Console",
+      "upstreamLine": 19,
+      "status": "retained",
+      "currentSectionId": "gm-console",
+      "reason": "Actual preview/apply route verified."
+    },
+    {
+      "upstreamHeading": "The next skip is told",
+      "upstreamLine": 51,
+      "status": "adapted",
+      "currentSectionId": "reminders",
+      "reason": "Best-effort direct change-note recording qualified."
+    },
+    {
+      "upstreamHeading": "Simulation Reminders",
+      "upstreamLine": 59,
+      "status": "retained",
+      "currentSectionId": "reminders",
+      "reason": "Standing context retained; secrets warning grounded."
+    },
+    {
+      "upstreamHeading": "Turn and campaign control",
+      "upstreamLine": 67,
+      "status": "adapted",
+      "currentSectionId": "restore-and-control",
+      "reason": "Generic selected-country field is not historical identity remapping; rollback actual snapshots."
+    },
+    {
+      "upstreamHeading": "Territory",
+      "upstreamLine": 75,
+      "status": "retained",
+      "currentSectionId": "world-tools",
+      "reason": "Registered annex/region tools with world-record scope."
+    },
+    {
+      "upstreamHeading": "Countries",
+      "upstreamLine": 87,
+      "status": "adapted",
+      "currentSectionId": "world-tools",
+      "reason": "Current country editors; beta groups/puppets tools absent in current registration."
+    },
+    {
+      "upstreamHeading": "Map features",
+      "upstreamLine": 122,
+      "status": "retained",
+      "currentSectionId": "world-tools",
+      "reason": "Actual feature loader and map tools."
+    },
+    {
+      "upstreamHeading": "Events and history",
+      "upstreamLine": 140,
+      "status": "retained",
+      "currentSectionId": "world-tools",
+      "reason": "Events/history context retained; no claim arbitrary edits grant character rights."
+    },
+    {
+      "upstreamHeading": "Forces",
+      "upstreamLine": 160,
+      "status": "adapted",
+      "currentSectionId": "restore-and-control",
+      "reason": "Force Manager registered but standalone Forces guarded off for character campaigns."
+    },
+    {
+      "upstreamHeading": "Difficulty",
+      "upstreamLine": 172,
+      "status": "adapted",
+      "currentSectionId": "restore-and-control",
+      "reason": "Historical start difficulty linked; upstream beta anti-player battlefield handicaps not assumed."
+    },
+    {
+      "upstreamHeading": "Should you use any of this?",
+      "upstreamLine": 184,
+      "status": "adapted",
+      "currentSectionId": "gm-console",
+      "reason": "Use clones/exports and inspect previews; no subjective universal GM preference."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 195,
+      "status": "retained",
+      "currentSectionId": "world-tools",
+      "reason": "Current route links retained."
+    }
+  ]
+}

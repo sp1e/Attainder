@@ -1,0 +1,171 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/new-game",
+  "route": "/wiki/new-game/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/play/new-game.md",
+  "title": {
+    "en": "Starting a campaign",
+    "sv": "Starta en kampanj"
+  },
+  "nav": {
+    "en": "Start a campaign",
+    "sv": "Starta en kampanj"
+  },
+  "description": {
+    "en": "Choose a playable polity, campaign identity, difficulty and optional start seed.",
+    "sv": "Välj ett spelbart rike, kampanjens identitet, svårighetsgrad och ett valfritt startfrö."
+  },
+  "sections": [
+    {
+      "id": "choose-start",
+      "title": {
+        "en": "Choose a historical start",
+        "sv": "Välj en historisk start"
+      },
+      "body": {
+        "en": "Use the search field to find a polity, ruler or period. The list groups starts by region and era. Choose a row to select that polity and its prepared date. A search can hide your selection without changing it; the card then names the selected start below the list.\n\nOpen the sources and uncertainty section to read the historical context, map coverage and any stated limits of the court or succession rules. New starts must fall between 3300 BC and AD 1530. A culture on the map does not by itself provide a playable court.",
+        "sv": "Sök efter ett rike, en härskare eller en tid. Listan grupperar starterna efter världsdel och epok. Välj en rad för att välja riket och dess förberedda datum. En sökning kan dölja ditt val utan att ändra det. Då visas den valda starten under listan.\n\nÖppna avsnittet om källor och osäkerhet för att läsa om det historiska sammanhanget, kartans täckning och angivna begränsningar i hovet eller tronföljdsreglerna. Nya starter måste ligga mellan 3300 f.Kr. och 1530 e.Kr. Att en kultur finns på kartan betyder inte att den har ett spelbart hov."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/HistoricalStartPicker.jsx",
+          "lineStart": 35,
+          "lineEnd": 62,
+          "claim": "Search, region/era grouping and hidden selected start."
+        },
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 70,
+          "lineEnd": 71,
+          "claim": "Context and source/coverage notes."
+        },
+        {
+          "path": "server/historicalStarts.js",
+          "lineStart": 3,
+          "lineEnd": 4,
+          "claim": "Year bounds."
+        },
+        {
+          "path": "src/runtime/startDynastyCampaign.js",
+          "lineStart": 6,
+          "lineEnd": 11,
+          "claim": "Card filters for offered historical starts."
+        }
+      ]
+    },
+    {
+      "id": "identity",
+      "title": {
+        "en": "Choose what you follow",
+        "sv": "Välj vad du följer"
+      },
+      "body": {
+        "en": "Choose realm mode to continue through successive rulers and dynasties of the selected realm. This campaign ends if the realm dissolves.\n\nChoose family mode to follow a family even after it loses the throne. Select the family from the additional list. You can manage its property and work towards a return to power. This campaign ends when the family has no valid continuation.",
+        "sv": "Välj att följa riket för att fortsätta genom rikets härskare och dynastier. Kampanjen slutar om riket upplöses.\n\nVälj att följa familjen för att fortsätta med en familj även efter att den har förlorat tronen. Välj familj i listan som visas. Du kan förvalta familjens egendom och arbeta för en återkomst till makten. Kampanjen slutar när familjen saknar en giltig fortsättning."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 60,
+          "lineEnd": 68,
+          "claim": "Family selector and mode descriptions."
+        }
+      ]
+    },
+    {
+      "id": "difficulty",
+      "title": {
+        "en": "Set the difficulty",
+        "sv": "Välj svårighetsgrad"
+      },
+      "body": {
+        "en": "Choose Easy, Normal or Hard. On Easy, your contested actions receive 10 percentage points more chance of success, while other characters' actions against you receive 10 percentage points less. Hard reverses those adjustments. The choice is saved in the campaign.",
+        "sv": "Välj Lätt, Normal eller Svår. På Lätt får dina handlingar med ett prövat utfall 10 procentenheter högre chans att lyckas. Andra personers handlingar mot dig får 10 procentenheter lägre chans. Svår vänder på dessa justeringar. Valet sparas i kampanjen."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 10,
+          "lineEnd": 11,
+          "claim": "Difficulty labels."
+        },
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 72,
+          "lineEnd": 72,
+          "claim": "Displayed difficulty effects and persistence."
+        }
+      ]
+    },
+    {
+      "id": "seed",
+      "title": {
+        "en": "Use a start seed if needed",
+        "sv": "Använd ett startfrö om du vill"
+      },
+      "body": {
+        "en": "The optional campaign seed lets you recreate the same generated start. Enter a whole number from 1 to 4294967295. The model's narration can still vary. Leaving the field empty uses the game's default seed.",
+        "sv": "Med det valfria kampanjfröet kan du återskapa samma genererade start. Ange ett heltal från 1 till 4294967295. Modellens berättelse kan fortfarande variera. Om du lämnar fältet tomt använder spelet sitt förvalda frö."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 73,
+          "lineEnd": 73,
+          "claim": "Optional numeric seed and narration qualification."
+        },
+        {
+          "path": "src/runtime/startDynastyCampaign.js",
+          "lineStart": 18,
+          "lineEnd": 20,
+          "claim": "Normalization of optional seed."
+        },
+        {
+          "path": "src/runtime/campaignSeed.js",
+          "lineStart": 1,
+          "lineEnd": 9,
+          "claim": "Empty seed uses default; integer bounds enforced."
+        }
+      ]
+    },
+    {
+      "id": "begin",
+      "title": {
+        "en": "Connect a model and begin",
+        "sv": "Anslut en modell och börja"
+      },
+      "body": {
+        "en": "The local connection card checks whether Codex or Claude is installed, signed in and up to date. Select an available connection. If the card asks for sign-in or an update, complete that step and refresh its status.\n\nAfter you have selected a valid start and configured a connection, use the start button for your chosen realm or family mode. If creation fails, read the displayed error before trying again. The character panel opens when the campaign starts.",
+        "sv": "Kortet för lokal anslutning kontrollerar om Codex eller Claude finns på datorn, är inloggad och har en tillräckligt ny version. Välj en tillgänglig anslutning. Om kortet ber om inloggning eller uppdatering gör du det och uppdaterar sedan statusen.\n\nNär du har valt en giltig start och konfigurerat en anslutning använder du startknappen för riket eller familjen. Om starten misslyckas läser du felmeddelandet innan du försöker igen. Personpanelen öppnas när kampanjen börjar."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/LocalModelConnect.jsx",
+          "lineStart": 60,
+          "lineEnd": 68,
+          "claim": "Connection availability and refresh guidance."
+        },
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 48,
+          "lineEnd": 53,
+          "claim": "Start handling and error recovery."
+        },
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 74,
+          "lineEnd": 76,
+          "claim": "Start button prerequisites and visible error."
+        },
+        {
+          "path": "src/runtime/startDynastyCampaign.js",
+          "lineStart": 29,
+          "lineEnd": 33,
+          "claim": "Campaign activation and character-panel event."
+        }
+      ]
+    }
+  ],
+  "upstreamRawSha256": "0a9dcc601981d530e39523670cc36c3f06bcfcdf83e36e0810f9d663b8c6cf13"
+}

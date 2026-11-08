@@ -1,0 +1,281 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/events",
+  "route": "/wiki/events/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/play/events.md",
+  "upstreamRawSha256": "6a1b14d7f01c6c9f5027904e0dd96e2cda25198479c66e5c75e15173d348e387",
+  "title": {
+    "en": "Events and the chronicle",
+    "sv": "Händelser och krönikan"
+  },
+  "nav": {
+    "en": "Events",
+    "sv": "Händelser"
+  },
+  "description": {
+    "en": "Read what happened, resolve waiting choices and distinguish campaign history from historical sources.",
+    "sv": "Läs vad som hänt, avgör väntande val och skilj kampanjhistoria från historiska källor."
+  },
+  "sections": [
+    {
+      "id": "results",
+      "title": {
+        "en": "Read consequences before acting",
+        "sv": "Läs följderna innan du agerar"
+      },
+      "body": {
+        "en": "After an annual turn, read the event report in the realm and families panel. It contains the turn’s recorded events and any message that time stopped for a decision. Reopening the latest saved report does not advance the campaign.\n\nCheck the affected people, families, offices and resources before making your next choice. The action report reflects the rules’ resolved outcome even if a separate model-written narration could not be saved.",
+        "sv": "Läs händelserapporten i panelen för rike och familjer efter en årstur. Den innehåller turens registrerade händelser och eventuella meddelanden om att tiden stannade för ett beslut. Att öppna den senaste sparade rapporten igen för inte kampanjen framåt.\n\nKontrollera berörda personer, familjer, ämbeten och resurser innan du gör nästa val. Handlingsrapporten återger reglernas avgjorda utfall även om en separat modellskriven berättelse inte kunde sparas."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 484,
+          "lineEnd": 489,
+          "claim": "Annual report and interruption"
+        },
+        {
+          "path": "src/runtime/characterRuntime.js",
+          "lineStart": 235,
+          "lineEnd": 250,
+          "claim": "Review does not advance date"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 131,
+          "lineEnd": 146,
+          "claim": "Narration failure retains rule outcome"
+        }
+      ]
+    },
+    {
+      "id": "choices",
+      "title": {
+        "en": "Resolve waiting matters",
+        "sv": "Avgör väntande ärenden"
+      },
+      "body": {
+        "en": "Open the decisions tab for unresolved stories. A story can show its background, earlier choices, available responses and a deadline or fallback consequence. Disabled responses show a reason. Read the cost and consequences before choosing.\n\nSome choices create commitments that return later. The overview shows waiting commitments and their return dates, and the decisions view keeps the history of linked choices. A year can stop at a health or character matter so you can respond.",
+        "sv": "Öppna beslutsfliken för olösta ärenden. Ett ärende kan visa bakgrund, tidigare val, tillgängliga svar och en tidsgräns eller följden av att avstå. Inaktiva svar visar en orsak. Läs kostnaden och följderna innan du väljer.\n\nVissa val skapar åtaganden som återkommer senare. Överblicken visar väntande åtaganden och deras återkomstdatum, och beslutsvyn behåller historiken för sammanhängande val. Ett år kan stanna vid ett vårdärende eller en karaktärshändelse så att du kan svara."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 165,
+          "lineEnd": 202,
+          "claim": "Story background, choices, disabled reason, costs and chain history"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 227,
+          "lineEnd": 228,
+          "claim": "Pending matters and waiting commitments"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 488,
+          "lineEnd": 488,
+          "claim": "Decision interruption"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 499,
+          "lineEnd": 499,
+          "claim": "All stories and chain history in decisions"
+        }
+      ]
+    },
+    {
+      "id": "timeline",
+      "title": {
+        "en": "Read the map timeline",
+        "sv": "Läs kartans tidslinje"
+      },
+      "body": {
+        "en": "The map timeline reveals a saved turn in steps and remembers your progress. The year report in the character panel instead shows that turn’s events together. Unseen events must be read before another character decision or annual advance.\n\nEvent cards show dates and may contain category tags, links to places, attached documents or a map-change count. Open a map-change summary to inspect the changes associated with that card. Category filters apply to the current turn; clear the filter to read the complete sequence.",
+        "sv": "Kartans tidslinje visar en sparad tur stegvis och minns hur långt du har läst. Årsrapporten i karaktärspanelen visar i stället turens händelser tillsammans. Olästa händelser måste läsas före ett nytt karaktärsbeslut eller årssteg.\n\nHändelsekort visar datum och kan innehålla kategorier, platslänkar, bifogade dokument eller antal kartändringar. Öppna sammanställningen av kartändringar för att granska ändringarna som hör till kortet. Kategorifilter gäller den aktuella turen. Rensa filtret för att läsa hela följden."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 2911,
+          "lineEnd": 2950,
+          "claim": "Saved reveal progress"
+        },
+        {
+          "path": "src/runtime/characterRuntime.js",
+          "lineStart": 101,
+          "lineEnd": 101,
+          "claim": "Unseen guard on character mutation"
+        },
+        {
+          "path": "src/runtime/characterRuntime.js",
+          "lineStart": 217,
+          "lineEnd": 228,
+          "claim": "Annual guard and whole-turn reveal"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 850,
+          "lineEnd": 911,
+          "claim": "Event links, tags, documents and map changes"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 1763,
+          "lineEnd": 1780,
+          "claim": "Per-turn category filter"
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "title": {
+        "en": "Campaign memory and real history",
+        "sv": "Kampanjminnen och verklig historia"
+      },
+      "body": {
+        "en": "The chronicle separates memories from the campaign’s annual log. It shows what your side knows; lasting memories, promises and claims can outlive a passing feeling. Use this record when checking why a relationship or obligation matters.\n\nHistorical campaigns also offer a separate real-history view. It lists sourced real-world events for years the campaign has closed. This is a read-only reference: opening it neither saves a world change nor sends a model request. It is distinct from the events generated by your campaign.",
+        "sv": "Krönikan skiljer minnen från kampanjens årslogg. Den visar vad din sida känner till. Bestående minnen, löften och anspråk kan överleva en tillfällig känsla. Använd historiken när du vill förstå varför en relation eller förpliktelse har betydelse.\n\nHistoriska kampanjer har också en separat vy över verklighetens historia. Den visar källbelagda verkliga händelser för år som kampanjen har avslutat. Det är ett läsbart referensmaterial: att öppna vyn sparar ingen förändring i världen och skickar inget modellanrop. Den skiljer sig från händelserna som din kampanj genererar."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 354,
+          "lineEnd": 357,
+          "claim": "Memory/log/real-history filters and known-side scope"
+        },
+        {
+          "path": "src/Game/Characters/HistoricalRecordView.jsx",
+          "lineStart": 31,
+          "lineEnd": 48,
+          "claim": "Read-only sourced historical years and no model call"
+        }
+      ]
+    },
+    {
+      "id": "response",
+      "title": {
+        "en": "Respond or revisit",
+        "sv": "Svara eller gå tillbaka"
+      },
+      "body": {
+        "en": "When the timeline offers an interactive scene, its availability depends on the event and the campaign’s current scene state. Finish or set aside an active scene before another jump. You can also use a supported intervention to keep revealed events and discard the rest of the latest turn; read [Time](/wiki/time/#undo) before confirming.\n\nIf the model fails or the report seems inconsistent, read the displayed error and inspect the saved state before retrying. Use an available undo restore point when you need to return to the earlier turn. See [Troubleshooting](/wiki/troubleshooting/) and [Saves](/wiki/saves/).",
+        "sv": "När tidslinjen erbjuder en interaktiv scen beror tillgängligheten på händelsen och kampanjens aktuella scenläge. Avsluta eller lägg åt sidan en aktiv scen före ett nytt tidssteg. Du kan också använda ett tillgängligt ingripande för att behålla visade händelser och kasta resten av den senaste turen. Läs [Tid](/wiki/time/#undo) innan du bekräftar.\n\nOm modellen misslyckas eller rapporten verkar motsägelsefull läser du det visade felet och granskar det sparade läget innan du försöker igen. Använd en tillgänglig återställningspunkt för att ångra när du behöver gå tillbaka till den tidigare turen. Se [Felsökning](/wiki/troubleshooting/) och [Sparningar](/wiki/saves/)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 2106,
+          "lineEnd": 2110,
+          "claim": "Offer shown only once reached and no active scene"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 1260,
+          "lineEnd": 1267,
+          "claim": "Active scene blocks next jump"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 2010,
+          "lineEnd": 2034,
+          "claim": "Intervention semantics"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 2644,
+          "lineEnd": 2668,
+          "claim": "Conditional undo restore"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Events change things",
+      "upstreamLine": 6,
+      "status": "adapted",
+      "currentSectionId": "results",
+      "reason": "Current recorded engine outcomes and visible state are primary."
+    },
+    {
+      "upstreamHeading": "The staged reveal",
+      "upstreamLine": 21,
+      "status": "retained",
+      "currentSectionId": "timeline",
+      "reason": "Staged map reveal distinct from panel report."
+    },
+    {
+      "upstreamHeading": "Event cards",
+      "upstreamLine": 53,
+      "status": "retained",
+      "currentSectionId": "timeline",
+      "reason": "Actual card dates, links, documents and map-change summary."
+    },
+    {
+      "upstreamHeading": "Reading a turn well",
+      "upstreamLine": 64,
+      "status": "adapted",
+      "currentSectionId": "results",
+      "reason": "Reading advice tied to affected state and waiting decisions."
+    },
+    {
+      "upstreamHeading": "Major and minor",
+      "upstreamLine": 75,
+      "status": "adapted",
+      "currentSectionId": "timeline",
+      "reason": "Importance estimates do not guarantee event counts or consequences."
+    },
+    {
+      "upstreamHeading": "Event categories",
+      "upstreamLine": 81,
+      "status": "retained",
+      "currentSectionId": "timeline",
+      "reason": "Current per-turn category filters."
+    },
+    {
+      "upstreamHeading": "Events kept off the timeline",
+      "upstreamLine": 94,
+      "status": "unsupported",
+      "currentSectionId": "memory",
+      "reason": "Missing filedEvents module; current known-side chronicle is replacement."
+    },
+    {
+      "upstreamHeading": "Interactive events",
+      "upstreamLine": 106,
+      "status": "adapted",
+      "currentSectionId": "response",
+      "reason": "Conditional interactive offer and scene state retained without cost promises."
+    },
+    {
+      "upstreamHeading": "What the world remembers",
+      "upstreamLine": 136,
+      "status": "adapted",
+      "currentSectionId": "memory",
+      "reason": "Persistent character memories and log distinguished from generated history summaries."
+    },
+    {
+      "upstreamHeading": "Before round one",
+      "upstreamLine": 155,
+      "status": "adapted",
+      "currentSectionId": "memory",
+      "reason": "Character starts authored, real historical reference separate."
+    },
+    {
+      "upstreamHeading": "If a turn produced nothing useful",
+      "upstreamLine": 169,
+      "status": "adapted",
+      "currentSectionId": "response",
+      "reason": "Inspect error/state, conditional undo and troubleshooting."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 182,
+      "status": "adapted",
+      "currentSectionId": "response",
+      "reason": "Navigation to current guides."
+    }
+  ]
+}

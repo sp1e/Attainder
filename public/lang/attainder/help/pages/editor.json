@@ -1,0 +1,337 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/editor",
+  "route": "/wiki/editor/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/tools/editor.md",
+  "upstreamRawSha256": "25495c68d7e5cf4e72cd1b2502a02a4d085149d8f0722e2b200d66681812e130",
+  "title": {
+    "en": "The map and scenario editors",
+    "sv": "Kart- och scenarioredigerarna"
+  },
+  "nav": {
+    "en": "Editor",
+    "sv": "Redigerare"
+  },
+  "description": {
+    "en": "Edit a scenario copy, inspect its data and save its geography.",
+    "sv": "Redigera en scenariokopia, granska dess data och spara geografin."
+  },
+  "sections": [
+    {
+      "id": "open",
+      "title": {
+        "en": "Open an editor copy",
+        "sv": "Öppna en redigeringskopia"
+      },
+      "body": {
+        "en": "Open a scenario’s editor drawer, then its map editor. The standalone editor is also available at `/?editor=1`. Clone a scenario before reshaping its map, particularly if campaigns already depend on its geography.\n\nThe editor changes scenario data. Use the prepared historical starts in [starting a game](/wiki/new-game/) for a supported campaign; drawing or importing a map does not itself establish historical coverage or playable identities.",
+        "sv": "Öppna ett scenarios redigeringspanel och därefter kartredigeraren. Den fristående redigeraren finns också på `/?editor=1`. Klona ett scenario innan du formar om dess karta, särskilt om kampanjer redan är beroende av dess geografi.\n\nRedigeraren ändrar scenariodata. Använd de förberedda historiska starterna under [starta ett spel](/wiki/new-game/) för en kampanj som stöds. Att rita eller importera en karta fastställer inte i sig historisk täckning eller spelbara identiteter."
+      },
+      "evidence": [
+        {
+          "path": "src/App.jsx",
+          "lineStart": 214,
+          "lineEnd": 226,
+          "claim": "Standalone editor URL flag"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 3835,
+          "lineEnd": 3836,
+          "claim": "Scenario drawer map editor entry"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 835,
+          "lineEnd": 838,
+          "claim": "Clone scenario"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 1830,
+          "lineEnd": 1833,
+          "claim": "Prepared historical playable identity list"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "title": {
+        "en": "Edit regions and placed objects",
+        "sv": "Redigera regioner och utplacerade objekt"
+      },
+      "body": {
+        "en": "The toolbar provides selection, lasso and pan; region drawing, vertex editing and shared-border editing; move, delete and border merging; ownership painting; and city, starting-unit and feature-box tools. Shared-border editing requires exactly **two neighbouring regions**. A paint stroke is one undo operation.\n\nThe bottom panels expose regions, countries, groups, types, features, units, topology, clipboard, layers, reference and projection. Use the country registry for names, aliases, colours, flags and tags, and the region inspector for a selection’s properties. These tools edit the map’s actual records.",
+        "sv": "Verktygsraden har markering, lasso och panorering; regionritning, hörnpunktsredigering och redigering av gemensamma gränser; flyttning, radering och gränssammanslagning; ägarmålning samt verktyg för städer, startenheter och objektrutor. Redigering av en gemensam gräns kräver exakt **två angränsande regioner**. Ett målningsdrag är en ångringsoperation.\n\nPanelerna längst ned visar regioner, länder, grupper, typer, objekt, enheter, topologi, urklipp, lager, referens och projektion. Använd landsregistret för namn, alias, färger, flaggor och taggar och regiongranskaren för den markerade regionens egenskaper. Verktygen ändrar kartans faktiska poster."
+      },
+      "evidence": [
+        {
+          "path": "src/Editor/Toolbar.jsx",
+          "lineStart": 15,
+          "lineEnd": 30,
+          "claim": "Actual tools and exact shared-border/paint requirements"
+        },
+        {
+          "path": "src/Editor/BottomBar.jsx",
+          "lineStart": 80,
+          "lineEnd": 96,
+          "claim": "Actual current bottom panels"
+        },
+        {
+          "path": "src/Editor/PolitiesPanel.jsx",
+          "lineStart": 504,
+          "lineEnd": 520,
+          "claim": "Country rename behavior"
+        },
+        {
+          "path": "src/Editor/PolitiesPanel.jsx",
+          "lineStart": 596,
+          "lineEnd": 619,
+          "claim": "Country tags and removal"
+        },
+        {
+          "path": "src/Editor/MapEditor.jsx",
+          "lineStart": 935,
+          "lineEnd": 960,
+          "claim": "City/unit creation and editing callbacks"
+        }
+      ]
+    },
+    {
+      "id": "imports-and-projection",
+      "title": {
+        "en": "Imports, reference images and projection",
+        "sv": "Import, referensbilder och projektion"
+      },
+      "body": {
+        "en": "Import Map has raster and GeoJSON modes. Review the imported country identities and colours before applying an import: the importer resolves visible owner names against the existing registry and refuses conflicting owner colours. A reference image is a session-only tracing aid; it is not exported with the map.\n\nProjection conversion moves regions, cities, units and the basemap together. Check the result before saving. A generation drawer appears only where the build reports the generator available; its output still belongs to the editor’s scenario data.",
+        "sv": "Kartimporten har lägen för raster och GeoJSON. Granska importerade landsidentiteter och färger innan du tillämpar importen. Importören kopplar synliga ägarnamn till det befintliga registret och avvisar motstridiga ägarfärger. En referensbild är ett ritstöd för den aktuella sessionen. Den exporteras inte med kartan.\n\nProjektionsomvandling flyttar regioner, städer, enheter och baskarta tillsammans. Kontrollera resultatet innan du sparar. En genereringspanel visas bara där bygget rapporterar att generatorn finns. Även dess resultat hör till redigerarens scenariodata."
+      },
+      "evidence": [
+        {
+          "path": "src/Editor/ProvinceImportPanel.jsx",
+          "lineStart": 696,
+          "lineEnd": 701,
+          "claim": "Raster/GeoJSON import modes"
+        },
+        {
+          "path": "src/Editor/ProvinceImportPanel.jsx",
+          "lineStart": 299,
+          "lineEnd": 303,
+          "claim": "Stable polity identity import resolution"
+        },
+        {
+          "path": "src/Editor/ProvinceImportPanel.jsx",
+          "lineStart": 511,
+          "lineEnd": 527,
+          "claim": "Conflicting/invalid color refusal"
+        },
+        {
+          "path": "src/Editor/ReferencePanel.jsx",
+          "lineStart": 6,
+          "lineEnd": 9,
+          "claim": "Reference image session-only not exported"
+        },
+        {
+          "path": "src/Editor/ProjectionPanel.jsx",
+          "lineStart": 6,
+          "lineEnd": 11,
+          "claim": "Projection conversion moves all data"
+        },
+        {
+          "path": "src/Editor/MapEditor.jsx",
+          "lineStart": 146,
+          "lineEnd": 153,
+          "claim": "Generator capability predicate"
+        },
+        {
+          "path": "src/Editor/MapEditor.jsx",
+          "lineStart": 415,
+          "lineEnd": 445,
+          "claim": "Generator output imported as editor seed"
+        }
+      ]
+    },
+    {
+      "id": "save-and-apply",
+      "title": {
+        "en": "Save and apply the map",
+        "sv": "Spara och tillämpa kartan"
+      },
+      "body": {
+        "en": "Wait until the scenario’s map has loaded. Scenario saving is blocked while the editor is not hydrated, and the library also refuses an empty editor map replacing a scenario that has territory.\n\n**Save**, **Save & Exit** and **Apply & Play** send the edited map back to the scenario. Before that, the editor attempts conservative border cleanup that fills enclosed gaps narrower than **500 metres** and trims thin overlaps. Cleanup failure does not block saving; inspect the result notice. Apply & Play requests play after applying the scenario. Keep an exported copy when changing geometry used by other campaigns.",
+        "sv": "Vänta tills scenariots karta har lästs in. Scenariosparandet blockeras innan redigeraren har laddat kartan. Biblioteket avvisar också en tom redigeringskarta som skulle ersätta ett scenario med territorium.\n\n**Spara**, **Spara och avsluta** och **Verkställ och spela** skickar tillbaka den redigerade kartan till scenariot. Först försöker redigeraren försiktigt reparera gränserna genom att fylla igen omslutna glipor som är smalare än **500 meter** och skära bort smala överlapp. Ett misslyckat reparationsförsök blockerar inte sparandet. Granska resultatmeddelandet. Verkställ och spela begär spelstart efter att scenariot har tillämpats. Behåll en exporterad kopia när du ändrar geometri som används av andra kampanjer."
+      },
+      "evidence": [
+        {
+          "path": "src/Editor/MapEditor.jsx",
+          "lineStart": 511,
+          "lineEnd": 550,
+          "claim": "Hydration guard cleanup and apply callback"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 2896,
+          "lineEnd": 2903,
+          "claim": "Second empty-map guard"
+        },
+        {
+          "path": "src/Editor/MapEditor.jsx",
+          "lineStart": 1010,
+          "lineEnd": 1048,
+          "claim": "Actual save save-exit apply-play controls"
+        },
+        {
+          "path": "src/Editor/topologySweep.js",
+          "lineStart": 6,
+          "lineEnd": 9,
+          "claim": "500metre conservative cleanup"
+        }
+      ]
+    },
+    {
+      "id": "scenario-content",
+      "title": {
+        "en": "Scenario content and sharing",
+        "sv": "Scenarioinnehåll och delning"
+      },
+      "body": {
+        "en": "The scenario drawer separately edits its overview, world setup, prompts, features, statistics and assets. It also offers ZIP and JSON bundles. Prompt exports carry editable passages; technical/tooling prompt text remains application-owned.\n\nExport the scenario to keep or share a copy. Review the [Community Hub](/wiki/community-hub/) publishing and licence requirements before posting it. The code retains Open Historia attribution and AGPL notices; scenario-sharing terms and asset licences are separate.",
+        "sv": "Scenariopanelen redigerar översikt, världsinställningar, förfrågningstexter, funktioner, statistik och resurser separat. Den erbjuder också paket i ZIP och JSON. Export av förfrågningstexter tar med redigerbara avsnitt. Tekniska texter och verktygsinstruktioner förblir programmets ansvar.\n\nExportera scenariot för att behålla eller dela en kopia. Läs [gemenskapshubbens](/wiki/community-hub/) krav för publicering och licens innan du lägger upp det. Koden behåller Open Historias tillskrivning och AGPL-meddelanden. Villkoren för scenariodelning och resursernas licenser är separata."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 268,
+          "lineEnd": 275,
+          "claim": "Actual scenario drawer sections"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 1606,
+          "lineEnd": 1612,
+          "claim": "ZIP/JSON bundle export"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 450,
+          "lineEnd": 455,
+          "claim": "Editable prompt export excludes technical text"
+        },
+        {
+          "path": "README.md",
+          "lineStart": 82,
+          "lineEnd": 84,
+          "claim": "Scenario/data licensing"
+        },
+        {
+          "path": "README.md",
+          "lineStart": 113,
+          "lineEnd": 115,
+          "claim": "AGPL attribution"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "The tools",
+      "upstreamLine": 18,
+      "status": "retained",
+      "currentSectionId": "tools",
+      "reason": "Actual current toolbar, not beta sidebar."
+    },
+    {
+      "upstreamHeading": "Two things that make it pleasant",
+      "upstreamLine": 46,
+      "status": "adapted",
+      "currentSectionId": "tools",
+      "reason": "Drawing tool retained; no blanket overlap-free/GPU-performance promise from beta."
+    },
+    {
+      "upstreamHeading": "Countries",
+      "upstreamLine": 60,
+      "status": "retained",
+      "currentSectionId": "tools",
+      "reason": "Registry identity editor retained."
+    },
+    {
+      "upstreamHeading": "Region properties",
+      "upstreamLine": 83,
+      "status": "adapted",
+      "currentSectionId": "tools",
+      "reason": "Region/type editing retained; absent beta simplify/water-freeze extensions not claimed."
+    },
+    {
+      "upstreamHeading": "Panels",
+      "upstreamLine": 101,
+      "status": "retained",
+      "currentSectionId": "tools",
+      "reason": "Actual bottom panels including Topology, clipboard and reference."
+    },
+    {
+      "upstreamHeading": "Projections",
+      "upstreamLine": 148,
+      "status": "retained",
+      "currentSectionId": "imports-and-projection",
+      "reason": "Actual projection conversion."
+    },
+    {
+      "upstreamHeading": "The war map",
+      "upstreamLine": 160,
+      "status": "unsupported",
+      "currentSectionId": "tools",
+      "reason": "Beta War map/climate/front editing implementation missing at pin."
+    },
+    {
+      "upstreamHeading": "Importing",
+      "upstreamLine": 178,
+      "status": "adapted",
+      "currentSectionId": "imports-and-projection",
+      "reason": "Raster/GeoJSON imports and capability-gated generator retained; no fantasy campaign onboarding."
+    },
+    {
+      "upstreamHeading": "Reference tracing",
+      "upstreamLine": 208,
+      "status": "retained",
+      "currentSectionId": "imports-and-projection",
+      "reason": "Session-only reference tracing retained."
+    },
+    {
+      "upstreamHeading": "Starting a new map",
+      "upstreamLine": 214,
+      "status": "adapted",
+      "currentSectionId": "open",
+      "reason": "Standalone editor retained; old beta world-map region totals not a current start claim."
+    },
+    {
+      "upstreamHeading": "Saving and playing",
+      "upstreamLine": 225,
+      "status": "adapted",
+      "currentSectionId": "save-and-apply",
+      "reason": "Actual hydration guard and500m best-effort cleanup; beta Quick/Deep cleanup missing."
+    },
+    {
+      "upstreamHeading": "The scenario editor",
+      "upstreamLine": 250,
+      "status": "adapted",
+      "currentSectionId": "scenario-content",
+      "reason": "Current scenario sections; missing beta Music/Politics/Fronts/Prehistory editors not claimed."
+    },
+    {
+      "upstreamHeading": "Sharing what you make",
+      "upstreamLine": 304,
+      "status": "retained",
+      "currentSectionId": "scenario-content",
+      "reason": "Actual bundle/licence sharing route."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 315,
+      "status": "retained",
+      "currentSectionId": "scenario-content",
+      "reason": "Current route links."
+    }
+  ]
+}

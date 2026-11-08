@@ -1,0 +1,290 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/ai-providers",
+  "route": "/wiki/ai-providers/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/reference/ai-providers.md",
+  "upstreamRawSha256": "23063e9cc4b73c53142656eff12f8f4eaca549580a7e229d33d7c1da66b27325",
+  "title": {
+    "en": "Models and providers",
+    "sv": "Modeller och leverantörer"
+  },
+  "nav": {
+    "en": "Models and providers",
+    "sv": "Modeller och leverantörer"
+  },
+  "description": {
+    "en": "Choose a connection, understand model defaults and inspect its requests.",
+    "sv": "Välj en anslutning, förstå modellernas förval och granska anropen."
+  },
+  "sections": [
+    {
+      "id": "requirements",
+      "title": {
+        "en": "What a model must return",
+        "sv": "Vad modellen måste lämna"
+      },
+      "body": {
+        "en": "Character interactions ask the model for structured action data as well as narrative text. The game validates that data before accepting an action. Start by checking that the selected model follows the requested format and keeps its answer consistent with the scene.\n\nThe local Codex and Claude connections use the installed programs and their existing logins. API connections use the credentials and endpoint you configure. See [connecting a model](/wiki/ai-setup/).",
+        "sv": "Rollfigurssamtal ber modellen om strukturerade handlingsdata och berättande text. Spelet kontrollerar dessa data innan det godkänner en handling. Börja med att kontrollera att den valda modellen följer formatet och att svaret stämmer med scenen.\n\nDe lokala anslutningarna till Codex och Claude använder de installerade programmen och deras befintliga inloggningar. API-anslutningar använder de inloggningsuppgifter och den adress du anger. Läs om att [ansluta en modell](/wiki/ai-setup/)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/characterModelCalls.js",
+          "lineStart": 89,
+          "lineEnd": 105,
+          "claim": "Structured output parsing"
+        },
+        {
+          "path": "src/Game/Characters/characterModelCalls.js",
+          "lineStart": 235,
+          "lineEnd": 240,
+          "claim": "Interpretation failure handling"
+        },
+        {
+          "path": "README.md",
+          "lineStart": 13,
+          "lineEnd": 13,
+          "claim": "CLI login transport"
+        }
+      ]
+    },
+    {
+      "id": "defaults",
+      "title": {
+        "en": "Defaults and task choices",
+        "sv": "Standardmodeller och val per uppgift"
+      },
+      "body": {
+        "en": "The configured Gemini defaults are `gemini-3.5-flash-lite` followed by `gemini-3.1-flash-lite`. OpenAI defaults to `gpt-6-luna`; Anthropic defaults to `claude-haiku-4-5`. A compatible endpoint can discover a model when its model field is blank. Leaving the local CLI model blank uses the account default.\n\nThese are configuration defaults. Availability depends on the provider and your account. A per-task choice can select an entry before the fallback list is tried. Check the entry actually used in diagnostics when investigating a different writing style.",
+        "sv": "Geminis förval är `gemini-3.5-flash-lite`, följt av `gemini-3.1-flash-lite`. OpenAI har `gpt-6-luna` som förval och Anthropic har `claude-haiku-4-5`. En kompatibel server kan lämna en modell genom modellupptäckt när modellfältet är tomt. Ett tomt modellfält för den lokala CLI-anslutningen använder kontots standardmodell.\n\nDetta är konfigurerade förval. Tillgängligheten beror på leverantören och ditt konto. Ett val per uppgift kan välja en post innan reservlistan prövas. Kontrollera den faktiskt använda posten i diagnostiken om du undersöker en ändrad skrivstil."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 18,
+          "lineEnd": 31,
+          "claim": "Gemini and OpenAI defaults"
+        },
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 88,
+          "lineEnd": 92,
+          "claim": "Anthropic defaults"
+        },
+        {
+          "path": "src/Game/Characters/LocalModelConnect.jsx",
+          "lineStart": 68,
+          "lineEnd": 68,
+          "claim": "Blank CLI model"
+        },
+        {
+          "path": "src/Game/AI/main.jsx",
+          "lineStart": 816,
+          "lineEnd": 851,
+          "claim": "Compatible model discovery"
+        },
+        {
+          "path": "src/Game/AI/main.jsx",
+          "lineStart": 2444,
+          "lineEnd": 2448,
+          "claim": "Task-specific entry preference"
+        }
+      ]
+    },
+    {
+      "id": "usage-and-context",
+      "title": {
+        "en": "Requests, cost and context",
+        "sv": "Anrop, kostnad och kontext"
+      },
+      "body": {
+        "en": "One interaction can require interpretation and a separate narrative request. Retries and fallback entries can add calls. Check your provider account for its usage terms and charges; the local CLI uses the account signed into that program.\n\nFor a model server on your machine or network, load a context window large enough for the request. The model entry exposes a context-window setting and a way to clear a learned limit. A local server can be reloaded with a different window, so verify its current configuration when a request is too large.",
+        "sv": "En interaktion kan kräva tolkning och ett separat berättaranrop. Omförsök och reservposter kan ge fler anrop. Kontrollera användningsvillkor och avgifter hos din leverantör. Den lokala CLI-anslutningen använder kontot som är inloggat i programmet.\n\nLadda en tillräckligt stor kontext i en modellserver på din dator eller ditt nätverk. Modellposten har en inställning för kontextfönster och möjlighet att rensa en inlärd gräns. En lokal server kan laddas om med ett annat fönster. Kontrollera därför dess aktuella konfiguration när en förfrågan är för stor."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/characterModelCalls.js",
+          "lineStart": 235,
+          "lineEnd": 240,
+          "claim": "Interpretation request"
+        },
+        {
+          "path": "src/Game/Characters/characterModelCalls.js",
+          "lineStart": 283,
+          "lineEnd": 286,
+          "claim": "Separate narration request"
+        },
+        {
+          "path": "src/Game/AI/main.jsx",
+          "lineStart": 2552,
+          "lineEnd": 2577,
+          "claim": "Fallback attempts"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 553,
+          "lineEnd": 575,
+          "claim": "Context window controls and local server semantics"
+        },
+        {
+          "path": "README.md",
+          "lineStart": 13,
+          "lineEnd": 13,
+          "claim": "CLI account usage"
+        }
+      ]
+    },
+    {
+      "id": "expert-controls",
+      "title": {
+        "en": "Expert controls",
+        "sv": "Avancerade reglage"
+      },
+      "body": {
+        "en": "A connection can set custom request parameters. OpenAI-compatible connections also offer Strict tool schema. A model entry can override custom parameters and select how structured answers are requested. Model reasoning is available where the provider supports it. Change one setting at a time and inspect the resulting request when diagnosing format failures.\n\nThese controls affect the model request. The game still validates the proposed action before committing it. If no request reaches the model, check login, credentials and endpoint first.",
+        "sv": "En anslutning kan ange egna anropsparametrar. OpenAI-kompatibla anslutningar erbjuder också Strikt verktygsschema. En modellpost kan ersätta de egna parametrarna och välja hur strukturerade svar begärs. Modellresonemang finns där leverantören stöder det. Ändra en inställning i taget och granska anropet när du undersöker formatfel.\n\nReglagen påverkar modellförfrågan. Spelet kontrollerar fortfarande den föreslagna handlingen innan den genomförs. Om inget anrop når modellen kontrollerar du först inloggning, inloggningsuppgifter och serveradress."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 780,
+          "lineEnd": 794,
+          "claim": "Connection custom parameters and strict schema"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 838,
+          "lineEnd": 846,
+          "claim": "Entry custom parameters and structured mode"
+        },
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 274,
+          "lineEnd": 289,
+          "claim": "Reasoning support"
+        },
+        {
+          "path": "src/runtime/characterWorld.js",
+          "lineStart": 39,
+          "lineEnd": 42,
+          "claim": "Failed generation rejected"
+        }
+      ]
+    },
+    {
+      "id": "diagnostics",
+      "title": {
+        "en": "Inspect a request",
+        "sv": "Granska ett anrop"
+      },
+      "body": {
+        "en": "Open AI debug console from the tools menu to inspect prompts, answers, model details, token counts, latency and validation results, and export JSON or CSV. With persistent telemetry recording enabled, the store retains the latest 200 records. Detailed diagnostic logging can include full prompts and replies; read the export before sharing it.\n\nThe local model-call counter is updated by the CLI transport. Treat it as a local CLI counter rather than a complete bill for every API connection. See [troubleshooting](/wiki/troubleshooting/) for connection failures.",
+        "sv": "Öppna AI-felsökningskonsolen i verktygsmenyn för att granska förfrågningar, svar, modelluppgifter, tokenantal, svarstid och valideringsresultat samt exportera JSON eller CSV. När beständig telemetriinspelning är på behålls de senaste 200 posterna. Detaljerad diagnostikloggning kan innehålla hela förfrågningar och svar. Läs exporten innan du delar den.\n\nRäknaren för lokala modellanrop uppdateras av CLI-transporten. Betrakta den som en räknare för lokala CLI-anrop och inte som en fullständig faktura för alla API-anslutningar. Läs [felsökningen](/wiki/troubleshooting/) vid anslutningsfel."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2187,
+          "lineEnd": 2203,
+          "claim": "Debug console and telemetry"
+        },
+        {
+          "path": "src/Game/AI/telemetry.js",
+          "lineStart": 19,
+          "lineEnd": 26,
+          "claim": "Persistent telemetry limit"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 1734,
+          "lineEnd": 1737,
+          "claim": "Detailed logging content"
+        },
+        {
+          "path": "src/Game/AI/localCliProvider.js",
+          "lineStart": 9,
+          "lineEnd": 9,
+          "claim": "CLI call counter update"
+        },
+        {
+          "path": "src/Game/AI/telemetry.js",
+          "lineStart": 370,
+          "lineEnd": 375,
+          "claim": "CSV export"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2522,
+          "lineEnd": 2524,
+          "claim": "Actual tools-menu debug-console launcher"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "What the game asks of a model",
+      "upstreamLine": 4,
+      "status": "adapted",
+      "currentSectionId": "requirements",
+      "reason": "Use current character action schema and validation."
+    },
+    {
+      "upstreamHeading": "Choosing a provider",
+      "upstreamLine": 18,
+      "status": "adapted",
+      "currentSectionId": "requirements",
+      "reason": "Current automatic CLI transports replace upstream agent-folder workflow; no price ranking."
+    },
+    {
+      "upstreamHeading": "Defaults",
+      "upstreamLine": 41,
+      "status": "retained",
+      "currentSectionId": "defaults",
+      "reason": "Defaults verified as configuration, not provider availability."
+    },
+    {
+      "upstreamHeading": "Trading up",
+      "upstreamLine": 53,
+      "status": "adapted",
+      "currentSectionId": "defaults",
+      "reason": "Task selection is supported; model quality comparisons omitted."
+    },
+    {
+      "upstreamHeading": "Costs",
+      "upstreamLine": 68,
+      "status": "adapted",
+      "currentSectionId": "usage-and-context",
+      "reason": "Current interactions have multiple calls; no fixed upstream skip budget or price claims."
+    },
+    {
+      "upstreamHeading": "Local models",
+      "upstreamLine": 98,
+      "status": "adapted",
+      "currentSectionId": "usage-and-context",
+      "reason": "Context controls retained; model-size benchmarks and universal offline claim unsupported."
+    },
+    {
+      "upstreamHeading": "Expert controls",
+      "upstreamLine": 118,
+      "status": "adapted",
+      "currentSectionId": "expert-controls",
+      "reason": "Current connection and entry controls; no canned-event guarantee for character turns."
+    },
+    {
+      "upstreamHeading": "Seeing what the AI did",
+      "upstreamLine": 149,
+      "status": "retained",
+      "currentSectionId": "diagnostics",
+      "reason": "Console and telemetry limit verified."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 162,
+      "status": "retained",
+      "currentSectionId": "diagnostics",
+      "reason": "Current setup and troubleshooting links."
+    }
+  ]
+}

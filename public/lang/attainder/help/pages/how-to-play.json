@@ -1,0 +1,170 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/how-to-play",
+  "route": "/wiki/how-to-play/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/start/how-to-play.md",
+  "title": {
+    "en": "How to play",
+    "sv": "Så spelar du"
+  },
+  "nav": {
+    "en": "How to play",
+    "sv": "Så spelar du"
+  },
+  "description": {
+    "en": "Understand actions, resources, model narration and the rhythm of a dynasty campaign.",
+    "sv": "Förstå handlingar, resurser, modellens berättelse och turerna i en dynastikampanj."
+  },
+  "sections": [
+    {
+      "id": "loop",
+      "title": {
+        "en": "Read, decide and advance",
+        "sv": "Läs, besluta och gå vidare"
+      },
+      "body": {
+        "en": "Read the current court and open decisions, choose an action, inspect its terms and resolve it. Advance time when you are ready for the next events. Revisit the people, families and resources after the turn because their situation may have changed.\n\nIn realm mode you follow the realm through successive rulers. In family mode you follow a family even if it loses the throne. Check which person can act for you and which authority the proposed action requires.",
+        "sv": "Läs om hovets läge och öppna beslut, välj en handling, granska villkoren och genomför den. Låt tiden gå när du är redo för nästa händelser. Gå igenom personer, familjer och resurser efter turen eftersom deras situation kan ha förändrats.\n\nI riksläget följer du riket genom dess härskare. I familjeläget följer du en familj även om den förlorar tronen. Kontrollera vem som kan företräda dig och vilket mandat handlingen kräver."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 67,
+          "lineEnd": 68,
+          "claim": "Campaign identities."
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 109,
+          "lineEnd": 115,
+          "claim": "Active representative."
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 497,
+          "lineEnd": 500,
+          "claim": "Actions follow actor mandate and resources."
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 453,
+          "lineEnd": 471,
+          "claim": "Action stages."
+        }
+      ]
+    },
+    {
+      "id": "actions",
+      "title": {
+        "en": "Read the terms of an action",
+        "sv": "Läs handlingens villkor"
+      },
+      "body": {
+        "en": "Actions can cost silver and action points. Realm and family funds are distinct, so read the purse named on the action card. Some actions also take time. For contested actions, inspect the displayed success and secrecy chances and the listed modifiers before confirming.\n\nA successful interpretation of your free text is a proposal. Confirming it is the step that attempts the action. If the text cannot be interpreted, choose an action from the list.",
+        "sv": "Handlingar kan kosta silver och handlingsutrymme. Riket och familjen har skilda tillgångar, så läs vilken kassa handlingskortet anger. Vissa handlingar tar också tid. För handlingar med ett prövat utfall granskar du chansen att lyckas och att hålla handlingen hemlig samt de faktorer som visas innan du bekräftar.\n\nNär modellen har tolkat din fria text har du ett förslag. Först när du bekräftar försöker du genomföra handlingen. Om texten inte kan tolkas kan du välja en handling från listan."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 20,
+          "lineEnd": 20,
+          "claim": "Interpretation failure fallback."
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 43,
+          "lineEnd": 51,
+          "claim": "Cost display."
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 167,
+          "lineEnd": 193,
+          "claim": "Odds, modifiers and confirmation."
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 263,
+          "lineEnd": 278,
+          "claim": "Duration and menu preview."
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 453,
+          "lineEnd": 471,
+          "claim": "Interpretation precedes confirmation."
+        }
+      ]
+    },
+    {
+      "id": "schemes",
+      "title": {
+        "en": "Follow ongoing schemes and decisions",
+        "sv": "Följ pågående intriger och beslut"
+      },
+      "body": {
+        "en": "An ongoing scheme can continue beyond the turn in which you started it. Read its progress and available controls. Cancelling a scheme asks for confirmation and does not return the silver or action already spent.\n\nOther decisions may have a deadline or a stated consequence if you abstain. Read those terms before advancing the year. A turn can stop when a decision needs your attention.",
+        "sv": "En pågående intrig kan fortsätta efter turen då du startade den. Läs om dess förlopp och vilka val du har. När du avbryter en intrig får du först bekräfta avbrottet. Du får inte tillbaka silver eller handlingen som redan har använts.\n\nAndra beslut kan ha en tidsgräns eller en angiven följd om du avstår. Läs villkoren innan du går vidare ett år. En tur kan stanna när du behöver ta ställning till ett beslut."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 305,
+          "lineEnd": 366,
+          "claim": "Scheme state and cancellation confirmation/cost."
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 189,
+          "lineEnd": 195,
+          "claim": "Deadline and abstention consequence."
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 443,
+          "lineEnd": 446,
+          "claim": "Interrupted turn report."
+        }
+      ]
+    },
+    {
+      "id": "narration",
+      "title": {
+        "en": "Use the model to interpret and narrate",
+        "sv": "Använd modellen för tolkning och berättande"
+      },
+      "body": {
+        "en": "The model interprets free-text actions and narrates their outcomes. The rules determine the effects and constrain the model's account. Read the confirmation and result cards when deciding what actually happened.\n\nHistorical references describe real-world events, while the campaign develops through its own decisions and outcomes. Read source and uncertainty notes when comparing the two. A recorded historical event does not require your campaign to follow the same course.",
+        "sv": "Modellen tolkar handlingar i fri text och berättar om deras utfall. Reglerna avgör följderna och begränsar modellens redogörelse. Läs bekräftelsekortet och resultatkortet när du bedömer vad som har hänt.\n\nHistoriska referenser beskriver verkliga händelser, medan kampanjen utvecklas genom sina egna beslut och utfall. Läs källor och osäkerhetsnoter när du jämför dem. En verklig historisk händelse kräver inte att din kampanj tar samma väg."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/LocalModelConnect.jsx",
+          "lineStart": 58,
+          "lineEnd": 59,
+          "claim": "Model narrates/proposes while rules determine effects."
+        },
+        {
+          "path": "src/Game/Characters/characterModelCalls.js",
+          "lineStart": 258,
+          "lineEnd": 265,
+          "claim": "Narration preserves fixed outcome and effects."
+        },
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 71,
+          "lineEnd": 71,
+          "claim": "Campaign may diverge from history."
+        },
+        {
+          "path": "src/Game/Characters/HistoricalRecordView.jsx",
+          "lineStart": 31,
+          "lineEnd": 52,
+          "claim": "Read-only historical reference."
+        }
+      ]
+    }
+  ],
+  "upstreamRawSha256": "dde273bf8de2a9913ab7669a0925ca2fa3ae94d5197173d4c45a12eefbb08312"
+}

@@ -1,0 +1,177 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/war-room",
+  "route": "/wiki/war-room/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/war-room.md",
+  "upstreamRawSha256": "920b2f12b911364ac75f89b8f7ce41f4bba9691bd4a06c4726af12435d086e32",
+  "title": {
+    "en": "War Room availability",
+    "sv": "Krigsrummets tillgänglighet"
+  },
+  "nav": {
+    "en": "War Room",
+    "sv": "Krigsrummet"
+  },
+  "description": {
+    "en": "Find the military controls available in this version.",
+    "sv": "Hitta militärreglagen som finns i den här versionen."
+  },
+  "sections": [
+    {
+      "id": "availability",
+      "title": {
+        "en": "Current military view",
+        "sv": "Aktuell militärvy"
+      },
+      "body": {
+        "en": "This version has no separate War Room for drawing battlefield routes, building fortified lines or rehearsing a week of troop combat. In a dynasty campaign, open the realm and families panel to read military readiness and choose the actions and decisions available to the responsible representative.\n\nRead [Military](/wiki/military/) for general map formations and [War](/wiki/war/) for recorded conflicts.",
+        "sv": "Den här versionen saknar ett separat krigsrum för att rita vägar över slagfält, bygga befästa linjer eller provspela en veckas truppstrider. Öppna panelen för rike och familjer i en dynastikampanj för att läsa militär beredskap och välja handlingar och beslut som den ansvariga företrädaren kan genomföra.\n\nLäs [Militär](/wiki/military/) om allmänna kartförband och [Krig](/wiki/war/) om registrerade konflikter."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 562,
+          "lineEnd": 589,
+          "claim": "Implemented character/generic military panel mounting"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 218,
+          "lineEnd": 225,
+          "claim": "Current readiness and action controls"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 499,
+          "lineEnd": 499,
+          "claim": "Available decisions with actor mandate"
+        }
+      ]
+    },
+    {
+      "id": "planning",
+      "title": {
+        "en": "Plan, confirm and review",
+        "sv": "Planera, bekräfta och granska"
+      },
+      "body": {
+        "en": "Describe an intention in the character action field or choose from the catalogue. Check the proposal’s actor, target, cost and any displayed odds before confirming. The outcome is resolved by the rules; its narration can arrive afterward.\n\nAdvance time with the campaign’s year control when ready and read the event report. A decision can interrupt the year. Use [Actions](/wiki/orders/), [Time](/wiki/time/) and [Events](/wiki/events/) for the current sequence.",
+        "sv": "Beskriv en avsikt i karaktärens handlingsfält eller välj ur katalogen. Kontrollera förslagets aktör, mål, kostnad och eventuella visade chanser innan du bekräftar. Reglerna avgör utfallet. Berättelsen om det kan komma därefter.\n\nFör tiden framåt med kampanjens årsknapp när du är redo och läs händelserapporten. Ett beslut kan avbryta året. Den aktuella följden beskrivs under [Handlingar](/wiki/orders/), [Tid](/wiki/time/) och [Händelser](/wiki/events/)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 149,
+          "lineEnd": 193,
+          "claim": "Proposal facts and confirmation"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 117,
+          "lineEnd": 146,
+          "claim": "Rules first then narration"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 480,
+          "lineEnd": 489,
+          "claim": "Year and interrupted event report"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Battlefields",
+      "upstreamLine": 7,
+      "status": "unsupported",
+      "currentSectionId": "availability",
+      "reason": "War Room/fronts implementation absent at pin; current readiness/action view explicitly substituted."
+    },
+    {
+      "upstreamHeading": "Opening the War Room",
+      "upstreamLine": 41,
+      "status": "unsupported",
+      "currentSectionId": "availability",
+      "reason": "War Room/fronts implementation absent at pin; current readiness/action view explicitly substituted."
+    },
+    {
+      "upstreamHeading": "The troop tools",
+      "upstreamLine": 57,
+      "status": "unsupported",
+      "currentSectionId": "availability",
+      "reason": "War Room/fronts implementation absent at pin; current readiness/action view explicitly substituted."
+    },
+    {
+      "upstreamHeading": "Deploy: a front or a swarm",
+      "upstreamLine": 95,
+      "status": "unsupported",
+      "currentSectionId": "availability",
+      "reason": "War Room/fronts implementation absent at pin; current readiness/action view explicitly substituted."
+    },
+    {
+      "upstreamHeading": "Fortified lines",
+      "upstreamLine": 120,
+      "status": "unsupported",
+      "currentSectionId": "availability",
+      "reason": "War Room/fronts implementation absent at pin; current readiness/action view explicitly substituted."
+    },
+    {
+      "upstreamHeading": "Supply",
+      "upstreamLine": 144,
+      "status": "unsupported",
+      "currentSectionId": "availability",
+      "reason": "War Room/fronts implementation absent at pin; current readiness/action view explicitly substituted."
+    },
+    {
+      "upstreamHeading": "The panel",
+      "upstreamLine": 154,
+      "status": "unsupported",
+      "currentSectionId": "availability",
+      "reason": "War Room/fronts implementation absent at pin; current readiness/action view explicitly substituted."
+    },
+    {
+      "upstreamHeading": "Orders from outside the War Room",
+      "upstreamLine": 188,
+      "status": "adapted",
+      "currentSectionId": "planning",
+      "reason": "Replaced with actual character proposal confirmation."
+    },
+    {
+      "upstreamHeading": "Difficulty",
+      "upstreamLine": 201,
+      "status": "unsupported",
+      "currentSectionId": "availability",
+      "reason": "War Room/fronts implementation absent at pin; current readiness/action view explicitly substituted."
+    },
+    {
+      "upstreamHeading": "Reading a battlefield",
+      "upstreamLine": 219,
+      "status": "unsupported",
+      "currentSectionId": "availability",
+      "reason": "War Room/fronts implementation absent at pin; current readiness/action view explicitly substituted."
+    },
+    {
+      "upstreamHeading": "When a war ends",
+      "upstreamLine": 233,
+      "status": "unsupported",
+      "currentSectionId": "availability",
+      "reason": "War Room/fronts implementation absent at pin; current readiness/action view explicitly substituted."
+    },
+    {
+      "upstreamHeading": "For scenario designers",
+      "upstreamLine": 242,
+      "status": "unsupported",
+      "currentSectionId": "availability",
+      "reason": "War Room/fronts implementation absent at pin; current readiness/action view explicitly substituted."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 252,
+      "status": "adapted",
+      "currentSectionId": "planning",
+      "reason": "Links to current military/war/action guides."
+    }
+  ]
+}

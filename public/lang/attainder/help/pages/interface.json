@@ -1,0 +1,234 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/interface",
+  "route": "/wiki/interface/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/play/interface.md",
+  "upstreamRawSha256": "466183b6d86c44049bcb87b02928730adee9aa4665bc451e0c18c98e7734adef",
+  "title": {
+    "en": "The interface",
+    "sv": "Gränssnittet"
+  },
+  "nav": {
+    "en": "Interface",
+    "sv": "Gränssnitt"
+  },
+  "description": {
+    "en": "Find campaign controls, map information and the settings menu.",
+    "sv": "Hitta kampanjreglage, kartinformation och inställningsmenyn."
+  },
+  "sections": [
+    {
+      "id": "campaign",
+      "title": {
+        "en": "The campaign screen",
+        "sv": "Kampanjskärmen"
+      },
+      "body": {
+        "en": "The map shows the current world. Open **Realm & families** to work with the historical campaign’s people, families and decisions. In a campaign with the character system, the ordinary Chat/Actions/Projects toolbar and the standalone Forces panel are hidden. Use the campaign’s own decision flow; see [giving orders](/wiki/orders/) and [time](/wiki/time/).\n\nThe library bar, date controls, search, advisor and game menu remain separate controls around the map. Return to the library to choose a game or manage its files.",
+        "sv": "Kartan visar den aktuella världen. Öppna **Rike & familjer** för att arbeta med den historiska kampanjens personer, familjer och beslut. I en kampanj med rollfigurssystemet är den vanliga verktygsraden för chatt, handlingar och projekt samt den fristående styrkepanelen dolda. Använd kampanjens eget beslutsflöde. Läs om [beslut](/wiki/orders/) och [tid](/wiki/time/).\n\nBiblioteksraden, tidsreglagen, sökningen, rådgivaren och spelmenyn är separata reglage runt kartan. Återvänd till biblioteket för att välja spel eller hantera dess filer."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 558,
+          "lineEnd": 600,
+          "claim": "Character panel launcher and character-system toolbar/forces predicates"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 932,
+          "lineEnd": 936,
+          "claim": "Game management card actions"
+        }
+      ]
+    },
+    {
+      "id": "menus",
+      "title": {
+        "en": "Menu and tools",
+        "sv": "Meny och verktyg"
+      },
+      "body": {
+        "en": "The game menu groups **Game**, **Tools**, **Settings** and **Help**. Game Management opens the library. Tools opens Cheats, Events / Timeline and the AI debug console. Settings offers General, Map, AI and Advanced. Help links to the wiki, reporting and privacy.\n\nUse [settings](/wiki/settings/) for model connections and map preferences. The [cheat tools](/wiki/cheats/) can change campaign data directly; make an [export or clone](/wiki/saves/) before experimenting.",
+        "sv": "Spelmenyn delar upp **Spel**, **Verktyg**, **Inställningar** och **Hjälp**. Spelhantering öppnar biblioteket. Verktyg öppnar Fusk, händelser och tidslinje samt AI-felsökningskonsolen. Inställningar har Allmänt, Karta, AI och Avancerad. Hjälp länkar till wikin, felrapportering och sekretess.\n\nAnvänd [inställningarna](/wiki/settings/) för modellanslutningar och kartval. [Fuskverktygen](/wiki/cheats/) kan ändra kampanjdata direkt. Gör en [export eller klon](/wiki/saves/) innan du experimenterar."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2476,
+          "lineEnd": 2524,
+          "claim": "Quick menu groups and actual actions"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 683,
+          "lineEnd": 694,
+          "claim": "Menu action wiring"
+        }
+      ]
+    },
+    {
+      "id": "map-and-search",
+      "title": {
+        "en": "Map cards and search",
+        "sv": "Kartkort och sökning"
+      },
+      "body": {
+        "en": "Click a region to inspect its country and territory. The country panel separates sovereign regions from controlled foreign regions and regions under foreign control. Read [countries](/wiki/countries/) and [the map](/wiki/world-map/) for details.\n\nSearch uses the campaign’s local place entries and moves the camera to the chosen result. Historical campaigns do not fall back to the real-world online geocoder when a local place is missing.",
+        "sv": "Klicka på en region för att granska landet och territoriet. Landpanelen skiljer suveräna regioner från kontrollerade utländska regioner och regioner under utländsk kontroll. Läs om [länder](/wiki/countries/) och [kartan](/wiki/world-map/) för mer information.\n\nSökningen använder kampanjens lokala ortposter och flyttar kameran till det valda resultatet. Historiska kampanjer använder inte den verkliga världens nätbaserade geokodare som reserv när en lokal ort saknas."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 167,
+          "lineEnd": 172,
+          "claim": "Sovereignty/control classification"
+        },
+        {
+          "path": "src/Game/GameUI/search.jsx",
+          "lineStart": 215,
+          "lineEnd": 226,
+          "claim": "Local place index inputs"
+        },
+        {
+          "path": "src/Game/GameUI/search.jsx",
+          "lineStart": 264,
+          "lineEnd": 293,
+          "claim": "Camera movement and historical geocoder guard"
+        }
+      ]
+    },
+    {
+      "id": "display-problems",
+      "title": {
+        "en": "When the display is blank",
+        "sv": "När visningen är tom"
+      },
+      "body": {
+        "en": "A **WebGL Not Available** warning means the renderer cannot create the required graphics context. The warning checks again for roughly 30 seconds and reloads if WebGL returns. You can also reload manually. If the warning persists, check hardware acceleration and graphics drivers.\n\nIf the interface opens but the historical geography is missing, follow [map troubleshooting](/wiki/troubleshooting/#map) before deleting campaign data.",
+        "sv": "Varningen **WebGL är inte tillgängligt** betyder att renderaren inte kan skapa den grafikkontext som krävs. Varningen kontrollerar igen i ungefär 30 sekunder och laddar om sidan om WebGL blir tillgängligt. Du kan också ladda om manuellt. Kontrollera hårdvaruacceleration och grafikdrivrutiner om varningen kvarstår.\n\nOm gränssnittet öppnas men den historiska kartan saknas följer du [kartfelsökningen](/wiki/troubleshooting/#map) innan du raderar kampanjdata."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 292,
+          "lineEnd": 308,
+          "claim": "WebGL recheck20 times1500ms"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 165,
+          "lineEnd": 168,
+          "claim": "Graphics troubleshooting guidance"
+        },
+        {
+          "path": "README.md",
+          "lineStart": 24,
+          "lineEnd": 30,
+          "claim": "Map assets and unresolved imported maps"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "The edges at a glance",
+      "upstreamLine": 7,
+      "status": "adapted",
+      "currentSectionId": "campaign",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "The map itself",
+      "upstreamLine": 28,
+      "status": "adapted",
+      "currentSectionId": "map-and-search",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "The date pill and time",
+      "upstreamLine": 50,
+      "status": "adapted",
+      "currentSectionId": "campaign",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "The toolbar",
+      "upstreamLine": 62,
+      "status": "adapted",
+      "currentSectionId": "campaign",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "Chat",
+      "upstreamLine": 66,
+      "status": "adapted",
+      "currentSectionId": "campaign",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "✦ Actions",
+      "upstreamLine": 83,
+      "status": "adapted",
+      "currentSectionId": "campaign",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "Projects & Operations",
+      "upstreamLine": 92,
+      "status": "adapted",
+      "currentSectionId": "campaign",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "The advisor drawer",
+      "upstreamLine": 98,
+      "status": "adapted",
+      "currentSectionId": "campaign",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "The game menu",
+      "upstreamLine": 119,
+      "status": "adapted",
+      "currentSectionId": "menus",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "Search",
+      "upstreamLine": 132,
+      "status": "adapted",
+      "currentSectionId": "map-and-search",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "Cheats",
+      "upstreamLine": 140,
+      "status": "adapted",
+      "currentSectionId": "menus",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "The main menu",
+      "upstreamLine": 148,
+      "status": "adapted",
+      "currentSectionId": "campaign",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "If the screen is blank",
+      "upstreamLine": 167,
+      "status": "adapted",
+      "currentSectionId": "display-problems",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 175,
+      "status": "adapted",
+      "currentSectionId": "map-and-search",
+      "reason": "Current historical character-system predicates and reachable menu tools replace incompatible beta layouts."
+    }
+  ]
+}

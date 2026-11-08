@@ -1,0 +1,255 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/countries",
+  "route": "/wiki/countries/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/countries.md",
+  "upstreamRawSha256": "8f4638e8f1140c92cf5db459443942e1003f4ed428f717ea35f1ec2cca2c89d3",
+  "title": {
+    "en": "Countries and identity",
+    "sv": "Länder och identitet"
+  },
+  "nav": {
+    "en": "Countries",
+    "sv": "Länder"
+  },
+  "description": {
+    "en": "Read country information and distinguish names, identity and territory.",
+    "sv": "Läs landinformation och skilj mellan namn, identitet och territorium."
+  },
+  "sections": [
+    {
+      "id": "identity",
+      "title": {
+        "en": "Names and campaign identity",
+        "sv": "Namn och kampanjidentitet"
+      },
+      "body": {
+        "en": "A country’s displayed name and its saved identity serve different purposes. A campaign keeps a stable polity key; renaming changes the current display name and aliases so old references can still resolve to the same actor. In historical starts, the list of playable countries comes from the prepared historical package.\n\nUse the selected historical start and its reviewed country list when creating a campaign. The map editor’s country-creation tools edit scenario data; they do not establish a new supported historical start.",
+        "sv": "Ett lands visade namn och dess sparade identitet har olika uppgifter. Kampanjen behåller en stabil landsnyckel. Ett namnbyte ändrar det aktuella visningsnamnet och aliasen så att gamla hänvisningar fortfarande kan hitta samma aktör. I historiska starter kommer listan över spelbara länder från det förberedda historiska paketet.\n\nAnvänd den valda historiska starten och dess granskade landslista när du skapar en kampanj. Kartredigerarens verktyg för att skapa länder ändrar scenariodata. De fastställer ingen ny historisk start som stöds."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/polityIdentity.js",
+          "lineStart": 8,
+          "lineEnd": 11,
+          "claim": "Stable campaign key versus display name"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 1830,
+          "lineEnd": 1833,
+          "claim": "Prepared historical playable polity list"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 3091,
+          "lineEnd": 3105,
+          "claim": "Historical scenario library filtering"
+        }
+      ]
+    },
+    {
+      "id": "country-panel",
+      "title": {
+        "en": "Read a country’s map information",
+        "sv": "Läs ett lands kartinformation"
+      },
+      "body": {
+        "en": "Open the information panel from a country’s map card. It shows alternative names, related events and separate lists for sovereign regions, controlled foreign regions and its regions under foreign control. These describe different territorial relationships; a single colour does not explain all of them.\n\nThe panel also offers a flag picker and an advisor report. Its diplomacy button requires the general chat panel, which is unavailable in a dynasty campaign. An advisor report asks the model for a reading; it is separate from the character engine’s office holders and legal authority. Read [statistics](/wiki/statistics/), [diplomacy](/wiki/diplomacy/) and [territory](/wiki/territory/) in the context of the current historical campaign.",
+        "sv": "Öppna informationspanelen från landets kartkort. Den visar alternativa namn, relaterade händelser och separata listor för suveräna regioner, kontrollerade utländska regioner och egna regioner under utländsk kontroll. Detta är olika territoriella förhållanden. En enda färg förklarar dem inte alla.\n\nPanelen erbjuder också flaggval och en rådgivarrapport. Dess diplomatiknapp behöver den allmänna chattpanelen, som inte visas i en dynastikampanj. En rådgivarrapport ber modellen om en bedömning. Den är skild från rollfigursmotorns ämbetsinnehavare och lagliga befogenheter. Läs om [statistik](/wiki/statistics/), [diplomati](/wiki/diplomacy/) och [territorium](/wiki/territory/) utifrån den aktuella historiska kampanjen."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 167,
+          "lineEnd": 172,
+          "claim": "Territory classifications"
+        },
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 308,
+          "lineEnd": 310,
+          "claim": "Related events"
+        },
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 370,
+          "lineEnd": 422,
+          "claim": "Aliases and territory lists"
+        },
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 447,
+          "lineEnd": 451,
+          "claim": "Advisor report and diplomacy"
+        },
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 454,
+          "lineEnd": 460,
+          "claim": "Flag picker"
+        },
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 246,
+          "lineEnd": 268,
+          "claim": "Report model call"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 107,
+          "lineEnd": 109,
+          "claim": "Character authority representation"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 578,
+          "lineEnd": 583,
+          "claim": "General toolbar not mounted in dynasty"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 3538,
+          "lineEnd": 3552,
+          "claim": "Chat mounted only within general toolbar"
+        }
+      ]
+    },
+    {
+      "id": "scenario-editing",
+      "title": {
+        "en": "Tags and scenario editing",
+        "sv": "Taggar och scenarioredigering"
+      },
+      "body": {
+        "en": "Tags are short country descriptors. The normalizer accepts at most **8**, with at most **32 characters** in each, and removes duplicates. The country panel reads the scenario tags unless campaign overrides replace them.\n\nIn the map editor, the country registry provides names, aliases, colours, flags and tags. Its rename action updates the country across the map and keeps the old name as a former name. Removing a country from the map is a direct editing operation. Clone the scenario before making broad changes, and read [the editor guide](/wiki/editor/) and [cheat tools](/wiki/cheats/) before changing a running world.",
+        "sv": "Taggar är korta beskrivningar av ett land. Normaliseringen accepterar högst **8** taggar med högst **32 tecken** i varje och tar bort dubbletter. Landpanelen läser scenariots taggar om kampanjens egna värden inte ersätter dem.\n\nI kartredigeraren har landsregistret namn, alias, färger, flaggor och taggar. Namnbytet uppdaterar landet över kartan och behåller det gamla namnet som ett tidigare namn. Att ta bort ett land från kartan är en direkt redigering. Klona scenariot innan du gör större ändringar. Läs [redigeringsguiden](/wiki/editor/) och om [fuskverktygen](/wiki/cheats/) innan du ändrar en pågående värld."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/countryTags.js",
+          "lineStart": 12,
+          "lineEnd": 13,
+          "claim": "Tag limits"
+        },
+        {
+          "path": "src/runtime/countryTags.js",
+          "lineStart": 32,
+          "lineEnd": 43,
+          "claim": "Tag normalization dedup and truncation"
+        },
+        {
+          "path": "src/Game/Selection/CountryPanel.jsx",
+          "lineStart": 157,
+          "lineEnd": 158,
+          "claim": "Starting tags versus campaign override"
+        },
+        {
+          "path": "src/Editor/PolitiesPanel.jsx",
+          "lineStart": 504,
+          "lineEnd": 520,
+          "claim": "Rename former-name behavior"
+        },
+        {
+          "path": "src/Editor/PolitiesPanel.jsx",
+          "lineStart": 596,
+          "lineEnd": 619,
+          "claim": "Tag editing and removal"
+        },
+        {
+          "path": "src/Game/GameUI/libraryBar.jsx",
+          "lineStart": 835,
+          "lineEnd": 838,
+          "claim": "Clone scenario"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Identity and names",
+      "upstreamLine": 5,
+      "status": "adapted",
+      "currentSectionId": "identity",
+      "reason": "Stable polity identity replaces upstream name-is-identity claim."
+    },
+    {
+      "upstreamHeading": "The country card",
+      "upstreamLine": 33,
+      "status": "retained",
+      "currentSectionId": "country-panel",
+      "reason": "Actual map country panel verified."
+    },
+    {
+      "upstreamHeading": "Tags",
+      "upstreamLine": 48,
+      "status": "retained",
+      "currentSectionId": "scenario-editing",
+      "reason": "Exact tag limits and override precedence."
+    },
+    {
+      "upstreamHeading": "Reputation",
+      "upstreamLine": 63,
+      "status": "adapted",
+      "currentSectionId": "country-panel",
+      "reason": "Macro reputation readings belong to statistics; no invented universal historical behavior."
+    },
+    {
+      "upstreamHeading": "Intelligence rating",
+      "upstreamLine": 75,
+      "status": "adapted",
+      "currentSectionId": "country-panel",
+      "reason": "Legacy intelligence readings linked to current espionage/statistics guides, not universal starting score claim."
+    },
+    {
+      "upstreamHeading": "Leaders",
+      "upstreamLine": 81,
+      "status": "adapted",
+      "currentSectionId": "country-panel",
+      "reason": "Character authority differs from generic leader stat sheet; beta government panel missing."
+    },
+    {
+      "upstreamHeading": "Colours",
+      "upstreamLine": 97,
+      "status": "adapted",
+      "currentSectionId": "scenario-editing",
+      "reason": "Editable country colors retained; old missing ownerColors producer not treated as evidence for exact fallback precedence."
+    },
+    {
+      "upstreamHeading": "Flags",
+      "upstreamLine": 110,
+      "status": "adapted",
+      "currentSectionId": "country-panel",
+      "reason": "Current flag picker retained; no unsupported universal stock flag inference."
+    },
+    {
+      "upstreamHeading": "Landless countries",
+      "upstreamLine": 122,
+      "status": "adapted",
+      "currentSectionId": "identity",
+      "reason": "Registry identity can outlive territory; no unsupported landless historical onboarding."
+    },
+    {
+      "upstreamHeading": "Inventing a country",
+      "upstreamLine": 132,
+      "status": "unsupported",
+      "currentSectionId": "identity",
+      "reason": "Create-a-faction modern/fantasy onboarding is not a supported historical campaign start."
+    },
+    {
+      "upstreamHeading": "Editing countries mid-campaign",
+      "upstreamLine": 150,
+      "status": "adapted",
+      "currentSectionId": "scenario-editing",
+      "reason": "Reachable editor tools qualified as scenario/world edits."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 162,
+      "status": "retained",
+      "currentSectionId": "country-panel",
+      "reason": "Current route links retained."
+    }
+  ]
+}

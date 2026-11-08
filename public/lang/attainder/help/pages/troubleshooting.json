@@ -1,0 +1,442 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/troubleshooting",
+  "route": "/wiki/troubleshooting/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/reference/troubleshooting.md",
+  "upstreamRawSha256": "52c9517c6ea7864e33cdde6136bb5c94c7fe739cc90896f620a5673d5b07c09b",
+  "title": {
+    "en": "Troubleshooting",
+    "sv": "Felsökning"
+  },
+  "nav": {
+    "en": "Troubleshooting",
+    "sv": "Felsökning"
+  },
+  "description": {
+    "en": "Diagnose map, model, save and import failures with the right evidence.",
+    "sv": "Felsök kart-, modell-, spar- och importfel med rätt underlag."
+  },
+  "sections": [
+    {
+      "id": "map",
+      "title": {
+        "en": "The map is blank",
+        "sv": "Kartan är tom"
+      },
+      "body": {
+        "en": "For a source installation, run `node scripts/fetch-map-assets.mjs --ensure` before `npm run build`, then launch again. The build copies map assets into its output. If an imported campaign reports a missing map, restore the matching scenario geography; a matching scenario identifier alone is insufficient. See [installation](/wiki/install/) and [map restoration](/wiki/saves/#map-restoration).\n\nA WebGL warning means the renderer lacks a graphics context. It checks again for roughly **30 seconds** and reloads if WebGL returns. If it persists, check hardware acceleration and graphics drivers. Reduce terrain, globe effects or country labels through [map settings](/wiki/world-map/#display-and-performance) when drawing is slow.",
+        "sv": "Vid en källkodsinstallation kör du `node scripts/fetch-map-assets.mjs --ensure` före `npm run build` och startar sedan igen. Bygget kopierar kartresurser till sitt resultat. Om en importerad kampanj anger att kartan saknas återställer du scenariots matchande geografi. Samma scenarioidentifierare räcker inte. Läs om [installation](/wiki/install/) och [kartåterställning](/wiki/saves/#map-restoration).\n\nEn WebGL-varning betyder att renderaren saknar en grafikkontext. Den kontrollerar igen i ungefär **30 sekunder** och laddar om sidan om WebGL blir tillgängligt. Kontrollera hårdvaruacceleration och grafikdrivrutiner om problemet kvarstår. Minska terräng- eller jordglobseffekter eller dölj landsetiketter i [kartinställningarna](/wiki/world-map/#display-and-performance) om visningen är långsam."
+      },
+      "evidence": [
+        {
+          "path": "README.md",
+          "lineStart": 15,
+          "lineEnd": 30,
+          "claim": "Map-before-build commands and matching import geography"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 292,
+          "lineEnd": 308,
+          "claim": "20WebGL checks1500ms"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 165,
+          "lineEnd": 168,
+          "claim": "Graphics troubleshooting"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 2123,
+          "lineEnd": 2132,
+          "claim": "Available display controls"
+        }
+      ]
+    },
+    {
+      "id": "model-connection",
+      "title": {
+        "en": "The model does not answer",
+        "sv": "Modellen svarar inte"
+      },
+      "body": {
+        "en": "For local **Codex** or **Claude**, check that the CLI is installed and logged in on the host computer, refresh the connection card and read its status. The local bridge accepts loopback clients only; another device cannot use it through LAN sharing.\n\nFor an API connection, check the key, model name and base endpoint. Compatible endpoints usually need their API base, such as `/v1`, rather than a website URL. A local model server on another computer needs that computer’s address. Browser access rules and native/local transport availability matter; follow [model setup](/wiki/ai-setup/#compatible-endpoints).",
+        "sv": "För lokal **Codex** eller **Claude** kontrollerar du att CLI-programmet är installerat och inloggat på värddatorn. Uppdatera anslutningskortet och läs statusen. Den lokala anslutningen accepterar bara klienter på den egna datorn. En annan enhet kan inte använda den genom LAN-delning.\n\nFör en API-anslutning kontrollerar du nyckel, modellnamn och basadress. Kompatibla anslutningar behöver vanligen API-basen, till exempel `/v1`, och inte en webbplatsadress. En lokal modellserver på en annan dator behöver den datorns adress. Webbläsarens åtkomstregler och tillgång till inbyggd eller lokal transport spelar roll. Följ [modellanslutningen](/wiki/ai-setup/#compatible-endpoints)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/LocalModelConnect.jsx",
+          "lineStart": 62,
+          "lineEnd": 71,
+          "claim": "Status/auth/update/model controls"
+        },
+        {
+          "path": "server/localModelBridge.js",
+          "lineStart": 241,
+          "lineEnd": 250,
+          "claim": "Loopback bridge guard"
+        },
+        {
+          "path": "src/Game/AI/providerConfig.js",
+          "lineStart": 106,
+          "lineEnd": 116,
+          "claim": "Compatible endpoint base default"
+        },
+        {
+          "path": "src/Game/AI/main.jsx",
+          "lineStart": 522,
+          "lineEnd": 545,
+          "claim": "Direct relay native conditions"
+        }
+      ]
+    },
+    {
+      "id": "failed-turns",
+      "title": {
+        "en": "The response is rejected",
+        "sv": "Svaret avvisas"
+      },
+      "body": {
+        "en": "Read the reported validation reason and inspect the request in the AI debug console. Character actions need structured data as well as narration; a fluent paragraph can still fail the required schema. An OpenAI-compatible connection’s **Strict tool schema** and structured-answer controls can affect formatting. Check the loaded model’s context window if the request is too large.\n\nHistorical character years use a strict path with no canned jump fallback. A failed generation is rejected instead of being accepted as a completed character turn. Fix the model connection or response-format problem before retrying.",
+        "sv": "Läs det angivna valideringsfelet och granska förfrågan i AI-felsökningskonsolen. Rollfigurshandlingar behöver strukturerade data och berättande text. En flytande text kan ändå bryta mot det schema som krävs. **Strikt verktygsschema** och reglagen för strukturerade svar i en OpenAI-kompatibel anslutning kan påverka formatet. Kontrollera den laddade modellens kontextfönster om förfrågan är för stor.\n\nHistoriska rollfigursår använder ett strikt flöde utan reservhopp med förskrivna händelser. En misslyckad generering avvisas i stället för att godtas som en färdig rollfigurstur. Rätta modellanslutningen eller svarsformatet innan du försöker igen."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/characterModelCalls.js",
+          "lineStart": 89,
+          "lineEnd": 105,
+          "claim": "Structured action parsing"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 787,
+          "lineEnd": 794,
+          "claim": "Strict tool schema only openai-compatible"
+        },
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 553,
+          "lineEnd": 575,
+          "claim": "Context window control and forget action"
+        },
+        {
+          "path": "src/Game/AI/gameplay.js",
+          "lineStart": 13353,
+          "lineEnd": 13358,
+          "claim": "Strict character no-fallback jump path"
+        },
+        {
+          "path": "src/runtime/characterWorld.js",
+          "lineStart": 39,
+          "lineEnd": 42,
+          "claim": "Failed generation rejection"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 2460,
+          "lineEnd": 2462,
+          "claim": "Reported jump error shown"
+        }
+      ]
+    },
+    {
+      "id": "retry-and-limits",
+      "title": {
+        "en": "Retries, held work and limits",
+        "sv": "Omförsök, pausat arbete och gränser"
+      },
+      "body": {
+        "en": "Where a failed advisor or diplomatic reply offers Retry, it can reuse the saved question or message. The newest error is the one with a retry action. If the timeline holds a failed segment or project-board update, use its specific retry or discard choice; inspect the message before starting a whole new skip.\n\nModel entries distinguish exhausted allowance, unusable configuration, temporary load and short rate limits. A backup can answer when another entry cannot; a different entry can also change the writing style. Read the actual entry status and [fallback settings](/wiki/ai-setup/#backup-models). The game’s request counters do not replace your provider account’s usage records.",
+        "sv": "När ett misslyckat rådgivar- eller diplomatisvar erbjuder ett omförsök kan den sparade frågan eller meddelandet användas igen. Det senaste felet är det som har ett omförsöksreglage. Om tidslinjen håller kvar ett misslyckat segment eller en uppdatering av projekttavlan använder du dess särskilda val för omförsök eller borttagning. Läs meddelandet innan du startar ett helt nytt tidshopp.\n\nModellposter skiljer på förbrukad kvot, oanvändbar konfiguration, tillfällig belastning och korta anropsbegränsningar. En reservmodell kan svara när en annan post inte kan. En annan post kan också ändra skrivstilen. Läs postens aktuella status och [reservinställningarna](/wiki/ai-setup/#backup-models). Spelets anropsräknare ersätter inte leverantörskontots användningsuppgifter."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 213,
+          "lineEnd": 229,
+          "claim": "Newest advisor retry"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 1100,
+          "lineEnd": 1105,
+          "claim": "Saved diplomatic retry payload"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 1283,
+          "lineEnd": 1288,
+          "claim": "Diplomatic retry handler"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 1392,
+          "lineEnd": 1393,
+          "claim": "Newest diplomatic error only"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 2447,
+          "lineEnd": 2462,
+          "claim": "Held segment/projects versus failure"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 2491,
+          "lineEnd": 2496,
+          "claim": "Retry project board specifically"
+        },
+        {
+          "path": "src/Game/AI/fallbackRunner.js",
+          "lineStart": 93,
+          "lineEnd": 111,
+          "claim": "Distinct spent/unusable/busy/rate-limited handling"
+        }
+      ]
+    },
+    {
+      "id": "storage-and-hub",
+      "title": {
+        "en": "Missing games and community files",
+        "sv": "Saknade spel och gemenskapsfiler"
+      },
+      "body": {
+        "en": "Check the browser profile, address and local data home you used when playing. The source launcher selects a data home and uses its `play-data` directory. Browser-only games use browser storage. Export a campaign before clearing site data or replacing an installation. See [saves](/wiki/saves/).\n\nThe Community Hub lists checked files from its index. If the index cannot be read, or a file is not checked, importing fails rather than fetching an unchecked attachment. The index is cached for **five minutes**. An import can also fail because the scenario is not prepared for this historical game. See [the hub guide](/wiki/community-hub/). For an incoherent world, inspect the relevant [world tools](/wiki/cheats/) and keep a copy before changing it.",
+        "sv": "Kontrollera den webbläsarprofil, adress och lokala datarot som du använde när du spelade. Källkodsstarten väljer en datarot och använder dess `play-data`-mapp. Ren webbläsardrift använder webbläsarlagring. Exportera en kampanj innan du rensar webbplatsdata eller byter installation. Läs om [sparfiler](/wiki/saves/).\n\nGemenskapshubben listar granskade filer från sitt index. Om indexet inte kan läsas eller filen inte är granskad misslyckas importen i stället för att hämta en ogranskad bilaga. Indexet cachelagras i **fem minuter**. En import kan också misslyckas för att scenariot inte är förberett för det historiska spelet. Läs [hubbens guide](/wiki/community-hub/). Om världen har blivit motsägelsefull granskar du rätt [världsverktyg](/wiki/cheats/) och behåller en kopia innan du ändrar den."
+      },
+      "evidence": [
+        {
+          "path": "scripts/launch-dynasties.mjs",
+          "lineStart": 9,
+          "lineEnd": 12,
+          "claim": "Data home selection"
+        },
+        {
+          "path": "scripts/launch-dynasties.mjs",
+          "lineStart": 40,
+          "lineEnd": 42,
+          "claim": "Launcher play-data path"
+        },
+        {
+          "path": "src/runtime/web/libraryStore.js",
+          "lineStart": 65,
+          "lineEnd": 70,
+          "claim": "Browser stored game records"
+        },
+        {
+          "path": "src/runtime/hubFiles.js",
+          "lineStart": 32,
+          "lineEnd": 40,
+          "claim": "Unchecked/unknown files do not fall back"
+        },
+        {
+          "path": "src/runtime/hubFiles.js",
+          "lineStart": 49,
+          "lineEnd": 52,
+          "claim": "Five-minute index cache"
+        },
+        {
+          "path": "server/libraryStore.js",
+          "lineStart": 3695,
+          "lineEnd": 3700,
+          "claim": "Historical preparation import validation"
+        }
+      ]
+    },
+    {
+      "id": "reporting-a-bug",
+      "title": {
+        "en": "Report a reproducible failure",
+        "sv": "Rapportera ett fel som går att återskapa"
+      },
+      "body": {
+        "en": "Open Advanced → Diagnostics, turn on **Detailed logging**, reproduce the failure and save the log. Read it before sharing: detailed records can contain full conversations and model exchanges. Include your platform, the Attainder version, the selected provider/model, the steps and the exact error.\n\nFor a source-launch problem, inspect the server output and error logs under `reports/launcher` in the selected data home. For a packaged build, also record which package/version failed. Use the [Attainder issue tracker](https://github.com/sp1e/Attainder/issues) for this project.",
+        "sv": "Öppna Avancerad → Diagnostik, slå på **Detaljerad loggning**, återskapa felet och spara loggen. Läs den innan du delar den. Detaljerade poster kan innehålla hela samtal och modellutbyten. Ange plattform, Attainder-version, vald leverantör och modell, arbetssteg och det exakta felet.\n\nVid problem med källkodsstarten granskar du serverns utdata- och felloggar under `reports/launcher` i den valda dataroten. För ett paketerat bygge anger du också vilket paket och vilken version som misslyckades. Använd [Attainders ärendehantering](https://github.com/sp1e/Attainder/issues) för det här projektet."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/settings.jsx",
+          "lineStart": 1740,
+          "lineEnd": 1760,
+          "claim": "Detailed logging workflow and privacy content"
+        },
+        {
+          "path": "scripts/launch-dynasties.mjs",
+          "lineStart": 14,
+          "lineEnd": 14,
+          "claim": "Launcher reports directory"
+        },
+        {
+          "path": "scripts/launch-dynasties.mjs",
+          "lineStart": 38,
+          "lineEnd": 42,
+          "claim": "Server stdout stderr paths"
+        },
+        {
+          "path": "README.md",
+          "lineStart": 15,
+          "lineEnd": 18,
+          "claim": "Current project repository identity"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "The map is blank",
+      "upstreamLine": 7,
+      "status": "adapted",
+      "currentSectionId": "map",
+      "reason": "Current source map fetch/build and matching-scenario paths; old package dates omitted."
+    },
+    {
+      "upstreamHeading": "The AI is greyed out or does nothing",
+      "upstreamLine": 31,
+      "status": "retained",
+      "currentSectionId": "model-connection",
+      "reason": "Actual CLI/API availability and setup."
+    },
+    {
+      "upstreamHeading": "Turns fail, or always fall back to canned events",
+      "upstreamLine": 49,
+      "status": "adapted",
+      "currentSectionId": "failed-turns",
+      "reason": "Current strict character failure path replaces canned-turn advice; no unverified size thresholds."
+    },
+    {
+      "upstreamHeading": "Turns hang forever",
+      "upstreamLine": 71,
+      "status": "adapted",
+      "currentSectionId": "retry-and-limits",
+      "reason": "Actual held/retry handling; no universal cancel/timeout guarantee."
+    },
+    {
+      "upstreamHeading": "When a request fails",
+      "upstreamLine": 82,
+      "status": "retained",
+      "currentSectionId": "retry-and-limits",
+      "reason": "Distinct failure scopes retained."
+    },
+    {
+      "upstreamHeading": "The advisor",
+      "upstreamLine": 87,
+      "status": "retained",
+      "currentSectionId": "retry-and-limits",
+      "reason": "Newest advisor error retry."
+    },
+    {
+      "upstreamHeading": "Diplomatic messages",
+      "upstreamLine": 102,
+      "status": "retained",
+      "currentSectionId": "retry-and-limits",
+      "reason": "Saved diplomatic retry payload."
+    },
+    {
+      "upstreamHeading": "A held time skip",
+      "upstreamLine": 111,
+      "status": "retained",
+      "currentSectionId": "retry-and-limits",
+      "reason": "Actual held segment handling without old120day assumption."
+    },
+    {
+      "upstreamHeading": "A held Projects board",
+      "upstreamLine": 127,
+      "status": "retained",
+      "currentSectionId": "retry-and-limits",
+      "reason": "Actual held project board retry."
+    },
+    {
+      "upstreamHeading": "If retrying does not help",
+      "upstreamLine": 149,
+      "status": "adapted",
+      "currentSectionId": "retry-and-limits",
+      "reason": "Inspect specific failure and use actual retry/backup route."
+    },
+    {
+      "upstreamHeading": "Every model has used its allowance",
+      "upstreamLine": 153,
+      "status": "retained",
+      "currentSectionId": "retry-and-limits",
+      "reason": "Actual entry statuses and fallback guide."
+    },
+    {
+      "upstreamHeading": "The writing suddenly changed",
+      "upstreamLine": 167,
+      "status": "retained",
+      "currentSectionId": "retry-and-limits",
+      "reason": "Different fallback entry can change model output style."
+    },
+    {
+      "upstreamHeading": "Rate limits",
+      "upstreamLine": 173,
+      "status": "adapted",
+      "currentSectionId": "retry-and-limits",
+      "reason": "No frozen provider allowances/pricing/one-minute beta busy claim."
+    },
+    {
+      "upstreamHeading": "CORS errors with a local model",
+      "upstreamLine": 193,
+      "status": "retained",
+      "currentSectionId": "model-connection",
+      "reason": "Transport access conditions and current setup reference."
+    },
+    {
+      "upstreamHeading": "Everything is slow",
+      "upstreamLine": 205,
+      "status": "adapted",
+      "currentSectionId": "map",
+      "reason": "Actual display settings; missing beta performance-mode option omitted."
+    },
+    {
+      "upstreamHeading": "I lost my games",
+      "upstreamLine": 220,
+      "status": "adapted",
+      "currentSectionId": "storage-and-hub",
+      "reason": "Current data-home/browser storage; old upstream migration/beta-library history not assumed."
+    },
+    {
+      "upstreamHeading": "A country is behaving incoherently",
+      "upstreamLine": 238,
+      "status": "retained",
+      "currentSectionId": "storage-and-hub",
+      "reason": "Current world tools linked with backups."
+    },
+    {
+      "upstreamHeading": "The game updates when it opens",
+      "upstreamLine": 252,
+      "status": "adapted",
+      "currentSectionId": "reporting-a-bug",
+      "reason": "Record actual package/version; no inherited-feed/current-release guarantee."
+    },
+    {
+      "upstreamHeading": "Community hub problems",
+      "upstreamLine": 272,
+      "status": "retained",
+      "currentSectionId": "storage-and-hub",
+      "reason": "Checked index and historical import validation."
+    },
+    {
+      "upstreamHeading": "Windows says the installer is unsafe",
+      "upstreamLine": 297,
+      "status": "unsupported",
+      "currentSectionId": "reporting-a-bug",
+      "reason": "Frozen upstream Windows signing status does not justify a current bypass instruction."
+    },
+    {
+      "upstreamHeading": "macOS will not open the app",
+      "upstreamLine": 301,
+      "status": "unsupported",
+      "currentSectionId": "reporting-a-bug",
+      "reason": "Frozen upstream macOS signing status does not justify current bypass instruction."
+    },
+    {
+      "upstreamHeading": "Reporting a bug",
+      "upstreamLine": 305,
+      "status": "retained",
+      "currentSectionId": "reporting-a-bug",
+      "reason": "Actual detailed diagnostics plus current Attainder repository, not upstream issue tracker."
+    }
+  ]
+}

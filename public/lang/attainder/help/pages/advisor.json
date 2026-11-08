@@ -1,0 +1,284 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/advisor",
+  "route": "/wiki/advisor/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/advisor.md",
+  "upstreamRawSha256": "17ca614fc558431487e0a2824e4a2d4286099c69a6d16dc2b25c3dc477343f29",
+  "title": {
+    "en": "Using the advisor",
+    "sv": "Använd rådgivaren"
+  },
+  "nav": {
+    "en": "Advisor",
+    "sv": "Rådgivaren"
+  },
+  "description": {
+    "en": "Ask about the campaign, review the answer and understand any recorded changes.",
+    "sv": "Fråga om kampanjen, granska svaret och förstå eventuella registrerade ändringar."
+  },
+  "sections": [
+    {
+      "id": "open",
+      "title": {
+        "en": "Ask a concrete question",
+        "sv": "Ställ en konkret fråga"
+      },
+      "body": {
+        "en": "Open the advisor from its map button. The drawer shares its header with statistics; on a wide screen you can drag its left edge to resize it. Ask about the current position, a recent event or options you want to compare.\n\nThe advisor builds its answer from campaign records visible at the current event reveal, available documents and a standing goal where one exists. Its answer is a model’s analysis. Check people, offices, resources and unresolved decisions in the dynasty panel before committing an action.",
+        "sv": "Öppna rådgivaren från dess kartknapp. Panelen delar rubrikrad med statistiken. På en bred skärm kan du dra i vänsterkanten för att ändra bredden. Fråga om det aktuella läget, en ny händelse eller alternativ du vill jämföra.\n\nRådgivaren bygger svaret på kampanjuppgifter som är synliga vid den aktuella händelsevisningen, tillgängliga dokument och ett övergripande mål där ett sådant finns. Svaret är en modells analys. Kontrollera personer, ämbeten, resurser och olösta ärenden i dynastipanelen innan du genomför en handling."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 592,
+          "lineEnd": 609,
+          "claim": "Advisor entry/resize"
+        },
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1014,
+          "lineEnd": 1030,
+          "claim": "Drag resize"
+        },
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1437,
+          "lineEnd": 1440,
+          "claim": "Shared header"
+        },
+        {
+          "path": "src/Game/AI/main.jsx",
+          "lineStart": 2882,
+          "lineEnd": 2935,
+          "claim": "Visible-state/document/goal context"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 499,
+          "lineEnd": 499,
+          "claim": "Rule-bound actor/resources"
+        }
+      ]
+    },
+    {
+      "id": "answers",
+      "title": {
+        "en": "Read answers and charts",
+        "sv": "Läs svar och diagram"
+      },
+      "body": {
+        "en": "The advisor can render a chart when the model returns a usable specification. If a chart is incomplete or invalid, the reply explains that it could not be drawn. Ask for a comparison or trend when a chart would clarify the question.\n\nNewly revealed events and previous reply problems can enter the next question’s catch-up context. A paper delivered to your government may also appear as a notice. Read the answer’s source and date rather than treating an older reply as a live view.",
+        "sv": "Rådgivaren kan visa ett diagram när modellen lämnar en användbar specifikation. Om diagrammet är ofullständigt eller ogiltigt förklarar svaret att det inte kunde ritas. Be om en jämförelse eller utveckling över tid när ett diagram gör frågan tydligare.\n\nNya synliga händelser och problem i föregående svar kan tas med som uppdateringsunderlag i nästa fråga. Ett dokument som når din regering kan också visas som en notis. Läs svarets underlag och datum i stället för att behandla ett äldre svar som en direktvisning."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 536,
+          "lineEnd": 608,
+          "claim": "Chart rendering"
+        },
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 839,
+          "lineEnd": 843,
+          "claim": "Chart failure notice"
+        },
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1129,
+          "lineEnd": 1145,
+          "claim": "Catch-up"
+        },
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1056,
+          "lineEnd": 1065,
+          "claim": "Document notice synchronization"
+        }
+      ]
+    },
+    {
+      "id": "receipts",
+      "title": {
+        "en": "Read receipts before proceeding",
+        "sv": "Läs kvitton innan du fortsätter"
+      },
+      "body": {
+        "en": "An advisor reply can update the general action queue or projects board immediately. Its receipt describes changes already applied; it is not a confirmation card. Queued orders remain plans for a later turn. Project changes can be added, updated or closed, while world-changing completions may be deferred to the simulation.\n\nThose general panels are available through the bottom toolbar only in campaigns without a character system. In a dynasty campaign, an advisor receipt is not a confirmed character action. Use the character action’s proposal and confirmation for its costs and outcome. The generic open-panel buttons do not expose the hidden toolbar there.",
+        "sv": "Ett rådgivarsvar kan omedelbart ändra den allmänna handlingskön eller projekttavlan. Kvittot beskriver ändringar som redan har tillämpats. Det är inget bekräftelsekort. Köade order förblir planer inför en senare tur. Projekt kan läggas till, uppdateras eller avslutas, medan avslut som förändrar världen kan skjutas till simuleringen.\n\nDessa allmänna paneler visas genom det nedre verktygsfältet bara i kampanjer utan karaktärssystem. I en dynastikampanj är ett rådgivarkvitto ingen bekräftad karaktärshandling. Använd karaktärshandlingens förslag och bekräftelse för dess kostnader och utfall. De allmänna knapparna för att öppna paneler visar inte det dolda verktygsfältet där."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1180,
+          "lineEnd": 1202,
+          "claim": "Queue/board mutation before reply finalization"
+        },
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 329,
+          "lineEnd": 349,
+          "claim": "Receipt and deferred completion"
+        },
+        {
+          "path": "src/Game/AI/main.jsx",
+          "lineStart": 2697,
+          "lineEnd": 2715,
+          "claim": "Queue remains planned/no confirmation"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 578,
+          "lineEnd": 583,
+          "claim": "Toolbar predicate"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 3538,
+          "lineEnd": 3552,
+          "claim": "Generic panels mounted inside toolbar"
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 184,
+          "lineEnd": 193,
+          "claim": "Separate character confirmation"
+        }
+      ]
+    },
+    {
+      "id": "drafts",
+      "title": {
+        "en": "Letters and deployment suggestions",
+        "sv": "Brev och placeringsförslag"
+      },
+      "body": {
+        "en": "A drafted letter is handed to the country-chat composer for review and sending. That panel belongs to the general toolbar and is unavailable in a dynasty campaign. Court conversations use the person view and its own request confirmation.\n\nA deployment suggestion can offer a placement button. Pressing it creates a general pending formation and queues an order; it does not settle a character action or battle. Read the receipt and resulting map before continuing.",
+        "sv": "Ett brevutkast lämnas till landschattens skrivfält för granskning och sändning. Den panelen hör till det allmänna verktygsfältet och är inte tillgänglig i en dynastikampanj. Hovets samtal använder personvyn och dess egen bekräftelse av förfrågningar.\n\nEtt placeringsförslag kan erbjuda en placeringsknapp. När du trycker på den skapas ett allmänt väntande förband och en order läggs i kön. Det avgör ingen karaktärshandling eller strid. Läs kvittot och den resulterande kartan innan du fortsätter."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1319,
+          "lineEnd": 1329,
+          "claim": "Letter is unsent composer draft"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 578,
+          "lineEnd": 583,
+          "claim": "Toolbar absent in dynasty"
+        },
+        {
+          "path": "src/Game/GameUI/chat.jsx",
+          "lineStart": 3538,
+          "lineEnd": 3552,
+          "claim": "Chat toolbar child"
+        },
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1333,
+          "lineEnd": 1367,
+          "claim": "Pending formation and queued order"
+        }
+      ]
+    },
+    {
+      "id": "retry",
+      "title": {
+        "en": "Retry or clear the conversation",
+        "sv": "Försök igen eller rensa samtalet"
+      },
+      "body": {
+        "en": "A failed answer can be retried with the same question. Read the displayed failure and use [Troubleshooting](/wiki/troubleshooting/) or [AI setup](/wiki/ai-setup/) when the provider cannot answer. Check receipts and current state before repeating a request that could have changed a plan.\n\nThe clear control empties the advisor conversation. On a touch screen the first press asks for confirmation and the next clears it. Clearing this conversation does not reset the campaign’s people, resources or history.",
+        "sv": "Ett misslyckat svar kan begäras igen med samma fråga. Läs det visade felet och använd [Felsökning](/wiki/troubleshooting/) eller [AI-inställning](/wiki/ai-setup/) när leverantören inte kan svara. Kontrollera kvitton och aktuellt läge innan du upprepar en begäran som kan ha ändrat en plan.\n\nRensningsknappen tömmer rådgivarsamtalet. På en pekskärm ber första trycket om bekräftelse och nästa rensar det. Att rensa samtalet återställer inte kampanjens personer, resurser eller historia."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1289,
+          "lineEnd": 1292,
+          "claim": "Retry last question"
+        },
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1180,
+          "lineEnd": 1202,
+          "claim": "Receipt-producing changes applied before finalization"
+        },
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1443,
+          "lineEnd": 1455,
+          "claim": "Clear messages only/touch confirmation"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "What it is good for",
+      "upstreamLine": 7,
+      "status": "adapted",
+      "currentSectionId": "open",
+      "reason": "Concrete questions and actual context."
+    },
+    {
+      "upstreamHeading": "Charts",
+      "upstreamLine": 35,
+      "status": "adapted",
+      "currentSectionId": "answers",
+      "reason": "Actual chart render/failure."
+    },
+    {
+      "upstreamHeading": "What it is not",
+      "upstreamLine": 43,
+      "status": "adapted",
+      "currentSectionId": "open",
+      "reason": "Analysis versus rules/resources."
+    },
+    {
+      "upstreamHeading": "Asking it to do the paperwork",
+      "upstreamLine": 63,
+      "status": "adapted",
+      "currentSectionId": "receipts",
+      "reason": "Immediate writes/receipts with mount condition."
+    },
+    {
+      "upstreamHeading": "It keeps up with the world",
+      "upstreamLine": 106,
+      "status": "adapted",
+      "currentSectionId": "answers",
+      "reason": "Catch-up and papers."
+    },
+    {
+      "upstreamHeading": "Institutions and groups",
+      "upstreamLine": 133,
+      "status": "unsupported",
+      "currentSectionId": "open",
+      "reason": "Missing institutional action UI; no beta institutions promise."
+    },
+    {
+      "upstreamHeading": "Clearing it",
+      "upstreamLine": 149,
+      "status": "adapted",
+      "currentSectionId": "retry",
+      "reason": "Exact touch confirmation and scope."
+    },
+    {
+      "upstreamHeading": "Where it sits",
+      "upstreamLine": 155,
+      "status": "adapted",
+      "currentSectionId": "open",
+      "reason": "Shared advisor/stats drawer."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 165,
+      "status": "adapted",
+      "currentSectionId": "retry",
+      "reason": "Current navigation."
+    }
+  ]
+}

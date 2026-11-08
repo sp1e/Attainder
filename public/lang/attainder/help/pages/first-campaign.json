@@ -1,0 +1,152 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/first-campaign",
+  "route": "/wiki/first-campaign/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/start/first-campaign.md",
+  "title": {
+    "en": "Your first campaign",
+    "sv": "Din första kampanj"
+  },
+  "nav": {
+    "en": "Your first campaign",
+    "sv": "Din första kampanj"
+  },
+  "description": {
+    "en": "Read your court, make an opening decision and advance your first year.",
+    "sv": "Lär känna hovet, fatta ett första beslut och gå vidare ett år."
+  },
+  "sections": [
+    {
+      "id": "start",
+      "title": {
+        "en": "Choose your campaign",
+        "sv": "Välj din kampanj"
+      },
+      "body": {
+        "en": "Select a historical start and read its context and source notes. Choose realm mode if you want to follow the realm through changes of ruler, or family mode if you want to follow one family through changes in its position. Configure a model connection and start the campaign. [Starting a campaign](/wiki/new-game/) explains the remaining choices.",
+        "sv": "Välj en historisk start och läs om dess sammanhang och källor. Välj att följa riket om du vill fortsätta genom tronskiften, eller familjen om du vill följa en familj genom förändringar i dess ställning. Konfigurera en modellanslutning och starta kampanjen. [Starta en kampanj](/wiki/new-game/) beskriver de övriga valen."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/DynastyStartCard.jsx",
+          "lineStart": 55,
+          "lineEnd": 75,
+          "claim": "Historical selection, modes, context and connection requirement."
+        }
+      ]
+    },
+    {
+      "id": "read-court",
+      "title": {
+        "en": "Read the court before acting",
+        "sv": "Lär känna hovet innan du handlar"
+      },
+      "body": {
+        "en": "The character panel opens with the campaign. Check your current representative and date, then inspect the people and families around you. Read the offices and succession information to understand who holds authority and who may succeed them.\n\nCheck the treasury and available actions in the overview. In family mode, the family treasury is separate from the realm treasury. Read which purse an action uses before spending silver. Look at open decisions and their deadlines as well as your own plans.",
+        "sv": "Personpanelen öppnas med kampanjen. Kontrollera din företrädare och datumet och undersök sedan personerna och familjerna omkring dig. Läs om ämbeten och tronföljd för att förstå vem som har makten och vem som kan ta över.\n\nKontrollera kassan och handlingsutrymmet i överblicken. I familjeläget har familjen en egen kassa, skild från statskassan. Läs vilken kassa en handling belastar innan du använder silver. Gå också igenom öppna beslut och deras tidsgränser."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/startDynastyCampaign.js",
+          "lineStart": 29,
+          "lineEnd": 33,
+          "claim": "Opening character panel."
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 109,
+          "lineEnd": 115,
+          "claim": "Active representative."
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 189,
+          "lineEnd": 195,
+          "claim": "Decision deadlines."
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 218,
+          "lineEnd": 219,
+          "claim": "Realm and family resources."
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 293,
+          "lineEnd": 345,
+          "claim": "Governance and succession displays."
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 43,
+          "lineEnd": 51,
+          "claim": "Cost includes purse and action count."
+        }
+      ]
+    },
+    {
+      "id": "first-action",
+      "title": {
+        "en": "Make one decision",
+        "sv": "Fatta ett beslut"
+      },
+      "body": {
+        "en": "Open the action list and choose an available action. Set its target or other requested details, then read the confirmation card. For an action with a contested outcome, the card shows your chance before you commit. Check the silver and action costs and any consequences described there.\n\nConfirm when you are ready, or cancel to return without attempting the proposed action. Read the resulting report before planning the next move. You can also describe what you want to do in the text box and ask the model to interpret it; the confirmation step still lets you inspect the proposal.",
+        "sv": "Öppna handlingslistan och välj en tillgänglig handling. Ange mål eller andra uppgifter som efterfrågas och läs sedan bekräftelsekortet. För en handling med ett prövat utfall visas chansen innan du bestämmer dig. Kontrollera kostnaden i silver och handlingar samt de följder som beskrivs.\n\nBekräfta när du är redo, eller avbryt för att återvända utan att försöka genomföra förslaget. Läs resultatet innan du planerar nästa drag. Du kan också beskriva vad du vill göra i textfältet och låta modellen tolka det. Du får fortfarande granska förslaget innan du bekräftar."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 167,
+          "lineEnd": 193,
+          "claim": "Odds and confirmation controls."
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 197,
+          "lineEnd": 280,
+          "claim": "Menu input fields and proposal."
+        },
+        {
+          "path": "src/Game/Characters/ActionBox.jsx",
+          "lineStart": 453,
+          "lineEnd": 471,
+          "claim": "Text interpretation, confirmation and outcome."
+        }
+      ]
+    },
+    {
+      "id": "first-year",
+      "title": {
+        "en": "Advance the year and read the report",
+        "sv": "Gå vidare ett år och läs rapporten"
+      },
+      "body": {
+        "en": "Use the character panel's button to advance the next year with the model. A pending request in a conversation must be answered or cancelled first. While the model works, wait for the result. If the turn stops at a decision, read the events up to that point and handle the decision before continuing.\n\nAfterwards, inspect the changed resources, people and commitments. You can reopen the latest saved turn's events without advancing time. The historical reference in the chronicle provides a separate account of real-world events for the calendar years your campaign has passed.",
+        "sv": "Använd personpanelens knapp för att gå vidare ett år med modellen. Besvara eller avbryt först en eventuell pågående förfrågan i ett samtal. Vänta på resultatet medan modellen arbetar. Om turen stannar vid ett beslut läser du händelserna fram till den punkten och hanterar beslutet innan du fortsätter.\n\nKontrollera därefter förändringar i resurser, personer och åtaganden. Du kan öppna den senast sparade turens händelser igen utan att låta tiden gå. Krönikans historiska referens ger en separat redogörelse för verkliga händelser under de kalenderår som kampanjen har passerat."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 432,
+          "lineEnd": 449,
+          "claim": "Annual report may end at interruption."
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 480,
+          "lineEnd": 487,
+          "claim": "Advance button, conversation hold and saved-turn display."
+        },
+        {
+          "path": "src/Game/Characters/HistoricalRecordView.jsx",
+          "lineStart": 31,
+          "lineEnd": 52,
+          "claim": "Separate historical record of closed years."
+        }
+      ]
+    }
+  ],
+  "upstreamRawSha256": "f2c66b4aa8d99bd86fa459fc0a0bdc5b9f3478a384c880907dbf8e4f307b2994"
+}

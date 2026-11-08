@@ -1,0 +1,203 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/cities",
+  "route": "/wiki/cities/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/cities.md",
+  "upstreamRawSha256": "80034d4fbeac0b328fb8aec37789b70afa7d4585bad4a51d8b26c901e9be9fae",
+  "title": {
+    "en": "Cities and map structures",
+    "sv": "Städer och kartanläggningar"
+  },
+  "nav": {
+    "en": "Cities",
+    "sv": "Städer"
+  },
+  "description": {
+    "en": "Read authored cities, their governance and structures placed on the map.",
+    "sv": "Läs förberedda städer, deras förvaltning och anläggningar på kartan."
+  },
+  "sections": [
+    {
+      "id": "cities",
+      "title": {
+        "en": "Read a city on the map",
+        "sv": "Läs en stad på kartan"
+      },
+      "body": {
+        "en": "Historical campaigns use their authored city collection. A successfully loaded empty collection does not turn into a modern stock-city list. Visibility depends on the city layer and zoom, so zoom in when looking for a smaller settlement.\n\nSelect a city to read its name, capital or tier designation and population when available. A marker’s owner and status appear where recorded. The historical package supplies the starting reconstruction; the displayed population is part of the game data.",
+        "sv": "Historiska kampanjer använder sin förberedda stadssamling. En korrekt inläst tom samling ersätts inte av en modern standardlista över städer. Synligheten beror på stadslagret och zoomnivån, så zooma in när du letar efter en mindre ort.\n\nVälj en stad för att läsa namn, huvudstads- eller nivåbeteckning och befolkning där den finns. En markörs ägare och status visas när uppgifterna är registrerade. Det historiska paketet ger den ursprungliga rekonstruktionen. Den visade befolkningen hör till speldata."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/cityFeatures.js",
+          "lineStart": 69,
+          "lineEnd": 74,
+          "claim": "Historical custom collection even when empty"
+        },
+        {
+          "path": "src/Game/Map/Cities.jsx",
+          "lineStart": 38,
+          "lineEnd": 61,
+          "claim": "Authored tier visibility"
+        },
+        {
+          "path": "src/Game/Selection/Features.jsx",
+          "lineStart": 263,
+          "lineEnd": 266,
+          "claim": "City title/tier"
+        },
+        {
+          "path": "src/Game/Selection/Features.jsx",
+          "lineStart": 350,
+          "lineEnd": 355,
+          "claim": "Population/owner/status"
+        }
+      ]
+    },
+    {
+      "id": "governance",
+      "title": {
+        "en": "Read a city’s role in the realm",
+        "sv": "Läs stadens roll i riket"
+      },
+      "body": {
+        "en": "The dynasty overview lists governed cities with the responsible family, governor or vacant governorship, tax income, production percentage and unrest. Read these figures alongside treasury and annual revenue when assessing the realm.\n\nA city label on the map and the character system’s governed city are different views. Use the realm overview for rule-bound administration figures and the map for location.",
+        "sv": "Dynastins överblick listar förvaltade städer med ansvarig familj, guvernör eller vakant guvernörsämbete, skatteintäkt, produktion i procent och oro. Läs dessa värden tillsammans med statskassa och årsintäkt när du bedömer riket.\n\nEn stadsetikett på kartan och karaktärssystemets förvaltade stad är olika vyer. Använd rikets överblick för de regelstyrda förvaltningsvärdena och kartan för läget."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 218,
+          "lineEnd": 230,
+          "claim": "Actual governance and resources"
+        }
+      ]
+    },
+    {
+      "id": "structures",
+      "title": {
+        "en": "Structures have their own records",
+        "sv": "Anläggningar har egna uppgifter"
+      },
+      "body": {
+        "en": "Map structures are markers with a name, kind, owner, position and status. Statuses include planned, under construction, active, damaged, inactive, abandoned and destroyed. A destroyed marker can remain visible with that status; read the card before assuming a marker is operational.\n\nA facility’s operator is separate from the region’s controller or sovereign. A base or port marker alone does not transfer land. Inspect the [territorial layers](/wiki/territory/#layers) for the region beneath it.",
+        "sv": "Kartanläggningar är markörer med namn, typ, ägare, position och status. Statusen kan vara planerad, under uppförande, aktiv, skadad, inaktiv, övergiven eller förstörd. En förstörd markör kan finnas kvar synlig med den statusen. Läs kortet innan du utgår från att en markör är verksam.\n\nEn anläggnings verksamhetsansvariga är skild från regionens kontrollinnehavare eller suverän. En bas- eller hamnmarkör överlåter inte ensam mark. Granska [territoriets lager](/wiki/territory/#layers) för regionen under den."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 1053,
+          "lineEnd": 1063,
+          "claim": "Lifecycle statuses"
+        },
+        {
+          "path": "src/Game/Map/MarkersLayer.jsx",
+          "lineStart": 13,
+          "lineEnd": 35,
+          "claim": "Destroyed marker still drawable"
+        },
+        {
+          "path": "src/Game/Selection/Features.jsx",
+          "lineStart": 350,
+          "lineEnd": 355,
+          "claim": "Owner/status"
+        },
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 4330,
+          "lineEnd": 4347,
+          "claim": "Explicit territorial operation separate"
+        }
+      ]
+    },
+    {
+      "id": "changes",
+      "title": {
+        "en": "Changes and authoring",
+        "sv": "Ändringar och redigering"
+      },
+      "body": {
+        "en": "The campaign stores city-name and population overrides without rewriting original map tiles. Read the resulting map and record after a turn to check an applied change.\n\nUse map-feature tools under [Cheats](/wiki/cheats/) for direct runtime edits, or the [Editor](/wiki/editor/) to author scenario cities. Keep an exported copy before changing a collection used by a campaign. This version has no separate population-by-year model.",
+        "sv": "Kampanjen sparar ändringar av stadsnamn och befolkning utan att skriva om originalkartans rutor. Läs den resulterande kartan och historiken efter turen för att kontrollera en tillämpad ändring.\n\nAnvänd kartobjektsverktygen under [Fusk](/wiki/cheats/) för direkta ändringar i spelet eller [Redigeraren](/wiki/editor/) för att skapa scenariostäder. Behåll en exporterad kopia innan du ändrar en samling som en kampanj använder. Den här versionen saknar en separat modell för befolkning per år."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 100,
+          "lineEnd": 108,
+          "claim": "City overrides"
+        },
+        {
+          "path": "src/Game/Map/Cities.jsx",
+          "lineStart": 64,
+          "lineEnd": 72,
+          "claim": "Displayed override expressions"
+        },
+        {
+          "path": "src/Game/Map/Cities.jsx",
+          "lineStart": 250,
+          "lineEnd": 257,
+          "claim": "Authoritative editor refresh"
+        },
+        {
+          "path": "src/Game/GameUI/cheats.jsx",
+          "lineStart": 83,
+          "lineEnd": 85,
+          "claim": "Actual edit tools"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Cities",
+      "upstreamLine": 4,
+      "status": "adapted",
+      "currentSectionId": "cities",
+      "reason": "Historical authored collection."
+    },
+    {
+      "upstreamHeading": "Cities change",
+      "upstreamLine": 17,
+      "status": "adapted",
+      "currentSectionId": "changes",
+      "reason": "Current overrides, no beta interpolation."
+    },
+    {
+      "upstreamHeading": "Structures",
+      "upstreamLine": 41,
+      "status": "adapted",
+      "currentSectionId": "structures",
+      "reason": "Current lifecycle."
+    },
+    {
+      "upstreamHeading": "Structures never move borders",
+      "upstreamLine": 50,
+      "status": "adapted",
+      "currentSectionId": "structures",
+      "reason": "Territorial operation separate."
+    },
+    {
+      "upstreamHeading": "Building and losing them",
+      "upstreamLine": 61,
+      "status": "adapted",
+      "currentSectionId": "changes",
+      "reason": "Actual overrides; destroyed can remain."
+    },
+    {
+      "upstreamHeading": "Placing them yourself",
+      "upstreamLine": 82,
+      "status": "adapted",
+      "currentSectionId": "changes",
+      "reason": "Cheat/editor tools."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 95,
+      "status": "adapted",
+      "currentSectionId": "changes",
+      "reason": "Current routes."
+    }
+  ]
+}

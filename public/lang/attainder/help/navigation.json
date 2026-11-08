@@ -1,0 +1,199 @@
+{
+  "schema": "attainder-help-navigation-v1",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "source": {
+    "path": "wiki/nav.json",
+    "rawBytesSha256": "625beb7214825a53a1c25060c5fe8aeb496f7d8bdb07cdec5f06be6c938b7b52"
+  },
+  "hub": {
+    "pageId": "help/index",
+    "route": "/wiki/"
+  },
+  "sections": [
+    {
+      "id": "getting-started",
+      "title": {
+        "en": "Getting started",
+        "sv": "Kom igång"
+      },
+      "sourceTitle": "Getting started",
+      "pages": [
+        {
+          "pageId": "help/install",
+          "route": "/wiki/install/"
+        },
+        {
+          "pageId": "help/ai-setup",
+          "route": "/wiki/ai-setup/"
+        },
+        {
+          "pageId": "help/how-to-play",
+          "route": "/wiki/how-to-play/"
+        },
+        {
+          "pageId": "help/first-campaign",
+          "route": "/wiki/first-campaign/"
+        }
+      ]
+    },
+    {
+      "id": "playing",
+      "title": {
+        "en": "Playing",
+        "sv": "Spela"
+      },
+      "sourceTitle": "Playing",
+      "pages": [
+        {
+          "pageId": "help/new-game",
+          "route": "/wiki/new-game/"
+        },
+        {
+          "pageId": "help/interface",
+          "route": "/wiki/interface/"
+        },
+        {
+          "pageId": "help/world-map",
+          "route": "/wiki/world-map/"
+        },
+        {
+          "pageId": "help/time",
+          "route": "/wiki/time/"
+        },
+        {
+          "pageId": "help/orders",
+          "route": "/wiki/orders/"
+        },
+        {
+          "pageId": "help/events",
+          "route": "/wiki/events/"
+        }
+      ]
+    },
+    {
+      "id": "game-systems",
+      "title": {
+        "en": "Game systems",
+        "sv": "Spelsystem"
+      },
+      "sourceTitle": "Game systems",
+      "pages": [
+        {
+          "pageId": "help/diplomacy",
+          "route": "/wiki/diplomacy/"
+        },
+        {
+          "pageId": "help/war",
+          "route": "/wiki/war/"
+        },
+        {
+          "pageId": "help/territory",
+          "route": "/wiki/territory/"
+        },
+        {
+          "pageId": "help/military",
+          "route": "/wiki/military/"
+        },
+        {
+          "pageId": "help/war-room",
+          "route": "/wiki/war-room/"
+        },
+        {
+          "pageId": "help/war-at-sea",
+          "route": "/wiki/war-at-sea/"
+        },
+        {
+          "pageId": "help/espionage",
+          "route": "/wiki/espionage/"
+        },
+        {
+          "pageId": "help/projects",
+          "route": "/wiki/projects/"
+        },
+        {
+          "pageId": "help/statistics",
+          "route": "/wiki/statistics/"
+        },
+        {
+          "pageId": "help/countries",
+          "route": "/wiki/countries/"
+        },
+        {
+          "pageId": "help/cities",
+          "route": "/wiki/cities/"
+        },
+        {
+          "pageId": "help/advisor",
+          "route": "/wiki/advisor/"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "title": {
+        "en": "Tools",
+        "sv": "Verktyg"
+      },
+      "sourceTitle": "Tools",
+      "pages": [
+        {
+          "pageId": "help/settings",
+          "route": "/wiki/settings/"
+        },
+        {
+          "pageId": "help/cheats",
+          "route": "/wiki/cheats/"
+        },
+        {
+          "pageId": "help/saves",
+          "route": "/wiki/saves/"
+        },
+        {
+          "pageId": "help/editor",
+          "route": "/wiki/editor/"
+        }
+      ]
+    },
+    {
+      "id": "sharing-hosting",
+      "title": {
+        "en": "Sharing and hosting",
+        "sv": "Dela och drifta"
+      },
+      "sourceTitle": "Sharing & hosting",
+      "pages": [
+        {
+          "pageId": "help/community-hub",
+          "route": "/wiki/community-hub/"
+        },
+        {
+          "pageId": "help/self-hosting",
+          "route": "/wiki/self-hosting/"
+        },
+        {
+          "pageId": "help/mobile",
+          "route": "/wiki/mobile/"
+        }
+      ]
+    },
+    {
+      "id": "reference",
+      "title": {
+        "en": "Reference",
+        "sv": "Referens"
+      },
+      "sourceTitle": "Reference",
+      "pages": [
+        {
+          "pageId": "help/ai-providers",
+          "route": "/wiki/ai-providers/"
+        },
+        {
+          "pageId": "help/troubleshooting",
+          "route": "/wiki/troubleshooting/"
+        }
+      ]
+    }
+  ],
+  "labelSource": "Read each referenced page nav/title/description in the selected locale. Section IDs and routes are invariant."
+}

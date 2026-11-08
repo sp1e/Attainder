@@ -1,0 +1,289 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/time",
+  "route": "/wiki/time/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/play/time.md",
+  "upstreamRawSha256": "5a35e7ecebb791d1d68aff7fd86784b002af271a270a68613ff37c5520f3c501",
+  "title": {
+    "en": "Time and turns",
+    "sv": "Tid och turer"
+  },
+  "nav": {
+    "en": "Time",
+    "sv": "Tid"
+  },
+  "description": {
+    "en": "Advance the campaign, read its results and handle interrupted turns.",
+    "sv": "För kampanjen framåt, läs resultatet och hantera avbrutna turer."
+  },
+  "sections": [
+    {
+      "id": "year",
+      "title": {
+        "en": "Advance a dynasty campaign",
+        "sv": "För en dynastikampanj framåt"
+      },
+      "body": {
+        "en": "Open the realm and families panel and use its next-year control when you have finished your decisions. It requests a target twelve calendar months ahead. A health matter or character event can stop time earlier; read the interruption and open the waiting decisions before continuing.\n\nAn open conversation request holds this control until you confirm or cancel the request. An ended campaign cannot advance. Read the last turn’s unseen events before making another decision or starting another year.",
+        "sv": "Öppna panelen för rike och familjer och använd årsknappen när du är klar med dina beslut. Den begär ett mål tolv kalendermånader framåt. Ett vårdärende eller en karaktärshändelse kan stoppa tiden tidigare. Läs avbrottsmeddelandet och öppna besluten som väntar innan du fortsätter.\n\nEn öppen förfrågan i ett samtal håller årsknappen låst tills du bekräftar eller avbryter förfrågan. En avslutad kampanj kan inte föras framåt. Läs den senaste turens olästa händelser innan du fattar ett nytt beslut eller startar ett nytt år."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 480,
+          "lineEnd": 488,
+          "claim": "Annual control conditions, conversation hold and interruption presentation"
+        },
+        {
+          "path": "src/runtime/characterRuntime.js",
+          "lineStart": 205,
+          "lineEnd": 230,
+          "claim": "Twelve calendar months, unseen-event guard and returned completed turn"
+        },
+        {
+          "path": "server/gameDates.js",
+          "lineStart": 105,
+          "lineEnd": 111,
+          "claim": "Calendar-month addition clamps day to target month"
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "title": {
+        "en": "Read the completed turn",
+        "sv": "Läs den färdiga turen"
+      },
+      "body": {
+        "en": "The panel displays the completed year’s events together. You can read about people and families, or close the panel, while the model works. Reopen the latest saved turn’s events to review them without advancing time.\n\nThe map timeline reveals events in steps and remembers how far you have read. Finish the reveal before planning from its consequences. See [Events](/wiki/events/) for the distinction between campaign events and real historical records.",
+        "sv": "Panelen visar det färdiga årets händelser tillsammans. Du kan läsa om personer och familjer eller stänga panelen medan modellen arbetar. Öppna den senaste sparade turens händelser igen för att läsa dem utan att tiden går.\n\nKartans tidslinje visar händelser stegvis och minns hur långt du har läst. Läs färdigt innan du planerar utifrån följderna. Under [Händelser](/wiki/events/) förklaras skillnaden mellan kampanjhändelser och verkliga historiska uppgifter."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 484,
+          "lineEnd": 489,
+          "claim": "Review saved events and background annual work"
+        },
+        {
+          "path": "src/runtime/characterRuntime.js",
+          "lineStart": 235,
+          "lineEnd": 250,
+          "claim": "Review only reads and marks latest events seen"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 2911,
+          "lineEnd": 2950,
+          "claim": "Timeline reveal resumes saved progress"
+        }
+      ]
+    },
+    {
+      "id": "timeline",
+      "title": {
+        "en": "Use the map’s time controls",
+        "sv": "Använd kartans tidsreglage"
+      },
+      "body": {
+        "en": "The date widget also opens the map’s time controls. Presets run from 6 hours to 1 year. Custom durations accept hours, days, weeks, months or years and show a landing date before you start. Here a month means 30 days and a year means 365 days; check that preview when aiming for a particular date. The dynasty panel’s year control instead uses calendar months.\n\nAuto-jump asks the simulation to stop at an important moment. Choose a shorter interval when you need to respond sooner. An active interactive scene blocks another time jump until the scene ends or is set aside.",
+        "sv": "Datumfältet öppnar också kartans tidsreglage. De fasta stegen går från 6 timmar till 1 år. Egna tidssteg kan anges i timmar, dagar, veckor, månader eller år och visar ett slutdatum innan du startar. Här betyder en månad 30 dagar och ett år 365 dagar. Kontrollera förhandsvisningen när du vill nå ett visst datum. Dynastipanelens årsknapp använder i stället kalendermånader.\n\nAutomatiskt tidssteg ber simuleringen att stanna vid ett viktigt ögonblick. Välj ett kortare intervall när du behöver kunna reagera tidigare. En pågående interaktiv scen blockerar ett nytt tidssteg tills scenen avslutas eller läggs åt sidan."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 570,
+          "lineEnd": 577,
+          "claim": "Date widget remains mounted in character campaigns"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 1260,
+          "lineEnd": 1286,
+          "claim": "Custom units, landing date and presets"
+        },
+        {
+          "path": "src/Game/AI/jumpSegments.js",
+          "lineStart": 164,
+          "lineEnd": 176,
+          "claim": "Auto instruction and model-provided stopping point"
+        }
+      ]
+    },
+    {
+      "id": "generation",
+      "title": {
+        "en": "Generation, cost and recovery",
+        "sv": "Generering, kostnad och återhämtning"
+      },
+      "body": {
+        "en": "Read the time panel’s request estimate before starting. A segmented jump uses one generation request per segment; optional lookup rounds can raise the total. A long jump can therefore take several model calls even though it becomes one campaign round.\n\nWhile a jump runs, its progress row offers cancellation. If a generated turn is held for a retry, use the offered retry or discard controls and read their explanation. A held, uncommitted generation has not advanced the saved world. Connection help is under [Troubleshooting](/wiki/troubleshooting/).",
+        "sv": "Läs tidsreglagets uppskattning av antal anrop innan du startar. Ett tidssteg som delas upp använder ett genereringsanrop per del. Extra informationshämtningar kan öka totalsumman. Ett långt tidssteg kan därför kräva flera modellanrop trots att det blir en enda kampanjomgång.\n\nMedan tidssteget körs kan du avbryta det från förloppsraden. Om en genererad tur hålls kvar för ett nytt försök använder du de visade reglagen för att försöka igen eller kasta genereringen och läser deras förklaring. En kvarhållen generering som ännu inte har sparats har inte fört den sparade världen framåt. Anslutningshjälp finns under [Felsökning](/wiki/troubleshooting/)."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/AI/requestBudget.js",
+          "lineStart": 294,
+          "lineEnd": 296,
+          "claim": "Segment request cap"
+        },
+        {
+          "path": "src/Game/AI/requestBudget.js",
+          "lineStart": 362,
+          "lineEnd": 368,
+          "claim": "Displayed request estimate conditions"
+        },
+        {
+          "path": "src/Game/AI/jumpSegments.js",
+          "lineStart": 14,
+          "lineEnd": 18,
+          "claim": "Segments applied as one round"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 1188,
+          "lineEnd": 1210,
+          "claim": "Cancel during generation"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 2593,
+          "lineEnd": 2605,
+          "claim": "Discard held generation without saved-world rollback"
+        }
+      ]
+    },
+    {
+      "id": "undo",
+      "title": {
+        "en": "Undo or stop at a revealed event",
+        "sv": "Ångra eller stanna vid en visad händelse"
+      },
+      "body": {
+        "en": "When a restore point is available, the time panel offers undo for the last turn and shows how many turns can be restored. Undo restores the earlier campaign state. Export important saves as described under [Saves](/wiki/saves/).\n\nThe timeline may also offer intervention during the latest turn’s reveal. Read its confirmation: the revealed events remain, later unrevealed events are discarded and the date becomes the last revealed event’s date. This control appears only when the turn supports intervention and no category filter is active.",
+        "sv": "När en återställningspunkt finns erbjuder tidsreglaget att ångra den senaste turen och visar hur många turer som kan återställas. Ångra återställer kampanjens tidigare tillstånd. Exportera viktiga sparningar enligt [Sparningar](/wiki/saves/).\n\nTidslinjen kan också erbjuda ett ingripande medan den senaste turen visas stegvis. Läs bekräftelsen: de visade händelserna består, senare olästa händelser kastas och datumet blir den senast visade händelsens datum. Reglaget visas bara när turen stöder ingripande och inget kategorifilter är aktivt."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 1332,
+          "lineEnd": 1353,
+          "claim": "Conditional undo and available count"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 2644,
+          "lineEnd": 2668,
+          "claim": "Restores snapshot and refreshes timeline"
+        },
+        {
+          "path": "src/Game/GameUI/time.jsx",
+          "lineStart": 2010,
+          "lineEnd": 2034,
+          "claim": "Intervention conditions and discarded future events"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Fixed jumps",
+      "upstreamLine": 7,
+      "status": "adapted",
+      "currentSectionId": "timeline",
+      "reason": "Presets retained with actual day conversion and separate dynasty-year behavior."
+    },
+    {
+      "upstreamHeading": "Custom jumps",
+      "upstreamLine": 30,
+      "status": "retained",
+      "currentSectionId": "timeline",
+      "reason": "Custom units and landing preview exist."
+    },
+    {
+      "upstreamHeading": "Auto-jump",
+      "upstreamLine": 41,
+      "status": "retained",
+      "currentSectionId": "timeline",
+      "reason": "Auto-jump instruction remains."
+    },
+    {
+      "upstreamHeading": "How far should I skip?",
+      "upstreamLine": 50,
+      "status": "adapted",
+      "currentSectionId": "timeline",
+      "reason": "Advice grounded in response interval; upstream event-count estimates omitted as non-guarantees."
+    },
+    {
+      "upstreamHeading": "What a skip costs",
+      "upstreamLine": 78,
+      "status": "adapted",
+      "currentSectionId": "generation",
+      "reason": "Current estimate handles segments and lookups, avoiding flat one-request promise."
+    },
+    {
+      "upstreamHeading": "While it runs",
+      "upstreamLine": 88,
+      "status": "adapted",
+      "currentSectionId": "generation",
+      "reason": "Progress, cancellation and held-generation recovery retained."
+    },
+    {
+      "upstreamHeading": "Long skips in segments",
+      "upstreamLine": 113,
+      "status": "adapted",
+      "currentSectionId": "generation",
+      "reason": "Segments remain one turn; no fixed performance promise."
+    },
+    {
+      "upstreamHeading": "Intervene",
+      "upstreamLine": 155,
+      "status": "retained",
+      "currentSectionId": "undo",
+      "reason": "Exact conditional intervention semantics."
+    },
+    {
+      "upstreamHeading": "Interactive events",
+      "upstreamLine": 170,
+      "status": "adapted",
+      "currentSectionId": "timeline",
+      "reason": "Active scenes block jumps; detailed scene guide maps to events."
+    },
+    {
+      "upstreamHeading": "Undo",
+      "upstreamLine": 180,
+      "status": "retained",
+      "currentSectionId": "undo",
+      "reason": "Available restore count is authoritative; no guaranteed retention promise."
+    },
+    {
+      "upstreamHeading": "Rounds and dates",
+      "upstreamLine": 195,
+      "status": "adapted",
+      "currentSectionId": "year",
+      "reason": "Current date and calendar-year target distinguished from flat durations."
+    },
+    {
+      "upstreamHeading": "Player focus",
+      "upstreamLine": 209,
+      "status": "unsupported",
+      "currentSectionId": "year",
+      "reason": "Missing beta playerFocus.js; current decisions and conversation hold replace that workflow."
+    },
+    {
+      "upstreamHeading": "The first turn is special",
+      "upstreamLine": 228,
+      "status": "adapted",
+      "currentSectionId": "year",
+      "reason": "Character founding history authored; generic bootstrap deliberately skips characterSystem."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 235,
+      "status": "adapted",
+      "currentSectionId": "read",
+      "reason": "Navigation mapped to current events guide."
+    }
+  ]
+}

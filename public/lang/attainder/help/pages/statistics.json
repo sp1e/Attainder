@@ -1,0 +1,340 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/statistics",
+  "route": "/wiki/statistics/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/statistics.md",
+  "upstreamRawSha256": "633077863e69a71ecffdca4cadca493cba56ecc06d325f37f195e41236ce37fa",
+  "title": {
+    "en": "Statistics and campaign resources",
+    "sv": "Statistik och kampanjresurser"
+  },
+  "nav": {
+    "en": "Statistics",
+    "sv": "Statistik"
+  },
+  "description": {
+    "en": "Read assessed country figures alongside the dynasty’s actual resources.",
+    "sv": "Läs bedömda landsvärden tillsammans med dynastins faktiska resurser."
+  },
+  "sections": [
+    {
+      "id": "open",
+      "title": {
+        "en": "Open a country’s statistics",
+        "sv": "Öppna ett lands statistik"
+      },
+      "body": {
+        "en": "Open the advisor drawer and select its statistics tab. The current view has diplomacy and economy sections. While it is open, selecting a country on the map retargets the sheet to that country.\n\nThe sheet assesses the campaign world. Its economic estimates are separate from the dynasty’s rule-bound treasury, family purse, annual revenue and action capacity. Read those spendable resources in the realm and families overview before confirming a character action.",
+        "sv": "Öppna rådgivarpanelen och välj statistikfliken. Den aktuella vyn har sektioner för diplomati och ekonomi. När den är öppen byter bladet till det land du väljer på kartan.\n\nBladet är en bedömning av kampanjvärlden. Dess ekonomiska uppskattningar är skilda från dynastins regelstyrda statskassa, familjekassa, årsintäkt och handlingsutrymme. Läs de förbrukningsbara resurserna i överblicken för rike och familjer innan du bekräftar en karaktärshandling."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1437,
+          "lineEnd": 1472,
+          "claim": "Stats entry"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 2024,
+          "lineEnd": 2045,
+          "claim": "Diplomacy/economy rendering"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 1524,
+          "lineEnd": 1536,
+          "claim": "Map observer retargets sheet"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 218,
+          "lineEnd": 219,
+          "claim": "Separate dynasty purses and resources"
+        }
+      ]
+    },
+    {
+      "id": "figures",
+      "title": {
+        "en": "Read the standard figures",
+        "sv": "Läs standardvärdena"
+      },
+      "body": {
+        "en": "The standard sheet shows national stability and strategic indices on a 0–100 scale, plus an intelligence-service rating. The indices cover sovereignty, food autonomy, energy autonomy, economic independence, internal security and international reputation.\n\nThe economy section shows population, GDP, GDP per person, growth, inflation, unemployment, public debt, budget balance and the agriculture/industry/services split. Monetary accounting uses a 2026-EUR equivalent for comparison, with the domestic currency identified separately. These are simulation estimates, including in a historical campaign.",
+        "sv": "Standardbladet visar nationell stabilitet och strategiska index på en skala 0–100 samt ett värde för underrättelsetjänsten. Indexen omfattar suveränitet, självförsörjning med livsmedel, självförsörjning med energi, ekonomiskt oberoende, inre säkerhet och internationellt anseende.\n\nEkonomisektionen visar befolkning, BNP, BNP per person, tillväxt, inflation, arbetslöshet, offentlig skuld, budgetsaldo och fördelningen mellan jordbruk, industri och tjänster. Monetära värden visas som motsvarande 2026-EUR för jämförelse, med den inhemska valutan angiven separat. Det är simulerade uppskattningar, även i en historisk kampanj."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 2048,
+          "lineEnd": 2088,
+          "claim": "Stability/intelligence/indices scales"
+        },
+        {
+          "path": "src/runtime/statIndexDefinitions.js",
+          "lineStart": 1,
+          "lineEnd": 95,
+          "claim": "Strategic indices"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 2092,
+          "lineEnd": 2155,
+          "claim": "Exact economy/population and accounting labels"
+        }
+      ]
+    },
+    {
+      "id": "refresh",
+      "title": {
+        "en": "Assessment and refresh",
+        "sv": "Bedömning och uppdatering"
+      },
+      "body": {
+        "en": "The game stores assessed sheets and reuses them. Refresh requests an update; holding Shift while clicking asks for a fresh baseline. If assessment fails, the statistics view shows the error and offers another attempt. Opening statistics can also trigger an intelligence-service assessment.\n\nCheck a reading’s date before comparing it with a recent decision. Read [AI setup](/wiki/ai-setup/) if a provider is unavailable. A scenario may supply its own statistics definition, replacing the standard economy layout with its own measures.",
+        "sv": "Spelet sparar bedömda statistikblad och återanvänder dem. Uppdatering begär en ny bedömning. Håll ned Shift när du klickar för att begära en ny grundbedömning. Om bedömningen misslyckas visar statistikvyn felet och erbjuder ett nytt försök. Att öppna statistiken kan också utlösa en bedömning av underrättelsetjänsten.\n\nKontrollera bedömningens datum innan du jämför med ett nyligen fattat beslut. Läs [AI-inställning](/wiki/ai-setup/) om en leverantör inte är tillgänglig. Ett scenario kan ange en egen statistikdefinition som ersätter ekonomins standardblad med egna mått."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/gameState.js",
+          "lineStart": 92,
+          "lineEnd": 95,
+          "claim": "Persisted country sheets"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 1983,
+          "lineEnd": 1988,
+          "claim": "Refresh/Shift baseline"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 2015,
+          "lineEnd": 2028,
+          "claim": "Error/retry"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 1760,
+          "lineEnd": 1772,
+          "claim": "Sheet and intelligence assessment"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 2042,
+          "lineEnd": 2046,
+          "claim": "Custom definition rendering"
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "title": {
+        "en": "Track history and compare trends",
+        "sv": "Följ historik och jämför utveckling"
+      },
+      "body": {
+        "en": "Historical tracking offers manual refresh or intervals of 3, 6, 12 or 24 game months, with up to 8 tracked countries. An enabled interval keeps your own country on the list. Automatic refresh needs an initialized sheet; use the normal statistics view to establish a missing baseline. Up to 1200 history samples are retained per series.\n\nAdvanced statistics plots available samples. Select up to 4 metrics on a shared scale and choose the whole history or the last 1, 5 or 10 game years. Selecting a different scale changes the selection rather than adding another axis.",
+        "sv": "Historisk uppföljning erbjuder manuell uppdatering eller intervall på 3, 6, 12 eller 24 spelmånader, med högst 8 bevakade länder. När ett intervall är aktiverat finns ditt eget land kvar i listan. Automatisk uppdatering behöver ett grundlagt statistikblad. Använd den vanliga statistikvyn för att skapa en saknad grundbedömning. Högst 1200 historikvärden behålls per serie.\n\nAvancerad statistik ritar tillgängliga historikvärden. Välj högst 4 mått med gemensam skala och visa hela historiken eller de senaste 1, 5 eller 10 spelåren. Om du väljer en annan skala ändras urvalet i stället för att ytterligare en axel läggs till."
+      },
+      "evidence": [
+        {
+          "path": "src/runtime/countryStats.js",
+          "lineStart": 9,
+          "lineEnd": 12,
+          "claim": "Exact history/tracking caps"
+        },
+        {
+          "path": "src/runtime/countryStats.js",
+          "lineStart": 64,
+          "lineEnd": 77,
+          "claim": "Own country included with interval"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 1315,
+          "lineEnd": 1318,
+          "claim": "Initialized baseline required"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 947,
+          "lineEnd": 970,
+          "claim": "Common-unit metric selection"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 1048,
+          "lineEnd": 1053,
+          "claim": "Four metrics and range controls"
+        }
+      ]
+    },
+    {
+      "id": "diplomacy",
+      "title": {
+        "en": "Read records and territorial scope",
+        "sv": "Läs historik och territoriell omfattning"
+      },
+      "body": {
+        "en": "The diplomacy section lists bilateral relations, agreements and current conflicts from the saved world. A missing relation means there is no tracked record, rather than an explicit neutral relationship. Read agreement status and war status separately. See [War and relations](/wiki/war/).\n\nRead population and per-person scope labels when a country has several territorial components. The sheet can distinguish the whole country from core or integrated territory. The current view has no separate politics, ranking, war-weariness or peace-offer tabs.",
+        "sv": "Diplomatisektionen listar bilaterala relationer, avtal och aktuella konflikter från den sparade världen. En saknad relation betyder att det inte finns någon registrerad uppgift, snarare än ett uttryckligt neutralt förhållande. Läs avtalsstatus och krigsstatus var för sig. Se [Krig och relationer](/wiki/war/).\n\nLäs omfattningen för befolkning och värden per person när ett land har flera territoriella delar. Bladet kan skilja hela landet från kärnterritorium eller integrerat territorium. Den aktuella vyn saknar separata flikar för politik, rangordning, krigströtthet och fredserbjudanden."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 433,
+          "lineEnd": 495,
+          "claim": "Saved diplomatic selection"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 512,
+          "lineEnd": 592,
+          "claim": "Visible records/absent relation"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 2092,
+          "lineEnd": 2120,
+          "claim": "Population and per-capita scope"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 1349,
+          "lineEnd": 1356,
+          "claim": "Actual view state"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 2024,
+          "lineEnd": 2045,
+          "claim": "Current sections"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "National stability",
+      "upstreamLine": 20,
+      "status": "adapted",
+      "currentSectionId": "figures",
+      "reason": "Current0–100."
+    },
+    {
+      "upstreamHeading": "Strategic indices",
+      "upstreamLine": 35,
+      "status": "adapted",
+      "currentSectionId": "figures",
+      "reason": "Current definitions."
+    },
+    {
+      "upstreamHeading": "Intelligence service",
+      "upstreamLine": 55,
+      "status": "adapted",
+      "currentSectionId": "figures",
+      "reason": "Current service bar."
+    },
+    {
+      "upstreamHeading": "Population and economy",
+      "upstreamLine": 72,
+      "status": "adapted",
+      "currentSectionId": "figures",
+      "reason": "Exact labels and accounting convention."
+    },
+    {
+      "upstreamHeading": "Military power",
+      "upstreamLine": 95,
+      "status": "unsupported",
+      "currentSectionId": "open",
+      "reason": "Beta military power absent; dynasty readiness separate."
+    },
+    {
+      "upstreamHeading": "There is no treasury",
+      "upstreamLine": 135,
+      "status": "adapted",
+      "currentSectionId": "open",
+      "reason": "Replaced with actual dynasty purses."
+    },
+    {
+      "upstreamHeading": "Where the numbers come from",
+      "upstreamLine": 154,
+      "status": "adapted",
+      "currentSectionId": "refresh",
+      "reason": "Stored estimates and refresh."
+    },
+    {
+      "upstreamHeading": "Reading someone else's",
+      "upstreamLine": 187,
+      "status": "adapted",
+      "currentSectionId": "open",
+      "reason": "Map retargeting."
+    },
+    {
+      "upstreamHeading": "The Politics tab",
+      "upstreamLine": 196,
+      "status": "unsupported",
+      "currentSectionId": "diplomacy",
+      "reason": "Specialized beta tab absent."
+    },
+    {
+      "upstreamHeading": "The Ranking tab",
+      "upstreamLine": 210,
+      "status": "unsupported",
+      "currentSectionId": "diplomacy",
+      "reason": "Specialized beta tab absent."
+    },
+    {
+      "upstreamHeading": "A record, not a snapshot",
+      "upstreamLine": 227,
+      "status": "adapted",
+      "currentSectionId": "history",
+      "reason": "Historical samples."
+    },
+    {
+      "upstreamHeading": "Tracked history",
+      "upstreamLine": 232,
+      "status": "adapted",
+      "currentSectionId": "history",
+      "reason": "Exact intervals and caps."
+    },
+    {
+      "upstreamHeading": "Advanced Statistics",
+      "upstreamLine": 253,
+      "status": "adapted",
+      "currentSectionId": "history",
+      "reason": "Actual metric/range controls."
+    },
+    {
+      "upstreamHeading": "The diplomacy block",
+      "upstreamLine": 279,
+      "status": "adapted",
+      "currentSectionId": "diplomacy",
+      "reason": "Actual records."
+    },
+    {
+      "upstreamHeading": "Territory, overseas and landless",
+      "upstreamLine": 313,
+      "status": "adapted",
+      "currentSectionId": "diplomacy",
+      "reason": "Scope labels; no beta population guarantee."
+    },
+    {
+      "upstreamHeading": "Scenario stat sheets",
+      "upstreamLine": 332,
+      "status": "adapted",
+      "currentSectionId": "refresh",
+      "reason": "Current custom definition."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 352,
+      "status": "adapted",
+      "currentSectionId": "diplomacy",
+      "reason": "Current routes."
+    }
+  ]
+}

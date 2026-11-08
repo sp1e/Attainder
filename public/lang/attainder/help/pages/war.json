@@ -1,0 +1,225 @@
+{
+  "schema": "attainder-help-page-v1",
+  "id": "help/war",
+  "route": "/wiki/war/",
+  "sourceRevision": "0109d5e6b4aea38cace709cf3fd9e2e3b60a1401",
+  "upstreamFile": "wiki/systems/war.md",
+  "upstreamRawSha256": "e475595cbc3a89245fe5a8e8bcb5f51d567b869415bcb89f8c83b0c311198fe9",
+  "title": {
+    "en": "War, relations and agreements",
+    "sv": "Krig, relationer och avtal"
+  },
+  "nav": {
+    "en": "War and relations",
+    "sv": "Krig och relationer"
+  },
+  "description": {
+    "en": "Read the campaign’s recorded conflicts, relationships and commitments.",
+    "sv": "Läs kampanjens registrerade konflikter, relationer och förpliktelser."
+  },
+  "sections": [
+    {
+      "id": "wars",
+      "title": {
+        "en": "Wars have a recorded state",
+        "sv": "Krig har ett registrerat tillstånd"
+      },
+      "body": {
+        "en": "The campaign records a war’s opposing sides, cause and dates. Its status is active, ceasefire or ended. Starting, joining, leaving, suspending, resuming and ending a war are checked transitions. A ceasefire pauses hostilities; it does not by itself end the war.\n\nCombat events must identify an active recorded war and combatants consistent with its sides. Read the recorded conflict alongside the event text when checking who is fighting whom.",
+        "sv": "Kampanjen registrerar ett krigs motstående sidor, orsak och datum. Statusen är aktivt, vapenvila eller avslutat. Att starta, gå med i, lämna, pausa, återuppta eller avsluta ett krig prövas som en särskild övergång. En vapenvila pausar striderna. Den avslutar inte i sig kriget.\n\nStridshändelser måste ange ett aktivt registrerat krig och stridande parter som stämmer med dess sidor. Läs den registrerade konflikten tillsammans med händelsetexten när du kontrollerar vilka som strider mot varandra."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/AI/nativeWarLedger.js",
+          "lineStart": 264,
+          "lineEnd": 326,
+          "claim": "War states and validated transitions"
+        },
+        {
+          "path": "src/Game/AI/nativeWarLedger.js",
+          "lineStart": 628,
+          "lineEnd": 637,
+          "claim": "Combat requires active canonical war and matching combatants"
+        }
+      ]
+    },
+    {
+      "id": "relations",
+      "title": {
+        "en": "Relations and agreements are different records",
+        "sv": "Relationer och avtal är olika uppgifter"
+      },
+      "body": {
+        "en": "A bilateral relation has a score from −100 to +100. The game derives its band from the score: friendly from 55, cordial from 20, neutral from −10, cautious from −30, strained from −60, hostile above −90 and rival at −90 or below. An absent relation is an absent record; it does not establish neutrality.\n\nFormal agreements record the type of commitment, parties and status. An alliance, guarantee, trade agreement or military-access agreement can persist separately from the warmth of a relationship. A hostile relation or an alliance alone does not start a war.",
+        "sv": "En bilateral relation har ett värde från −100 till +100. Spelet beräknar nivån från värdet: vänskaplig från 55, hjärtlig från 20, neutral från −10, försiktig från −30, ansträngd från −60, fientlig över −90 och rival vid −90 eller lägre. Om en relation saknas finns ingen registrerad uppgift. Det fastställer ingen neutralitet.\n\nFormella avtal registrerar förpliktelsens typ, parter och status. En allians, garanti, ett handelsavtal eller avtal om militärt tillträde kan bestå oberoende av hur varm relationen är. En fientlig relation eller en allians startar inte ensam ett krig."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/AI/nativeDiplomaticDirector.js",
+          "lineStart": 154,
+          "lineEnd": 163,
+          "claim": "Exact relation score bands"
+        },
+        {
+          "path": "src/Game/AI/nativeDiplomaticDirector.js",
+          "lineStart": 40,
+          "lineEnd": 58,
+          "claim": "Agreement types and statuses"
+        },
+        {
+          "path": "src/Game/AI/nativeDiplomaticDirector.js",
+          "lineStart": 1487,
+          "lineEnd": 1491,
+          "claim": "Formal commitments, warmth and actual belligerency separate"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 512,
+          "lineEnd": 541,
+          "claim": "Relation list and empty-record message"
+        }
+      ]
+    },
+    {
+      "id": "follow",
+      "title": {
+        "en": "Follow consequences through time",
+        "sv": "Följ följderna över tid"
+      },
+      "body": {
+        "en": "The statistics view’s diplomacy section lists recorded relations, formal agreements and current conflicts for the selected country. Open statistics from the advisor drawer, then choose the country you want to examine. See [Statistics](/wiki/statistics/) and [Diplomacy](/wiki/diplomacy/).\n\nThe simulation also keeps developing world storylines between turns. Their pressure, momentum and review dates help carry an unresolved situation forward. Read the visible events and current records after a turn before assuming that a negotiation ended a conflict or fulfilled an agreement.",
+        "sv": "Statistikvyns diplomatisektion listar registrerade relationer, formella avtal och aktuella konflikter för det valda landet. Öppna statistiken från rådgivarpanelen och välj sedan landet du vill undersöka. Se [Statistik](/wiki/statistics/) och [Diplomati](/wiki/diplomacy/).\n\nSimuleringen behåller också händelseförlopp som utvecklas mellan turerna. Deras tryck, drivkraft och uppföljningsdatum hjälper en olöst situation att fortsätta. Läs de synliga händelserna och aktuella uppgifterna efter en tur innan du utgår från att en förhandling avslutade en konflikt eller uppfyllde ett avtal."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/GameUI/advisor.jsx",
+          "lineStart": 1437,
+          "lineEnd": 1472,
+          "claim": "Stats entry in advisor drawer"
+        },
+        {
+          "path": "src/Game/GameUI/stats.jsx",
+          "lineStart": 433,
+          "lineEnd": 495,
+          "claim": "Selected-country diplomatic records"
+        },
+        {
+          "path": "src/Game/AI/nativeWorldDirector.js",
+          "lineStart": 788,
+          "lineEnd": 809,
+          "claim": "Persistent storyline pressure momentum and review date"
+        }
+      ]
+    },
+    {
+      "id": "current-tools",
+      "title": {
+        "en": "Choose the available controls",
+        "sv": "Välj tillgängliga reglage"
+      },
+      "body": {
+        "en": "Use the current action and conversation controls to pursue your aims, and inspect the resulting campaign state. The current dynasty panel shows military readiness, resources and decisions; its year control can stop at an unresolved matter.\n\nThe separate battlefield War Room and automatic naval-battle interface described in older upstream beta help are unavailable in this version. For formations and the tools that remain, read [Military](/wiki/military/). For borders, read [Territory](/wiki/territory/).",
+        "sv": "Använd de aktuella handlings- och samtalsreglagen för att försöka nå dina mål och granska sedan kampanjens förändrade läge. Dynastipanelen visar militär beredskap, resurser och beslut. Dess årsknapp kan stanna vid ett olöst ärende.\n\nDet separata krigsrummet för slagfält och gränssnittet för automatiska sjöslag som beskrivs i äldre betahjälp från originalprojektet saknas i den här versionen. Läs [Militär](/wiki/military/) om förband och verktygen som finns kvar. Läs [Territorium](/wiki/territory/) om gränser."
+      },
+      "evidence": [
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 218,
+          "lineEnd": 225,
+          "claim": "Readiness, resources and character actions"
+        },
+        {
+          "path": "src/Game/Characters/CharactersPanel.jsx",
+          "lineStart": 480,
+          "lineEnd": 488,
+          "claim": "Year advance and interruptions"
+        },
+        {
+          "path": "src/Game/GameUI/main.jsx",
+          "lineStart": 562,
+          "lineEnd": 589,
+          "claim": "Current character panel and generic force panel conditions"
+        }
+      ]
+    }
+  ],
+  "topicDispositions": [
+    {
+      "upstreamHeading": "Wars",
+      "upstreamLine": 8,
+      "status": "retained",
+      "currentSectionId": "wars",
+      "reason": "Canonical war states and transitions remain."
+    },
+    {
+      "upstreamHeading": "Combat requires a war",
+      "upstreamLine": 23,
+      "status": "retained",
+      "currentSectionId": "wars",
+      "reason": "Current canonical combat validator."
+    },
+    {
+      "upstreamHeading": "Relations",
+      "upstreamLine": 50,
+      "status": "retained",
+      "currentSectionId": "relations",
+      "reason": "Exact current score bands."
+    },
+    {
+      "upstreamHeading": "Agreements",
+      "upstreamLine": 81,
+      "status": "retained",
+      "currentSectionId": "relations",
+      "reason": "Current persistent agreement types/statuses."
+    },
+    {
+      "upstreamHeading": "Alliances that bind",
+      "upstreamLine": 110,
+      "status": "unsupported",
+      "currentSectionId": "current-tools",
+      "reason": "Specialized beta module absent at pin; current action/record workflow replaces its instructions."
+    },
+    {
+      "upstreamHeading": "War weariness",
+      "upstreamLine": 134,
+      "status": "unsupported",
+      "currentSectionId": "current-tools",
+      "reason": "Specialized beta module absent at pin; current action/record workflow replaces its instructions."
+    },
+    {
+      "upstreamHeading": "Ending a war: peace on terms",
+      "upstreamLine": 152,
+      "status": "unsupported",
+      "currentSectionId": "current-tools",
+      "reason": "Specialized beta module absent at pin; current action/record workflow replaces its instructions."
+    },
+    {
+      "upstreamHeading": "Storylines",
+      "upstreamLine": 187,
+      "status": "adapted",
+      "currentSectionId": "follow",
+      "reason": "Persistent process fields retained; no unsupported repair timing promise."
+    },
+    {
+      "upstreamHeading": "What this changes to play",
+      "upstreamLine": 207,
+      "status": "adapted",
+      "currentSectionId": "follow",
+      "reason": "Records checked through current stats/chronicle."
+    },
+    {
+      "upstreamHeading": "Puppets and overlords",
+      "upstreamLine": 219,
+      "status": "unsupported",
+      "currentSectionId": "current-tools",
+      "reason": "Specialized beta module absent at pin; current action/record workflow replaces its instructions."
+    },
+    {
+      "upstreamHeading": "Next",
+      "upstreamLine": 262,
+      "status": "adapted",
+      "currentSectionId": "current-tools",
+      "reason": "Current navigation."
+    }
+  ]
+}
