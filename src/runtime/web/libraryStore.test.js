@@ -8,7 +8,9 @@
 //   structured clones, as IndexedDB does.
 // - the web build's generated modules (the seed, the country table, the colour
 //   palette) are gitignored build output that a clean checkout does not have, so
-//   they are replaced by small fixed ones.
+//   they are replaced by small fixed ones. The historical package index loads each
+//   shipped package from server/seed/historical, the source seed-web-defaults.mjs
+//   copies, so a seed run that recreates the generated folder cannot race this file.
 import assert from "node:assert/strict";
 import { registerHooks } from "node:module";
 import test from "node:test";
@@ -16,6 +18,7 @@ import { readFileSync } from "node:fs";
 import { restoreScenarioFileForGame } from '../scenarioFile.js';
 import { zipBundle } from '../bundleZip.js';
 import { SHIPPED_START_FOLDERS } from '../testing/shippedHistoricalStarts.js';
+import { HISTORICAL_BOOKMARKS } from '../historicalStarts.js';
 
 const db = new Map();
 globalThis.__ohWebStoreTestDb = db;
@@ -59,11 +62,20 @@ const GENERATED = {
   "fallbackColors.js": `export default { Palette: [9, 9, 9] };`,
 };
 const moduleUrl = (source) => `data:text/javascript,${encodeURIComponent(source)}`;
+const packageUrl = (id) => new URL(`../../../server/seed/historical/${id}/scenario.json`, import.meta.url).href;
+const HISTORICAL_INDEX_STUB = `
+import { readFileSync } from "node:fs";
+const load = (url) => async () => ({ default: JSON.parse(readFileSync(new URL(url), "utf8")) });
+export const HISTORICAL_BUNDLE_LOADERS = Object.freeze({
+${HISTORICAL_BOOKMARKS.map(({ id }) => `  ${JSON.stringify(id)}: load(${JSON.stringify(packageUrl(id))}),`).join("\n")}
+});
+`;
 
 registerHooks({
   resolve(specifier, context, nextResolve) {
     if (String(context.parentURL ?? "").includes("/runtime/web/")) {
       if (specifier === "./idb.js") return { url: moduleUrl(IDB_STUB), shortCircuit: true };
+      if (specifier === "./generated/historical/index.js") return { url: moduleUrl(HISTORICAL_INDEX_STUB), shortCircuit: true };
       const generated = /\/generated\/([^/]+)$/.exec(specifier);
       if (generated && GENERATED[generated[1]]) return { url: moduleUrl(GENERATED[generated[1]]), shortCircuit: true };
     }

@@ -797,8 +797,8 @@ const normalizePlayCount = (raw) => {
   return Number.isFinite(value) && value > 0 ? Math.trunc(value) : 0;
 };
 
-const readScenarioMeta = (scenarioId) => {
-  const raw = readJsonFile(getScenarioMetaPath(scenarioId), {});
+// `raw` is the meta file as read, for a caller that needs it as well; omitted, the file is read here.
+const readScenarioMeta = (scenarioId, raw = readJsonFile(getScenarioMetaPath(scenarioId), {})) => {
   // One clock read for both missing timestamps: refreshBuiltInContent takes a later updatedAt as
   // the player's edit, and two reads a millisecond apart would fork an untouched built-in.
   const now = new Date().toISOString();
@@ -1946,21 +1946,20 @@ const cachedSummaryFits = (cached, sourceStamp, meta) =>
 // Adds the summary to the meta file as it stands on disk. writeScenarioMeta would store the
 // normalised meta instead, with the createdAt and updatedAt that readScenarioMeta mints for a meta
 // without them, and a built-in scenario whose stored pair differs reads as edited by the player.
-// A cache that cannot be written is rebuilt on the next read, so a failure only warns.
-const storeHistoricalSummary = (scenarioId, historicalSummary) => {
-  const metaPath = getScenarioMetaPath(scenarioId);
-  const raw = readJsonFile(metaPath, null);
+// A cache that cannot be written is rebuilt on the next read, so a failure only warns. `raw` is the
+// meta file as the catalog read it; a missing or malformed file gets no summary written.
+const storeHistoricalSummary = (scenarioId, historicalSummary, raw) => {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) return;
-  try { writeJsonFileWhole(metaPath, { ...raw, historicalSummary }); }
+  try { writeJsonFileWhole(getScenarioMetaPath(scenarioId), { ...raw, historicalSummary }); }
   catch (error) { console.warn(`[library] could not store the historical summary of ${scenarioId}: ${error.message}`); }
 };
 
 // The historical start summary for the library catalog: the one cached in the scenario meta while
 // world.json and game.json are unchanged, otherwise built from them and cached again. Null for a
 // scenario that is not historical; { invalid: true } for one whose court data the card cannot show.
-const scenarioHistoricalSummary = (scenarioId, meta) => {
+const scenarioHistoricalSummary = (scenarioId, meta, rawMeta) => {
   const sourceStamp = scenarioSourceStamp(scenarioId);
-  let summary = readJsonFile(getScenarioMetaPath(scenarioId), {})?.historicalSummary;
+  let summary = rawMeta?.historicalSummary;
   if (!cachedSummaryFits(summary, sourceStamp, meta)) {
     const data = {
       world: readJsonFile(getScenarioJsonPath(scenarioId, "world"), {}),
@@ -1968,7 +1967,7 @@ const scenarioHistoricalSummary = (scenarioId, meta) => {
     };
     summary = historicalStartSummary({ meta, data, sourceStamp })
       ?? { schema: HISTORICAL_SUMMARY_SCHEMA, sourceStamp, notHistorical: true };
-    if (sourceStamp !== null) storeHistoricalSummary(scenarioId, summary);
+    if (sourceStamp !== null) storeHistoricalSummary(scenarioId, summary, rawMeta);
   }
   return summary.notHistorical === true ? null : summary;
 };
@@ -1977,13 +1976,15 @@ const scenarioHistoricalSummary = (scenarioId, meta) => {
 // (buildScenarioCatalog) or only named by a game (getGameScenarioSummary,
 // buildGameCatalog): one shape, built here and nowhere else.
 const buildScenarioCatalogEntry = (scenarioId, { gameCount = 0, canDelete = true, missing = false } = {}) => {
-  const meta = readScenarioMeta(scenarioId);
+  // One read of the meta file serves the entry, the cached summary and a rebuilt summary's write.
+  const rawMeta = readJsonFile(getScenarioMetaPath(scenarioId), null);
+  const meta = readScenarioMeta(scenarioId, rawMeta ?? {});
   const assetStatus = getScenarioAssetStatus(scenarioId);
   // A scenario that is not there has no updatedAt of its own — readScenarioMeta
   // mints one per read — so its token is fixed, or it would differ on every call.
   const cacheToken = missing ? `${scenarioId}-missing` : `${scenarioId}-${meta.updatedAt}`;
   // A scenario that is gone has nothing to summarise, and a cache write would create its directory.
-  const historicalSummary = missing ? null : scenarioHistoricalSummary(scenarioId, meta);
+  const historicalSummary = missing ? null : scenarioHistoricalSummary(scenarioId, meta, rawMeta);
   return {
     ...meta,
     historicalSummary,
