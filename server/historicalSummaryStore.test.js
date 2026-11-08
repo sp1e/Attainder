@@ -66,8 +66,8 @@ test('the catalog carries a summary for each start and a later read builds none 
   const stored = readJson(scenarioFile(root, 'charlemagne-800', 'scenario.json')).historicalSummary;
   assert.equal(stored.schema, 4);
   assert.match(stored.sourceStamp, /^\d+:[\d.]+:\d+:[\d.]+$/);
-  // ensureScenarioStore reads the default world.json on every call (syncBuiltInScenarioSeedDate),
-  // so for the default the check is that its meta, where a rebuild writes, is left alone.
+  // The default world.json is parsed once per version on disk (syncBuiltInScenarioSeedDate), and
+  // a rebuild writes the meta, so the check covers both.
   const ids = ['default', 'egypt-3000bc', 'charlemagne-800', 'world-1500'];
   const metaTimes = () => ids.map(id => statSync(scenarioFile(root, id, 'scenario.json')).mtimeMs);
   const before = metaTimes();
@@ -79,6 +79,7 @@ test('the catalog carries a summary for each start and a later read builds none 
     assert.equal(reads('charlemagne-800'), 0);
     assert.equal(reads('egypt-3000bc'), 0);
     assert.equal(reads('world-1500'), 0);
+    assert.equal(reads('default'), 0, 'the default world is not parsed again while it is unchanged');
   `);
   assert.deepEqual(metaTimes(), before, 'no summary is built or written again');
 }));
