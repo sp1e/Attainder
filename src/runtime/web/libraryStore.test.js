@@ -19,6 +19,7 @@ import { restoreScenarioFileForGame } from '../scenarioFile.js';
 import { zipBundle } from '../bundleZip.js';
 import { SHIPPED_START_FOLDERS } from '../testing/shippedHistoricalStarts.js';
 import { HISTORICAL_BOOKMARKS } from '../historicalStarts.js';
+import { contentFingerprint } from '../../../server/historicalStarts.js';
 
 const db = new Map();
 globalThis.__ohWebStoreTestDb = db;
@@ -669,6 +670,8 @@ test('a web library read replaces an older shipped start in place and leaves del
   { const { cities, feature } = rome(); feature.properties.seat = false;
     if (typeof record().geojson.citiesGeojson === 'string') record().geojson.citiesGeojson = JSON.stringify(cities); }
   db.get('games').get(gameId).json.world.historicalScenario.contentVersion = '1.0.0';
+  // The fingerprint that release recorded for what it wrote.
+  record().meta.shippedContentFingerprint = contentFingerprint(record().json.world,record().json.game);
   // The player has started this start five times and renamed a country on it.
   Object.assign(record().meta,{ playCount: 5, countryNameOverrides: { 'papal-states': 'Påvens land' } });
   const before = { manifest: structuredClone(manifest()), campaign: JSON.stringify(db.get('games').get(gameId)),
@@ -709,6 +712,70 @@ test('a web library read replaces an older shipped start in place and leaves del
   await store.ensureSeeded();
   assert.equal(record(),undefined); assert.equal(manifest().order.includes(id),false);
   assert.equal(db.get('kv').get('historical-bookmarks-charlemagne-800').value,true);
+});
+
+test('a web upgrade keeps an edited start as a copy with its campaigns, and replaces unedited and unstamped starts in place', async t => {
+  const info = console.info, logged = [];
+  console.info = (...args) => { logged.push(args.join(' ')); };
+  t.after(() => { console.info = info; });
+  const id = 'charlemagne-800', keptId = `${id}-edited`;
+  const record = (scenarioId = id) => db.get('scenarios').get(scenarioId), manifest = () => db.get('kv').get('scenario-manifest').value;
+  const age = () => { record().json.world.historicalScenario.contentVersion = '1.0.0'; };
+  const stamp = () => { record().meta.shippedContentFingerprint = contentFingerprint(record().json.world,record().json.game); };
+  const editCourt = () => { record().json.world.historicalScenario.courtSeeds['papal-states'].contextSv = 'Min egen inledning till påvens hov.'; };
+  for (const [label,prepare,kept] of [
+    ['edited',() => { age(); stamp(); editCourt(); },true],
+    ['unedited',() => { age(); stamp(); },false],
+    ['no fingerprint',() => { age(); delete record().meta.shippedContentFingerprint; editCourt(); },false],
+  ]) {
+    await reset(); logged.length = 0;
+    const shipped = structuredClone(record());
+    assert.equal(shipped.meta.shippedContentFingerprint,contentFingerprint(shipped.json.world,shipped.json.game),`${label}: the install records what it wrote`);
+    const gameId = ok(await games('POST','',{name:'Karl',scenarioId:id,setActive:false,
+      historicalStart:{date:'0800-12-25',polityId:'carolingian-realm',mode:'realm',seed:7,difficulty:'normal'},
+      gamePatch:{country:'carolingian-realm',difficulty:'standard',language:'Swedish'}})).game.id;
+    ok(await scenarios('PUT',id,{name:'Mitt Karl'}));
+    assert.equal(record().meta.shippedContentFingerprint,shipped.meta.shippedContentFingerprint,`${label}: a rename keeps the fingerprint`);
+    prepare();
+    const edited = structuredClone(record().json.world), order = manifest().order;
+    await store.ensureSeeded();
+    assert.ok(JSON.stringify(record().json) === JSON.stringify(shipped.json),`${label}: the start is the shipped 1.3.0`);
+    assert.equal(record().meta.shippedContentFingerprint,shipped.meta.shippedContentFingerprint,`${label}: the upgrade records what it wrote`);
+    const campaignOn = db.get('games').get(gameId).meta.scenarioId;
+    if (!kept) {
+      assert.equal(record(keptId),undefined,`${label}: no copy`);
+      assert.equal(campaignOn,id,`${label}: the campaign stays`);
+      continue;
+    }
+    const at = order.indexOf(id) + 1;
+    assert.deepEqual(manifest().order,[...order.slice(0,at),keptId,...order.slice(at)],'the kept copy follows the start');
+    assert.deepEqual(record(keptId).json.world,edited,'the kept copy holds the edited world');
+    assert.equal(record(keptId).meta.name,'Mitt Karl (din ändrade kopia)');
+    assert.equal(record(keptId).meta.id,keptId);
+    assert.equal(record(keptId).meta.shippedContentFingerprint,undefined);
+    assert.equal(campaignOn,keptId,'the campaign goes with the kept copy');
+    assert.deepEqual(logged,[`[historical start] kept the player's edited ${id} as "${keptId}" for 1 campaign(s)`,`[historical start] ${id} updated to 1.3.0`]);
+    const snapshot = JSON.stringify(record(keptId));
+    await store.ensureSeeded();
+    assert.ok(JSON.stringify(record(keptId)) === snapshot,'the kept copy is never upgraded');
+    assert.equal(record(`${keptId}-2`),undefined);
+  }
+});
+
+test('a current web copy without a fingerprint gets the shipped one, so an edit made before then still counts', async () => {
+  for (const edited of [false,true]) {
+    await reset();
+    const stored = db.get('scenarios').get('charlemagne-800'), shippedFingerprint = stored.meta.shippedContentFingerprint;
+    delete stored.meta.shippedContentFingerprint;
+    if (edited) stored.json.world.historicalScenario.courtSeeds['papal-states'].contextSv = 'Min egen inledning.';
+    await store.ensureSeeded();
+    const after = db.get('scenarios').get('charlemagne-800');
+    assert.equal(after.meta.shippedContentFingerprint,shippedFingerprint,`edited ${edited}: the shipped fingerprint`);
+    assert.equal(after.meta.shippedContentFingerprint === contentFingerprint(after.json.world,after.json.game),!edited,`edited ${edited}: counts as edited`);
+    const writes = globalThis.__ohWebStoreWrites;
+    await store.ensureSeeded();
+    assert.equal(globalThis.__ohWebStoreWrites,writes,`edited ${edited}: stamped once`);
+  }
 });
 
 const library = async () => ok(await call(store.handleLibrary,'GET',''));
