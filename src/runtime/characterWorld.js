@@ -110,6 +110,22 @@ const droppedFront = (before, after) => {
   return 0;
 };
 
+// Indices of `before` a step removed, when both lists hold records with distinct string ids and `after`
+// keeps the rest in order and then appends new ids: memories fade from inside the list
+// (memoryFade.js). null otherwise.
+const removedIndices = (before, after) => {
+  const idOf = (entry) => (record(entry) && typeof entry.id === "string" ? entry.id : null);
+  const beforeIds = before.map(idOf), afterIds = after.map(idOf);
+  if (beforeIds.includes(null) || afterIds.includes(null)) return null;
+  const beforeSet = new Set(beforeIds), afterSet = new Set(afterIds);
+  if (beforeSet.size !== beforeIds.length || afterSet.size !== afterIds.length) return null;
+  const removed = beforeIds.flatMap((id, index) => (afterSet.has(id) ? [] : [index]));
+  if (!removed.length) return null;
+  const kept = beforeIds.filter((id) => afterSet.has(id));
+  if (kept.some((id, index) => afterIds[index] !== id) || afterIds.slice(kept.length).some((id) => beforeSet.has(id))) return null;
+  return removed;
+};
+
 // Append-only memories/logs are cheap deltas, and so is a log that drops its oldest entries. Replacing
 // a whole state on every event made a century of history recur inside every rollback copy.
 export const diffCharacterState = (before, after, path = [], output = []) => {
@@ -117,6 +133,8 @@ export const diffCharacterState = (before, after, path = [], output = []) => {
   if (Array.isArray(before) && Array.isArray(after)) {
     const drop = droppedFront(before, after);
     if (drop) { output.push({ path, drop }); before = before.slice(drop); }
+    const removeAt = drop ? null : removedIndices(before, after);
+    if (removeAt) { output.push({ path, removeAt }); const gone = new Set(removeAt); before = before.filter((_, index) => !gone.has(index)); }
     for (let i = 0; i < Math.min(before.length, after.length); i++) diffCharacterState(before[i], after[i], [...path, i], output);
     if (after.length < before.length) output.push({ path, truncate: after.length });
     if (after.length > before.length) output.push({ path, append: copy(after.slice(before.length)) });
@@ -141,6 +159,10 @@ export const patchCharacterData = (state, changes) => {
     else if (Object.hasOwn(change, "drop")) {
       if (!Array.isArray(holder[key])) throw new Error("Karaktärshistoriken förväntade en lista.");
       holder[key].splice(0, change.drop);
+    } else if (Object.hasOwn(change, "removeAt")) {
+      if (!Array.isArray(holder[key])) throw new Error("Karaktärshistoriken förväntade en lista.");
+      if (change.removeAt.at(-1) >= holder[key].length) throw new Error("Karaktärshistoriken tar bort en post utanför listan.");
+      for (const index of [...change.removeAt].reverse()) holder[key].splice(index, 1);
     } else if (Object.hasOwn(change, "truncate")) {
       if (!Array.isArray(holder[key])) throw new Error("Karaktärshistoriken förväntade en lista.");
       holder[key].length = change.truncate;
@@ -154,6 +176,9 @@ export const patchCharacterData = (state, changes) => {
 
 const applyStatePatch = (state, changes) => normalizeCharacterSystem(patchCharacterData(state, changes));
 
+const ascendingIndices = (value) => Array.isArray(value) && value.length > 0
+  && value.every((index, position) => Number.isInteger(index) && index >= 0 && (position === 0 || index > value[position - 1]));
+
 export const normalizeCharacterOps = (value) => (Array.isArray(value) ? value : [])
   .filter((op) => op && typeof op === "object" && typeof op.id === "string" && op.id.length <= 240)
   .flatMap((op) => {
@@ -163,7 +188,7 @@ export const normalizeCharacterOps = (value) => (Array.isArray(value) ? value : 
       const changes = op.changes.filter((change) => Array.isArray(change?.path) && change.path.length > 0
         && change.path.length < 20 && change.path.every((part) => (typeof part === "string" || Number.isInteger(part)) && !forbiddenPath.has(String(part)))
         && (Object.hasOwn(change, "value") || change.remove === true || Array.isArray(change.append)
-          || (Number.isInteger(change.truncate) && change.truncate >= 0) || (Number.isInteger(change.drop) && change.drop > 0)));
+          || (Number.isInteger(change.truncate) && change.truncate >= 0) || (Number.isInteger(change.drop) && change.drop > 0) || ascendingIndices(change.removeAt)));
       if (changes.length !== op.changes.length) throw new Error("Karaktärshistoriken innehåller en ogiltig förändring.");
       return [{ id: op.id, kind: "patch", ...(op.gate === true ? { gate: true } : {}),
         fromRevision: op.fromRevision, toRevision: op.toRevision, changes: copy(changes) }];

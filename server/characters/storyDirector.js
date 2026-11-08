@@ -3,6 +3,8 @@ import { ADULT_AGE } from './content.js';
 import { isImprisoned } from './prisoners.js';
 
 export const STORY_DIRECTOR_VERSION = 1;
+/** How many of the newest memories the director reads for old wounds and returned favours. */
+export const STORY_MEMORY_WINDOW = 1000;
 export const CHARACTER_EVENT_TYPES = Object.freeze([
   'household_tension', 'promising_student', 'temple_petition', 'governor_audit',
   'veteran_petition', 'reconciliation', 'exile_help', 'returned_favor',
@@ -171,7 +173,7 @@ export function getDirectedStoryCandidates(state, context) {
       3 + (has(person, 'gregarious') ? 3 : 0), 'Bygg en ställning i exilen',
       `${person.name} vill söka upp beskyddarens kontakter. Familjens kassa kan bekosta besöken och stärka ert inflytande.`,
       'Familjen lever i exil under en accepterad beskyddare.', host);
-    for (const m of state.memories.slice(-1000)) {
+    for (const m of state.memories.slice(-STORY_MEMORY_WINDOW)) {
       if (usedCauses.has(m.id) || (m.knownBy !== 'public' && !m.knownBy?.includes(context.actor.id))) continue;
       if (['betrayal', 'insult', 'story_fracture'].includes(m.type) && m.participants.includes(person.id) && m.participants.includes(context.actor.id)) {
         add('reconciliation', person, 3 + (has(context.actor, 'compassionate') ? 3 : 0), 'Ett gammalt sår kan läka',
