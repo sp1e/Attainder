@@ -3,9 +3,15 @@
   "ranges": [
     {
       "startYear": -3300,
-      "endYear": -3101,
+      "endYear": -3201,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": -3200,
+      "endYear": -3101,
+      "status": "partial",
+      "note": "Seven independently checked records concern Newgrange, the approximate foundation of Shahr-i Sokhta, monumental buildings at Uruk, shell-rich deposits at Ru Diep, occupation onset at Upanca, royal imagery at Nag el-Hamdulab and beads in a Kara-depe burial. Full approximate dates, contextual horizons, individual samples and occupation intervals remain distinct. Ru Diep and Upanca keep full ranges extending beyond this century; these establish neither activity in every year nor researched coverage of later centuries. Searches covered nine regions, but sub-Saharan Africa, East Asia, South Asia, Oceania and many other areas have no retained event. Upanca retains earlier independently read table evidence; the follow-up access limitation and unverified author retrieval assertions remain explicit in the research note. Empty years remain research gaps."
     },
     {
       "startYear": -3100,

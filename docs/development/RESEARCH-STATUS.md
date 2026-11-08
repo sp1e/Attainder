@@ -262,3 +262,19 @@ The catalog validator, generated-report check and all 45 focused tests pass for 
 ## Public inventory publication confirmed
 
 The Phase 6 public derivative is published in [PR #49](https://github.com/sp1e/Attainder/pull/49), merged at verified main `9716c84e3436370c1b98bdf6742823348962150f`. All four publication blobs match their staged readback. CI run 42479233522 passed 5,187 of 5,189 tests, with zero failures, zero skips and two TODOs; the build took 34.20 seconds. The ten inventory rows linked to reviewed polities and 139 pending withheld-control feature links grant no further historical, territorial or playable approval.
+
+## BC2700 publication and next research batches
+
+BC2700 is published in [PR #51](https://github.com/sp1e/Attainder/pull/51), merged at verified main `9d1692267d03c99fcc6cc8fc1b61767d833f1ed0`. All five publication blobs match their current-head readback. CI run 42479965492 passed 5,187 of 5,189 tests, with zero failures, zero skips and two TODOs; the build took 38.22 seconds. The catalog contains 429 events and 393 sources, with 1,231 partial years and 3,599 unresearched years.
+
+BC3200 remains a pending seven-event, seven-source batch. Initial source review returned four confirmed and three corrected historical records; all seven source records were corrected, with earlier author retrieval assertions separately unsupported. Thirteen guarded replacements address four historical fields and nine source fields. A new isolated source check is in progress. Full cross-century ranges remain intact and do not establish activity in every year.
+
+Research continues on BC3300, BC2500 and AD700-799 in separate local packets. Search records distinguish unsupported candidates, chronology conflicts and regional gaps. These packets have no publication or gameplay approval. Claude retains ownership of code, tests, built packages and visible gameplay verification.
+
+## BC3200 source reconciliation and integration
+
+The initial seven-event check returned four confirmed and three corrected historical records; its seven source records were corrected, with author-reading provenance separately unverified. The fresh follow-up returned five confirmed and two corrected events. Its source outcomes remained zero confirmed, six corrected and one unsupported; substantive metadata was five confirmed, one corrected and one unsupported. All original verdicts remain unchanged.
+
+Thirteen initial and three follow-up field replacements are applied. Upanca retains earlier independently read table and rights-notice evidence; the follow-up's incomplete access is documented, and its access-only deletions are not applied. Seven review-metadata promotions introduce no additional historical changes. Final DATA review must check this composite evidence and the exact integration.
+
+The candidate preserves all 429 prior events and 393 prior sources, giving 436 events and 400 sources. Only 3200-3101 BCE becomes partial. Current-head CI remains pending. BC3300 is being integrated separately, and source checks for BC2500 and AD700-799 continue. The AD700 first pass exposed six older catalog selection notes during baseline inspection; it is retained as a preliminary check and requires a fresh isolated review before publication. No submitted draft reasoning was in that accidental output.
