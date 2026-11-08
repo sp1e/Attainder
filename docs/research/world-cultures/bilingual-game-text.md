@@ -4,13 +4,13 @@ The owner requires Swedish and English throughout the game, selected in Options.
 
 ## First delivery
 
-[`server/seed/historical/locales/en.json`](../../../server/seed/historical/locales/en.json) contains English translations for all 2,055 Swedish display fields in the current 449-event catalog. The schema is `attainder-historical-translations-v1`; `locale` is `en`, `sourceLocale` is `sv`, and `sourceRevision` identifies the source snapshot. Each entry contains `id`, `sv`, `en` and `source`. Its source record provides `path`, `eventId`, an event-relative JSON `fieldPath` and `textSha256` for the exact Swedish string. IDs follow `event/<eventId>/<source-field-path>`.
+The first delivery of [`server/seed/historical/locales/en.json`](../../../server/seed/historical/locales/en.json) translated all 2,055 Swedish display fields in the original 449-event catalog. The schema is `attainder-historical-translations-v1`; `locale` is `en`, `sourceLocale` is `sv`, and `sourceRevision` identifies the source snapshot. Each entry contains `id`, `sv`, `en` and `source`. Its source record provides `path`, `eventId`, an event-relative JSON `fieldPath` and `textSha256` for the exact Swedish string. IDs follow `event/<eventId>/<source-field-path>`.
 
 A separate bilingual reviewer checked every field. Two initial meaning issues were corrected and checked again: the Turkic soldiers at Ghazna and the uncertainty of an archaeological church identification. All nine input groups are approved with no unresolved findings. The integration readback matches all source values and translation keys, and the existing catalog check and 45 focused historical-event tests pass. This delivery covers event display text; other translation groups are still being prepared.
 
 ## Second delivery
 
-The English sidecar now has 3,716 entries: the unchanged 2,055 event entries plus 1,661 fields from court dossiers, map reviews, the culture inventory and the name pool. Record entries use `record/<source-file>/<stable-entity-path>` IDs. Their `source` contains `path`, a document-relative `jsonPointer` and `textSha256`. The pointer supports readback against the pinned source revision; the stable ID identifies the translation. An input whose text no longer matches its hash needs review before reuse.
+The second delivery expanded the English sidecar to 3,716 entries: the unchanged 2,055 event entries plus 1,661 fields from court dossiers, map reviews, the culture inventory and the name pool. Record entries use `record/<source-file>/<stable-entity-path>` IDs. Their `source` contains `path`, a document-relative `jsonPointer` and `textSha256`. The pointer supports readback against the pinned source revision; the stable ID identifies the translation. An input whose text no longer matches its hash needs review before reuse.
 
 [`server/seed/historical/locales/sv.json`](../../../server/seed/historical/locales/sv.json) adds Swedish explanatory text for all 416 event-source locators and 416 institution fields. It uses the same schema with `locale: sv` and `sourceLocale: en`. Its entries retain both language forms and identify their source by `sourceId` plus a source-relative `fieldPath`. Here `textSha256` hashes the English original. Official institution names, bibliography titles, section quotations and archival identifiers retain their original forms.
 
@@ -25,6 +25,12 @@ This delivery leaves the historical source data and prior event translations unc
 The review checked every page in both languages and its source evidence. Corrections cover panel availability, movement examples for historical eras, the actual espionage detection formula, project secrecy, and the difference between confirming an action and confirming its outcome. All 561 page evidence references still occur verbatim in revision `8dd14ac4d22c6a693b5065a3dd533da500110462`. The source snapshot and upstream help hashes remain pinned separately.
 
 The [catalog README](../../../public/lang/attainder/help/README.md) describes the schemas and integration requirements. This delivery supplies JSON text; the wiki generator and runtime do not yet consume it. Claude still needs to connect the selected Options locale, both rendered help variants, navigation, search indexes and document language, then verify them in the browser. Original upstream help, attribution and AGPL notices remain in place. Interface and rules translations continue as a separate delivery.
+
+## Later event batches
+
+The BC2300 batch adds 15 English event fields and ten Swedish source-panel fields. The sidecars now contain 3,731 English entries and 842 Swedish entries, covering all display fields for 452 events and all locators and institution fields for 421 sources. All prior translation entries are unchanged.
+
+Both sidecars identify source revision `8fe7f35d179d0bfc2b69548271d5d0c4a521aa89`, the preceding research-data commit on the retained `research/e-bc2300-events` branch. All 4,573 source strings and UTF-8 hashes were checked against that exact Git revision. A later event batch must commit its research data before advancing this pointer, then verify every existing and added entry against the new snapshot.
 
 ## Translation contract
 

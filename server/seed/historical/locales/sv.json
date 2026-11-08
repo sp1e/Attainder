@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "467ba0853da5c1c53fb9fd124ae118c3524615cf",
+  "sourceRevision": "8fe7f35d179d0bfc2b69548271d5d0c4a521aa89",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -9154,6 +9154,116 @@
         "sourceId": "bc2400-met-unas-chronology-1999",
         "fieldPath": "/institution",
         "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/bc2300-penn-enheduanna-disc/locator",
+      "sv": "Tabellen Details: Object Number, Provenience, Archaeology Area, Date Made, Materials och Description; webbrepresentationens rader 84–98.",
+      "en": "Details table: Object Number, Provenience, Archaeology Area, Date Made, Materials and Description; web representation lines 84–98.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2300-penn-enheduanna-disc",
+        "fieldPath": "/locator",
+        "textSha256": "01a103b50fe4d4fef5062ca23bc22fe41e526e64ee3c64c7f6bba6c5660f4afd"
+      }
+    },
+    {
+      "id": "source/bc2300-penn-enheduanna-disc/institution",
+      "sv": "Penn Museum, University of Pennsylvania",
+      "en": "Penn Museum, University of Pennsylvania",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2300-penn-enheduanna-disc",
+        "fieldPath": "/institution",
+        "textSha256": "f63e219aeb9fd3fed084be25af9f3e65ebdc461d4384e515e51f0ac4d05a96c8"
+      }
+    },
+    {
+      "id": "source/bc2300-ucla-sun-shimao/locator",
+      "sv": "Den engelska seminariesammanfattningens inledande stycke och talarbiografin; webbrepresentationens rader 28–33 och 41–42. Endast den offentliga sammanfattningen; föreläsningsinspelningen har inte granskats.",
+      "en": "English seminar synopsis, opening paragraph, and speaker biography; web representation lines 28–33 and 41–42. Public synopsis only; the lecture recording was not viewed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2300-ucla-sun-shimao",
+        "fieldPath": "/locator",
+        "textSha256": "0c6a6bfe44117f03db27c44c8b2a01bdf7826e3658b6ed84a484e045c05976b3"
+      }
+    },
+    {
+      "id": "source/bc2300-ucla-sun-shimao/institution",
+      "sv": "UCLA Center for Chinese Studies; seminarium av Zhouyong Sun, Shaanxi Academy of Archaeology, 19 november 2021",
+      "en": "UCLA Center for Chinese Studies; seminar by Zhouyong Sun, Shaanxi Academy of Archaeology, 19 November 2021",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2300-ucla-sun-shimao",
+        "fieldPath": "/institution",
+        "textSha256": "57463ee3928a085a9c8a18aa09968ce7a8a96806d5240657e3d1d1714198c267"
+      }
+    },
+    {
+      "id": "source/bc2300-chen-shimao-2025/locator",
+      "sv": "Inledningen av Abstract och första stycket i Main; webbrepresentationens rader 300 och 309–310. DOI 10.1038/s41586-025-09799-x. Hänvisningen omfattar inte genomiska tabeller eller tolkningar av gravar.",
+      "en": "Abstract opening and Main opening paragraph; web representation lines 300 and 309–310. DOI 10.1038/s41586-025-09799-x. Cited scope excludes genomic tables and burial interpretations.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2300-chen-shimao-2025",
+        "fieldPath": "/locator",
+        "textSha256": "f47978ac2d769c2a706f33a3b96562b6bd8e4d4d2e4379cf3ff56a558be0d0b9"
+      }
+    },
+    {
+      "id": "source/bc2300-chen-shimao-2025/institution",
+      "sv": "Zehui Chen med flera; Nature 648 (2025), 659–667; offentlig artikel på PubMed Central",
+      "en": "Zehui Chen and colleagues; Nature 648 (2025), 659–667; public article at PubMed Central",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2300-chen-shimao-2025",
+        "fieldPath": "/institution",
+        "textSha256": "517ede4070dfb061296c5c6b91b450227cba4dcb543a66206d4f4a327e630eb7"
+      }
+    },
+    {
+      "id": "source/bc2300-louvre-naram-sin-list/locator",
+      "sv": "PDF-sida 2 av 4, Thématique 2, Stèle de Naram-Sin, inventarienummer SB 4 och AS 6065; raden med datering och ikonografi; webbrepresentationens rader 66–78. Den extraherade texten har lästs; sidbilderna har inte granskats.",
+      "en": "PDF page 2 of 4, Thématique 2, Stèle de Naram-Sin, inventories SB 4 and AS 6065; date and iconography row; web representation lines 66–78. Text extraction read; page images not inspected.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2300-louvre-naram-sin-list",
+        "fieldPath": "/locator",
+        "textSha256": "a30201056654e7363ec5573fdc58a692c30c244c60ae977990d93cc5d8cd5325"
+      }
+    },
+    {
+      "id": "source/bc2300-louvre-naram-sin-list/institution",
+      "sv": "Musée du Louvre, föremålslista för undervisning från 2025",
+      "en": "Musée du Louvre, 2025 educational object list",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2300-louvre-naram-sin-list",
+        "fieldPath": "/institution",
+        "textSha256": "66da6b5843a9a9430b40ed7d93558eb9bb25a753967f0cdb7ffb4683f391426f"
+      }
+    },
+    {
+      "id": "source/bc2300-neumann-naram-sin-2018/locator",
+      "sv": "Tryckta s. 216–218, avsnittet Die Lullubäer; PDF-sidor 16–18 av 30. Regeringstid och stele: tryckt s. 217, stycket med noterna 50–52; kungaframställning: s. 218, de två första styckena. Bildtexten anger Sb 02; Louvren anger SB 4.",
+      "en": "Printed pp. 216–218, section Die Lullubäer; PDF pages 16–18 of 30. Reign and stele: printed p. 217, paragraph with notes 50–52; royal imagery: p. 218, first two paragraphs. Figure caption has Sb 02; Louvre supplies SB 4.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2300-neumann-naram-sin-2018",
+        "fieldPath": "/locator",
+        "textSha256": "be84a105c8af1466ac388e6b3d9b01b18894ef1ea54887c4bb02c91a17287180"
+      }
+    },
+    {
+      "id": "source/bc2300-neumann-naram-sin-2018/institution",
+      "sv": "Georg Neumann, i Michael Kasper, Robert Rollinger och Andreas Rudigier, red., Sterben in den Bergen (Böhlau, 2018); författarens särtryck hos Universität Münster",
+      "en": "Georg Neumann, in Michael Kasper, Robert Rollinger and Andreas Rudigier, eds., Sterben in den Bergen (Böhlau, 2018); author offprint hosted by Universität Münster",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2300-neumann-naram-sin-2018",
+        "fieldPath": "/institution",
+        "textSha256": "91c0c94a6c86ddb72070d7fc0bca37d9e54422f0a4863bb52e47b17fd9e96d78"
       }
     }
   ]

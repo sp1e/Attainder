@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "467ba0853da5c1c53fb9fd124ae118c3524615cf",
+  "sourceRevision": "8fe7f35d179d0bfc2b69548271d5d0c4a521aa89",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -39217,6 +39217,171 @@
         "path": "server/seed/historical/coverage/inventory.json",
         "jsonPointer": "/rows/1010/nameSv",
         "textSha256": "1464eea7da2f0abfb2938bbf56add819bbf87b36d233232bafc358e016c83b03"
+      }
+    },
+    {
+      "id": "event/ev-bc2300-enheduanna-pa-en-stenskiva/date/displaySv",
+      "sv": "cirka 2300 f.Kr. (museets föremålsdatering)",
+      "en": "circa 2300 BC (museum dating of the object)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2300-enheduanna-pa-en-stenskiva",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "36be0511b01fb091f3d23a2615214531317f539352650953e42d31620be769b4"
+      }
+    },
+    {
+      "id": "event/ev-bc2300-enheduanna-pa-en-stenskiva/date/noteSv",
+      "sv": "Penn Museum daterar tillverkningen av stenskivan B16665 till omkring 2300 f.Kr. Arkeologerna fann den i ett senare tempelsammanhang från Larsatiden i Ur. Fyndplatsen anger ingen verkstad, och museet fastställer inget år för någon dikt eller utnämning av Enheduanna.",
+      "en": "Penn Museum dates the manufacture of stone disc B16665 to around 2300 BC. Archaeologists found it in a later temple context from the Larsa period at Ur. The findspot does not identify a workshop, and the museum establishes no year for any poem or appointment of Enheduanna.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2300-enheduanna-pa-en-stenskiva",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "69301fd567a360539676575376bdaa4d48455f86837a1cf55f0e8494399c8d62"
+      }
+    },
+    {
+      "id": "event/ev-bc2300-enheduanna-pa-en-stenskiva/titleSv",
+      "sv": "En konstnär avbildar Enheduanna på en stenskiva",
+      "en": "An artist depicts Enheduanna on a stone disc",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2300-enheduanna-pa-en-stenskiva",
+        "fieldPath": "/titleSv",
+        "textSha256": "bc1c3b40ad2ec07f035fc4847d0991a809eaae927085e04119ab4c569eb7e38d"
+      }
+    },
+    {
+      "id": "event/ev-bc2300-enheduanna-pa-en-stenskiva/summarySv",
+      "sv": "En konstnär hugger en offerscen på en skiva av vit kalcit. På den andra sidan ristar någon en inskrift som namnger Enheduanna, Sargons dotter.",
+      "en": "An artist carves an offering scene on a disc of white calcite. On the other side, someone engraves an inscription naming Enheduanna, Sargon's daughter.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2300-enheduanna-pa-en-stenskiva",
+        "fieldPath": "/summarySv",
+        "textSha256": "e9b597f7f58157a6cca023b21d0a2114554003e934fbf5eb4870f9aa93d0e2d4"
+      }
+    },
+    {
+      "id": "event/ev-bc2300-enheduanna-pa-en-stenskiva/geographySv",
+      "sv": "Ur, nuvarande Irak (fyndplats; tillverkningsort okänd)",
+      "en": "Ur, present-day Iraq (findspot; place of manufacture unknown)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2300-enheduanna-pa-en-stenskiva",
+        "fieldPath": "/geographySv",
+        "textSha256": "865adfabd68fee8fa8d5208d7ffafcf28d126bc6e8acf7396c4f0d2a3b480415"
+      }
+    },
+    {
+      "id": "event/ev-bc2300-shimao-utvecklas-till-politiskt-centrum/date/displaySv",
+      "sv": "omkring 2300 f.Kr. (uppskattad framväxt)",
+      "en": "around 2300 BC (estimated emergence)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2300-shimao-utvecklas-till-politiskt-centrum",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "df50d11ad8fa0fde1a275f6a4a2911d94a59417086e28eeea9e719988f2e091b"
+      }
+    },
+    {
+      "id": "event/ev-bc2300-shimao-utvecklas-till-politiskt-centrum/date/noteSv",
+      "sv": "Zhouyong Sun placerar Shimaos framväxt som politiskt centrum omkring 2300 f.Kr. i sin seminariesammanfattning. Chen med flera daterar staden som helhet till omkring 2300–1800 f.Kr. Den längre dateringen gäller platsens sammanhang. Forskarna fastställer inget gemensamt byggår för stadens murar eller något exakt grundläggningsår.",
+      "en": "In his seminar synopsis, Zhouyong Sun places Shimao's emergence as a political centre around 2300 BC. Chen and colleagues date the city as a whole to around 2300–1800 BC. The longer date range provides context for the site. The researchers establish no shared construction year for the city's walls or exact founding year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2300-shimao-utvecklas-till-politiskt-centrum",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d9814197df4984b56c05961b4d32aca26abf1be5b37d1a15b4a3271915aed89e"
+      }
+    },
+    {
+      "id": "event/ev-bc2300-shimao-utvecklas-till-politiskt-centrum/titleSv",
+      "sv": "Människor utvecklar Shimao till ett politiskt centrum",
+      "en": "People develop Shimao into a political centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2300-shimao-utvecklas-till-politiskt-centrum",
+        "fieldPath": "/titleSv",
+        "textSha256": "1147d6c74107b0235e29764a81dccad2784282844a8ce99caf31b25ccac794e8"
+      }
+    },
+    {
+      "id": "event/ev-bc2300-shimao-utvecklas-till-politiskt-centrum/summarySv",
+      "sv": "Människor utvecklar Shimao till ett regionalt politiskt centrum på den norra lössplatån. Arkeologen Zhouyong Sun placerar denna framväxt omkring 2300 f.Kr.",
+      "en": "People develop Shimao into a regional political centre on the northern Loess Plateau. Archaeologist Zhouyong Sun places this emergence around 2300 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2300-shimao-utvecklas-till-politiskt-centrum",
+        "fieldPath": "/summarySv",
+        "textSha256": "899a9be7971cf82dea0063702314841feea0a4ac250f863ba64dcbf8b629cec7"
+      }
+    },
+    {
+      "id": "event/ev-bc2300-shimao-utvecklas-till-politiskt-centrum/geographySv",
+      "sv": "Shimao, Shaanxi, norra lössplatån, Kina",
+      "en": "Shimao, Shaanxi, northern Loess Plateau, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2300-shimao-utvecklas-till-politiskt-centrum",
+        "fieldPath": "/geographySv",
+        "textSha256": "bf0503a14f09bc975b0cf5bf32f9562fe801455202635d0d1c44bf4ce30f44da"
+      }
+    },
+    {
+      "id": "event/ev-bc2261-naram-sins-segerstele-huggs/date/displaySv",
+      "sv": "under Naram-Sin: cirka 2254–2218 eller 2261–2206 f.Kr.",
+      "en": "during Naram-Sin's reign: circa 2254–2218 or 2261–2206 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2261-naram-sins-segerstele-huggs",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "69bb9bca6e1f814122eae3230c8f88a7e8167d28007748570ee5d0f2fd5b84b1"
+      }
+    },
+    {
+      "id": "event/ev-bc2261-naram-sins-segerstele-huggs/date/noteSv",
+      "sv": "Louvren daterar stelen till Naram-Sins regeringstid, 2254–2218 f.Kr. Georg Neumann använder 2261–2206 f.Kr. för kungen i sin genomgång av samma stele. Årtalen ger alternativa kronologiska ramar för föremålet. Källorna fastställer inget enskilt år för huggningen eller slaget, och det samlade intervallet anger ingen sammanhängande arbetsperiod.",
+      "en": "The Louvre dates the stele to Naram-Sin's reign, 2254–2218 BC. Georg Neumann uses 2261–2206 BC for the king in his discussion of the same stele. These dates provide alternative chronological frameworks for the object. The sources establish no single year for the carving or the battle, and the combined interval does not indicate a continuous period of work.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2261-naram-sins-segerstele-huggs",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "658e53f2cd20c9d5da8989f0efe3646efd24834ae9766d86f1592980a9a12aad"
+      }
+    },
+    {
+      "id": "event/ev-bc2261-naram-sins-segerstele-huggs/titleSv",
+      "sv": "Hantverkare hugger en segerstele för Naram-Sin",
+      "en": "Craftspeople carve a victory stele for Naram-Sin",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2261-naram-sins-segerstele-huggs",
+        "fieldPath": "/titleSv",
+        "textSha256": "07d696f2b6e9082d8bd980c1f040e1c7509ca0596851a5debee012be1d925ffc"
+      }
+    },
+    {
+      "id": "event/ev-bc2261-naram-sins-segerstele-huggs/summarySv",
+      "sv": "Hantverkare avbildar Naram-Sin med hornprydd huvudbonad och soldater i ett bergslandskap. Georg Neumann tolkar framställningen som en hyllning till kungens seger över lullubéerna.",
+      "en": "Craftspeople depict Naram-Sin, wearing horned headgear, and soldiers in a mountain landscape. Georg Neumann interprets the scene as a celebration of the king's victory over the Lullubians.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2261-naram-sins-segerstele-huggs",
+        "fieldPath": "/summarySv",
+        "textSha256": "437299359ebf9685706138bf16a69cc5911594905178704f17f160befaa5d66b"
+      }
+    },
+    {
+      "id": "event/ev-bc2261-naram-sins-segerstele-huggs/geographySv",
+      "sv": "Tillverkningsort okänd; framställningen gäller Naram-Sin och Zagrosområdet",
+      "en": "Place of manufacture unknown; the scene concerns Naram-Sin and the Zagros region",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2261-naram-sins-segerstele-huggs",
+        "fieldPath": "/geographySv",
+        "textSha256": "22913ccc16150d896bd55a931ff301d2b4f8cc262d106e272fc5ecb9af23685d"
       }
     }
   ]
