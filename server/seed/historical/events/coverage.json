@@ -33,6 +33,12 @@
     },
     {
       "startYear": -2700,
+      "endYear": -2601,
+      "status": "partial",
+      "note": "Four independently checked historical records concern inferred winter millet foddering at Dali, mixed crop cultivation at Baodun, abandonment of older Kalibangan and covered storage pits on Sai. Approximate site dates, interpretive causes and full occupation ranges remain qualified. Baodun retains 2700-2000 BC and its earlier published 2700-2100 BC alternative; neither implies cultivation in every year or researched coverage of later centuries. Europe, sub-Saharan Africa, Southeast Asia, the Americas, Oceania and many other areas remain gaps. Prior author retrieval dates retain their separately unverified provenance status; the reviewer confirmed all four historical payloads and five substantive source metadata records. Empty years remain research gaps."
+    },
+    {
+      "startYear": -2600,
       "endYear": 799,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."

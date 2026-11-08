@@ -228,3 +228,22 @@ BC2800 is prepared with nine records and nine sources, retaining five approximat
 Independent final DATA closure approved the corrected batch and exact integration. It verified all 454 typed guards, nineteen original repairs, nine review promotions, 119 frozen earlier files and the additional scope correction. The verified BC2900 merge has identical base data bytes. The candidate catalog contains 425 events and 388 sources; only 2800–2701 BC changes coverage, bringing partial years to 1,131 and unresearched years to 3,699. The catalog validator, generated-report check and all 45 focused tests passed. Required CI remains pending.
 
 The next ten-case private C4 metadata milestone is merged and its thirteen blobs are verified. Independent DATA/export review passed 6,231 checks; full source bodies stay local. Thirty-one bounded claims and twenty-two scoped source claims establish no new whole-row, geometry or playable approval. All raw inventory records and matrix statuses remain unchanged. The older twelve-proposal follow-up is being reconciled separately. BC2600 source review and other BC2700 research continue. Claude owns implementation and visible gameplay verification.
+
+
+## BC2700 preparation and Phase 6 handoff, 8 November 2026
+
+BC2800 is published in [PR #44](https://github.com/sp1e/Attainder/pull/44), merged at verified main `e5498f46a8f0752c91f8117ec515a722526aecc5`. After merging Claude's updates through `44f9a5aaa61562f1c627d0f8e0e794d26e354c9b`, current-head CI run 42476988740 passed 5,187 of 5,189 tests, with zero failures and two TODOs; the build took 38.66 seconds. All five merged research blobs match the reviewed publication. The catalog has 425 events and 388 sources.
+
+BC2700 adds four historical candidates and five sources. Its fresh source-only review exited successfully and confirmed all four complete historical payloads. All five substantive source-metadata assessments are confirmed, while the five overall bibliographic verdicts remain unsupported solely because the isolated reviewer could not verify the author's earlier retrieval acts. Reconciliation preserves these outcomes and the original retrieval dates, with author receipts audited separately. No historical or source-metadata replacement is proposed. The integrated candidate preserves every prior record and contains 429 events and 393 sources; only 2700–2601 BCE changes coverage. Final DATA review and current-head CI remain publication gates.
+
+The private twelve-field C4 follow-up has passed DATA/export review and is published as four exact metadata files with a README checkpoint. P01/P02 remain on hold; P03/P04 remain unapplied. Original outcomes stay one confirmed, four corrected, seven unresolved and zero unsupported. A separate locator addendum improves three references without changing the patches. Raw inventory rows and matrix statuses remain unchanged.
+
+Claude's Phase 6 inventory request is in progress as a separate research branch. Its proposed strict public derivative has 1,011 rows: 400 no-source, 601 pending, seven playable-candidate and three map-only. These count research records rather than distinct cultures or newly playable polities. Private raw reports and source bodies remain excluded. Claude continues to own implementation, built packages and gameplay verification.
+
+Automatic tool review blocked the Aztec note package write and BC2600 reconciliation write, without a detailed reason. Those dependent writes were stopped and no corresponding change was published. The completed BC2600 source review remains available for later continuation: six historical payloads confirmed and three awaiting full source access; no final publication candidate was approved.
+
+## BC2700 final DATA checkpoint
+
+Independent final DATA review approved the five prepared publication files with zero findings and 518 passing assertions. It verified all nine complete payloads, 117 typed guards and field assessments, 25 review evidence hashes, 84 frozen inputs and nine author evidence representations. The four historical confirmations, five unsupported prior-retrieval assertions and five substantive source-metadata confirmations remain distinct. No historical or source-metadata edits were needed.
+
+The catalog validator, generated-report check and all 45 focused tests pass for 429 events and 393 sources. Coverage is 1,231 partial years and 3,599 unresearched years; these labels do not claim annual or global completeness. Current-head CI and remote publication remain pending.
