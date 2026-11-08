@@ -335,3 +335,14 @@ BC2300 has a completed isolated source check and a private reconciliation candid
 All 449 published historical events now have English translations for their 2,055 Swedish display fields in `server/seed/historical/locales/en.json`. Every title, summary, geography label, date display and date note is covered. A separate bilingual review approved all fields after two exact meaning corrections, with no unresolved findings. Source field values and source-text hashes match the unchanged catalog; the existing catalog check and all 45 focused event tests pass.
 
 The new file is a locale sidecar. It changes no event, chronology, source record, review approval, coverage interval or generated package. Runtime consumers still require Claude's language integration. Court and start descriptions, culture names, source-panel prose, rules and interface translations continue under the bilingual plan; this milestone does not claim complete bilingual gameplay.
+
+
+## Event translation publication and historical display translations, 8 November 2026
+
+PR #59 merged as `19f8e09ac18686a7c9439921033a6ef473983044`. All five merged publication blobs match the approved readback. CI on exact head `0dfebc8a5f17ddda6727e75a63cb3cd0b14bd66a` passed 5,205 of 5,207 tests, with zero failures, zero skips and two existing TODOs; the build took 34.67 seconds.
+
+The next data delivery adds 1,661 English fields for court dossiers, map reviews, culture names and the attested-name pool, plus 832 Swedish fields for source locators and institutional attribution. The 2,493 fields received independent bilingual review, with four exact corrections checked separately and no unresolved findings. The prior 2,055 event translations and all authoritative research records remain unchanged. The English sidecar contains 3,716 entries; the Swedish sidecar contains 832.
+
+Ruling: preserve original institution names, attested names, bibliographic titles and quoted section labels, while translating explanatory prose. The inventory explicitly retains 246 names and translates 765; translation grants no additional historical or gameplay approval.
+
+The remaining code-text queue contains 4,660 context-specific groups and 29,413 source words, with separate standalone-page additions. Pure technical model instructions are excluded; narrative language directives and player-facing examples remain in scope. The existing wiki includes upstream Modern Day and fantasy onboarding. Current-game help must be adapted and supplied in both languages before it is counted as covered; the original upstream documents remain preserved. Claude retains implementation, tests and built-package ownership. No Cloudflare, D1, R2, secret, binding or deployment changes are required.
