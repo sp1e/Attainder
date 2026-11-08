@@ -212,7 +212,7 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, run
       {hasAuthorityDetail ? <AuthoritySummary view={view} /> : <PersonSummary person={representative} />}
       <div className="char-leader-measures">{representative && <Meter label={`Stress · ${representative.name}`} value={representative.stress} danger />}<Meter label="Legitimitet" value={economy.legitimacy ?? view.ruler?.legitimacy ?? 0} /></div>
       {representative?.goalLabel && <p className="char-goal"><span>Personligt mål</span>{representative.goalLabel}</p>}
-      <ReignCard court={view.court} Meter={Meter} />
+      <ReignCard court={view.court} nicknamePath={view.nicknamePath} Meter={Meter} />
       {representative && <button className="char-button char-button--quiet" onClick={() => { selectPerson(representative.id); setTab("people"); }}>Lär känna {representative.name}<span aria-hidden="true"> ↗</span></button>}
     </section>
     <section className="char-card"><div className="char-section-heading"><div><span className="char-eyebrow">Makt och försörjning</span><h3>Rikets tillstånd</h3></div></div>

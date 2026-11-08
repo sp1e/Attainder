@@ -1821,6 +1821,30 @@ test("the leader card shows dread, prestige, the sources of legitimacy and the r
   assert.ok(html.indexOf("Fruktan") < html.indexOf("Rikets tillstånd"), "the reign sits in the leader card");
 });
 
+test("the way to a nickname lists the three closest rows in table order and names the coming name", () => {
+  const row = (id, label, order, counts, share, earned = false) => ({ id, label, order, counts, share, earned });
+  const count = (label, value, threshold, binary = false) => ({ label, value, threshold, binary });
+  const nicknamePath = { rulerName: "Astrid", adult: true, monthsLeft: 0, winnerId: "cruel", rows: [
+    row("cruel", "den Grymma", 1, [count("avrättningar", 2, 2), count("grymma gärningar", 0, 4)], 1, true),
+    row("great", "den Stora", 2, [count("uppnådda regeringsmål", 0, 2), count("ryktbarhet", 10, 40)], 0.25),
+    row("treacherous", "den Lömska", 3, [count("svek", 0, 4)], 0),
+    row("generous", "den Givmilda", 4, [count("generösa gärningar", 2, 3)], 2 / 3),
+    row("usurper", "Tronrövaren", 6, [count("olaglig tronbestigning", 0, 1, true)], 0),
+    row("quiet", "den Stillsamma", 7, [count("månader på tronen", 30, 48)], 30 / 48),
+  ] };
+  const html = council({ ...courtView(), nicknamePath });
+  assert.match(html, /<h4>Vägen till ett tillnamn<\/h4>/);
+  assert.match(html, /<li class="is-earned"><strong>den Grymma<\/strong><span>avrättningar 2 av 2 eller grymma gärningar 0 av 4<\/span><\/li>/);
+  assert.ok(html.indexOf("den Grymma") < html.indexOf("den Givmilda") && html.indexOf("den Givmilda") < html.indexOf("den Stillsamma"), "table order");
+  assert.doesNotMatch(html, /den Stora|den Lömska|Tronrövaren/);
+  assert.match(html, /Vid nästa årsskifte kallas Astrid den Grymma\. Uppfylls flera vinner det som står först\./);
+  const young = council({ ...courtView(), nicknamePath: { ...nicknamePath, monthsLeft: 14, winnerId: null } });
+  assert.match(young, /14 månader återstår\./);
+  const child = council({ ...courtView(), nicknamePath: { ...nicknamePath, adult: false } });
+  assert.match(child, /Ett barn på tronen får inget tillnamn förrän i vuxen ålder\./);
+  assert.doesNotMatch(council(courtView()), /Vägen till ett tillnamn/);
+});
+
 // The sections fed by the real presenters, so a renamed field leaves these tests red. The goal, demand and faction are the
 // saved records the engine writes; `known` sets how many of the faction's members the player has found.
 function courtCampaign({ spymaster = true, known = 1 } = {}) {
