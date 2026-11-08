@@ -4757,6 +4757,74 @@
           "discussionCaution": "DISCUSSION describes likely Late Preceramic construction, as early as 2850 BCE. This is a qualified discussion statement, not a replacement date envelope or another sample."
         }
       }
+    },
+    {
+      "id": "bc2700-hermes-dali",
+      "title": "Early integration of pastoralism and millet cultivation in Bronze Age Eurasia",
+      "institution": "Taylor R. Hermes and co-authors; Proceedings of the Royal Society B; PubMed Central repository",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6743000/",
+      "locator": "Abstract; section 4(a), first paragraph; section 4(b), final paragraph; section 4(d), paragraph beginning Sheep and goats from Dali; section 5(a), paragraph beginning Given the case for millet foddering.",
+      "asWorded": "ca 2700 cal BC; 2705–2545 cal BC",
+      "originalChronology": "The authors summarize the early Dali evidence as approximately 2700 cal BC. Their phase 1 occupation interval is 2705–2545 cal BC. The approximate summary is not an exact year or the interval's midpoint.",
+      "chronologyDetails": {
+        "phase1Occupation": {
+          "startYear": -2705,
+          "endYear": -2545,
+          "basis": "Published occupation-level interval; preserved separately from the approximate summary date"
+        },
+        "interpretation": "Winter millet foddering is inferred from livestock isotopes and comparative vegetation evidence. Local cultivation is described as a credible scenario."
+      },
+      "scopedClaim": "Supports domestic sheep and goats at Dali and the authors' interpretation of winter millet foddering around 2700 cal BC. It establishes no exact first planting or arrival year.",
+      "retrievedOn": "2026-11-08",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2700-guedes-baodun-2011",
+      "title": "Millets, Rice, Social Complexity, and the Spread of Agriculture to the Chengdu Plain and Southwest China",
+      "institution": "Jade d’Alpoim Guedes; Rice, Springer Nature",
+      "url": "https://link.springer.com/article/10.1007/s12284-011-9071-1",
+      "locator": "Abstract; section Spread of rice agriculture into the Chengdu Plain: evidence from the site of Baodun, opening paragraphs.",
+      "asWorded": "around 2700 BC; 2700–2100 BC",
+      "originalChronology": "The article places mixed rice and foxtail millet agriculture on the Chengdu Plain around 2700 BC and dates the Baodun type site to 2700–2100 BC. The later 2013 study uses 2700–2000 BC for its investigated Baodun activity.",
+      "scopedClaim": "Supports the interpretation of mixed rice and foxtail millet cultivation at Baodun. Its approximate regional onset is not an exact crop-arrival date.",
+      "retrievedOn": "2026-11-08",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2700-guedes-baodun-2013-supp",
+      "title": "Site of Baodun yields earliest evidence for the spread of rice and foxtail millet agriculture to south-west China: supplementary material",
+      "institution": "Jade d’Alpoim Guedes, Ming Jiang, Kunyu He, Xiaohong Wu and Zhanghua Jiang; Antiquity, Cambridge University Press",
+      "url": "https://static.cambridge.org/content/id/urn%3Acambridge.org%3Aid%3Aarticle%3AS0003598X00049449/resource/name/S0003598X00049449sup001.pdf",
+      "locator": "PDF page 1, abstract; Text S1: radiocarbon dates, PDF page 2, first paragraph; Table S1, PDF pages 2–3.",
+      "asWorded": "2700–2000 BC",
+      "originalChronology": "Text S1 assigns Baodun activity to 2700–2000 BC using rice-grain and one wood-charcoal AMS dates. It warns of substantial deposit mixing and says rice remained present throughout occupation. Table S1 lists uncalibrated measurements; they are not converted here.",
+      "scopedClaim": "Supports rice and millet cultivation as an interpretation of the assemblage and supplies the retained occupation interval. It does not demonstrate both crops in every year or date their first introduction.",
+      "retrievedOn": "2026-11-08",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2700-asi-kalibangan-2015",
+      "title": "Excavations at Kalibangan: The Harappans (1960–69), Part I, Memoirs of the Archaeological Survey of India 110",
+      "institution": "Archaeological Survey of India; B. B. Lal and co-authors",
+      "url": "https://asi.nic.in/admin/publications/ePublicationReportsDetails/download/60",
+      "locator": "Introduction and a Summary of the Results, printed page 3 (PDF page 25), left column, first two paragraphs; title and publication pages (PDF pages 3–4).",
+      "asWorded": "around 2700 BCE",
+      "originalChronology": "The 2015 report dates Period I to circa 3000–2700 BCE, its abandonment to around 2700 BCE, and Period II to circa 2600–2000 BCE. It estimates a hiatus of about a century and attributes abandonment to an earthquake.",
+      "scopedClaim": "Supports the approximate abandonment of the older settlement at Kalibangan and the excavators' earthquake explanation. No exact disaster year or destination of displaced people is established.",
+      "retrievedOn": "2026-11-08",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2700-geus-sai-storage",
+      "title": "Geomorphology and prehistory of Sai Island (Nubia): report on a current research project",
+      "institution": "Francis Geus; Heidelberg University Library, Propylaeum repository",
+      "url": "https://books.ub.uni-heidelberg.de/propylaeum/catalog/view/223/294/77120",
+      "locator": "Section Early Bronze Age storage pits, first paragraph, site location, C-14 date and description of covered pits; following two paragraphs on pottery and plant remains.",
+      "asWorded": "around 2700 BC according to C-14 dating",
+      "originalChronology": "Geus assigns the excavated storage-pit site to around 2700 BC on radiocarbon evidence. The passage provides no calibrated interval or exact construction year. Its chronology is retained as reported without conversion.",
+      "scopedClaim": "Supports grouped circular storage pits closed with schist slabs and clay on Sai Island. Their date is site-level; it establishes no first invention of storage or crop arrival.",
+      "retrievedOn": "2026-11-08",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
     }
   ],
   "events": [
@@ -14891,6 +14959,103 @@
         "bc2750-toohey-callacpuma"
       ],
       "selectionNote": "A specific initial construction episode with the authors’ own central estimate. All prose and sample chronology members are preserved; numeric sample bounds do not substitute for the construction estimate.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2700-dalis-boskap-utfodras-med-hirs",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2700,
+        "endYear": -2700,
+        "displaySv": "cirka 2700 f.Kr.",
+        "noteSv": "Studien sammanfattar fynden med cirka 2700 kalibrerade år f.Kr. Den daterar boplatsens fas 1 till 2705–2545 f.Kr. och tolkar isotoperna som spår av vinterutfodring med hirs. Ett exakt införandeår för hirsen kan inte anges."
+      },
+      "titleSv": "Boskapsskötare vid Dali tycks ge djuren hirs på vintern",
+      "summarySv": "Människor vid Dali i Dzjungarbergen håller tamfår och getter. Forskarna tolkar djurens isotopvärden som tecken på att boskap utfodras med hirs under vintern omkring 2700 f.Kr.",
+      "geographySv": "Dali, Dzjungarbergen, sydöstra Kazakstan",
+      "category": "technology",
+      "importance": 1,
+      "sourceIds": [
+        "bc2700-hermes-dali"
+      ],
+      "selectionNote": "A dated subsistence practice links livestock management with cereal use in the Inner Asian Mountain Corridor. The isotope interpretation remains conditional; no culture, language or first migration is inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2700-ris-och-kolvhirs-odlas-vid-baodun",
+      "date": {
+        "kind": "range",
+        "startYear": -2700,
+        "endYear": -2000,
+        "displaySv": "cirka 2700–2000 f.Kr.",
+        "noteSv": "Intervallet daterar den undersökta verksamheten vid Baodun enligt studien från 2013. Omblandade lager begränsar växtfyndens koppling till enskilda faser. Studien från 2011 anger cirka 2700 f.Kr. för den blandade odlingen och 2700–2100 f.Kr. för platsen. Inget exakt införandeår eller odling av båda grödorna under varje år fastställs."
+      },
+      "titleSv": "Jordbrukare vid Baodun odlar ris och kolvhirs",
+      "summarySv": "Forskarna tolkar växtfynden vid Baodun som spår av risodling på vattenförsedda fält och odling av kolvhirs på högre mark intill. Dateringen av verksamheten sträcker sig över flera århundraden, och omblandade lager gör det svårt att knyta växtresterna till enskilda skeden.",
+      "geographySv": "Baodun, Chengduslätten, Sichuan, Kina",
+      "category": "technology",
+      "importance": 1,
+      "sourceIds": [
+        "bc2700-guedes-baodun-2011",
+        "bc2700-guedes-baodun-2013-supp"
+      ],
+      "selectionNote": "Documents a mixed crop system on the Chengdu Plain. The complete 2013 occupation range is retained; it neither extends researched coverage into later centuries nor dates an exact introduction of either crop.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2700-kalibangans-aldre-bosattning-overges",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2700,
+        "endYear": -2700,
+        "displaySv": "omkring 2700 f.Kr.",
+        "noteSv": "Utgrävningsrapporten anger omkring 2700 f.Kr. för övergivandet och tolkar orsaken som en jordbävning. Uppgiften fastställer ingen enskild dag eller något exakt katastrofår."
+      },
+      "titleSv": "Invånarna lämnar den äldre bosättningen i Kalibangan",
+      "summarySv": "Invånarna lämnar den äldre bosättningen i Kalibangan omkring 2700 f.Kr. Utgrävarna förklarar övergivandet med en jordbävning och uppskattar att platsen ligger övergiven i omkring ett sekel.",
+      "geographySv": "Kalibangan, Rajasthan, Indien",
+      "category": "nature",
+      "importance": 1,
+      "sourceIds": [
+        "bc2700-asi-kalibangan-2015"
+      ],
+      "selectionNote": "A settlement disruption with an explicit approximate date in the excavation report. The earthquake cause remains attributed to the excavators; no superlative earthquake claim or reconstructed death toll is used.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2700-forradsgropar-pa-sai",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2700,
+        "endYear": -2700,
+        "displaySv": "omkring 2700 f.Kr.",
+        "noteSv": "Francis Geus daterar platsen till omkring 2700 f.Kr. utifrån kol-14. Avsnittet anger inget kalibrerat intervall och ger inget enskilt byggnadsår för groparna."
+      },
+      "titleSv": "Invånarna på Sai använder slutna förrådsgropar",
+      "summarySv": "Människor på ön Sai använder grupper av runda förrådsgropar och försluter dem med skifferhällar och lera. Arkeologerna hittar även stora förvaringskärl i några av groparna och daterar platsen till omkring 2700 f.Kr.",
+      "geographySv": "Sai, Nubien, norra Sudan",
+      "category": "technology",
+      "importance": 1,
+      "sourceIds": [
+        "bc2700-geus-sai-storage"
+      ],
+      "selectionNote": "A site-level food-storage practice in the Middle Nile region, distinct from the earlier Kerma burial already catalogued. The date is reproduced as the excavation report states it, without a modern recalibration or crop-arrival claim.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",
