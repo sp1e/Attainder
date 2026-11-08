@@ -20,8 +20,32 @@ function RowList({ summary, rows }) {
   return <details className="char-explanation"><summary>{summary}</summary><ul>{rows}</ul></details>;
 }
 
+const countText = (entry) => (entry.binary ? entry.label : `${entry.label} ${number(entry.value)} av ${number(entry.threshold)}`);
+
+function nicknameNote(path) {
+  const winner = path.rows.find((row) => row.id === path.winnerId);
+  if (!path.adult) return 'Ett barn på tronen får inget tillnamn förrän i vuxen ålder.';
+  if (path.monthsLeft > 0) return `Tillnamnet ges vid ett årsskifte efter 24 månader på tronen. ${path.monthsLeft} månader återstår.`;
+  return winner ? `Vid nästa årsskifte kallas ${path.rulerName} ${winner.label}.` : 'Tillnamnet ges vid nästa årsskifte där något av villkoren är uppfyllt.';
+}
+
+/** The three rows closest to a name, in table order, since the first row that holds wins. */
+export function NicknamePath({ path }) {
+  if (!path) return null;
+  const closest = path.rows.filter((row) => row.share > 0).sort((a, b) => b.share - a.share || a.order - b.order).slice(0, 3)
+    .sort((a, b) => a.order - b.order);
+  return <div className="char-nickname-path">
+    <h4>Vägen till ett tillnamn</h4>
+    {closest.length > 0 && <ul>{closest.map((row) => <li key={row.id} className={row.earned ? 'is-earned' : undefined}>
+      <strong>{row.label}</strong>
+      <span>{row.counts.map(countText).join(' eller ')}</span>
+    </li>)}</ul>}
+    <p className="char-caption">{nicknameNote(path)} Uppfylls flera vinner det som står först.</p>
+  </div>;
+}
+
 /** The reign under the leader. `Meter` is the panel's own, passed in because the panel imports this module. */
-export function ReignCard({ court, Meter }) {
+export function ReignCard({ court, nicknamePath, Meter }) {
   if (!court) return null;
   const sources = entries(court.legitimacy.sources), goals = entries(court.reign.goals);
   return <div className="char-reign">
@@ -36,6 +60,7 @@ export function ReignCard({ court, Meter }) {
       <span>{goal.description}</span>
       <span className="char-caption">{dateLabel(goal.dueAt)} · {goal.statusLabel}</span>
     </li>)}</ul> : <p className="char-caption">Inga mål är utlysta.</p>}
+    <NicknamePath path={nicknamePath} />
   </div>;
 }
 
