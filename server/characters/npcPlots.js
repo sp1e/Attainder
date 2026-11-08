@@ -1,5 +1,6 @@
 import { addGameMonths } from '../gameDates.js';
 import { ACTION_CATALOG } from './actionCatalog.js';
+import { bondBetween } from './bonds.js';
 import { estimateAction } from './actionOdds.js';
 import { resolveAttempt } from './actionResolution.js';
 import { CRIME_LABELS, exposeCrime } from './crimes.js';
@@ -91,7 +92,7 @@ function plotAgainstPlayer(state, hooks, events, order) {
   return launch(state, hooks, events, { actor: best.actor, target, actionId }, order);
 }
 
-// Two NPCs of different families that think worst of each other. The one with the lower opinion plots (the earlier id on a tie); a pair is skipped when its plotter cannot pay or already plots against the same person.
+// Two NPCs of different families that think worst of each other. A rival pair comes before every other pair and needs no feud opinion. The one with the lower opinion plots (the earlier id on a tie); a pair is skipped when its plotter cannot pay or already plots against the same person.
 function worstFeud(state, hooks) {
   const people = actors(state, hooks, { abroad: false });
   let worst = null;
@@ -99,14 +100,14 @@ function worstFeud(state, hooks) {
     for (const b of people.slice(index + 1)) {
       if (a.familyId === b.familyId) continue;
       const aThinks = hooks.getPersonalOpinion(a.id, b.id), bThinks = hooks.getPersonalOpinion(b.id, a.id);
-      const mutual = (aThinks + bThinks) / 2;
-      if (mutual >= FEUD_OPINION || (worst && mutual >= worst.mutual)) continue;
+      const mutual = (aThinks + bThinks) / 2, rival = bondBetween(state, a.id, b.id) === 'rival';
+      if ((!rival && mutual >= FEUD_OPINION) || (worst && (worst.rival > rival || (worst.rival === rival && mutual >= worst.mutual)))) continue;
       const [actor, target] = aThinks <= bThinks ? [a, b] : [b, a];
       const busy = state.schemes.some((scheme) => isNpcScheme(scheme) && scheme.actorId === actor.id && scheme.targetIds[0] === target.id);
-      if (!busy && treasuryOf(state, actor) >= costOf('undermine')) worst = { actor, target, mutual };
+      if (!busy && treasuryOf(state, actor) >= costOf('undermine')) worst = { actor, target, mutual, rival };
     }
   }
-  return worst;
+  return worst && { actor: worst.actor, target: worst.target, mutual: worst.mutual };
 }
 
 function feud(state, hooks, events, order) {
