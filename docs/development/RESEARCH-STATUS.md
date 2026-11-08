@@ -262,3 +262,14 @@ The catalog validator, generated-report check and all 45 focused tests pass for 
 ## Public inventory publication confirmed
 
 The Phase 6 public derivative is published in [PR #49](https://github.com/sp1e/Attainder/pull/49), merged at verified main `9716c84e3436370c1b98bdf6742823348962150f`. All four publication blobs match their staged readback. CI run 42479233522 passed 5,187 of 5,189 tests, with zero failures, zero skips and two TODOs; the build took 34.20 seconds. The ten inventory rows linked to reviewed polities and 139 pending withheld-control feature links grant no further historical, territorial or playable approval.
+
+
+## BC3300 preparation checkpoint, 8 November 2026
+
+BC2700 completed publication in [PR #51](https://github.com/sp1e/Attainder/pull/51), merged at verified main `9d1692267d03c99fcc6cc8fc1b61767d833f1ed0`. Required [CI run 42479965492](https://github.com/sp1e/Attainder/actions/runs/42479965492) passed: 5,189 total tests, 5,187 passed, zero failures and two TODOs; the build took 38.22 seconds. All five merged research blobs match the approved publication. The catalogue contains 429 events and 393 sources.
+
+BC3300 adds two records and two sources. The fresh independent source review confirmed both historical payloads and both substantive source records without correction. It separately left two earlier author retrieval assertions unverified. Reconciliation preserves that distinction and every historical and source field; only the two event review states change. Four whole-record hashes, 50 typed guards and 50 field findings match. The two publisher PDF content hashes and all eight declared page-extraction hashes were reproduced. The unsaved Crossref raw-response hash remains a reviewer transport assertion, while its saved metadata receipt is verified.
+
+The prepared catalogue contains 431 events and 395 sources, preserving all prior records and their order. Only 3300–3201 BCE changes to partial; 3200–3101 BCE stays unresearched in this branch. Koorküla retains its approximate 3300–3200 cal BCE occupation phase, and Zürich retains its 3234–3226 BCE construction phase. Neither establishes activity in every year or researched coverage through a later endpoint. The author made 47 queries across all nine working regions and documented 13 withheld or deferred tracks. Both retained cases concern Europe, leaving a substantial imbalance.
+
+The catalogue validator, generated-report check and all 45 existing focused tests passed with zero failures. Coverage now comprises 1,331 partial years and 3,499 unresearched years. Independent final DATA review and current-head CI remain publication gates. Claude retains implementation, built-package, visual and gameplay responsibilities; this research grants no gameplay approval.
