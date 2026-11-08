@@ -7,11 +7,13 @@
 // polities live in seed/historical/polity-regions.json, checked by scripts/check-polity-regions.mjs.
 import polityRegions from "./seed/historical/polity-regions.json" with { type: "json" };
 import { parseGameDate } from "./gameDates.js";
+import { mapCoverage } from "./historicalMapCoverage.js";
 import { playablePolityKind } from "./historicalScenarios.js";
 
 // 2: each polity carries its court's start text (contextSv). 3: each polity carries its kind.
+// 4: each summary carries mapCoverage.
 // A summary of another schema is rebuilt.
-export const HISTORICAL_SUMMARY_SCHEMA = 3;
+export const HISTORICAL_SUMMARY_SCHEMA = 4;
 
 export const HISTORICAL_REGIONS = Object.freeze([
   Object.freeze({ id: "europe", labelSv: "Europa" }),
@@ -107,7 +109,7 @@ export const historicalStartSummary = ({ meta, data, sourceStamp = null }) => {
     contentId: text(scenario.contentId), contentVersion: text(scenario.contentVersion),
     name: text(meta?.name), date, eraLabelSv: text(scenario.eraLabelSv), eraId: era.id,
     contextSv: text(scenario.contextSv), coverageNoteSv: text(scenario.coverageNoteSv),
-    calendarNoteSv: text(scenario.calendarNoteSv),
+    calendarNoteSv: text(scenario.calendarNoteSv), mapCoverage: mapCoverage(scenario),
     polities,
   };
 };

@@ -32,7 +32,7 @@ The engine map measured these limits on the current packages:
 | 3. Reviewed polities | Courts for polities whose shapes are already reviewed: Tang, Abbasid, Byzantine, Silla, Córdoba, Aghlabid, Asturias, Benevento (AD 800); Western Xia, Khmer, Almohad, Capetian France, Chimú (AD 1200) | about 13 |
 | 4. AD 1500 start | New package from `world_1500`: Aztec, Inca, Ming, Ottoman and others with reviewed shapes | 4 or more |
 | 5. Engine depth | Polity kinds, rule without a sole ruler, more succession laws, several spouses, culture-based name pools, authored geometry input | Maya city-states, a steppe confederation |
-| 6. Coverage programme | More starts per era and region, driven by the inventory; a published coverage table per start | ongoing |
+| 6. Coverage programme | More starts per era and region, driven by the inventory; a published coverage table per start (first slice: `docs/superpowers/specs/2026-11-08-world-cultures-phase-6-design.md`) | ongoing |
 
 ## Phase 1 design
 

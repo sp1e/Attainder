@@ -5,7 +5,7 @@ import vm from 'node:vm';
 import React from 'react';
 import { transformSync } from 'esbuild';
 import * as campaignSeed from '../runtime/campaignSeed.js';
-import { historicalCampaignName, historicalStartOptionFromSummary, orderHistoricalStarts } from '../runtime/historicalStartOptions.js';
+import { coverageLineSv, historicalCampaignName, historicalStartOptionFromSummary, orderHistoricalStarts } from '../runtime/historicalStartOptions.js';
 import * as startPicker from '../runtime/historicalStartPicker.js';
 import { historicalStartSummary } from '../../server/historicalStartSummary.js';
 import { buttonNamed, createHookDriver, findAll, settle, textOf } from './testing/hookDriver.js';
@@ -22,6 +22,7 @@ const loadCard = (driver, modules) => load('./DynastyStartCard.jsx','jsx',{
   react:driver.react, './Characters/LocalModelConnect.jsx':{default:()=>null,__esModule:true},
   './AI/providerConfig.js':{isFallbackListConfigured:()=>true}, './dynastyStart.css':{},
   './HistoricalStartPicker.jsx':load('./HistoricalStartPicker.jsx','jsx',{react:driver.react,'../runtime/historicalStartPicker.js':startPicker}),
+  '../runtime/historicalStartOptions.js':{coverageLineSv},
   ...modules,
 });
 // The four shipped starts as the option loader returns them; John installs as `default`.
@@ -157,6 +158,20 @@ test('the card shows the chosen polity text and falls back to the start text wit
   assert.equal(detail(tree),johnsRealms,'the court of Johns riken shows its own text');
   choose(tree,'charlemagne-800/carolingian-realm'); tree=render();
   assert.equal(detail(tree),'Karl övervintrar i Rom.');
+});
+
+test('the sources block says what the chosen start covers', async () => {
+  const driver=createHookDriver(), options=shippedOptions();
+  const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>options,startDynastyCampaign:async()=>{}}});
+  const render=()=>driver.render(React.createElement(card.default,{}));
+  const sources=tree=>findAll(tree,n=>n.type==='details' && findAll(n,c=>c.type==='summary' && textOf(c)==='Källor och osäkerhet').length)[0];
+  const paragraphs=tree=>findAll(sources(tree),n=>n.type==='p').map(textOf);
+  render(); await settle(); let tree=render();
+  startRows(tree).find(r=>r.props['data-start-key']==='default/johns-realms').props.onClick(); tree=render();
+  assert.ok(paragraphs(tree).includes('Spelbara riken i starten: 4. På kartan utan spelbart hov: Västra Xia, Chimú. Kartområden utan granskad ägare: 280.'));
+  startRows(tree).find(r=>r.props['data-start-key']==='charlemagne-800/carolingian-realm').props.onClick(); tree=render();
+  assert.ok(paragraphs(tree).includes('Spelbara riken i starten: 10. Kartområden utan granskad ägare: 214.'));
+  assert.ok(paragraphs(tree).every(text=>!text.includes('På kartan utan spelbart hov')));
 });
 
 test('a choice the search hides is named under the list and still starts', async () => {
