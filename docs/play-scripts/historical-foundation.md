@@ -243,7 +243,7 @@ Court renewal brings a generated newcomer to a historical court with fewer than 
 
 `Nästa år med modellen` sends the year to a language model, so the browser run advanced the year in the engine and did not use the button. The model path has unit tests in `src/Game/Characters/CharactersPanel.test.js`.
 
-A century at both courts has automated coverage only. `src/runtime/characters/courtBalance.test.js` plays 100 years on eight seeds from the built package. Karls rike is alive on 25 December 900 on every seed; its first newcomer arrives between 838 and 848, and 16 to 28 children are born during the century. Kyrkostaten gets its first newcomer in 801 on every seed and has 12 to 29 court adults in 900; 21 to 57 children are born there during the century.
+A century at both courts has automated coverage only. `src/runtime/characters/courtBalance.test.js` plays 100 years on eight seeds from the built package. Karls rike is alive on 25 December 900 on every seed; its first newcomer arrives between 838 and 848, and 16 to 28 children are born during the century. Kyrkostaten gets its first newcomer in 801 on every seed and has 12 to 29 court adults in 900; 21 to 57 children are born there during the century. The birth cap of 48 living people leaves these figures unchanged. The same file plays Kyrkostaten for 300 years on seeds 777 and 314159, which end 1100 with 48 and 40 living people.
 
 ## Closure
 
