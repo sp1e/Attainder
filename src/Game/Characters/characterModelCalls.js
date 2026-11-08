@@ -327,7 +327,7 @@ function extractPrompt(brief, view, playerText, history) {
     systemPrompt: [
       'You read what the player of a ' + setting(view) + ' says to one person, the speaker, and report what the player asks for. This step sets no odds and invents nothing: the game checks every argument against the facts.',
       'kind is "support" (the speaker lends the player support), "reveal_secret" (the speaker confides a secret) or "pledge" (the speaker makes a promise). Small talk, a question or anything else is "none". offerSilver is the silver the player offers in the text, 0 if none. hookId is the id of one of the speaker\'s listed hooks when the player openly presses a grip over the speaker, otherwise empty.',
-      'List in arguments only the reasons the player actually gives, each as { kind, refId }: "offer" (silver offered), "shared_enemy" (refId is the person id of a common enemy from the people list), "shared_memory" (refId is the id of one of the speaker\'s memories), "hook" (refId is the hook id). argumentScore is how convincing the reasons are, 0 to ' + SCORE_MAX + '; the game caps it again.',
+      'List in arguments only the reasons the player actually gives, each as { kind, refId }: "offer" (silver offered), "shared_enemy" (refId is the person id of a common enemy from the people list), "shared_memory" (refId is the id of one of the speaker\'s memories; list it also when the memory recalls a wrong between them, such as a broken promise or an insult, because the game counts a grievance against the player), "hook" (refId is the hook id). argumentScore is how convincing the reasons are, 0 to ' + SCORE_MAX + '; the game caps it again.',
       DATA_NOTE,
       ...historicalGuidance(view),
     ].join('\n'),
