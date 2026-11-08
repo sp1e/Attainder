@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "8fe7f35d179d0bfc2b69548271d5d0c4a521aa89",
+  "sourceRevision": "75235d536afcf446d10ccf254c0449e3d73e9257",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -39382,6 +39382,1689 @@
         "eventId": "ev-bc2261-naram-sins-segerstele-huggs",
         "fieldPath": "/geographySv",
         "textSha256": "22913ccc16150d896bd55a931ff301d2b4f8cc262d106e272fc5ecb9af23685d"
+      }
+    },
+    {
+      "id": "event/ev-0700-hantverkare-formar-megalit-fran-wanar/date/displaySv",
+      "sv": "700-talet, bred sekeldatering",
+      "en": "eighth century, broad century-level dating",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0700-hantverkare-formar-megalit-fran-wanar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f7ff039344b323aed32b03a3567f223f2d2e8e84b2cd232de2db4639a2484206"
+      }
+    },
+    {
+      "id": "event/ev-0700-hantverkare-formar-megalit-fran-wanar/date/noteSv",
+      "sv": "Museet anger endast en bred sekeldatering. Sifferintervallet är projektets indexering och belägger varken ett första eller sista tillverkningsår, en bestämd tillverkningsplats eller när stenen restes.",
+      "en": "The museum gives only a broad century-level date. The numerical interval serves as the project's index and does not establish a first or last year of manufacture, a specific place of manufacture, or when people erected the stone.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0700-hantverkare-formar-megalit-fran-wanar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "8ce05f0dc291d7ecc16ce62af45ef4d1d86b69121a1c0166fe1fa55b7af0eaa7"
+      }
+    },
+    {
+      "id": "event/ev-0700-hantverkare-formar-megalit-fran-wanar/titleSv",
+      "sv": "En lyraformad megalit från Wanar dateras till 700-talet",
+      "en": "A lyre-shaped megalith from Wanar dates to the eighth century",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0700-hantverkare-formar-megalit-fran-wanar",
+        "fieldPath": "/titleSv",
+        "textSha256": "5be59a389fe8630284a836ad5a87902682315fdeca6a6743539fad124918e73f"
+      }
+    },
+    {
+      "id": "event/ev-0700-hantverkare-formar-megalit-fran-wanar/summarySv",
+      "sv": "Museet daterar en stor lyraformad megalit från Wanar till 700-talet. Källan anger inget enskilt tillverkningsår eller någon tillverkningsplats.",
+      "en": "The museum dates a large lyre-shaped megalith from Wanar to the eighth century. The source gives no individual year or place of manufacture.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0700-hantverkare-formar-megalit-fran-wanar",
+        "fieldPath": "/summarySv",
+        "textSha256": "25e4f6bbdb9fc9ea327552b17cea1e10181397446878e14bf2006b4636887662"
+      }
+    },
+    {
+      "id": "event/ev-0700-hantverkare-formar-megalit-fran-wanar/geographySv",
+      "sv": "Megaliten kommer från Wanar i nuvarande Senegal; tillverkningsplatsen anges inte.",
+      "en": "The megalith comes from Wanar in present-day Senegal; the place of manufacture is unspecified.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0700-hantverkare-formar-megalit-fran-wanar",
+        "fieldPath": "/geographySv",
+        "textSha256": "7fdcc69e120392238fb2b28660aa9edc06e5d88e230603fef9d0160f99145e6e"
+      }
+    },
+    {
+      "id": "event/ev-0706-al-walid-bestaller-mosken-i-damaskus/date/displaySv",
+      "sv": "706",
+      "en": "706",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0706-al-walid-bestaller-mosken-i-damaskus",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "35254aa9a21444e50349cebb5465b9b42cb4a625ebcbffe24504b178c35bcb85"
+      }
+    },
+    {
+      "id": "event/ev-0706-al-walid-bestaller-mosken-i-damaskus/date/noteSv",
+      "sv": "Årtalet gäller beställningen enligt museets kronologi. Det anger inte ett färdigställandeår.",
+      "en": "The year refers to the commission in the museum's chronology. It does not give a year of completion.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0706-al-walid-bestaller-mosken-i-damaskus",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "a9b34e31a3f6bb52aecf61bda9b17c16e4b53ca015db7a2fad69baac61a0f497"
+      }
+    },
+    {
+      "id": "event/ev-0706-al-walid-bestaller-mosken-i-damaskus/titleSv",
+      "sv": "Al-Walid beställer en moské i Damaskus",
+      "en": "Al-Walid commissions a mosque in Damascus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0706-al-walid-bestaller-mosken-i-damaskus",
+        "fieldPath": "/titleSv",
+        "textSha256": "1dadd2e8cca57b066e7fb7319144af909f50bcbbdd1e3236d88ee0bd237a9ed2"
+      }
+    },
+    {
+      "id": "event/ev-0706-al-walid-bestaller-mosken-i-damaskus/summarySv",
+      "sv": "Kalifen al-Walid låter uppföra en moské i Damaskus. Byggarna omvandlar platsen för Johannes Döparens kyrka till huvudstadens fredagsmoské.",
+      "en": "Caliph al-Walid commissions a mosque in Damascus. The builders transform the site of the Church of John the Baptist into the capital's Friday mosque.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0706-al-walid-bestaller-mosken-i-damaskus",
+        "fieldPath": "/summarySv",
+        "textSha256": "180bec1476d4b6e835284e2c36b672f330c54e7a4d2811c9e0b3221dc5522491"
+      }
+    },
+    {
+      "id": "event/ev-0706-al-walid-bestaller-mosken-i-damaskus/geographySv",
+      "sv": "Damaskus, Syrien",
+      "en": "Damascus, Syria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0706-al-walid-bestaller-mosken-i-damaskus",
+        "fieldPath": "/geographySv",
+        "textSha256": "9a7a3dd88821ff97223aefe502502cc66fc238224217881e4a297d1b7f60dee6"
+      }
+    },
+    {
+      "id": "event/ev-0710-nara-blir-japans-huvudstad/date/displaySv",
+      "sv": "710",
+      "en": "710",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0710-nara-blir-japans-huvudstad",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4ec24a2d7f1dfae1f98882eabf0400cd9483dd2de78b926b625c46e8787f3816"
+      }
+    },
+    {
+      "id": "event/ev-0710-nara-blir-japans-huvudstad/titleSv",
+      "sv": "Hovet gör Nara till Japans huvudstad",
+      "en": "The court makes Nara Japan's capital",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0710-nara-blir-japans-huvudstad",
+        "fieldPath": "/titleSv",
+        "textSha256": "90ac0df507fe80bbd1562a264aefabee3b4a50ef01175ac6c1dc4f3e31dd96a7"
+      }
+    },
+    {
+      "id": "event/ev-0710-nara-blir-japans-huvudstad/summarySv",
+      "sv": "Japans hov etablerar huvudstaden i Nara. Här finns det kejserliga palatset, buddhistiska tempel och shintohelgedomar.",
+      "en": "Japan's court establishes the capital in Nara. The city houses the imperial palace, Buddhist temples and Shinto shrines.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0710-nara-blir-japans-huvudstad",
+        "fieldPath": "/summarySv",
+        "textSha256": "b65c2420d5bc432c6c80fac69c74fee76865f01be94854181fc4d1d89c3ed764"
+      }
+    },
+    {
+      "id": "event/ev-0710-nara-blir-japans-huvudstad/geographySv",
+      "sv": "Nara, Japan",
+      "en": "Nara, Japan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0710-nara-blir-japans-huvudstad",
+        "fieldPath": "/geographySv",
+        "textSha256": "da9a43f38f2f867cb23b403dc9e024e132968fc38dc1c07b718df7cc9577cdbf"
+      }
+    },
+    {
+      "id": "event/ev-0711-arabisk-berbiska-trupper-erovrar-iberien/date/displaySv",
+      "sv": "711–718",
+      "en": "711–718",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0711-arabisk-berbiska-trupper-erovrar-iberien",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "80311a3c1352416fddeb81c752efd5b89cc2b9745e4f2cfed9aa7c48cce12a82"
+      }
+    },
+    {
+      "id": "event/ev-0711-arabisk-berbiska-trupper-erovrar-iberien/date/noteSv",
+      "sv": "Källan samlar erövringen under 711–718. Intervallet anger flera års fälttåg och förhandlingar.",
+      "en": "The source groups the conquest under 711–718. The interval covers several years of campaigns and negotiations.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0711-arabisk-berbiska-trupper-erovrar-iberien",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "eedc065b62be82e2ed7f3d73050032d809a9915cc7920d3edeeda35d5964f7cb"
+      }
+    },
+    {
+      "id": "event/ev-0711-arabisk-berbiska-trupper-erovrar-iberien/titleSv",
+      "sv": "Arabiska och berbiska trupper erövrar större delen av Iberien",
+      "en": "Arab and Berber troops conquer most of Iberia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0711-arabisk-berbiska-trupper-erovrar-iberien",
+        "fieldPath": "/titleSv",
+        "textSha256": "b4a7a2a110b3ddb1fddb9955eb0168c66346c21e2d0f00f5854751e3805e114c"
+      }
+    },
+    {
+      "id": "event/ev-0711-arabisk-berbiska-trupper-erovrar-iberien/summarySv",
+      "sv": "Arabiska och berbiska trupper går i land på Iberiska halvön under umayyadiskt befäl. Genom krig och förhandlingar tar de kontroll över större delen av halvön och tränger undan den visigotiska ledningen.",
+      "en": "Arab and Berber troops land on the Iberian Peninsula under Umayyad command. Through war and negotiations, they take control of most of the peninsula and displace the Visigothic leadership.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0711-arabisk-berbiska-trupper-erovrar-iberien",
+        "fieldPath": "/summarySv",
+        "textSha256": "55eac90b3f3e148632eda9da9811847518511e1c16029091c8cce14bbbbd9383"
+      }
+    },
+    {
+      "id": "event/ev-0711-arabisk-berbiska-trupper-erovrar-iberien/geographySv",
+      "sv": "Iberiska halvön",
+      "en": "Iberian Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0711-arabisk-berbiska-trupper-erovrar-iberien",
+        "fieldPath": "/geographySv",
+        "textSha256": "8288fa396f134c01cc9110a88a05abd412398f44341fec1eeef97373732e634d"
+      }
+    },
+    {
+      "id": "event/ev-0712-muhammad-ibn-qasim-besegrar-dahir/date/displaySv",
+      "sv": "712",
+      "en": "712",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0712-muhammad-ibn-qasim-besegrar-dahir",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9b09d7f65345fc85aaa8814b69f3c933ce5eda41786f0c1df1b1ab2b1fdd2ecc"
+      }
+    },
+    {
+      "id": "event/ev-0712-muhammad-ibn-qasim-besegrar-dahir/titleSv",
+      "sv": "Muhammad ibn Qasim besegrar Dahir i Sind",
+      "en": "Muhammad ibn Qasim defeats Dahir in Sind",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0712-muhammad-ibn-qasim-besegrar-dahir",
+        "fieldPath": "/titleSv",
+        "textSha256": "bfc2587beaed15019ebe7e49e3f782947cdb8162e9274b88504eb9e249bbf24a"
+      }
+    },
+    {
+      "id": "event/ev-0712-muhammad-ibn-qasim-besegrar-dahir/summarySv",
+      "sv": "Muhammad ibn Qasim besegrar Raja Dahir i Sind. Dahir dör i slaget, och Ibn Qasim fortsätter att utvidga det umayyadiska väldet i regionen.",
+      "en": "Muhammad ibn Qasim defeats Raja Dahir in Sind. Dahir dies in the battle, and Ibn Qasim continues to expand Umayyad rule in the region.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0712-muhammad-ibn-qasim-besegrar-dahir",
+        "fieldPath": "/summarySv",
+        "textSha256": "8254a7b1a1e35c892d4f2904c911e1431a01d4ea05161cf9386acbd63bbbdadd"
+      }
+    },
+    {
+      "id": "event/ev-0712-muhammad-ibn-qasim-besegrar-dahir/geographySv",
+      "sv": "Sind, nuvarande Pakistan",
+      "en": "Sind, present-day Pakistan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0712-muhammad-ibn-qasim-besegrar-dahir",
+        "fieldPath": "/geographySv",
+        "textSha256": "8b95f92d249b6fa21cc0f778038a9862b8b653f786d2f6e8817230b986799ddc"
+      }
+    },
+    {
+      "id": "event/ev-0712-arabiska-trupper-intar-samarkand/date/displaySv",
+      "sv": "712",
+      "en": "712",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0712-arabiska-trupper-intar-samarkand",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9b09d7f65345fc85aaa8814b69f3c933ce5eda41786f0c1df1b1ab2b1fdd2ecc"
+      }
+    },
+    {
+      "id": "event/ev-0712-arabiska-trupper-intar-samarkand/titleSv",
+      "sv": "Arabiska trupper intar Samarkand",
+      "en": "Arab troops capture Samarkand",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0712-arabiska-trupper-intar-samarkand",
+        "fieldPath": "/titleSv",
+        "textSha256": "3f7b120d2d02a58ac7dbcd5da731039fac135d88981b1bd446bbdb9c667a3923"
+      }
+    },
+    {
+      "id": "event/ev-0712-arabiska-trupper-intar-samarkand/summarySv",
+      "sv": "Arabiska trupper erövrar Samarkand år 712. De tar därmed en av Sogdiens städer under kalifatets kontroll.",
+      "en": "Arab troops conquer Samarkand in 712. They bring one of Sogdia's cities under the caliphate's control.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0712-arabiska-trupper-intar-samarkand",
+        "fieldPath": "/summarySv",
+        "textSha256": "3cd555f7c54fa1dc4ee7328439000b432fae3beeeb2425f024b0d5e7768190eb"
+      }
+    },
+    {
+      "id": "event/ev-0712-arabiska-trupper-intar-samarkand/geographySv",
+      "sv": "Samarkand, nuvarande Uzbekistan",
+      "en": "Samarkand, present-day Uzbekistan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0712-arabiska-trupper-intar-samarkand",
+        "fieldPath": "/geographySv",
+        "textSha256": "34eceb503da7351c5c7e310e2ed624d8ececfb7ff6c9d74f3d8cc8dda7ff2285"
+      }
+    },
+    {
+      "id": "event/ev-0715-templet-22-uppfors-i-copan/date/displaySv",
+      "sv": "cirka 715",
+      "en": "circa 715",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0715-templet-22-uppfors-i-copan",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "dbc551600625da3c81af7b0453af8333bf0702a188473c0935b021439618c6a7"
+      }
+    },
+    {
+      "id": "event/ev-0715-templet-22-uppfors-i-copan/date/noteSv",
+      "sv": "David Stuart daterar byggnaden till omkring den 27 mars 715 utifrån en inskrift om härskarens tjugoårsjubileum. Året är ungefärligt.",
+      "en": "David Stuart dates the building to around 27 March 715, based on an inscription about the ruler's twentieth anniversary. The year is approximate.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0715-templet-22-uppfors-i-copan",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ab1a6c023c5e099b550577cb5f07f905e163dfacb39cfeef69919229e527426c"
+      }
+    },
+    {
+      "id": "event/ev-0715-templet-22-uppfors-i-copan/titleSv",
+      "sv": "Waxaklahun Ubah K'awil låter bygga tempel 22 i Copán",
+      "en": "Waxaklahun Ubah K'awil commissions Temple 22 in Copán",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0715-templet-22-uppfors-i-copan",
+        "fieldPath": "/titleSv",
+        "textSha256": "3bf18e552652520f0b4f1d6432c7cbe20c46d732851a1b4855f8d56492ed94dc"
+      }
+    },
+    {
+      "id": "event/ev-0715-templet-22-uppfors-i-copan/summarySv",
+      "sv": "Copáns härskare Waxaklahun Ubah K'awil låter uppföra tempel 22. Konstnärerna gestaltar ett heligt berg och natthimlen i byggnadens skulpturer.",
+      "en": "Copán's ruler Waxaklahun Ubah K'awil commissions Temple 22. The artists depict a sacred mountain and the night sky in the building's sculptures.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0715-templet-22-uppfors-i-copan",
+        "fieldPath": "/summarySv",
+        "textSha256": "60ba09ee1d6e51f7fde5efa1bc083123cd7640110be3da00d278152fd27fd371"
+      }
+    },
+    {
+      "id": "event/ev-0715-templet-22-uppfors-i-copan/geographySv",
+      "sv": "Copán, nuvarande Honduras",
+      "en": "Copán, present-day Honduras",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0715-templet-22-uppfors-i-copan",
+        "fieldPath": "/geographySv",
+        "textSha256": "fe089576d9aba6fbe8690817ced70570f5168c0f48e30fb11fd74b46cb7ac653"
+      }
+    },
+    {
+      "id": "event/ev-0738-copans-harskare-dodas-i-quirigua/date/displaySv",
+      "sv": "3 maj 738",
+      "en": "3 May 738",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0738-copans-harskare-dodas-i-quirigua",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "da9277c05574dd2031bf806d89f2aa5a297e71f275cf7a2a2c9064319c6b8a55"
+      }
+    },
+    {
+      "id": "event/ev-0738-copans-harskare-dodas-i-quirigua/titleSv",
+      "sv": "Copáns härskare halshuggs i Quiriguá",
+      "en": "Copán's ruler is beheaded in Quiriguá",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0738-copans-harskare-dodas-i-quirigua",
+        "fieldPath": "/titleSv",
+        "textSha256": "efcee37f9b97cceda2e1dfc992eb563aac4aa6eda63b3a56fa0a53a710a52b47"
+      }
+    },
+    {
+      "id": "event/ev-0738-copans-harskare-dodas-i-quirigua/summarySv",
+      "sv": "Människor i Quiriguá tillfångatar och halshugger Copáns härskare Waxaklajun Ub’ah K’awil den 3 maj 738. Copán förlorar en kung vars byggnadsprojekt hade präglat staden.",
+      "en": "People in Quiriguá capture and behead Copán's ruler Waxaklajun Ub’ah K’awil on 3 May 738. Copán loses a king whose building projects had shaped the city.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0738-copans-harskare-dodas-i-quirigua",
+        "fieldPath": "/summarySv",
+        "textSha256": "0cf5cae42603e48650cbdd5936da07f98c70ec87bdecdb3f2d6ae1ac96fbe1ff"
+      }
+    },
+    {
+      "id": "event/ev-0738-copans-harskare-dodas-i-quirigua/geographySv",
+      "sv": "Quiriguá, nuvarande Guatemala",
+      "en": "Quiriguá, present-day Guatemala",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0738-copans-harskare-dodas-i-quirigua",
+        "fieldPath": "/geographySv",
+        "textSha256": "d0548544aea419b03775d5cbc9ccae26d389d8959c838eab4ca1f7c5799456ac"
+      }
+    },
+    {
+      "id": "event/ev-0740-virupakshatemplet-fardigstalls/date/displaySv",
+      "sv": "cirka 740",
+      "en": "circa 740",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0740-virupakshatemplet-fardigstalls",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "dac9f6ea43a28373af8502892022c1e57e79b3f6b914c55a696859792e3e1ec4"
+      }
+    },
+    {
+      "id": "event/ev-0740-virupakshatemplet-fardigstalls/date/noteSv",
+      "sv": "Archaeological Survey of India härleder cirka 740 från inskriften om kungens tre segrar. Något exakt färdigställandeår framgår inte.",
+      "en": "The Archaeological Survey of India derives circa 740 from the inscription about the king's three victories. It gives no exact year of completion.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0740-virupakshatemplet-fardigstalls",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ecf81b2d4ec49093f7096a690be8ccaefcd9b01d398f88c28075d9d346c564eb"
+      }
+    },
+    {
+      "id": "event/ev-0740-virupakshatemplet-fardigstalls/titleSv",
+      "sv": "Lokamahadevi bekostar Virupakshatemplet i Pattadakal",
+      "en": "Lokamahadevi funds the Virupaksha Temple in Pattadakal",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0740-virupakshatemplet-fardigstalls",
+        "fieldPath": "/titleSv",
+        "textSha256": "6c4d2049dd04d2648593a4054f93811a583b2d8e5b436afaa35cde172dc49250"
+      }
+    },
+    {
+      "id": "event/ev-0740-virupakshatemplet-fardigstalls/summarySv",
+      "sv": "Enligt Archaeological Survey of India bekostar drottning Lokamahadevi ett tempel åt Shiva i Pattadakal. Myndigheten härleder ett färdigställande omkring 740 från inskriften om Vikramaditya II:s tre segrar över Kanchi.",
+      "en": "According to the Archaeological Survey of India, Queen Lokamahadevi funds a temple to Shiva in Pattadakal. The agency derives a completion date around 740 from the inscription about Vikramaditya II's three victories over Kanchi.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0740-virupakshatemplet-fardigstalls",
+        "fieldPath": "/summarySv",
+        "textSha256": "db6b916a5eb6548ae66a9b95deef42e02fcd8c1d9d068b50e5b98b08f5826485"
+      }
+    },
+    {
+      "id": "event/ev-0740-virupakshatemplet-fardigstalls/geographySv",
+      "sv": "Pattadakal, Karnataka, Indien",
+      "en": "Pattadakal, Karnataka, India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0740-virupakshatemplet-fardigstalls",
+        "fieldPath": "/geographySv",
+        "textSha256": "a16ca269e7d12cf1fdd179be14e88ac91b95dbc6150183214a73fe5c8fa37d0e"
+      }
+    },
+    {
+      "id": "event/ev-0741-shomu-befaller-kloster-i-provinserna/date/displaySv",
+      "sv": "741",
+      "en": "741",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0741-shomu-befaller-kloster-i-provinserna",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "75f7313c20144e39edcf57a14733d074aee0c482320d5178ee0ef2f2608c2996"
+      }
+    },
+    {
+      "id": "event/ev-0741-shomu-befaller-kloster-i-provinserna/titleSv",
+      "sv": "Shōmu befaller att ett nät av kloster ska byggas",
+      "en": "Shōmu orders the construction of a network of monasteries",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0741-shomu-befaller-kloster-i-provinserna",
+        "fieldPath": "/titleSv",
+        "textSha256": "4302ad812a9030b4e78844aa4564ef1b60c0dd191fb03e94897b8ed70cb9984e"
+      }
+    },
+    {
+      "id": "event/ev-0741-shomu-befaller-kloster-i-provinserna/summarySv",
+      "sv": "Kejsar Shōmu utfärdar en befallning om ett nät av buddhistiska kloster i Japan. Han höjer samtidigt Kinshō-jis ställning inom den kejserliga tempelorganisationen.",
+      "en": "Emperor Shōmu orders a network of Buddhist monasteries in Japan. At the same time, he raises Kinshō-ji's status within the imperial temple organisation.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0741-shomu-befaller-kloster-i-provinserna",
+        "fieldPath": "/summarySv",
+        "textSha256": "1e919008dd6b9e5e0cdc2599f65ad107a191f120278d1d73cceea3564504333f"
+      }
+    },
+    {
+      "id": "event/ev-0741-shomu-befaller-kloster-i-provinserna/geographySv",
+      "sv": "Japan",
+      "en": "Japan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0741-shomu-befaller-kloster-i-provinserna",
+        "fieldPath": "/geographySv",
+        "textSha256": "647294383b2cbc24b18f629498fc7c6f61d3819fb42a2287e93305aaa01b74e7"
+      }
+    },
+    {
+      "id": "event/ev-0744-uigurerna-bildar-ett-rike/date/displaySv",
+      "sv": "744",
+      "en": "744",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0744-uigurerna-bildar-ett-rike",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a15faf6f6c7e4c11d7956175f4a1c01edffff6e114684eee28c255a86a8888f8"
+      }
+    },
+    {
+      "id": "event/ev-0744-uigurerna-bildar-ett-rike/titleSv",
+      "sv": "Uigurerna bildar ett rike vid Orkhon",
+      "en": "The Uyghurs establish a state by the Orkhon",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0744-uigurerna-bildar-ett-rike",
+        "fieldPath": "/titleSv",
+        "textSha256": "49e2d9def0b88600b1e9b39875a0dca6fe2b2f2b5845e1d4a58b30033aeacc84"
+      }
+    },
+    {
+      "id": "event/ev-0744-uigurerna-bildar-ett-rike/summarySv",
+      "sv": "Uigurerna bildar ett rike med huvudstad i Karabalghasun. Huvudstaden ligger vid floden Orkhon i nuvarande Mongoliet.",
+      "en": "The Uyghurs establish a state with its capital at Karabalghasun. The capital lies by the Orkhon River in present-day Mongolia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0744-uigurerna-bildar-ett-rike",
+        "fieldPath": "/summarySv",
+        "textSha256": "d6f58d0459bbc165acdc1f0115098a772fff7de625e09c45c209cb7cc8ef8567"
+      }
+    },
+    {
+      "id": "event/ev-0744-uigurerna-bildar-ett-rike/geographySv",
+      "sv": "Orkhondalen, nuvarande Mongoliet",
+      "en": "Orkhon Valley, present-day Mongolia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0744-uigurerna-bildar-ett-rike",
+        "fieldPath": "/geographySv",
+        "textSha256": "54bdbb60907c683d96a80f100dc124e2a78d14b6beeedba8e651e669fcef6b83"
+      }
+    },
+    {
+      "id": "event/ev-0747-abbasiderna-reser-upprorsfanor-i-merv/date/displaySv",
+      "sv": "747",
+      "en": "747",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0747-abbasiderna-reser-upprorsfanor-i-merv",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6f90a5a0d3234433d03c7a06fc4bd5c3ac1f21f33978292fee61323e22238a92"
+      }
+    },
+    {
+      "id": "event/ev-0747-abbasiderna-reser-upprorsfanor-i-merv/date/noteSv",
+      "sv": "747 gäller upprorets inledning. Framryckningen till Irak och segrarna 749–750 är senare skeden.",
+      "en": "747 refers to the beginning of the revolt. The advance into Iraq and the victories of 749–750 are later stages.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0747-abbasiderna-reser-upprorsfanor-i-merv",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "edb2ab7b32192cec3579dd1b936cb3873b94f772c2843bdec1209244ac4b25d9"
+      }
+    },
+    {
+      "id": "event/ev-0747-abbasiderna-reser-upprorsfanor-i-merv/titleSv",
+      "sv": "Abbasidernas anhängare inleder uppror i Merv",
+      "en": "Abbasid supporters begin a revolt in Merv",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0747-abbasiderna-reser-upprorsfanor-i-merv",
+        "fieldPath": "/titleSv",
+        "textSha256": "31bd2649d742e4f35e1f3e92f287394b9ee0debc0a1407ca958ae6f84a86f0b7"
+      }
+    },
+    {
+      "id": "event/ev-0747-abbasiderna-reser-upprorsfanor-i-merv/summarySv",
+      "sv": "Abbasidernas anhängare inleder ett uppror i Merv i Khorasan år 747 och använder svarta fanor som symbol. Upproret riktas mot umayyaderna.",
+      "en": "Abbasid supporters begin a revolt in Merv in Khorasan in 747, using black banners as their symbol. They revolt against the Umayyads.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0747-abbasiderna-reser-upprorsfanor-i-merv",
+        "fieldPath": "/summarySv",
+        "textSha256": "17a98e8e236dbfff9b38f3fbc838c7c334e5e4e963097c05b9925b675d5aa977"
+      }
+    },
+    {
+      "id": "event/ev-0747-abbasiderna-reser-upprorsfanor-i-merv/geographySv",
+      "sv": "Merv och Khorasan, Centralasien",
+      "en": "Merv and Khorasan, Central Asia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0747-abbasiderna-reser-upprorsfanor-i-merv",
+        "fieldPath": "/geographySv",
+        "textSha256": "2449eb69f6e2bbb5ca7c8038d4dded790429d6483d1c8d418226edf360253eb6"
+      }
+    },
+    {
+      "id": "event/ev-0750-abbasiderna-stortar-umayyaderna/date/displaySv",
+      "sv": "750",
+      "en": "750",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0750-abbasiderna-stortar-umayyaderna",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "64d095f2fecfdeb907dae5403b10966c4ae755b7598aa078cb932e345bd0b5d0"
+      }
+    },
+    {
+      "id": "event/ev-0750-abbasiderna-stortar-umayyaderna/date/noteSv",
+      "sv": "År 750 gäller segern över umayyaderna. Iranicas kronologi placerar al-Saffahs tillträde i 750, medan två längre artiklar anger utropandet till 749: den ena anger sent i oktober och den andra ceremonier den 28 november. Uppgifterna om månad lämnas olösta.",
+      "en": "The year 750 refers to the victory over the Umayyads. Iranica's chronology places al-Saffah's accession in 750, while two longer articles date his proclamation to 749: one gives late October and the other ceremonies on 28 November. The month remains unresolved.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0750-abbasiderna-stortar-umayyaderna",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ba2a9f3c840f45976b400c1d120b2273b2b21904b8ebbd2b57508ec99307eee2"
+      }
+    },
+    {
+      "id": "event/ev-0750-abbasiderna-stortar-umayyaderna/titleSv",
+      "sv": "Abbasiderna störtar umayyadernas kalifat",
+      "en": "The Abbasids overthrow the Umayyad caliphate",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0750-abbasiderna-stortar-umayyaderna",
+        "fieldPath": "/titleSv",
+        "textSha256": "3886d55be14cbf17626f2a446dd844a60cc7d9065c8a29122d7b63b8da165da9"
+      }
+    },
+    {
+      "id": "event/ev-0750-abbasiderna-stortar-umayyaderna/summarySv",
+      "sv": "Abbasidernas styrkor besegrar umayyaderna och bryter deras makt över kalifatet år 750. Al-Saffah hade utropats till kalif år 749.",
+      "en": "Abbasid forces defeat the Umayyads and break their hold on the caliphate in 750. Al-Saffah had been proclaimed caliph in 749.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0750-abbasiderna-stortar-umayyaderna",
+        "fieldPath": "/summarySv",
+        "textSha256": "17cd50b81dfd51f7bc6acba037d56149947207ae3625b0a4eb86089be52e78b9"
+      }
+    },
+    {
+      "id": "event/ev-0750-abbasiderna-stortar-umayyaderna/geographySv",
+      "sv": "Irak och kalifatets provinser",
+      "en": "Iraq and the caliphate's provinces",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0750-abbasiderna-stortar-umayyaderna",
+        "fieldPath": "/geographySv",
+        "textSha256": "cee398f8d54b65fb68de8b76069af46c4580e1af372671ce02615eac72d1e7dc"
+      }
+    },
+    {
+      "id": "event/ev-0751-pippin-blir-frankernas-kung/date/displaySv",
+      "sv": "751",
+      "en": "751",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0751-pippin-blir-frankernas-kung",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d3b913cdf3e8a79786216cc7bbd15fc27f86a7be516f3e14c909b86b7f9eb241"
+      }
+    },
+    {
+      "id": "event/ev-0751-pippin-blir-frankernas-kung/date/noteSv",
+      "sv": "Årsnotisen har rubriken 750 [751] i utgåvan. Året 751 följer året inom hakparentes. Uppgifterna återger annalernas berättelse.",
+      "en": "The annual entry bears the heading 750 [751] in the edition. The year 751 follows the year in square brackets. The information reflects the annals' account.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0751-pippin-blir-frankernas-kung",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5f16fe69d4576769ab016d3b7f6d181e739dc2146728c5af060da4e9d7902742"
+      }
+    },
+    {
+      "id": "event/ev-0751-pippin-blir-frankernas-kung/titleSv",
+      "sv": "Pippin blir frankernas kung",
+      "en": "Pippin becomes king of the Franks",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0751-pippin-blir-frankernas-kung",
+        "fieldPath": "/titleSv",
+        "textSha256": "3dff033f49479e632cbbfa1869b0680eeca08c79157a7a8eb32ea87358af05d0"
+      }
+    },
+    {
+      "id": "event/ev-0751-pippin-blir-frankernas-kung/summarySv",
+      "sv": "Enligt Lorschannalerna upphöjs Pippin till frankernas kung i Soissons med påvens stöd. Annalerna berättar också att Childerik får håret klippt och skickas till ett kloster.",
+      "en": "According to the Annals of Lorsch, Pippin becomes king of the Franks in Soissons with papal support. The annals also recount that Childeric has his hair cut and is sent to a monastery.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0751-pippin-blir-frankernas-kung",
+        "fieldPath": "/summarySv",
+        "textSha256": "54966120d44da1a150a2b38b5d3e45965e38262ba1996725f3044ab06d3d84be"
+      }
+    },
+    {
+      "id": "event/ev-0751-pippin-blir-frankernas-kung/geographySv",
+      "sv": "Soissons, Frankerriket",
+      "en": "Soissons, Frankish kingdom",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0751-pippin-blir-frankernas-kung",
+        "fieldPath": "/geographySv",
+        "textSha256": "51ef663cc10c5325da913850915046911a4d4f519a8f1bf7362867464668d84c"
+      }
+    },
+    {
+      "id": "event/ev-0751-ziad-besegrar-tangtrupper-vid-talas/date/displaySv",
+      "sv": "751",
+      "en": "751",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0751-ziad-besegrar-tangtrupper-vid-talas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d3b913cdf3e8a79786216cc7bbd15fc27f86a7be516f3e14c909b86b7f9eb241"
+      }
+    },
+    {
+      "id": "event/ev-0751-ziad-besegrar-tangtrupper-vid-talas/titleSv",
+      "sv": "Ziad ibn Salih besegrar Tangtrupper vid Talas",
+      "en": "Ziad ibn Salih defeats Tang troops at Talas",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0751-ziad-besegrar-tangtrupper-vid-talas",
+        "fieldPath": "/titleSv",
+        "textSha256": "5173f6db3f949d6f031329c60fa11b6fcc49cdc027cddda5e5435a3f880d9e9c"
+      }
+    },
+    {
+      "id": "event/ev-0751-ziad-besegrar-tangtrupper-vid-talas/summarySv",
+      "sv": "Ziad ibn Salih besegrar kinesiska styrkor vid Talas. Tangrikets styrkor möter där kalifatets armé i Centralasien.",
+      "en": "Ziad ibn Salih defeats Chinese forces at Talas. The Tang forces face the caliphate's army there in Central Asia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0751-ziad-besegrar-tangtrupper-vid-talas",
+        "fieldPath": "/summarySv",
+        "textSha256": "c002621f6c5e3ec82e779811c39f58c1ab1fb0e7952c53a2601a64cf74813aab"
+      }
+    },
+    {
+      "id": "event/ev-0751-ziad-besegrar-tangtrupper-vid-talas/geographySv",
+      "sv": "Talasområdet, Centralasien",
+      "en": "Talas region, Central Asia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0751-ziad-besegrar-tangtrupper-vid-talas",
+        "fieldPath": "/geographySv",
+        "textSha256": "9c3a1bc8cece49f589e6cc920c7b7bbc9f293651cf57520a45ea6236a9c542c5"
+      }
+    },
+    {
+      "id": "event/ev-0752-stora-buddhan-invigs-i-nara/date/displaySv",
+      "sv": "752",
+      "en": "752",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0752-stora-buddhan-invigs-i-nara",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8b80f49ec2822cb3cdbe97d9405e39ae40ba418b084c06604b51e2a5af11a7f8"
+      }
+    },
+    {
+      "id": "event/ev-0752-stora-buddhan-invigs-i-nara/titleSv",
+      "sv": "Tempelgemenskapen inviger den stora Buddhan i Nara",
+      "en": "The temple community dedicates the Great Buddha in Nara",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0752-stora-buddhan-invigs-i-nara",
+        "fieldPath": "/titleSv",
+        "textSha256": "0443a120c2ee936141468d14a8734180ac8a31f2b1dbd215f226382ef0b95766"
+      }
+    },
+    {
+      "id": "event/ev-0752-stora-buddhan-invigs-i-nara/summarySv",
+      "sv": "Tempelgemenskapen i Tōdai-ji inviger den stora Buddhastatyn vid en ceremoni. Hantverkarna hade färdigställt själva bilden 749.",
+      "en": "The temple community at Tōdai-ji dedicates the Great Buddha statue in a ceremony. The craftspeople had completed the image itself in 749.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0752-stora-buddhan-invigs-i-nara",
+        "fieldPath": "/summarySv",
+        "textSha256": "ceaa1a4651543709eec0c3d4bcc9c3b1d2a06dadb19abb61c77ef97046b22d3d"
+      }
+    },
+    {
+      "id": "event/ev-0752-stora-buddhan-invigs-i-nara/geographySv",
+      "sv": "Tōdai-ji, Nara, Japan",
+      "en": "Tōdai-ji, Nara, Japan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0752-stora-buddhan-invigs-i-nara",
+        "fieldPath": "/geographySv",
+        "textSha256": "20327b456e2770c50320cd244d968511051a7aeb442ceaf2111c9048e6592cdd"
+      }
+    },
+    {
+      "id": "event/ev-0754-kyrkomotet-i-hieria-forkastar-ikoner/date/displaySv",
+      "sv": "754",
+      "en": "754",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0754-kyrkomotet-i-hieria-forkastar-ikoner",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4099ed5ba70aebc5a9dc26bc2093d4b45839f99b306bd12f68cedfd351e6ab7a"
+      }
+    },
+    {
+      "id": "event/ev-0754-kyrkomotet-i-hieria-forkastar-ikoner/titleSv",
+      "sv": "Biskoparna i Hieria förkastar bruket av ikoner",
+      "en": "The bishops at Hieria reject the use of icons",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0754-kyrkomotet-i-hieria-forkastar-ikoner",
+        "fieldPath": "/titleSv",
+        "textSha256": "c2ffaa0910eb9fdeb5783455d3d7fd508f6a0ee9e50eeee84338d7423abb22a5"
+      }
+    },
+    {
+      "id": "event/ev-0754-kyrkomotet-i-hieria-forkastar-ikoner/summarySv",
+      "sv": "Konstantin V sammankallar kyrkomötet i Hieria. Biskoparna stöder bildmotståndet och framhåller korset som kristendomens och kejsarmaktens symbol.",
+      "en": "Constantine V convenes the Council of Hieria. The bishops support iconoclasm and promote the cross as the symbol of Christianity and imperial power.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0754-kyrkomotet-i-hieria-forkastar-ikoner",
+        "fieldPath": "/summarySv",
+        "textSha256": "c4bcf571cc98ac50f32de26a8ef1b9d841d801da565784452c0baf2b419c5672"
+      }
+    },
+    {
+      "id": "event/ev-0754-kyrkomotet-i-hieria-forkastar-ikoner/geographySv",
+      "sv": "Hieria, Bysantinska riket",
+      "en": "Hieria, Byzantine Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0754-kyrkomotet-i-hieria-forkastar-ikoner",
+        "fieldPath": "/geographySv",
+        "textSha256": "62e201354476345b0a35eacde6cd61068b0968fc71b5ab02a4f5bc12461a153f"
+      }
+    },
+    {
+      "id": "event/ev-0754-stefanus-smorjer-pippin-och-hans-soner/date/displaySv",
+      "sv": "754",
+      "en": "754",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0754-stefanus-smorjer-pippin-och-hans-soner",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4099ed5ba70aebc5a9dc26bc2093d4b45839f99b306bd12f68cedfd351e6ab7a"
+      }
+    },
+    {
+      "id": "event/ev-0754-stefanus-smorjer-pippin-och-hans-soner/titleSv",
+      "sv": "Påven Stefanus smörjer Pippin och hans söner",
+      "en": "Pope Stephen anoints Pippin and his sons",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0754-stefanus-smorjer-pippin-och-hans-soner",
+        "fieldPath": "/titleSv",
+        "textSha256": "58cc8907694f9283dd8a3536f4841953e5f87cd3fd7e88b9a67647b7ef552a61"
+      }
+    },
+    {
+      "id": "event/ev-0754-stefanus-smorjer-pippin-och-hans-soner/summarySv",
+      "sv": "Lorschannalerna berättar att påven Stefanus år 754 smörjer Pippin och sönerna Karl och Karloman med helig olja. Enligt texten har Pippin först lovat att försvara den romerska kyrkan mot langobarderna.",
+      "en": "The Annals of Lorsch recount that Pope Stephen anoints Pippin and his sons Charles and Carloman with holy oil in 754. According to the text, Pippin has first promised to defend the Roman Church against the Lombards.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0754-stefanus-smorjer-pippin-och-hans-soner",
+        "fieldPath": "/summarySv",
+        "textSha256": "7ef71f3c5be840c7d90f4b38abed5236e41f803212027dbbcca16bf356c3667b"
+      }
+    },
+    {
+      "id": "event/ev-0754-stefanus-smorjer-pippin-och-hans-soner/geographySv",
+      "sv": "Frankerriket",
+      "en": "Frankish kingdom",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0754-stefanus-smorjer-pippin-och-hans-soner",
+        "fieldPath": "/geographySv",
+        "textSha256": "b09cdb3261bd54322321f4248d2ab32e9e451b0431e2143c3f51dc104d73e2fe"
+      }
+    },
+    {
+      "id": "event/ev-0755-an-lushan-leder-uppror-mot-tang/date/displaySv",
+      "sv": "755–763",
+      "en": "755–763",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0755-an-lushan-leder-uppror-mot-tang",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "40cd45aa8ecc4a244844e6c695de551116d6886257f36d35afb00a72b74362d6"
+      }
+    },
+    {
+      "id": "event/ev-0755-an-lushan-leder-uppror-mot-tang/date/noteSv",
+      "sv": "Källan daterar hela upproret till 755–763. An Lushan leder dess inledning; intervallet betyder inte att han lever eller leder det under alla år.",
+      "en": "The source dates the entire rebellion to 755–763. An Lushan leads its opening phase; the interval does not mean that he lives or leads it throughout those years.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0755-an-lushan-leder-uppror-mot-tang",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "cce99f5aba5ea15b09b2d1594a03d929b4b9c2cc53546ad79cd539786105d4a4"
+      }
+    },
+    {
+      "id": "event/ev-0755-an-lushan-leder-uppror-mot-tang/titleSv",
+      "sv": "An Lushan leder ett uppror mot Tangdynastin",
+      "en": "An Lushan leads a rebellion against the Tang dynasty",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0755-an-lushan-leder-uppror-mot-tang",
+        "fieldPath": "/titleSv",
+        "textSha256": "6fe9e79e02414e936a153ac8f816fd0d0687d3ae6e23d60dbfcb82aa62657ac3"
+      }
+    },
+    {
+      "id": "event/ev-0755-an-lushan-leder-uppror-mot-tang/summarySv",
+      "sv": "Generalen An Lushan gör uppror mot kejsar Xuanzong och försöker själv bli kejsare. Tangdynastin överlever kriget men förlorar styrka.",
+      "en": "General An Lushan rebels against Emperor Xuanzong and tries to become emperor himself. The Tang dynasty survives the war but loses strength.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0755-an-lushan-leder-uppror-mot-tang",
+        "fieldPath": "/summarySv",
+        "textSha256": "f7156afcf853c83395a77963266f614d0e0e33658bffb3822711e240c95ef90f"
+      }
+    },
+    {
+      "id": "event/ev-0755-an-lushan-leder-uppror-mot-tang/geographySv",
+      "sv": "Tangriket, Kina",
+      "en": "Tang Empire, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0755-an-lushan-leder-uppror-mot-tang",
+        "fieldPath": "/geographySv",
+        "textSha256": "904d586405abd6e39376234b75891db627cfd6a40c540a9670a89c6fa0e769ea"
+      }
+    },
+    {
+      "id": "event/ev-0755-al-mansur-later-doda-abu-moslem/date/displaySv",
+      "sv": "755",
+      "en": "755",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0755-al-mansur-later-doda-abu-moslem",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "86ab8cbe5869bd1f9c70924e9c04fef3bbe3bbaaf4e816efeeaf7eb6a31937d2"
+      }
+    },
+    {
+      "id": "event/ev-0755-al-mansur-later-doda-abu-moslem/titleSv",
+      "sv": "Al-Mansur låter döda Abu Moslem",
+      "en": "Al-Mansur has Abu Moslem killed",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0755-al-mansur-later-doda-abu-moslem",
+        "fieldPath": "/titleSv",
+        "textSha256": "709ce0735b793dae0212f3d0eb86cce6e07fed24d7a531f3b5771be273374d70"
+      }
+    },
+    {
+      "id": "event/ev-0755-al-mansur-later-doda-abu-moslem/summarySv",
+      "sv": "Kalifen al-Mansur låter döda Abu Moslem. Abu Moslem hade lett det abbasidiska upproret i Khorasan.",
+      "en": "Caliph al-Mansur has Abu Moslem killed. Abu Moslem had led the Abbasid revolt in Khorasan.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0755-al-mansur-later-doda-abu-moslem",
+        "fieldPath": "/summarySv",
+        "textSha256": "5a188acc12d0e89fe5a7d7c53cd1980a491d2bc04c657388f5ad11db17f5798d"
+      }
+    },
+    {
+      "id": "event/ev-0755-al-mansur-later-doda-abu-moslem/geographySv",
+      "sv": "Abbasidkalifatet",
+      "en": "Abbasid Caliphate",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0755-al-mansur-later-doda-abu-moslem",
+        "fieldPath": "/geographySv",
+        "textSha256": "f8f52bc378034664233353ac105f28a90102a9f00a47d53362f8f176751011f0"
+      }
+    },
+    {
+      "id": "event/ev-0756-abd-al-rahman-blir-emir-i-cordoba/date/displaySv",
+      "sv": "756",
+      "en": "756",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0756-abd-al-rahman-blir-emir-i-cordoba",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a7f0b84de7a450eaf6ffab449cb0f141b69eb701ffb455f375c3dae4277b25c1"
+      }
+    },
+    {
+      "id": "event/ev-0756-abd-al-rahman-blir-emir-i-cordoba/titleSv",
+      "sv": "Abd al-Rahman I blir emir i Córdoba",
+      "en": "Abd al-Rahman I becomes emir in Córdoba",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0756-abd-al-rahman-blir-emir-i-cordoba",
+        "fieldPath": "/titleSv",
+        "textSha256": "292ec8b606a7c71b374abca016297229e38463a2b89aabf845f45a48e2d2670f"
+      }
+    },
+    {
+      "id": "event/ev-0756-abd-al-rahman-blir-emir-i-cordoba/summarySv",
+      "sv": "Den umayyadiske prinsen Abd al-Rahman I etablerar sitt styre i al-Andalus. Han gör Córdoba till sin huvudstad.",
+      "en": "The Umayyad prince Abd al-Rahman I establishes his rule in al-Andalus. He makes Córdoba his capital.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0756-abd-al-rahman-blir-emir-i-cordoba",
+        "fieldPath": "/summarySv",
+        "textSha256": "b110360d9939023b726ef4a1f657d4b44c07ac667b4e43201931a8859d5b91d4"
+      }
+    },
+    {
+      "id": "event/ev-0756-abd-al-rahman-blir-emir-i-cordoba/geographySv",
+      "sv": "Córdoba och al-Andalus, Iberiska halvön",
+      "en": "Córdoba and al-Andalus, Iberian Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0756-abd-al-rahman-blir-emir-i-cordoba",
+        "fieldPath": "/geographySv",
+        "textSha256": "7857ab86b34104f7914c436fe13a24fd47706fcb42c79a306395d93f4310b70c"
+      }
+    },
+    {
+      "id": "event/ev-0762-al-mansur-flyttar-hovet-till-bagdad/date/displaySv",
+      "sv": "762",
+      "en": "762",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0762-al-mansur-flyttar-hovet-till-bagdad",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9b6c13f0d182b253c607005217881bbca28a5b04076842f6bc65580c3801a0b0"
+      }
+    },
+    {
+      "id": "event/ev-0762-al-mansur-flyttar-hovet-till-bagdad/date/noteSv",
+      "sv": "Iranica daterar stadens grundande till 762. Ashmolean anger byggstart 758 och inflyttning 762; händelsen gäller inflyttningen.",
+      "en": "Iranica dates the city's foundation to 762. The Ashmolean gives 758 for the start of construction and 762 for the move; the event concerns the move.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0762-al-mansur-flyttar-hovet-till-bagdad",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "eb049a77d5e0cc692f33c20f651a5c13f1701b2fbb912a6d760561189e874dbe"
+      }
+    },
+    {
+      "id": "event/ev-0762-al-mansur-flyttar-hovet-till-bagdad/titleSv",
+      "sv": "Al-Mansur flyttar hovet till Bagdad",
+      "en": "Al-Mansur moves the court to Baghdad",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0762-al-mansur-flyttar-hovet-till-bagdad",
+        "fieldPath": "/titleSv",
+        "textSha256": "2f4023d8ec31aad69f22d707560fbfd8cc27d28b29180d1f7cd25b53f0390082"
+      }
+    },
+    {
+      "id": "event/ev-0762-al-mansur-flyttar-hovet-till-bagdad/summarySv",
+      "sv": "Kalifen al-Mansur tar sitt nya palats i Bagdad i bruk. Han flyttar hovet, skattkammaren och armén dit.",
+      "en": "Caliph al-Mansur begins using his new palace in Baghdad. He moves the court, treasury and army there.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0762-al-mansur-flyttar-hovet-till-bagdad",
+        "fieldPath": "/summarySv",
+        "textSha256": "b517d0930140222c1776e260769afc3c9e45b77f1cb0a1c8a3f0836dc5adea3e"
+      }
+    },
+    {
+      "id": "event/ev-0762-al-mansur-flyttar-hovet-till-bagdad/geographySv",
+      "sv": "Bagdad, Irak",
+      "en": "Baghdad, Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0762-al-mansur-flyttar-hovet-till-bagdad",
+        "fieldPath": "/geographySv",
+        "textSha256": "eced7691036e6c09f4058b764662c0bd4cac520255e00645ae7a1ab288d66184"
+      }
+    },
+    {
+      "id": "event/ev-0763-yax-pasah-tilltrader-i-copan/date/displaySv",
+      "sv": "2 juli 763",
+      "en": "2 July 763",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0763-yax-pasah-tilltrader-i-copan",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2eccd138090a54033bcf38ca16ac53e975ae510400715b0416035688f47b1613"
+      }
+    },
+    {
+      "id": "event/ev-0763-yax-pasah-tilltrader-i-copan/date/noteSv",
+      "sv": "David Stuart anger 6 Kaban 10 Mol och omräknar datumet till 2 juli 763. Året gäller trontillträdet, inte tillverkningen av Altar Q.",
+      "en": "David Stuart gives 6 Kaban 10 Mol and converts the date to 2 July 763. The year concerns the accession, not the making of Altar Q.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0763-yax-pasah-tilltrader-i-copan",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f2fd1d728808b507c186a9df4659113d01f249ae6773a671c5e726b05db06f59"
+      }
+    },
+    {
+      "id": "event/ev-0763-yax-pasah-tilltrader-i-copan/titleSv",
+      "sv": "Yax Pasah tillträder som härskare i Copán",
+      "en": "Yax Pasah becomes ruler of Copán",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0763-yax-pasah-tilltrader-i-copan",
+        "fieldPath": "/titleSv",
+        "textSha256": "323c6bd374294f53697689c679dfa2a28ca1747be0263cc1ef6b40c591031cc8"
+      }
+    },
+    {
+      "id": "event/ev-0763-yax-pasah-tilltrader-i-copan/summarySv",
+      "sv": "Yax Pasah tillträder som härskare i Copán. Stadens konstnärer framställer senare hans maktövertagande på Altar Q genom ett möte med dynastins grundare.",
+      "en": "Yax Pasah becomes ruler of Copán. The city's artists later depict his accession on Altar Q through a meeting with the dynasty's founder.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0763-yax-pasah-tilltrader-i-copan",
+        "fieldPath": "/summarySv",
+        "textSha256": "5b9bd27973899b8d8c3ed763b84684f7e3de27da2f8f1bb8fbb05cbf1ca993ca"
+      }
+    },
+    {
+      "id": "event/ev-0763-yax-pasah-tilltrader-i-copan/geographySv",
+      "sv": "Copán, nuvarande Honduras",
+      "en": "Copán, present-day Honduras",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0763-yax-pasah-tilltrader-i-copan",
+        "fieldPath": "/geographySv",
+        "textSha256": "fe089576d9aba6fbe8690817ced70570f5168c0f48e30fb11fd74b46cb7ac653"
+      }
+    },
+    {
+      "id": "event/ev-0768-karl-och-karloman-delar-frankerriket/date/displaySv",
+      "sv": "768",
+      "en": "768",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0768-karl-och-karloman-delar-frankerriket",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f7b856c054de7ccced087ad4f9413380ec494e40abc818b840aaad990ca3c5bc"
+      }
+    },
+    {
+      "id": "event/ev-0768-karl-och-karloman-delar-frankerriket/titleSv",
+      "sv": "Karl och Karloman blir kungar över frankerna",
+      "en": "Charles and Carloman become kings of the Franks",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0768-karl-och-karloman-delar-frankerriket",
+        "fieldPath": "/titleSv",
+        "textSha256": "0665228f9d3842b8145d6a5ff5e8ecafb1723e3daf5ac758bf1b6f3bedd4ef60"
+      }
+    },
+    {
+      "id": "event/ev-0768-karl-och-karloman-delar-frankerriket/summarySv",
+      "sv": "Karl den store blir kung över en del av frankernas rike. Hans bror Karloman styr den andra delen av deras fars rike.",
+      "en": "Charlemagne becomes king of part of the Frankish realm. His brother Carloman rules the other part of their father's kingdom.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0768-karl-och-karloman-delar-frankerriket",
+        "fieldPath": "/summarySv",
+        "textSha256": "5867b0eb3b3071c8214566d7cfd512c9296b0723d923bf7f4d82b3878fb2cfd1"
+      }
+    },
+    {
+      "id": "event/ev-0768-karl-och-karloman-delar-frankerriket/geographySv",
+      "sv": "Frankerriket",
+      "en": "Frankish kingdom",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0768-karl-och-karloman-delar-frankerriket",
+        "fieldPath": "/geographySv",
+        "textSha256": "b09cdb3261bd54322321f4248d2ab32e9e451b0431e2143c3f51dc104d73e2fe"
+      }
+    },
+    {
+      "id": "event/ev-0773-karl-erovrar-langobardernas-rike/date/displaySv",
+      "sv": "773–774",
+      "en": "773–774",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0773-karl-erovrar-langobardernas-rike",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7caa06c5026c2be12e582e1a99c9b90386d3d70dfc8e01fc8da82fd09e0a5e56"
+      }
+    },
+    {
+      "id": "event/ev-0773-karl-erovrar-langobardernas-rike/date/noteSv",
+      "sv": "Intervallet gäller det första fälttåget 773–774. Det senare fälttåget 776 ingår inte.",
+      "en": "The interval concerns the first campaign of 773–774. It excludes the later campaign of 776.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0773-karl-erovrar-langobardernas-rike",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "0e84a24af71d41e7c64bd3139df6b6ea0d1863b0c1a7b735dbaa404dd6625194"
+      }
+    },
+    {
+      "id": "event/ev-0773-karl-erovrar-langobardernas-rike/titleSv",
+      "sv": "Karl den store erövrar langobardernas rike",
+      "en": "Charlemagne conquers the Lombard kingdom",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0773-karl-erovrar-langobardernas-rike",
+        "fieldPath": "/titleSv",
+        "textSha256": "6452000ac097c026b9bfd8c75a42407334e9622c58b2e676d5a528a23bb6d70f"
+      }
+    },
+    {
+      "id": "event/ev-0773-karl-erovrar-langobardernas-rike/summarySv",
+      "sv": "Karl den store för krig mot langobarderna. Han avsätter Desiderius och tar titeln som langobardernas kung.",
+      "en": "Charlemagne wages war against the Lombards. He deposes Desiderius and takes the title of king of the Lombards.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0773-karl-erovrar-langobardernas-rike",
+        "fieldPath": "/summarySv",
+        "textSha256": "e55b3fca110cb7aa9e16d8fea6ea7df59401dd8d0717677d3cd89202a8b6f476"
+      }
+    },
+    {
+      "id": "event/ev-0773-karl-erovrar-langobardernas-rike/geographySv",
+      "sv": "Langobardernas rike, Italien",
+      "en": "Lombard kingdom, Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0773-karl-erovrar-langobardernas-rike",
+        "fieldPath": "/geographySv",
+        "textSha256": "dbda5521271b51963de68b0c072f7b71eaa1b7ab6d0b4014a7ac1b45cf3a2921"
+      }
+    },
+    {
+      "id": "event/ev-0775-yax-pasaj-bestaller-altar-q/date/displaySv",
+      "sv": "omtvistat: 775 eller 776",
+      "en": "disputed: 775 or 776",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0775-yax-pasaj-bestaller-altar-q",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "fb5b75f26cf6edc3cc90b4bd5042eb05865296194bc8f586976e63b520a2101d"
+      }
+    },
+    {
+      "id": "event/ev-0775-yax-pasaj-bestaller-altar-q/date/noteSv",
+      "sv": "Smithsonian anger beställningen till 776. Agurcia Fasquelle, Sheets och Taube anger 775 för beställningen av Altar Q och tempel 16. Dateringarna lämnas som alternativ; de anger inte en belagd tvåårig byggtid eller trontillträdet 763.",
+      "en": "The Smithsonian dates the commission to 776. Agurcia Fasquelle, Sheets and Taube give 775 for the commissioning of Altar Q and Temple 16. The dates remain alternatives; they do not establish a two-year construction period or refer to the accession in 763.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0775-yax-pasaj-bestaller-altar-q",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "eb70ea91ee1f167b8265d5407b8b5fc823f4a54fc369ffef24bdfe55e32d1b6c"
+      }
+    },
+    {
+      "id": "event/ev-0775-yax-pasaj-bestaller-altar-q/titleSv",
+      "sv": "Yax Pasaj beställer Altar Q i Copán",
+      "en": "Yax Pasaj commissions Altar Q in Copán",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0775-yax-pasaj-bestaller-altar-q",
+        "fieldPath": "/titleSv",
+        "textSha256": "821df449618d8706269173a0e69f49b62b11bf7e6388585bfc502d8ccda8047b"
+      }
+    },
+    {
+      "id": "event/ev-0775-yax-pasaj-bestaller-altar-q/summarySv",
+      "sv": "Yax Pasaj beställer ett stenaltare med porträtt av Copáns sexton härskare. Konstnärerna placerar dem i dynastisk ordning runt altarets fyra sidor.",
+      "en": "Yax Pasaj commissions a stone altar with portraits of Copán's sixteen rulers. The artists place them in dynastic order around the altar's four sides.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0775-yax-pasaj-bestaller-altar-q",
+        "fieldPath": "/summarySv",
+        "textSha256": "ae80c5ba50da220d1fc702086be8e1379d8520c91b8f9970c960607592d93c39"
+      }
+    },
+    {
+      "id": "event/ev-0775-yax-pasaj-bestaller-altar-q/geographySv",
+      "sv": "Copán, nuvarande Honduras",
+      "en": "Copán, present-day Honduras",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0775-yax-pasaj-bestaller-altar-q",
+        "fieldPath": "/geographySv",
+        "textSha256": "fe089576d9aba6fbe8690817ced70570f5168c0f48e30fb11fd74b46cb7ac653"
+      }
+    },
+    {
+      "id": "event/ev-0778-panangkaran-ger-jord-at-taras-helgedom/date/displaySv",
+      "sv": "778",
+      "en": "778",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0778-panangkaran-ger-jord-at-taras-helgedom",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "93411f44e228b5004bdec50f32b6c646819eebd09ba3fa26511502b23781a617"
+      }
+    },
+    {
+      "id": "event/ev-0778-panangkaran-ger-jord-at-taras-helgedom/date/noteSv",
+      "sv": "Dateringen gäller inskriften och dess uppgift om markens status. Den fastställer inget gemensamt byggår för dagens tempel.",
+      "en": "The date concerns the inscription and its statement about the land's status. It establishes no shared construction year for the present-day temples.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0778-panangkaran-ger-jord-at-taras-helgedom",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "96955e2185489b6e2333874431e0c2ca44b7b47139175706a29a08b32e255136"
+      }
+    },
+    {
+      "id": "event/ev-0778-panangkaran-ger-jord-at-taras-helgedom/titleSv",
+      "sv": "Panangkarans inskrift avsätter mark för Taras helgedom i Kalasan",
+      "en": "Panangkaran's inscription sets aside land for Tārā's sanctuary in Kalasan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0778-panangkaran-ger-jord-at-taras-helgedom",
+        "fieldPath": "/titleSv",
+        "textSha256": "fa6220d101d96022a9a2b5b7e5f5dd9932a2dfe6fd84d5a517ed868d15e6dc6c"
+      }
+    },
+    {
+      "id": "event/ev-0778-panangkaran-ger-jord-at-taras-helgedom/summarySv",
+      "sv": "En inskrift utfärdad av Panangkaran anger att mark i byn Kalaśa får status som sīma för underhållet av en helgedom åt Tārā. Texten är skriven på sanskrit och dateras i artikeln till 700 Śaka, återgivet som 778.",
+      "en": "An inscription issued by Panangkaran states that land in the village of Kalaśa receives sīma status for the upkeep of a sanctuary to Tārā. The Sanskrit text is dated in the article to 700 Śaka, rendered as 778.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0778-panangkaran-ger-jord-at-taras-helgedom",
+        "fieldPath": "/summarySv",
+        "textSha256": "6c8f9f0fec1515a5bec7b79abce73525250ae27fe6ffc0040c1ecae9d262ac05"
+      }
+    },
+    {
+      "id": "event/ev-0778-panangkaran-ger-jord-at-taras-helgedom/geographySv",
+      "sv": "Kalasan, Java, nuvarande Indonesien",
+      "en": "Kalasan, Java, present-day Indonesia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0778-panangkaran-ger-jord-at-taras-helgedom",
+        "fieldPath": "/geographySv",
+        "textSha256": "ffd64ae1f4cf398a4ca47a2a36c277e1485f9675be4b3777ce5cd51bcc792a51"
+      }
+    },
+    {
+      "id": "event/ev-0785-abd-al-rahman-bygger-cordobas-moske/date/displaySv",
+      "sv": "785",
+      "en": "785",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0785-abd-al-rahman-bygger-cordobas-moske",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9e04a49e5786695116f9af28552da3083d4eeb015294b878d27053439e363cdf"
+      }
+    },
+    {
+      "id": "event/ev-0785-abd-al-rahman-bygger-cordobas-moske/date/noteSv",
+      "sv": "Museet anger 785 för byggandet. Händelsen gäller den första umayyadiska anläggningen, inte de senare utvidgningarna.",
+      "en": "The museum gives 785 for the construction. The event concerns the first Umayyad complex, not the later extensions.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0785-abd-al-rahman-bygger-cordobas-moske",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "64ee73dff007a0e8c1bd44b4ce346b0f6bad5d7263a35909f38d21c0136d8649"
+      }
+    },
+    {
+      "id": "event/ev-0785-abd-al-rahman-bygger-cordobas-moske/titleSv",
+      "sv": "Abd al-Rahman I låter bygga Córdobas stora moské",
+      "en": "Abd al-Rahman I commissions the Great Mosque of Córdoba",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0785-abd-al-rahman-bygger-cordobas-moske",
+        "fieldPath": "/titleSv",
+        "textSha256": "d833cbbfc8ba42a677c49e3eb25ed658fcebdd137eeb50192cebdc0bf6063693"
+      }
+    },
+    {
+      "id": "event/ev-0785-abd-al-rahman-bygger-cordobas-moske/summarySv",
+      "sv": "Emiren Abd al-Rahman I bekostar byggandet av Córdobas stora moské. Han låter uppföra den i sin huvudstad i al-Andalus.",
+      "en": "Emir Abd al-Rahman I funds the construction of the Great Mosque of Córdoba. He has it built in his capital in al-Andalus.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0785-abd-al-rahman-bygger-cordobas-moske",
+        "fieldPath": "/summarySv",
+        "textSha256": "5d0dccdb5e55a8d9cf4ba18f447b3587d402c9bad7b9fea3bb57dc6adb52bee8"
+      }
+    },
+    {
+      "id": "event/ev-0785-abd-al-rahman-bygger-cordobas-moske/geographySv",
+      "sv": "Córdoba, Iberiska halvön",
+      "en": "Córdoba, Iberian Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0785-abd-al-rahman-bygger-cordobas-moske",
+        "fieldPath": "/geographySv",
+        "textSha256": "645de957dcdd6ff81edc59cdc17c3bcd27950912b2751a0fba6e8aded4dfeac6"
+      }
+    },
+    {
+      "id": "event/ev-0786-harun-ar-rashid-blir-kalif/date/displaySv",
+      "sv": "786",
+      "en": "786",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0786-harun-ar-rashid-blir-kalif",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "87c7965a1cc6c11a653b210aaef95e381b95afddf1781da3fa5b2d4b1d3097bf"
+      }
+    },
+    {
+      "id": "event/ev-0786-harun-ar-rashid-blir-kalif/titleSv",
+      "sv": "Harun ar-Rashid blir kalif",
+      "en": "Harun ar-Rashid becomes caliph",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0786-harun-ar-rashid-blir-kalif",
+        "fieldPath": "/titleSv",
+        "textSha256": "474704268ee21ce7e9d7f348cc524ce48987ff6fa508383163a8e46e4e6c38f4"
+      }
+    },
+    {
+      "id": "event/ev-0786-harun-ar-rashid-blir-kalif/summarySv",
+      "sv": "Harun ar-Rashid tillträder som abbasidisk kalif. Han utser Yahya från barmakidernas familj till sin vesir.",
+      "en": "Harun ar-Rashid becomes Abbasid caliph. He appoints Yahya of the Barmakid family as his vizier.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0786-harun-ar-rashid-blir-kalif",
+        "fieldPath": "/summarySv",
+        "textSha256": "1edc66ba0b7f7eb3215c7af6963e91291535a808c886f51c1c73edb1d85112f5"
+      }
+    },
+    {
+      "id": "event/ev-0786-harun-ar-rashid-blir-kalif/geographySv",
+      "sv": "Abbasidkalifatet",
+      "en": "Abbasid Caliphate",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0786-harun-ar-rashid-blir-kalif",
+        "fieldPath": "/geographySv",
+        "textSha256": "f8f52bc378034664233353ac105f28a90102a9f00a47d53362f8f176751011f0"
+      }
+    },
+    {
+      "id": "event/ev-0787-kyrkomotet-i-nicaea-godkanner-ikoner/date/displaySv",
+      "sv": "787",
+      "en": "787",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0787-kyrkomotet-i-nicaea-godkanner-ikoner",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "fc091d39524c9d4b5b11f84f9132996a94ca01c9816d2db3b866bef1b0699d91"
+      }
+    },
+    {
+      "id": "event/ev-0787-kyrkomotet-i-nicaea-godkanner-ikoner/titleSv",
+      "sv": "Kyrkomötet i Nicaea godkänner vördnad för ikoner",
+      "en": "The Council of Nicaea approves the veneration of icons",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0787-kyrkomotet-i-nicaea-godkanner-ikoner",
+        "fieldPath": "/titleSv",
+        "textSha256": "84324cd2749cc134501633f28231a3c34f945e0adda2997e74fb51b280cd860e"
+      }
+    },
+    {
+      "id": "event/ev-0787-kyrkomotet-i-nicaea-godkanner-ikoner/summarySv",
+      "sv": "Biskoparna vid det andra kyrkomötet i Nicaea förkastar besluten från Hieria. De skiljer vördnaden för ikoner från den dyrkan som tillkommer Gud.",
+      "en": "The bishops at the Second Council of Nicaea reject the decisions of Hieria. They distinguish the veneration of icons from the worship due to God.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0787-kyrkomotet-i-nicaea-godkanner-ikoner",
+        "fieldPath": "/summarySv",
+        "textSha256": "bf7a7cafaac4fb1f922691a03050df8d03c14d61462d8ae3f0e65b350b020f81"
+      }
+    },
+    {
+      "id": "event/ev-0787-kyrkomotet-i-nicaea-godkanner-ikoner/geographySv",
+      "sv": "Nicaea, Bysantinska riket",
+      "en": "Nicaea, Byzantine Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0787-kyrkomotet-i-nicaea-godkanner-ikoner",
+        "fieldPath": "/geographySv",
+        "textSha256": "7db4c33a41b6bff9b236764ae2a6bd4b73ea848fe5cef0e4e143bb3e5ae9cbca"
+      }
+    },
+    {
+      "id": "event/ev-0791-tibetanerna-intar-khotan/date/displaySv",
+      "sv": "cirka 791",
+      "en": "circa 791",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0791-tibetanerna-intar-khotan",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5c3814dd52485e73ebd115127d925a071022ca953c0f321eadd4effcac655895"
+      }
+    },
+    {
+      "id": "event/ev-0791-tibetanerna-intar-khotan/date/noteSv",
+      "sv": "Källan anger cirka 791. Dateringen fastställer inget exakt fälttågsår.",
+      "en": "The source gives circa 791. The date establishes no exact year for the campaign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0791-tibetanerna-intar-khotan",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "a53aa7b15f0c97e4f179e54af375ef0f8ec43c8138e795d9a8d233b3f81c5f6d"
+      }
+    },
+    {
+      "id": "event/ev-0791-tibetanerna-intar-khotan/titleSv",
+      "sv": "Tibetanska styrkor intar Khotan",
+      "en": "Tibetan forces capture Khotan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0791-tibetanerna-intar-khotan",
+        "fieldPath": "/titleSv",
+        "textSha256": "c3a689be44d3cbad8a42b3b062aeb8b74b08dacca0c594bea8e227aaaeee5747"
+      }
+    },
+    {
+      "id": "event/ev-0791-tibetanerna-intar-khotan/summarySv",
+      "sv": "Tibetanska styrkor intar Khotan omkring 791. De möter samtidigt motstånd från uigurerna längre norrut.",
+      "en": "Tibetan forces capture Khotan around 791. At the same time, they face Uyghur resistance farther north.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0791-tibetanerna-intar-khotan",
+        "fieldPath": "/summarySv",
+        "textSha256": "4d0cec89eb745f216c16f607ac638d4672ae5ccb3047dfb1a7fa8276e7be048f"
+      }
+    },
+    {
+      "id": "event/ev-0791-tibetanerna-intar-khotan/geographySv",
+      "sv": "Khotan och Tarimbäckenet, Centralasien",
+      "en": "Khotan and the Tarim Basin, Central Asia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0791-tibetanerna-intar-khotan",
+        "fieldPath": "/geographySv",
+        "textSha256": "3aa1ff9ecf339367da30c30f7106c5cee2d83685c944eda76e8146256efa9ef8"
+      }
+    },
+    {
+      "id": "event/ev-0792-skrivare-dokumenterar-arbeten-pa-sewu/date/displaySv",
+      "sv": "792",
+      "en": "792",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0792-skrivare-dokumenterar-arbeten-pa-sewu",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "74332c78b10e3ee51ac4a3c18ccc15c1b6c9807b3ca609969de5e3c361573dfa"
+      }
+    },
+    {
+      "id": "event/ev-0792-skrivare-dokumenterar-arbeten-pa-sewu/date/noteSv",
+      "sv": "Dateringen gäller inskriften. Kopplingen till byggnadsarbeten är forskarnas tolkning och ger inget färdigställandeår för hela tempelområdet.",
+      "en": "The date concerns the inscription. The connection to building work is the researchers' interpretation and gives no completion year for the entire temple complex.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0792-skrivare-dokumenterar-arbeten-pa-sewu",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ea52367187ed24733b00f180086b2513215ee80a4efa82058c05cabb0f96f337"
+      }
+    },
+    {
+      "id": "event/ev-0792-skrivare-dokumenterar-arbeten-pa-sewu/titleSv",
+      "sv": "En inskrift vid Sewu vittnar om dyrkan av Mañjuśrī",
+      "en": "An inscription at Sewu attests to the worship of Mañjuśrī",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0792-skrivare-dokumenterar-arbeten-pa-sewu",
+        "fieldPath": "/titleSv",
+        "textSha256": "52a0f03e81fe1afaf49ed39f48b42bdd7f394bdf98cb7fff6b660680d0ac0da4"
+      }
+    },
+    {
+      "id": "event/ev-0792-skrivare-dokumenterar-arbeten-pa-sewu/summarySv",
+      "sv": "Mañjuśrīgrha-inskriften dateras till 792 och beskriver en religiös vision. Forskarna knyter den till Sewutemplet och tolkar den som belägg för ombyggnad eller restaurering och dyrkan av Mañjuśrī.",
+      "en": "The Mañjuśrīgrha inscription dates to 792 and describes a religious vision. The researchers connect it to the Sewu temple and interpret it as evidence of rebuilding or restoration and the worship of Mañjuśrī.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0792-skrivare-dokumenterar-arbeten-pa-sewu",
+        "fieldPath": "/summarySv",
+        "textSha256": "d3ef86a8389fad3b6efce598196da1a74e09a2cc60334cca45afa36daaeb0424"
+      }
+    },
+    {
+      "id": "event/ev-0792-skrivare-dokumenterar-arbeten-pa-sewu/geographySv",
+      "sv": "Sewu, Java, nuvarande Indonesien",
+      "en": "Sewu, Java, present-day Indonesia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0792-skrivare-dokumenterar-arbeten-pa-sewu",
+        "fieldPath": "/geographySv",
+        "textSha256": "1507b0a8f8efa234283b536bd70431f8f688b29a9be4225c97a5dd3ab54da828"
+      }
+    },
+    {
+      "id": "event/ev-0793-vikingar-anfaller-lindisfarne/date/displaySv",
+      "sv": "8 juni 793",
+      "en": "8 June 793",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0793-vikingar-anfaller-lindisfarne",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "dd4117d7375cc9b779afa0bd66f6c72918539eeda74284c5a0efccfbd15e69bc"
+      }
+    },
+    {
+      "id": "event/ev-0793-vikingar-anfaller-lindisfarne/titleSv",
+      "sv": "Vikingar anfaller Lindisfarne",
+      "en": "Vikings attack Lindisfarne",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0793-vikingar-anfaller-lindisfarne",
+        "fieldPath": "/titleSv",
+        "textSha256": "449bf84fe05664d70ff1f8a50a77223aa915b17865e5c346a9b2af07bc7a8cd4"
+      }
+    },
+    {
+      "id": "event/ev-0793-vikingar-anfaller-lindisfarne/summarySv",
+      "sv": "Vikingar anfaller klostret på Lindisfarne den 8 juni 793. Alkuin vid Karl den stores hov skriver om angreppet till kungen av Northumbria och öns biskop.",
+      "en": "Vikings attack the monastery on Lindisfarne on 8 June 793. Alcuin, at Charlemagne's court, writes about the attack to the king of Northumbria and the island's bishop.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0793-vikingar-anfaller-lindisfarne",
+        "fieldPath": "/summarySv",
+        "textSha256": "b205e1dadb4d43ef7de34f08a625db10cdd4b29edc2897581b4a01c49eec4790"
+      }
+    },
+    {
+      "id": "event/ev-0793-vikingar-anfaller-lindisfarne/geographySv",
+      "sv": "Lindisfarne, Northumbria, England",
+      "en": "Lindisfarne, Northumbria, England",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0793-vikingar-anfaller-lindisfarne",
+        "fieldPath": "/geographySv",
+        "textSha256": "20fd697d341b5d082ea04cec8ef2539bac7fc768a54f906983cdc03888660e34"
+      }
+    },
+    {
+      "id": "event/ev-0794-kyoto-blir-kejsarens-huvudstad/date/displaySv",
+      "sv": "794",
+      "en": "794",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0794-kyoto-blir-kejsarens-huvudstad",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5283f1b4e66467616feca1e0162c7d37e4e304623d6343a525553ffb436cbdfe"
+      }
+    },
+    {
+      "id": "event/ev-0794-kyoto-blir-kejsarens-huvudstad/titleSv",
+      "sv": "Japans kejsarhov etablerar huvudstaden i Kyoto",
+      "en": "Japan's imperial court establishes the capital in Kyoto",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0794-kyoto-blir-kejsarens-huvudstad",
+        "fieldPath": "/titleSv",
+        "textSha256": "c4bdfa09b7592bf5281491815be2f64275928100c58afa7584d0b88a53146151"
+      }
+    },
+    {
+      "id": "event/ev-0794-kyoto-blir-kejsarens-huvudstad/summarySv",
+      "sv": "Japans kejsarhov etablerar sin huvudstad i Kyoto. Stadsbyggarna hämtar förebilder från Kinas äldre huvudstäder.",
+      "en": "Japan's imperial court establishes its capital in Kyoto. The city planners draw on China's older capitals as models.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0794-kyoto-blir-kejsarens-huvudstad",
+        "fieldPath": "/summarySv",
+        "textSha256": "a9428235fd6cc6f48f9cf2f96563958a140773100cd62b161c24cbdf62dabda9"
+      }
+    },
+    {
+      "id": "event/ev-0794-kyoto-blir-kejsarens-huvudstad/geographySv",
+      "sv": "Kyoto, Japan",
+      "en": "Kyoto, Japan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0794-kyoto-blir-kejsarens-huvudstad",
+        "fieldPath": "/geographySv",
+        "textSha256": "101ec302b0f1fcf79969152202cbdec063c0ccdc77cce1c6fb621e210fc3952b"
       }
     }
   ]
