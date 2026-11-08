@@ -406,3 +406,22 @@ test('a desktop upgrade cut short before world.json is repeated on the next read
     } finally { rmSync(root,{recursive:true,force:true}); }
   }
 });
+
+test('a cleanup that cannot list the folder after the rename leaves the finished upgrade in place', () => {
+  // The rename has already put the new world.json in place. A folder listing that then fails (a
+  // locked share, an antivirus scan) only skips the cleanup of leftovers; the write still counts.
+  const { root, boot, worldPath, citiesPath } = desktopLibrary();
+  try {
+    boot('store.ensureScenarioStore();');
+    const shipped = readFileSync(worldPath,'utf8');
+    ageToFirstRelease({ worldPath, citiesPath });
+    const out = boot(`
+      const rename = fs.renameSync, list = fs.readdirSync;
+      let renamed = false;
+      fs.renameSync = (...args) => { const result = rename(...args); if (String(args[1]).endsWith('world.json')) renamed = true; return result; };
+      fs.readdirSync = (...args) => { if (renamed) { renamed = false; throw Object.assign(new Error('EACCES: listing refused'),{ code: 'EACCES' }); } return list(...args); };
+      store.ensureScenarioStore();`);
+    assert.ok(out.at(-1).includes('charlemagne-800'),'the library read after the upgrade still answers');
+    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the shipped world.json is in place');
+  } finally { rmSync(root,{recursive:true,force:true}); }
+});

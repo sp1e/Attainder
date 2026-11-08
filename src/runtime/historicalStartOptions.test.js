@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { historicalCampaignName, historicalStartOption, historicalStartOptionFromSummary, offersHistoricalStart, orderHistoricalStarts, pickerCampaignName } from './historicalStartOptions.js';
+import { coverageLineSv, historicalCampaignName, historicalStartOption, historicalStartOptionFromSummary, offersHistoricalStart, orderHistoricalStarts, pickerCampaignName } from './historicalStartOptions.js';
 import { historicalStartSummary } from '../../server/historicalStartSummary.js';
 import { SHIPPED_START_FOLDERS } from './testing/shippedHistoricalStarts.js';
 test('visible choices follow real bookmark courts and empty catalogs fail closed', () => {
@@ -89,8 +89,30 @@ test('the card offers a scenario only for a valid summary of the current schema 
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{schema:1,sourceStamp:null,invalid:true}}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:1}}),false,'a summary from before per-polity start text');
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:2}}),false,'a summary from before polity kinds');
-  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:4}}),false);
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:3}}),false,'a summary from before map coverage');
+  assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,schema:5}}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:{...summary,polities:[]}}),false);
   assert.equal(offersHistoricalStart({id:'a',historicalSummary:null}),false);
   assert.equal(offersHistoricalStart({id:'a'}),false);
+});
+test('both option builders carry the map coverage, a copy of the summary\'s', () => {
+  const b=JSON.parse(readFileSync(new URL('../../server/seed/historical/john-1200/scenario.json',import.meta.url),'utf8'));
+  const full=historicalStartOption(b,b.assets.regionsGeojson.data,b.assets.citiesGeojson.data);
+  const summary=historicalStartSummary({meta:b.scenario,data:b.data});
+  const option=historicalStartOptionFromSummary('default',summary);
+  assert.deepEqual(option.mapCoverage,full.mapCoverage);
+  assert.deepEqual(option.mapCoverage,{mapOnly:[{id:'western-xia',nameSv:'Västra Xia'},{id:'chimu',nameSv:'Chimú'}],unownedFeatureCount:280});
+  assert.notEqual(option.mapCoverage,summary.mapCoverage); assert.notEqual(option.mapCoverage.mapOnly,summary.mapCoverage.mapOnly);
+  assert.notEqual(option.mapCoverage.mapOnly[0],summary.mapCoverage.mapOnly[0]);
+});
+test('the coverage line counts the playable polities, names the map-only ones and counts the unowned areas', () => {
+  const optionOf=folder=>{
+    const b=JSON.parse(readFileSync(new URL(`../../server/seed/historical/${folder}/scenario.json`,import.meta.url),'utf8'));
+    return historicalStartOptionFromSummary(folder,historicalStartSummary({meta:b.scenario,data:b.data}));
+  };
+  assert.equal(coverageLineSv(optionOf('john-1200')),'Spelbara riken i starten: 4. På kartan utan spelbart hov: Västra Xia, Chimú. Kartområden utan granskad ägare: 280.');
+  assert.equal(coverageLineSv(optionOf('charlemagne-800')),'Spelbara riken i starten: 10. Kartområden utan granskad ägare: 214.');
+  const one={polities:[{id:'a',name:'A'}]};
+  assert.equal(coverageLineSv({...one,mapCoverage:{mapOnly:[],unownedFeatureCount:0}}),'Spelbara riken i starten: 1.');
+  assert.equal(coverageLineSv(one),'Spelbara riken i starten: 1.','an option from before map coverage');
 });

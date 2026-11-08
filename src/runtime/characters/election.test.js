@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { createHistoricalCharacterSystem } from './scenarioSeed.js';
 import { actionHooks, advanceCharacters, createCharacterSystem, executeCharacterCommand, getCharacterAge, getCharacterPresentation, getSuccessionForecast, normalizeCharacterSystem } from './index.js';
 import { ARCHETYPES, SKILL_LABELS } from './content.js';
-import { ELECTION_REASON_SV, electOutsider, electiveCandidates, nextSuccessionLaw } from './election.js';
+import { ELECTION_REASON_SV, electOutsider, electiveCandidates, generatedAdultRecord, markGeneratedOrigin, nextSuccessionLaw } from './election.js';
 import { addGameMonths } from '../gameDates.js';
 
 const clone = value => JSON.parse(JSON.stringify(value));
@@ -222,4 +223,26 @@ test('the presentation shows kind and law', () => {
   const view = getCharacterPresentation(papal());
   assert.deepEqual(view.realm, { kind: 'state', kindLabelSv: 'stat', successionLaw: 'elective', successionLawLabelSv: 'val' });
   assert.equal(view.succession.lawLabel, 'Val efter förmåga bland vuxna i härskarens hus, därefter husets barn efter ålder och sist hovets övriga vuxna');
+});
+
+const ELECTEE_DIGESTS = { historical: '42a51e677cf99c74a2b9d210c929de42afe72b111b9fbfe71146e36754eb9d70', hadara: 'f02fccac0a3d487421c28f29d475892d3d07b7cc04f9cb8df51451ddd12fd309' };
+const sha = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
+
+test('the shared builder writes the electee exactly as before', () => {
+  const historical = papal('elective', { seed: 7 }), person = electOutsider(historical, historical.people['leo-iii']);
+  assert.equal(sha([person, historical.families[person.familyId]]), ELECTEE_DIGESTS.historical);
+  const hadara = createCharacterSystem({ seed: 7 }), other = electOutsider(hadara, hadara.people[hadara.offices.ruler.holderId]);
+  assert.equal(sha([other, hadara.families[other.familyId]]), ELECTEE_DIGESTS.hadara);
+});
+
+test('the shared builder gives every skill one value and marks only historical people', () => {
+  const state = papal();
+  const person = generatedAdultRecord(state, { id: 'probe', name: 'Prov (genererad)', familyId: 'leo-household', bornAt: '0775-01-01', sex: 'female', culture: 'Ej belagd', religionId: 'latin-church', archetype: 'diplomat', skill: 4 });
+  assert.deepEqual(person.skills, Object.fromEntries(Object.keys(SKILL_LABELS).map(key => [key, 4])));
+  assert.equal(person.archetype, 'diplomat');
+  assert.equal(person.originLabelSv, 'Genererad person');
+  assert.equal(markGeneratedOrigin(state, person, 'Not.').historicalOrigin.claims.identity.noteSv, 'Not.');
+  assert.equal(person.identityOrigin, 'generated');
+  const hadara = createCharacterSystem({ seed: 7 }), plainPerson = generatedAdultRecord(hadara, { ...person, skill: 5 });
+  assert.equal(markGeneratedOrigin(hadara, plainPerson, 'Not.').identityOrigin, undefined);
 });

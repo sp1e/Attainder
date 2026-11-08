@@ -15,6 +15,9 @@ export const HISTORICAL_BOOKMARKS = Object.freeze([
 ]);
 // Catalog order by scenario id. The first start present is the default.
 export const HISTORICAL_START_ORDER = Object.freeze(["charlemagne-800", "default", "egypt-3000bc", "world-1500"]);
+// Every package folder that ships. John installs as scenario `default` and is not a bookmark,
+// but ships as a package all the same.
+export const SHIPPED_HISTORICAL_PACKAGES = Object.freeze([...HISTORICAL_BOOKMARKS.map(entry => entry.id), "john-1200"]);
 
 // What the library records about an installed start, as opposed to what the package ships.
 // An upgrade keeps these from the stored meta and takes every other field from the package.

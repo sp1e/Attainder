@@ -64,10 +64,10 @@ test('the catalog carries a summary for each start and a later read builds none 
     assert.deepEqual(library.historicalSummary, karl.historicalSummary);
   `);
   const stored = readJson(scenarioFile(root, 'charlemagne-800', 'scenario.json')).historicalSummary;
-  assert.equal(stored.schema, 3);
+  assert.equal(stored.schema, 4);
   assert.match(stored.sourceStamp, /^\d+:[\d.]+:\d+:[\d.]+$/);
-  // ensureScenarioStore reads the default world.json on every call (syncBuiltInScenarioSeedDate),
-  // so for the default the check is that its meta, where a rebuild writes, is left alone.
+  // The default world.json is parsed once per version on disk (syncBuiltInScenarioSeedDate), and
+  // a rebuild writes the meta, so the check covers both.
   const ids = ['default', 'egypt-3000bc', 'charlemagne-800', 'world-1500'];
   const metaTimes = () => ids.map(id => statSync(scenarioFile(root, id, 'scenario.json')).mtimeMs);
   const before = metaTimes();
@@ -79,6 +79,7 @@ test('the catalog carries a summary for each start and a later read builds none 
     assert.equal(reads('charlemagne-800'), 0);
     assert.equal(reads('egypt-3000bc'), 0);
     assert.equal(reads('world-1500'), 0);
+    assert.equal(reads('default'), 0, 'the default world is not parsed again while it is unchanged');
   `);
   assert.deepEqual(metaTimes(), before, 'no summary is built or written again');
 }));
@@ -117,7 +118,7 @@ test('a meta from before summaries gains one on the first catalog read and keeps
     assert.equal(egypt.historicalStart, null, 'the copy a restored campaign uses is not offered');
   `);
   const { historicalSummary, ...after } = readJson(metaPath);
-  assert.equal(historicalSummary.schema, 3);
+  assert.equal(historicalSummary.schema, 4);
   assert.deepEqual(after, before, 'updatedAt and the other fields are as they were');
   const { historicalSummary: johnSummary, ...defaultAfter } = readJson(defaultPath);
   assert.equal(johnSummary.contentId, 'john-1200');
@@ -139,12 +140,12 @@ test('a summary stored under schema 1 is built again from world.json on the next
   runStore(root, `
     store.ensureScenarioStore(); worldReads.clear();
     const karl = entry('charlemagne-800');
-    assert.equal(karl.historicalSummary.schema, 3);
+    assert.equal(karl.historicalSummary.schema, 4);
     assert.deepEqual(karl.historicalSummary.polities.map(p => p.contextSv), ${JSON.stringify(courtTexts)});
     assert.equal(reads('charlemagne-800'), 1, 'the old summary is rebuilt from world.json');
   `);
   const stored = readJson(metaPath).historicalSummary;
-  assert.equal(stored.schema, 3);
+  assert.equal(stored.schema, 4);
   assert.ok(stored.polities.every(p => Object.hasOwn(p, 'contextSv')), 'the rebuilt summary is cached');
 }));
 
@@ -159,13 +160,33 @@ test('a summary stored under schema 2 is built again with each polity kind', () 
   runStore(root, `
     store.ensureScenarioStore(); worldReads.clear();
     const karl = entry('charlemagne-800');
-    assert.equal(karl.historicalSummary.schema, 3);
+    assert.equal(karl.historicalSummary.schema, 4);
     assert.deepEqual(karl.historicalSummary.polities.map(p => p.kind), ${JSON.stringify(AD800_POLITIES.map(() => 'state'))});
     assert.equal(reads('charlemagne-800'), 1, 'the old summary is rebuilt from world.json');
   `);
   const stored = readJson(metaPath).historicalSummary;
-  assert.equal(stored.schema, 3);
+  assert.equal(stored.schema, 4);
   assert.ok(stored.polities.every(p => p.kind === 'state'), 'the rebuilt summary is cached');
+}));
+
+test('a summary stored under schema 3 is built again with map coverage', () => withLibrary(root => {
+  runStore(root, 'entry("charlemagne-800");');
+  const metaPath = scenarioFile(root, 'charlemagne-800', 'scenario.json');
+  // The summary schema 3 wrote: the same stamp, no map coverage.
+  editJson(metaPath, meta => {
+    meta.historicalSummary.schema = 3;
+    delete meta.historicalSummary.mapCoverage;
+  });
+  runStore(root, `
+    store.ensureScenarioStore(); worldReads.clear();
+    const karl = entry('charlemagne-800');
+    assert.equal(karl.historicalSummary.schema, 4);
+    assert.equal(karl.historicalSummary.mapCoverage.unownedFeatureCount, 214);
+    assert.equal(reads('charlemagne-800'), 1, 'the old summary is rebuilt from world.json');
+  `);
+  const stored = readJson(metaPath).historicalSummary;
+  assert.equal(stored.schema, 4);
+  assert.ok(Object.hasOwn(stored, 'mapCoverage'), 'the rebuilt summary is cached');
 }));
 
 test('a stored start whose papal ruler is gone from the court is left off and the others stay', () => withLibrary(root => {

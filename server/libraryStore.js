@@ -601,9 +601,17 @@ const processIsRunning = (pid) => {
 
 // Temporary files a crash left beside the target. Another running process may be writing its
 // own, so only this process's files and those of processes that have ended are removed.
+// The target is already in place when this runs, so a folder that cannot be listed only
+// skips the cleanup; the next write tries again.
 const removeLeftoverTemporaryFiles = (targetPath) => {
   const directory = path.dirname(targetPath), pattern = /^\.([0-9]+)\.[0-9]+\.tmp$/, base = path.basename(targetPath);
-  for (const name of fs.readdirSync(directory)) {
+  let names;
+  try { names = fs.readdirSync(directory); }
+  catch (error) {
+    console.warn(`[library] could not list ${directory} to remove leftover temporary files: ${error.message}`);
+    return;
+  }
+  for (const name of names) {
     const pid = name.startsWith(base) ? Number(pattern.exec(name.slice(base.length))?.[1]) : NaN;
     if (!Number.isInteger(pid) || (pid !== process.pid && processIsRunning(pid))) continue;
     try { fs.unlinkSync(path.join(directory, name)); }
@@ -1096,8 +1104,21 @@ const buildFreshWorldSeedFromScenario = ({ baseWorld, scenarioWorld }) => {
   return nextWorld;
 };
 
+// The default world is John's start, over a megabyte, and ensure* runs on every read. Whether it
+// is historical is parsed once per version of the file on disk, keyed by modification time and size.
+let defaultWorldHistorical = { stamp: null, historical: false };
+const defaultWorldIsHistorical = () => {
+  const worldPath = getScenarioJsonPath(DEFAULT_SCENARIO_ID, "world");
+  if (!fs.existsSync(worldPath)) return false;
+  const stats = fs.statSync(worldPath), stamp = `${stats.mtimeMs}:${stats.size}`;
+  if (defaultWorldHistorical.stamp !== stamp) {
+    defaultWorldHistorical = { stamp, historical: Boolean(readJsonFile(worldPath, {}).historicalScenario) };
+  }
+  return defaultWorldHistorical.historical;
+};
+
 const syncBuiltInScenarioSeedDate = () => {
-  if (readJsonFile(getScenarioJsonPath(DEFAULT_SCENARIO_ID,"world"),{}).historicalScenario) return;
+  if (defaultWorldIsHistorical()) return;
   const targetPath = getScenarioJsonPath(DEFAULT_SCENARIO_ID, "game");
   const baseGame = normalizeRecordValue(readDefaultScenarioJsonAsset("game"));
   const currentGame = normalizeRecordValue(readJsonFile(targetPath, {}));

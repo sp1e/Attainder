@@ -1,6 +1,6 @@
 # Development checkpoint: Phase 3 of the AI game master
 
-Updated on 7 November 2026.
+Updated on 8 November 2026.
 
 ## Historical foundation checkpoint
 
@@ -28,7 +28,7 @@ The owner decided on 7 November 2026 that every culture of the world in the peri
 
 Evidence at `018c823c`: the full serial suite ran 4,913 tests, with 4,910 passed, 0 failed, 1 skipped and 2 TODO. The build, `build-historical-scenarios.mjs --check` and `check-historical-events.mjs --check` exited 0. Lint reported 18 errors and 71 warnings, all in 40 files this branch does not touch. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md).
 
-Known limit, updated in Phase 5: the Kyrkostaten court has four men aged 42 to 50 and no women, and nobody is born. Under merit succession the realm ended between 813 and 838 on eight seeds. Since Charlemagne 1.3.0 the court elects a generated outsider when it dies out, and the realm lives to 900 on the same seeds (see Phase 5 below). Charlemagne's court keeps primogeniture and ended between 856 and 868 for the same cause. Births at court remain open in backlog row 7.
+Known limit, updated with court renewal: the Kyrkostaten court opens with four men aged 42 to 50 and no women. Under merit succession the realm ended between 813 and 838 on eight seeds. Since Charlemagne 1.3.0 the court elects a generated outsider when it dies out (see Phase 5 below). Charlemagne's court keeps primogeniture and ended between 856 and 868 for the same cause. [Court renewal](#court-renewal) now brings generated newcomers to a thin court and generated spouses to unmarried generated adults, and both courts live to 900 with children born at court.
 
 ## Every culture playable: Phase 2
 
@@ -79,7 +79,36 @@ The design is `docs/superpowers/specs/2026-11-07-world-cultures-phase-5-design.m
 - `server/fixtures/` holds patches for Charlemagne 1.1.0 and 1.2.0, John 1.0.0 and 1.1.0 and world-1500 1.0.0, so campaigns saved under every earlier release restore.
 - On the eight seeds of `src/runtime/characters/courtBalance.test.js`, Kyrkostaten plays 100 years from the built package. The last of the four opening courtiers dies and the first outsider is elected between 817 and 836. On 25 December 900 every seed has an elected ruler, three to five elections behind it and a living realm.
 
-The century test landed in `9aba7bbc`. The final review's fixes followed in `d619c2cd` (engine, panel and law label) and `ec131a83` (the corrected `elective-rule` text, rebuilt into the three unreleased packages). Evidence at `ec131a83`: the full serial suite ran 5,127 tests, with 5,124 passed, 0 failed, 1 skipped and 2 TODO, in 470 seconds. The build and the four `--check` scripts exited 0, and eslint reported no errors in the changed files. The browser run at `9aba7bbc` predates these fixes. The rebuilt packages differ from that run in the `mechanics.noteSv` of the four dossier courts and the recorded `dossier-courts.mjs` hash. The new law label and the forecast's election line have unit tests and no browser rerun. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md). Births at court, name pools and several spouses per person remain open.
+The century test landed in `9aba7bbc`. The final review's fixes followed in `d619c2cd` (engine, panel and law label) and `ec131a83` (the corrected `elective-rule` text, rebuilt into the three unreleased packages). Evidence at `ec131a83`: the full serial suite ran 5,127 tests, with 5,124 passed, 0 failed, 1 skipped and 2 TODO, in 470 seconds. The build and the four `--check` scripts exited 0, and eslint reported no errors in the changed files. The browser run at `9aba7bbc` predates these fixes. The rebuilt packages differ from that run in the `mechanics.noteSv` of the four dossier courts and the recorded `dossier-courts.mjs` hash. The new law label and the forecast's election line have unit tests and no browser rerun. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md). Name pools and several spouses per person remain open.
+
+## Court renewal
+
+The design is `docs/superpowers/specs/2026-11-08-court-renewal-design.md` and the plan is `docs/superpowers/plans/2026-11-08-court-renewal.md`. Court renewal is built on `feature/court-renewal`:
+
+- `courtRenewalStep` in `server/characters/renewal.js` runs once a year on historical states, in `annualStep` after `courtAnnualStep`. Hadara states never run it.
+- Court adults are living persons aged 18 or more whose family is not in exile. With fewer than 6 court adults the step brings one newcomer a year, `Hovman <m> (genererad)` or `Hovdam <m> (genererad)`, aged 25, as head of a new house `Hovhus <k> (genererat)`. The chronicle logs the event type `arrival` with the title `Ny person vid hovet`.
+- While the court has fewer than 12 court adults, each living generated person aged 18 to 35 with no living spouse and no partner at court gets one draw, unless the person is the active representative or holds the ruler or priest office. Below 0.25 a generated spouse `Gemål <g> (genererad)` joins the person's family. Births then follow from the existing birth step.
+- The step draws only from a new stream, `state.lineageRngState`, which only historical states carry. The main stream keeps its order of draws, and the Hadara digests and pinned streams are unchanged. A historical run parts from a run of the code before court renewal after the first newcomer or generated marriage, because the new people take part in the main-stream steps that follow. The spec accepts this.
+- Historical courts have a birth cap. `birthsClosed` in `renewal.js` is true when a historical state holds `COURT_BIRTH_CAP` (48) or more living people of any family and age. The birth loop of `annualStep` checks it before each mother and stops there, so a closed court spends no draws on further mothers. Hadara states never close and keep every draw.
+
+On the eight seeds of `src/runtime/characters/courtBalance.test.js`, both courts play 100 years in realm mode from the built package. Karls rike is alive on 25 December 900 on every seed. Its first newcomer arrives between 838 and 848, and in 900 it has 10 to 17 court adults; 16 to 28 children were born during the century. Kyrkostaten gets its first newcomer in 801 on every seed, and in 900 it has 12 to 29 court adults; 21 to 57 children were born during the century. The Phase 5 century figures above were measured before court renewal. The century tests report the same figures with the birth cap.
+
+Without the cap, Kyrkostaten grew without bound after its first century. On seed 777 it held 899 living people in 1200, in an 18.3 MB save, at about 275 ms per year; on seed 314159 it held 592 in 1100 and 2,691 in 1200, in a 49.8 MB save. With the cap, seed 777 holds 48 living people in 1100 and 43 in 1200, in a 5.0 MB save at about 45 ms per year, and seed 314159 holds 40 in 1100 and 17 in 1200, in a 4.3 MB save. Over 300 years on the eight seeds, the most living people at any century mark fell from 592 to 48 in Kyrkostaten and from 125 to 47 in Karls rike. Dead people stay in the save, so its size grows by 0.3 to 0.7 MB per 50 years. The test `Kyrkostaten stays bounded over three centuries` in `courtBalance.test.js` plays seeds 777 and 314159 to 1100 and allows at most 60 living people.
+
+Evidence at `95830a88` with the century tests of the commit that adds this section: the full serial suite ran 5,156 tests, with 5,153 passed, 0 failed, 1 skipped and 2 TODO, in 447 seconds. The build and the four `--check` scripts exited 0, and eslint reported no errors in the changed files. After the birth cap (`d862da77`), the full serial suite ran 5,160 tests, with 5,157 passed, 0 failed, 1 skipped and 2 TODO, in 451 seconds, and the four `--check` scripts exited 0. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md).
+
+## Coverage per start
+
+The design is `docs/superpowers/specs/2026-11-08-world-cultures-phase-6-design.md` and the plan is `docs/superpowers/plans/2026-11-08-world-cultures-phase-6.md`. Phase 6 is built on `feature/world-cultures-phase-6`:
+
+- `server/historicalCoverage.js` computes coverage per package: playable polities with region, seat and source count; map-only polities with the dossier's status and blocked reason; review features by boundary decision and classification; package sources; continent areas. `server/historicalMapCoverage.js` holds `mapCoverage`, which the summary and the card use; it has no imports, so the summary module can use it without a cycle.
+- `server/historicalInventory.js` validates the public inventory derivative `server/seed/historical/coverage/inventory.json` (schema `attainder-public-inventory-v1`) and gives each row a shipped status: `playable`, `on-map`, or the row's own research status. Codex owns the file and has not published it; the request is in `docs/development/CODEX-HANDOVER.md`.
+- `scripts/check-start-coverage.mjs` writes `docs/coverage/start-coverage.md`, and with `--check` compares it. `server/historicalCoverageReport.test.js` runs the check, so `npm test` and CI fail when the report drifts from the packages, the dossiers or the inventory. Whoever changes an input regenerates the report in the same commit.
+- `HISTORICAL_SUMMARY_SCHEMA` is 4: each summary carries `mapCoverage`. The `Källor och osäkerhet` block of the start card shows `Spelbara riken i starten: 4. På kartan utan spelbart hov: Västra Xia, Chimú. Kartområden utan granskad ägare: 280.` for John and `Spelbara riken i starten: 10. Kartområden utan granskad ägare: 214.` for Charlemagne.
+
+Today's counts: playable 1, 10, 4 and 2 (Egypt, AD 800, AD 1200, AD 1500), map-only only Västra Xia and Chimú at AD 1200, and 137, 214, 280 and 289 review features withheld from ownership. The report gives counts and no percentage, because the coverage unit and the historical denominator are not defined yet.
+
+Evidence at `a9a599b8`: the full serial suite ran 5,186 tests, with 5,183 passed, 0 failed, 1 skipped and 2 TODO. The four `--check` scripts and `node scripts/check-start-coverage.mjs --check` exited 0. At `dc08c497`, `npm run build` passed and the browser run on both adapters showed the expected lines with 0 console errors; it is recorded in the [play script](../play-scripts/historical-foundation.md).
 
 ## Branch state
 

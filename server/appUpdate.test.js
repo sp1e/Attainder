@@ -115,3 +115,19 @@ test("the manifest tells the page which of the two updates it can offer", async 
   const off = await (await fetch(`${base}/api/app-update?track=stable`)).json();
   assert.equal(off.autoUpdate ?? false, false);
 });
+
+test("autoUpdate holds when the manifest fetch fails", async () => {
+  // CI runners sometimes cannot reach GitHub in time. The banner must still learn
+  // that this app installs in place, so the failure paths answer autoUpdate too.
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = (url, init) =>
+    String(url).startsWith(base) ? realFetch(url, init) : Promise.reject(new Error("offline"));
+  globalThis.__ohAutoUpdate = fake().handle;
+  try {
+    const reply = await (await realFetch(`${base}/api/app-update?track=beta`)).json();
+    assert.equal(reply.autoUpdate, true);
+  } finally {
+    globalThis.fetch = realFetch;
+    delete globalThis.__ohAutoUpdate;
+  }
+});
