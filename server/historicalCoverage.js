@@ -1,6 +1,7 @@
 // What each shipped historical package covers, read from its built scenario data: the playable
 // polities, the polities drawn on the map without a court, the reviewed map features and the
 // sources. Pure functions over parsed data; callers read the files, so tests can pass fixtures.
+import { mapCoverage } from "./historicalMapCoverage.js";
 import { regionForPolity } from "./historicalStartSummary.js";
 
 // The court dossier beside each package that has one, under server/seed/historical/courts/.
@@ -14,15 +15,9 @@ export const DOSSIER_FILES = Object.freeze({
 const list = (value) => (Array.isArray(value) ? value : []);
 const nameOf = (polity) => (typeof polity?.nameSv === "string" ? polity.nameSv : polity?.id);
 
-// Map-only polities in package order, and the review features whose control is withheld,
-// which the map draws without an owner.
-export const mapCoverage = (h) => {
-  const playable = new Set(list(h?.playablePolityIds));
-  return {
-    mapOnly: list(h?.polities).filter(p => !playable.has(p?.id)).map(p => ({ id: p.id, nameSv: nameOf(p) })),
-    unownedFeatureCount: list(h?.regionReview).filter(e => e?.boundaryDecision === "withheld-control").length,
-  };
-};
+// The start summary needs mapCoverage too, and this file imports from it, so mapCoverage lives in
+// its own module; it stays exported here for the report and the check script.
+export { mapCoverage };
 
 // { [value]: count } with the keys sorted, so the report reads the same on every run.
 const countBy = (entries, key) => {

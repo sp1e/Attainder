@@ -1,6 +1,10 @@
 import { validatePlayableScenario, requirePrepared } from '../../server/historicalPreparation.js';
 import { HISTORICAL_START_ORDER } from '../../server/historicalStarts.js';
 import { HISTORICAL_SUMMARY_SCHEMA, historicalStartFromSummary } from '../../server/historicalStartSummary.js';
+import { mapCoverage } from '../../server/historicalMapCoverage.js';
+
+// A fresh copy, so a card that edits its option never changes the stored summary.
+const copyMapCoverage = (coverage) => ({ mapOnly: (coverage?.mapOnly ?? []).map(p => ({ id: p.id, nameSv: p.nameSv })), unownedFeatureCount: coverage?.unownedFeatureCount ?? 0 });
 
 // The same content used for creation supplies every visible choice. The start card reads
 // historicalStartOptionFromSummary instead; this one validates the whole package first.
@@ -10,7 +14,7 @@ export function historicalStartOption(details, regions, cities) {
   const h = data.world.historicalScenario;
   return {
     scenarioId: meta.id, name: meta.name, date: data.game.gameDate, label: h.eraLabelSv,
-    context: h.contextSv, coverage: h.coverageNoteSv, calendarNote: h.calendarNoteSv,
+    context: h.contextSv, coverage: h.coverageNoteSv, calendarNote: h.calendarNoteSv, mapCoverage: mapCoverage(h),
     polities: h.playablePolityIds.map(id => h.polities.find(p => p.id === id)).map(({ id, nameSv, kind }) => ({ id, name: nameSv, kind: kind ?? 'state',
       ruler: h.courtSeeds[id].people.find(p => p.id === h.courtSeeds[id].rulerId),
       context: h.courtSeeds[id].contextSv ?? null,
@@ -32,10 +36,20 @@ export function historicalStartOptionFromSummary(scenarioId, summary) {
   return {
     scenarioId, name: summary.name ?? scenarioId, date: summary.date, label: summary.eraLabelSv, eraId: summary.eraId,
     context: summary.contextSv, coverage: summary.coverageNoteSv, calendarNote: summary.calendarNoteSv,
+    mapCoverage: copyMapCoverage(summary.mapCoverage),
     polities: summary.polities.map(p => ({ id: p.id, name: p.nameSv, kind: p.kind ?? 'state', regionId: p.regionId, ruler: { ...p.ruler },
       context: p.contextSv ?? null,
       families: p.families.map(f => ({ id: f.id, name: f.name })) })),
   };
+}
+
+// The card's line on what the start covers. It counts what the package holds; an option without
+// mapCoverage, from a caller older than schema 4, reads as no map-only polity and no unowned area.
+export function coverageLineSv(option) {
+  const { mapOnly = [], unownedFeatureCount = 0 } = option?.mapCoverage ?? {};
+  return `Spelbara riken i starten: ${option?.polities?.length ?? 0}.`
+    + (mapOnly.length ? ` På kartan utan spelbart hov: ${mapOnly.map(p => p.nameSv).join(', ')}.` : '')
+    + (unownedFeatureCount > 0 ? ` Kartområden utan granskad ägare: ${unownedFeatureCount}.` : '');
 }
 
 // A start names its primary polity; a campaign of another listed polity carries that polity's name instead.
