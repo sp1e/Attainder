@@ -32,6 +32,7 @@ import { nicknameOf, nicknameProgress } from './nicknames.js';
 import { ELECTION_REASON_SV, electOutsider, electiveCandidates, nextSuccessionLaw } from './election.js';
 import { primogenitureCandidates } from './succession.js';
 import { ensureRealmKind, presentRealm, validateRealmKind } from './realmKind.js';
+import { bondStep } from './bonds.js';
 import { inheritGrudges } from './grudges.js';
 import { birthsClosed, courtRenewalStep, ensureLineageState, validateLineageState } from './renewal.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
@@ -846,6 +847,7 @@ function annualStep(state, events) {
   updateStatus(state); const yearEvent = logEvent(state, events, 'year', 'Årets förvaltning är avslutad', '', []);
   syncPlotSecrets(state);
   prisonerStep(state, events, actionHooks(state));
+  bondStep(state, actionHooks(state));
   npcPlotStep(state, events, actionHooks(state));
   annualRevenue = rounded(annualRevenue + courtAnnualStep(state, events, actionHooks(state)));
   courtRenewalStep(state, events, actionHooks(state));
