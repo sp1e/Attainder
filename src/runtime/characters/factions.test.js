@@ -500,7 +500,8 @@ test('the claimant is the oldest free sibling, then the first free adult in line
   const claimant = (useHooks = hooks) => claimantFor(state, faction, useHooks)?.id ?? null;
   assert.equal(claimant(), SERA, 'Arel has no sibling, so the heir claims');
   jail(state, SERA, 1);
-  assert.equal(claimant(), ISET, 'the next free adult in line');
+  // Iset married into Arel's house, so she stands with the outsiders by age and Namar, older, comes first.
+  assert.equal(claimant(), NAMAR, 'the next free adult in line');
   // Arel gets two siblings through a shared legal parent who has no child yet.
   for (const id of [AREL, YARA, BAREK]) state.people[id].legalParentIds = [CHILDLESS];
   assert.equal(claimant(), BAREK, 'the older sibling');
@@ -509,7 +510,7 @@ test('the claimant is the oldest free sibling, then the first free adult in line
   jail(state, YARA, 2);
   assert.equal(claimant(), BAREK, 'a sibling in prison gives way');
   state.people[BAREK].bornAt = addGameMonths(state.date, -120);
-  assert.equal(claimant(), ISET, 'a minor sibling gives way');
+  assert.equal(claimant(), NAMAR, 'a minor sibling gives way');
   assert.equal(claimant({ ...hooks, rulerCandidates: () => [] }), NAMAR, 'nobody in line leaves the leader');
   state.people[NAMAR].diedAt = state.date;
   assert.equal(claimant({ ...hooks, rulerCandidates: () => [] }), null, 'nobody at all');
@@ -604,13 +605,14 @@ test('a dead or imprisoned claimant is replaced through the chain', () => {
   const dead = ready();
   const first = withFaction(dead, { memberIds: FOUR });
   actionHooks(dead).kill([SERA], [], 'Ett prov');
-  assert.equal(first.claimantId, ISET);
+  // Sera's children are minors and Iset married in, so the oldest outside adult is next in line.
+  assert.equal(first.claimantId, NAMAR);
 
   const held = ready();
   const second = withFaction(held, { memberIds: FOUR });
   jail(held, SERA);
   refreshFactions(held, [], actionHooks(held));
-  assert.equal(second.claimantId, ISET);
+  assert.equal(second.claimantId, NAMAR);
 });
 
 // banish ends in refreshStories, so the faction answers on the date of the command.

@@ -29,6 +29,7 @@ import { seatReaction } from './familyDemands.js';
 import { goalClosedReason, openGoals, recordDeed, setReignGoal } from './reign.js';
 import { nicknameOf } from './nicknames.js';
 import { ELECTION_REASON_SV, electOutsider, electiveCandidates, nextSuccessionLaw } from './election.js';
+import { primogenitureCandidates } from './succession.js';
 import { ensureRealmKind, presentRealm, validateRealmKind } from './realmKind.js';
 import { birthsClosed, courtRenewalStep, ensureLineageState, validateLineageState } from './renewal.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
@@ -108,7 +109,7 @@ function requirePerson(state, id, { grown = false } = {}) { const person = state
 function requireRule(state) { if (!canRule(state)) throw new Error('Beslutet kräver härskarens eller regentens mandat.'); }
 function requireOwn(state, person) { if (person.familyId !== controlledFamily(state)?.id) throw new Error('Familjebandet ger inte kontroll över denna persons beslut.'); }
 const meritScore = (state, p, excludedIds) => p.skills.diplomacy + p.skills.stewardship + familySupport(state, state.families[p.familyId], excludedIds) / 10;
-function rulerCandidates(state, oldRuler = ruler(state), excludedIds = []) { const people = living(state).filter((p) => p.id !== oldRuler?.id && !excludedIds.includes(p.id)); if (state.realm.successionLaw === 'merit') return people.filter((p) => adult(state, p)).sort((a, b) => meritScore(state, b, excludedIds) - meritScore(state, a, excludedIds) || a.id.localeCompare(b.id)); if (state.realm.successionLaw === 'elective') return electiveCandidates(state, oldRuler, people, (p) => meritScore(state, p, excludedIds)); const descendants = people.filter((p) => p.legalParentIds.includes(oldRuler?.id)); const kin = people.filter((p) => p.familyId === oldRuler?.familyId && !descendants.includes(p)); const outsiders = people.filter((p) => p.familyId !== oldRuler?.familyId); return [...byAge(state, descendants), ...byAge(state, kin), ...byAge(state, outsiders.filter((p) => adult(state, p)))]; }
+function rulerCandidates(state, oldRuler = ruler(state), excludedIds = []) { const people = living(state).filter((p) => p.id !== oldRuler?.id && !excludedIds.includes(p.id)); if (state.realm.successionLaw === 'merit') return people.filter((p) => adult(state, p)).sort((a, b) => meritScore(state, b, excludedIds) - meritScore(state, a, excludedIds) || a.id.localeCompare(b.id)); if (state.realm.successionLaw === 'elective') return electiveCandidates(state, oldRuler, people, (p) => meritScore(state, p, excludedIds)); return primogenitureCandidates(state, oldRuler, people, (p) => adult(state, p)); }
 // Both the actual death transition and its read-only forecast use this branch.
 // Exclusions omit a departing person's secondary offices and personal support
 // from candidate scoring without changing their saved record.
