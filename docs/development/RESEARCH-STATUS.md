@@ -262,3 +262,36 @@ The catalog validator, generated-report check and all 45 focused tests pass for 
 ## Public inventory publication confirmed
 
 The Phase 6 public derivative is published in [PR #49](https://github.com/sp1e/Attainder/pull/49), merged at verified main `9716c84e3436370c1b98bdf6742823348962150f`. All four publication blobs match their staged readback. CI run 42479233522 passed 5,187 of 5,189 tests, with zero failures, zero skips and two TODOs; the build took 34.20 seconds. The ten inventory rows linked to reviewed polities and 139 pending withheld-control feature links grant no further historical, territorial or playable approval.
+
+
+## BC3300 preparation checkpoint, 8 November 2026
+
+BC2700 completed publication in [PR #51](https://github.com/sp1e/Attainder/pull/51), merged at verified main `9d1692267d03c99fcc6cc8fc1b61767d833f1ed0`. Required [CI run 42479965492](https://github.com/sp1e/Attainder/actions/runs/42479965492) passed: 5,189 total tests, 5,187 passed, zero failures and two TODOs; the build took 38.22 seconds. All five merged research blobs match the approved publication. The catalogue contains 429 events and 393 sources.
+
+BC3300 adds two records and two sources. The fresh independent source review confirmed both historical payloads and both substantive source records without correction. It separately left two earlier author retrieval assertions unverified. Reconciliation preserves that distinction and every historical and source field; only the two event review states change. Four whole-record hashes, 50 typed guards and 50 field findings match. The two publisher PDF content hashes and all eight declared page-extraction hashes were reproduced. The unsaved Crossref raw-response hash remains a reviewer transport assertion, while its saved metadata receipt is verified.
+
+The prepared catalogue contains 431 events and 395 sources, preserving all prior records and their order. Only 3300–3201 BCE changes to partial; 3200–3101 BCE stays unresearched in this branch. Koorküla retains its approximate 3300–3200 cal BCE occupation phase, and Zürich retains its 3234–3226 BCE construction phase. Neither establishes activity in every year or researched coverage through a later endpoint. The author made 47 queries across all nine working regions and documented 13 withheld or deferred tracks. Both retained cases concern Europe, leaving a substantial imbalance.
+
+The catalogue validator, generated-report check and all 45 existing focused tests passed with zero failures. Coverage now comprises 1,331 partial years and 3,499 unresearched years. Independent final DATA review and current-head CI remain publication gates. Claude retains implementation, built-package, visual and gameplay responsibilities; this research grants no gameplay approval.
+
+## BC2700 publication and next research batches
+
+BC2700 is published in [PR #51](https://github.com/sp1e/Attainder/pull/51), merged at verified main `9d1692267d03c99fcc6cc8fc1b61767d833f1ed0`. All five publication blobs match their current-head readback. CI run 42479965492 passed 5,187 of 5,189 tests, with zero failures, zero skips and two TODOs; the build took 38.22 seconds. The catalog contains 429 events and 393 sources, with 1,231 partial years and 3,599 unresearched years.
+
+BC3200 remains a pending seven-event, seven-source batch. Initial source review returned four confirmed and three corrected historical records; all seven source records were corrected, with earlier author retrieval assertions separately unsupported. Thirteen guarded replacements address four historical fields and nine source fields. A new isolated source check is in progress. Full cross-century ranges remain intact and do not establish activity in every year.
+
+Research continues on BC3300, BC2500 and AD700-799 in separate local packets. Search records distinguish unsupported candidates, chronology conflicts and regional gaps. These packets have no publication or gameplay approval. Claude retains ownership of code, tests, built packages and visible gameplay verification.
+
+## BC3200 source reconciliation and integration
+
+The initial seven-event check returned four confirmed and three corrected historical records; its seven source records were corrected, with author-reading provenance separately unverified. The fresh follow-up returned five confirmed and two corrected events. Its source outcomes remained zero confirmed, six corrected and one unsupported; substantive metadata was five confirmed, one corrected and one unsupported. All original verdicts remain unchanged.
+
+Thirteen initial and three follow-up field replacements are applied. Upanca retains earlier independently read table and rights-notice evidence; the follow-up's incomplete access is documented, and its access-only deletions are not applied. Seven review-metadata promotions introduce no additional historical changes. Final DATA review must check this composite evidence and the exact integration.
+
+The candidate preserves all 429 prior events and 393 prior sources, giving 436 events and 400 sources. Only 3200-3101 BCE becomes partial. Current-head CI remains pending. BC3300 is being integrated separately, and source checks for BC2500 and AD700-799 continue. The AD700 first pass exposed six older catalog selection notes during baseline inspection; it is retained as a preliminary check and requires a fresh isolated review before publication. No submitted draft reasoning was in that accidental output.
+
+## BC3300 published and BC3200 combined integration
+
+BC3300 is published in [PR #52](https://github.com/sp1e/Attainder/pull/52), merged at verified main `66a78682e3aca69bf3cddffb040247a417c6cada`. All five merged research blobs match the approved publication. CI run 42482743716 passed 5,192 of 5,194 tests, with zero failures, zero skips and two TODOs; the build took 40.70 seconds.
+
+BC3200 now builds on those 431 events and 395 sources. Its seven reviewed additions are unchanged, giving 438 events and 402 sources, 1,431 partial years and 3,399 unresearched years. Both earlier status appends and all prior data records are preserved. The combined integration requires a final readback and fresh current-head CI. Claude's succession changes from PR #50 are included; Codex adds no gameplay-verification claim.
