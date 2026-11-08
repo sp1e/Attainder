@@ -4524,6 +4524,66 @@
       "scopedClaim": "A grave assigned about3000 BC held an adult woman in a flexed position with a quartz palette, copper pin and handled copper awl, among other goods; the date depends on comparative grave goods.",
       "retrievedOn": "2026-11-07",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2900-iversen-vasagard",
+      "title": "Sun stones and the darkened sun: Neolithic miniature art from the island of Bornholm, Denmark (Iversen et al., 2025)",
+      "institution": "Antiquity; University of Copenhagen; National Museum of Denmark; Bornholms Museum",
+      "url": "https://www.cambridge.org/core/journals/antiquity/article/sun-stones-and-the-darkened-sun-neolithic-miniature-art-from-the-island-of-bornholm-denmark/A31DDB1F52DC31C716356A0A02CE3FF9",
+      "locator": "Context, date and material, paragraphs 1–5; Conclusion, first paragraph. Web rendition lines 565–575 and 697. Antiquity 99(404), pp.337–353, DOI 10.15184/aqy.2024.217.",
+      "asWorded": "c. 2900 BC; c. 2900–2800 BC",
+      "originalChronology": "BC archaeological chronology: short deposition horizon c.2900 BC; ceramic phase of the infill c.2900–2800 BC.",
+      "scopedClaim": "People deposited engraved plaques at Vasagård West in a short episode or a few successive occasions around 2900 BC. Most derive from ditch infill. Many carry rayed motifs described as sun images. The proposed response to volcanic cooling remains an interpretation.",
+      "retrievedOn": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2900-icomos-dholavira",
+      "title": "ICOMOS evaluation: Dholavira: a Harappan City, No.1645 (2021)",
+      "institution": "ICOMOS; UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/archive/2021/whc21-44com-inf8B1.Add-en.pdf",
+      "locator": "Printed p.13, PDF p.25, Location and Brief description; printed p.14, PDF p.26 of 134, paragraph beginning During Stage II and preceding chronological paragraphs. Document WHC/21/44.COM/INF.8B1.Add.",
+      "asWorded": "Stage II (c. 2900-2800 BCE)",
+      "originalChronology": "BCE archaeological chronology: Stage II, c.2900–2800 BCE.",
+      "scopedClaim": "During Stage II, c.2900–2800 BCE, builders reinforced Dholavira's fortifications with a massive brick masonry wall on the inner side, and a residential area appeared north of the settlement.",
+      "retrievedOn": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2900-met-bull-mace",
+      "title": "Mace head with two bull's heads, object 49.23.3",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/324057",
+      "locator": "Official collection API object 324057: accessionNumber 49.23.3; title, objectDate, objectBeginDate, objectEndDate, culture, period, medium and region fields. The API objectURL links the human-readable collection record.",
+      "asWorded": "ca. 2900–2700 BCE",
+      "originalChronology": "BCE museum object chronology: Early Dynastic I, ca.2900–2700 BCE.",
+      "scopedClaim": "The museum attributes the marble mace head with two bull's heads, accession 49.23.3, to Sumerian Mesopotamia and dates it ca.2900–2700 BCE.",
+      "retrievedOn": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2900-qiu-narensu",
+      "title": "Dairy-millet synergy underpinned subsistence adaptation to Inner Asian mountains from 2900 BCE (Qiu et al., 2026)",
+      "institution": "Communications Earth & Environment 7, 501; Peking University; Lanzhou University; Jilin University; Institute of Cultural Relics and Archaeology in Xinjiang",
+      "url": "https://www.nature.com/articles/s43247-026-03487-y.pdf",
+      "locator": "PDF/printed p.2, Archaeological findings, opening paragraph; p.5, discussion paragraphs preceding Agropastoral expansion towards the arid lowlands in Xinjiang during the second millennium BCE; Fig.4b–c and caption. DOI 10.1038/s43247-026-03487-y.",
+      "asWorded": "around 2900 BCE",
+      "originalChronology": "BCE chronology in the article: increased C4 food consumption around 2900 BCE; earlier ruminant dairying since 3050 BCE (Bayesian-restricted median). Figure 4 uses calibrated median ages.",
+      "scopedClaim": "The authors identify increased C4 food consumption around 2900 BCE among late Afanasievo individuals at Narensu, interpret it as millet consumption, and describe its integration with an existing ruminant dairy economy. They do not directly date the first cultivation of millet at this site.",
+      "retrievedOn": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2880-dong-liangwangcheng",
+      "title": "Mortuary ritual and social identities during the late Dawenkou period in China (2019)",
+      "institution": "Antiquity; Cambridge University Press",
+      "url": "https://www.cambridge.org/core/journals/antiquity/article/mortuary-ritual-and-social-identities-during-the-late-dawenkou-period-in-china/B18013691670820F4D0004FFC7FF649B",
+      "locator": "The Liangwangcheng site: chronological paragraph associated with Figure 4 (web lines 554–555); ercengtai paragraph (568); red pigment analysis and grave M118 paragraph (587–588).",
+      "asWorded": "phase A, 2880–2700 cal BC",
+      "originalChronology": "Calibrated BC model: phase A, 2880–2700 cal BC; burial M118 belongs to phase A.",
+      "scopedClaim": "Grave M118 at Liangwangcheng contained a female individual, earthen ledges and relatively abundant grave goods. Raman analysis identified cinnabar in red pigment on her bone. The authors assign M118 to phase A, dated 2880–2700 cal BC.",
+      "retrievedOn": "2026-11-07",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
     }
   ],
   "events": [
@@ -14326,6 +14386,126 @@
         "status": "approved",
         "reviewedBy": "Codex independent historical source reviewer (F01 follow-up)",
         "reviewedOn": "2026-11-07"
+      }
+    },
+    {
+      "id": "ev-bc2900-solstenar-laggs-ned-i-vasagard",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2900,
+        "endYear": -2900,
+        "displaySv": "cirka 2900 f.Kr.",
+        "noteSv": "Forskarna daterar den korta nedläggningshorisonten till omkring 2900 f.Kr. Keramiken i lagret hör till cirka 2900–2800 f.Kr. De tolkar sambandet med en klimatkris som en möjlighet."
+      },
+      "titleSv": "Människor lägger ned graverade stenar vid Vasagård",
+      "summarySv": "Människor vid Vasagård på Bornholm lägger ned graverade stenplattor i diken och stolphål under en kort period. Många av plattorna har strålformade motiv som forskarna tolkar som solbilder. Arkeologerna förlägger nedläggningen till omkring 2900 f.Kr.",
+      "geographySv": "Vasagård, Bornholm, Danmark",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "bc2900-iversen-vasagard"
+      ],
+      "selectionNote": "A discrete, short deposition episode with a published approximate date. The summary omits the proposed volcanic cause and any claim to a named sun cult.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2900-dholaviras-murar-forstarks",
+      "date": {
+        "kind": "range",
+        "startYear": -2900,
+        "endYear": -2800,
+        "displaySv": "cirka 2900–2800 f.Kr.",
+        "noteSv": "ICOMOS placerar arbetet i etapp II, cirka 2900–2800 f.Kr. Intervallet anger etappens datering och fastställer inget enskilt byggår."
+      },
+      "titleSv": "Byggare förstärker Dholaviras murar med tegel",
+      "summarySv": "Byggare i Dholavira förstärker befästningsmurarna med en kraftig tegelmur på insidan. Invånarna anlägger också ett bostadsområde norr om den äldre bosättningen. ICOMOS daterar denna etapp till omkring 2900–2800 f.Kr.",
+      "geographySv": "Dholavira, Kutch, Gujarat, Indien",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "bc2900-icomos-dholavira"
+      ],
+      "selectionNote": "Specific fortification reinforcement and residential expansion within the explicitly dated second building stage. This does not redate the initial settlement or later reservoirs.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2900-sumeriskt-klubbhuvud-med-tjurar",
+      "date": {
+        "kind": "range",
+        "startYear": -2900,
+        "endYear": -2700,
+        "displaySv": "cirka 2900–2700 f.Kr.",
+        "noteSv": "Museet anger ett ungefärligt tillverkningsintervall för föremål 49.23.3. Något enskilt tillverkningsår eller en bestämd fyndort inom Mesopotamien framgår inte."
+      },
+      "titleSv": "En hantverkare gör ett klubbhuvud med tjurhuvuden",
+      "summarySv": "En hantverkare i Mesopotamien tillverkar ett klubbhuvud av marmor med två tjurhuvuden. Metropolitan Museum hänför föremål 49.23.3 till sumerisk kultur och daterar det till omkring 2900–2700 f.Kr.",
+      "geographySv": "Mesopotamien",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc2900-met-bull-mace"
+      ],
+      "selectionNote": "A specific surviving artifact with its own museum date, rather than a culture-period label. No ceremonial use, owner, ruler or excavation provenance is inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2900-narensus-invanare-ater-hirs",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2900,
+        "endYear": -2900,
+        "displaySv": "cirka 2900 f.Kr.",
+        "noteSv": "Forskarna tolkar förändrade kolisotopvärden som ökad hirskonsumtion omkring 2900 f.Kr. Dateringen bygger på deras modell. Beläggen fastställer varken ett första såddår eller platsen där hirsen odlas."
+      },
+      "titleSv": "Narensus invånare tycks äta mer hirs",
+      "summarySv": "Människor vid Narensu tycks äta mer hirs omkring 2900 f.Kr. Forskarna gör denna tolkning utifrån högre kolisotopvärden i benen från gravlagda personer och knyter hirsen till ett äldre bruk av mjölk från idisslare.",
+      "geographySv": "Narensu, Dzungarbergen, Xinjiang, Kina",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "bc2900-qiu-narensu"
+      ],
+      "selectionNote": "A dated dietary change in the studied cemetery population, explicitly framed as the authors' isotope-based interpretation. The event does not duplicate the earlier 3050 BCE dairy onset or claim local millet cultivation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-bc2880-kvinna-med-cinnober-i-liangwangcheng",
+      "date": {
+        "kind": "range",
+        "startYear": -2880,
+        "endYear": -2700,
+        "displaySv": "cirka 2880–2700 f.Kr.",
+        "noteSv": "Forskarna placerar grav M118 i fas A, daterad till 2880–2700 kalibrerade år f.Kr. De ger inget enskilt år för graven."
+      },
+      "titleSv": "Gravläggare ger en kvinna cinnober vid Liangwangcheng",
+      "summarySv": "Gravläggare vid Liangwangcheng lägger en kvinna i grav M118 med jordavsatser och många gravgåvor. Forskarna identifierar cinnober i rött pigment på hennes ben. De hänför graven till fas A, omkring 2880–2700 f.Kr.",
+      "geographySv": "Liangwangcheng, Jiangsu, Kina",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc2880-dong-liangwangcheng"
+      ],
+      "selectionNote": "One identified female burial with a phase-bounded date and analyzed pigment. No rank, priesthood, matriarchy or cause of death is inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-08"
       }
     }
   ]
