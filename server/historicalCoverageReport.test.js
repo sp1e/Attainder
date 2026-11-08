@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { DOSSIER_FILES, packageCoverage } from './historicalCoverage.js';
 import { renderStartCoverageReport, sameReport } from './historicalCoverageReport.js';
 import { SHIPPED_STATUSES } from './historicalInventory.js';
@@ -52,7 +54,9 @@ test('the report renders the inventory tables', () => {
   assert.match(report, /2026-11-09/);
   assert.match(report, /\b21 rows\b/);
   assert.match(report, /\b400 further rows\b/);
-  for (const status of SHIPPED_STATUSES) assert.match(report, new RegExp(`\\| ${status} \\|`));
+  const lines = report.split('\n');
+  const header = lines[lines.indexOf('### Shipped status by start') + 2];
+  assert.equal(header, '| Start | playable | on-map | playable-candidate | map-only | needs-engine-kind | no-source | pending |');
   assert.match(report, /^\| no start \|/m);
   assert.match(report, /^\| europe \|/m);
   assert.doesNotMatch(report, /is not published yet/);
@@ -67,6 +71,61 @@ test('a CRLF copy of the report still matches', () => {
   assert.equal(sameReport(rendered.replace('Chimú', 'Chimu'), rendered), false);
 });
 
+test('a cell keeps its pipes and newlines inside the table', () => {
+  const coverage = {
+    contentId: 'fixture', contentVersion: '1.0.0', date: '1000-01-01', eraLabelSv: 'År 1000', playable: [],
+    mapOnly: [{ id: 'm', nameSv: 'M', kind: 'state', dossierStatus: 'blocked', blockedReason: 'a|b\nc' }],
+    features: { total: 0, byBoundary: {}, byClassification: {} }, sourceCount: 0, areas: [],
+  };
+  assert.match(renderStartCoverageReport({ coverages: [coverage], inventory: null }), /^\| m \| M \| state \| blocked \| a\\\|b c \|$/m);
+});
+
 test('the committed start coverage report matches the packages', async () => {
   assert.deepEqual(await checkStartCoverage({ check: true }), { starts: 4, inventoryRows: null });
 });
+
+// Each test gets its own temp dir for the inventory and report, removed afterwards; the real
+// inventory path is never touched.
+const withTempDir = async (body) => {
+  const dir = mkdtempSync(path.join(os.tmpdir(), 'attainder-start-coverage-'));
+  try {
+    await body({ inventoryPath: path.join(dir, 'inventory.json'), reportPath: path.join(dir, 'start-coverage.md') });
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+};
+const fixtureRow = (id, fields = {}) => ({
+  id, nameSv: 'Testkultur', regionId: 'europe', startId: null, polityId: null, featureIndex: null,
+  researchStatus: 'pending', sourceUrl: null, ...fields,
+});
+const fixtureInventory = (rows) => ({ schema: 'attainder-public-inventory-v1', preparedOn: '2026-11-09', rows });
+
+test('a valid inventory file fills the inventory section', () => withTempDir(async ({ inventoryPath, reportPath }) => {
+  writeFileSync(inventoryPath, JSON.stringify(fixtureInventory([fixtureRow('europe/test-culture')])), 'utf8');
+  assert.deepEqual(await checkStartCoverage({ inventoryPath, reportPath }), { starts: 4, inventoryRows: 1 });
+  const report = readFileSync(reportPath, 'utf8');
+  assert.match(report, /prepared on 2026-11-09 and lists 1 row\./);
+  assert.match(report, /^\| no start \| 0 \| 0 \| 0 \| 0 \| 0 \| 0 \| 1 \|$/m);
+}));
+
+test('an invalid inventory file rejects with every error on its own line', () => withTempDir(async ({ inventoryPath, reportPath }) => {
+  const rows = [fixtureRow('europe/a', { regionId: 'atlantis' }), fixtureRow('europe/b', { nameSv: '' })];
+  writeFileSync(inventoryPath, JSON.stringify(fixtureInventory(rows)), 'utf8');
+  await assert.rejects(checkStartCoverage({ inventoryPath, reportPath }), (error) => {
+    const lines = error.message.split('\n');
+    assert.equal(lines[0], 'Public inventory is invalid:');
+    assert.ok(lines.includes('europe/a: regionId "atlantis" is not a region other than other'));
+    assert.ok(lines.includes('europe/b: nameSv must be a non-empty string'));
+    return true;
+  });
+}));
+
+test('an inventory file with a leading BOM is read', () => withTempDir(async ({ inventoryPath, reportPath }) => {
+  writeFileSync(inventoryPath, String.fromCharCode(0xfeff) + JSON.stringify(fixtureInventory([])), 'utf8');
+  assert.deepEqual(await checkStartCoverage({ inventoryPath, reportPath }), { starts: 4, inventoryRows: 0 });
+}));
+
+test('an inventory file that is not JSON rejects with its own message', () => withTempDir(async ({ inventoryPath, reportPath }) => {
+  writeFileSync(inventoryPath, '{ "schema": ', 'utf8');
+  await assert.rejects(checkStartCoverage({ inventoryPath, reportPath }), /^Error: Public inventory is not valid JSON: /);
+}));

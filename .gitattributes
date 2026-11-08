@@ -31,4 +31,5 @@ scripts/build-historical-scenarios.mjs text eol=lf
 # byte by scripts/check-historical-events.mjs --check; keep them LF.
 server/seed/historical/events/*.json text eol=lf
 docs/research/historical-events-coverage.md text eol=lf
+docs/coverage/start-coverage.md text eol=lf
 scripts/check-historical-events.mjs text eol=lf
