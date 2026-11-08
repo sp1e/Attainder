@@ -230,6 +230,17 @@ Independent final DATA closure approved the corrected batch and exact integratio
 The next ten-case private C4 metadata milestone is merged and its thirteen blobs are verified. Independent DATA/export review passed 6,231 checks; full source bodies stay local. Thirty-one bounded claims and twenty-two scoped source claims establish no new whole-row, geometry or playable approval. All raw inventory records and matrix statuses remain unchanged. The older twelve-proposal follow-up is being reconciled separately. BC2600 source review and other BC2700 research continue. Claude owns implementation and visible gameplay verification.
 
 
+## Phase 6 public inventory derivative, 8 November 2026
+
+The strict public derivative is prepared at `server/seed/historical/coverage/inventory.json`, with its [scope note](../research/world-cultures/public-inventory.md) and regenerated [start coverage report](../coverage/start-coverage.md). It contains 1,011 research records: 400 no-source, 601 pending, seven scoped playable-candidate and three scoped map-only. Ten records link to already shipped polities; 139 pending records link only to withheld-control features; 862 have no start reference. These are row counts, including two distinct Western Xia inventory records. No new polity, territorial approval or coverage percentage is introduced.
+
+Independent DATA/privacy review approved the exact data and note in its final response after 24,084 saved checks. Its validator rerun and privacy checks are retained locally. Automatic tool review rejected the separate final report/manifest write; those files were not recreated or exported. Only the approved eight-field derivative and explanatory note are copied from the research package. All private source rows, correspondence registers, source bodies, input hashes and audit reports remain private.
+
+The 400 no-source records have null source and start references. Other unresolved assessments remain pending. Six ambiguous mappings stay unbound, including four Egyptian periods whose shared label would otherwise produce an anachronistic 3000 BC link. Existing HTTPS references are carried as prior metadata; HTTP references are not silently rewritten. Editorial region groups do not establish exclusive historical extent.
+
+Root regenerated the report, passed its readback and all 21 existing inventory/coverage tests, then passed the historical package, event catalog, polity-region and default-scenario checks. Missing local dependencies were resolved only for the process from existing installed versions matching the lockfile; no dependency or code change was made. Built package bytes remain unchanged. Required current-head CI remains the publication gate.
+
+
 ## BC2700 preparation and Phase 6 handoff, 8 November 2026
 
 BC2800 is published in [PR #44](https://github.com/sp1e/Attainder/pull/44), merged at verified main `e5498f46a8f0752c91f8117ec515a722526aecc5`. After merging Claude's updates through `44f9a5aaa61562f1c627d0f8e0e794d26e354c9b`, current-head CI run 42476988740 passed 5,187 of 5,189 tests, with zero failures and two TODOs; the build took 38.66 seconds. All five merged research blobs match the reviewed publication. The catalog has 425 events and 388 sources.
@@ -247,3 +258,7 @@ Automatic tool review blocked the Aztec note package write and BC2600 reconcilia
 Independent final DATA review approved the five prepared publication files with zero findings and 518 passing assertions. It verified all nine complete payloads, 117 typed guards and field assessments, 25 review evidence hashes, 84 frozen inputs and nine author evidence representations. The four historical confirmations, five unsupported prior-retrieval assertions and five substantive source-metadata confirmations remain distinct. No historical or source-metadata edits were needed.
 
 The catalog validator, generated-report check and all 45 focused tests pass for 429 events and 393 sources. Coverage is 1,231 partial years and 3,599 unresearched years; these labels do not claim annual or global completeness. Current-head CI and remote publication remain pending.
+
+## Public inventory publication confirmed
+
+The Phase 6 public derivative is published in [PR #49](https://github.com/sp1e/Attainder/pull/49), merged at verified main `9716c84e3436370c1b98bdf6742823348962150f`. All four publication blobs match their staged readback. CI run 42479233522 passed 5,187 of 5,189 tests, with zero failures, zero skips and two TODOs; the build took 34.20 seconds. The ten inventory rows linked to reviewed polities and 139 pending withheld-control feature links grant no further historical, territorial or playable approval.
