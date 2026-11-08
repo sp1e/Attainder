@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "8fe7f35d179d0bfc2b69548271d5d0c4a521aa89",
+  "sourceRevision": "75235d536afcf446d10ccf254c0449e3d73e9257",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -9264,6 +9264,556 @@
         "sourceId": "bc2300-neumann-naram-sin-2018",
         "fieldPath": "/institution",
         "textSha256": "91c0c94a6c86ddb72070d7fc0bca37d9e54422f0a4863bb52e47b17fd9e96d78"
+      }
+    },
+    {
+      "id": "source/ad0700-met-wanar/locator",
+      "sv": "Stycket som börjar The exhibition's opening gallery; beskrivningen av megaliten från Wanar.",
+      "en": "Paragraph beginning The exhibition's opening gallery; Wanar megalith description.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-met-wanar",
+        "fieldPath": "/locator",
+        "textSha256": "bfd140d145c7efd9f4f29dcec15984aac06f05fc3057ca3dd6ad4cf1f9c0bca4"
+      }
+    },
+    {
+      "id": "source/ad0700-met-wanar/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-met-wanar",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0700-met-damascus/locator",
+      "sv": "Key Events, posten 705–715; första meningen.",
+      "en": "Key Events, 705–715 entry; first sentence.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-met-damascus",
+        "fieldPath": "/locator",
+        "textSha256": "3dd69193924f967e45176ef15fca139a7eab41d5f41e0280e5621eb94bfbd200"
+      }
+    },
+    {
+      "id": "source/ad0700-met-damascus/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-met-damascus",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0700-unesco-nara/locator",
+      "sv": "Description, första stycket.",
+      "en": "Description, opening paragraph.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-unesco-nara",
+        "fieldPath": "/locator",
+        "textSha256": "22865654bc43be89fb9bc26a5a2883d3616923ac4d6ba8a9327efed26cd118ef"
+      }
+    },
+    {
+      "id": "source/ad0700-unesco-nara/institution",
+      "sv": "UNESCO World Heritage Centre",
+      "en": "UNESCO World Heritage Centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-unesco-nara",
+        "fieldPath": "/institution",
+        "textSha256": "0a082b6ed6dee4803d7c2687725d0e50ba1c6249718c0dfc6d7eee6659437a82"
+      }
+    },
+    {
+      "id": "source/ad0700-met-iberia/locator",
+      "sv": "Key Events: posterna 711–718, 756–929 och 776–782.",
+      "en": "Key Events: 711–718; 756–929; 776–782 entries.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-met-iberia",
+        "fieldPath": "/locator",
+        "textSha256": "9a366a71fe1ba30d28e8c2b5946bca04da5863d8d219a416180466d416d792ed"
+      }
+    },
+    {
+      "id": "source/ad0700-met-iberia/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-met-iberia",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0700-tdv-sind/locator",
+      "sv": "Det historiska stycket som börjar Araplar tarafından Sind’e; meningen om Raca Dâhir.",
+      "en": "Historical paragraph beginning Araplar tarafından Sind’e; sentence about Raca Dâhir.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-tdv-sind",
+        "fieldPath": "/locator",
+        "textSha256": "333e0ca15a08b23b2228c1e0e165f4c875826708a62bb6cd8c0d6db1464d4444"
+      }
+    },
+    {
+      "id": "source/ad0700-tdv-sind/institution",
+      "sv": "TDV İslâm Araştırmaları Merkezi",
+      "en": "TDV İslâm Araştırmaları Merkezi",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-tdv-sind",
+        "fieldPath": "/institution",
+        "textSha256": "7ef97a5bf7bd3aa74c94b44504ce8877b29003ac4986efb4a7fcef71fd9d6604"
+      }
+    },
+    {
+      "id": "source/ad0700-iranica-talas/locator",
+      "sv": "De inledande historiska styckena, segern vid Taraz och erövringen av Samarkand.",
+      "en": "Opening historical paragraphs, victory at Taraz and conquest of Samarkand.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-iranica-talas",
+        "fieldPath": "/locator",
+        "textSha256": "db64abf1bac9278f315deb4e2435ff3567a3387b34df1a059fb77d7ea45e862e"
+      }
+    },
+    {
+      "id": "source/ad0700-iranica-talas/institution",
+      "sv": "Encyclopaedia Iranica",
+      "en": "Encyclopaedia Iranica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-iranica-talas",
+        "fieldPath": "/institution",
+        "textSha256": "f73848ecbb70ca68207853153ffd8c11aed59c5faa5d609de1dc10d26e87a496"
+      }
+    },
+    {
+      "id": "source/ad0700-harvard-copan/locator",
+      "sv": "Avsnitten Temple 22 och Altar Q: West.",
+      "en": "Sections Temple 22 and Altar Q: West.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-harvard-copan",
+        "fieldPath": "/locator",
+        "textSha256": "929c7636dfd91011c97061d44df418d67a8d5f89bf945f55ff1e35abf12df695"
+      }
+    },
+    {
+      "id": "source/ad0700-harvard-copan/institution",
+      "sv": "Peabody Museum of Archaeology & Ethnology, Harvard University",
+      "en": "Peabody Museum of Archaeology & Ethnology, Harvard University",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-harvard-copan",
+        "fieldPath": "/institution",
+        "textSha256": "c16bad83bd5e65a40077051039905131dc78f7d36b66f23e91cf7bac825c6131"
+      }
+    },
+    {
+      "id": "source/ad0700-fordham-lorsch/locator",
+      "sv": "Annalernas poster 750 [751] och 754; källutgåvans s. 37–38.",
+      "en": "Annals entries 750 [751] and 754; source edition pp. 37–38.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-fordham-lorsch",
+        "fieldPath": "/locator",
+        "textSha256": "12625085109b9a46a6bdac3fe992fe8998dd8b135ae6cc9e2a44ad9c7c090210"
+      }
+    },
+    {
+      "id": "source/ad0700-fordham-lorsch/institution",
+      "sv": "Internet History Sourcebooks Project, hos Fordham University; utgåva av Oliver J. Thatcher och Edgar Holmes McNeal (1905)",
+      "en": "Internet History Sourcebooks Project, hosted by Fordham University; Oliver J. Thatcher and Edgar Holmes McNeal edition (1905)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-fordham-lorsch",
+        "fieldPath": "/institution",
+        "textSha256": "36cdb818efe23b4f17defe748586b1537ba1f2a11800c335570450cd2e367940"
+      }
+    },
+    {
+      "id": "source/ad0700-washington-inner-asia/locator",
+      "sv": "Raderna 744, 759–779 och ca. 791.",
+      "en": "Rows 744, 759–779 and ca. 791.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-washington-inner-asia",
+        "fieldPath": "/locator",
+        "textSha256": "2aea142711062e80d1fd71a7a0f570cb436d64b52299e70d17b04a2d1fe7fe71"
+      }
+    },
+    {
+      "id": "source/ad0700-washington-inner-asia/institution",
+      "sv": "Daniel C. Waugh (2000); hos faculty.washington.edu",
+      "en": "Daniel C. Waugh (2000); hosted on faculty.washington.edu",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-washington-inner-asia",
+        "fieldPath": "/institution",
+        "textSha256": "43855d34a4359de119ce369dc0e2096031a738c19fd9eb7db52b29594c9c556b"
+      }
+    },
+    {
+      "id": "source/ad0700-ashmolean-abbasids/locator",
+      "sv": "A.1 Brief Introduction to Abbasid history, de inledande styckena om upproret; A.2 The Search for a Capital: from Baghdad to Samarra, stycket som börjar Here he began.",
+      "en": "A.1 Brief Introduction to Abbasid history, opening revolt paragraphs; A.2 The Search for a Capital: from Baghdad to Samarra, paragraph beginning Here he began.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-ashmolean-abbasids",
+        "fieldPath": "/locator",
+        "textSha256": "7056f20035e3de95e42b01f85a58e766ada8ac09a9eb5565ffa7d952d056b11c"
+      }
+    },
+    {
+      "id": "source/ad0700-ashmolean-abbasids/institution",
+      "sv": "Ashmolean Museum, University of Oxford",
+      "en": "Ashmolean Museum, University of Oxford",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-ashmolean-abbasids",
+        "fieldPath": "/institution",
+        "textSha256": "744ec836cf7803e79027301a4f32ad656aab57e034cbda95d35a2ae81d2a8922"
+      }
+    },
+    {
+      "id": "source/ad0700-todaiji-history/locator",
+      "sv": "History of Tōdai-ji Temple, de två första styckena.",
+      "en": "History of Tōdai-ji Temple, first two paragraphs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-todaiji-history",
+        "fieldPath": "/locator",
+        "textSha256": "bfff765250a64bbcce1564d0e4a77ddce60d3e4a2e21a1588f28b3136c4a36e2"
+      }
+    },
+    {
+      "id": "source/ad0700-todaiji-history/institution",
+      "sv": "Tōdai-ji Temple",
+      "en": "Tōdai-ji Temple",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-todaiji-history",
+        "fieldPath": "/institution",
+        "textSha256": "d2f17479ba5e2c2a52ed381c0d92062d7567271162d2ac65f6c6058897bf4e69"
+      }
+    },
+    {
+      "id": "source/ad0700-met-iconoclasm/locator",
+      "sv": "Byzantine Iconoclasm, stycket som börjar Byzantine iconoclasm peaked och det följande stycket.",
+      "en": "Byzantine Iconoclasm, paragraph beginning Byzantine iconoclasm peaked and following paragraph.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-met-iconoclasm",
+        "fieldPath": "/locator",
+        "textSha256": "0c3ae11d65814a1963ff5c8e5cfcfd44466104f36bd062335839d315ca5339ba"
+      }
+    },
+    {
+      "id": "source/ad0700-met-iconoclasm/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-met-iconoclasm",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0700-smithsonian-an-lushan/locator",
+      "sv": "755–763, panelen An Lushan Rebellion.",
+      "en": "755–763, An Lushan Rebellion panel.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-smithsonian-an-lushan",
+        "fieldPath": "/locator",
+        "textSha256": "1c3a832636276ea5a66f971a52b83d2796747f51c631c6f36e7bdae5c9b989d2"
+      }
+    },
+    {
+      "id": "source/ad0700-smithsonian-an-lushan/institution",
+      "sv": "Smithsonian National Museum of Asian Art",
+      "en": "Smithsonian National Museum of Asian Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-smithsonian-an-lushan",
+        "fieldPath": "/institution",
+        "textSha256": "6e79a03160c4c917810f42936554e5008e3b31a9343cc9c82a8b1eb0bf767d46"
+      }
+    },
+    {
+      "id": "source/ad0700-iranica-chronology/locator",
+      "sv": "Posterna 747, 750, 755, 762 och 786 under CE.",
+      "en": "CE entries 747, 750, 755, 762 and 786.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-iranica-chronology",
+        "fieldPath": "/locator",
+        "textSha256": "daa8bd4cebaa8910f137c57c4307857bbf100a0d65fca44338c249c2c2140abc"
+      }
+    },
+    {
+      "id": "source/ad0700-iranica-chronology/institution",
+      "sv": "Encyclopaedia Iranica",
+      "en": "Encyclopaedia Iranica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-iranica-chronology",
+        "fieldPath": "/institution",
+        "textSha256": "f73848ecbb70ca68207853153ffd8c11aed59c5faa5d609de1dc10d26e87a496"
+      }
+    },
+    {
+      "id": "source/ad0700-oup-charlemagne/locator",
+      "sv": "Det offentliga utdraget Extract, Introduction, första stycket.",
+      "en": "Public Extract, Introduction, opening paragraph.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-oup-charlemagne",
+        "fieldPath": "/locator",
+        "textSha256": "5b757d7e0f5234b4e6b484ecf239c559e103529658649a970346466a260314d7"
+      }
+    },
+    {
+      "id": "source/ad0700-oup-charlemagne/institution",
+      "sv": "Oxford University Press",
+      "en": "Oxford University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-oup-charlemagne",
+        "fieldPath": "/institution",
+        "textSha256": "27e4ce2b302408251962f38dd2928a99eb212a7bb09088bbbe6f77944a11a90d"
+      }
+    },
+    {
+      "id": "source/ad0700-unesco-kyoto/locator",
+      "sv": "Description, första stycket.",
+      "en": "Description, opening paragraph.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-unesco-kyoto",
+        "fieldPath": "/locator",
+        "textSha256": "22865654bc43be89fb9bc26a5a2883d3616923ac4d6ba8a9327efed26cd118ef"
+      }
+    },
+    {
+      "id": "source/ad0700-unesco-kyoto/institution",
+      "sv": "UNESCO World Heritage Centre",
+      "en": "UNESCO World Heritage Centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-unesco-kyoto",
+        "fieldPath": "/institution",
+        "textSha256": "0a082b6ed6dee4803d7c2687725d0e50ba1c6249718c0dfc6d7eee6659437a82"
+      }
+    },
+    {
+      "id": "source/ad0700-english-heritage-lindisfarne/locator",
+      "sv": "The Vikings, första stycket.",
+      "en": "The Vikings, opening paragraph.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-english-heritage-lindisfarne",
+        "fieldPath": "/locator",
+        "textSha256": "f579ded2374b8ae7129de88296bcaff6c88ba201fa5390b5a7bc2c352001707d"
+      }
+    },
+    {
+      "id": "source/ad0700-english-heritage-lindisfarne/institution",
+      "sv": "English Heritage",
+      "en": "English Heritage",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-english-heritage-lindisfarne",
+        "fieldPath": "/institution",
+        "textSha256": "1fde17fd286a11daa43763e2a16609ecb9a99c6a21a4d89903117f72e8322687"
+      }
+    },
+    {
+      "id": "source/ad0700-asi-pattadakal/locator",
+      "sv": "Det engelska avsnittet, första stycket och sista stycket om portinskriften.",
+      "en": "English section, first paragraph and final paragraph about the gateway inscription.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-asi-pattadakal",
+        "fieldPath": "/locator",
+        "textSha256": "e4f2acb475450d32bff974165be13174693620ee8ee47df5aed0cc1b3e38599f"
+      }
+    },
+    {
+      "id": "source/ad0700-asi-pattadakal/institution",
+      "sv": "Archaeological Survey of India, Dharwad Circle",
+      "en": "Archaeological Survey of India, Dharwad Circle",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-asi-pattadakal",
+        "fieldPath": "/institution",
+        "textSha256": "37cae2e17fb1d34a43a6044c3e02b05c2ef751e03cae2097e9d9ac31d5ac7265"
+      }
+    },
+    {
+      "id": "source/ad0700-brin-java-temples/locator",
+      "sv": "PDF-sida 1, titel och författarnamn; §3.1.1, tryckt s. 6; §3.1.2, tryckta s. 7–8; tryckt s. 15, stycket som börjar Candi Sewu, för perubahan atau restorasi; slutsatsen på tryckt s. 17.",
+      "en": "PDF p. 1 title and byline; §3.1.1, printed p. 6; §3.1.2, printed pp. 7–8; printed p. 15, paragraph beginning Candi Sewu, for perubahan atau restorasi; conclusion printed p. 17.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-brin-java-temples",
+        "fieldPath": "/locator",
+        "textSha256": "0493a4c8f7b4bc124b6f8c9723f624e105358c3c925917f0cd5f2c6f3c1d7c54"
+      }
+    },
+    {
+      "id": "source/ad0700-brin-java-temples/institution",
+      "sv": "Universitas Indonesia; AMERTA 44(1), BRIN Publishing",
+      "en": "Universitas Indonesia; AMERTA 44(1), BRIN Publishing",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-brin-java-temples",
+        "fieldPath": "/institution",
+        "textSha256": "994bdb475b5b989a25780b5efeb1fdda8c50666ed6e0c19a9b845d89c6f58ca3"
+      }
+    },
+    {
+      "id": "source/ad0700-smithsonian-copan/locator",
+      "sv": "Den historiska huvudtexten om 738; bildtexten för Altar Q.",
+      "en": "Main historical text on 738; image caption for Altar Q.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-smithsonian-copan",
+        "fieldPath": "/locator",
+        "textSha256": "c7821d4991fd9908a84fdbbb8ad1a5da7a898550d471ad663716e32e85eef2fb"
+      }
+    },
+    {
+      "id": "source/ad0700-smithsonian-copan/institution",
+      "sv": "Smithsonian National Museum of the American Indian",
+      "en": "Smithsonian National Museum of the American Indian",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-smithsonian-copan",
+        "fieldPath": "/institution",
+        "textSha256": "5ba29097a5dac7f11d5641987189b27e79921678f4f4bf939ddc4c9107fb6582"
+      }
+    },
+    {
+      "id": "source/ad0700-cambridge-lombardy/locator",
+      "sv": "Offentligt utdrag, The Paderborn Diet, 777, de två sista styckena.",
+      "en": "Public excerpt, The Paderborn Diet, 777, last two paragraphs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-cambridge-lombardy",
+        "fieldPath": "/locator",
+        "textSha256": "0b39d7b458ecde6b8608cda2c0a8fea4b2159079c22f101eb4e8469674f2cca3"
+      }
+    },
+    {
+      "id": "source/ad0700-cambridge-lombardy/institution",
+      "sv": "Amsterdam University Press; Cambridge Core",
+      "en": "Amsterdam University Press; Cambridge Core",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0700-cambridge-lombardy",
+        "fieldPath": "/institution",
+        "textSha256": "653884f373ec15451b78e1ba37d70fb7e0f6840d88b63a9d663bf132a860a85b"
+      }
+    },
+    {
+      "id": "source/review-ad0700-iranica-abu-moslem/locator",
+      "sv": "Den historiska framställningen, stycket som börjar Shortly before Kūfa fell; de officiella ceremonierna och Marwāns senare död.",
+      "en": "Historical narrative, paragraph beginning Shortly before Kūfa fell; official ceremonies and subsequent death of Marwān.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "review-ad0700-iranica-abu-moslem",
+        "fieldPath": "/locator",
+        "textSha256": "9520fe6541dca00ca723027297975a975c17fbd4976e552003674ae5925a8559"
+      }
+    },
+    {
+      "id": "source/review-ad0700-iranica-abu-moslem/institution",
+      "sv": "Encyclopaedia Iranica",
+      "en": "Encyclopaedia Iranica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "review-ad0700-iranica-abu-moslem",
+        "fieldPath": "/institution",
+        "textSha256": "f73848ecbb70ca68207853153ffd8c11aed59c5faa5d609de1dc10d26e87a496"
+      }
+    },
+    {
+      "id": "source/review-ad0700-iranica-khorasan-abbasids/locator",
+      "sv": "Revolutionsskildringens sista stycke, som börjar However, Qaḥṭaba was not alone; utropandet i Kufa i Rabiʿ I 132 / slutet av oktober 749.",
+      "en": "Final paragraph of the revolution narrative, beginning However, Qaḥṭaba was not alone; proclamation at Kufa in Rabiʿ I 132 / late October 749.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "review-ad0700-iranica-khorasan-abbasids",
+        "fieldPath": "/locator",
+        "textSha256": "17502db8fc2b5bb17e63cef9b0d78fb24425d16c0bd08d78f783f6a5fe082717"
+      }
+    },
+    {
+      "id": "source/review-ad0700-iranica-khorasan-abbasids/institution",
+      "sv": "Encyclopaedia Iranica",
+      "en": "Encyclopaedia Iranica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "review-ad0700-iranica-khorasan-abbasids",
+        "fieldPath": "/institution",
+        "textSha256": "f73848ecbb70ca68207853153ffd8c11aed59c5faa5d609de1dc10d26e87a496"
+      }
+    },
+    {
+      "id": "source/review-ad0700-mesoweb-protecting-sacred-space/locator",
+      "sv": "Titel- och copyrightsidorna; tryckt s. 38, nedersta stycket i Copan and Rosalila’s Eccentric Cache; PDF-sida 19, vänstersidan.",
+      "en": "Title and copyright pages; printed p. 38, bottom paragraph, in Copan and Rosalila’s Eccentric Cache; PDF p. 19, left-hand page.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "review-ad0700-mesoweb-protecting-sacred-space",
+        "fieldPath": "/locator",
+        "textSha256": "c84d62478237a4edee3aa81af3356b6cf5d6b8db6e3c33fe2985e8997b8e4be8"
+      }
+    },
+    {
+      "id": "source/review-ad0700-mesoweb-protecting-sacred-space/institution",
+      "sv": "Precolumbia Mesoweb Press; Ricardo Agurcia Fasquelle, Payson Sheets och Karl Andreas Taube (2016)",
+      "en": "Precolumbia Mesoweb Press; Ricardo Agurcia Fasquelle, Payson Sheets and Karl Andreas Taube (2016)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "review-ad0700-mesoweb-protecting-sacred-space",
+        "fieldPath": "/institution",
+        "textSha256": "9267e7233a28cff75c097c2169a8cf04b3b335fef92a27994b5eae6be037cf41"
+      }
+    },
+    {
+      "id": "source/review-ad0700-unesco-samarkand-geography/locator",
+      "sv": "Outstanding Universal Value, Brief synthesis, första stycket; läget i Zerafshans floddal i Uzbekistan.",
+      "en": "Outstanding Universal Value, Brief synthesis, opening paragraph; location in the Zerafshan River valley in Uzbekistan.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "review-ad0700-unesco-samarkand-geography",
+        "fieldPath": "/locator",
+        "textSha256": "ce5ad85ac8325d9076b5d6cc02d0f20a632f0d8c9035af766bfcce1b3ddee2f8"
+      }
+    },
+    {
+      "id": "source/review-ad0700-unesco-samarkand-geography/institution",
+      "sv": "UNESCO World Heritage Centre",
+      "en": "UNESCO World Heritage Centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "review-ad0700-unesco-samarkand-geography",
+        "fieldPath": "/institution",
+        "textSha256": "0a082b6ed6dee4803d7c2687725d0e50ba1c6249718c0dfc6d7eee6659437a82"
       }
     }
   ]

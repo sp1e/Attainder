@@ -1,0 +1,15 @@
+# Historical events, AD 700–799
+
+Prepared from research completed on 8 November 2026, with reconciliation and bilingual readback completed on 9 November. This batch contains 34 events and 25 cited sources. Independent reconciliation review approved the retained historical records after checking the exact corrections and complete record holds.
+
+Five exact field corrections narrow the Wanar title and description to the museum’s object dating, attribute Pattadakal’s inferred completion chronology to ASI, correct the Waugh author/host attribution, and place the Ashmolean passage in the correct section. Two container proposals were verified as aggregations of those edits, without applying them twice. One existing Iranica source is added to support the already stated claim that Abu Moslem led the Abbasid revolt. Dates, full intervals and competing chronologies are preserved.
+
+Two complete events are held. The Bögü event lacks verified support for the personal-name equivalence and the claimed Klyashtorny passage. The Beatus commentary event has an unsupported writing location; his epithet alone does not establish where he wrote. No substitute identity or location is supplied. Hansen’s passage was verified within its stated scope, but its source record is now unused. Klyashtorny’s supporting page remains unverified after HTTP 403. These are distinct source dispositions.
+
+All 775 original follow-up findings remain preserved: 704 confirmed, seven corrected, and 64 unsupported. In the retained records, the remaining unsupported findings concern 25 earlier-retrieval assertions and their source-container aggregations. Fresh source reading does not verify those earlier actions. The preliminary check’s exposure of six pre-existing catalog notes remains documented as a protocol deviation; the later isolated check does not erase it.
+
+Coverage remains partial: Europe 10, MENA 5, sub-Saharan Africa 1, Central Asia 5, South Asia 2, East Asia 5, Southeast Asia 2, Americas 4, and Oceania 0. African coverage is limited to a broadly dated Wanar object, American coverage to Copán and Quiriguá, and Southeast Asian coverage to Java. Other regions retain substantial local gaps. Empty regions or years do not imply historical inactivity.
+
+The English locale additions contain 153 display fields; the Swedish source-panel additions contain 50 locator and institution fields. Independent bilingual review covered all 203 fields. One English grammar correction in the Wanar date note preserves its broad museum dating and leaves the source text and its hash unchanged. Historical dates, identities and qualifications remain unchanged by translation.
+
+The [event catalog](../../../server/seed/historical/events/catalog.json) records every retained source URL and precise locator. All sources are reference-only; this batch redistributes no source prose, source images or full documents. Earlier reading claims and the limits of each retrieved representation remain separate from the supported historical claims.

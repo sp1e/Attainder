@@ -5160,6 +5160,281 @@
       "originalChronology": "Neumann uses 2261–2206 BC for Naram-Sin while discussing his victory stele. The Louvre uses 2254–2218 BC. These are alternative reign schemes, with no individual carving or battle year. The later Elamite inscription belongs to a separate episode.",
       "reuseTerms": "Reference only; no source prose or images redistributed",
       "scopedClaim": "Neumann interprets the stele as glorifying Naram-Sin's victory over the Lullubians and describes the king and his troops in a mountain landscape. His reign chronology supports the alternative date envelope only."
+    },
+    {
+      "id": "ad0700-met-wanar",
+      "title": "Met Exhibition to Focus on Artistic Legacy of Africa's Sahel",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/de/press-releases/sahel-art-empire-sahara-2020-exhibitions",
+      "locator": "Paragraph beginning The exhibition's opening gallery; Wanar megalith description.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: eighth-century. No narrower date is given.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Dates a particular lyre-shaped stone from Wanar to the eighth century; gives neither a builder nor an installation year."
+    },
+    {
+      "id": "ad0700-met-damascus",
+      "title": "The Eastern Mediterranean, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/ja/toah/ht/06/wae",
+      "locator": "Key Events, 705–715 entry; first sentence.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The entry spans 705–715 and dates the Damascus commission to 706.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Al-Walid commissioned the Damascus mosque in 706; the entry describes its former church site."
+    },
+    {
+      "id": "ad0700-unesco-nara",
+      "title": "Historic Monuments of Ancient Nara",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/870/",
+      "locator": "Description, opening paragraph.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: from 710 to 784.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Nara served as the capital of Japan from 710; the listed monuments include the imperial palace."
+    },
+    {
+      "id": "ad0700-met-iberia",
+      "title": "Iberian Peninsula, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/06/eusi.html",
+      "locator": "Key Events: 711–718; 756–929; 776–782 entries.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: 711–718; r. 756–88; (785); 776–782.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports the Arab-Berber conquest interval, Abd al-Rahman I's emirate from 756, his Cordoba mosque patronage in 785 and Beatus's commentary in 776–782."
+    },
+    {
+      "id": "ad0700-tdv-sind",
+      "title": "SİND (Azmi Özcan, 2009)",
+      "institution": "TDV İslâm Araştırmaları Merkezi",
+      "url": "https://islamansiklopedisi.org.tr/sind",
+      "locator": "Historical paragraph beginning Araplar tarafından Sind’e; sentence about Raca Dâhir.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: 10 Ramazan 93 / 20 Haziran 712. The article supplies the calendar conversion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Muhammad ibn Qasim won the battle in which Raja Dahir died; use 712 without asserting conquest of every part of Sind."
+    },
+    {
+      "id": "ad0700-iranica-talas",
+      "title": "CHINESE-IRANIAN RELATIONS ii. Islamic Period to the Mongols (John Michael Rogers)",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/chinese-iranian-ii/",
+      "locator": "Opening historical paragraphs, victory at Taraz and conquest of Samarkand.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: 133/751 and 93/712. The article supplies both CE equivalents.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports the Arab conquest of Samarkand in 712 and Ziad ibn Salih's victory over Chinese forces at Talas in 751; does not establish a papermaking transfer."
+    },
+    {
+      "id": "ad0700-harvard-copan",
+      "title": "Altar Q and Copán (David Stuart, 1996)",
+      "institution": "Peabody Museum of Archaeology & Ethnology, Harvard University",
+      "url": "https://peabody.harvard.edu/altar-q-and-cop%C3%A1n",
+      "locator": "Sections Temple 22 and Altar Q: West.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "Temple 22: at or around March 27, 715 A.D.; accession: 6 Kaban 10 Mol, converted by the author to July 2, 763 A.D.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Dates Temple 22 approximately to 715 and Yax Pasah's accession to 763; the author gives the Maya-to-CE conversion."
+    },
+    {
+      "id": "ad0700-fordham-lorsch",
+      "title": "Annals of Lorsch: The pope makes the Carolingians kings",
+      "institution": "Internet History Sourcebooks Project, hosted by Fordham University; Oliver J. Thatcher and Edgar Holmes McNeal edition (1905)",
+      "url": "https://sourcebooks.fordham.edu/source/lorsch1.asp",
+      "locator": "Annals entries 750 [751] and 754; source edition pp. 37–38.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: 750 [751] and 754. The bracketed 751 is the edition's correction to the annal year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Pepin's royal elevation at Soissons, Childeric's removal, and Pope Stephen's 754 anointing of Pepin and his sons."
+    },
+    {
+      "id": "ad0700-washington-inner-asia",
+      "title": "Chronology of Inner Asian History, 7th–9th centuries: the Tibetans, Uighurs and T'ang",
+      "institution": "Daniel C. Waugh (2000); hosted on faculty.washington.edu",
+      "url": "https://faculty.washington.edu/dwaugh/hist225/225chron/tibchr.html",
+      "locator": "Rows 744, 759–779 and ca. 791.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: 744; state religion in 763; ca. 791.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports the Uighur state's formation in 744, a 763 state-religion date, and an approximate 791 Tibetan capture of Khotan."
+    },
+    {
+      "id": "ad0700-ashmolean-abbasids",
+      "title": "Abbasid Ceramics: The Historical Background",
+      "institution": "Ashmolean Museum, University of Oxford",
+      "url": "https://islamicceramics.ashmolean.org/Abbasid/history.htm",
+      "locator": "A.1 Brief Introduction to Abbasid history, opening revolt paragraphs; A.2 The Search for a Capital: from Baghdad to Samarra, paragraph beginning Here he began.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: 747; 750; summer 758; in 762. Distinguishes initial building from al-Mansur's residence and court transfer.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports revolt at Merv in 747, the Umayyad fall in 750, and al-Mansur's move to his Baghdad palace in 762; dates initial construction differently from Iranica."
+    },
+    {
+      "id": "ad0700-todaiji-history",
+      "title": "History of Tōdai-ji Temple",
+      "institution": "Tōdai-ji Temple",
+      "url": "https://www.todaiji.or.jp/en/history/",
+      "locator": "History of Tōdai-ji Temple, first two paragraphs.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: in 741; in 743; completed in 749; dedicated in 752.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports Shomu's national monastery edict in 741 and the Great Buddha's consecration in 752, distinct from completion in 749."
+    },
+    {
+      "id": "ad0700-met-iconoclasm",
+      "title": "Iconoclasm (Evan Freeman, 2012)",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/exhibitions/listings/2012/byzantium-and-islam/blog/topical-essays/posts/iconoclasm",
+      "locator": "Byzantine Iconoclasm, paragraph beginning Byzantine iconoclasm peaked and following paragraph.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: in 754; in 787.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports the Council of Hieria in 754 and the Second Council of Nicaea in 787; distinguishes veneration of icons from worship of God."
+    },
+    {
+      "id": "ad0700-smithsonian-an-lushan",
+      "title": "Timeline of Chinese History, Art, and Culture",
+      "institution": "Smithsonian National Museum of Asian Art",
+      "url": "https://asia-archive.si.edu/learn/for-educators/teaching-china-with-the-smithsonian/interactives/timelines/timeline-of-chinese-history-art-and-culture/",
+      "locator": "755–763, An Lushan Rebellion panel.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: 755–763.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "An Lushan led an unsuccessful attempt to overthrow Xuanzong; the conflict weakened Tang rule."
+    },
+    {
+      "id": "ad0700-iranica-chronology",
+      "title": "Chronology of Iranian History Part 1 (Ehsan Yarshater)",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/chronology-of-iranian-history-part-1/",
+      "locator": "CE entries 747, 750, 755, 762 and 786.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded in this chronology: 747; 750; 755; 762; 786. It places Saffah’s accession in 750, whereas the fuller Iranica articles ABŪ MOSLEM ḴORĀSĀNĪ and KHORASAN v place proclamation in 749, with competing month accounts. Baghdad’s foundation is dated 762 here; Ashmolean separates earlier building and 762 residence.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports Abbasid establishment, al-Mansur's killing of Abu Moslem, Baghdad as capital in 762 and Harun al-Rashid's accession in 786."
+    },
+    {
+      "id": "ad0700-oup-charlemagne",
+      "title": "Charlemagne (John France), Oxford Bibliographies in Military History",
+      "institution": "Oxford University Press",
+      "url": "https://academic.oup.com/reference/62399/reference-article-abstract/571522380",
+      "locator": "Public Extract, Introduction, opening paragraph.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: In 768; in 771; By 774. Only the public extract was read.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports joint Frankish rule in 768 and sole rule after Carloman's death in 771; conquest was achieved by 774."
+    },
+    {
+      "id": "ad0700-unesco-kyoto",
+      "title": "Historic Monuments of Ancient Kyoto (Kyoto, Uji and Otsu Cities)",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/688",
+      "locator": "Description, opening paragraph.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: Built in A.D. 794.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Kyoto was founded as Japan's imperial capital in 794 using ancient Chinese capitals as models."
+    },
+    {
+      "id": "ad0700-english-heritage-lindisfarne",
+      "title": "History of Lindisfarne Priory (Joanna Story)",
+      "institution": "English Heritage",
+      "url": "https://www.english-heritage.org.uk/visit/places/lindisfarne-priory/History/",
+      "locator": "The Vikings, opening paragraph.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: On 8 June 793.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Dates the Viking attack and identifies Alcuin's written reaction; no claim that it was the first Viking raid anywhere."
+    },
+    {
+      "id": "ad0700-asi-pattadakal",
+      "title": "The Virupaksha Temple, Pattadakal",
+      "institution": "Archaeological Survey of India, Dharwad Circle",
+      "url": "https://www.asidharwadcircle.in/the-virupaksha-temple-the-great-virupaksha-temple-in-use-pattadakal-district-bagalkote/",
+      "locator": "English section, first paragraph and final paragraph about the gateway inscription.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: c. 740 CE. Completion is inferred from the conquest sequence.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Lokamahadevi sponsored the Shiva temple; the authors infer completion around 740, not an exact construction year."
+    },
+    {
+      "id": "ad0700-brin-java-temples",
+      "title": "Tiga Candi Era Rakai Panangkaran: Interpretasi Konsep Tantrayāna berdasarkan Prasasti dan Mitologi Bodhisattva (Harriyadi and Agus Aris Munandar, 2026)",
+      "institution": "Universitas Indonesia; AMERTA 44(1), BRIN Publishing",
+      "url": "https://ejournal.brin.go.id/amerta/article/download/13432/12334/48544",
+      "locator": "PDF p. 1 title and byline; §3.1.1, printed p. 6; §3.1.2, printed pp. 7–8; printed p. 15, paragraph beginning Candi Sewu, for perubahan atau restorasi; conclusion printed p. 17.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: 700 Şaka atau 778 Masehi; 714 Ś (792 M). The article supplies the CE equivalents.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Kalasan's 778 inscription records Panangkaran's grant for a Tara sanctuary; Sewu's 792 inscription is evidence of modification or restoration, not necessarily completion of the present complex."
+    },
+    {
+      "id": "ad0700-smithsonian-copan",
+      "title": "Copán, Living Maya Time",
+      "institution": "Smithsonian National Museum of the American Indian",
+      "url": "https://maya.nmai.si.edu/gallery/copan",
+      "locator": "Main historical text on 738; image caption for Altar Q.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded by the museum: on May 3 in 738 CE; commission in the year 776 CE. The 776 commission conflicts with the 775 commission stated by Agurcia Fasquelle, Sheets and Taube (2016), Protecting Sacred Space, printed p. 38. Preserve both chronologies.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports Waxaklajun Ub’ah K’awil's death at Quirigua in 738 and Yax Pasaj's commission of Altar Q in 776, showing sixteen dynastic rulers."
+    },
+    {
+      "id": "ad0700-cambridge-lombardy",
+      "title": "Precedents of the Battle, in Charlemagne’s Defeat in the Pyrenees (Xabier Irujo, 2021)",
+      "institution": "Amsterdam University Press; Cambridge Core",
+      "url": "https://www.cambridge.org/core/books/abs/charlemagnes-defeat-in-the-pyrenees/precedents-of-the-battle/A1AA94F6EF9137282C6520A72448BA2C",
+      "locator": "Public excerpt, The Paderborn Diet, 777, last two paragraphs.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "As worded: in 773-774 and 776. Campaigns are distinguished; the first is retained as a range.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Supports the first Lombard campaign in 773–774, Desiderius's deposition and Charles taking the Lombard crown; the public extract only."
+    },
+    {
+      "id": "review-ad0700-iranica-abu-moslem",
+      "title": "ABŪ MOSLEM ḴORĀSĀNĪ",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/abu-moslem-abd-al-rahman-b/",
+      "locator": "Historical narrative, paragraph beginning Shortly before Kūfa fell; official ceremonies and subsequent death of Marwān.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The article dates official ceremonies to 12 Rabīʿ II 132 / 28 November 749, and Marwān’s death to 27 Ḏu’l-ḥeǰǰa 132 / 6 August 750. Its CE equivalents are retained. The KHORASAN v article instead places proclamation in late October 749.",
+      "reuseTerms": "Reference-only research intention; no source prose or images redistributed. This statement does not assert a licence or additional reuse permission.",
+      "scopedClaim": "Al-Saffah was made caliph and received allegiance at ceremonies dated 749 in this article; no transfer of this date to the victory of 750."
+    },
+    {
+      "id": "review-ad0700-iranica-khorasan-abbasids",
+      "title": "KHORASAN v. History in the ʿAbbasid Period",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/khorasan-v-history-in-the-%CA%BFabbasid-period/",
+      "locator": "Final paragraph of the revolution narrative, beginning However, Qaḥṭaba was not alone; proclamation at Kufa in Rabiʿ I 132 / late October 749.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The article places proclamation in Rabiʿ I 132 / late October 749. The ABŪ MOSLEM article places official ceremonies on 28 November 749. The month accounts remain unresolved.",
+      "reuseTerms": "Reference-only research intention; no source prose or images redistributed. This statement does not assert a licence or additional reuse permission.",
+      "scopedClaim": "Al-Saffah’s proclamation is assigned to 749; the month differs from the Abu Moslem article."
+    },
+    {
+      "id": "review-ad0700-mesoweb-protecting-sacred-space",
+      "title": "Protecting Sacred Space: Rosalila’s Eccentric Chert Cache at Copan and Eccentrics among the Classic Maya",
+      "institution": "Precolumbia Mesoweb Press; Ricardo Agurcia Fasquelle, Payson Sheets and Karl Andreas Taube (2016)",
+      "url": "https://www.mesoweb.com/publications/PMP2/PMP2.pdf",
+      "locator": "Title and copyright pages; printed p. 38, bottom paragraph, in Copan and Rosalila’s Eccentric Cache; PDF p. 19, left-hand page.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The monograph dates the commission of Temple 16 and Altar Q to AD 775. Smithsonian dates the Altar Q commission to 776. These are competing commission years, separate from the accession in 763.",
+      "reuseTerms": "Reference-only research intention; no source prose or images redistributed. This statement does not assert a licence or additional reuse permission.",
+      "scopedClaim": "Alternative 775 commission date for Altar Q, retained alongside the museum’s 776."
+    },
+    {
+      "id": "review-ad0700-unesco-samarkand-geography",
+      "title": "Samarkand – Crossroad of Cultures",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/603/",
+      "locator": "Outstanding Universal Value, Brief synthesis, opening paragraph; location in the Zerafshan River valley in Uzbekistan.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "Modern geographical identification only; no historical conquest date is asserted from this page.",
+      "reuseTerms": "Reference-only research intention; no source prose or images redistributed. This statement does not assert a licence or additional reuse permission.",
+      "scopedClaim": "Samarkand is in present-day Uzbekistan; supports only the modern country label."
     }
   ],
   "events": [
@@ -15952,6 +16227,813 @@
         "status": "approved",
         "reviewedBy": "Codex independent check",
         "reviewedOn": "2026-11-08"
+      }
+    },
+    {
+      "id": "ev-0700-hantverkare-formar-megalit-fran-wanar",
+      "date": {
+        "kind": "range",
+        "startYear": 700,
+        "endYear": 799,
+        "displaySv": "700-talet, bred sekeldatering",
+        "noteSv": "Museet anger endast en bred sekeldatering. Sifferintervallet är projektets indexering och belägger varken ett första eller sista tillverkningsår, en bestämd tillverkningsplats eller när stenen restes."
+      },
+      "titleSv": "En lyraformad megalit från Wanar dateras till 700-talet",
+      "summarySv": "Museet daterar en stor lyraformad megalit från Wanar till 700-talet. Källan anger inget enskilt tillverkningsår eller någon tillverkningsplats.",
+      "geographySv": "Megaliten kommer från Wanar i nuvarande Senegal; tillverkningsplatsen anges inte.",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ad0700-met-wanar"
+      ],
+      "selectionNote": "Notable culture episode for sub-saharan-africa; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0706-al-walid-bestaller-mosken-i-damaskus",
+      "date": {
+        "kind": "exact",
+        "startYear": 706,
+        "endYear": 706,
+        "displaySv": "706",
+        "noteSv": "Årtalet gäller beställningen enligt museets kronologi. Det anger inte ett färdigställandeår."
+      },
+      "titleSv": "Al-Walid beställer en moské i Damaskus",
+      "summarySv": "Kalifen al-Walid låter uppföra en moské i Damaskus. Byggarna omvandlar platsen för Johannes Döparens kyrka till huvudstadens fredagsmoské.",
+      "geographySv": "Damaskus, Syrien",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-met-damascus"
+      ],
+      "selectionNote": "Notable religion episode for mena; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0710-nara-blir-japans-huvudstad",
+      "date": {
+        "kind": "exact",
+        "startYear": 710,
+        "endYear": 710,
+        "displaySv": "710"
+      },
+      "titleSv": "Hovet gör Nara till Japans huvudstad",
+      "summarySv": "Japans hov etablerar huvudstaden i Nara. Här finns det kejserliga palatset, buddhistiska tempel och shintohelgedomar.",
+      "geographySv": "Nara, Japan",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-unesco-nara"
+      ],
+      "selectionNote": "Notable politics episode for east-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0711-arabisk-berbiska-trupper-erovrar-iberien",
+      "date": {
+        "kind": "range",
+        "startYear": 711,
+        "endYear": 718,
+        "displaySv": "711–718",
+        "noteSv": "Källan samlar erövringen under 711–718. Intervallet anger flera års fälttåg och förhandlingar."
+      },
+      "titleSv": "Arabiska och berbiska trupper erövrar större delen av Iberien",
+      "summarySv": "Arabiska och berbiska trupper går i land på Iberiska halvön under umayyadiskt befäl. Genom krig och förhandlingar tar de kontroll över större delen av halvön och tränger undan den visigotiska ledningen.",
+      "geographySv": "Iberiska halvön",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "ad0700-met-iberia"
+      ],
+      "selectionNote": "Notable war episode for europe; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0712-muhammad-ibn-qasim-besegrar-dahir",
+      "date": {
+        "kind": "exact",
+        "startYear": 712,
+        "endYear": 712,
+        "displaySv": "712"
+      },
+      "titleSv": "Muhammad ibn Qasim besegrar Dahir i Sind",
+      "summarySv": "Muhammad ibn Qasim besegrar Raja Dahir i Sind. Dahir dör i slaget, och Ibn Qasim fortsätter att utvidga det umayyadiska väldet i regionen.",
+      "geographySv": "Sind, nuvarande Pakistan",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-tdv-sind"
+      ],
+      "selectionNote": "Notable war episode for south-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0712-arabiska-trupper-intar-samarkand",
+      "date": {
+        "kind": "exact",
+        "startYear": 712,
+        "endYear": 712,
+        "displaySv": "712"
+      },
+      "titleSv": "Arabiska trupper intar Samarkand",
+      "summarySv": "Arabiska trupper erövrar Samarkand år 712. De tar därmed en av Sogdiens städer under kalifatets kontroll.",
+      "geographySv": "Samarkand, nuvarande Uzbekistan",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-iranica-talas",
+        "review-ad0700-unesco-samarkand-geography"
+      ],
+      "selectionNote": "Notable war episode for central-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0715-templet-22-uppfors-i-copan",
+      "date": {
+        "kind": "approximate",
+        "startYear": 715,
+        "endYear": 715,
+        "displaySv": "cirka 715",
+        "noteSv": "David Stuart daterar byggnaden till omkring den 27 mars 715 utifrån en inskrift om härskarens tjugoårsjubileum. Året är ungefärligt."
+      },
+      "titleSv": "Waxaklahun Ubah K'awil låter bygga tempel 22 i Copán",
+      "summarySv": "Copáns härskare Waxaklahun Ubah K'awil låter uppföra tempel 22. Konstnärerna gestaltar ett heligt berg och natthimlen i byggnadens skulpturer.",
+      "geographySv": "Copán, nuvarande Honduras",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "ad0700-harvard-copan"
+      ],
+      "selectionNote": "Notable religion episode for americas; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0738-copans-harskare-dodas-i-quirigua",
+      "date": {
+        "kind": "exact",
+        "startYear": 738,
+        "endYear": 738,
+        "displaySv": "3 maj 738"
+      },
+      "titleSv": "Copáns härskare halshuggs i Quiriguá",
+      "summarySv": "Människor i Quiriguá tillfångatar och halshugger Copáns härskare Waxaklajun Ub’ah K’awil den 3 maj 738. Copán förlorar en kung vars byggnadsprojekt hade präglat staden.",
+      "geographySv": "Quiriguá, nuvarande Guatemala",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-smithsonian-copan"
+      ],
+      "selectionNote": "Notable war episode for americas; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0740-virupakshatemplet-fardigstalls",
+      "date": {
+        "kind": "approximate",
+        "startYear": 740,
+        "endYear": 740,
+        "displaySv": "cirka 740",
+        "noteSv": "Archaeological Survey of India härleder cirka 740 från inskriften om kungens tre segrar. Något exakt färdigställandeår framgår inte."
+      },
+      "titleSv": "Lokamahadevi bekostar Virupakshatemplet i Pattadakal",
+      "summarySv": "Enligt Archaeological Survey of India bekostar drottning Lokamahadevi ett tempel åt Shiva i Pattadakal. Myndigheten härleder ett färdigställande omkring 740 från inskriften om Vikramaditya II:s tre segrar över Kanchi.",
+      "geographySv": "Pattadakal, Karnataka, Indien",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-asi-pattadakal"
+      ],
+      "selectionNote": "Notable religion episode for south-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0741-shomu-befaller-kloster-i-provinserna",
+      "date": {
+        "kind": "exact",
+        "startYear": 741,
+        "endYear": 741,
+        "displaySv": "741"
+      },
+      "titleSv": "Shōmu befaller att ett nät av kloster ska byggas",
+      "summarySv": "Kejsar Shōmu utfärdar en befallning om ett nät av buddhistiska kloster i Japan. Han höjer samtidigt Kinshō-jis ställning inom den kejserliga tempelorganisationen.",
+      "geographySv": "Japan",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-todaiji-history"
+      ],
+      "selectionNote": "Notable religion episode for east-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0744-uigurerna-bildar-ett-rike",
+      "date": {
+        "kind": "exact",
+        "startYear": 744,
+        "endYear": 744,
+        "displaySv": "744"
+      },
+      "titleSv": "Uigurerna bildar ett rike vid Orkhon",
+      "summarySv": "Uigurerna bildar ett rike med huvudstad i Karabalghasun. Huvudstaden ligger vid floden Orkhon i nuvarande Mongoliet.",
+      "geographySv": "Orkhondalen, nuvarande Mongoliet",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-washington-inner-asia"
+      ],
+      "selectionNote": "Notable politics episode for central-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0747-abbasiderna-reser-upprorsfanor-i-merv",
+      "date": {
+        "kind": "exact",
+        "startYear": 747,
+        "endYear": 747,
+        "displaySv": "747",
+        "noteSv": "747 gäller upprorets inledning. Framryckningen till Irak och segrarna 749–750 är senare skeden."
+      },
+      "titleSv": "Abbasidernas anhängare inleder uppror i Merv",
+      "summarySv": "Abbasidernas anhängare inleder ett uppror i Merv i Khorasan år 747 och använder svarta fanor som symbol. Upproret riktas mot umayyaderna.",
+      "geographySv": "Merv och Khorasan, Centralasien",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "ad0700-ashmolean-abbasids"
+      ],
+      "selectionNote": "Notable war episode for central-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0750-abbasiderna-stortar-umayyaderna",
+      "date": {
+        "kind": "exact",
+        "startYear": 750,
+        "endYear": 750,
+        "displaySv": "750",
+        "noteSv": "År 750 gäller segern över umayyaderna. Iranicas kronologi placerar al-Saffahs tillträde i 750, medan två längre artiklar anger utropandet till 749: den ena anger sent i oktober och den andra ceremonier den 28 november. Uppgifterna om månad lämnas olösta."
+      },
+      "titleSv": "Abbasiderna störtar umayyadernas kalifat",
+      "summarySv": "Abbasidernas styrkor besegrar umayyaderna och bryter deras makt över kalifatet år 750. Al-Saffah hade utropats till kalif år 749.",
+      "geographySv": "Irak och kalifatets provinser",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "ad0700-ashmolean-abbasids",
+        "ad0700-iranica-chronology",
+        "review-ad0700-iranica-abu-moslem",
+        "review-ad0700-iranica-khorasan-abbasids"
+      ],
+      "selectionNote": "Notable politics episode for mena; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0751-pippin-blir-frankernas-kung",
+      "date": {
+        "kind": "exact",
+        "startYear": 751,
+        "endYear": 751,
+        "displaySv": "751",
+        "noteSv": "Årsnotisen har rubriken 750 [751] i utgåvan. Året 751 följer året inom hakparentes. Uppgifterna återger annalernas berättelse."
+      },
+      "titleSv": "Pippin blir frankernas kung",
+      "summarySv": "Enligt Lorschannalerna upphöjs Pippin till frankernas kung i Soissons med påvens stöd. Annalerna berättar också att Childerik får håret klippt och skickas till ett kloster.",
+      "geographySv": "Soissons, Frankerriket",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "ad0700-fordham-lorsch"
+      ],
+      "selectionNote": "Notable politics episode for europe; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0751-ziad-besegrar-tangtrupper-vid-talas",
+      "date": {
+        "kind": "exact",
+        "startYear": 751,
+        "endYear": 751,
+        "displaySv": "751"
+      },
+      "titleSv": "Ziad ibn Salih besegrar Tangtrupper vid Talas",
+      "summarySv": "Ziad ibn Salih besegrar kinesiska styrkor vid Talas. Tangrikets styrkor möter där kalifatets armé i Centralasien.",
+      "geographySv": "Talasområdet, Centralasien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-iranica-talas"
+      ],
+      "selectionNote": "Notable war episode for central-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0752-stora-buddhan-invigs-i-nara",
+      "date": {
+        "kind": "exact",
+        "startYear": 752,
+        "endYear": 752,
+        "displaySv": "752"
+      },
+      "titleSv": "Tempelgemenskapen inviger den stora Buddhan i Nara",
+      "summarySv": "Tempelgemenskapen i Tōdai-ji inviger den stora Buddhastatyn vid en ceremoni. Hantverkarna hade färdigställt själva bilden 749.",
+      "geographySv": "Tōdai-ji, Nara, Japan",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-todaiji-history"
+      ],
+      "selectionNote": "Notable religion episode for east-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0754-kyrkomotet-i-hieria-forkastar-ikoner",
+      "date": {
+        "kind": "exact",
+        "startYear": 754,
+        "endYear": 754,
+        "displaySv": "754"
+      },
+      "titleSv": "Biskoparna i Hieria förkastar bruket av ikoner",
+      "summarySv": "Konstantin V sammankallar kyrkomötet i Hieria. Biskoparna stöder bildmotståndet och framhåller korset som kristendomens och kejsarmaktens symbol.",
+      "geographySv": "Hieria, Bysantinska riket",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-met-iconoclasm"
+      ],
+      "selectionNote": "Notable religion episode for europe; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0754-stefanus-smorjer-pippin-och-hans-soner",
+      "date": {
+        "kind": "exact",
+        "startYear": 754,
+        "endYear": 754,
+        "displaySv": "754"
+      },
+      "titleSv": "Påven Stefanus smörjer Pippin och hans söner",
+      "summarySv": "Lorschannalerna berättar att påven Stefanus år 754 smörjer Pippin och sönerna Karl och Karloman med helig olja. Enligt texten har Pippin först lovat att försvara den romerska kyrkan mot langobarderna.",
+      "geographySv": "Frankerriket",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-fordham-lorsch"
+      ],
+      "selectionNote": "Notable politics episode for europe; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0755-an-lushan-leder-uppror-mot-tang",
+      "date": {
+        "kind": "range",
+        "startYear": 755,
+        "endYear": 763,
+        "displaySv": "755–763",
+        "noteSv": "Källan daterar hela upproret till 755–763. An Lushan leder dess inledning; intervallet betyder inte att han lever eller leder det under alla år."
+      },
+      "titleSv": "An Lushan leder ett uppror mot Tangdynastin",
+      "summarySv": "Generalen An Lushan gör uppror mot kejsar Xuanzong och försöker själv bli kejsare. Tangdynastin överlever kriget men förlorar styrka.",
+      "geographySv": "Tangriket, Kina",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "ad0700-smithsonian-an-lushan"
+      ],
+      "selectionNote": "Notable war episode for east-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0755-al-mansur-later-doda-abu-moslem",
+      "date": {
+        "kind": "exact",
+        "startYear": 755,
+        "endYear": 755,
+        "displaySv": "755"
+      },
+      "titleSv": "Al-Mansur låter döda Abu Moslem",
+      "summarySv": "Kalifen al-Mansur låter döda Abu Moslem. Abu Moslem hade lett det abbasidiska upproret i Khorasan.",
+      "geographySv": "Abbasidkalifatet",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-iranica-chronology",
+        "review-ad0700-iranica-khorasan-abbasids"
+      ],
+      "selectionNote": "Notable politics episode for mena; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0756-abd-al-rahman-blir-emir-i-cordoba",
+      "date": {
+        "kind": "exact",
+        "startYear": 756,
+        "endYear": 756,
+        "displaySv": "756"
+      },
+      "titleSv": "Abd al-Rahman I blir emir i Córdoba",
+      "summarySv": "Den umayyadiske prinsen Abd al-Rahman I etablerar sitt styre i al-Andalus. Han gör Córdoba till sin huvudstad.",
+      "geographySv": "Córdoba och al-Andalus, Iberiska halvön",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-met-iberia"
+      ],
+      "selectionNote": "Notable politics episode for europe; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0762-al-mansur-flyttar-hovet-till-bagdad",
+      "date": {
+        "kind": "exact",
+        "startYear": 762,
+        "endYear": 762,
+        "displaySv": "762",
+        "noteSv": "Iranica daterar stadens grundande till 762. Ashmolean anger byggstart 758 och inflyttning 762; händelsen gäller inflyttningen."
+      },
+      "titleSv": "Al-Mansur flyttar hovet till Bagdad",
+      "summarySv": "Kalifen al-Mansur tar sitt nya palats i Bagdad i bruk. Han flyttar hovet, skattkammaren och armén dit.",
+      "geographySv": "Bagdad, Irak",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "ad0700-ashmolean-abbasids",
+        "ad0700-iranica-chronology"
+      ],
+      "selectionNote": "Notable politics episode for mena; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0763-yax-pasah-tilltrader-i-copan",
+      "date": {
+        "kind": "exact",
+        "startYear": 763,
+        "endYear": 763,
+        "displaySv": "2 juli 763",
+        "noteSv": "David Stuart anger 6 Kaban 10 Mol och omräknar datumet till 2 juli 763. Året gäller trontillträdet, inte tillverkningen av Altar Q."
+      },
+      "titleSv": "Yax Pasah tillträder som härskare i Copán",
+      "summarySv": "Yax Pasah tillträder som härskare i Copán. Stadens konstnärer framställer senare hans maktövertagande på Altar Q genom ett möte med dynastins grundare.",
+      "geographySv": "Copán, nuvarande Honduras",
+      "category": "politics",
+      "importance": 1,
+      "sourceIds": [
+        "ad0700-harvard-copan"
+      ],
+      "selectionNote": "Notable politics episode for americas; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0768-karl-och-karloman-delar-frankerriket",
+      "date": {
+        "kind": "exact",
+        "startYear": 768,
+        "endYear": 768,
+        "displaySv": "768"
+      },
+      "titleSv": "Karl och Karloman blir kungar över frankerna",
+      "summarySv": "Karl den store blir kung över en del av frankernas rike. Hans bror Karloman styr den andra delen av deras fars rike.",
+      "geographySv": "Frankerriket",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-oup-charlemagne"
+      ],
+      "selectionNote": "Notable politics episode for europe; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0773-karl-erovrar-langobardernas-rike",
+      "date": {
+        "kind": "range",
+        "startYear": 773,
+        "endYear": 774,
+        "displaySv": "773–774",
+        "noteSv": "Intervallet gäller det första fälttåget 773–774. Det senare fälttåget 776 ingår inte."
+      },
+      "titleSv": "Karl den store erövrar langobardernas rike",
+      "summarySv": "Karl den store för krig mot langobarderna. Han avsätter Desiderius och tar titeln som langobardernas kung.",
+      "geographySv": "Langobardernas rike, Italien",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "ad0700-cambridge-lombardy",
+        "ad0700-oup-charlemagne"
+      ],
+      "selectionNote": "Notable war episode for europe; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0775-yax-pasaj-bestaller-altar-q",
+      "date": {
+        "kind": "disputed",
+        "startYear": 775,
+        "endYear": 776,
+        "displaySv": "omtvistat: 775 eller 776",
+        "noteSv": "Smithsonian anger beställningen till 776. Agurcia Fasquelle, Sheets och Taube anger 775 för beställningen av Altar Q och tempel 16. Dateringarna lämnas som alternativ; de anger inte en belagd tvåårig byggtid eller trontillträdet 763."
+      },
+      "titleSv": "Yax Pasaj beställer Altar Q i Copán",
+      "summarySv": "Yax Pasaj beställer ett stenaltare med porträtt av Copáns sexton härskare. Konstnärerna placerar dem i dynastisk ordning runt altarets fyra sidor.",
+      "geographySv": "Copán, nuvarande Honduras",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ad0700-smithsonian-copan",
+        "review-ad0700-mesoweb-protecting-sacred-space"
+      ],
+      "selectionNote": "Notable culture episode for americas; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0778-panangkaran-ger-jord-at-taras-helgedom",
+      "date": {
+        "kind": "exact",
+        "startYear": 778,
+        "endYear": 778,
+        "displaySv": "778",
+        "noteSv": "Dateringen gäller inskriften och dess uppgift om markens status. Den fastställer inget gemensamt byggår för dagens tempel."
+      },
+      "titleSv": "Panangkarans inskrift avsätter mark för Taras helgedom i Kalasan",
+      "summarySv": "En inskrift utfärdad av Panangkaran anger att mark i byn Kalaśa får status som sīma för underhållet av en helgedom åt Tārā. Texten är skriven på sanskrit och dateras i artikeln till 700 Śaka, återgivet som 778.",
+      "geographySv": "Kalasan, Java, nuvarande Indonesien",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "ad0700-brin-java-temples"
+      ],
+      "selectionNote": "Notable religion episode for southeast-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0785-abd-al-rahman-bygger-cordobas-moske",
+      "date": {
+        "kind": "exact",
+        "startYear": 785,
+        "endYear": 785,
+        "displaySv": "785",
+        "noteSv": "Museet anger 785 för byggandet. Händelsen gäller den första umayyadiska anläggningen, inte de senare utvidgningarna."
+      },
+      "titleSv": "Abd al-Rahman I låter bygga Córdobas stora moské",
+      "summarySv": "Emiren Abd al-Rahman I bekostar byggandet av Córdobas stora moské. Han låter uppföra den i sin huvudstad i al-Andalus.",
+      "geographySv": "Córdoba, Iberiska halvön",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-met-iberia"
+      ],
+      "selectionNote": "Notable religion episode for europe; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0786-harun-ar-rashid-blir-kalif",
+      "date": {
+        "kind": "exact",
+        "startYear": 786,
+        "endYear": 786,
+        "displaySv": "786"
+      },
+      "titleSv": "Harun ar-Rashid blir kalif",
+      "summarySv": "Harun ar-Rashid tillträder som abbasidisk kalif. Han utser Yahya från barmakidernas familj till sin vesir.",
+      "geographySv": "Abbasidkalifatet",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-iranica-chronology"
+      ],
+      "selectionNote": "Notable politics episode for mena; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0787-kyrkomotet-i-nicaea-godkanner-ikoner",
+      "date": {
+        "kind": "exact",
+        "startYear": 787,
+        "endYear": 787,
+        "displaySv": "787"
+      },
+      "titleSv": "Kyrkomötet i Nicaea godkänner vördnad för ikoner",
+      "summarySv": "Biskoparna vid det andra kyrkomötet i Nicaea förkastar besluten från Hieria. De skiljer vördnaden för ikoner från den dyrkan som tillkommer Gud.",
+      "geographySv": "Nicaea, Bysantinska riket",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-met-iconoclasm"
+      ],
+      "selectionNote": "Notable religion episode for europe; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0791-tibetanerna-intar-khotan",
+      "date": {
+        "kind": "approximate",
+        "startYear": 791,
+        "endYear": 791,
+        "displaySv": "cirka 791",
+        "noteSv": "Källan anger cirka 791. Dateringen fastställer inget exakt fälttågsår."
+      },
+      "titleSv": "Tibetanska styrkor intar Khotan",
+      "summarySv": "Tibetanska styrkor intar Khotan omkring 791. De möter samtidigt motstånd från uigurerna längre norrut.",
+      "geographySv": "Khotan och Tarimbäckenet, Centralasien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-washington-inner-asia"
+      ],
+      "selectionNote": "Notable war episode for central-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0792-skrivare-dokumenterar-arbeten-pa-sewu",
+      "date": {
+        "kind": "exact",
+        "startYear": 792,
+        "endYear": 792,
+        "displaySv": "792",
+        "noteSv": "Dateringen gäller inskriften. Kopplingen till byggnadsarbeten är forskarnas tolkning och ger inget färdigställandeår för hela tempelområdet."
+      },
+      "titleSv": "En inskrift vid Sewu vittnar om dyrkan av Mañjuśrī",
+      "summarySv": "Mañjuśrīgrha-inskriften dateras till 792 och beskriver en religiös vision. Forskarna knyter den till Sewutemplet och tolkar den som belägg för ombyggnad eller restaurering och dyrkan av Mañjuśrī.",
+      "geographySv": "Sewu, Java, nuvarande Indonesien",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "ad0700-brin-java-temples"
+      ],
+      "selectionNote": "Notable religion episode for southeast-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0793-vikingar-anfaller-lindisfarne",
+      "date": {
+        "kind": "exact",
+        "startYear": 793,
+        "endYear": 793,
+        "displaySv": "8 juni 793"
+      },
+      "titleSv": "Vikingar anfaller Lindisfarne",
+      "summarySv": "Vikingar anfaller klostret på Lindisfarne den 8 juni 793. Alkuin vid Karl den stores hov skriver om angreppet till kungen av Northumbria och öns biskop.",
+      "geographySv": "Lindisfarne, Northumbria, England",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-english-heritage-lindisfarne"
+      ],
+      "selectionNote": "Notable war episode for europe; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0794-kyoto-blir-kejsarens-huvudstad",
+      "date": {
+        "kind": "exact",
+        "startYear": 794,
+        "endYear": 794,
+        "displaySv": "794"
+      },
+      "titleSv": "Japans kejsarhov etablerar huvudstaden i Kyoto",
+      "summarySv": "Japans kejsarhov etablerar sin huvudstad i Kyoto. Stadsbyggarna hämtar förebilder från Kinas äldre huvudstäder.",
+      "geographySv": "Kyoto, Japan",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0700-unesco-kyoto"
+      ],
+      "selectionNote": "Notable politics episode for east-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
       }
     }
   ]
