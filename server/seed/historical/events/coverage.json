@@ -27,6 +27,12 @@
     },
     {
       "startYear": -2800,
+      "endYear": -2701,
+      "status": "partial",
+      "note": "Nine independently checked records concern two Ness of Brodgar building episodes, tentative Harappa perimeter walls, an inscribed Harappa rim sherd, a Linjia tin-bronze knife, three individually dated museum artifacts and initial construction of the Callacpuma circular plaza. Approximate dates and full archaeological or object ranges remain qualified; no exact annual occurrence, manufacturing locality or invented inscription reading is established. Al-Ghoryeen S3 is withheld because its slash date does not explicitly support the proposed continuous interval. The steppe and Central Asia, sub-Saharan Africa, Southeast Asia, Oceania and many other areas remain gaps. Later range endpoints do not establish researched coverage of subsequent centuries. Empty years remain research gaps."
+    },
+    {
+      "startYear": -2700,
       "endYear": 799,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."

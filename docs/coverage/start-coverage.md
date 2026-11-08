@@ -201,4 +201,28 @@ None.
 
 ## Inventory
 
-The public inventory derivative `server/seed/historical/coverage/inventory.json` is not published yet. The request to Codex is in `docs/development/CODEX-HANDOVER.md`.
+The public inventory derivative `server/seed/historical/coverage/inventory.json` was prepared on 2026-11-08 and lists 1011 rows. Codex withheld 0 further rows, which the tables leave out.
+
+### Shipped status by start
+
+| Start | playable | on-map | playable-candidate | map-only | needs-engine-kind | no-source | pending |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| egypt-3000bc | 0 | 0 | 0 | 0 | 0 | 0 | 14 |
+| charlemagne-800 | 6 | 0 | 0 | 0 | 0 | 0 | 48 |
+| world-1500 | 0 | 0 | 0 | 0 | 0 | 0 | 44 |
+| john-1200 | 1 | 3 | 0 | 0 | 0 | 0 | 33 |
+| no start | 0 | 0 | 0 | 0 | 0 | 400 | 462 |
+
+### Shipped status by region
+
+| Region | playable | on-map | playable-candidate | map-only | needs-engine-kind | no-source | pending |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| europe | 3 | 0 | 0 | 0 | 0 | 133 | 69 |
+| mena | 2 | 0 | 0 | 0 | 0 | 0 | 88 |
+| sub-saharan-africa | 0 | 0 | 0 | 0 | 0 | 14 | 53 |
+| central-asia | 0 | 1 | 0 | 0 | 0 | 77 | 31 |
+| south-asia | 0 | 0 | 0 | 0 | 0 | 86 | 58 |
+| east-asia | 1 | 1 | 0 | 0 | 0 | 54 | 103 |
+| southeast-asia | 1 | 0 | 0 | 0 | 0 | 7 | 51 |
+| americas | 0 | 1 | 0 | 0 | 0 | 22 | 129 |
+| oceania | 0 | 0 | 0 | 0 | 0 | 7 | 19 |
