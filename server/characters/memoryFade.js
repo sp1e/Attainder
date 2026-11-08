@@ -52,3 +52,22 @@ export function fadeDeadConditions(state) {
     if (kept.length < person.healthConditions.length) person.healthConditions = kept;
   }
 }
+
+/**
+ * Removes the personal relations between two persons who have both died, unless an action log opinion
+ * effect names the pair (adjustEffect in actionResolution.js finds its cause there) or another value in
+ * the state names one of its causes. Opinions are read only for the living. Draws nothing.
+ * Spec: docs/superpowers/specs/2026-11-08-relation-fade-design.md.
+ */
+export function fadeDeadRelations(state) {
+  const gone = (id) => !state.people[id] || Boolean(state.people[id].diedAt);
+  const candidates = Object.entries(state.relations).filter(([, rel]) => rel && gone(rel.fromId) && gone(rel.toId));
+  if (!candidates.length) return;
+  const adjustable = new Set((Array.isArray(state.actionLog) ? state.actionLog : []).flatMap((entry) => (Array.isArray(entry?.effects) ? entry.effects : [])
+    .filter((effect) => effect?.kind === 'opinion').map((effect) => `${effect.fromId}:${effect.toId}`)));
+  const causeIds = (rel) => (Array.isArray(rel.causes) ? rel.causes : []).map((item) => item?.id).filter((id) => typeof id === 'string');
+  const cited = citedIds(state, new Set(candidates.flatMap(([, rel]) => causeIds(rel))));
+  for (const [key, rel] of candidates) {
+    if (!adjustable.has(`${rel.fromId}:${rel.toId}`) && !causeIds(rel).some((id) => cited.has(id))) delete state.relations[key];
+  }
+}
