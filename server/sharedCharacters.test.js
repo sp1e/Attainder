@@ -11,9 +11,9 @@ import { SHIPPED_START_FOLDERS } from '../src/runtime/testing/shippedHistoricalS
 
 const digest = state => createHash('sha256').update(JSON.stringify(state)).digest('hex');
 const baselines = [
-  [{}, 'b8e8360705c092d6dc38f74d765b262e83266fe1ab936cbbb31d4bb906c65d98', 'f72213bb4427b2734584a3da27ea0f6573790847975378a72278d9ad95855fe5', 104729, 2206754125],
-  [{ seed: 321, mode: 'realm' }, '440588c359fd8aacd11b43956d60d11dc2a547908ef052cb13a7899cd311de6b', 'e1f5da663aa6ba3c9334215a9abd3bdd1851ede6f85ad8df7871aba6682e601d', 321, 2318062802],
-  [{ seed: 321, mode: 'family' }, '1214759a50e420498311422357232502a59127524e6e6010fcfbff068c8700fd', '631aa7e30265a6ce707c2f72374cb960aacf4f3d9435eec8b5a15d47db7d26c8', 321, 2318062802],
+  [{}, '8998d87d357e09e5a15409d28b8407baeb258c03ccd025f6abc564be6728328d', '8a49ff515c636760ca8e920e5ad14cc7e1658e9674e650436969aa3e583bec76', 104729, 2206754125],
+  [{ seed: 321, mode: 'realm' }, '5d663a3450a3534a6c60c9b484a517606a81dfe3a4f69768d5dfcc24039f5eac', 'b651b71991923fd444f96a68874b9e6f6ba82ec1cca0b79cee99c7f2593ceb0a', 321, 2318062802],
+  [{ seed: 321, mode: 'family' }, '1502f96366fbb39cc0f4247c7c8d11b4363c1767cbba3baf73a61f5fc59c95a2', '8d499786d58c6484f4d586dacc718be6bd1a7ade62c211682a0464471ce752de', 321, 2318062802],
 ];
 for (const [options, initial, year, initialRng, yearRng] of baselines) test(`Hadara preflight complete-state parity ${JSON.stringify(options)}`, () => {
   const state = shared.createCharacterSystem(options);

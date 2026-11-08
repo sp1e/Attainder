@@ -17,7 +17,7 @@ Action descriptor: `{ type, label, description, cost, stress, disabledReason, fi
 
 Presentation story: `{id,type,title,description,actorId,targetId,createdAt,dueAt,status,choices:[{id,label,description,cost,stress,disabledReason}]}`. Resolve via command type `resolve_story`, payload `{storyId, choiceId}`. Choices should be displayed even if disabled, with reason. Engine always supplies a viable fallback for open stories.
 
-State has `schemaVersion:1`, `rulesVersion`, `contentVersion`, `revision`, `date`, `nextAnnualDate`, `rngState`, `identity:{mode,polityId,familyId}`, `realm`, `people`, `families`, `offices`, `cities`, `religions` (ID-keyed objects), `relations`, `memories`, `stories`, `projects`, `log`, `appliedCommandIds`, `status`. The adapter persists the whole state verbatim and uses the presentation API rather than relying on internal derived fields.
+State has `schemaVersion:1`, `rulesVersion`, `contentVersion`, `revision`, `date`, `nextAnnualDate`, `rngState`, `identity:{mode,polityId,familyId}`, `realm`, `people`, `families`, `offices`, `cities`, `religions` (ID-keyed objects), `relations`, `memories`, `stories`, `projects`, `log`, `appliedCommandIds`, `status`. `adoptions` lists `{ adopterId, childId, date }` per adoption; succession reads it, and a save without it gets it from its adoption memories. The adapter persists the whole state verbatim and uses the presentation API rather than relying on internal derived fields.
 
 Events returned by mutation: `{id,date,type,title,description,participants,public:true}`. Pure chronological outcomes. The runtime adapter owns their conversion to Open Historia impacts and replay; `events` never mutate the host world themselves.
 

@@ -1,4 +1,4 @@
-import { compareGameDates } from '../gameDates.js';
+import { compareGameDates, normalizeGameDate } from '../gameDates.js';
 
 // Who belongs to the old ruler's line and house when the crown passes.
 // Spec: docs/superpowers/specs/2026-11-08-married-in-succession-design.md. Draws nothing.
@@ -17,9 +17,26 @@ export function childIndex(state) {
   return children;
 }
 
-/** "adopter>child" for every adoption memory (participants: adopter, child). */
+// The adoption record: { adopterId, childId, date } per adoption, in order. A save from before the
+// record gets it from its adoption memories (participants: adopter, child).
+// Spec: docs/superpowers/specs/2026-11-08-adoption-record-design.md.
+export function ensureAdoptions(state) {
+  if (Object.hasOwn(state, 'adoptions')) return;
+  state.adoptions = (state.memories || []).filter((m) => m?.type === 'adoption')
+    .map((m) => ({ adopterId: m.participants?.[0], childId: m.participants?.[1], date: m.date }))
+    .filter((entry) => entry.adopterId && entry.childId);
+}
+
+export function validateAdoptions(state) {
+  const valid = Array.isArray(state.adoptions) && state.adoptions.every((entry) => entry && typeof entry === 'object' && !Array.isArray(entry)
+    && Boolean(state.people[entry.adopterId]) && Boolean(state.people[entry.childId])
+    && typeof entry.date === 'string' && normalizeGameDate(entry.date) === entry.date);
+  if (!valid) throw new Error('Sparfilens adoptioner är ogiltiga.');
+}
+
+/** "adopter>child" for every recorded adoption. */
 function adoptionPairs(state) {
-  return new Set((state.memories || []).filter((m) => m.type === 'adoption').map((m) => `${m.participants?.[0]}>${m.participants?.[1]}`));
+  return new Set((state.adoptions || []).map((entry) => `${entry.adopterId}>${entry.childId}`));
 }
 
 /**
