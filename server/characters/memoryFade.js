@@ -1,19 +1,20 @@
 import { STORY_MEMORY_WINDOW } from './storyDirector.js';
 
-/** Health memory types. A dead person keeps the condition itself in healthConditions. */
+/** Health memory types. A dead person keeps scars and the illness at death in healthConditions. */
 export const FADING_MEMORY_TYPES = Object.freeze(['health_onset', 'health_recovering', 'health_treatment', 'health_resolved', 'health_scars', 'bereavement']);
 const fading = new Set(FADING_MEMORY_TYPES);
 
-// Every memory id that some value outside that memory names: a cause, an outcome, an action log entry.
-function citedMemoryIds(state) {
-  const ids = new Set(state.memories.map((memory) => memory?.id)), cited = new Set();
+// The ids in `ids` that some value in the state names outside the record that carries that id: a
+// cause, an outcome, an action log entry, a regency's cause conditions.
+function citedIds(state, ids) {
+  const cited = new Set();
   const walk = (value, selfId) => {
-    if (typeof value === 'string') { if (value !== selfId && ids.has(value)) cited.add(value); }
-    else if (Array.isArray(value)) for (const item of value) walk(item, selfId);
-    else if (value && typeof value === 'object') for (const item of Object.values(value)) walk(item, selfId);
+    if (typeof value === 'string') { if (value !== selfId && ids.has(value)) cited.add(value); return; }
+    if (!value || typeof value !== 'object') return;
+    const own = !Array.isArray(value) && ids.has(value.id) ? value.id : selfId;
+    for (const item of Array.isArray(value) ? value : Object.values(value)) walk(item, own);
   };
-  for (const [key, value] of Object.entries(state)) if (key !== 'memories') walk(value, null);
-  for (const memory of state.memories) walk(memory, memory?.id);
+  walk(state, null);
   return cited;
 }
 
@@ -31,7 +32,23 @@ export function fadeMemories(state) {
   if (cut <= 0) return;
   const old = state.memories.slice(0, cut);
   if (!old.some((memory) => fading.has(memory?.type) && allDead(state, memory))) return;
-  const cited = citedMemoryIds(state);
+  const cited = citedIds(state, new Set(old.map((memory) => memory?.id)));
   const kept = old.filter((memory) => !fading.has(memory?.type) || !allDead(state, memory) || cited.has(memory.id));
   if (kept.length < old.length) state.memories = [...kept, ...state.memories.slice(cut)];
+}
+
+/**
+ * Removes the resolved conditions of dead persons that no other value in the state names. Scars and the
+ * illness at death stay; a portrait shows nothing for a resolved condition and the health rules read only
+ * the living. Draws nothing. Spec: docs/superpowers/specs/2026-11-08-condition-fade-design.md.
+ */
+export function fadeDeadConditions(state) {
+  const dead = Object.values(state.people).filter((person) => person.diedAt && Array.isArray(person.healthConditions));
+  const candidates = new Set(dead.flatMap((person) => person.healthConditions.filter((item) => item?.stage === 'resolved' && typeof item.id === 'string').map((item) => item.id)));
+  if (!candidates.size) return;
+  const cited = citedIds(state, candidates);
+  for (const person of dead) {
+    const kept = person.healthConditions.filter((item) => !candidates.has(item?.id) || cited.has(item.id));
+    if (kept.length < person.healthConditions.length) person.healthConditions = kept;
+  }
 }
