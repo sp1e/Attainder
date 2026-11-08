@@ -5,6 +5,7 @@
 
 import COUNTRY_NAME_REGISTRY from "./generated/countryNames.js";
 import { normalizeFeatureOverrides, normalizeFeatureSettings } from "../../../server/gameFeatures.js";
+import { shippedFingerprintField } from "../../../server/historicalStarts.js";
 import {
   fetchableHubOrigin,
   hubOriginAfterWrite,
@@ -244,6 +245,7 @@ export const readScenarioMeta = (scenarioId, raw = {}) => {
     playCount: normalizePlayCount(raw?.playCount),
     subtitle,
     updatedAt: raw?.updatedAt ?? nowIso(),
+    ...shippedFingerprintField(raw),
   };
 };
 

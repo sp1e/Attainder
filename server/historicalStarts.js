@@ -29,6 +29,68 @@ export const withLibraryFields = (storedMeta, shippedMeta) => ({
     .filter((key) => storedMeta?.[key] !== undefined).map((key) => [key, storedMeta[key]])),
 });
 
+// FNV-1a over the UTF-16 code units of the JSON text of a start's stored world and game, as 16
+// hex digits. The stores record it when they install or upgrade a shipped start, and a copy whose
+// content no longer matches it counts as the player's edit. It detects edits and authenticates nothing.
+// Spec: docs/superpowers/specs/2026-11-08-edited-start-upgrade-design.md.
+export const contentFingerprint = (world, game) => {
+  const text = JSON.stringify([world ?? null, game ?? null]);
+  let hi = 0xcbf29ce4, lo = 0x84222325;
+  for (let index = 0; index < text.length; index += 1) {
+    lo = (lo ^ text.charCodeAt(index)) >>> 0;
+    // Times the 64-bit prime 2^40 + 0x1b3, in two 32-bit halves.
+    const low = lo * 0x1b3;
+    hi = (Math.imul(hi, 0x1b3) + (lo << 8) + Math.floor(low / 0x100000000)) >>> 0;
+    lo = low >>> 0;
+  }
+  return hi.toString(16).padStart(8, "0") + lo.toString(16).padStart(8, "0");
+};
+
+// The meta field that normalized scenario meta keeps, so a rename or an editor apply leaves it.
+export const shippedFingerprintField = (raw) => typeof raw?.shippedContentFingerprint === "string"
+  ? { shippedContentFingerprint: raw.shippedContentFingerprint } : {};
+
+// True when the stored copy ({ meta, data: { world, game } }) carries a recorded fingerprint and
+// its content no longer matches it. A copy without one, installed before the stores recorded it,
+// counts as unedited.
+export const shippedStartEdited = (storedBundle) => {
+  const recorded = storedBundle?.meta?.shippedContentFingerprint;
+  return typeof recorded === "string"
+    && recorded !== contentFingerprint(storedBundle.data?.world, storedBundle.data?.game);
+};
+
+// True when a stored copy is the current version of the shipped start `entry` and carries no
+// fingerprint: a copy installed before the stores recorded one, or a write cut short before the
+// fingerprint. The stores then record the shipped package's fingerprint, so a copy the player had
+// already edited counts as edited at the next upgrade.
+export const shippedStartUntracked = (storedBundle, entry) => {
+  const content = storedBundle?.data?.world?.historicalScenario;
+  return Boolean(content) && typeof content === "object" && content.contentId === entry?.id
+    && storedBundle.meta?.restoreOnly !== true && content.contentVersion === entry.contentVersion
+    && typeof storedBundle.meta?.shippedContentFingerprint !== "string";
+};
+
+export const EDITED_COPY_NAME_SUFFIX = "(din ändrade kopia)";
+
+// The meta of the scenario that keeps the player's edited copy before an upgrade replaces it.
+// It is the player's own scenario from here on: no fingerprint, no hub link, no cached summary.
+export const keptEditedCopyMeta = (storedMeta, keptId, now) => {
+  const { shippedContentFingerprint: _fingerprint, historicalSummary: _summary, hubOrigin: _hub, ...meta } = storedMeta ?? {};
+  const name = String(meta.name ?? "").trim() || keptId;
+  return {
+    ...meta, id: keptId, name: `${name} ${EDITED_COPY_NAME_SUFFIX}`,
+    ...(String(meta.heroTitle ?? "").trim() ? { heroTitle: `${meta.heroTitle} ${EDITED_COPY_NAME_SUFFIX}` } : {}),
+    createdAt: now, updatedAt: now,
+  };
+};
+
+// `order` with `id` placed right after `anchorId`, or last when the anchor is absent.
+export const orderWithAfter = (order, anchorId, id) => {
+  const next = order.filter((entry) => entry !== id), at = next.indexOf(anchorId);
+  next.splice(at >= 0 ? at + 1 : next.length, 0, id);
+  return next;
+};
+
 const isPlainObject = (value) => value !== null && typeof value === "object"
   && (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
 
