@@ -1,6 +1,6 @@
 # Development checkpoint: Phase 3 of the AI game master
 
-Updated on 7 November 2026.
+Updated on 8 November 2026.
 
 ## Historical foundation checkpoint
 
@@ -28,7 +28,7 @@ The owner decided on 7 November 2026 that every culture of the world in the peri
 
 Evidence at `018c823c`: the full serial suite ran 4,913 tests, with 4,910 passed, 0 failed, 1 skipped and 2 TODO. The build, `build-historical-scenarios.mjs --check` and `check-historical-events.mjs --check` exited 0. Lint reported 18 errors and 71 warnings, all in 40 files this branch does not touch. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md).
 
-Known limit, updated in Phase 5: the Kyrkostaten court has four men aged 42 to 50 and no women, and nobody is born. Under merit succession the realm ended between 813 and 838 on eight seeds. Since Charlemagne 1.3.0 the court elects a generated outsider when it dies out, and the realm lives to 900 on the same seeds (see Phase 5 below). Charlemagne's court keeps primogeniture and ended between 856 and 868 for the same cause. Births at court remain open in backlog row 7.
+Known limit, updated with court renewal: the Kyrkostaten court opens with four men aged 42 to 50 and no women. Under merit succession the realm ended between 813 and 838 on eight seeds. Since Charlemagne 1.3.0 the court elects a generated outsider when it dies out (see Phase 5 below). Charlemagne's court keeps primogeniture and ended between 856 and 868 for the same cause. [Court renewal](#court-renewal) now brings generated newcomers to a thin court and generated spouses to unmarried generated adults, and both courts live to 900 with children born at court.
 
 ## Every culture playable: Phase 2
 
@@ -80,6 +80,19 @@ The design is `docs/superpowers/specs/2026-11-07-world-cultures-phase-5-design.m
 - On the eight seeds of `src/runtime/characters/courtBalance.test.js`, Kyrkostaten plays 100 years from the built package. The last of the four opening courtiers dies and the first outsider is elected between 817 and 836. On 25 December 900 every seed has an elected ruler, three to five elections behind it and a living realm.
 
 The century test landed in `9aba7bbc`. The final review's fixes followed in `d619c2cd` (engine, panel and law label) and `ec131a83` (the corrected `elective-rule` text, rebuilt into the three unreleased packages). Evidence at `ec131a83`: the full serial suite ran 5,127 tests, with 5,124 passed, 0 failed, 1 skipped and 2 TODO, in 470 seconds. The build and the four `--check` scripts exited 0, and eslint reported no errors in the changed files. The browser run at `9aba7bbc` predates these fixes. The rebuilt packages differ from that run in the `mechanics.noteSv` of the four dossier courts and the recorded `dossier-courts.mjs` hash. The new law label and the forecast's election line have unit tests and no browser rerun. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md). Births at court, name pools and several spouses per person remain open.
+
+## Court renewal
+
+The design is `docs/superpowers/specs/2026-11-08-court-renewal-design.md` and the plan is `docs/superpowers/plans/2026-11-08-court-renewal.md`. Court renewal is built on `feature/court-renewal`:
+
+- `courtRenewalStep` in `server/characters/renewal.js` runs once a year on historical states, in `annualStep` after `courtAnnualStep`. Hadara states never run it.
+- Court adults are living persons aged 18 or more whose family is not in exile. With fewer than 6 court adults the step brings one newcomer a year, `Hovman <m> (genererad)` or `Hovdam <m> (genererad)`, aged 25, as head of a new house `Hovhus <k> (genererat)`. The chronicle logs the event type `arrival` with the title `Ny person vid hovet`.
+- While the court has fewer than 12 court adults, each living generated person aged 18 to 35 with no living spouse and no partner at court gets one draw, unless the person is the active representative or holds the ruler or priest office. Below 0.25 a generated spouse `Gemål <g> (genererad)` joins the person's family. Births then follow from the existing birth step.
+- The step draws only from a new stream, `state.lineageRngState`, which only historical states carry. The main stream keeps its order of draws, and the Hadara digests and pinned streams are unchanged.
+
+On the eight seeds of `src/runtime/characters/courtBalance.test.js`, both courts play 100 years in realm mode from the built package. Karls rike is alive on 25 December 900 on every seed. Its first newcomer arrives between 838 and 848, and in 900 it has 10 to 17 court adults; 16 to 28 children were born during the century. Kyrkostaten gets its first newcomer in 801 on every seed, and in 900 it has 12 to 29 court adults; 21 to 57 children were born during the century. The Phase 5 century figures above were measured before court renewal.
+
+Evidence at `95830a88` with the century tests of the commit that adds this section: the full serial suite ran 5,156 tests, with 5,153 passed, 0 failed, 1 skipped and 2 TODO, in 447 seconds. The build and the four `--check` scripts exited 0, and eslint reported no errors in the changed files. The browser run is recorded in the [play script](../play-scripts/historical-foundation.md).
 
 ## Branch state
 

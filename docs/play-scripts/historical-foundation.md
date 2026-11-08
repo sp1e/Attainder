@@ -225,6 +225,24 @@ The candidate list under `Tronföljd` names Huáscar first and Araua Ocllo (30 �
 
 A century in Kyrkostaten has automated coverage only. `src/runtime/characters/courtBalance.test.js` plays 100 years on eight seeds from the built package. The first outsider is elected between 817 and 836, and on 25 December 900 every seed has an elected ruler and a living realm.
 
+## Court renewal
+
+Court renewal brings a generated newcomer to a historical court with fewer than six adults, and generated spouses to unmarried generated adults while the court has fewer than twelve. The browser run checks these rows on both adapters:
+
+| ID | Check | Expected |
+| --- | --- | --- |
+| R-1 | Start | Karls rike, 800 e.Kr., in realm mode |
+| R-2 | Advance one year | The year closes on 25 December 801, and `Krönikan`, segment `Årskrönika`, lists the year's entries |
+| R-3 | Console | 0 errors |
+
+| ID | Server | Web |
+| --- | --- | --- |
+| R-1 | | |
+| R-2 | | |
+| R-3 | | |
+
+A century at both courts has automated coverage only. `src/runtime/characters/courtBalance.test.js` plays 100 years on eight seeds from the built package. Karls rike is alive on 25 December 900 on every seed; its first newcomer arrives between 838 and 848, and 16 to 28 children are born during the century. Kyrkostaten gets its first newcomer in 801 on every seed and has 12 to 29 court adults in 900; 21 to 57 children are born there during the century.
+
 ## Closure
 
 The controller accepted Task 6 with the documented limits, and final documentation review approved publication subject to current-head CI. CI passed at `2066a55`; the PR tracks the current head and merge state. Preserve source attribution and licenses, and exclude private material from publication. The annual 3300 BC–AD 1530 historical-reference research and turn-end popup remain a separate pending milestone.

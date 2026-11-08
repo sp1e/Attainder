@@ -1,14 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { addGameMonths } from '../gameDates.js';
+import { addGameMonths, compareGameDates } from '../gameDates.js';
 import { actionHooks, advanceCharacters, createCharacterSystem, executeCharacterCommand, getCharacterPresentation, normalizeCharacterSystem } from './index.js';
 import { chancellorYield, readerIntrigue, serviceOf } from './council.js';
 import { dreadOf } from './dread.js';
-import { ELECTION_REASON_SV } from './election.js';
 import { spymasterOf } from './extensions.js';
 import { isImprisoned } from './prisoners.js';
 import { MAX_ACTIVE_GOALS } from './reign.js';
+import { courtAdults } from './renewal.js';
 import { createHistoricalCharacterSystem } from './scenarioSeed.js';
 
 // One playthrough of ten years on Normal sees each court system at least once. playYear is a scripted player: it never looks at a seed and never adapts to a result.
@@ -167,26 +167,39 @@ test('a spymaster of low loyalty reads worse than the same spymaster at ease', (
   assert.ok(forced < faithful, `${forced} against ${faithful}`);
 });
 
-// Kyrkostaten opens with four people and an elective law. Nobody is born at court, so the court dies out within a century and the engine elects generated outsiders.
+// Court renewal keeps both courts of 800 alive for a century without a player. Karls rike survives on every seed, and Kyrkostaten keeps at least four court adults.
+// At both courts at least one child is born during the century, a generated person with two parents. One run per seed and court serves every assertion.
 const CENTURY = 100;
 const CHARLEMAGNE = JSON.parse(readFileSync(new URL('../../../server/seed/historical/charlemagne-800/scenario.json', import.meta.url), 'utf8')).data;
-const PAPAL_COURT = ['leo-iii', 'generated-courtier-1', 'generated-courtier-2', 'generated-courtier-3'];
 
-function papalCentury(seed) {
-  let state = createHistoricalCharacterSystem({ historicalScenario: CHARLEMAGNE.world.historicalScenario, date: CHARLEMAGNE.game.startDate, polityId: 'papal-states', mode: 'realm', seed });
-  for (let year = 1; year <= CENTURY; year++) state = ok(advanceCharacters(state, addGameMonths(state.date, 12), { id: `papal:${seed}:${year}` }));
+function century(polityId, seed) {
+  let state = createHistoricalCharacterSystem({ historicalScenario: CHARLEMAGNE.world.historicalScenario, date: CHARLEMAGNE.game.startDate, polityId, mode: 'realm', seed });
+  for (let year = 1; year <= CENTURY; year++) state = ok(advanceCharacters(state, addGameMonths(state.date, 12), { id: `${polityId}:${seed}:${year}` }));
   return state;
 }
 
-test('Kyrkostaten stays alive for a century under an elected ruler on every seed', () => {
+const generatedChildren = (state) => Object.values(state.people).filter((person) => person.identityOrigin === 'generated' && person.biologicalParentIds.length === 2 && compareGameDates(person.bornAt, '0800-12-25') > 0);
+const report = (t, seed, state) => t.diagnostic(`${seed}: first arrival ${state.log.find((entry) => entry.type === 'arrival')?.date ?? 'none'}, court adults ${courtAdults(state).length}, generated children ${generatedChildren(state).length}`);
+
+test('Karls rike lives through the century with children at court on every seed', (t) => {
   for (const seed of SEEDS) {
-    const state = papalCentury(seed), ruler = state.people[state.offices.ruler.holderId];
+    const state = century('carolingian-realm', seed);
     assert.equal(state.date, '0900-12-25', `${seed}`);
     assert.equal(state.status.ended, false, `${seed}`);
     assert.equal(state.realm.alive, true, `${seed}`);
-    for (const id of PAPAL_COURT) assert.ok(state.people[id].diedAt, `${seed}: ${id} alive`);
-    assert.match(ruler.name, /^Vald härskare \d+ \(genererad\)$/, `${seed}`);
-    assert.equal(ruler.originLabelSv, 'Genererad person', `${seed}`);
-    assert.ok(state.offices.ruler.history.some((entry) => entry.reason === ELECTION_REASON_SV), `${seed}: no election`);
+    assert.ok(generatedChildren(state).length >= 1, `${seed}: no generated child`);
+    report(t, seed, state);
+  }
+});
+
+test('Kyrkostaten keeps at least four court adults and children at court through the century on every seed', (t) => {
+  for (const seed of SEEDS) {
+    const state = century('papal-states', seed);
+    assert.equal(state.date, '0900-12-25', `${seed}`);
+    assert.equal(state.status.ended, false, `${seed}`);
+    assert.equal(state.realm.alive, true, `${seed}`);
+    assert.ok(courtAdults(state).length >= 4, `${seed}: ${courtAdults(state).length} court adults`);
+    assert.ok(generatedChildren(state).length >= 1, `${seed}: no generated child`);
+    report(t, seed, state);
   }
 });
