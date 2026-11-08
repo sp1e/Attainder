@@ -32,6 +32,13 @@ const giftPoints = (silver) => Math.min(OFFER_CAP, Math.floor(silver / OFFER_DIV
 const ENEMY_OPINION = -20;
 const SUPPORT_OPINION = 10;
 export const MAX_ARGUMENTS = 8;
+// What a shared memory records decides how it weighs (spec 2026-11-08-memory-valence-design.md). Other types are neutral.
+export const MEMORY_VALENCE = Object.freeze({
+  favor: Object.freeze(['gift', 'appointment', 'education', 'patronage', 'story_patronage', 'promise_kept', 'adoption']),
+  grievance: Object.freeze(['betrayal', 'insult', 'dismissal', 'imprisonment', 'crime', 'scheme_discovered', 'plot', 'refuge_lost', 'story_fracture']),
+});
+const FAVOR_ROW = 'En tjänst att minnas', FAVOR_BONUS = 5;
+const GRIEVANCE_ROW = 'Personen minns ett agg', GRIEVANCE_PENALTY = 5, GRIEVANCE_CAP = 10;
 
 const REASONS = Object.freeze({
   request: 'Samtalsförfrågan är ogiltig.',
@@ -112,14 +119,29 @@ function readRequest(request) {
 
 const knownByBoth = (memory, aId, bId) => memory.knownBy === 'public' || memory.public === true || (Array.isArray(memory.knownBy) && memory.knownBy.includes(aId) && memory.knownBy.includes(bId));
 
+// The memory a shared_memory argument names, when both people took part and both know it, else null.
+function sharedMemory(state, argument, representative, speaker) {
+  const memory = Array.isArray(state.memories) ? state.memories.find((item) => item?.id === argument.refId) : null;
+  const shared = memory && Array.isArray(memory.participants) && memory.participants.includes(representative.id) && memory.participants.includes(speaker.id);
+  return shared && knownByBoth(memory, representative.id, speaker.id) ? memory : null;
+}
+
+// The distinct grievances among the cited memories: each one the speaker shares and knows counts against the request.
+function citedGrievances(state, given, representative, speaker) {
+  const ids = new Set(given.filter((argument) => argument.kind === 'shared_memory')
+    .map((argument) => sharedMemory(state, argument, representative, speaker))
+    .filter((memory) => memory && MEMORY_VALENCE.grievance.includes(memory.type)).map((memory) => memory.id));
+  return ids.size;
+}
+
 // Whether one argument refers to something that exists in the state. A claim without a basis earns nothing.
 function grounded(state, argument, ctx) {
   const { representative, speaker, offer, hookId, hooks } = ctx;
   if (argument.kind === 'offer') return giftPoints(offer) >= OFFER_GROUND_POINTS;
   if (argument.kind === 'hook') return hookId !== null && (argument.refId === null || argument.refId === hookId);
   if (argument.kind === 'shared_memory') {
-    const memory = Array.isArray(state.memories) ? state.memories.find((item) => item?.id === argument.refId) : null;
-    return Boolean(memory) && Array.isArray(memory.participants) && memory.participants.includes(representative.id) && memory.participants.includes(speaker.id) && knownByBoth(memory, representative.id, speaker.id);
+    const memory = sharedMemory(state, argument, representative, speaker);
+    return Boolean(memory) && !MEMORY_VALENCE.grievance.includes(memory.type);
   }
   const enemy = personOf(state, argument.refId);
   return Boolean(enemy) && !enemy.diedAt && enemy.id !== representative.id && enemy.id !== speaker.id
@@ -137,7 +159,7 @@ function groundedArguments(state, given, ctx) {
   });
 }
 
-function buildRows(read, speaker, representative, ctx, grounding, hooks) {
+function buildRows(state, read, speaker, representative, ctx, grounding, hooks) {
   const rows = [{ label: 'Grundchans', value: CONVERSATION_REQUESTS[read.kind].base }];
   const add = (label, value) => { if (value !== 0) rows.push({ label, value }); };
   add('Personens åsikt om dig', clamp(Math.round(hooks.getPersonalOpinion(speaker.id, representative.id) / OPINION_DIVISOR), -OPINION_CAP, OPINION_CAP));
@@ -149,6 +171,9 @@ function buildRows(read, speaker, representative, ctx, grounding, hooks) {
   if (hasTrait(speaker, 'trusting')) add(traitLabel('trusting'), TRUSTING_BONUS);
   if (ctx.hookId !== null) add('Övertag över personen', HOOK_BONUS);
   if (grounding.length) add('Övertygande argument', Math.min(ARGUMENT_CAP, read.score));
+  if (grounding.some((argument) => argument.kind === 'shared_memory'
+    && MEMORY_VALENCE.favor.includes(sharedMemory(state, argument, representative, speaker)?.type))) add(FAVOR_ROW, FAVOR_BONUS);
+  add(GRIEVANCE_ROW, -Math.min(GRIEVANCE_CAP, GRIEVANCE_PENALTY * citedGrievances(state, read.given, representative, speaker)));
   return rows;
 }
 
@@ -173,7 +198,7 @@ export function estimateConversation(state, request, hooks) {
   if (read.hookId !== null && reservedHookIds(state).has(read.hookId)) return { ok: false, reason: REASONS.reserved };
   const ctx = { representative, speaker, offer: read.offer, hookId: read.hookId, hooks };
   const grounding = groundedArguments(state, read.given, ctx);
-  const rows = buildRows(read, speaker, representative, ctx, grounding, hooks);
+  const rows = buildRows(state, read, speaker, representative, ctx, grounding, hooks);
   const precision = capPrecision(precisionFor(representative.skills?.diplomacy), loyaltyPrecision(state, hooks));
   const { value, modifiers, display } = chanceFromRows(rows, precision, LOYALTY_ROW);
   return { ok: true, personId: speaker.id, kind: read.kind, offerSilver: read.offer, hookId: read.hookId, value, modifiers, precision, display, groundedArguments: grounding };
