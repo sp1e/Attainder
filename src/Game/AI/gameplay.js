@@ -309,6 +309,7 @@ import {
   worldShareShortfall,
 } from "./worldDirection.js";
 import { addGameDays, compareGameDates, diffGameDays, gameDateDayNumber, normalizeGameDate, parseGameDate } from "../../runtime/gameDates.js";
+import { readCharacterWatches } from "../../runtime/characterWatchSettings.js";
 import {
   NO_RESPONSE_BODY_NOTE,
   beginSimulation,
@@ -1600,6 +1601,7 @@ const buildTemplateVariables = async (bundle, options = {}) => {
     const visible = await viewAsSeen(bundle);
     variables.characterContext = buildCharacterPromptContext(visible.world?.characterSystem, {
       targetDate: ["jumpForward", "autoJumpForward"].includes(taskKey) ? options.targetDate || "" : "",
+      watches: options.characterWatches || [],
     });
     variables.historicalContext = visible.world?.characterSystem
       ? buildHistoricalPromptContext(getCharacterPresentation(visible.world.characterSystem)) : undefined;
@@ -7857,6 +7859,7 @@ const applySimulationResult = async ({
       applyHostEvent: (world, event) => applyEventImpactsToWorld({ world, events: [event] }),
       pauseForHealthDecisions: true,
       pauseForCharacterDecisions: true,
+      watches: result.characterWatches || [],
       onComplete: (state, metadata) => { finalCharacterState = state; characterInterruption = metadata?.interruption ?? null; },
     })) : curatedEvents;
   assertCharacterTurnHorizon(finalCharacterState, result.stopDate || baseGame.gameDate, characterInterruption);
@@ -7864,7 +7867,7 @@ const applySimulationResult = async ({
   // date. Keep the reason only when that decision actually exists at this date.
   const plannedCare = result.characterInterruption;
   if (!characterInterruption && !finalCharacterState?.status?.ended && plannedCare?.date === finalCharacterState?.date
-    && plannedCare.storyIds?.some((id) => finalCharacterState.stories.some((story) => story.id === id && story.status === "open"))) {
+    && (plannedCare.type === "watch" || plannedCare.storyIds?.some((id) => finalCharacterState.stories.some((story) => story.id === id && story.status === "open")))) {
     characterInterruption = plannedCare;
   }
   if (characterInterruption) result.summary = `${characterInterruption.message} ${normalizeString(result.summary)}`.trim();
@@ -14176,6 +14179,7 @@ const finishTimelineJump = async ({ context, signal, state }) => {
     breadthRepairContext: selectBreadthRepairContext(state, context),
     generation: state.generation,
     characterInterruption: context.characterInterruption,
+    characterWatches: context.characterWatches,
     hiddenEvents: state.hiddenEvents,
     boardProvisionalEventIds: state.boardProvisionalEventIds,
     receipt: state.receipt,
@@ -14252,8 +14256,10 @@ export const simulateTimelineJump = async ({ days, mode = "jump", onEvents, onPr
   let dateStep = jumpDayStep(safeDays);
   const originDate = normalizeString(bundle.game.gameDate);
   const requestedTargetDate = jumpTargetDate(originDate, safeDays);
+  // Read once: the horizon, the forecast and the applied timeline stop at the same watches.
+  const characterWatches = readCharacterWatches(activeCampaignId());
   const horizon = bundle.world.characterSystem
-    ? planCharacterTurnHorizon(bundle.world, requestedTargetDate)
+    ? planCharacterTurnHorizon(bundle.world, requestedTargetDate, { watches: characterWatches })
     : { targetDate: requestedTargetDate, interruption: null };
   const targetDate = horizon.targetDate;
   if (compareGameDates(targetDate, requestedTargetDate) < 0) {
@@ -14272,8 +14278,9 @@ export const simulateTimelineJump = async ({ days, mode = "jump", onEvents, onPr
     historicalAnchorMaxChars: WORLD_SIMULATION_HISTORICAL_ANCHOR_MAX_CHARS,
     historicalAnchorMaxItems: WORLD_SIMULATION_HISTORICAL_ANCHOR_MAX_ITEMS,
     targetDate,
+    characterWatches,
   });
-  if (horizon.interruption) variables.characterContext += `\nThis request stops at ${targetDate} for a new ${horizon.interruption.type === 'health-care' ? 'health-care' : 'character story'} decision. Nothing beyond this date is part of the turn; leave the decision to the player.`;
+  if (horizon.interruption) variables.characterContext += `\nThis request stops at ${targetDate} for ${horizon.interruption.type === "watch" ? "a development the player watches" : `a new ${horizon.interruption.type === 'health-care' ? 'health-care' : 'character story'} decision`}. Nothing beyond this date is part of the turn; leave the decision to the player.`;
   // Guarantee at least one event per queued action, so each planned action has a
   // slot to resolve into (bounded so a huge queue can't demand absurd counts).
   const plannedActionCount = normalizeActions(bundle.actions).filter((action) => action.status === "planned").length;
@@ -14307,6 +14314,7 @@ export const simulateTimelineJump = async ({ days, mode = "jump", onEvents, onPr
     // Stamped here, at the read, not at the write minutes later.
     campaignId: activeCampaignId(),
     characterInterruption: horizon.interruption,
+    characterWatches,
     dateStep,
     mode,
     originDate,

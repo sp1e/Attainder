@@ -108,6 +108,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
     "./characters.css": {},
     "./HistoricalRecordView.jsx": { default: () => React.createElement("p", null, "HISTORISK POST"), holdFocus: () => {}, useChronicleRequest: () => {}, __esModule: true },
     "./LocalModelConnect.jsx": { default: () => null, __esModule: true },
+    "./CharacterWatchToggles.jsx": { default: () => null, __esModule: true },
     "./Portrait.jsx": { default: ({ person }) => React.createElement("span", { "data-portrait-person": person.id }), __esModule: true },
   };
   modules["./ActionBox.jsx"] = runModule(actionBoxCompiled, modules);

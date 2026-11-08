@@ -14,6 +14,7 @@ import {
 } from "./characters/index.js";
 import { ACTION_CATALOG, requiresOf } from "./characters/actionCatalog.js";
 import { COURT_STORY_TYPES } from "./characters/court.js";
+import { firedWatch, watchBaseline } from "./characterWatches.js";
 import { compareGameDates, diffGameDays, normalizeGameDate } from "./gameDates.js";
 import { buildOwnerAliasMap, createOwnerResolver } from "./ownerNames.js";
 
@@ -350,7 +351,7 @@ export const characterTransitionEvents = (before, result, operationId) => {
 const DECISION_STORY_TYPES = ["character_event", "event_chain", ...COURT_STORY_TYPES];
 
 export const planCharacterAdvance = (world, targetDate, { id = "character-calendar", quietDateSync = false,
-  pauseForHealthDecisions = false, pauseForCharacterDecisions = false, requestedDate = targetDate } = {}) => {
+  pauseForHealthDecisions = false, pauseForCharacterDecisions = false, watches = [], requestedDate = targetDate } = {}) => {
   if (!world?.characterSystem) return { state: null, events: [] };
   let state = normalizeCharacterSystem(world.characterSystem);
   const target = normalizeGameDate(targetDate);
@@ -361,6 +362,8 @@ export const planCharacterAdvance = (world, targetDate, { id = "character-calend
   const knownCare = new Set(state.stories.filter((story) => story.type === "health_care").map((story) => story.id));
   const knownStories = new Set(state.stories.filter((story) => DECISION_STORY_TYPES.includes(story.type)).map((story) => story.id));
   let checkpointBase = state;
+  // Each call starts its own baseline. A model event or command between calls may settle a watch; the next call then counts it as known.
+  const baseline = watches.length ? watchBaseline(state) : null;
   let steps = 0;
   while (compareGameDates(state.date, target) < 0) {
     if (++steps > 100000) throw new Error("Dela upp långa tidshopp med många karaktärshändelser.");
@@ -393,14 +396,16 @@ export const planCharacterAdvance = (world, targetDate, { id = "character-calend
         requestedDate: normalizeGameDate(requestedDate),
         message: "Turen stannade vid en ny karaktärshändelse. Välj hur du vill agera under Beslut i Rike & familjer innan du fortsätter." } };
     }
+    const watch = baseline && compareGameDates(state.date, requestedDate) < 0 ? firedWatch(state, baseline, watches) : null;
+    if (watch) return { state, events, interruption: { type: "watch", date: state.date, requestedDate: normalizeGameDate(requestedDate), ...watch } };
   }
   return { state, events };
 };
 
 // Resolve the playable horizon before asking a model. Its summary, ledger,
 // outreach and auxiliary review must all describe this same shorter period.
-export const planCharacterTurnHorizon = (world, targetDate) => {
-  const calendar = planCharacterAdvance(world, targetDate, { pauseForHealthDecisions: true, pauseForCharacterDecisions: true });
+export const planCharacterTurnHorizon = (world, targetDate, { watches = [] } = {}) => {
+  const calendar = planCharacterAdvance(world, targetDate, { pauseForHealthDecisions: true, pauseForCharacterDecisions: true, watches });
   return { targetDate: calendar.state?.date || targetDate, interruption: calendar.interruption ?? null };
 };
 
@@ -501,7 +506,7 @@ const runGateProposals = (world, event, date, proposals, turn) => {
 // Convert model proposals into validated, reproducible transitions. No model
 // supplied checkpoint, identity, death or resource balance is authoritative.
 export const prepareCharacterTimeline = (world, events, targetDate, { applyHostEvent, onComplete,
-  pauseForHealthDecisions = false, pauseForCharacterDecisions = false } = {}) => {
+  pauseForHealthDecisions = false, pauseForCharacterDecisions = false, watches = [] } = {}) => {
   if (!world?.characterSystem) return events;
   let current = world;
   const stop = normalizeGameDate(targetDate || world.characterSystem.date);
@@ -517,7 +522,7 @@ export const prepareCharacterTimeline = (world, events, targetDate, { applyHostE
       throw new Error("En modellhändelse ligger utanför den aktuella turens datum. Inga karaktärsföljder har sparats.");
     }
     const calendar = planCharacterAdvance(current, eventDate, { quietDateSync: true,
-      pauseForHealthDecisions, pauseForCharacterDecisions, requestedDate: stop });
+      pauseForHealthDecisions, pauseForCharacterDecisions, watches, requestedDate: stop });
     output.push(...calendar.events);
     current = { ...current, characterSystem: calendar.state };
     if (calendar.interruption) {
@@ -561,7 +566,7 @@ export const prepareCharacterTimeline = (world, events, targetDate, { applyHostE
         impacts: {} });
     }
   }
-  const tail = planCharacterAdvance(current, stop, { pauseForHealthDecisions, pauseForCharacterDecisions });
+  const tail = planCharacterAdvance(current, stop, { pauseForHealthDecisions, pauseForCharacterDecisions, watches });
   output.push(...tail.events);
   onComplete?.(tail.state, { interruption: tail.interruption ?? null });
   return output;
@@ -601,7 +606,7 @@ const withoutPersonProvenance = (person) => {
   return { ...visible, ...characterOriginLabel(person) };
 };
 
-export const buildCharacterPromptContext = (state, { targetDate = "" } = {}) => {
+export const buildCharacterPromptContext = (state, { targetDate = "", watches = [] } = {}) => {
   if (!state) return "";
   const view = getCharacterPresentation(state);
   const historicalContext = buildHistoricalPromptContext(view);
@@ -630,7 +635,7 @@ export const buildCharacterPromptContext = (state, { targetDate = "" } = {}) => 
   if (targetDate && compareGameDates(targetDate, state.date) > 0) {
     blocks.push("[Character campaign timeline pacing]",
       `Aim for 4–8 meaningful AI world events per year, with an absolute maximum of ${getCharacterEventBudget(state.date, targetDate)} AI events in this entire jump. Combine routine administration into a concise period summary. Do not create filler meetings, monthly accounting or repeated implementation updates. The character engine supplies its own life events and annual economic results; do not duplicate them or invent character mutations to meet a quota. Fewer events are appropriate when less happened.`);
-    const forecast = planCharacterAdvance({ characterSystem: state }, targetDate, { pauseForHealthDecisions: true, pauseForCharacterDecisions: true });
+    const forecast = planCharacterAdvance({ characterSystem: state }, targetDate, { pauseForHealthDecisions: true, pauseForCharacterDecisions: true, watches });
     const outcome = getCharacterWorldEffects(forecast.state);
     blocks.push("[Calendar forecast for this simulation request only]",
       "The deterministic engine will supply these dated character developments. Do not duplicate them or invent contradictory deaths/heirs. They are conditional on no intervening character command; proposals that change the conditions are resolved by the engine after this response. Describe wider world consequences, and describe proposed family actions as proposals. This forecast is not player-visible advance knowledge.",
