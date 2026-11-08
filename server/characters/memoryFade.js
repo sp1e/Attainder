@@ -71,3 +71,11 @@ export function fadeDeadRelations(state) {
     if (!adjustable.has(`${rel.fromId}:${rel.toId}`) && !causeIds(rel).some((id) => cited.has(id))) delete state.relations[key];
   }
 }
+
+// Only the living decide, and the panel shows the representative's decision alone, so the dead keep
+// none. The key stays as null, the shape the seed gives a person who has not decided.
+export function fadeDeadDecisions(state) {
+  for (const person of Object.values(state.people)) {
+    if (person?.diedAt && person.lastDecision != null) person.lastDecision = null;
+  }
+}
