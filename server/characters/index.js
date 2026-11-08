@@ -30,6 +30,7 @@ import { goalClosedReason, openGoals, recordDeed, setReignGoal } from './reign.j
 import { nicknameOf } from './nicknames.js';
 import { ELECTION_REASON_SV, electOutsider, electiveCandidates, nextSuccessionLaw } from './election.js';
 import { ensureRealmKind, presentRealm, validateRealmKind } from './realmKind.js';
+import { ensureLineageState, validateLineageState } from './renewal.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
 export { isImprisoned } from './prisoners.js';
@@ -302,7 +303,7 @@ export function createCharacterState(options, { familyId, religions }) {
 }
 
 export function completeCharacterState(state, difficulty) {
-  ensureGovernance(state); ensureHealthState(state); ensureMandateEpisodes(state); ensureStoryDirector(state); ensureEventChains(state); state.difficulty = normalizeDifficulty(difficulty); ensureCharacterExtensions(state); refreshLegalClaims(state, rulerCandidates);
+  ensureGovernance(state); ensureHealthState(state); ensureMandateEpisodes(state); ensureStoryDirector(state); ensureEventChains(state); ensureLineageState(state); state.difficulty = normalizeDifficulty(difficulty); ensureCharacterExtensions(state); refreshLegalClaims(state, rulerCandidates);
   return state;
 }
 
@@ -399,6 +400,7 @@ export function normalizeCharacterSystem(raw) {
   validateMandateEpisodes(state);
   ensureStoryDirector(state); validateStoryDirector(state);
   ensureEventChains(state); validateEventChains(state);
+  ensureLineageState(state); validateLineageState(state);
   validateCharacterExtensions(state);
   // Called here rather than from validateCharacterExtensions: actionResolution.js imports extensions.js, so the reverse import would be a cycle.
   validateActionLog(state);
@@ -841,7 +843,7 @@ export function advanceCharacters(original, targetDate, options = {}) {
   if (date === original.date || original.status.ended) return { ok: true, state: original, events: [], error: null };
   if (diffGameDays(original.date, date) > 366 * 500) return { ok: false, state: original, events: [], error: 'Dela upp tidshopp som är längre än 500 år.' };
   try {
-  const state = copy(original); ensureHealthState(state); ensureEventChains(state); ensureCharacterExtensions(state); const events = [];
+  const state = copy(original); ensureHealthState(state); ensureEventChains(state); ensureLineageState(state); ensureCharacterExtensions(state); const events = [];
   refreshRepresentation(state, events, { silent: original.mandateVersion == null });
   for (let next = getNextCharacterTransitionDate(state, date); next; next = getNextCharacterTransitionDate(state, date)) {
     state.date = next;
