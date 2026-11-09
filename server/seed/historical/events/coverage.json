@@ -117,6 +117,18 @@
     },
     {
       "startYear": -1400,
+      "endYear": -1301,
+      "status": "unresearched",
+      "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": -1300,
+      "endYear": -1201,
+      "status": "partial",
+      "note": "Eight candidate records concern the Yin capital move, the Tollense battle, iron-bearing Lahuradeva period III, Talepakemalai stilt houses, the battle of Kadesh, the Mycenae Lion Gate, Merey's attack on Egypt and the Merneptah stele. The original source review returned seven PASS and three HOLD; the narrower Kadesh location requires final candidate review. The treaty and final Mycenae wall phase remain held. All nine working regions were searched, but the Americas, sub-Saharan Africa, Southeast Asia, the steppe and Central Asia have no newly retained record. Represented regions also remain incomplete. Full uncertain dates and intervals remain intact; later endpoints imply neither annual occurrence nor researched coverage of later years. Empty years remain research gaps."
+    },
+    {
+      "startYear": -1200,
       "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
