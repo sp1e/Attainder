@@ -127,6 +127,15 @@ The owner approved ten character features on 8 November 2026. Each has a spec un
 
 None of them raises `rulesVersion`. The deathbed and the story fade were run for 200 and 300 years against `main` and kept the same people, deaths, rulers and random streams. Two rules came out of this work: a story or log entry that NPCs see takes its id from its own content, never from `state.sequence`, and a timing comparison counts only when `main` and the branch run back to back.
 
+## Several spouses
+
+The spec is `docs/superpowers/specs/2026-11-09-several-spouses-design.md`, PR #127, `520312ca`.
+
+- An authored court may give a person two or more reciprocal spouses. `spouseId` keeps the first; the optional `otherSpouseIds` keeps the rest in authored order and exists only on such people, so saves and shipped starts are unchanged.
+- `server/characters/marriage.js` exports `spouseIdsOf`, `isMarried` and `hasLivingSpouse`. Mourning, kinship, the marry command and its form, matchmaking, court renewal, succession partners and `marriedIn` read every spouse. Births and affairs read `spouseId` only.
+- The Swedish note for the `multiple-spouses` engine limit in `server/seed/historical/dossier-courts.mjs` still says the game allows one spouse, because `releases.json` pins John 1.2.0's bytes. Change it with the next John release. Codex decides whether Agnes of Merania enters `france-capetian` and whether the limit stays.
+- The demo and Charlemagne gave the same people, deaths, rulers and random streams over 300 years on `main` and on the branch.
+
 ## Branch state
 
 Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The whole-branch review found two reproduced issues; both now have reviewed fixes. The final follow-up review of `08d3518..55283dc` approved the branch with no new Critical, Important or Minor findings. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295). [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the fixes, and the remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`. The retained remote branch `fix/phase-3-review` ends at `55283dc`; its tested production code remains `cfa225238c5065441e4642481ab507629e498e73`. Nobody has run the Phase 3 play script; the owner deferred the Hadara script behind the historical foundation.
