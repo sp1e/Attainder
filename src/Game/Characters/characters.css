@@ -29,11 +29,12 @@
 .char-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 20px 30px; background: var(--char-surface); border-bottom: 1px solid var(--char-border); flex-shrink: 0; }
 .char-brand { display: flex; align-items: center; gap: 17px; }
 .char-brand-mark { font-family: Georgia, serif; font-size: 47px; color: var(--char-accent); width: 51px; text-align: center; }
+.char-brand-mark svg { display: block; max-width: 100%; height: auto; margin: 0 auto; }
 .char-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .13em; color: var(--char-muted); font-weight: 700; display: block; }
 .char-header-controls { display: flex; align-items: center; gap: 8px; }
-.char-icon-button { border: 1px solid var(--char-border); background: transparent; color: var(--char-ink); width: 40px; height: 40px; border-radius: 50%; line-height: 1; font-size: 23px !important; }
+.char-icon-button { display: inline-grid; place-items: center; padding: 0; border: 1px solid var(--char-border); background: transparent; color: var(--char-ink); width: 40px; height: 40px; border-radius: 50%; line-height: 1; font-size: 23px !important; }
 .char-icon-button:hover { background: var(--char-soft); }
-.char-close { margin-left: 15px; font-size: 30px !important; }
+.char-close { margin-left: 15px; }
 .char-theme-system { color: var(--char-muted); background: transparent; border: 0; padding: 8px; font-size: 11px !important; }
 .char-theme-system[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; }
 .char-campaign-strip { padding: 13px 30px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--char-border); flex-shrink: 0; }

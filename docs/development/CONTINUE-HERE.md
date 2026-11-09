@@ -239,7 +239,7 @@ The owner also requested year-by-year historical research for approximately 3300
 
 ## Still open
 
-One Phase 0 check remains: the panel in both themes and narrow layouts, with one submitted public choice and one submitted private choice, each followed by a reload.
+The Phase 0 panel check passed on 9 November 2026 in the web build at Karls rike, AD 800: a private choice (`Återhämta dig`, paid from the family purse) in the light theme at 1 400 px and a public choice (`Ändra skattepolitik` to `Hög`, paid from the treasury) in the dark theme at 390 px. After each reload the campaign kept the choice, its event and the theme. The check found two header faults at 390 px, both fixed: the 42 px civic mark overflowed its 30 px box into the eyebrow text, and the close button's `×` glyph sat 9 px below the middle of its circle. The close button now draws its cross as an SVG icon; pinned by `src/Game/Characters/panelHeader.test.js`.
 
 Claude ran the play scripts through a browser. A person has not played them yet.
 
