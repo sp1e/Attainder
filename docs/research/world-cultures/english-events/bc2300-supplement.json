@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc2300-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -2300,
+    "endYear": -2201
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc2300en-habu-sannai-sequence",
+      "title": "Growth and decline in complex hunter-gatherer societies: a case study from the Jomon period Sannai Maruyama site, Japan",
+      "institution": "Junko Habu, University of California, Berkeley; Antiquity 82 (2008), pages 571–584; author's public PDF",
+      "url": "https://junkohabu.com/wp-content/uploads/2017/04/habu2008-antiquity.pdf",
+      "locator": "Printed pages 574 and 581–582 (PDF pages 4 and 11–12): site occupation chronology, Discussion and the caution about climatic timing. Extracted text was read; no visual inspection of figures is claimed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "c. 3900-2300 cal BC",
+      "originalChronology": "The complete occupation sequence is approximately 3900–2300 cal BC. The paper distinguishes earlier changes in subsistence, settlement size and ritual from eventual abandonment; it does not date all these changes to the occupation endpoint.",
+      "scopedClaim": "Sannai Maruyama lies in Aomori, northern Japan. Its decline belongs to changes in regional Jomon settlement systems; several large settlements were abandoned at about the same time. The timing and role of cooling are not established as a single proven cause. Only the end of the selected settlement is represented here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2300en-jomon-official-sannai",
+      "title": "Summary of each archaeological site",
+      "institution": "World Heritage Jomon Prehistoric Sites in Northern Japan; English text by the Japan Tourism Agency",
+      "url": "https://jomon-japan.jp/en/visit/summary-of-each-archaeological-site",
+      "locator": "Sannai Maruyama Site, opening paragraph, web line 213; attribution at line 237. The separate general Development of settlements paragraph does not date an individual site's abandonment.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "between 3900 and 2200 BCE",
+      "originalChronology": "The official summary gives 3900–2200 BCE for the sizeable settlement, ending a century later than the approximate endpoint used by Habu. This is preserved as an alternative endpoint, not silently harmonized.",
+      "scopedClaim": "A large, long-lived Jomon settlement at Aomori included pit dwellings, large structures, burial areas and pottery-related facilities. The official account's occupation endpoint is 2200 BCE. It supplies no exact departure year, cause or destination.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc2300-sannai-maruyama-occupation-ends",
+      "date": {
+        "kind": "disputed",
+        "startYear": -2300,
+        "endYear": -2200,
+        "displayEn": "Around 2300 BCE; alternative occupation endpoint: 2200 BCE",
+        "noteEn": "Habu dates the occupation sequence to around 3900–2300 cal BC; the official heritage summary gives 3900–2200 BCE. This record concerns their alternative endpoints, not the whole occupation or a century-long departure. Earlier changes in subsistence and settlement size have their own chronology."
+      },
+      "titleEn": "The long occupation of Sannai Maruyama comes to an end",
+      "summaryEn": "The archaeological sequence of the Jomon settlement at Sannai Maruyama ends around 2300 BCE in Habu's chronology. The official heritage account extends its occupation to 2200 BCE. These estimates do not establish a single departure year, a cause or the inhabitants' destination.",
+      "geographyEn": "Sannai Maruyama, Aomori, northern Japan",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc2300en-habu-sannai-sequence",
+        "bc2300en-jomon-official-sannai"
+      ],
+      "selectionNote": "A notable archaeological endpoint for a major Jomon settlement, adding a northern Japanese settlement-history episode. The alternative 2300/2200 BCE endpoints remain uncertain. They do not establish an exact departure year, simultaneous evacuation of every house or continuous migration. The earlier subsistence transformation retains its separate chronology; no cause or destination is asserted.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
