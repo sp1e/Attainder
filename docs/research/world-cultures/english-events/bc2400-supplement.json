@@ -1,0 +1,96 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc2400-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -2400,
+    "endYear": -2301
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "a6b0bd087e7551764067e5c6b35251ad90b31621",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc2400en-obrien-ross-island-1992",
+      "title": "1992:105 - ROSS ISLAND, Kerry",
+      "institution": "Excavations.ie, Wordwell; William O’Brien, Department of Archaeology, University College Galway",
+      "url": "https://excavations.ie/report/1992/Kerry/0001299/",
+      "locator": "Excavation report, web lines 33–35, especially the pottery and radiocarbon chronology in the final paragraph. Public HTML read; the generic site-type date label is not used as an event date.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The 1992 report assigns the prehistoric mine and habitation to 2400–2100 cal BC from pottery and radiocarbon evidence. This earlier reported interval is preserved beside the later, longer production chronology.",
+      "asWorded": "2400–2100 cal BC",
+      "scopedClaim": "Early mining and an associated camp are attested at Ross Island. Their published dating concerns the archaeological activity, not an exact foundation year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2400en-obrien-ross-island-1995",
+      "title": "1995:139 - ROSS ISLAND, Kerry",
+      "institution": "Excavations.ie, Wordwell; William O’Brien, Department of Archaeology, University College Galway",
+      "url": "https://excavations.ie/report/1995/Kerry/0001981/",
+      "locator": "Excavation report, web lines 33–37, especially the work-camp date and evidence at line 34. The two peripheral furnaces at line 37 have a separate tentative Early Christian date and are excluded from this event.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The report dates the work-camp associated with copper mining to 2400–1800 BC. It separately suggests an Early Christian date for two peripheral furnaces; these are not evidence of the prehistoric phase.",
+      "asWorded": "2400–1800 BC",
+      "scopedClaim": "The mining camp contains ore-processing deposits, metallurgical treatment pits and huts with early Beaker pottery. These remains support a production episode rather than a single portable-object find.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2400en-obrien-tin-gold-2023",
+      "title": "Tin, gold and the earliest bronze in Ireland",
+      "institution": "William O’Brien; Ein Schwabe in der Welt, Verlag Dr. Rudolf Habelt, 2023; author-posted text on Academia.edu",
+      "url": "https://www.academia.edu/104495751/W_OBrien_Tin_gold_and_the_earliest_bronze_in_Ireland",
+      "locator": "Public HTML extraction of the chapter's opening page, printed page 299: abstract and introduction, web lines 4–14, especially lines 5 and 9–11 for Ross Island's chronology and copper supply. Opening metadata at lines 1–4 identifies the chapter, author, publisher and 2023 volume. No PDF download or visual page inspection was performed; extracted two-column text is interleaved.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The chapter dates Ross Island mining and smelting to c. 2400–1900/1800 BC. The slash preserves alternative approximate endpoints. Its separate discussion of tin-bronze introduction c. 2100–1800 BC does not date the beginning of this copper-mining episode.",
+      "asWorded": "c. 2400–1900/1800 BC",
+      "scopedClaim": "Ross Island produced substantial amounts of arsenic-bearing copper and supplied metal into Britain. The text identifies it as a principal early source for Ireland and Britain; no exact annual output or ethnic migration is claimed here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2400en-carey-metalworking-2019",
+      "title": "The social organisation of metalworking in southern England during the Beaker period and Bronze Age: absence of evidence or evidence of absence?",
+      "institution": "Internet Archaeology 52, University of York; Chris Carey, Andy M. Jones, Michael J. Allen and Gill Juleff, 2019",
+      "url": "https://intarch.ac.uk/journal/issue52/4/2.html",
+      "locator": "Section 2, Metalwork: mining, making and circulating, web lines 7–12, particularly Ross Island's starting chronology at line 7 and regional supply role at line 11. Title, authors and 2019 citation were checked on the linked Summary page, index.html, lines 4–10.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The section discusses Ross Island copper from 2400 cal BC during the Beaker period, without supplying a closing date for its mining phase.",
+      "asWorded": "from 2400 cal BC at Ross Island",
+      "scopedClaim": "Ross Island was a leading source of early copper in the Beaker-period networks of Britain and Ireland. The synthesis also acknowledges other potentially important sources; it does not establish a monopoly or an independent new dating series.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc2400-ross-island-copper-production",
+      "date": {
+        "kind": "disputed",
+        "startYear": -2400,
+        "endYear": -1800,
+        "displayEn": "c. 2400–1900/1800 BC; earlier report: 2400–2100 cal BC",
+        "noteEn": "O’Brien’s 2023 account gives c. 2400–1900/1800 BC for mining and smelting. His 1995 work-camp report gives 2400–1800 BC, while the 1992 mine and habitation report gives 2400–2100 cal BC. These are published archaeological intervals, not an exact foundation date or evidence of uninterrupted annual production."
+      },
+      "titleEn": "Ross Island supplies copper to Ireland and Britain",
+      "summaryEn": "Mining and metalworking at Ross Island support an important early copper supply. The associated camp preserves ore-processing deposits, treatment pits and huts with Beaker pottery. Arsenic-bearing copper from the mine circulates in Ireland and reaches Britain, linking local production with wider metalworking networks.",
+      "geographyEn": "Ross Island, County Kerry, Ireland; copper supply into Britain",
+      "category": "technology",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc2400en-obrien-ross-island-1992",
+        "bc2400en-obrien-ross-island-1995",
+        "bc2400en-obrien-tin-gold-2023",
+        "bc2400en-carey-metalworking-2019"
+      ],
+      "selectionNote": "A major regional production and supply episode, supported by excavated mining-camp remains and the source's role in early copper circulation across Ireland and Britain. Published intervals differ and retain approximate endpoints: 2400–2100 cal BC, 2400–1800 BC and c. 2400–1900/1800 BC. No exact founding year, continuous annual operation, tin-bronze invention, ethnic migration or monopoly is inferred. The tentative Early Christian furnaces are excluded, and the distinct earlier British Beaker burial episode is not duplicated.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check with three metadata corrections; independent final data, English and reconciliation review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
