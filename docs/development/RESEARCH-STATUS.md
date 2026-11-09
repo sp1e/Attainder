@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain twenty-four approved records, thirty-nine source records and one hundred twenty display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain twenty-six approved records, forty-three source records and one hundred thirty display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -17,14 +17,15 @@ The English research deliveries now contain twenty-four approved records, thirty
 | [2100–2001 BC](../research/world-cultures/english-events/bc2100-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #111](https://github.com/sp1e/Attainder/pull/111), commit `d058dfd9a2e3e29150e08e4f0ea027cafdfcd1b4` |
 | [1700–1601 BC](../research/world-cultures/english-events/bc1700-supplement.md) | 2 | 5 | 10 | Merged and remote-verified in [PR #112](https://github.com/sp1e/Attainder/pull/112), commit `0c8058fe4974e358cfb2028d96f03ea69446820d` |
 | [AD 700–799](../research/world-cultures/english-events/ad0700-supplement.md) | 2 | 4 | 10 | Merged and remote-verified in [PR #113](https://github.com/sp1e/Attainder/pull/113), commit `e64f91bbef9491e750ccb49020f53c2ac68f774d` |
+| [AD 800–899](../research/world-cultures/english-events/ad0800-supplement.md) | 2 | 4 | 10 | Source, English and integration reviews approved; current-head CI and verified merge required |
 | [3300–3201 BC](../research/world-cultures/english-events/bc3300-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #114](https://github.com/sp1e/Attainder/pull/114), commit `ae044386d0760780e755e8036ce137fdbd18d098` |
 | [3000–2901 BC](../research/world-cultures/english-events/bc3000-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #115](https://github.com/sp1e/Attainder/pull/115), commit `730ec22eed93515efc845468f662ca4da3489889` |
 | [AD 1000–1099](../research/world-cultures/english-events/ad1000-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #116](https://github.com/sp1e/Attainder/pull/116), commit `4a5147cdaefdbd51db07cc4e4eb113e9d68ca733` |
 | [AD 1100–1199](../research/world-cultures/english-events/ad1100-supplement.md) | 2 | 4 | 10 | Merged and remote-verified in [PR #117](https://github.com/sp1e/Attainder/pull/117), commit `1972e6edc4cd6ed03ed98650cf56673f93ce6215` |
 | [AD 1200–1299](../research/world-cultures/english-events/ad1200-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #118](https://github.com/sp1e/Attainder/pull/118), commit `8df12b7e44bad8d354241ebab49e3c4f71960753` |
 | [AD 1300–1399](../research/world-cultures/english-events/ad1300-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #119](https://github.com/sp1e/Attainder/pull/119), commit `887a4fa20095d921054adb088321314eb1c7e2f9` |
-| [AD 1400–1499](../research/world-cultures/english-events/ad1400-supplement.md) | 2 | 2 | 10 | Source, English and integration reviews approved; current-head CI and verified merge required |
-| [AD 1500–1530](../research/world-cultures/english-events/ad1500-supplement.md) | 2 | 3 | 10 | Source, English and integration reviews approved; [PR #120](https://github.com/sp1e/Attainder/pull/120) awaits current-head CI and verified merge |
+| [AD 1400–1499](../research/world-cultures/english-events/ad1400-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #121](https://github.com/sp1e/Attainder/pull/121), commit `d60d09a7fdf097f52429da370829c85c2a72b5b3` |
+| [AD 1500–1530](../research/world-cultures/english-events/ad1500-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #120](https://github.com/sp1e/Attainder/pull/120), commit `aff37caa8b5221180c3f30eff0fdadb0bf0c91bd` |
 
 PRs #109 and #110 each passed 5,337 tests with no failures and two TODOs; both builds passed. The BC2200 source correction reduced La Bastida's importance to 1. The AD300 batch concerns Meroe's royal pyramid burials and Teotihuacan's Adosada platform; its correction removes an unsupported temporal ordering of damage to other façades. BC2100 adds a regional sealing-technology event while withholding a separate law-collection candidate whose required passages were not fully verified. Original HOLD reports remain preserved separately from the final approvals.
 
@@ -48,7 +49,9 @@ PRs #118 and #119 each passed 5,337 tests with no failures and two TODOs; both b
 
 AD1400 adds the Dabra Metmaq council and Pegu's ordination reform. The final review approved removal of one inaccessible supporting source and its reference, plus a narrow attribution correction. The remaining directly read scholarship supports the qualified claims and both importance-2 ratings. The original source HOLD remains preserved; both complete selection notes passed the final review unchanged.
 
-Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. Independent CI runs may overlap on dependent research branches; merge them in order only after verifying that the merged parent has the tested parent's exact tree. Preserve branch ancestry with merge commits for this chain. The next active batches concern AD 800–899 and AD 900–999; their records do not enter the delivery totals until integration. A preliminary Turkana chronology check supplied no episode with a justified 2700–2601 BC start, so it produced no event candidate or coverage promotion. The older BC1600 execution-policy hold remains preserved.
+PRs #120 and #121 each passed 5,337 tests with no failures and two TODOs; both builds passed. AD800 adds Foguang's East Hall and the Rawda nilometer. Source and final reviews approved the unchanged historical data and both selection notes. A separate correction review resolved public-note scope and manifest-reading findings; the original final HOLD remains preserved. The two AH labels, extracted-text evidence and abstract-only conservation source remain explicit.
+
+Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. Independent CI runs may overlap on dependent research branches; merge them in order only after verifying that the merged parent has the tested parent's exact tree. Preserve branch ancestry with merge commits for this chain. AD900 awaits integration; further active research concerns AD 1–99 and AD 100–199. Those records do not enter the delivery totals until integration. A preliminary Turkana chronology check supplied no episode with a justified 2700–2601 BC start, so it produced no event candidate or coverage promotion. The older BC1600 execution-policy hold remains preserved.
 
 ## Earlier catalog delivery
 

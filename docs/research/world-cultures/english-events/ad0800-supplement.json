@@ -1,0 +1,120 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad0800-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 800,
+    "endYear": 899
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0800en-egypt-rawda-nilometer",
+      "title": "Rawda Island Nilometer",
+      "institution": "Egyptian Ministry of Tourism and Antiquities",
+      "url": "https://egymonuments.gov.eg/monuments/rawda-island-nilometer/",
+      "locator": "Monument description, paragraphs 1–3; web lines 129–133.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "247 AH/861 AD",
+      "originalChronology": "The ministry dates construction on al-Mutawakkil's orders to 247 AH/861 AD. No modern month or day is supplied.",
+      "scopedClaim": "The Rawda structure measured Nile levels. The page explains how flood measurements informed preparation of dykes and canals and assessment of agricultural productivity and taxes. It does not date the invention of nilometers or all surviving alterations to 861.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0800en-archnet-rawda-nilometer",
+      "title": "Nilometer",
+      "institution": "Archnet, Aga Khan Documentation Center at MIT",
+      "url": "https://www.archnet.org/sites/2372?media_content_id=6101",
+      "locator": "Description, opening paragraph, and Events field; web lines 13 and 46, repeated at line 123.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "861/246–47 AH",
+      "originalChronology": "Archnet identifies construction in 861 under al-Mutawakkil and labels the event 246–247 AH. This Islamic-year label differs slightly from the ministry's 247 AH; both supply 861 themselves.",
+      "scopedClaim": "Construction of the Rawda nilometer under the Abbasid caliph al-Mutawakkil. Later modifications described on the page are outside this event.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0800en-icomos-foguang",
+      "title": "Mount Wutai (China), No 1279: ICOMOS evaluation",
+      "institution": "ICOMOS; hosted by UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/document/152245",
+      "locator": "Report approved 10 March 2009; printed pages 1–3, especially page 3, Temples: Foguang area. Extracted PDF lines 5–7, 109–117 and 259–277.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "the East Hall built in 857",
+      "originalChronology": "The evaluation dates the surviving East Hall to 857, separately from the temple's fifth-century establishment and subsequent rebuilding episodes. Its broader survival rankings are not repeated here.",
+      "scopedClaim": "The Foguang East Hall in Shanxi is a substantial seven-bay example of Tang timber construction using girders and beams. The evaluation distinguishes its construction from the much earlier temple foundation.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0800en-li-gu-zhang-foguang",
+      "title": "Toward a Wider Audience, Systematic Approach of Reinterpretation and Representation of the East Main Hall of Foguang Temple Based on Digital Documentation and 3D Visualization Techniques",
+      "institution": "Z. Y. Li, Y. Gu and R. Zhang, Beijing Guowenyan Cultural Heritage Conservation Center; ISPRS Archives, 2021",
+      "url": "https://isprs-archives.copernicus.org/articles/XLVI-M-1-2021/395/2021/isprs-archives-XLVI-M-1-2021-395-2021.html",
+      "locator": "Public abstract, first sentence, and author affiliations; web lines 281–297. Only the abstract was used, not the linked full article.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Rebuilt in 857 AD",
+      "originalChronology": "The authors explicitly call the 857 episode a rebuilding of the East Main Hall. Their abstract does not supply a month or day.",
+      "scopedClaim": "The hall's rebuilding in 857 and its importance as surviving Tang wooden architecture. No claim about the timing of architectural influence abroad is derived from this abstract.",
+      "reuseTerms": "CC BY 4.0 article; reference only, no figures redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-857-foguang-east-hall-rebuilt",
+      "date": {
+        "kind": "exact",
+        "startYear": 857,
+        "endYear": 857,
+        "displayEn": "857",
+        "noteEn": "ICOMOS dates the surviving East Hall to 857, and Li, Gu and Zhang describe this as a rebuilding. The date concerns this hall, not the foundation of the earlier Foguang Temple. No month or day is specified."
+      },
+      "titleEn": "Foguang Temple's East Hall is rebuilt",
+      "summaryEn": "Builders reconstruct the East Hall of Foguang Temple in Shanxi. Its seven-bay timber structure, with girders and beams, becomes an important surviving example of Tang Buddhist architecture.",
+      "geographyEn": "Foguang Temple, Shanxi, China",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0800en-icomos-foguang",
+        "ad0800en-li-gu-zhang-foguang"
+      ],
+      "selectionNote": "A notable dated building episode represented by an important surviving Tang Buddhist hall. The year belongs to the hall's rebuilding, not the temple's earlier establishment; no day, construction-duration estimate, first-building claim or precisely dated overseas influence is asserted.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-861-rawda-nilometer-built",
+      "date": {
+        "kind": "exact",
+        "startYear": 861,
+        "endYear": 861,
+        "displayEn": "861; 247 AH in the ministry account, 246–247 AH in Archnet",
+        "noteEn": "Both sources supply 861 for construction under al-Mutawakkil. The ministry gives 247 AH and Archnet gives 246–247 AH; their original calendar labels are retained without an independent conversion. This dates the structure, not the invention of Nile-level measurement or all later alterations."
+      },
+      "titleEn": "Al-Mutawakkil orders the Rawda nilometer built",
+      "summaryEn": "A nilometer is built on Rawda Island on the orders of Abbasid caliph al-Mutawakkil. Measuring the Nile's flood level helps officials prepare canals and dykes and assess agricultural productivity and taxes.",
+      "geographyEn": "Rawda Island, present-day Old Cairo, Egypt",
+      "category": "technology",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0800en-egypt-rawda-nilometer",
+        "ad0800en-archnet-rawda-nilometer"
+      ],
+      "selectionNote": "A notable hydraulic measuring structure linked to agricultural administration. Both sources give 861 while retaining different Islamic-year labels. The event makes no invention, first-use or new-tax-system claim and does not assign later modifications to the construction year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
