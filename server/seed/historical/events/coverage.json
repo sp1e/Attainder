@@ -147,6 +147,18 @@
     },
     {
       "startYear": -900,
+      "endYear": -801,
+      "status": "unresearched",
+      "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": -800,
+      "endYear": -701,
+      "status": "partial",
+      "note": "Eight independently source-checked records concern Nok ironworking, increased iron objects at Narhan, Cuicuilco construction, Ban Non Wat bronze casting, the traditional first recorded Olympic victor, Western Zhou collapse, a NASA-attributed Assyrian eclipse record and the capture of Lachish. Searches cover all nine macroregions; the steppe and Central Asia and Oceania have no retained event. All regions remain incomplete. Full archaeological ranges and uncertain boundaries remain intact, including Nok 800-400 BC and Cuicuilco 800-150 BC. They establish neither continuous annual activity nor researched coverage of adjacent centuries. Li Feng is limited to the public Summary; the supported event does not imply access to the full chapter. Empty years remain research gaps."
+    },
+    {
+      "startYear": -700,
       "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."

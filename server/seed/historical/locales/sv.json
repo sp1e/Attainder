@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "242df5e4b04f74405d986cd845999bf9b125a555",
+  "sourceRevision": "a3e32afda06f6b07df46b08e8f377d86d2baac99",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -14192,6 +14192,226 @@
         "sourceId": "bc1000-oxford-vilabouly",
         "fieldPath": "/locator",
         "textSha256": "7b937c07be7f5bf09f680bb128f949ecd763efe942e056b34a70d0ed12b898c3"
+      }
+    },
+    {
+      "id": "source/bc0800-frankfurt-nok-iron/institution",
+      "en": "Goethe University Frankfurt, UniReport",
+      "sv": "Goethe University Frankfurt, UniReport",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-frankfurt-nok-iron",
+        "fieldPath": "/institution",
+        "textSha256": "00f6605a2fdf5fd41aeaaf379ae9323955f99cc645ce26e39074c71abc872448"
+      }
+    },
+    {
+      "id": "source/bc0800-frankfurt-nok-iron/locator",
+      "en": "Anke Sauter interview with Peter Breunig and Gabriele Franke, UniReport issue 2/2026; question 'What about ironworking?', answers at web lines 76–79.",
+      "sv": "Anke Sauters intervju med Peter Breunig och Gabriele Franke, UniReport nummer 2/2026; frågan What about ironworking?, svar på webbrader 76–79.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-frankfurt-nok-iron",
+        "fieldPath": "/locator",
+        "textSha256": "607476112a4a9fcf090e357145761ca99cf22b01fb812c344a79acbdb93516c8"
+      }
+    },
+    {
+      "id": "source/bc0800-inflibnet-narhan/institution",
+      "en": "INFLIBNET Centre, e-PG Pathshala",
+      "sv": "INFLIBNET Centre, e-PG Pathshala",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-inflibnet-narhan",
+        "fieldPath": "/institution",
+        "textSha256": "8085cb5dbc72898591b55a0794a709c62544ee891b840fd0d45664ae150bbbb8"
+      }
+    },
+    {
+      "id": "source/bc0800-inflibnet-narhan/locator",
+      "en": "Ravi Korisettar and Smitha S Kumar, Pre and protohistoric cultures of India, chapter 29, Archaeological Cultures; paragraph beginning 'At Narhan on the banks of the Sarayu', web line 144.",
+      "sv": "Ravi Korisettar och Smitha S Kumar, Pre and protohistoric cultures of India, kapitel 29, Archaeological Cultures; stycket som börjar At Narhan on the banks of the Sarayu, webbrad 144.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-inflibnet-narhan",
+        "fieldPath": "/locator",
+        "textSha256": "7331e39fb673830d6aeafaa8aeec0cc9e1035c7c24ba0fb58013b2a4c67b6902"
+      }
+    },
+    {
+      "id": "source/bc0800-inah-cuicuilco/institution",
+      "en": "National Institute of Anthropology and History (INAH), Mexico",
+      "sv": "Mexikos nationella institut för antropologi och historia (INAH)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-inah-cuicuilco",
+        "fieldPath": "/institution",
+        "textSha256": "3db5fec3ac133fac21bbf5a4150205060eeccaf99eb38e0bd549641a35b809e3"
+      }
+    },
+    {
+      "id": "source/bc0800-inah-cuicuilco/locator",
+      "en": "Site history, paragraph on the Great Pyramid at web line 165; Cuicuilco A, 'Great Circular Basement', web lines 221–222.",
+      "sv": "Platsens historia, stycket om den stora pyramiden på webbrad 165; Cuicuilco A, Great Circular Basement, webbrader 221–222.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-inah-cuicuilco",
+        "fieldPath": "/locator",
+        "textSha256": "fe3168fa9599f8ed46f138b4ea02e03caa167ce1de818ffe1d920f8bc2a922c8"
+      }
+    },
+    {
+      "id": "source/bc0800-higham-ban-non-wat-2009/institution",
+      "en": "Antiquity, Cambridge University Press",
+      "sv": "Antiquity, Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-higham-ban-non-wat-2009",
+        "fieldPath": "/institution",
+        "textSha256": "cc4a40041c1d7aac7f183e29e696809304c186ef26b9440449ed5a2b32122f0b"
+      }
+    },
+    {
+      "id": "source/bc0800-higham-ban-non-wat-2009/locator",
+      "en": "Charles Higham and Thomas Higham (2009), Antiquity 83, pp. 136–137 (PDF indices 11–12), Results and Table 2, Bronze Age 4 row; extracted web lines 267–295.",
+      "sv": "Charles Higham och Thomas Higham (2009), Antiquity 83, s. 136–137 (PDF-index 11–12), Results och tabell 2, raden Bronze Age 4; extraherade webbrader 267–295.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-higham-ban-non-wat-2009",
+        "fieldPath": "/locator",
+        "textSha256": "18fb81762ca770adcc9e8903f231e3e5cec7c903e2c117e2ace5109addcbdc88"
+      }
+    },
+    {
+      "id": "source/bc0800-higham-ban-non-wat-2024/institution",
+      "en": "Antiquity, Cambridge University Press",
+      "sv": "Antiquity, Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-higham-ban-non-wat-2024",
+        "fieldPath": "/institution",
+        "textSha256": "cc4a40041c1d7aac7f183e29e696809304c186ef26b9440449ed5a2b32122f0b"
+      }
+    },
+    {
+      "id": "source/bc0800-higham-ban-non-wat-2024/locator",
+      "en": "Charles Higham (2024), Antiquity 98(398), pp. 433–453; discussion of casting and BA4, web lines 607, 622–623 and 635–641.",
+      "sv": "Charles Higham (2024), Antiquity 98(398), s. 433–453; diskussionen om gjutning och BA4, webbrader 607, 622–623 och 635–641.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-higham-ban-non-wat-2024",
+        "fieldPath": "/locator",
+        "textSha256": "1cfd62e7d1ffad38adf1e8d34eaec63205f6f94d872d45c777128bff17490851"
+      }
+    },
+    {
+      "id": "source/bc0800-perseus-olympic-victor/institution",
+      "en": "Perseus Project, Tufts University",
+      "sv": "Perseus Project, Tufts University",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-perseus-olympic-victor",
+        "fieldPath": "/institution",
+        "textSha256": "7e511897db39a08d1383f7e53feb034533f06fb0041d736a2b894e8d0a80a548"
+      }
+    },
+    {
+      "id": "source/bc0800-perseus-olympic-victor/locator",
+      "en": "Ancient Olympics FAQ 11; opening discussion of uncertain origins and the paragraph naming Koroibos, web lines 15–20.",
+      "sv": "Ancient Olympics FAQ 11; den inledande diskussionen om det osäkra ursprunget och stycket som nämner Koroibos, webbrader 15–20.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-perseus-olympic-victor",
+        "fieldPath": "/locator",
+        "textSha256": "a1d614716aeff7c402051905aa62a962f39072e97250aac68a1d0c96079d0026"
+      }
+    },
+    {
+      "id": "source/bc0800-ioc-olympic-origins/institution",
+      "en": "International Olympic Committee",
+      "sv": "Internationella olympiska kommittén",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-ioc-olympic-origins",
+        "fieldPath": "/institution",
+        "textSha256": "9d7acad1305c60f7812d51838d7be63b1b7f66c3eb962d13f0812ab8b68b384a"
+      }
+    },
+    {
+      "id": "source/bc0800-ioc-olympic-origins/locator",
+      "en": "History and origin of the Games FAQ, first three answer paragraphs, web lines 37–40.",
+      "sv": "History and origin of the Games FAQ, svarets tre första stycken, webbrader 37–40.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-ioc-olympic-origins",
+        "fieldPath": "/locator",
+        "textSha256": "5f073cab21c4e697e9976570df5ed1739016157c4a0f1b71de4ca8f9b8b64a3b"
+      }
+    },
+    {
+      "id": "source/bc0800-li-feng-western-zhou/institution",
+      "en": "Cambridge University Press",
+      "sv": "Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-li-feng-western-zhou",
+        "fieldPath": "/institution",
+        "textSha256": "5fa80bacfa8abef3a617e5b4749e64c2361b847572b36d1d473e2070df1e26be"
+      }
+    },
+    {
+      "id": "source/bc0800-li-feng-western-zhou/locator",
+      "en": "Li Feng, Landscape and Power in Early China (2006), chapter 4, pp. 193–232; public chapter Summary only, web lines 468–472; online publication 22 September 2009.",
+      "sv": "Li Feng, Landscape and Power in Early China (2006), kapitel 4, s. 193–232; endast kapitlets offentliga Summary, webbrader 468–472; publicerad online den 22 september 2009.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-li-feng-western-zhou",
+        "fieldPath": "/locator",
+        "textSha256": "01b0af6d0db8f1cdba0e7c9d214f6934d7c0fcbced2a750ff5557c883ebeef35"
+      }
+    },
+    {
+      "id": "source/bc0800-nasa-assyrian-eclipse/institution",
+      "en": "NASA, Sun-Earth Day",
+      "sv": "NASA, Sun-Earth Day",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-nasa-assyrian-eclipse",
+        "fieldPath": "/institution",
+        "textSha256": "f96b15a2f345b958aad29d0e741fe9735747928db189b3977cee5b5f0b282b1c"
+      }
+    },
+    {
+      "id": "source/bc0800-nasa-assyrian-eclipse/locator",
+      "en": "Historical astronomy overview, paragraph naming the eclipse of June 15, 763 BC and Assyrian observers at Nineveh, web line 21.",
+      "sv": "Översikt över historisk astronomi, stycket som nämner förmörkelsen den 15 juni 763 f.Kr. och assyriska observatörer i Nineve, webbrad 21.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-nasa-assyrian-eclipse",
+        "fieldPath": "/locator",
+        "textSha256": "fc4280d87567d3522aeb684e03ec70d20e6194196275e915dda7052509fc389e"
+      }
+    },
+    {
+      "id": "source/bc0800-ussishkin-lachish/institution",
+      "en": "Sidestone Press, Nineveh, the Great City",
+      "sv": "Sidestone Press, Nineveh, the Great City",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-ussishkin-lachish",
+        "fieldPath": "/institution",
+        "textSha256": "c2ffcb4c9c41c3ebdbdcf4d40ab46a2908063653720e7778be451d9968691dd1"
+      }
+    },
+    {
+      "id": "source/bc0800-ussishkin-lachish/locator",
+      "en": "David Ussishkin, chapter 38, 'The Lachish Reliefs', p. 192 (PDF index 193), first two paragraphs.",
+      "sv": "David Ussishkin, kapitel 38, The Lachish Reliefs, s. 192 (PDF-index 193), de två första styckena.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0800-ussishkin-lachish",
+        "fieldPath": "/locator",
+        "textSha256": "63708c8391206802fab076b8ba54e5e7701f01d33dfac750a0f138ca712af20c"
       }
     }
   ]

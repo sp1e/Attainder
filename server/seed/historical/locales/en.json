@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "242df5e4b04f74405d986cd845999bf9b125a555",
+  "sourceRevision": "a3e32afda06f6b07df46b08e8f377d86d2baac99",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -52725,6 +52725,446 @@
         "eventId": "ev-bc0925-sheshonq-falttag",
         "fieldPath": "/geographySv",
         "textSha256": "5c98fc31e906a59bfb1a8501b214d28135caef723d36003677e35c1fc3072992"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-nokfolk-framstaller-jarn/date/displaySv",
+      "sv": "någon gång inom cirka 800–400 f.Kr.",
+      "en": "Sometime within approximately 800–400 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-nokfolk-framstaller-jarn",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0a0afd73acf83018e5b76e62ce1ede9125f2241e2a4bcf8230370e6b97b208c2"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-nokfolk-framstaller-jarn/date/noteSv",
+      "sv": "Franke anger ett brett intervall för kol-14-dateringen. En början omkring 800 f.Kr. är möjlig men inte säker. Gränserna anger dateringsosäkerhet och fastställer ingen sammanhängande verksamhet under 400 år.",
+      "en": "Franke gives a broad radiocarbon dating interval. A beginning around 800 BC is possible but uncertain. The bounds express dating uncertainty and establish no continuous activity over 400 years.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-nokfolk-framstaller-jarn",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c30ba22a52b2fdf5a59bd06804c9c06dd34170d743a13e9d8330e347cac542a8"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-nokfolk-framstaller-jarn/titleSv",
+      "sv": "Nokfolk framställer järn i ugnar med luftmunstycken",
+      "en": "Nok people produce iron in furnaces with air nozzles",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-nokfolk-framstaller-jarn",
+        "fieldPath": "/titleSv",
+        "textSha256": "e148534a5fd3f076c010a1452d22c3b18b5ad2de0cc6ce07300f654e5dddf316"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-nokfolk-framstaller-jarn/summarySv",
+      "sv": "Nokfolk i nuvarande Nigeria framställer järn i ugnar som får luft genom munstycken. Breunig beskriver ugnar som används en gång och sedan förstörs och tolkar detta som spår av rörliga specialister. De bevarade järnföremålen är få.",
+      "en": "Nok people in present-day Nigeria produce iron in furnaces supplied with air through nozzles. Breunig describes furnaces used once and then destroyed, interpreting this as evidence of mobile specialists. Few iron objects survive.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-nokfolk-framstaller-jarn",
+        "fieldPath": "/summarySv",
+        "textSha256": "9cafe85423b9fd792d25fe821ed686fbee421fe223b6164c73eb941c59e33c99"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-nokfolk-framstaller-jarn/geographySv",
+      "sv": "Nokkulturens område i centrala Nigeria",
+      "en": "The Nok culture area in central Nigeria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-nokfolk-framstaller-jarn",
+        "fieldPath": "/geographySv",
+        "textSha256": "c3fc5812ac555470ba90df1f4df050382325010b43b1ae8a7af6b3974d747d97"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-narhans-jarnforemal-blir-fler/date/displaySv",
+      "sv": "cirka 800–600 f.Kr.",
+      "en": "Approximately 800–600 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-narhans-jarnforemal-blir-fler",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "3619dd52f429c1ac7bcecb68a8c536b81780ebf7c82d4103045e7db5a0ec667a"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-narhans-jarnforemal-blir-fler/date/noteSv",
+      "sv": "Dateringen gäller hela Narhans period II. Järn förekommer redan i period I, och posten anger därför inget första uppfinningsår eller ett bestämt år då bruket ökar.",
+      "en": "The dating concerns the whole of Narhan Period II. Iron is already present in Period I, so this entry gives neither a first year of invention nor a definite year when its use increases.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-narhans-jarnforemal-blir-fler",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5e0715e5230a5994576ad670f0d7f095c0b896b0df0a6e62ded8f194d8e361bd"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-narhans-jarnforemal-blir-fler/titleSv",
+      "sv": "Invånarna i Narhan använder fler slags järnföremål",
+      "en": "The inhabitants of Narhan use more kinds of iron objects",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-narhans-jarnforemal-blir-fler",
+        "fieldPath": "/titleSv",
+        "textSha256": "2ed81cf08e219b827e7982d6cd1ff0bfa917637677d5d2f12f1f9fbf145e619c"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-narhans-jarnforemal-blir-fler/summarySv",
+      "sv": "Under Narhans period II ökar mängden järnföremål tydligt jämfört med föregående fas. Invånarna använder bland annat fler och mer varierade pilspetsar. Svartslammad keramik dominerar fynden från perioden.",
+      "en": "During Narhan Period II, the quantity of iron objects increases markedly compared with the preceding phase. The inhabitants use more numerous and varied arrowheads, among other objects. Black Slipped Ware dominates the finds from this period.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-narhans-jarnforemal-blir-fler",
+        "fieldPath": "/summarySv",
+        "textSha256": "52916f117ce72ac14b3fbfb51c5434c852c5ef7accb0b669655836444f33a7d4"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-narhans-jarnforemal-blir-fler/geographySv",
+      "sv": "Narhan vid Sarayu, norra Indien",
+      "en": "Narhan on the Sarayu, northern India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-narhans-jarnforemal-blir-fler",
+        "fieldPath": "/geographySv",
+        "textSha256": "a89003c87f1080e0e4ecd553283f6d7e7a5bec3669a7e4c04a7806a7cedd44a7"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-cuicuilcos-ceremoniplattform-byggs-ut/date/displaySv",
+      "sv": "cirka 800–150 f.Kr.",
+      "en": "Approximately 800–150 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-cuicuilcos-ceremoniplattform-byggs-ut",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "75724023d1de64db4510ac9e212e8b5fcc1291c889e90400d06c2c87064415a9"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-cuicuilcos-ceremoniplattform-byggs-ut/date/noteSv",
+      "sv": "INAH:s detaljerade monumentbeskrivning anger minst åtta utbyggnader inom 800–150 f.Kr. Sidans inledning daterar pyramiden snävare till 800–600 f.Kr. Posten behåller hela den angivna byggnadsföljden utan att förlägga alla utbyggnader till det första seklet.",
+      "en": "INAH's detailed monument description places at least eight expansions within 800–150 BC. The page's introduction dates the pyramid more narrowly to 800–600 BC. This entry retains the full stated construction sequence without assigning every expansion to the first century.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-cuicuilcos-ceremoniplattform-byggs-ut",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "80a712d9278dba0d27f74b0ae3cef24e1bf381010f4b9a2e1c4b5c446961fd88"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-cuicuilcos-ceremoniplattform-byggs-ut/titleSv",
+      "sv": "Invånare i Cuicuilco bygger och utvidgar en stor ceremoniplattform",
+      "en": "Inhabitants of Cuicuilco build and enlarge a great ceremonial platform",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-cuicuilcos-ceremoniplattform-byggs-ut",
+        "fieldPath": "/titleSv",
+        "textSha256": "3c5081bcb889ebcbd82e667a568cb36b072a0806da5ee8a5ad52c261d7beaa92"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-cuicuilcos-ceremoniplattform-byggs-ut/summarySv",
+      "sv": "Invånare i Cuicuilco bygger den stora rundade plattform som senare utvidgas i flera steg. Enligt INAH möjliggör den stora ytan religiösa ceremonier med många deltagare. Den långa byggnadsföljden omfattar minst åtta kända utbyggnader.",
+      "en": "Inhabitants of Cuicuilco build the great rounded platform, which is later enlarged in several stages. According to INAH, its large surface allows religious ceremonies with many participants. The long construction sequence includes at least eight known expansions.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-cuicuilcos-ceremoniplattform-byggs-ut",
+        "fieldPath": "/summarySv",
+        "textSha256": "bbb98190196f6497d5ba66ca7028c02199fe563b279bca0f1166bc846b3727a3"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-cuicuilcos-ceremoniplattform-byggs-ut/geographySv",
+      "sv": "Cuicuilco i södra delen av dagens Mexico City",
+      "en": "Cuicuilco in the southern part of present-day Mexico City",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-cuicuilcos-ceremoniplattform-byggs-ut",
+        "fieldPath": "/geographySv",
+        "textSha256": "200977a091c32c45732825cd9289f9fd23446044a35bd3a37173f0fc7f3b55b3"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-ban-non-wats-bronsgjutare/date/displaySv",
+      "sv": "cirka 800–700 kalibrerade f.Kr.",
+      "en": "Approximately 800–700 cal BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-ban-non-wats-bronsgjutare",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5fe5767cf0a6d67e1bf193c9e76bc1abcff9e25ff5129337682453e4cde28466"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-ban-non-wats-bronsgjutare/date/noteSv",
+      "sv": "Tabell 2 i studien från 2009 anger hela fasen BA4 till 800–700 f.Kr. Samma studie placerar övergången från BA3 inom 810–780 och uppskattar gravfasens längd till 20–133 år. Dessa osäkerheter ger inget exakt första gjutningsår.",
+      "en": "Table 2 in the 2009 study dates the whole of phase BA4 to 800–700 BC. The same study places the transition from BA3 within 810–780 and estimates the burial phase's duration at 20–133 years. These uncertainties give no exact year for the start of casting.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-ban-non-wats-bronsgjutare",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9649a93c98eb5e3234a4e8da077d6fd1b1c4e15c533641d7368668baf7fa292d"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-ban-non-wats-bronsgjutare/titleSv",
+      "sv": "Hantverkare i Ban Non Wat gjuter brons lokalt",
+      "en": "Craftspeople at Ban Non Wat cast bronze locally",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-ban-non-wats-bronsgjutare",
+        "fieldPath": "/titleSv",
+        "textSha256": "b5963c43e3a0f31a928e5e4265f921b7e8646af00b3ec917046528d574b7654e"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-ban-non-wats-bronsgjutare/summarySv",
+      "sv": "Hantverkare i Ban Non Wat använder lerklädda ugnar, deglar och formar för att gjuta tennbrons. En man begravs under fasen BA4 med 29 formar för holkyxor och armband. Higham skiljer den lokala tillverkningen från det tidigare skedets importerade kopparföremål och rika gravgåvor.",
+      "en": "Craftspeople at Ban Non Wat use clay-lined furnaces, crucibles and moulds to cast tin bronze. A man is buried during phase BA4 with 29 moulds for socketed axes and bangles. Higham distinguishes local production from the preceding period's imported copper objects and rich grave offerings.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-ban-non-wats-bronsgjutare",
+        "fieldPath": "/summarySv",
+        "textSha256": "6af8a2e49f6d9156386cc8e9b34239876180e8a44ca5aee8cde1e30c6c7de956"
+      }
+    },
+    {
+      "id": "event/ev-bc0800-ban-non-wats-bronsgjutare/geographySv",
+      "sv": "Övre Mundalen, nordöstra Thailand",
+      "en": "Upper Mun Valley, northeastern Thailand",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0800-ban-non-wats-bronsgjutare",
+        "fieldPath": "/geographySv",
+        "textSha256": "49ad12382dc69d8036d9f30605facacf535862eac7d2569c6d9442a04b7f971a"
+      }
+    },
+    {
+      "id": "event/ev-bc0776-koroibos-olympiska-seger/date/displaySv",
+      "sv": "776 f.Kr. enligt traditionen",
+      "en": "776 BC according to tradition",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0776-koroibos-olympiska-seger",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "316a9d45c2b9b9ac0f8bc69c6c3554061f3e196e153bc7edd08d5c443998be5d"
+      }
+    },
+    {
+      "id": "event/ev-bc0776-koroibos-olympiska-seger/date/noteSv",
+      "sv": "Perseus anger Koroibos som den förste nedtecknade olympiske segraren och daterar honom traditionellt till 776 f.Kr. Både Perseus och IOK framhåller att spelens verkliga början är okänd. Årtalet bevisar inte att detta var de första spelen.",
+      "en": "Perseus identifies Koroibos as the first recorded Olympic victor and traditionally dates him to 776 BC. Both Perseus and the IOC emphasize that the Games' actual beginning is unknown. The year does not prove that these were the first Games.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0776-koroibos-olympiska-seger",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "86b2dc8922b78dc6c597f3e60f03de4c661886b4920c30aab11ab294b86b054f"
+      }
+    },
+    {
+      "id": "event/ev-bc0776-koroibos-olympiska-seger/titleSv",
+      "sv": "Koroibos seger inleder den traditionella olympiska segrarlängden",
+      "en": "Koroibos's victory begins the traditional list of Olympic victors",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0776-koroibos-olympiska-seger",
+        "fieldPath": "/titleSv",
+        "textSha256": "574b5e482071fd883b2f89fa19d8a8616626ef393cb57455cf5449b576b1d2ab"
+      }
+    },
+    {
+      "id": "event/ev-bc0776-koroibos-olympiska-seger/summarySv",
+      "sv": "Koroibos från Elis räknas som den förste nedtecknade olympiske segraren och placeras av traditionen år 776 f.Kr. Senare grekiska historieskrivare använder olympiaderna, fyraårsperioderna mellan spelen, för att datera händelser.",
+      "en": "Koroibos of Elis is regarded as the first recorded Olympic victor and is traditionally placed in 776 BC. Later Greek historians use Olympiads, the four-year periods between the Games, to date events.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0776-koroibos-olympiska-seger",
+        "fieldPath": "/summarySv",
+        "textSha256": "3480499263d0baf74baeaf94220f166dcb3b771c0afe848ef2012b548cbb777d"
+      }
+    },
+    {
+      "id": "event/ev-bc0776-koroibos-olympiska-seger/geographySv",
+      "sv": "Olympia och Elis, Grekland",
+      "en": "Olympia and Elis, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0776-koroibos-olympiska-seger",
+        "fieldPath": "/geographySv",
+        "textSha256": "5dcd26aab3b0b0093564a32f232528dc7d3f8daa857abfe04c84c8fbdc8de58a"
+      }
+    },
+    {
+      "id": "event/ev-bc0771-vastra-zhou-faller/date/displaySv",
+      "sv": "våren 771 f.Kr.",
+      "en": "Spring 771 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0771-vastra-zhou-faller",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e232cd9b7b33baad045e9a9e7f07083725c674838d146a8f3a44485b87105825"
+      }
+    },
+    {
+      "id": "event/ev-bc0771-vastra-zhou-faller/date/noteSv",
+      "sv": "Li Feng daterar angreppet och kung Yous död till våren 771 f.Kr. i kapitlets offentliga sammanfattning. Posten tilldelar inget exakt år åt det efterföljande hovets flytt till Luoyi.",
+      "en": "Li Feng dates the attack and King You's death to spring 771 BC in the chapter's public summary. This entry assigns no exact year to the subsequent court's move to Luoyi.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0771-vastra-zhou-faller",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "30ab5490b550d35af016501f9a8d51a806b6d4d330374ff0d9de302848d3013f"
+      }
+    },
+    {
+      "id": "event/ev-bc0771-vastra-zhou-faller/titleSv",
+      "sv": "Västrongstyrkor intar Zhouhuvudstäderna och dödar kung You",
+      "en": "Western Rong forces capture the Zhou capitals and kill King You",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0771-vastra-zhou-faller",
+        "fieldPath": "/titleSv",
+        "textSha256": "d43b688355403b5b84bef5c67d8b8a6a03def4c63ba21cc8471dfd5b2555d06e"
+      }
+    },
+    {
+      "id": "event/ev-bc0771-vastra-zhou-faller/summarySv",
+      "sv": "Styrkor som Li Feng benämner Västra Rong tränger in i Weiflodens dal, plundrar Feng och Hao och dödar kung You. Västra Zhous politiska ordning upphör. Händelsen avslutar kungahusets långvariga dominans över stora delar av Gula flodens område.",
+      "en": "Forces that Li Feng calls the Western Rong enter the Wei River valley, plunder Feng and Hao, and kill King You. The Western Zhou political order ends. The event brings the royal house's long domination over much of the Yellow River region to an end.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0771-vastra-zhou-faller",
+        "fieldPath": "/summarySv",
+        "textSha256": "097b0e59570b4f6d2c374520bb08660f92184d6e6fc881ebef8e8a50ca88cdd7"
+      }
+    },
+    {
+      "id": "event/ev-bc0771-vastra-zhou-faller/geographySv",
+      "sv": "Feng, Hao och Weiflodens dal i nuvarande Kina",
+      "en": "Feng, Hao and the Wei River valley in present-day China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0771-vastra-zhou-faller",
+        "fieldPath": "/geographySv",
+        "textSha256": "b45e36f7608c4ff0646ac3ddcd568c5d5eba06c85ca9a7421aaac689d5e584ba"
+      }
+    },
+    {
+      "id": "event/ev-bc0763-assyrier-noterar-solformorkelse/date/displaySv",
+      "sv": "15 juni 763 f.Kr.",
+      "en": "15 June 763 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0763-assyrier-noterar-solformorkelse",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ca97467ce2de21374971d6ab9f6f43d1fa8707257c182619ee27f5cdb246a24a"
+      }
+    },
+    {
+      "id": "event/ev-bc0763-assyrier-noterar-solformorkelse/date/noteSv",
+      "sv": "Datumet återges som NASA anger det. Posten gör ingen egen kalenderomräkning och fastställer inte hur fullständig förmörkelsen var på en viss observationsplats.",
+      "en": "The date is reproduced as NASA gives it. This entry makes no independent calendar conversion and does not establish how complete the eclipse was at a particular observing location.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0763-assyrier-noterar-solformorkelse",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6641083b53b3e048d3482354ab7e9d365f0b4a9f81e1f15a63aa528534a61273"
+      }
+    },
+    {
+      "id": "event/ev-bc0763-assyrier-noterar-solformorkelse/titleSv",
+      "sv": "Assyriska observatörer noterar en solförmörkelse",
+      "en": "Assyrian observers record a solar eclipse",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0763-assyrier-noterar-solformorkelse",
+        "fieldPath": "/titleSv",
+        "textSha256": "5e07e874e57e5bcf2bb2b7c8401615d5efafa4466e577ed1c94f914d813797e6"
+      }
+    },
+    {
+      "id": "event/ev-bc0763-assyrier-noterar-solformorkelse/summarySv",
+      "sv": "Assyriska observatörer i Nineve registrerar enligt NASA en solförmörkelse den 15 juni 763 f.Kr. Uppgiften hör till de bevarade forntida observationer som visar hur himlafenomen följdes och skrevs ned.",
+      "en": "According to NASA, Assyrian observers at Nineveh record a solar eclipse on 15 June 763 BC. The record is among the surviving ancient observations showing how celestial phenomena were followed and written down.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0763-assyrier-noterar-solformorkelse",
+        "fieldPath": "/summarySv",
+        "textSha256": "ee83cef233a699f636ff8a44681b23eb3f60a739487ae9142cf7f036a6092bde"
+      }
+    },
+    {
+      "id": "event/ev-bc0763-assyrier-noterar-solformorkelse/geographySv",
+      "sv": "Nineve och Assyrien, nuvarande Irak",
+      "en": "Nineveh and Assyria, present-day Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0763-assyrier-noterar-solformorkelse",
+        "fieldPath": "/geographySv",
+        "textSha256": "e92199e6d05651bb96d05d6bc88a896fa6b9ededf06091d44d7ec20b4dd25941"
+      }
+    },
+    {
+      "id": "event/ev-bc0701-sanherib-intar-lakish/date/displaySv",
+      "sv": "701 f.Kr.",
+      "en": "701 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0701-sanherib-intar-lakish",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a5fa1211808b95fadd01f47340849c48332f46cc9646754a924e9866f9ed7fef"
+      }
+    },
+    {
+      "id": "event/ev-bc0701-sanherib-intar-lakish/date/noteSv",
+      "sv": "Året gäller Sanheribs fälttåg och erövringen. Palatsrelieferna som skildrar striden tillkommer flera år senare och dateras inte till 701 f.Kr. här.",
+      "en": "The year concerns Sennacherib's campaign and the conquest. The palace reliefs depicting the battle were made several years later and are not dated to 701 BC here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0701-sanherib-intar-lakish",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d2422c1d23e8e3c68a3df811a23d43a36e826693ed589e0072077d6aed8c7758"
+      }
+    },
+    {
+      "id": "event/ev-bc0701-sanherib-intar-lakish/titleSv",
+      "sv": "Sanheribs armé intar och förstör Lakish",
+      "en": "Sennacherib's army captures and destroys Lachish",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0701-sanherib-intar-lakish",
+        "fieldPath": "/titleSv",
+        "textSha256": "6e01fbec54e71b2340b0cd122beb4461b998c6486775ce4c3b4833f65293b288"
+      }
+    },
+    {
+      "id": "event/ev-bc0701-sanherib-intar-lakish/summarySv",
+      "sv": "Sanheribs assyriska armé belägrar och intar Lakish under fälttåget mot Juda. Staden förstörs och invånare förs bort. Enligt Ussishkin vänder Sanherib därefter styrkorna mot kung Hiskias huvudstad Jerusalem.",
+      "en": "Sennacherib's Assyrian army besieges and captures Lachish during its campaign against Judah. The city is destroyed and inhabitants are taken away. According to Ussishkin, Sennacherib then turns his forces towards King Hezekiah's capital, Jerusalem.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0701-sanherib-intar-lakish",
+        "fieldPath": "/summarySv",
+        "textSha256": "ea0cf8965c3b2184e51089d9490c939dc627de24276a9af2402d3b8208fcd570"
+      }
+    },
+    {
+      "id": "event/ev-bc0701-sanherib-intar-lakish/geographySv",
+      "sv": "Lakish i Juda, söder om Jerusalem",
+      "en": "Lachish in Judah, south of Jerusalem",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0701-sanherib-intar-lakish",
+        "fieldPath": "/geographySv",
+        "textSha256": "61a0434a9aad4dcf6a5781f7985c55cedf4bef93e0b1e7b945215e3b86a93514"
       }
     }
   ]
