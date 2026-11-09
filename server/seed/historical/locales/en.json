@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "76f735217c048660c21cdb3b1aa078e5bd1c4883",
+  "sourceRevision": "92d9b138c21bf78c93faa5ef8bac159bf7697852",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -52010,6 +52010,336 @@
         "eventId": "ev-bc1155-kassitdynastin-faller",
         "fieldPath": "/geographySv",
         "textSha256": "ea827124c379b8fb6a37de85d502adca49221342ed578d2799af75f7dd357383"
+      }
+    },
+    {
+      "id": "event/ev-bc1100-cerro-blancos-ceremonicentrum/date/displaySv",
+      "sv": "cirka 1100–800 f.Kr.",
+      "en": "Approximately 1100–800 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1100-cerro-blancos-ceremonicentrum",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "418b2e60273121d4369115b25134ddc81bb8f15041c0e4b5877e71383732cb8e"
+      }
+    },
+    {
+      "id": "event/ev-bc1100-cerro-blancos-ceremonicentrum/date/noteSv",
+      "sv": "Intervallet gäller den lokala Cerro Blanco-fasen och anläggningens tidiga utformning. Platsen används även senare; källans längre datering 1100–450 f.Kr. gäller hela ceremonialcentrets historia.",
+      "en": "The interval concerns the local Cerro Blanco phase and the complex’s early layout. The site remains in use later; the source’s longer dating of 1100–450 BC concerns the ceremonial centre’s entire history.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1100-cerro-blancos-ceremonicentrum",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5a294d66f4810eacb3aa8d667765e61a233c2fdd8900fef9c0f87006430b698a"
+      }
+    },
+    {
+      "id": "event/ev-bc1100-cerro-blancos-ceremonicentrum/titleSv",
+      "sv": "Invånare i Nepeñadalen bygger ett ceremonialcentrum i Cerro Blanco",
+      "en": "Inhabitants of the Nepeña Valley build a ceremonial centre at Cerro Blanco",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1100-cerro-blancos-ceremonicentrum",
+        "fieldPath": "/titleSv",
+        "textSha256": "e684298e41484599d8f34e84681d5871f46e9405cd688621c2b1e379e806c14c"
+      }
+    },
+    {
+      "id": "event/ev-bc1100-cerro-blancos-ceremonicentrum/summarySv",
+      "sv": "Byggare ordnar tre högar i U-form kring ett stort centralt torg i Cerro Blanco. Forskare tolkar denna tidiga anläggning och det närliggande Huaca Partida som betydelsefulla samlingsplatser för regionens samhällen.",
+      "en": "Builders arrange three mounds in a U-shape around a large central plaza at Cerro Blanco. Researchers interpret this early complex and nearby Huaca Partida as important gathering places for the region’s communities.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1100-cerro-blancos-ceremonicentrum",
+        "fieldPath": "/summarySv",
+        "textSha256": "0b5aeb0e37a58354b5ac45fced96ebc42ff7f6ab4eecf7eb9008dd32ca66c588"
+      }
+    },
+    {
+      "id": "event/ev-bc1100-cerro-blancos-ceremonicentrum/geographySv",
+      "sv": "Nepeñadalen, nuvarande Peru",
+      "en": "Nepeña Valley, present-day Peru",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1100-cerro-blancos-ceremonicentrum",
+        "fieldPath": "/geographySv",
+        "textSha256": "287abc41f2be7ea5faa2a148325a8579ed713bcbee8b1c3fe49e3a86367d08f8"
+      }
+    },
+    {
+      "id": "event/ev-bc1070-smendes-tilltrade/date/displaySv",
+      "sv": "cirka 1070 eller 1069 f.Kr.",
+      "en": "Approximately 1070 or 1069 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1070-smendes-tilltrade",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "88cd21d385cecf2c7310eb19154dc0eb2f471d938ecf6b60c25c84bdf819717c"
+      }
+    },
+    {
+      "id": "event/ev-bc1070-smendes-tilltrade/date/noteSv",
+      "sv": "UCL anger regeringstiden till omkring 1070/1069–1044/1043 f.Kr. Metropolitan Museum använder omkring 1070 som början på dynasti 21. Posten gäller tillträdet; fördelningen av makt mellan Tanis och Thebe är det följande styrets sammanhang och har inget exakt avtalsår här.",
+      "en": "UCL gives the reign as approximately 1070/1069–1044/1043 BC. The Metropolitan Museum uses approximately 1070 for the beginning of Dynasty 21. This entry concerns the accession; the division of power between Tanis and Thebes provides context for the ensuing rule and has no exact treaty year here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1070-smendes-tilltrade",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "0e96027f5aa53f1aa333fadacd4d9b90f309fdfc7ca29c53b5354bf6ab392b8b"
+      }
+    },
+    {
+      "id": "event/ev-bc1070-smendes-tilltrade/titleSv",
+      "sv": "Smendes efterträder Ramses XI i Egypten",
+      "en": "Smendes succeeds Ramesses XI in Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1070-smendes-tilltrade",
+        "fieldPath": "/titleSv",
+        "textSha256": "2a5acddb9086902595b5c0de2eb403cb279699d9869c35db6b42933932d17005"
+      }
+    },
+    {
+      "id": "event/ev-bc1070-smendes-tilltrade/summarySv",
+      "sv": "Smendes blir kung efter Ramses XI och inleder dynasti 21. Under dynastin styr faraoner från Tanis i Nildeltat, medan Amuns överstepräster utövar makt från Thebe. De två maktcentrumen har enligt Metropolitan Museum vanligen goda relationer.",
+      "en": "Smendes becomes king after Ramesses XI and begins Dynasty 21. During the dynasty, pharaohs rule from Tanis in the Nile Delta, while the high priests of Amun exercise power from Thebes. According to the Metropolitan Museum, relations between the two centres of power are generally good.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1070-smendes-tilltrade",
+        "fieldPath": "/summarySv",
+        "textSha256": "9748d90b3bb2a8754b42328261537fb31b912d8f45d2aad172ac69bca25a627f"
+      }
+    },
+    {
+      "id": "event/ev-bc1070-smendes-tilltrade/geographySv",
+      "sv": "Tanis och Thebe, Egypten",
+      "en": "Tanis and Thebes, Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1070-smendes-tilltrade",
+        "fieldPath": "/geographySv",
+        "textSha256": "71a618e7cbb395b2a6bcb3aa9eb88ea682d62dfbc4d2ff90336ef0259d7798a3"
+      }
+    },
+    {
+      "id": "event/ev-bc1065-chaps-bergsjordbruk/date/displaySv",
+      "sv": "cirka 1065–825 f.Kr., kalibrerad datering",
+      "en": "Approximately 1065–825 BC, calibrated dating",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1065-chaps-bergsjordbruk",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e8105156250dee62d30372fb2aec9d0ff8aeb2fa9e5090a40cdb1c5d13609198"
+      }
+    },
+    {
+      "id": "event/ev-bc1065-chaps-bergsjordbruk/date/noteSv",
+      "sv": "Studien sammanfattar dateringen som 1065–825 kalibrerade f.Kr. Den modellerade början ligger inom 1065–921 och slutet inom cirka 918–825 f.Kr.; yttergränserna visar därför inte en säker sammanhängande bosättning på 240 år. Bevattning kan ha behövts, men de identifierade kanalerna kan vara yngre och deras byggande dateras inte här.",
+      "en": "The study summarizes the dating as 1065–825 calibrated BC. The modelled start falls within 1065–921 and the end within approximately 918–825 BC; the outer bounds therefore do not establish a continuous 240-year occupation. Irrigation may have been needed, but the identified channels may be later and their construction is not dated here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1065-chaps-bergsjordbruk",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "36d488db9106030891c28a6d8d10b6d1657f5fb3568efd8fda3332739cac0526"
+      }
+    },
+    {
+      "id": "event/ev-bc1065-chaps-bergsjordbruk/titleSv",
+      "sv": "Människor i Chap förenar odling och boskapsskötsel i bergen",
+      "en": "People at Chap combine cultivation and herding in the mountains",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1065-chaps-bergsjordbruk",
+        "fieldPath": "/titleSv",
+        "textSha256": "2be0ba70ba947f32e210b8607d109a80d283647b9d83d94e6dd1842d3b122609"
+      }
+    },
+    {
+      "id": "event/ev-bc1065-chaps-bergsjordbruk/summarySv",
+      "sv": "Invånarna i Chap odlar bland annat vete, korn, hirs och linser på omkring 2 000 meters höjd. Växtrester, avfall från skördebearbetning och djurben visar en lokal försörjning som förenar jordbruk med boskapsskötsel.",
+      "en": "The inhabitants of Chap grow crops including wheat, barley, millet and lentils at an elevation of around 2,000 metres. Plant remains, crop-processing waste and animal bones show local subsistence combining farming with herding.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1065-chaps-bergsjordbruk",
+        "fieldPath": "/summarySv",
+        "textSha256": "15064290cf62116f6dee40dbca28a0e297a2dd0725d2a0eb35df6d6ff13e57b6"
+      }
+    },
+    {
+      "id": "event/ev-bc1065-chaps-bergsjordbruk/geographySv",
+      "sv": "Kochkordalen i Tien Shan, nuvarande Kirgizistan",
+      "en": "Kochkor Valley in the Tian Shan, present-day Kyrgyzstan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1065-chaps-bergsjordbruk",
+        "fieldPath": "/geographySv",
+        "textSha256": "4b6b79b88a9c7417f8266c3845387ce64fd65521f3e3d4a2cb0c1a27c03e45bb"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-zhou-besegrar-shang/date/displaySv",
+      "sv": "omtvistat: cirka 1050, 1046, 1045 eller 1044 f.Kr.",
+      "en": "Disputed: approximately 1050, 1046, 1045 or 1044 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-zhou-besegrar-shang",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ad1620b5757fd041cf05dfa224b978d7592a7d441c1c326db1d45a9f12cf6488"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-zhou-besegrar-shang/date/noteSv",
+      "sv": "Smithsonian anger cirka 1050 och Metropolitan Museum 1046 f.Kr. Pengcheng Zhang föreslår 1044 och redovisar Shaughnessys 1045 samt kronologiprojektets 1046. Zhang skiljer sin föreslagna inledande expedition 1046 från erövringen 1044. Gränserna samlar dateringar av en erövring och anger ingen krigslängd eller gemensam forskningsenighet.",
+      "en": "The Smithsonian gives approximately 1050 and the Metropolitan Museum 1046 BC. Pengcheng Zhang proposes 1044 and reports Shaughnessy’s 1045 and the Chronology Project’s 1046. Zhang distinguishes his proposed initial expedition in 1046 from the conquest in 1044. The bounds collect dates for one conquest and indicate neither the length of a war nor scholarly consensus.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-zhou-besegrar-shang",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b22ccc35c8c72f8a52424a7fcb782a4272f2cf9ca6e763d6afba14d1465a71e4"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-zhou-besegrar-shang/titleSv",
+      "sv": "Zhou besegrar Shang och etablerar en ny dynasti",
+      "en": "The Zhou defeat the Shang and establish a new dynasty",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-zhou-besegrar-shang",
+        "fieldPath": "/titleSv",
+        "textSha256": "49128877d6b326962ad4710352eda6ebaeddcf67a7c2ce28e2c777ad8306f553"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-zhou-besegrar-shang/summarySv",
+      "sv": "Zhoufolket från området kring dagens Shaanxi besegrar Shang och etablerar ett nytt kungahus. De tidiga Zhoukungarna använder föreställningen om Himlens mandat för att legitimera sitt styre. Erövringens absoluta årtal är omdiskuterat.",
+      "en": "The Zhou people from the area around present-day Shaanxi defeat the Shang and establish a new royal house. The early Zhou kings use the idea of the Mandate of Heaven to legitimize their rule. The absolute year of the conquest is debated.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-zhou-besegrar-shang",
+        "fieldPath": "/summarySv",
+        "textSha256": "4cd28111dd45976f32de1a960c95c8f2601a8b0a1b666c176f2a52f51b9556c8"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-zhou-besegrar-shang/geographySv",
+      "sv": "Gula flodens område, Kina",
+      "en": "Yellow River region, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-zhou-besegrar-shang",
+        "fieldPath": "/geographySv",
+        "textSha256": "e0f81ffdc4a69c9d8d822cfd98f2c9f5ed8b8e648b1cdd52cc978f919d81d7c2"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-protogeometrisk-keramik/date/displaySv",
+      "sv": "cirka 1050/1025–900 f.Kr.",
+      "en": "Approximately 1050/1025–900 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-protogeometrisk-keramik",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2cbd373a9bd92949cef7d9d231db5931a46b7a4adfd21b02cdffb5e2565281e7"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-protogeometrisk-keramik/date/noteSv",
+      "sv": "Museum of Cycladic Art anger 1025–900 f.Kr., medan Jens Høyrup använder cirka 1050–900. Hela stilperioden behålls. Cirkelmotiven har äldre förebilder, och dateringen betyder inte att alla grekiska områden ändrar keramik samtidigt.",
+      "en": "The Museum of Cycladic Art gives 1025–900 BC, while Jens Høyrup uses approximately 1050–900. The full stylistic period is retained. The circular motifs have earlier precedents, and the dating does not mean that pottery changes simultaneously throughout Greece.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-protogeometrisk-keramik",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "67a125b7e041fa33a4a4eecfa0c5115d50d6599d035e3c5de770a6b5690c55d5"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-protogeometrisk-keramik/titleSv",
+      "sv": "Grekiska krukmakare utvecklar protogeometrisk keramik",
+      "en": "Greek potters develop Protogeometric pottery",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-protogeometrisk-keramik",
+        "fieldPath": "/titleSv",
+        "textSha256": "e3ce30d1677bba2de919bb849cc35cb0d0153585ba82b839259e911737b62b55"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-protogeometrisk-keramik/summarySv",
+      "sv": "Krukmakare använder nya former och dekorerar kärl med koncentriska cirklar, halvcirklar och andra geometriska mönster. Flera penslar används tillsammans för cirkeldekoren. Den protogeometriska stilen bygger vidare på äldre keramiska traditioner.",
+      "en": "Potters use new shapes and decorate vessels with concentric circles, semicircles and other geometric patterns. Multiple brushes are used together for the circular decoration. The Protogeometric style builds on earlier pottery traditions.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-protogeometrisk-keramik",
+        "fieldPath": "/summarySv",
+        "textSha256": "9e9612b362bea202dc120fb608eba10be70ee1f393f1563963a4f3e1ee020306"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-protogeometrisk-keramik/geographySv",
+      "sv": "Grekland, särskilt den attiska keramiktraditionen",
+      "en": "Greece, particularly the Attic pottery tradition",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-protogeometrisk-keramik",
+        "fieldPath": "/geographySv",
+        "textSha256": "5638fb35a3289870becd45e4965512c3b43e15e34921ac439decaec888d35de3"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-ban-non-wats-koppargravar/date/displaySv",
+      "sv": "cirka 1050–1000 f.Kr.",
+      "en": "Approximately 1050–1000 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-ban-non-wats-koppargravar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a1a89bac927189834b29cb27878b9446a5b86b733743ab29228cbd31bba91fc6"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-ban-non-wats-koppargravar/date/noteSv",
+      "sv": "Highams studie från 2024 och tabell 2 i Higham och Higham från 2009 anger hela gravfasen till 1050–1000 f.Kr. Den äldre studiens modellerade övergång till tidig bronsålder ligger inom 1053–996 f.Kr.; det intervallet är osäkerheten kring övergången och anger inte fasens varaktighet. Lokal gjutning hör till senare skeden.",
+      "en": "Higham’s 2024 study and Table 2 in Higham and Higham’s 2009 study give the full burial phase as 1050–1000 BC. The older study’s modelled transition to the Early Bronze Age falls within 1053–996 BC; that interval represents uncertainty about the transition and does not give the phase’s duration. Local casting belongs to later phases.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-ban-non-wats-koppargravar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "231baab2113befec220e9d8dcc15c95a9860e15e8ebf45dd6e2f8056f3a8972d"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-ban-non-wats-koppargravar/titleSv",
+      "sv": "Invånare i Ban Non Wat lägger kopparyxor i rikare gravar",
+      "en": "Inhabitants of Ban Non Wat place copper axes in richer graves",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-ban-non-wats-koppargravar",
+        "fieldPath": "/titleSv",
+        "textSha256": "cc633f4f64a0adc029dc7d9b2b909aec6e3b81a4560ec1921af38a8fc43957e8"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-ban-non-wats-koppargravar/summarySv",
+      "sv": "Människor i Ban Non Wat begraver vuxna och barn med kopparbaserade holkyxor, kärl och snäckornament. De djupare och mer utrustade gravarna skiljer sig från föregående fas. Higham tolkar de tidiga metallföremålen som varor som sannolikt nått platsen genom utbyte.",
+      "en": "People at Ban Non Wat bury adults and children with copper-based socketed axes, vessels and shell ornaments. The deeper graves with more offerings differ from the preceding phase. Higham interprets the early metal objects as goods that probably reached the site through exchange.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-ban-non-wats-koppargravar",
+        "fieldPath": "/summarySv",
+        "textSha256": "162835b95d78a23e73713cceeeaac2d8b1dd5cb6224bf542e28c6205151dba5b"
+      }
+    },
+    {
+      "id": "event/ev-bc1050-ban-non-wats-koppargravar/geographySv",
+      "sv": "Övre Mundalen, nordöstra Thailand",
+      "en": "Upper Mun Valley, northeastern Thailand",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1050-ban-non-wats-koppargravar",
+        "fieldPath": "/geographySv",
+        "textSha256": "49ad12382dc69d8036d9f30605facacf535862eac7d2569c6d9442a04b7f971a"
       }
     }
   ]

@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "76f735217c048660c21cdb3b1aa078e5bd1c4883",
+  "sourceRevision": "92d9b138c21bf78c93faa5ef8bac159bf7697852",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -13752,6 +13752,248 @@
         "sourceId": "bc1200-met-kassites",
         "fieldPath": "/locator",
         "textSha256": "794f59f9de97762563211cccebaaffc6a0cfe40f02ce2351cf7e04603931f7f9"
+      }
+    },
+    {
+      "id": "source/bc1100-helmer-cerro-blanco/institution",
+      "en": "Americae, European Journal of Americanist Archaeology",
+      "sv": "Americae, European Journal of Americanist Archaeology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-helmer-cerro-blanco",
+        "fieldPath": "/institution",
+        "textSha256": "56daa9decf7e7e65506c719cf96a832e8231bd6823a493da28060c0804125c85"
+      }
+    },
+    {
+      "id": "source/bc1100-helmer-cerro-blanco/locator",
+      "en": "Helmer, Chicoine, Ikehara and Shibata (2018), Americae 3, pp. 9, 12 and 26; PDF indices 4, 7 and 21; Table 1 and Middle-Late Formative Period: Cerro Blanco and Huaca Partida.",
+      "sv": "Helmer, Chicoine, Ikehara och Shibata (2018), Americae 3, s. 9, 12 och 26; PDF-index 4, 7 och 21; tabell 1 och Middle-Late Formative Period: Cerro Blanco and Huaca Partida.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-helmer-cerro-blanco",
+        "fieldPath": "/locator",
+        "textSha256": "3f72fde1293575c028e7cf0191cd82b141328ecf01e44ddb25d459ad6dfa2640"
+      }
+    },
+    {
+      "id": "source/bc1100-ucl-smendes/institution",
+      "en": "University College London, Digital Egypt for Universities",
+      "sv": "University College London, Digital Egypt for Universities",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-ucl-smendes",
+        "fieldPath": "/institution",
+        "textSha256": "22b4ed4dbde10debe5ea3c427a5d5cee3a976ea4d4ef29e062bf281c5a33970c"
+      }
+    },
+    {
+      "id": "source/bc1100-ucl-smendes/locator",
+      "en": "Opening reign chronology and paragraphs 1–2; web lines 2–4; bibliography cites Kitchen (1986), pp. 255–257, sections 213–214.",
+      "sv": "Inledande regeringskronologi och stycke 1–2; webbrader 2–4; bibliografin hänvisar till Kitchen (1986), s. 255–257, avsnitt 213–214.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-ucl-smendes",
+        "fieldPath": "/locator",
+        "textSha256": "670f4c81d363248ffb6c4926c79ab16e85cf318c85d59afc379b3e54324bfbd1"
+      }
+    },
+    {
+      "id": "source/bc1100-met-egypt-division/institution",
+      "en": "The Metropolitan Museum of Art, Department of Egyptian Art",
+      "sv": "The Metropolitan Museum of Art, avdelningen för egyptisk konst",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-met-egypt-division",
+        "fieldPath": "/institution",
+        "textSha256": "573da1e3a4a8cd123c7eab92e624c511273473653eab76db8efb31ffa6048736"
+      }
+    },
+    {
+      "id": "source/bc1100-met-egypt-division/locator",
+      "en": "James P. Allen and Marsha Hill, revised March 2018, History, first two paragraphs; web lines 125–127.",
+      "sv": "James P. Allen och Marsha Hill, reviderad i mars 2018, History, de två första styckena; webbrader 125–127.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-met-egypt-division",
+        "fieldPath": "/locator",
+        "textSha256": "a4c4eea871551641f37b64f61c09846664d835d0ae77b51a0a1d36dc6dbfc146"
+      }
+    },
+    {
+      "id": "source/bc1100-matuzeviciute-chap/institution",
+      "en": "Journal of Field Archaeology; author-uploaded full text on ResearchGate",
+      "sv": "Journal of Field Archaeology; fulltext uppladdad av författaren på ResearchGate",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-matuzeviciute-chap",
+        "fieldPath": "/institution",
+        "textSha256": "a77f5c9727979953200b1b9a516ca3eceb7bb04a0dce3d9af2e56dba81c11a5c"
+      }
+    },
+    {
+      "id": "source/bc1100-matuzeviciute-chap/locator",
+      "en": "Motuzaite Matuzeviciute et al., online 3 November 2019, DOI 10.1080/00934690.2019.1672128; abstract, Discussion: Chap occupation(s), irrigation discussion and Conclusions; web lines 168–186, 1401–1410, 1647–1657 and 1831–1858.",
+      "sv": "Motuzaite Matuzeviciute med flera, publicerad online den 3 november 2019, DOI 10.1080/00934690.2019.1672128; abstract, Discussion: Chap occupation(s), diskussionen om bevattning och Conclusions; webbrader 168–186, 1401–1410, 1647–1657 och 1831–1858.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-matuzeviciute-chap",
+        "fieldPath": "/locator",
+        "textSha256": "0288203cf5613a4aeaedb9644b05d429b4701c2c86699b41001fd16a9e31f4df"
+      }
+    },
+    {
+      "id": "source/bc1100-smithsonian-zhou/institution",
+      "en": "Smithsonian National Museum of Asian Art",
+      "sv": "Smithsonians National Museum of Asian Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-smithsonian-zhou",
+        "fieldPath": "/institution",
+        "textSha256": "6e79a03160c4c917810f42936554e5008e3b31a9343cc9c82a8b1eb0bf767d46"
+      }
+    },
+    {
+      "id": "source/bc1100-smithsonian-zhou/locator",
+      "en": "Opening historical paragraphs; web lines 7–12.",
+      "sv": "Inledande historiska stycken; webbrader 7–12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-smithsonian-zhou",
+        "fieldPath": "/locator",
+        "textSha256": "6a660bc106af342160f5cefd9647a053191d32fe0341b08444e646693fc94093"
+      }
+    },
+    {
+      "id": "source/bc1100-met-zhou/institution",
+      "en": "The Metropolitan Museum of Art, Department of Asian Art",
+      "sv": "The Metropolitan Museum of Art, avdelningen för asiatisk konst",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-met-zhou",
+        "fieldPath": "/institution",
+        "textSha256": "4ca68785d335d23de64ff2a24a9067eecc2ff14b94db0dbf3182d95ed1a57f30"
+      }
+    },
+    {
+      "id": "source/bc1100-met-zhou/locator",
+      "en": "October 2004 essay, paragraphs on the Shang centre and Zhou conquest; web lines 107–109.",
+      "sv": "Essä från oktober 2004, styckena om Shangrikets centrum och Zhou-erövringen; webbrader 107–109.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-met-zhou",
+        "fieldPath": "/locator",
+        "textSha256": "7fef56f2b3a518e960d68cf91b267336760448be06ddac335c9cd5aa87bd56e7"
+      }
+    },
+    {
+      "id": "source/bc1100-zhang-zhou/institution",
+      "en": "Early China, Cambridge University Press",
+      "sv": "Early China, Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-zhang-zhou",
+        "fieldPath": "/institution",
+        "textSha256": "7ac00e38e8cbd9f989fa8adcdc514ed3b0632f20606227e19927ab608ab42bb5"
+      }
+    },
+    {
+      "id": "source/bc1100-zhang-zhou/locator",
+      "en": "Pengcheng Zhang (2023), Reconciling Wu cheng, Shi fu, and the Bamboo Annals, and Derivation of the conquest year; web lines 812–820 and 1134–1143.",
+      "sv": "Pengcheng Zhang (2023), Reconciling Wu cheng, Shi fu, and the Bamboo Annals samt Derivation of the conquest year; webbrader 812–820 och 1134–1143.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-zhang-zhou",
+        "fieldPath": "/locator",
+        "textSha256": "1832dab90478b95c35a9261e7d1229484f7eb9502f50c1346eafd0c95e5568ea"
+      }
+    },
+    {
+      "id": "source/bc1100-cycladic-protogeometric/institution",
+      "en": "Museum of Cycladic Art",
+      "sv": "Museum of Cycladic Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-cycladic-protogeometric",
+        "fieldPath": "/institution",
+        "textSha256": "d59b1f6305cc1468a562787e53c4ad39f5e4aec516b5b7e16c34dc11ae010929"
+      }
+    },
+    {
+      "id": "source/bc1100-cycladic-protogeometric/locator",
+      "en": "Pottery, first two paragraphs; web lines 110–114.",
+      "sv": "Pottery, de två första styckena; webbrader 110–114.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-cycladic-protogeometric",
+        "fieldPath": "/locator",
+        "textSha256": "837ac927576e6a1e62ea459d926d4d622fdeafd303c89c709d02c9b88cd07926"
+      }
+    },
+    {
+      "id": "source/bc1100-hoyrup-protogeometric/institution",
+      "en": "Revue d’histoire des mathématiques; NUMDAM",
+      "sv": "Revue d’histoire des mathématiques; NUMDAM",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-hoyrup-protogeometric",
+        "fieldPath": "/institution",
+        "textSha256": "5ed508de39835a0b9b5f16d64b5dba23dbbb9ba584dab6eec3cd2323001ae16e"
+      }
+    },
+    {
+      "id": "source/bc1100-hoyrup-protogeometric/locator",
+      "en": "Jens Høyrup (2000), Revue d’histoire des mathématiques 6, pp. 43–44, PDF indices 38–39, paragraph beginning The Submycenaean and Protogeometric phases.",
+      "sv": "Jens Høyrup (2000), Revue d’histoire des mathématiques 6, s. 43–44, PDF-index 38–39, stycket som börjar The Submycenaean and Protogeometric phases.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-hoyrup-protogeometric",
+        "fieldPath": "/locator",
+        "textSha256": "b703c87e18bf2f0478f2fd8e8316fbc45dd528550e4af377f8d4f6eb375d9ee5"
+      }
+    },
+    {
+      "id": "source/bc1100-higham-ban-non-wat-2024/institution",
+      "en": "Antiquity, Cambridge University Press",
+      "sv": "Antiquity, Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-higham-ban-non-wat-2024",
+        "fieldPath": "/institution",
+        "textSha256": "cc4a40041c1d7aac7f183e29e696809304c186ef26b9440449ed5a2b32122f0b"
+      }
+    },
+    {
+      "id": "source/bc1100-higham-ban-non-wat-2024/locator",
+      "en": "Charles Higham (2024), Antiquity 98(398), pp. 433–453, sections Ban Non Wat, Bronze Age 1 (1050–1000 BC), and The copper; web lines 508, 522–537 and 602–608.",
+      "sv": "Charles Higham (2024), Antiquity 98(398), s. 433–453, avsnitten Ban Non Wat, Bronze Age 1 (1050–1000 BC) och The copper; webbrader 508, 522–537 och 602–608.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-higham-ban-non-wat-2024",
+        "fieldPath": "/locator",
+        "textSha256": "7c2f60c90874bf83c1ab67c1607692e244fb429c90dea2e509a0a5f3012b4d16"
+      }
+    },
+    {
+      "id": "source/bc1100-higham-ban-non-wat-2009/institution",
+      "en": "Antiquity, Cambridge University Press",
+      "sv": "Antiquity, Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-higham-ban-non-wat-2009",
+        "fieldPath": "/institution",
+        "textSha256": "cc4a40041c1d7aac7f183e29e696809304c186ef26b9440449ed5a2b32122f0b"
+      }
+    },
+    {
+      "id": "source/bc1100-higham-ban-non-wat-2009/locator",
+      "en": "Charles Higham and Thomas Higham (2009), Antiquity 83, pp. 125–144; Results, p. 134 (PDF index9), and Table2, p.137 (PDF index12).",
+      "sv": "Charles Higham och Thomas Higham (2009), Antiquity 83, s. 125–144; Results, s. 134 (PDF-index 9), och tabell 2, s. 137 (PDF-index 12).",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1100-higham-ban-non-wat-2009",
+        "fieldPath": "/locator",
+        "textSha256": "5682cb6d47d97fed1440163d5a745f285e49f85862399e2b67f8545984ef19b3"
       }
     }
   ]
