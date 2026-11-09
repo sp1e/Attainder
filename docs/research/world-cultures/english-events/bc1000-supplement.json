@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc1000-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -1000,
+    "endYear": -901
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "24d86350cc7ba79194bccd153a996cf847cd2731",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc1000en-benyosef-timna-peak",
+      "title": "Back to Solomon's Era: Results of the first excavations at \"Slaves' Hill\" (Site 34, Timna, Israel)",
+      "institution": "Erez Ben-Yosef; Bulletin of the American Schools of Oriental Research 376 (2016), pp. 169–198; Tel Aviv University",
+      "url": "https://cris.tau.ac.il/en/publications/back-to-solomons-era-results-of-the-first-excavations-at-slaves-h/",
+      "locator": "Public abstract, paragraphs 1–3, web lines 19–21; bibliographic metadata lines 23–31. Full article and underlying dating measurements not read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "first half of the 10th century b.c.e.",
+      "originalChronology": "The abstract assigns Site 34's production peak to the first half of the tenth century BCE, based on excavation and short-lived radiocarbon samples.",
+      "scopedClaim": "A dated peak of copper smelting at Site 34 and the excavator's interpretation of organized production. The proposed link between abandonment and Shoshenq's campaign is excluded.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1000en-greener-timna-tools",
+      "title": "The ground stone assemblage of a metal workers community: An unexplored dimension of Iron Age copper production at Timna",
+      "institution": "Aaron Greener and Erez Ben-Yosef; Journal of Lithic Studies 3(3), 2016, pp. 191–220; University of Edinburgh",
+      "url": "https://journals.ed.ac.uk/lithicstudies/article/download/1678/2183",
+      "locator": "Printed pp. 195–196 (PDF pp. 5–6), chronology and section 2, Methodological framework; title and abstract on printed p. 191. Extracted text read after ordinary same-URL download following a tool size limit; no visual verification.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "early Iron Age (11th-9th centuries BCE",
+      "originalChronology": "The authors place Timna's wider activity peak in the eleventh–ninth centuries BCE and explain how radiocarbon work revised an older Late Bronze Age interpretation. This broad regional context is not the selected Site 34 peak's duration.",
+      "scopedClaim": "Ground-stone tools provide evidence for metalworkers' production practices at Site 34. Many tools survive in secondary contexts. The authors share the excavation programme underlying the more specific chronology.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1000-timna-site34-production-peak",
+      "date": {
+        "kind": "range",
+        "startYear": -1000,
+        "endYear": -951,
+        "displayEn": "First half of the tenth century BCE",
+        "noteEn": "Ben-Yosef places the production peak within this half-century. The integer bounds represent that calendar period, not measured opening and closing years or uninterrupted peak output. Greener and Ben-Yosef give a wider eleventh–ninth-century context for Timna; it does not date this particular peak."
+      },
+      "titleEn": "Metalworkers reach a production peak at Timna's Site 34",
+      "summaryEn": "Metalworkers smelt copper at a large camp in Timna. Ben-Yosef interprets the installations and defensive remains as evidence that an organized society directed production.",
+      "geographyEn": "Site 34, Timna Valley, southern Arabah",
+      "category": "technology",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc1000en-benyosef-timna-peak",
+        "bc1000en-greener-timna-tools"
+      ],
+      "selectionNote": "A notable concentration of copper production at a documented installation. The selected peak is distinct from the beginning of regional mining, later copper industries elsewhere and Sheshonq's already cataloged campaign. The sources share an excavation programme. Their archaeological interpretations do not identify Solomon as an owner or prove a particular political regime.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; Codex independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
