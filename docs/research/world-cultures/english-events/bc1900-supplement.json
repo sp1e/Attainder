@@ -1,0 +1,107 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc1900-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -1900,
+    "endYear": -1801
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc1900en-odap-phaistos-palace",
+      "title": "Phaistos: The glorious palace of Minoan Crete",
+      "institution": "Hellenic Organization of Cultural Resources Development (ODAP) / Hellenic Heritage",
+      "url": "https://www.hh.gr/en/destinations/phaistos/",
+      "locator": "Official archaeological-site page, historical paragraph beginning with the Minoan period, web line 41; location at lines 37–40 and publisher identified in the footer at line 176. Public English page read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "around 1900 BC",
+      "originalChronology": "The page dates construction of the palace to around 1900 BCE, separately from the earlier Minoan occupation and later destruction and rebuilding around 1700 BCE.",
+      "scopedClaim": "Approximate construction date of the palace at Phaistos on Crete. No legendary founder, exact building year or identification of every surviving structure with this phase is adopted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1900en-honegger-monumental-graves",
+      "title": "Aux origines des pharaons noirs, 10’000 ans d’archéologie en Nubie",
+      "institution": "Laténium / Fondation Kerma",
+      "url": "https://kerma.ch/documents/Publications_PDF/PN_livre_200814_planches_superlight.pdf",
+      "locator": "Matthieu Honegger, 2014, printed pp. 58–59, PDF page 32 of 76, paragraph beginning A partir du Kerma moyen, extracted web lines 1229–1239. Read with preceding sequence at lines 1210–1228 and adjacent grave captions. Text extraction read; page-image verification was unavailable.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "en particulier vers 1900 av. J.-C.",
+      "originalChronology": "Honegger places monumental graves in Middle Kerma, particularly around 1900 BCE. The passage extracts as 2015–1750 BCE, whereas the cemetery phase diagram on PDF page 29 gives 2050–1750 BCE. This internal discrepancy remains unresolved without visual verification; neither phase reading supplies the event's numeric bounds. Earlier elite burials and the subsequent adoption of beds are separate stages.",
+      "scopedClaim": "Monumental burial construction at Kerma around 1900 BCE, with larger pits and mounds generally accompanied by mudbrick chapels and cattle-skull arrangements. This does not date the first elite burial, first chapel, adoption of beds or establishment of kingship to 1900.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1900en-honegger-kerma-grave-caption",
+      "title": "Les royaumes de Kerma, Napata et Méroé",
+      "institution": "Belin",
+      "url": "https://kerma.ch/application/files/6615/5362/0323/Honegger_2018_Les_royaumes_de_Nubie_de_Kerma_a_Meroe.pdf",
+      "locator": "Matthieu Honegger, chapter in L’Afrique ancienne, edited by François-Xavier Fauvelle, 2018; printed pp. 70–71, PDF page 9 of 14, figure D5 caption, extracted web lines 465–490. Related size discussion at printed pp. 68–69 is not used to supply numerical dimensions. Text extraction and caption read; illustration not reproduced.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "vers 1900 avant notre ère",
+      "originalChronology": "Figure D5 dates an individual grave in Kerma's eastern cemetery to around 1900 BCE. It does not independently date the beginning of monumental burial construction or the adoption of wooden beds.",
+      "scopedClaim": "Context for the roughly dated cemetery episode: a mound-covered grave and associated funerary arrangements. This is another publication by the same excavator, not independent chronological corroboration of the 2014 synthesis.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1900-phaistos-palace-construction",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1900,
+        "endYear": -1900,
+        "displayEn": "Around 1900 BCE",
+        "noteEn": "The official site account gives an approximate construction date. Phaistos was already occupied earlier; this entry does not date the settlement's foundation or the later palace rebuilding to 1900 BCE."
+      },
+      "titleEn": "A palace is built at Phaistos",
+      "summaryEn": "Builders construct the Minoan palace at Phaistos on Crete around 1900 BCE, according to the official archaeological-site account.",
+      "geographyEn": "Phaistos, Messara, Crete",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1900en-odap-phaistos-palace"
+      ],
+      "selectionNote": "A notable palace-building episode at a specific Cretan centre. The dated construction is distinct from the already cataloged first palace at Malia; it does not turn a collective first-palace chronology into simultaneous foundations across Crete.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1900-kerma-monumental-burials",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1900,
+        "endYear": -1900,
+        "displayEn": "Around 1900 BCE",
+        "noteEn": "Honegger singles out around 1900 BCE within a broader Middle Kerma development. This dates a monumental burial episode, not an exact first grave or the beginning of social hierarchy. His later caption dates one grave to roughly the same time; it is not independent confirmation of the whole sequence."
+      },
+      "titleEn": "Monumental tombs are built at Kerma",
+      "summaryEn": "Honegger describes monumental graves at Kerma around 1900 BCE. Large burial pits and mounds are generally accompanied by mudbrick chapels and arrangements of cattle skulls.",
+      "geographyEn": "Kerma's eastern cemetery, Nubia, present-day Sudan",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc1900en-honegger-monumental-graves",
+        "bc1900en-honegger-kerma-grave-caption"
+      ],
+      "selectionNote": "A notable increase in the scale of funerary construction, distinct from Kerma's earlier settlement, city foundation, elite burials and adoption of wooden burial beds. The record follows the excavator's approximate placement without assigning the rise of kingship, every funerary practice or numerical tomb dimensions to this date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
