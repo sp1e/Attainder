@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "12a8e775d7b64119c22f5ad51d52c63bbf99e3a7",
+  "sourceRevision": "2bc535d363f5a29d4dcac81993d8c017c97011c0",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -15182,6 +15182,512 @@
         "sourceId": "bc0500-iranica-cunaxa",
         "fieldPath": "/locator",
         "textSha256": "711ff5485c0ed5100938a06279bf6d1c118bfcac1a92fe7a3b22960217eb8654"
+      }
+    },
+    {
+      "id": "source/bc0400-met-macedonia/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-met-macedonia",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/bc0400-met-macedonia/locator",
+      "en": "Colette and Seán Hemingway (2004), paragraphs on Philip and Alexander, lines 82–87.",
+      "sv": "Colette och Seán Hemingway (2004), styckena om Filip och Alexander, rader 82–87.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-met-macedonia",
+        "fieldPath": "/locator",
+        "textSha256": "c413365397ae84213eeb662a7fb73e5ca8606ea2ddc1fdba93cab64b18afe99e"
+      }
+    },
+    {
+      "id": "source/bc0400-cambridge-chronology/institution",
+      "en": "Cambridge University Press",
+      "sv": "Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-cambridge-chronology",
+        "fieldPath": "/institution",
+        "textSha256": "5fa80bacfa8abef3a617e5b4749e64c2361b847572b36d1d473e2070df1e26be"
+      }
+    },
+    {
+      "id": "source/bc0400-cambridge-chronology/locator",
+      "en": "Charlotte Van Regenmortel (2024), pp. xiv–xvi, PDF indices 0–2, entries 335, 322, 306, 305/304 and 301.",
+      "sv": "Charlotte Van Regenmortel (2024), s.xiv–xvi, PDF-index 0–2, posterna 335, 322, 306, 305/304 och 301.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-cambridge-chronology",
+        "fieldPath": "/locator",
+        "textSha256": "2737fbbaba4afa435a9a79a70ba58537af6cb4bd412bc2428035a5fe2de8b822"
+      }
+    },
+    {
+      "id": "source/bc0400-briant-alexander/institution",
+      "en": "Encyclopaedia Iranica",
+      "sv": "Encyclopaedia Iranica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-briant-alexander",
+        "fieldPath": "/institution",
+        "textSha256": "f73848ecbb70ca68207853153ffd8c11aed59c5faa5d609de1dc10d26e87a496"
+      }
+    },
+    {
+      "id": "source/bc0400-briant-alexander/locator",
+      "en": "Pierre Briant (1985, updated 2018), I, pp. 827–830; sections on Gaugamela, Persepolis and eastern resistance, web lines 46–61.",
+      "sv": "Pierre Briant (1985, uppdaterad 2018), I, s. 827–830; avsnitten om Gaugamela, Persepolis och motståndet i öster, webbrader 46–61.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-briant-alexander",
+        "fieldPath": "/locator",
+        "textSha256": "f1547361231ffe5c0ec29c85b0b83f13f69afec4836512ebab25d76b0383ed18"
+      }
+    },
+    {
+      "id": "source/bc0400-columbia-shang/institution",
+      "en": "Columbia University, Asia for Educators",
+      "sv": "Columbia University, Asia for Educators",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-columbia-shang",
+        "fieldPath": "/institution",
+        "textSha256": "e4022a01a81790de7d135092f9ace873f47bc4a08cf95e0d442b96682be497f8"
+      }
+    },
+    {
+      "id": "source/bc0400-columbia-shang/locator",
+      "en": "Introduction, web lines 56–58; excerpt based on Sources of Chinese Tradition (1999).",
+      "sv": "Inledning, webbrader 56–58; utdrag baserat på Sources of Chinese Tradition (1999).",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-columbia-shang",
+        "fieldPath": "/locator",
+        "textSha256": "aee481efe8ca9ea62d9f358f7841106fc7aa90c1d17a7369beee04888af87e34"
+      }
+    },
+    {
+      "id": "source/bc0400-berkshire-shang/institution",
+      "en": "Berkshire Publishing",
+      "sv": "Berkshire Publishing",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-berkshire-shang",
+        "fieldPath": "/institution",
+        "textSha256": "87f4f830fb202e781d5d26f4bb9d56ac89eae3123fc0994b02fcf0ba49585ef6"
+      }
+    },
+    {
+      "id": "source/bc0400-berkshire-shang/locator",
+      "en": "Encyclopedia entry, 13 January 2018, web lines 21–25.",
+      "sv": "Uppslagsverksartikel, 13 januari 2018, webbrader 21–25.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-berkshire-shang",
+        "fieldPath": "/locator",
+        "textSha256": "84a61cdaa145a340f3a4dfa83842bd62aaed16e408ea9237b5f7c5acfe106652"
+      }
+    },
+    {
+      "id": "source/bc0400-wiley-leuctra/institution",
+      "en": "Wiley, The Encyclopedia of War",
+      "sv": "Wiley, The Encyclopedia of War",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-wiley-leuctra",
+        "fieldPath": "/institution",
+        "textSha256": "e45a03a13c7fce55d9722e3d2ca52e69169e93674cf13d9ac165a93f4b0df635"
+      }
+    },
+    {
+      "id": "source/bc0400-wiley-leuctra/locator",
+      "en": "Thomas M. Banchich (2011), public abstract, web lines 56–59. Full entry not accessed.",
+      "sv": "Thomas M. Banchich (2011), offentligt abstract, webbrader 56–59. Hela artikeln lästes inte.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-wiley-leuctra",
+        "fieldPath": "/locator",
+        "textSha256": "0d526d2a382090423f92cbf0bff9562db81687d9d7dc78c87fc581e289c8730c"
+      }
+    },
+    {
+      "id": "source/bc0400-cawkwell-peace/institution",
+      "en": "Cambridge University Press, The Classical Quarterly",
+      "sv": "Cambridge University Press, The Classical Quarterly",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-cawkwell-peace",
+        "fieldPath": "/institution",
+        "textSha256": "b4fffe2302f7337c2e8456c70c4d58ed06e3a5d9c19d29a0f6bea841d0b5ca2a"
+      }
+    },
+    {
+      "id": "source/bc0400-cawkwell-peace/locator",
+      "en": "G. L. Cawkwell (1981), 31(1), pp. 69–83; public extract, lines 449–457. Full article not accessed.",
+      "sv": "G. L. Cawkwell (1981), 31(1), s. 69–83; offentligt utdrag, rader 449–457. Hela artikeln lästes inte.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-cawkwell-peace",
+        "fieldPath": "/locator",
+        "textSha256": "fee030c9e863f34b8452af8e27b7aa35adc20e7e246c1b10456505149d9b9ff5"
+      }
+    },
+    {
+      "id": "source/bc0400-jansari-chandragupta/institution",
+      "en": "UCL Press / UCL Discovery",
+      "sv": "UCL Press / UCL Discovery",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-jansari-chandragupta",
+        "fieldPath": "/institution",
+        "textSha256": "7b3ff4d9a44b70c2b15bbee3ce2374add9d971b96d40b6fe77e23c35853b072b"
+      }
+    },
+    {
+      "id": "source/bc0400-jansari-chandragupta/locator",
+      "en": "Sushma Jansari (2023), public repository abstract, lines 36–37 only. Linked full PDF returned 403 and was not read.",
+      "sv": "Sushma Jansari (2023), endast publikationsarkivets offentliga abstract, rader 36–37. Den länkade PDF-filen med hela boken gav 403 och lästes inte.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-jansari-chandragupta",
+        "fieldPath": "/locator",
+        "textSha256": "0e660de9cdc98c3b7e8583a1416acffffe74df8374d98ddee839f9f4f2330132"
+      }
+    },
+    {
+      "id": "source/bc0400-li-horseback/institution",
+      "en": "Proceedings of the National Academy of Sciences / PMC",
+      "sv": "Proceedings of the National Academy of Sciences / PMC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-li-horseback",
+        "fieldPath": "/institution",
+        "textSha256": "6837016557f226efa7035afcd277ed97b1592ed385049c9baf3b1293598e792a"
+      }
+    },
+    {
+      "id": "source/bc0400-li-horseback/locator",
+      "en": "Yue Li et al. (2020), 117(47), pp. 29569–29576, introductory historical-text discussion, web line 205.",
+      "sv": "Yue Li med flera (2020), 117(47), s. 29569–29576, inledningens diskussion om historiska texter, webbrad 205.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-li-horseback",
+        "fieldPath": "/locator",
+        "textSha256": "295fd821dcf1db92e0ca081c4eaaee318bd6e7e1ee5f8d9cc3cb3e683c049a78"
+      }
+    },
+    {
+      "id": "source/bc0400-flad-shu/institution",
+      "en": "Cambridge University Press",
+      "sv": "Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-flad-shu",
+        "fieldPath": "/institution",
+        "textSha256": "5fa80bacfa8abef3a617e5b4749e64c2361b847572b36d1d473e2070df1e26be"
+      }
+    },
+    {
+      "id": "source/bc0400-flad-shu/locator",
+      "en": "Rowan K. Flad and Pochan Chen, Ancient Central China (2013), chapter 4, pp. 71–107; public Summary, lines 470–475.",
+      "sv": "Rowan K. Flad och Pochan Chen, Ancient Central China (2013), kapitel 4, s. 71–107; offentlig sammanfattning, rader 470–475.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-flad-shu",
+        "fieldPath": "/locator",
+        "textSha256": "60dc014d370f56ee8735405c7ee6f3ef681fd9b842a506843eb5d2f8c13f5ace"
+      }
+    },
+    {
+      "id": "source/bc0400-deming-aqueduct/institution",
+      "en": "Wiley, Groundwater",
+      "sv": "Wiley, Groundwater",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-deming-aqueduct",
+        "fieldPath": "/institution",
+        "textSha256": "1b149eaa8b3e3a176a6e042a2694993ff05e7c385c35ab585625a059a58c4cb4"
+      }
+    },
+    {
+      "id": "source/bc0400-deming-aqueduct/locator",
+      "en": "David Deming (2020), 58(1), pp. 152–161; Aqua Appia discussion, web lines 107 and 115.",
+      "sv": "David Deming (2020), 58(1), s. 152–161; diskussionen om Aqua Appia, webbrader 107 och 115.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-deming-aqueduct",
+        "fieldPath": "/locator",
+        "textSha256": "ab53ef4aba1a7a8edd71bf88a59dec8b77f03dc0a6ab627c7fa516d13adeeb68"
+      }
+    },
+    {
+      "id": "source/bc0400-unesco-appia/institution",
+      "en": "UNESCO World Heritage Centre",
+      "sv": "UNESCO:s världsarvscentrum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-unesco-appia",
+        "fieldPath": "/institution",
+        "textSha256": "0a082b6ed6dee4803d7c2687725d0e50ba1c6249718c0dfc6d7eee6659437a82"
+      }
+    },
+    {
+      "id": "source/bc0400-unesco-appia/locator",
+      "en": "Property description, web lines 37–38.",
+      "sv": "Beskrivning av världsarvet, webbrader 37–38.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-unesco-appia",
+        "fieldPath": "/locator",
+        "textSha256": "e1355156dc5bc19fa76121c816bfabb183a662e01b3bdebb65e6ea8031c2d03b"
+      }
+    },
+    {
+      "id": "source/bc0400-bouvet-ceramics/institution",
+      "en": "ISEAS–Yusof Ishak Institute / Cambridge Core",
+      "sv": "ISEAS–Yusof Ishak Institute / Cambridge Core",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-bouvet-ceramics",
+        "fieldPath": "/institution",
+        "textSha256": "cc84ea4dab5a77cfb45ef1edb57f514a819abf157f99ebab90a1517819c147b3"
+      }
+    },
+    {
+      "id": "source/bc0400-bouvet-ceramics/locator",
+      "en": "Phaedra Bouvet (2011), Early Interactions between South and Southeast Asia, chapter 3, pp. 47–82; public Summary, Introduction, lines 471–474.",
+      "sv": "Phaedra Bouvet (2011), Early Interactions between South and Southeast Asia, kapitel 3, s. 47–82; offentlig sammanfattning, inledning, rader 471–474.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-bouvet-ceramics",
+        "fieldPath": "/locator",
+        "textSha256": "a03b9443828391ae11da34ccdc9cfd8585bcbe25c3b30f28ab12774e8e237279"
+      }
+    },
+    {
+      "id": "source/bc0400-mfa-enamel/institution",
+      "en": "Museum of Fine Arts, Boston",
+      "sv": "Museum of Fine Arts, Boston",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-mfa-enamel",
+        "fieldPath": "/institution",
+        "textSha256": "e9c2244bc29a0e7276c5343c8091fad9e5b782eae9c5f33ca0dd0bd4fe774099"
+      }
+    },
+    {
+      "id": "source/bc0400-mfa-enamel/locator",
+      "en": "2014 exhibition announcement; discussion of Nubian glass and enameling, web line 18.",
+      "sv": "Utställningsmeddelande från 2014; diskussionen om nubiskt glas och emaljering, webbrad 18.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-mfa-enamel",
+        "fieldPath": "/locator",
+        "textSha256": "43cb4453c41c2075c9d2c5b8a1518e77a5a9056391b6d8861066322d9655bffe"
+      }
+    },
+    {
+      "id": "source/bc0400-sep-socrates/institution",
+      "en": "Stanford Encyclopedia of Philosophy",
+      "sv": "Stanford Encyclopedia of Philosophy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-sep-socrates",
+        "fieldPath": "/institution",
+        "textSha256": "043e6e56f255ab035f61e2f3601090c6411f4be40620b2fc2fe1b2a548b97684"
+      }
+    },
+    {
+      "id": "source/bc0400-sep-socrates/locator",
+      "en": "Life chronology and trial discussion, web lines 231–252.",
+      "sv": "Levnadskronologi och diskussion om rättegången, webbrader 231–252.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-sep-socrates",
+        "fieldPath": "/locator",
+        "textSha256": "a6193648befe54c02d07eefbc004735b3f6d8e1cba23ed21f628f655d2435b5c"
+      }
+    },
+    {
+      "id": "source/bc0400-sep-aristotle/institution",
+      "en": "Stanford Encyclopedia of Philosophy",
+      "sv": "Stanford Encyclopedia of Philosophy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-sep-aristotle",
+        "fieldPath": "/institution",
+        "textSha256": "043e6e56f255ab035f61e2f3601090c6411f4be40620b2fc2fe1b2a548b97684"
+      }
+    },
+    {
+      "id": "source/bc0400-sep-aristotle/locator",
+      "en": "Life section, web lines 54–56.",
+      "sv": "Avsnittet om livet, webbrader 54–56.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-sep-aristotle",
+        "fieldPath": "/locator",
+        "textSha256": "3ae977feeeacbfc232eaee383db379988f221e0c44fe8785444403b0e0d4c619"
+      }
+    },
+    {
+      "id": "source/bc0400-marriner-tyre/institution",
+      "en": "Proceedings of the National Academy of Sciences / PMC",
+      "sv": "Proceedings of the National Academy of Sciences / PMC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-marriner-tyre",
+        "fieldPath": "/institution",
+        "textSha256": "6837016557f226efa7035afcd277ed97b1592ed385049c9baf3b1293598e792a"
+      }
+    },
+    {
+      "id": "source/bc0400-marriner-tyre/locator",
+      "en": "Nick Marriner, Christophe Morhange and Samuel Meulé (2007), 104(22), pp. 9218–9223, opening historical context, web lines 80–87.",
+      "sv": "Nick Marriner, Christophe Morhange och Samuel Meulé (2007), 104(22), s. 9218–9223, inledande historisk bakgrund, webbrader 80–87.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-marriner-tyre",
+        "fieldPath": "/locator",
+        "textSha256": "b177547728861e407c44543d28cd6012673b014b8c176d199ca9ad89623d7c60"
+      }
+    },
+    {
+      "id": "source/bc0400-paths-alexandria/institution",
+      "en": "PAThs ERC project, Sacri Lapides Aegypti",
+      "sv": "ERC-projektet PAThs, Sacri Lapides Aegypti",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-paths-alexandria",
+        "fieldPath": "/institution",
+        "textSha256": "2d7f128c898d4c6b38124859ed79bc3541afc8373db631f88521160e14501128"
+      }
+    },
+    {
+      "id": "source/bc0400-paths-alexandria/locator",
+      "en": "Serena Guidone (editor; last modified 22 January 2019), site dating at lines 37–41, attribution at lines 50–52, Introduction at line 85.",
+      "sv": "Serena Guidone (redaktör; senast ändrad 22 januari 2019), platsens datering på rader 37–41, författaruppgift på rader 50–52, inledning på rad 85.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-paths-alexandria",
+        "fieldPath": "/locator",
+        "textSha256": "67f739a1faf58945c776c427e5d6227656d5a65273bd726ca6139298b01acabb"
+      }
+    },
+    {
+      "id": "source/bc0400-persee-rhodes/institution",
+      "en": "Revue des Études Anciennes / Persée",
+      "sv": "Revue des Études Anciennes / Persée",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-persee-rhodes",
+        "fieldPath": "/institution",
+        "textSha256": "6fe99028823c4839659f777472bfb4516a221b197f2906657538d4f30256d10d"
+      }
+    },
+    {
+      "id": "source/bc0400-persee-rhodes/locator",
+      "en": "Isabelle Pimouguet-Pédarros (2003), 105(2), pp. 371–392; p. 372, web lines 45–46.",
+      "sv": "Isabelle Pimouguet-Pédarros (2003), 105(2), s. 371–392; s. 372, webbrader 45–46.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-persee-rhodes",
+        "fieldPath": "/locator",
+        "textSha256": "b046a891e3fbffb33c2e8d68ddcf8cacd00025ba4a7640514cde10a024c70185"
+      }
+    },
+    {
+      "id": "source/bc0400-greece-messene/institution",
+      "en": "Permanent Delegation of Greece to UNESCO",
+      "sv": "Greklands permanenta delegation vid UNESCO",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-greece-messene",
+        "fieldPath": "/institution",
+        "textSha256": "dc4683e4d66840a9cd8bd8a4bb62505970f6d7792396a5f30cd39469263e0cb5"
+      }
+    },
+    {
+      "id": "source/bc0400-greece-messene/locator",
+      "en": "Greek tentative-list submission (2014), Description, web line 85; submitting state is the historical author, not UNESCO endorsement.",
+      "sv": "Greklands förslag till preliminär världsarvslista (2014), beskrivning, webbrad 85; den föreslående staten står för historiken, som inte innebär ett godkännande från UNESCO.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-greece-messene",
+        "fieldPath": "/locator",
+        "textSha256": "ac08bcd02dba08360968c882276559f25f098405c2d68c5cd49878df23189b7a"
+      }
+    },
+    {
+      "id": "source/bc0400-ephorate-olynthus/institution",
+      "en": "Ephorate of Antiquities of Chalkidiki and Mount Athos",
+      "sv": "Antikvariska myndigheten för Chalkidike och Athos",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-ephorate-olynthus",
+        "fieldPath": "/institution",
+        "textSha256": "b0dfe7e51edce6f942955c1c29f6bd85e5f6fa73076d647e0c27de9968736b4d"
+      }
+    },
+    {
+      "id": "source/bc0400-ephorate-olynthus/locator",
+      "en": "Greek introductory site description, web line 8.",
+      "sv": "Grekisk inledande platsbeskrivning, webbrad 8.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-ephorate-olynthus",
+        "fieldPath": "/locator",
+        "textSha256": "1988066a4748f7701bcf24cd1dfe58dc46c338833754107e565abd4b27835e72"
+      }
+    },
+    {
+      "id": "source/bc0400-warwick-alexander/institution",
+      "en": "University of Warwick, Classics Network / OCR teaching resource",
+      "sv": "University of Warwick, Classics Network / undervisningsresurs från OCR",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-warwick-alexander",
+        "fieldPath": "/institution",
+        "textSha256": "8541fa94af3597ffb509cb3141b9a841358e650c9b82f964e47c8123fa464488"
+      }
+    },
+    {
+      "id": "source/bc0400-warwick-alexander/locator",
+      "en": "Chronological guide with Arrian references; web lines 51–56.",
+      "sv": "Kronologisk handledning med hänvisningar till Arrianos; webbrader 51–56.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-warwick-alexander",
+        "fieldPath": "/locator",
+        "textSha256": "779df15908aeb741340b35edca8a3abd894bca82354f247ee09fb8fc6e75b89b"
+      }
+    },
+    {
+      "id": "source/bc0400-sadasivan-hydaspes/institution",
+      "en": "ISEAS–Yusof Ishak Institute / Cambridge Core",
+      "sv": "ISEAS–Yusof Ishak Institute / Cambridge Core",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-sadasivan-hydaspes",
+        "fieldPath": "/institution",
+        "textSha256": "cc84ea4dab5a77cfb45ef1edb57f514a819abf157f99ebab90a1517819c147b3"
+      }
+    },
+    {
+      "id": "source/bc0400-sadasivan-hydaspes/locator",
+      "en": "Balaji Sadasivan, The Dancing Girl: A History of Early India, chapter 4; public Summary, web lines 493–494.",
+      "sv": "Balaji Sadasivan, The Dancing Girl: A History of Early India, kapitel 4; offentlig sammanfattning, webbrader 493–494.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0400-sadasivan-hydaspes",
+        "fieldPath": "/locator",
+        "textSha256": "6badcf270ef2076b6ff05935c9da4135178275eceff8fee1fbd2618c60162621"
       }
     }
   ]
