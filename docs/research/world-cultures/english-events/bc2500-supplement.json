@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc2500-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -2500,
+    "endYear": -2401
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "5d489ef2f41cc7a4c084d86538b40f55f8a5058b",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc2500-parker-pearson-beaker-burials",
+      "title": "Archaeology and legend: investigating Stonehenge",
+      "institution": "UCL Press / Archaeology International",
+      "url": "https://discovery.ucl.ac.uk/id/eprint/10187084/1/ai-1207-parker%20pearson.pdf",
+      "locator": "Mike Parker Pearson, Archaeology International 24(1), 2021, pp. 144–164, DOI 10.14324/111.444.ai.2021.09. Printed p. 159 (PDF p. 17), paragraph on the earliest Beaker burials; references on p. 163. Relevant full-text passages read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "2450–2325 bce",
+      "originalChronology": "Earliest Beaker burials: 2450–2325 BCE, citing Jay, Richards and Marshall 2019, p. 75. Earlier arrival of people is explicitly possible.",
+      "scopedClaim": "Date range of earliest British Beaker burials and association of the burial rite with pottery and other grave goods. The article's speculation about medieval legend is not adopted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2500-vander-linden-beaker-britain",
+      "title": "The Bell Beaker Phenomenon in Europe: A Harmony of Difference",
+      "institution": "Cambridge University Press",
+      "url": "https://www.cambridge.org/core/elements/bell-beaker-phenomenon-in-europe/6CE35EF669A4A6A910AAB12FDA3C370C",
+      "locator": "Marc Vander Linden, Elements in the Archaeology of Europe, published online 28 February 2024, DOI 10.1017/9781009496872. Sections 2.2 (British chronology) and 3.6 (Britain and Ireland), open full text.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "2450/2400 and 2300 calBC",
+      "originalChronology": "Earliest British phase extends from 2450/2400 to 2300 calBC. This phase duration is distinct from the earliest-burial dating interval.",
+      "scopedClaim": "Regional funerary transformation, continued cremation and other practices, and locally adapted continental traditions. No uniform ethnic identity or exact migration date is inferred.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc2450-britain-early-beaker-burials",
+      "date": {
+        "kind": "range",
+        "startYear": -2450,
+        "endYear": -2325,
+        "displayEn": "2450–2325 BCE (earliest British Beaker burials)",
+        "noteEn": "Parker Pearson reports this range for the earliest burials; it does not measure the duration of the burial tradition or fix the first arrival of migrants, which may have been earlier. Vander Linden places the broader early British phase at 2450/2400–2300 calBC. Neither chronology supplies an exact onset year."
+      },
+      "titleEn": "Early Beaker graves mark a change in British burial practices",
+      "summaryEn": "Burials with Beaker pottery and other grave goods appear in Britain, introducing practices with continental connections. They form part of a major funerary change, while cremation and other older customs continue alongside them.",
+      "geographyEn": "Britain",
+      "category": "culture",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc2500-parker-pearson-beaker-burials",
+        "bc2500-vander-linden-beaker-britain"
+      ],
+      "selectionNote": "Selected as a significant regional change in burial practices, not an isolated object or a dated claim about genetic replacement. Distinct from the existing Stonehenge and Silbury construction events and the earlier Yamnaya expansion. The two syntheses draw on overlapping archaeological literature, not independent radiocarbon datasets. The older withheld Amesbury Archer lead is not revived as an individual event.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
