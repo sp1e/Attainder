@@ -5,6 +5,11 @@ import { compareGameDates, normalizeGameDate } from '../gameDates.js';
 
 const byBirth = (a, b) => compareGameDates(a.bornAt, b.bornAt) || a.id.localeCompare(b.id);
 
+/** Subjects of an exposed illegitimate_child secret: their claim is contested (spec docs/superpowers/specs/2026-11-09-illegitimate-children-design.md). */
+function contestedClaims(state) {
+  return new Set((state.secrets || []).filter((secret) => secret.type === 'illegitimate_child' && secret.exposed).map((secret) => secret.subjectId));
+}
+
 /** Each person's legal children, every person in state, living or dead. */
 export function childIndex(state) {
   const children = new Map();
@@ -93,13 +98,16 @@ export function houseMarriedIn(state, oldRuler, children = childIndex(state)) {
 /**
  * Primogeniture: the old ruler's line depth first, then the house's other members by age, then
  * married-in persons and outsiders, adults only, by age. `people` is the pool of possible successors.
+ * A contested claim (an exposed illegitimate_child secret) leaves the line and the house and stands
+ * after them, by age, ahead of everyone else.
  */
 export function primogenitureCandidates(state, oldRuler, people, isAdult) {
-  const pool = new Set(people.map((p) => p.id)), children = childIndex(state);
+  const pool = new Set(people.map((p) => p.id)), children = childIndex(state), contested = contestedClaims(state);
   const line = oldRuler ? descendantLine(state, oldRuler, children).filter((p) => pool.has(p.id)) : [];
   const placed = new Set(line.map((p) => p.id)), marriedIn = houseMarriedIn(state, oldRuler, children);
   const kin = people.filter((p) => !placed.has(p.id) && p.familyId === oldRuler?.familyId && !marriedIn.has(p.id)).sort(byBirth);
   for (const p of kin) placed.add(p.id);
+  const doubted = [...line, ...kin].filter((p) => contested.has(p.id)).sort(byBirth);
   const rest = people.filter((p) => !placed.has(p.id) && isAdult(p)).sort(byBirth);
-  return [...line, ...kin, ...rest];
+  return [...[...line, ...kin].filter((p) => !contested.has(p.id)), ...doubted, ...rest];
 }
