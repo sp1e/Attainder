@@ -1,0 +1,83 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad1000-second-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 1000,
+    "endYear": 1100
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "811ad6272989053794f48425096ab4139dd0b6a2",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad1000second-ana-jiaozi",
+      "title": "An Experiment in Paper Virtual Money Museum Exhibit",
+      "institution": "American Numismatic Association, Money Museum",
+      "url": "https://www.money.org/money-museum-virtual-exhibits-silk-case4/",
+      "locator": "An Experiment in Paper exhibit text, web lines 30–34, especially the Sichuan private notes and government nationalization at lines 32–33. Public HTML read.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The exhibit dates government nationalization of paper currency to 1023, after private jiaozi and merchant standardization in Sichuan. Its separate Huizi discussion concerns 1160 and is not included.",
+      "asWorded": "1023",
+      "scopedClaim": "Song authorities took over a paper-note system developed by merchants in Sichuan. This is an administrative transition, not a claim that paper or printing was invented then.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1000second-lin-jiaozi-2020",
+      "title": "紙幣早於何時面世？",
+      "institution": "Chinese Culture Institute; Dr Lin Feng (林楓博士), 7 February 2020",
+      "url": "https://chiculture.org.hk/tc/china-five-thousand-years/876",
+      "locator": "Authored educational article, web lines 123–128 for private notes and the Yizhou Jiaozi Office; lines 137–143 identify the author and publication date. Public Chinese HTML read.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The opening gives Tiansheng 2 (1024) for jiaozi, while the administrative passage dates the Yizhou Jiaozi Office to Tiansheng 1 (1023). The text also describes earlier private notes. These statements are retained without resolving their different chronological framing.",
+      "asWorded": "天聖元年（1023年）",
+      "scopedClaim": "The Song government established an office at Yizhou to manage official jiaozi issuance, principally for Sichuan. The candidate does not adopt the article's absolute earliest-paper-money claim.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1000second-luo-jiaozi-interview-2024",
+      "title": "东西问丨刘方健、罗天云：人类最早的纸币交子为何诞生在成都？",
+      "institution": "China News Service; Wang Peng interviews Liu Fangjian and Luo Tianyun, 13 December 2024",
+      "url": "https://www.chinanews.com/m/gn/2024/12-13/10336021.shtml",
+      "locator": "Public interview transcript, web lines 43–53: Luo Tianyun's answer on the dating of official jiaozi; line 53 distinguishes approval on 12 January 1024 from issuance on 1 April 1024. Lines 92–98 identify the interviewees. These dates belong to Luo's answer, not Liu's.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Luo Tianyun dates court approval of the Yizhou Jiaozi Office to 12 January 1024 and formal issuance to 1 April 1024. This is a published researcher's interview account; the underlying decree and the interviewees' book were not inspected. No calendar conversion is made.",
+      "asWorded": "1024年1月12日",
+      "scopedClaim": "A named researcher supplies an alternative 1024 chronology for official administration and issuance. Luo is identified as a jiaozi researcher and coauthor, not as the university professor named in the interview. The candidate preserves this attribution and does not treat the interview as a directly inspected Song decree.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-ad1023-song-jiaozi-administration",
+      "date": {
+        "kind": "disputed",
+        "startYear": 1023,
+        "endYear": 1024,
+        "displayEn": "AD 1023–1024; accounts differ on the administrative date",
+        "noteEn": "The ANA dates government takeover to 1023, and Lin Feng dates the Yizhou office to 1023. In a later published interview, Luo Tianyun instead gives 12 January 1024 for court approval and 1 April 1024 for official issuance. These source dates are preserved without an independent calendar conversion or a claim that every step occurred in both years."
+      },
+      "titleEn": "Song authorities take over jiaozi issuance in Sichuan",
+      "summaryEn": "Song authorities bring a paper-note system developed by Sichuan merchants under government administration. The Yizhou Jiaozi Office manages official issuance, marking a change in who controls the notes. The sources differ over the date of the administrative transition.",
+      "geographyEn": "Yizhou (Chengdu) and Sichuan, Song China",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "ad1000second-ana-jiaozi",
+        "ad1000second-lin-jiaozi-2020",
+        "ad1000second-luo-jiaozi-interview-2024"
+      ],
+      "selectionNote": "A major regional change in monetary administration, separate from later Ming paper-money issuance and Wang Anshi's reforms. Accounts place takeover or office establishment in 1023, while Luo's interview gives approval on 12 January 1024 and issuance on 1 April 1024; the underlying decree was not read. No invention of paper, worldwide priority, modern central bank, or immediate extension across all Song territory is claimed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and reconciliation review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
