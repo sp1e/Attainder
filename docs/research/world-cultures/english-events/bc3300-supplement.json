@@ -1,0 +1,107 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc3300-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -3300,
+    "endYear": -3201
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc3300en-lian-fanshan",
+      "title": "Water and Early City Development in Southeast China: Geoarchaeology Case Study of the Ancient Liangzhu City",
+      "institution": "University of Cambridge; Huiru Lian",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/dd45c191-0f38-4634-a062-754ee3c4a233/content",
+      "locator": "PhD thesis, March 2021; printed p. 24 (PDF page 41), Elite burials. Scholarly synthesis citing ZPICRA 2005a; public PDF text extraction.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "3300–2900 BC",
+      "originalChronology": "The date range is explicitly assigned to the Fanshan cemetery, rather than to the whole Liangzhu culture. It does not date each burial or identify a single construction year.",
+      "scopedClaim": "The cemetery lies on high ground west of Mojiaoshan and contains eleven richly furnished tombs, with especially elaborate jade objects in Tomb M12. This is a mortuary assemblage, not a dated royal accession.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc3300en-korolkov-fanshan",
+      "title": "Institutions and Environment in Ancient Southern East Asia (3000 BCE to 300 CE)",
+      "institution": "Cambridge University Press; Maxim Korolkov",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/CC39D2BB0C5D015C230983E4DB2E3728/9781009507264AR.pdf/institutions-and-environment-in-ancient-southern-east-asia-3000-bce-to-300-ce.pdf",
+      "locator": "Elements in Ancient East Asia, 2024, DOI 10.1017/9781108990325; printed pp. 18–19 (PDF pages 24–25), Fanshan cemetery and comparison with Miaoqian.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "eleven tombs arrayed in two parallel rows",
+      "originalChronology": "This passage describes Fanshan within a broader account of Liangzhu society; it supplies no independent date for each tomb. The candidate's cemetery-specific range comes from Lian.",
+      "scopedClaim": "Uniform tomb orientation and grave-good arrangements are interpreted as standardized ritual. Rich jade assemblages and contrasts with commoner burials support an interpretation of concentrated social power; identities and titles of individual occupants are not established.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc3300en-kaliff-oestigaard-expansion",
+      "title": "Early Indo-European Silk Roads: Ecologies of Cattle, Waterways and Winter Migrations",
+      "institution": "Uppsala University; Anders Kaliff and Terje Oestigaard",
+      "url": "https://uu.diva-portal.org/smash/get/diva2%3A1995392/FULLTEXT01.pdf",
+      "locator": "Occasional Papers in Archaeology 90 (2025), ISBN 978-91-506-3137-1; pp. 15, 22 and 78. Independent scholarly monograph; public PDF text extraction.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "around 3300 BC",
+      "originalChronology": "Pages 15 and 22 place the appearance of the developed Yamnaya complex around 3300 BC and its geographic extent from Hungary to Kazakhstan by around 3000 BC. The broader culture period given on p. 22 is c. 3300–2500 BC; the candidate concerns the initial expansion to c. 3000, not the culture's end.",
+      "scopedClaim": "The authors synthesize archaeological and genetic research on an eastward and westward expansion from the Pontic–Caspian steppe. Their separate proposed winter-waterway mechanism, language transmission model and specific genetic reconstructions are not adopted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc3300-fanshan-elite-burials",
+      "date": {
+        "kind": "range",
+        "startYear": -3300,
+        "endYear": -2900,
+        "displayEn": "Around 3300–2900 BCE",
+        "noteEn": "Lian assigns this full range to the Fanshan cemetery. It dates the burial assemblage, not the foundation of Liangzhu or every tomb to the same year. The exact sequence and duration of individual burials remain unspecified."
+      },
+      "titleEn": "Richly furnished burials mark an elite cemetery at Fanshan",
+      "summaryEn": "At Fanshan, eleven tombs contain elaborate jade grave goods. Their regular arrangement and shared ritual objects point to standardized burial practices and concentrated wealth within Liangzhu society. These patterns support an interpretation of elite status, without identifying named rulers.",
+      "geographyEn": "Fanshan cemetery, Liangzhu, Zhejiang, lower Yangzi region, China",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc3300en-lian-fanshan",
+        "bc3300en-korolkov-fanshan"
+      ],
+      "selectionNote": "A documented center of elite mortuary practice and social differentiation, distinct from the catalog's later main city-construction episode around 3000–2850 BC and separate high/low dams. The cemetery-specific 3300–2900 range is freshly read in Lian, not inferred from UNESCO's culture-wide span or from an individual museum jade.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc3300-yamnaya-initial-expansion",
+      "date": {
+        "kind": "range",
+        "startYear": -3300,
+        "endYear": -3000,
+        "displayEn": "Around 3300–3000 BCE",
+        "noteEn": "Kaliff and Oestigaard place the developed Yamnaya complex's appearance around 3300 BCE and its extent from Hungary to Kazakhstan by around 3000 BCE. These are approximate bounds for an initial expansion, not one migration or an exact beginning. Their wider c. 3300–2500 BCE culture span continues beyond this episode."
+      },
+      "titleEn": "Yamnaya communities expand across the Eurasian steppe",
+      "summaryEn": "Communities associated with the Yamnaya archaeological complex spread eastward and westward from the steppes north of the Black and Caspian Seas. By around 3000 BCE, the complex extends from Hungary to Kazakhstan. This wide movement connects distant pastoral populations; it does not establish a single state or a uniformly shared language.",
+      "geographyEn": "Pontic–Caspian steppe and expanding networks from Hungary to Kazakhstan",
+      "category": "culture",
+      "importance": 3,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc3300en-kaliff-oestigaard-expansion"
+      ],
+      "selectionNote": "A continental-scale population and cultural expansion absent from the runtime catalog and English supplements. Distinct from the narrower cataloged livestock-specialization change around 3100 BC. The monograph is a separately authored scholarly synthesis; no inaccessible Nature paper is claimed to have been read and no genetic result, riding invention or winter route is imported.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
