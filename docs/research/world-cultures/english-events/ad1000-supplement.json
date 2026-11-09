@@ -1,0 +1,94 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad1000-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 1000,
+    "endYear": 1099
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad1000en-sandi-pamungkas-kamalagyan",
+      "title": "Banjir Sungai Brantas Masa Raja Airlangga Abad XI: Berdasarkan Prasasti Kamalagyan 1037 M",
+      "institution": "Universitas Negeri Surabaya; Armenson Diga Sandi and Yohanes Hanan Pamungkas",
+      "url": "https://ejournal.unesa.ac.id/index.php/avatara/article/view/10454/10182",
+      "locator": "AVATARA 3(1), March 2015; PDF pages 3–4, printed pp. 51–52, discussion and transcription/translation of the Kamalagyan inscription. The journal landing page lists Sandi; the PDF names both authors.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Prasasti Kamalagyan 1037 M",
+      "originalChronology": "The study explicitly dates the inscription to 1037 CE. This dates its recorded grant and commemoration, without establishing the start or duration of dam construction.",
+      "scopedClaim": "The inscription records Airlangga's flood-control works at Waringin Sapta and assigns Kamalagyan revenue and maintenance duties to support the embankment. Its account associates the works with downstream farming and river traffic.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1000en-rougeulle-barus",
+      "title": "Review of Histoire de Barus. Le site de Lobu Tua, volumes I and II, edited by Claude Guillot",
+      "institution": "Institut français d'archéologie orientale; Axelle Rougeulle",
+      "url": "https://www.ifao.egnet.net/bcai/21/47/",
+      "locator": "Bulletin critique des Annales islamologiques 21 (2005), pp. 98–100; p. 98, paragraph on Y. Subbarayalu's inscription edition. Opened scholarly book review, not a claim to have read the underlying edition.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Datée de 1088",
+      "originalChronology": "Rougeulle dates the Tamil inscription to 1088 and reports its reference to a meeting at Varocu, identified as Barus. No foundation or first-arrival date is assigned.",
+      "scopedClaim": "The inscription records a meeting of the Tamil merchant association known as the Five Hundred in the port of Barus. The review describes the port's camphor and benzoin trade as context.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-ad1037-kamalagyan-waterworks-charter",
+      "date": {
+        "kind": "exact",
+        "startYear": 1037,
+        "endYear": 1037,
+        "displayEn": "1037 CE",
+        "noteEn": "The date belongs to the Kamalagyan inscription. It commemorates flood-control works and records provisions for their upkeep; it does not establish when construction began or how long the work took."
+      },
+      "titleEn": "Airlangga records support for flood-control works at Kamalagyan",
+      "summaryEn": "A royal inscription records work on the Waringin Sapta embankment and assigns local revenue and maintenance responsibilities to sustain it. The measure addresses flooding along the Brantas, linking water management with farming and river transport.",
+      "geographyEn": "Kamalagyan and Waringin Sapta, lower Brantas River, East Java, Indonesia",
+      "category": "politics",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1000en-sandi-pamungkas-kamalagyan"
+      ],
+      "selectionNote": "A dated administrative response to a consequential regional infrastructure problem. No existing runtime or English record concerns this act. The event dates the inscription and maintenance provision, not an inferred building year or the invention of irrigation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-ad1088-barus-tamil-merchants-meeting",
+      "date": {
+        "kind": "exact",
+        "startYear": 1088,
+        "endYear": 1088,
+        "displayEn": "1088 CE",
+        "noteEn": "The year dates the Tamil inscription reporting a merchant-guild meeting. It does not date Barus's foundation, the guild's origin or the first arrival of Tamil traders."
+      },
+      "titleEn": "Tamil merchants record a guild meeting at Barus",
+      "summaryEn": "An inscription from Lobu Tua records a meeting of the Tamil merchant association known as the Five Hundred at Barus. It documents organized overseas commerce at a Sumatran port associated with the camphor and benzoin trade.",
+      "geographyEn": "Lobu Tua, Barus, west coast of northern Sumatra, Indonesia",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1000en-rougeulle-barus"
+      ],
+      "selectionNote": "A specific dated act of a transregional merchant institution, distinct from the existing Chola raid on Srivijaya around 1025. The named guild is not treated as a numerical census, a sovereign colonial government or evidence of an exact founding year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
