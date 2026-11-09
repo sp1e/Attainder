@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "dfd2e8806ae3ff81ccb90cc76785268842b96d3f",
+  "sourceRevision": "5560998313e72cff9dc72bdd3416966b0bb0c066",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -17558,6 +17558,72 @@
         "sourceId": "ad0200-sup-huebner-abritus",
         "fieldPath": "/locator",
         "textSha256": "550d01fa9b67b0bf0a74dd9994036e82ab0b1133197475fff6a431ab260c23e9"
+      }
+    },
+    {
+      "id": "source/bc2400supp-getty-urukagina/institution",
+      "en": "J. Paul Getty Trust",
+      "sv": "J. Paul Getty Trust",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2400supp-getty-urukagina",
+        "fieldPath": "/institution",
+        "textSha256": "4177cc4726860f85f5e2f368aa80b56e6cd9d658a5c0e023dd6d9a3cac94031b"
+      }
+    },
+    {
+      "id": "source/bc2400supp-getty-urukagina/locator",
+      "en": "2020 press image sheet, PDF page 8, item 25, Cone with Reforms of King Urukagina, VEX.2020.1.114.",
+      "sv": "Pressbildförteckning från 2020, PDF-sida 8, post 25, Cone with Reforms of King Urukagina, VEX.2020.1.114.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2400supp-getty-urukagina",
+        "fieldPath": "/locator",
+        "textSha256": "4d69a769eb879f79f9555a96f09a13173294ce376df4a0ca1c8f0112ffefbb70"
+      }
+    },
+    {
+      "id": "source/bc2400supp-schrakamp-zolyomi-reforms/institution",
+      "en": "De Gruyter / Altorientalische Forschungen",
+      "sv": "De Gruyter / Altorientalische Forschungen",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2400supp-schrakamp-zolyomi-reforms",
+        "fieldPath": "/institution",
+        "textSha256": "9f04de520e9544c9f32cb5fd8fe1d8d7a31af1f04a82c4c6116fc9f29fd194ce"
+      }
+    },
+    {
+      "id": "source/bc2400supp-schrakamp-zolyomi-reforms/locator",
+      "en": "Ingo Schrakamp and Gábor Zólyomi (2025), 52(1), pp. 93–114; sections 1–2, pp. 93–94, and section 13, p. 111.",
+      "sv": "Ingo Schrakamp och Gábor Zólyomi (2025), 52(1), s. 93–114; avsnitt 1–2, s. 93–94, och avsnitt 13, s. 111.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2400supp-schrakamp-zolyomi-reforms",
+        "fieldPath": "/locator",
+        "textSha256": "4147b5468188ea93bba15460b55e40cce0321700ad88980338e21f957444665d"
+      }
+    },
+    {
+      "id": "source/bc2400supp-goodman-lagash/institution",
+      "en": "Wiley / Geoarchaeology",
+      "sv": "Wiley / Geoarchaeology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2400supp-goodman-lagash",
+        "fieldPath": "/institution",
+        "textSha256": "5539c02fadd311a976c11193bc140f28bee26e282d47fcd1220656621ee963df"
+      }
+    },
+    {
+      "id": "source/bc2400supp-goodman-lagash/locator",
+      "en": "Reed Goodman et al. (2025), DOI 10.1002/gea.70027, Abstract and Introduction, paragraph beginning After protracted cycles of conflict and the following paragraph.",
+      "sv": "Reed Goodman med flera (2025), DOI 10.1002/gea.70027, sammanfattningen och inledningen, stycket som börjar After protracted cycles of conflict samt följande stycke.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2400supp-goodman-lagash",
+        "fieldPath": "/locator",
+        "textSha256": "bdaad96d4c6f00ade26b569c8f5cdfd7bfafc2ba86bc8f7749ce8674eab7f2a3"
       }
     }
   ]

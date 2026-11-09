@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "dfd2e8806ae3ff81ccb90cc76785268842b96d3f",
+  "sourceRevision": "5560998313e72cff9dc72bdd3416966b0bb0c066",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -62185,6 +62185,116 @@
         "eventId": "ev-0251-decius-stupar-vid-abritus",
         "fieldPath": "/geographySv",
         "textSha256": "608f598084d916673e773b6af1a55892534ffc24f1d887866ab57f279f84deb8"
+      }
+    },
+    {
+      "id": "event/ev-bc2350-urukaginas-reformer-nedtecknas/date/displaySv",
+      "sv": "cirka 2350 f.Kr. (museets datering av reformkonen)",
+      "en": "c. 2350 BC (museum date of the reform cone)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2350-urukaginas-reformer-nedtecknas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "08c7262571d1569834d908e9984f9dd628ddde35c6ce1fa7e4635065e1f316f4"
+      }
+    },
+    {
+      "id": "event/ev-bc2350-urukaginas-reformer-nedtecknas/date/noteSv",
+      "sv": "Getty daterar konen till cirka 2350 f.Kr. Schrakamp och Zólyomi placerar arkiv från Enentarzis, Lugalandas och Urukaginas tid sammantaget 2335–2315 f.Kr. Den senare kronologin daterar inte just konen. Inget exakt år för reformernas genomförande anges här.",
+      "en": "The Getty dates the cone to c. 2350 BC. Schrakamp and Zólyomi place archives from the times of Enentarzi, Lugalanda and Urukagina collectively in 2335–2315 BC. This later chronology does not date this particular cone. No exact year for implementing the reforms is specified here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2350-urukaginas-reformer-nedtecknas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "16fb4d586e29cb307bc8b42f215b981a6257286626008625352da363348c500d"
+      }
+    },
+    {
+      "id": "event/ev-bc2350-urukaginas-reformer-nedtecknas/titleSv",
+      "sv": "Urukagina kungör reformer i en inskrift",
+      "en": "Urukagina announces reforms in an inscription",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2350-urukaginas-reformer-nedtecknas",
+        "fieldPath": "/titleSv",
+        "textSha256": "1a07771ac5dc57ded2fef5fe2a61003e40efa48d3f69190404deb03a8a920618"
+      }
+    },
+    {
+      "id": "event/ev-bc2350-urukaginas-reformer-nedtecknas/summarySv",
+      "sv": "Urukagina låter nedteckna reformer i Lagash. Texterna utlovar bland annat skuldavskrivning och skydd för änkor och föräldralösa. Arkivhandlingar stöder att maškim-ämbetsmän förlorade uppgifter inom indrivning av skulder och straffavgifter.",
+      "en": "Urukagina has reforms recorded in Lagash. The texts promise measures including debt cancellation and protection for widows and orphans. Archival documents support the removal of maškim officials from duties in collecting debts and penalties.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2350-urukaginas-reformer-nedtecknas",
+        "fieldPath": "/summarySv",
+        "textSha256": "a282b0c81445b72a77cc0e94824304c039b96a371f894fb0db6aca38840e8b27"
+      }
+    },
+    {
+      "id": "event/ev-bc2350-urukaginas-reformer-nedtecknas/geographySv",
+      "sv": "Lagashs stadsstat, södra Mesopotamien, nuvarande Irak",
+      "en": "The city-state of Lagash, southern Mesopotamia, present-day Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2350-urukaginas-reformer-nedtecknas",
+        "fieldPath": "/geographySv",
+        "textSha256": "bc700c1cacaf58485db982a534cb395095cf4b45003db6206328cc6ece3d8ff6"
+      }
+    },
+    {
+      "id": "event/ev-bc2350-lugalzagesi-angriper-lagash/date/displaySv",
+      "sv": "omkring 2350 f.Kr.",
+      "en": "around 2350 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2350-lugalzagesi-angriper-lagash",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "fe5095c5148b5745f277ba5c88712bbd9b9b6b85e4f91100014096324e59d34e"
+      }
+    },
+    {
+      "id": "event/ev-bc2350-lugalzagesi-angriper-lagash/date/noteSv",
+      "sv": "Goodman med flera placerar angreppet omkring 2350 f.Kr. i inledningen. I avsnitt 5.1 anger de alternativa dateringar av Lugalzagesis regeringstid: cirka 2358–2334 f.Kr. enligt den mellersta kronologin och 2294–2270 f.Kr. enligt den låga kronologin. Dessa är kronologiska ramar för regeringstiden och fastställer inget enskilt år för angreppet. Deras separata sedimentdatering, 2390 ± 220 f.Kr., ger inget exakt krigsår. Att angriparna avsiktligt orsakade översvämningen är en hypotes.",
+      "en": "Goodman and colleagues place the attack around 2350 BC in the Introduction. In section 5.1 they give alternative dates for Lugalzagesi's reign: c. 2358–2334 BC under the Middle Chronology and 2294–2270 BC under the Low Chronology. These are chronological frameworks for the reign and do not establish an individual year for the attack. Their separate sediment date, 2390 ± 220 BC, does not establish an exact year of warfare. Deliberate flooding by the attackers is a hypothesis.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2350-lugalzagesi-angriper-lagash",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b20f37498721b3b93d26d8d4b266ee5a866ec5f7fbe01c9c67515853d3fc9a64"
+      }
+    },
+    {
+      "id": "event/ev-bc2350-lugalzagesi-angriper-lagash/titleSv",
+      "sv": "Lugalzagesi angriper Lagash",
+      "en": "Lugalzagesi attacks Lagash",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2350-lugalzagesi-angriper-lagash",
+        "fieldPath": "/titleSv",
+        "textSha256": "4e96bda2df6d9bc947589ed8c85ffd62a1932da5722978ee229a7f615d73f3cc"
+      }
+    },
+    {
+      "id": "event/ev-bc2350-lugalzagesi-angriper-lagash/summarySv",
+      "sv": "Lugalzagesi av Umma och Uruk angriper Lagash och dess bevattnade omland. En samtida text beskriver förstörelsen. Händelsen ingår i den långvariga maktkampen mellan Lagash och Umma.",
+      "en": "Lugalzagesi of Umma and Uruk attacks Lagash and its irrigated hinterland. A contemporary text describes the destruction. The episode forms part of the long struggle for power between Lagash and Umma.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2350-lugalzagesi-angriper-lagash",
+        "fieldPath": "/summarySv",
+        "textSha256": "02f0533e22aff1de864a1644ae83fd4731261d20e50f9d8948989664589ed407"
+      }
+    },
+    {
+      "id": "event/ev-bc2350-lugalzagesi-angriper-lagash/geographySv",
+      "sv": "Lagash och dess omland, södra Mesopotamien, nuvarande Irak",
+      "en": "Lagash and its hinterland, southern Mesopotamia, present-day Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2350-lugalzagesi-angriper-lagash",
+        "fieldPath": "/geographySv",
+        "textSha256": "06879176a2c2e788f7de27c237ca73784504d0201fe69f89b2d6c242664bb78f"
       }
     }
   ]

@@ -9657,6 +9657,42 @@
       "reuseTerms": "CC BY 4.0; attribution retained; original paraphrase and short date quotation only.",
       "asWorded": "early June 251 CE; May/June 251 CE",
       "scopedClaim": "Decius and his elder son Herennius died at Abritus in 251; Trebonianus Gallus was then proclaimed emperor by the troops. Supplies the early-June dating alternative."
+    },
+    {
+      "id": "bc2400supp-getty-urukagina",
+      "title": "Mesopotamia: Civilization Begins — Press Image Sheet",
+      "institution": "J. Paul Getty Trust",
+      "url": "https://www.getty.edu/press/pdfs/Getty-Mesopotamia-Press-Images.pdf",
+      "locator": "2020 press image sheet, PDF page 8, item 25, Cone with Reforms of King Urukagina, VEX.2020.1.114.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "about 2350 B.C.",
+      "originalChronology": "Approximate museum date of the terracotta reform cone, not an exact enactment year.",
+      "scopedClaim": "Identifies and approximately dates a terracotta cone recording Urukagina's reforms, held by the Louvre.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2400supp-schrakamp-zolyomi-reforms",
+      "title": "Reevaluating the So-called “Reforms of Urukagina” (2): Their Actual Implementation in the Case of the Maškim Official",
+      "institution": "De Gruyter / Altorientalische Forschungen",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/aofo-2025-2006/pdf",
+      "locator": "Ingo Schrakamp and Gábor Zólyomi (2025), 52(1), pp. 93–114; sections 1–2, pp. 93–94, and section 13, p. 111.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "2335 – 2315 BC; Ukg. L 1",
+      "originalChronology": "2335–2315 BC concerns the archival context of Enentarzi, Lugalanda and Urukagina collectively. The earliest complete reform version is assigned to Urukagina's first year as king; no conversion is made here.",
+      "scopedClaim": "The inscriptions claim restrictions on officials, debt cancellation and protection for widows and orphans. Archival comparison supports removal of the maškim from debt and penalty collection, without proving every reform claim.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2400supp-goodman-lagash",
+      "title": "The Flooding of Lagash (Iraq): Evidence for Urban Destruction Under Lugalzagesi, the King of Uruk and Umma",
+      "institution": "Wiley / Geoarchaeology",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1002/gea.70027",
+      "locator": "Reed Goodman et al. (2025), DOI 10.1002/gea.70027, Abstract and Introduction, paragraph beginning After protracted cycles of conflict and the following paragraph.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Around 2350 BC; 2390 ± 220 BC",
+      "originalChronology": "The historical assault is placed around 2350 BC. The separate sediment OSL result is 2390 ± 220 BC; it is not an exact battle date.",
+      "scopedClaim": "Lugalzagesi attacked Lagash and its irrigated hinterland around 2350 BC; a contemporary text describes the destruction. Deliberate hydraulic sabotage is the authors' hypothesis, not an established fact.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
     }
   ],
   "events": [
@@ -30764,6 +30800,55 @@
         "ad0200-sup-huebner-abritus"
       ],
       "selectionNote": "An imperial military defeat and succession during the Gothic invasions, a major regional event. Numerical precision is annual; the competing month datings remain visible.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and bilingual check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc2350-urukaginas-reformer-nedtecknas",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2350,
+        "endYear": -2350,
+        "displaySv": "cirka 2350 f.Kr. (museets datering av reformkonen)",
+        "noteSv": "Getty daterar konen till cirka 2350 f.Kr. Schrakamp och Zólyomi placerar arkiv från Enentarzis, Lugalandas och Urukaginas tid sammantaget 2335–2315 f.Kr. Den senare kronologin daterar inte just konen. Inget exakt år för reformernas genomförande anges här."
+      },
+      "titleSv": "Urukagina kungör reformer i en inskrift",
+      "summarySv": "Urukagina låter nedteckna reformer i Lagash. Texterna utlovar bland annat skuldavskrivning och skydd för änkor och föräldralösa. Arkivhandlingar stöder att maškim-ämbetsmän förlorade uppgifter inom indrivning av skulder och straffavgifter.",
+      "geographySv": "Lagashs stadsstat, södra Mesopotamien, nuvarande Irak",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc2400supp-getty-urukagina",
+        "bc2400supp-schrakamp-zolyomi-reforms"
+      ],
+      "selectionNote": "Approximate dating of a major reform inscription. Its date does not establish when all measures took effect or that all royal claims were implemented.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and bilingual check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc2350-lugalzagesi-angriper-lagash",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2350,
+        "endYear": -2350,
+        "displaySv": "omkring 2350 f.Kr.",
+        "noteSv": "Goodman med flera placerar angreppet omkring 2350 f.Kr. i inledningen. I avsnitt 5.1 anger de alternativa dateringar av Lugalzagesis regeringstid: cirka 2358–2334 f.Kr. enligt den mellersta kronologin och 2294–2270 f.Kr. enligt den låga kronologin. Dessa är kronologiska ramar för regeringstiden och fastställer inget enskilt år för angreppet. Deras separata sedimentdatering, 2390 ± 220 f.Kr., ger inget exakt krigsår. Att angriparna avsiktligt orsakade översvämningen är en hypotes."
+      },
+      "titleSv": "Lugalzagesi angriper Lagash",
+      "summarySv": "Lugalzagesi av Umma och Uruk angriper Lagash och dess bevattnade omland. En samtida text beskriver förstörelsen. Händelsen ingår i den långvariga maktkampen mellan Lagash och Umma.",
+      "geographySv": "Lagash och dess omland, södra Mesopotamien, nuvarande Irak",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc2400supp-goodman-lagash"
+      ],
+      "selectionNote": "A specific late conflict episode, distinct from the earlier Eannatum monument. The event does not assert a proven sabotage mechanism or use a sediment date as a battle date.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent source and bilingual check",
