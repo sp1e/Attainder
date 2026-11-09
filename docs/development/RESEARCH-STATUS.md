@@ -430,3 +430,18 @@ The candidate preserves all 537 earlier events and 485 sources, reaching 545 eve
 Independent subset, bilingual and prospective integration reviews passed. The actual merged catalog and coverage blobs match the reviewed baseline. All 60 language pairs passed review: 40 English event fields and 20 Swedish source locator and institution fields. Anthony's public summary, Sazonov's abstract and Garcia-Ventura's preview remain the stated reading scopes; earlier retrieval assertions remain unverified.
 
 Current-head CI remains required before merge. The data-first commit and complete locale readback retain a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or deployment configuration change is needed.
+
+
+## BC2100 published and AD200 integrated, 9 November 2026
+
+[PR #80](https://github.com/sp1e/Attainder/pull/80) merged at verified main `a210d888bb95474c4ee3f7ea5d66faea508201e8`. All eight publication blobs match the approved readback. CI on head `2f9d05c58974e919e7aa53bc86fa5e826c32e312` passed 5,296 of 5,298 tests, with zero failures, zero skips and two existing TODOs; the build took 30.54 seconds. The published catalog contains 545 events and 495 sources. Both locale sidecars identify retained data commit `d59a7fa4a9c3e4faac4166d7a7eae83c68fd46a5`; all 5,164 referenced source strings and hashes match it. The AD300 and BC2100 research branches remain available on the remote.
+
+AD200 adds 17 events and 16 sources after a separate source check of 29 events and 23 sources. Original outcomes remain 13 confirmed, five corrected and 11 unsupported events, plus 17 confirmed and six unsupported sources. Eleven events with unavailable passages and the editorially excluded Paikuli monument remain held as complete records. Their seven unused sources are omitted. All original findings, 15 earlier held leads, 35 discovery queries and 20 author access records remain preserved.
+
+Reconciliation applies four editorial importance reductions and one exact Tikal title correction. The title describes the inscription's recorded date without asserting that the image was made in AD 292. Sixteen canonical source locators were translated from Swedish to English; the original Swedish locators are preserved exactly as Swedish targets. All other source fields and every date object remain unchanged.
+
+The candidate preserves all 545 earlier events and 495 sources, reaching 562 events and 511 sources. Only AD 200–299 becomes partial, for 2,331 partial years and 2,499 unresearched years. The retained subset represents five of the nine searched macroregions. Oceania, Southeast Asia, South Asia and the steppe and Central Asia have no retained event. Aksum's AD 201–300 indexing envelope, the 212/213 and 238/239 alternatives, complete building intervals and Liu Hui's unconfirmed traditional date remain explicit.
+
+Independent final data, all 117 language pairs and prospective integration passed review. The actual merged catalog and coverage blobs match the reviewed baseline. The additions contain 85 English event fields and 32 Swedish source locator and institution fields. The AIBL public preface, Giessen introduction, selected scholarly passages and other reading scopes remain explicit, alongside unverified earlier retrieval assertions and runtime audit limitations.
+
+Current-head CI remains required before merge. The data-first commit and complete locale readback retain a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or deployment configuration change is needed.

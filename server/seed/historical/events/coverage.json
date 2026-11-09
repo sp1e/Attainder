@@ -81,9 +81,15 @@
     },
     {
       "startYear": -2000,
-      "endYear": 299,
+      "endYear": 199,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": 200,
+      "endYear": 299,
+      "status": "partial",
+      "note": "AD200 source review and bilingual subset: 17 events, 16 sources; 35 discovery queries across nine regions. Four regions have no retained event. Twelve original candidates are withheld, and all chronology qualifications remain explicit."
     },
     {
       "startYear": 300,
