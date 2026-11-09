@@ -442,7 +442,8 @@ test('independent adult relatives form families without compulsory player matchm
     assert.equal(state.status.ended, false, `Unexpected extinction for seed ${seed}`);
     assert.ok(Object.values(state.people).some((person) => !person.diedAt && person.familyId === state.identity.familyId));
     assert.ok(state.families[state.identity.familyId].headId);
-    assert.ok(state.log.some((event) => event.type === 'marriage' && event.participants.some((id) => state.people[id]?.familyId === state.identity.familyId)));
+    // The log keeps only the last 120 public entries, so the marriages are read from the memories, which never fade.
+    assert.ok(state.memories.some((memory) => memory.type === 'marriage' && memory.participants.some((id) => state.people[id]?.familyId === state.identity.familyId)));
     assert.ok(getAvailableCharacterActions(state).length >= 10);
     assert.ok(getAvailableCharacterActions(state).some((action) => action.type === 'livelihood' && !action.disabledReason));
   }

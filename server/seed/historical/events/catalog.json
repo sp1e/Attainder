@@ -5600,6 +5600,54 @@
       "originalChronology": "Augustine’s landing at Thanet is explicitly dated 597; the page notes earlier Christianity in Britain.",
       "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
       "scopedClaim": "The arrival of Gregory’s mission in Kent, not Britain’s first Christian presence or a securely dated monastery foundation."
+    },
+    {
+      "id": "bc2200-rmo-gudea",
+      "title": "Gudea van Lagash",
+      "institution": "Rijksmuseum van Oudheden",
+      "url": "https://www.rmo.nl/museumkennis/oude-nabije-oosten/de-voorwerpen/gudea-van-lagash/",
+      "locator": "Opening paragraph; web representation lines 1–3. Text revised in 2021.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "Rond 2200 v.Chr.; circa 2140-2120 v.Chr.",
+      "originalChronology": "Akkad fragments around 2200 BC in this account. Gudea's reign is approximately 2140–2120 BC; this contextual reign estimate does not redetermine another museum's cone date.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Akkad fragments into independent rival city-states. The passage supplies an approximate collapse estimate and a contextual Gudea chronology."
+    },
+    {
+      "id": "bc2200-yale-edfu",
+      "title": "Tell Edfu - Uncovering a provincial capital in Upper Egypt",
+      "institution": "Yale Egyptology, Tell Edfu Project",
+      "url": "https://egyptology.yale.edu/expeditions/current-expeditions/tell-edfu-project/tell-edfu-uncovering-provincial-capital-upper",
+      "locator": "Later installations in Zone 2, final paragraph; web lines 68–71.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "ca. 2200-2060 BCE",
+      "originalChronology": "The interval concerns transition and domestic reuse in Zone 2 from mid-Dynasty 6 to early First Intermediate Period. It is neither a city foundation nor a single rebuilding year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "Residents reuse former official space for smaller domestic courtyards after dumping and burial of the earlier buildings."
+    },
+    {
+      "id": "bc2200-manning-levant",
+      "title": "Beyond megadrought and collapse in the Northern Levant: The chronology of Tell Tayinat and two historical inflection episodes, around 4.2ka BP, and following 3.2ka BP",
+      "institution": "Sturt W. Manning, Brita Lorentzen, Lynn Welton, Stephen Batiuk and Timothy P. Harrison; PLOS ONE 15(10), e0240799 (2020)",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0240799",
+      "locator": "Introduction, web lines 172–182; Tell Tayinat discussion of regional chronology, lines 216–219. DOI 10.1371/journal.pone.0240799.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "ca. 4200 BP/2200 BCE; broadly by around 1900 BCE",
+      "originalChronology": "The authors state BCE dates themselves. Cooler, drier regional conditions extend broadly from around 2200 to 1900 BCE; exact coherence and causes remain debated. Their Leilan wording is just before 2200 BCE.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "The authors summarize a regional climatic episode and warn against equating temporal proximity with societal collapse."
+    },
+    {
+      "id": "bc2200-met-ur-nammu-brick",
+      "title": "Inscribed brick (59.41.86)",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/art/collection/search/324915",
+      "locator": "Opening description and translated inscription, web lines 29–36; Object Information, lines 67–76.",
+      "retrievedOn": "2026-11-08",
+      "asWorded": "ca. 2112–2095 BCE; ca. 2350-2150 B.C.",
+      "originalChronology": "The brick's museum range is approximately 2112–2095 BCE. The page places the Akkadian empire around 2350–2150 BC, differing from RMO's around-2200 fragmentation estimate.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "scopedClaim": "A stamped Sumerian brick from Nippur names Ur-Nammu, king of Ur and of Sumer and Akkad, and credits him with building Enlil's temple."
     }
   ],
   "events": [
@@ -17646,6 +17694,79 @@
         "ad0500-english-heritage-augustine"
       ],
       "selectionNote": "A major missionary arrival in Kent, distinguished from earlier Christianity in Britain.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc2200-akkads-rike-splittras",
+      "date": {
+        "kind": "disputed",
+        "startYear": -2200,
+        "endYear": -2150,
+        "displaySv": "omkring 2200 eller 2150 f.Kr. (skilda kronologiska ramar)",
+        "noteSv": "Rijksmuseum van Oudheden placerar splittringen omkring 2200 f.Kr. Metropolitan Museum ger rikets tidsram som cirka 2350–2150 f.Kr. Intervallet förenar dessa slutdateringar och anger ingen femtioårig sammanhängande kollaps."
+      },
+      "titleSv": "Lokala härskare styr självständiga städer efter Akkads splittring",
+      "summarySv": "Efter Akkadrikets sammanbrott styr lokala härskare flera självständiga och rivaliserande stadsstater i Mesopotamien. Museernas översikter ger skilda kronologiska ramar för sammanbrottet.",
+      "geographySv": "Mesopotamien, dagens Irak och angränsande områden",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc2200-rmo-gudea",
+        "bc2200-met-ur-nammu-brick"
+      ],
+      "selectionNote": "A regional political fragmentation. The disputed envelope preserves the two institutional chronologies; it neither dates a single final battle nor attributes a climate cause.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc2200-hushall-tar-over-utrymmen-i-edfu",
+      "date": {
+        "kind": "range",
+        "startYear": -2200,
+        "endYear": -2060,
+        "displaySv": "cirka 2200–2060 f.Kr. (arkeologiskt övergångsskede)",
+        "noteSv": "Yales utgrävare placerar övergången inom detta intervall. Det fortsätter efter batchens slut och anger inget gemensamt år för gårdarnas tillkomst."
+      },
+      "titleSv": "Hushåll tar över tidigare officiella utrymmen i Edfu",
+      "summarySv": "Invånarna använder först delar av området som avfallsplats och anlägger sedan mindre gårdsutrymmen för hushåll. Förändringen gäller kvarteret Zone 2, där tidigare byggherrar hade uppfört stora officiella byggnader.",
+      "geographySv": "Tell Edfu, Zone 2, övre Egypten",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc2200-yale-edfu"
+      ],
+      "selectionNote": "A documented change in urban use with a full transition interval. It does not date Egypt's political collapse or the city's founding.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc2200-svalare-och-torrare-forhallanden-i-levanten",
+      "date": {
+        "kind": "range",
+        "startYear": -2200,
+        "endYear": -1900,
+        "displaySv": "ungefär 2200–1900 f.Kr. (regional klimatram)",
+        "noteSv": "Författarna anger f.Kr.-dateringarna själva. De diskuterar osäkerhet om tid, utbredning och samstämmighet. Intervallet daterar varken en stats kollaps eller en enskild torka."
+      },
+      "titleSv": "Svalare och torrare förhållanden i delar av Levanten",
+      "summarySv": "I delar av östra Medelhavsområdet och Levanten följer en period med svalare och torrare förhållanden. Forskarna daterar den ungefär från 2200 till 1900 f.Kr.",
+      "geographySv": "Delar av östra Medelhavsområdet och Levanten",
+      "category": "nature",
+      "importance": 2,
+      "sourceIds": [
+        "bc2200-manning-levant"
+      ],
+      "selectionNote": "Regional environmental context. Use the authors' explicit BCE range without BP conversion, a global synchronous event or a causal link to political collapse.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",

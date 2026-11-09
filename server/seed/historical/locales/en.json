@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "16cd0b2d943e325efa42b228ed436e2bcfbc6ea3",
+  "sourceRevision": "6a3bac1476f6d1ff1d732fe808397e4cc474d45f",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -42055,6 +42055,171 @@
         "eventId": "ev-0597-augustinus-anlander-till-kent",
         "fieldPath": "/geographySv",
         "textSha256": "11f070c36dd4007c1441383625f48c662af2fec85d5559ffe359e5adfea36a2f"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-akkads-rike-splittras/date/displaySv",
+      "sv": "omkring 2200 eller 2150 f.Kr. (skilda kronologiska ramar)",
+      "en": "around 2200 or 2150 BC (different chronological frameworks)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-akkads-rike-splittras",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "29daca8545965b8b06863c74dbd866c800659762afa9e60ad993037b612e2d56"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-akkads-rike-splittras/date/noteSv",
+      "sv": "Rijksmuseum van Oudheden placerar splittringen omkring 2200 f.Kr. Metropolitan Museum ger rikets tidsram som cirka 2350–2150 f.Kr. Intervallet förenar dessa slutdateringar och anger ingen femtioårig sammanhängande kollaps.",
+      "en": "The Rijksmuseum van Oudheden places the fragmentation around 2200 BC. The Metropolitan Museum gives the empire's date range as circa 2350–2150 BC. The interval combines these end dates and does not indicate fifty years of continuous collapse.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-akkads-rike-splittras",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "db0d944e65b19b24f2a4011ae77f59c1e990ced09d94f3503861ea466aa48647"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-akkads-rike-splittras/titleSv",
+      "sv": "Lokala härskare styr självständiga städer efter Akkads splittring",
+      "en": "Local rulers govern independent cities after Akkad's fragmentation",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-akkads-rike-splittras",
+        "fieldPath": "/titleSv",
+        "textSha256": "3badcc590e659d9addea9b184f8abd9ccde8ef73f25e79bb74d1f184e0daa247"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-akkads-rike-splittras/summarySv",
+      "sv": "Efter Akkadrikets sammanbrott styr lokala härskare flera självständiga och rivaliserande stadsstater i Mesopotamien. Museernas översikter ger skilda kronologiska ramar för sammanbrottet.",
+      "en": "After the Akkadian Empire's collapse, local rulers govern several independent and rival city-states in Mesopotamia. The museums' overviews give different chronological frameworks for the collapse.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-akkads-rike-splittras",
+        "fieldPath": "/summarySv",
+        "textSha256": "37031a04d7c72f19aae303a25ea341040f976b75b16067fb3aa06a6a1427fb8d"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-akkads-rike-splittras/geographySv",
+      "sv": "Mesopotamien, dagens Irak och angränsande områden",
+      "en": "Mesopotamia, present-day Iraq and neighbouring areas",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-akkads-rike-splittras",
+        "fieldPath": "/geographySv",
+        "textSha256": "6f0652292e76a93beea93f5c645d4e9956f2c1bde49d91d6eb65ce73cd6505eb"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-hushall-tar-over-utrymmen-i-edfu/date/displaySv",
+      "sv": "cirka 2200–2060 f.Kr. (arkeologiskt övergångsskede)",
+      "en": "circa 2200–2060 BC (archaeological transition phase)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-hushall-tar-over-utrymmen-i-edfu",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "3b1d08c3f802bf0b2c9c662cdcd283b68f8547c952021e78ae916dc1f00730b3"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-hushall-tar-over-utrymmen-i-edfu/date/noteSv",
+      "sv": "Yales utgrävare placerar övergången inom detta intervall. Det fortsätter efter batchens slut och anger inget gemensamt år för gårdarnas tillkomst.",
+      "en": "Yale's excavators place the transition within this interval. It continues beyond the end of the batch and gives no single year for the creation of the courtyards.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-hushall-tar-over-utrymmen-i-edfu",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6c3628990298ad016baf03146f5117a675207f6ae8fff9204f46735b4cde197a"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-hushall-tar-over-utrymmen-i-edfu/titleSv",
+      "sv": "Hushåll tar över tidigare officiella utrymmen i Edfu",
+      "en": "Households take over former official spaces at Edfu",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-hushall-tar-over-utrymmen-i-edfu",
+        "fieldPath": "/titleSv",
+        "textSha256": "c7d8fbd242453664fb90f8ad9230f04ab0939e5f0c8489959cc942b4ee1247c7"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-hushall-tar-over-utrymmen-i-edfu/summarySv",
+      "sv": "Invånarna använder först delar av området som avfallsplats och anlägger sedan mindre gårdsutrymmen för hushåll. Förändringen gäller kvarteret Zone 2, där tidigare byggherrar hade uppfört stora officiella byggnader.",
+      "en": "Residents first use parts of the area as a dumping ground, then create smaller domestic courtyards. The change concerns the Zone 2 neighbourhood, where earlier builders had erected large official buildings.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-hushall-tar-over-utrymmen-i-edfu",
+        "fieldPath": "/summarySv",
+        "textSha256": "420532292c1eed18daa8116d3aa9dac1bbca19e43807d0ad4193737a4d4da70c"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-hushall-tar-over-utrymmen-i-edfu/geographySv",
+      "sv": "Tell Edfu, Zone 2, övre Egypten",
+      "en": "Tell Edfu, Zone 2, Upper Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-hushall-tar-over-utrymmen-i-edfu",
+        "fieldPath": "/geographySv",
+        "textSha256": "612a351439e2f19c19c969f67747a4e886ef30ec9bfe3c1b08e007e00f91a8f9"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-svalare-och-torrare-forhallanden-i-levanten/date/displaySv",
+      "sv": "ungefär 2200–1900 f.Kr. (regional klimatram)",
+      "en": "approximately 2200–1900 BC (regional climate framework)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-svalare-och-torrare-forhallanden-i-levanten",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "75abdd53760ff3efb66eae3db9499f90e9543c1375902a879198349d94975c0e"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-svalare-och-torrare-forhallanden-i-levanten/date/noteSv",
+      "sv": "Författarna anger f.Kr.-dateringarna själva. De diskuterar osäkerhet om tid, utbredning och samstämmighet. Intervallet daterar varken en stats kollaps eller en enskild torka.",
+      "en": "The authors supply the BC dates themselves. They discuss uncertainty about timing, geographical extent and coherence. The interval dates neither a state's collapse nor a single drought.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-svalare-och-torrare-forhallanden-i-levanten",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f18b5d591bdfba7c56b5cfbe54c4de0cc7b60bd542ef52393b04ed573b0dc836"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-svalare-och-torrare-forhallanden-i-levanten/titleSv",
+      "sv": "Svalare och torrare förhållanden i delar av Levanten",
+      "en": "Cooler and drier conditions in parts of the Levant",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-svalare-och-torrare-forhallanden-i-levanten",
+        "fieldPath": "/titleSv",
+        "textSha256": "262fc54c0bb884c46e15e5923c46f4521549ee21c97ca7cbcd9162f32f24168a"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-svalare-och-torrare-forhallanden-i-levanten/summarySv",
+      "sv": "I delar av östra Medelhavsområdet och Levanten följer en period med svalare och torrare förhållanden. Forskarna daterar den ungefär från 2200 till 1900 f.Kr.",
+      "en": "A period of cooler and drier conditions occurs in parts of the eastern Mediterranean and the Levant. Researchers date it approximately from 2200 to 1900 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-svalare-och-torrare-forhallanden-i-levanten",
+        "fieldPath": "/summarySv",
+        "textSha256": "1b754d3cd0156cf97f271a4e26d5669fc934f5838997e4d6b899d3dc76e3bd3d"
+      }
+    },
+    {
+      "id": "event/ev-bc2200-svalare-och-torrare-forhallanden-i-levanten/geographySv",
+      "sv": "Delar av östra Medelhavsområdet och Levanten",
+      "en": "Parts of the eastern Mediterranean and the Levant",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2200-svalare-och-torrare-forhallanden-i-levanten",
+        "fieldPath": "/geographySv",
+        "textSha256": "8f9157874eb20fa41e86811cff8c8a9dd98ffe873f1449f32772d9dc522e01bd"
       }
     }
   ]
