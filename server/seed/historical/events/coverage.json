@@ -81,6 +81,12 @@
     },
     {
       "startYear": -2000,
+      "endYear": -1901,
+      "status": "partial",
+      "note": "Sixteen independently checked records cover late Taosi destruction, Khok Phanom Di settlement, Malia palace construction, Gulf settlement changes, Egyptian campaigns and building programmes, Assyrian trade and four distinct Nippur or Isin developments. Full archaeological phases and competing reign chronologies remain intact. Bologna's earlier successful reading and its later access denial are recorded separately. Leubingen remains withheld because its scientific dating evidence was not accessible. Searches covered nine working regions; the Americas, sub-Saharan Africa, South Asia, Oceania and the steppe and Central Asia have no retained event. Empty years remain research gaps, and long intervals establish no annual occurrence or researched coverage of later centuries."
+    },
+    {
+      "startYear": -1900,
       "endYear": 199,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
