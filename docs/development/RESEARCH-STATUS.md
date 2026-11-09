@@ -555,3 +555,20 @@ All nine regions were searched. The Americas, sub-Saharan Africa, Southeast Asia
 The separately reviewed baseline is 670 events and 607 sources. The prospective total is 678 events and 615 sources, with 3,130 partial and 1,700 unresearched years. Independent final candidate and bilingual review, repository validation, and an exact check against the actually merged baseline are still required before publication. These are prepared candidate totals, not a statement that the batch has been merged or deployed.
 
 The separate final review passed all 56 bilingual pairs and the prospective integration. All twenty-one reviewed inputs retain their hashes, and the actual merged baseline matches the reviewed snapshot. Current-head CI remains required before merge. Data-first commits and complete locale readback preserve a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or application deployment configuration change is needed.
+
+
+## BC1200 publication preparation after PR #95
+
+PR #95 merged as `785c51b762d7faa68703f56682a3776f4098848c`. All eight published file blobs and SHA-256 values match the reviewed branch head `2b56906b15d12ff78f8d9b462b2ab5d5f53e0869`, which remains on the remote branch. Required CI run 42599822294 passed: 5,339 tests, 5,337 passes, no failures or skips, two TODOs, and a successful build in 40.72 seconds. The merged catalog contains 678 events and 615 sources; 6,069 bilingual entries refer to data revision `0d29ad7bcaa5cd598f00003b3855a6dc33dcce44`.
+
+## BC 1200–1101 candidate
+
+Eight events and ten sources are prepared with 60 bilingual display pairs. The independent source review returned eight event PASS and ten source PASS verdicts. Reconciliation expands only Hallur's source locator to manuscript/PDF pages 16–17; all event fields and dates remain unchanged. One Swedish locator entry and its raw UTF-8 source hash change, while the other 59 bilingual entries remain identical to their drafts.
+
+The complete Pylos and Sea Peoples date alternatives, Hallur's 1200–1100 BC interval and Gajiganna's calibrated approximate date are retained. The Egyptian strike and Kassite collapse keep their explicitly attributed museum dates. PDF evidence was checked through extracted text, not page images; the podcast audio and gated papyrus translations were not read.
+
+All nine regions were searched, with no new retained event for East Asia, Southeast Asia, Oceania, the steppe or Central Asia. Coverage remains partial and changes only for 1200–1101 BC.
+
+The separately final-reviewed baseline contains 678 events and 615 sources. The prospective candidate contains 686 events and 625 sources, with 3,230 partial and 1,600 unresearched years. Independent final candidate and bilingual review, repository checks and an exact comparison against the actually merged baseline remain publication gates. These are prepared totals, not merged or deployed totals.
+
+The independent final review has now passed all 60 bilingual pairs and the exact candidate data. Its report SHA-256 is `6c92a3fd089992b18a0b3ef503e120cf66f7b85eb4a3bf168e38e7c59ab1b216`. All 24 frozen inputs and review copies were rehashed before integration. The actually merged catalog and coverage match the reviewed baseline byte for byte. This closes the candidate review and baseline gates described above; repository checks and current-head CI are recorded separately. Claude retains runtime integration ownership. No Cloudflare, D1, R2, secret, binding, deployment or configuration change is required.
