@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "a068a054a0304bbefe25195947e3caf85513af89",
+  "sourceRevision": "ff4b6b8c92942614c1ba3a834b4158176e3c6e50",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -12586,6 +12586,204 @@
         "sourceId": "bc1800-fuller-rice",
         "fieldPath": "/locator",
         "textSha256": "2d4849fc4daa6a918022fedece7af44723c7febc357eecdd292d702c5a41547a"
+      }
+    },
+    {
+      "id": "source/bc1700-efa-malia-palace/institution",
+      "en": "French School at Athens",
+      "sv": "Franska skolan i Aten",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-efa-malia-palace",
+        "fieldPath": "/institution",
+        "textSha256": "2ab0e46d8a0972521aa56ca28fbe8a97e5a264fd9d95f667ae964afec6769af6"
+      }
+    },
+    {
+      "id": "source/bc1700-efa-malia-palace/locator",
+      "en": "Paragraph beginning 'Olivier Pelon a suggéré', and following paragraph; web lines 113–114.",
+      "sv": "Stycket som börjar ’Olivier Pelon a suggéré’ och följande stycke; webbrader 113–114.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-efa-malia-palace",
+        "fieldPath": "/locator",
+        "textSha256": "0e818d94972505316c9dac70394069ffdd209808c8d579dfeec443dd0f063117"
+      }
+    },
+    {
+      "id": "source/bc1700-efa-malia-mu/institution",
+      "en": "French School at Athens",
+      "sv": "Franska skolan i Aten",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-efa-malia-mu",
+        "fieldPath": "/institution",
+        "textSha256": "2ab0e46d8a0972521aa56ca28fbe8a97e5a264fd9d95f667ae964afec6769af6"
+      }
+    },
+    {
+      "id": "source/bc1700-efa-malia-mu/locator",
+      "en": "Opening description, web lines 108–109; 'The material that has been discovered', line 125.",
+      "sv": "Inledande beskrivning, webbrader 108–109; ’The material that has been discovered’, rad 125.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-efa-malia-mu",
+        "fieldPath": "/locator",
+        "textSha256": "6fe496f744e739e718c620604205152f05bbe9ec47cf2ad1809d483206c19489"
+      }
+    },
+    {
+      "id": "source/bc1700-papadimitriou-mycenae/institution",
+      "en": "Ephorate of Antiquities of Argolida; John S. Latsis Public Benefit Foundation",
+      "sv": "Ephorate of Antiquities of Argolida; John S. Latsis Public Benefit Foundation",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-papadimitriou-mycenae",
+        "fieldPath": "/institution",
+        "textSha256": "73d1db151d3958430b8f0787f7615e0de5b1bce1e0d9c416168949edd0c9a00b"
+      }
+    },
+    {
+      "id": "source/bc1700-papadimitriou-mycenae/locator",
+      "en": "Grave Circle B, PDF pages 8–9, web lines 231–261.",
+      "sv": "Grave Circle B, PDF-sidor 8–9, webbrader 231–261.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-papadimitriou-mycenae",
+        "fieldPath": "/locator",
+        "textSha256": "6ec0801d35371958305db97480d43e3685042c52eae2a1755c751053d1ec03ad"
+      }
+    },
+    {
+      "id": "source/bc1700-mota-hyksos/institution",
+      "en": "Egyptian Ministry of Tourism and Antiquities",
+      "sv": "Egyptens ministerium för turism och antikviteter",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-mota-hyksos",
+        "fieldPath": "/institution",
+        "textSha256": "0f3e9898fed27c5f09625a3efe7aa99290678a5c53f4d5fff2e22a7c7522d084"
+      }
+    },
+    {
+      "id": "source/bc1700-mota-hyksos/locator",
+      "en": "Period heading and first three paragraphs, web lines 123–134.",
+      "sv": "Periodrubriken och de tre första styckena, webbrader 123–134.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-mota-hyksos",
+        "fieldPath": "/locator",
+        "textSha256": "56da46a542881fe8fc77429355ce71854952684740d538ed88b8a3bc20c359bd"
+      }
+    },
+    {
+      "id": "source/bc1700-met-hyksos/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-met-hyksos",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/bc1700-met-hyksos/locator",
+      "en": "Historical Outline, printed page 12 (PDF page 13), Dynasties 13–17.",
+      "sv": "Historical Outline, tryckt sida 12 (PDF-sida 13), Dynasties 13–17.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-met-hyksos",
+        "fieldPath": "/locator",
+        "textSha256": "36eee55ee571ad3ec05864ec0c58f822e8e9eb74995636fd4fabd0278b6145b2"
+      }
+    },
+    {
+      "id": "source/bc1700-stantis-hyksos/institution",
+      "en": "PLOS ONE; Bournemouth University and collaborating institutions",
+      "sv": "PLOS ONE; Bournemouth University och samverkande institutioner",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-stantis-hyksos",
+        "fieldPath": "/institution",
+        "textSha256": "095cf1eb5d45c5c3cd32e2883f14645ced6f548a29e000514f55ee047eccc69d"
+      }
+    },
+    {
+      "id": "source/bc1700-stantis-hyksos/locator",
+      "en": "Abstract, web lines 165–169; Stantis et al. (2020), DOI 10.1371/journal.pone.0235414.",
+      "sv": "Abstract, webbrader 165–169; Stantis med flera (2020), DOI 10.1371/journal.pone.0235414.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-stantis-hyksos",
+        "fieldPath": "/locator",
+        "textSha256": "1219b1a3f22f2af959d1149bbbfc12f2c02acbd39f0979a0b02a30f6f34e1732"
+      }
+    },
+    {
+      "id": "source/bc1700-zincirli-destruction/institution",
+      "en": "Antiquity; Cambridge University Press",
+      "sv": "Antiquity; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-zincirli-destruction",
+        "fieldPath": "/institution",
+        "textSha256": "563f8be399b80c4f51fccb0db314a4688fe7da5a8d1a19ec94e4dc91fa5cb548"
+      }
+    },
+    {
+      "id": "source/bc1700-zincirli-destruction/locator",
+      "en": "Dating the destruction: Results, web lines 606–611; ceramic synchronisms, 569–572; Conclusion, 647–650. DOI 10.15184/aqy.2023.30 (2023).",
+      "sv": "Dating the destruction: Results, webbrader 606–611; keramiska synkronismer, 569–572; Conclusion, 647–650. DOI 10.15184/aqy.2023.30 (2023).",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-zincirli-destruction",
+        "fieldPath": "/locator",
+        "textSha256": "083e9108ae85b081f1a5a55b9add9f864f809a10bf696b532866e690484222e8"
+      }
+    },
+    {
+      "id": "source/bc1700-risch-hiregudda/institution",
+      "en": "Internet Archaeology, University of York",
+      "sv": "Internet Archaeology, University of York",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-risch-hiregudda",
+        "fieldPath": "/institution",
+        "textSha256": "7bbefa2e459f3be400ed43ca1e06b061eb50d94f7ca96357f0e554304a1ed766"
+      }
+    },
+    {
+      "id": "source/bc1700-risch-hiregudda/locator",
+      "en": "Section 4, paragraphs on Feature 1, web lines 10–12 and 17–21.",
+      "sv": "Avsnitt 4, styckena om Feature 1, webbrader 10–12 och 17–21.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-risch-hiregudda",
+        "fieldPath": "/locator",
+        "textSha256": "f83072824a8208db3057490560e49b552b8bccb6a17b02ca930d13d5bb37a032"
+      }
+    },
+    {
+      "id": "source/bc1700-peters-chickens/institution",
+      "en": "Proceedings of the National Academy of Sciences; Cardiff University repository",
+      "sv": "Proceedings of the National Academy of Sciences; Cardiff Universitys publikationsarkiv",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-peters-chickens",
+        "fieldPath": "/institution",
+        "textSha256": "53e9eb3a05710b2e426822af33506cb07da3114c18f862d43b79d2802cf5e86e"
+      }
+    },
+    {
+      "id": "source/bc1700-peters-chickens/locator",
+      "en": "Abstract (PDF page 1); Results: Early Domestic Chickens within the Distribution of Red Junglefowl (PDF pages 2–3), web lines 133–154. DOI 10.1073/pnas.2121978119 (2022).",
+      "sv": "Abstract (PDF-sida 1); Results: Early Domestic Chickens within the Distribution of Red Junglefowl (PDF-sidor 2–3), webbrader 133–154. DOI 10.1073/pnas.2121978119 (2022).",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1700-peters-chickens",
+        "fieldPath": "/locator",
+        "textSha256": "c7c1350c817e889415fd9c364bbef46d668ce4b00c8b62662f74c4be5c465c66"
       }
     }
   ]
