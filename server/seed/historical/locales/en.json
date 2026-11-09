@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "a6b363f669f538b552eaa981532395d13d46e158",
+  "sourceRevision": "0d29ad7bcaa5cd598f00003b3855a6dc33dcce44",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -51130,6 +51130,446 @@
         "eventId": "ev-bc1450-kretas-forstorelse",
         "fieldPath": "/geographySv",
         "textSha256": "99fc13949de18581f299399959c71e21d96481cf39229c05a2e27ea2974d20e1"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-yin-huvudstad/date/displaySv",
+      "sv": "cirka 1300 f.Kr.",
+      "en": "Approximately 1300 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-yin-huvudstad",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "12008bfcbe0e6990f709bcd5c5548ded98674407878606edb664962f1cb88cab"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-yin-huvudstad/date/noteSv",
+      "sv": "UNESCO förlägger Pan Gengs flytt till omkring 1300 f.Kr. Yin Xus längre huvudstadsperiod, 1300–1046 f.Kr., anger inte hur länge själva flytten pågår.",
+      "en": "UNESCO places Pan Geng's move around 1300 BC. Yin Xu's longer period as a capital, 1300–1046 BC, does not indicate how long the move itself lasted.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-yin-huvudstad",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7fc6f89853c4aa910573199ea9bc576f95b24d973fddc797bccf5ec0ee0182df"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-yin-huvudstad/titleSv",
+      "sv": "Shanghovet flyttar till Yin",
+      "en": "The Shang court moves to Yin",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-yin-huvudstad",
+        "fieldPath": "/titleSv",
+        "textSha256": "d5b44151a5c87790c961f2cca1a9430b78d78caca45721e20cf1d1609daf1633"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-yin-huvudstad/summarySv",
+      "sv": "Enligt den kronologi som UNESCO återger flyttar kung Pan Geng Shangrikets huvudstad från Yan till Yin, nära dagens Anyang. Platsen blir ett viktigt kungligt centrum under den senare Shangperioden.",
+      "en": "According to the chronology presented by UNESCO, King Pan Geng moves the Shang capital from Yan to Yin, near present-day Anyang. The site becomes an important royal centre during the later Shang period.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-yin-huvudstad",
+        "fieldPath": "/summarySv",
+        "textSha256": "025da892afcc88e12f83d27923422f3e4c6da93a98a2d30431768fca6418b716"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-yin-huvudstad/geographySv",
+      "sv": "Yin, nära Anyang i nuvarande Henan, Kina",
+      "en": "Yin, near Anyang in present-day Henan, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-yin-huvudstad",
+        "fieldPath": "/geographySv",
+        "textSha256": "f7c7a3cc216aa509e49a50ae194c9d39cd4ce66daac4a9d7afad23cf45b7450b"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-tollense-strid/date/displaySv",
+      "sv": "cirka 1300–1250 f.Kr.",
+      "en": "Approximately 1300–1250 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-tollense-strid",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "c88d5badd181cefc41627737f1484af456508202a986dd7ac9cad27563b4d9b8"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-tollense-strid/date/noteSv",
+      "sv": "Intervallet är den arkeologiska dateringen av striden. Det betyder inte att striderna pågår i femtio år; deltagarnas politiska tillhörighet är okänd.",
+      "en": "The interval is the archaeological date range for the battle. It does not mean that fighting continued for fifty years; the participants' political affiliations are unknown.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-tollense-strid",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "fa1686e8b551518c8c0d5b83b8131bce4fd0827c11556676c470172a0652de97"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-tollense-strid/titleSv",
+      "sv": "En omfattande strid utkämpas i Tollensedalen",
+      "en": "A major battle is fought in the Tollense Valley",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-tollense-strid",
+        "fieldPath": "/titleSv",
+        "textSha256": "833c049551425063c788ad1314162fd0d65c44f5c305726b4351a353260218d4"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-tollense-strid/summarySv",
+      "sv": "Mänskliga kvarlevor med våldsskador och fynd av vapen visar att en omfattande strid äger rum i Tollensedalen. Materialet ger ett ovanligt tydligt vittnesbörd om organiserat våld i norra Europas bronsålder.",
+      "en": "Human remains with injuries caused by violence and finds of weapons show that a major battle takes place in the Tollense Valley. The material provides unusually clear evidence of organised violence in northern Europe's Bronze Age.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-tollense-strid",
+        "fieldPath": "/summarySv",
+        "textSha256": "645e379ecc69e4d47a94e7bac0a0021e9417f7cc41d04e574d41989287ff46d5"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-tollense-strid/geographySv",
+      "sv": "Tollensedalen i nuvarande nordöstra Tyskland",
+      "en": "The Tollense Valley in present-day northeastern Germany",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-tollense-strid",
+        "fieldPath": "/geographySv",
+        "textSha256": "c644e29b461ef9042acefe2915ce0359900c83cd7ec54d7111ed10483c6eee9a"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-lahuradeva-jarn/date/displaySv",
+      "sv": "1300–1200 f.Kr., enligt dateringen av period III",
+      "en": "1300–1200 BC, according to the dating of period III",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-lahuradeva-jarn",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5b5af90a0f07bd0f2b291b3c8a7b77240fb2cd0374514a1974737804934d443d"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-lahuradeva-jarn/date/noteSv",
+      "sv": "Dateringen gäller det järnförande arkeologiska skedet enligt den indiska museikällan. Den anger varken ett exakt fyndår i forntiden eller när järnframställning först uppfinns.",
+      "en": "The date applies to the iron-bearing archaeological phase as reported by the Indian museum source. It establishes neither a precise year in antiquity for the finds nor when iron production was first invented.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-lahuradeva-jarn",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f3d8d4c558ab460eb752970cf57cd4c2ac183a003ea0aba071f2b6a6391f5a31"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-lahuradeva-jarn/titleSv",
+      "sv": "Järn förekommer i Lahuradevas tredje bosättningsskede",
+      "en": "Iron occurs in Lahuradeva's third settlement phase",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-lahuradeva-jarn",
+        "fieldPath": "/titleSv",
+        "textSha256": "691737669b6c06b9ab481edd930ccc6ef088632e26e7428fea0eddf7e9bf8884"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-lahuradeva-jarn/summarySv",
+      "sv": "Fynd från Lahuradevas period III omfattar järn. Skedet dateras till 1300–1200 f.Kr. och ingår i underlaget för diskussionen om tidig järnanvändning på den nordindiska slätten.",
+      "en": "Finds from Lahuradeva's period III include iron. The phase dates to 1300–1200 BC and forms part of the evidence discussed in studies of early iron use on the northern Indian plain.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-lahuradeva-jarn",
+        "fieldPath": "/summarySv",
+        "textSha256": "bda7ca098060c184fb351268730043fabd48f7853973e12084a76b16ad21828e"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-lahuradeva-jarn/geographySv",
+      "sv": "Lahuradeva i nuvarande Uttar Pradesh, Indien",
+      "en": "Lahuradeva in present-day Uttar Pradesh, India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-lahuradeva-jarn",
+        "fieldPath": "/geographySv",
+        "textSha256": "bd4d342210d2d636f2bad7c0d76946e6016ac74b1f18fb59005abe1ff09e10cc"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-talepakemalai-palhus/date/displaySv",
+      "sv": "1300–1100 kalibrerade år f.Kr.",
+      "en": "1300–1100 calibrated years BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-talepakemalai-palhus",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6d00883793ed5bd77e9b22fdcd4c6062a5fb6b29b85626d29bb1b3cf0e017ba8"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-talepakemalai-palhus/date/noteSv",
+      "sv": "Intervallet gäller den tidigaste daterade fasen med pålhus. Källan beskriver också äldre bosättning och en senare pålhusfas 1100–900/800 f.Kr.; dessa dateringar slås inte ihop.",
+      "en": "The interval applies to the earliest dated stilt-house phase. The source also describes earlier settlement and a later stilt-house phase in 1100–900/800 BC; these dates are kept separate.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-talepakemalai-palhus",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "aace28ff87dc2a1d33d2e608ec32c3eb5deb08cb3e24a0c55a3ee1f6ce259609"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-talepakemalai-palhus/titleSv",
+      "sv": "Pålhus vid Talepakemalai hör till den tidiga Lapitamiljön",
+      "en": "Stilt houses at Talepakemalai belong to an early Lapita context",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-talepakemalai-palhus",
+        "fieldPath": "/titleSv",
+        "textSha256": "160f247898e6c8aa4a41f6af06c36107bbb5264b029b90c4319b20798f582a5f"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-talepakemalai-palhus/summarySv",
+      "sv": "Den tidigaste daterade pålhusfasen vid Talepakemalai på Eloaua förknippas med tandstämplad keramik. Bosättningen ger arkeologiska spår av Lapitasamhällen i Bismarckarkipelagen.",
+      "en": "The earliest dated stilt-house phase at Talepakemalai on Eloaua is associated with dentate-stamped pottery. The settlement provides archaeological evidence of Lapita communities in the Bismarck Archipelago.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-talepakemalai-palhus",
+        "fieldPath": "/summarySv",
+        "textSha256": "4715166f4797d8fc6d6864958f8308d7d0091227e98aa7ce3a4c19efaafc3e1f"
+      }
+    },
+    {
+      "id": "event/ev-bc1300-talepakemalai-palhus/geographySv",
+      "sv": "Eloaua, Mussauöarna i nuvarande Papua Nya Guinea",
+      "en": "Eloaua, Mussau Islands, in present-day Papua New Guinea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1300-talepakemalai-palhus",
+        "fieldPath": "/geographySv",
+        "textSha256": "bf6305d1830914949c7fdc833e7f22e84b5c8c7720789ef40ecdef5eaa4ca66e"
+      }
+    },
+    {
+      "id": "event/ev-bc1274-kadesh-slag/date/displaySv",
+      "sv": "1274 f.Kr., enligt museets kronologi",
+      "en": "1274 BC, according to the museum's chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1274-kadesh-slag",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5697b781399536053343492e31188e520cedfa8847e3364b3524e1107a1b6d2d"
+      }
+    },
+    {
+      "id": "event/ev-bc1274-kadesh-slag/date/noteSv",
+      "sv": "Årtalet återges enligt den turkiska museikällan. Slaget skiljs från det fredsavtal som sluts senare.",
+      "en": "The year follows the Turkish museum source. The battle is distinguished from the peace treaty concluded later.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1274-kadesh-slag",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e04af3d03fcb986c839c54176ebfc2763bc2c4f0e19d369b5bff2750592d0d2a"
+      }
+    },
+    {
+      "id": "event/ev-bc1274-kadesh-slag/titleSv",
+      "sv": "Egyptiska och hettitiska arméer möts vid Kadesh",
+      "en": "Egyptian and Hittite armies meet at Kadesh",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1274-kadesh-slag",
+        "fieldPath": "/titleSv",
+        "textSha256": "82d129645347a8f3a90267a41bbd851ce909fd301f1656ec382d86a2300de62c"
+      }
+    },
+    {
+      "id": "event/ev-bc1274-kadesh-slag/summarySv",
+      "sv": "Ramses II:s egyptiska armé och Muwatalli II:s hettitiska styrkor möts i slaget vid Kadesh. Striden blir en central episod i maktkampen mellan rikena.",
+      "en": "Ramesses II's Egyptian army and Muwatalli II's Hittite forces meet in the Battle of Kadesh. The battle becomes a central episode in the struggle for power between the kingdoms.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1274-kadesh-slag",
+        "fieldPath": "/summarySv",
+        "textSha256": "edc781fd8385070887beb48bfb6cc5f155d94cfd67a37d58987533953f48d252"
+      }
+    },
+    {
+      "id": "event/ev-bc1274-kadesh-slag/geographySv",
+      "sv": "Kadesh",
+      "en": "Kadesh",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1274-kadesh-slag",
+        "fieldPath": "/geographySv",
+        "textSha256": "4f5f4e766fc5f679561988e197d7521666a10004010de88e5e92290fa9e09d50"
+      }
+    },
+    {
+      "id": "event/ev-bc1250-mykene-lejonporten/date/displaySv",
+      "sv": "cirka 1250 f.Kr.",
+      "en": "Approximately 1250 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1250-mykene-lejonporten",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e0b5dff70e148965e4d880a3a00b6062715438f207c9ff754a5f2d910fc247a5"
+      }
+    },
+    {
+      "id": "event/ev-bc1250-mykene-lejonporten/date/noteSv",
+      "sv": "Dateringen gäller Lejonporten och hör till Mykenes andra stora murbyggnadsfas. Den tidigare fasen omkring 1350 f.Kr. är en separat utveckling.",
+      "en": "The date applies to the Lion Gate and belongs to Mycenae's second major wall-building phase. The earlier phase around 1350 BC is a separate development.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1250-mykene-lejonporten",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "668c2bce8558f7c770fd5a943786bb3595587a873a54ceac83862d3c92d45884"
+      }
+    },
+    {
+      "id": "event/ev-bc1250-mykene-lejonporten/titleSv",
+      "sv": "Lejonporten byggs vid Mykene",
+      "en": "The Lion Gate is built at Mycenae",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1250-mykene-lejonporten",
+        "fieldPath": "/titleSv",
+        "textSha256": "fd81ffaf666d8a04bdec816921cf40d8b7a946884dec02ef432bdff8f855abb3"
+      }
+    },
+    {
+      "id": "event/ev-bc1250-mykene-lejonporten/summarySv",
+      "sv": "Mykenes befästningar får en monumental ingång med en relief av två lejon. Lejonporten hör till utbyggnaden av citadellets försvar under den mykenska palatstiden.",
+      "en": "Mycenae's fortifications gain a monumental entrance with a relief of two lions. The Lion Gate belongs to the expansion of the citadel's defences during the Mycenaean palatial period.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1250-mykene-lejonporten",
+        "fieldPath": "/summarySv",
+        "textSha256": "984ff87dd262997650947d1e4d117189ab5cb43524f1497422eb5d73c7acc2b2"
+      }
+    },
+    {
+      "id": "event/ev-bc1250-mykene-lejonporten/geographySv",
+      "sv": "Mykene på Peloponnesos, nuvarande Grekland",
+      "en": "Mycenae in the Peloponnese, present-day Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1250-mykene-lejonporten",
+        "fieldPath": "/geographySv",
+        "textSha256": "a0f05501840e5e6b175e03eb690c19e21f8ed969dc71fa9a0bdee16aa3366f12"
+      }
+    },
+    {
+      "id": "event/ev-bc1219-merey-angriper-egypten/date/displaySv",
+      "sv": "1219 eller 1208 f.Kr., beroende på kronologi",
+      "en": "1219 or 1208 BC, depending on the chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1219-merey-angriper-egypten",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7a352895e359a6b0e67a14131fd2a25467bda62c8e033d323fc0cea03b941b7d"
+      }
+    },
+    {
+      "id": "event/ev-bc1219-merey-angriper-egypten/date/noteSv",
+      "sv": "Studien anger två absoluta dateringar för angreppet under Merneptahs femte regeringsår. Dessa behandlas som alternativ för samma angrepp, inte som en elvaårig invasion.",
+      "en": "The study gives two absolute dates for the attack in Merneptah's fifth regnal year. These are treated as alternatives for the same attack, not as an eleven-year invasion.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1219-merey-angriper-egypten",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d92014634d3983aacce1fe56db5af9aca9ee24313371c842a64d90bcefb38157"
+      }
+    },
+    {
+      "id": "event/ev-bc1219-merey-angriper-egypten/titleSv",
+      "sv": "Mereys styrkor angriper Egypten",
+      "en": "Merey's forces attack Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1219-merey-angriper-egypten",
+        "fieldPath": "/titleSv",
+        "textSha256": "19f05ce0bf3399c43adb97fcc5fd56b2033b449cb0d68007dd5190e74926d308"
+      }
+    },
+    {
+      "id": "event/ev-bc1219-merey-angriper-egypten/summarySv",
+      "sv": "Merey, härskare över Rebu eller Lebu, angriper Egypten med bågskyttar och krigare som de egyptiska inskrifterna förknippar med nordliga områden. De främmande gruppernas identiteter och politiska tillhörighet är osäkra.",
+      "en": "Merey, ruler of the Rebu or Lebu, attacks Egypt with archers and warriors whom the Egyptian inscriptions associate with northern regions. The foreign groups' identities and political affiliations are uncertain.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1219-merey-angriper-egypten",
+        "fieldPath": "/summarySv",
+        "textSha256": "c9f9e8a03903dc80b2954a0b737fb71ad32a4e534f45e13182dc219f7e79a87f"
+      }
+    },
+    {
+      "id": "event/ev-bc1219-merey-angriper-egypten/geographySv",
+      "sv": "Egypten",
+      "en": "Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1219-merey-angriper-egypten",
+        "fieldPath": "/geographySv",
+        "textSha256": "ca8d14e809a510e17d2f9c0d4e2c74c40f7e77c2e97bd71f3dbae109eff27335"
+      }
+    },
+    {
+      "id": "event/ev-bc1208-merneptah-israel-stele/date/displaySv",
+      "sv": "1208 eller 1207 f.Kr.",
+      "en": "1208 or 1207 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1208-merneptah-israel-stele",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "83e4eb73e8a1a145a7331573caa1ab152c24b64f2b3fa87e6eda4bc17486a65b"
+      }
+    },
+    {
+      "id": "event/ev-bc1208-merneptah-israel-stele/date/noteSv",
+      "sv": "Museipublikationen daterar inskriften till 1208/1207 f.Kr. Den alternativa dateringen 1219 f.Kr. för ett angrepp under Merneptah överförs inte automatiskt till stelens tillkomst.",
+      "en": "The museum publication dates the inscription to 1208/1207 BC. The alternative date of 1219 BC for an attack under Merneptah is not automatically assigned to the creation of the stele.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1208-merneptah-israel-stele",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e046f2bbbe0bee47aa417e8bfddb04668fbb5719fc6b20f9588023a843e59995"
+      }
+    },
+    {
+      "id": "event/ev-bc1208-merneptah-israel-stele/titleSv",
+      "sv": "Merneptahs segerstele namnger Israel",
+      "en": "Merneptah's victory stele names Israel",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1208-merneptah-israel-stele",
+        "fieldPath": "/titleSv",
+        "textSha256": "b149d3c5e8972c924504c4475432f8ff2200ef4a6bfe58b0619d6fc3c27af29f"
+      }
+    },
+    {
+      "id": "event/ev-bc1208-merneptah-israel-stele/summarySv",
+      "sv": "En egyptisk segerinskrift från Merneptahs regering nämner Israel bland de besegrade grupperna. Den är det tidigaste kända utombibliska skriftliga belägget för namnet. Skriftsättet betecknar ett folk snarare än en stad; texten återger kunglig segerpropaganda.",
+      "en": "An Egyptian victory inscription from Merneptah's reign mentions Israel among the defeated groups. It is the earliest known extrabiblical written attestation of the name. The writing designates a people rather than a city; the text presents royal victory propaganda.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1208-merneptah-israel-stele",
+        "fieldPath": "/summarySv",
+        "textSha256": "99bfa927260dabab5323e586018e49743d8e34b96ec5a56234937111ab2d430e"
+      }
+    },
+    {
+      "id": "event/ev-bc1208-merneptah-israel-stele/geographySv",
+      "sv": "Egypten; inskriftens fälttågsberättelse berör södra Levanten",
+      "en": "Egypt; the inscription's campaign narrative concerns the southern Levant",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1208-merneptah-israel-stele",
+        "fieldPath": "/geographySv",
+        "textSha256": "8df51a944683da46870e0ba763d7ede39b8d26426dfc525d2483d72b83a33090"
       }
     }
   ]

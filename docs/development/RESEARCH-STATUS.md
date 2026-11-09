@@ -540,3 +540,18 @@ The shorter final CLI report replaced an earlier detailed report; the lost bytes
 The separate final review passed all 55 bilingual pairs, the exact three-field reconciliation and prospective integration. All nineteen frozen inputs retain their reviewed hashes, and the actual merged baseline matches the reviewed snapshot. Current-head CI remains required before merge. Data-first commits and complete locale readback preserve a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or application deployment configuration change is needed.
 
 BC0900 remains an unfrozen, unreviewed draft after automatic tool review rejected a La Venta record replacement with `blocked by policy`, without a more specific reason. The denied operation was not retried or repackaged; no language, review or integration stage follows that draft. It contributes no published coverage or events. The earlier BC1600 and BC1400 policy holds also remain in force.
+
+
+## BC1500 published and BC1300 integrated, 9 November 2026
+
+[PR #94](https://github.com/sp1e/Attainder/pull/94) merged at verified main `8a2a464eafad04209f59208fbce1bc9a2e437870`. All eight publication blobs match the reviewed delivery. CI on head `ab849681f3cc62972ac232c2cace26bba779aab5` passed 5,337 of 5,339 tests, with zero failures, zero skips and two existing TODOs; the build took 38.66 seconds. The published catalog contains 670 events and 607 sources. Both locale sidecars identify retained data commit `a6b363f669f538b552eaa981532395d13d46e158`; all 6,013 referenced source strings and hashes match it. The research branch remains available on the remote.
+
+## BC 1300–1201 candidate
+
+Eight events and eight sources are prepared with 56 bilingual display pairs. The original source review returned seven PASS and three HOLD. The narrower Kadesh candidate removes unsupported geographic detail; the treaty and final Mycenae wall episode remain held. The source locator for Lahuradeva is corrected, and the surviving Mycenae source scope covers only the Lion Gate. No event date changes.
+
+All nine regions were searched. The Americas, sub-Saharan Africa, Southeast Asia, the steppe and Central Asia have no newly retained event; other regions remain incomplete. Coverage is partial for this century alone, with uncertain and cross-century intervals preserved.
+
+The separately reviewed baseline is 670 events and 607 sources. The prospective total is 678 events and 615 sources, with 3,130 partial and 1,700 unresearched years. Independent final candidate and bilingual review, repository validation, and an exact check against the actually merged baseline are still required before publication. These are prepared candidate totals, not a statement that the batch has been merged or deployed.
+
+The separate final review passed all 56 bilingual pairs and the prospective integration. All twenty-one reviewed inputs retain their hashes, and the actual merged baseline matches the reviewed snapshot. Current-head CI remains required before merge. Data-first commits and complete locale readback preserve a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or application deployment configuration change is needed.

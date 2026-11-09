@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "a6b363f669f538b552eaa981532395d13d46e158",
+  "sourceRevision": "0d29ad7bcaa5cd598f00003b3855a6dc33dcce44",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -13356,6 +13356,182 @@
         "sourceId": "bc1500-ashmolean-crete",
         "fieldPath": "/locator",
         "textSha256": "eb3e96daa44553592e60cd2d4d20a858959803908d2f73e09de1e614155d1516"
+      }
+    },
+    {
+      "id": "source/bc1300-unesco-yinxu/institution",
+      "en": "UNESCO World Heritage Centre",
+      "sv": "UNESCO:s världsarvscentrum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-unesco-yinxu",
+        "fieldPath": "/institution",
+        "textSha256": "0a082b6ed6dee4803d7c2687725d0e50ba1c6249718c0dfc6d7eee6659437a82"
+      }
+    },
+    {
+      "id": "source/bc1300-unesco-yinxu/locator",
+      "en": "Outstanding Universal Value, Brief synthesis, web lines 51–57; introductory dating of the capital.",
+      "sv": "Enastående universellt värde, kort sammanfattning, webbrader 51–57; inledande datering av huvudstaden.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-unesco-yinxu",
+        "fieldPath": "/locator",
+        "textSha256": "762070f36dd37d37c3fc603b8560f1149dd9bcfce1b312e6e717f5ff5da5b586"
+      }
+    },
+    {
+      "id": "source/bc1300-lidke-lorenz-tollense/institution",
+      "en": "DEUQUA Special Publications, Copernicus Publications; Gundula Lidke and Sebastian Lorenz",
+      "sv": "DEUQUA Special Publications, Copernicus Publications; Gundula Lidke och Sebastian Lorenz",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-lidke-lorenz-tollense",
+        "fieldPath": "/institution",
+        "textSha256": "911c2cbcaf9cc437f0c3894c5b6cb14b5a6e15d31b023584b6bf2edf6d3f4ced"
+      }
+    },
+    {
+      "id": "source/bc1300-lidke-lorenz-tollense/locator",
+      "en": "Abstract and Introduction, web lines 126–147, published 2019.",
+      "sv": "Sammanfattning och inledning, webbrader 126–147, publicerad 2019.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-lidke-lorenz-tollense",
+        "fieldPath": "/locator",
+        "textSha256": "509b37952f1bd10a4c968326f804f90a679b6f2499c10de099d0197824b7c99b"
+      }
+    },
+    {
+      "id": "source/bc1300-ncsm-lahuradeva/institution",
+      "en": "National Council of Science Museums, India",
+      "sv": "National Council of Science Museums, Indien",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-ncsm-lahuradeva",
+        "fieldPath": "/institution",
+        "textSha256": "cccda07525be97ef9cabdc1d26151ce67903e19ca008bd487fe46f7a8cb48efa"
+      }
+    },
+    {
+      "id": "source/bc1300-ncsm-lahuradeva/locator",
+      "en": "Section B. Chronological Evidence of Early Iron production, paragraph mentioning Lahuradeva, web line 21. Catalog title describes the page subject.",
+      "sv": "Avsnitt B, kronologiska belägg för tidig järnframställning, stycket som nämner Lahuradeva, webbrad 21. Katalogtiteln beskriver sidans ämne.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-ncsm-lahuradeva",
+        "fieldPath": "/locator",
+        "textSha256": "5ed313e312ace5f734ecd03a06bd59192b0b25c20bfa6547e2d016e7b0de18cd"
+      }
+    },
+    {
+      "id": "source/bc1300-sinica-talepakemalai/institution",
+      "en": "Institute of History and Philology, Academia Sinica",
+      "sv": "Institutet för historia och filologi, Academia Sinica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-sinica-talepakemalai",
+        "fieldPath": "/institution",
+        "textSha256": "0eef1e65a22f46dabd812b3398dc3103efcb3afece3ac73a01c7c45d9df8518b"
+      }
+    },
+    {
+      "id": "source/bc1300-sinica-talepakemalai/locator",
+      "en": "Chronology discussion, web line 38; geographical description, lines 9–11.",
+      "sv": "Diskussion om kronologi, webbrad 38; geografisk beskrivning, rader 9–11.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-sinica-talepakemalai",
+        "fieldPath": "/locator",
+        "textSha256": "b646730d6fd94b9c1c1abd880bb553cdf3c5a58fc87288b276f0608e07467eee"
+      }
+    },
+    {
+      "id": "source/bc1300-turkiye-kadesh/institution",
+      "en": "Directorate General of Cultural Assets and Museums of Türkiye; Google Arts & Culture",
+      "sv": "Turkiets generaldirektorat för kulturarv och museer; Google Arts & Culture",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-turkiye-kadesh",
+        "fieldPath": "/institution",
+        "textSha256": "544835341ec98f96c298d087ee1b46a9fad8809a68175486821f48390a29f9ba"
+      }
+    },
+    {
+      "id": "source/bc1300-turkiye-kadesh/locator",
+      "en": "Object description, web lines 45–48.",
+      "sv": "Föremålsbeskrivning, webbrader 45–48.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-turkiye-kadesh",
+        "fieldPath": "/locator",
+        "textSha256": "4dbdb20c7a7062837911d7c17cc1e29e499abb9e60c83f0630c59df9b7ac7d2d"
+      }
+    },
+    {
+      "id": "source/bc1300-unesco-mycenae/institution",
+      "en": "Greek State Party nomination and ICOMOS evaluation; UNESCO World Heritage Centre",
+      "sv": "Den grekiska statspartens nominering och ICOMOS utvärdering; UNESCO:s världsarvscentrum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-unesco-mycenae",
+        "fieldPath": "/institution",
+        "textSha256": "60b79a419a7d02c5536cad300a98e2a8ea198b43eb67e5955283df05cc933856"
+      }
+    },
+    {
+      "id": "source/bc1300-unesco-mycenae/locator",
+      "en": "Printed page 11 (PDF page 13), Lion Gate, web lines 530–533.",
+      "sv": "Tryckt sida 11 (PDF-sida 13), Lejonporten, webbrader 530–533.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-unesco-mycenae",
+        "fieldPath": "/locator",
+        "textSha256": "0838f3bf717c3b9cd646b66c01dc405f10c67c4c70bad6efe82166639192e7f8"
+      }
+    },
+    {
+      "id": "source/bc1300-kopanias-merneptah/institution",
+      "en": "Konstantinos Kopanias, Journal of Greek Archaeology; Archaeopress",
+      "sv": "Konstantinos Kopanias, Journal of Greek Archaeology; Archaeopress",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-kopanias-merneptah",
+        "fieldPath": "/institution",
+        "textSha256": "da1a93dd05f1770625356a2ad9287cf9a354b99dfc95d5021bad57d52a2bbb36"
+      }
+    },
+    {
+      "id": "source/bc1300-kopanias-merneptah/locator",
+      "en": "Public abstract, web lines 28–30; DOI 10.32028/jga.v2i.575. Full article not read.",
+      "sv": "Offentlig sammanfattning, webbrader 28–30; DOI 10.32028/jga.v2i.575. Hela artikeln har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-kopanias-merneptah",
+        "fieldPath": "/locator",
+        "textSha256": "7014e5380bee91a42c294799c2cb796e0487a515bf2555222348642608104f53"
+      }
+    },
+    {
+      "id": "source/bc1300-chicago-merneptah/institution",
+      "en": "Gabrielle Vera Novacek; Oriental Institute, University of Chicago (2011)",
+      "sv": "Gabrielle Vera Novacek; Oriental Institute, University of Chicago (2011)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-chicago-merneptah",
+        "fieldPath": "/institution",
+        "textSha256": "260bd9269d6aff41fd10c8222e19ba293610b221a9a7357dedc6680c3743d023"
+      }
+    },
+    {
+      "id": "source/bc1300-chicago-merneptah/locator",
+      "en": "Printed pages 66–67, PDF pages 82–83; Merneptah victory stele discussion and caption, web lines 1847–1853 and 1872–1875.",
+      "sv": "Tryckta sidor 66–67, PDF-sidor 82–83; diskussion om Merneptahs segerstele och bildtext, webbrader 1847–1853 och 1872–1875.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1300-chicago-merneptah",
+        "fieldPath": "/locator",
+        "textSha256": "b6cc0ed8a4b5b0a7f8cfa10931e84d4609901f7e00af356f5e1515e6b0f7a0d9"
       }
     }
   ]
