@@ -97,6 +97,7 @@ import { findUnitByRef, readNameRef } from "./nameRefs.js";
 import { areaRegionsFor, buildAreaIndex, findArea, readAreaName } from "./namedAreas.js";
 import { CAPTURE_REACH_KM, findNarratedCaptures, mayNarrateCapture } from "./narratedCapture.js";
 import { EVENT_PLACES_RULE, findEventPlaces } from "./eventPlaces.js";
+import { explicitRequestDates, explicitYear } from "./explicitDates.js";
 import { normalizeEventPlaces } from "../../runtime/eventPlaces.js";
 import { describeTravelPace, seaShareOf } from "../../runtime/unitMotion.js";
 import { PLACEMENT_DIRECTIVE, describeApproximatePlacement, distanceKm as placementDistanceKm, hashText as placementHash, homeWaters, nearestInteriorPoint, nearestSea, pointInGeometry, regionWithinContainer, resolvePlacement, resolveRegionPlacement, seasForMap } from "./placement.js";
@@ -1353,9 +1354,8 @@ const validateNativeEconomicCalibration = ({
     }
   }
 
-  const cutoffYearMatch = cutoff.match(/(?:^|\D)(\d{4})(?:\D|$)/);
-  const cutoffYear = cutoffYearMatch ? Number(cutoffYearMatch[1]) : null;
-  if (mode === "historical_start" && Number.isInteger(cutoffYear) && anchorYear > cutoffYear + 1) {
+  const cutoffYear = explicitYear(cutoff);
+  if (mode === "historical_start" && Number.isInteger(cutoffYear) && cutoffYear >= 1 && anchorYear > cutoffYear + 1) {
     return (
       `economicCalibration.anchorYear ${anchorYear} lies after the shared-history cutoff ${cutoffYear}. ` +
       "Later real-world economic outcomes are forbidden after scenario divergence."
@@ -14582,60 +14582,7 @@ const normalizeGameMasterWarEventBindings = (candidate) => {
 
 const normalizeGameMasterIsoDate = (value) => normalizeGameDate(value);
 
-const GAME_MASTER_REQUEST_MONTHS = Object.freeze({
-  jan: 1, january: 1,
-  feb: 2, february: 2,
-  mar: 3, march: 3,
-  apr: 4, april: 4,
-  may: 5,
-  jun: 6, june: 6,
-  jul: 7, july: 7,
-  aug: 8, august: 8,
-  sep: 9, sept: 9, september: 9,
-  oct: 10, october: 10,
-  nov: 11, november: 11,
-  dec: 12, december: 12,
-});
-
-const gameMasterRequestDateFromParts = (yearValue, monthValue, dayValue) => {
-  const year = Number(yearValue);
-  const day = Number(dayValue);
-  const monthToken = normalizeString(monthValue).toLowerCase();
-  const month = Number.isFinite(Number(monthValue))
-    ? Number(monthValue)
-    : GAME_MASTER_REQUEST_MONTHS[monthToken];
-  if (!Number.isInteger(year) || !Number.isInteger(month) || !Number.isInteger(day)) return "";
-  return normalizeGameMasterIsoDate(
-    `${String(year).padStart(4, "0")}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`,
-  );
-};
-
-export const extractExplicitGameMasterRequestDates = (requestText) => {
-  const request = normalizeString(requestText);
-  if (!request) return [];
-  const dates = new Set();
-  const add = (value) => {
-    const normalized = normalizeGameMasterIsoDate(value);
-    if (normalized) dates.add(normalized);
-  };
-
-  for (const match of request.matchAll(/(?<![\d-])(-?\d{1,6})-(\d{2})-(\d{2})\b/g)) {
-    add(`${match[1]}-${match[2]}-${match[3]}`);
-  }
-
-  const monthPattern = "January|February|March|April|May|June|July|August|September|Sept|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
-  const dayFirst = new RegExp(`\\b(\\d{1,2})(?:st|nd|rd|th)?\\s+(${monthPattern})\\s*,?\\s+(\\d{4})\\b`, "gi");
-  for (const match of request.matchAll(dayFirst)) {
-    add(gameMasterRequestDateFromParts(match[3], match[2], match[1]));
-  }
-
-  const monthFirst = new RegExp(`\\b(${monthPattern})\\s+(\\d{1,2})(?:st|nd|rd|th)?\\s*,?\\s+(\\d{4})\\b`, "gi");
-  for (const match of request.matchAll(monthFirst)) {
-    add(gameMasterRequestDateFromParts(match[3], match[1], match[2]));
-  }
-
-  return [...dates].sort();
-};
+export const extractExplicitGameMasterRequestDates = (requestText) => explicitRequestDates(requestText);
 
 const validateGameMasterRequestedExactDate = (candidate, { mode, request }) => {
   if (mode !== "exact-event") return "";
