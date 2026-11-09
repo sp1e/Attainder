@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "65cbab8a00f20e9953482cac4aa09735ec3e7d84",
+  "sourceRevision": "30cdfec7d085dfd82c77446a0ac61aa5485eb65b",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -16260,6 +16260,732 @@
         "sourceId": "bc0300-kalinga-pbs",
         "fieldPath": "/locator",
         "textSha256": "c51922dea70e6615ff37d64ff4c4c77e927a0f7ce23f2e16a820b0356789e29d"
+      }
+    },
+    {
+      "id": "source/bc0200-nps-hopewell/institution",
+      "en": "National Park Service",
+      "sv": "National Park Service",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-nps-hopewell",
+        "fieldPath": "/institution",
+        "textSha256": "042a2576157c5a75294d44e574c677ee561312ad2c248b185648d8d47a407c26"
+      }
+    },
+    {
+      "id": "source/bc0200-nps-hopewell/locator",
+      "en": "Paragraphs on earthwork construction and ceremonial use, web lines 27–34.",
+      "sv": "Styckena om jordverkens uppförande och ceremoniella bruk, webbrader 27–34.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-nps-hopewell",
+        "fieldPath": "/locator",
+        "textSha256": "5fae3219a38eff017ac899526bc1805f319faebe9254f050faa64bce7b1efbcc"
+      }
+    },
+    {
+      "id": "source/bc0200-icomos-nasca/institution",
+      "en": "International Council on Monuments and Sites (ICOMOS)",
+      "sv": "International Council on Monuments and Sites (ICOMOS)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-icomos-nasca",
+        "fieldPath": "/institution",
+        "textSha256": "1063531ad08db82f872c5a4b3bd4adfd8473f0f406bc972859566f662eff60f7"
+      }
+    },
+    {
+      "id": "source/bc0200-icomos-nasca/locator",
+      "en": "Printed page 94, PDF page 1, chronology of the three phases, web lines 13–26.",
+      "sv": "Tryckt sida 94, PDF-sida 1, kronologin för de tre faserna, webbrader 13–26.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-icomos-nasca",
+        "fieldPath": "/locator",
+        "textSha256": "1d111e94154c2e69020e162512800fe51b328125dc204d2e0b6dcf81abf1633f"
+      }
+    },
+    {
+      "id": "source/bc0200-indian-museum-bharhut/institution",
+      "en": "Indian Museum, Kolkata; National Portal and Digital Repository for Museums of India",
+      "sv": "Indian Museum, Kolkata; National Portal and Digital Repository for Museums of India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-indian-museum-bharhut",
+        "fieldPath": "/institution",
+        "textSha256": "b88390464eebd619e93ed486cd11dc67834e8ebd4a258fca2a1a54415a7d36cc"
+      }
+    },
+    {
+      "id": "source/bc0200-indian-museum-bharhut/locator",
+      "en": "Accession Bharhut/Gateway; Period / Year of Work and Brief Description, web lines 17–29.",
+      "sv": "Inventarienummer Bharhut/Gateway; fälten Period / Year of Work och Brief Description, webbrader 17–29.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-indian-museum-bharhut",
+        "fieldPath": "/locator",
+        "textSha256": "eb1c3d1f95c960154bd12b4dfa73de9b2689a4d6c207865e9bfadc62ab7f07ad"
+      }
+    },
+    {
+      "id": "source/bc0200-rice-jenne/institution",
+      "en": "Susan Keech McIntosh and Roderick J. McIntosh; Rice University",
+      "sv": "Susan Keech McIntosh och Roderick J. McIntosh; Rice University",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-rice-jenne",
+        "fieldPath": "/institution",
+        "textSha256": "cc15b511579d68960e054683d803b03359ebf29194034c994baaad9633f79b12"
+      }
+    },
+    {
+      "id": "source/bc0200-rice-jenne/locator",
+      "en": "Conference paper for the 2001 Panafrican Congress; PDF page 3, ceramic chronology and occupation history, web lines 90–103.",
+      "sv": "Konferensbidrag till 2001 års panafrikanska kongress; PDF-sida 3, keramikkronologi och bosättningshistoria, webbrader 90–103.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-rice-jenne",
+        "fieldPath": "/locator",
+        "textSha256": "111c020bd61a4ff3346f6425829a1771cbe0773a4ebaa9e5207c29c2e760ba34"
+      }
+    },
+    {
+      "id": "source/bc0200-washu-jenne/institution",
+      "en": "Abigail Chipps Stone; Washington University in St. Louis",
+      "sv": "Abigail Chipps Stone; Washington University in St. Louis",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-washu-jenne",
+        "fieldPath": "/institution",
+        "textSha256": "e249b9acb90bb0506f09e16e36475946fec0f3c7270301d34293b81d5d014753"
+      }
+    },
+    {
+      "id": "source/bc0200-washu-jenne/locator",
+      "en": "Dissertation (2015), public abstract, first paragraph, web lines 17–23. Full dissertation not consulted.",
+      "sv": "Avhandling (2015), det offentliga abstractets första stycke, webbrader 17–23. Hela avhandlingen har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-washu-jenne",
+        "fieldPath": "/locator",
+        "textSha256": "e5a022e3fe122adf9cca21039ce619606c70249795319e4f91808e3b2466c19a"
+      }
+    },
+    {
+      "id": "source/bc0200-philippi-battles/institution",
+      "en": "Hellenic Republic, Ministry of Culture and Sports; Archaeological Receipts Fund",
+      "sv": "Hellenic Republic, Ministry of Culture and Sports; Archaeological Receipts Fund",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-philippi-battles",
+        "fieldPath": "/institution",
+        "textSha256": "59d49274e3f19c81ebef9fb4cb02880afe9dede73add05c1bc2150dfc6e7fa0c"
+      }
+    },
+    {
+      "id": "source/bc0200-philippi-battles/locator",
+      "en": "PDF pages 290 and 292, sections B.2.6 (Cynoscephalae) and B.2.7 (Pydna). Only the battles and their participants are used.",
+      "sv": "PDF-sidorna 290 och 292, avsnitten B.2.6 (Kynoskefalai) och B.2.7 (Pydna). Endast slagen och deras deltagare används.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-philippi-battles",
+        "fieldPath": "/locator",
+        "textSha256": "97e7f3b07d7d89c32228ef3c8cada32491daf1c5b7f464cde7c89d7c1521b3e7"
+      }
+    },
+    {
+      "id": "source/bc0200-smithsonian-rosetta/institution",
+      "en": "Meilan Solly; Smithsonian Magazine",
+      "sv": "Meilan Solly; Smithsonian Magazine",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-smithsonian-rosetta",
+        "fieldPath": "/institution",
+        "textSha256": "b1a321a5e72e9529f46e08d57e65d3a2e1e768bfe94469916898134d8b7dfb08"
+      }
+    },
+    {
+      "id": "source/bc0200-smithsonian-rosetta/locator",
+      "en": "Article dated 27 September 2022; historical decree paragraphs, web lines 27–33.",
+      "sv": "Artikel daterad 27 september 2022; styckena om det historiska dekretet, webbrader 27–33.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-smithsonian-rosetta",
+        "fieldPath": "/locator",
+        "textSha256": "93e4c19b65f30ddbbe5d52d66c9293df65a7bc314a4c602fa57d9a6590981572"
+      }
+    },
+    {
+      "id": "source/bc0200-bar-kochva-magnesia/institution",
+      "en": "Bezalel Bar-Kochva; Cambridge University Press",
+      "sv": "Bezalel Bar-Kochva; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-bar-kochva-magnesia",
+        "fieldPath": "/institution",
+        "textSha256": "28502081df0aa8b5384174e4ac383b7ee799e7fc7e09e2ba6e3d1e6127906507"
+      }
+    },
+    {
+      "id": "source/bc0200-bar-kochva-magnesia/locator",
+      "en": "Public chapter summary and title, web lines 424, 470–474. Full chapter not consulted.",
+      "sv": "Kapitlets offentliga sammanfattning och titel, webbrader 424, 470–474. Hela kapitlet har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-bar-kochva-magnesia",
+        "fieldPath": "/locator",
+        "textSha256": "70b0f066bff9e6d71e112bebce9664d156ab561332c6daf16b29a977e5e9aa62"
+      }
+    },
+    {
+      "id": "source/bc0200-dueck-magnesia/institution",
+      "en": "Daniela Dueck; Aarhus University Press; University of Southern Denmark repository",
+      "sv": "Daniela Dueck; Aarhus University Press; University of Southern Denmarks publikationsarkiv",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-dueck-magnesia",
+        "fieldPath": "/institution",
+        "textSha256": "b0949341245541df89f444e6657ce4bde8aadf5014347340c4b3254b9fbdd59b"
+      }
+    },
+    {
+      "id": "source/bc0200-dueck-magnesia/locator",
+      "en": "Printed page 50, PDF page 51, final paragraph; web lines 1463–1470.",
+      "sv": "Tryckt sida 50, PDF-sida 51, sista stycket; webbrader 1463–1470.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-dueck-magnesia",
+        "fieldPath": "/locator",
+        "textSha256": "8e501c2bb6436071a2f34fed7b182c00dfcde450589caa2c8f394efcfd8ab046"
+      }
+    },
+    {
+      "id": "source/bc0200-mcdonald-walbank-apamea/institution",
+      "en": "A. H. McDonald and F. W. Walbank; The Journal of Roman Studies 59 (1969), Cambridge University Press",
+      "sv": "A. H. McDonald och F. W. Walbank; The Journal of Roman Studies 59 (1969), Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-mcdonald-walbank-apamea",
+        "fieldPath": "/institution",
+        "textSha256": "511be41f5d7947684a37e7dc607c0b683b56364bcbe3100e2f42c29bf870f9c3"
+      }
+    },
+    {
+      "id": "source/bc0200-mcdonald-walbank-apamea/locator",
+      "en": "Public extract, web lines 456–459; article title supplies the year. Full article not consulted.",
+      "sv": "Offentligt utdrag, webbrader 456–459; artikelns titel anger året. Hela artikeln har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-mcdonald-walbank-apamea",
+        "fieldPath": "/locator",
+        "textSha256": "6374c1ebfcb8b61fe2a113c1e62e1eeba787529843a0ed4bb486c61b27ed4ced"
+      }
+    },
+    {
+      "id": "source/bc0200-diepenbroek-bacchanalia/institution",
+      "en": "Martine Diepenbroek; Latina et Graeca 2(45), 2024; HRČAK",
+      "sv": "Martine Diepenbroek; Latina et Graeca 2(45), 2024; HRČAK",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-diepenbroek-bacchanalia",
+        "fieldPath": "/institution",
+        "textSha256": "9d8ab9d2078cbd36bf90cd591b6d66564588770cfc37f074ea9210e4e437b1c7"
+      }
+    },
+    {
+      "id": "source/bc0200-diepenbroek-bacchanalia/locator",
+      "en": "Discussion comparing the surviving decree and Livy, web lines 289–299.",
+      "sv": "Diskussionen som jämför det bevarade dekretet med Livius, webbrader 289–299.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-diepenbroek-bacchanalia",
+        "fieldPath": "/locator",
+        "textSha256": "277da0617f7bf10fcac9bfecfabcb3648d9c556ca3dbb91408d320eda061691f"
+      }
+    },
+    {
+      "id": "source/bc0200-neelis-maurya/institution",
+      "en": "Jason Neelis; Brill; Library of Congress public repository",
+      "sv": "Jason Neelis; Brill; Library of Congress offentliga publikationsarkiv",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-neelis-maurya",
+        "fieldPath": "/institution",
+        "textSha256": "6023093c29ca447e10ad4fea4551500a22c736457ac08afdf12f695168215a60"
+      }
+    },
+    {
+      "id": "source/bc0200-neelis-maurya/locator",
+      "en": "Printed page 94, PDF page 113, paragraph on the end of the Mauryas and footnote 86.",
+      "sv": "Tryckt sida 94, PDF-sida 113, stycket om Mauryadynastins slut och fotnot 86.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-neelis-maurya",
+        "fieldPath": "/locator",
+        "textSha256": "28189b65f39a387c4974df84b73b8045bc6e1d1556136b6bd077dc02c9f3939b"
+      }
+    },
+    {
+      "id": "source/bc0200-cohen-maccabees/institution",
+      "en": "Shaye J. D. Cohen; Westminster John Knox Press",
+      "sv": "Shaye J. D. Cohen; Westminster John Knox Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-cohen-maccabees",
+        "fieldPath": "/institution",
+        "textSha256": "2d5b7d0da9cde0ae1fdf871d7a4784998fcf795d58a5e18d30f74df59c4cfe77"
+      }
+    },
+    {
+      "id": "source/bc0200-cohen-maccabees/locator",
+      "en": "Printed pages 2–3, PDF pages 15–16, historical overview; printed page 15, PDF page 28, chronological table.",
+      "sv": "Tryckta sidorna 2–3, PDF-sidorna 15–16, historisk översikt; tryckt sida 15, PDF-sida 28, kronologisk tabell.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-cohen-maccabees",
+        "fieldPath": "/locator",
+        "textSha256": "f118ec764dff957ed1b2fc86a92cceecf8defaaaf1204036f233674770d4a098"
+      }
+    },
+    {
+      "id": "source/bc0200-sawyer-seven-kingdoms/institution",
+      "en": "Ralph D. Sawyer; Small Wars & Insurgencies 31(5), 2020; IDEAS/RePEc",
+      "sv": "Ralph D. Sawyer; Small Wars & Insurgencies 31(5), 2020; IDEAS/RePEc",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-sawyer-seven-kingdoms",
+        "fieldPath": "/institution",
+        "textSha256": "a34d1186e008e02f626bf5c003bc01c3e663cc78ebf0ab25cb0ed2a95052bbf4"
+      }
+    },
+    {
+      "id": "source/bc0200-sawyer-seven-kingdoms/locator",
+      "en": "Public abstract, web lines 11–14. Full text is subscriber-restricted and was not accessed.",
+      "sv": "Offentligt abstract, webbrader 11–14. Fulltexten kräver abonnemang och har inte öppnats.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-sawyer-seven-kingdoms",
+        "fieldPath": "/locator",
+        "textSha256": "5edb2e9c251ef6241d5f1645887117756a4684cbace957dd083ded87c3c6473a"
+      }
+    },
+    {
+      "id": "source/bc0200-steel-destructions/institution",
+      "en": "Catherine Steel; Edinburgh University Press",
+      "sv": "Catherine Steel; Edinburgh University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-steel-destructions",
+        "fieldPath": "/institution",
+        "textSha256": "007e347e7b60018c35353d9f2096445fe1fdc34adcfab5a29c6bd801168a1a67"
+      }
+    },
+    {
+      "id": "source/bc0200-steel-destructions/locator",
+      "en": "Publisher preview, printed page 9, PDF page 22, opening paragraph, web lines 606–610; Numantia surrender account, printed page 15, PDF page 28, web lines 843–851.",
+      "sv": "Förlagets förhandsvisning, tryckt sida 9, PDF-sida 22, första stycket, webbraderna 606–610; redogörelsen för Numantias kapitulation, tryckt sida 15, PDF-sida 28, webbraderna 843–851.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-steel-destructions",
+        "fieldPath": "/locator",
+        "textSha256": "5bcb6d06ddb68b4e31c01973a37542b04b4b2d420fc8ccf7f39b8c672f1d3305"
+      }
+    },
+    {
+      "id": "source/bc0200-assar-parthia/institution",
+      "en": "Gholamreza F. Assar; Electrum 15; Jagiellonian University repository",
+      "sv": "Gholamreza F. Assar; Electrum 15; Jagiellonian Universitys publikationsarkiv",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-assar-parthia",
+        "fieldPath": "/institution",
+        "textSha256": "eb3c7c098e0747cc9c14eb604b5ab80a642053e6d74e8bd68be9e78b5510670d"
+      }
+    },
+    {
+      "id": "source/bc0200-assar-parthia/locator",
+      "en": "PDF page 6, web lines 215–224, contemporary cuneiform chronology; PDF page 10, lines 386–393.",
+      "sv": "PDF-sida 6, webbrader 215–224, samtida kilskriftskronologi; PDF-sida 10, rader 386–393.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-assar-parthia",
+        "fieldPath": "/locator",
+        "textSha256": "678bc02559cce49d09fba8545de20bbd9f5214c7879fb4fd417271085b824d25"
+      }
+    },
+    {
+      "id": "source/bc0200-smith-huainanzi/institution",
+      "en": "Corina Smith; Early China 48 (2025), Cambridge University Press",
+      "sv": "Corina Smith; Early China 48 (2025), Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-smith-huainanzi",
+        "fieldPath": "/institution",
+        "textSha256": "ab220be36577cc500dd49d90d229e961f0291167cecdb90310350b5213aa5830"
+      }
+    },
+    {
+      "id": "source/bc0200-smith-huainanzi/locator",
+      "en": "Opening main-text paragraph, web lines 502–504.",
+      "sv": "Huvudtextens första stycke, webbrader 502–504.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-smith-huainanzi",
+        "fieldPath": "/locator",
+        "textSha256": "edd545cc548b369c471aefe90f629116bed6138b21e93318b89daa2d6af1966f"
+      }
+    },
+    {
+      "id": "source/bc0200-yang-zhang-qian/institution",
+      "en": "Yang Juping; The Silk Road 6/2 (2009), American University repository",
+      "sv": "Yang Juping; The Silk Road 6/2 (2009), American Universitys publikationsarkiv",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-yang-zhang-qian",
+        "fieldPath": "/institution",
+        "textSha256": "5fa456d9f9d15545128949f51f57407e96970f67bbbc19e464ffb1194c1bfd9d"
+      }
+    },
+    {
+      "id": "source/bc0200-yang-zhang-qian/locator",
+      "en": "Printed page 17, PDF page 3, paragraph on Zhang Qian's missions, web lines 182–199.",
+      "sv": "Tryckt sida 17, PDF-sida 3, stycket om Zhang Qians beskickningar, webbrader 182–199.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-yang-zhang-qian",
+        "fieldPath": "/locator",
+        "textSha256": "962aa76d4456688a4683b14f1664fdce3b111fe12e37979b9f281c66e2ad9783"
+      }
+    },
+    {
+      "id": "source/bc0200-dench-sicily/institution",
+      "en": "Emma Dench; Cambridge University Press",
+      "sv": "Emma Dench; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-dench-sicily",
+        "fieldPath": "/institution",
+        "textSha256": "5823646b6c8f139ac3478e6a0a7cb62a28b0adc2132d3afd2657401f2865fede"
+      }
+    },
+    {
+      "id": "source/bc0200-dench-sicily/locator",
+      "en": "Printed page 36, PDF page 19, discussion of the two Sicilian slave revolts, web lines 657–663.",
+      "sv": "Tryckt sida 36, PDF-sida 19, diskussionen om de två sicilianska slavupproren, webbrader 657–663.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-dench-sicily",
+        "fieldPath": "/locator",
+        "textSha256": "907b6f4abf5dced06d8ea486a3acd947c07a74ad745be92ef8e88ef19823ce26"
+      }
+    },
+    {
+      "id": "source/bc0200-morton-eunus/institution",
+      "en": "Peter Morton; The Classical Quarterly 63(1); University of Edinburgh repository",
+      "sv": "Peter Morton; The Classical Quarterly 63(1); University of Edinburghs publikationsarkiv",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-morton-eunus",
+        "fieldPath": "/institution",
+        "textSha256": "60c07598d0dba93d206df47ac381c306a9b0c506d0a7f3e73465dbd60eb70901"
+      }
+    },
+    {
+      "id": "source/bc0200-morton-eunus/locator",
+      "en": "Printed page 237, PDF page 3, introduction; printed page 241, PDF page 7, footnote 21.",
+      "sv": "Tryckt sida 237, PDF-sida 3, inledning; tryckt sida 241, PDF-sida 7, fotnot 21.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-morton-eunus",
+        "fieldPath": "/locator",
+        "textSha256": "c16f3cbd564eb06d7470cf49ea66ad7f66a489fdf7dc7931998bdea475c4604a"
+      }
+    },
+    {
+      "id": "source/bc0200-routledge-tiberius/institution",
+      "en": "Routledge",
+      "sv": "Routledge",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-routledge-tiberius",
+        "fieldPath": "/institution",
+        "textSha256": "17bf24dddcee5f3d2e5846d86a964f5eace2324216b1f33be9dabed6e1e9e6e1"
+      }
+    },
+    {
+      "id": "source/bc0200-routledge-tiberius/locator",
+      "en": "Section Tiberius Gracchus and Gaius Gracchus, web lines 98–105.",
+      "sv": "Avsnittet om Tiberius Gracchus och Gaius Gracchus, webbrader 98–105.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-routledge-tiberius",
+        "fieldPath": "/locator",
+        "textSha256": "e10353bf4073cde932b8ef1f2c5ca287d8cd1db371301b7d273ad15e926598d3"
+      }
+    },
+    {
+      "id": "source/bc0200-scullard-chronology/institution",
+      "en": "H. H. Scullard; Routledge Classics (2011 edition)",
+      "sv": "H. H. Scullard; Routledge Classics (2011 års utgåva)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-scullard-chronology",
+        "fieldPath": "/institution",
+        "textSha256": "8ba4e132d627a33cda4dd779fb6484b55d31810efa61094bb7afed762278ac0a"
+      }
+    },
+    {
+      "id": "source/bc0200-scullard-chronology/locator",
+      "en": "Chronological Table, publisher preview PDF page 11, entries for 133, web lines 226–237.",
+      "sv": "Kronologisk tabell, PDF-sida 11 i förlagets förhandsvisning, posterna för 133, webbrader 226–237.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-scullard-chronology",
+        "fieldPath": "/locator",
+        "textSha256": "ddd837c2d18817200a9ebccc021ddd90ed1b5ef5b2f941af2d0b0781fa864a38"
+      }
+    },
+    {
+      "id": "source/bc0200-hawaii-academy/institution",
+      "en": "Honolulu Community College; University of Hawaiʻi Pressbooks",
+      "sv": "Honolulu Community College; University of Hawaiʻi Pressbooks",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-hawaii-academy",
+        "fieldPath": "/institution",
+        "textSha256": "3cfb5257f7aeaf236125e3471b5300e1fca1b14b944b428091865a8fd6efc6b6"
+      }
+    },
+    {
+      "id": "source/bc0200-hawaii-academy/locator",
+      "en": "Han Dynasty discussion, paragraph beginning 'An Imperial Academy was founded'; actual public HTML read.",
+      "sv": "Avsnittet om Handynastin, stycket som börjar med orden An Imperial Academy was founded; den offentliga HTML-texten har lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-hawaii-academy",
+        "fieldPath": "/locator",
+        "textSha256": "2098555dbd4a8678698f1ee7c131dda861adb34b29f874c0894fd85f2d1c2ba6"
+      }
+    },
+    {
+      "id": "source/bc0200-garnsey-grain/institution",
+      "en": "Peter Garnsey; Cambridge University Press",
+      "sv": "Peter Garnsey; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-garnsey-grain",
+        "fieldPath": "/institution",
+        "textSha256": "1fa1e29e6dc37ff114f918970d82b1fbde26440623dc09d9f0dec6f2ba174a80"
+      }
+    },
+    {
+      "id": "source/bc0200-garnsey-grain/locator",
+      "en": "Public chapter summary, opening paragraph, web line 455. Full chapter not consulted.",
+      "sv": "Kapitlets offentliga sammanfattning, första stycket, webbrad 455. Hela kapitlet har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-garnsey-grain",
+        "fieldPath": "/locator",
+        "textSha256": "ca029d0c0b9ca52e3f07072d6c3098fc613fef333dd30e236647459c0400135e"
+      }
+    },
+    {
+      "id": "source/bc0200-garnsey-rathbone-grain/institution",
+      "en": "Peter Garnsey and Dominic Rathbone; The Journal of Roman Studies 75 (1985), Cambridge University Press",
+      "sv": "Peter Garnsey och Dominic Rathbone; The Journal of Roman Studies 75 (1985), Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-garnsey-rathbone-grain",
+        "fieldPath": "/institution",
+        "textSha256": "f5cc2cd0185844e3870512716f382dd1b216799cbd05bda20897f7706566009e"
+      }
+    },
+    {
+      "id": "source/bc0200-garnsey-rathbone-grain/locator",
+      "en": "Public extract, web lines 458–459. Full article not consulted.",
+      "sv": "Offentligt utdrag, webbrader 458–459. Hela artikeln har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-garnsey-rathbone-grain",
+        "fieldPath": "/locator",
+        "textSha256": "586a88bf8eb4640762904febc5f0e4b80369dcce97c6b73cb648c1e910c4425b"
+      }
+    },
+    {
+      "id": "source/bc0200-culture-narbo/institution",
+      "en": "French Ministry of Culture; Department of Underwater and Submarine Archaeological Research (DRASSM)",
+      "sv": "Frankrikes kulturministerium; Department of Underwater and Submarine Archaeological Research (DRASSM)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-culture-narbo",
+        "fieldPath": "/institution",
+        "textSha256": "86ba226b9bd90b7bfed8a00c2ec6cbb7d52a22334a2af2d5dcfd8a86e64eec98"
+      }
+    },
+    {
+      "id": "source/bc0200-culture-narbo/locator",
+      "en": "Opening historical paragraph, web line 16.",
+      "sv": "Det första historiska stycket, webbrad 16.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-culture-narbo",
+        "fieldPath": "/locator",
+        "textSha256": "e9766a12fc009a0bbbd4ceaf078a63bb1ae2fe70eec4d55698ca93ba155eadf4"
+      }
+    },
+    {
+      "id": "source/bc0200-wagner-monopoly/institution",
+      "en": "Donald B. Wagner; Cambridge University Press; author's public website",
+      "sv": "Donald B. Wagner; Cambridge University Press; författarens offentliga webbplats",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-wagner-monopoly",
+        "fieldPath": "/institution",
+        "textSha256": "4a3e9b27cc713fe5f3cf23d89dc7a34db6c083807cef7fa3764a65e30fa87021"
+      }
+    },
+    {
+      "id": "source/bc0200-wagner-monopoly/locator",
+      "en": "Printed pages 175–178, PDF pages 236–239, section 'The establishment of the monopoly'.",
+      "sv": "Tryckta sidorna 175–178, PDF-sidorna 236–239, avsnittet The establishment of the monopoly.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-wagner-monopoly",
+        "fieldPath": "/locator",
+        "textSha256": "0b1dc3c68b8c201aaecb9aaaf1a31035b57d18b5466420ed13d85fffc337de1b"
+      }
+    },
+    {
+      "id": "source/bc0200-nma-heliodorus/institution",
+      "en": "National Monuments Authority, Ministry of Culture, Government of India",
+      "sv": "National Monuments Authority, Ministry of Culture, Government of India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-nma-heliodorus",
+        "fieldPath": "/institution",
+        "textSha256": "82bf607e9013ffd99267a3b453eea08b5e19fcfd31e84da44da9cd10e423db5d"
+      }
+    },
+    {
+      "id": "source/bc0200-nma-heliodorus/locator",
+      "en": "PDF pages 34 and 40, dating discussion and inscription description, web lines 909–911 and 1078–1083.",
+      "sv": "PDF-sidorna 34 och 40, dateringsdiskussionen och inskriftsbeskrivningen, webbrader 909–911 och 1078–1083.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-nma-heliodorus",
+        "fieldPath": "/locator",
+        "textSha256": "dc02588e502284bbda1e3f85b9ed48e8be5d281c80b298a2aef52d2d13ec70c3"
+      }
+    },
+    {
+      "id": "source/bc0200-yang-nanyue/institution",
+      "en": "Juping Yang; Walter de Gruyter; OAPEN Library",
+      "sv": "Juping Yang; Walter de Gruyter; OAPEN Library",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-yang-nanyue",
+        "fieldPath": "/institution",
+        "textSha256": "d39bb5bd6aedf8c1226ddedd2d90b6a00b81357149fca4a2e1a1231d5749cdff"
+      }
+    },
+    {
+      "id": "source/bc0200-yang-nanyue/locator",
+      "en": "Empire and Politics in the Eastern and Western Civilizations, printed page 45, PDF page 52, section 2.4.",
+      "sv": "Empire and Politics in the Eastern and Western Civilizations, tryckt sida 45, PDF-sida 52, avsnitt 2.4.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-yang-nanyue",
+        "fieldPath": "/locator",
+        "textSha256": "c9f8ee37769ecc22dfda61abac702d258f34a310baf53083f948b6bcc6093141"
+      }
+    },
+    {
+      "id": "source/bc0200-aia-gojoseon/institution",
+      "en": "Archaeology Magazine; Archaeological Institute of America",
+      "sv": "Archaeology Magazine; Archaeological Institute of America",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-aia-gojoseon",
+        "fieldPath": "/institution",
+        "textSha256": "629850eff02f52ff213087d7286ba111ae008134bb63d812994ca85ec20166de"
+      }
+    },
+    {
+      "id": "source/bc0200-aia-gojoseon/locator",
+      "en": "May/June 2024, passage on Gojoseon's fall, web lines 73–76.",
+      "sv": "Maj/juni 2024, stycket om Gojoseons fall, webbrader 73–76.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-aia-gojoseon",
+        "fieldPath": "/locator",
+        "textSha256": "27be3a9138e9400d667df02c760d92f8f840baea33fb358e5a740ac40db71279"
+      }
+    },
+    {
+      "id": "source/bc0200-ceccarelli-arausio/institution",
+      "en": "Paola Ceccarelli; University College London repository",
+      "sv": "Paola Ceccarelli; University College Londons publikationsarkiv",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-ceccarelli-arausio",
+        "fieldPath": "/institution",
+        "textSha256": "1ed556e1f340f861886af7f0ce1be3f3bdf75a28a09c32fb8f444951303ed5df"
+      }
+    },
+    {
+      "id": "source/bc0200-ceccarelli-arausio/locator",
+      "en": "PDF page 9, historical commentary on Marius, web lines 312–316. The mythical sacrifice narrative is excluded.",
+      "sv": "PDF-sida 9, historisk kommentar om Marius, webbrader 312–316. Den mytiska offerberättelsen utesluts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-ceccarelli-arausio",
+        "fieldPath": "/locator",
+        "textSha256": "b1bfbb405b91298da95622cabb2edc5452a73ce097a8e03f92e8d213048cbd66"
+      }
+    },
+    {
+      "id": "source/bc0200-fields-cimbrian/institution",
+      "en": "Nic Fields; Osprey Publishing",
+      "sv": "Nic Fields; Osprey Publishing",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-fields-cimbrian",
+        "fieldPath": "/institution",
+        "textSha256": "8fbe3c285e2c3eec7b4a8f96695d88dc7611d28cecc2582cd94084a0ece2a771"
+      }
+    },
+    {
+      "id": "source/bc0200-fields-cimbrian/locator",
+      "en": "Public publisher description, Description section, HTML lines 167–171, especially 170. Book text not consulted.",
+      "sv": "Förlagets offentliga beskrivning, avsnittet Description, HTML-raderna 167–171, särskilt 170. Bokens text har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-fields-cimbrian",
+        "fieldPath": "/locator",
+        "textSha256": "02364101d8150b8f9eeb566c1202359a115b1b5e8ba9933779d34aa5dd816e5e"
+      }
+    },
+    {
+      "id": "source/bc0200-inah-teotihuacan/institution",
+      "en": "Rubén Cabrera Castro; Instituto Nacional de Antropología e Historia (INAH)",
+      "sv": "Rubén Cabrera Castro; Instituto Nacional de Antropología e Historia (INAH)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-inah-teotihuacan",
+        "fieldPath": "/institution",
+        "textSha256": "e9bd0a8a476bdaf827d36006b22481fb585ee7ea37d8229118dcf22f869f0093"
+      }
+    },
+    {
+      "id": "source/bc0200-inah-teotihuacan/locator",
+      "en": "PDF page 2, left column, 'Surgimiento y desarrollo de la metrópoli', opening paragraph. Image-only PDF read visually.",
+      "sv": "PDF-sida 2, vänsterspalten, första stycket i Surgimiento y desarrollo de la metrópoli. PDF-filen består av bilder och har lästs visuellt.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0200-inah-teotihuacan",
+        "fieldPath": "/locator",
+        "textSha256": "51494671a110f4206770f023e52149c14bf2354ab4029dc9194d8726b6dca915"
       }
     }
   ]

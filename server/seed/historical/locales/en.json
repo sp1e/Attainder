@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "65cbab8a00f20e9953482cac4aa09735ec3e7d84",
+  "sourceRevision": "30cdfec7d085dfd82c77446a0ac61aa5485eb65b",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -58610,6 +58610,1986 @@
         "eventId": "ev-bc0300-zama",
         "fieldPath": "/geographySv",
         "textSha256": "de2fff9a312b77448994394729db6b8cd76c1bef596e403824e3440b1e0bb226"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-jenne-jeno-bosattning/date/displaySv",
+      "sv": "omkring 250 eller 200 f.Kr.",
+      "en": "around 250 or 200 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-jenne-jeno-bosattning",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6656a1bfdde8a8c6279ded788210d204f49715b4000584439c59af57c1cdde49"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-jenne-jeno-bosattning/date/noteSv",
+      "sv": "Rice anger en bosättningssekvens från 200 f.Kr. till 1400 e.Kr.; Stones avhandling anger cirka 250 f.Kr. till 1400 e.Kr. Gränserna samlar alternativa början, inte en femtioårig grundläggning.",
+      "en": "The Rice paper gives an occupation sequence from 200 BC to AD 1400; Stone's dissertation gives approximately 250 BC to AD 1400. The bounds collect alternative beginnings, not a fifty-year foundation process.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-jenne-jeno-bosattning",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "47f6e1ca6cfe60d92a68688412a31b4e8508c7e386f73fd74963a483b999e67f"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-jenne-jeno-bosattning/titleSv",
+      "sv": "Jenné-jeno börjar bebos",
+      "en": "Settlement begins at Jenné-jeno",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-jenne-jeno-bosattning",
+        "fieldPath": "/titleSv",
+        "textSha256": "87f9a602c384b8d95552ecd9afc2e24501d9777adbf079e3f6d35425846b0ff5"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-jenne-jeno-bosattning/summarySv",
+      "sv": "En bosättning växer fram vid Jenné-jeno i inre Nigerdeltat. Källorna skiljer sig om dess början; dateringen innebär inte att en fullt utvecklad stad redan finns.",
+      "en": "A settlement develops at Jenné-jeno in the Inland Niger Delta. Sources differ on its beginning; the dating does not mean that a fully developed city already exists.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-jenne-jeno-bosattning",
+        "fieldPath": "/summarySv",
+        "textSha256": "738f221e2da0cc38c7d8bea76026654a39b6dcce9c3d9aca6ec61425e7a62964"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-jenne-jeno-bosattning/geographySv",
+      "sv": "Jenné-jeno, inre Nigerdeltat i Mali",
+      "en": "Jenné-jeno, Inland Niger Delta, Mali",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-jenne-jeno-bosattning",
+        "fieldPath": "/geographySv",
+        "textSha256": "b0349ed4b46ddfdb1c581cfc6bf29c471f0d3581b3886318e7f79aa7a776e13e"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-hopewell-jordverk/date/displaySv",
+      "sv": "cirka 200 f.Kr.–500 e.Kr.",
+      "en": "approximately 200 BC–AD 500",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-hopewell-jordverk",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "91253eddfc246219dcd61d541b8db7a76bb043822428bd1aaaa88842414b3e30"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-hopewell-jordverk/date/noteSv",
+      "sv": "Intervallet gäller en lång byggnadsperiod. Ingen enskild grundläggning dateras till exakt 200 f.Kr.",
+      "en": "The interval covers a long period of construction. No single foundation is dated to exactly 200 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-hopewell-jordverk",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "4174cebb424649a2e1a88b42761623bbd9635989f422c346e5bbe21384b2df4a"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-hopewell-jordverk/titleSv",
+      "sv": "Samhällen bygger Hopewells stora jordverk",
+      "en": "Communities build Hopewell's great earthworks",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-hopewell-jordverk",
+        "fieldPath": "/titleSv",
+        "textSha256": "fea8f5a50eba64bcd717b562da8f66e910fed336f2f117779ab7a18ce9f8db9d"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-hopewell-jordverk/summarySv",
+      "sv": "Samhällen i dagens Ohio bygger geometriska jordverk som används för ceremonier och begravningar.",
+      "en": "Communities in present-day Ohio build geometric earthworks used for ceremonies and burials.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-hopewell-jordverk",
+        "fieldPath": "/summarySv",
+        "textSha256": "5ab7184c2b3e5a38ed67e902ecde413ff4951aaca74e27dd44265b9f8d31a0a2"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-hopewell-jordverk/geographySv",
+      "sv": "Ohio, Nordamerika",
+      "en": "Ohio, North America",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-hopewell-jordverk",
+        "fieldPath": "/geographySv",
+        "textSha256": "63579d85e28425b8411f4dc82f88ac109870eb1299bf155607b486c75ac779d2"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-nasca-geoglyfer/date/displaySv",
+      "sv": "200 f.Kr.–500 e.Kr.",
+      "en": "200 BC–AD 500",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-nasca-geoglyfer",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "cc66707a64669926a189aa381da4d56df5858f31c61af9c6f4e51fd1dad54316"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-nasca-geoglyfer/date/noteSv",
+      "sv": "ICOMOS skiljer denna Nascafas från äldre Chavín- och Paracasfaser. Intervallet daterar en fas, inte alla linjers första tillkomst.",
+      "en": "ICOMOS distinguishes this Nasca phase from earlier Chavín and Paracas phases. The interval dates a phase, not the first creation of all the lines.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-nasca-geoglyfer",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "a28705b1ff427e7b59b58dffb9f2168f784bd6dab97117ef0158ad45cf1cca5c"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-nasca-geoglyfer/titleSv",
+      "sv": "Nascafasens geoglyfer formas",
+      "en": "The Nasca-phase geoglyphs take shape",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-nasca-geoglyfer",
+        "fieldPath": "/titleSv",
+        "textSha256": "ca25e15e33f83a59622d2a333f585d8296650f3cef61b1bd218708678b76f844"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-nasca-geoglyfer/summarySv",
+      "sv": "Enligt ICOMOS tillkommer det stora flertalet geoglyfer under Nascafasen. Linjerna och figurerna hör till ett landskap med äldre föregångare.",
+      "en": "According to ICOMOS, the great majority of the geoglyphs are created during the Nasca phase. The lines and figures form part of a landscape with earlier predecessors.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-nasca-geoglyfer",
+        "fieldPath": "/summarySv",
+        "textSha256": "1770623c6afd6a3dd9cadaebab37e1bbdfa75ae2f0306ffe16dd646cd6afae5b"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-nasca-geoglyfer/geographySv",
+      "sv": "Nasca och Pampas de Jumana, Peru",
+      "en": "Nasca and Pampas de Jumana, Peru",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-nasca-geoglyfer",
+        "fieldPath": "/geographySv",
+        "textSha256": "e5322d0e0c77296ee5827d2a0295b85aa321dae03420160a96cb996d037b0de9"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-bharhut-raecken/date/displaySv",
+      "sv": "cirka andra århundradet f.Kr.",
+      "en": "approximately the second century BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-bharhut-raecken",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "63d33eeb522a58d9a78fd2db41b4b0a9976ac5af8b60556924a739fceda21f2a"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-bharhut-raecken/date/noteSv",
+      "sv": "Museet anger ungefär andra århundradet f.Kr.; 200–101 f.Kr. är århundradets gränser, inte belagda byggår.",
+      "en": "The museum gives approximately the second century BC; 200–101 BC are the bounds of that century, not documented construction years.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-bharhut-raecken",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "44d030fe8ad0a495a8afee87412b1f42e5a1077da0d951cd7c28a7e562643549"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-bharhut-raecken/titleSv",
+      "sv": "Bharhuts port och räcken får reliefer och inskrifter",
+      "en": "Bharhut's gateway and railings receive reliefs and inscriptions",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-bharhut-raecken",
+        "fieldPath": "/titleSv",
+        "textSha256": "ebb4bf3b61a8ccf919ce9625f0ea5f6b9a8d953bcb39449e68cca4c5e319331d"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-bharhut-raecken/summarySv",
+      "sv": "Sandstensporten och räckena vid Bharhut pryds med buddhistiska reliefer. Inskrifter anger motiv och namn på enskilda givare.",
+      "en": "The sandstone gateway and railings at Bharhut are decorated with Buddhist reliefs. Inscriptions identify subjects and name individual donors.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-bharhut-raecken",
+        "fieldPath": "/summarySv",
+        "textSha256": "ae9d3fbe620d3a95f59a4262230a779fd12925cd5dfd94662b788915d5e29bbc"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-bharhut-raecken/geographySv",
+      "sv": "Bharhut, Madhya Pradesh, Indien",
+      "en": "Bharhut, Madhya Pradesh, India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-bharhut-raecken",
+        "fieldPath": "/geographySv",
+        "textSha256": "b3396650042a4197e6e2e28f5044a2da14afd1f0861f70108749b48d85387280"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-teotihuacan-byar/date/displaySv",
+      "sv": "cirka 200 f.Kr.",
+      "en": "around 200 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-teotihuacan-byar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6a5aa8ed0ed0c07c23711536787b63eedceb5a132ddef000903619c8c0b315fd"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-teotihuacan-byar/date/noteSv",
+      "sv": "INAH:s guide anger en ungefärlig sammansmältning av äldre byar. Senare stadsutbyggnad och pyramidbyggen hör till andra skeden.",
+      "en": "The INAH guide gives an approximate date for the coalescence of earlier villages. Later urban expansion and pyramid construction belong to other phases.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-teotihuacan-byar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "8dc0117d96ac07dd0affa355cc264b37442c7e158c840bff05475e2eb052dcb6"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-teotihuacan-byar/titleSv",
+      "sv": "Byar förenas i Teotihuacandalen",
+      "en": "Villages merge in the Teotihuacan valley",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-teotihuacan-byar",
+        "fieldPath": "/titleSv",
+        "textSha256": "41331dd6ea5f245e2ec35becee480453a999c90321238571272f09ea4dca0e97"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-teotihuacan-byar/summarySv",
+      "sv": "Små byar i Teotihuacandalen smälter samman. INAH:s guide beskriver detta som början på den teotihuacanska kulturen.",
+      "en": "Small villages in the Teotihuacan valley merge. The INAH guide describes this as the beginning of Teotihuacan culture.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-teotihuacan-byar",
+        "fieldPath": "/summarySv",
+        "textSha256": "eadfb8327df8f75fa7e548fad0abecdce83ba7b50e22655b7e5eb4e8122a9492"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-teotihuacan-byar/geographySv",
+      "sv": "Teotihuacandalen, Mexiko",
+      "en": "Teotihuacan valley, Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-teotihuacan-byar",
+        "fieldPath": "/geographySv",
+        "textSha256": "eb3ec8dfd10cce61faad825f07420e835e32946f18822532b773c3826f1642e8"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-cynoscephalae/date/displaySv",
+      "sv": "197 f.Kr.",
+      "en": "197 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-cynoscephalae",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "c461ca5907b6e0f13dd989e57b527e036b6198297c19588e485d4dbd3063d4de"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-cynoscephalae/date/noteSv",
+      "sv": "Källan placerar slaget i juni. Senare fredsvillkor dateras inte genom denna post.",
+      "en": "The source places the battle in June. This record does not date the subsequent peace terms.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-cynoscephalae",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "32347130eaeb8049201ced446a57d4dd1cfc214012988a763631ff0fa350c9ea"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-cynoscephalae/titleSv",
+      "sv": "Rom besegrar Filip V vid Kynoskefalai",
+      "en": "Rome defeats Philip V at Cynoscephalae",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-cynoscephalae",
+        "fieldPath": "/titleSv",
+        "textSha256": "00a9a11fd276a800559437af7dbb812054622e0be60ddb53738aa627e7b00afa"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-cynoscephalae/summarySv",
+      "sv": "Flamininus romerska styrkor besegrar Filip V:s makedoniska armé i Thessalien.",
+      "en": "Flamininus's Roman forces defeat Philip V's Macedonian army in Thessaly.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-cynoscephalae",
+        "fieldPath": "/summarySv",
+        "textSha256": "638708f4c659ea13ab237063b9c24438a49c59049bedfb7710312a07fdd77b89"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-cynoscephalae/geographySv",
+      "sv": "Kynoskefalai, Thessalien",
+      "en": "Cynoscephalae, Thessaly",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-cynoscephalae",
+        "fieldPath": "/geographySv",
+        "textSha256": "5425824ee66ef3acf9c2782553b997e17a0c85e873d095e0f86337c981d557bf"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-rosetta-dekret/date/displaySv",
+      "sv": "196 f.Kr.",
+      "en": "196 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-rosetta-dekret",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f7ab3c35c85fb9fb3dafbf07870228efaf1e82d33383d4e9d5c4382e57cf14cd"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-rosetta-dekret/date/noteSv",
+      "sv": "Året gäller det antika dekretet; stenens moderna upptäckt och tolkning hör till senare tider.",
+      "en": "The year concerns the ancient decree; the stone's modern discovery and decipherment belong to later times.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-rosetta-dekret",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "276775e20c33baabf90166dabe951065bd03c134ba4b6f37534d746eb10cc109"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-rosetta-dekret/titleSv",
+      "sv": "Ett prästråd bekräftar Ptolemaios V:s kungakult",
+      "en": "A priestly council affirms Ptolemy V's royal cult",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-rosetta-dekret",
+        "fieldPath": "/titleSv",
+        "textSha256": "6476e897dcf162434b254b85a175abd8bcbe2948db96be4b5c3cce7926d12f2e"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-rosetta-dekret/summarySv",
+      "sv": "Ett egyptiskt prästråd utfärdar det dekret som bevaras på Rosettastenen. Texten bekräftar kungens kult och återges med tre skriftsystem.",
+      "en": "An Egyptian priestly council issues the decree preserved on the Rosetta Stone. The text affirms the king's cult and is recorded in three scripts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-rosetta-dekret",
+        "fieldPath": "/summarySv",
+        "textSha256": "a0a25ef3d89c8dce9fa0f90294be8a0ba7f43989ef23da2e85a2a35a1a1c2472"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-rosetta-dekret/geographySv",
+      "sv": "Egypten",
+      "en": "Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-rosetta-dekret",
+        "fieldPath": "/geographySv",
+        "textSha256": "ca8d14e809a510e17d2f9c0d4e2c74c40f7e77c2e97bd71f3dbae109eff27335"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-magnesia/date/displaySv",
+      "sv": "190 eller 189 f.Kr.",
+      "en": "190 or 189 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-magnesia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "83332af29dde4016bf3807e096914075d84b2247a4518ab165be21c7931adefc"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-magnesia/date/noteSv",
+      "sv": "Bar-Kochva daterar slaget till 190 f.Kr. och Dueck till 189 f.Kr. Intervallet återger alternativen för ett slag.",
+      "en": "Bar-Kochva dates the battle to 190 BC and Dueck to 189 BC. The interval represents alternatives for a single battle.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-magnesia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5da4c476e056c17bda606ca10fc62a4205cd1db7b27971d852e8fcb5550d790d"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-magnesia/titleSv",
+      "sv": "Antiochos III besegras vid Magnesia",
+      "en": "Antiochus III is defeated at Magnesia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-magnesia",
+        "fieldPath": "/titleSv",
+        "textSha256": "1aace0ac14624ed0103eaeb558f61c328010c56b3df1b58c4f5d423bf62f9412"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-magnesia/summarySv",
+      "sv": "Antiochos III:s seleukidiska armé möter romerska styrkor vid Magnesia och besegras.",
+      "en": "Antiochus III's Seleucid army encounters Roman forces at Magnesia and is defeated.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-magnesia",
+        "fieldPath": "/summarySv",
+        "textSha256": "a23328c523e094d05bb927b5f6c51dccd933b82d8d6670e143fca91895de08d2"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-magnesia/geographySv",
+      "sv": "Magnesia vid Sipylos, Mindre Asien",
+      "en": "Magnesia by Mount Sipylus, Asia Minor",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-magnesia",
+        "fieldPath": "/geographySv",
+        "textSha256": "0b86378f0bd47c2cc698b89d343bc606efcd68a06d5af716ea582e91b4572a5c"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-apamea-fred/date/displaySv",
+      "sv": "188 f.Kr.",
+      "en": "188 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-apamea-fred",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "325f880d1a9f4105df0800f48d7b540ca9955bc3e03cfac1f133775a496a5c63"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-apamea-fred/date/noteSv",
+      "sv": "Årtalet anges i artikelns titel; den öppna sammanfattningen behandlar sjövillkoren.",
+      "en": "The year appears in the article title; the public summary discusses the naval terms.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-apamea-fred",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6fd6702f0d5666d02bebf61d4615e587ec274a6e5e0e0dd31532da7cf1ace511"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-apamea-fred/titleSv",
+      "sv": "Apameafreden begränsar Antiochos flotta",
+      "en": "The Treaty of Apamea restricts Antiochus's fleet",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-apamea-fred",
+        "fieldPath": "/titleSv",
+        "textSha256": "4bfb4eb75dd3027d6eaa6595fa8f5d02c0134cb347a7d8511fca70c4be1b77f6"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-apamea-fred/summarySv",
+      "sv": "Fredens sjövillkor minskar Antiochos sjöstridskrafter och begränsar var de tillåtna fartygen får segla.",
+      "en": "The treaty's naval terms reduce Antiochus's naval forces and limit where the permitted vessels may sail.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-apamea-fred",
+        "fieldPath": "/summarySv",
+        "textSha256": "8b42e9daea88d386b85094f2c89ff0386dee11164d5204fc440992e7a415fa1f"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-apamea-fred/geographySv",
+      "sv": "Östra Medelhavet",
+      "en": "Eastern Mediterranean",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-apamea-fred",
+        "fieldPath": "/geographySv",
+        "textSha256": "a6918fc3fa4cd605bf2b349e3b6a221f1e4f30e40aba693190621285b0b479bd"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-bacchanalia/date/displaySv",
+      "sv": "186 f.Kr.",
+      "en": "186 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-bacchanalia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "12e9da341edd07713f0e50cfe4ae0403b23cfdb29408c2bba9956d21996cbbb3"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-bacchanalia/date/noteSv",
+      "sv": "Det bevarade senatsbeslutet skiljs från Livius senare berättelse. Anklagelser om en verklig sammansvärjning slås inte fast.",
+      "en": "The surviving senatorial decree is distinguished from Livy's later account. Allegations of an actual conspiracy are not established.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-bacchanalia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7bae81cbfcc40a70858ecbc710ccaa434609ad2b51fdaf9222b0a69eff7f2a09"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-bacchanalia/titleSv",
+      "sv": "Senaten begränsar Bacchuskulten",
+      "en": "The Senate restricts the cult of Bacchus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-bacchanalia",
+        "fieldPath": "/titleSv",
+        "textSha256": "bb01a11ade7d09b9ddc5024f74921314579341ef7c13bdcd2ca28f1314188dc5"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-bacchanalia/summarySv",
+      "sv": "Den romerska senaten reglerar deltagande, ämbeten och sammankomster inom Bacchuskulten. Beslutet sprids till städer i Italien.",
+      "en": "The Roman Senate regulates participation, offices and gatherings within the cult of Bacchus. The decree is distributed to towns in Italy.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-bacchanalia",
+        "fieldPath": "/summarySv",
+        "textSha256": "2a2dc9ba958e785155e262a3d191e801aed15f6952d8ba5f6a8cbeed2832e113"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-bacchanalia/geographySv",
+      "sv": "Rom och Italien",
+      "en": "Rome and Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-bacchanalia",
+        "fieldPath": "/geographySv",
+        "textSha256": "3e4675b7293ab787d77df2e92e24664fb2bfd77ae73db6594e43e2d93c358442"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-maurya-shunga/date/displaySv",
+      "sv": "cirka 185 f.Kr.",
+      "en": "around 185 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-maurya-shunga",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8f650d16e5f9af80b4f80a8dfb481c94df5c61422cf057bbea595a43375d52d0"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-maurya-shunga/date/noteSv",
+      "sv": "Neelis hänför uppgiften till puraniska traditioner och anger en ungefärlig datering. Buddhistiska traditioner skiljer sig.",
+      "en": "Neelis attributes the account to Puranic traditions and gives an approximate date. Buddhist traditions differ.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-maurya-shunga",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "84a51c589d3ed8bae4bbcd4b36ccce7742ae07938e36e6139f92ed07e8cb72f9"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-maurya-shunga/titleSv",
+      "sv": "Pushyamitra störtar den siste Mauryahärskaren enligt traditionen",
+      "en": "Pushyamitra overthrows the last Mauryan ruler according to tradition",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-maurya-shunga",
+        "fieldPath": "/titleSv",
+        "textSha256": "2a84b98a82c4df45f378952a13eb534fe2347fd10df6fa1120090002f7de93c1"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-maurya-shunga/summarySv",
+      "sv": "Enligt puraniska källor störtar generalen Pushyamitra Brihadratha och grundar Shungadynastin.",
+      "en": "According to Puranic sources, the general Pushyamitra overthrows Brihadratha and founds the Shunga dynasty.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-maurya-shunga",
+        "fieldPath": "/summarySv",
+        "textSha256": "42ad3d9721930bb8c655df980f606a4868babef55364652ecd71d4519e029c18"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-maurya-shunga/geographySv",
+      "sv": "Indien",
+      "en": "India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-maurya-shunga",
+        "fieldPath": "/geographySv",
+        "textSha256": "5ddccc3890e8f92c28da28164c96a977cefa24d22da85b310c22f93bc3ad3778"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-pydna/date/displaySv",
+      "sv": "168 f.Kr.",
+      "en": "168 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-pydna",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e1645f1ef1eb731a56a3a6e9b83c6492c244ad34e84853a55e6bde8755e44d19"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-pydna/date/noteSv",
+      "sv": "Dossiern anger 22 juni för slaget. Makedoniens senare politiska uppdelning är en annan händelse.",
+      "en": "The dossier gives 22 June for the battle. Macedonia's later political division is a separate event.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-pydna",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "367af542c73a189a841b056e37726d70460e940233597fb07c8929f6f63f8ffa"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-pydna/titleSv",
+      "sv": "Perseus besegras vid Pydna",
+      "en": "Perseus is defeated at Pydna",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-pydna",
+        "fieldPath": "/titleSv",
+        "textSha256": "fb4811f7cd2f42d4b8db347913b46d21a6d897c07f6ec1d707308254db57a9c6"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-pydna/summarySv",
+      "sv": "Aemilius Paulus romerska armé besegrar den makedoniske kungen Perseus styrkor vid Pydna.",
+      "en": "Aemilius Paulus's Roman army defeats the forces of the Macedonian king Perseus at Pydna.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-pydna",
+        "fieldPath": "/summarySv",
+        "textSha256": "d98133f60d4c7cc151ce6ad6e563f84b79de05204a4d12ca3dc762d8585c4e30"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-pydna/geographySv",
+      "sv": "Pydna, Makedonien",
+      "en": "Pydna, Macedonia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-pydna",
+        "fieldPath": "/geographySv",
+        "textSha256": "f693393d8c90ba5bdc045f0fca0fb83180004aeebc021ba7e1c195ced6241c41"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-templet-aterinvigs/date/displaySv",
+      "sv": "164 f.Kr.",
+      "en": "164 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-templet-aterinvigs",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4d575bfc90d87e9d60a92254fa13ac0a07f9d5c6f2d895aa57ffd0ccb3fd92a5"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-templet-aterinvigs/date/noteSv",
+      "sv": "Återinvigningen skiljs från förföljelserna 168–167 och slutet på seleukidiskt styre 142 f.Kr.",
+      "en": "The rededication is distinguished from the persecutions of 168–167 and the end of Seleucid rule in 142 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-templet-aterinvigs",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b66f478e88c313a756e2a7c59d2cb28ae81bd15c7c9014c3a021fadab08d7296"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-templet-aterinvigs/titleSv",
+      "sv": "Templet i Jerusalem återinvigs",
+      "en": "The temple in Jerusalem is rededicated",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-templet-aterinvigs",
+        "fieldPath": "/titleSv",
+        "textSha256": "012f776f1eaa9f7b8bbd69eb4c1a1c0c4f5f914f22da4f3dc8ac05c89baa8fdf"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-templet-aterinvigs/summarySv",
+      "sv": "Mackabéerna renar och återinviger Jerusalems tempel. Händelsen förknippas med chanukka.",
+      "en": "The Maccabees purify and rededicate the Jerusalem temple. The event is associated with Hanukkah.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-templet-aterinvigs",
+        "fieldPath": "/summarySv",
+        "textSha256": "94184a7a66447290225844ff23e1358015bdac025afba6e1a8738602f14de346"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-templet-aterinvigs/geographySv",
+      "sv": "Jerusalem",
+      "en": "Jerusalem",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-templet-aterinvigs",
+        "fieldPath": "/geographySv",
+        "textSha256": "451ebbe3f76682c7de1a795b406384e8b53801a89311bf86fa529e9b9259043b"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sju-kungariken/date/displaySv",
+      "sv": "154 f.Kr.",
+      "en": "154 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sju-kungariken",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6ea3c84fb428e5a5d8c986c5e70ab64276f99a512f4935427d13ac7575002a97"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sju-kungariken/date/noteSv",
+      "sv": "Det offentliga abstractet anger året för upprorets kuvande.",
+      "en": "The public abstract gives the year of the revolt's suppression.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sju-kungariken",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e247fd11d4a98e0b87403c79382f5a1315881ed4dbdd1b9cb92af116c67e4eee"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sju-kungariken/titleSv",
+      "sv": "Hanriket kuvar de sju kungarikenas uppror",
+      "en": "The Han suppress the Revolt of the Seven Kingdoms",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sju-kungariken",
+        "fieldPath": "/titleSv",
+        "textSha256": "1efc164eac250fb844fe5a76f557eadf332f7c86453d0b7115096135f6ebda81"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sju-kungariken/summarySv",
+      "sv": "Hanstyret slår ned de sju kungarikenas uppror. Konflikten utspelas i ett rike med både direkt styrda områden och regionala kungadömen.",
+      "en": "The Han government suppresses the Revolt of the Seven Kingdoms. The conflict takes place in an empire containing both directly administered territories and regional kingdoms.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sju-kungariken",
+        "fieldPath": "/summarySv",
+        "textSha256": "e88e7e08ad24f6c0ea92aa23ad2ff7edd223df65695720f00379d04e81418ed3"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sju-kungariken/geographySv",
+      "sv": "Hanriket, Kina",
+      "en": "Han China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sju-kungariken",
+        "fieldPath": "/geographySv",
+        "textSha256": "2d41a5eb1feb20252cd713393cb653fffcbd63ad3b2c1a6726283999f9f91988"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-karthago-forstors/date/displaySv",
+      "sv": "146 f.Kr.",
+      "en": "146 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-karthago-forstors",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1aad26df4a47139ae74638725d0a2adb7c3e305060f914f0baa91b10a70ff65f"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-karthago-forstors/date/noteSv",
+      "sv": "Året gäller stadens fall och förstörelse, inte hela belägringen.",
+      "en": "The year concerns the city's fall and destruction, not the entire siege.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-karthago-forstors",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "cdcad76a37939e02fee4f1f4d4814211eff534a786f5623bd34858a305616765"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-karthago-forstors/titleSv",
+      "sv": "Romerska styrkor förstör Karthago",
+      "en": "Roman forces destroy Carthage",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-karthago-forstors",
+        "fieldPath": "/titleSv",
+        "textSha256": "227e130eb554724cf2af2d62f6000e0d926d6d991feb14013b31ea2ffdd71a6a"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-karthago-forstors/summarySv",
+      "sv": "Scipio Aemilianus armé intar och förstör Karthago.",
+      "en": "Scipio Aemilianus's army captures and destroys Carthage.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-karthago-forstors",
+        "fieldPath": "/summarySv",
+        "textSha256": "3f111b7c8c63d75be7608fb5b8d25f5f04df34cae0b37c075728e6a30443836b"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-karthago-forstors/geographySv",
+      "sv": "Karthago, Nordafrika",
+      "en": "Carthage, North Africa",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-karthago-forstors",
+        "fieldPath": "/geographySv",
+        "textSha256": "cf0a2dafc7ddd0729dbcf01bf4fb4edbfbfd40d1fdbe6be7b8921cc3e50f9cff"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-korinth-forstors/date/displaySv",
+      "sv": "146 f.Kr.",
+      "en": "146 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-korinth-forstors",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1aad26df4a47139ae74638725d0a2adb7c3e305060f914f0baa91b10a70ff65f"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-korinth-forstors/date/noteSv",
+      "sv": "Året gäller nederlaget och förstörelsen.",
+      "en": "The year concerns the defeat and destruction.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-korinth-forstors",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1593fdbd3df97e0eb972f1f64cc16dd7c8de09445cad07556329e61fb3b18923"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-korinth-forstors/titleSv",
+      "sv": "Romerska styrkor förstör Korinth",
+      "en": "Roman forces destroy Corinth",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-korinth-forstors",
+        "fieldPath": "/titleSv",
+        "textSha256": "7bbc96e33f0ec5e99a112876ef6a5df10331a11a111c05f50770060f722cacc7"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-korinth-forstors/summarySv",
+      "sv": "Mummius besegrar det achaiska förbundet och förstör Korinth på senatens order.",
+      "en": "Mummius defeats the Achaean League and destroys Corinth on the Senate's orders.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-korinth-forstors",
+        "fieldPath": "/summarySv",
+        "textSha256": "13a65f58a8ca545c74ea523d7cdda6cc343602de4e6691582aaad40bd35c9f3f"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-korinth-forstors/geographySv",
+      "sv": "Korinth, Grekland",
+      "en": "Corinth, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-korinth-forstors",
+        "fieldPath": "/geographySv",
+        "textSha256": "5f03f5711131aa582d5b8a54395fa91d366d772a38ffd18f25d5db5155519ea7"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-judeen-seleukider/date/displaySv",
+      "sv": "142 f.Kr.",
+      "en": "142 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-judeen-seleukider",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "67ee77701486c21a25ec354e7f7796e497f4808ff003b924ae0c5cf603c453a9"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-judeen-seleukider/date/noteSv",
+      "sv": "Cohens kronologi skiljer slutet på styret från templets återinvigning 164 f.Kr.",
+      "en": "Cohen's chronology distinguishes the end of this rule from the temple's rededication in 164 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-judeen-seleukider",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9eb472ff53631938087c21ab5129bfdce4fbe22da943b6e62fd1af7477b129cf"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-judeen-seleukider/titleSv",
+      "sv": "Seleukidernas styre över Judeen upphör",
+      "en": "Seleucid rule over Judea ends",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-judeen-seleukider",
+        "fieldPath": "/titleSv",
+        "textSha256": "5b253f53818210c3235e9ae32d6c811522dddea0fea142feec7d39b42f1f76b3"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-judeen-seleukider/summarySv",
+      "sv": "Enligt Cohens kronologi upphör seleukidernas styre över Judeen.",
+      "en": "According to Cohen's chronology, Seleucid rule over Judea ends.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-judeen-seleukider",
+        "fieldPath": "/summarySv",
+        "textSha256": "d351a17c8bda769657d7007bb81586984fdb016aba7a7679bb26ab00241119ac"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-judeen-seleukider/geographySv",
+      "sv": "Judeen",
+      "en": "Judea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-judeen-seleukider",
+        "fieldPath": "/geographySv",
+        "textSha256": "b36e5c6a3e5e17fa6a4870dee15b1466256d7819a5d6267058aad7a316d0293e"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-parthia-babylon/date/displaySv",
+      "sv": "141 f.Kr.",
+      "en": "141 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-parthia-babylon",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "32a67af55affc54bac42c266876c98209c2f16347f6092393aff94af16082e60"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-parthia-babylon/date/noteSv",
+      "sv": "Assar anger juni–juli utifrån kilskriftstexter och avvisar 140 f.Kr. Beläggen visar inte att Mithridates själv leder fälttåget.",
+      "en": "Assar gives June–July on the basis of cuneiform texts and rejects 140 BC. The evidence does not show that Mithridates personally leads the campaign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-parthia-babylon",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d1e832788382cad0c06370e051aef5024865ecc5b83e890d9063320c219e3766"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-parthia-babylon/titleSv",
+      "sv": "Parthiska styrkor intar Babylon och Seleukia",
+      "en": "Parthian forces capture Babylon and Seleucia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-parthia-babylon",
+        "fieldPath": "/titleSv",
+        "textSha256": "14c9733fbf2fcd7869d4c247cb7b9a130bf9d1d9bc1faa6f2fd967e4e8e020a7"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-parthia-babylon/summarySv",
+      "sv": "Parthiska styrkor erövrar Babylon och Seleukia. Samtida texter börjar erkänna arsacidernas styre.",
+      "en": "Parthian forces conquer Babylon and Seleucia. Contemporary texts begin to acknowledge Arsacid rule.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-parthia-babylon",
+        "fieldPath": "/summarySv",
+        "textSha256": "379516d365c554d380892371703a41dbb2adb38fad2daf74e186bfbab3854554"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-parthia-babylon/geographySv",
+      "sv": "Babylon och Seleukia, Mesopotamien",
+      "en": "Babylon and Seleucia, Mesopotamia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-parthia-babylon",
+        "fieldPath": "/geographySv",
+        "textSha256": "0dee387244b23293263a2b3957a5b82ebc23bdac6993c62579a35cfcba103bc2"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-huainanzi/date/displaySv",
+      "sv": "139 f.Kr.",
+      "en": "139 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-huainanzi",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "24969db358854d6cfec1dc236def47689ef56ea3560fb122210eed3e9678c023"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-huainanzi/date/noteSv",
+      "sv": "Året gäller överlämnandet av verket, inte att samtliga kapitel skrivs just då.",
+      "en": "The year concerns presentation of the work, not the writing of all its chapters in that year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-huainanzi",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c517b0638ba1925426620ed8db6bc53a8d3ca06e4737bddc0e8cf60fe4c9186f"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-huainanzi/titleSv",
+      "sv": "Liu An överlämnar Huainanzi till kejsar Wu",
+      "en": "Liu An presents the Huainanzi to Emperor Wu",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-huainanzi",
+        "fieldPath": "/titleSv",
+        "textSha256": "4c44cd3b31909533e778c1212f748a761dcba1d2bd503256a1bbae2ff513a1cf"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-huainanzi/summarySv",
+      "sv": "Liu An presenterar Huainanzi, ett verk med tjugoen avhandlingar om människan, riket, kosmos och härskarkonst.",
+      "en": "Liu An presents the Huainanzi, a work comprising twenty-one treatises on humanity, the realm, the cosmos and rulership.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-huainanzi",
+        "fieldPath": "/summarySv",
+        "textSha256": "1d31cc5251690e1e864f5198ee8c090e1d8e748b79ab4bf85c7371e019ac0bab"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-huainanzi/geographySv",
+      "sv": "Hanriket, Kina",
+      "en": "Han China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-huainanzi",
+        "fieldPath": "/geographySv",
+        "textSha256": "2d41a5eb1feb20252cd713393cb653fffcbd63ad3b2c1a6726283999f9f91988"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-zhang-qian-forsta/date/displaySv",
+      "sv": "från 139 eller 138 till 126 f.Kr.",
+      "en": "from 139 or 138 to 126 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-zhang-qian-forsta",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "43724607697b011066e32dbb6c7eb654b4fadef9c1a316953c259806972d72d9"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-zhang-qian-forsta/date/noteSv",
+      "sv": "Yang anger två möjliga avreseår och återkomsten 126 f.Kr. Hela resans spann bevaras.",
+      "en": "Yang gives two possible departure years and a return in 126 BC. The full span of the journey is retained.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-zhang-qian-forsta",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ef6a2038572e4bfdc0f2a5e504f28c523e8a93319400a1ba9053be3c8a361726"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-zhang-qian-forsta/titleSv",
+      "sv": "Zhang Qian reser till Centralasien",
+      "en": "Zhang Qian travels to Central Asia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-zhang-qian-forsta",
+        "fieldPath": "/titleSv",
+        "textSha256": "4d17f5f5fe0ce0d97583f4575be5115495a4e0c584ade8cfb3878cefe420550d"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-zhang-qian-forsta/summarySv",
+      "sv": "Zhang Qian når flera centralasiatiska samhällen, däribland Daxia, under sin första beskickning.",
+      "en": "Zhang Qian reaches several Central Asian societies, including Daxia, during his first mission.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-zhang-qian-forsta",
+        "fieldPath": "/summarySv",
+        "textSha256": "747d4ce4ea65cfcc1a3b6946d8f683f8091d7dfa0fe2369813b836195e07c7c5"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-zhang-qian-forsta/geographySv",
+      "sv": "Centralasien och Hanriket",
+      "en": "Central Asia and Han China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-zhang-qian-forsta",
+        "fieldPath": "/geographySv",
+        "textSha256": "0344e0a87782f77bab5197c3e56981bf410102dd34cd9a59d19270307a1df696"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sicilien-forsta-upproret/date/displaySv",
+      "sv": "135–132 f.Kr.",
+      "en": "135–132 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sicilien-forsta-upproret",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4f7f4928033f0a416067f7baf490b93d675c14c1bbc131651b8cb3c85f80d8eb"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sicilien-forsta-upproret/date/noteSv",
+      "sv": "Dench anger hela upprorets intervall; Morton beskriver intagandet av Enna 135 f.Kr.",
+      "en": "Dench gives the revolt's complete interval; Morton describes the capture of Enna in 135 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sicilien-forsta-upproret",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "18bfe7ed09b27178950c27e290f379a6a36ce9bfa4ef2dc7a56ce1b55077b375"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sicilien-forsta-upproret/titleSv",
+      "sv": "Förslavade människor gör uppror på Sicilien",
+      "en": "Enslaved people revolt in Sicily",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sicilien-forsta-upproret",
+        "fieldPath": "/titleSv",
+        "textSha256": "88cc6620466cb15ee2851acbdad8c8f07edb675cae2dfbfa5ec92dbe41a156ce"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sicilien-forsta-upproret/summarySv",
+      "sv": "Förslavade människor intar Enna och gör uppror under Eunus. Striderna mot Rom pågår i flera år.",
+      "en": "Enslaved people capture Enna and revolt under Eunus. Fighting against Rome continues for several years.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sicilien-forsta-upproret",
+        "fieldPath": "/summarySv",
+        "textSha256": "72866f4c2dd5121ac9ea1a16d78358696358cd2449682b0dcf9a275fb2422fc3"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sicilien-forsta-upproret/geographySv",
+      "sv": "Sicilien",
+      "en": "Sicily",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sicilien-forsta-upproret",
+        "fieldPath": "/geographySv",
+        "textSha256": "ca75e780909ffc8a56144a87b4116660c7761a46822df079c6a14290dcb709ce"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-tiberius-jordreform/date/displaySv",
+      "sv": "133 f.Kr.",
+      "en": "133 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-tiberius-jordreform",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d7de58d3a88e7d006711830ec08408b0dbc269ce0c69b0aac61696a775785136"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-tiberius-jordreform/date/noteSv",
+      "sv": "Året gäller Tiberius tribunat, reform och död i den politiska konflikten.",
+      "en": "The year concerns Tiberius's tribunate, reform and death in the political conflict.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-tiberius-jordreform",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "47659974fa092fccfa9c438f6cd0f4af96068cda877daa7d22a25af89bea3182"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-tiberius-jordreform/titleSv",
+      "sv": "Tiberius Gracchus driver igenom en jordreform",
+      "en": "Tiberius Gracchus secures a land reform",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-tiberius-jordreform",
+        "fieldPath": "/titleSv",
+        "textSha256": "69cd3f106e384bb821d55c509375e3e973b2ad16e13f1444e8fb1d32804dea17"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-tiberius-jordreform/summarySv",
+      "sv": "En lag omfördelar offentlig jord till småbrukare. En kommission genomför reformen, men Tiberius dödas av motståndare i den politiska konflikten.",
+      "en": "A law redistributes public land to smallholders. A commission implements the reform, but opponents kill Tiberius in the political conflict.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-tiberius-jordreform",
+        "fieldPath": "/summarySv",
+        "textSha256": "aa56e09cbd3833b9ca85e5030fbe062ce30ee6d4c2ecebdbf1f427c30e1d9565"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-tiberius-jordreform/geographySv",
+      "sv": "Rom och Italien",
+      "en": "Rome and Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-tiberius-jordreform",
+        "fieldPath": "/geographySv",
+        "textSha256": "3e4675b7293ab787d77df2e92e24664fb2bfd77ae73db6594e43e2d93c358442"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-numantia/date/displaySv",
+      "sv": "133 f.Kr.",
+      "en": "133 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-numantia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d7de58d3a88e7d006711830ec08408b0dbc269ce0c69b0aac61696a775785136"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-numantia/date/noteSv",
+      "sv": "Scullards kronologiska tabell anger 133 f.Kr. för Numantias fall. Steel beskriver att staden kapitulerar efter en utsvältningsbelägring.",
+      "en": "Scullard’s chronological table dates the fall of Numantia to 133 BC. Steel describes the city surrendering after a starvation siege.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-numantia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7dcf64221346fa38ca02761d230ddc43a9c72617af321ab9e0f921809d731748"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-numantia/titleSv",
+      "sv": "Numantia faller",
+      "en": "Numantia falls",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-numantia",
+        "fieldPath": "/titleSv",
+        "textSha256": "6ccbea0c091e7354fee2cd25f5d0ed6cd7a1222d19ccaa32716c66338fde5a25"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-numantia/summarySv",
+      "sv": "Numantia faller för romerska styrkor under Scipio Aemilianus.",
+      "en": "Numantia falls to Roman forces under Scipio Aemilianus.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-numantia",
+        "fieldPath": "/summarySv",
+        "textSha256": "d2c6ab9edd5f805802c22120e16da08024e93c5e8d117270696ad2c1668757e3"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-numantia/geographySv",
+      "sv": "Numantia",
+      "en": "Numantia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-numantia",
+        "fieldPath": "/geographySv",
+        "textSha256": "391703fb7bd6b4b428ad4d566eca6f93a7bde7e0fe36a2f19d105b0bf488f80f"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-attalus-testamente/date/displaySv",
+      "sv": "133 f.Kr.",
+      "en": "133 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-attalus-testamente",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d7de58d3a88e7d006711830ec08408b0dbc269ce0c69b0aac61696a775785136"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-attalus-testamente/date/noteSv",
+      "sv": "Testamentet skiljs från det senare upprättandet av provinsen Asia.",
+      "en": "The bequest is distinguished from the later establishment of the province of Asia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-attalus-testamente",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e6ac8ad452687c0370ddc543bbb30994ee39772a58126b5380e5e6bd958fe2ef"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-attalus-testamente/titleSv",
+      "sv": "Attalos III testamenterar sitt kungarike till Rom",
+      "en": "Attalus III bequeaths his kingdom to Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-attalus-testamente",
+        "fieldPath": "/titleSv",
+        "textSha256": "9df249e1fca72aa066655f82b53e55147d82bc3d08ebbaabe6724751ed00d67f"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-attalus-testamente/summarySv",
+      "sv": "Attalos III lämnar sitt kungarike till Rom genom testamente.",
+      "en": "Attalus III leaves his kingdom to Rome in his will.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-attalus-testamente",
+        "fieldPath": "/summarySv",
+        "textSha256": "e8687c1c9ef6db85ea9d896964b6c5d5e44a9c16ba27d1b1b4a72176f5a6b36e"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-attalus-testamente/geographySv",
+      "sv": "Pergamonriket",
+      "en": "Kingdom of Pergamon",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-attalus-testamente",
+        "fieldPath": "/geographySv",
+        "textSha256": "348f4dc182398bc64f981cbdd77e6b1f0e5c2d170c9fc5bb5d1f4995f75799b6"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-han-akademi/date/displaySv",
+      "sv": "124 f.Kr.",
+      "en": "124 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-han-akademi",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "712f35331b3eb6b09671edd74a99728c8ca8bd93b4ee59f295569e70e3f50d7d"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-han-akademi/date/noteSv",
+      "sv": "Året gäller akademins grundande, inte ett färdigutvecklat system av ämbetsmannaprov.",
+      "en": "The year concerns the academy's foundation, not a fully developed civil-service examination system.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-han-akademi",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "950933601f1836b81f5a3b63fd7b85e4dd348ce134ceca8e242416fa3ddec360"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-han-akademi/titleSv",
+      "sv": "Hanriket grundar en kejserlig akademi",
+      "en": "The Han found an Imperial Academy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-han-akademi",
+        "fieldPath": "/titleSv",
+        "textSha256": "d65c1eef2d6c821243bc77529cb94a71470332312406304c597a8b6d5de0c4e9"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-han-akademi/summarySv",
+      "sv": "En akademi vid huvudstaden undervisar i konfucianska klassiker och förbereder elever för ämbeten.",
+      "en": "An academy at the capital teaches Confucian classics and prepares students for official posts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-han-akademi",
+        "fieldPath": "/summarySv",
+        "textSha256": "254cd7b028e6a901105cc38b96267b7acc35a998e00ac82a61ae7fb8428153d5"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-han-akademi/geographySv",
+      "sv": "Hanrikets huvudstad, Kina",
+      "en": "The Han capital, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-han-akademi",
+        "fieldPath": "/geographySv",
+        "textSha256": "4e4fef594f002d7ebdfd4f08e798951da6f0618087f8afcfb5efff372c8080dc"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-gaius-spannmal/date/displaySv",
+      "sv": "123 f.Kr.",
+      "en": "123 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-gaius-spannmal",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d16429cf565bc4c3f2684bdd88c9bd5054dcedd12987c3592801c4a8bb03665b"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-gaius-spannmal/date/noteSv",
+      "sv": "Garnseys bok anger införandet 123 f.Kr.; den tidigare artikeln placerar lagen i det första tribunatet 123–122 f.Kr.",
+      "en": "Garnsey's book dates the introduction to 123 BC; the earlier article places the law in the first tribunate, 123–122 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-gaius-spannmal",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "865334382e47ba1cc6224763bf4aa9a63e6be60394cb5ac224bb7419e50b7cdb"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-gaius-spannmal/titleSv",
+      "sv": "Gaius Gracchus inför regelbunden spannmålsförsäljning",
+      "en": "Gaius Gracchus introduces regular grain sales",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-gaius-spannmal",
+        "fieldPath": "/titleSv",
+        "textSha256": "d099526ec9698180c3b6f2b3d4f5cfc53c32a4f197b5eb3a51c2543aecd39d36"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-gaius-spannmal/summarySv",
+      "sv": "Staten börjar sälja spannmål månadsvis till sänkt pris till Roms medborgare.",
+      "en": "The state begins monthly sales of reduced-price grain to Rome's citizens.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-gaius-spannmal",
+        "fieldPath": "/summarySv",
+        "textSha256": "86152d706e778f8141c4894e41d85d18afbc2bb19f154300e9e81e2be71c03db"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-gaius-spannmal/geographySv",
+      "sv": "Rom",
+      "en": "Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-gaius-spannmal",
+        "fieldPath": "/geographySv",
+        "textSha256": "1f268826c4d33921cbcec835bd71ab3bc2729936d3edb01befa02c46c41a71ed"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-zhang-qian-andra/date/displaySv",
+      "sv": "119–115 f.Kr.",
+      "en": "119–115 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-zhang-qian-andra",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8e8f77a42990bd706085e50e7698bca89b3a27ec2b6bc4813f589db5b58e75b5"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-zhang-qian-andra/date/noteSv",
+      "sv": "Hela den andra beskickningens intervall anges av Yang.",
+      "en": "Yang gives the complete interval of the second mission.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-zhang-qian-andra",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ff4d3e4a0161821159415c1aa0ec9a765022c6714d3dc8db90eeebf0eda66172"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-zhang-qian-andra/titleSv",
+      "sv": "Zhang Qian leder en ny beskickning västerut",
+      "en": "Zhang Qian leads another mission westward",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-zhang-qian-andra",
+        "fieldPath": "/titleSv",
+        "textSha256": "bc635ab06b65b42ede366daba6efd5889cc294c959c135ffdaac45695b6d2262"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-zhang-qian-andra/summarySv",
+      "sv": "Zhang Qian reser till Wusun och skickar medarbetare till andra centralasiatiska riken.",
+      "en": "Zhang Qian travels to Wusun and sends deputies to other Central Asian kingdoms.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-zhang-qian-andra",
+        "fieldPath": "/summarySv",
+        "textSha256": "1403195c11d55cb616fcf8113972a39fd9672e2276559b7a77acb306fb2dcb3d"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-zhang-qian-andra/geographySv",
+      "sv": "Wusun och Centralasien",
+      "en": "Wusun and Central Asia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-zhang-qian-andra",
+        "fieldPath": "/geographySv",
+        "textSha256": "a241371580dcdad508bcefceae6fa7c669836c65c57b4bb8e53834d2bf784be6"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-narbo/date/displaySv",
+      "sv": "118 f.Kr.",
+      "en": "118 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-narbo",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b6096661ecfafb6ccd10fbf6ccc4653d50d165e18b456e037b56bc8d1d1b7904"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-narbo/date/noteSv",
+      "sv": "Kulturmyndigheten anger detta grundningsår.",
+      "en": "The cultural authority gives this foundation year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-narbo",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "aec34e3c62d81043c39af41195f00634d6ae96c2fd368a2dd601fd1d52c887b9"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-narbo/titleSv",
+      "sv": "Rom grundar kolonin Narbo",
+      "en": "Rome founds the colony of Narbo",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-narbo",
+        "fieldPath": "/titleSv",
+        "textSha256": "aa97870e883faf1c9dbbb2a74d5399239848d9bb429303a98d8ab527265ab4da"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-narbo/summarySv",
+      "sv": "En romersk koloni grundas vid dagens Narbonne.",
+      "en": "A Roman colony is founded at present-day Narbonne.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-narbo",
+        "fieldPath": "/summarySv",
+        "textSha256": "83b3fc7977561f22ea203ca12eb1ae2ce591b72c3bc3eb061858d2b06a81c641"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-narbo/geographySv",
+      "sv": "Narbonne, södra Gallien",
+      "en": "Narbonne, southern Gaul",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-narbo",
+        "fieldPath": "/geographySv",
+        "textSha256": "f63c58eef113bda10d7c9fd9a34dd6144c068e91d00238ea8cdabef6cfe791e3"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-han-salt-jarn/date/displaySv",
+      "sv": "117 f.Kr.",
+      "en": "117 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-han-salt-jarn",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "66073c214ca425d5f5c9567dde4cc564d1d80de80564cfa007ec1a8f2b3213c7"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-han-salt-jarn/date/noteSv",
+      "sv": "Wagner anger 117 f.Kr. för monopolets införande och skiljer det från tidigare förberedande utnämningar.",
+      "en": "Wagner dates establishment of the monopoly to 117 BC and distinguishes it from earlier preparatory appointments.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-han-salt-jarn",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ce26ccef89d8d6e418c2930ed10225ad609f06d1ad47694daffc3257872c80c8"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-han-salt-jarn/titleSv",
+      "sv": "Hanstyret inför monopol på salt och järn",
+      "en": "The Han government establishes monopolies over salt and iron",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-han-salt-jarn",
+        "fieldPath": "/titleSv",
+        "textSha256": "86055d7250b3160c7adf3f8fb27e17ee4ccb7acd553fda96eb14c992b5356f39"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-han-salt-jarn/summarySv",
+      "sv": "Hovet godkänner statlig kontroll över salt- och järnverksamheten. Ämbetsmän organiserar produktion och förvaltning.",
+      "en": "The court approves state control of salt and iron operations. Officials organize production and administration.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-han-salt-jarn",
+        "fieldPath": "/summarySv",
+        "textSha256": "06d370cdedb0fae41e55ebe1d0855ed8e56b99dfee026e6ded1b5d6cce9a7315"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-han-salt-jarn/geographySv",
+      "sv": "Hanriket, Kina",
+      "en": "Han China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-han-salt-jarn",
+        "fieldPath": "/geographySv",
+        "textSha256": "2d41a5eb1feb20252cd713393cb653fffcbd63ad3b2c1a6726283999f9f91988"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-heliodoros-pelare/date/displaySv",
+      "sv": "cirka 113 f.Kr.",
+      "en": "around 113 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-heliodoros-pelare",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "abb3d7220ebe3d900b374fda2160d2d49515383da957dc42eca03998f933d1e2"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-heliodoros-pelare/date/noteSv",
+      "sv": "Monumentmyndighetens datering bygger på paleografiska och historiska jämförelser.",
+      "en": "The monument authority's dating rests on palaeographic and historical comparisons.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-heliodoros-pelare",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9ad317d50667ad86feb8d5e37d82f061eba8b71dfec02ab03e130f55261dcf07"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-heliodoros-pelare/titleSv",
+      "sv": "Heliodoros tillägnar en pelare åt Vasudeva",
+      "en": "Heliodorus dedicates a pillar to Vasudeva",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-heliodoros-pelare",
+        "fieldPath": "/titleSv",
+        "textSha256": "b33cac5ee7fc973972a3b5ae326c6a8dbd421622f137c9def42d5010db0739c9"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-heliodoros-pelare/summarySv",
+      "sv": "En inskrift vid Vidisha nämner Heliodoros, sändebud för den indogrekiske kungen Antialkidas, och hans tillägnan åt Vasudeva vid Bhagabhadras hov.",
+      "en": "An inscription at Vidisha names Heliodorus, envoy of the Indo-Greek king Antialkidas, and his dedication to Vasudeva at Bhagabhadra's court.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-heliodoros-pelare",
+        "fieldPath": "/summarySv",
+        "textSha256": "0c2564976ca92898c5340e6467dbc9397d04a353d4fa3c88d3d281fde6e87528"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-heliodoros-pelare/geographySv",
+      "sv": "Vidisha, Madhya Pradesh, Indien",
+      "en": "Vidisha, Madhya Pradesh, India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-heliodoros-pelare",
+        "fieldPath": "/geographySv",
+        "textSha256": "6dc00de73b97254bdcaa3ce1b8f76634bc322c8a62a7546dc35866b5b0256ae3"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-nanyue/date/displaySv",
+      "sv": "111 f.Kr.",
+      "en": "111 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-nanyue",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5a8ad2c64a20a4aabc0302cdee2218364404b53e62c9708561985f59c94766c7"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-nanyue/date/noteSv",
+      "sv": "Året avser omorganisationen av det erövrade riket till nio prefekturer.",
+      "en": "The year concerns the reorganization of the conquered kingdom into nine prefectures.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-nanyue",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "eefce4ec09503a69946f7fe52f9ea0af2254b89ccb360936a26fa15297838dee"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-nanyue/titleSv",
+      "sv": "Hanstyret delar in det erövrade Nanyue i prefekturer",
+      "en": "The Han government divides conquered Nanyue into prefectures",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-nanyue",
+        "fieldPath": "/titleSv",
+        "textSha256": "2d14d7e1bfca7bf05553ba123c7a7c642205d16f1ffb75e5cccbfffce04d626c"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-nanyue/summarySv",
+      "sv": "Efter Han Wudis erövring organiseras Nanyue i nio prefekturer.",
+      "en": "Following Han Wudi's conquest, Nanyue is organized into nine prefectures.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-nanyue",
+        "fieldPath": "/summarySv",
+        "textSha256": "63a0028c9bd11167e4a23b96276165060dfad5dff5be020a9ff28714dccac871"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-nanyue/geographySv",
+      "sv": "Nanyue, södra Kina och angränsande områden",
+      "en": "Nanyue, southern China and adjoining areas",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-nanyue",
+        "fieldPath": "/geographySv",
+        "textSha256": "02660891e6c87cb93a73d25368b13fac37542e60c39ea782230f4857f0a1d31e"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-gojoseon/date/displaySv",
+      "sv": "108 f.Kr.",
+      "en": "108 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-gojoseon",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8557cb86d6facf9e3584275385cb8464339a8d70a188048319e825230deacdf6"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-gojoseon/date/noteSv",
+      "sv": "Året för fallet återges enligt kinesiska historiska källor. Huvudstadens läge är omdiskuterat.",
+      "en": "The year of the fall is reported according to Chinese historical sources. The capital's location is disputed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-gojoseon",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "57c8eed10cab4ac4a5dcb93929579e57e808fcafacc9e895ff946ec659f9e012"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-gojoseon/titleSv",
+      "sv": "Gojoseon faller enligt kinesiska källor",
+      "en": "Gojoseon falls according to Chinese sources",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-gojoseon",
+        "fieldPath": "/titleSv",
+        "textSha256": "afd7c2e8cf7d5cafd82039607c5444f95de01ea260094ef5313fa04cd141fe64"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-gojoseon/summarySv",
+      "sv": "Kinesiska historieskrifter daterar Gojoseons fall till detta år. Arkeologiska lämningar visar att dess materiella traditioner fortsätter därefter.",
+      "en": "Chinese histories date Gojoseon's fall to this year. Archaeological remains show that its material traditions continue afterwards.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-gojoseon",
+        "fieldPath": "/summarySv",
+        "textSha256": "d4f6bfa65e44a31937f34179b34f63a767fd1ba8bcdb9d36d859d50ba59b4f7a"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-gojoseon/geographySv",
+      "sv": "Gojoseon",
+      "en": "Gojoseon",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-gojoseon",
+        "fieldPath": "/geographySv",
+        "textSha256": "8c86ad121b64ed9f67d379494e2b12d9cb46159ec5cdfcdda1efc8e9344d42e2"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-arausio/date/displaySv",
+      "sv": "105 f.Kr.",
+      "en": "105 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-arausio",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9f0251b516d2fa262a3cd5af0949953e409eed403044fc2d4eae89d96fd2d66d"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-arausio/date/noteSv",
+      "sv": "Året anges i den moderna historiska kommentaren.",
+      "en": "The year is given in the modern historical commentary.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-arausio",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1af0959852c33a7bc0f549207a990371cac771a7cc716995a17218a8b05f9fff"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-arausio/titleSv",
+      "sv": "Romerska arméer lider ett svårt nederlag vid Arausio",
+      "en": "Roman armies suffer a major defeat at Arausio",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-arausio",
+        "fieldPath": "/titleSv",
+        "textSha256": "466d77a09a64e2d9ffbae563f74a7de2f78c1a15c9212461196b358fd8dedc68"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-arausio/summarySv",
+      "sv": "Styrkor under Manlius Maximus och Servilius Caepio besegras svårt vid Arausio.",
+      "en": "Forces under Manlius Maximus and Servilius Caepio suffer a severe defeat at Arausio.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-arausio",
+        "fieldPath": "/summarySv",
+        "textSha256": "9b651e90a699eb65070ac02a7e5c7ad805919e7304d89c10848e65b2cb14b3c2"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-arausio/geographySv",
+      "sv": "Arausio, Gallien",
+      "en": "Arausio, Gaul",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-arausio",
+        "fieldPath": "/geographySv",
+        "textSha256": "2041fb53fa62a8b4c7ffb9728d4d7ffe3bd6441d137ae6ead3eeaac7e3d953f5"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sicilien-andra-upproret/date/displaySv",
+      "sv": "104–100 f.Kr.",
+      "en": "104–100 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sicilien-andra-upproret",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "41034564f74c0ad3d4a89377b2fce27f66856db3674661af28f8edee872013a1"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sicilien-andra-upproret/date/noteSv",
+      "sv": "Hela intervallet bevaras, även slutåret i det följande århundradet.",
+      "en": "The complete interval is retained, including the final year in the following century.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sicilien-andra-upproret",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "0ccd440aebf5419b4514cd7707d880ee78a568317eacc4296f5664eca016ed6d"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sicilien-andra-upproret/titleSv",
+      "sv": "Ett nytt uppror bryter ut bland förslavade på Sicilien",
+      "en": "Another revolt breaks out among enslaved people in Sicily",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sicilien-andra-upproret",
+        "fieldPath": "/titleSv",
+        "textSha256": "5862d2adf04b4f1c84ae8f4343b06cd906e66560682f365772e7dda3ff72429a"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sicilien-andra-upproret/summarySv",
+      "sv": "Förslavade människor gör på nytt uppror mot Rom på Sicilien, med Salvius som ledare.",
+      "en": "Enslaved people again revolt against Rome in Sicily, with Salvius as their leader.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sicilien-andra-upproret",
+        "fieldPath": "/summarySv",
+        "textSha256": "1e6d79222340f1d2c76f785ee4a65c2e2706f9bb8ee12124a16cc5a7b1a64bd0"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-sicilien-andra-upproret/geographySv",
+      "sv": "Sicilien",
+      "en": "Sicily",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-sicilien-andra-upproret",
+        "fieldPath": "/geographySv",
+        "textSha256": "ca75e780909ffc8a56144a87b4116660c7761a46822df079c6a14290dcb709ce"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-aquae-sextiae/date/displaySv",
+      "sv": "102 f.Kr.",
+      "en": "102 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-aquae-sextiae",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "33ad22abb9d9c59e2d5680baed186557dfcb3d496359d7e756756a0376daa46c"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-aquae-sextiae/date/noteSv",
+      "sv": "Förlagsbeskrivningen daterar detta slag separat från Vercellae året därpå.",
+      "en": "The publisher's description dates this battle separately from Vercellae the following year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-aquae-sextiae",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c70853d0450e0b30fa9c59c7036fe93d379a709018f8fff10f7b0ccbb48fea42"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-aquae-sextiae/titleSv",
+      "sv": "Marius segrar vid Aquae Sextiae",
+      "en": "Marius wins at Aquae Sextiae",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-aquae-sextiae",
+        "fieldPath": "/titleSv",
+        "textSha256": "9c35db6fc413375ccc09fdb1c95f890d6946b3e7af719704c01d8737f62e070e"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-aquae-sextiae/summarySv",
+      "sv": "Marius vinner en romersk seger vid Aquae Sextiae i Gallia Transalpina.",
+      "en": "Marius wins a Roman victory at Aquae Sextiae in Gallia Transalpina.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-aquae-sextiae",
+        "fieldPath": "/summarySv",
+        "textSha256": "e12176e7d81b0e203a24bc325a2ef0220fb77f1b13e573b6fa2aebf95590cc7f"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-aquae-sextiae/geographySv",
+      "sv": "Aquae Sextiae, Gallia Transalpina",
+      "en": "Aquae Sextiae, Gallia Transalpina",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-aquae-sextiae",
+        "fieldPath": "/geographySv",
+        "textSha256": "545e3f6e317ae722e59c5be8e451e140fa432104812f703952244acd2d8ba812"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-vercellae/date/displaySv",
+      "sv": "101 f.Kr.",
+      "en": "101 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-vercellae",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8bd777ae7a4b95d20cbe81a54beaf8bbeedd35a41d53aac7df633aab37035fa5"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-vercellae/date/noteSv",
+      "sv": "Förlagsbeskrivningen anger 101 f.Kr. för slaget.",
+      "en": "The publisher's description gives 101 BC for the battle.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-vercellae",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "171b2cd321dfb6b0cb26f140e8eba7d7a1196114b557018f15b900f8a1eb87fc"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-vercellae/titleSv",
+      "sv": "Marius segrar vid Vercellae",
+      "en": "Marius wins at Vercellae",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-vercellae",
+        "fieldPath": "/titleSv",
+        "textSha256": "4427692e22ec78c9d9adfaafa2d1172b7628ff31482251cd8dd026a3acbeddd3"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-vercellae/summarySv",
+      "sv": "Marius vinner en romersk seger vid Vercellae i Gallia Cisalpina.",
+      "en": "Marius wins a Roman victory at Vercellae in Gallia Cisalpina.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-vercellae",
+        "fieldPath": "/summarySv",
+        "textSha256": "f4451066c07c17c3af28919e3567786fd61d5f5313544c99af50af3098d89320"
+      }
+    },
+    {
+      "id": "event/ev-bc0200-vercellae/geographySv",
+      "sv": "Vercellae, Gallia Cisalpina",
+      "en": "Vercellae, Gallia Cisalpina",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0200-vercellae",
+        "fieldPath": "/geographySv",
+        "textSha256": "46d15b84e594b72b40674644809c419e7f367e6a4d732d9d33f5f6b5809d8312"
       }
     }
   ]
