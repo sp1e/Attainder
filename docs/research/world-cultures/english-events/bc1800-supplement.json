@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc1800-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -1800,
+    "endYear": -1701
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "6544af4bae23202aab291ff185ca19563bd3c45f",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc1800-goedegebuure-anitta-cult-image",
+      "title": "Hittite Iconoclasm: Disconnecting the Icon, Disempowering the Referent",
+      "institution": "Oriental Institute of the University of Chicago",
+      "url": "https://cpb-us-w2.wpmucdn.com/voices.uchicago.edu/dist/3/2693/files/2020/07/14_Goedegebuure-IconoclasmFinal.pdf",
+      "locator": "Petra M. Goedegebuure, in Natalie Naomi May (ed.), Iconoclasm and Text Destruction in the Ancient Near East and Beyond, Oriental Institute Seminars 8, pp. 409–454. Printed p. 413 (PDF p. 10), discussion and translation of CTH 1; note 15 identifies KBo 3.22 obv. 39–42 and duplicate KUB 36.98a: 9–10. Relevant full-text passage read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "eighteenth century b.c.e.",
+      "originalChronology": "Anitta is placed in the eighteenth century BCE; the return has no exact year.",
+      "scopedClaim": "Scholarly translation of Anitta's account of returning Nesha's deity from Zalpuwa, discussed as the movement of a divine statue. This is textual testimony, not an identified excavated statue.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-rieken-yakubovich-anitta-transmission",
+      "title": "Encounters between Scripts in Bronze Age Asia Minor",
+      "institution": "Institute for the Study of Ancient Cultures, University of Chicago",
+      "url": "https://isac-idb-static.uchicago.edu/multimedia/460954/isacs14.pdf",
+      "locator": "Elisabeth Rieken and Ilya Yakubovich, in Ilona Zsolnay (ed.), Seen Not Heard: Composition, Iconicity, and the Classifier Systems of Logosyllabic Scripts, ISAC Seminars 14 (2023). Printed p. 207 (PDF p. 230), section 2 and note 4; title and authors on p. 205. Relevant full text read from the public PDF.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "historical events of the eighteenth century bce",
+      "originalChronology": "The narrated events belong to the eighteenth century BCE. Proposed original language and subsequent textual transmission remain debated.",
+      "scopedClaim": "Chronological and textual context for the Deeds of Anitta; not independent corroboration of the cult image's return. Akkadian-original and Hittite-original proposals are distinguished.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1800-anitta-reports-nesha-cult-image-return",
+      "date": {
+        "kind": "range",
+        "startYear": -1800,
+        "endYear": -1701,
+        "displayEn": "Eighteenth century BCE (exact year unknown)",
+        "noteEn": "The interval represents the scholarly placement of the reported events in the eighteenth century BCE, not a century-long action. Anitta's account supplies no exact year for the return. The text's original language and transmission are debated; this interval does not date the surviving manuscripts. The second source supports that textual context, not independent confirmation of the return."
+      },
+      "titleEn": "Anitta reports returning Nesha's cult image",
+      "summaryEn": "Anitta's account says that he brought Nesha's deity back from Zalpuwa, where an earlier king had taken it. The passage records a royal claim to recover a city's sacred image; it does not establish an independently verified recovery of an excavated statue.",
+      "geographyEn": "Nesha and Zalpuwa, Anatolia",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc1800-goedegebuure-anitta-cult-image",
+        "bc1800-rieken-yakubovich-anitta-transmission"
+      ],
+      "selectionNote": "A notable, specifically attested royal religious restoration claim. This episode differs from the existing later establishment of Hattusa as a royal seat and from generic early Hittite state formation. The surviving narrative, its historical setting and its manuscript transmission are kept separate. No exact reign-derived year, first-ever claim, deity identification or precise modern location of Zalpuwa is inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
