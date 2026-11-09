@@ -135,6 +135,12 @@
     },
     {
       "startYear": -1100,
+      "endYear": -1001,
+      "status": "partial",
+      "note": "Six independently checked event records cover selected developments in the Americas, the Middle East and North Africa, Central Asia, East Asia, Europe and Southeast Asia. All nine macroregions were searched; sub-Saharan Africa, South Asia and Oceania have no retained event in this batch. Cerro Blanco, Chap, Protogeometric pottery and Ban Non Wat retain complete intervals; Smendes and the Zhou conquest retain competing dates. The Chap envelope does not establish continuous occupation across 240 years. The Higham 2009 PDF text was read, but screenshot access returned 403, leaving visual table verification unavailable. Ten leads remain held. Empty years remain research gaps, and interval endpoints do not establish researched later years."
+    },
+    {
+      "startYear": -1000,
       "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
