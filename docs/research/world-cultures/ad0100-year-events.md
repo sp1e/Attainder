@@ -1,0 +1,15 @@
+# Historical events, AD 100–199
+
+The reconciled candidate contains 27 events and 22 scoped references. A separate source review read passages at all 25 submitted source URLs. It returned 27 confirmed, two corrected and two unsupported events, with all 25 source records confirmed within their stated scopes. Original findings and editorial assessments remain preserved.
+
+Two display corrections explicitly identify the second century as AD 101–200. Four importance scores follow the independent recommendations: Timgad, Arikamedu–Oc Eo contact and Hadrian’s municipal grants become importance 1; the Yellow Turban uprising becomes importance 2. Numeric date endpoints, all other chronology wording and retained source fields remain unchanged.
+
+Four complete records remain withheld. Portus combines dates for different pieces of evidence without establishing a complete construction interval. The Antonine withdrawal’s open chronology does not establish a latest endpoint of 169. Moche’s early vessel-production phases and La Mojarra’s inscription are factually supported but held on standalone-event significance grounds. Their three unused references are omitted. These decisions preserve the historical findings and do not claim that the developments did not occur.
+
+Kanishka’s accession retains the explicitly attributed 127/128 framework. Cribb’s discussion of support for 78 and rejection of 227 does not become a continuous event interval. Hadrian’s Wall and the Antonine Wall keep approximate construction starts without calculated completion years. The Arikamedu and Almagest records retain the full 101–200 range. Century and reign envelopes do not establish activity in every year or researched coverage of later centuries.
+
+The author logged 63 discovery queries across nine macroregions and retained 20 earlier held leads. Europe and East Asia dominate. Sub-Saharan Africa and Oceania have no retained event, and coverage within represented regions remains incomplete. The source record distinguishes public abstracts and summaries, selected scholarly PDF passages, a publisher preview, museum descriptions and institutional histories. A transient retrieval failure was resolved at the same public URL; no persistent access blocker remained in the final source check.
+
+The bilingual additions contain 135 English event fields and 44 Swedish source locator and institution fields. Final data, bilingual and prospective integration review and required CI are separate publication checks. The publication uses a real preceding research-data commit as the locale source revision only after every old and added reference has been checked against it. Runtime language switching and gameplay remain separate integration work.
+
+Earlier author retrieval assertions and reuse permissions were not independently established. Automatic runtime skill-scan warnings remain in the private audit. Input auditing covers observed commands and immutable file checks; no operating-system isolation is claimed.

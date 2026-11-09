@@ -87,9 +87,15 @@
     },
     {
       "startYear": -1900,
-      "endYear": 199,
+      "endYear": 99,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": 100,
+      "endYear": 199,
+      "status": "partial",
+      "note": "Twenty-seven independently checked records cover Roman political and military developments, maritime contacts, scientific and technical works, Chinese court changes and Buddhist translations, and Teotihuacan civic rebuilding. Four other candidates remain withheld, two for unresolved complete chronology and two for standalone-event significance. Full intervals and attributed chronologies remain explicit, including AD 101–200 and Kanishka 127/128. Searches covered nine regions; sub-Saharan Africa and Oceania have no retained event, and represented regions remain incomplete. Empty years remain research gaps, and later interval endpoints establish no annual occurrence or researched coverage of later centuries."
     },
     {
       "startYear": 200,
