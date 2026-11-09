@@ -8,9 +8,16 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The current [BC2200 English supplement](../research/world-cultures/english-events/bc2200-supplement.md) adds two approved research records, four source records and ten English display fields. They concern La Bastida's fortification and Utuhegal's victory over the Gutians. A fresh final review confirmed the exact La Bastida importance correction, both selection notes and all unchanged historical and English fields. These research counts are separate from the gameplay catalog totals above. Publication requires current-head CI and a verified merge.
+The English research deliveries now contain four approved records, seven source records and twenty display fields, separate from the gameplay catalog totals above.
 
-Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. The next active batch concerns regional gaps in AD 300–399; its unapproved candidates do not count as delivered research.
+| Batch | Research records | Sources | English display fields | Publication |
+|---|---:|---:|---:|---|
+| [2200–2101 BC](../research/world-cultures/english-events/bc2200-supplement.md) | 2 | 4 | 10 | Merged and remote-verified in [PR #109](https://github.com/sp1e/Attainder/pull/109), commit `f6ca54d0bd77f6480eadf8c940d0ab602539ecac` |
+| [AD 300–399](../research/world-cultures/english-events/ad0300-supplement.md) | 2 | 3 | 10 | Source, English and integration reviews approved; current-head CI and verified merge required |
+
+PR #109 passed 5,337 tests with no failures and two TODOs; the build passed. Its source correction reduced La Bastida's importance to 1. The AD300 batch concerns Meroe's royal pyramid burials and Teotihuacan's Adosada platform. Its exact correction removes an unsupported temporal ordering of damage to other façades. Original HOLD reports remain preserved separately from the final approvals.
+
+Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. The next active batches concern 2100–2001 BC and 1700–1601 BC; their records do not enter the delivery totals until integration.
 
 ## Earlier catalog delivery
 
