@@ -1,0 +1,57 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc2800-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -2800,
+    "endYear": -2701
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "53d2ae9ca1dc7a2ccd48abee5235ddcd5a539ce6",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc2800en-palafittes-vinelz-pottery",
+      "title": "CH-BE-08 — Vinelz | Strandboden",
+      "institution": "International and Swiss Coordination Group UNESCO Palafittes",
+      "url": "https://www.media.palafittes.org/fundstelle-en.html?sid=435",
+      "locator": "Site CH-BE-08, Vinelz | Strandboden, Short Description, paragraphs 1–2; web lines 52–58. Public archaeological site summary, not the cited Suter 2017 monograph.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "New pottery shapes and decoration begin around 2750 BC. The account places successive villages between 3160 and 2620 BC; this wider occupation interval does not date the pottery change precisely.",
+      "asWorded": "Beginning around 2750 BC, new shapes and decorations appear",
+      "scopedClaim": "At Vinelz–Strandboden, Corded Ware elements appear in pottery and are integrated with local traditions in the Three Lakes region, forming the Auvernier-Cordé style.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc2750-vinelz-pottery-adopts-corded-ware-elements",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2750,
+        "endYear": -2750,
+        "displayEn": "Around 2750 BC",
+        "noteEn": "The site account dates the appearance of new pottery forms approximately. This is not the founding date of Vinelz or the first appearance of Corded Ware anywhere; the account notes earlier examples elsewhere in northern Switzerland."
+      },
+      "titleEn": "Vinelz pottery incorporates Corded Ware elements",
+      "summaryEn": "New vessel shapes and cord-impressed decoration appear at Vinelz–Strandboden. In the Three Lakes region, these elements combine with local pottery traditions to produce the Auvernier-Cordé style.",
+      "geographyEn": "Vinelz–Strandboden on Lake Biel and the Three Lakes region, present-day Switzerland",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc2800en-palafittes-vinelz-pottery"
+      ],
+      "selectionNote": "A notable local adoption and adaptation of a wider pottery tradition, dated only approximately by the site account. It does not date the village's foundation, migration or the first Corded Ware pottery, and remains distinct from earlier Swiss house construction and steppe expansion records.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
