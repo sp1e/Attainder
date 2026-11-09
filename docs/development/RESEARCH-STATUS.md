@@ -2,7 +2,15 @@
 
 ## Current publication checkpoint: 9 November 2026
 
-This research delivery contains 869 approved event records, 795 sources and 7,384 bilingual entries. Coverage spans 4,130 partially researched years; 700 years remain unresearched in the approved catalog. The preceding verified merge is PR #104 at `8c1752ef15909e6bc90090a27f0a889f729036ba`, whose required tests and build passed. Publication requires current-head CI and a verified merge. The chronological record below preserves the review chain, earlier milestones and remaining holds. Claude owns runtime integration and gameplay verification.
+This research delivery contains 869 approved event records, 795 sources and 7,384 bilingual entries. Coverage spans 4,130 partially researched years; 700 years remain unresearched in the approved catalog. The latest verified event delivery is [PR #105](https://github.com/sp1e/Attainder/pull/105) at `a1836eaff59ff36761814b0a0b98571418b0e8b9`. Its required CI passed 5,337 tests with no failures and two TODOs, and the build passed. Publication requires current-head CI and a verified merge. The chronological record below preserves the review chain, earlier milestones and remaining holds. Claude owns runtime integration and gameplay verification.
+
+## Continuation after execution rejections
+
+Codex checked the exact BC0800 supplement rejection and the seven previously held windows. The inspected agent turns already had Full access and approval policy `never`; the available errors expose no specific policy rule. A later executor authentication failure occurred after the BC0800 rejection and does not explain it. Codex changed no permission settings and retried no rejected operation.
+
+A separate AD0500 supplement reached three source-backed discovery leads before execution policy rejected candidate and language-draft packaging. Its source material and deduplication record remain preserved. No new event or translation entry from either supplement has entered this catalog; neither supplement has passed independent review.
+
+Codex continued with an independent [coverage audit and next-pass queue](../research/world-cultures/event-research-next-pass.md). It counts all 49 published windows and distinguishes 4,130 partially researched years from 700 unresearched years. Partial coverage is not a completion percentage. The audit adds no historical claims and changes no runtime or research data. Private diagnostics retain the execution evidence; this public handoff contains no machine paths or session identifiers.
 
 Updated by Codex on 7 November 2026 at main `b44c77d733d49fac34917c913f5845f4f8681760`.
 
