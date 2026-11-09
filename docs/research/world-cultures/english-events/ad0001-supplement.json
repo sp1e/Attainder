@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad0001-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 1,
+    "endYear": 99
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0001-posen-philo-alexandria",
+      "title": "Riots in Alexandria, 38 CE",
+      "institution": "Posen Library of Jewish Culture and Civilization",
+      "url": "https://www.posenlibrary.com/entry/riots-alexandria-38-ce",
+      "locator": "Philo, Against Flaccus 45–75 (selections), introductory note, sections 53–62 and credits. Translation by Pieter W. van der Horst, Philo's Flaccus: The First Pogrom (2003), pp. 62–67. Public web text read; not downloaded.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Riots in Alexandria, 38 CE",
+      "originalChronology": "The entry identifies the violence as 38 CE and dates Philo's account to c. 39–40.",
+      "scopedClaim": "Philo's account of loss of rights, expulsions, plunder and killings in Alexandria; attribution to the prefect and the account's perspective.",
+      "reuseTerms": "Reference only; no source prose or images redistributed. The site prohibits printing or downloading this licensed text."
+    },
+    {
+      "id": "ad0001-vanderhorst-alexandria",
+      "title": "The first pogrom: Alexandria 38 CE",
+      "institution": "Cambridge University Press / European Review",
+      "url": "https://www.cambridge.org/core/journals/european-review/article/abs/first-pogrom-alexandria-38-ce/2889F5058BEE0E460DF22524DAEF5A9D",
+      "locator": "Pieter W. van der Horst, European Review 10(4), October 2002, pp. 469–484, DOI 10.1017/S1062798702000388. Public abstract and bibliographic information only; full article not read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "in the year 38 CE",
+      "originalChronology": "The abstract places the violence in 38 CE.",
+      "scopedClaim": "Year and source criticism: Philo's eyewitness account is shaped by theological concerns and does not explain the causes. The abstract's proposed causes and first-in-history claim are not adopted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-ad0038-alexandria-anti-jewish-violence",
+      "date": {
+        "kind": "exact",
+        "startYear": 38,
+        "endYear": 38,
+        "displayEn": "38 CE",
+        "noteEn": "The year dates the violence, not Philo's account, which Posen places around 39–40. His surviving eyewitness narrative is polemical and shaped by theological concerns. Its explanation of responsibility is retained as attribution; no casualty total or single cause is established here."
+      },
+      "titleEn": "Alexandria's Jews face persecution and expulsion",
+      "summaryEn": "Violence drives Jewish residents from their homes in Alexandria, accompanied by looting and killings. Philo links the persecution to the prefect Flaccus's declaration that Jews were foreigners and to the removal of their rights.",
+      "geographyEn": "Alexandria, Roman Egypt",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0001-posen-philo-alexandria",
+        "ad0001-vanderhorst-alexandria"
+      ],
+      "selectionNote": "A major urban crisis affecting a Jewish diaspora community in Roman Egypt, selected for the connection between official exclusion and collective violence. This is distinct from Jerusalem's capture in 70 and the diaspora revolt of 115–117. The two references do not constitute independent eyewitness accounts: van der Horst also translated the Philo passage.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
