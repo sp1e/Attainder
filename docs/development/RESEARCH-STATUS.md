@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain fifty-three approved records, ninety-three source records and two hundred and sixty-five display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain fifty-five approved records, ninety-six source records and two hundred and seventy-five display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -32,7 +32,8 @@ The English research deliveries now contain fifty-three approved records, ninety
 | [3200–3101 BC](../research/world-cultures/english-events/bc3200-supplement.md) | 1 | 1 | 5 | Merged and remote-verified in [PR #142](https://github.com/sp1e/Attainder/pull/142), commit `d3ed5fa726d41f86ccbc05523e8ff67e6c731de7` |
 | [500–401 BC](../research/world-cultures/english-events/bc0500-supplement.md) | 2 | 4 | 10 | Merged and remote-verified in [PR #143](https://github.com/sp1e/Attainder/pull/143), commit `d089d0dc5f9ad1627791762bf933a99492578758` |
 | [2800–2701 BC](../research/world-cultures/english-events/bc2800-supplement.md) | 1 | 1 | 5 | Reviewed in [PR #144](https://github.com/sp1e/Attainder/pull/144); current-head CI and verified merge required |
-| [400–301 BC](../research/world-cultures/english-events/bc0400-supplement.md) | 1 | 2 | 5 | Source and final review passed; current-head CI and verified merge required |
+| [400–301 BC](../research/world-cultures/english-events/bc0400-supplement.md) | 1 | 2 | 5 | Reviewed in [PR #145](https://github.com/sp1e/Attainder/pull/145); current-head CI and verified merge required |
+| [2700–2601 BC](../research/world-cultures/english-events/bc2700-supplement.md) | 2 | 3 | 10 | Substantive final review passed with a disclosed nonblocking procedure finding; current-head CI and verified merge required |
 | [2100–2001 BC](../research/world-cultures/english-events/bc2100-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #111](https://github.com/sp1e/Attainder/pull/111), commit `d058dfd9a2e3e29150e08e4f0ea027cafdfcd1b4` |
 | [1700–1601 BC](../research/world-cultures/english-events/bc1700-supplement.md) | 2 | 5 | 10 | Merged and remote-verified in [PR #112](https://github.com/sp1e/Attainder/pull/112), commit `0c8058fe4974e358cfb2028d96f03ea69446820d` |
 | [AD 700–799](../research/world-cultures/english-events/ad0700-supplement.md) | 2 | 4 | 10 | Merged and remote-verified in [PR #113](https://github.com/sp1e/Attainder/pull/113), commit `e64f91bbef9491e750ccb49020f53c2ac68f774d` |
@@ -47,6 +48,8 @@ The English research deliveries now contain fifty-three approved records, ninety
 | [AD 1400–1499](../research/world-cultures/english-events/ad1400-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #121](https://github.com/sp1e/Attainder/pull/121), commit `d60d09a7fdf097f52429da370829c85c2a72b5b3` |
 | [AD 1500–1530](../research/world-cultures/english-events/ad1500-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #120](https://github.com/sp1e/Attainder/pull/120), commit `aff37caa8b5221180c3f30eff0fdadb0bf0c91bd` |
 
+BC2700 adds the approximate Thy grazing-landscape change and Khasekhemwy's Abydos cult enclosure. Source and full final review approved both unchanged episodes and all twelve English texts. The original nonblocking procedure finding remains disclosed: process metadata was read under conflicting prompt/manifest read-mode wording, without exposing additional historical selection material or changing inputs. Root verified fifty-two frozen inputs and available original-copy pairs, twelve text hashes and thirty-two committed comparison files. The less-than-a-century development supplies no invented end year; the two Abydos accounts remain related project evidence.
+
 BC0400 adds the Mausoleum building campaign at Halicarnassus. Getty's approximate 367–350 BCE interval and Pedersen's interpretation of construction during Maussollos's lifetime remain distinct from later accounts attributing the project to Artemisia. Both review stages approved the unchanged historical text, selection note and public note. Integration verified fifty-eight frozen inputs, six text hashes and thirty-three committed comparison files. The Sais decree remains outside this delivery after technical connection failures.
 
 PR #143 passed 5,344 tests with no failures and two TODOs; the build passed. The remote merge, first parent, complete tree, retained head and changed blobs were verified. Merged main contains fifty-one English events and ninety source records; later additions above await publication checks.
@@ -55,7 +58,7 @@ BC2800 adds the approximate adoption of Corded Ware pottery elements at Vinelz�
 
 PRs #140, #141 and #142 each passed 5,344 tests with no failures and two TODOs, followed by successful builds. Their remote merges, first parents, complete trees, retained heads and changed blobs were verified. Merged main contains forty-nine English events and eighty-six source records; the later additions above await their own publication checks.
 
-BC0500 adds Marquis Yi's musical burial and the Elephantine restoration petition. Source and final review approved all historical text and both selection notes unchanged. The approximate 433/430 BCE burial alternatives remain distinct from the inscribed bell's date; the 407 BCE petition does not establish successful rebuilding. Posen's restricted translation was not accessed. A separate BC2900 discovery pass produced no defensible new event after competing chronology and access limitations; it changes no coverage count. Research continues in BC2700, BC0300 and BC0200.
+BC0500 adds Marquis Yi's musical burial and the Elephantine restoration petition. Source and final review approved all historical text and both selection notes unchanged. The approximate 433/430 BCE burial alternatives remain distinct from the inscribed bell's date; the 407 BCE petition does not establish successful rebuilding. Posen's restricted translation was not accessed. A separate BC2900 discovery pass produced no defensible new event after competing chronology and access limitations; it changes no coverage count. Research continues in BC0300, BC0200 and BC0100.
 
 PRs #109 and #110 each passed 5,337 tests with no failures and two TODOs; both builds passed. The BC2200 source correction reduced La Bastida's importance to 1. The AD300 batch concerns Meroe's royal pyramid burials and Teotihuacan's Adosada platform; its correction removes an unsupported temporal ordering of damage to other façades. BC2100 adds a regional sealing-technology event while withholding a separate law-collection candidate whose required passages were not fully verified. Original HOLD reports remain preserved separately from the final approvals.
 
