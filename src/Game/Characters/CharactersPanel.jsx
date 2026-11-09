@@ -309,7 +309,7 @@ function ElectionTally({ election }) {
   if (!election) return null;
   return <div className="char-goal char-election"><span>Elektorernas röster</span>
     <ul>{election.candidates.map((candidate) => <li key={candidate.id}><strong>{candidate.name}</strong> · {candidate.votesLabel}</li>)}</ul>
-    {election.electors.length > 0 ? <details className="char-explanation"><summary>Varje elektors röst</summary><ul>{election.electors.map((elector) => <li key={elector.id}>{elector.name} röstar på {elector.candidateName}</li>)}</ul></details> : <p className="char-caption">{election.precision === 'three' ? 'Med bättre underrättelser syns hur många röster var och en har.' : 'Med bättre underrättelser syns varje elektors röst.'}</p>}
+    {election.electors.length > 0 ? <details className="char-explanation"><summary>Varje elektors röst</summary><ul>{election.electors.map((elector) => <li key={elector.id}>{elector.name} röstar på {elector.candidateName}</li>)}</ul></details> : election.precision !== 'exact' && <p className="char-caption">{election.precision === 'three' ? 'Med bättre underrättelser syns hur många röster var och en har.' : 'Med bättre underrättelser syns varje elektors röst.'}</p>}
     <p className="char-caption">Rådet och husens huvudmän väljer bland de tre främsta kandidaterna. Varje elektor väger förmåga mot sin egen åsikt om kandidaten, så en gåva eller Påverka kan flytta en röst.</p>
   </div>;
 }

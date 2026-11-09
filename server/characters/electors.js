@@ -16,7 +16,7 @@ export function electorsOf(state, oldRuler) {
   return [...ids].map((id) => state.people[id]).filter(eligible).sort(byId);
 }
 
-/** The ballot candidate the elector backs: the highest merit plus a tenth of the elector's opinion, the earlier on the ballot on a tie. A candidate backs themself. */
+/** The ballot candidate the elector backs: the highest merit plus a fifth of the elector's opinion, the earlier on the ballot on a tie. A candidate backs themself. */
 export function electorChoice(elector, ballot, score, opinion) {
   if (ballot.some((candidate) => candidate.id === elector.id)) return elector.id;
   let best = null, bestValue = -Infinity;
@@ -46,6 +46,7 @@ export function electionOrder(ordered, tally) {
 }
 
 const votesLabel = (candidate, tally, precision) => {
+  if (!tally.votes.length) return 'inga elektorer röstar';
   if (precision !== 'three') return `${candidate.votes} av ${tally.votes.length} röster`;
   return candidate.id === tally.winnerId ? 'leder' : 'ligger efter';
 };

@@ -52,6 +52,19 @@ test('the house adults stand; a house of minors passes without a vote; with the 
   assert.deepEqual([outsiders.ballot.map((c) => c.id), outsiders.winnerId], [['person-1-0', 'person-2-0', 'person-3-0'], 'person-1-0']);
 });
 
+test('a tie in votes goes to the earlier candidate, and a candidate who is an elector votes for themself', () => {
+  const state = court(), ruler = state.people[RULER], people = (ids) => ids.map((id) => state.people[id]);
+  // person-1-0 and person-2-0 stand and back themselves; the other three electors split two to one by opinion.
+  const opinion = (from, to) => ((from === 'person-3-0' || from === 'person-1-2') === (to === 'person-2-0') ? 50 : 0);
+  const tally = tallyElection(state, ruler, { adults: people(['person-1-0', 'person-2-0']), minors: [], others: [] }, () => 0, opinion);
+  assert.deepEqual(tally.ballot, [{ id: 'person-1-0', votes: 2 }, { id: 'person-2-0', votes: 3 }]);
+  assert.equal(tally.winnerId, 'person-2-0');
+  const even = tallyElection(state, ruler, { adults: people(['person-1-0', 'person-2-0']), minors: [], others: [] }, () => 0, (from, to) => (from === 'person-1-2' && to === 'person-2-0' ? 50 : 0));
+  assert.deepEqual([even.ballot.map((c) => c.votes), even.winnerId], [[3, 2], 'person-1-0']);
+  const tied = tallyElection({ ...state, families: {}, offices: { ...state.offices, chancellor: { holderId: null }, general: { holderId: 'person-1-0' }, spymaster: { holderId: 'person-2-0' } } }, ruler, { adults: people(['person-1-0', 'person-2-0']), minors: [], others: [] }, () => 0, () => 0);
+  assert.deepEqual([tied.ballot.map((c) => c.votes), tied.winnerId], [[1, 1], 'person-1-0']);
+});
+
 test('the electors follow merit, and turning them against the favourite crowns the next', () => {
   const state = court({ grown: true });
   const forecast = getSuccessionForecast(state);
