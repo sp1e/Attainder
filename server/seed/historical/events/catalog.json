@@ -5648,6 +5648,246 @@
       "originalChronology": "The brick's museum range is approximately 2112–2095 BCE. The page places the Akkadian empire around 2350–2150 BC, differing from RMO's around-2200 fragmentation estimate.",
       "reuseTerms": "Reference only; no source prose or images redistributed",
       "scopedClaim": "A stamped Sumerian brick from Nippur names Ur-Nammu, king of Ur and of Sumer and Akkad, and credits him with building Enlil's temple."
+    },
+    {
+      "id": "ad0300-met-south-asia",
+      "title": "South Asia, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/05/ssa.html",
+      "locator": "“Key Events”, entry “4th century A.D.”, paragraph on the early Puranas.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "4th century A.D.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "4th century A.D.",
+      "scopedClaim": "Composition of early Puranas in the fourth century; the tradition continued in later centuries."
+    },
+    {
+      "id": "ad0300-culture-ezana",
+      "title": "Le règne d’Ezänâ",
+      "institution": "Ministère de la Culture (France)",
+      "url": "https://archeologie.culture.gouv.fr/axoum/fr/le-regne-dezana",
+      "locator": "Main text, first paragraph, conversion “vers 330” and royal coin imagery.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "vers 330",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "vers 330",
+      "scopedClaim": "Ezana’s conversion around 330; an alternative to the Ashmolean chronology."
+    },
+    {
+      "id": "ad0300-ashmolean-aksum",
+      "title": "PAST EXHIBITION: AKSUM",
+      "institution": "Ashmolean Museum, University of Oxford",
+      "url": "https://www.ashmolean.org/event/aksum-late-antique-empire-faith-africa",
+      "locator": "Exhibition introduction, paragraph on royal conversion around AD 360; preceding Ezanas coin caption.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "around AD 360",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "around AD 360",
+      "scopedClaim": "Royal conversion in Aksum around 360; an alternative to the French Ministry of Culture chronology."
+    },
+    {
+      "id": "ad0300-idp-sogdian-letters",
+      "title": "The Sogdian Letters 1, 2, 3, 5",
+      "institution": "Nicholas Sims-Williams, translation; Daniel C. Waugh, introduction; International Dunhuang Programme, British Library",
+      "url": "https://idp.bl.uk/references/Sims-Williams_2004/",
+      "locator": "Introduction, dating discussion; Letter 1, Miwnay to Chatis; Letter 2, address, salutation and report of disorder in China. Translation and introduction dated 2004.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "313 (-314) C.E.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "313 (-314) C.E.",
+      "scopedClaim": "Approximate dating of the ancient letters; Miwnay’s appeal to her mother and Nanai-vandak’s letter to Varzakk in Samarkand."
+    },
+    {
+      "id": "ad0300-idp-letter-two",
+      "title": "Or.8212/95: Sogdian Ancient Letter 2",
+      "institution": "British Library; International Dunhuang Programme",
+      "url": "https://idp.bl.uk/collection/A141F9841B0B4BE1BDDA4FE6E2265948/",
+      "locator": "Object Or.8212/95: title, “Date”, “Find site” and physical-description fields.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "313 to 314",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "313 to 314",
+      "scopedClaim": "Letter 2 dated 313–314; addressee in Samarkand and findspot at the Dunhuang Limes."
+    },
+    {
+      "id": "ad0300-met-korea",
+      "title": "The Arts of Korea: A Resource for Educators",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://resources.metmuseum.org/resources/metpublications/pdf/The_Arts_of_Korea_A_Resource_for_Educators.pdf",
+      "locator": "“A Timeline of Korean History and Art”, printed p. 19, entries for 313, 372 and 384. Internal chronology conflict: printed p. 28, paragraph beginning Koguryô.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "313; 372; 384 The timeline and commandery interval place 313 in AD; the paragraph on printed p. 28 instead prints 313 B.C. This internal inconsistency remains unresolved.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "313; 372; 384",
+      "scopedClaim": "Goguryeo takes Lelang in 313; Buddhism introduced to Goguryeo in 372 and Baekje in 384."
+    },
+    {
+      "id": "ad0300-met-china",
+      "title": "China, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/zh/toah/ht/05/eac.html",
+      "locator": "“Key Events”, passages on the Eastern Jin court in 317 and the “ca. 386 A.D.” Northern Wei entry. English body text at this URL.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "317 A.D.; ca. 386 A.D.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "317 A.D.; ca. 386 A.D.",
+      "scopedClaim": "Eastern Jin established south of the Yangtze with its capital at Nanjing; Tuoba establish Northern Wei around 386."
+    },
+    {
+      "id": "ad0300-asianart-buddha",
+      "title": "Buddha dated 338",
+      "institution": "Asian Art Museum, San Francisco",
+      "url": "https://collections.asianart.org/collection/seated-buddha-dated-338/",
+      "locator": "B60B1034, object heading and material/geography fields; “The Arrival of Buddhism in China”, Fotudeng paragraph; “The Inscription”.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "310; fourth year of the Jianwu reign era (338)",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "310; fourth year of the Jianwu reign era (338)",
+      "scopedClaim": "Fotudeng’s arrival in the Central Plains in 310; gilded bronze Buddha attributed to Hebei, inscription dated by the museum to 338."
+    },
+    {
+      "id": "ad0300-unesco-anak",
+      "title": "Preservation of the Koguryo Kingdom Tombs",
+      "institution": "UNESCO",
+      "url": "https://whc.unesco.org/uploads/activities/documents/activity-275-1.pdf",
+      "locator": "Caption headed “Anak III Tomb (357 CE) in Hwanghae Province”; sentence identifying the inscribed date of construction.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "357 CE",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "357 CE",
+      "scopedClaim": "Construction date of Anak III tomb as described in the UNESCO caption; no identification of the tomb owner."
+    },
+    {
+      "id": "ad0300-mesoweb-siyaj",
+      "title": "Los Gobernantes de Tikal: Siyaj K’ak’",
+      "institution": "Mesoweb; account citing Simon Martin, Nikolai Grube and David Stuart",
+      "url": "https://www.mesoweb.com/es/gobernantes/tikal/Siyaj_Kak.html",
+      "locator": "Main biographical text, first three paragraphs: arrival in 378, Chak Tok Ich’aak’s death and Yax Nuun Ayiin I’s accession in 379.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "378 d.C.; 379 d.C.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "378 d.C.; 379 d.C.",
+      "scopedClaim": "Siyaj K’ak’s arrival at Tikal in 378 and role in Yax Nuun Ayiin I’s accession in 379; the death of the prior king is recorded, execution is an interpretation."
+    },
+    {
+      "id": "ad0300-met-italy",
+      "title": "Italian Peninsula, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/05/eust.html",
+      "locator": "“Key Events”, entries 320–327, 330, 391 and 395 A.D.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "320–327 A.D.; 330 A.D.; 391 A.D.; 395 A.D.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "320–327 A.D.; 330 A.D.; 391 A.D.; 395 A.D.",
+      "scopedClaim": "Old Saint Peter’s construction, Constantinople as capital, temple-closure order and succession of Arcadius and Honorius."
+    },
+    {
+      "id": "ad0300-met-roman-empire",
+      "title": "The Roman Empire (27 B.C.–393 A.D.)",
+      "institution": "Christopher Lightfoot, Department of Greek and Roman Art, The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/ko/essays/the-roman-empire-27-b-c-393-a-d",
+      "locator": "Essay dated October 2000, final three historical paragraphs: Constantine in 324, the Huns in the 370s and Valens in 378. English body text at this URL.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "324 A.D.; 370s A.D.; 378 A.D.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "324 A.D.; 370s A.D.; 378 A.D.",
+      "scopedClaim": "Constantine reunites the empire; Hunnic pressure and displacement near the Danube in the 370s; defeat and death of Valens in 378."
+    },
+    {
+      "id": "ad0300-fordham-toleration",
+      "title": "Edicts of Toleration 311/313 AD",
+      "institution": "Internet History Sourcebooks Project, Fordham University; Lactantius excerpts",
+      "url": "https://sourcebooks.fordham.edu/source/edict-milan.asp",
+      "locator": "Sections headed “Edict of Galerius, 311 AD” and “Edict of Milan, 313 AD”: permission for Christian assemblies and religious choice.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "311 AD; 313 AD",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "311 AD; 313 AD",
+      "scopedClaim": "Galerius permits Christian assemblies subject to public order; Constantine and Licinius announce religious toleration in the later text."
+    },
+    {
+      "id": "ad0300-ammianus-treaty",
+      "title": "Ammianus Marcellinus, Roman History, Book XXV",
+      "institution": "Loeb Classical Library edition (1940); Bill Thayer, LacusCurtius, hosted by the University of Chicago",
+      "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Ammian/25*.html",
+      "locator": "Book XXV, 7.9–11: treaty terms, five provinces, Nisibis and Singara. The passage supplies treaty content; Bury supplies the AD year.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Book XXV, 7.9–11; no Common Era year in this passage",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "Book XXV, 7.9–11; no Common Era year in this passage",
+      "scopedClaim": "Territorial terms of Jovian’s treaty; corroborates the content of the event dated 363 by Bury."
+    },
+    {
+      "id": "ad0300-bury-jovian",
+      "title": "J. B. Bury, History of the Later Roman Empire, volume I, chapter IV",
+      "institution": "J. B. Bury; LacusCurtius transcription, hosted by the University of Chicago",
+      "url": "https://penelope.uchicago.edu/Thayer/e/roman/texts/secondary/burlat/4*.html",
+      "locator": "Chapter IV, printed pp. 93–94, paragraph on Jovian’s treaty in AD 363 and the Roman–Persian boundary. See also author’s note 10 on the disputed province enumeration.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "A.D. 363",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "A.D. 363",
+      "scopedClaim": "Dates Jovian’s territorial settlement to AD 363 and identifies Nisibis and Singara as Persian afterward; note 10 disputes the province enumeration, treating Moxoene and Rehimene as parts of other provinces and counting three restored provinces."
+    },
+    {
+      "id": "ad0300-fordham-nicaea",
+      "title": "Documents from the First Council of Nicea",
+      "institution": "Henry R. Percival, editor, The Seven Ecumenical Councils; Internet History Sourcebooks Project, Fordham University",
+      "url": "https://sourcebooks.fordham.edu/basis/nicea1.txt",
+      "locator": "Council heading “A.D. 325”; “The Nicene Creed”, sentences on the Son being of one substance with the Father.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "A.D. 325",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "A.D. 325",
+      "scopedClaim": "The council’s creed states that the Son is of one substance with the Father."
+    },
+    {
+      "id": "ad0300-fordham-constantinople",
+      "title": "Documents from the First Council of Constantinople",
+      "institution": "Henry R. Percival, editor, The Seven Ecumenical Councils; Internet History Sourcebooks Project, Fordham University",
+      "url": "https://sourcebooks.fordham.edu/basis/const1.txt",
+      "locator": "Council heading “A.D. 381”; “CANON III”, precedence of honour for Constantinople after Rome.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "A.D. 381",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "A.D. 381",
+      "scopedClaim": "Canon III grants the bishop of Constantinople precedence of honour after the bishop of Rome, because Constantinople is New Rome."
+    },
+    {
+      "id": "ad0300-thommen-earthquakes",
+      "title": "Earthquakes and volcanoes, An Environmental History of Ancient Greece and Rome, chapter 19",
+      "institution": "Lukas Thommen; Cambridge University Press",
+      "url": "https://www.cambridge.org/core/books/abs/an-environmental-history-of-ancient-greece-and-rome/earthquakes-and-volcanoes/FEE10CA4A350BC1BB50138AFE62726A9",
+      "locator": "Public chapter summary, paragraph on Nicomedia in AD 358 and the earthquake and tsunami of AD 365. The full chapter, pp. 114–120, was not accessed.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "AD 358; AD 365",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "AD 358; AD 365",
+      "scopedClaim": "Earthquake and fire at Nicomedia in 358; earthquake and tsunami affecting Mothone and Alexandria in 365."
+    },
+    {
+      "id": "ad0300-ritner-egypt",
+      "title": "Egypt under Roman rule: the legacy of ancient Egypt, The Cambridge History of Egypt, volume I",
+      "institution": "Robert K. Ritner; Cambridge University Press",
+      "url": "https://assets.cambridge.org/052147/1370/sample/0521471370web.pdf",
+      "locator": "Public sample, printed p. 26: Pachomius’s baptism in 313 and the formal transfer of the capital in 331.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "313; 331",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "313; 331",
+      "scopedClaim": "Pachomius’s baptism in 313; capital-transfer date 331, retained alongside the Met’s 330."
+    },
+    {
+      "id": "ad0300-split-submission",
+      "title": "Diocletian’s Palace and the Historical Nucleus of Split (extension)",
+      "institution": "Croatia tentative-list submission; hosted by UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/fr/listesindicatives/2015/",
+      "locator": "“Aqueduct”, “History and Development”, sentence identifying Diocletian’s abdication in 305.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Diocletian’s abdication (in 305)",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "Diocletian’s abdication (in 305)",
+      "scopedClaim": "Diocletian’s abdication in 305; no inference that the aqueduct or palace was completed that year."
     }
   ],
   "events": [
@@ -17767,6 +18007,706 @@
         "bc2200-manning-levant"
       ],
       "selectionNote": "Regional environmental context. Use the authors' explicit BCE range without BP conversion, a global synchronous event or a causal link to political collapse.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0301-tidiga-puranatexter",
+      "date": {
+        "kind": "range",
+        "startYear": 301,
+        "endYear": 400,
+        "displaySv": "Fjärde århundradet e.Kr. (301–400)",
+        "noteSv": "Museet placerar sammanställningen av tidiga puranatexter i fjärde århundradet e.Kr. (301–400). Texttraditionen fortsatte under senare århundraden."
+      },
+      "titleSv": "Författare sammanställer tidiga puranatexter",
+      "summarySv": "Författare sammanställer tidiga puranatexter om gudar, siare, hjältar och kungar. Museet placerar arbetet i fjärde århundradet e.Kr.; sammanställningen fortsätter under senare århundraden.",
+      "geographySv": "Sydasien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-met-south-asia"
+      ],
+      "selectionNote": "Represents a dated phase of textual composition without assigning completion of the entire tradition to this century.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0305-diocletianus-abdikerar",
+      "date": {
+        "kind": "exact",
+        "startYear": 305,
+        "endYear": 305,
+        "displaySv": "305 e.Kr.",
+        "noteSv": "Året anges uttryckligen i Kroatiens nomineringsförslag. Det fastställer inte när palatset eller akvedukten i Split färdigställdes."
+      },
+      "titleSv": "Diocletianus abdikerar",
+      "summarySv": "Diocletianus lämnar kejsarämbetet. Kroatiens nomineringsförslag daterar hans abdikation till 305.",
+      "geographySv": "Romarriket",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-split-submission"
+      ],
+      "selectionNote": "A dated imperial abdication, distinguished from inferred construction dates.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0310-fotudeng-kommer-till-kina",
+      "date": {
+        "kind": "exact",
+        "startYear": 310,
+        "endYear": 310,
+        "displaySv": "310 e.Kr.",
+        "noteSv": "Museets redogörelse anger 310 för ankomsten till Centralslätten. Fotudengs senare verksamhet ges inget gemensamt startår här."
+      },
+      "titleSv": "Fotudeng anländer till Kinas centralslätt",
+      "summarySv": "Munken Fotudeng kommer till Centralslätten i Kina. Där predikar han buddhismen och söker anhängare.",
+      "geographySv": "Centralslätten, Kina",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-asianart-buddha"
+      ],
+      "selectionNote": "A named monk’s arrival marks religious activity independently of the later dated statue.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0311-galerius-tillater-kristna-sammankomster",
+      "date": {
+        "kind": "exact",
+        "startYear": 311,
+        "endYear": 311,
+        "displaySv": "311 e.Kr.",
+        "noteSv": "Året följer utgivarens rubrik till Galerius edikt. Den återgivna texten anger också en romersk konsuldatering."
+      },
+      "titleSv": "Galerius tillåter kristna sammankomster",
+      "summarySv": "Galerius tillåter kristna att åter samlas för sin religionsutövning. I den återgivna texten kräver han att de respekterar den allmänna ordningen.",
+      "geographySv": "Romarriket; texten anger Nikomedia för utfärdandet",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-fordham-toleration"
+      ],
+      "selectionNote": "A specific toleration measure before the later Constantine–Licinius declaration.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0313-goguryeo-intar-lelang",
+      "date": {
+        "kind": "exact",
+        "startYear": 313,
+        "endYear": 313,
+        "displaySv": "313 e.Kr.",
+        "noteSv": "Årtalet följer museets tidslinje. Ett senare stycke i samma publikation anger 313 f.Kr.; den interna motsägelsen är olöst här. Ingen månad eller dag anges."
+      },
+      "titleSv": "Goguryeo intar Lelang",
+      "summarySv": "Goguryeo intar Lelang i norra delen av Koreahalvön. Museets tidslinje daterar erövringen till 313.",
+      "geographySv": "Norra Koreahalvön",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-met-korea"
+      ],
+      "selectionNote": "A major change in control on the Korean Peninsula.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0313-konstantin-licinius-religionsfrihet",
+      "date": {
+        "kind": "exact",
+        "startYear": 313,
+        "endYear": 313,
+        "displaySv": "313 e.Kr.",
+        "noteSv": "Året följer utgivarens datering av texten som brukar kallas Milanoediktet. Händelsen gör inget påstående om ett bevarat, undertecknat original från Milano."
+      },
+      "titleSv": "Konstantin och Licinius medger fri religionsutövning",
+      "summarySv": "Konstantin och Licinius medger kristna och andra att följa den religion de väljer. Den återgivna texten hänvisar till deras möte i Milano.",
+      "geographySv": "Romarriket; möte i Milano",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "ad0300-fordham-toleration"
+      ],
+      "selectionNote": "An imperial religious-toleration statement preserved through a literary source.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0313-miwnay-skriver-till-sin-mor",
+      "date": {
+        "kind": "range",
+        "startYear": 313,
+        "endYear": 314,
+        "displaySv": "cirka 313–314 e.Kr.",
+        "noteSv": "Utgivaren daterar brevgruppen ungefär till 313–314 och redovisar att dateringen har diskuterats. Det bevarade brevet visar inte att mottagaren fick det."
+      },
+      "titleSv": "Miwnay ber sin mor om hjälp i ett brev",
+      "summarySv": "Miwnay skriver till sin mor Chatis om sin utsatta situation i Dunhuang. Hon ber om hjälp att återvända till modern.",
+      "geographySv": "Dunhuang, Kina; en sogdisk familjs brevväxling",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ad0300-idp-sogdian-letters"
+      ],
+      "selectionNote": "A dated personal voice from a Sogdian community, distinct from state and military narratives.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0313-nanai-vandak-skriver-till-samarkand",
+      "date": {
+        "kind": "range",
+        "startYear": 313,
+        "endYear": 314,
+        "displaySv": "cirka 313–314 e.Kr.",
+        "noteSv": "British Library daterar brevet till 313–314. Fyndplatsen vid Dunhuangs gränsbefästningar fastställer inte var avsändaren skrev brevet."
+      },
+      "titleSv": "Nanai-vandak skickar nyheter till Varzakk i Samarkand",
+      "summarySv": "Nanai-vandak skriver till Varzakk i Samarkand om handel och oroligheter i Kina. Brevet bevarades nära Dunhuang, men dess överlevnad visar inte att det nådde mottagaren.",
+      "geographySv": "Kina och Samarkand; fyndplats nära Dunhuang",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ad0300-idp-sogdian-letters",
+        "ad0300-idp-letter-two"
+      ],
+      "selectionNote": "Documents long-distance commercial communication while separating the destination from the findspot.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0317-ostra-jin-etableras",
+      "date": {
+        "kind": "exact",
+        "startYear": 317,
+        "endYear": 317,
+        "displaySv": "317 e.Kr.",
+        "noteSv": "Året gäller dynastins etablering. Östra Jins senare historia anges i källan som 317–420."
+      },
+      "titleSv": "Jinhovet etablerar Östra Jin söder om Yangtze",
+      "summarySv": "Jinhovet etablerar Östra Jin söder om Yangtze. Hovet har sin huvudstad i nuvarande Nanjing.",
+      "geographySv": "Nanjing och området söder om Yangtze, Kina",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-met-china"
+      ],
+      "selectionNote": "Establishment of a southern imperial court following political fragmentation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0320-konstantin-bygger-peterskyrkan",
+      "date": {
+        "kind": "range",
+        "startYear": 320,
+        "endYear": 327,
+        "displaySv": "320–327 e.Kr.",
+        "noteSv": "Museets hela byggnadsintervall behålls. Det gäller den äldre Peterskyrkan."
+      },
+      "titleSv": "Konstantin låter bygga Peterskyrkan i Rom",
+      "summarySv": "Konstantin låter bygga den äldre Peterskyrkan i Rom. Museet daterar bygget till 320–327.",
+      "geographySv": "Rom, Italien",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-met-italy"
+      ],
+      "selectionNote": "A major imperial Christian building project, with its full dated interval.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0324-konstantin-enar-romarriket",
+      "date": {
+        "kind": "exact",
+        "startYear": 324,
+        "endYear": 324,
+        "displaySv": "324 e.Kr.",
+        "noteSv": "Året följer museets historiska översikt."
+      },
+      "titleSv": "Konstantin samlar Romarriket under sitt styre",
+      "summarySv": "Konstantin samlar rikets östra och västra delar under sitt styre. Museet daterar återföreningen till 324.",
+      "geographySv": "Romarriket",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-met-roman-empire"
+      ],
+      "selectionNote": "An empire-wide change in imperial authority.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0325-nicaeamotet-trosbekannelse",
+      "date": {
+        "kind": "exact",
+        "startYear": 325,
+        "endYear": 325,
+        "displaySv": "325 e.Kr.",
+        "noteSv": "Året följer utgåvans rubrik till kyrkomötet. Uppgiften gäller den återgivna nicenska trosbekännelsen."
+      },
+      "titleSv": "Biskoparna i Nicaea antar en trosbekännelse",
+      "summarySv": "Biskoparna vid kyrkomötet i Nicaea antar en trosbekännelse. Där bekänner de att Sonen är av samma väsen som Fadern.",
+      "geographySv": "Nicaea, nuvarande İznik i Turkiet",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "ad0300-fordham-nicaea"
+      ],
+      "selectionNote": "A council’s doctrinal formulation, grounded in the text of its creed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0330-ezana-antar-kristendomen",
+      "date": {
+        "kind": "disputed",
+        "startYear": 330,
+        "endYear": 360,
+        "displaySv": "cirka 330 eller cirka 360 e.Kr.",
+        "noteSv": "Frankrikes kulturministerium anger omkring 330, medan Ashmolean Museum anger omkring 360. Intervallets gränser återger dessa ungefärliga alternativ; de anger ingen trettioårig omvändelseprocess."
+      },
+      "titleSv": "Kung Ezana antar kristendomen",
+      "summarySv": "Ezana antar kristendomen i Aksum. De två institutionerna daterar kungens omvändelse olika; händelsen gäller kungen och fastställer inte när hela befolkningen blev kristen.",
+      "geographySv": "Aksumriket, i nuvarande norra Etiopien och Eritrea",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-culture-ezana",
+        "ad0300-ashmolean-aksum"
+      ],
+      "selectionNote": "Major royal religious change; conflicting approximate chronologies remain visible.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0330-konstantinopel-blir-huvudstad",
+      "date": {
+        "kind": "disputed",
+        "startYear": 330,
+        "endYear": 331,
+        "displaySv": "330 eller 331 e.Kr.",
+        "noteSv": "Metropolitan Museum anger 330 för den nya huvudstaden. Robert K. Ritner anger 331 för den formella flytten; båda dateringsuppgifterna behålls."
+      },
+      "titleSv": "Konstantin gör Konstantinopel till huvudstad",
+      "summarySv": "Konstantin gör Konstantinopel till rikets huvudstad. De lästa källorna anger 330 respektive 331 för förändringen.",
+      "geographySv": "Konstantinopel, nuvarande Istanbul",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "ad0300-met-italy",
+        "ad0300-ritner-egypt"
+      ],
+      "selectionNote": "A major shift in the imperial centre, preserving the dated accounts’ difference.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0338-forgylld-buddha-i-hebei",
+      "date": {
+        "kind": "exact",
+        "startYear": 338,
+        "endYear": 338,
+        "displaySv": "338 e.Kr.",
+        "noteSv": "Museet omräknar inskriftens fjärde år i Jianwu-eran till 338. Inskriften anger även den åttonde månmånadens trettionde dag; ingen omräkning till ett modernt kalenderdatum görs här."
+      },
+      "titleSv": "En buddhastaty i förgylld brons tillverkas under Senare Zhao",
+      "summarySv": "Hantverkare tillverkar en buddhastaty i förgylld brons under Senare Zhao. Asian Art Museum tillskriver föremålet Hebei och daterar det genom inskriften.",
+      "geographySv": "Hebei, Kina; museets geografiska attribuering",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ad0300-asianart-buddha"
+      ],
+      "selectionNote": "An inscribed object anchors a material example of Buddhist devotion to a documented year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0357-anak-tre-byggs",
+      "date": {
+        "kind": "exact",
+        "startYear": 357,
+        "endYear": 357,
+        "displaySv": "357 e.Kr.",
+        "noteSv": "UNESCO:s bildtext beskriver 357 som gravens inskrivna byggnadsdatum. Händelsen identifierar inte den gravlagda personen."
+      },
+      "titleSv": "Byggare uppför Anak III-graven",
+      "summarySv": "Byggare uppför den grav som nu kallas Anak III. UNESCO:s beskrivning hänvisar till ett inskrivet byggnadsdatum.",
+      "geographySv": "Hwanghae, nuvarande Nordkorea",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ad0300-unesco-anak"
+      ],
+      "selectionNote": "A dated funerary monument adds material culture to the regional chronology.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0358-jordbavning-i-nikomedia",
+      "date": {
+        "kind": "exact",
+        "startYear": 358,
+        "endYear": 358,
+        "displaySv": "358 e.Kr.",
+        "noteSv": "Thommens kapitelsammanfattning anger 358. Ingen magnitud eller dagdatering har lagts till."
+      },
+      "titleSv": "Invånarna i Nikomedia drabbas av jordbävning",
+      "summarySv": "Invånarna i Nikomedia drabbas av en jordbävning. Byggnader rasar och eld bryter ut i staden.",
+      "geographySv": "Nikomedia, nuvarande İzmit i Turkiet",
+      "category": "nature",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-thommen-earthquakes"
+      ],
+      "selectionNote": "A dated urban earthquake with fire damage described in the scholarly summary.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0363-jovianus-avstar-nisibis-och-singara",
+      "date": {
+        "kind": "exact",
+        "startYear": 363,
+        "endYear": 363,
+        "displaySv": "363 e.Kr.",
+        "noteSv": "Bury daterar avtalet till 363. Ammianus Marcellinus återger villkoren i bok XXV, 7.9–11."
+      },
+      "titleSv": "Jovianus avstår områden och städer till Persien",
+      "summarySv": "Jovianus sluter år 363 ett avtal om territoriella avträdelser till Persien. Ammianus räknar fem provinser samt Nisibis och Singara; Bury bekräftar året och städerna men invänder mot provinsindelningen och räknar tre återlämnade provinser.",
+      "geographySv": "Romersk-persiska gränsområdet; Nisibis och Singara",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-ammianus-treaty",
+        "ad0300-bury-jovian"
+      ],
+      "selectionNote": "A dated territorial settlement supported by a primary narrative and a secondary chronology.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0365-jordbavning-och-tsunami-i-medelhavet",
+      "date": {
+        "kind": "exact",
+        "startYear": 365,
+        "endYear": 365,
+        "displaySv": "365 e.Kr.",
+        "noteSv": "Thommens kapitelsammanfattning anger 365. Händelsen anger ingen magnitud, exakt dag eller rekonstruerat epicentrum."
+      },
+      "titleSv": "Kustbor drabbas av jordbävning och tsunami",
+      "summarySv": "En jordbävning och en tsunami drabbar delar av Medelhavsområdet. I Thommens sammanfattning nämns Mothone och Alexandria bland de drabbade platserna.",
+      "geographySv": "Medelhavsområdet; Mothone och Alexandria",
+      "category": "nature",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-thommen-earthquakes"
+      ],
+      "selectionNote": "A disaster affecting several Mediterranean communities, without unsupported physical parameters.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0370-hunnernas-framryckning-vid-donau",
+      "date": {
+        "kind": "range",
+        "startYear": 370,
+        "endYear": 379,
+        "displaySv": "370-talet e.Kr.",
+        "noteSv": "Källan anger ett årtionde. Intervallet 370–379 återger detta årtionde och belägger inte verksamhet under vart och ett av åren."
+      },
+      "titleSv": "Hunnernas framryckning driver folk in i romerska provinser",
+      "summarySv": "Hunnerna tränger in i områden längs Donau. Enligt museets översikt driver framryckningen andra folk, däribland visigoter, in i romerska provinser.",
+      "geographySv": "Stäppområdet och Donauområdet",
+      "category": "migration",
+      "importance": 3,
+      "sourceIds": [
+        "ad0300-met-roman-empire"
+      ],
+      "selectionNote": "A regional migration process dated only to a decade.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0372-buddhismen-introduceras-i-goguryeo",
+      "date": {
+        "kind": "exact",
+        "startYear": 372,
+        "endYear": 372,
+        "displaySv": "372 e.Kr.",
+        "noteSv": "Året följer museets tidslinje för introduktionen. Det fastställer inte när alla invånare blev buddhister."
+      },
+      "titleSv": "Buddhismen introduceras i Goguryeo",
+      "summarySv": "Museet daterar buddhismens introduktion i Goguryeo till 372. Den korta tidslinjeposten ger inga närmare uppgifter om förloppet.",
+      "geographySv": "Goguryeo, norra Koreahalvön",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-met-korea"
+      ],
+      "selectionNote": "A regional religious introduction with no unsupported agents or universal-conversion claim.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0378-goter-besegrar-valens",
+      "date": {
+        "kind": "exact",
+        "startYear": 378,
+        "endYear": 378,
+        "displaySv": "378 e.Kr.",
+        "noteSv": "Källan anger året för slaget och Valens död. Händelsen innehåller ingen rekonstruerad dagdatering."
+      },
+      "titleSv": "Goter besegrar Valens vid Adrianopel",
+      "summarySv": "Goter besegrar kejsar Valens armé vid Adrianopel. Valens omkommer i nederlaget.",
+      "geographySv": "Adrianopel",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "ad0300-met-roman-empire"
+      ],
+      "selectionNote": "A major imperial defeat and the death of an emperor.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0378-siyaj-kak-anlander-till-tikal",
+      "date": {
+        "kind": "exact",
+        "startYear": 378,
+        "endYear": 378,
+        "displaySv": "378 e.Kr.",
+        "noteSv": "Mesoweb daterar ankomsten till 378 och återger en inskrift om den tidigare kungens död samma dag. Att kungen avrättades är en tolkning, inte en säker uppgift."
+      },
+      "titleSv": "Siyaj K’ak’ anländer till Tikal",
+      "summarySv": "Siyaj K’ak’ anländer till Tikal. Enligt Mesoweb anger inskrifter att kungen Chak Tok Ich’aak dog samma dag.",
+      "geographySv": "Tikal, nuvarande Guatemala",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-mesoweb-siyaj"
+      ],
+      "selectionNote": "A documented political disruption without treating a proposed execution or conquest as settled.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0379-yax-nuun-ayiin-tilltrader",
+      "date": {
+        "kind": "exact",
+        "startYear": 379,
+        "endYear": 379,
+        "displaySv": "379 e.Kr.",
+        "noteSv": "Årtalet följer Mesowebs redogörelse. Händelsen gäller trontillträdet året efter Siyaj K’ak’s ankomst."
+      },
+      "titleSv": "Yax Nuun Ayiin I tillträder i Tikal",
+      "summarySv": "Yax Nuun Ayiin I tillträder som kung i Tikal. Mesoweb tillskriver Siyaj K’ak’ en roll i att föra honom till tronen.",
+      "geographySv": "Tikal, nuvarande Guatemala",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-mesoweb-siyaj"
+      ],
+      "selectionNote": "A separate accession following the previous year’s arrival and royal death.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0381-konstantinopels-biskop-hedersrang",
+      "date": {
+        "kind": "exact",
+        "startYear": 381,
+        "endYear": 381,
+        "displaySv": "381 e.Kr.",
+        "noteSv": "Uppgiften gäller kanon III i utgåvans avsnitt för mötet 381. Senare tillägg som diskuteras i samma utgåva ingår inte."
+      },
+      "titleSv": "Kyrkomötet ger Konstantinopels biskop hedersrang efter Rom",
+      "summarySv": "Kyrkomötet ger Konstantinopels biskop hedersrang efter biskopen i Rom. I kanon III motiverar mötesdeltagarna detta med att Konstantinopel är det nya Rom.",
+      "geographySv": "Konstantinopel, nuvarande Istanbul",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-fordham-constantinople"
+      ],
+      "selectionNote": "A specific ecclesiastical precedence decision, separated from questions about later council texts.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0384-buddhismen-introduceras-i-baekje",
+      "date": {
+        "kind": "exact",
+        "startYear": 384,
+        "endYear": 384,
+        "displaySv": "384 e.Kr.",
+        "noteSv": "Året följer museets tidslinje för introduktionen. Det fastställer inte när alla invånare blev buddhister."
+      },
+      "titleSv": "Buddhismen introduceras i Baekje",
+      "summarySv": "Museet daterar buddhismens introduktion i Baekje till 384. Den korta tidslinjeposten ger inga närmare uppgifter om förloppet.",
+      "geographySv": "Baekje, Koreahalvön",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-met-korea"
+      ],
+      "selectionNote": "A separate kingdom’s religious introduction, preserved at the source’s level of detail.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0386-tuoba-etablerar-norra-wei",
+      "date": {
+        "kind": "approximate",
+        "startYear": 386,
+        "endYear": 386,
+        "displaySv": "cirka 386 e.Kr.",
+        "noteSv": "Museet anger cirka 386. Årtalet gäller etableringen av Norra Wei och daterar inte erövringen av hela norra Kina."
+      },
+      "titleSv": "Tuoba etablerar Norra Wei",
+      "summarySv": "Tuoba, som museet beskriver som en gren av Xianbei, etablerar Norra Wei. De upprättar därmed ett nytt dynastiskt styre i norra Kina.",
+      "geographySv": "Norra Kina",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0300-met-china"
+      ],
+      "selectionNote": "Establishment of a northern dynasty; later territorial unification is not backdated.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0391-theodosius-befaller-tempelstangning",
+      "date": {
+        "kind": "exact",
+        "startYear": 391,
+        "endYear": 391,
+        "displaySv": "391 e.Kr.",
+        "noteSv": "Året gäller kejsarens order. Källans tidslinje visar inte att varje tempel stängdes samma år."
+      },
+      "titleSv": "Theodosius befaller att hedniska tempel ska stängas",
+      "summarySv": "Theodosius befaller att hedniska tempel ska stängas. Museet daterar ordern till 391.",
+      "geographySv": "Romarriket",
+      "category": "religion",
+      "importance": 3,
+      "sourceIds": [
+        "ad0300-met-italy"
+      ],
+      "selectionNote": "An empire-wide religious order; implementation is not inferred from promulgation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0395-arcadius-och-honorius-eftertrader",
+      "date": {
+        "kind": "exact",
+        "startYear": 395,
+        "endYear": 395,
+        "displaySv": "395 e.Kr.",
+        "noteSv": "Händelsen gäller successionen efter Theodosius död. Den gör inget påstående om att alla senare försök att samla rikets styre upphörde."
+      },
+      "titleSv": "Arcadius och Honorius övertar var sin del av riket",
+      "summarySv": "Efter Theodosius död år 395 ligger styret i öster hos Arcadius och i väster hos Honorius.",
+      "geographySv": "Romarrikets östra och västra delar",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "ad0300-met-italy"
+      ],
+      "selectionNote": "Succession to divided imperial government without an irreversible-partition claim.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",
