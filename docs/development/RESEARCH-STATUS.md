@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain sixty-seven approved records, one hundred and nineteen source records and three hundred and thirty-five display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain seventy approved records, one hundred and twenty-four source records and three hundred and fifty display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -53,8 +53,16 @@ The English research deliveries now contain sixty-seven approved records, one hu
 | [700–601 BC, second pass](../research/world-cultures/english-events/bc0700-second-pass-supplement.md) | 1 | 1 | 5 | Merged and remote-verified in [PR #150](https://github.com/sp1e/Attainder/pull/150), commit `0ea42d12840f1d3153a98b04b87ffc01141ceaba` |
 | [2400–2301 BC](../research/world-cultures/english-events/bc2400-supplement.md) | 1 | 4 | 5 | Merged and remote-verified in [PR #151](https://github.com/sp1e/Attainder/pull/151), commit `a425c47d27c25057bb0bf81ede2cde8451535d06` |
 | [AD 1–300, second pass](../research/world-cultures/english-events/ad0001-ad0300-second-pass-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #152](https://github.com/sp1e/Attainder/pull/152), commit `ef179a86af402209cf0e1de48bb2f45b86ee7930` |
-| [AD 700–799, second pass](../research/world-cultures/english-events/ad0700-second-pass-supplement.md) | 2 | 2 | 10 | Reviewed in [PR #153](https://github.com/sp1e/Attainder/pull/153); source HOLD and procedure deviation preserved; current-head CI and verified merge required |
-| [AD 1000–1100, second pass](../research/world-cultures/english-events/ad1000-second-supplement.md) | 1 | 3 | 5 | Narrowed candidate passed final review; original source HOLD preserved; current-head CI and verified merge required |
+| [AD 700–799, second pass](../research/world-cultures/english-events/ad0700-second-pass-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #153](https://github.com/sp1e/Attainder/pull/153), commit `7d3ce7ae571d4bd2a643022612794efd780a470b`; source HOLD and procedure deviation preserved |
+| [AD 1000–1100, second pass](../research/world-cultures/english-events/ad1000-second-supplement.md) | 1 | 3 | 5 | Reviewed in [PR #155](https://github.com/sp1e/Attainder/pull/155); original source HOLD preserved; current-head CI and verified merge required |
+| [500–201 BC, second pass](../research/world-cultures/english-events/bc0500-bc0300-second-pass-supplement.md) | 1 | 2 | 5 | Reviewed in [PR #156](https://github.com/sp1e/Attainder/pull/156); first evidence HOLD resolved and preserved; current-head CI and verified merge required |
+| [AD 800–999, second pass](../research/world-cultures/english-events/ad0800-0900-second-pass-supplement.md) | 2 | 3 | 10 | Source and final review passed; current-head CI and verified merge required |
+
+AD0800–AD0900 second pass adds Kairouan's linked water reservoirs in 860–862 and Gwangjong's personal-status review in 956. Independent source and final reviews approved both unchanged events, all twelve English texts and the complete note. Archnet's conflicting Hijri labels remain explicit; the Korean policy concerns previously free people and preserves the source's later reversals. Root verified seventy-one frozen inputs, twelve text hashes, forty-seven committed comparison files and two private originals.
+
+PR #153 passed 5,344 tests with no failures and two TODOs; the build passed. Remote commit, first parent, full tree, retained head and changed blobs were verified. Merged main contains sixty-six English events and one hundred and sixteen sources; later additions await their publication checks.
+
+BC0500–BC0300 second pass adds documented silver payments against rations at Persepolis. Both published archive spans, 492–458 and 492–457 BCE, remain explicit; the record claims no precisely dated reform or invention of wages. Source review passed. The first final review held two missing verification logs; a fresh second final review checked those unchanged files and passed the full candidate, six English texts and complete note. Root verified seventy-eight frozen inputs, seventy-six original-copy pairs, six text hashes and forty-three committed comparison files. The original HOLD and recovered technical check errors remain preserved.
 
 AD1000 second pass adds Song administration of jiaozi in Sichuan, retaining the published 1023/1024 alternatives and Luo Tianyun's distinction between approval and issuance. The whole Mimbres event and its two sources remain withheld after independent access failed. A fresh final review verified the retained event unchanged, all six English texts, the full note and one missing character restored in a source excerpt. Root verified eighty frozen inputs, fifty retained string hashes and forty-two committed comparison files. The original source HOLD and its mistaken exact-excerpt approval remain preserved.
 

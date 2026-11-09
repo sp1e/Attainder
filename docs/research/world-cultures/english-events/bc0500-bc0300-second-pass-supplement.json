@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc0500-bc0300-second-pass-2026-11-09",
+  "researchWindow": {
+    "startYear": -500,
+    "endYear": -201
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc0492en-hallock-treasury",
+      "title": "THE EVIDENCE OF THE PERSEPOLIS TABLETS",
+      "institution": "Cambridge University Press",
+      "url": "https://www.cambridge.org/core/books/abs/cambridge-history-of-iran/evidence-of-the-persepolis-tablets/64B1E8D7D93F367BF56D5061004A5A34",
+      "locator": "R. T. Hallock, chapter 11 in The Cambridge History of Iran (1985), pp. 588–609. Public Summary, third paragraph, web lines 480–481; metadata lines 499–505. Only the public summary was read, not the access-controlled chapter.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "thirtieth year of Darius I to the seventh year of Artaxerxes I (492–45 8 B.C.)",
+      "originalChronology": "The publisher summary gives 492–458 BCE, with an extraction space in 458. The original regnal endpoints are retained without a new conversion.",
+      "scopedClaim": "Treasury documents record silver disbursements replacing part, and rarely all, of rations. This describes attested payments, not the origin of wages or a universal monetary reform.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0492en-garrison-treasury",
+      "title": "The Ritual Landscape at Persepolis: Glyptic Imagery from the Persepolis Fortification and Treasury Archives",
+      "institution": "Institute for the Study of Ancient Cultures, University of Chicago",
+      "url": "https://isac.uchicago.edu/publications/ritual-landscape-persepolis",
+      "locator": "Public publisher description of Mark B. Garrison's 2017 book, Studies in Ancient Oriental Civilization 72; second descriptive paragraph, web line 380. Author and publication metadata at lines 368 and 402–405. The book itself was not read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Persepolis Treasury archive (492–457 BC)",
+      "originalChronology": "The description gives 492–457 BCE for the Treasury archive and 509–493 BCE for the separate Fortification archive. No explanation for the difference from Hallock's 458 endpoint is supplied here.",
+      "scopedClaim": "The Treasury archive is an administrative tablet corpus with a published date span of 492–457 BCE. This source supports chronology, not an independently inspected payment text or workers' legal status.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc0492-persepolis-silver-ration-payments",
+      "date": {
+        "kind": "disputed",
+        "startYear": -492,
+        "endYear": -457,
+        "displayEn": "492–458 or 492–457 BCE",
+        "noteEn": "These are published spans of the Treasury records, not a reform's start and end. Hallock gives Darius I's year 30 through Artaxerxes I's year 7 as 492–458 BCE; Garrison's publisher gives 492–457. The full envelope preserves both endpoints without assuming uninterrupted payments."
+      },
+      "titleEn": "Persepolis records silver payments against rations",
+      "summaryEn": "Treasury records document silver disbursements in place of part, and occasionally all, of ration payments. They provide evidence of royal payment administration at Persepolis.",
+      "geographyEn": "Persepolis, present-day Iran",
+      "category": "politics",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc0492en-hallock-treasury",
+        "bc0492en-garrison-treasury"
+      ],
+      "selectionNote": "A notable administrative practice documented over a dated interval, distinct from the city's later burning. The record does not announce an invented reform, the first wages, universal coin payment or a conclusion about workers' freedom. Both accounts concern the same archive, and their endpoints differ by one year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent second final data, English and evidence review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
