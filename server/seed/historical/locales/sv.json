@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "16cd0b2d943e325efa42b228ed436e2bcfbc6ea3",
+  "sourceRevision": "6a3bac1476f6d1ff1d732fe808397e4cc474d45f",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -10144,6 +10144,94 @@
         "sourceId": "ad0500-english-heritage-augustine",
         "fieldPath": "/institution",
         "textSha256": "1fde17fd286a11daa43763e2a16609ecb9a99c6a21a4d89903117f72e8322687"
+      }
+    },
+    {
+      "id": "source/bc2200-rmo-gudea/locator",
+      "en": "Opening paragraph; web representation lines 1–3. Text revised in 2021.",
+      "sv": "Inledande stycket; webbrepresentationens rader 1–3. Texten reviderades 2021.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2200-rmo-gudea",
+        "fieldPath": "/locator",
+        "textSha256": "7baa71760a0bafb14e78875c93ec763e613e27aeb327d898937d507dba94ae9b"
+      }
+    },
+    {
+      "id": "source/bc2200-rmo-gudea/institution",
+      "en": "Rijksmuseum van Oudheden",
+      "sv": "Rijksmuseum van Oudheden",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2200-rmo-gudea",
+        "fieldPath": "/institution",
+        "textSha256": "b4f54d439feb8c822145985b1b45504d681c3860199006bc4b67e37a6158689b"
+      }
+    },
+    {
+      "id": "source/bc2200-yale-edfu/locator",
+      "en": "Later installations in Zone 2, final paragraph; web lines 68–71.",
+      "sv": "Later installations in Zone 2, sista stycket; webbrepresentationens rader 68–71.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2200-yale-edfu",
+        "fieldPath": "/locator",
+        "textSha256": "7c727a00bb7459d6963952e5225a160fc58f517f46a4e9320d604d585bdf3e4b"
+      }
+    },
+    {
+      "id": "source/bc2200-yale-edfu/institution",
+      "en": "Yale Egyptology, Tell Edfu Project",
+      "sv": "Yale Egyptology, Tell Edfu Project",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2200-yale-edfu",
+        "fieldPath": "/institution",
+        "textSha256": "9474cc3be75c9ab077c6f6aa8d720cb11b8f91d5126da45618ad2070d9a70e7d"
+      }
+    },
+    {
+      "id": "source/bc2200-manning-levant/locator",
+      "en": "Introduction, web lines 172–182; Tell Tayinat discussion of regional chronology, lines 216–219. DOI 10.1371/journal.pone.0240799.",
+      "sv": "Introduction, webbrepresentationens rader 172–182; avsnittet om regional kronologi i Tell Tayinat, rader 216–219. DOI 10.1371/journal.pone.0240799.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2200-manning-levant",
+        "fieldPath": "/locator",
+        "textSha256": "1b7b7ceeaf7e5bd11869e1e567c7fc853e01d3f1a4d7dec94ae8e65f6fb014f8"
+      }
+    },
+    {
+      "id": "source/bc2200-manning-levant/institution",
+      "en": "Sturt W. Manning, Brita Lorentzen, Lynn Welton, Stephen Batiuk and Timothy P. Harrison; PLOS ONE 15(10), e0240799 (2020)",
+      "sv": "Sturt W. Manning, Brita Lorentzen, Lynn Welton, Stephen Batiuk och Timothy P. Harrison; PLOS ONE 15(10), e0240799 (2020)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2200-manning-levant",
+        "fieldPath": "/institution",
+        "textSha256": "a8906e62cc3220ab13fa3b4b87e9bc884738594b4e89e1854cc689d051319a60"
+      }
+    },
+    {
+      "id": "source/bc2200-met-ur-nammu-brick/locator",
+      "en": "Opening description and translated inscription, web lines 29–36; Object Information, lines 67–76.",
+      "sv": "Den inledande beskrivningen och den översatta inskriften, webbrepresentationens rader 29–36; Object Information, rader 67–76.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2200-met-ur-nammu-brick",
+        "fieldPath": "/locator",
+        "textSha256": "805e853e278e819a5cc9c33e4b56fbe8d04afde5e2f581836cea8c985ea97cd4"
+      }
+    },
+    {
+      "id": "source/bc2200-met-ur-nammu-brick/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2200-met-ur-nammu-brick",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
       }
     }
   ]
