@@ -75,6 +75,12 @@
     },
     {
       "startYear": -2100,
+      "endYear": -2001,
+      "status": "partial",
+      "note": "Eight independently source-checked records concern Dholavira infrastructure decline, Taosi urban enclosure, fortified Sintashta settlements, two Shulgi episodes, Mentuhotep II’s complex and reunification of Egypt, and Ur’s fall. The author logged 32 discovery queries across nine working regions; five retained events concern the Middle East and North Africa, with one each in East Asia, South Asia and the steppe and Central Asia. The other five regions remain gaps. Full phases, reign bounds and competing chronologies remain distinct; Sintashta placement is framework-dependent and Ur’s alternative dynasty endpoint does not independently date a conquest. Public summary, abstract and preview limits remain explicit. Empty years remain research gaps."
+    },
+    {
+      "startYear": -2000,
       "endYear": 299,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
