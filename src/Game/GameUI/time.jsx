@@ -24,6 +24,7 @@ import { describeJumpCost, requestDay, savingRequests } from "../AI/requestBudge
 import { logDebugEvent, setDebugLogContext } from "../../runtime/debugLog.js";
 import { useFailureReportButton } from "../../runtime/saveDebugLog.js";
 import { EVENT_TAG_ENUM } from "../../runtime/eventTags.js";
+import { worldFromSnapshot } from "../../runtime/snapshotWorld.js";
 import { documentsForEvent } from "../../runtime/reportDelivery.js";
 import { unseenEvents } from "../../runtime/unseenEvents.js";
 import { isSceneInProgress } from "../AI/interactiveRewind.js";
@@ -3105,7 +3106,7 @@ const DateWidget = ({
                 );
                 // A copy of the one world staged: the list is the shared archive
                 // (gameplay.js loadRollbackSnapshots), never to be written into.
-                if (match) setStagedBase({ recordId: record.id, world: cloneWorldForStaging(match.state.world) });
+                if (match) setStagedBase({ recordId: record.id, world: worldFromSnapshot(cloneWorldForStaging(match.state.world), focusWorldRef.current) });
             })
             .catch(() => {
                 /* no snapshot — reveal without staging */
