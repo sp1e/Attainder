@@ -1,0 +1,120 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad0100-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 100,
+    "endYear": 199
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0100en-matthews-palmyra-tax-law",
+      "title": "The Tax Law of Palmyra: Evidence for Economic History in a City of the Roman East",
+      "institution": "J. F. Matthews, The Queen's College, Oxford; Journal of Roman Studies 74 (1984), Cambridge University Press public extract",
+      "url": "https://www.cambridge.org/core/journals/journal-of-roman-studies/article/abs/tax-law-of-palmyra-evidence-for-economic-history-in-a-city-of-the-roman-east/CED2838692D345805DDC987CE74BC17A",
+      "locator": "Public Extract, opening paragraph; web lines 449–454. Full article pages 157–180 were not read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "In the year A.D. 137",
+      "originalChronology": "The public extract dates the council's decision to revise and publish regulations to 137. The older provisions incorporated in the inscription accumulated over many years and are not all dated to 137.",
+      "scopedClaim": "Palmyra's council orders public inscription of revised and older dues regulations to reduce disputes between collectors and taxpayers. They concern goods entering or leaving the city and services within it; the text is Greek and local Aramaic. The extract does not establish that disputes ceased.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100en-healey-palmyrene-tariff",
+      "title": "The Palmyrene Tax Tariff",
+      "institution": "John Healey, The Oxford Handbook of Palmyra (2024); University of Manchester Research Explorer",
+      "url": "https://research.manchester.ac.uk/en/publications/the-palmyrene-tax-tariff-2/",
+      "locator": "Public Abstract, lines 13–16; chapter metadata, lines 18–30. Only the abstract was read, not chapter pages 211–226.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "dated AD 137",
+      "originalChronology": "The abstract dates the bilingual municipal tariff to 137 and distinguishes its New Law, Old Law and an earlier governor's edict.",
+      "scopedClaim": "The Greek and Aramaic tariff concerns local taxation. The abstract cautions against treating it as evidence specifically for caravan trade; the candidate does not date Palmyra's commercial beginnings or an empire-wide tax reform.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100en-palace-museum-xiping",
+      "title": "黄易与东汉熹平石经",
+      "institution": "The Palace Museum, Beijing; article published 4 August 2016",
+      "url": "https://www.dpm.org.cn/study_detail/100168.html",
+      "locator": "Chinese article 黄易与东汉熹平石经, opening paragraph; web line 158. Relevant text begins 熹平石经 and gives the project dates in parentheses.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "熹平四年（175年）开始，至光和六年（183年）完成",
+      "originalChronology": "The museum supplies 175, Xiping year four, for the start and 183, Guanghe year six, for completion. These modern-year equivalents come from the source; no independent regnal conversion is made.",
+      "scopedClaim": "After imperial approval, scholars including Cai Yong compare classical texts and establish standard versions, which are carved in clerical script and erected at the Imperial Academy in Luoyang. The dates concern the stone edition, not original composition of the classics or every later restoration.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100en-tian-xiping-stone-classics",
+      "title": "The Reproductive Hand: The Remaking of the Xiping Stone Classics in Nineteenth-Century Qing China",
+      "institution": "Tian Mi, Waseda Institute for Advanced Study, Waseda University",
+      "url": "https://www.waseda.jp/inst/wias/news-en/2026/10/05/23428/",
+      "locator": "Research account, opening historical context; web lines 23–27, especially 25–26. Later Qing reconstruction discussion is outside this event.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Xiping Stone Classics (ca. 175–183)",
+      "originalChronology": "Tian gives circa 175–183 for the original Xiping Stone Classics. This approximation is retained even though the museum states start and completion years without an explicit circa.",
+      "scopedClaim": "The state-sponsored stone edition of Confucian classics was established at Luoyang and provided a precedent for later canonical inscriptions. Only this early edition is selected; later reconstruction and fragment-discovery dates are not folded into it.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-0137-palmyra-tax-rules-published",
+      "date": {
+        "kind": "exact",
+        "startYear": 137,
+        "endYear": 137,
+        "displayEn": "137",
+        "noteEn": "The cited public extract and abstract give 137 for the revision and publication of the municipal tariff. Older regulations included in the inscription belong to earlier years. No month or day is supplied by these passages."
+      },
+      "titleEn": "Palmyra's council publishes revised tax rules",
+      "summaryEn": "Palmyra's council orders revised dues regulations and their older provisions to be displayed publicly in Greek and local Aramaic. The aim is to reduce disputes between tax collectors and those paying charges on goods and services.",
+      "geographyEn": "Palmyra, Syria",
+      "category": "politics",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0100en-matthews-palmyra-tax-law",
+        "ad0100en-healey-palmyrene-tariff"
+      ],
+      "selectionNote": "A notable municipal act making local fiscal rules public. The year dates revision and publication, not all older provisions or the start of trade. The intended reduction of disputes is not proof of its success; no empire-wide reform, caravan-only tariff or finer date is asserted.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0175-xiping-stone-classics",
+      "date": {
+        "kind": "range",
+        "startYear": 175,
+        "endYear": 183,
+        "displayEn": "Circa 175–183",
+        "noteEn": "The Palace Museum dates the project from Xiping year four (175) to Guanghe year six (183); Tian Mi gives circa 175–183. The full approximate interval is retained. It dates preparation of the stone edition, not original composition of the classics or later reconstruction."
+      },
+      "titleEn": "The Xiping Stone Classics are prepared in Luoyang",
+      "summaryEn": "With imperial approval, scholars establish standard versions of Confucian texts for engraving on stone. The tablets are set up at Luoyang's Imperial Academy, forming a state-sponsored stone edition of the classics.",
+      "geographyEn": "Luoyang, Eastern Han China",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "ad0100en-palace-museum-xiping",
+        "ad0100en-tian-xiping-stone-classics"
+      ],
+      "selectionNote": "A notable official project to standardize and display canonical texts. The complete circa 175–183 project interval is preserved alongside the museum's supplied regnal labels. The approximation concerns dating, not a conjectural existence claim; the event does not date original composition, every tablet individually or later rebuilding.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
