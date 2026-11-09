@@ -141,3 +141,47 @@ test("a missing restore point preserves the journal and fails clearly", async ()
   await assert.rejects(recoverCharacterTransaction({ characterTransaction: { snapshotId: "missing" } }, store.io), /återställningspunkt/);
   assert.deepEqual(store.trace, []);
 });
+
+// A historical campaign's restore point leaves out the start and the licence
+// texts (snapshotWorld.js); every restore takes them back from the live world.
+const historicalBase = { ...clone(base), world: { ...clone(base.world),
+  componentLicenses: [{ id: "historical-basemaps", licenseText: "GPL" }],
+  historicalScenario: { kind: "historical", contentId: "charlemagne-800" } } };
+const historicalNext = { ...clone(next), world: { ...clone(next.world),
+  componentLicenses: historicalBase.world.componentLicenses, historicalScenario: historicalBase.world.historicalScenario } };
+
+test("a commit stores the restore point without the start and the licence texts", async () => {
+  const store = storage();
+  await commitCharacterTransaction({ id: "lean", base: historicalBase, next: historicalNext, io: store.io });
+  const stored = store.snapshots[0].state.world;
+  assert.equal(stored.componentLicenses, undefined);
+  assert.equal(stored.historicalScenario, undefined);
+  assert.deepEqual(stored.snapshotOmittedKeys, ["componentLicenses", "historicalScenario"]);
+  assert.deepEqual(store.data.world.componentLicenses, historicalBase.world.componentLicenses);
+});
+
+test("a failed commit restores the full pre-turn world, start and licence texts included", async () => {
+  const store = storage({ failKey: "events" });
+  await assert.rejects(commitCharacterTransaction({ id: "lean-fail", base: historicalBase, next: historicalNext, io: store.io }), /failed:/);
+  assert.deepEqual(store.data.world, historicalBase.world);
+});
+
+test("recovery after an exit takes the start and the licence texts from the journaled world", async () => {
+  const store = storage({ failKey: "events", persistentFailure: true });
+  await assert.rejects(commitCharacterTransaction({ id: "lean-exit", base: historicalBase, next: historicalNext, io: store.io }), /failed:/);
+  const published = [];
+  const io = { ...store.io, write: async (key, value) => { store.data[key] = clone(value); }, publish: async (state) => published.push(state) };
+  const journaled = { ...historicalBase.world, characterTransaction: { id: "lean-exit", snapshotId: "character-snapshot:lean-exit" } };
+  assert.equal(await recoverCharacterTransaction(journaled, io), true);
+  assert.deepEqual(store.data.world, historicalBase.world);
+  assert.deepEqual(published[0].world, historicalBase.world);
+});
+
+test("recovery refuses before writing when the live world lacks the left-out start", async () => {
+  const store = storage();
+  await commitCharacterTransaction({ id: "lean-missing", base: historicalBase, next: historicalNext, io: store.io });
+  const writes = [];
+  const io = { ...store.io, write: async (key) => writes.push(key) };
+  await assert.rejects(recoverCharacterTransaction({ characterTransaction: { snapshotId: "character-snapshot:lean-missing" } }, io), /saknar componentLicenses/);
+  assert.deepEqual(writes, []);
+});

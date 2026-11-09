@@ -40,6 +40,7 @@ import {
     statSheetKeys,
 } from "../../runtime/statsSheet.js";
 import { onMemoryPressure } from "../../runtime/memoryPressure.js";
+import { worldFromSnapshot } from "../../runtime/snapshotWorld.js";
 
 // Sheets are regenerated when the game date moves; within a date they persist
 // across reloads so flipping between countries stays instant.
@@ -1810,8 +1811,16 @@ const StatsPaneBody = ({ active }) => {
                 const persistentCount = (persistent[targetCountry] || []).length;
                 let recoveredHistory = {};
 
+                let warnedMissingStart = false;
                 for (const snapshot of Array.isArray(snapshots) ? snapshots : []) {
-                    const snapshotWorld = snapshot?.state?.world || {};
+                    // A restore point that left out the start takes it from the live world.
+                    let snapshotWorld = snapshot?.state?.world || {};
+                    try {
+                        snapshotWorld = worldFromSnapshot(snapshotWorld, world);
+                    } catch (error) {
+                        if (!warnedMissingStart) console.warn("[stats] restore points could not take the start from the live world:", error?.message || error);
+                        warnedMissingStart = true;
+                    }
                     const snapshotKey = canonicalPolityKey(targetCountry, snapshotWorld) || targetCountry;
                     const snapshotSheet = snapshotWorld?.countryStats?.[snapshotKey] || snapshotWorld?.countryStats?.[targetCountry];
                     const sample = buildCountryStatHistorySample(snapshotSheet, {

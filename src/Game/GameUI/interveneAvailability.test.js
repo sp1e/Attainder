@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { worldForSnapshot } from '../../runtime/snapshotWorld.js';
 
 // Run the actual component's availability hooks with a tiny effect scheduler.
 // A round update can render before the final journal snapshot is persisted.
@@ -64,7 +65,7 @@ test('the real snapshot capture announces only after persistence completes', asy
   let finish, calls=0;
   const writing=new Promise(resolve => { finish=resolve; });
   const deps={ readJson:async()=>[], writeJson:async()=>writing, JSON_URLS:{snapshots:'snapshots'},
-    cloneValue:structuredClone, MAX_ROLLBACK_SNAPSHOTS:12, window:{dispatchEvent:()=>calls++}, Event:class { constructor(type) { this.type=type; } }, console };
+    cloneValue:structuredClone, worldForSnapshot, MAX_ROLLBACK_SNAPSHOTS:12, window:{dispatchEvent:()=>calls++}, Event:class { constructor(type) { this.type=type; } }, console };
   const capture=new Function(...Object.keys(deps),`${gameplay.slice(from,to)}\nreturn captureRollbackSnapshot;`)(...Object.values(deps));
   const work=capture({ round:1,fromDate:'1200-01-01',toDate:'1201-01-01',game:{},world:{},events:[],actions:[],chat:[],colors:{} });
   await settle(); assert.equal(calls,0);
@@ -95,7 +96,7 @@ test('actual snapshot capture wakes the actual availability effect after persist
   d.render({round:2,date:'end'}); await settle(); assert.equal(d.value(),false);
   const writing=new Promise(resolve=>{finish=()=>{journal=true; resolve();};});
   const deps={readJson:async()=>[],writeJson:async()=>writing,JSON_URLS:{snapshots:'snapshots'},
-    cloneValue:structuredClone,MAX_ROLLBACK_SNAPSHOTS:12,window:bus,Event,console};
+    cloneValue:structuredClone,worldForSnapshot,MAX_ROLLBACK_SNAPSHOTS:12,window:bus,Event,console};
   const capture=new Function(...Object.keys(deps),`${gameplay.slice(from,to)}\nreturn captureRollbackSnapshot;`)(...Object.values(deps));
   const work=capture({round:1,fromDate:'1200-01-01',toDate:'1201-01-01',game:{},world:{},events:[],actions:[],chat:[],colors:{}});
   await settle(); assert.equal(d.value(),false);

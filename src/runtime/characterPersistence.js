@@ -1,5 +1,7 @@
 // A persisted pre-write journal makes a multi-document turn recoverable after
 // a failed write or a browser/process exit. Storage is injected for fault tests.
+import { worldForSnapshot, worldFromSnapshot } from "./snapshotWorld.js";
+
 const clone = (value) => JSON.parse(JSON.stringify(value));
 const KEYS = ["actions", "events", "game", "colors", "chat"];
 
@@ -12,14 +14,17 @@ export const recoverCharacterTransaction = async (world, io) => {
   if (!snapshot?.state?.world || !snapshot?.state?.game) {
     throw new Error("En avbruten sparning saknar sin återställningspunkt. Originalet har behållits; återställ en tidigare sparfil.");
   }
+  // The start and the licence texts come from the live world (snapshotWorld.js).
+  // A world that cannot supply them fails here, before any document is written.
+  const restoredWorld = worldFromSnapshot(snapshot.state.world, world);
   for (const key of KEYS) {
     if (snapshot.state[key] === undefined) continue;
     await io.assertCurrent();
     await io.write(key, clone(snapshot.state[key]), { emitEvents: false });
   }
   await io.assertCurrent();
-  await io.write("world", clone(snapshot.state.world));
-  await io.publish?.(snapshot.state);
+  await io.write("world", clone(restoredWorld));
+  await io.publish?.({ ...snapshot.state, world: restoredWorld });
   return true;
 };
 
@@ -32,7 +37,7 @@ export const commitCharacterTransaction = async ({ id, base, next, io }) => {
   const snapshot = {
     id: `character-snapshot:${id}`, round: base.game.round,
     fromDate: base.game.gameDate, toDate: next.game.gameDate,
-    capturedAt: new Date().toISOString(), state: clone(base),
+    capturedAt: new Date().toISOString(), state: clone({ ...base, world: worldForSnapshot(base.world) }),
   };
   // Failure here changes no campaign document. The journal always points to a
   // restore point already on disk, rather than one written after the damage.
@@ -51,7 +56,7 @@ export const commitCharacterTransaction = async ({ id, base, next, io }) => {
     // A campaign switch must not roll the old campaign into the newly opened
     // one. assertCurrent prevents that; the old journal remains recoverable.
     try {
-      await recoverCharacterTransaction({ characterTransaction: { snapshotId: snapshot.id } }, io);
+      await recoverCharacterTransaction({ ...base.world, characterTransaction: { snapshotId: snapshot.id } }, io);
     } catch (recoveryError) {
       error.recoveryError = recoveryError;
     }

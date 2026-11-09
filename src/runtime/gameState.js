@@ -1,5 +1,6 @@
 /*! Open Historia — portions (troop deployments + era troop types) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
 import { JSON_URLS, primeJson, readJson, reportPerfOperation, writeJson } from "./assets.js";
+import { worldFromSnapshot } from "./snapshotWorld.js";
 import { applyGroupOps, normalizeGroupAreas, normalizeGroupOp, normalizeGroups } from "./groups.js";
 import { enqueueContentStrings, enqueueEventStrings } from "./translator.js";
 import { normalizeTagList } from "./countryTags.js";
@@ -4107,7 +4108,7 @@ export const viewAsSeen = async ({ world, events, chats, game } = {}, { unseen =
         colors: {},
         events: normalizeEvents(seenTurnEvents),
         motion: { originDate: snap.fromDate || turn.fromDate || "", round: Number(turn.round) || Number(snap.round) || 0, tick: 0 },
-        world: cloneValue(snap.state.world),
+        world: worldFromSnapshot(cloneValue(snap.state.world), world),
       }).world;
       const stolenBy = new Map(normalizeArray(world?.reports).map((report) => [report?.id, report?.interceptedBy]));
       seenWorld = {
