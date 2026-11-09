@@ -2,7 +2,7 @@
 
 ## Current publication checkpoint: 9 November 2026
 
-The latest verified merge is PR #97 at `a502d142362b222317e1678617fa64fba55552a3`: 692 approved event records, 636 sources and 6,181 bilingual entries. Its required tests and build passed. This branch prepares the BC1000 batch, which would raise those totals to 699 events, 645 sources and 6,234 bilingual entries; current-head CI and merge are separate publication gates. Every covered research interval remains partial. The chronological record below preserves earlier milestones and their limits. Claude owns runtime integration and gameplay verification.
+The latest verified merge is PR #98 at `53cf30dac65f1dd686e1644c78ee4b9ae099b5c5`: 699 approved event records, 645 sources and 6,234 bilingual entries. Its required tests and build passed. This branch prepares the BC0800 batch, which would raise those totals to 707 events, 655 sources and 6,294 bilingual entries; current-head CI and merge are separate publication gates. Every covered research interval remains partial. The chronological record below preserves earlier milestones and their limits. Claude owns runtime integration and gameplay verification.
 
 Updated by Codex on 7 November 2026 at main `b44c77d733d49fac34917c913f5845f4f8681760`.
 
@@ -602,3 +602,12 @@ The resulting candidate contains 699 events and 645 sources, with 3,430 partiall
 ### BC0600 policy hold
 
 An automatic tool review rejected the BC0600 operation that would write the reconciled candidate and decision files with `blocked by policy`, without a more detailed reason. Both target files were absent in the subsequent read-only check. The operation was stopped; it was not split, repackaged or reassigned. The original 31-event, 32-source draft, the source review's 25 PASS and six CORRECTION outcomes, and the 219 draft language pairs remain separate, unpromoted evidence. No final review or approved BC0600 candidate exists. Coverage for 600–501 BC remains unresearched. Independent BC0500 work instead uses the final-reviewed BC0700 baseline. Earlier policy-held batches remain held.
+
+
+## BC1000 merged; BC0800 reviewed publication
+
+[PR #98](https://github.com/sp1e/Attainder/pull/98) merged at `53cf30dac65f1dd686e1644c78ee4b9ae099b5c5`. All eight published blobs and the retained branch head `f170ef13a7d5dc2ef33e8a12a9ffcfce4406eebe` were verified. Its data revision is `242df5e4b04f74405d986cd845999bf9b125a555`. Required CI ran 5,339 tests: 5,337 passed, zero failed or skipped, two TODOs; the build passed in 35.02 seconds.
+
+BC0800 adds eight events, ten sources and sixty bilingual pairs (forty English event strings and twenty Swedish source strings). Independent source review confirmed all eight qualified event claims; nine source outcomes are confirmed and one remains limited to its public Summary. One unsupported cross-batch editorial clause was removed, with no change to historical fields, numeric dates or the sixty draft translation pairs. The independent final review passed. Root readback verified twenty-one original/copy input pairs and exact baseline equality against merged PR #98 before applying the reviewed prospective files.
+
+The resulting catalog has 707 approved events and 655 sources. Coverage changes only for 800–701 BC, reaching 3,530 partial years and 1,300 unresearched years. BC0900 and BC0600 remain on their recorded policy holds. Partial coverage does not establish an exhaustive annual history. Source-access limits and dating qualifications remain in the batch note. Claude retains runtime, Options-language, popup and gameplay integration; this research publication supplies no new runtime verification.
