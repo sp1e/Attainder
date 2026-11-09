@@ -1,0 +1,170 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc0100-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -100,
+    "endYear": -1
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc0100en-met-roman-glass",
+      "title": "Roman Glass",
+      "institution": "Rosemarie Trentinella; The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/de/essays/roman-glass",
+      "locator": "1 October 2003, Blown Glass section, web lines 150–153. English essay text on the /de/ route.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "early first century B.C.",
+      "originalChronology": "Places glassblowing early in the first century BCE; this does not supply an exact invention year.",
+      "scopedClaim": "Identifies the Syro-Palestinian region as the origin and describes faster, more versatile manufacture.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0100en-corning-glass-romans",
+      "title": "Glass of the Romans",
+      "institution": "Corning Museum of Glass",
+      "url": "https://whatson.cmog.org/exhibitions-galleries/glass-romans",
+      "locator": "Gallery description, web lines 91–93, especially the paragraph on hollow-tube inflation.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "middle of the first century B.C.",
+      "originalChronology": "Places the innovation in the middle of the first century BCE, later than the Met essay's early-century wording.",
+      "scopedClaim": "Locates the innovation near Jerusalem and connects easier production with cheaper glass and wider availability.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0100en-nam-antikythera",
+      "title": "The Antikythera Shipwreck: The ship – the treasures – the Mechanism",
+      "institution": "National Archaeological Museum, Greece",
+      "url": "https://www.namuseum.gr/en/temporary_exhibition/to-nayagio-ton-antikythiron-to-ploio-oi-thisayroi-o-michanismos/",
+      "locator": "Temporary exhibition page, 6 April 2012–29 June 2014; web lines 188–190. The exhibition dates are modern.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "approximately 60–50 BC",
+      "originalChronology": "Dates the sinking approximately 60–50 BCE. Its fourth- to first-century BCE range concerns the cargo objects, not the sinking.",
+      "scopedClaim": "A ship carrying luxury objects sank off Antikythera; its cargo illuminates Mediterranean trade.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0100en-whoi-antikythera",
+      "title": "Stunning Finds from Ancient Greek Shipwreck",
+      "institution": "Woods Hole Oceanographic Institution",
+      "url": "https://www.whoi.edu/press-room/news-release/antikythera-finds/",
+      "locator": "9 October 2014, cargo description and excavation partnership at web lines 11–14; wreck date at line 20.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "70 to 60 BC",
+      "originalChronology": "Gives 70–60 BCE for the wreck. Its route and storm explanation are proposals, not established causes or destinations.",
+      "scopedClaim": "Describes art objects, luxury goods and the mechanism from the wreck investigated by WHOI and the Greek Ephorate of Underwater Antiquities.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0100en-amrp-wreck-date",
+      "title": "When was the ship wrecked?",
+      "institution": "Martin Allen; Antikythera Mechanism Research Project",
+      "url": "https://new.antikythera-mechanism.gr/faq/general-questions/when-was-the-ship-wrecked",
+      "locator": "FAQ main text, web lines 34–35. The same paragraph contains two differently bounded wreck estimates.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "between 85 and 60 BC",
+      "originalChronology": "The FAQ first gives 80–50 BCE from the contents, then concludes 85–60 BCE. Both are preserved; its 200 ± 43 BCE timber date is not a sinking date.",
+      "scopedClaim": "Supplies an additional, internally non-identical pair of wreck estimates based on the contents and coins. It does not justify a precise year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0100en-desanges-juba",
+      "title": "Les territoires gétules de Juba II",
+      "institution": "Jehan Desanges; Revue des Études Anciennes / Persée",
+      "url": "https://www.persee.fr/doc/rea_0035-2004_1964_num_66_1_3713",
+      "locator": "1964, volume 66, issues 1–2, pp. 33–47, DOI 10.3406/rea.1964.3713. Only the public HTML text of p. 33 was read: opening paragraph and footnote 2, web lines 38–44.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "25 av. J.-C.",
+      "originalChronology": "The author explicitly fixes accession at 25 BCE using numismatic and literary arguments. This dataset performs no regnal-year conversion.",
+      "scopedClaim": "Juba II receives the Mauretanian kingdom through Augustus. The article questions parts of the ancient geographical tradition; exact frontier claims are excluded.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc0100-glassblowing-development",
+      "date": {
+        "kind": "disputed",
+        "startYear": -100,
+        "endYear": -1,
+        "displayEn": "First century BCE; early- and mid-century estimates",
+        "noteEn": "The Met places the innovation early in the century; Corning places it near the middle. The numerical bounds cover their shared century, not a century-long invention process or evidence for the endpoint years."
+      },
+      "titleEn": "Glassworkers develop glassblowing",
+      "summaryEn": "Glassworkers in the eastern Mediterranean develop hollow-tube inflation of glass. The technique makes production faster and more adaptable, helping bring glass vessels to more people.",
+      "geographyEn": "Syro-Palestinian region; Corning specifies the environs of Jerusalem",
+      "category": "technology",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc0100en-met-roman-glass",
+        "bc0100en-corning-glass-romans"
+      ],
+      "selectionNote": "A major regional manufacturing innovation. Its differing museum chronologies remain explicit; neither an exact invention year nor the separate earlier invention of glass is asserted.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; Codex independent final data, English and reconciliation review",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0100-antikythera-shipwreck",
+      "date": {
+        "kind": "disputed",
+        "startYear": -85,
+        "endYear": -50,
+        "displayEn": "Approximately 85–50 BCE; estimates differ",
+        "noteEn": "The museum gives about 60–50 BCE and WHOI 70–60 BCE. The research-project FAQ gives both 80–50 and 85–60 BCE. The outer span accommodates these alternatives; the ship did not sink throughout it. Cargo and timber dates are separate."
+      },
+      "titleEn": "A merchant ship sinks off Antikythera",
+      "summaryEn": "A ship carrying works of art, luxury goods and the Antikythera mechanism sinks off the island. Its varied cargo provides evidence of Mediterranean trade.",
+      "geographyEn": "Off Antikythera, Greece",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc0100en-nam-antikythera",
+        "bc0100en-whoi-antikythera",
+        "bc0100en-amrp-wreck-date"
+      ],
+      "selectionNote": "A notable trade assemblage, kept distinct from the manufacture of the mechanism and the modern discovery of the wreck. No precise sailing route, storm cause or exact sinking year is asserted.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; Codex independent final data, English and reconciliation review",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0025-juba-mauretania",
+      "date": {
+        "kind": "exact",
+        "startYear": -25,
+        "endYear": -25,
+        "displayEn": "25 BCE",
+        "noteEn": "Desanges explicitly dates the accession to this year from numismatic and literary evidence. No month, day or exact territorial frontier is specified."
+      },
+      "titleEn": "Juba II becomes king of Mauretania",
+      "summaryEn": "With Augustus's support, Juba II takes rule over the Mauretanian kingdom previously held by Bocchus.",
+      "geographyEn": "Mauretania, North Africa",
+      "category": "politics",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0100en-desanges-juba"
+      ],
+      "selectionNote": "A distinct political succession in North Africa, separate from Rome's military campaigns already catalogued. The entry retains the scholarship's stated year without converting regnal dates or adopting contested frontier descriptions.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; Codex independent final data, English and reconciliation review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
