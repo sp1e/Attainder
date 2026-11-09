@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain sixty-two approved records, one hundred and eight source records and three hundred and ten display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain sixty-three approved records, one hundred and twelve source records and three hundred and fifteen display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -50,7 +50,10 @@ The English research deliveries now contain sixty-two approved records, one hund
 | [AD 1400–1499](../research/world-cultures/english-events/ad1400-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #121](https://github.com/sp1e/Attainder/pull/121), commit `d60d09a7fdf097f52429da370829c85c2a72b5b3` |
 | [AD 1500–1530](../research/world-cultures/english-events/ad1500-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #120](https://github.com/sp1e/Attainder/pull/120), commit `aff37caa8b5221180c3f30eff0fdadb0bf0c91bd` |
 | [100–1 BC](../research/world-cultures/english-events/bc0100-supplement.md) | 3 | 6 | 15 | Reviewed in [PR #149](https://github.com/sp1e/Attainder/pull/149); original source HOLD preserved; current-head CI and verified merge required |
-| [700–601 BC, second pass](../research/world-cultures/english-events/bc0700-second-pass-supplement.md) | 1 | 1 | 5 | Source and final review passed; current-head CI and verified merge required |
+| [700–601 BC, second pass](../research/world-cultures/english-events/bc0700-second-pass-supplement.md) | 1 | 1 | 5 | Reviewed in [PR #150](https://github.com/sp1e/Attainder/pull/150); current-head CI and verified merge required |
+| [2400–2301 BC](../research/world-cultures/english-events/bc2400-supplement.md) | 1 | 4 | 5 | Three source-metadata corrections verified by final review; current-head CI and verified merge required |
+
+BC2400 adds Ross Island copper production and its supply into Ireland and Britain. Original source review required two exact date-quotation corrections and a more precise chapter locator; a fresh final review verified all three changes and passed the otherwise unchanged candidate, all six English texts and the full public note. Root verified sixty-five frozen inputs, six text hashes and thirty-six committed comparison files. Published phase intervals remain explicit, and later furnaces are excluded. The original CORRECTION report and raw process timestamps remain preserved.
 
 BC0700 second pass adds Esarhaddon's succession oaths in 672 BCE. Both independent reviews approved the unchanged historical content, all six English texts and the full publication note. The year dates the oath arrangements, not Ashurbanipal's accession or later tablet discoveries; no universal compliance or concealed motive is asserted. Root verified sixty-three frozen inputs, six text hashes, thirty-eight committed comparison files and seven private originals. The existing Jerwan dataset remains unchanged.
 
