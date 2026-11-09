@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad0001-ad0300-second-pass-2026-11-09",
+  "researchWindow": {
+    "startYear": 1,
+    "endYear": 300
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0038en-roma-aqua-claudia",
+      "title": "Park of the Aqueducts",
+      "institution": "Turismo Roma; Roma Capitale",
+      "url": "https://turismoroma.it/en/places/park-aqueducts",
+      "locator": "Public heritage description, Claudio and Anio Novus section, web lines 262–264. Municipal department and comune.roma.it contact appear in the footer. Only the relevant text was inspected.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "started by Emperor Caligula in 38 AD and completed by Claudius in 52 AD",
+      "originalChronology": "The joint description places construction in 38–52 CE. This entry applies that interval to Aqua Claudia, not to all seven aqueducts or later repairs.",
+      "scopedClaim": "Aqua Claudia draws spring water and carries it toward Rome, using high arches for sections of its route. The description attributes commencement to Caligula and completion to Claudius. Population and flow-rate estimates are not retained.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0038en-appia-aqueducts",
+      "title": "I sette acquedotti e Tor Fiscale",
+      "institution": "Parco Regionale dell'Appia Antica",
+      "url": "https://www.parcoappiaantica.it/wp-content/uploads/2021/11/Acquedotti_ITA.pdf",
+      "locator": "Two-page public leaflet: title and institutional imprint on PDF page 1; Claudio e Anio Novus paragraph and construction table on PDF page 2, extracted web lines 323–346 and 403–410. Text extraction was read; no successful visual table inspection is claimed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "CLAUDIA 38-52 d.C.",
+      "originalChronology": "The table dates Claudia to 38–52 CE, matching the paragraph's joint interval. For Anio Novus the same table gives 47–52 CE whereas the paragraph begins both works in 38; this internal difference is preserved and no Anio Novus construction event is adopted.",
+      "scopedClaim": "The leaflet describes water conveyed from the Aniene basin on aqueduct structures, including Aqua Claudia's arches. It is a public heritage account, not an independently inspected excavation or epigraphic study.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-ad0038-aqua-claudia-construction",
+      "date": {
+        "kind": "range",
+        "startYear": 38,
+        "endYear": 52,
+        "displayEn": "38–52 CE",
+        "noteEn": "The interval concerns Aqua Claudia's construction under Caligula and Claudius. The park leaflet gives inconsistent start years for the companion Anio Novus, which is not the subject of this entry. No uninterrupted work schedule or inauguration day is inferred."
+      },
+      "titleEn": "Rome builds the Aqua Claudia",
+      "summaryEn": "Work begun under Caligula and completed under Claudius adds an aqueduct carrying spring water from the Aniene valley toward Rome. High arches support sections of its route.",
+      "geographyEn": "The Aniene valley and Rome, Italy",
+      "category": "technology",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0038en-roma-aqua-claudia",
+        "ad0038en-appia-aqueducts"
+      ],
+      "selectionNote": "A notable expansion of the city's water infrastructure, distinct from Aqua Appia's earlier construction and later bath or wall projects. The entry concerns one aqueduct's building interval, not the invention of aqueducts, an independently established water-volume increase or the unresolved chronology of Anio Novus.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
