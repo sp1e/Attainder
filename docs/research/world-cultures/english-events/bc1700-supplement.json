@@ -1,0 +1,133 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc1700-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -1700,
+    "endYear": -1601
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc1700en-strupler-hattusa",
+      "title": "Sacked and Cursed? New data on the transition from the city-state to the Hittite capital Hattuša",
+      "institution": "University of Bern / BAF-Online: Proceedings of the Berner Altorientalisches Forum",
+      "url": "https://bop.unibe.ch/baf/article/view/4477",
+      "locator": "Néhémie Strupler (2019), volume 3 (2018), DOI 10.22012/baf.2018.14; public abstract, paragraphs When and Where. Conference presentation not viewed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "around 1650",
+      "originalChronology": "The abstract places Hattusili's selection of Hattusa as capital around 1650 in its BC historical context.",
+      "scopedClaim": "Hattusili chose the existing city of Hattusa as the Hittite capital. This is a change in political function, not the first settlement of the site.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700en-herrmann-chronology",
+      "title": "New evidence for Middle Bronze Age chronology from the Syro-Anatolian frontier",
+      "institution": "Cambridge University Press / Antiquity",
+      "url": "https://www.cambridge.org/core/journals/antiquity/article/new-evidence-for-middle-bronze-age-chronology-from-the-syroanatolian-frontier/014ABB912CC50181E0F06E074BE071A2",
+      "locator": "Virginia R. Herrmann et al. (2023), Antiquity 97(393), pp. 654–673, DOI 10.15184/aqy.2023.30; Middle Bronze Age Zincirli, paragraph on conventional Hattusili chronology, and Conclusion.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "conventionally, hMC c. 1650–1620 BC",
+      "originalChronology": "The conventional 1650 accession estimate comes from generation counting. The authors support a later-seventeenth-century context for associated campaigns, not an independently dated founding of Hattusa.",
+      "scopedClaim": "Explains why 1650 must remain approximate and conventional. Regional radiocarbon evidence favors Middle Chronology over older low chronological schemes, but does not date the court's move.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700en-kloekhorst-zalpa",
+      "title": "A New Interpretation of the Old Hittite Zalpa-Text (CTH 3.1): Nēša as the Capital under Ḫuzzii̯a I, Labarna I, and Ḫattušili I",
+      "institution": "Journal of the American Oriental Society / Lockwood Press",
+      "url": "https://www.lockwoodonlinejournals.com/index.php/jaos/article/view/1533",
+      "locator": "Alwin Kloekhorst (2021), 141(3), pp. 557–575, DOI 10.7817/jameroriesoci.141.3.0557; public abstract only. Subscription PDF not accessed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "before he moved his court to Ḫattuša",
+      "originalChronology": "Relative sequence only: the author's interpretation places Hattusili's accession at Nesa before his court moved to Hattusa. No calendar year is supplied for the move.",
+      "scopedClaim": "Provides a scholarly interpretation separating accession at Nesa from the later transfer of the court to Hattusa; the reconstruction is attributed rather than presented as a dated contemporary report.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700en-rodriguez-paso-court",
+      "title": "Culture of Paso de la Amada, Creator of the ‘Mesoamerican Ballgame’",
+      "institution": "Revista Internacional de Medicina y Ciencias de la Actividad Física y el Deporte",
+      "url": "https://rimcafd.com/revista/revista61/artcultura670e.pdf",
+      "locator": "J. Rodríguez-López, M. Vicente-Pedraz and A. Mañas-Bastida (2016), 16(61), pp. 69–83, DOI 10.15366/rimcafd2016.61.006; English text, sections 3.2 and 3.3, printed pp. 73–74.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "built in ca. 1650-1600 BC",
+      "originalChronology": "The detailed section places construction around 1650–1600 BC, while the abstract uses around 1650. The complete construction window is retained.",
+      "scopedClaim": "Describes an earthen ballcourt with a playing alley between facing mounds and discusses its possible relationship with emerging social leadership. The candidate does not adopt the article's claim to identify the inventors of the game.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700en-byu-paso-court",
+      "title": "Archaeologists Find Evidence of Ball Playing in Ancient America",
+      "institution": "Brigham Young University / Y Magazine",
+      "url": "https://magazine.byu.edu/article/archaeologists-find-evidence-of-ball-playing-in-ancient-america/",
+      "locator": "Julie Harker Walker, Fall 1998 issue; paragraphs describing the court's construction and subsequent enlargement, and John E. Clark's interpretation of the adjacent residence.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "built about 1600 B.C.",
+      "originalChronology": "Institutional reporting on the excavation gives approximately 1600 BC and later rebuilding; the initial construction is distinct from subsequent use and enlargement.",
+      "scopedClaim": "Reports the excavated court and its approximate date, and attributes a proposed connection between games and emerging leadership to the excavator. The speculative social explanation is not established causation.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1650-hattusa-becomes-hittite-royal-seat",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1650,
+        "endYear": -1650,
+        "displayEn": "Around 1650 BCE, in the conventional chronology",
+        "noteEn": "Strupler places the choice of Hattusa as capital around 1650 BCE. Herrmann and colleagues explain that 1650 is a conventional accession estimate based on generation counting, not a dated foundation. Kloekhorst interprets the court's move as following an accession at Nesa. The precise transfer year remains unknown; no reign dates are converted into a new event date."
+      },
+      "titleEn": "Hattusili establishes his royal seat at Hattusa",
+      "summaryEn": "Hattusili makes the existing city of Hattusa the Hittite royal center. One interpretation of the Zalpa text places his accession at Nesa before the court moved. This political change should not be confused with the city's first settlement.",
+      "geographyEn": "Hattusa, near modern Boğazkale in central Türkiye",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc1700en-strupler-hattusa",
+        "bc1700en-herrmann-chronology",
+        "bc1700en-kloekhorst-zalpa"
+      ],
+      "selectionNote": "A major regional political reorganization, distinct from the already cataloged Zincirli destruction. The old H004 lead lacked a read capital-selection passage; the independent Bern abstract now supplies one, qualified by fresh chronology and textual interpretation checks.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1650-paso-de-la-amada-ballcourt-built",
+      "date": {
+        "kind": "range",
+        "startYear": -1650,
+        "endYear": -1600,
+        "displayEn": "Around 1650–1600 BCE",
+        "noteEn": "The 2016 study gives approximately 1650–1600 BCE for construction; BYU's 1998 institutional report on the excavation gives about 1600 BCE. The complete approximate window is retained across the century boundary. It does not imply fifty years of continuous building or date the invention of the ballgame."
+      },
+      "titleEn": "Builders construct an earthen ballcourt at Paso de la Amada",
+      "summaryEn": "Builders create a formal playing alley between parallel earthen mounds at Paso de la Amada. Its scale and relationship to nearby residences have led researchers to connect games with emerging leadership and social competition, although that political explanation remains an interpretation.",
+      "geographyEn": "Paso de la Amada, Soconusco region, Chiapas, Mexico",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc1700en-rodriguez-paso-court",
+        "bc1700en-byu-paso-court"
+      ],
+      "selectionNote": "A substantial communal arena relevant to the development of public competition and political leadership, distinct from the earlier cacao-use record at the same settlement. No claim to identify the game's inventors, earliest players or rules is retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
