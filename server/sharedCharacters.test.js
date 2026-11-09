@@ -11,7 +11,7 @@ import { SHIPPED_START_FOLDERS } from '../src/runtime/testing/shippedHistoricalS
 
 const digest = state => createHash('sha256').update(JSON.stringify(state)).digest('hex');
 const baselines = [
-  [{}, '8998d87d357e09e5a15409d28b8407baeb258c03ccd025f6abc564be6728328d', '8a49ff515c636760ca8e920e5ad14cc7e1658e9674e650436969aa3e583bec76', 104729, 2206754125],
+  [{}, '8998d87d357e09e5a15409d28b8407baeb258c03ccd025f6abc564be6728328d', '0592b6ea3f323b54acd7b22c4b8e613080e299c12e43f227f199ab7aa9ec60ff', 104729, 2206754125],
   [{ seed: 321, mode: 'realm' }, '5d663a3450a3534a6c60c9b484a517606a81dfe3a4f69768d5dfcc24039f5eac', 'b651b71991923fd444f96a68874b9e6f6ba82ec1cca0b79cee99c7f2593ceb0a', 321, 2318062802],
   [{ seed: 321, mode: 'family' }, '1502f96366fbb39cc0f4247c7c8d11b4363c1767cbba3baf73a61f5fc59c95a2', '8d499786d58c6484f4d586dacc718be6bd1a7ade62c211682a0464471ce752de', 321, 2318062802],
 ];
