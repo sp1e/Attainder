@@ -1,5 +1,6 @@
 import { addGameMonths, compareGameDates, diffGameDays, normalizeGameDate } from '../gameDates.js';
 import { ensurePortraitIdentity, healthStageAt, PORTRAIT_AGE_GROUPS, PORTRAIT_STATES } from './portraitState.js';
+import { spouseIdsOf } from './marriage.js';
 
 export const HEALTH_VERSION = 1;
 export const HEALTH_CONDITION_LABELS = Object.freeze({ smallpox: 'Smittkoppor', fever: 'Febersjukdom', injury: 'Skada', bereavement: 'Sorg' });
@@ -83,7 +84,7 @@ function arrangeHealthCare(state, person, condition, context = {}, events) {
 export function recordBereavement(state, deceased, causeId, events) {
   ensureHealthState(state);
   for (const person of living(state)) {
-    if (!person.legalParentIds.includes(deceased.id) && person.spouseId !== deceased.id && !deceased.legalParentIds.includes(person.id)) continue;
+    if (!person.legalParentIds.includes(deceased.id) && !spouseIdsOf(person).includes(deceased.id) && !deceased.legalParentIds.includes(person.id)) continue;
     if (person.healthConditions.some((condition) => condition.kind === 'bereavement' && condition.relatedPersonId === deceased.id)) continue;
     if (deceased.legalParentIds.includes(person.id)) person.stress = clamp(person.stress + 15, 0, 200);
     createCondition(state, person, 'bereavement', events, { causeId, relatedPersonId: deceased.id, sourceKind: 'bereavement' });

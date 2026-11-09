@@ -3,6 +3,7 @@ import { ARCHETYPES } from './content.js';
 import { getCharacterAge } from './characterCapacity.js';
 import { ensurePortraitIdentity } from './portraitState.js';
 import { generatedAdultRecord, markGeneratedOrigin } from './election.js';
+import { hasLivingSpouse } from './marriage.js';
 
 const GENERATED_HOUSE = /^Hovhus (\d+) \(genererat\)$/;
 
@@ -91,7 +92,6 @@ function addNewcomer(state, events, hooks) {
 export const SPOUSE_CEILING = 12;
 const SPOUSE_NOTE_SV = 'Spelet skapade personen som make eller maka.';
 const SPOUSELESS_OFFICES = new Set(['ruler', 'priest']);
-const hasLivingSpouse = (state, person) => Boolean(state.people[person.spouseId] && !state.people[person.spouseId].diedAt);
 
 /** True when matchmaking could pair the person at court: a living single of the other sex aged 18 to 39 who is neither the representative nor close kin. */
 function hasPartner(state, person, hooks, representativeId) {
