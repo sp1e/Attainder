@@ -2,7 +2,7 @@
 
 ## Current publication checkpoint: 9 November 2026
 
-The latest verified merge is PR #99 at `f4f638389c63cffa587a86f7d4534342eaeb2ae0`: 707 approved event records, 655 sources and 6,294 bilingual entries. Its required tests and build passed. This branch prepares the BC0700 batch, which would raise those totals to 714 events, 663 sources and 6,345 bilingual entries; current-head CI and merge are separate publication gates. Every covered research interval remains partial. The chronological record below preserves earlier milestones and their limits. Claude owns runtime integration and gameplay verification.
+The latest verified merge is PR #100 at `90a194be36139571c057d663b99c82f59186a66d`: 714 approved event records, 663 sources and 6,345 bilingual entries. Its required tests and build passed. This branch prepares the BC0500 batch, which would raise those totals to 746 events, 690 sources and 6,559 bilingual entries; current-head CI and merge are separate publication gates. Every covered research interval remains partial. The chronological record below preserves earlier milestones and their limits. Claude owns runtime integration and gameplay verification.
 
 Updated by Codex on 7 November 2026 at main `b44c77d733d49fac34917c913f5845f4f8681760`.
 
@@ -620,3 +620,12 @@ The resulting catalog has 707 approved events and 655 sources. Coverage changes 
 BC0700 adds seven events, eight sources and fifty-one bilingual pairs (thirty-five English event strings and sixteen Swedish source strings). The unchanged source report records twenty PASS outcomes. A separate date-contract ruling withholds Lydian coinage and Arzhan 2, plus their three unused sources: late-century or second-half dating cannot justify a 700–601 BC event interval. No guessed boundary replaces these dates. All retained historical fields and translation records remain unchanged. Independent final review passed; root verified twenty-two original/copy input pairs and exact baseline equality against merged PR #99.
 
 The resulting catalog has 714 approved events and 663 sources. Coverage changes only for 700–601 BC, reaching 3,630 partial years and 1,200 unresearched years. BC0900 and BC0600 remain on their recorded policy holds. Thebes, Chengpu and Draco retain their dating qualifications. The source review's reported six web calls differ from five observed calls; complete raw passage preservation and visual PDF inspection are not certified. These limits remain in the batch note. Claude retains runtime, language-options, popup and gameplay integration.
+
+
+## BC0700 merged; BC0500 reviewed publication
+
+[PR #100](https://github.com/sp1e/Attainder/pull/100) merged at `90a194be36139571c057d663b99c82f59186a66d`. All eight published blobs and the retained branch head `c30aa1aebebba242c81c5c8a26c09962b6074234` were verified. Its data revision is `49ae3f833ea4598f275bab88d1c6fca0617554ad`. Required CI ran 5,339 tests: 5,337 passed, zero failed or skipped, two TODOs; the build passed in 32.81 seconds.
+
+BC0500 adds 32 events, 27 sources and 214 bilingual pairs (160 English event strings and 54 Swedish source strings). The original source FAIL report and targeted follow-up FAIL report remain preserved. Two Himera episodes and their unused source are withheld after HTTP 403. Fifteen material fields were corrected or narrowed; the separate follow-up accepted the material changes and required 27 importance changes, all applied. The unchanged dissertation locator was independently confirmed. No numeric historical dates changed. Ten retained language pairs were updated, 204 remained unchanged and twelve Himera pairs were removed.
+
+The independent final review passed for all 214 pairs, all 42 field changes and the complete reconciliation chain. Root verified twenty-seven original/copy input pairs and exact baseline equality against merged PR #100. The resulting catalog has 746 approved events and 690 sources. Coverage changes only for 500–401 BC, reaching 3,730 partial years and 1,100 unresearched years. BC0600 and BC0900 remain excluded under their recorded policy holds. The batch note preserves public-abstract limits and the distinction between observed PDF text extraction and an unverified visual-inspection claim. Claude retains runtime, language-options, popup and gameplay integration.
