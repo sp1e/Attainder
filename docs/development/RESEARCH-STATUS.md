@@ -400,3 +400,33 @@ Ruling: retain the three independently confirmed records at importance 2, 1 and 
 The candidate preserves all 505 earlier events and 461 sources, reaching 508 events and 465 sources. Only 2200–2101 BC becomes partial, for 2,031 partial years and 2,799 unresearched years. The author made 30 discovery queries across nine working regions; the retained records concern the Middle East and North Africa, leaving the other eight regions as gaps. Full approximate and competing date intervals remain in single records. Independent subset and bilingual review passed 116 checks; prospective integration passed 34.
 
 The language additions contain 15 English event fields and eight Swedish source-panel fields. The data-first commit and complete locale readback retain a reproducible source revision. Current-head CI remains required before merge. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or deployment configuration change is needed.
+
+
+## BC2200 published and AD300 integrated, 9 November 2026
+
+[PR #77](https://github.com/sp1e/Attainder/pull/77) merged at verified main `0ff7f722f5da3ef87c54b9c6c033c2b460e8c9ca`. All eight publication blobs match the approved readback. CI on head `120565e95421b72ce95909a7c59d76eea4c91316` passed 5,290 of 5,292 tests, with zero failures, zero skips and two existing TODOs; the build took 43.05 seconds. The published catalog contains 508 events and 465 sources. Both locale sidecars identify retained data commit `6a3bac1476f6d1ff1d732fe808397e4cc474d45f`; all 4,919 referenced source strings and hashes match it. The AD700, AD500 and BC2200 research branches remain available on the remote.
+
+AD300 adds 29 events and 20 sources after a separate source check of 33 events and 23 sources. Original outcomes remain 23 confirmed, nine corrected and one unsupported event, plus 21 confirmed, one corrected and one unsupported source. All 18 original findings and eight earlier withheld leads remain preserved. The Nasca bowl, Sri Lankan tooth-relic account, Pachomios baptism and My Son remain held as complete records. Their three unused sources are omitted; Ritner remains cited for Constantinople's alternative date.
+
+Reconciliation applies 12 exact event corrections and one source-scope correction, four editorial importance reductions, the unpublished Puranas ID adjustment and four source-conflict or locator clarifications. The Puranas record retains AD 301–400 in full. Independent data review passed 84 checks, and all 185 bilingual entries passed the final language/readback check: 17 changed pairs were read and 168 accepted entries preserved exactly.
+
+Ruling: use the Met timeline's AD 313 placement for Lelang while explicitly preserving its conflicting prose era, 313 BC, in the event note and source chronology. The decision leaves the publication's inconsistency unresolved. The Jovian entry distinguishes Ammianus's five provinces from Bury's three restored provinces. Fresh follow-up reading supports the precise locators without changing the original review record.
+
+The candidate preserves all 508 earlier events and 465 sources, reaching 537 events and 485 sources. Only AD 300–399 becomes partial, for 2,131 partial years and 2,699 unresearched years. The author logged 21 discovery queries across nine working regions. Europe and East Asia dominate; Southeast Asia and Oceania have no retained event. Public-summary, sample-PDF and tool-representation limits remain explicit, as do earlier unverified retrieval assertions.
+
+The language additions contain 145 English event fields and 40 Swedish source-panel fields. Current-head CI remains required before merge. The data-first commit and complete locale readback retain a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or deployment configuration change is needed.
+
+
+## AD300 published and BC2100 integrated, 9 November 2026
+
+[PR #78](https://github.com/sp1e/Attainder/pull/78) merged at verified main `659dafc89dbd2eeeafea466343ceaceddbc2e8d9`. All eight publication blobs match the approved readback. CI on synchronized head `87e96d2515795433a3c56856c1251dce43336d31` passed 5,296 of 5,298 tests, with zero failures, zero skips and two existing TODOs; the build took 35.92 seconds. The published catalog contains 537 events and 485 sources. Both locale sidecars identify retained data commit `a9bcbced6865e4d55f753dd0cf5ae5153d9b06bc`; all 5,104 referenced source strings and hashes match it.
+
+BC2100 adds eight events and ten sources. The independent source review returned seven confirmed and one corrected event, with all ten sources confirmed within their actual reading scopes. Two exact wording corrections retain Sazonov's attribution and uncertainty for Shulgi's royal cult. All original findings and 18 earlier withheld leads remain preserved. The author logged 32 queries across nine regions; four early queries lack saved raw results after a command-length failure.
+
+Ruling: retain Dholavira's local infrastructure decline at importance 1 under culture, consistent with the chronicle's domestic and urban history. Three editorial changes record this choice separately from the two Shulgi wording corrections. The entry establishes no exact damage year, earthquake year or climatic cause. All historical dates and source fields remain unchanged.
+
+The candidate preserves all 537 earlier events and 485 sources, reaching 545 events and 495 sources. Only 2100–2001 BC becomes partial, for 2,231 partial years and 2,599 unresearched years. Five retained records concern the Middle East and North Africa; five macroregions have no retained event. Full phases and reign alternatives remain intact, including intervals extending into 2000 BC. Sintashta's placement depends on the cited framework. Ur's alternative dynasty endpoint does not independently date a conquest.
+
+Independent subset, bilingual and prospective integration reviews passed. The actual merged catalog and coverage blobs match the reviewed baseline. All 60 language pairs passed review: 40 English event fields and 20 Swedish source locator and institution fields. Anthony's public summary, Sazonov's abstract and Garcia-Ventura's preview remain the stated reading scopes; earlier retrieval assertions remain unverified.
+
+Current-head CI remains required before merge. The data-first commit and complete locale readback retain a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or deployment configuration change is needed.

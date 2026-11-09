@@ -75,6 +75,24 @@
     },
     {
       "startYear": -2100,
+      "endYear": -2001,
+      "status": "partial",
+      "note": "Eight independently source-checked records concern Dholavira infrastructure decline, Taosi urban enclosure, fortified Sintashta settlements, two Shulgi episodes, Mentuhotep II’s complex and reunification of Egypt, and Ur’s fall. The author logged 32 discovery queries across nine working regions; five retained events concern the Middle East and North Africa, with one each in East Asia, South Asia and the steppe and Central Asia. The other five regions remain gaps. Full phases, reign bounds and competing chronologies remain distinct; Sintashta placement is framework-dependent and Ur’s alternative dynasty endpoint does not independently date a conquest. Public summary, abstract and preview limits remain explicit. Empty years remain research gaps."
+    },
+    {
+      "startYear": -2000,
+      "endYear": 299,
+      "status": "unresearched",
+      "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": 300,
+      "endYear": 399,
+      "status": "partial",
+      "note": "Twenty-nine independently source-checked records cover selected events in Europe, East Asia, the Middle East and North Africa, the steppe and Central Asia, the Americas, sub-Saharan Africa and South Asia. Europe has nine records and East Asia eight; Roman imperial and ecclesiastical history dominates. Southeast Asia and Oceania have no retained event. The author logged 21 discovery queries across nine working regions. The Nasca bowl, Sri Lankan tooth-relic account, Pachomios baptism and My Son remain withheld. Puranas retain the full AD301-400 interval, and conflicting source dates remain explicit. Full intervals establish no annual occurrence or researched coverage of later years. Empty years and regions remain research gaps."
+    },
+    {
+      "startYear": 400,
       "endYear": 499,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."

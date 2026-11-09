@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "6a3bac1476f6d1ff1d732fe808397e4cc474d45f",
+  "sourceRevision": "d59a7fa4a9c3e4faac4166d7a7eae83c68fd46a5",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -10232,6 +10232,666 @@
         "sourceId": "bc2200-met-ur-nammu-brick",
         "fieldPath": "/institution",
         "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0300-met-south-asia/locator",
+      "sv": "”Key Events”, posten ”4th century A.D.”, stycket om de tidiga puranatexterna.",
+      "en": "“Key Events”, entry “4th century A.D.”, paragraph on the early Puranas.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-met-south-asia",
+        "fieldPath": "/locator",
+        "textSha256": "867fc8e28a35572c111f37af1f91474f79fbf5bd191c209f128a86302a8205f0"
+      }
+    },
+    {
+      "id": "source/ad0300-met-south-asia/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-met-south-asia",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0300-culture-ezana/locator",
+      "sv": "Huvudtextens första stycke, omvändelsen ”vers 330” och kungens myntmotiv.",
+      "en": "Main text, first paragraph, conversion “vers 330” and royal coin imagery.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-culture-ezana",
+        "fieldPath": "/locator",
+        "textSha256": "00d5c3d56533786f21567d7dd0be06f3be1dfff3240040a5c4e7067ff3cbef28"
+      }
+    },
+    {
+      "id": "source/ad0300-culture-ezana/institution",
+      "sv": "Ministère de la Culture (France)",
+      "en": "Ministère de la Culture (France)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-culture-ezana",
+        "fieldPath": "/institution",
+        "textSha256": "bbe1358a97381cd34c7379e1b65e6259abdebf8a9ecf65701db1e297a5cbf979"
+      }
+    },
+    {
+      "id": "source/ad0300-ashmolean-aksum/locator",
+      "sv": "Utställningens inledning, stycket om kungens omvändelse omkring 360 e.Kr.; föregående bildtext om Ezanas mynt.",
+      "en": "Exhibition introduction, paragraph on royal conversion around AD 360; preceding Ezanas coin caption.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-ashmolean-aksum",
+        "fieldPath": "/locator",
+        "textSha256": "dd3fdd7c0f34414c3178866d25b8af279dcda0b01bc18544a197fc7311b55523"
+      }
+    },
+    {
+      "id": "source/ad0300-ashmolean-aksum/institution",
+      "sv": "Ashmolean Museum, University of Oxford",
+      "en": "Ashmolean Museum, University of Oxford",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-ashmolean-aksum",
+        "fieldPath": "/institution",
+        "textSha256": "744ec836cf7803e79027301a4f32ad656aab57e034cbda95d35a2ae81d2a8922"
+      }
+    },
+    {
+      "id": "source/ad0300-idp-sogdian-letters/locator",
+      "sv": "Inledningen, dateringsdiskussionen; brev 1, Miwnay till Chatis; brev 2, adress, hälsning och uppgifter om oroligheter i Kina. Översättning och inledning daterade 2004.",
+      "en": "Introduction, dating discussion; Letter 1, Miwnay to Chatis; Letter 2, address, salutation and report of disorder in China. Translation and introduction dated 2004.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-idp-sogdian-letters",
+        "fieldPath": "/locator",
+        "textSha256": "646d3c73a70f2246fd1707460399405e867895818a81466d0f13629572635f57"
+      }
+    },
+    {
+      "id": "source/ad0300-idp-sogdian-letters/institution",
+      "sv": "Nicholas Sims-Williams, översättning; Daniel C. Waugh, inledning; International Dunhuang Programme, British Library",
+      "en": "Nicholas Sims-Williams, translation; Daniel C. Waugh, introduction; International Dunhuang Programme, British Library",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-idp-sogdian-letters",
+        "fieldPath": "/institution",
+        "textSha256": "4384b5767f726c6acc2d099486244180d057e820f8b016684c8aa533c120ec22"
+      }
+    },
+    {
+      "id": "source/ad0300-idp-letter-two/locator",
+      "sv": "Föremål Or.8212/95: titel, fälten ”Date” och ”Find site” samt den fysiska beskrivningen.",
+      "en": "Object Or.8212/95: title, “Date”, “Find site” and physical-description fields.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-idp-letter-two",
+        "fieldPath": "/locator",
+        "textSha256": "e0a8400663cdba0bd540c7c60d78eee2334609b71f172914f9301a9b37f8b5a8"
+      }
+    },
+    {
+      "id": "source/ad0300-idp-letter-two/institution",
+      "sv": "British Library; International Dunhuang Programme",
+      "en": "British Library; International Dunhuang Programme",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-idp-letter-two",
+        "fieldPath": "/institution",
+        "textSha256": "3eaf422874ad08103c3e07c7f3dad644f8cf2badff014996ca47c3afb042fb58"
+      }
+    },
+    {
+      "id": "source/ad0300-met-korea/locator",
+      "sv": "”A Timeline of Korean History and Art”, tryckta s. 19, posterna för 313, 372 och 384. Intern kronologisk motsägelse: tryckta s. 28, stycket som börjar med Koguryô.",
+      "en": "“A Timeline of Korean History and Art”, printed p. 19, entries for 313, 372 and 384. Internal chronology conflict: printed p. 28, paragraph beginning Koguryô.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-met-korea",
+        "fieldPath": "/locator",
+        "textSha256": "5990848040d7813163bd2a7004b06ef82f9a524b5a804e15700d1fd236f997ae"
+      }
+    },
+    {
+      "id": "source/ad0300-met-korea/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-met-korea",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0300-met-china/locator",
+      "sv": "”Key Events”, avsnitten om Östra Jins hov 317 och posten ”ca. 386 A.D.” om Norra Wei. Engelsk brödtext på denna adress.",
+      "en": "“Key Events”, passages on the Eastern Jin court in 317 and the “ca. 386 A.D.” Northern Wei entry. English body text at this URL.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-met-china",
+        "fieldPath": "/locator",
+        "textSha256": "3587f655d13f023b6fcb66ee8db3f1f016f889b1c02af480f9776c47b799a1a6"
+      }
+    },
+    {
+      "id": "source/ad0300-met-china/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-met-china",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0300-asianart-buddha/locator",
+      "sv": "B60B1034, föremålsrubrik och fält för material och geografi; ”The Arrival of Buddhism in China”, stycket om Fotudeng; ”The Inscription”.",
+      "en": "B60B1034, object heading and material/geography fields; “The Arrival of Buddhism in China”, Fotudeng paragraph; “The Inscription”.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-asianart-buddha",
+        "fieldPath": "/locator",
+        "textSha256": "3ec7339af3cab4e4746ad300fc09d30dbd631274ac251fce4f8399cb7f0f541a"
+      }
+    },
+    {
+      "id": "source/ad0300-asianart-buddha/institution",
+      "sv": "Asian Art Museum, San Francisco",
+      "en": "Asian Art Museum, San Francisco",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-asianart-buddha",
+        "fieldPath": "/institution",
+        "textSha256": "be81b4f1cf0dcf83cce97422599bbbe9e443b4c0ef28dc529094e3c0e4f76798"
+      }
+    },
+    {
+      "id": "source/ad0300-unesco-anak/locator",
+      "sv": "Bildtexten med rubriken ”Anak III Tomb (357 CE) in Hwanghae Province”; meningen om den inskrivna byggnadsdateringen.",
+      "en": "Caption headed “Anak III Tomb (357 CE) in Hwanghae Province”; sentence identifying the inscribed date of construction.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-unesco-anak",
+        "fieldPath": "/locator",
+        "textSha256": "f938470e98e3cf593a99f91daf76c7e439e3eb5760bfaede073cb0329bffdfab"
+      }
+    },
+    {
+      "id": "source/ad0300-unesco-anak/institution",
+      "sv": "UNESCO",
+      "en": "UNESCO",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-unesco-anak",
+        "fieldPath": "/institution",
+        "textSha256": "2c002237c6cca439a81ff1acb582bc6594a8bf3cf184a574b020707c5fe62cc3"
+      }
+    },
+    {
+      "id": "source/ad0300-mesoweb-siyaj/locator",
+      "sv": "Den biografiska huvudtextens tre första stycken: ankomsten 378, Chak Tok Ich’aaks död och Yax Nuun Ayiin I:s trontillträde 379.",
+      "en": "Main biographical text, first three paragraphs: arrival in 378, Chak Tok Ich’aak’s death and Yax Nuun Ayiin I’s accession in 379.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-mesoweb-siyaj",
+        "fieldPath": "/locator",
+        "textSha256": "da8476cb6e6d4ada5d80638f80d62fed8496748f2090c7df85118aad1d50fbbe"
+      }
+    },
+    {
+      "id": "source/ad0300-mesoweb-siyaj/institution",
+      "sv": "Mesoweb; framställning med hänvisningar till Simon Martin, Nikolai Grube och David Stuart",
+      "en": "Mesoweb; account citing Simon Martin, Nikolai Grube and David Stuart",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-mesoweb-siyaj",
+        "fieldPath": "/institution",
+        "textSha256": "baf2b1a9097f5697f2b6c5f303922b2d6eb20c7424a5268dab058c329779a7cf"
+      }
+    },
+    {
+      "id": "source/ad0300-met-italy/locator",
+      "sv": "”Key Events”, posterna 320–327, 330, 391 och 395 A.D.",
+      "en": "“Key Events”, entries 320–327, 330, 391 and 395 A.D.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-met-italy",
+        "fieldPath": "/locator",
+        "textSha256": "3a7cee056f36bcb82e9b8d2f0c34efa6f6607d409a3cec154ee762fbcd1dde31"
+      }
+    },
+    {
+      "id": "source/ad0300-met-italy/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-met-italy",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0300-met-roman-empire/locator",
+      "sv": "Essä daterad oktober 2000, de tre sista historiska styckena: Konstantin 324, hunnerna på 370-talet och Valens 378. Engelsk brödtext på denna adress.",
+      "en": "Essay dated October 2000, final three historical paragraphs: Constantine in 324, the Huns in the 370s and Valens in 378. English body text at this URL.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-met-roman-empire",
+        "fieldPath": "/locator",
+        "textSha256": "f828bfb518be96a54061efe2660b2306ab2619d1001cc818a0171173e897a4ec"
+      }
+    },
+    {
+      "id": "source/ad0300-met-roman-empire/institution",
+      "sv": "Christopher Lightfoot, Department of Greek and Roman Art, The Metropolitan Museum of Art",
+      "en": "Christopher Lightfoot, Department of Greek and Roman Art, The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-met-roman-empire",
+        "fieldPath": "/institution",
+        "textSha256": "39543a53b1cb686cc447516d519c8df20fa9510c0e8c5773d30aa673387a53b4"
+      }
+    },
+    {
+      "id": "source/ad0300-fordham-toleration/locator",
+      "sv": "Avsnitten ”Edict of Galerius, 311 AD” och ”Edict of Milan, 313 AD”: tillåtelse att hålla kristna sammankomster och välja religion.",
+      "en": "Sections headed “Edict of Galerius, 311 AD” and “Edict of Milan, 313 AD”: permission for Christian assemblies and religious choice.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-fordham-toleration",
+        "fieldPath": "/locator",
+        "textSha256": "dffebbffc326d2465f0518a98ebc493673631e4a6934869cff750d87475b6be2"
+      }
+    },
+    {
+      "id": "source/ad0300-fordham-toleration/institution",
+      "sv": "Internet History Sourcebooks Project, Fordham University; utdrag ur Lactantius",
+      "en": "Internet History Sourcebooks Project, Fordham University; Lactantius excerpts",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-fordham-toleration",
+        "fieldPath": "/institution",
+        "textSha256": "3da4f145aa9596c307d0db911fa150c24b328273336f773a05a7fd56f017e701"
+      }
+    },
+    {
+      "id": "source/ad0300-ammianus-treaty/locator",
+      "sv": "Bok XXV, 7.9–11: fredsvillkor, fem provinser, Nisibis och Singara. Avsnittet anger villkoren; Bury anger året enligt vår tideräkning.",
+      "en": "Book XXV, 7.9–11: treaty terms, five provinces, Nisibis and Singara. The passage supplies treaty content; Bury supplies the AD year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-ammianus-treaty",
+        "fieldPath": "/locator",
+        "textSha256": "97b2a0196a91e49bce88e40a91e7c68a9c33312d30b4809d9a76feede92d6c8e"
+      }
+    },
+    {
+      "id": "source/ad0300-ammianus-treaty/institution",
+      "sv": "Loeb Classical Library, utgåva 1940; Bill Thayer, LacusCurtius, tillgänglig hos University of Chicago",
+      "en": "Loeb Classical Library edition (1940); Bill Thayer, LacusCurtius, hosted by the University of Chicago",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-ammianus-treaty",
+        "fieldPath": "/institution",
+        "textSha256": "63a21be2613cd46e00fd9d551133ad3021706c6eac6a2b5015c370286098d1ef"
+      }
+    },
+    {
+      "id": "source/ad0300-bury-jovian/locator",
+      "sv": "Kapitel IV, tryckta s. 93–94, stycket om Jovianus fredsavtal 363 e.Kr. och den romersk-persiska gränsen. Se även författarens not 10 om den omstridda provinsräkningen.",
+      "en": "Chapter IV, printed pp. 93–94, paragraph on Jovian’s treaty in AD 363 and the Roman–Persian boundary. See also author’s note 10 on the disputed province enumeration.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-bury-jovian",
+        "fieldPath": "/locator",
+        "textSha256": "a24587db11869b9d81015951524d0fee33c2b3421e58f14c523f67ce4d91c508"
+      }
+    },
+    {
+      "id": "source/ad0300-bury-jovian/institution",
+      "sv": "J. B. Bury; avskrift hos LacusCurtius, tillgänglig hos University of Chicago",
+      "en": "J. B. Bury; LacusCurtius transcription, hosted by the University of Chicago",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-bury-jovian",
+        "fieldPath": "/institution",
+        "textSha256": "f5ed388c46d5e659eaa79de44aa6b7584fd4ef53407d9dfcc6707eb0d000016a"
+      }
+    },
+    {
+      "id": "source/ad0300-fordham-nicaea/locator",
+      "sv": "Konciliemötets rubrik ”A.D. 325”; ”The Nicene Creed”, meningarna om att Sonen är av samma väsen som Fadern.",
+      "en": "Council heading “A.D. 325”; “The Nicene Creed”, sentences on the Son being of one substance with the Father.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-fordham-nicaea",
+        "fieldPath": "/locator",
+        "textSha256": "badf7e19080e3f7b9a375452c74b2f631e49c6abc6afe8c4dadb6decd81fa0da"
+      }
+    },
+    {
+      "id": "source/ad0300-fordham-nicaea/institution",
+      "sv": "Henry R. Percival, redaktör, The Seven Ecumenical Councils; Internet History Sourcebooks Project, Fordham University",
+      "en": "Henry R. Percival, editor, The Seven Ecumenical Councils; Internet History Sourcebooks Project, Fordham University",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-fordham-nicaea",
+        "fieldPath": "/institution",
+        "textSha256": "c3e0e60537032b51060b3fa9cf02397dfe7342dabe18ba39d7a583a7df3f0514"
+      }
+    },
+    {
+      "id": "source/ad0300-fordham-constantinople/locator",
+      "sv": "Konciliemötets rubrik ”A.D. 381”; ”CANON III”, Konstantinopels hedersrang efter Rom.",
+      "en": "Council heading “A.D. 381”; “CANON III”, precedence of honour for Constantinople after Rome.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-fordham-constantinople",
+        "fieldPath": "/locator",
+        "textSha256": "08fc5b9cab72ab9a73045e72965480b4cc31a51b1d2d48cca8d6cf7ea35fec07"
+      }
+    },
+    {
+      "id": "source/ad0300-fordham-constantinople/institution",
+      "sv": "Henry R. Percival, redaktör, The Seven Ecumenical Councils; Internet History Sourcebooks Project, Fordham University",
+      "en": "Henry R. Percival, editor, The Seven Ecumenical Councils; Internet History Sourcebooks Project, Fordham University",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-fordham-constantinople",
+        "fieldPath": "/institution",
+        "textSha256": "c3e0e60537032b51060b3fa9cf02397dfe7342dabe18ba39d7a583a7df3f0514"
+      }
+    },
+    {
+      "id": "source/ad0300-thommen-earthquakes/locator",
+      "sv": "Den offentliga kapitelsammanfattningen, stycket om Nikomedia 358 e.Kr. samt jordbävningen och tsunamin 365 e.Kr. Hela kapitlet, s. 114–120, har inte lästs.",
+      "en": "Public chapter summary, paragraph on Nicomedia in AD 358 and the earthquake and tsunami of AD 365. The full chapter, pp. 114–120, was not accessed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-thommen-earthquakes",
+        "fieldPath": "/locator",
+        "textSha256": "0b3629ef5d9e265786bc28cb8da6868f726810d8fc6ae756af8a83d096073e2a"
+      }
+    },
+    {
+      "id": "source/ad0300-thommen-earthquakes/institution",
+      "sv": "Lukas Thommen; Cambridge University Press",
+      "en": "Lukas Thommen; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-thommen-earthquakes",
+        "fieldPath": "/institution",
+        "textSha256": "96f81f206fc92eedeeb8f656bf6bda2fc268694cd0337e08cd40ce44baf022e6"
+      }
+    },
+    {
+      "id": "source/ad0300-ritner-egypt/locator",
+      "sv": "Offentligt utdrag, tryckta s. 26: Pachomios dop 313 och den formella flytten av huvudstaden 331.",
+      "en": "Public sample, printed p. 26: Pachomius’s baptism in 313 and the formal transfer of the capital in 331.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-ritner-egypt",
+        "fieldPath": "/locator",
+        "textSha256": "ed5dd291612924acce3bc311673996460cef19ec040394a5a96ac3337370849a"
+      }
+    },
+    {
+      "id": "source/ad0300-ritner-egypt/institution",
+      "sv": "Robert K. Ritner; Cambridge University Press",
+      "en": "Robert K. Ritner; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-ritner-egypt",
+        "fieldPath": "/institution",
+        "textSha256": "43a81832b6a59780f72379def9f3a637469e984fa00a9e484b8da8f5868aeec1"
+      }
+    },
+    {
+      "id": "source/ad0300-split-submission/locator",
+      "sv": "”Aqueduct”, ”History and Development”, meningen som daterar Diocletianus abdikation till 305.",
+      "en": "“Aqueduct”, “History and Development”, sentence identifying Diocletian’s abdication in 305.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-split-submission",
+        "fieldPath": "/locator",
+        "textSha256": "cb945f083b865469a47bd936dc62ec5dd2f6fef4d311e06ab319d3c1defa9c48"
+      }
+    },
+    {
+      "id": "source/ad0300-split-submission/institution",
+      "sv": "Kroatiens förslag till tentativ lista; tillgängligt hos UNESCO World Heritage Centre",
+      "en": "Croatia tentative-list submission; hosted by UNESCO World Heritage Centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0300-split-submission",
+        "fieldPath": "/institution",
+        "textSha256": "69c829de1b5dd2a3a9573526d69c55b211ad766c94aeb565b74a6dcef715d59a"
+      }
+    },
+    {
+      "id": "source/bc2100-icomos-dholavira/locator",
+      "sv": "Utvärderingen från 2021, Description et histoire, tryckt s. 31 (PDF-sida 3), stycket om period V; läget på tryckt s. 29. Raderna 245–252 och 7–15 i webbåtergivningen.",
+      "en": "2021 evaluation, Description et histoire, printed p. 31 (PDF page 3), Period V paragraph; location on printed p. 29. Web lines 245–252 and 7–15.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-icomos-dholavira",
+        "fieldPath": "/locator",
+        "textSha256": "4000bb5e2f47a8c9363e1a7f38554470e223875f03ff0f3c9718684f7d5af7dc"
+      }
+    },
+    {
+      "id": "source/bc2100-icomos-dholavira/institution",
+      "sv": "ICOMOS; UNESCO World Heritage Centre",
+      "en": "ICOMOS; UNESCO World Heritage Centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-icomos-dholavira",
+        "fieldPath": "/institution",
+        "textSha256": "99ad37b956bcdc7c97b66b892574ee7547adeb178cebea5f5af3294186137dff"
+      }
+    },
+    {
+      "id": "source/bc2100-he-taosi/locator",
+      "sv": "Kronologi och stadsinhägnad, raderna 50–67 i webbåtergivningen; avsnittet om hantverksproduktion, raderna 140–145. DOI 10.30884/seh/2018.02.12.",
+      "en": "Chronology and city enclosure, web lines 50–67; craft-production section, lines 140–145. DOI 10.30884/seh/2018.02.12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-he-taosi",
+        "fieldPath": "/locator",
+        "textSha256": "2e352da12c6c25ed6d03939fa354a115f92f598f0af81ed7055d673fa4519f7e"
+      }
+    },
+    {
+      "id": "source/bc2100-he-taosi/institution",
+      "sv": "He Nu; Social Evolution & History 17(2), 2018",
+      "en": "He Nu; Social Evolution & History 17(2), 2018",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-he-taosi",
+        "fieldPath": "/institution",
+        "textSha256": "2c7c559f5e00b874c18d3c174f896e3242b901ab62aed5f658567875b1717c27"
+      }
+    },
+    {
+      "id": "source/bc2100-anthony-sintashta/locator",
+      "sv": "Kapitel 4, endast den offentliga sammanfattningen (Summary), Introduction, raderna 478–481 i webbåtergivningen; kapitlets s. 47–73. DOI 10.1017/CBO9780511605376.005.",
+      "en": "Chapter 4, public Summary only, Introduction, web lines 478–481; chapter pp. 47–73. DOI 10.1017/CBO9780511605376.005.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-anthony-sintashta",
+        "fieldPath": "/locator",
+        "textSha256": "a7661c0f64a0d6dfdcb6a93f67d6058fd11679d1045f1018fc1668ba427221dd"
+      }
+    },
+    {
+      "id": "source/bc2100-anthony-sintashta/institution",
+      "sv": "David W. Anthony; Cambridge University Press, Social Complexity in Prehistoric Eurasia (2009)",
+      "en": "David W. Anthony; Cambridge University Press, Social Complexity in Prehistoric Eurasia (2009)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-anthony-sintashta",
+        "fieldPath": "/institution",
+        "textSha256": "1a71482eb2f7ddbff34b0676cb7f9b22d8ca69c9c72353c79811ec04a44d17f2"
+      }
+    },
+    {
+      "id": "source/bc2100-lindner-sintashta/locator",
+      "sv": "Introduction, rad 492 i webbåtergivningen; Early Eurasian chariots and absolute chronology, raderna 508–540. DOI 10.15184/aqy.2020.37.",
+      "en": "Introduction, web line 492; Early Eurasian chariots and absolute chronology, lines 508–540. DOI 10.15184/aqy.2020.37.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-lindner-sintashta",
+        "fieldPath": "/locator",
+        "textSha256": "5dd9aea643c25a6a0a5a351bde82e3b008171a0f7134af806aea6d7cac8610ac"
+      }
+    },
+    {
+      "id": "source/bc2100-lindner-sintashta/institution",
+      "sv": "Stephan Lindner; Antiquity 94(374), 2020, s. 361–380",
+      "en": "Stephan Lindner; Antiquity 94(374), 2020, pp. 361–380",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-lindner-sintashta",
+        "fieldPath": "/institution",
+        "textSha256": "ec1d1c93462fb149dbddedaf63ddfc6f508d0223b2fa950f7c1537c323545306"
+      }
+    },
+    {
+      "id": "source/bc2100-met-mentuhotep-complex/locator",
+      "sv": "Den inledande beskrivningen, raderna 29–32 i webbåtergivningen; föremålets datering och proveniens, raderna 63–72.",
+      "en": "Opening description, web lines 29–32; object date and provenance, lines 63–72.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-met-mentuhotep-complex",
+        "fieldPath": "/locator",
+        "textSha256": "9b526d8c215677493a9ecee442b8cd9cff0ef0d050c755b2b1715fd149d6bc29"
+      }
+    },
+    {
+      "id": "source/bc2100-met-mentuhotep-complex/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-met-mentuhotep-complex",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/bc2100-met-middle-kingdom/locator",
+      "sv": "Engelsk artikel med fransk navigering: inledande sammanfattning, rad 25; diskussionen om konkurrerande maktcentrum och återförening, raderna 111 och 116.",
+      "en": "English article under French navigation: opening summary, line 25; discussion of competing centers and reunification, lines 111 and 116.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-met-middle-kingdom",
+        "fieldPath": "/locator",
+        "textSha256": "5f3f72461d86518515293a578e94d6442aa7407c92d34b945481e2ea15ffacc8"
+      }
+    },
+    {
+      "id": "source/bc2100-met-middle-kingdom/institution",
+      "sv": "Adela Oppenheim; The Metropolitan Museum of Art (2019)",
+      "en": "Adela Oppenheim; The Metropolitan Museum of Art (2019)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-met-middle-kingdom",
+        "fieldPath": "/institution",
+        "textSha256": "10ec9743bbd09e28ccbb371ad86b821fc579123a8c3a973032a689c9b998996e"
+      }
+    },
+    {
+      "id": "source/bc2100-ucl-mentuhotep/locator",
+      "sv": "Rubriken och det inledande stycket, raderna 2–4 i webbåtergivningen; upphovsrätt 2001.",
+      "en": "Heading and opening paragraph, web lines 2–4; copyright 2001.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-ucl-mentuhotep",
+        "fieldPath": "/locator",
+        "textSha256": "c5e1b0d64d25e5ef38fc2ed16309737525e079b2b765cf20d2601f37b4a4b427"
+      }
+    },
+    {
+      "id": "source/bc2100-ucl-mentuhotep/institution",
+      "sv": "University College London, Digital Egypt for Universities",
+      "en": "University College London, Digital Egypt for Universities",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-ucl-mentuhotep",
+        "fieldPath": "/institution",
+        "textSha256": "22b4ed4dbde10debe5ea3c427a5d5cee3a976ea4d4ef29e062bf281c5a33970c"
+      }
+    },
+    {
+      "id": "source/bc2100-iranica-elam/locator",
+      "sv": "The Awan dynasty, sista stycket, raderna 60–61 i webbåtergivningen; The Simaški dynasty, sista stycket, rad 64; inledningen, rad 43.",
+      "en": "The Awan dynasty, final paragraph, web lines 60–61; The Simaški dynasty, final paragraph, line 64; introduction, line 43.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-iranica-elam",
+        "fieldPath": "/locator",
+        "textSha256": "154df3282092234f8138ce99ecdb5ad2a2ab3bb42b75c2f07574920ce2abfdb9"
+      }
+    },
+    {
+      "id": "source/bc2100-iranica-elam/institution",
+      "sv": "François Vallat; Encyclopaedia Iranica VIII/3, s. 301–313 (1998; uppdaterad 2016)",
+      "en": "François Vallat; Encyclopaedia Iranica VIII/3, pp. 301–313 (1998; updated 2016)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-iranica-elam",
+        "fieldPath": "/institution",
+        "textSha256": "d76b641d2eaf8a2147c60b2122d0c470cb660451a1c4a7af9c88b34bf59e4679"
+      }
+    },
+    {
+      "id": "source/bc2100-sazonov-shulgi/locator",
+      "sv": "Den offentliga engelska sammanfattningen, raderna 22–27 i webbåtergivningen; publicerings- och citeringsuppgifter, raderna 103–108.",
+      "en": "Public English abstract, web lines 22–27; publication and citation metadata, lines 103–108.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-sazonov-shulgi",
+        "fieldPath": "/locator",
+        "textSha256": "61e9cbea3981d32f530cd066425411587a7ea29c938e9dcd53a09cfa1663ba25"
+      }
+    },
+    {
+      "id": "source/bc2100-sazonov-shulgi/institution",
+      "sv": "Vladimir Sazonov; Usuteaduslik Ajakiri 57(1), 2008, s. 84–107; tidskriftsplattformen vid University of Tartu",
+      "en": "Vladimir Sazonov; Usuteaduslik Ajakiri 57(1), 2008, pp. 84–107; University of Tartu journal platform",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-sazonov-shulgi",
+        "fieldPath": "/institution",
+        "textSha256": "df5bc0a45db2d900a0612b8f7a586594e20a96864ae1c20c2a20f82740230349"
+      }
+    },
+    {
+      "id": "source/bc2100-garcia-ventura-chronology/locator",
+      "sv": "Offentlig bokförhandsvisning, tryckt s. 6 (PDF-sida 12), avsnitt 1 och fotnot 2; titel och DOI på tryckt s. 5. DOI 10.1515/9783110417845-002.",
+      "en": "Public book preview, printed p. 6 (PDF page 12), section 1 and footnote 2; title and DOI on printed p. 5. DOI 10.1515/9783110417845-002.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-garcia-ventura-chronology",
+        "fieldPath": "/locator",
+        "textSha256": "3f29a062063ef73c0fa80e4da8809c08318c9542553a6694ed13c466fe0cb3da"
+      }
+    },
+    {
+      "id": "source/bc2100-garcia-ventura-chronology/institution",
+      "sv": "Agnès Garcia-Ventura; i Markus Hilgert (red.), Understanding Material Text Cultures, De Gruyter (2016)",
+      "en": "Agnès Garcia-Ventura; in Markus Hilgert (ed.), Understanding Material Text Cultures, De Gruyter (2016)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2100-garcia-ventura-chronology",
+        "fieldPath": "/institution",
+        "textSha256": "3c5019bb90c802c28cd75e32ef528445a64004422404252c42a3c61549d5b5b4"
       }
     }
   ]
