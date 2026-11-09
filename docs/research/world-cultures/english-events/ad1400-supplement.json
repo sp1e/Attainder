@@ -1,0 +1,94 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad1400-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 1400,
+    "endYear": 1499
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad1400en-pinggera-metmaq",
+      "title": "Die Äthiopisch-Orthodoxe Kirche: Ein Streifzug durch ihre Geschichte",
+      "institution": "Karl Pinggera; scholarly chapter hosted by the University of Tübingen publication repository",
+      "url": "https://publikationen.uni-tuebingen.de/xmlui/bitstream/handle/10900/171500/Pinggera_056.pdf?isAllowed=y&sequence=1",
+      "locator": "Printed pp. 40–41, section 2.3, PDF pages 9–10 (zero-based): Ewostatewos's Sabbath position and the council decision under Zara Yaqob. Web lines 245–265. Extracted PDF text only; title and author on first page. Parent-volume metadata not established.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Konzil von Dabra Metmaq 1450",
+      "originalChronology": "The chapter explicitly dates the council to 1450. Zara Yaqob's separately supplied reign, 1434–1468, is not used to calculate that date.",
+      "scopedClaim": "Ewostatewos and his followers advocated honoring the Sabbath as well as Sunday. The council at Dabra Metmaq decided in favor of his position under Zara Yaqob. This supports a doctrinal decision, not proof that every community immediately complied.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1400en-leider-kalyani",
+      "title": "Forging Buddhist Credentials as a Tool of Legitimacy and Ethnic Identity: A Study of Arakan's Subjection in Nineteenth-Century Burma",
+      "institution": "Jacques P. Leider; Journal of the Economic and Social History of the Orient 51 (2008), pp. 409–459; public PDF hosted by Online Burma/Myanmar Library",
+      "url": "https://www.burmalibrary.org/sites/burmalibrary.org/files/obl/2008-05-13-Forging_Buddhist_Credentials_as_a_Tool_en-red.pdf",
+      "locator": "Printed p. 451, PDF page 42 (zero-based), paragraph on Dhammazedi's 1475 mission and footnote 97 on the 1476 ordination ground; web lines 1481–1484 and 1498–1500. Title, author and DOI 10.1163/156852008X317770 on first page. Extracted text only.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1475 mission; established in Pegu in 1476",
+      "originalChronology": "The mission is dated 1475 and the new Kalyani ordination ground 1476. Dhammazedi's reign dates, 1472–1492, are contextual only. These two milestones do not date every reordination or establish a continuous two-year voyage.",
+      "scopedClaim": "Dhammazedi sent a mission to Sri Lanka in 1475, leading to Pegu's adoption of Sinhalese-style ordination; a new Kalyani ordination ground was established in 1476. The nearby discussion's doubts about separate Arakanese missions are not evidence for those missions here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-ad1450-dabra-metmaq-sabbath-council",
+      "date": {
+        "kind": "exact",
+        "startYear": 1450,
+        "endYear": 1450,
+        "displayEn": "1450 CE",
+        "noteEn": "Pinggera dates the council to 1450. This dates its decision on Sabbath observance, not the origin of the practice or proof of immediate acceptance by every community. No month or day is assigned."
+      },
+      "titleEn": "The council of Dabra Metmaq endorses Sabbath observance",
+      "summaryEn": "Under Zara Yaqob, a council at Dabra Metmaq rules in favor of the position associated with Ewostatewos: honoring the Sabbath alongside Sunday. The decision addresses a major dispute within the Ethiopian Church.",
+      "geographyEn": "Dabra Metmaq, Ethiopia",
+      "category": "religion",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1400en-pinggera-metmaq"
+      ],
+      "selectionNote": "A major regional ecclesiastical settlement concerning a contested religious practice. It is distinct from the catalog's Ethiopian dynastic change and earlier Christian adoption. The event records the council's ruling without claiming universal compliance or the creation of Sabbath observance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-ad1475-pegu-ordination-reform",
+      "date": {
+        "kind": "range",
+        "startYear": 1475,
+        "endYear": 1476,
+        "displayEn": "1475–1476 CE",
+        "noteEn": "Leider dates Dhammazedi's mission to Sri Lanka to 1475 and the establishment of the Kalyani ordination ground in Pegu to 1476. The span joins these linked milestones; it does not imply a continuous two-year voyage, date every reordination or date the production of all Kalyani inscriptions."
+      },
+      "titleEn": "Pegu adopts a Sri Lankan ordination tradition",
+      "summaryEn": "Dhammazedi sends a mission to Sri Lanka, leading Pegu's monastic community to adopt Sinhalese-style ordination. A new ordination ground named Kalyani is established in Pegu the following year.",
+      "geographyEn": "Pegu in Lower Burma and Sri Lanka",
+      "category": "religion",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1400en-leider-kalyani"
+      ],
+      "selectionNote": "A major regional change in monastic ordination linked to an overseas mission and a specifically dated religious institution. This follows and differs from Shin Sawbu's earlier Bago patronage, dated 1453–1472 in the catalog. It does not endorse a claim of unique religious purity or repeat uncertain Arakanese mission traditions.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
