@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain seventy-three approved records, one hundred and twenty-nine source records and three hundred and sixty-five display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain seventy-five approved records, one hundred and thirty-three source records and three hundred and seventy-five display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -58,7 +58,10 @@ The English research deliveries now contain seventy-three approved records, one 
 | [500–201 BC, second pass](../research/world-cultures/english-events/bc0500-bc0300-second-pass-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #156](https://github.com/sp1e/Attainder/pull/156), commit `a5470638346905740f25158a97924035ae0d88e3`; first evidence HOLD resolved and preserved |
 | [AD 800–999, second pass](../research/world-cultures/english-events/ad0800-0900-second-pass-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #158](https://github.com/sp1e/Attainder/pull/158), commit `92add4bcd6b2136b016f56ec3e733fb4cafe9c26` |
 | [AD 1200–1299, second pass](../research/world-cultures/english-events/ad1200-second-pass-supplement.md) | 2 | 4 | 10 | Reviewed in [PR #159](https://github.com/sp1e/Attainder/pull/159); source follow-up and final review passed; current-head CI and verified merge required |
-| [AD 1100, coronation charter](../research/world-cultures/english-events/ad1100-charter-supplement.md) | 1 | 1 | 5 | Independent final follow-up passed; original attribution finding and final HOLD preserved; current-head CI and verified merge required |
+| [AD 1100, coronation charter](../research/world-cultures/english-events/ad1100-charter-supplement.md) | 1 | 1 | 5 | Reviewed in [PR #160](https://github.com/sp1e/Attainder/pull/160); original attribution finding and final HOLD preserved; current-head CI and verified merge required |
+| [AD 1300–1399, second pass](../research/world-cultures/english-events/ad1300-second-pass-supplement.md) | 2 | 4 | 10 | Source and final data review passed with disclosed metadata-read deviation; current-head CI and verified merge required |
+
+AD1300 second pass adds the Hwatong Dogam manufacturing office in 1377 and the Gwajeon land-revenue law in 1391. Both events and all twelve English texts remain unchanged after review. The original source report overstates its read confinement; supervision and final review disclose the extra read of generated process metadata, with no observed author-reasoning access. Root verified 77 inputs, twelve text hashes, fifty committed comparisons and five private originals. The records preserve unconverted month labels, revenue-versus-ownership distinctions and the limits of normative rules.
 
 AD1100 charter adds Henry I's royal promises in 1100, retaining the Rochester copy's differing date. The candidate and all six English texts remained unchanged through review. Final review caught an unsupported translator-identity inference in the source report; a preserved addendum adopts the correction, and an independent final follow-up passed the unchanged candidate and publication note. Root verified 81 inputs, six text hashes and 46 committed comparisons. Exeter remains excluded after HTTP 403, and the separate Parakrama Samudra inquiry remains wholly withheld.
 
