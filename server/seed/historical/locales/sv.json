@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "92d9b138c21bf78c93faa5ef8bac159bf7697852",
+  "sourceRevision": "242df5e4b04f74405d986cd845999bf9b125a555",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -13994,6 +13994,204 @@
         "sourceId": "bc1100-higham-ban-non-wat-2009",
         "fieldPath": "/locator",
         "textSha256": "5682cb6d47d97fed1440163d5a745f285e49f85862399e2b67f8545984ef19b3"
+      }
+    },
+    {
+      "id": "source/bc1000-ime-lefkandi/institution",
+      "en": "Foundation of the Hellenic World (IME)",
+      "sv": "Foundation of the Hellenic World (IME)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-ime-lefkandi",
+        "fieldPath": "/institution",
+        "textSha256": "de8ff999b42e240b920d02b171725ede3f0bb40013be1f940a478ee8ef05c25e"
+      }
+    },
+    {
+      "id": "source/bc1000-ime-lefkandi/locator",
+      "en": "Politics page, paragraphs 1–3, web lines 1–4; heyday of Lefkandi and the Toumba burials.",
+      "sv": "Sidan Politics, stycke 1–3, webbrader 1–4; Lefkandis blomstringstid och begravningarna vid Toumba.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-ime-lefkandi",
+        "fieldPath": "/locator",
+        "textSha256": "9e9a8191fd34137e600ba0ede35779e03ac7c787fcd59351eb7bfdd0fcf089e5"
+      }
+    },
+    {
+      "id": "source/bc1000-oxford-lefkandi/institution",
+      "en": "University of Oxford, Lefkandi archaeological project",
+      "sv": "University of Oxford, det arkeologiska projektet i Lefkandi",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-oxford-lefkandi",
+        "fieldPath": "/institution",
+        "textSha256": "7dc0ab007a2e07a8088806f78271d7c6ecda893264910fb75bfd22402b84e8bc"
+      }
+    },
+    {
+      "id": "source/bc1000-oxford-lefkandi/locator",
+      "en": "The Toumba building, web lines 1–10; construction dating and the two central burial shafts.",
+      "sv": "The Toumba building, webbrader 1–10; byggnadens datering och de två centrala gravschakten.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-oxford-lefkandi",
+        "fieldPath": "/locator",
+        "textSha256": "ce1bc98595999e03bbff6e3673b4d5c2719dafbdf4351716a37078703422dd73"
+      }
+    },
+    {
+      "id": "source/bc1000-inflibnet-pirak/institution",
+      "en": "INFLIBNET Centre, e-PG Pathshala; Ravi Korisettar and Smitha S. Kumar",
+      "sv": "INFLIBNET Centre, e-PG Pathshala; Ravi Korisettar och Smitha S. Kumar",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-inflibnet-pirak",
+        "fieldPath": "/institution",
+        "textSha256": "4d2c42b73c026e97bdccb814a19a3d8ec53e4eb59cf7549b50a525bd7832769c"
+      }
+    },
+    {
+      "id": "source/bc1000-inflibnet-pirak/locator",
+      "en": "Chapter 29, section 4.1 North West, paragraph on Pirak, web line 108.",
+      "sv": "Kapitel 29, avsnitt 4.1 North West, stycket om Pirak, webbrad 108.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-inflibnet-pirak",
+        "fieldPath": "/locator",
+        "textSha256": "74cd8b5bc33a2c9329e9f53ec262956e09ffca3275423afb20ec5b5871171ba7"
+      }
+    },
+    {
+      "id": "source/bc1000-cambridge-genkai/institution",
+      "en": "Cambridge University Press, Evolutionary Human Sciences; Elisabeth de Boer, Melinda A. Yang, Aileen Kawagoe and Gina L. Barnes (2020)",
+      "sv": "Cambridge University Press, Evolutionary Human Sciences; Elisabeth de Boer, Melinda A. Yang, Aileen Kawagoe och Gina L. Barnes (2020)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-cambridge-genkai",
+        "fieldPath": "/institution",
+        "textSha256": "4e004a3935dcc4ef79e5afebee558841974c486bd58f42536f58497fcddfffd7"
+      }
+    },
+    {
+      "id": "source/bc1000-cambridge-genkai/locator",
+      "en": "Introduction, web lines 516–523; compare abstract line 480 and Agricultural transition in Japan, lines 620–623.",
+      "sv": "Introduction, webbrader 516–523; jämför abstract på rad 480 och Agricultural transition in Japan, rader 620–623.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-cambridge-genkai",
+        "fieldPath": "/locator",
+        "textSha256": "e4db9bea04d1337be9dab2b76c5d9eb65c61c6652409de7a1b3a30b80797abd3"
+      }
+    },
+    {
+      "id": "source/bc1000-chicago-sheshonq/institution",
+      "en": "Oriental Institute, University of Chicago; Gabrielle V. Novacek (2011)",
+      "sv": "Oriental Institute, University of Chicago; Gabrielle V. Novacek (2011)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-chicago-sheshonq",
+        "fieldPath": "/institution",
+        "textSha256": "6b0b52de12deba4e5d4bdbddaa729c738b581a036a23ee669dad1b6b2d2c294b"
+      }
+    },
+    {
+      "id": "source/bc1000-chicago-sheshonq/locator",
+      "en": "Printed page 81, PDF page 97, discussion of Sheshonq I's Egyptian raid, web lines 2141–2153.",
+      "sv": "Tryckt sida 81, PDF-sida 97, diskussionen om Sheshonq I:s egyptiska fälttåg, webbrader 2141–2153.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-chicago-sheshonq",
+        "fieldPath": "/locator",
+        "textSha256": "0970c80338df87dd000a6000c5c326c70002d479f618dc957d2684a3959a1431"
+      }
+    },
+    {
+      "id": "source/bc1000-ucl-sheshonq/institution",
+      "en": "University College London, Digital Egypt for Universities",
+      "sv": "University College London, Digital Egypt for Universities",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-ucl-sheshonq",
+        "fieldPath": "/institution",
+        "textSha256": "22b4ed4dbde10debe5ea3c427a5d5cee3a976ea4d4ef29e062bf281c5a33970c"
+      }
+    },
+    {
+      "id": "source/bc1000-ucl-sheshonq/locator",
+      "en": "Reign heading and main biographical paragraph, web lines 2–3.",
+      "sv": "Rubriken med regeringstiden och det huvudsakliga biografiska stycket, webbrader 2–3.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-ucl-sheshonq",
+        "fieldPath": "/locator",
+        "textSha256": "c30a6064225db57dd9a7e23d618747b6943831c98b8eab2299021b39d2b766f7"
+      }
+    },
+    {
+      "id": "source/bc1000-arizona-ceibal/institution",
+      "en": "University of Arizona News; Alexis Blue (23 March 2015)",
+      "sv": "University of Arizona News; Alexis Blue (23 mars 2015)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-arizona-ceibal",
+        "fieldPath": "/institution",
+        "textSha256": "d9762e51ec42c08e1c6e87fd48897e6832448d723d236da74d7d464336953833"
+      }
+    },
+    {
+      "id": "source/bc1000-arizona-ceibal/locator",
+      "en": "Institutional research report, web lines 23–32; the public plaza around 950 BC and the researchers' interpretation of group participation.",
+      "sv": "Universitetets forskningsrapport, webbrader 23–32; det offentliga torget omkring 950 f.Kr. och forskarnas tolkning av gruppernas deltagande.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-arizona-ceibal",
+        "fieldPath": "/locator",
+        "textSha256": "c12e12f86efa5fb27e7c17d211493bd26cb0962b4c9f2065b61ec9c8ba1d6432"
+      }
+    },
+    {
+      "id": "source/bc1000-unv-teouma/institution",
+      "en": "National University of Vanuatu research portal; Frédérique Valentin, Grégory Pereira and Jennifer Kerner (2013)",
+      "sv": "Forskningsportalen vid National University of Vanuatu; Frédérique Valentin, Grégory Pereira och Jennifer Kerner (2013)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-unv-teouma",
+        "fieldPath": "/institution",
+        "textSha256": "2c4291bb74c48df61d65c7db40a3e6968187537b3178416a1c786263de03a840"
+      }
+    },
+    {
+      "id": "source/bc1000-unv-teouma/locator",
+      "en": "Public French and English abstracts, web lines 15–22; Teouma as an example of multistage funerary sequences.",
+      "sv": "Offentliga franska och engelska abstract, webbrader 15–22; Teouma som exempel på begravningsförlopp i flera steg.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-unv-teouma",
+        "fieldPath": "/locator",
+        "textSha256": "3fc15db113cd21817de1524ed1848eabccf6c35db4d05720082aeee34521548e"
+      }
+    },
+    {
+      "id": "source/bc1000-oxford-vilabouly/institution",
+      "en": "University of Oxford, FLAME virtual conference programme, 25–26 March 2021; Mélissa Cadet",
+      "sv": "University of Oxford, programmet för den digitala konferensen FLAME, 25–26 mars 2021; Mélissa Cadet",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-oxford-vilabouly",
+        "fieldPath": "/institution",
+        "textSha256": "53a324c21a46a3fce589c4bd86c80876a6cd78338340be4d4ac11b2ff465d894"
+      }
+    },
+    {
+      "id": "source/bc1000-oxford-vilabouly/locator",
+      "en": "Conference abstract on PDF page 17, web lines 438–480; radiocarbon sequence at lines 446–453 and mining and smelting evidence at lines 454–460. The timetable and abstract headings have inconsistent talk numbering.",
+      "sv": "Konferensabstract på PDF-sida 17, webbrader 438–480; kol-14-daterad följd på rader 446–453 och belägg för gruvdrift och smältning på rader 454–460. Tidsplanens och abstractens rubriker har olika föredragsnummer.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1000-oxford-vilabouly",
+        "fieldPath": "/locator",
+        "textSha256": "7b937c07be7f5bf09f680bb128f949ecd763efe942e056b34a70d0ed12b898c3"
       }
     }
   ]
