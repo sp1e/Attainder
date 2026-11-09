@@ -1,0 +1,120 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad1100-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 1100,
+    "endYear": 1199
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad1100en-archnet-qarawiyyin",
+      "title": "Jami' al-Qarawiyyin",
+      "institution": "Archnet, Aga Khan Documentation Center at MIT",
+      "url": "https://next.archnet.org/sites/1730",
+      "locator": "Opening description, paragraph on Ali ben Yusuf's expansion; Events chronology; Location. Web lines 11–17, 33 and 49–53. Only the medieval expansion passage is used, not the foundation or Gerbert traditions.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "ca. 1134-1143/528-537 AH",
+      "originalChronology": "The narrative gives expansion between 1134 and 1143; the Events field marks that span circa and pairs it with 528–537 AH. Later courtyard additions are separately assigned to a seventeenth-century patron.",
+      "scopedClaim": "Ali ben Yusuf sponsored the expansion of the congregational mosque in Fez. This source supplies the narrower campaign span and the location; it does not date the founding of a university to this campaign.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1100en-serrat-qarawiyyin",
+      "title": "La céramique glaçurée du niveau almoravide de la mosquée al-Ḳarawiyyīn de Fès : étude typologique",
+      "institution": "Ihssane Serrat, Ahmed S. Ettahiri and Abdallah Fili; Bulletin d'Archéologie Marocaine 24 (2019), pp. 111–126",
+      "url": "https://app.wadi.dev/api/media/image?inline=&path=stores%2F45%2Fcontenu_de_publication%2F36327%2F10-Ettahiri-12_07_20.pdf_0171751303136.pdf",
+      "locator": "Printed p. 111, PDF page 1: Abstract, Introduction and footnote 6. Public PDF text extraction, web lines 6–43; no image inspection claimed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "528/1134; 538/1143-44; 531/1136",
+      "originalChronology": "The abstract gives 1134–1143, while the Introduction places completion in 538/1143–44. Footnote 6 separately dates structural completion to 531/1136 from inscriptions. These supplied equivalents are preserved without a new calendar conversion.",
+      "scopedClaim": "The expansion added three aisles east of the prayer hall after demolition of the earlier qibla wall and adjacent houses. The article distinguishes the completed campaign from an earlier structural inscription date and identifies Ali ibn Yusuf's order in footnote 6.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1100en-mwnf-nuri-hospital",
+      "title": "Hospital (Bimaristan) Nur al-Din",
+      "institution": "Abd al-Razzaq Moaz and Zena Takieddine; Museum With No Frontiers, Discover Islamic Art",
+      "url": "https://islamicart.museumwnf.org/database_item.php?id=monument%3BISL%3Bsy%3BMon01%3B15%3Ben",
+      "locator": "Location, Date of Monument, Patron, Description paragraphs 1 and 8, short description, and How Monument was dated; web lines 42–76.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Hegira 549 / AD 1154",
+      "originalChronology": "The curatorial record dates the monument to 549 AH/1154 AD and states that the foundation text in the eastern iwan supplies its date. No individual lecture or treatment is dated to that year.",
+      "scopedClaim": "Nur al-Din Mahmud bin Zangi built the Damascus hospital. The institution treated sick people and educated physicians, with lectures and medical manuscripts in its main hall. The dating rests on a described foundation inscription, not a reign-start inference.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1100en-archnet-nuri-hospital",
+      "title": "Bimaristan Nur al-Din (Damascus)",
+      "institution": "Archnet, Aga Khan Documentation Center at MIT",
+      "url": "https://www.archnet.org/sites/3548",
+      "locator": "Opening description, first paragraph, and paragraph on the eastern iwan's lectures and bookcases; web lines 11–19.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1154/548 AH",
+      "originalChronology": "The main building is assigned to 1154/548 AH; the extension is separately dated 1242. Its Hijri label differs from the museum's 549 AH, although both sources supply AD 1154.",
+      "scopedClaim": "Nur al-Din erected the hospital's main building in Damascus. The hospital also served medical teaching, with a hall for lectures and medical books. The later extension is not assigned to the original building year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-1134-qarawiyyin-mosque-expansion",
+      "date": {
+        "kind": "range",
+        "startYear": 1134,
+        "endYear": 1144,
+        "displayEn": "c. 1134–1143/44",
+        "noteEn": "Archnet gives the campaign as approximately 1134–1143. Serrat and colleagues give completion in 1143–44, while separately citing an inscription date of 1136 for the structures. The full campaign span preserves these different completion labels; 1136 does not date all the work."
+      },
+      "titleEn": "Ali ibn Yusuf expands the al-Qarawiyyin mosque",
+      "summaryEn": "Ali ibn Yusuf sponsors an expansion of the congregational mosque in Fez. Builders extend the prayer hall after demolishing its earlier qibla wall and adjoining houses.",
+      "geographyEn": "Fez, Morocco",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "ad1100en-archnet-qarawiyyin",
+        "ad1100en-serrat-qarawiyyin"
+      ],
+      "selectionNote": "A notable expansion of a major congregational mosque in Fez. The full campaign range preserves differing completion labels and distinguishes the earlier structural date; it establishes no university-foundation date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-1154-nur-al-din-damascus-hospital",
+      "date": {
+        "kind": "exact",
+        "startYear": 1154,
+        "endYear": 1154,
+        "displayEn": "AD 1154",
+        "noteEn": "Both sources date the main building to AD 1154. Their paired Hijri labels differ: 549 AH in the museum record and 548 AH in Archnet. The date applies to the main building, not the later extension or every medical activity described."
+      },
+      "titleEn": "Nur al-Din builds a hospital in Damascus",
+      "summaryEn": "Nur al-Din Mahmud ibn Zangi has a hospital built in Damascus. The institution treats patients and trains physicians, with a hall for medical lectures and access to medical books.",
+      "geographyEn": "Damascus, Syria",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1100en-mwnf-nuri-hospital",
+        "ad1100en-archnet-nuri-hospital"
+      ],
+      "selectionNote": "A notable institution linking patient care and medical education. Both sources support the AD year despite differing Hijri labels; the event dates the main building and leaves later construction and individual medical activities undated.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}

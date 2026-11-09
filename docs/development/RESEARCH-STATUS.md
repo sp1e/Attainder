@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain fourteen approved records, twenty-five source records and seventy display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain sixteen approved records, twenty-nine source records and eighty display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -18,8 +18,9 @@ The English research deliveries now contain fourteen approved records, twenty-fi
 | [1700–1601 BC](../research/world-cultures/english-events/bc1700-supplement.md) | 2 | 5 | 10 | Merged and remote-verified in [PR #112](https://github.com/sp1e/Attainder/pull/112), commit `0c8058fe4974e358cfb2028d96f03ea69446820d` |
 | [AD 700–799](../research/world-cultures/english-events/ad0700-supplement.md) | 2 | 4 | 10 | Merged and remote-verified in [PR #113](https://github.com/sp1e/Attainder/pull/113), commit `e64f91bbef9491e750ccb49020f53c2ac68f774d` |
 | [3300–3201 BC](../research/world-cultures/english-events/bc3300-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #114](https://github.com/sp1e/Attainder/pull/114), commit `ae044386d0760780e755e8036ce137fdbd18d098` |
-| [3000–2901 BC](../research/world-cultures/english-events/bc3000-supplement.md) | 1 | 2 | 5 | Source, English and integration reviews approved; [PR #115](https://github.com/sp1e/Attainder/pull/115) awaits current-head CI and verified merge |
-| [AD 1000–1099](../research/world-cultures/english-events/ad1000-supplement.md) | 2 | 2 | 10 | Source, English and integration reviews approved; current-head CI and verified merge required |
+| [3000–2901 BC](../research/world-cultures/english-events/bc3000-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #115](https://github.com/sp1e/Attainder/pull/115), commit `730ec22eed93515efc845468f662ca4da3489889` |
+| [AD 1000–1099](../research/world-cultures/english-events/ad1000-supplement.md) | 2 | 2 | 10 | Source, English and integration reviews approved; [PR #116](https://github.com/sp1e/Attainder/pull/116) awaits current-head CI and verified merge |
+| [AD 1100–1199](../research/world-cultures/english-events/ad1100-supplement.md) | 2 | 4 | 10 | Source, English and integration reviews approved; current-head CI and verified merge required |
 
 PRs #109 and #110 each passed 5,337 tests with no failures and two TODOs; both builds passed. The BC2200 source correction reduced La Bastida's importance to 1. The AD300 batch concerns Meroe's royal pyramid burials and Teotihuacan's Adosada platform; its correction removes an unsupported temporal ordering of damage to other façades. BC2100 adds a regional sealing-technology event while withholding a separate law-collection candidate whose required passages were not fully verified. Original HOLD reports remain preserved separately from the final approvals.
 
@@ -33,7 +34,9 @@ PR #112 passed 5,337 tests with no failures and two TODOs; the build passed. BC3
 
 PRs #113 and #114 each passed 5,337 tests with no failures and two TODOs; both builds passed. AD1000 adds Kamalagyan's waterworks provisions and the Barus merchant meeting. The source-approved text is unchanged; integration corrected two unsupported category values to the existing politics and culture categories. A fresh final check approved both category mappings, selection notes and all unchanged text.
 
-Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. Independent CI runs may overlap on dependent research branches; merge them in order only after verifying that the merged parent has the tested parent's exact tree. Preserve branch ancestry with merge commits for this chain. The next active batches concern AD 1100–1199 and AD 1200–1299; their records do not enter the delivery totals until integration. The older BC1600 execution-policy hold remains preserved.
+PR #115 passed 5,337 tests with no failures and two TODOs; the build passed. AD1100 adds al-Qarawiyyin's expansion and Nur al-Din's Damascus hospital. Source, English and final data checks approved the unchanged candidate. Different campaign-completion and Hijri labels remain explicit; no university-foundation date or new calendar conversion is asserted.
+
+Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. Independent CI runs may overlap on dependent research branches; merge them in order only after verifying that the merged parent has the tested parent's exact tree. Preserve branch ancestry with merge commits for this chain. The next active batches concern AD 1200–1299 and AD 1300–1399; their records do not enter the delivery totals until integration. The older BC1600 execution-policy hold remains preserved.
 
 ## Earlier catalog delivery
 
