@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "30cdfec7d085dfd82c77446a0ac61aa5485eb65b",
+  "sourceRevision": "710f7f094a509d091487a99bb556d232a496d760",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -16986,6 +16986,512 @@
         "sourceId": "bc0200-inah-teotihuacan",
         "fieldPath": "/locator",
         "textSha256": "51494671a110f4206770f023e52149c14bf2354ab4029dc9194d8726b6dca915"
+      }
+    },
+    {
+      "id": "source/bc0100-yalahau/institution",
+      "en": "Scott L. Fedick and Bethany A. Morrison; Agriculture and Human Values 21 (2004), 207–219",
+      "sv": "Scott L. Fedick och Bethany A. Morrison; Agriculture and Human Values 21 (2004), s. 207–219",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-yalahau",
+        "fieldPath": "/institution",
+        "textSha256": "76f52c2927025b6a0119b998934b0b46fca0ff936d139911be72d05684643ff6"
+      }
+    },
+    {
+      "id": "source/bc0100-yalahau/locator",
+      "en": "Printed pages 207, 209–210 (PDF pages 1, 3–4), abstract and occupation discussion; web lines 8–17, 108–111, 172–201.",
+      "sv": "Tryckta sidor 207 och 209–210 (PDF-sidor 1 och 3–4), sammanfattningen och diskussionen om bosättning; webbrader 8–17, 108–111 och 172–201.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-yalahau",
+        "fieldPath": "/locator",
+        "textSha256": "151ace7e84db4b0ac0df9269b6df0b260af6d707ef737a9817e00af0ae07fe3f"
+      }
+    },
+    {
+      "id": "source/bc0100-san-bartolo/institution",
+      "en": "Archaeological Institute of America; San Bartolo Mural Project",
+      "sv": "Archaeological Institute of America; San Bartolos muralmålningsprojekt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-san-bartolo",
+        "fieldPath": "/institution",
+        "textSha256": "c1433ac0d47796c84c2939c4cf5d08e2e07c356003182778bf21e829e2414eb0"
+      }
+    },
+    {
+      "id": "source/bc0100-san-bartolo/locator",
+      "en": "Project report dated 31 January 2014, web lines 87–92.",
+      "sv": "Projektrapport daterad 31 januari 2014, webbrader 87–92.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-san-bartolo",
+        "fieldPath": "/locator",
+        "textSha256": "791890a806b98f4167533cedaaef78e9e83a3a451c6d9263cd0fbab1cbd680c6"
+      }
+    },
+    {
+      "id": "source/bc0100-sa-huynh/institution",
+      "en": "Mariko Yamagata and Hirofumi Matsumura; ANU Press",
+      "sv": "Mariko Yamagata och Hirofumi Matsumura; ANU Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-sa-huynh",
+        "fieldPath": "/institution",
+        "textSha256": "63f8dcee261b890f8d6dea72f107d1a31fefa4eec681816b15b9ca4b06937cd4"
+      }
+    },
+    {
+      "id": "source/bc0100-sa-huynh/locator",
+      "en": "Chapter 19, Sa Huynh phases I and II; web lines 89–93 and 109.",
+      "sv": "Kapitel 19, Sa Huynhs fas I och II; webbrader 89–93 och 109.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-sa-huynh",
+        "fieldPath": "/locator",
+        "textSha256": "9e7d077b37ef44fea2765d633cfce82c414f87f420b2efa0a129ebdae2fddb38"
+      }
+    },
+    {
+      "id": "source/bc0100-roman-timeline/institution",
+      "en": "BCcampus Pressbooks; UnRoman Romans",
+      "sv": "BCcampus Pressbooks; UnRoman Romans",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-roman-timeline",
+        "fieldPath": "/institution",
+        "textSha256": "8e1a9fb9b990cf7f6234083b6777fd1610ea0f92cf01f4aea9018169b46203a3"
+      }
+    },
+    {
+      "id": "source/bc0100-roman-timeline/locator",
+      "en": "BCE timeline, web lines 239–264.",
+      "sv": "Tidslinjen för tiden före vår tideräkning, webbrader 239–264.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-roman-timeline",
+        "fieldPath": "/locator",
+        "textSha256": "fb5063dc7bb8bfd640fd2e33a05591a4d31ddbe492b177708f42f0aee598023e"
+      }
+    },
+    {
+      "id": "source/bc0100-han-witchcraft/institution",
+      "en": "University of Washington Press",
+      "sv": "University of Washington Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-han-witchcraft",
+        "fieldPath": "/institution",
+        "textSha256": "f8b9a78ad7a52630ea4d711d434ab7aaa3993f15c317d4123114a669645d78b3"
+      }
+    },
+    {
+      "id": "source/bc0100-han-witchcraft/locator",
+      "en": "Chapter 5, gu and court politics discussion, web line 162.",
+      "sv": "Kapitel 5, diskussionen om gu och hovpolitik, webbrad 162.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-han-witchcraft",
+        "fieldPath": "/locator",
+        "textSha256": "72e716b6b39346629583f75bfbf900912d77bcffb90bea189fd32e8564a0c528"
+      }
+    },
+    {
+      "id": "source/bc0100-sulla-march/institution",
+      "en": "Cambridge University Press",
+      "sv": "Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-sulla-march",
+        "fieldPath": "/institution",
+        "textSha256": "5fa80bacfa8abef3a617e5b4749e64c2361b847572b36d1d473e2070df1e26be"
+      }
+    },
+    {
+      "id": "source/bc0100-sulla-march/locator",
+      "en": "Chapter 5, summary and march narrative, web lines 468–469, 600–605.",
+      "sv": "Kapitel 5, sammanfattningen och berättelsen om marschen, webbrader 468–469 och 600–605.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-sulla-march",
+        "fieldPath": "/locator",
+        "textSha256": "9aa9e6206600634c95c36c13a4b1b79e9ab67222f16720a9008c726ad635183c"
+      }
+    },
+    {
+      "id": "source/bc0100-sulla-dictator/institution",
+      "en": "Catherine Steel; University of Glasgow; The Classical Quarterly, Cambridge University Press (2014)",
+      "sv": "Catherine Steel; Glasgows universitet; The Classical Quarterly, Cambridge University Press (2014)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-sulla-dictator",
+        "fieldPath": "/institution",
+        "textSha256": "7030f803eb8acb6150a61f4d6d258d20eb30ece499b22cac5757d0efa11d1dd7"
+      }
+    },
+    {
+      "id": "source/bc0100-sulla-dictator/locator",
+      "en": "Public extract, web line 456; full article not consulted.",
+      "sv": "Offentligt utdrag, webbrad 456; hela artikeln har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-sulla-dictator",
+        "fieldPath": "/locator",
+        "textSha256": "150c4d528e5647f850c99c45cc22eb34ff28d39853125a8e80df498b661f02fb"
+      }
+    },
+    {
+      "id": "source/bc0100-salt-iron/institution",
+      "en": "Asia for Educators, Columbia University; translated extract from Sources of Chinese Tradition (1999), volume 1, 360–363",
+      "sv": "Asia for Educators, Columbia University; översatt utdrag ur Sources of Chinese Tradition (1999), band 1, s. 360–363",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-salt-iron",
+        "fieldPath": "/institution",
+        "textSha256": "65311235e6140495d1afaf911dd7c7d844986e0428d01e2dcc9fefe3009983e3"
+      }
+    },
+    {
+      "id": "source/bc0100-salt-iron/locator",
+      "en": "Introduction and debate extracts, web lines 55–70 and 84–89.",
+      "sv": "Inledningen och debattutdragen, webbrader 55–70 och 84–89.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-salt-iron",
+        "fieldPath": "/locator",
+        "textSha256": "99698b687ae0e835ee822b26949c577b0298664434177230f037a8fe937b1297"
+      }
+    },
+    {
+      "id": "source/bc0100-spartacus/institution",
+      "en": "BCcampus Pressbooks; Spectacles in the Roman World",
+      "sv": "BCcampus Pressbooks; Spectacles in the Roman World",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-spartacus",
+        "fieldPath": "/institution",
+        "textSha256": "496167d2cb0c0cc9d43c5385d35297c949bf94a3871b36541e02a9d7137127d7"
+      }
+    },
+    {
+      "id": "source/bc0100-spartacus/locator",
+      "en": "Chapter introduction and ancient accounts, web lines 127–132.",
+      "sv": "Kapitelinledningen och de antika berättelserna, webbrader 127–132.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-spartacus",
+        "fieldPath": "/locator",
+        "textSha256": "053f1f4d736ff2cc9884cbf457e20ba79af1e335907dda2da120a4d1bd3fdf35"
+      }
+    },
+    {
+      "id": "source/bc0100-tigranocerta/institution",
+      "en": "Dickinson College Commentaries",
+      "sv": "Dickinson College Commentaries",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-tigranocerta",
+        "fieldPath": "/institution",
+        "textSha256": "d65c25e6a8481adb89adc2451307d0b3751fcd9f750621c81e39f1614c8134a8"
+      }
+    },
+    {
+      "id": "source/bc0100-tigranocerta/locator",
+      "en": "Section 6.9.1 and editorial chronology note, web lines 5–10.",
+      "sv": "Avsnitt 6.9.1 och redaktionell kronologisk not, webbrader 5–10.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-tigranocerta",
+        "fieldPath": "/locator",
+        "textSha256": "68685c8be461aaed08be156eb803faa419fac8039e511c3be6b9efd66bd43065"
+      }
+    },
+    {
+      "id": "source/bc0100-pirates/institution",
+      "en": "Livius.org",
+      "sv": "Livius.org",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-pirates",
+        "fieldPath": "/institution",
+        "textSha256": "c6ee8209bb4b308ae7a8d6bdfcead4dab1ddeb7ddffabbcd5dae42e7432e7481"
+      }
+    },
+    {
+      "id": "source/bc0100-pirates/locator",
+      "en": "Pompey's command and subsequent eastern campaign, web lines 22–32.",
+      "sv": "Pompejus befäl och det efterföljande fälttåget i öster, webbrader 22–32.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-pirates",
+        "fieldPath": "/locator",
+        "textSha256": "2e131f2c6fb51320cb9b63fd8dd7c73746cb562a3c11c23a8127c425cef48c50"
+      }
+    },
+    {
+      "id": "source/bc0100-silla/institution",
+      "en": "Musée national des arts asiatiques – Guimet; Gyeongju National Museum",
+      "sv": "Musée national des arts asiatiques – Guimet; Gyeongjus nationalmuseum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-silla",
+        "fieldPath": "/institution",
+        "textSha256": "e347ebb8ada331ec040515e6be7ae7fbc06c0a91b62733ee94a2ec34f676df65"
+      }
+    },
+    {
+      "id": "source/bc0100-silla/locator",
+      "en": "PDF pages 2–3, foundation tradition and Iron Thrones section; web lines 18–24, 64–85.",
+      "sv": "PDF-sidor 2–3, grundningstraditionen och avsnittet Iron Thrones; webbrader 18–24 och 64–85.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-silla",
+        "fieldPath": "/locator",
+        "textSha256": "fa016d2325df81be735d30229053da51ac6d81132b1f238b6b4b1bcc675bea11"
+      }
+    },
+    {
+      "id": "source/bc0100-caesar-britain/institution",
+      "en": "University of Leicester, Archaeology and Ancient History",
+      "sv": "Leicesters universitet, arkeologi och antikens historia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-caesar-britain",
+        "fieldPath": "/institution",
+        "textSha256": "e445119d96a4f27a48155da98dc3c1bd4a43388ff1db31adab6f74aa2d540bbe"
+      }
+    },
+    {
+      "id": "source/bc0100-caesar-britain/locator",
+      "en": "Campaign headings and narrative, web lines 33–46.",
+      "sv": "Fälttågens rubriker och berättelse, webbrader 33–46.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-caesar-britain",
+        "fieldPath": "/locator",
+        "textSha256": "388c8952f37078a806c1cc801f22b6d6d9443890d51f87ac258bfcd611736360"
+      }
+    },
+    {
+      "id": "source/bc0100-alesia/institution",
+      "en": "Musée d'Archéologie nationale, France",
+      "sv": "Musée d'Archéologie nationale, Frankrike",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-alesia",
+        "fieldPath": "/institution",
+        "textSha256": "84b81e529b9eb916b914f794cae76dc12a27096e10d8bcbef0ff3fd696377a3b"
+      }
+    },
+    {
+      "id": "source/bc0100-alesia/locator",
+      "en": "Museum account of the siege and surrender, web text.",
+      "sv": "Museets berättelse om belägringen och kapitulationen, webbtext.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-alesia",
+        "fieldPath": "/locator",
+        "textSha256": "a148badafa4a6a77ec34bbf2c195c625e128538d261d48c9928c47c652f90e85"
+      }
+    },
+    {
+      "id": "source/bc0100-pharsalus/institution",
+      "en": "Livius.org; translation of Caesar by W. A. McDevitte and W. S. Bohn",
+      "sv": "Livius.org; översättning av Caesar av W. A. McDevitte och W. S. Bohn",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-pharsalus",
+        "fieldPath": "/institution",
+        "textSha256": "75bdd868ef90ad1828ed7d3dad9ffacba75e2513bf1e6d8fd5e841051b87bf96"
+      }
+    },
+    {
+      "id": "source/bc0100-pharsalus/locator",
+      "en": "Editorial introduction, web lines 9, 15–23; Caesar's account begins below.",
+      "sv": "Redaktionell inledning, webbrader 9 och 15–23; Caesars berättelse börjar nedanför.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-pharsalus",
+        "fieldPath": "/locator",
+        "textSha256": "66ec91f4aea997c0444053c8dbd43341aba21d6377fdefc451bd8e87e99db14f"
+      }
+    },
+    {
+      "id": "source/bc0100-calendar/institution",
+      "en": "Encyclopaedia Romana, hosted by University of Chicago",
+      "sv": "Encyclopaedia Romana, med webbplats hos University of Chicago",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-calendar",
+        "fieldPath": "/institution",
+        "textSha256": "70e08075fa0f24ce645ca1925356fbef8ecb65963b22f023a633c106356bc6d5"
+      }
+    },
+    {
+      "id": "source/bc0100-calendar/locator",
+      "en": "Julian reform discussion, web lines 27–34.",
+      "sv": "Diskussionen om den julianska reformen, webbrader 27–34.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-calendar",
+        "fieldPath": "/locator",
+        "textSha256": "bb7b3ddc219c4e321680a2a3736ac51121ca575e7c2a7687a185c230085b75f2"
+      }
+    },
+    {
+      "id": "source/bc0100-caesar-augustus/institution",
+      "en": "Department of Greek and Roman Art; The Metropolitan Museum of Art",
+      "sv": "Avdelningen för grekisk och romersk konst; Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-caesar-augustus",
+        "fieldPath": "/institution",
+        "textSha256": "a3ed3f640e2e82f5cfbd32905c124e154415b2f9a6f7031c53f70a4c886378a7"
+      }
+    },
+    {
+      "id": "source/bc0100-caesar-augustus/locator",
+      "en": "Closing republican-history paragraph, web lines 85–86.",
+      "sv": "Avslutande stycke om republikens historia, webbrader 85–86.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-caesar-augustus",
+        "fieldPath": "/locator",
+        "textSha256": "86143edfbc4ad9130017065ead26ed236a62ae2c7adb90f444ca1ba6d26aef09"
+      }
+    },
+    {
+      "id": "source/bc0100-tres-inah/institution",
+      "en": "Instituto Nacional de Antropología e Historia",
+      "sv": "Instituto Nacional de Antropología e Historia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-tres-inah",
+        "fieldPath": "/institution",
+        "textSha256": "f9bc55f82cf39f45b7a990687014692f82668b6a8cae9ba384440ee20cb1387d"
+      }
+    },
+    {
+      "id": "source/bc0100-tres-inah/locator",
+      "en": "Stela C section, PDF page 2, web lines 252–267; extracted text only.",
+      "sv": "Avsnittet om stela C, PDF-sida 2, webbrader 252–267; endast extraherad text.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-tres-inah",
+        "fieldPath": "/locator",
+        "textSha256": "a876c774071753b5dbc9b265cea7a97a291e15efcc1faf050a806bc90c703585"
+      }
+    },
+    {
+      "id": "source/bc0100-tres-milbrath/institution",
+      "en": "Susan Milbrath; Florida Museum of Natural History, University of Florida; Latin American Antiquity 28(1), 2017, 88–104",
+      "sv": "Susan Milbrath; Florida Museum of Natural History, University of Florida; Latin American Antiquity 28(1), 2017, s. 88–104",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-tres-milbrath",
+        "fieldPath": "/institution",
+        "textSha256": "65416ea8601e54304dd726060cb2d4360b2c2054ad2de0ed6757caf723148d16"
+      }
+    },
+    {
+      "id": "source/bc0100-tres-milbrath/locator",
+      "en": "Table 1, printed page 90 (PDF page 3), and discussion page 97 (PDF page 10); web lines 166–175, 791–855. Extracted text only.",
+      "sv": "Tabell 1, tryckt sida 90 (PDF-sida 3), och diskussionen på sida 97 (PDF-sida 10); webbrader 166–175 och 791–855. Endast extraherad text.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-tres-milbrath",
+        "fieldPath": "/locator",
+        "textSha256": "5ee6418105e60f483e6661327e109f6ba52bc1ba5d98aef5da9af386511a3cbb"
+      }
+    },
+    {
+      "id": "source/bc0100-actium/institution",
+      "en": "Livius.org",
+      "sv": "Livius.org",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-actium",
+        "fieldPath": "/institution",
+        "textSha256": "c6ee8209bb4b308ae7a8d6bdfcead4dab1ddeb7ddffabbcd5dae42e7432e7481"
+      }
+    },
+    {
+      "id": "source/bc0100-actium/locator",
+      "en": "Battle account, web lines 17–32.",
+      "sv": "Berättelsen om slaget, webbrader 17–32.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-actium",
+        "fieldPath": "/locator",
+        "textSha256": "f0529e93d8bf6c895fb6b14321863e017c8ac72f14ae7e2b2fdaba77011bc04a"
+      }
+    },
+    {
+      "id": "source/bc0100-egypt/institution",
+      "en": "Alan K. Bowman; Cambridge University Press",
+      "sv": "Alan K. Bowman; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-egypt",
+        "fieldPath": "/institution",
+        "textSha256": "b62d375ed977c3c2dd02c9e21904b905b3f1cf16828cad95a71a53160197588b"
+      }
+    },
+    {
+      "id": "source/bc0100-egypt/locator",
+      "en": "Public summary, Roman conquest section, web lines 490–494; full chapter not consulted.",
+      "sv": "Offentlig sammanfattning, avsnittet om den romerska erövringen, webbrader 490–494; hela kapitlet har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-egypt",
+        "fieldPath": "/locator",
+        "textSha256": "b41b06d0f7ca4b762ea0b147e7fb1c72549e6b71000d30cfe50b6b4723d2b63a"
+      }
+    },
+    {
+      "id": "source/bc0100-red-sea/institution",
+      "en": "Michael A. Speidel; University of Freiburg public research copy",
+      "sv": "Michael A. Speidel; offentlig forskningskopia vid Freiburgs universitet",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-red-sea",
+        "fieldPath": "/institution",
+        "textSha256": "cd3a454a763ebfd075e7ead1dbebbb1ed492f804093830afa627e3e056e8b794"
+      }
+    },
+    {
+      "id": "source/bc0100-red-sea/locator",
+      "en": "Printed pages 96 and 106 (PDF pages 14 and 24), web lines 436–455 and 769–795.",
+      "sv": "Tryckta sidor 96 och 106 (PDF-sidor 14 och 24), webbrader 436–455 och 769–795.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-red-sea",
+        "fieldPath": "/locator",
+        "textSha256": "95375a81216869279eb2a52482b41aff213cd1b93de12f8d468de7c8a9a5ffb6"
+      }
+    },
+    {
+      "id": "source/bc0100-balbus/institution",
+      "en": "Jacqueline Passon and Meike Meerpohl; Springer Nature",
+      "sv": "Jacqueline Passon och Meike Meerpohl; Springer Nature",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-balbus",
+        "fieldPath": "/institution",
+        "textSha256": "d313a71bbace079ca869abf0a350d041082d8bae82458f5b771cf940c41e1c3c"
+      }
+    },
+    {
+      "id": "source/bc0100-balbus/locator",
+      "en": "Section 5.9.1, Garamantes and Roman campaign discussion, web line 543.",
+      "sv": "Avsnitt 5.9.1, diskussionen om garamanterna och det romerska fälttåget, webbrad 543.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0100-balbus",
+        "fieldPath": "/locator",
+        "textSha256": "061a20b82c69223aa58e7ff520493a1aa705a7b234921b9f299d9b861c11bf61"
       }
     }
   ]

@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "30cdfec7d085dfd82c77446a0ac61aa5485eb65b",
+  "sourceRevision": "710f7f094a509d091487a99bb556d232a496d760",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -60590,6 +60590,1491 @@
         "eventId": "ev-bc0200-vercellae",
         "fieldPath": "/geographySv",
         "textSha256": "46d15b84e594b72b40674644809c419e7f367e6a4d732d9d33f5f6b5809d8312"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-yalahau-odlar-vatmarker/date/displaySv",
+      "sv": "cirka 100 f.Kr.–350/450 e.Kr.",
+      "en": "circa 100 BC–AD 350/450",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-yalahau-odlar-vatmarker",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "3ab229ef6ea2cf77bb61ff0327a3baeeaf5cccd5e872f4f4df7ffcf351982e77"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-yalahau-odlar-vatmarker/date/noteSv",
+      "sv": "Hela den ungefärliga brukningsperioden behålls. De flesta undersökta bosättningar överges omkring 350 e.Kr.; Tumben-Naranjal består möjligen till omkring 450. Posten anger ingen exakt första odlingsdag.",
+      "en": "The full approximate period of use is retained. Most investigated settlements were abandoned around AD 350; Tumben-Naranjal may have continued until around 450. This entry gives no exact first day of cultivation.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-yalahau-odlar-vatmarker",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "4084c9447b9359bcb68f81569e4e59a94bf52bd1ca52a82a32d14263c3d75cd4"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-yalahau-odlar-vatmarker/titleSv",
+      "sv": "Mayasamhällen brukar Yalahaus våtmarker",
+      "en": "Maya communities cultivate Yalahau's wetlands",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-yalahau-odlar-vatmarker",
+        "fieldPath": "/titleSv",
+        "textSha256": "a9738cb9d911842448c9719d393e34d6ff5bb8ca15d86203a61504c0ccb04881"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-yalahau-odlar-vatmarker/summarySv",
+      "sv": "Samhällen i Yalahau odlar och förändrar våtmarker och trädgårdar. Arkeologiska fynd visar bland annat trädodling och användning av material från våtmarkerna för att berika odlingsjord.",
+      "en": "Communities in Yalahau cultivate and modify wetlands and gardens. Archaeological finds show tree cultivation and the use of material from the wetlands to enrich cultivated soil, among other practices.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-yalahau-odlar-vatmarker",
+        "fieldPath": "/summarySv",
+        "textSha256": "b1be4ab916950a0f1d1704b5f7ad8296c6f952546416fdab7eb77441122a7515"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-yalahau-odlar-vatmarker/geographySv",
+      "sv": "Yalahau i nordöstra Yucatán, Mexiko",
+      "en": "Yalahau in northeastern Yucatán, Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-yalahau-odlar-vatmarker",
+        "fieldPath": "/geographySv",
+        "textSha256": "e6a1d04d11ff74ebd8987a0987c2412d090ee102cc4a445780a72d10cdb7910c"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-san-bartolos-malningar/date/displaySv",
+      "sv": "cirka 100 f.Kr.",
+      "en": "circa 100 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-san-bartolos-malningar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0114f409f6ce63f94605a600d81a108ed88a3c52cd83d41d7532e805f95a3519"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-san-bartolos-malningar/date/noteSv",
+      "sv": "Dateringen gäller den näst sista byggnadsfasen och rum Sub-1A. Äldre måleri omkring 300 f.Kr. och senare förstörelse dateras inte till samma år.",
+      "en": "The date concerns the penultimate construction phase and room Sub-1A. Earlier painting around 300 BC and later destruction are not dated to the same year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-san-bartolos-malningar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "32ac57578804731a3f09e4b9eee241df2958016c267f4803f536faa51c13d828"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-san-bartolos-malningar/titleSv",
+      "sv": "San Bartolos målare skildrar myter och kröningar",
+      "en": "San Bartolo's painters depict myths and coronations",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-san-bartolos-malningar",
+        "fieldPath": "/titleSv",
+        "textSha256": "e46fea84b1d4b75e0bdf265036821c5597e8cec9f73f4662abc7b3791cea7481"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-san-bartolos-malningar/summarySv",
+      "sv": "I Las Pinturas-komplexets rum Sub-1A målas scener med majsguden, offer och kröningsritualer. Målningarna hör till en byggnadsfas före komplexets sista ombyggnad.",
+      "en": "In room Sub-1A of the Las Pinturas complex, painters depict the maize god, sacrifices and coronation rituals. The paintings belong to a construction phase before the complex's final rebuilding.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-san-bartolos-malningar",
+        "fieldPath": "/summarySv",
+        "textSha256": "b7ac3487f979135f78d3233c8498c20187f6c56e7afd02b38bbc1fb624980144"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-san-bartolos-malningar/geographySv",
+      "sv": "San Bartolo, Guatemala",
+      "en": "San Bartolo, Guatemala",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-san-bartolos-malningar",
+        "fieldPath": "/geographySv",
+        "textSha256": "4a6f3796f91ae0620136403568f95707da8cf3a395437a04cdec652f469e01ec"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-sa-huynhs-andra-gravfas/date/displaySv",
+      "sv": "första århundradet f.Kr.–första århundradet e.Kr.",
+      "en": "first century BC–first century AD",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-sa-huynhs-andra-gravfas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8f7517ffab7d00c77011b72384198bb37e087f14ba821464b7b4240f6a7a2dae"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-sa-huynhs-andra-gravfas/date/noteSv",
+      "sv": "Hela den arkeologiska fasen återges som 100 f.Kr.–100 e.Kr., utan år noll. Gravgåvorna fastställer inte i sig de begravdas språk eller etniska identitet.",
+      "en": "The entire archaeological phase is represented as 100 BC–AD 100, without a year zero. Grave goods do not in themselves establish the language or ethnic identity of those buried.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-sa-huynhs-andra-gravfas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "4eb1315bf87b1082372f3b936e4416d890899ae42a148779b57c20e80b9f2ee1"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-sa-huynhs-andra-gravfas/titleSv",
+      "sv": "Sa Huynhs gravskick förändras",
+      "en": "Sa Huynh burial practices change",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-sa-huynhs-andra-gravfas",
+        "fieldPath": "/titleSv",
+        "textSha256": "792a37bf9f7b3acfe36452ab83cde01c27feefd25bccb504b1410a954629082b"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-sa-huynhs-andra-gravfas/summarySv",
+      "sv": "I centrala Vietnam används cylindriska gravkärl under Sa Huynhs andra fas. Gravarna innehåller mer järn och fler pärlor, färre bronsföremål och i vissa fall speglar från Västra Han.",
+      "en": "Cylindrical burial jars are used in central Vietnam during Sa Huynh's second phase. Graves contain more iron and beads, fewer bronze objects and, in some cases, Western Han mirrors.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-sa-huynhs-andra-gravfas",
+        "fieldPath": "/summarySv",
+        "textSha256": "5052ccf47c27847d744cc61e1bcf482adda5d6f0384c78af6891d6b07f50b561"
+      }
+    },
+    {
+      "id": "event/ev-bc0100-sa-huynhs-andra-gravfas/geographySv",
+      "sv": "Quang Nam och Thu Bon-området, centrala Vietnam",
+      "en": "Quang Nam and the Thu Bon area, central Vietnam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0100-sa-huynhs-andra-gravfas",
+        "fieldPath": "/geographySv",
+        "textSha256": "8925cdd2c4f0b7a81ceb7c0a5c8258fa464ade08c1aa4ad3b8ff70bb74d5c108"
+      }
+    },
+    {
+      "id": "event/ev-bc0091-bundsforvantskriget/date/displaySv",
+      "sv": "91–88 f.Kr.",
+      "en": "91–88 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0091-bundsforvantskriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "993a98840a7e90a7b6507042e19cbf78107260eabac1f4f6dc873e4ee2767b66"
+      }
+    },
+    {
+      "id": "event/ev-bc0091-bundsforvantskriget/date/noteSv",
+      "sv": "Tidslinjen anger hela kriget som 91–88 f.Kr. Lagarna om medborgarskap placeras där i 90 respektive 89; de innebär inte att alla praktiska rättighetsfrågor löses samtidigt.",
+      "en": "The timeline dates the entire war to 91–88 BC. It places the citizenship laws in 90 and 89 respectively; these do not mean that all practical questions of rights were resolved at once.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0091-bundsforvantskriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3b9dea15627fbd4ac670383d1a42698c62c2697d356b5b41f2a615d0abe41454"
+      }
+    },
+    {
+      "id": "event/ev-bc0091-bundsforvantskriget/titleSv",
+      "sv": "Roms italienska bundsförvanter går i krig",
+      "en": "Rome's Italian allies go to war",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0091-bundsforvantskriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "29e14446642ce412f6b7c70f6cb4b00740d15dc45a4482775bbdef71776aade2"
+      }
+    },
+    {
+      "id": "event/ev-bc0091-bundsforvantskriget/summarySv",
+      "sv": "Krig bryter ut mellan Rom och dess italienska bundsförvanter. Under konflikten utvidgas det romerska medborgarskapet genom nya lagar.",
+      "en": "War breaks out between Rome and its Italian allies. During the conflict, new laws extend Roman citizenship.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0091-bundsforvantskriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "e2a9a42811589115db930746aa0c90429f4a53764f82ef43cd37279574d63f72"
+      }
+    },
+    {
+      "id": "event/ev-bc0091-bundsforvantskriget/geographySv",
+      "sv": "Italien",
+      "en": "Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0091-bundsforvantskriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "e239bf96faceb79713f36861c2488f56632e190a06391cf2343d4dd70ad173e2"
+      }
+    },
+    {
+      "id": "event/ev-bc0091-hans-trolldomsskandal/date/displaySv",
+      "sv": "91 f.Kr.",
+      "en": "91 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0091-hans-trolldomsskandal",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "66dd81d54a8fddec7af63a80801552c52b88a944090b5103ff8eb321d6df1643"
+      }
+    },
+    {
+      "id": "event/ev-bc0091-hans-trolldomsskandal/date/noteSv",
+      "sv": "Året kommer från forskningsverkets historiska beskrivning. Benämningen återger anklagelserna i samtiden och bekräftar inte att trolldom förekom.",
+      "en": "The year comes from the scholarly work's historical account. The name reflects contemporary accusations and does not establish that witchcraft occurred.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0091-hans-trolldomsskandal",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "85bd1a3377d89a1fbb6dcb4c9fea954973c9920bdf9248771543276f0f8c145d"
+      }
+    },
+    {
+      "id": "event/ev-bc0091-hans-trolldomsskandal/titleSv",
+      "sv": "Hanrikets hov drabbas av trolldomsskandalen",
+      "en": "The Han court is shaken by the witchcraft scandal",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0091-hans-trolldomsskandal",
+        "fieldPath": "/titleSv",
+        "textSha256": "86f3bfabb564d7955278c12550ef5b2234bc5a419359f0244b2a558dbd448bab"
+      }
+    },
+    {
+      "id": "event/ev-bc0091-hans-trolldomsskandal/summarySv",
+      "sv": "Ett försök till statskupp mot kejsar Wu följs av förföljelser av misstänkta deltagare. Händelserna blir kända som trolldomsskandalen.",
+      "en": "An attempted coup against Emperor Wu is followed by persecution of suspected participants. The events become known as the witchcraft scandal.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0091-hans-trolldomsskandal",
+        "fieldPath": "/summarySv",
+        "textSha256": "fd506c71d9d265a2483e133cde90d83e34a0390aa1d9cdebe5152f6ee74d212b"
+      }
+    },
+    {
+      "id": "event/ev-bc0091-hans-trolldomsskandal/geographySv",
+      "sv": "Hanriket, Kina",
+      "en": "Han China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0091-hans-trolldomsskandal",
+        "fieldPath": "/geographySv",
+        "textSha256": "2d41a5eb1feb20252cd713393cb653fffcbd63ad3b2c1a6726283999f9f91988"
+      }
+    },
+    {
+      "id": "event/ev-bc0088-sulla-marscherar-mot-rom/date/displaySv",
+      "sv": "88 f.Kr.",
+      "en": "88 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0088-sulla-marscherar-mot-rom",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "711896a1e503f14bc42cf4dea668b5ad71609b3a23706568aa8ef8ac90657f30"
+      }
+    },
+    {
+      "id": "event/ev-bc0088-sulla-marscherar-mot-rom/date/noteSv",
+      "sv": "Årtalet gäller den första marschen mot Rom. Sullas senare diktatur är en annan händelse.",
+      "en": "The year concerns the first march on Rome. Sulla's later dictatorship is a separate event.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0088-sulla-marscherar-mot-rom",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "195bbf554b216274e7955a4ed08da39e4b862bc6cc8b6e1889928e0ed835ca1a"
+      }
+    },
+    {
+      "id": "event/ev-bc0088-sulla-marscherar-mot-rom/titleSv",
+      "sv": "Sulla marscherar med sin armé mot Rom",
+      "en": "Sulla marches his army on Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0088-sulla-marscherar-mot-rom",
+        "fieldPath": "/titleSv",
+        "textSha256": "349e0483061f87e730941343b3ec4654d8ccd716868d76c3c801d84bd039ccb8"
+      }
+    },
+    {
+      "id": "event/ev-bc0088-sulla-marscherar-mot-rom/summarySv",
+      "sv": "Efter att befälet i öster överförts till Marius för Sulla sina soldater mot Rom. Han tar sig in med våld och undanröjer sina motståndares politiska beslut.",
+      "en": "After command in the east is transferred to Marius, Sulla leads his soldiers against Rome. He enters by force and overturns his opponents' political decisions.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0088-sulla-marscherar-mot-rom",
+        "fieldPath": "/summarySv",
+        "textSha256": "70672ee95089e76f26f73497610c6bccd385d848090ef22d62a88f5469153472"
+      }
+    },
+    {
+      "id": "event/ev-bc0088-sulla-marscherar-mot-rom/geographySv",
+      "sv": "Rom, Italien",
+      "en": "Rome, Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0088-sulla-marscherar-mot-rom",
+        "fieldPath": "/geographySv",
+        "textSha256": "6891bf8a2728ccd419110af49208a4f9e999ca9737a13cd8268aa8ff74bae2bd"
+      }
+    },
+    {
+      "id": "event/ev-bc0082-sulla-blir-diktator/date/displaySv",
+      "sv": "82 f.Kr.",
+      "en": "82 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0082-sulla-blir-diktator",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d83a04b6ef98debbfd4c4c94ab0d8b2ba728569ec6a0a085370752b6dca60d45"
+      }
+    },
+    {
+      "id": "event/ev-bc0082-sulla-blir-diktator/date/noteSv",
+      "sv": "Den lästa offentliga artikelingressen daterar utnämningen till 82 f.Kr. Posten anger ingen egen dag för tillträdet eller avgången.",
+      "en": "The public article extract that was read dates the appointment to 82 BC. This entry gives no independently chosen day for taking or leaving office.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0082-sulla-blir-diktator",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "2d59b54f3ee9f977f0733d6da451c421d91f5652b20fe0f0f7b53e26236677f5"
+      }
+    },
+    {
+      "id": "event/ev-bc0082-sulla-blir-diktator/titleSv",
+      "sv": "Sulla blir diktator",
+      "en": "Sulla becomes dictator",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0082-sulla-blir-diktator",
+        "fieldPath": "/titleSv",
+        "textSha256": "1fbedb2d377fb3df35fb3ae63a990eac7ed04dcdaa28fa79491d273b4e25567d"
+      }
+    },
+    {
+      "id": "event/ev-bc0082-sulla-blir-diktator/summarySv",
+      "sv": "Sulla utses till diktator i Rom. Han genomför ett omfattande program av lagstiftning och förändringar av rättskipningen.",
+      "en": "Sulla is appointed dictator in Rome. He carries out an extensive programme of legislation and changes to the administration of justice.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0082-sulla-blir-diktator",
+        "fieldPath": "/summarySv",
+        "textSha256": "26a506873d35adaafaf68b02564a473820b78454549f7e7e9bc7079696113061"
+      }
+    },
+    {
+      "id": "event/ev-bc0082-sulla-blir-diktator/geographySv",
+      "sv": "Rom",
+      "en": "Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0082-sulla-blir-diktator",
+        "fieldPath": "/geographySv",
+        "textSha256": "1f268826c4d33921cbcec835bd71ab3bc2729936d3edb01befa02c46c41a71ed"
+      }
+    },
+    {
+      "id": "event/ev-bc0081-debatten-om-salt-och-jarn/date/displaySv",
+      "sv": "81 f.Kr.",
+      "en": "81 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0081-debatten-om-salt-och-jarn",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "851331160283cc200563746c84cf49448a0ad0f1f2a99d771cef95a0491b66b5"
+      }
+    },
+    {
+      "id": "event/ev-bc0081-debatten-om-salt-och-jarn/date/noteSv",
+      "sv": "Året gäller debatten. De återgivna argumenten används inte som bevis för att alla monopol då avskaffas.",
+      "en": "The year concerns the debate. The arguments quoted in the source are not used as evidence that all monopolies were then abolished.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0081-debatten-om-salt-och-jarn",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "a82f94f14e2dc7dd794454f9fd2347f56771a335bfbc5b1344438b61a32ce076"
+      }
+    },
+    {
+      "id": "event/ev-bc0081-debatten-om-salt-och-jarn/titleSv",
+      "sv": "Hanrikets lärda debatterar salt och järn",
+      "en": "Han scholars debate salt and iron",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0081-debatten-om-salt-och-jarn",
+        "fieldPath": "/titleSv",
+        "textSha256": "8894ee4f23d1a4f0a3b781f08a5b51c8041f1009cd0cdc913d3f6ecf9c480d87"
+      }
+    },
+    {
+      "id": "event/ev-bc0081-debatten-om-salt-och-jarn/summarySv",
+      "sv": "Vid kejsar Zhaos hov möts ämbetsmän och konfucianska kritiker i en debatt om statens ekonomiska politik. De diskuterar bland annat monopol på salt och järn samt kostnaderna för krig.",
+      "en": "Officials and Confucian critics meet at Emperor Zhao's court to debate state economic policy. Their discussion includes the salt and iron monopolies and the costs of war.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0081-debatten-om-salt-och-jarn",
+        "fieldPath": "/summarySv",
+        "textSha256": "1b8d745bfe8a496c8df4c4db47a6bfba37bb45073e695a5440c9543cf1955820"
+      }
+    },
+    {
+      "id": "event/ev-bc0081-debatten-om-salt-och-jarn/geographySv",
+      "sv": "Hanrikets hov, Kina",
+      "en": "The Han court, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0081-debatten-om-salt-och-jarn",
+        "fieldPath": "/geographySv",
+        "textSha256": "c0bf43e2c122bb560f23cb5f2458f012c6fde9952b6fbc842416819b9866404c"
+      }
+    },
+    {
+      "id": "event/ev-bc0073-spartacus-uppror/date/displaySv",
+      "sv": "73–71 f.Kr.",
+      "en": "73–71 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0073-spartacus-uppror",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "46b774be165d44ec1ab3386b58044f7f78626a1846a4614c10dc807e23ebb3f7"
+      }
+    },
+    {
+      "id": "event/ev-bc0073-spartacus-uppror/date/noteSv",
+      "sv": "Hela upprorsperioden behålls. De bevarade antika berättelserna skiljer sig i flera detaljer; osäkra styrke- och dödstal utelämnas.",
+      "en": "The entire revolt period is retained. Surviving ancient accounts differ in several details; uncertain army sizes and death tolls are omitted.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0073-spartacus-uppror",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3441f60d7b1e12f30e6a488d0f03f6e971dee31908ff54d91133f42d68d624dd"
+      }
+    },
+    {
+      "id": "event/ev-bc0073-spartacus-uppror/titleSv",
+      "sv": "Spartacus leder ett slavuppror i Italien",
+      "en": "Spartacus leads a slave revolt in Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0073-spartacus-uppror",
+        "fieldPath": "/titleSv",
+        "textSha256": "d78e5d7c408cc3f1e4d80fe4bc1a4eb7f81aefe59bc04a3b8d28d7a683d0ef04"
+      }
+    },
+    {
+      "id": "event/ev-bc0073-spartacus-uppror/summarySv",
+      "sv": "Spartacus och hans följeslagare gör uppror och besegrar flera romerska styrkor. Crassus slår till slut ned upproret.",
+      "en": "Spartacus and his followers revolt and defeat several Roman forces. Crassus eventually suppresses the uprising.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0073-spartacus-uppror",
+        "fieldPath": "/summarySv",
+        "textSha256": "9aa21048d05fb8496fc65a3280d8f6cce992ec0d04bdc0bc71d1b392c7dc8db1"
+      }
+    },
+    {
+      "id": "event/ev-bc0073-spartacus-uppror/geographySv",
+      "sv": "Italienska halvön",
+      "en": "The Italian Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0073-spartacus-uppror",
+        "fieldPath": "/geographySv",
+        "textSha256": "66c824f01daa615ffe8369c436643ab92c7bde23bc4815c602c0c41031b99ca2"
+      }
+    },
+    {
+      "id": "event/ev-bc0069-tigranocerta/date/displaySv",
+      "sv": "69 f.Kr.",
+      "en": "69 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0069-tigranocerta",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "518492650273c23469079c0c8b53531c3e048f221e331a8e0f9f5380d6ad4a7e"
+      }
+    },
+    {
+      "id": "event/ev-bc0069-tigranocerta/date/noteSv",
+      "sv": "Året anges av utgåvans moderna kommentar. Antikens uppgifter om mycket stora arméer används inte.",
+      "en": "The year is supplied by the edition's modern commentary. Ancient claims of very large armies are not adopted.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0069-tigranocerta",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "01d071ce7ece27db1e0b02b280db678c6efc0ca2b867e7ce3ebd1e09c2dc667c"
+      }
+    },
+    {
+      "id": "event/ev-bc0069-tigranocerta/titleSv",
+      "sv": "Lucullus besegrar Tigranes vid Tigranocerta",
+      "en": "Lucullus defeats Tigranes at Tigranocerta",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0069-tigranocerta",
+        "fieldPath": "/titleSv",
+        "textSha256": "d5bf691775112232e402c83ec0d670fbc321f0bc434b25ab972f74d2c7306523"
+      }
+    },
+    {
+      "id": "event/ev-bc0069-tigranocerta/summarySv",
+      "sv": "Romerska styrkor under Lucullus besegrar kung Tigranes. Tigranocerta intas under fälttåget i Armenien.",
+      "en": "Roman forces under Lucullus defeat King Tigranes. Tigranocerta is captured during the campaign in Armenia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0069-tigranocerta",
+        "fieldPath": "/summarySv",
+        "textSha256": "49a87424a97b64037ebc2a91d3118299b876cc3544a272973b9fc04b2e6c8634"
+      }
+    },
+    {
+      "id": "event/ev-bc0069-tigranocerta/geographySv",
+      "sv": "Tigranocerta, Armenien",
+      "en": "Tigranocerta, Armenia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0069-tigranocerta",
+        "fieldPath": "/geographySv",
+        "textSha256": "a3ec1f068247fcd3ac33a9ea79bf517a0ed734c10195edf2d05a434639729bc9"
+      }
+    },
+    {
+      "id": "event/ev-bc0067-pompejus-bekampar-pirater/date/displaySv",
+      "sv": "67 f.Kr.",
+      "en": "67 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0067-pompejus-bekampar-pirater",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0df7f5068f73145c65ba0e3c9b0251df35687d75a701311d907e6b1f57548117"
+      }
+    },
+    {
+      "id": "event/ev-bc0067-pompejus-bekampar-pirater/date/noteSv",
+      "sv": "Året följer källans uttryckliga hänvisning till 67 f.Kr. Uppgiften betyder inte att allt framtida sjöröveri upphör.",
+      "en": "The year follows the source's explicit reference to 67 BC. It does not mean that all future piracy ended.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0067-pompejus-bekampar-pirater",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "57651a6202475a2bcd148b60ca4c98023cc810fe2a8e3340088c6919b8458e39"
+      }
+    },
+    {
+      "id": "event/ev-bc0067-pompejus-bekampar-pirater/titleSv",
+      "sv": "Pompejus får ett stort befäl mot piraterna",
+      "en": "Pompey receives a major command against pirates",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0067-pompejus-bekampar-pirater",
+        "fieldPath": "/titleSv",
+        "textSha256": "7f45d843700471ce27072b74503e0694c937ad6b4e7d47677cf95e8f53141719"
+      }
+    },
+    {
+      "id": "event/ev-bc0067-pompejus-bekampar-pirater/summarySv",
+      "sv": "Rom ger Pompejus extraordinära befogenheter för att bekämpa pirater i Medelhavet. Han samordnar flottstyrkor och intar piraternas bas vid Coracesium.",
+      "en": "Rome gives Pompey extraordinary powers to fight pirates in the Mediterranean. He coordinates naval forces and captures the pirates' base at Coracesium.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0067-pompejus-bekampar-pirater",
+        "fieldPath": "/summarySv",
+        "textSha256": "49897690e3cbe98aa0c3ea6e077e7814fa0edaecba4226719cb81e4e04bff7cd"
+      }
+    },
+    {
+      "id": "event/ev-bc0067-pompejus-bekampar-pirater/geographySv",
+      "sv": "Medelhavet och Coracesium i Kilikien",
+      "en": "The Mediterranean and Coracesium in Cilicia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0067-pompejus-bekampar-pirater",
+        "fieldPath": "/geographySv",
+        "textSha256": "356d10ac4b53707ddb5a01a2f403d739ab2e1cce74fc32352238beb941eebc3d"
+      }
+    },
+    {
+      "id": "event/ev-bc0063-pompejus-intar-jerusalem/date/displaySv",
+      "sv": "63 f.Kr.",
+      "en": "63 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0063-pompejus-intar-jerusalem",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b0a59f3e0537203a279c43ddf1232471ffedc178e3c1e326e04d2160ea4e5e63"
+      }
+    },
+    {
+      "id": "event/ev-bc0063-pompejus-intar-jerusalem/date/noteSv",
+      "sv": "Källan anger årtalet men ingen dag. Posten lägger inte till en egen förklaring till belägringens inrikespolitiska bakgrund.",
+      "en": "The source provides the year but no day. This entry adds no independent explanation of the siege's domestic political background.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0063-pompejus-intar-jerusalem",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "633c9f5cae2f6be79c6c673e03813bf163221737355a6558d52f151a64497619"
+      }
+    },
+    {
+      "id": "event/ev-bc0063-pompejus-intar-jerusalem/titleSv",
+      "sv": "Pompejus intar Jerusalem",
+      "en": "Pompey captures Jerusalem",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0063-pompejus-intar-jerusalem",
+        "fieldPath": "/titleSv",
+        "textSha256": "341c7e9485ebfb22cb165934c73535c186bc3a11247ec2db819944235ee14c3d"
+      }
+    },
+    {
+      "id": "event/ev-bc0063-pompejus-intar-jerusalem/summarySv",
+      "sv": "Pompejus går in i Judeen och intar Jerusalem. Händelsen följer på hans tidigare fälttåg i östra Medelhavsområdet.",
+      "en": "Pompey enters Judaea and captures Jerusalem. The event follows his earlier campaigns in the eastern Mediterranean.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0063-pompejus-intar-jerusalem",
+        "fieldPath": "/summarySv",
+        "textSha256": "5aa605cc9634873be16a8a18c8fb985777ae606febc083969a533f22afc45a1d"
+      }
+    },
+    {
+      "id": "event/ev-bc0063-pompejus-intar-jerusalem/geographySv",
+      "sv": "Jerusalem, Judeen",
+      "en": "Jerusalem, Judaea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0063-pompejus-intar-jerusalem",
+        "fieldPath": "/geographySv",
+        "textSha256": "48847161b323c6bc4779181d054b20bb138cecbe5a6c0121a1ab5bc84247bcdc"
+      }
+    },
+    {
+      "id": "event/ev-bc0057-sillas-traditionella-grundning/date/displaySv",
+      "sv": "57 f.Kr., enligt Samguk sagi",
+      "en": "57 BC, according to Samguk sagi",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0057-sillas-traditionella-grundning",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4b0a23a34c114cf728e8678931a8a25b9a65b7349908a104b1c774efaf70b85b"
+      }
+    },
+    {
+      "id": "event/ev-bc0057-sillas-traditionella-grundning/date/noteSv",
+      "sv": "57 f.Kr. är krönikans traditionella årtal. Den lästa museiguiden placerar konsolideringen av kungamakten i första hälften av 300-talet e.Kr.; det senare förloppet flyttas inte bakåt.",
+      "en": "57 BC is the chronicle's traditional year. The museum guide that was read places the consolidation of royal power in the first half of the fourth century AD; that later development is not moved back in time.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0057-sillas-traditionella-grundning",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c9b0a59757e53033add955cfa380bb66ff12990053da85c0faa885ca889a70e8"
+      }
+    },
+    {
+      "id": "event/ev-bc0057-sillas-traditionella-grundning/titleSv",
+      "sv": "Samguk sagi förlägger Sillas grundning till detta år",
+      "en": "Samguk sagi places Silla's foundation in this year",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0057-sillas-traditionella-grundning",
+        "fieldPath": "/titleSv",
+        "textSha256": "61b20e4972e56bdeaa9d2c4b0013d9208a4f3ba6a389969270f4a2214f1cca66"
+      }
+    },
+    {
+      "id": "event/ev-bc0057-sillas-traditionella-grundning/summarySv",
+      "sv": "Den senare historieskrivningen anger att Silla grundas med utgångspunkt i Gyeongju. Museets framställning skiljer denna tradition från den långt senare utvecklingen till ett centraliserat kungadöme.",
+      "en": "Later historiography states that Silla is founded with Gyeongju as its centre. The museum's account distinguishes this tradition from the much later development into a centralised kingdom.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0057-sillas-traditionella-grundning",
+        "fieldPath": "/summarySv",
+        "textSha256": "06aa276f9c1e806449304d52837be4bbf8c661488b793edc053accec3467909a"
+      }
+    },
+    {
+      "id": "event/ev-bc0057-sillas-traditionella-grundning/geographySv",
+      "sv": "Gyeongju, Koreahalvön",
+      "en": "Gyeongju, Korean Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0057-sillas-traditionella-grundning",
+        "fieldPath": "/geographySv",
+        "textSha256": "5d822caf5dd262fa82e0e394946d7d9eab1ecc3a2eba58481585a50e54d852a9"
+      }
+    },
+    {
+      "id": "event/ev-bc0055-caesars-brittiska-expeditioner/date/displaySv",
+      "sv": "23 augusti 55 f.Kr. och 5 juli 54 f.Kr.",
+      "en": "23 August 55 BC and 5 July 54 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0055-caesars-brittiska-expeditioner",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a178dc1e0eece50f77fe1e1c6e16fdabc24e35fbd7648dcd085bc366537e4fbc"
+      }
+    },
+    {
+      "id": "event/ev-bc0055-caesars-brittiska-expeditioner/date/noteSv",
+      "sv": "Dagarnas datum återges från Leicesterprojektet utan egen kalenderomräkning. Posten omfattar två expeditioner och gör inte den romerska erövringen 43 e.Kr. till en följd som redan är fullbordad.",
+      "en": "The day dates are reproduced from the Leicester project without an independent calendar conversion. This entry covers two expeditions and does not present the Roman conquest of AD 43 as an outcome already achieved.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0055-caesars-brittiska-expeditioner",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7d647e0eebd8ec7c1ed03ae6890dbfc9ae529b559f178d48a7183add63892cc0"
+      }
+    },
+    {
+      "id": "event/ev-bc0055-caesars-brittiska-expeditioner/titleSv",
+      "sv": "Caesar leder två expeditioner till Britannien",
+      "en": "Caesar leads two expeditions to Britain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0055-caesars-brittiska-expeditioner",
+        "fieldPath": "/titleSv",
+        "textSha256": "4ba6eb9832a79778292554cc52729ae2f96be0fe432884d82e04f6a0be9e54ad"
+      }
+    },
+    {
+      "id": "event/ev-bc0055-caesars-brittiska-expeditioner/summarySv",
+      "sv": "Caesar landstiger i Britannien och återvänder följande år med en större styrka. Den andra expeditionen når över Themsen och tvingar Cassivellaunus att söka fred.",
+      "en": "Caesar lands in Britain and returns the following year with a larger force. The second expedition crosses the Thames and forces Cassivellaunus to seek peace.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0055-caesars-brittiska-expeditioner",
+        "fieldPath": "/summarySv",
+        "textSha256": "963f6f2f07f3b539108ccb1afd5eea8fa65c6e15cefdebf73528f5830af6db8c"
+      }
+    },
+    {
+      "id": "event/ev-bc0055-caesars-brittiska-expeditioner/geographySv",
+      "sv": "Britannien, östra Kent och området kring Themsen",
+      "en": "Britain, eastern Kent and the area around the Thames",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0055-caesars-brittiska-expeditioner",
+        "fieldPath": "/geographySv",
+        "textSha256": "d8eb78e0237a862e0620d281f8198342617712262983124df53e5a76babcfc63"
+      }
+    },
+    {
+      "id": "event/ev-bc0052-alesia/date/displaySv",
+      "sv": "52 f.Kr.",
+      "en": "52 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0052-alesia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "982f4f5485699a0b02951ecc68984ad60740aa4c429bd1aa6b8bf066f7f24236"
+      }
+    },
+    {
+      "id": "event/ev-bc0052-alesia/date/noteSv",
+      "sv": "Museet anger årtalet. Någon exakt kapitulationsdag eller säker totalsiffra för arméerna förs inte in.",
+      "en": "The museum provides the year. No exact surrender day or reliable total for the armies is added.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0052-alesia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "64f0164cb24e6a095b9d2ba3bf88c1f1410e90c75ee65a4320ddc8e088a764b0"
+      }
+    },
+    {
+      "id": "event/ev-bc0052-alesia/titleSv",
+      "sv": "Vercingetorix kapitulerar vid Alésia",
+      "en": "Vercingetorix surrenders at Alesia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0052-alesia",
+        "fieldPath": "/titleSv",
+        "textSha256": "a9c6a6d05f92a271f0e5bd8e7d9bf0260d5f89b1ceef65dc7464a381b35eb56d"
+      }
+    },
+    {
+      "id": "event/ev-bc0052-alesia/summarySv",
+      "sv": "Caesar omringar Alésia med befästningar. Ett försök att undsätta staden misslyckas, och Vercingetorix ger sig.",
+      "en": "Caesar surrounds Alesia with fortifications. An attempt to relieve the town fails, and Vercingetorix surrenders.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0052-alesia",
+        "fieldPath": "/summarySv",
+        "textSha256": "3cfc62d380e666e16d1c2df45cb49fafb9f82686d46b424982804d766eb831be"
+      }
+    },
+    {
+      "id": "event/ev-bc0052-alesia/geographySv",
+      "sv": "Alésia vid Alise-Sainte-Reine, Frankrike",
+      "en": "Alesia at Alise-Sainte-Reine, France",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0052-alesia",
+        "fieldPath": "/geographySv",
+        "textSha256": "3758250ee01e17cce3819a0d8a2d80d11dff44c8019e74e3199bcf09dfd58038"
+      }
+    },
+    {
+      "id": "event/ev-bc0049-caesar-korsar-rubicon/date/displaySv",
+      "sv": "början av 49 f.Kr.",
+      "en": "early 49 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0049-caesar-korsar-rubicon",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "14637c9c31f672fb6753c33b6ab0174a734a1ddab3abb0c7e97dcf2bea2e2324"
+      }
+    },
+    {
+      "id": "event/ev-bc0049-caesar-korsar-rubicon/date/noteSv",
+      "sv": "Den lästa introduktionen anger början av året, inte en exakt januaridag. Posten gäller krigets utbrott och sätter inget eget slutår för hela konflikten.",
+      "en": "The introduction that was read specifies early in the year, not an exact January day. This entry concerns the outbreak of war and sets no independent end year for the entire conflict.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0049-caesar-korsar-rubicon",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "316eabb86a8032b750e8919a87e38f5d7c2cd81237df6483eaeb1e91a6d82b80"
+      }
+    },
+    {
+      "id": "event/ev-bc0049-caesar-korsar-rubicon/titleSv",
+      "sv": "Caesar korsar Rubicon och inbördeskriget bryter ut",
+      "en": "Caesar crosses the Rubicon and civil war breaks out",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0049-caesar-korsar-rubicon",
+        "fieldPath": "/titleSv",
+        "textSha256": "931b24330d01633e619d505900ddf5496784f13a7518c4485e08b57a03b137f9"
+      }
+    },
+    {
+      "id": "event/ev-bc0049-caesar-korsar-rubicon/summarySv",
+      "sv": "Caesar korsar Rubicon och går in i konflikt med senatens styrkor. Pompejus ställer sig på senatens sida och lämnar snart Italien.",
+      "en": "Caesar crosses the Rubicon and enters into conflict with the Senate's forces. Pompey sides with the Senate and soon leaves Italy.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0049-caesar-korsar-rubicon",
+        "fieldPath": "/summarySv",
+        "textSha256": "d3dedf37ba04408d721aefc7c6e5bb4332d58fce2960c65bf2873f75bc3d7adc"
+      }
+    },
+    {
+      "id": "event/ev-bc0049-caesar-korsar-rubicon/geographySv",
+      "sv": "Rubicon och Italien",
+      "en": "The Rubicon and Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0049-caesar-korsar-rubicon",
+        "fieldPath": "/geographySv",
+        "textSha256": "c8d09363f3ffffac78f2a488ba037fdbc06653a0117a3f45b831c02009aa4879"
+      }
+    },
+    {
+      "id": "event/ev-bc0048-pharsalos/date/displaySv",
+      "sv": "9 augusti 48 f.Kr.",
+      "en": "9 August 48 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0048-pharsalos",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "365dfafcbc2d01106a1a646c307de4d8ebfe0020b288ad35a839b561ca7c8b3f"
+      }
+    },
+    {
+      "id": "event/ev-bc0048-pharsalos/date/noteSv",
+      "sv": "Dag och månad återges enligt källan utan egen kalenderomräkning. Slagfältets exakta placering är omdiskuterad och anges inte här.",
+      "en": "The day and month are reproduced as given by the source, without an independent calendar conversion. The battlefield's exact location is disputed and is not specified here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0048-pharsalos",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "efd999a57d763aa96a50094f6b88665303fc59ec9b8a2f2f4b74370effc5e063"
+      }
+    },
+    {
+      "id": "event/ev-bc0048-pharsalos/titleSv",
+      "sv": "Caesar besegrar Pompejus vid Pharsalos",
+      "en": "Caesar defeats Pompey at Pharsalus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0048-pharsalos",
+        "fieldPath": "/titleSv",
+        "textSha256": "2ba40c63c71f5d64e554874976deaa1181edc563259c2321342963c249b0e3de"
+      }
+    },
+    {
+      "id": "event/ev-bc0048-pharsalos/summarySv",
+      "sv": "Caesars armé besegrar de senatstrogna styrkorna under Pompejus. Slaget förändrar maktbalansen i det romerska inbördeskriget.",
+      "en": "Caesar's army defeats the senatorial forces under Pompey. The battle changes the balance of power in the Roman civil war.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0048-pharsalos",
+        "fieldPath": "/summarySv",
+        "textSha256": "0c33556d8a989e851653615e8c8667366d7cd7d7c4164ce7bdae9c4c817c54e3"
+      }
+    },
+    {
+      "id": "event/ev-bc0048-pharsalos/geographySv",
+      "sv": "Pharsalos, Grekland",
+      "en": "Pharsalus, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0048-pharsalos",
+        "fieldPath": "/geographySv",
+        "textSha256": "30747a2e2a3908f650a96327f2b7e84af88bf083432264c080d372b229fbbf0b"
+      }
+    },
+    {
+      "id": "event/ev-bc0045-julianska-kalendern/date/displaySv",
+      "sv": "1 januari 45 f.Kr.",
+      "en": "1 January 45 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0045-julianska-kalendern",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1cb923e8ebde1cb463b8807a71fd95a3e3d1cb24f30ab6eca90138424b3bf24f"
+      }
+    },
+    {
+      "id": "event/ev-bc0045-julianska-kalendern/date/noteSv",
+      "sv": "Datumet gäller det historiska införandet. Det påstås inte vara identiskt med en modern beräkning i en proleptisk kalender.",
+      "en": "The date concerns the historical introduction. It is not claimed to be identical to a modern calculation in a proleptic calendar.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0045-julianska-kalendern",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "32c9e7f0edb3ab0ac795d08644cb3b8e95499864313ade25b63e33117934b685"
+      }
+    },
+    {
+      "id": "event/ev-bc0045-julianska-kalendern/titleSv",
+      "sv": "Den julianska kalendern tas i bruk",
+      "en": "The Julian calendar comes into use",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0045-julianska-kalendern",
+        "fieldPath": "/titleSv",
+        "textSha256": "cbf2519121c4d4011166455c25970755d5a11f316aef3bd3c5a97a15e01880a2"
+      }
+    },
+    {
+      "id": "event/ev-bc0045-julianska-kalendern/summarySv",
+      "sv": "Caesars kalenderreform inför ett solår med 365 dagar och skottårsjustering. Den ersätter den tidigare romerska kalenderns oregelbundna anpassning till årstiderna.",
+      "en": "Caesar's calendar reform introduces a solar year of 365 days with a leap-year adjustment. It replaces the earlier Roman calendar's irregular adjustment to the seasons.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0045-julianska-kalendern",
+        "fieldPath": "/summarySv",
+        "textSha256": "9bef564c8d72c2d1ae071ceb5050e37da347d9d9d2a69aa43b29d573e649f9ca"
+      }
+    },
+    {
+      "id": "event/ev-bc0045-julianska-kalendern/geographySv",
+      "sv": "Rom",
+      "en": "Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0045-julianska-kalendern",
+        "fieldPath": "/geographySv",
+        "textSha256": "1f268826c4d33921cbcec835bd71ab3bc2729936d3edb01befa02c46c41a71ed"
+      }
+    },
+    {
+      "id": "event/ev-bc0044-caesar-mordas/date/displaySv",
+      "sv": "15 mars 44 f.Kr.",
+      "en": "15 March 44 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0044-caesar-mordas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "92263af4fb5e2623a2413cfc4aecd6daa762ddc76f66ec46c6177abf73186513"
+      }
+    },
+    {
+      "id": "event/ev-bc0044-caesar-mordas/date/noteSv",
+      "sv": "Det fullständiga datumet återges från museets historiska översikt. Ingen separat kalenderomräkning görs.",
+      "en": "The full date is reproduced from the museum's historical overview. No separate calendar conversion is made.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0044-caesar-mordas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f91c523afe1065f79705e1ff4be9155fe454e34af86c7e1d8a2ba2c72ddd528b"
+      }
+    },
+    {
+      "id": "event/ev-bc0044-caesar-mordas/titleSv",
+      "sv": "Julius Caesar mördas",
+      "en": "Julius Caesar is assassinated",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0044-caesar-mordas",
+        "fieldPath": "/titleSv",
+        "textSha256": "d6c9c7ca4d62e25ed04d8e9169ab1fc71cb58f09378eacdf5fcb76bf65e3c6fa"
+      }
+    },
+    {
+      "id": "event/ev-bc0044-caesar-mordas/summarySv",
+      "sv": "Julius Caesar mördas i Rom. Mordet blir ett avgörande avbrott i hans maktutövning.",
+      "en": "Julius Caesar is assassinated in Rome. The murder decisively interrupts his exercise of power.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0044-caesar-mordas",
+        "fieldPath": "/summarySv",
+        "textSha256": "8ba8ed54b1806820bb118933edcb572404f89c2ab8e37a62b95430490e9dff44"
+      }
+    },
+    {
+      "id": "event/ev-bc0044-caesar-mordas/geographySv",
+      "sv": "Rom",
+      "en": "Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0044-caesar-mordas",
+        "fieldPath": "/geographySv",
+        "textSha256": "1f268826c4d33921cbcec835bd71ab3bc2729936d3edb01befa02c46c41a71ed"
+      }
+    },
+    {
+      "id": "event/ev-bc0042-filippi/date/displaySv",
+      "sv": "42 f.Kr.",
+      "en": "42 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0042-filippi",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6e8a4aeb953f12be4377e71dd1031ca334488aa808eb35965e2fec3189004ea8"
+      }
+    },
+    {
+      "id": "event/ev-bc0042-filippi/date/noteSv",
+      "sv": "Tidslinjen anger endast årtalet. Posten lägger inte till obelagda dagar för de olika striderna.",
+      "en": "The timeline provides only the year. This entry adds no unsupported days for the separate engagements.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0042-filippi",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9fc2809ab8f70d0ff8abc3ff882afbe9b37eeaf0d28f6b209f1724b2a178ddc8"
+      }
+    },
+    {
+      "id": "event/ev-bc0042-filippi/titleSv",
+      "sv": "Brutus och Cassius besegras vid Filippi",
+      "en": "Brutus and Cassius are defeated at Philippi",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0042-filippi",
+        "fieldPath": "/titleSv",
+        "textSha256": "9ca1ac11e74c9c32bd9e9958cd59936ef1a0847e54244b280f147d79058d3c6c"
+      }
+    },
+    {
+      "id": "event/ev-bc0042-filippi/summarySv",
+      "sv": "Antonius och Octavianus styrkor besegrar de senatstrogna arméerna under Brutus och Cassius. Filippi blir ett avgörande nederlag för Caesars mördare.",
+      "en": "Antony's and Octavian's forces defeat the senatorial armies under Brutus and Cassius. Philippi becomes a decisive defeat for Caesar's assassins.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0042-filippi",
+        "fieldPath": "/summarySv",
+        "textSha256": "ec4978c7d9a74eb1c786a29a7997c379a16d085ab11d8de45b9dc91573451950"
+      }
+    },
+    {
+      "id": "event/ev-bc0042-filippi/geographySv",
+      "sv": "Filippi",
+      "en": "Philippi",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0042-filippi",
+        "fieldPath": "/geographySv",
+        "textSha256": "b95d9e11c52bd1ce33aa2ee3820d471fde7ce2a2bd473756ab5c353e7b202bbe"
+      }
+    },
+    {
+      "id": "event/ev-bc0032-tres-zapotes-stela-c/date/displaySv",
+      "sv": "32 f.Kr.: olika kalenderkorrelationer ger olika dagar",
+      "en": "32 BC: different calendar correlations give different days",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0032-tres-zapotes-stela-c",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "c3d3db5d822f0f8d2e291472b5353fb51fd6fad2292d824146dc7b4991d7aa19"
+      }
+    },
+    {
+      "id": "event/ev-bc0032-tres-zapotes-stela-c/date/noteSv",
+      "sv": "INAH anger 14 augusti 32 f.Kr. i vår kalender utan specificerad korrelation. Milbraths tabell anger 3 september julianskt eller 1 september gregorianskt med 584283, respektive 16 augusti julianskt med 584265. Dateringen avser inskrivet datum, inte ett säkert år för ristning eller resning.",
+      "en": "INAH gives 14 August 32 BC in our calendar without specifying a correlation. Milbrath's table gives 3 September Julian or 1 September Gregorian with 584283, and 16 August Julian with 584265. The date concerns the inscribed date, not a securely established year of carving or erection.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0032-tres-zapotes-stela-c",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5fdd78ea2addd5c59ada706ce75fdfb6dd7568c25f695ec67a4b8e495c3b6686"
+      }
+    },
+    {
+      "id": "event/ev-bc0032-tres-zapotes-stela-c/titleSv",
+      "sv": "Stela C bevarar en tidig långräkningsdatering",
+      "en": "Stela C preserves an early Long Count date",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0032-tres-zapotes-stela-c",
+        "fieldPath": "/titleSv",
+        "textSha256": "efa4b8de323c31ff89886199a31decbd930e3fd9525edc7d4361eba57f52a20a"
+      }
+    },
+    {
+      "id": "event/ev-bc0032-tres-zapotes-stela-c/summarySv",
+      "sv": "Stela C från Tres Zapotes bär den fullständiga långräkningen 7.16.6.16.18. Inskriften ger ett tidigt belägg för detta sätt att ange en lång tidsrymd.",
+      "en": "Stela C from Tres Zapotes bears the complete Long Count 7.16.6.16.18. The inscription provides early evidence of this way of expressing a long span of time.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0032-tres-zapotes-stela-c",
+        "fieldPath": "/summarySv",
+        "textSha256": "de631b30f7924ffe11db3daf752c9dd59a5fc760b61225fd23c06d8d8e8d2fa7"
+      }
+    },
+    {
+      "id": "event/ev-bc0032-tres-zapotes-stela-c/geographySv",
+      "sv": "Tres Zapotes, Veracruz, Mexiko",
+      "en": "Tres Zapotes, Veracruz, Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0032-tres-zapotes-stela-c",
+        "fieldPath": "/geographySv",
+        "textSha256": "2a625c77cb95b2e4e1aa26ab50f4bdb306fb840fb59a7aa1b0b6fd3293a8f70e"
+      }
+    },
+    {
+      "id": "event/ev-bc0031-aktion/date/displaySv",
+      "sv": "2 september 31 f.Kr.",
+      "en": "2 September 31 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0031-aktion",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0284947d3af7885f1d7d9af5fe1d28265cab502e18596bdf643ee21b63209f1e"
+      }
+    },
+    {
+      "id": "event/ev-bc0031-aktion/date/noteSv",
+      "sv": "Källans fullständiga datum behålls utan kalenderomräkning. Egyptens erövring följande år är en separat händelse.",
+      "en": "The source's full date is retained without calendar conversion. The conquest of Egypt in the following year is a separate event.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0031-aktion",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "725940ae11f77ceed17200356d054c0ce61281fbe536c658a5a920a3a9bf6919"
+      }
+    },
+    {
+      "id": "event/ev-bc0031-aktion/titleSv",
+      "sv": "Octavianus flotta segrar vid Aktion",
+      "en": "Octavian's fleet wins at Actium",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0031-aktion",
+        "fieldPath": "/titleSv",
+        "textSha256": "45a97d67ad40f772bd42def6a431d91816bd0b0ad1b6ba7c657f3541ee0bbcfe"
+      }
+    },
+    {
+      "id": "event/ev-bc0031-aktion/summarySv",
+      "sv": "Octavianus och Agrippas flotta besegrar Antonius och Kleopatras styrkor vid Aktion. Antonius och Kleopatra lämnar stridsområdet medan återstående styrkor förlorar.",
+      "en": "Octavian's and Agrippa's fleet defeats Antony's and Cleopatra's forces at Actium. Antony and Cleopatra leave the battle area while the remaining forces lose.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0031-aktion",
+        "fieldPath": "/summarySv",
+        "textSha256": "2c286e90d4d25b2811c876433b865d1a650dac235286236f6a7beb08a2d7b605"
+      }
+    },
+    {
+      "id": "event/ev-bc0031-aktion/geographySv",
+      "sv": "Aktion och Ambrakiska viken, Grekland",
+      "en": "Actium and the Ambracian Gulf, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0031-aktion",
+        "fieldPath": "/geographySv",
+        "textSha256": "f6be1242026463224d01150ef741460481d8b3980f51ab7801db882bf6eecbf4"
+      }
+    },
+    {
+      "id": "event/ev-bc0030-egypten-blir-romerskt/date/displaySv",
+      "sv": "augusti 30 f.Kr.; formellt herravälde från 1 Thoth, 29 augusti",
+      "en": "August 30 BC; formal dominion from 1 Thoth, 29 August",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0030-egypten-blir-romerskt",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4f0871a631a24e48609486b5940c4ad757664cf82fe5a415256adff263dc2976"
+      }
+    },
+    {
+      "id": "event/ev-bc0030-egypten-blir-romerskt/date/noteSv",
+      "sv": "Källan skiljer erövringen i augusti från den formella början av herraväldet den 1 Thoth, som den motsvarar med 29 augusti. Inga egna dödsdagar för Antonius eller Kleopatra läggs till.",
+      "en": "The source distinguishes the conquest in August from the formal beginning of dominion on 1 Thoth, which it equates with 29 August. No independently chosen death days for Antony or Cleopatra are added.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0030-egypten-blir-romerskt",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f3db1fcb40708aa21f0276d858da3636b91ca13b439f5d9b9388a7609662b1ed"
+      }
+    },
+    {
+      "id": "event/ev-bc0030-egypten-blir-romerskt/titleSv",
+      "sv": "Octavianus tar Egypten",
+      "en": "Octavian takes Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0030-egypten-blir-romerskt",
+        "fieldPath": "/titleSv",
+        "textSha256": "28e8f327abe9b43b57e7f13105c841c9b67d04378f36b2ce3d7cc771c17b2a49"
+      }
+    },
+    {
+      "id": "event/ev-bc0030-egypten-blir-romerskt/summarySv",
+      "sv": "Octavianus förföljer Antonius och Kleopatra till Egypten, där båda dör i Alexandria. Egypten blir en romersk provins.",
+      "en": "Octavian pursues Antony and Cleopatra to Egypt, where both die in Alexandria. Egypt becomes a Roman province.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0030-egypten-blir-romerskt",
+        "fieldPath": "/summarySv",
+        "textSha256": "f90222343a9639519395cebf4b343e1e6caf5fefdd50d3f3553b20d2a2f8583e"
+      }
+    },
+    {
+      "id": "event/ev-bc0030-egypten-blir-romerskt/geographySv",
+      "sv": "Egypten och Alexandria",
+      "en": "Egypt and Alexandria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0030-egypten-blir-romerskt",
+        "fieldPath": "/geographySv",
+        "textSha256": "4e36fb6ffee73efd3f9d6d355d52239808786e7392ebc7b97880edade9f2b474"
+      }
+    },
+    {
+      "id": "event/ev-bc0027-octavianus-blir-augustus/date/displaySv",
+      "sv": "27 f.Kr.",
+      "en": "27 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0027-octavianus-blir-augustus",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8161fec3ce6c0e41fc3aebceeaacda5d9e8b22d90ca6ff4f255d2601daaa4f0d"
+      }
+    },
+    {
+      "id": "event/ev-bc0027-octavianus-blir-augustus/date/noteSv",
+      "sv": "Museets översikt anger årtalet. Ingen exakt januaridag härleds från andra kronologier.",
+      "en": "The museum's overview provides the year. No exact January day is inferred from other chronologies.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0027-octavianus-blir-augustus",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7691b17850d147b34916dcad8b9bb3616b48c2a5cb0c213dd1e6a97d6c3b2c50"
+      }
+    },
+    {
+      "id": "event/ev-bc0027-octavianus-blir-augustus/titleSv",
+      "sv": "Octavianus får namnet Augustus",
+      "en": "Octavian receives the name Augustus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0027-octavianus-blir-augustus",
+        "fieldPath": "/titleSv",
+        "textSha256": "489ef0df07c986145e4d89e4f65c23db43a7fe42963012fa5f4cbda806b35285"
+      }
+    },
+    {
+      "id": "event/ev-bc0027-octavianus-blir-augustus/summarySv",
+      "sv": "Octavianus tilldelas hedersnamnet Augustus. Namnet blir knutet till den nya ordningen efter den romerska republikens maktkamper.",
+      "en": "Octavian is awarded the honorific Augustus. The name becomes associated with the new order after the Roman Republic's struggles for power.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0027-octavianus-blir-augustus",
+        "fieldPath": "/summarySv",
+        "textSha256": "c27296c6bff666670b689589ef3e3ba7c8cadb86600d812ab2b52774d0b15adf"
+      }
+    },
+    {
+      "id": "event/ev-bc0027-octavianus-blir-augustus/geographySv",
+      "sv": "Rom",
+      "en": "Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0027-octavianus-blir-augustus",
+        "fieldPath": "/geographySv",
+        "textSha256": "1f268826c4d33921cbcec835bd71ab3bc2729936d3edb01befa02c46c41a71ed"
+      }
+    },
+    {
+      "id": "event/ev-bc0026-gallus-falttag-mot-saba/date/displaySv",
+      "sv": "26/25 f.Kr.",
+      "en": "26/25 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0026-gallus-falttag-mot-saba",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "07065509cedbb8e2bdc5ce9383028111dae3d3301b16819757348ae1b2055057"
+      }
+    },
+    {
+      "id": "event/ev-bc0026-gallus-falttag-mot-saba/date/noteSv",
+      "sv": "Källans 26/25 f.Kr. behålls. Forskarens diskussion ifrågasätter den vanliga bilden av ett fullständigt misslyckande; posten avgör inte frågan om ett varaktigt romerskt herravälde.",
+      "en": "The source's 26/25 BC is retained. The scholar's discussion questions the usual account of complete failure; this entry does not settle the issue of lasting Roman dominion.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0026-gallus-falttag-mot-saba",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b19bf2aa7a598b5daf55683bc7581fd251222d4267bb641ae5ef6171ef5d65ea"
+      }
+    },
+    {
+      "id": "event/ev-bc0026-gallus-falttag-mot-saba/titleSv",
+      "sv": "Aelius Gallus leder ett fälttåg mot Saba",
+      "en": "Aelius Gallus leads a campaign against Saba",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0026-gallus-falttag-mot-saba",
+        "fieldPath": "/titleSv",
+        "textSha256": "423dbf600ec1409fb5767d5a257e9d73292e1a2fbad6e21438d566e81ce238c6"
+      }
+    },
+    {
+      "id": "event/ev-bc0026-gallus-falttag-mot-saba/summarySv",
+      "sv": "En romersk expedition under Aelius Gallus går från Egypten till södra Arabien. Fälttåget riktas mot kungariket Saba.",
+      "en": "A Roman expedition under Aelius Gallus travels from Egypt to southern Arabia. The campaign is directed against the kingdom of Saba.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0026-gallus-falttag-mot-saba",
+        "fieldPath": "/summarySv",
+        "textSha256": "1879f97e967e1869a9ad9201283d9dcad3347171fa6302069834a7292e7ccf8a"
+      }
+    },
+    {
+      "id": "event/ev-bc0026-gallus-falttag-mot-saba/geographySv",
+      "sv": "Egypten och södra Arabien",
+      "en": "Egypt and southern Arabia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0026-gallus-falttag-mot-saba",
+        "fieldPath": "/geographySv",
+        "textSha256": "36aac9f830037e9e6532b429170a6d41582df80bb87732b1fd886bb412261715"
+      }
+    },
+    {
+      "id": "event/ev-bc0025-petronius-falttag-mot-meroe/date/displaySv",
+      "sv": "två fälttåg: 25/24 och 22/21 f.Kr.",
+      "en": "two campaigns: 25/24 and 22/21 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0025-petronius-falttag-mot-meroe",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7fd90145035b9a5f1fbcfa50ff0c835a037480f6924193213fe502e5511dd456"
+      }
+    },
+    {
+      "id": "event/ev-bc0025-petronius-falttag-mot-meroe/date/noteSv",
+      "sv": "Spannet omfattar två skilda expeditioner, 25/24 och 22/21 f.Kr. Det påstår inte strid varje mellanliggande år, anger inget eget fredsdatum och identifierar inte utan stöd en viss drottning.",
+      "en": "The span covers two separate expeditions, in 25/24 and 22/21 BC. It does not assert fighting in every intervening year, give an independently chosen peace date, or identify a particular queen without support.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0025-petronius-falttag-mot-meroe",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3e77162230309741bec2d975a6a641eae430865c29113fc06b3e6508325b61e5"
+      }
+    },
+    {
+      "id": "event/ev-bc0025-petronius-falttag-mot-meroe/titleSv",
+      "sv": "Romerska styrkor angriper Meroës rike",
+      "en": "Roman forces attack the kingdom of Meroë",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0025-petronius-falttag-mot-meroe",
+        "fieldPath": "/titleSv",
+        "textSha256": "bee43efa3d96f71959fdff1a872f9bb20aef425127f3cc9e152b946628136584"
+      }
+    },
+    {
+      "id": "event/ev-bc0025-petronius-falttag-mot-meroe/summarySv",
+      "sv": "Petronius, ståthållare i Egypten, leder två expeditioner in i det nubiska riket Meroë. Rom beskriver dem som motangrepp, medan den strategiska bakgrunden är omdiskuterad.",
+      "en": "Petronius, governor of Egypt, leads two expeditions into the Nubian kingdom of Meroë. Rome describes them as counterattacks, while their strategic background is debated.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0025-petronius-falttag-mot-meroe",
+        "fieldPath": "/summarySv",
+        "textSha256": "3ac9bb680810e9c682dcf85043af3753f25e4b6d2cb627315c1339b71a2c9b56"
+      }
+    },
+    {
+      "id": "event/ev-bc0025-petronius-falttag-mot-meroe/geographySv",
+      "sv": "Egypten och Meroës rike i Nubien",
+      "en": "Egypt and the kingdom of Meroë in Nubia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0025-petronius-falttag-mot-meroe",
+        "fieldPath": "/geographySv",
+        "textSha256": "9639b8d49ef09a6d6aec95d9a7d7de7a0508b0f4356e471f9dc207526217bfef"
+      }
+    },
+    {
+      "id": "event/ev-bc0019-balbus-falttag-i-sahara/date/displaySv",
+      "sv": "19 f.Kr.",
+      "en": "19 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0019-balbus-falttag-i-sahara",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "45ff9702757410e91649b615a9e981aa847dc98973bf37519081c0440a99bd8e"
+      }
+    },
+    {
+      "id": "event/ev-bc0019-balbus-falttag-i-sahara/date/noteSv",
+      "sv": "Året daterar fälttåget. Garamanternas bevattningssystem och samhällens uppkomst ges inget nytt grundningsår.",
+      "en": "The year dates the campaign. The Garamantian irrigation system and the origins of their communities are not given a new foundation year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0019-balbus-falttag-i-sahara",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b32fc4c5998bc2cc2ef8e33a1d90af5f20ad19991a5557cc4e831c070dfc9a36"
+      }
+    },
+    {
+      "id": "event/ev-bc0019-balbus-falttag-i-sahara/titleSv",
+      "sv": "Balbus leder ett romerskt fälttåg i Sahara",
+      "en": "Balbus leads a Roman campaign in the Sahara",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0019-balbus-falttag-i-sahara",
+        "fieldPath": "/titleSv",
+        "textSha256": "799b3e44939d53a90dccdc5b73d1ff588cde9b3d8b184e8925514c94ea1c00ee"
+      }
+    },
+    {
+      "id": "event/ev-bc0019-balbus-falttag-i-sahara/summarySv",
+      "sv": "Lucius Cornelius Balbus marscherar mot sahariska samhällen och intar bosättningar. Källan behandlar expeditionen i samband med garamanternas område.",
+      "en": "Lucius Cornelius Balbus marches against Saharan communities and captures settlements. The source discusses the expedition in connection with Garamantian territory.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0019-balbus-falttag-i-sahara",
+        "fieldPath": "/summarySv",
+        "textSha256": "4018e2cd99715c268765296eda175b2ab940d8ec864d9b68128536894f260c8e"
+      }
+    },
+    {
+      "id": "event/ev-bc0019-balbus-falttag-i-sahara/geographySv",
+      "sv": "Sahara och garamanternas område i Fezzan",
+      "en": "The Sahara and Garamantian territory in Fezzan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0019-balbus-falttag-i-sahara",
+        "fieldPath": "/geographySv",
+        "textSha256": "253d066807b10e58f1162a9e0f9670c71083b80ce025d8b4e9d7e2e6160d74bb"
       }
     }
   ]
