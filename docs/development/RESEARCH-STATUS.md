@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain forty-five approved records, seventy-nine source records and two hundred and twenty-five display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain forty-six approved records, eighty-one source records and two hundred and thirty display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -22,10 +22,11 @@ The English research deliveries now contain forty-five approved records, seventy
 | [2000–1901 BC](../research/world-cultures/english-events/bc2000-supplement.md) | 1 | 3 | 5 | Merged and remote-verified in [PR #132](https://github.com/sp1e/Attainder/pull/132), commit `fc7ad4454891ce3a4688f91c5380cd54fc5f124e` |
 | [1800–1701 BC](../research/world-cultures/english-events/bc1800-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #133](https://github.com/sp1e/Attainder/pull/133), commit `928ea66235e0003f64b74ec12319e3c33bf36e0b` |
 | [1900–1801 BC](../research/world-cultures/english-events/bc1900-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #134](https://github.com/sp1e/Attainder/pull/134), commit `0c569fcfb7aa917771f919fe2e65147669b825eb` |
-| [1500–1401 BC](../research/world-cultures/english-events/bc1500-supplement.md) | 1 | 2 | 5 | Reviewed in [PR #135](https://github.com/sp1e/Attainder/pull/135); current-head CI and verified merge required |
-| [1300–1201 BC](../research/world-cultures/english-events/bc1300-supplement.md) | 1 | 2 | 5 | Reviewed in [PR #136](https://github.com/sp1e/Attainder/pull/136); current-head CI and verified merge required |
+| [1500–1401 BC](../research/world-cultures/english-events/bc1500-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #135](https://github.com/sp1e/Attainder/pull/135), commit `2591a96a7b9cac7813dd8f6273cc56e1c4d4eb86` |
+| [1300–1201 BC](../research/world-cultures/english-events/bc1300-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #136](https://github.com/sp1e/Attainder/pull/136), commit `cf92d4ab157b399c5ec6e13fa6976d4de99bad3d` |
 | [1100–1001 BC](../research/world-cultures/english-events/bc1100-supplement.md) | 2 | 2 | 10 | Reviewed in [PR #137](https://github.com/sp1e/Attainder/pull/137); current-head CI and verified merge required |
-| [1200–1101 BC](../research/world-cultures/english-events/bc1200-supplement.md) | 1 | 4 | 5 | Source, English and integration reviews approved; current-head CI and verified merge required |
+| [1200–1101 BC](../research/world-cultures/english-events/bc1200-supplement.md) | 1 | 4 | 5 | Reviewed in [PR #138](https://github.com/sp1e/Attainder/pull/138); current-head CI and verified merge required |
+| [1000–901 BC](../research/world-cultures/english-events/bc1000-supplement.md) | 1 | 2 | 5 | Source, English and integration reviews approved within their recorded scope; current-head CI and verified merge required |
 | [2100–2001 BC](../research/world-cultures/english-events/bc2100-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #111](https://github.com/sp1e/Attainder/pull/111), commit `d058dfd9a2e3e29150e08e4f0ea027cafdfcd1b4` |
 | [1700–1601 BC](../research/world-cultures/english-events/bc1700-supplement.md) | 2 | 5 | 10 | Merged and remote-verified in [PR #112](https://github.com/sp1e/Attainder/pull/112), commit `0c8058fe4974e358cfb2028d96f03ea69446820d` |
 | [AD 700–799](../research/world-cultures/english-events/ad0700-supplement.md) | 2 | 4 | 10 | Merged and remote-verified in [PR #113](https://github.com/sp1e/Attainder/pull/113), commit `e64f91bbef9491e750ccb49020f53c2ac68f774d` |
@@ -91,6 +92,10 @@ BC1300 adds Qantir's primary glass production, retaining its full thirteenth-cen
 BC1100 adds Ritidian's coastal activity phase and the Wu Geng rebellion. Both independent reviews approved the unchanged candidate, ten display fields and two selection notes. The complete 1100–700 BC archaeological phase remains separate from initial island settlement; the rebellion's 1042–1039 BC dates remain attributed to Christopher's chronology. Integration verified forty-six frozen inputs, twelve text hashes and twenty-three committed English comparison snapshots. Archaeological figures, radiocarbon tables and cited secondary works were not independently examined.
 
 BC1200 adds Ugarit's destruction and political end. Both independent reviews approved the unchanged candidate and all six English text values. Approximate alternatives remain inside the disputed 1200–1180 BC indexing bounds; these do not assert a twenty-year duration. Attackers and the sequence of destructive episodes remain uncertain, and traces of reoccupation qualify permanent-abandonment claims. Integration verified forty-three frozen inputs, six text hashes and twenty-three committed English comparison snapshots. Public-summary, first-page and extracted-PDF limits remain explicit.
+
+BC1000 adds a production peak at Timna's Site 34. Both independent reviews returned PASS_WITHIN_REVIEWED_SCOPE with no historical or English corrections. The first half of the tenth century BC is encoded as calendar bounds 1000–951 BC, without measured opening or closing years or continuous peak output. Integration verified forty-nine frozen inputs, six text hashes and twenty-four committed English comparison snapshots. The two publications share an excavation programme; the record makes no ownership claim about Solomon or causal claim about abandonment.
+
+PRs #135 and #136 each passed 5,344 tests with no failures and two TODOs, followed by successful builds. Both merged in dependency order, with the remote commits, first parents, complete trees, retained heads and changed blobs verified. Merged main contains forty-two English events and seventy-three source records; later additions above await their own publication checks.
 
 PR #134 passed 5,344 tests with no failures and two TODOs; its build passed. The remote merge, first parent, complete tree, retained branch head and all three changed blobs were verified. Merged main contains forty English events and sixty-nine source records; the later additions above await their own publication checks.
 
