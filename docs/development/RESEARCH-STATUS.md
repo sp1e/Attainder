@@ -512,3 +512,16 @@ The combined final review passed all 48 bilingual pairs and the corrected covera
 Thirty English event fields and eighteen Swedish source-panel fields accompany the records. Earlier retrieval assertions, source-access limitations and observed-input audit limits remain explicit. The superseded scratch coverage version 01 was not published; version 02 preserves all 4,730 historical years outside the batch exactly.
 
 The actual merged baseline matches the reviewed snapshot. Current-head CI remains required before merge. Data-first commits and complete locale readback preserve a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or application deployment configuration change is needed.
+
+
+## BC1700 published and AD1 integrated, 9 November 2026
+
+[PR #92](https://github.com/sp1e/Attainder/pull/92) merged at verified main `9a6ac7a5af75422b9d05a13b10a353a3d13002f7`. All eight publication blobs match the reviewed delivery. CI on head `5a1bcdf199e824647f7d1e0817cabf0f99516518` passed 5,337 of 5,339 tests, with zero failures, zero skips and two existing TODOs; the build took 44.28 seconds. The published catalog contains 637 events and 581 sources. Both locale sidecars identify retained data commit `ff4b6b8c92942614c1ba3a834b4158176e3c6e50`; all 5,796 referenced source strings and hashes match it. The research branch remains available on the remote.
+
+AD1 adds twenty-six events and sixteen references. The separate full review returned forty passing cases and nine holds across thirty events and nineteen sources. A focused follow-up verified the Fukuoka source and Na embassy against actual PDF text. Four Iranica-dependent events and their three unused references remain held after HTTP 403. Kujula's numerical search interval also remains unsupported as an event span. Both reports and their original outcomes remain separate and unchanged.
+
+Every retained event and source field is unchanged. The combined final review passed all 162 bilingual pairs and the corrected coverage version 02, subject to verification of the preceding published baseline. The candidate preserves 637 earlier events and 581 sources, reaching 663 events and 597 sources. Only AD 1–99 becomes partial, for 2,930 partial years and 1,900 unresearched years. No year zero is introduced.
+
+Twenty-three new and four inherited queries covered all nine macroregions. Oceania and the steppe and Central Asia have no retained event; Europe is overrepresented. Jesus's disputed AD 29–34 interval, Ma Yuan's AD 42–44 campaign, Boudica's AD 60/61 alternatives and complete literary or archaeological periods remain explicit. Long intervals do not establish annual occurrence or researched coverage of later centuries. The language additions contain 130 English event fields and thirty-two Swedish source-panel fields. Superseded scratch coverage version 01 was not published.
+
+The actual merged baseline matches the reviewed snapshot. Current-head CI remains required before merge. Data-first commits and complete locale readback preserve a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or application deployment configuration change is needed.

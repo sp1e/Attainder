@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "ff4b6b8c92942614c1ba3a834b4158176e3c6e50",
+  "sourceRevision": "bd18dd07efe3e8b799d8c419bf43a00c2170a408",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -12784,6 +12784,358 @@
         "sourceId": "bc1700-peters-chickens",
         "fieldPath": "/locator",
         "textSha256": "c7c1350c817e889415fd9c364bbef46d668ce4b00c8b62662f74c4be5c465c66"
+      }
+    },
+    {
+      "id": "source/ad0001-met-mexico/locator",
+      "en": "Key Events: ca. 1 A.D. and the two ca. 50 A.D. entries.",
+      "sv": "Key Events: posten ca. 1 A.D. och de två posterna ca. 50 A.D.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-mexico",
+        "fieldPath": "/locator",
+        "textSha256": "5a189cf60aa5315b104061243afcfbad7563291ffbeb4cdb36fb571c090adf2d"
+      }
+    },
+    {
+      "id": "source/ad0001-met-mexico/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-mexico",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0001-met-china/locator",
+      "en": "Key Events: ca. 25 A.D.",
+      "sv": "Key Events: ca. 25 A.D.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-china",
+        "fieldPath": "/locator",
+        "textSha256": "100a06d7d9d66df75b455fdc5865466abb218187158b29ca6a6ce0edfcc186d5"
+      }
+    },
+    {
+      "id": "source/ad0001-met-china/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-china",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0001-met-china-rulers/locator",
+      "en": "Han dynasty: Wang Mang and Eastern (later) Han entries.",
+      "sv": "Handynastin: posterna Wang Mang och Eastern (later) Han.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-china-rulers",
+        "fieldPath": "/locator",
+        "textSha256": "6c2aaba90a7f6cb106c483b314b4df4bfe86b7ff7e811b21f09c87ff41e5b794"
+      }
+    },
+    {
+      "id": "source/ad0001-met-china-rulers/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-china-rulers",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0001-fukuoka-gold-seal/locator",
+      "en": "Collection guide, printed pages 10–11; PDF page 7, English section The World of the Gold Seal.",
+      "sv": "Samlingsguide, tryckta sidor 10–11; PDF-sida 7, det engelska avsnittet The World of the Gold Seal.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-fukuoka-gold-seal",
+        "fieldPath": "/locator",
+        "textSha256": "1600a57a17958fa031b338906795fb39fc68f137b568c48c0b6d1628b87e4936"
+      }
+    },
+    {
+      "id": "source/ad0001-fukuoka-gold-seal/institution",
+      "en": "Fukuoka City Museum",
+      "sv": "Fukuokas stadsmuseum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-fukuoka-gold-seal",
+        "fieldPath": "/institution",
+        "textSha256": "41d060ddc9d6403687c96c911ec9a61724ff7896c680e31db686bd19b70261cf"
+      }
+    },
+    {
+      "id": "source/ad0001-met-italy/locator",
+      "en": "Key Events: 14; 64–68 (fire in 64); 70; 79; 80 A.D.",
+      "sv": "Key Events: 14; 64–68 (branden år 64); 70; 79; 80 A.D.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-italy",
+        "fieldPath": "/locator",
+        "textSha256": "e3de0d37e9750c29c1725f5e43af5dc2febbb2d9b4f10cd54f10ea942b206c24"
+      }
+    },
+    {
+      "id": "source/ad0001-met-italy/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-italy",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0001-warwick-boudica/locator",
+      "en": "Events leading to Boudica's Revolt, second paragraph; The Revolt, opening paragraph.",
+      "sv": "Events leading to Boudica's Revolt, andra stycket; The Revolt, inledande stycket.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-warwick-boudica",
+        "fieldPath": "/locator",
+        "textSha256": "d8e9a0d1a48e698165ddb2f4202aeafde0b9138ced108cd0e61958395eca635a"
+      }
+    },
+    {
+      "id": "source/ad0001-warwick-boudica/institution",
+      "en": "University of Warwick, Classics and Ancient History",
+      "sv": "University of Warwick, Classics and Ancient History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-warwick-boudica",
+        "fieldPath": "/institution",
+        "textSha256": "f50a7d59c5e40db29956e56523d39296a07579cab561c9a6ab5a3eae983a609a"
+      }
+    },
+    {
+      "id": "source/ad0001-taylor-vietnam/locator",
+      "en": "Printed pages 21–22; PDF pages 8–9.",
+      "sv": "Tryckta sidor 21–22; PDF-sidor 8–9.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-taylor-vietnam",
+        "fieldPath": "/locator",
+        "textSha256": "431953fa4a38d51e31fb83e560c3edf0971fd935cc9170ea0164ac002e1c057b"
+      }
+    },
+    {
+      "id": "source/ad0001-taylor-vietnam/institution",
+      "en": "K. W. Taylor; Cambridge University Press",
+      "sv": "K. W. Taylor; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-taylor-vietnam",
+        "fieldPath": "/institution",
+        "textSha256": "a4e5b3a6fbd045ea8bac0791d524e31854dc26dfb1aea439821b48d77f169372"
+      }
+    },
+    {
+      "id": "source/ad0001-bond-jesus/locator",
+      "en": "Abstract; introduction; section 1, Why 7 April 30 CE?",
+      "sv": "Sammanfattningen; inledningen; avsnitt 1, Why 7 April 30 CE?",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-bond-jesus",
+        "fieldPath": "/locator",
+        "textSha256": "49a9534a5b8f741a946a8bf4d3d787fcf16737b4fdd564d3e5a416e4347c9202"
+      }
+    },
+    {
+      "id": "source/ad0001-bond-jesus/institution",
+      "en": "Helen K. Bond; Cambridge University Press, New Testament Studies",
+      "sv": "Helen K. Bond; Cambridge University Press, New Testament Studies",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-bond-jesus",
+        "fieldPath": "/institution",
+        "textSha256": "0729e05cb0aab10a2c70c29119838695bc1e8ecc45dd62a7da2196c8cc8f83e8"
+      }
+    },
+    {
+      "id": "source/ad0001-kendall-napata/locator",
+      "en": "PDF page 33, figure 26 caption and preceding paragraph; page 1 for geography.",
+      "sv": "PDF-sida 33, bildtexten till figur 26 och föregående stycke; sida 1 för geografin.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-kendall-napata",
+        "fieldPath": "/locator",
+        "textSha256": "87a03689b00b9c3ab3d12f5033d920785c674e65091bb87b0449a60de65acb99"
+      }
+    },
+    {
+      "id": "source/ad0001-kendall-napata/institution",
+      "en": "Timothy Kendall; Jebel Barkal Archaeological Project, University of Michigan",
+      "sv": "Timothy Kendall; Jebel Barkal Archaeological Project, University of Michigan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-kendall-napata",
+        "fieldPath": "/institution",
+        "textSha256": "8bc833216b1c217a383118a9141e10025f122f8e984d8f69f3f2667a5896954b"
+      }
+    },
+    {
+      "id": "source/ad0001-nm-kush-rulers/locator",
+      "en": "Publication description, final paragraph.",
+      "sv": "Publikationsbeskrivningen, sista stycket.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-nm-kush-rulers",
+        "fieldPath": "/locator",
+        "textSha256": "6e976880f0ccd55f5e4d0f406b1674fb285c6af54ee90c684f9be8f4ddfaa546"
+      }
+    },
+    {
+      "id": "source/ad0001-nm-kush-rulers/institution",
+      "en": "National Museum, Prague",
+      "sv": "Nationalmuseet i Prag",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-nm-kush-rulers",
+        "fieldPath": "/institution",
+        "textSha256": "201e09e5d2c53f1d3b5b9af853d008a249dbbf6b9cd0a769bc9cd2c266f85b84"
+      }
+    },
+    {
+      "id": "source/ad0001-met-southasia/locator",
+      "en": "Key Events: ca. 1st–4th century A.D.",
+      "sv": "Key Events: ca. 1st–4th century A.D.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-southasia",
+        "fieldPath": "/locator",
+        "textSha256": "5958378de795614f45a4cdd7a9597b3e46d6c4204fa28f8afe82888b6cb81225"
+      }
+    },
+    {
+      "id": "source/ad0001-met-southasia/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-southasia",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0001-met-southeastasia/locator",
+      "en": "Key Events: ca. 1–100, ca. 1–200 (Sembiran) and ca. 40–43 A.D.",
+      "sv": "Key Events: ca. 1–100, ca. 1–200 (Sembiran) och ca. 40–43 A.D.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-southeastasia",
+        "fieldPath": "/locator",
+        "textSha256": "fb499254e5a5e7fa1ee48bfb89b3e3fb185a3d4a04f6ebab3d975735a679f5f8"
+      }
+    },
+    {
+      "id": "source/ad0001-met-southeastasia/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-southeastasia",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0001-kalkriese-varus/locator",
+      "en": "Opening paragraphs; paragraph beginning In the end; battlefield-location discussion.",
+      "sv": "Inledande stycken; stycket som börjar In the end; diskussionen om slagfältets läge.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-kalkriese-varus",
+        "fieldPath": "/locator",
+        "textSha256": "46e660c862c1505aaa321a6eb066e06302f8f490d3cd843118a1d55899bbe001"
+      }
+    },
+    {
+      "id": "source/ad0001-kalkriese-varus/institution",
+      "en": "Museum and Park Kalkriese",
+      "sv": "Museum und Park Kalkriese",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-kalkriese-varus",
+        "fieldPath": "/institution",
+        "textSha256": "0f53d7335f70ee7fbf1fe9a92d19a465357dfd3b2ce6a474b1b3753c08825f14"
+      }
+    },
+    {
+      "id": "source/ad0001-met-aksum/locator",
+      "en": "Paragraph beginning An Alexandria-based trader's handbook; web lines 34–35.",
+      "sv": "Stycket som börjar An Alexandria-based trader's handbook; webbrader 34–35.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-aksum",
+        "fieldPath": "/locator",
+        "textSha256": "86c115b98243030b46cae8574ba786adf8eec4b4d04f9c0d083a04dd5fb68d83"
+      }
+    },
+    {
+      "id": "source/ad0001-met-aksum/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-aksum",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0001-met-roman-empire/locator",
+      "en": "The Julio-Claudians, final sentence; The Flavians, first and final paragraphs.",
+      "sv": "The Julio-Claudians, sista meningen; The Flavians, första och sista styckena.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-roman-empire",
+        "fieldPath": "/locator",
+        "textSha256": "658be43ccf64ea778be4825c42400b7b329438d0af6e5a07508cf52eb2e4a6e6"
+      }
+    },
+    {
+      "id": "source/ad0001-met-roman-empire/institution",
+      "en": "Christopher S. Lightfoot; The Metropolitan Museum of Art",
+      "sv": "Christopher S. Lightfoot; The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-met-roman-empire",
+        "fieldPath": "/institution",
+        "textSha256": "004fb0fa86bca0c6ffbe4468d786da7d0ae8f58e7d13f1ec0ea8e7688971cf25"
+      }
+    },
+    {
+      "id": "source/ad0001-eh-britain/locator",
+      "en": "Introduction; The landing place; The invasion army; The military campaign.",
+      "sv": "Inledningen; The landing place; The invasion army; The military campaign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-eh-britain",
+        "fieldPath": "/locator",
+        "textSha256": "db1d907881c1b14f5bed35f3ca0583f2279f28ac925d5cccfa5c192501a279df"
+      }
+    },
+    {
+      "id": "source/ad0001-eh-britain/institution",
+      "en": "Paul Pattison; English Heritage",
+      "sv": "Paul Pattison; English Heritage",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0001-eh-britain",
+        "fieldPath": "/institution",
+        "textSha256": "f4ad466456ae90c587a6cb1c4ca64231c62493d7569eb7815a55ca2f7ababcf1"
       }
     }
   ]

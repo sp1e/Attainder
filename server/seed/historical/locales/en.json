@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "ff4b6b8c92942614c1ba3a834b4158176e3c6e50",
+  "sourceRevision": "bd18dd07efe3e8b799d8c419bf43a00c2170a408",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -49315,6 +49315,1436 @@
         "eventId": "ev-bc1650-tidiga-tamhons-i-ban-non-wat",
         "fieldPath": "/geographySv",
         "textSha256": "fbb56553a4bc062588767160415069591ae7f888768c11463cb901bcdbb342b2"
+      }
+    },
+    {
+      "id": "event/ev-0001-indisk-keramik-sembiran/date/displaySv",
+      "sv": "Cirka första–andra århundradet e.Kr.",
+      "en": "Approximately the first–second centuries AD",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-indisk-keramik-sembiran",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1b966ff251e66c707843484ac3b00eaa82b2d475c2dc6180ea6881b76551aa68"
+      }
+    },
+    {
+      "id": "event/ev-0001-indisk-keramik-sembiran/date/noteSv",
+      "sv": "Fyndens hela dateringsspann behålls; handelsledens startår är okänt.",
+      "en": "The finds’ full date range is retained; the trade route’s starting year is unknown.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-indisk-keramik-sembiran",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b4e07e7368bdae6a3935485b6d2351d239a4a3a61673c9550e2e6e6f7cae21d4"
+      }
+    },
+    {
+      "id": "event/ev-0001-indisk-keramik-sembiran/titleSv",
+      "sv": "Indisk keramik används på Bali",
+      "en": "Indian pottery is used on Bali",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-indisk-keramik-sembiran",
+        "fieldPath": "/titleSv",
+        "textSha256": "09dae34df9d4d61ea516e1574fcbae3cd03747b1cc67789eb41cfe593c13f0ce"
+      }
+    },
+    {
+      "id": "event/ev-0001-indisk-keramik-sembiran/summarySv",
+      "sv": "Keramik i Sembiran liknar fynd från den indisk-romerska handelsplatsen Arikamedu.",
+      "en": "Pottery at Sembiran resembles finds from the Indo-Roman trading site of Arikamedu.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-indisk-keramik-sembiran",
+        "fieldPath": "/summarySv",
+        "textSha256": "1b573cb900eb72ca039816ba3f760d12d0c81b7ba3e754ae2538853bc22244c5"
+      }
+    },
+    {
+      "id": "event/ev-0001-indisk-keramik-sembiran/geographySv",
+      "sv": "Sembiran på Bali och Arikamedu i Indien",
+      "en": "Sembiran on Bali and Arikamedu in India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-indisk-keramik-sembiran",
+        "fieldPath": "/geographySv",
+        "textSha256": "f4725f19cb8cbe454e467f178dbad9413d403bc1125e1d4387c35b0fe92b0a38"
+      }
+    },
+    {
+      "id": "event/ev-0001-indonesiska-utriggare-ostafrika/date/displaySv",
+      "sv": "Cirka första århundradet e.Kr.",
+      "en": "Approximately the first century AD",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-indonesiska-utriggare-ostafrika",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "718038fd1e70a2837e34d53fb76285e581ba387da123c9af6e0cc2736ecc275b"
+      }
+    },
+    {
+      "id": "event/ev-0001-indonesiska-utriggare-ostafrika/date/noteSv",
+      "sv": "Källans hela spann 1–100 återges. Uppgiften tillskrivs Plinius.",
+      "en": "The source’s full span of 1–100 is given. The account is attributed to Pliny.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-indonesiska-utriggare-ostafrika",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d6da1392f2d45577f8c8765cb94a1ae8c2ca9199ff87d30da7798bd836b3899f"
+      }
+    },
+    {
+      "id": "event/ev-0001-indonesiska-utriggare-ostafrika/titleSv",
+      "sv": "Utriggare förbinder Indonesien med Östafrika",
+      "en": "Outrigger boats connect Indonesia with East Africa",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-indonesiska-utriggare-ostafrika",
+        "fieldPath": "/titleSv",
+        "textSha256": "34d45c96963f5d860cd1e0fa38a1f33374a16393ba483244997f707d6d9fd1d2"
+      }
+    },
+    {
+      "id": "event/ev-0001-indonesiska-utriggare-ostafrika/summarySv",
+      "sv": "Enligt Plinius bedriver indonesiska utriggare handel vid Afrikas östkust.",
+      "en": "According to Pliny, Indonesian outrigger boats trade along Africa’s east coast.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-indonesiska-utriggare-ostafrika",
+        "fieldPath": "/summarySv",
+        "textSha256": "e565db37d0ca0ff1e072fad949e5c091cf9f4274ed3908fd9bf676e1ddcb321f"
+      }
+    },
+    {
+      "id": "event/ev-0001-indonesiska-utriggare-ostafrika/geographySv",
+      "sv": "Indonesien och Afrikas östkust",
+      "en": "Indonesia and Africa’s east coast",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-indonesiska-utriggare-ostafrika",
+        "fieldPath": "/geographySv",
+        "textSha256": "ec56ef757ce8452950e8254fd0b644b1e2513dab5f31faf1954630b0d337be15"
+      }
+    },
+    {
+      "id": "event/ev-0001-periplus-aksums-handel/date/displaySv",
+      "sv": "Första århundradet e.Kr.",
+      "en": "First century AD",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-periplus-aksums-handel",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "09ed354088608292d406268a0352280caa3bfe4b57cbe96a8681add73ad038cc"
+      }
+    },
+    {
+      "id": "event/ev-0001-periplus-aksums-handel/date/noteSv",
+      "sv": "Spannet daterar handelsbeskrivningen, inte rikets grundande.",
+      "en": "The span dates the account of trade, not the kingdom’s foundation.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-periplus-aksums-handel",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "70a3472e8f4f15555cb082bb1eb5acc233619aa85e3ef5a854a2e0c18a718191"
+      }
+    },
+    {
+      "id": "event/ev-0001-periplus-aksums-handel/titleSv",
+      "sv": "En sjöfararhandbok beskriver Aksums handel",
+      "en": "A seafarers’ handbook describes Aksum’s trade",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-periplus-aksums-handel",
+        "fieldPath": "/titleSv",
+        "textSha256": "da510bfebc07d105367e56558abeb44912409d42343d1ae8af8a62f16f901c56"
+      }
+    },
+    {
+      "id": "event/ev-0001-periplus-aksums-handel/summarySv",
+      "sv": "Periplus beskriver Aksums växande handel, knuten till Röda havet genom hamnen Adulis.",
+      "en": "The Periplus describes Aksum’s growing trade, linked to the Red Sea through the port of Adulis.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-periplus-aksums-handel",
+        "fieldPath": "/summarySv",
+        "textSha256": "2bae511468cbfe8818025268c99c046ee890a364f1dc8d4760f709dc192dcdec"
+      }
+    },
+    {
+      "id": "event/ev-0001-periplus-aksums-handel/geographySv",
+      "sv": "Aksum och Adulis vid Röda havet",
+      "en": "Aksum and Adulis on the Red Sea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-periplus-aksums-handel",
+        "fieldPath": "/geographySv",
+        "textSha256": "506917a41c5c4de6e751d3afda060ab149222742b1ccae82b6d3c0fff87665c0"
+      }
+    },
+    {
+      "id": "event/ev-0001-sangamlitteratur-sammanstalls/date/displaySv",
+      "sv": "Cirka första–fjärde århundradet e.Kr.",
+      "en": "Approximately the first–fourth centuries AD",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-sangamlitteratur-sammanstalls",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d107736e86b60a60ca7c867ef28469895c7830cc377a7c0334fbfd46a98b6b8c"
+      }
+    },
+    {
+      "id": "event/ev-0001-sangamlitteratur-sammanstalls/date/noteSv",
+      "sv": "Hela det ungefärliga spannet behålls; inget enskilt tillkomstår är känt.",
+      "en": "The full approximate span is retained; no single year of composition is known.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-sangamlitteratur-sammanstalls",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "bdf615a0979cfb7ff9790d007d3dc89e5c44f3d3f6f50e63c8fc5323fbb1f934"
+      }
+    },
+    {
+      "id": "event/ev-0001-sangamlitteratur-sammanstalls/titleSv",
+      "sv": "Tamilsk sangamlitteratur sammanställs",
+      "en": "Tamil Sangam literature is compiled",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-sangamlitteratur-sammanstalls",
+        "fieldPath": "/titleSv",
+        "textSha256": "083509e2c70006e27b6ddfc418f035d78c481e2608c29f50368816e0a7d4218e"
+      }
+    },
+    {
+      "id": "event/ev-0001-sangamlitteratur-sammanstalls/summarySv",
+      "sv": "Diktsamlingar samt verk om grammatik och retorik sammanställs i Tamil Nadu.",
+      "en": "Poetry collections and works on grammar and rhetoric are compiled in Tamil Nadu.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-sangamlitteratur-sammanstalls",
+        "fieldPath": "/summarySv",
+        "textSha256": "59117d05de273e89a32dbc655e6428e924e7a02c26501713aa8e1f3f20efa144"
+      }
+    },
+    {
+      "id": "event/ev-0001-sangamlitteratur-sammanstalls/geographySv",
+      "sv": "Tamil Nadu, södra Indien",
+      "en": "Tamil Nadu, southern India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-sangamlitteratur-sammanstalls",
+        "fieldPath": "/geographySv",
+        "textSha256": "d1c662a4ddeef02b9a2a3107f10432bd9249996b905908200204a6862baf31b1"
+      }
+    },
+    {
+      "id": "event/ev-0001-teotihuacan-inflyttning/date/displaySv",
+      "sv": "Cirka 1 e.Kr.",
+      "en": "c. AD 1",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-teotihuacan-inflyttning",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f63452807b5c5d61dd043e1616bb4f472995be78641e6c4edd4140daf5f9ea31"
+      }
+    },
+    {
+      "id": "event/ev-0001-teotihuacan-inflyttning/date/noteSv",
+      "sv": "Källan anger cirka 1.",
+      "en": "The source gives approximately 1.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-teotihuacan-inflyttning",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "90d7b81fbb745641f5a36199c1f7ded9f1c9fb15eec51e6c896d2b06842c5e1e"
+      }
+    },
+    {
+      "id": "event/ev-0001-teotihuacan-inflyttning/titleSv",
+      "sv": "Teotihuacan växer genom inflyttning",
+      "en": "Teotihuacan grows through migration",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-teotihuacan-inflyttning",
+        "fieldPath": "/titleSv",
+        "textSha256": "c5a531a80b30ce07938cfb956ffb54e968711abcef2bdde0d9c6a3595047a081"
+      }
+    },
+    {
+      "id": "event/ev-0001-teotihuacan-inflyttning/summarySv",
+      "sv": "Landsbygdsbefolkning flyttar in i Teotihuacan, möjligen under tvång.",
+      "en": "Rural populations move into Teotihuacan, possibly under coercion.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-teotihuacan-inflyttning",
+        "fieldPath": "/summarySv",
+        "textSha256": "c2898de3967b5ec124e951018a1419cf6a551fd7dad7ceab14fa7fa6204c238c"
+      }
+    },
+    {
+      "id": "event/ev-0001-teotihuacan-inflyttning/geographySv",
+      "sv": "Mexikobäckenet",
+      "en": "Basin of Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0001-teotihuacan-inflyttning",
+        "fieldPath": "/geographySv",
+        "textSha256": "b3014bb1427dfac27e0587b4babe07c9cbffac1b5d2cffb9348731df61730708"
+      }
+    },
+    {
+      "id": "event/ev-0009-arminius-besegrar-rom/date/displaySv",
+      "sv": "9 e.Kr.",
+      "en": "AD 9",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0009-arminius-besegrar-rom",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5918ff3dd40ffe5ed6680a59858d2ca9fd0399be0ac3266b7d515c3ca559317b"
+      }
+    },
+    {
+      "id": "event/ev-0009-arminius-besegrar-rom/date/noteSv",
+      "sv": "Årtalet är belagt; slagets fullständiga geografiska utsträckning är osäker.",
+      "en": "The year is attested; the battle’s full geographical extent is uncertain.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0009-arminius-besegrar-rom",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "36e025533d2f1661ccc114cbcaa165675acb32b2173c7851e1afecf3b78c97c6"
+      }
+    },
+    {
+      "id": "event/ev-0009-arminius-besegrar-rom/titleSv",
+      "sv": "Arminius besegrar tre romerska legioner",
+      "en": "Arminius defeats three Roman legions",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0009-arminius-besegrar-rom",
+        "fieldPath": "/titleSv",
+        "textSha256": "0940eb038e7baaf4b6f30507ac1dcbc21d25ee88f84f45ba8606af4f8734b651"
+      }
+    },
+    {
+      "id": "event/ev-0009-arminius-besegrar-rom/summarySv",
+      "sv": "Germanska styrkor tillfogar den romerska armén ett svårt nederlag.",
+      "en": "Germanic forces inflict a severe defeat on the Roman army.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0009-arminius-besegrar-rom",
+        "fieldPath": "/summarySv",
+        "textSha256": "19d886e185cd316046623f30d8c2b0c987c71413d3a6caab7fed31ae6da32d8c"
+      }
+    },
+    {
+      "id": "event/ev-0009-arminius-besegrar-rom/geographySv",
+      "sv": "Germanien, öster om Rhen",
+      "en": "Germania, east of the Rhine",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0009-arminius-besegrar-rom",
+        "fieldPath": "/geographySv",
+        "textSha256": "180e9e46c7a98ef3bedd134eca8233c3957117a62d9cd3aacc12b916592c70f0"
+      }
+    },
+    {
+      "id": "event/ev-0009-wangmang-tilltrader/date/displaySv",
+      "sv": "9 e.Kr.",
+      "en": "AD 9",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0009-wangmang-tilltrader",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5918ff3dd40ffe5ed6680a59858d2ca9fd0399be0ac3266b7d515c3ca559317b"
+      }
+    },
+    {
+      "id": "event/ev-0009-wangmang-tilltrader/date/noteSv",
+      "sv": "Härskarlistan daterar regeringens början till 9.",
+      "en": "The ruler list dates the beginning of the reign to 9.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0009-wangmang-tilltrader",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9a116e38f3f1a71f5454c3d2656475466d44138d56b9ae83739512134b11f6f8"
+      }
+    },
+    {
+      "id": "event/ev-0009-wangmang-tilltrader/titleSv",
+      "sv": "Wang Mang övertar kejsarmakten",
+      "en": "Wang Mang takes imperial power",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0009-wangmang-tilltrader",
+        "fieldPath": "/titleSv",
+        "textSha256": "652f5f8990e354d2cd7cf2a194567cb69bf4a6ff8bbcef3cc16df7f9d0f4bac2"
+      }
+    },
+    {
+      "id": "event/ev-0009-wangmang-tilltrader/summarySv",
+      "sv": "Wang Mangs regering avlöser Västra Han.",
+      "en": "Wang Mang’s reign succeeds the Western Han.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0009-wangmang-tilltrader",
+        "fieldPath": "/summarySv",
+        "textSha256": "88037ea431b00271e797c9761ba4cd9bc6f3c6a1eb2f1d27cbe7bae98e79b63a"
+      }
+    },
+    {
+      "id": "event/ev-0009-wangmang-tilltrader/geographySv",
+      "sv": "Kina",
+      "en": "China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0009-wangmang-tilltrader",
+        "fieldPath": "/geographySv",
+        "textSha256": "57e3795a3bddf3ecc09fd620078f1ace8c68974bf50e387e364d256bd9cb13ae"
+      }
+    },
+    {
+      "id": "event/ev-0014-tiberius-eftertrader-augustus/date/displaySv",
+      "sv": "14 e.Kr.",
+      "en": "AD 14",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0014-tiberius-eftertrader-augustus",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "06751dd6f4a5e328173e3791552ffa6da2a72b1f03b301684b401dfb576736b3"
+      }
+    },
+    {
+      "id": "event/ev-0014-tiberius-eftertrader-augustus/date/noteSv",
+      "sv": "Årtalet gäller maktskiftet.",
+      "en": "The year concerns the transfer of power.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0014-tiberius-eftertrader-augustus",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "db091669d8e97524f2678d23eb922ba51112aa6903776082c29ce43ef2f112fe"
+      }
+    },
+    {
+      "id": "event/ev-0014-tiberius-eftertrader-augustus/titleSv",
+      "sv": "Tiberius efterträder Augustus",
+      "en": "Tiberius succeeds Augustus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0014-tiberius-eftertrader-augustus",
+        "fieldPath": "/titleSv",
+        "textSha256": "fe5ae8e12181dc837c9f3a45152ae7f18282c0b5ab0257c655500a1ebf1049a1"
+      }
+    },
+    {
+      "id": "event/ev-0014-tiberius-eftertrader-augustus/summarySv",
+      "sv": "Augustus dör och styvsonen Tiberius övertar makten.",
+      "en": "Augustus dies and his stepson Tiberius takes power.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0014-tiberius-eftertrader-augustus",
+        "fieldPath": "/summarySv",
+        "textSha256": "5f06cffe13d95c8de0325887f91ad46dea95f6bc1c2ac61ec2cbf2e956017700"
+      }
+    },
+    {
+      "id": "event/ev-0014-tiberius-eftertrader-augustus/geographySv",
+      "sv": "Romarriket",
+      "en": "Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0014-tiberius-eftertrader-augustus",
+        "fieldPath": "/geographySv",
+        "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
+      }
+    },
+    {
+      "id": "event/ev-0016-romerska-falttag-germanien-avbryts/date/displaySv",
+      "sv": "16 e.Kr.",
+      "en": "AD 16",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0016-romerska-falttag-germanien-avbryts",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "14f532532a770ccc9010fe550d5d3bfc49295f287e3a212f013a07bfb279564a"
+      }
+    },
+    {
+      "id": "event/ev-0016-romerska-falttag-germanien-avbryts/date/noteSv",
+      "sv": "Tillbakadragandet följer på senare fälttåg, flera år efter nederlaget 9.",
+      "en": "The withdrawal follows later campaigns, several years after the defeat of 9.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0016-romerska-falttag-germanien-avbryts",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "2a08cc960c0bd5d27391a2aceedd10bacd69aa3b5d78e1cb6a83d621d98094ea"
+      }
+    },
+    {
+      "id": "event/ev-0016-romerska-falttag-germanien-avbryts/titleSv",
+      "sv": "Rom avbryter erövringen av Germanien",
+      "en": "Rome abandons the conquest of Germania",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0016-romerska-falttag-germanien-avbryts",
+        "fieldPath": "/titleSv",
+        "textSha256": "42c7ce40cf995c6826fd8a32b71bda71bd215f03980a3a508843b3f18b40aa52"
+      }
+    },
+    {
+      "id": "event/ev-0016-romerska-falttag-germanien-avbryts/summarySv",
+      "sv": "Efter nya förlustbringande fälttåg beordrar kejsaren reträtt.",
+      "en": "After further costly campaigns, the emperor orders a retreat.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0016-romerska-falttag-germanien-avbryts",
+        "fieldPath": "/summarySv",
+        "textSha256": "e5f301b3572200b618af9d5f06aebebe9a90ef18439e7b4f3be0def3ce5eba99"
+      }
+    },
+    {
+      "id": "event/ev-0016-romerska-falttag-germanien-avbryts/geographySv",
+      "sv": "Germanien, öster om Rhen",
+      "en": "Germania, east of the Rhine",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0016-romerska-falttag-germanien-avbryts",
+        "fieldPath": "/geographySv",
+        "textSha256": "180e9e46c7a98ef3bedd134eca8233c3957117a62d9cd3aacc12b916592c70f0"
+      }
+    },
+    {
+      "id": "event/ev-0025-han-aterupprattas-luoyang/date/displaySv",
+      "sv": "Cirka 25 e.Kr.",
+      "en": "c. AD 25",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0025-han-aterupprattas-luoyang",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7c7e8700ced50d1ec794e85e3e9b8401d0e6008b7963ee01e24872d0e8c439e7"
+      }
+    },
+    {
+      "id": "event/ev-0025-han-aterupprattas-luoyang/date/noteSv",
+      "sv": "Händelseposten anger cirka 25.",
+      "en": "The event entry gives approximately 25.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0025-han-aterupprattas-luoyang",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b885905be76753d0b6359b0c53dfbab83d270bb9747e2f1a6c808136930d8ba7"
+      }
+    },
+    {
+      "id": "event/ev-0025-han-aterupprattas-luoyang/titleSv",
+      "sv": "Hanriket återupprättas med hov i Luoyang",
+      "en": "Han rule is restored with the court at Luoyang",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0025-han-aterupprattas-luoyang",
+        "fieldPath": "/titleSv",
+        "textSha256": "8368d9d2823969d2056217e5f3575a9261ae1027e3e1e2425a0fe72df339e6a5"
+      }
+    },
+    {
+      "id": "event/ev-0025-han-aterupprattas-luoyang/summarySv",
+      "sv": "Handynastin återtar makten och styr från den återuppbyggda huvudstaden Luoyang.",
+      "en": "The Han dynasty regains power and rules from the rebuilt capital of Luoyang.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0025-han-aterupprattas-luoyang",
+        "fieldPath": "/summarySv",
+        "textSha256": "84f2553d089d2772d530c6a49c054e34b9af127407a5c3f29f1371a721f28312"
+      }
+    },
+    {
+      "id": "event/ev-0025-han-aterupprattas-luoyang/geographySv",
+      "sv": "Luoyang, Kina",
+      "en": "Luoyang, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0025-han-aterupprattas-luoyang",
+        "fieldPath": "/geographySv",
+        "textSha256": "e260e15c832c5bccebf356934364291331083bc2aa53e384cdac16adaee06360"
+      }
+    },
+    {
+      "id": "event/ev-0029-jesus-korsfasts/date/displaySv",
+      "sv": "Mellan 29 och 34 e.Kr.",
+      "en": "Between AD 29 and 34",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0029-jesus-korsfasts",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b103aa9cd7389bc9319090f38b03d95cac71cb865bb60d964a09527d77905942"
+      }
+    },
+    {
+      "id": "event/ev-0029-jesus-korsfasts/date/noteSv",
+      "sv": "Exakt datum är omstritt. Bond förordar intervallet 29–34; 30 och 33 är vanliga förslag.",
+      "en": "The exact date is disputed. Bond argues for the interval 29–34; 30 and 33 are common proposals.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0029-jesus-korsfasts",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "65b5ff10276aab951a5744eaea4dde22371317051fb372e94c778777303eec29"
+      }
+    },
+    {
+      "id": "event/ev-0029-jesus-korsfasts/titleSv",
+      "sv": "Jesus korsfästs",
+      "en": "Jesus is crucified",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0029-jesus-korsfasts",
+        "fieldPath": "/titleSv",
+        "textSha256": "ae5e01696d577b0351d379bca18f198f1fca0d50f5423c3f91e3d5550535d01a"
+      }
+    },
+    {
+      "id": "event/ev-0029-jesus-korsfasts/summarySv",
+      "sv": "Jesus avrättas genom korsfästelse i Jerusalem. Förhållandet till påskhögtidens dagar är omstritt.",
+      "en": "Jesus is executed by crucifixion in Jerusalem. The timing in relation to the days of Passover is disputed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0029-jesus-korsfasts",
+        "fieldPath": "/summarySv",
+        "textSha256": "a9c057efc4de2ab51a0ba2830f33867564076dc663133b70e7375f3b664e45fc"
+      }
+    },
+    {
+      "id": "event/ev-0029-jesus-korsfasts/geographySv",
+      "sv": "Jerusalem, Judeen",
+      "en": "Jerusalem, Judaea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0029-jesus-korsfasts",
+        "fieldPath": "/geographySv",
+        "textSha256": "48847161b323c6bc4779181d054b20bb138cecbe5a6c0121a1ab5bc84247bcdc"
+      }
+    },
+    {
+      "id": "event/ev-0040-trungsystrarna-tar-makten/date/displaySv",
+      "sv": "40 e.Kr.",
+      "en": "AD 40",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0040-trungsystrarna-tar-makten",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5eb5b0880e4b575b6eb2bed953b89ed7410bc66cd9962702e674fb402ee51f25"
+      }
+    },
+    {
+      "id": "event/ev-0040-trungsystrarna-tar-makten/date/noteSv",
+      "sv": "Taylor daterar övertagandet till våren 40.",
+      "en": "Taylor dates the takeover to the spring of 40.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0040-trungsystrarna-tar-makten",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1a1eb4899670f20bab336b571d9e4a20da15c80319b03fc66e9b1973613e7096"
+      }
+    },
+    {
+      "id": "event/ev-0040-trungsystrarna-tar-makten/titleSv",
+      "sv": "Trungsystrarna tar makten",
+      "en": "The Trung sisters take power",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0040-trungsystrarna-tar-makten",
+        "fieldPath": "/titleSv",
+        "textSha256": "c7bd784735f87507b806b4500e6f87c15f9d13f6fab964be32e46ec818a8b621"
+      }
+    },
+    {
+      "id": "event/ev-0040-trungsystrarna-tar-makten/summarySv",
+      "sv": "Trungsystrarnas styrkor övermannar Hanrikets garnisoner och bosättningar. Systrarna styr från Me Linh.",
+      "en": "The Trung sisters’ forces overwhelm Han garrisons and settlements. The sisters rule from Me Linh.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0040-trungsystrarna-tar-makten",
+        "fieldPath": "/summarySv",
+        "textSha256": "da54a58d13c4fd9f9d2263c7e8844807cbbb0f84da6468e0808612811864fb8d"
+      }
+    },
+    {
+      "id": "event/ev-0040-trungsystrarna-tar-makten/geographySv",
+      "sv": "Röda flodens slätt, norra Vietnam",
+      "en": "Red River plain, northern Vietnam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0040-trungsystrarna-tar-makten",
+        "fieldPath": "/geographySv",
+        "textSha256": "ef01119565654c5321a716d608a4be22d2ef72ca50ba449d8009ef0590500262"
+      }
+    },
+    {
+      "id": "event/ev-0042-mayuan-atererovrar-vietnam/date/displaySv",
+      "sv": "42–44 e.Kr.",
+      "en": "AD 42–44",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0042-mayuan-atererovrar-vietnam",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6efa41fb92ef1409f5303338c68c85fa78ca45ef723613142737dfb231d4afb0"
+      }
+    },
+    {
+      "id": "event/ev-0042-mayuan-atererovrar-vietnam/date/noteSv",
+      "sv": "Taylor låter fälttåget pågå till 44 och daterar systrarnas nederlag till omkring slutet av 42; museets kronologi anger cirka 43.",
+      "en": "Taylor places the campaign’s end in 44 and dates the sisters’ defeat to around the end of 42; the museum’s chronology gives approximately 43.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0042-mayuan-atererovrar-vietnam",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d94590fe13e59d2d2910cd36c3c2a1b6d5020d882087a9505ac0b88685084fb3"
+      }
+    },
+    {
+      "id": "event/ev-0042-mayuan-atererovrar-vietnam/titleSv",
+      "sv": "Ma Yuan återtar kontrollen i norra Vietnam",
+      "en": "Ma Yuan regains control in northern Vietnam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0042-mayuan-atererovrar-vietnam",
+        "fieldPath": "/titleSv",
+        "textSha256": "e84f5e1ed4a8dadd0bd954d36ca75d3135184b737af2b10ccea416bcede8ea08"
+      }
+    },
+    {
+      "id": "event/ev-0042-mayuan-atererovrar-vietnam/summarySv",
+      "sv": "Hanrikets armé besegrar Trungsystrarnas styrkor. Ma Yuan upprättar garnisoner, inför regler och återvänder norrut 44.",
+      "en": "The Han army defeats the Trung sisters’ forces. Ma Yuan establishes garrisons, introduces regulations and returns north in 44.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0042-mayuan-atererovrar-vietnam",
+        "fieldPath": "/summarySv",
+        "textSha256": "bdefef2fb0ada70b6b3a0d0767a33970cd8fbb4ca6dc44956a7de14f1d426f32"
+      }
+    },
+    {
+      "id": "event/ev-0042-mayuan-atererovrar-vietnam/geographySv",
+      "sv": "Röda flodens slätt, norra Vietnam",
+      "en": "Red River plain, northern Vietnam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0042-mayuan-atererovrar-vietnam",
+        "fieldPath": "/geographySv",
+        "textSha256": "ef01119565654c5321a716d608a4be22d2ef72ca50ba449d8009ef0590500262"
+      }
+    },
+    {
+      "id": "event/ev-0043-rom-invaderar-britannien/date/displaySv",
+      "sv": "43 e.Kr.",
+      "en": "AD 43",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0043-rom-invaderar-britannien",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e3b0ac744e89347ca4b6f6ad2eb3c10fa987c9f9f953d474a3d27c562b8b0eaf"
+      }
+    },
+    {
+      "id": "event/ev-0043-rom-invaderar-britannien/date/noteSv",
+      "sv": "Årtalet gäller invasionens början. Landstigningsplatsen är omstridd.",
+      "en": "The year concerns the beginning of the invasion. The landing site is disputed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0043-rom-invaderar-britannien",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "81525437835e5940476e6c0ce3122285ce866857f880509036b9a4161744d5b4"
+      }
+    },
+    {
+      "id": "event/ev-0043-rom-invaderar-britannien/titleSv",
+      "sv": "Rom invaderar Britannien",
+      "en": "Rome invades Britain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0043-rom-invaderar-britannien",
+        "fieldPath": "/titleSv",
+        "textSha256": "870b4230f6c45140bf66a3b80cf28f92977e81da8fb0494452ef0aa335b5acd0"
+      }
+    },
+    {
+      "id": "event/ev-0043-rom-invaderar-britannien/summarySv",
+      "sv": "Aulus Plautius leder kejsar Claudius invasionsarmé över till Britannien.",
+      "en": "Aulus Plautius leads Emperor Claudius’s invasion army across to Britain.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0043-rom-invaderar-britannien",
+        "fieldPath": "/summarySv",
+        "textSha256": "38f5cd2f2642a96df8ec80345573ccd9ef22572e646b80f792b2a33051073acc"
+      }
+    },
+    {
+      "id": "event/ev-0043-rom-invaderar-britannien/geographySv",
+      "sv": "Södra Britannien",
+      "en": "Southern Britain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0043-rom-invaderar-britannien",
+        "fieldPath": "/geographySv",
+        "textSha256": "774b177065d2e55adce8ba29467510927c4590c2fd230cbc38e9d38828d59d61"
+      }
+    },
+    {
+      "id": "event/ev-0050-montealban-dominerar-oaxaca/date/displaySv",
+      "sv": "Cirka 50 e.Kr.",
+      "en": "c. AD 50",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-montealban-dominerar-oaxaca",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "bf8e4948fbda1216ac6472695735485592f975bf73ebfaf0ba65a8ee3f5f7b3b"
+      }
+    },
+    {
+      "id": "event/ev-0050-montealban-dominerar-oaxaca/date/noteSv",
+      "sv": "Källan anger cirka 50 och beskriver våldsanvändningen som sannolik.",
+      "en": "The source gives approximately 50 and describes the use of force as probable.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-montealban-dominerar-oaxaca",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c85a01a7f7313a17758fcf7b72495d379c8bfaaadf553ffbb920b85954665ac0"
+      }
+    },
+    {
+      "id": "event/ev-0050-montealban-dominerar-oaxaca/titleSv",
+      "sv": "Monte Albán dominerar Oaxacadalen",
+      "en": "Monte Albán dominates the Oaxaca Valley",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-montealban-dominerar-oaxaca",
+        "fieldPath": "/titleSv",
+        "textSha256": "5752c9a238c650fa1248fd477819d1407883f9cd02d2e71ba2cfddce2db97854"
+      }
+    },
+    {
+      "id": "event/ev-0050-montealban-dominerar-oaxaca/summarySv",
+      "sv": "Staden växer och dominerar dalen, synbarligen med våld. Torgområdet jämnas ut och monument byggs.",
+      "en": "The city grows and dominates the valley, apparently by force. The plaza area is levelled and monuments are built.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-montealban-dominerar-oaxaca",
+        "fieldPath": "/summarySv",
+        "textSha256": "3e63bab6cb4c9006aec65e3cdac0179924670cb37c0692990b96e11bb42bdd90"
+      }
+    },
+    {
+      "id": "event/ev-0050-montealban-dominerar-oaxaca/geographySv",
+      "sv": "Monte Albán, Oaxacadalen",
+      "en": "Monte Albán, Oaxaca Valley",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-montealban-dominerar-oaxaca",
+        "fieldPath": "/geographySv",
+        "textSha256": "2025d4d3c94b2db674d4b8e6a8e585c5fb9355cb04256cb2636736a5acc4e65d"
+      }
+    },
+    {
+      "id": "event/ev-0050-natakamani-amanitore-palats/date/displaySv",
+      "sv": "Cirka mitten av första århundradet e.Kr.",
+      "en": "Around the middle of the first century AD",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-natakamani-amanitore-palats",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b59f69144e744fff2d6131ad8febeb45e68fca9e2700b683069eca9e6ab56f2b"
+      }
+    },
+    {
+      "id": "event/ev-0050-natakamani-amanitore-palats/date/noteSv",
+      "sv": "50 används som ungefärlig mittpunkt. Palatsbildens text anger århundradets mitt; tempelrestaureringen beskrivs separat som tidigare.",
+      "en": "50 is used as an approximate midpoint. The palace image caption gives the middle of the century; the temple restoration is described separately as earlier.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-natakamani-amanitore-palats",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9fd3b1f9e10eec66f17e4b2ac526e7a4a33540ffb190f1322c8a3dd9a1b480a5"
+      }
+    },
+    {
+      "id": "event/ev-0050-natakamani-amanitore-palats/titleSv",
+      "sv": "Natakamani och Amanitore bygger ett palats",
+      "en": "Natakamani and Amanitore build a palace",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-natakamani-amanitore-palats",
+        "fieldPath": "/titleSv",
+        "textSha256": "0e7663a08064d661a86ceae86fd180967c776fe3c6004a467420701f809e206f"
+      }
+    },
+    {
+      "id": "event/ev-0050-natakamani-amanitore-palats/summarySv",
+      "sv": "Kushs härskare uppför palatset B 1500 vid Jebel Barkal.",
+      "en": "The rulers of Kush build palace B 1500 at Jebel Barkal.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-natakamani-amanitore-palats",
+        "fieldPath": "/summarySv",
+        "textSha256": "773fae59b8a37ca313352656e534edd2b8a3118befd54d29865b39fe8e8c0e4f"
+      }
+    },
+    {
+      "id": "event/ev-0050-natakamani-amanitore-palats/geographySv",
+      "sv": "Jebel Barkal, Napata, nuvarande Sudan",
+      "en": "Jebel Barkal, Napata, present-day Sudan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-natakamani-amanitore-palats",
+        "fieldPath": "/geographySv",
+        "textSha256": "d498d39da6905d5d97a8f1e91a35eb1872bdce262c293115f512f66b12874d64"
+      }
+    },
+    {
+      "id": "event/ev-0050-solpyramiden-teotihuacan-paborjas/date/displaySv",
+      "sv": "Cirka 50 e.Kr.",
+      "en": "c. AD 50",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-solpyramiden-teotihuacan-paborjas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "bf8e4948fbda1216ac6472695735485592f975bf73ebfaf0ba65a8ee3f5f7b3b"
+      }
+    },
+    {
+      "id": "event/ev-0050-solpyramiden-teotihuacan-paborjas/date/noteSv",
+      "sv": "Dateringen är ungefärlig och anger ingen färdigställandedag.",
+      "en": "The date is approximate and establishes no completion day.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-solpyramiden-teotihuacan-paborjas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "045f0dbe84ce153d51f3b0026f14237e13d1ee718010e3aca6d7d02de111ea6d"
+      }
+    },
+    {
+      "id": "event/ev-0050-solpyramiden-teotihuacan-paborjas/titleSv",
+      "sv": "Teotihuacan får ett regelbundet gatunät",
+      "en": "Teotihuacan gains a regular street grid",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-solpyramiden-teotihuacan-paborjas",
+        "fieldPath": "/titleSv",
+        "textSha256": "b6537cbc6bd29b107a18562723bc19075741794a737ca2d068030ac0b089a897"
+      }
+    },
+    {
+      "id": "event/ev-0050-solpyramiden-teotihuacan-paborjas/summarySv",
+      "sv": "Stadens plan ordnas i ett rutnät och bygget av Solpyramiden inleds.",
+      "en": "The city’s plan is arranged in a grid and construction of the Pyramid of the Sun begins.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-solpyramiden-teotihuacan-paborjas",
+        "fieldPath": "/summarySv",
+        "textSha256": "1922d92914054fc5f8dd7ff45da0d31694665dd573fbbfc9fcf22e4e1047721c"
+      }
+    },
+    {
+      "id": "event/ev-0050-solpyramiden-teotihuacan-paborjas/geographySv",
+      "sv": "Teotihuacan, Mexikobäckenet",
+      "en": "Teotihuacan, Basin of Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0050-solpyramiden-teotihuacan-paborjas",
+        "fieldPath": "/geographySv",
+        "textSha256": "d24544004b0de69f9c082fc33e4864c8eb858582fb726688770dbe9ee0771860"
+      }
+    },
+    {
+      "id": "event/ev-0057-na-han-guldsigill/date/displaySv",
+      "sv": "57 e.Kr.",
+      "en": "AD 57",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0057-na-han-guldsigill",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d726217abab5c3b9e9a1ffe6714da43b83cad3981921702a228b93a6dc8045a9"
+      }
+    },
+    {
+      "id": "event/ev-0057-na-han-guldsigill/date/noteSv",
+      "sv": "Årtalet kommer från Senare Hanrikets historia enligt museets guide.",
+      "en": "The year comes from the History of the Later Han according to the museum guide.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0057-na-han-guldsigill",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "41614136a9838f3beb5569192c7413b39ae520030d74ecc55c4d0d33d23695b9"
+      }
+    },
+    {
+      "id": "event/ev-0057-na-han-guldsigill/titleSv",
+      "sv": "Na får ett sigill från Hanrikets kejsare",
+      "en": "Na receives a seal from the Han emperor",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0057-na-han-guldsigill",
+        "fieldPath": "/titleSv",
+        "textSha256": "782ac89a64547938b5f975a811e36d1f67d0f736c6bfd568909b3ba5cbd2e9c8"
+      }
+    },
+    {
+      "id": "event/ev-0057-na-han-guldsigill/summarySv",
+      "sv": "Enligt krönikan får härskaren i Na i Wa ett sigill och band från den kinesiske kejsaren efter en beskickning.",
+      "en": "According to the chronicle, the ruler of Na in Wa receives a seal and ribbon from the Chinese emperor after an embassy.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0057-na-han-guldsigill",
+        "fieldPath": "/summarySv",
+        "textSha256": "e8a01d22804c36eeb847994fa06dd1be8e66d351f51674eacb4bd5864fd9e282"
+      }
+    },
+    {
+      "id": "event/ev-0057-na-han-guldsigill/geographySv",
+      "sv": "Na, Fukuokaområdet i Japan, och Hanrikets hov",
+      "en": "Na, the Fukuoka area of Japan, and the Han court",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0057-na-han-guldsigill",
+        "fieldPath": "/geographySv",
+        "textSha256": "d9f6da45db2c5477f73c201228223f4ce4e63433194f7b5a40b007c4f4e3bb21"
+      }
+    },
+    {
+      "id": "event/ev-0060-boudica-uppror/date/displaySv",
+      "sv": "60 eller 61 e.Kr.",
+      "en": "AD 60 or 61",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0060-boudica-uppror",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4176f1b49086c8d54239bef36f9cd90b82bf516bce103dba707471116355d140"
+      }
+    },
+    {
+      "id": "event/ev-0060-boudica-uppror/date/noteSv",
+      "sv": "Källan redovisar både ett uppror under 60 och förberedelser 60 följda av angrepp 61.",
+      "en": "The source presents both a revolt during 60 and preparations in 60 followed by attacks in 61.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0060-boudica-uppror",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c3c8fb936747720bebfae1f66bf7f0dd8c6a672929a270c9ca9e48c6be55c03a"
+      }
+    },
+    {
+      "id": "event/ev-0060-boudica-uppror/titleSv",
+      "sv": "Boudica leder ett uppror",
+      "en": "Boudica leads a revolt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0060-boudica-uppror",
+        "fieldPath": "/titleSv",
+        "textSha256": "d68cacc379229547d2c46e4c39ac8d6ee7cf84b753ff1818cbc739bd70ad9a74"
+      }
+    },
+    {
+      "id": "event/ev-0060-boudica-uppror/summarySv",
+      "sv": "Boudicas styrkor angriper Camulodunum, Londinium och Verulamium innan romarna besegrar upproret.",
+      "en": "Boudica’s forces attack Camulodunum, Londinium and Verulamium before the Romans defeat the uprising.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0060-boudica-uppror",
+        "fieldPath": "/summarySv",
+        "textSha256": "fae84232f156254f8afa1ce2185cd9e7a4826c77becb3ed298085f87af6b62fd"
+      }
+    },
+    {
+      "id": "event/ev-0060-boudica-uppror/geographySv",
+      "sv": "Sydöstra Britannien",
+      "en": "Southeastern Britain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0060-boudica-uppror",
+        "fieldPath": "/geographySv",
+        "textSha256": "7d8269c55b14f29a920a33748da5a59e90f4e0be2924a133a52c7039e0508ac1"
+      }
+    },
+    {
+      "id": "event/ev-0064-rom-brinner/date/displaySv",
+      "sv": "64 e.Kr.",
+      "en": "AD 64",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0064-rom-brinner",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "fd524498d556bd6c7a31a70f2ad9641dd2cac2b431968202f589b465e68445c0"
+      }
+    },
+    {
+      "id": "event/ev-0064-rom-brinner/date/noteSv",
+      "sv": "Årtalet gäller branden, inte hela palatsbygget.",
+      "en": "The year concerns the fire, not the entire palace-building project.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0064-rom-brinner",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "66c7247a4025f56deb19ba0935edf749692d112b7fc7044f81dd6649c2197bb3"
+      }
+    },
+    {
+      "id": "event/ev-0064-rom-brinner/titleSv",
+      "sv": "En stor brand härjar i Rom",
+      "en": "A great fire ravages Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0064-rom-brinner",
+        "fieldPath": "/titleSv",
+        "textSha256": "cc6633f8b837b5fcae6ca65a2a8c4418edfcba48b15e472a0dc9dbbb748297d7"
+      }
+    },
+    {
+      "id": "event/ev-0064-rom-brinner/summarySv",
+      "sv": "Branden förstör omfattande delar av staden.",
+      "en": "The fire destroys extensive parts of the city.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0064-rom-brinner",
+        "fieldPath": "/summarySv",
+        "textSha256": "2c1b25a642236c731dcb58a649b4042a05c8c03106e10b69accf0bb8e929e136"
+      }
+    },
+    {
+      "id": "event/ev-0064-rom-brinner/geographySv",
+      "sv": "Rom",
+      "en": "Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0064-rom-brinner",
+        "fieldPath": "/geographySv",
+        "textSha256": "1f268826c4d33921cbcec835bd71ab3bc2729936d3edb01befa02c46c41a71ed"
+      }
+    },
+    {
+      "id": "event/ev-0068-nero-dor-dynastislut/date/displaySv",
+      "sv": "68 e.Kr.",
+      "en": "AD 68",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0068-nero-dor-dynastislut",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "79bc6e0c89e95b81f47201dae75b0d959c140575ccb6e2ed23462390e17d8cb1"
+      }
+    },
+    {
+      "id": "event/ev-0068-nero-dor-dynastislut/date/noteSv",
+      "sv": "Årtalet gäller Neros död.",
+      "en": "The year concerns Nero’s death.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0068-nero-dor-dynastislut",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "dbfe4cfe6a29b4f34499eb705dff2e41154b9f6d8d2cab520f3388408780f331"
+      }
+    },
+    {
+      "id": "event/ev-0068-nero-dor-dynastislut/titleSv",
+      "sv": "Neros död avslutar en kejsardynasti",
+      "en": "Nero’s death ends an imperial dynasty",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0068-nero-dor-dynastislut",
+        "fieldPath": "/titleSv",
+        "textSha256": "5f42c86b93bbe4df779d95325e19fd9e3e73d76a812d2e4190aca280b09f62b3"
+      }
+    },
+    {
+      "id": "event/ev-0068-nero-dor-dynastislut/summarySv",
+      "sv": "Nero tar sitt liv under uppror och inbördeskrig. Den julisk-claudiska dynastin upphör.",
+      "en": "Nero takes his own life amid rebellion and civil war. The Julio-Claudian dynasty ends.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0068-nero-dor-dynastislut",
+        "fieldPath": "/summarySv",
+        "textSha256": "5762d639c2ff277786e42d08e97843162b18b324379877e0f8ad3c8c52adc038"
+      }
+    },
+    {
+      "id": "event/ev-0068-nero-dor-dynastislut/geographySv",
+      "sv": "Romarriket",
+      "en": "Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0068-nero-dor-dynastislut",
+        "fieldPath": "/geographySv",
+        "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
+      }
+    },
+    {
+      "id": "event/ev-0069-vespasianus-vinner-inbordeskrig/date/displaySv",
+      "sv": "69 e.Kr.",
+      "en": "AD 69",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0069-vespasianus-vinner-inbordeskrig",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "64abb43c97e29db915ea7fe42f45393eac0f72e01e6ab23728c4f6e3eb252221"
+      }
+    },
+    {
+      "id": "event/ev-0069-vespasianus-vinner-inbordeskrig/date/noteSv",
+      "sv": "Årtalet gäller Vespasianus seger.",
+      "en": "The year concerns Vespasian’s victory.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0069-vespasianus-vinner-inbordeskrig",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e1868288cc6d87c73a0efbea7439cbbf8471e9237468a9796646512c96599826"
+      }
+    },
+    {
+      "id": "event/ev-0069-vespasianus-vinner-inbordeskrig/titleSv",
+      "sv": "Vespasianus segrar i inbördeskrigen",
+      "en": "Vespasian wins the civil wars",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0069-vespasianus-vinner-inbordeskrig",
+        "fieldPath": "/titleSv",
+        "textSha256": "cb9368eacbf21050052f4eb5857dbfd5c6ca611cfb649caf47c5908114324a5c"
+      }
+    },
+    {
+      "id": "event/ev-0069-vespasianus-vinner-inbordeskrig/summarySv",
+      "sv": "Vespasianus blir segrare och grundar den flaviska dynastin.",
+      "en": "Vespasian emerges victorious and founds the Flavian dynasty.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0069-vespasianus-vinner-inbordeskrig",
+        "fieldPath": "/summarySv",
+        "textSha256": "932a23486bebcfd3676838bb0fb03a788545a90b6008db1d0bf3f2902183550f"
+      }
+    },
+    {
+      "id": "event/ev-0069-vespasianus-vinner-inbordeskrig/geographySv",
+      "sv": "Romarriket",
+      "en": "Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0069-vespasianus-vinner-inbordeskrig",
+        "fieldPath": "/geographySv",
+        "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
+      }
+    },
+    {
+      "id": "event/ev-0070-jerusalem-templet-forstors/date/displaySv",
+      "sv": "70 e.Kr.",
+      "en": "AD 70",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0070-jerusalem-templet-forstors",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7a050e258f88b479daf4cf02653e9840fde1669d060ab6f50f53541e95cfe1bd"
+      }
+    },
+    {
+      "id": "event/ev-0070-jerusalem-templet-forstors/date/noteSv",
+      "sv": "Årtalet gäller stadens erövring och templets förstörelse.",
+      "en": "The year concerns the conquest of the city and destruction of the temple.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0070-jerusalem-templet-forstors",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "34385e037461652c321e9daa452f75eaabd72196f68789cc8f0bdc8114c9817a"
+      }
+    },
+    {
+      "id": "event/ev-0070-jerusalem-templet-forstors/titleSv",
+      "sv": "Titus intar Jerusalem",
+      "en": "Titus captures Jerusalem",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0070-jerusalem-templet-forstors",
+        "fieldPath": "/titleSv",
+        "textSha256": "3ccefac10213ebc78a73e52ebb7b84b983a8f71d1f161e38b2f8056f5eda1e8b"
+      }
+    },
+    {
+      "id": "event/ev-0070-jerusalem-templet-forstors/summarySv",
+      "sv": "Romerska styrkor under Titus erövrar staden och förstör templet.",
+      "en": "Roman forces under Titus conquer the city and destroy the temple.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0070-jerusalem-templet-forstors",
+        "fieldPath": "/summarySv",
+        "textSha256": "674c3b2d62c42655e3e6d906428e6f926df80330ebfb2aa784f53a365f27c8e6"
+      }
+    },
+    {
+      "id": "event/ev-0070-jerusalem-templet-forstors/geographySv",
+      "sv": "Jerusalem, Judeen",
+      "en": "Jerusalem, Judaea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0070-jerusalem-templet-forstors",
+        "fieldPath": "/geographySv",
+        "textSha256": "48847161b323c6bc4779181d054b20bb138cecbe5a6c0121a1ab5bc84247bcdc"
+      }
+    },
+    {
+      "id": "event/ev-0079-vesuvius-utbrott/date/displaySv",
+      "sv": "79 e.Kr.",
+      "en": "AD 79",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0079-vesuvius-utbrott",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "52e319fdd24b14bcb6279f852cd343c9d3001f8d86d589f709a6a66203d8edb1"
+      }
+    },
+    {
+      "id": "event/ev-0079-vesuvius-utbrott/date/noteSv",
+      "sv": "Årtalet anges utan en bestämd dag eller månad.",
+      "en": "The year is given without a specific day or month.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0079-vesuvius-utbrott",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "cf3741d5bc9f34aa7e18c820e4c26bb1408097ae6a0c674e0378eca4530b5fb9"
+      }
+    },
+    {
+      "id": "event/ev-0079-vesuvius-utbrott/titleSv",
+      "sv": "Vesuvius begraver städer",
+      "en": "Vesuvius buries cities",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0079-vesuvius-utbrott",
+        "fieldPath": "/titleSv",
+        "textSha256": "3933612082cc8cdcae9845b8a8d4574c6fe90aa46cee80a53adac5b2841b8e70"
+      }
+    },
+    {
+      "id": "event/ev-0079-vesuvius-utbrott/summarySv",
+      "sv": "Utbrottet förstör Pompeji, Herculaneum och Stabiae.",
+      "en": "The eruption destroys Pompeii, Herculaneum and Stabiae.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0079-vesuvius-utbrott",
+        "fieldPath": "/summarySv",
+        "textSha256": "d866de0ce4edd4cfb2f40b9424aa34975730a097b82c5f34608070a5deede640"
+      }
+    },
+    {
+      "id": "event/ev-0079-vesuvius-utbrott/geographySv",
+      "sv": "Kampanien, Italien",
+      "en": "Campania, Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0079-vesuvius-utbrott",
+        "fieldPath": "/geographySv",
+        "textSha256": "f8a552dc3984890bb477d8cf69aa6f51a88888b7ff1f1dfa2807e7151b55849e"
+      }
+    },
+    {
+      "id": "event/ev-0080-colosseum-invigs/date/displaySv",
+      "sv": "80 e.Kr.",
+      "en": "AD 80",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0080-colosseum-invigs",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "08d1772e9d2952d5701fbad635abd6f3ae25d1b68c5b738c7da3574f19f3b015"
+      }
+    },
+    {
+      "id": "event/ev-0080-colosseum-invigs/date/noteSv",
+      "sv": "Årtalet gäller invigningen.",
+      "en": "The year concerns the inauguration.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0080-colosseum-invigs",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f016349b30b4166c8da5fde6531599f7dcd2709e4246dd15acc211f9b75b54ed"
+      }
+    },
+    {
+      "id": "event/ev-0080-colosseum-invigs/titleSv",
+      "sv": "Titus inviger Colosseum",
+      "en": "Titus inaugurates the Colosseum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0080-colosseum-invigs",
+        "fieldPath": "/titleSv",
+        "textSha256": "5f17be13ec26986cb02a381a726cecb7fa7cae710fe8ecc9178ad3f2ed90754b"
+      }
+    },
+    {
+      "id": "event/ev-0080-colosseum-invigs/summarySv",
+      "sv": "Den flaviska amfiteatern invigs i Rom.",
+      "en": "The Flavian Amphitheatre is inaugurated in Rome.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0080-colosseum-invigs",
+        "fieldPath": "/summarySv",
+        "textSha256": "7031f9fd5b0ad4eb9187cb12cf1f96c404ea14fb11e816c0924712844ae50b57"
+      }
+    },
+    {
+      "id": "event/ev-0080-colosseum-invigs/geographySv",
+      "sv": "Rom",
+      "en": "Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0080-colosseum-invigs",
+        "fieldPath": "/geographySv",
+        "textSha256": "1f268826c4d33921cbcec835bd71ab3bc2729936d3edb01befa02c46c41a71ed"
+      }
+    },
+    {
+      "id": "event/ev-0096-domitianus-mordas/date/displaySv",
+      "sv": "96 e.Kr.",
+      "en": "AD 96",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0096-domitianus-mordas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "45e9d4b5d80dba0a215f14203f61113c4b2ceebb0cd4c2e5499e523e3465ef30"
+      }
+    },
+    {
+      "id": "event/ev-0096-domitianus-mordas/date/noteSv",
+      "sv": "Årtalet gäller mordet.",
+      "en": "The year concerns the assassination.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0096-domitianus-mordas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d836ba3345d369f2738a709ec283022a5d06e1aaf27c94139704fb865b808336"
+      }
+    },
+    {
+      "id": "event/ev-0096-domitianus-mordas/titleSv",
+      "sv": "Kejsar Domitianus mördas",
+      "en": "Emperor Domitian is assassinated",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0096-domitianus-mordas",
+        "fieldPath": "/titleSv",
+        "textSha256": "d15bccd7c8971ab65a01e3c0c0c05b2513015b74bcda2bca0cf9708196079724"
+      }
+    },
+    {
+      "id": "event/ev-0096-domitianus-mordas/summarySv",
+      "sv": "Domitianus dödas efter sammansvärjningar och avrättningar under hans regering.",
+      "en": "Domitian is killed after conspiracies and executions during his reign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0096-domitianus-mordas",
+        "fieldPath": "/summarySv",
+        "textSha256": "866344ca8e1f221be7c1d47c08424637c3e1d9cfd7231bbe901c2a542aa83c2e"
+      }
+    },
+    {
+      "id": "event/ev-0096-domitianus-mordas/geographySv",
+      "sv": "Romarriket",
+      "en": "Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0096-domitianus-mordas",
+        "fieldPath": "/geographySv",
+        "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
       }
     }
   ]
