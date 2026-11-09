@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain eighteen approved records, thirty-one source records and ninety display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain twenty approved records, thirty-four source records and one hundred display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -21,7 +21,8 @@ The English research deliveries now contain eighteen approved records, thirty-on
 | [3000–2901 BC](../research/world-cultures/english-events/bc3000-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #115](https://github.com/sp1e/Attainder/pull/115), commit `730ec22eed93515efc845468f662ca4da3489889` |
 | [AD 1000–1099](../research/world-cultures/english-events/ad1000-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #116](https://github.com/sp1e/Attainder/pull/116), commit `4a5147cdaefdbd51db07cc4e4eb113e9d68ca733` |
 | [AD 1100–1199](../research/world-cultures/english-events/ad1100-supplement.md) | 2 | 4 | 10 | Merged and remote-verified in [PR #117](https://github.com/sp1e/Attainder/pull/117), commit `1972e6edc4cd6ed03ed98650cf56673f93ce6215` |
-| [AD 1200–1299](../research/world-cultures/english-events/ad1200-supplement.md) | 2 | 2 | 10 | Source, English and integration reviews approved; current-head CI and verified merge required |
+| [AD 1200–1299](../research/world-cultures/english-events/ad1200-supplement.md) | 2 | 2 | 10 | Source, English and integration reviews approved; [PR #118](https://github.com/sp1e/Attainder/pull/118) awaits current-head CI and verified merge |
+| [AD 1300–1399](../research/world-cultures/english-events/ad1300-supplement.md) | 2 | 3 | 10 | Source, English and integration reviews approved; current-head CI and verified merge required |
 
 PRs #109 and #110 each passed 5,337 tests with no failures and two TODOs; both builds passed. The BC2200 source correction reduced La Bastida's importance to 1. The AD300 batch concerns Meroe's royal pyramid burials and Teotihuacan's Adosada platform; its correction removes an unsupported temporal ordering of damage to other façades. BC2100 adds a regional sealing-technology event while withholding a separate law-collection candidate whose required passages were not fully verified. Original HOLD reports remain preserved separately from the final approvals.
 
@@ -39,7 +40,9 @@ PR #115 passed 5,337 tests with no failures and two TODOs; the build passed. AD1
 
 PRs #116 and #117 each passed 5,337 tests with no failures and two TODOs; both builds passed. AD1200 adds the Samalas eruption and Quanzhou's Shiva installation. The final review approved three narrowly scoped corrections: the source's Saka label, its unconverted day and month, and the Quanzhou geography. The source HOLD remains preserved. Both historical claims and the public note's separate bibliographic check passed independent review.
 
-Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. Independent CI runs may overlap on dependent research branches; merge them in order only after verifying that the merged parent has the tested parent's exact tree. Preserve branch ancestry with merge commits for this chain. The next active batches concern AD 1300–1399 and AD 1400–1499; their records do not enter the delivery totals until integration. The older BC1600 execution-policy hold remains preserved.
+AD1300 adds Terengganu's legal proclamation and Canggu's ferry regulations. Its original source HOLD asked for the definition of an exact date; the separate final review confirmed that the existing contract means certainty at year level. No candidate text changed. The inscription's competing readings, the charter's incomplete text and both records' enforcement limits remain explicit.
+
+Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. Independent CI runs may overlap on dependent research branches; merge them in order only after verifying that the merged parent has the tested parent's exact tree. Preserve branch ancestry with merge commits for this chain. The next active batches concern AD 1400–1499 and AD 1500–1530; their records do not enter the delivery totals until integration. The older BC1600 execution-policy hold remains preserved.
 
 ## Earlier catalog delivery
 

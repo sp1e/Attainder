@@ -1,0 +1,107 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad1300-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 1300,
+    "endYear": 1399
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad1300en-terengganu-nomination",
+      "title": "Batu Bersurat, Terengganu (Inscribed Stone of Terengganu), Memory of the World nomination 2008-37",
+      "institution": "Malaysia Department of National Heritage; UNESCO Memory of the World",
+      "url": "https://media.unesco.org/sites/default/files/webform/mow001/malaysiaterengganu.pdf",
+      "locator": "PDF pp. 1–2: Summary and section 3, Identity and Description; Malay/Jawi identification and supplied date, followed by the State Museum's translated text for sides A–C. Web lines 6–24 and 41–83; extracted text only.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "702 Hijrah (1303)",
+      "originalChronology": "The nomination assigns the inscription to 702 Hijrah/1303. It is one proposed dating, not a resolution of later scholarly disagreement. Its translated religious reckoning is not independently converted.",
+      "scopedClaim": "The Terengganu stone carries Malay in Jawi script and sets out Islamic legal rules, including matters of debt, religious dues and sexual conduct. It is evidence of a legal proclamation; this record does not adopt the nomination's stronger first-arrival or state-religion claims.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1300en-buang-terengganu-review",
+      "title": "Ulasan Buku: Ahmat Adam, Batu Bersurat Terengganu: Betulkah Apa Yang Dibaca Selama Ini?",
+      "institution": "Ahmad Hidayat Buang, Universiti Malaya; Jurnal Usuluddin 46(1), 2018, pp. 165–166",
+      "url": "https://jati.um.edu.my/index.php/JUD/article/download/13066/8312/25718",
+      "locator": "Printed pp. 165–166, PDF pp. 1–2: chronology discussion and final paragraph. Web lines 15–38, 45–56 and 70–76. Public book review, not the complete reviewed monograph; extracted text only.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "702-789H (1303-1387M); 20 Disember 1308M",
+      "originalChronology": "The review reports al-Attas's 22 February 1303, Blagden's older 1303–1387 range and Adam's 20 December 1308. It supplies 4 Rejab 702H and 6 Rejab 708H for the two specific proposals. Apparent 702M/703M typographical slips in its intermediate explanation are not treated as competing medieval dates or used for arithmetic.",
+      "scopedClaim": "The date and calendrical reading are debated. The final paragraph treats the stone as evidence that Islamic law had been implemented or at least proclaimed in the fourteenth century; this event retains only the narrower proclamation claim.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1300en-hamburg-ferry-charter",
+      "title": "Materials for the Medieval History of Indonesia: 1358.07.00, Ferry Charter",
+      "institution": "University of Hamburg, medieval-history source collection; transcription and translation citing Th. G. Th. Pigeaud, Java in the 14th Century",
+      "url": "https://www.spaetmittelalter.uni-hamburg.de/java-history/JavaInscriptions/Java1358.07.00.html",
+      "locator": "Editorial heading and introduction; translated plate 1 recto, plate 3 verso, plate 5 verso, plate 9 recto–verso and plate 10 recto. Web lines 24–26, 39, 47 and 50–60.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "[July-August 1358]; Shaka years passed 1280",
+      "originalChronology": "The editorial heading supplies July–August 1358 for the incomplete charter. The translated opening retains Shaka 1280 and Shrawana. No exact modern day or independent calendar conversion is supplied by this research.",
+      "scopedClaim": "Hayam Wuruk's royal order confirms regulations for ferrymen, naming Canggu and Terung. The translated provisions restrict revenue collectors' claims, require a festival payment, and protect ferrymen in specified passenger and cargo situations. Normative provisions do not prove uniform enforcement.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-1303-terengganu-legal-inscription",
+      "date": {
+        "kind": "disputed",
+        "startYear": 1303,
+        "endYear": 1387,
+        "displayEn": "Disputed: 1303 or 1308; older proposed range 1303–1387",
+        "noteEn": "The heritage nomination uses 1303. Buang's review reports al-Attas's 22 February 1303 and Adam's 20 December 1308, as well as Blagden's older 1303–1387 range. These are competing readings of the inscription's date, not an eighty-four-year episode. The stone does not date the first arrival of Islam or demonstrate how fully its rules were enforced."
+      },
+      "titleEn": "The Terengganu inscription proclaims Islamic legal rules",
+      "summaryEn": "An inscription in Malay, written in Jawi script, sets out Islamic legal rules in Terengganu. Its provisions address debt, religious dues and sexual conduct, while its precise date remains disputed.",
+      "geographyEn": "Terengganu, eastern Malay Peninsula, present-day Malaysia",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "ad1300en-terengganu-nomination",
+        "ad1300en-buang-terengganu-review"
+      ],
+      "selectionNote": "A notable record of legal proclamation and Malay writing in Jawi. The disputed dates and older broad range remain explicit; inscription, religious arrival and actual enforcement are separate questions, so no first conversion or uniformly implemented legal system is claimed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-1358-canggu-ferry-charter",
+      "date": {
+        "kind": "exact",
+        "startYear": 1358,
+        "endYear": 1358,
+        "displayEn": "July–August 1358",
+        "noteEn": "The university edition supplies this month range for an incomplete charter dated Shaka 1280, Shrawana. The year is explicit, but no exact modern day is assigned. The charter records regulations and privileges, not proof that every provision was uniformly enforced."
+      },
+      "titleEn": "Hayam Wuruk confirms regulations for Java's ferrymen",
+      "summaryEn": "Hayam Wuruk's charter confirms privileges and obligations for ferrymen, including those at Canggu and Terung. It limits revenue collectors' claims, sets a festival payment and defines protections for ferrymen carrying people and goods.",
+      "geographyEn": "Java, including Canggu and Terung, present-day Indonesia",
+      "category": "politics",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1300en-hamburg-ferry-charter"
+      ],
+      "selectionNote": "A notable administrative charter connecting transport work, royal revenue and legal protection. The surviving text is incomplete and records normative privileges rather than demonstrated universal enforcement; its supplied July–August dating is retained without a guessed day.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
