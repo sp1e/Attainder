@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "b52ebabf5a4674c25702a58d9e4f0ea093f1034b",
+  "sourceRevision": "a068a054a0304bbefe25195947e3caf85513af89",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -48105,6 +48105,886 @@
         "eventId": "ev-bc1812-sobekneferu-regerar",
         "fieldPath": "/geographySv",
         "textSha256": "ca8d14e809a510e17d2f9c0d4e2c74c40f7e77c2e97bd71f3dbae109eff27335"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-malia-mukvarter/date/displaySv",
+      "sv": "cirka 1800 f.Kr.",
+      "en": "Approximately 1800 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-malia-mukvarter",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f49738f6b99cbf1ff3523acfd5f62f70e0fa4c4e9e74d9acf60dab90001b34e6"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-malia-mukvarter/date/noteSv",
+      "sv": "EFA placerar byggandet vid början av mellanminoisk tid II, omkring 1800 f.Kr. Det är en arkeologisk ungefärlig datering.",
+      "en": "The EFA places construction at the beginning of Middle Minoan II, around 1800 BC. This is an approximate archaeological date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-malia-mukvarter",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7d15fbbc261cf9dff90d442190eb3488ecca8f68e3574eaf61c6304eaaa8e9ab"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-malia-mukvarter/titleSv",
+      "sv": "Byggare uppför Mukvarteret i Malia",
+      "en": "Builders construct the Mu Quarter at Malia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-malia-mukvarter",
+        "fieldPath": "/titleSv",
+        "textSha256": "97a3b856abddabdfcab6c4c08be3afb12d0f8f103f8c7ae5bc29b7dd03e55ac1"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-malia-mukvarter/summarySv",
+      "sv": "Byggare anlägger stora hus och mindre hantverkarbostäder i Malia. Verkstäder för bland annat metallarbete, keramik och sigillgravyr ingår i kvarteret.",
+      "en": "Builders lay out large houses and smaller craftspeople’s dwellings at Malia. The quarter includes workshops for metalworking, pottery and seal engraving, among other crafts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-malia-mukvarter",
+        "fieldPath": "/summarySv",
+        "textSha256": "1dfe957eb4072df17e2c60d913f4f9dad829f2317b5fac9e306bbc6e5eef250b"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-malia-mukvarter/geographySv",
+      "sv": "Malia på Kreta, nuvarande Grekland",
+      "en": "Malia on Crete, present-day Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-malia-mukvarter",
+        "fieldPath": "/geographySv",
+        "textSha256": "48e467606ddd65a45fedbc4f2b4bbd86ae3100f19e71289e35391628b5a5e37d"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-gajiganna-herdar/date/displaySv",
+      "sv": "cirka 1800–1500 f.Kr.",
+      "en": "Approximately 1800–1500 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-gajiganna-herdar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "62728ceecc4c8159d8ca1e5cdf0683efe09166a3c4e5df3955278ba30eb8d9d4"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-gajiganna-herdar/date/noteSv",
+      "sv": "Intervallet gäller Gajigannakulturens första fas och är kalibrerat i Antiquitys tabell. Det daterar en bosättningsfas, inte en enskild ankomst.",
+      "en": "The interval concerns the first phase of the Gajiganna culture and is calibrated in Antiquity’s table. It dates a settlement phase, rather than a single arrival.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-gajiganna-herdar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "2be28cc1366ce912bde11f708f5a2c52fc165c1dc07d4d5e17f2783859fdeda5"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-gajiganna-herdar/titleSv",
+      "sv": "Herdar lever vid Tchadsjöns sydvästra strand",
+      "en": "Herders live along Lake Chad’s southwestern shore",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-gajiganna-herdar",
+        "fieldPath": "/titleSv",
+        "textSha256": "5b1e48a37ddeee4bdb6615ac8c4b2d40277605877c53792775f078f2dd936f82"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-gajiganna-herdar/summarySv",
+      "sv": "Rörliga herdegrupper använder Bamadeltat söder om Tchadsjön. De kombinerar boskapsskötsel med jakt, fiske och insamling av vilda växter.",
+      "en": "Mobile herding groups use the Bama Delta south of Lake Chad. They combine livestock keeping with hunting, fishing and gathering wild plants.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-gajiganna-herdar",
+        "fieldPath": "/summarySv",
+        "textSha256": "d8d2d9afc00e0253f13ce2034ff13cdd1c7f4d69ba87031ccc391eb72cd16cdb"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-gajiganna-herdar/geographySv",
+      "sv": "Tchadsjöns sydvästra bäcken, nuvarande nordöstra Nigeria",
+      "en": "Southwestern Lake Chad basin, present-day northeastern Nigeria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-gajiganna-herdar",
+        "fieldPath": "/geographySv",
+        "textSha256": "8a2a5d6c6871f14ab46f632a043c5d6516ac46e3f5d260087c37c316f4ed2bfd"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-pampa-las-llamas-moxeke/date/displaySv",
+      "sv": "cirka 1800–900 f.Kr.",
+      "en": "Approximately 1800–900 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-pampa-las-llamas-moxeke",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2e162f4c40410930b8122d7dffc63a1fef549641739305223911ec584edccbc5"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-pampa-las-llamas-moxeke/date/noteSv",
+      "sv": "Perus nominering anger hela intervallet för byggande och huvudsaklig användning. Äldre lämningar kan finnas i delar av området; något exakt grundläggningsår anges inte.",
+      "en": "Peru’s nomination gives the full interval for construction and principal use. Earlier remains may exist in parts of the site; no exact foundation year is given.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-pampa-las-llamas-moxeke",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "a285048f7d50f3ab4c4f001e92edd829f3d86db4d42dd3588fd343943b7f8e1b"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-pampa-las-llamas-moxeke/titleSv",
+      "sv": "Invånare bygger och använder Pampa de las Llamas–Moxeke",
+      "en": "Inhabitants build and use Pampa de las Llamas–Moxeke",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-pampa-las-llamas-moxeke",
+        "fieldPath": "/titleSv",
+        "textSha256": "5562966d614428cd94687852f6d4199c891d09b1440804454aac1983ffdf236b"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-pampa-las-llamas-moxeke/summarySv",
+      "sv": "Invånare i Casmadalen uppför stora plattformar, torg och byggnadskomplexen Huaca A och Moxeke. Platsen används som ett regionalt ceremoniellt centrum.",
+      "en": "Inhabitants of the Casma Valley construct large platforms, plazas and the Huaca A and Moxeke building complexes. The site serves as a regional ceremonial centre.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-pampa-las-llamas-moxeke",
+        "fieldPath": "/summarySv",
+        "textSha256": "1387c79f63b280a26859afbcf1c3528375a073fe8acb7a870e29b3c27771ff56"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-pampa-las-llamas-moxeke/geographySv",
+      "sv": "Casmadalen på Perus nordcentrala kust",
+      "en": "Casma Valley on Peru’s north-central coast",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-pampa-las-llamas-moxeke",
+        "fieldPath": "/geographySv",
+        "textSha256": "b371f605f1e2267dbeacafd8a4976cf53e2b23b34946b3860ddefa92fbd52822"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-erlitou-expansion/date/displaySv",
+      "sv": "cirka 1800–1550 eller 1700–1530 f.Kr.",
+      "en": "Approximately 1800–1550 or 1700–1530 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-erlitou-expansion",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2db6e6f9e033a5269af52a185f0126640cd5ebbcc23116974f8d12b1e5f71e08"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-erlitou-expansion/date/noteSv",
+      "sv": "1800–1550 f.Kr. är den traditionella dateringen av faserna II–IV; den senare dateringen i studien är 1700–1530 f.Kr. Endast den traditionella modellen förankrar episoden i 1800–1701 f.Kr. Yttergränserna sammanför alternativ och daterar ingen oavbruten byggperiod. Centralområdet anläggs i fas II; de mest imponerande byggnaderna uppförs i fas III.",
+      "en": "1800–1550 BC is the traditional dating of phases II–IV; the later dating in the study is 1700–1530 BC. Only the traditional model anchors the episode in 1800–1701 BC. The outer bounds combine alternatives and do not date an uninterrupted building period. The central area is laid out in phase II; the most impressive buildings are erected in phase III.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-erlitou-expansion",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "dcebc36facec092530626c6f09d43efd240e1e33a9d2faa66335f9078f4f8b69"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-erlitou-expansion/titleSv",
+      "sv": "Invånarna utvidgar Erlitou och bygger monumentala anläggningar",
+      "en": "Inhabitants expand Erlitou and build monumental complexes",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-erlitou-expansion",
+        "fieldPath": "/titleSv",
+        "textSha256": "83278756393488be2a916439e55025f0151ba4dabf63d511ad015d1d9bddc41f"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-erlitou-expansion/summarySv",
+      "sv": "Erlitou växer till omkring 300 hektar under faserna II–IV. Byggare anlägger stora jordplattformar och gårdskomplex i den centrala delen av bosättningen.",
+      "en": "Erlitou grows to around 300 hectares during phases II–IV. Builders construct large earthen platforms and courtyard complexes in the central part of the settlement.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-erlitou-expansion",
+        "fieldPath": "/summarySv",
+        "textSha256": "c06af4cf481d81dd67fca06bca6d351ab5943c026b0c6a2c5978b957cf968059"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-erlitou-expansion/geographySv",
+      "sv": "Yiluoområdet i Henan, nuvarande Kina",
+      "en": "Yiluo region in Henan, present-day China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-erlitou-expansion",
+        "fieldPath": "/geographySv",
+        "textSha256": "2539ab723e1f3097bc79e7a24d17597d7c04855ab0829bbc09f6a0db314684ce"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-piklihal-spannmal/date/displaySv",
+      "sv": "cirka 1800–1700 f.Kr.",
+      "en": "Approximately 1800–1700 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-piklihal-spannmal",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6fd086efbcfe2e5d28a5f7be13482e0f5afb7606b0fbd6bedb6d5197b06e4c68"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-piklihal-spannmal/date/noteSv",
+      "sv": "Intervallet avser direktdaterade rester av vete och korn från Piklihal. Det fastställer varken första odlingsåret där eller spannmålens första ankomst till Sydindien.",
+      "en": "The interval concerns directly dated wheat and barley remains from Piklihal. It establishes neither the first year of cultivation there nor the cereals’ first arrival in South India.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-piklihal-spannmal",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b62af8a8d414d447c0b24c8d38af31046bd447b9e080eb278548f1d4b8da174f"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-piklihal-spannmal/titleSv",
+      "sv": "Människor använder vete och korn i Piklihal",
+      "en": "People use wheat and barley at Piklihal",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-piklihal-spannmal",
+        "fieldPath": "/titleSv",
+        "textSha256": "2bb66969d8c98cdbc210bf852b86013a827b9a1c8253b8eb36263952cb2289a8"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-piklihal-spannmal/summarySv",
+      "sv": "Daterade sädeskorn visar att människor i Piklihal använder grödor med ursprung i Sydvästasien. Fynden belyser hur Sydindiens jordbruk ingår i långväga utbyte.",
+      "en": "Dated cereal grains show that people at Piklihal use crops originating in Southwest Asia. The finds illuminate South Indian agriculture’s involvement in long-distance exchange.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-piklihal-spannmal",
+        "fieldPath": "/summarySv",
+        "textSha256": "e679846371563d81a0f08fa65d614da3508e448acd41e8606ae8fb6bc00592f1"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-piklihal-spannmal/geographySv",
+      "sv": "Piklihal i Deccan, nuvarande södra Indien",
+      "en": "Piklihal in the Deccan, present-day southern India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-piklihal-spannmal",
+        "fieldPath": "/geographySv",
+        "textSha256": "22404bafc0d0137e02e9e15a519e99b383b7bbe6c9fa34923287d45d6cf2debe"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-an-son-grishallning/date/displaySv",
+      "sv": "cirka 1800–1600 f.Kr.",
+      "en": "Approximately 1800–1600 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-an-son-grishallning",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a33c43495297f7d520df68e3a2df31f5dabe3200d811742a160dff6c961dc286"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-an-son-grishallning/date/noteSv",
+      "sv": "Dateringen gäller grisfynden i den angivna fasen. Forskarna tolkar djuren som skötta eller domesticerade; skillnaden mot lokala vildsvin är svår att avgöra.",
+      "en": "The dating concerns pig remains in the specified phase. Researchers interpret the animals as managed or domesticated; distinguishing them from local wild boar is difficult.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-an-son-grishallning",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3f43ebf575ffc141b4d521cce937dca4b10527bc02a9acb82d54f87100dcb83a"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-an-son-grishallning/titleSv",
+      "sv": "Grisfynd tyder på djurhållning i An Son",
+      "en": "Pig remains suggest animal husbandry at An Son",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-an-son-grishallning",
+        "fieldPath": "/titleSv",
+        "textSha256": "2a61942076af335ea6e179651eb8c517c5d51e38683bd464e78a1257985d943d"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-an-son-grishallning/summarySv",
+      "sv": "Grisbenens mått och djurens åldersfördelning tyder på att invånarna i An Son sköter eller föder upp grisar.",
+      "en": "Pig-bone measurements and the animals’ age profiles suggest that An Son’s inhabitants manage or raise pigs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-an-son-grishallning",
+        "fieldPath": "/summarySv",
+        "textSha256": "77df73cdd1d032adbd21e79604ba726fd3124ea9e9eb2c14ecf27ed0c563585f"
+      }
+    },
+    {
+      "id": "event/ev-bc1800-an-son-grishallning/geographySv",
+      "sv": "An Son i nuvarande södra Vietnam",
+      "en": "An Son in present-day southern Vietnam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1800-an-son-grishallning",
+        "fieldPath": "/geographySv",
+        "textSha256": "810a18b92157a21e1f7de51588f1ee4cb71dc7a5f5a4b2ee525388902b17b410"
+      }
+    },
+    {
+      "id": "event/ev-bc1793-rim-sin-isin/date/displaySv",
+      "sv": "cirka 1793 f.Kr. enligt mellankronologin",
+      "en": "Approximately 1793 BC according to the Middle Chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1793-rim-sin-isin",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "c6e7c0285399ecc247d29867be2dcf6cfb62c3976eb0ba08f01882b61b33fa06"
+      }
+    },
+    {
+      "id": "event/ev-bc1793-rim-sin-isin/date/noteSv",
+      "sv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering.",
+      "en": "The year follows the chapter’s Middle Chronology. Other chronological systems place the period differently; this is not an independently secure absolute date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1793-rim-sin-isin",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9fffb679089a7f7274050fc7c0511d287666aa22cd51865e3dc89b3327c65125"
+      }
+    },
+    {
+      "id": "event/ev-bc1793-rim-sin-isin/titleSv",
+      "sv": "Rim-Sin intar Isin",
+      "en": "Rim-Sin captures Isin",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1793-rim-sin-isin",
+        "fieldPath": "/titleSv",
+        "textSha256": "fb65477649fc81d1f27fc2e5845c819d3162923a48dc1c7bfd219ad6f605da26"
+      }
+    },
+    {
+      "id": "event/ev-bc1793-rim-sin-isin/summarySv",
+      "sv": "Kungen av Larsa besegrar Isin. Segern avslutar rivaliteten mellan städerna och blir utgångspunkt för Larsas följande årsnamn.",
+      "en": "The king of Larsa defeats Isin. The victory ends the rivalry between the cities and becomes the reference point for Larsa’s subsequent year names.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1793-rim-sin-isin",
+        "fieldPath": "/summarySv",
+        "textSha256": "84b6216736bd1ad5842ff2ca3e8215de02464e3839be4920367f7383b455512d"
+      }
+    },
+    {
+      "id": "event/ev-bc1793-rim-sin-isin/geographySv",
+      "sv": "Isin och Larsa i södra Mesopotamien, nuvarande Irak",
+      "en": "Isin and Larsa in southern Mesopotamia, present-day Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1793-rim-sin-isin",
+        "fieldPath": "/geographySv",
+        "textSha256": "dd02d928a26225f86662961180f4bbd0bbe9fb53708fd00c5fdafe2033bf189b"
+      }
+    },
+    {
+      "id": "event/ev-bc1792-hammurabi-kung/date/displaySv",
+      "sv": "1792 f.Kr. enligt mellankronologin; äldre alternativ 1848, 1728 eller 1696 f.Kr.",
+      "en": "1792 BC according to the Middle Chronology; older alternatives: 1848, 1728 or 1696 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1792-hammurabi-kung",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b59046e1da6ee7e5b84ad3e38b2904b78c894210592a0d9ebd81ccf058340909"
+      }
+    },
+    {
+      "id": "event/ev-bc1792-hammurabi-kung/date/noteSv",
+      "sv": "Tillträdet dateras till 1792 f.Kr. i Mariöversikten. Cornell redovisar äldre regeringsramar 1848–1806, 1792–1750, 1728–1686 och 1696–1654 f.Kr. Den refererade studien stöder mellankronologin; alternativen har därför olika stöd.",
+      "en": "The Mari overview dates the accession to 1792 BC. Cornell lists older reign frameworks of 1848–1806, 1792–1750, 1728–1686 and 1696–1654 BC. The study it reports supports the Middle Chronology, so the alternatives have differing support.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1792-hammurabi-kung",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1c4d857d9ac8b242a8370a269e0e89e680f5a8f4ba80a43c3dd2e84d19c82522"
+      }
+    },
+    {
+      "id": "event/ev-bc1792-hammurabi-kung/titleSv",
+      "sv": "Hammurabi blir kung i Babylon",
+      "en": "Hammurabi becomes king of Babylon",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1792-hammurabi-kung",
+        "fieldPath": "/titleSv",
+        "textSha256": "aa7dfc132eb7e5421b8cd07060556bb922e09ed963578a74da7e4190aab89ea2"
+      }
+    },
+    {
+      "id": "event/ev-bc1792-hammurabi-kung/summarySv",
+      "sv": "Hammurabi efterträder sin far Sin-muballit som kung i Babylon. Hans senare erövringar gör riket till en dominerande makt i Mesopotamien.",
+      "en": "Hammurabi succeeds his father Sin-muballit as king of Babylon. His later conquests make the kingdom a dominant power in Mesopotamia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1792-hammurabi-kung",
+        "fieldPath": "/summarySv",
+        "textSha256": "b837d6768f3e2bf7b686379df1d5a86901c358ff0f91ad2739a5288d80ecc0c5"
+      }
+    },
+    {
+      "id": "event/ev-bc1792-hammurabi-kung/geographySv",
+      "sv": "Babylon i Mesopotamien, nuvarande Irak",
+      "en": "Babylon in Mesopotamia, present-day Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1792-hammurabi-kung",
+        "fieldPath": "/geographySv",
+        "textSha256": "9f5882df16beb526a0e9384b42d26831d131000e401bf1124b2c8fc35a4dbc80"
+      }
+    },
+    {
+      "id": "event/ev-bc1776-shamshi-adad-dor/date/displaySv",
+      "sv": "cirka 1776 f.Kr. enligt mellankronologin",
+      "en": "Approximately 1776 BC according to the Middle Chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1776-shamshi-adad-dor",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7dff8c5f47bfb83d6f9e572e0f719741003a970e18ad444633ff9bb3da967215"
+      }
+    },
+    {
+      "id": "event/ev-bc1776-shamshi-adad-dor/date/noteSv",
+      "sv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering. Rikets upplösning följer efter dödsfallet och dateras inte till samma enskilda år. Cornell anger dessutom Hammurabis artonde regeringsår för dödsfallet. Uppgifterna synkroniseras inte genom en egen omräkning.",
+      "en": "The year follows the chapter’s Middle Chronology. Other chronological systems place the period differently; this is not an independently secure absolute date. The kingdom’s dissolution follows the death and is not dated to that same individual year. Cornell also places the death in Hammurabi’s eighteenth regnal year. No independent conversion is used to synchronize these accounts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1776-shamshi-adad-dor",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c02e92d306940b190c94673373f2753e729842ac010a591a47dc4b5ab00db544"
+      }
+    },
+    {
+      "id": "event/ev-bc1776-shamshi-adad-dor/titleSv",
+      "sv": "Shamshi-Adad dör i Övre Mesopotamien",
+      "en": "Shamshi-Adad dies in Upper Mesopotamia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1776-shamshi-adad-dor",
+        "fieldPath": "/titleSv",
+        "textSha256": "be5fff959ad903b4266c12ab54b802cecca207c7f39ea453d72d57db3380a83a"
+      }
+    },
+    {
+      "id": "event/ev-bc1776-shamshi-adad-dor/summarySv",
+      "sv": "Shamshi-Adad dör. Hans överregionala kungadöme faller därefter sönder och lokala makthavare tar åter större kontroll.",
+      "en": "Shamshi-Adad dies. His kingdom spanning several regions subsequently breaks apart, and local rulers regain greater control.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1776-shamshi-adad-dor",
+        "fieldPath": "/summarySv",
+        "textSha256": "eec697ebe9cc488904bfa87c6b5f536ba332dd5a6a312e6f5635a8c190e367ed"
+      }
+    },
+    {
+      "id": "event/ev-bc1776-shamshi-adad-dor/geographySv",
+      "sv": "Övre Mesopotamien, i nuvarande Irak och Syrien",
+      "en": "Upper Mesopotamia, in present-day Iraq and Syria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1776-shamshi-adad-dor",
+        "fieldPath": "/geographySv",
+        "textSha256": "2b28fd91f3c9912395528627fccfd77b3ca995dd1cac5f9ee03cdd0c53e16ef2"
+      }
+    },
+    {
+      "id": "event/ev-bc1766-elam-eshnunna/date/displaySv",
+      "sv": "cirka 1766 f.Kr. enligt mellankronologin",
+      "en": "Approximately 1766 BC according to the Middle Chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1766-elam-eshnunna",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "3dc089e3e51eed5a653603cac6a71fbff10484ae1afc114a247170f27b5f9abd"
+      }
+    },
+    {
+      "id": "event/ev-bc1766-elam-eshnunna/date/noteSv",
+      "sv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering.",
+      "en": "The year follows the chapter’s Middle Chronology. Other chronological systems place the period differently; this is not an independently secure absolute date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1766-elam-eshnunna",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9fffb679089a7f7274050fc7c0511d287666aa22cd51865e3dc89b3327c65125"
+      }
+    },
+    {
+      "id": "event/ev-bc1766-elam-eshnunna/titleSv",
+      "sv": "Elam angriper Eshnunna",
+      "en": "Elam attacks Eshnunna",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1766-elam-eshnunna",
+        "fieldPath": "/titleSv",
+        "textSha256": "afa08dcce75f573b1c9265e8e621b313d1e2955b4067c595a2bfee7bc3825f44"
+      }
+    },
+    {
+      "id": "event/ev-bc1766-elam-eshnunna/summarySv",
+      "sv": "Elam angriper Eshnunna i förbund med Babylon och Mari. Även Larsas medverkan är möjlig enligt källan.",
+      "en": "Elam attacks Eshnunna in alliance with Babylon and Mari. The source also considers Larsa’s involvement possible.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1766-elam-eshnunna",
+        "fieldPath": "/summarySv",
+        "textSha256": "c38bf61259aa30143ab13e922e2032c498801d99f42f96fa66cf7e8c859bff99"
+      }
+    },
+    {
+      "id": "event/ev-bc1766-elam-eshnunna/geographySv",
+      "sv": "Eshnunna i Diyaladalen, nuvarande Irak",
+      "en": "Eshnunna in the Diyala Valley, present-day Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1766-elam-eshnunna",
+        "fieldPath": "/geographySv",
+        "textSha256": "da70f6f6a28509c23568a8603f8fb8b5068ef0764f4599ab03a906c9dfb71e0f"
+      }
+    },
+    {
+      "id": "event/ev-bc1764-koalition-besegrar-elam/date/displaySv",
+      "sv": "cirka 1764 f.Kr. enligt mellankronologin",
+      "en": "Approximately 1764 BC according to the Middle Chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1764-koalition-besegrar-elam",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ee853c2649a7d1a1641d4eb97a79852d6f22846c7728fbe83ce957d3c86970c0"
+      }
+    },
+    {
+      "id": "event/ev-bc1764-koalition-besegrar-elam/date/noteSv",
+      "sv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering.",
+      "en": "The year follows the chapter’s Middle Chronology. Other chronological systems place the period differently; this is not an independently secure absolute date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1764-koalition-besegrar-elam",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9fffb679089a7f7274050fc7c0511d287666aa22cd51865e3dc89b3327c65125"
+      }
+    },
+    {
+      "id": "event/ev-bc1764-koalition-besegrar-elam/titleSv",
+      "sv": "Hammurabi och hans allierade besegrar Elam",
+      "en": "Hammurabi and his allies defeat Elam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1764-koalition-besegrar-elam",
+        "fieldPath": "/titleSv",
+        "textSha256": "530316427061bde9a674de7b2c19e2f2e7559dba35d14028a3761ce98b410478"
+      }
+    },
+    {
+      "id": "event/ev-bc1764-koalition-besegrar-elam/summarySv",
+      "sv": "Babylon, Mari och Aleppo besegrar Elam. Eshnunna hjälper Hammurabi i kriget.",
+      "en": "Babylon, Mari and Aleppo defeat Elam. Eshnunna helps Hammurabi in the war.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1764-koalition-besegrar-elam",
+        "fieldPath": "/summarySv",
+        "textSha256": "e9a14371d3e0d38022f43d330e88bc29c2590d872163839f53ead61f432d4b4b"
+      }
+    },
+    {
+      "id": "event/ev-bc1764-koalition-besegrar-elam/geographySv",
+      "sv": "Mesopotamien och dess östra gränsområde",
+      "en": "Mesopotamia and its eastern borderlands",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1764-koalition-besegrar-elam",
+        "fieldPath": "/geographySv",
+        "textSha256": "383501423f21ce5ae1e529382cc375bb81b24e7e46c3f5afc2bee0dcc5b0f2c5"
+      }
+    },
+    {
+      "id": "event/ev-bc1763-hammurabi-larsa/date/displaySv",
+      "sv": "cirka 1763 f.Kr. enligt mellankronologin",
+      "en": "Approximately 1763 BC according to the Middle Chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1763-hammurabi-larsa",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4769d37c4d30c900fdc382129d576fc9700cb5cadb87ff868e2b74693c895cac"
+      }
+    },
+    {
+      "id": "event/ev-bc1763-hammurabi-larsa/date/noteSv",
+      "sv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering.",
+      "en": "The year follows the chapter’s Middle Chronology. Other chronological systems place the period differently; this is not an independently secure absolute date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1763-hammurabi-larsa",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9fffb679089a7f7274050fc7c0511d287666aa22cd51865e3dc89b3327c65125"
+      }
+    },
+    {
+      "id": "event/ev-bc1763-hammurabi-larsa/titleSv",
+      "sv": "Hammurabi störtar Rim-Sin i Larsa",
+      "en": "Hammurabi overthrows Rim-Sin at Larsa",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1763-hammurabi-larsa",
+        "fieldPath": "/titleSv",
+        "textSha256": "3827491a9e170625445d8be521fdaf4f3bff7450b14474e237b9ed4d1e98b0b0"
+      }
+    },
+    {
+      "id": "event/ev-bc1763-hammurabi-larsa/summarySv",
+      "sv": "Hammurabi besegrar Rim-Sin och införlivar Larsa med sitt växande babyloniska rike.",
+      "en": "Hammurabi defeats Rim-Sin and incorporates Larsa into his growing Babylonian kingdom.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1763-hammurabi-larsa",
+        "fieldPath": "/summarySv",
+        "textSha256": "6835663c5ec09c0fc75c9e6cc218d7e37b8b630a59d45124c5494631da65e47f"
+      }
+    },
+    {
+      "id": "event/ev-bc1763-hammurabi-larsa/geographySv",
+      "sv": "Larsa i södra Mesopotamien, nuvarande Irak",
+      "en": "Larsa in southern Mesopotamia, present-day Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1763-hammurabi-larsa",
+        "fieldPath": "/geographySv",
+        "textSha256": "c960b09fe103b23a012d6cfce6833182710670a3f7c5f783cca8c9a5f1211734"
+      }
+    },
+    {
+      "id": "event/ev-bc1762-hammurabi-eshnunna/date/displaySv",
+      "sv": "cirka 1762 f.Kr. enligt mellankronologin",
+      "en": "Approximately 1762 BC according to the Middle Chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1762-hammurabi-eshnunna",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "68ce18dfc07f897bbf7541bfb785f58cdff18c32bac54b02d84a06a88e102ef8"
+      }
+    },
+    {
+      "id": "event/ev-bc1762-hammurabi-eshnunna/date/noteSv",
+      "sv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering.",
+      "en": "The year follows the chapter’s Middle Chronology. Other chronological systems place the period differently; this is not an independently secure absolute date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1762-hammurabi-eshnunna",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9fffb679089a7f7274050fc7c0511d287666aa22cd51865e3dc89b3327c65125"
+      }
+    },
+    {
+      "id": "event/ev-bc1762-hammurabi-eshnunna/titleSv",
+      "sv": "Hammurabi plundrar Eshnunna",
+      "en": "Hammurabi sacks Eshnunna",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1762-hammurabi-eshnunna",
+        "fieldPath": "/titleSv",
+        "textSha256": "c2a2e286ca04aafd04130133c4d544eedd30833915d1bd1789126535f4712bd5"
+      }
+    },
+    {
+      "id": "event/ev-bc1762-hammurabi-eshnunna/summarySv",
+      "sv": "Hammurabi angriper och plundrar Eshnunna, som tidigare hade hjälpt honom mot Elam.",
+      "en": "Hammurabi attacks and sacks Eshnunna, which had previously helped him against Elam.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1762-hammurabi-eshnunna",
+        "fieldPath": "/summarySv",
+        "textSha256": "b5edeab61546ed645b45f05fc348cff7d4780a9781fe08034ee0299e1fa98fc5"
+      }
+    },
+    {
+      "id": "event/ev-bc1762-hammurabi-eshnunna/geographySv",
+      "sv": "Eshnunna i Diyaladalen, nuvarande Irak",
+      "en": "Eshnunna in the Diyala Valley, present-day Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1762-hammurabi-eshnunna",
+        "fieldPath": "/geographySv",
+        "textSha256": "da70f6f6a28509c23568a8603f8fb8b5068ef0764f4599ab03a906c9dfb71e0f"
+      }
+    },
+    {
+      "id": "event/ev-bc1761-hammurabi-mari/date/displaySv",
+      "sv": "cirka 1761 f.Kr. enligt mellankronologin",
+      "en": "Approximately 1761 BC according to the Middle Chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1761-hammurabi-mari",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "21f6aa41251bebec3e9342c5b784304e709799380df96a1d19508eae8a8c8ee8"
+      }
+    },
+    {
+      "id": "event/ev-bc1761-hammurabi-mari/date/noteSv",
+      "sv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering. Händelsen gäller erövringen; stadens senare förstörelseförlopp får inget separat år här.",
+      "en": "The year follows the chapter’s Middle Chronology. Other chronological systems place the period differently; this is not an independently secure absolute date. The event concerns the conquest; the city’s subsequent destruction is not assigned a separate year here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1761-hammurabi-mari",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "cf535a3128899a72da7c3572d87270e2bdede03f5a13c8ad5003caecc4342a50"
+      }
+    },
+    {
+      "id": "event/ev-bc1761-hammurabi-mari/titleSv",
+      "sv": "Hammurabi erövrar Mari",
+      "en": "Hammurabi conquers Mari",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1761-hammurabi-mari",
+        "fieldPath": "/titleSv",
+        "textSha256": "7002fdaf400009c6f2dd6a273b99f8b92c0d6f13a03d0b1535b07fc27ab42178"
+      }
+    },
+    {
+      "id": "event/ev-bc1761-hammurabi-mari/summarySv",
+      "sv": "Hammurabi vänder sig mot sin tidigare allierade Zimri-Lim och intar Mari.",
+      "en": "Hammurabi turns against his former ally Zimri-Lim and captures Mari.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1761-hammurabi-mari",
+        "fieldPath": "/summarySv",
+        "textSha256": "5e5b65ea83906ebd83b7d36d7719b13eebabdf1b1be81722c8ef233015e641f3"
+      }
+    },
+    {
+      "id": "event/ev-bc1761-hammurabi-mari/geographySv",
+      "sv": "Mari vid Eufrat, nuvarande Syrien",
+      "en": "Mari on the Euphrates, present-day Syria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1761-hammurabi-mari",
+        "fieldPath": "/geographySv",
+        "textSha256": "33677bbc9e223f7c856e4475922bbd010303ae17e2ca81b5f241e421aa72c38e"
+      }
+    },
+    {
+      "id": "event/ev-bc1750-hammurabis-lagstele/date/displaySv",
+      "sv": "cirka 1750 f.Kr.",
+      "en": "Approximately 1750 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1750-hammurabis-lagstele",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "cc424dd0e4fd6e078c67b0da013c86aff8fa1a580092f6f23e498c6b354aae1b"
+      }
+    },
+    {
+      "id": "event/ev-bc1750-hammurabis-lagstele/date/noteSv",
+      "sv": "Louvren daterar ristningen till omkring 1750 f.Kr. Bildtextens 1792–1750 gäller kungens regering. Placeringen följer den använda babyloniska kronologin.",
+      "en": "The Louvre dates the carving to around 1750 BC. The caption’s 1792–1750 concerns the king’s reign. The placement follows the Babylonian chronology used.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1750-hammurabis-lagstele",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "271916fb859bacda4585591c86b4a019e5f84c9ac849be8cf62302d82e39fd81"
+      }
+    },
+    {
+      "id": "event/ev-bc1750-hammurabis-lagstele/titleSv",
+      "sv": "Hammurabi låter rista rättsbeslut på en stele",
+      "en": "Hammurabi has judicial decisions carved on a stele",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1750-hammurabis-lagstele",
+        "fieldPath": "/titleSv",
+        "textSha256": "be394f2ff27a6910420192c19db8be5a5934c370454246195decee5ae0d52f07"
+      }
+    },
+    {
+      "id": "event/ev-bc1750-hammurabis-lagstele/summarySv",
+      "sv": "På en hög stenstele samlas rättsbeslut om bland annat familj, egendom, handel och arbete. Texten framställer Hammurabi som rättvisans upprätthållare.",
+      "en": "A tall stone stele brings together judicial decisions on matters including family, property, trade and work. The text presents Hammurabi as the upholder of justice.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1750-hammurabis-lagstele",
+        "fieldPath": "/summarySv",
+        "textSha256": "86fffb4ae4b02338eb6044f279df2b5af7b903e4a5a2b18769dcd1e838aa9dc0"
+      }
+    },
+    {
+      "id": "event/ev-bc1750-hammurabis-lagstele/geographySv",
+      "sv": "Babylonien, nuvarande Irak",
+      "en": "Babylonia, present-day Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1750-hammurabis-lagstele",
+        "fieldPath": "/geographySv",
+        "textSha256": "c7e53222f61fd00d9fb383338f8b31bb85e825cadfba367bd2d5218355d5287c"
+      }
+    },
+    {
+      "id": "event/ev-bc1742-sydliga-upproret/date/displaySv",
+      "sv": "cirka 1742 f.Kr.",
+      "en": "Approximately 1742 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1742-sydliga-upproret",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "aac653ace1b5efaeae7dd961da4c8b91089a8f568aee786101f3342b8cc55252"
+      }
+    },
+    {
+      "id": "event/ev-bc1742-sydliga-upproret/date/noteSv",
+      "sv": "Rubios föredragsabstract anger cirka 1742 f.Kr. Yoffee och Seri knyter upproret till Samsu-ilunas åttonde regeringsår. Årtalet återger den använda kronologin, inte en egen omräkning.",
+      "en": "Rubio’s lecture abstract gives approximately 1742 BC. Yoffee and Seri connect the rebellion with Samsu-iluna’s eighth regnal year. The date reflects the chronology used, rather than an independent conversion.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1742-sydliga-upproret",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "892857aee167c93fee530ea16f7a33ceee40165fdcd70e6c70627b154370dec8"
+      }
+    },
+    {
+      "id": "event/ev-bc1742-sydliga-upproret/titleSv",
+      "sv": "Sydmesopotamiska ledare gör uppror mot Babylon",
+      "en": "Southern Mesopotamian leaders rebel against Babylon",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1742-sydliga-upproret",
+        "fieldPath": "/titleSv",
+        "textSha256": "0c9b5f0ff4af7a1b566f81ad2f47808739517b6f0311de840dac8a51bb3b425f"
+      }
+    },
+    {
+      "id": "event/ev-bc1742-sydliga-upproret/summarySv",
+      "sv": "Rim-Sin II och andra lokala ledare utmanar Samsu-ilunas styre. Upproret berör flera städer som Hammurabi tidigare hade erövrat.",
+      "en": "Rim-Sin II and other local leaders challenge Samsu-iluna’s rule. The rebellion involves several cities that Hammurabi had previously conquered.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1742-sydliga-upproret",
+        "fieldPath": "/summarySv",
+        "textSha256": "3c7b61cf8fe53d6a2c3e044e42065e1a5044f7fabf3102108ec64d58a705c0b1"
+      }
+    },
+    {
+      "id": "event/ev-bc1742-sydliga-upproret/geographySv",
+      "sv": "Södra Mesopotamien, bland annat Larsa och Uruk i nuvarande Irak",
+      "en": "Southern Mesopotamia, including Larsa and Uruk in present-day Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1742-sydliga-upproret",
+        "fieldPath": "/geographySv",
+        "textSha256": "51cb582b5b05a0c26b5c40361f7d8775747f54f21d05cb16d93f26736bdda548"
       }
     }
   ]
