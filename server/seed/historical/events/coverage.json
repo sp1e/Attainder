@@ -183,6 +183,12 @@
     },
     {
       "startYear": -300,
+      "endYear": -201,
+      "status": "partial",
+      "note": "30 independently checked event records cover selected developments in Europe, the Middle East and North Africa, the steppe and Central Asia, sub-Saharan Africa, East Asia, South Asia, Southeast Asia and the Americas. All nine macroregions were searched; Oceania has no retained event. Mediterranean warfare dominates and many regions, social history and environmental history remain gaps. Kalinga retains approximately 261 or 260 BC; Raphia claims only the battle year 217 BC, with June attributed to the preceding march. Full archaeological and political intervals remain single records and do not extend researched coverage. Empty years are research gaps, not evidence that no event occurred."
+    },
+    {
+      "startYear": -200,
       "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
