@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "d59a7fa4a9c3e4faac4166d7a7eae83c68fd46a5",
+  "sourceRevision": "5df05508fb77c89b485fa6b0bdecb38a63c46b40",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -44255,6 +44255,941 @@
         "eventId": "ev-bc2004-elamiterna-intar-ur",
         "fieldPath": "/geographySv",
         "textSha256": "3cf734631bf6db2704d3e19f70d29d0e2481c4721da573238b3cf23d1e93ec63"
+      }
+    },
+    {
+      "id": "event/ev-0201-aksum-sydarabien/date/displaySv",
+      "sv": "Början av 200-talet e.Kr.",
+      "en": "Early third century AD",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0201-aksum-sydarabien",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ec42602e1dc6964935dee5afe3b8894fafdc102e16183d4378240dcccfe0a445"
+      }
+    },
+    {
+      "id": "event/ev-0201-aksum-sydarabien/date/noteSv",
+      "sv": "Källan anger början av det tredje århundradet e.Kr. Hela århundradet 201–300 används som sökintervall; det är ingen uppgift om ingripandets längd.",
+      "en": "The source specifies the beginning of the third century AD. The entire century, 201–300, is used as a search interval; this does not state how long the intervention lasted.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0201-aksum-sydarabien",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "70eb89bfdbad7670841c2ab079c87f6c66acdee40641b6afc916a1ba5573fda2"
+      }
+    },
+    {
+      "id": "event/ev-0201-aksum-sydarabien/titleSv",
+      "sv": "Aksum ingriper i Sydarabiens krig",
+      "en": "Aksum intervenes in South Arabian wars",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0201-aksum-sydarabien",
+        "fieldPath": "/titleSv",
+        "textSha256": "0e473571f7ef3a3c103f6ff2e324a6132524456d3896886dee4531f034ce50c5"
+      }
+    },
+    {
+      "id": "event/ev-0201-aksum-sydarabien/summarySv",
+      "sv": "Aksum har blivit en makt som ingriper i Sydarabiens krig. Inskrifter där nämner den aksumitiske kungen GDRT.",
+      "en": "Aksum has become a power that intervenes in South Arabian wars. Inscriptions there mention the Aksumite king GDRT.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0201-aksum-sydarabien",
+        "fieldPath": "/summarySv",
+        "textSha256": "7115ea2e9dc5ed38e40a82adee12550ad6a7fa4029b862782fef27a43fe29aed"
+      }
+    },
+    {
+      "id": "event/ev-0201-aksum-sydarabien/geographySv",
+      "sv": "Aksum och Sydarabien",
+      "en": "Aksum and South Arabia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0201-aksum-sydarabien",
+        "fieldPath": "/geographySv",
+        "textSha256": "f1311f3c643025182a992aec919df0a21c3ab7b68cb96ed17c22b97b800e9886"
+      }
+    },
+    {
+      "id": "event/ev-0203-perpetua-felicitas/date/displaySv",
+      "sv": "203 e.Kr.",
+      "en": "AD 203",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0203-perpetua-felicitas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7932eac0f112e0919fb2f54f5b68e32b8ad74eaa6dddbdb3ef249905e2da4455"
+      }
+    },
+    {
+      "id": "event/ev-0203-perpetua-felicitas/date/noteSv",
+      "sv": "Fordhams inledning anger den 7 mars 203. Den religiösa martyrberättelsen behandlas som en berättande källa.",
+      "en": "Fordham’s introduction gives 7 March 203. The religious account of martyrdom is treated as a narrative source.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0203-perpetua-felicitas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "17de128e8188308fcf8c51342fc84da6192d915c171ffc3dbbfe4fe602343c5e"
+      }
+    },
+    {
+      "id": "event/ev-0203-perpetua-felicitas/titleSv",
+      "sv": "Perpetua och Felicitas avrättas i Karthago",
+      "en": "Perpetua and Felicitas are executed at Carthage",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0203-perpetua-felicitas",
+        "fieldPath": "/titleSv",
+        "textSha256": "92004581aeb74f2762259b45de79ebbae70bbdadf29bde26802f655bbe7f2353"
+      }
+    },
+    {
+      "id": "event/ev-0203-perpetua-felicitas/summarySv",
+      "sv": "De kristna Perpetua och Felicitas avrättas i Karthagos arena. Deras fångenskap och död skildras i en bevarad martyrberättelse.",
+      "en": "The Christians Perpetua and Felicitas are executed in the arena at Carthage. Their imprisonment and deaths are described in a surviving martyr narrative.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0203-perpetua-felicitas",
+        "fieldPath": "/summarySv",
+        "textSha256": "fec4dc458705d5fa4727ad4b2c62b7a1bb36884cfbcbd6f95b9ee97dde7436bd"
+      }
+    },
+    {
+      "id": "event/ev-0203-perpetua-felicitas/geographySv",
+      "sv": "Karthago, Nordafrika",
+      "en": "Carthage, North Africa",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0203-perpetua-felicitas",
+        "fieldPath": "/geographySv",
+        "textSha256": "cf0a2dafc7ddd0729dbcf01bf4fb4edbfbfd40d1fdbe6be7b8921cc3e50f9cff"
+      }
+    },
+    {
+      "id": "event/ev-0212-caracalla-medborgarskap/date/displaySv",
+      "sv": "212 eller 213 e.Kr.",
+      "en": "AD 212 or 213",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0212-caracalla-medborgarskap",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "788d2a6f43a19a84a8db4c516c4627b567de1cc9045324ab79601565a46fbb52"
+      }
+    },
+    {
+      "id": "event/ev-0212-caracalla-medborgarskap/date/noteSv",
+      "sv": "Giessens universitetsbibliotek anger 212/213; Mets tidslinje anger 212. Det alternativa året behålls.",
+      "en": "Giessen’s university library gives 212/213; the Met’s timeline gives 212. The alternative year is retained.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0212-caracalla-medborgarskap",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "02897ac43b6a9f4d8bd9139f04912fd5264acb74d8091c21b98813ccfbd93f65"
+      }
+    },
+    {
+      "id": "event/ev-0212-caracalla-medborgarskap/titleSv",
+      "sv": "Caracalla utvidgar det romerska medborgarskapet",
+      "en": "Caracalla extends Roman citizenship",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0212-caracalla-medborgarskap",
+        "fieldPath": "/titleSv",
+        "textSha256": "79635ba0649f20cc47eea78b7879d7e07f3a5ab5117102d3e1289f53e85491ac"
+      }
+    },
+    {
+      "id": "event/ev-0212-caracalla-medborgarskap/summarySv",
+      "sv": "Caracallas edikt Constitutio Antoniniana ger romerskt medborgarskap åt rikets fria invånare. Slaveriet upphör inte därmed.",
+      "en": "Caracalla’s edict, the Constitutio Antoniniana, grants Roman citizenship to the empire’s free inhabitants. It does not end slavery.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0212-caracalla-medborgarskap",
+        "fieldPath": "/summarySv",
+        "textSha256": "9531806a3fd2352333580abadec35ec481bf458294a16da24dfee68f1712e46e"
+      }
+    },
+    {
+      "id": "event/ev-0212-caracalla-medborgarskap/geographySv",
+      "sv": "Romarriket",
+      "en": "The Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0212-caracalla-medborgarskap",
+        "fieldPath": "/geographySv",
+        "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
+      }
+    },
+    {
+      "id": "event/ev-0212-caracallas-termer/date/displaySv",
+      "sv": "212–216 e.Kr.",
+      "en": "AD 212–216",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0212-caracallas-termer",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0e72adb2a09026e57162ee9efdd1adc42ff529f985db56462b608d957f0c742d"
+      }
+    },
+    {
+      "id": "event/ev-0212-caracallas-termer/date/noteSv",
+      "sv": "Intervallet avser byggandet. Källpassagen ger ingen separat invigningsdag.",
+      "en": "The interval refers to construction. The cited passage gives no separate inauguration date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0212-caracallas-termer",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5b15888ced4eaccd599ebc83a4a68237e428f436e81e7182c545e419fa446b3d"
+      }
+    },
+    {
+      "id": "event/ev-0212-caracallas-termer/titleSv",
+      "sv": "Caracalla låter bygga ett stort badkomplex",
+      "en": "Caracalla commissions a large bath complex",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0212-caracallas-termer",
+        "fieldPath": "/titleSv",
+        "textSha256": "b701902af66fb7602f8e395d6cdf90c685b5b7f9b297e84a9131a9e86297a553"
+      }
+    },
+    {
+      "id": "event/ev-0212-caracallas-termer/summarySv",
+      "sv": "På Caracallas uppdrag uppförs termer på Aventinen i Rom. En särskild gren av Aqua Marcia förser anläggningen med vatten.",
+      "en": "Baths are built on the Aventine in Rome at Caracalla’s command. A dedicated branch of the Aqua Marcia supplies the complex with water.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0212-caracallas-termer",
+        "fieldPath": "/summarySv",
+        "textSha256": "2895ff866261d5a183717444d4845cc8530ad4d789c6f627b94454fec09e3fd2"
+      }
+    },
+    {
+      "id": "event/ev-0212-caracallas-termer/geographySv",
+      "sv": "Rom, Italien",
+      "en": "Rome, Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0212-caracallas-termer",
+        "fieldPath": "/geographySv",
+        "textSha256": "6891bf8a2728ccd419110af49208a4f9e999ca9737a13cd8268aa8ff74bae2bd"
+      }
+    },
+    {
+      "id": "event/ev-0220-nio-ranggrader/date/displaySv",
+      "sv": "Omkring 220 e.Kr.",
+      "en": "Around AD 220",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0220-nio-ranggrader",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4f6e0c3ab57069a327fd98bf557db2be68fe01ce248081a1cb2fd9c8e9694af0"
+      }
+    },
+    {
+      "id": "event/ev-0220-nio-ranggrader/date/noteSv",
+      "sv": "Studien använder en ungefärlig datering och skiljer reformen från Cao Caos tidigare försök.",
+      "en": "The study uses an approximate date and distinguishes the reform from Cao Cao’s earlier attempts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0220-nio-ranggrader",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "825a1d6d32ecd37af0c2e991572b7b459e813f4acb0845e0eb605b8cfbdf31ad"
+      }
+    },
+    {
+      "id": "event/ev-0220-nio-ranggrader/titleSv",
+      "sv": "Cao Pi inför ett system med nio ranggrader",
+      "en": "Cao Pi establishes a system of nine ranks",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0220-nio-ranggrader",
+        "fieldPath": "/titleSv",
+        "textSha256": "74f3e8c78ddc78315b9fef75ce7365db13b70b971331f541c9b3c60541bae8e3"
+      }
+    },
+    {
+      "id": "event/ev-0220-nio-ranggrader/summarySv",
+      "sv": "Lokala bedömare graderar män som kan rekryteras till ämbeten. Under Cao Pi får systemet med nio grader fastare institutionell form.",
+      "en": "Local assessors grade men who may be recruited to official posts. Under Cao Pi, the system of nine grades takes a more established institutional form.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0220-nio-ranggrader",
+        "fieldPath": "/summarySv",
+        "textSha256": "7131ef61236587a3996cc313c3a5b19328e8eda50a35409665004b57c9bb4921"
+      }
+    },
+    {
+      "id": "event/ev-0220-nio-ranggrader/geographySv",
+      "sv": "Wei, Kina",
+      "en": "Wei, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0220-nio-ranggrader",
+        "fieldPath": "/geographySv",
+        "textSha256": "a0937d416d393b72f1468a5233c3e713d9c8f7814e4412c854cfefca6c35c403"
+      }
+    },
+    {
+      "id": "event/ev-0235-alexander-severus-mord/date/displaySv",
+      "sv": "235 e.Kr.",
+      "en": "AD 235",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0235-alexander-severus-mord",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "43c612aa4b0e8418f3d824108d9bf652087c3d10dc7a4b77f9b481b9aafb5d8b"
+      }
+    },
+    {
+      "id": "event/ev-0235-alexander-severus-mord/date/noteSv",
+      "sv": "Mets historiska översikt daterar mordet till 235 e.Kr.",
+      "en": "The Met’s historical overview dates the assassination to AD 235.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0235-alexander-severus-mord",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "69038f6fa6448aca659f8eba4a712fe6028cece7cce3fed0bf999e797637b795"
+      }
+    },
+    {
+      "id": "event/ev-0235-alexander-severus-mord/titleSv",
+      "sv": "Alexander Severus mördas",
+      "en": "Alexander Severus is assassinated",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0235-alexander-severus-mord",
+        "fieldPath": "/titleSv",
+        "textSha256": "f9ff2c740af76a9be56e556107e8f9cc5fc1b11c1075229c1b0ef99711589754"
+      }
+    },
+    {
+      "id": "event/ev-0235-alexander-severus-mord/summarySv",
+      "sv": "Kejsar Alexander Severus mördas. Med hans död upphör den severiska kejsardynastin.",
+      "en": "Emperor Alexander Severus is assassinated. His death ends the Severan imperial dynasty.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0235-alexander-severus-mord",
+        "fieldPath": "/summarySv",
+        "textSha256": "3a56cdb78c7a6b14d742437715fd982ba0f767a269d27a2266e2074ff9aacaf5"
+      }
+    },
+    {
+      "id": "event/ev-0235-alexander-severus-mord/geographySv",
+      "sv": "Romarriket",
+      "en": "The Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0235-alexander-severus-mord",
+        "fieldPath": "/geographySv",
+        "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
+      }
+    },
+    {
+      "id": "event/ev-0238-himiko-beskickning/date/displaySv",
+      "sv": "238 eller 239 e.Kr.",
+      "en": "AD 238 or 239",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0238-himiko-beskickning",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "03449e54930534b3c87700e1406829971b2aacf0f9b6b8bc40350e4280c08c52"
+      }
+    },
+    {
+      "id": "event/ev-0238-himiko-beskickning/date/noteSv",
+      "sv": "Edwards redovisar 238 i den bevarade Wei zhi-texten och 239 i Nihon shokis citat. Kyushu National Museum använder 239. Yamatais läge är omstritt.",
+      "en": "Edwards gives 238 in the surviving Wei zhi text and 239 in the quotation in Nihon shoki. Kyushu National Museum uses 239. Yamatai’s location is disputed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0238-himiko-beskickning",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5836b33fcdc5edf5c13db0318460eed6a2ef0b851a2e44be5a6f0980b4326c94"
+      }
+    },
+    {
+      "id": "event/ev-0238-himiko-beskickning/titleSv",
+      "sv": "Himiko sänder en beskickning till Wei",
+      "en": "Himiko sends an embassy to Wei",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0238-himiko-beskickning",
+        "fieldPath": "/titleSv",
+        "textSha256": "a5fd296ee337563673de11cb2fc912aeb2f1a0c77c95568dfe44122bb34410ae"
+      }
+    },
+    {
+      "id": "event/ev-0238-himiko-beskickning/summarySv",
+      "sv": "Himiko, härskare i Wa, skickar sändebud till Wei. Den kinesiske kejsaren ger bland annat bronsspeglar som gåva.",
+      "en": "Himiko, ruler of Wa, sends envoys to Wei. The Chinese emperor gives bronze mirrors among other gifts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0238-himiko-beskickning",
+        "fieldPath": "/summarySv",
+        "textSha256": "6f349a2cba62c6d8d262da0361ef3c4b4cdacd8fec4e67f83de028d8ed0a12a8"
+      }
+    },
+    {
+      "id": "event/ev-0238-himiko-beskickning/geographySv",
+      "sv": "Wa i den japanska övärlden och Wei i Kina",
+      "en": "Wa in the Japanese archipelago and Wei in China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0238-himiko-beskickning",
+        "fieldPath": "/geographySv",
+        "textSha256": "3c3d63a1727c64788c6a8bfba6dac26834be5e75407f14e7a47d2db89a21b1b7"
+      }
+    },
+    {
+      "id": "event/ev-0244-dura-synagoga/date/displaySv",
+      "sv": "244–245 e.Kr.",
+      "en": "AD 244–245",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0244-dura-synagoga",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "581342e22695de3d6e0ae587cb17581af7b361d4cc08f6720e69b435f63bd8f3"
+      }
+    },
+    {
+      "id": "event/ev-0244-dura-synagoga/date/noteSv",
+      "sv": "En arameisk inskrift daterar den senare byggnadsfasen till 244/45. Den äldre omvandlingen från bostad räknas inte som en ny händelse här.",
+      "en": "An Aramaic inscription dates the later building phase to 244/45. The earlier conversion from a house is not counted as a new event here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0244-dura-synagoga",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "64b2e39884cd7a8f0660561be35213abaa672365d967438d34ed63d18e5cd72f"
+      }
+    },
+    {
+      "id": "event/ev-0244-dura-synagoga/titleSv",
+      "sv": "Synagogan i Dura-Europos byggs ut",
+      "en": "The synagogue at Dura-Europos is enlarged",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0244-dura-synagoga",
+        "fieldPath": "/titleSv",
+        "textSha256": "e538714b44aef04fc5f697883af065d6abdec38767a94224b647c9a9bb3aefaa"
+      }
+    },
+    {
+      "id": "event/ev-0244-dura-synagoga/summarySv",
+      "sv": "Den judiska församlingens synagoga förstoras, renoveras och får omfattande bilddekorationer.",
+      "en": "The Jewish community’s synagogue is enlarged, renovated and extensively decorated with images.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0244-dura-synagoga",
+        "fieldPath": "/summarySv",
+        "textSha256": "398102fc61f8fdd821cbe9825cb1ba5012502593f9fe7acef9b735296efd897a"
+      }
+    },
+    {
+      "id": "event/ev-0244-dura-synagoga/geographySv",
+      "sv": "Dura-Europos, Syrien",
+      "en": "Dura-Europos, Syria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0244-dura-synagoga",
+        "fieldPath": "/geographySv",
+        "textSha256": "ee61d9bf5313670884d0daf22a557209ed03663646f2ac4b7330a0fd09c9439b"
+      }
+    },
+    {
+      "id": "event/ev-0250-decius-offerkrav/date/displaySv",
+      "sv": "250 e.Kr.",
+      "en": "AD 250",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0250-decius-offerkrav",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e2f919b577f2d634ef6371cc0ae69f148c4f70fe0cbc9a02d09e2dc9763d0417"
+      }
+    },
+    {
+      "id": "event/ev-0250-decius-offerkrav/date/noteSv",
+      "sv": "Dokumentet dateras till den 16 juni 250. Det daterar en undertecknad begäran om bekräftelse; originalediktets utfärdandedag är okänd här.",
+      "en": "The document is dated to 16 June 250. This dates a signed request for confirmation; the original edict’s date of issue is not established here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0250-decius-offerkrav",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c992bd85319ed771e941bebe607adaf8439eae6be3f84f42b346b3dc40926c06"
+      }
+    },
+    {
+      "id": "event/ev-0250-decius-offerkrav/titleSv",
+      "sv": "Offerkrav under Decius dokumenteras i Egypten",
+      "en": "Sacrifice requirements under Decius are documented in Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0250-decius-offerkrav",
+        "fieldPath": "/titleSv",
+        "textSha256": "c1111ba800771c8d2ac5781074fd68c0508f61bb57b44fcd41fafb5bf9836ce2"
+      }
+    },
+    {
+      "id": "event/ev-0250-decius-offerkrav/summarySv",
+      "sv": "Aurelia Charis begär att en kommission ska bekräfta hennes offentliga offer enligt kejsarens order. Två ledamöter undertecknar handlingen.",
+      "en": "Aurelia Charis asks a commission to confirm her public sacrifice in accordance with the emperor’s order. Two members sign the document.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0250-decius-offerkrav",
+        "fieldPath": "/summarySv",
+        "textSha256": "e6286ede2d9f3644d28fd594d0af1b5810a63eaa37b27600ad84f0cdfa211a7a"
+      }
+    },
+    {
+      "id": "event/ev-0250-decius-offerkrav/geographySv",
+      "sv": "Theadelpheia, Egypten",
+      "en": "Theadelpheia, Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0250-decius-offerkrav",
+        "fieldPath": "/geographySv",
+        "textSha256": "0e4904f6c22fb611715895551a37b69cf3745e6a4dfc592a406f135cf49a51d9"
+      }
+    },
+    {
+      "id": "event/ev-0257-goter-rader/date/displaySv",
+      "sv": "257–263 e.Kr.",
+      "en": "AD 257–263",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0257-goter-rader",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "417700979e82ece61cb6b73944331f05d90703e69117043fba9fa2d8cb4a8abc"
+      }
+    },
+    {
+      "id": "event/ev-0257-goter-rader/date/noteSv",
+      "sv": "Mets tidslinje ger detta intervall för räderna.",
+      "en": "The Met’s timeline gives this interval for the raids.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0257-goter-rader",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f18fe41b1848fe130e25ed6e7d822af04328db885b2b0eea1b92765bc183db00"
+      }
+    },
+    {
+      "id": "event/ev-0257-goter-rader/titleSv",
+      "sv": "Goter gör räder i Grekland och Mindre Asien",
+      "en": "Goths raid Greece and Asia Minor",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0257-goter-rader",
+        "fieldPath": "/titleSv",
+        "textSha256": "3b30d68974b212eb1e4786da3fba80600b368705902b5ec6542acf92fc207ade"
+      }
+    },
+    {
+      "id": "event/ev-0257-goter-rader/summarySv",
+      "sv": "Gotiska grupper angriper områden i Grekland och Mindre Asien.",
+      "en": "Gothic groups attack areas in Greece and Asia Minor.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0257-goter-rader",
+        "fieldPath": "/summarySv",
+        "textSha256": "db78134b1ec0741571a40fe011a685d8e11f3f4a3bbb94c9afb572c8fa8268d8"
+      }
+    },
+    {
+      "id": "event/ev-0257-goter-rader/geographySv",
+      "sv": "Grekland och Mindre Asien",
+      "en": "Greece and Asia Minor",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0257-goter-rader",
+        "fieldPath": "/geographySv",
+        "textSha256": "5838314f7a87b29ae9dc884f8beb153e928d6f22ef2d7954110b4ed08cadd1b8"
+      }
+    },
+    {
+      "id": "event/ev-0263-liu-hui-kommentar/date/displaySv",
+      "sv": "Traditionellt daterad till 263 e.Kr.",
+      "en": "Traditionally dated to AD 263",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0263-liu-hui-kommentar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f72fa9551b53afd40089a34f9a598b29c1133f01f6527d14dcf53f3d71b92e85"
+      }
+    },
+    {
+      "id": "event/ev-0263-liu-hui-kommentar/date/noteSv",
+      "sv": "En senare text anger Jingyuan-år 4, vilket MacTutor omräknar till 263. Liu Hui daterade inte själv kommentaren; årtalet är obekräftat.",
+      "en": "A later text gives Jingyuan year 4, which MacTutor converts to 263. Liu Hui did not date the commentary himself; the year is unconfirmed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0263-liu-hui-kommentar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "8d22c0353085192e7282d91a2845fa8fd978f3c7f454135e4c0eb2ec6aa110b3"
+      }
+    },
+    {
+      "id": "event/ev-0263-liu-hui-kommentar/titleSv",
+      "sv": "Liu Hui kommenterar Nio kapitel om matematiken",
+      "en": "Liu Hui comments on The Nine Chapters on the Mathematical Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0263-liu-hui-kommentar",
+        "fieldPath": "/titleSv",
+        "textSha256": "c3f5a2b8499c1a132f82e2da59a4b0c1b17e1c724c97f5005fd9a3d826959769"
+      }
+    },
+    {
+      "id": "event/ev-0263-liu-hui-kommentar/summarySv",
+      "sv": "Liu Hui förklarar principerna bakom beräkningsmetoderna i Nio kapitel om matematiken och diskuterar approximationers noggrannhet.",
+      "en": "Liu Hui explains the principles behind the computational methods in The Nine Chapters on the Mathematical Art and discusses the accuracy of approximations.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0263-liu-hui-kommentar",
+        "fieldPath": "/summarySv",
+        "textSha256": "fc61618bde0f3f38ffd1aaf68df7fa4dd93808184cb7888d5eaa0c4a2682786b"
+      }
+    },
+    {
+      "id": "event/ev-0263-liu-hui-kommentar/geographySv",
+      "sv": "Wei, Kina",
+      "en": "Wei, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0263-liu-hui-kommentar",
+        "fieldPath": "/geographySv",
+        "textSha256": "a0937d416d393b72f1468a5233c3e713d9c8f7814e4412c854cfefca6c35c403"
+      }
+    },
+    {
+      "id": "event/ev-0267-grekiska-stader-plundras/date/displaySv",
+      "sv": "267 e.Kr.",
+      "en": "AD 267",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0267-grekiska-stader-plundras",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "78276f0b1606cdb85078da7eb0c19b2c8bfaf22eb4e4bda6c378fff3dca630d8"
+      }
+    },
+    {
+      "id": "event/ev-0267-grekiska-stader-plundras/date/noteSv",
+      "sv": "Mets tidslinje skiljer år 267 från räderna 257–263.",
+      "en": "The Met’s timeline distinguishes the year 267 from the raids of 257–263.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0267-grekiska-stader-plundras",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1e1b4f34bb85ba2a0030aa43b39cca50b1b95c06c9912f168ffc47076b1b2593"
+      }
+    },
+    {
+      "id": "event/ev-0267-grekiska-stader-plundras/titleSv",
+      "sv": "Aten och andra grekiska städer plundras",
+      "en": "Athens and other Greek cities are sacked",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0267-grekiska-stader-plundras",
+        "fieldPath": "/titleSv",
+        "textSha256": "336e3340b5a48435372e074aecad49cf4278ac8d85d5a4fb0a489fc0c737ea9d"
+      }
+    },
+    {
+      "id": "event/ev-0267-grekiska-stader-plundras/summarySv",
+      "sv": "Gotiska angripare plundrar Aten, Korinth, Sparta och Argos enligt Mets historiska översikt.",
+      "en": "Gothic attackers sack Athens, Corinth, Sparta and Argos, according to the Met’s historical overview.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0267-grekiska-stader-plundras",
+        "fieldPath": "/summarySv",
+        "textSha256": "11d74e6774bdadfe1c2a6c566332f37f1bfdee64cc8127d49bd5f7cb58d68bd3"
+      }
+    },
+    {
+      "id": "event/ev-0267-grekiska-stader-plundras/geographySv",
+      "sv": "Aten, Korinth, Sparta och Argos, Grekland",
+      "en": "Athens, Corinth, Sparta and Argos, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0267-grekiska-stader-plundras",
+        "fieldPath": "/geographySv",
+        "textSha256": "72de27ac27cdaafcca9aa61e59b2967bc78f500786ebe5ed75706a00a1dd3726"
+      }
+    },
+    {
+      "id": "event/ev-0271-aurelianus-mur/date/displaySv",
+      "sv": "271–275 e.Kr.",
+      "en": "AD 271–275",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0271-aurelianus-mur",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4fe17808f7817a4bf65708ff7fd9ac800f682d5ecde9d53f60885deeb0996dd1"
+      }
+    },
+    {
+      "id": "event/ev-0271-aurelianus-mur/date/noteSv",
+      "sv": "Museo delle Mura anger byggnadsintervallet 271–275; Mets post ligger vid 273 inom samma intervall.",
+      "en": "Museo delle Mura gives the construction interval as 271–275; the Met’s entry is placed at 273 within the same interval.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0271-aurelianus-mur",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e8fff6145aa2678d88dd5feae3e32d9cedd9e0610739f5ca29135e4f30a84750"
+      }
+    },
+    {
+      "id": "event/ev-0271-aurelianus-mur/titleSv",
+      "sv": "Rom får den aurelianska stadsmuren",
+      "en": "Rome gains the Aurelian Walls",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0271-aurelianus-mur",
+        "fieldPath": "/titleSv",
+        "textSha256": "c21879d4ed8f7d9397c7b3791541b91b111922c2268bb000cfd941f924d46458"
+      }
+    },
+    {
+      "id": "event/ev-0271-aurelianus-mur/summarySv",
+      "sv": "På Aurelianus initiativ byggs en ny försvarsmur kring Rom.",
+      "en": "A new defensive wall is built around Rome at Aurelian’s initiative.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0271-aurelianus-mur",
+        "fieldPath": "/summarySv",
+        "textSha256": "8c2b249ebe86e2f9c1c3c6ccfdd6ac3838afade3694d5679665695bf89580590"
+      }
+    },
+    {
+      "id": "event/ev-0271-aurelianus-mur/geographySv",
+      "sv": "Rom, Italien",
+      "en": "Rome, Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0271-aurelianus-mur",
+        "fieldPath": "/geographySv",
+        "textSha256": "6891bf8a2728ccd419110af49208a4f9e999ca9737a13cd8268aa8ff74bae2bd"
+      }
+    },
+    {
+      "id": "event/ev-0280-atens-forsvarsmur/date/displaySv",
+      "sv": "280 e.Kr.",
+      "en": "AD 280",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0280-atens-forsvarsmur",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "3e3ca47a805b2e79064bd57be48c4a1cc21ad60371923d9be9f97003ee705669"
+      }
+    },
+    {
+      "id": "event/ev-0280-atens-forsvarsmur/date/noteSv",
+      "sv": "Mets tidslinje placerar byggandet vid år 280; någon exakt dag anges inte.",
+      "en": "The Met’s timeline places construction in the year 280; no exact day is given.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0280-atens-forsvarsmur",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9f708e3f0ed8bb3160e5ccea0760c223a9cf0d96d5b454d2454469e58a44372e"
+      }
+    },
+    {
+      "id": "event/ev-0280-atens-forsvarsmur/titleSv",
+      "sv": "Aten bygger en försvarsmur",
+      "en": "Athens builds a defensive wall",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0280-atens-forsvarsmur",
+        "fieldPath": "/titleSv",
+        "textSha256": "41046c759935a37a796fc3b9b9248ab68f9ccd0bccbe70021afa3657ef0452bd"
+      }
+    },
+    {
+      "id": "event/ev-0280-atens-forsvarsmur/summarySv",
+      "sv": "Aten får en större befästningsmur som svar på gotiska räder.",
+      "en": "Athens gains a major fortification wall in response to Gothic raids.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0280-atens-forsvarsmur",
+        "fieldPath": "/summarySv",
+        "textSha256": "826c8db0ed2364acba155f5dc68e5cf3a576512706fecf2efc8a7163f2a868ef"
+      }
+    },
+    {
+      "id": "event/ev-0280-atens-forsvarsmur/geographySv",
+      "sv": "Aten, Grekland",
+      "en": "Athens, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0280-atens-forsvarsmur",
+        "fieldPath": "/geographySv",
+        "textSha256": "bafb846761d4d9f2eec198e0b894b9df8c9640c5d1fc3462f256fb413036a818"
+      }
+    },
+    {
+      "id": "event/ev-0284-diocletianus-kejsare/date/displaySv",
+      "sv": "284 e.Kr.",
+      "en": "AD 284",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0284-diocletianus-kejsare",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4a7deccc947a227b121a5c1d63ec11b756bc25a788c0bba7baaa4a86ce719c81"
+      }
+    },
+    {
+      "id": "event/ev-0284-diocletianus-kejsare/date/noteSv",
+      "sv": "Mets översikt daterar början av Diocletianus regering till 284.",
+      "en": "The Met’s overview dates the beginning of Diocletian’s reign to 284.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0284-diocletianus-kejsare",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "a0de445b03ad0876612fae09501c5de1509b505a4c42954999198628b6798b10"
+      }
+    },
+    {
+      "id": "event/ev-0284-diocletianus-kejsare/titleSv",
+      "sv": "Diocletianus blir romersk kejsare",
+      "en": "Diocletian becomes Roman emperor",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0284-diocletianus-kejsare",
+        "fieldPath": "/titleSv",
+        "textSha256": "19dc18f1db6b7584badf86eccdb30c3217df4ec76545a22da690448ce626ffae"
+      }
+    },
+    {
+      "id": "event/ev-0284-diocletianus-kejsare/summarySv",
+      "sv": "Diocletianus inleder sin regering som romersk kejsare.",
+      "en": "Diocletian begins his reign as Roman emperor.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0284-diocletianus-kejsare",
+        "fieldPath": "/summarySv",
+        "textSha256": "2634caa722dcafb06a041076797bfb7c0ddaecd69882863f3cea5e2dc9a488c8"
+      }
+    },
+    {
+      "id": "event/ev-0284-diocletianus-kejsare/geographySv",
+      "sv": "Romarriket",
+      "en": "The Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0284-diocletianus-kejsare",
+        "fieldPath": "/geographySv",
+        "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
+      }
+    },
+    {
+      "id": "event/ev-0292-tikal-stela-29/date/displaySv",
+      "sv": "292 e.Kr.",
+      "en": "AD 292",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0292-tikal-stela-29",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "031a79fc294c8a9d2c8f87ae3c51cf057291bb312e427d8ef73d4810489df43e"
+      }
+    },
+    {
+      "id": "event/ev-0292-tikal-stela-29/date/noteSv",
+      "sv": "Stelans inskrift har Long Count 8.12.14.8.15. Bonn anger den julianska motsvarigheten 8 juli 292. Posten använder året; tillverkningsdagen är inte fastställd.",
+      "en": "The stela’s inscription has the Long Count date 8.12.14.8.15. Bonn gives the Julian equivalent as 8 July 292. The entry uses the year; the day of manufacture is not established.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0292-tikal-stela-29",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7e4b1ba517f4c3c2d15978328432ab4f1c1bc7a3294aeb196021df706b3a9993"
+      }
+    },
+    {
+      "id": "event/ev-0292-tikal-stela-29/titleSv",
+      "sv": "Tikals stela 29 bär ett inskriftsdatum från 292 e.Kr.",
+      "en": "Tikal’s Stela 29 bears an inscribed date from AD 292",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0292-tikal-stela-29",
+        "fieldPath": "/titleSv",
+        "textSha256": "68bcfbdc3022f788842a9a99f8b7e219f770d5abc3c6c5246f2e503b9c9c74fd"
+      }
+    },
+    {
+      "id": "event/ev-0292-tikal-stela-29/summarySv",
+      "sv": "Stela 29 i Tikal förenar en daterad inskrift med en rikt klädd gestalt som tolkas som en dynastisk härskare.",
+      "en": "Stela 29 at Tikal combines a dated inscription with a richly dressed figure interpreted as a dynastic ruler.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0292-tikal-stela-29",
+        "fieldPath": "/summarySv",
+        "textSha256": "5842952c624acb269a194f00ed67c97471b6074035c66d1e0169dac3854ee86d"
+      }
+    },
+    {
+      "id": "event/ev-0292-tikal-stela-29/geographySv",
+      "sv": "Tikal, Mayalåglandet",
+      "en": "Tikal, the Maya lowlands",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0292-tikal-stela-29",
+        "fieldPath": "/geographySv",
+        "textSha256": "8e74a0ea2871adb5ffe1dac271fb68cbbc12da5f12085ff10feec6aea29d7cda"
+      }
+    },
+    {
+      "id": "event/ev-0293-tetrarkin/date/displaySv",
+      "sv": "293 e.Kr.",
+      "en": "AD 293",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0293-tetrarkin",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "bda6eecab116d428147dee212ffc072103085b8455a2cbcda89fbd3f340ff0c3"
+      }
+    },
+    {
+      "id": "event/ev-0293-tetrarkin/date/noteSv",
+      "sv": "Årtalet avser tetrarkin; andra reformer ges ingen gemensam datering.",
+      "en": "The year refers to the Tetrarchy; other reforms are not assigned a shared date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0293-tetrarkin",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3b69cf72d6da572f55813cc79f401b7baa0a0875eab74f9336b3db0f6fcad83d"
+      }
+    },
+    {
+      "id": "event/ev-0293-tetrarkin/titleSv",
+      "sv": "Diocletianus inrättar tetrarkin",
+      "en": "Diocletian establishes the Tetrarchy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0293-tetrarkin",
+        "fieldPath": "/titleSv",
+        "textSha256": "c3d21157c33405dd7f83f2820db62c25264f443d4fde30d8906db428f76b5de4"
+      }
+    },
+    {
+      "id": "event/ev-0293-tetrarkin/summarySv",
+      "sv": "Fyra härskare delar kejsarmakten: Diocletianus och Maximianus som överkejsare samt Galerius och Constantius som underkejsare.",
+      "en": "Four rulers share imperial power: Diocletian and Maximian as senior emperors, and Galerius and Constantius as junior emperors.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0293-tetrarkin",
+        "fieldPath": "/summarySv",
+        "textSha256": "0a75742627637eae8a1ed4eeef3ea23b35c37333dedf2f62faa9fccc7eddc334"
+      }
+    },
+    {
+      "id": "event/ev-0293-tetrarkin/geographySv",
+      "sv": "Romarriket",
+      "en": "The Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0293-tetrarkin",
+        "fieldPath": "/geographySv",
+        "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
       }
     }
   ]

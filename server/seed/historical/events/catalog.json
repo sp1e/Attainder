@@ -6008,6 +6008,198 @@
       "originalChronology": "The author describes Ur III’s chronology as debated and contrasts 2112–2004 BCE with Sallaberger’s 2111–2003 and 2110–2003 BCE frameworks.",
       "scopedClaim": "Alternative 2003 BCE endpoint for Ur III. This passage supplies chronological context rather than an independent account of the conquest.",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0200-aibl-aksum",
+      "title": "Recueil des Inscriptions de l’Éthiopie des périodes pré-axoumite et axoumite : T. I-II – Documents et planches",
+      "institution": "E. Bernand, A. J. Drewes and R. Schneider; Académie des Inscriptions et Belles-Lettres",
+      "url": "https://aibl.fr/collections/recueil-des-inscriptions-de-lethiopie-des-periodes-pre-axoumite-et-axoumite-t-i-ii-documents-et-planches/",
+      "locator": "“Avant-propos (extrait)”, paragraph on interventions in South Arabia and GDRT; book published in 1991.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Early third century CE. The excerpt supplies no narrower numerical interval; 201–300 is a whole-century indexing envelope, not the duration of intervention.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "vers les débuts du IIIe siècle de notre ère",
+      "scopedClaim": "Aksum intervened in South Arabian wars around the beginning of the third century; South Arabian inscriptions mention GDRT."
+    },
+    {
+      "id": "ad0200-met-italy",
+      "title": "Italian Peninsula, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/05/eust.html",
+      "locator": "“Key Events”, entries for 212 and 273 A.D. Included for comparison with Giessen’s dating of the edict and Museo delle Mura’s construction interval.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The timeline dates the citizenship edict to 212 AD and places the Aurelian Walls at 273 AD. Compare Giessen 212/213 and the municipal museum 271–275.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "212 A.D.; 273 A.D.",
+      "scopedClaim": "Chronological comparison for the citizenship edict and construction of Rome’s Aurelian Walls; the timeline’s broad citizenship wording is restricted using Giessen."
+    },
+    {
+      "id": "ad0200-met-greece",
+      "title": "Ancient Greece, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/de/toah/ht/05/eusb",
+      "locator": "“Key Events”, entries for 257–263 and 280 A.D.; the sackings of 267 appear in the body of the first entry.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Raids 257–263 AD; sackings in 267 AD; the Athens fortification entry is indexed at 280 AD.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "257–263 A.D.; 267 A.D.; 280 A.D.",
+      "scopedClaim": "Raids in Greece and Asia Minor, later sackings of named Greek cities, and construction of a fortification at Athens."
+    },
+    {
+      "id": "ad0200-met-roman-empire",
+      "title": "The Roman Empire (27 B.C.–393 A.D.)",
+      "institution": "Christopher Lightfoot, Department of Greek and Roman Art, The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/ko/essays/the-roman-empire-27-b-c-393-a-d",
+      "locator": "“The Soldier Emperors” and “Diocletian, Constantine, and the Late Empire”: paragraphs giving 235, 284 and the Tetrarchy in 293 A.D. English body text.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Alexander Severus is assassinated in 235 AD; Diocletian’s reign begins in 284; tetrarchy is established in 293. Later reforms are not all dated to 284.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "235 A.D.; 284; 293 A.D.",
+      "scopedClaim": "Alexander Severus’s assassination, Diocletian’s accession, and the four-ruler arrangement."
+    },
+    {
+      "id": "ad0200-mura-aurelian",
+      "title": "Visite didattiche gratuite al Museo delle Mura e al camminamento",
+      "institution": "Museo delle Mura; Roma Capitale",
+      "url": "https://www.museodellemuraroma.it/it/node/6827",
+      "locator": "Description of the walls, paragraph giving the construction period 271–275 d.C.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Construction between 271 and 275 AD; complete interval retained. Met’s timeline entry at 273 falls within it.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "271 e il 275 d.C.",
+      "scopedClaim": "Construction of Rome’s Aurelian Walls at Aurelian’s initiative."
+    },
+    {
+      "id": "ad0200-roma-caracalla",
+      "title": "The Baths of Caracalla",
+      "institution": "Turismo Roma; Roma Capitale",
+      "url": "https://www.turismoroma.it/en/places/baths-caracalla",
+      "locator": "The two introductory paragraphs on construction in 212–216 AD, the location on the Piccolo Aventino and the Aqua Antoniniana aqueduct.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The whole construction period 212–216 AD is used; this passage does not independently specify an inauguration day.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "between 212 and 216 AD",
+      "scopedClaim": "Caracalla orders a large bath complex in Rome; a dedicated aqueduct branch supplies it."
+    },
+    {
+      "id": "ad0200-cambridge-nine-rank",
+      "title": "The Political Economy of China’s Imperial Examination System",
+      "institution": "Cambridge University Press",
+      "url": "https://www.cambridge.org/core/elements/political-economy-of-chinas-imperial-examination-system/3DA0EC88AE5901AEE641FD5686C7F8B8",
+      "locator": "Section 2.2.2, “The 3rd to 5th Centuries ce: Nine-Rank Rectifying System”, paragraphs on Cao Pi and assessment in nine grades.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Around 220 CE, explicitly approximate. Earlier Cao Cao practices are distinguished from Cao Pi’s institutionalization.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "around 220 ce",
+      "scopedClaim": "Cao Pi institutionalizes an official selection system based on local evaluations and nine grades; this is not the later open imperial examination."
+    },
+    {
+      "id": "ad0200-kyushu-himiko",
+      "title": "Himiko and Her Mirrors: The Making of a Kingdom",
+      "institution": "Kyushu National Museum",
+      "url": "https://www.kyuhaku.jp/en/exhibition/exhibition_s78.html",
+      "locator": "“Who is Himiko, and what are her mirrors?”, first paragraph on the embassy to Wei.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Museum dates the embassy to 239 CE; Edwards discusses a textual alternative of 238.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "239 CE",
+      "scopedClaim": "Himiko sends an envoy to Wei; the emperor’s return gift includes bronze mirrors. No surviving mirror is identified here as certainly one of those gifts."
+    },
+    {
+      "id": "ad0200-edwards-himiko",
+      "title": "Mirrors on Ancient Yamato: The Kurozuka Kofun Discovery and the Question of Yamatai",
+      "institution": "Walter Edwards; Monumenta Nipponica 54(1), 75–110 (1999), Sophia University; public copy at Universität Würzburg",
+      "url": "https://wuecampus.uni-wuerzburg.de/moodle/pluginfile.php/4671997/mod_resource/content/1/Mirrors%20of%20Ancient%20Yamato.pdf",
+      "locator": "Printed p. 76, note 5 (PDF page 3), on Wei zhi and Nihon shoki; the paragraph on the same page about the competing locations Kinai and Kyushu.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Received Wei zhi text gives 238; Nihon shoki’s quotation gives 239. Edwards reports that many Japanese historians accept 239. Neither is silently discarded.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "238; 239",
+      "scopedClaim": "Chronological alternatives for Himiko’s embassy; the location of Yamatai remains disputed."
+    },
+    {
+      "id": "ad0200-mactutor-liu-hui",
+      "title": "Liu Hui",
+      "institution": "J. J. O’Connor and E. F. Robertson; MacTutor History of Mathematics Archive, University of St Andrews",
+      "url": "https://mathshistory.st-andrews.ac.uk/Biographies/Liu_Hui/",
+      "locator": "“Biography”, paragraph on Jingyuan year 4 and 263 AD; the following paragraphs on the commentary’s mathematical reasoning.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "A later work dates the commentary to Jingyuan year 4, converted by the article to AD 263. Liu Hui did not date the commentary; the article explicitly calls the date unconfirmed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "263 AD",
+      "scopedClaim": "Traditional date of Liu Hui’s mathematical commentary and its explanations of computational methods."
+    },
+    {
+      "id": "ad0200-met-tikal",
+      "title": "Tikal: Stone Sculpture",
+      "institution": "Department of the Arts of Africa, Oceania, and the Americas; The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/es/essays/tikal-stone-sculpture",
+      "locator": "Opening historical overview, paragraph on Stela 29, the contemporary inscription from 292 A.D. and the interpretation of the depicted figure.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The dated inscription on Stela 29 is assigned to AD 292. The figure is interpreted as a dynastic ruler; the exact carving date is not independently established here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "292 A.D.",
+      "scopedClaim": "A dated royal representation at Tikal; the depicted person’s identity is not asserted."
+    },
+    {
+      "id": "ad0200-bonn-stela-29",
+      "title": "Tikal, Stela 29",
+      "institution": "Text Database and Dictionary of Classic Mayan; Universitäts- und Landesbibliothek Bonn",
+      "url": "https://classicmayan.ulb.uni-bonn.de/content/titleinfo/9626319",
+      "locator": "The object record’s fields for provenance, material, Long Count, Calendar Round and Julian date.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Long Count 8.12.14.8.15; Calendar Round 13 Men 3 Sip; database’s Julian conversion 8 July 292 CE. The event uses the shared year only.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "8.12.14.8.15; 13 Men 3 Sip; 292-7-8 CE",
+      "scopedClaim": "Independent epigraphic record for the date and Tikal provenance of Stela 29."
+    },
+    {
+      "id": "ad0200-fordham-perpetua",
+      "title": "St. Perpetua: The Passion of Saints Perpetua and Felicity 203",
+      "institution": "W. H. Shewring, translation (1931), modernized by Internet History Sourcebooks, Fordham University",
+      "url": "https://sourcebooks.web.fordham.edu/source/perpetua.asp",
+      "locator": "Editorial introduction and sections 2 and 18–21 of the narrative about Perpetua, Felicitas and the executions.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The editorial introduction explicitly dates Perpetua’s execution at Carthage to 7 March 203; the adjoining passion narrates Felicitas’s death in the same episode.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "7 March 203",
+      "scopedClaim": "Execution of Perpetua and Felicitas at Carthage; the martyr narrative is identified as a religious account."
+    },
+    {
+      "id": "ad0200-giessen-citizenship",
+      "title": "Constitutio Antoniniana",
+      "institution": "University Library, Justus Liebig University Giessen",
+      "url": "https://www.constitutio.de/en",
+      "locator": "The page’s introduction on Papyrus Gissensis 40 and the edict’s date and scope.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "University Library dates the edict to 212/213; Met’s timeline uses 212. Preserve the alternative year and distinguish free inhabitants from the entire population.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "212/213",
+      "scopedClaim": "Caracalla extends Roman citizenship to free inhabitants; no claim that slavery or all legal distinctions ended."
+    },
+    {
+      "id": "ad0200-yale-synagogue",
+      "title": "Synagogue | Dura-Europos: Excavating Antiquity",
+      "institution": "Yale University Art Gallery",
+      "url": "https://duraeuropos.artgallery.yale.edu/Synagogue",
+      "locator": "The paragraph after the plan drawing on the rebuilding dated by an Aramaic inscription to 244/45; the following description of the assembly room’s images.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "An Aramaic inscription dates the later building phase to AD 244/245. The initial conversion from a house belongs to 165–200 and is not repeated as a new event.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "A.D. 244/45",
+      "scopedClaim": "Renovation, enlargement and decoration of the Dura-Europos synagogue."
+    },
+    {
+      "id": "ad0200-berlin-sacrifice",
+      "title": "Certificate of Sacrifice",
+      "institution": "Kathrin Stenzel; Berlin Papyrus Database, Staatliche Museen zu Berlin",
+      "url": "https://berlpap.smb.museum/opferbescheinigung/?lang=en",
+      "locator": "“SB I 5943 (P. 13430)”, the date Pauni 22 and the paragraphs on Aurelia Charis, the commission’s signatures and the lost edict.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Year 1 of Decius, Pauni 22, explicitly converted to 16 June AD 250. This dates a signed petition, not the issuance day of the lost imperial edict.",
+      "reuseTerms": "Reference only; no source prose or images redistributed",
+      "asWorded": "June 16, 250 AD",
+      "scopedClaim": "A signed petition documents public sacrifice under Decius’s order at Theadelpheia. Whether the edict specifically targeted Christians cannot be determined."
     }
   ],
   "events": [
@@ -19024,6 +19216,418 @@
         "bc2100-garcia-ventura-chronology"
       ],
       "selectionNote": "The conquest ends a major Mesopotamian state. The alternative 2003 endpoint is sourced as dynastic chronology, not as another account of the attack; wider chronology remains a review limitation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0201-aksum-sydarabien",
+      "date": {
+        "kind": "range",
+        "startYear": 201,
+        "endYear": 300,
+        "displaySv": "Början av 200-talet e.Kr.",
+        "noteSv": "Källan anger början av det tredje århundradet e.Kr. Hela århundradet 201–300 används som sökintervall; det är ingen uppgift om ingripandets längd."
+      },
+      "titleSv": "Aksum ingriper i Sydarabiens krig",
+      "summarySv": "Aksum har blivit en makt som ingriper i Sydarabiens krig. Inskrifter där nämner den aksumitiske kungen GDRT.",
+      "geographySv": "Aksum och Sydarabien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0200-aibl-aksum"
+      ],
+      "selectionNote": "Regional military reach across the Red Sea, supported by the publisher’s scholarly preface excerpt.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0203-perpetua-felicitas",
+      "date": {
+        "kind": "exact",
+        "startYear": 203,
+        "endYear": 203,
+        "displaySv": "203 e.Kr.",
+        "noteSv": "Fordhams inledning anger den 7 mars 203. Den religiösa martyrberättelsen behandlas som en berättande källa."
+      },
+      "titleSv": "Perpetua och Felicitas avrättas i Karthago",
+      "summarySv": "De kristna Perpetua och Felicitas avrättas i Karthagos arena. Deras fångenskap och död skildras i en bevarad martyrberättelse.",
+      "geographySv": "Karthago, Nordafrika",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "ad0200-fordham-perpetua"
+      ],
+      "selectionNote": "An influential early Christian martyr episode with a surviving narrative partly attributed to Perpetua.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0212-caracalla-medborgarskap",
+      "date": {
+        "kind": "disputed",
+        "startYear": 212,
+        "endYear": 213,
+        "displaySv": "212 eller 213 e.Kr.",
+        "noteSv": "Giessens universitetsbibliotek anger 212/213; Mets tidslinje anger 212. Det alternativa året behålls."
+      },
+      "titleSv": "Caracalla utvidgar det romerska medborgarskapet",
+      "summarySv": "Caracallas edikt Constitutio Antoniniana ger romerskt medborgarskap åt rikets fria invånare. Slaveriet upphör inte därmed.",
+      "geographySv": "Romarriket",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "ad0200-giessen-citizenship",
+        "ad0200-met-italy"
+      ],
+      "selectionNote": "Empire-wide change in legal membership; free status is essential to scope.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0212-caracallas-termer",
+      "date": {
+        "kind": "range",
+        "startYear": 212,
+        "endYear": 216,
+        "displaySv": "212–216 e.Kr.",
+        "noteSv": "Intervallet avser byggandet. Källpassagen ger ingen separat invigningsdag."
+      },
+      "titleSv": "Caracalla låter bygga ett stort badkomplex",
+      "summarySv": "På Caracallas uppdrag uppförs termer på Aventinen i Rom. En särskild gren av Aqua Marcia förser anläggningen med vatten.",
+      "geographySv": "Rom, Italien",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ad0200-roma-caracalla"
+      ],
+      "selectionNote": "Major public infrastructure and urban cultural institution.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0220-nio-ranggrader",
+      "date": {
+        "kind": "approximate",
+        "startYear": 220,
+        "endYear": 220,
+        "displaySv": "Omkring 220 e.Kr.",
+        "noteSv": "Studien använder en ungefärlig datering och skiljer reformen från Cao Caos tidigare försök."
+      },
+      "titleSv": "Cao Pi inför ett system med nio ranggrader",
+      "summarySv": "Lokala bedömare graderar män som kan rekryteras till ämbeten. Under Cao Pi får systemet med nio grader fastare institutionell form.",
+      "geographySv": "Wei, Kina",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0200-cambridge-nine-rank"
+      ],
+      "selectionNote": "Distinct recruitment institution; not a second accession event or the later examination system.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0235-alexander-severus-mord",
+      "date": {
+        "kind": "exact",
+        "startYear": 235,
+        "endYear": 235,
+        "displaySv": "235 e.Kr.",
+        "noteSv": "Mets historiska översikt daterar mordet till 235 e.Kr."
+      },
+      "titleSv": "Alexander Severus mördas",
+      "summarySv": "Kejsar Alexander Severus mördas. Med hans död upphör den severiska kejsardynastin.",
+      "geographySv": "Romarriket",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0200-met-roman-empire"
+      ],
+      "selectionNote": "Dynastic rupture preceding the soldier-emperor period.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0238-himiko-beskickning",
+      "date": {
+        "kind": "disputed",
+        "startYear": 238,
+        "endYear": 239,
+        "displaySv": "238 eller 239 e.Kr.",
+        "noteSv": "Edwards redovisar 238 i den bevarade Wei zhi-texten och 239 i Nihon shokis citat. Kyushu National Museum använder 239. Yamatais läge är omstritt."
+      },
+      "titleSv": "Himiko sänder en beskickning till Wei",
+      "summarySv": "Himiko, härskare i Wa, skickar sändebud till Wei. Den kinesiske kejsaren ger bland annat bronsspeglar som gåva.",
+      "geographySv": "Wa i den japanska övärlden och Wei i Kina",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0200-kyushu-himiko",
+        "ad0200-edwards-himiko"
+      ],
+      "selectionNote": "Documented cross-sea diplomacy with explicit textual dating conflict; no archaeological mirror attribution.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0244-dura-synagoga",
+      "date": {
+        "kind": "range",
+        "startYear": 244,
+        "endYear": 245,
+        "displaySv": "244–245 e.Kr.",
+        "noteSv": "En arameisk inskrift daterar den senare byggnadsfasen till 244/45. Den äldre omvandlingen från bostad räknas inte som en ny händelse här."
+      },
+      "titleSv": "Synagogan i Dura-Europos byggs ut",
+      "summarySv": "Den judiska församlingens synagoga förstoras, renoveras och får omfattande bilddekorationer.",
+      "geographySv": "Dura-Europos, Syrien",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "ad0200-yale-synagogue"
+      ],
+      "selectionNote": "A substantial religious building phase and painted narrative program, not an ordinary object entry.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0250-decius-offerkrav",
+      "date": {
+        "kind": "exact",
+        "startYear": 250,
+        "endYear": 250,
+        "displaySv": "250 e.Kr.",
+        "noteSv": "Dokumentet dateras till den 16 juni 250. Det daterar en undertecknad begäran om bekräftelse; originalediktets utfärdandedag är okänd här."
+      },
+      "titleSv": "Offerkrav under Decius dokumenteras i Egypten",
+      "summarySv": "Aurelia Charis begär att en kommission ska bekräfta hennes offentliga offer enligt kejsarens order. Två ledamöter undertecknar handlingen.",
+      "geographySv": "Theadelpheia, Egypten",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "ad0200-berlin-sacrifice"
+      ],
+      "selectionNote": "Contemporary administrative evidence of an imperial religious requirement; the lost edict’s intended targets are not asserted.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0257-goter-rader",
+      "date": {
+        "kind": "range",
+        "startYear": 257,
+        "endYear": 263,
+        "displaySv": "257–263 e.Kr.",
+        "noteSv": "Mets tidslinje ger detta intervall för räderna."
+      },
+      "titleSv": "Goter gör räder i Grekland och Mindre Asien",
+      "summarySv": "Gotiska grupper angriper områden i Grekland och Mindre Asien.",
+      "geographySv": "Grekland och Mindre Asien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0200-met-greece"
+      ],
+      "selectionNote": "Regional sequence of raids, distinguished from the later named sackings.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0263-liu-hui-kommentar",
+      "date": {
+        "kind": "approximate",
+        "startYear": 263,
+        "endYear": 263,
+        "displaySv": "Traditionellt daterad till 263 e.Kr.",
+        "noteSv": "En senare text anger Jingyuan-år 4, vilket MacTutor omräknar till 263. Liu Hui daterade inte själv kommentaren; årtalet är obekräftat."
+      },
+      "titleSv": "Liu Hui kommenterar Nio kapitel om matematiken",
+      "summarySv": "Liu Hui förklarar principerna bakom beräkningsmetoderna i Nio kapitel om matematiken och diskuterar approximationers noggrannhet.",
+      "geographySv": "Wei, Kina",
+      "category": "discovery",
+      "importance": 2,
+      "sourceIds": [
+        "ad0200-mactutor-liu-hui"
+      ],
+      "selectionNote": "A major mathematical commentary; its conventional date is explicitly qualified.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0267-grekiska-stader-plundras",
+      "date": {
+        "kind": "exact",
+        "startYear": 267,
+        "endYear": 267,
+        "displaySv": "267 e.Kr.",
+        "noteSv": "Mets tidslinje skiljer år 267 från räderna 257–263."
+      },
+      "titleSv": "Aten och andra grekiska städer plundras",
+      "summarySv": "Gotiska angripare plundrar Aten, Korinth, Sparta och Argos enligt Mets historiska översikt.",
+      "geographySv": "Aten, Korinth, Sparta och Argos, Grekland",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0200-met-greece"
+      ],
+      "selectionNote": "Later urban destruction episode, rather than a repeated endpoint of the earlier raid interval.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0271-aurelianus-mur",
+      "date": {
+        "kind": "range",
+        "startYear": 271,
+        "endYear": 275,
+        "displaySv": "271–275 e.Kr.",
+        "noteSv": "Museo delle Mura anger byggnadsintervallet 271–275; Mets post ligger vid 273 inom samma intervall."
+      },
+      "titleSv": "Rom får den aurelianska stadsmuren",
+      "summarySv": "På Aurelianus initiativ byggs en ny försvarsmur kring Rom.",
+      "geographySv": "Rom, Italien",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "ad0200-mura-aurelian",
+        "ad0200-met-italy"
+      ],
+      "selectionNote": "Major urban defensive infrastructure; full construction span retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0280-atens-forsvarsmur",
+      "date": {
+        "kind": "exact",
+        "startYear": 280,
+        "endYear": 280,
+        "displaySv": "280 e.Kr.",
+        "noteSv": "Mets tidslinje placerar byggandet vid år 280; någon exakt dag anges inte."
+      },
+      "titleSv": "Aten bygger en försvarsmur",
+      "summarySv": "Aten får en större befästningsmur som svar på gotiska räder.",
+      "geographySv": "Aten, Grekland",
+      "category": "technology",
+      "importance": 1,
+      "sourceIds": [
+        "ad0200-met-greece"
+      ],
+      "selectionNote": "Notable urban response to insecurity, without reproducing the source’s unsupported earliest-since-Pericles superlative.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0284-diocletianus-kejsare",
+      "date": {
+        "kind": "exact",
+        "startYear": 284,
+        "endYear": 284,
+        "displaySv": "284 e.Kr.",
+        "noteSv": "Mets översikt daterar början av Diocletianus regering till 284."
+      },
+      "titleSv": "Diocletianus blir romersk kejsare",
+      "summarySv": "Diocletianus inleder sin regering som romersk kejsare.",
+      "geographySv": "Romarriket",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0200-met-roman-empire"
+      ],
+      "selectionNote": "Accession initiating a major imperial reorganization; later measures are not collapsed into this year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0292-tikal-stela-29",
+      "date": {
+        "kind": "exact",
+        "startYear": 292,
+        "endYear": 292,
+        "displaySv": "292 e.Kr.",
+        "noteSv": "Stelans inskrift har Long Count 8.12.14.8.15. Bonn anger den julianska motsvarigheten 8 juli 292. Posten använder året; tillverkningsdagen är inte fastställd."
+      },
+      "titleSv": "Tikals stela 29 bär ett inskriftsdatum från 292 e.Kr.",
+      "summarySv": "Stela 29 i Tikal förenar en daterad inskrift med en rikt klädd gestalt som tolkas som en dynastisk härskare.",
+      "geographySv": "Tikal, Mayalåglandet",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ad0200-met-tikal",
+        "ad0200-bonn-stela-29"
+      ],
+      "selectionNote": "Dated public royal representation; identity and manufacture are kept separate from inscription dating, with no earliest-ever claim.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0293-tetrarkin",
+      "date": {
+        "kind": "exact",
+        "startYear": 293,
+        "endYear": 293,
+        "displaySv": "293 e.Kr.",
+        "noteSv": "Årtalet avser tetrarkin; andra reformer ges ingen gemensam datering."
+      },
+      "titleSv": "Diocletianus inrättar tetrarkin",
+      "summarySv": "Fyra härskare delar kejsarmakten: Diocletianus och Maximianus som överkejsare samt Galerius och Constantius som underkejsare.",
+      "geographySv": "Romarriket",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "ad0200-met-roman-empire"
+      ],
+      "selectionNote": "Empire-wide institutional division of imperial authority, distinct from Diocletian’s accession.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",

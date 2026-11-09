@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "d59a7fa4a9c3e4faac4166d7a7eae83c68fd46a5",
+  "sourceRevision": "5df05508fb77c89b485fa6b0bdecb38a63c46b40",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -10892,6 +10892,358 @@
         "sourceId": "bc2100-garcia-ventura-chronology",
         "fieldPath": "/institution",
         "textSha256": "3c5019bb90c802c28cd75e32ef528445a64004422404252c42a3c61549d5b5b4"
+      }
+    },
+    {
+      "id": "source/ad0200-aibl-aksum/locator",
+      "sv": "“Avant-propos (extrait)”, stycket om ingripanden i Sydarabien och GDRT; boken utgiven 1991.",
+      "en": "“Avant-propos (extrait)”, paragraph on interventions in South Arabia and GDRT; book published in 1991.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-aibl-aksum",
+        "fieldPath": "/locator",
+        "textSha256": "47de027444b0fb357abfa4de2d63d6f217e2eef6e34699d479047d3373464254"
+      }
+    },
+    {
+      "id": "source/ad0200-aibl-aksum/institution",
+      "sv": "E. Bernand, A. J. Drewes och R. Schneider; Académie des Inscriptions et Belles-Lettres",
+      "en": "E. Bernand, A. J. Drewes and R. Schneider; Académie des Inscriptions et Belles-Lettres",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-aibl-aksum",
+        "fieldPath": "/institution",
+        "textSha256": "9a5ab6da6ab04860eb7671c2043f771a3489ef1ad0bf949070ac8faf82f32eb8"
+      }
+    },
+    {
+      "id": "source/ad0200-met-italy/locator",
+      "sv": "“Key Events”, posterna 212 och 273 A.D. Ingår som jämförelse med Giessens ediktdatering och Museo delle Muras byggnadsintervall.",
+      "en": "“Key Events”, entries for 212 and 273 A.D. Included for comparison with Giessen’s dating of the edict and Museo delle Mura’s construction interval.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-met-italy",
+        "fieldPath": "/locator",
+        "textSha256": "ccfc345c22fba02c8a225ff6bc23231049cb5a2698bf0d5cfc36f44efd67e6f6"
+      }
+    },
+    {
+      "id": "source/ad0200-met-italy/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-met-italy",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0200-met-greece/locator",
+      "sv": "“Key Events”, posterna 257–263 och 280 A.D.; 267 års plundringar anges i den första postens brödtext.",
+      "en": "“Key Events”, entries for 257–263 and 280 A.D.; the sackings of 267 appear in the body of the first entry.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-met-greece",
+        "fieldPath": "/locator",
+        "textSha256": "01f8c7b99e71d02754633eb27fa2c48ed2b1a2c729a59c81a4b32420bd1279c5"
+      }
+    },
+    {
+      "id": "source/ad0200-met-greece/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-met-greece",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0200-met-roman-empire/locator",
+      "sv": "“The Soldier Emperors” och “Diocletian, Constantine, and the Late Empire”: styckena med 235, 284 och tetrarkin 293 A.D. Engelsk brödtext.",
+      "en": "“The Soldier Emperors” and “Diocletian, Constantine, and the Late Empire”: paragraphs giving 235, 284 and the Tetrarchy in 293 A.D. English body text.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-met-roman-empire",
+        "fieldPath": "/locator",
+        "textSha256": "ad3fcba0287e0e23db8618c8fd6b0d91bd3ed267069da13993db5b766862f6d8"
+      }
+    },
+    {
+      "id": "source/ad0200-met-roman-empire/institution",
+      "sv": "Christopher Lightfoot, Department of Greek and Roman Art, The Metropolitan Museum of Art",
+      "en": "Christopher Lightfoot, Department of Greek and Roman Art, The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-met-roman-empire",
+        "fieldPath": "/institution",
+        "textSha256": "39543a53b1cb686cc447516d519c8df20fa9510c0e8c5773d30aa673387a53b4"
+      }
+    },
+    {
+      "id": "source/ad0200-mura-aurelian/locator",
+      "sv": "Beskrivningen av murarna, stycket med byggnadsperioden 271–275 d.C.",
+      "en": "Description of the walls, paragraph giving the construction period 271–275 d.C.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-mura-aurelian",
+        "fieldPath": "/locator",
+        "textSha256": "4152ebcbad11db5be6d08921b634bf1e6c4557982f7a99a679e3eab2a52da44a"
+      }
+    },
+    {
+      "id": "source/ad0200-mura-aurelian/institution",
+      "sv": "Museo delle Mura; Roma Capitale",
+      "en": "Museo delle Mura; Roma Capitale",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-mura-aurelian",
+        "fieldPath": "/institution",
+        "textSha256": "fca614a546c1f1319c82f160c54bd89b1feba6c3891564fc9ac43950b9f5440b"
+      }
+    },
+    {
+      "id": "source/ad0200-roma-caracalla/locator",
+      "sv": "Inledningens två stycken om byggandet 212–216 AD, läget på Piccolo Aventino och vattenledningen Aqua Antoniniana.",
+      "en": "The two introductory paragraphs on construction in 212–216 AD, the location on the Piccolo Aventino and the Aqua Antoniniana aqueduct.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-roma-caracalla",
+        "fieldPath": "/locator",
+        "textSha256": "27b0ab502fafc63f1112a4efdc4a86735e7c7a3c8a8156c372fbdc9c30192314"
+      }
+    },
+    {
+      "id": "source/ad0200-roma-caracalla/institution",
+      "sv": "Turismo Roma; Roma Capitale",
+      "en": "Turismo Roma; Roma Capitale",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-roma-caracalla",
+        "fieldPath": "/institution",
+        "textSha256": "0c119b156d907a87eff2e3fa06cc3415361063e9f0a71bcaf1a15442994eec7e"
+      }
+    },
+    {
+      "id": "source/ad0200-cambridge-nine-rank/locator",
+      "sv": "Avsnitt 2.2.2, “The 3rd to 5th Centuries ce: Nine-Rank Rectifying System”, styckena om Cao Pi och bedömning i nio grader.",
+      "en": "Section 2.2.2, “The 3rd to 5th Centuries ce: Nine-Rank Rectifying System”, paragraphs on Cao Pi and assessment in nine grades.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-cambridge-nine-rank",
+        "fieldPath": "/locator",
+        "textSha256": "f471eac3c5df207e57f481a6606d2f372fc0bbb580c5fc82ea247504d5ecc798"
+      }
+    },
+    {
+      "id": "source/ad0200-cambridge-nine-rank/institution",
+      "sv": "Cambridge University Press",
+      "en": "Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-cambridge-nine-rank",
+        "fieldPath": "/institution",
+        "textSha256": "5fa80bacfa8abef3a617e5b4749e64c2361b847572b36d1d473e2070df1e26be"
+      }
+    },
+    {
+      "id": "source/ad0200-kyushu-himiko/locator",
+      "sv": "“Who is Himiko, and what are her mirrors?”, första stycket om beskickningen till Wei.",
+      "en": "“Who is Himiko, and what are her mirrors?”, first paragraph on the embassy to Wei.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-kyushu-himiko",
+        "fieldPath": "/locator",
+        "textSha256": "0ee7835e645dead3e12c59a000d8629df925d1896a2090406486e47336ea02e1"
+      }
+    },
+    {
+      "id": "source/ad0200-kyushu-himiko/institution",
+      "sv": "Kyushu National Museum",
+      "en": "Kyushu National Museum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-kyushu-himiko",
+        "fieldPath": "/institution",
+        "textSha256": "17d789607dc98c8da1a24f04e957fb7a3eee0a25481215ee333b7b5b12e54dc5"
+      }
+    },
+    {
+      "id": "source/ad0200-edwards-himiko/locator",
+      "sv": "Tryckt s. 76, not 5 (PDF-sida 3), om Wei zhi och Nihon shoki; samma sidas stycke om de konkurrerande lokaliseringarna Kinai och Kyushu.",
+      "en": "Printed p. 76, note 5 (PDF page 3), on Wei zhi and Nihon shoki; the paragraph on the same page about the competing locations Kinai and Kyushu.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-edwards-himiko",
+        "fieldPath": "/locator",
+        "textSha256": "9ad138204782d80cfee05fcdfcc7c5c1bda61b03d3f3fef9466401cfa135b038"
+      }
+    },
+    {
+      "id": "source/ad0200-edwards-himiko/institution",
+      "sv": "Walter Edwards; Monumenta Nipponica 54(1), 75–110 (1999), Sophia University; offentlig kopia hos Universität Würzburg",
+      "en": "Walter Edwards; Monumenta Nipponica 54(1), 75–110 (1999), Sophia University; public copy at Universität Würzburg",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-edwards-himiko",
+        "fieldPath": "/institution",
+        "textSha256": "94b14e3e3f2f03891f9e0b35187c48ed51f429a47fce4fd10114f58779b62dc1"
+      }
+    },
+    {
+      "id": "source/ad0200-mactutor-liu-hui/locator",
+      "sv": "“Biography”, stycket om Jingyuan-år 4 och 263 AD; de följande styckena om kommentarens matematiska resonemang.",
+      "en": "“Biography”, paragraph on Jingyuan year 4 and 263 AD; the following paragraphs on the commentary’s mathematical reasoning.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-mactutor-liu-hui",
+        "fieldPath": "/locator",
+        "textSha256": "2dd6ad10f8343cfc99171fcc63f4d10443e003391ae21f8bab130a9070ae7551"
+      }
+    },
+    {
+      "id": "source/ad0200-mactutor-liu-hui/institution",
+      "sv": "J. J. O’Connor och E. F. Robertson; MacTutor History of Mathematics Archive, University of St Andrews",
+      "en": "J. J. O’Connor and E. F. Robertson; MacTutor History of Mathematics Archive, University of St Andrews",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-mactutor-liu-hui",
+        "fieldPath": "/institution",
+        "textSha256": "00e91bdaa5bb5b2dafefe8c5173a614b469aea72c8e52ed98fb9aa5cf1c0e996"
+      }
+    },
+    {
+      "id": "source/ad0200-met-tikal/locator",
+      "sv": "Inledande historik, stycket om stela 29, den samtida inskriften 292 A.D. och tolkningen av den avbildade gestalten.",
+      "en": "Opening historical overview, paragraph on Stela 29, the contemporary inscription from 292 A.D. and the interpretation of the depicted figure.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-met-tikal",
+        "fieldPath": "/locator",
+        "textSha256": "c21562adb5d10830b2961b4ccc254e75e4e319412eae19b696b09fc834c17ced"
+      }
+    },
+    {
+      "id": "source/ad0200-met-tikal/institution",
+      "sv": "Department of the Arts of Africa, Oceania, and the Americas; The Metropolitan Museum of Art",
+      "en": "Department of the Arts of Africa, Oceania, and the Americas; The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-met-tikal",
+        "fieldPath": "/institution",
+        "textSha256": "e0594f818a331c40b3df16704901d28dd518245c5cf04d2616144c54e330a586"
+      }
+    },
+    {
+      "id": "source/ad0200-bonn-stela-29/locator",
+      "sv": "Objektpostens fält för proveniens, material, Long Count, Calendar Round och juliansk datering.",
+      "en": "The object record’s fields for provenance, material, Long Count, Calendar Round and Julian date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-bonn-stela-29",
+        "fieldPath": "/locator",
+        "textSha256": "e159f6d6cca06b3976b966720bc8633d6052e26c4a7e679b70cdaad96a986c66"
+      }
+    },
+    {
+      "id": "source/ad0200-bonn-stela-29/institution",
+      "sv": "Text Database and Dictionary of Classic Mayan; Universitäts- und Landesbibliothek Bonn",
+      "en": "Text Database and Dictionary of Classic Mayan; Universitäts- und Landesbibliothek Bonn",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-bonn-stela-29",
+        "fieldPath": "/institution",
+        "textSha256": "066591ce6ce1ebd21aea1d95a5e67a3f9be00e74a4a7ee4ca8957e19bd2dfa7e"
+      }
+    },
+    {
+      "id": "source/ad0200-fordham-perpetua/locator",
+      "sv": "Redaktionens inledning samt berättelsens avsnitt 2 och 18–21 om Perpetua, Felicitas och avrättningarna.",
+      "en": "Editorial introduction and sections 2 and 18–21 of the narrative about Perpetua, Felicitas and the executions.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-fordham-perpetua",
+        "fieldPath": "/locator",
+        "textSha256": "77cf9e1755096f050312d506b31e4267be6babffc48391768a2b625eb110fa3c"
+      }
+    },
+    {
+      "id": "source/ad0200-fordham-perpetua/institution",
+      "sv": "W. H. Shewring, översättning (1931), språkligt moderniserad av Internet History Sourcebooks, Fordham University",
+      "en": "W. H. Shewring, translation (1931), modernized by Internet History Sourcebooks, Fordham University",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-fordham-perpetua",
+        "fieldPath": "/institution",
+        "textSha256": "d7851c2a1795fd27bc132fc2d102b9703cf7ac708c357e4956d3bd6dee5363d6"
+      }
+    },
+    {
+      "id": "source/ad0200-giessen-citizenship/locator",
+      "sv": "Sidans inledning om Papyrus Gissensis 40 och ediktets datering och omfattning.",
+      "en": "The page’s introduction on Papyrus Gissensis 40 and the edict’s date and scope.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-giessen-citizenship",
+        "fieldPath": "/locator",
+        "textSha256": "1f2df5e4a55479d4da4c1d7d0b0d6bede41ce8957ef3a56fc47f566cb95e67e5"
+      }
+    },
+    {
+      "id": "source/ad0200-giessen-citizenship/institution",
+      "sv": "Universitetsbiblioteket vid Justus Liebig University Giessen",
+      "en": "University Library, Justus Liebig University Giessen",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-giessen-citizenship",
+        "fieldPath": "/institution",
+        "textSha256": "1ce4e42b4f0a08501e64164c6ca3b7808855ef03003462b4a74897d9b7851864"
+      }
+    },
+    {
+      "id": "source/ad0200-yale-synagogue/locator",
+      "sv": "Stycket efter planritningen om ombyggnaden daterad genom en arameisk inskrift till 244/45; följande beskrivning av samlingssalens bilder.",
+      "en": "The paragraph after the plan drawing on the rebuilding dated by an Aramaic inscription to 244/45; the following description of the assembly room’s images.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-yale-synagogue",
+        "fieldPath": "/locator",
+        "textSha256": "664b79fb5fcb8d6ed3978f284747872f1d20d804af82ecdd7bcbbdb3a7a12423"
+      }
+    },
+    {
+      "id": "source/ad0200-yale-synagogue/institution",
+      "sv": "Yale University Art Gallery",
+      "en": "Yale University Art Gallery",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-yale-synagogue",
+        "fieldPath": "/institution",
+        "textSha256": "e00bf598f9f9ca2ca0388f94a20a5f884b205a8cbb86bc59c9bfbe3564b9fb8d"
+      }
+    },
+    {
+      "id": "source/ad0200-berlin-sacrifice/locator",
+      "sv": "“SB I 5943 (P. 13430)”, dateringen Pauni 22 och styckena om Aurelia Charis, kommissionens underskrifter och det förlorade ediktet.",
+      "en": "“SB I 5943 (P. 13430)”, the date Pauni 22 and the paragraphs on Aurelia Charis, the commission’s signatures and the lost edict.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-berlin-sacrifice",
+        "fieldPath": "/locator",
+        "textSha256": "170fc9ef10ed0d0284b76544db97209937879c63838741623448f874f36a35d5"
+      }
+    },
+    {
+      "id": "source/ad0200-berlin-sacrifice/institution",
+      "sv": "Kathrin Stenzel; Berlin Papyrus Database, Staatliche Museen zu Berlin",
+      "en": "Kathrin Stenzel; Berlin Papyrus Database, Staatliche Museen zu Berlin",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-berlin-sacrifice",
+        "fieldPath": "/institution",
+        "textSha256": "6acda884e8a23aad27132ed82e23ca5a463bf0d3e9f6b037e964c51f5393a32b"
       }
     }
   ]

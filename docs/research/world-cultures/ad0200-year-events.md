@@ -1,0 +1,13 @@
+# Historical events, AD 200–299
+
+The reconciled candidate contains 17 events and 16 scoped references. Independent source review checked the cited public passages. Four importance scores were reduced from 2 to 1, and the Tikal title now describes the inscription’s recorded date rather than implying that the image was made in AD 292. Independent final data and bilingual review passed with no material findings. Only the 17 retained event review objects were subsequently approved; catalog integration and required CI remain separate publication checks.
+
+The references comprise institutional histories and chronologies, a scholarly discussion of official recruitment, a public scholarly PDF on Himiko, a university mathematical biography, an epigraphic catalogue, a hosted martyr narrative, and museum or library descriptions of buildings, inscriptions and a signed petition. Aksum is supported by AIBL’s public preface excerpt, not a reading of the full inscription corpus. Giessen’s introductory page supports the citizenship edict’s scope and alternative date. The reviewer checked specified passages, not every page of each work.
+
+Eleven events remain withheld because six required source URLs did not yield readable passages. They concern Ardashir, Shapur’s wars, two Chinese imperial claims, the Funan embassies and Taupō. Paikuli is separately withheld on editorial significance grounds. Access failures do not disprove these historical claims. All original findings and held leads are preserved.
+
+The author logged 35 discovery queries across all nine macroregions; 15 earlier held leads remain preserved. The retained subset represents Africa, the Americas, East Asia, Europe, and the Middle East/North Africa. Oceania, Southeast Asia, South Asia, and Steppe/Central Asia have no retained candidate. Coverage within the represented regions is also incomplete.
+
+Chronology is unchanged: Aksum’s 201–300 indexing envelope, the 212/213 and 238/239 alternatives, complete building intervals, and Liu Hui’s unconfirmed traditional date remain explicit. Source locators have English canonical text with the original Swedish retained as translation targets. All 117 pairs passed independent bilingual review: 85 English event fields and 32 Swedish source locator and institution fields. An actual data commit is assigned as the source revision only after every existing and added locale reference has been checked against it.
+
+Earlier retrieval assertions and reuse permissions were not independently established. The review preserves its automatic runtime skill-scan warnings and limits its local-input audit to observed commands. No origin HTTP-body hashes or complete visual page inspection are claimed.
