@@ -1,6 +1,6 @@
 # Development checkpoint: Phase 3 of the AI game master
 
-Updated on 8 November 2026.
+Updated on 9 November 2026.
 
 ## Historical foundation checkpoint
 
@@ -109,6 +109,23 @@ The design is `docs/superpowers/specs/2026-11-08-world-cultures-phase-6-design.m
 Today's counts: playable 1, 10, 4 and 2 (Egypt, AD 800, AD 1200, AD 1500), map-only only Västra Xia and Chimú at AD 1200, and 137, 214, 280 and 289 review features withheld from ownership. The report gives counts and no percentage, because the coverage unit and the historical denominator are not defined yet.
 
 Evidence at `a9a599b8`: the full serial suite ran 5,186 tests, with 5,183 passed, 0 failed, 1 skipped and 2 TODO. The four `--check` scripts and `node scripts/check-start-coverage.mjs --check` exited 0. At `dc08c497`, `npm run build` passed and the browser run on both adapters showed the expected lines with 0 console errors; it is recorded in the [play script](../play-scripts/historical-foundation.md).
+
+## Character features, 8 and 9 November
+
+The owner approved ten character features on 8 November 2026. Each has a spec under `docs/superpowers/specs/` and is merged to `main`:
+
+- Shared memories carry favor or grievance in conversations: `2026-11-08-memory-valence-design.md`, PR #68, `16f7f402`.
+- Watches stop a longer advance: `2026-11-08-watches-design.md`, PR #69, `da2d76ce`.
+- A disloyal councillor flatters the odds: `2026-11-08-flattering-advisor-design.md`, PR #70, `7b05d452`.
+- The reign card shows the way to a nickname: `2026-11-08-nickname-path-design.md`, PR #71, `0daa5849`.
+- Friends and rivals form at court: `2026-11-08-friends-and-rivals-design.md`, PR #73, `3daf12a4`.
+- Grudges pass to the children: `2026-11-09-inherited-grudges-design.md`, PR #76, `c80e1b4d`.
+- Children of an affair: `2026-11-09-illegitimate-children-design.md`, PR #79, `a6ad8182`.
+- The physician's prognosis and the deathbed: `2026-11-09-deathbed-design.md`, PR #82, `f8b76b63`.
+- The electors vote under the elective law: `2026-11-09-elector-votes-design.md`, PR #83, `412e8a20`.
+- Old settled stories fade: `2026-11-09-story-fade-design.md`, PR #85, `2f034ece`.
+
+None of them raises `rulesVersion`. The deathbed and the story fade were run for 200 and 300 years against `main` and kept the same people, deaths, rulers and random streams. Two rules came out of this work: a story or log entry that NPCs see takes its id from its own content, never from `state.sequence`, and a timing comparison counts only when `main` and the branch run back to back.
 
 ## Branch state
 
