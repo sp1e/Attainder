@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "b52ebabf5a4674c25702a58d9e4f0ea093f1034b",
+  "sourceRevision": "a068a054a0304bbefe25195947e3caf85513af89",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -12322,6 +12322,270 @@
         "sourceId": "bc1900-powis-cacao",
         "fieldPath": "/institution",
         "textSha256": "fc1d17128206fac2fe71ca01bc53e9f69255e4fd32f78a87cc2ef815e561edca"
+      }
+    },
+    {
+      "id": "source/bc1800-efa-mu/institution",
+      "en": "École française d’Athènes; Jean-Claude Poursat",
+      "sv": "École française d’Athènes; Jean-Claude Poursat",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-efa-mu",
+        "fieldPath": "/institution",
+        "textSha256": "898da0bd881f9e52a8e68e7e079a1a3dc812024bb7ca2935bfdbd3232dff4728"
+      }
+    },
+    {
+      "id": "source/bc1800-efa-mu/locator",
+      "en": "Opening description and craftspeople's houses, web lines 107–121.",
+      "sv": "Inledande beskrivning och hantverkarbostäder, webbrader 107–121.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-efa-mu",
+        "fieldPath": "/locator",
+        "textSha256": "b40c164f9f7125237f869a99e8c60a2fbd4a3e70dea97d0e2e769201f48977e5"
+      }
+    },
+    {
+      "id": "source/bc1800-louvre-code/institution",
+      "en": "Musée du Louvre, Department of Near Eastern Antiquities",
+      "sv": "Musée du Louvre, avdelningen för Främre Orientens fornsaker",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-louvre-code",
+        "fieldPath": "/institution",
+        "textSha256": "0054108a18765787bd919fbef420b4cda84062d4cd04f7ea7948bd7b37c06e40"
+      }
+    },
+    {
+      "id": "source/bc1800-louvre-code/locator",
+      "en": "Opening description, engraving date and image caption, web lines 26–28; chapter count, line 39.",
+      "sv": "Inledande beskrivning, ristningsdatum och bildtext, webbrader 26–28; kapitelantal, rad 39.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-louvre-code",
+        "fieldPath": "/locator",
+        "textSha256": "5b9ca1d52df65ef85b52589f1f0cc315b41c48b6e5f37f468a67079100fc8b5a"
+      }
+    },
+    {
+      "id": "source/bc1800-yoffee-seri/institution",
+      "en": "Norman Yoffee and Andrea Seri; McDonald Institute for Archaeological Research, University of Cambridge",
+      "sv": "Norman Yoffee och Andrea Seri; McDonald Institute for Archaeological Research, University of Cambridge",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-yoffee-seri",
+        "fieldPath": "/institution",
+        "textSha256": "f348e146f3fdc4618971ea383a8c8691338f1603f6eb0f836256ad2040cbb41c"
+      }
+    },
+    {
+      "id": "source/bc1800-yoffee-seri/locator",
+      "en": "The Evolution of Fragility (2019), chapter 10, printed pp. 190–191 and 193; PDF pages 19–20 and 22.",
+      "sv": "The Evolution of Fragility (2019), kapitel 10, tryckta sidor 190–191 och 193; PDF-sidor 19–20 och 22.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-yoffee-seri",
+        "fieldPath": "/locator",
+        "textSha256": "4a10ca185638fff4e231e5a6822d531eebad2ed72b5144358745ecf01cf01d0c"
+      }
+    },
+    {
+      "id": "source/bc1800-cornell-chronology/institution",
+      "en": "Cornell University, Cornell Chronicle; Daniel Aloi reporting Sturt Manning's research",
+      "sv": "Cornell University, Cornell Chronicle; Daniel Aloi rapporterar om Sturt Mannings forskning",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-cornell-chronology",
+        "fieldPath": "/institution",
+        "textSha256": "bbfea4d051f0c7391446ffb29b6a379fde10396da6d3f33ab106eb29e719eedf"
+      }
+    },
+    {
+      "id": "source/bc1800-cornell-chronology/locator",
+      "en": "15 July 2016; chronology alternatives and interpretation, web lines 20–34.",
+      "sv": "15 juli 2016; kronologialternativ och tolkning, webbrader 20–34.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-cornell-chronology",
+        "fieldPath": "/locator",
+        "textSha256": "93669450c49a6c32c831c4c31acf9997bbbbd0aff881591afd0c4aa18072d889"
+      }
+    },
+    {
+      "id": "source/bc1800-mari-hammurabi/institution",
+      "en": "French Ministry of Culture, Grands sites archéologiques, Mari",
+      "sv": "Frankrikes kulturministerium, Grands sites archéologiques, Mari",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-mari-hammurabi",
+        "fieldPath": "/institution",
+        "textSha256": "8fd06efd839d44ebc871bf2a936106bc45d6ea00fabb1670a9cd9e160273705d"
+      }
+    },
+    {
+      "id": "source/bc1800-mari-hammurabi/locator",
+      "en": "Glossary entry, first two paragraphs; web lines 1–2.",
+      "sv": "Uppslagsord, de två första styckena; webbrader 1–2.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-mari-hammurabi",
+        "fieldPath": "/locator",
+        "textSha256": "58343e5b5b0c8812bbfe7648064a7f636f7aeeaf70ef04300780e33264fd4104"
+      }
+    },
+    {
+      "id": "source/bc1800-rubio-rebellion/institution",
+      "en": "Institute for the Study of the Ancient World, New York University; Gonzalo Rubio, Pennsylvania State University",
+      "sv": "Institute for the Study of the Ancient World, New York University; Gonzalo Rubio, Pennsylvania State University",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-rubio-rebellion",
+        "fieldPath": "/institution",
+        "textSha256": "ccf92431b92ce34e34f44c298105fe152fa64b05ae9d25d86965816dd92f6df1"
+      }
+    },
+    {
+      "id": "source/bc1800-rubio-rebellion/locator",
+      "en": "Public lecture abstract, concluding sentence of the political-discontent paragraph; web lines 17–20.",
+      "sv": "Offentligt föredragsabstract, sista meningen i stycket om politiskt missnöje; webbrader 17–20.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-rubio-rebellion",
+        "fieldPath": "/locator",
+        "textSha256": "a34b4dba905389762a1e0179826051a94c0ffd656ef8e6793388616fbebf64e2"
+      }
+    },
+    {
+      "id": "source/bc1800-gajiganna/institution",
+      "en": "Carlos Magnavita, Stefanie Kahlheber and Barbara Eichhorn; Antiquity Project Gallery",
+      "sv": "Carlos Magnavita, Stefanie Kahlheber och Barbara Eichhorn; Antiquity Project Gallery",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-gajiganna",
+        "fieldPath": "/institution",
+        "textSha256": "ebdc954890b7c5217b7ebe9657f9e5c680c3519fbbb657dcfb6f41b2e99ab20d"
+      }
+    },
+    {
+      "id": "source/bc1800-gajiganna/locator",
+      "en": "Introduction and Table 1, Phase I; web lines 45–62.",
+      "sv": "Inledning och tabell 1, fas I; webbrader 45–62.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-gajiganna",
+        "fieldPath": "/locator",
+        "textSha256": "b93b9b923ec14956b912f25a56b6dbc2e0e96c215e5a58ef56f5eab217c3695f"
+      }
+    },
+    {
+      "id": "source/bc1800-west-africa-landuse/institution",
+      "en": "Journal of World Prehistory, Springer Nature",
+      "sv": "Journal of World Prehistory, Springer Nature",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-west-africa-landuse",
+        "fieldPath": "/institution",
+        "textSha256": "692951178fa7d6f7ab3219375446200890371f94600bcea59e838ceef06d01dc"
+      }
+    },
+    {
+      "id": "source/bc1800-west-africa-landuse/locator",
+      "en": "1800 BC time-window, paragraph on the Bama Deltaic Complex; web line 279.",
+      "sv": "Tidsavsnittet 1800 f.Kr., stycket om Bama Deltaic Complex; webbrad 279.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-west-africa-landuse",
+        "fieldPath": "/locator",
+        "textSha256": "1d40cc7f6eb7b8d0dadd0ec34797f3b0872e05fe69e83e315da92ce288e3f8f0"
+      }
+    },
+    {
+      "id": "source/bc1800-peru-monuments/institution",
+      "en": "Permanent Delegation of Peru to UNESCO; UNESCO World Heritage Centre Tentative List 7055",
+      "sv": "Perus permanenta delegation vid UNESCO; UNESCO World Heritage Centre, förteckningen över föreslagna världsarv, post 7055",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-peru-monuments",
+        "fieldPath": "/institution",
+        "textSha256": "dbc4cdefe221a0de681b581f4f94fc8f5615ca87727a9d5918bebbf7f2eda1c3"
+      }
+    },
+    {
+      "id": "source/bc1800-peru-monuments/locator",
+      "en": "Pampa de las Llamas–Moxeke description, web lines 161–165. Submitted 13 October 2026; state-party content, not a World Heritage Committee finding.",
+      "sv": "Beskrivning av Pampa de las Llamas–Moxeke, webbrader 161–165. Inlämnad 13 oktober 2026; innehåll från konventionsstaten, inget ställningstagande av världsarvskommittén.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-peru-monuments",
+        "fieldPath": "/locator",
+        "textSha256": "c7d3b5c3224ed84dece12be6bb23632c9389fb9ff7613d86b6abe7875d0ff8b6"
+      }
+    },
+    {
+      "id": "source/bc1800-erlitou-models/institution",
+      "en": "Gideon Shelach and Yitzchak Jaffe; Journal of Archaeological Research 22 (2014), 327–364; author-uploaded full text",
+      "sv": "Gideon Shelach och Yitzchak Jaffe; Journal of Archaeological Research 22 (2014), 327–364; fulltext uppladdad av en författare",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-erlitou-models",
+        "fieldPath": "/institution",
+        "textSha256": "7e02086ecf3d864d6fcb35b30c8c727829a8ff6b457c0b1ca55b8586ceed8e81"
+      }
+    },
+    {
+      "id": "source/bc1800-erlitou-models/locator",
+      "en": "The rise of the Erlitou state, full-text web lines 1418–1449; DOI 10.1007/s10814-014-9074-8. Author upload attributed to Gideon Shelach.",
+      "sv": "Avsnittet The rise of the Erlitou state, fulltextens webbrader 1418–1449; DOI 10.1007/s10814-014-9074-8. Författaruppladdning tillskriven Gideon Shelach.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-erlitou-models",
+        "fieldPath": "/locator",
+        "textSha256": "3f85e294b07f1359d2b853bb5e486f76d2f10f967895d312037e8933520ea295"
+      }
+    },
+    {
+      "id": "source/bc1800-fuller-south-india/institution",
+      "en": "Dorian Q. Fuller, Nicole Boivin and Ravi Korisettar; University College London author manuscript",
+      "sv": "Dorian Q. Fuller, Nicole Boivin och Ravi Korisettar; författarmanuskript vid University College London",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-fuller-south-india",
+        "fieldPath": "/institution",
+        "textSha256": "395e0a1ce2dff073d865275595f349690b6b0ba1f71cf45a1b2915c78acdea28"
+      }
+    },
+    {
+      "id": "source/bc1800-fuller-south-india/locator",
+      "en": "Manuscript p. 13, first paragraph: directly dated wheat and barley at Piklihal.",
+      "sv": "Manuskriptets sida 13, första stycket: direktdaterat vete och korn i Piklihal.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-fuller-south-india",
+        "fieldPath": "/locator",
+        "textSha256": "624a7740decb6bd17d646e29ee64da32c19894edcdaefbfaee6fc1b1147084f4"
+      }
+    },
+    {
+      "id": "source/bc1800-fuller-rice/institution",
+      "en": "Dorian Q. Fuller, Cristina Cobo Castillo and Charlene Murphy; Institute of Archaeology, University College London",
+      "sv": "Dorian Q. Fuller, Cristina Cobo Castillo och Charlene Murphy; Institute of Archaeology, University College London",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-fuller-rice",
+        "fieldPath": "/institution",
+        "textSha256": "6ec53476770da5d934fdc7975446eee4ff1ee6457a166b5c1a3aefa7b1955207"
+      }
+    },
+    {
+      "id": "source/bc1800-fuller-rice/locator",
+      "en": "Author manuscript for The Routledge Handbook of Globalization and Archaeology, p. 6; web lines 227–246.",
+      "sv": "Författarmanuskript till The Routledge Handbook of Globalization and Archaeology, sida 6; webbrader 227–246.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1800-fuller-rice",
+        "fieldPath": "/locator",
+        "textSha256": "2d4849fc4daa6a918022fedece7af44723c7febc357eecdd292d702c5a41547a"
       }
     }
   ]
