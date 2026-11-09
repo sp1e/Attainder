@@ -305,6 +305,15 @@ function GovernanceSummary({ view }) {
   </section>;
 }
 
+function ElectionTally({ election }) {
+  if (!election) return null;
+  return <div className="char-goal char-election"><span>Elektorernas röster</span>
+    <ul>{election.candidates.map((candidate) => <li key={candidate.id}><strong>{candidate.name}</strong> · {candidate.votesLabel}</li>)}</ul>
+    {election.electors.length > 0 ? <details className="char-explanation"><summary>Varje elektors röst</summary><ul>{election.electors.map((elector) => <li key={elector.id}>{elector.name} röstar på {elector.candidateName}</li>)}</ul></details> : <p className="char-caption">{election.precision === 'three' ? 'Med bättre underrättelser syns hur många röster var och en har.' : 'Med bättre underrättelser syns varje elektors röst.'}</p>}
+    <p className="char-caption">Rådet och husens huvudmän väljer bland de tre främsta kandidaterna. Varje elektor väger förmåga mot sin egen åsikt om kandidaten, så en gåva eller Påverka kan flytta en röst.</p>
+  </div>;
+}
+
 function SuccessionForecast({ forecast }) {
   if (!forecast) return null;
   const personSummary = (person) => person ? <><strong>{person.name}</strong><p>{person.familyName} · {person.age} år · {person.archetypeLabel}</p><p>Förmåga: <strong>{person.ability?.label || 'Ingen angiven'}</strong></p><p className="char-caption">{person.ability?.description}</p></> : <p>Ingen levande innehavare.</p>;
@@ -322,6 +331,7 @@ function SuccessionForecast({ forecast }) {
         {forecast.expectedRuler && <p>{forecast.requiresRegency ? 'Barnets arketyp visas som personuppgift, inte som regentens förmåga.' : forecast.abilityChanges ? 'Mandatet byter arketypförmåga.' : 'Mandatet behåller samma arketypförmåga.'}</p>}
       </div>
     </div>
+    <ElectionTally election={forecast.election} />
     <p>{forecast.identity.description}</p>
     {forecast.identity.mode === 'family' && forecast.identity.familyKeepsThrone === false && <p className="char-badge char-badge--warning">Den väntade härskaren tillhör en annan familj. Din familj får inte automatiskt härskarmandat.</p>}
     <h4>Projekt vid härskarens död</h4>
