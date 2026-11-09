@@ -1,0 +1,94 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad1200-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 1200,
+    "endYear": 1299
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad1200en-vidal-samalas",
+      "title": "The 1257 Samalas eruption (Lombok, Indonesia): the single greatest stratospheric gas release of the Common Era",
+      "institution": "Céline M. Vidal and colleagues; Scientific Reports; public abstract indexed by the US National Library of Medicine",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27721477/",
+      "locator": "Scientific Reports 6, 34868 (10 October 2016), DOI 10.1038/srep34868. Public abstract and bibliographic metadata only; no full-paper or supplementary-material reading claimed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "the great 1257 eruption of Samalas",
+      "originalChronology": "The study assigns the eruption to 1257. Its interpretation of climatic effects concerns the later thirteenth century, not an exactly dated, uniform global response.",
+      "scopedClaim": "Geochemical analysis of eruptive products indicates a large release of sulphur and halogen gases into the stratosphere. The authors conclude that the emissions were sufficient to produce reported global cooling; individual famines, mortality and precise regional temperatures are outside this claim.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1200en-karashima-subbarayalu-quanzhou",
+      "title": "Ancient and Medieval Tamil and Sanskrit Inscriptions Relating to Southeast Asia and China",
+      "institution": "Noboru Karashima and Y. Subbarayalu; Institute of Southeast Asian Studies",
+      "url": "https://bookshop.iseas.edu.sg/component/get/10527",
+      "locator": "Appendix I in Nagapattinam to Suvarnadwipa (2009), pp. 271–291; no. 15, Quanzhou Tamil inscription, pp. 287–288 (PDF pages 17–18). Editorial introduction, text and English translation read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Saka 1203 corresponding to c. 1281 CE",
+      "originalChronology": "The translation dates the installation to the day Chitra in the month of Chittirai in Saka year 1203. The editors give c. 1281 CE for that year. No independent conversion of the day or month is made. The record concerns installation of Shiva; it does not independently date the beginning of temple construction or settlement.",
+      "scopedClaim": "The translation attributes the installation to Sambandapperumal under the written permission of Chekachai Khan. The editors treat identification of that ruler with Kublai as tentative and question whether the Chinese characters belong to the Tamil text.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-ad1257-samalas-eruption",
+      "date": {
+        "kind": "exact",
+        "startYear": 1257,
+        "endYear": 1257,
+        "displayEn": "1257 CE",
+        "noteEn": "The year follows Vidal and colleagues' study of the Samalas eruption. No day or month is assigned. The inferred climatic effects are not dated to a single year or assumed to have been identical in every region."
+      },
+      "titleEn": "Samalas erupts on Lombok",
+      "summaryEn": "A powerful eruption at Samalas releases large quantities of volcanic gases into the stratosphere. Geochemical research concludes that these emissions were sufficient to produce the global cooling reported after the eruption.",
+      "geographyEn": "Samalas, Rinjani volcanic complex, Lombok, Indonesia",
+      "category": "nature",
+      "importance": 3,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1200en-vidal-samalas"
+      ],
+      "selectionNote": "A major environmental event with an explicitly studied global atmospheric consequence, absent from the catalog's named and generic eruption, climate and harvest-failure episodes. The record does not assign a death toll, specific famine, exact temperature change or uniform duration to its effects.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-ad1281-quanzhou-shiva-installation",
+      "date": {
+        "kind": "approximate",
+        "startYear": 1281,
+        "endYear": 1281,
+        "displayEn": "c. 1281 CE",
+        "noteEn": "The editors give approximately 1281 CE for the inscription's Saka 1203 date. The event concerns the recorded installation, not the start of temple construction. Chekachai Khan's identification with Kublai remains tentative and is not required for this account."
+      },
+      "titleEn": "Sambandapperumal installs Shiva at a temple in Quanzhou",
+      "summaryEn": "A Tamil inscription records Sambandapperumal's installation of Shiva with written permission attributed to the Mongol ruler Chekachai Khan. The record documents Shaiva worship in the Chinese port and its connection with people using Tamil.",
+      "geographyEn": "Quanzhou, a port in southern China",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1200en-karashima-subbarayalu-quanzhou"
+      ],
+      "selectionNote": "A dated religious dedication documenting an Indian Ocean connection at a Chinese port. It is distinct from the existing Barus merchant meeting, Mongol conquests and Phags-pa script edict. No first Tamil arrival, first Hindu temple, settled population size or certain identification of the Mongol ruler is inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
