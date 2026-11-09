@@ -28,9 +28,9 @@ The [catalog README](../../../public/lang/attainder/help/README.md) describes th
 
 ## Later event batches
 
-The BC2300, AD700, AD500, BC2200, AD300, BC2100, AD200 and BC2000 deliveries added 623 English event fields and 220 Swedish source-panel fields. The AD100 batch adds another 135 English event fields and 44 Swedish source-panel fields. The sidecars now contain 4,474 English entries and 1,096 Swedish entries, covering all display fields for 605 events and all locators and institution fields for 548 sources. All prior translation entries are unchanged.
+The BC2300, AD700, AD500, BC2200, AD300, BC2100, AD200, BC2000 and AD100 deliveries added 758 English event fields and 264 Swedish source-panel fields. The BC1900 batch adds another 50 English event fields and 24 Swedish source-panel fields. The sidecars now contain 4,524 English entries and 1,120 Swedish entries, covering all display fields for 615 events and all locators and institution fields for 560 sources. All prior translation entries are unchanged.
 
-Both sidecars identify source revision `8ad9b25c5cd0a037c3393cdace971754a1eba4a5`, the preceding research-data commit on the retained `research/e-ad0100-events` branch. All 5,570 source strings and UTF-8 hashes were checked against that exact Git revision. A later event batch must commit its research data before advancing this pointer, then verify every existing and added entry against the new snapshot.
+Both sidecars identify source revision `b52ebabf5a4674c25702a58d9e4f0ea093f1034b`, the preceding research-data commit on the retained `research/e-bc1900-events` branch. All 5,644 source strings and UTF-8 hashes were checked against that exact Git revision. A later event batch must commit its research data before advancing this pointer, then verify every existing and added entry against the new snapshot.
 
 ## Translation contract
 

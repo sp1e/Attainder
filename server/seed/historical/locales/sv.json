@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "8ad9b25c5cd0a037c3393cdace971754a1eba4a5",
+  "sourceRevision": "b52ebabf5a4674c25702a58d9e4f0ea093f1034b",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -12058,6 +12058,270 @@
         "sourceId": "ad0100-crespigny-han-preview",
         "fieldPath": "/institution",
         "textSha256": "13e14ff3dcc67f6b49e670f3c8e3a8d567c656fae9c87ac83001be62ac9ad2e6"
+      }
+    },
+    {
+      "id": "source/bc1900-ucl-kings/locator",
+      "en": "Dynasty 12 entries for Senusret II, Senusret III and Sobekneferu; web lines 22–26.",
+      "sv": "Posterna för Senusret II, Senusret III och Sobekneferu under dynasti 12; webbrader 22–26.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-ucl-kings",
+        "fieldPath": "/locator",
+        "textSha256": "795650edf33dfcb8287ee7d72876fc61e5928f19bd5e2f0003f270a9f2246063"
+      }
+    },
+    {
+      "id": "source/bc1900-ucl-kings/institution",
+      "en": "University College London, Digital Egypt for Universities",
+      "sv": "University College London, Digital Egypt for Universities",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-ucl-kings",
+        "fieldPath": "/institution",
+        "textSha256": "22b4ed4dbde10debe5ea3c427a5d5cee3a976ea4d4ef29e062bf281c5a33970c"
+      }
+    },
+    {
+      "id": "source/bc1900-ucla-chronology/locator",
+      "en": "Opening cautions and Dynasty 12 rows for Senusret II, Senusret III and Neferusobek; web lines 1–4 and 65–69.",
+      "sv": "Inledande reservationer och raderna för Senusret II, Senusret III och Neferusobek under dynasti 12; webbrader 1–4 och 65–69.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-ucla-chronology",
+        "fieldPath": "/locator",
+        "textSha256": "25f9b5ef9519a6d57e73f60bdb931b62b5db4a163988ad067303bfeb6c5df2db"
+      }
+    },
+    {
+      "id": "source/bc1900-ucla-chronology/institution",
+      "en": "UCLA Encyclopedia of Egyptology; Thomas Schneider, University of British Columbia",
+      "sv": "UCLA Encyclopedia of Egyptology; Thomas Schneider, University of British Columbia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-ucla-chronology",
+        "fieldPath": "/institution",
+        "textSha256": "cc99ef69677e1b3e85f68c30c7322b69cb2391a6d24d5f717a4197de652e8ba6"
+      }
+    },
+    {
+      "id": "source/bc1900-ucl-senusret-iii/locator",
+      "en": "Heading and first substantive paragraph, especially the Nubian campaigns and Semna frontier; web lines 2–3.",
+      "sv": "Rubriken och det första innehållsstycket, särskilt fälttågen i Nubien och gränsen vid Semna; webbrader 2–3.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-ucl-senusret-iii",
+        "fieldPath": "/locator",
+        "textSha256": "9b7b018d08bae2ec808a9840076537157a60874f7da5e123232fa9c7c766a013"
+      }
+    },
+    {
+      "id": "source/bc1900-ucl-senusret-iii/institution",
+      "en": "University College London, Digital Egypt for Universities",
+      "sv": "University College London, Digital Egypt for Universities",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-ucl-senusret-iii",
+        "fieldPath": "/institution",
+        "textSha256": "22b4ed4dbde10debe5ea3c427a5d5cee3a976ea4d4ef29e062bf281c5a33970c"
+      }
+    },
+    {
+      "id": "source/bc1900-manchester-lahun/locator",
+      "en": "Museum article dated 23 April 2012, opening two paragraphs; web lines 13–14.",
+      "sv": "Museiartikel daterad 23 april 2012, de två inledande styckena; webbrader 13–14.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-manchester-lahun",
+        "fieldPath": "/locator",
+        "textSha256": "97617981db25f9e604869ab3a0d648ecd5084e557df97f745e8be7291d9ec884"
+      }
+    },
+    {
+      "id": "source/bc1900-manchester-lahun/institution",
+      "en": "Manchester Museum, University of Manchester",
+      "sv": "Manchester Museum, University of Manchester",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-manchester-lahun",
+        "fieldPath": "/institution",
+        "textSha256": "37cad81700679958f5541697a231253c801d132a7b8ad171893ea167bb8bc71d"
+      }
+    },
+    {
+      "id": "source/bc1900-met-dahshur/locator",
+      "en": "Essay dated 1 October 2004, paragraphs on the reign and two construction phases; web lines 30–36.",
+      "sv": "Essä daterad 1 oktober 2004, styckena om regeringen och de två byggnadsfaserna; webbrader 30–36.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-met-dahshur",
+        "fieldPath": "/locator",
+        "textSha256": "71e62157577bdf457067527d5f8047a63bc42c14eb383129e10ab98944d88c6a"
+      }
+    },
+    {
+      "id": "source/bc1900-met-dahshur/institution",
+      "en": "The Metropolitan Museum of Art; Dieter Arnold",
+      "sv": "The Metropolitan Museum of Art; Dieter Arnold",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-met-dahshur",
+        "fieldPath": "/institution",
+        "textSha256": "6337676361c81017fb33080459b64e5436ec4f8f725fdc6888078a19f00a2dc5"
+      }
+    },
+    {
+      "id": "source/bc1900-diamond-sobekneferu/locator",
+      "en": "Birmingham Egyptology Journal 7 (2020), pp. 1–18: pp. 1–2, abstract and Introduction including note 1; p. 5, Louvre statue discussion giving Senwosret III's reign. PDF pages 3–4 and 7; web lines 65, 95–134 and 267.",
+      "sv": "Birmingham Egyptology Journal 7 (2020), s. 1–18: s. 1–2, sammanfattningen och Introduction inklusive not 1; s. 5, diskussionen om Louvrestatyn som anger Senwosret III:s regeringstid. PDF-sidor 3–4 och 7; webbrader 65, 95–134 och 267.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-diamond-sobekneferu",
+        "fieldPath": "/locator",
+        "textSha256": "7bd80405d224c80290379fe382b0c0a0ede721fd783158c42ba35a95b2cff70c"
+      }
+    },
+    {
+      "id": "source/bc1900-diamond-sobekneferu/institution",
+      "en": "Kelly-Anne Diamond; Birmingham Egyptology Journal, University of Birmingham",
+      "sv": "Kelly-Anne Diamond; Birmingham Egyptology Journal, University of Birmingham",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-diamond-sobekneferu",
+        "fieldPath": "/institution",
+        "textSha256": "c16cb7d0f0e59d71405ddc4ffe713c3d6bef49b238149c74c4711343eadc42a7"
+      }
+    },
+    {
+      "id": "source/bc1900-deboer-babylon/locator",
+      "en": "Volume 70 (2018), pp. 53–86; public Abstract, its two paragraphs; web lines 45–47. Only the abstract and bibliographic metadata were read.",
+      "sv": "Volym 70 (2018), s. 53–86; det offentliga Abstract, dess två stycken; webbrader 45–47. Endast sammanfattningen och bibliografiska metadata lästes.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-deboer-babylon",
+        "fieldPath": "/locator",
+        "textSha256": "6c85e3ef9ffee50ac2ef07d867c5e075e63b18ee1b80da013cc11815675a583b"
+      }
+    },
+    {
+      "id": "source/bc1900-deboer-babylon/institution",
+      "en": "Rients de Boer; Journal of Cuneiform Studies, ASOR and The University of Chicago Press",
+      "sv": "Rients de Boer; Journal of Cuneiform Studies, ASOR och The University of Chicago Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-deboer-babylon",
+        "fieldPath": "/institution",
+        "textSha256": "49297fd595fa860944639c40424b94e8eb3f73413cce083cf39f28d72c4c3aad"
+      }
+    },
+    {
+      "id": "source/bc1900-an-xinzhai/locator",
+      "en": "Volume 31 (2022), pp. 261–277; The Xinzhai site and its setting, first two paragraphs; web lines 82–86. Published online 3 September 2021.",
+      "sv": "Volym 31 (2022), s. 261–277; The Xinzhai site and its setting, de två första styckena; webbrader 82–86. Publicerad på nätet 3 september 2021.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-an-xinzhai",
+        "fieldPath": "/locator",
+        "textSha256": "d784b71ca596eb5f0fe20acbc2862a78ed89fe36e561423eedc05c73b1bf792b"
+      }
+    },
+    {
+      "id": "source/bc1900-an-xinzhai/institution",
+      "en": "Jingping An, Wiebke Kirleis, Chunqing Zhao and Guiyun Jin; Vegetation History and Archaeobotany, Springer Nature",
+      "sv": "Jingping An, Wiebke Kirleis, Chunqing Zhao och Guiyun Jin; Vegetation History and Archaeobotany, Springer Nature",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-an-xinzhai",
+        "fieldPath": "/institution",
+        "textSha256": "ecd6ea670365a85bc83b6540c7e8f6fca817171571ab42586aa16d6618404fbb"
+      }
+    },
+    {
+      "id": "source/bc1900-liu-xinzhai/locator",
+      "en": "Radiocarbon 47(1) (2005), pp. 21–25; Table 1, p. 23, and Results and Discussion, pp. 24–25; web lines 87, 116 and 118–131.",
+      "sv": "Radiocarbon 47(1) (2005), s. 21–25; tabell 1, s. 23, och Results and Discussion, s. 24–25; webbrader 87, 116 och 118–131.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-liu-xinzhai",
+        "fieldPath": "/locator",
+        "textSha256": "f1166337e03d5a85efe953fbc8a0af347847a2be2194f039b189e67ac1ebc4c2"
+      }
+    },
+    {
+      "id": "source/bc1900-liu-xinzhai/institution",
+      "en": "Kexin Liu and colleagues; Radiocarbon, Cambridge University Press",
+      "sv": "Kexin Liu med flera; Radiocarbon, Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-liu-xinzhai",
+        "fieldPath": "/institution",
+        "textSha256": "786c9ef47ace20964fe3627c24f522899a682490b8a94a392d543f7fe38625e8"
+      }
+    },
+    {
+      "id": "source/bc1900-piper-vietnam/locator",
+      "en": "University-hosted manuscript, The Greater Red River Region, Northern Vietnam, paragraphs on Mán Bạc; PDF pages 5–6, web lines 186–203. The repository PDF's edition/publication year was not established.",
+      "sv": "Universitetets manuskript, The Greater Red River Region, Northern Vietnam, styckena om Mán Bạc; PDF-sidor 5–6, webbrader 186–203. Arkivets PDF-utgåva och publiceringsår har inte fastställts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-piper-vietnam",
+        "fieldPath": "/locator",
+        "textSha256": "82fc75746eca1603fba9d374e713cad905861bfc5b0b914e8ebe090e4880c1c4"
+      }
+    },
+    {
+      "id": "source/bc1900-piper-vietnam/institution",
+      "en": "Philip J. Piper and colleagues; University of Waikato Research Commons",
+      "sv": "Philip J. Piper med flera; University of Waikato Research Commons",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-piper-vietnam",
+        "fieldPath": "/institution",
+        "textSha256": "f1142c5724d72ac89ed14d14acd364e146724a0a25046b76c10f703ee3c785ab"
+      }
+    },
+    {
+      "id": "source/bc1900-bates-indus/locator",
+      "en": "Antiquity 97(396) (2023), pp. 1488–1500; abstract p. 1488, Indus agricultural modelling and Table 1 p. 1490, climate discussion p. 1491; web lines 6–18 and 64–91.",
+      "sv": "Antiquity 97(396) (2023), s. 1488–1500; sammanfattningen s. 1488, Indus agricultural modelling och tabell 1 s. 1490, klimatdiskussionen s. 1491; webbrader 6–18 och 64–91.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-bates-indus",
+        "fieldPath": "/locator",
+        "textSha256": "439f69563772a3e4d80ee912dd7da299435759afa29cef0e44b7324faeda5ad9"
+      }
+    },
+    {
+      "id": "source/bc1900-bates-indus/institution",
+      "en": "Jennifer Bates and Jungwoo Choi; Antiquity, Cambridge University Press",
+      "sv": "Jennifer Bates och Jungwoo Choi; Antiquity, Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-bates-indus",
+        "fieldPath": "/institution",
+        "textSha256": "39a508393a31e21912ab4340dbeaa5513bbbc5569669d697e59af91c066393f2"
+      }
+    },
+    {
+      "id": "source/bc1900-powis-cacao/locator",
+      "en": "Methods and results paragraphs for the Paso de la Amada Bayo Brown vessel; web lines 57–64 and 69. The conservative date follows the detailed context discussion.",
+      "sv": "Metod- och resultatstyckena om Bayo Brown-kärlet från Paso de la Amada; webbrader 57–64 och 69. Den försiktiga dateringen följer den detaljerade diskussionen om fyndsammanhanget.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-powis-cacao",
+        "fieldPath": "/locator",
+        "textSha256": "032af788689d67824d184a0d17eb0a0fb802b9f697c0683cdee3f0cdcb1f735c"
+      }
+    },
+    {
+      "id": "source/bc1900-powis-cacao/institution",
+      "en": "Terry G. Powis and colleagues; Antiquity Project Gallery",
+      "sv": "Terry G. Powis med flera; Antiquity Project Gallery",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1900-powis-cacao",
+        "fieldPath": "/institution",
+        "textSha256": "fc1d17128206fac2fe71ca01bc53e9f69255e4fd32f78a87cc2ef815e561edca"
       }
     }
   ]

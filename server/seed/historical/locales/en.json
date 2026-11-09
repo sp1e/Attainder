@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "8ad9b25c5cd0a037c3393cdace971754a1eba4a5",
+  "sourceRevision": "b52ebabf5a4674c25702a58d9e4f0ea093f1034b",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -47555,6 +47555,556 @@
         "eventId": "ev-0197-lugdunum-slag",
         "fieldPath": "/geographySv",
         "textSha256": "581fd25299abf35cf62d8dfa40f9659eeec475bf277c60660cf140cc8f5c2da8"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-indusstaderna-krymper/date/displaySv",
+      "sv": "cirka 1900–1700 f.Kr. (studiens senharappanska fas)",
+      "en": "c. 1900–1700 BC (the study’s Late Harappan phase)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-indusstaderna-krymper",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "842c63c0849fa4b0949942f21c3bbb3ed3c7559d79b8a853cc4763877da644ba"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-indusstaderna-krymper/date/noteSv",
+      "sv": "Bates och Choi använder cirka 1900–1700 f.Kr. för den undersökta fasen. Deras bredare lokaliseringsperiod omfattar cirka 1900–1300 f.Kr. Dateringen anger inget gemensamt övergivandeår eller en enda orsak.",
+      "en": "Bates and Choi use c. 1900–1700 BC for the phase studied. Their broader Localisation Era covers c. 1900–1300 BC. The date establishes no single abandonment year or sole cause.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-indusstaderna-krymper",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "02dbeb38c9016519b4c1a56da929a03cc049146d6bf0d43402b85bf99ccc4753"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-indusstaderna-krymper/titleSv",
+      "sv": "Invånare lämnar Indusområdets storstäder för mindre bosättningar",
+      "en": "People leave the Indus region’s large cities for smaller settlements",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-indusstaderna-krymper",
+        "fieldPath": "/titleSv",
+        "textSha256": "8a8d2194a88839fa8304e4226fdda8271d5a3d1a69578a750dcd40a2efc463af"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-indusstaderna-krymper/summarySv",
+      "sv": "Invånare flyttar från stora städer till mindre byar. Mohenjo-daro överges efter en tids tillbakagång, medan Harappa förblir bebott med färre invånare.",
+      "en": "People move from large cities to smaller villages. Mohenjo-daro is abandoned after a period of decline, while Harappa remains occupied by fewer people.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-indusstaderna-krymper",
+        "fieldPath": "/summarySv",
+        "textSha256": "d1c6477b7e90e9a8b0c0ee22a709943f238bb75364fdf8fe3a57425233e43d1b"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-indusstaderna-krymper/geographySv",
+      "sv": "Indusområdet i nuvarande Pakistan och nordvästra Indien",
+      "en": "Indus region in present-day Pakistan and northwestern India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-indusstaderna-krymper",
+        "fieldPath": "/geographySv",
+        "textSha256": "e64640c9cc6336bc0660b2bc8eadb8ee21e8615848ad691c76e9048b6d3e8e5e"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-man-bacs-gravlaggningar/date/displaySv",
+      "sv": "cirka 1900–1600 f.Kr.",
+      "en": "c. 1900–1600 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-man-bacs-gravlaggningar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "46da53a9a0495907b8bd41894d72877b4993e889a33b8c94610986c6a0d9f8a0"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-man-bacs-gravlaggningar/date/noteSv",
+      "sv": "Källan daterar de 85 registrerade gravarna till 1900–1600 f.Kr. Hela intervallet behålls; det är inget enskilt gravläggningsår.",
+      "en": "The source dates the 85 recorded graves to 1900–1600 BC. The full interval is retained; it is not a single burial year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-man-bacs-gravlaggningar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1bb115b68301ffe2a827ebfa203eb83a3ba81def7b352f414d0d70a7593bf150"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-man-bacs-gravlaggningar/titleSv",
+      "sv": "Invånarna i Mán Bạc gravlägger sina döda med keramik och smycken",
+      "en": "The people of Mán Bạc bury their dead with pottery and ornaments",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-man-bacs-gravlaggningar",
+        "fieldPath": "/titleSv",
+        "textSha256": "8c581838f8f099370dc6efc23fedf441668089a3a71d387b9a8d0fb7d8ff6560"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-man-bacs-gravlaggningar/summarySv",
+      "sv": "Invånarna lägger de döda oftast utsträckta på rygg, ibland böjda på sidan, och ger dem keramik och personliga smycken. Forskarna tolkar de gemensamma gravskicken som möjliga spår av att lokala grupper och inflyttade jordbrukare förenas.",
+      "en": "People usually lay the dead stretched out on their backs, sometimes flexed on their sides, and give them pottery and personal ornaments. Researchers interpret the shared burial practices as possible evidence of local groups and incoming farmers coming together.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-man-bacs-gravlaggningar",
+        "fieldPath": "/summarySv",
+        "textSha256": "eddb5a201ebc8542f0fb1c24658cf99087a42b335e4c50bd2d3481b1be7dfd5d"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-man-bacs-gravlaggningar/geographySv",
+      "sv": "Mán Bạc, norra centrala Vietnam",
+      "en": "Mán Bạc, north-central Vietnam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-man-bacs-gravlaggningar",
+        "fieldPath": "/geographySv",
+        "textSha256": "61f5a68291b211de464128fd110d667f675cf1e3342a3c938704fecc8eb3fabb"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-kakaodryck-i-paso-de-la-amada/date/displaySv",
+      "sv": "cirka 1900–1500 f.Kr.",
+      "en": "c. 1900–1500 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-kakaodryck-i-paso-de-la-amada",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ec447ed892aa9abd8414bf03b3daf5e3f35fddee74e608794a8b95c9b12d8b7d"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-kakaodryck-i-paso-de-la-amada/date/noteSv",
+      "sv": "Forskarna behåller både Barrafasen 1900–1700 och Loconafasen 1700–1500 f.Kr., eftersom kärlfragmentet låg i omflyttad byggnadsfyllning. Intervallet anger inget exakt införandeår.",
+      "en": "The researchers retain both the Barra phase of 1900–1700 and the Locona phase of 1700–1500 BC because the vessel fragment lay in redeposited construction fill. The interval establishes no exact year of introduction.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-kakaodryck-i-paso-de-la-amada",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "be04317fcd6467d760d7a85b5661ecfff5622b26f05f57183621fce36a045f1b"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-kakaodryck-i-paso-de-la-amada/titleSv",
+      "sv": "Människor i Paso de la Amada tillreder kakaodryck",
+      "en": "People at Paso de la Amada prepare a cacao drink",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-kakaodryck-i-paso-de-la-amada",
+        "fieldPath": "/titleSv",
+        "textSha256": "50a0d9187bf0a87713c7159725d23a23030382fff120f28b2d4c723cb5e2a4c0"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-kakaodryck-i-paso-de-la-amada/summarySv",
+      "sv": "Invånare i Paso de la Amada använder ett keramikkärl till kakaodryck, enligt forskarnas analys av rester på kärlets insida. Fyndet visar ett tidigt lokalt bruk av kakao.",
+      "en": "People at Paso de la Amada use a ceramic vessel for a cacao drink, according to researchers’ analysis of residues on its interior. The find shows early local use of cacao.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-kakaodryck-i-paso-de-la-amada",
+        "fieldPath": "/summarySv",
+        "textSha256": "edd65f30c3520315ad34103f70a36e2dedcec13da0ef9850a3833b5c8d26071e"
+      }
+    },
+    {
+      "id": "event/ev-bc1900-kakaodryck-i-paso-de-la-amada/geographySv",
+      "sv": "Paso de la Amada, Chiapas, Mexikos Stillahavskust",
+      "en": "Paso de la Amada, Chiapas, Mexico’s Pacific coast",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1900-kakaodryck-i-paso-de-la-amada",
+        "fieldPath": "/geographySv",
+        "textSha256": "4dea07b1d91822abc70fe417f42aea7ed8f41a3f98e6c79f0bcf86f5d0277961"
+      }
+    },
+    {
+      "id": "event/ev-bc1896-planerad-stad-vid-lahun/date/displaySv",
+      "sv": "under Senusret II: cirka 1896–1887, 1882–1872 eller 1880–1874 f.Kr.",
+      "en": "During Senusret II’s reign: c. 1896–1887, 1882–1872 or 1880–1874 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1896-planerad-stad-vid-lahun",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "fe5140aa116859cd06736026321fa227572c229fc2ad2d8ca3c8dfc6d506216e"
+      }
+    },
+    {
+      "id": "event/ev-bc1896-planerad-stad-vid-lahun/date/noteSv",
+      "sv": "UCLA anger regeringstiden till cirka 1896–1887 f.Kr., UCL till 1882–1872 och Manchester Museum till cirka 1880–1874. Källorna fastställer inget separat grundläggningsår.",
+      "en": "UCLA gives the reign as c. 1896–1887 BC, UCL as 1882–1872 and Manchester Museum as c. 1880–1874. The sources establish no separate foundation year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1896-planerad-stad-vid-lahun",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "4686b9d58ec86b57b71b0556a5b9094eea0e0ec923338d07b8fd010fcd2af631"
+      }
+    },
+    {
+      "id": "event/ev-bc1896-planerad-stad-vid-lahun/titleSv",
+      "sv": "Byggare anlägger en planerad stad vid Lahun",
+      "en": "Builders establish a planned town at Lahun",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1896-planerad-stad-vid-lahun",
+        "fieldPath": "/titleSv",
+        "textSha256": "35190a4fb721b0adb75db70c111f41c6319d04695a48fb81f79f49326a53a8d0"
+      }
+    },
+    {
+      "id": "event/ev-bc1896-planerad-stad-vid-lahun/summarySv",
+      "sv": "Byggare anlägger en planerad bosättning för arbetarna vid Senusret II:s pyramid. Staden kallas Hetep-Senusret och är i arkeologisk litteratur även känd som Kahun.",
+      "en": "Builders establish a planned settlement for the workers at Senusret II’s pyramid. The town is called Hetep-Senusret and is also known as Kahun in archaeological literature.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1896-planerad-stad-vid-lahun",
+        "fieldPath": "/summarySv",
+        "textSha256": "e1753ce98ff906558906ba022bee0ea92796c8756a948774afb07a9c36546ae2"
+      }
+    },
+    {
+      "id": "event/ev-bc1896-planerad-stad-vid-lahun/geographySv",
+      "sv": "Lahun vid Fayyums östra kant, Egypten",
+      "en": "Lahun at the eastern edge of the Fayyum, Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1896-planerad-stad-vid-lahun",
+        "fieldPath": "/geographySv",
+        "textSha256": "9d2bab79fa1ffc3fe52d3c898f769b4de21afa477c20a830cf8077c6e7fd253d"
+      }
+    },
+    {
+      "id": "event/ev-bc1890-sumu-abums-erovringar/date/displaySv",
+      "sv": "cirka 1890–1860 f.Kr.",
+      "en": "c. 1890–1860 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1890-sumu-abums-erovringar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "86b8e48f8556aced138b6f45955d1cd0f435e2dc3d9975aeec8c6ae0df226b83"
+      }
+    },
+    {
+      "id": "event/ev-bc1890-sumu-abums-erovringar/date/noteSv",
+      "sv": "De Boers offentliga sammanfattning daterar Sumu-abums militära verksamhet till cirka 1890–1860 f.Kr. Den ger inga enskilda år för erövringarna.",
+      "en": "De Boer’s public abstract dates Sumu-abum’s military activity to c. 1890–1860 BC. It gives no individual years for the conquests.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1890-sumu-abums-erovringar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e3489e3c550ba98189ce13af76bc66ee2df4aface02f0de375c857035d98eae7"
+      }
+    },
+    {
+      "id": "event/ev-bc1890-sumu-abums-erovringar/titleSv",
+      "sv": "Sumu-abum erövrar områden i norra Babylonien och nedre Diyala",
+      "en": "Sumu-abum conquers areas in northern Babylonia and the lower Diyala",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1890-sumu-abums-erovringar",
+        "fieldPath": "/titleSv",
+        "textSha256": "87f64d66519422ac581271f54322c04c3895f1a1367d59df794b777627e8361c"
+      }
+    },
+    {
+      "id": "event/ev-bc1890-sumu-abums-erovringar/summarySv",
+      "sv": "Enligt Rients de Boer leder Sumu-abum amoritiska krigare som erövrar stora delar av norra Babylonien och nedre Diyala. Hans underlydande upprättar flera mindre kungadömen i erövringarnas spår.",
+      "en": "According to Rients de Boer, Sumu-abum leads Amorite warriors who conquer large parts of northern Babylonia and the lower Diyala. His subordinates establish several smaller kingdoms in the wake of the conquests.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1890-sumu-abums-erovringar",
+        "fieldPath": "/summarySv",
+        "textSha256": "e86b5bc6f35a6159f69c1543e5617fe9dfd53974ff523b86c09515a91ea30717"
+      }
+    },
+    {
+      "id": "event/ev-bc1890-sumu-abums-erovringar/geographySv",
+      "sv": "Norra Babylonien och nedre Diyala, Mesopotamien",
+      "en": "Northern Babylonia and the lower Diyala, Mesopotamia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1890-sumu-abums-erovringar",
+        "fieldPath": "/geographySv",
+        "textSha256": "00808fffe7ef5ee7731d5cc25ddcde910e8db844cf1438ece7412201c33b3854"
+      }
+    },
+    {
+      "id": "event/ev-bc1887-senusret-iii-semna/date/displaySv",
+      "sv": "under Senusret III, med skilda dateringar inom cirka 1887–1838 f.Kr.",
+      "en": "During Senusret III’s reign, with differing dates within c. 1887–1838 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1887-senusret-iii-semna",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4130d955439b2e2c3cd364b51e1a10141dac254d0e4a13f647bc87fd569a76cb"
+      }
+    },
+    {
+      "id": "event/ev-bc1887-senusret-iii-semna/date/noteSv",
+      "sv": "Regeringstiden dateras olika: UCLA anger cirka 1887–1848 f.Kr., Met cirka 1878–1840, Diamond cirka 1878–1838 och UCL 1872–1853. Det samlade intervallet återger dessa alternativ och fastställer inga enskilda verksamhetsår.",
+      "en": "The reign is dated differently: UCLA gives c. 1887–1848 BC, the Met c. 1878–1840, Diamond c. 1878–1838 and UCL 1872–1853. The combined interval represents these alternatives and establishes no individual years of activity.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1887-senusret-iii-semna",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "49916a4cec6e975dffb63b4696dac659426ebb960cfaf1dffd743495fbed2755"
+      }
+    },
+    {
+      "id": "event/ev-bc1887-senusret-iii-semna/titleSv",
+      "sv": "Senusret III upprättar en ny sydgräns vid Semna",
+      "en": "Senusret III establishes a new southern frontier at Semna",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1887-senusret-iii-semna",
+        "fieldPath": "/titleSv",
+        "textSha256": "7cf7ea23281f235bad1fc9d6422c811da3033d7948c8a225c2e41b7adf432cee"
+      }
+    },
+    {
+      "id": "event/ev-bc1887-senusret-iii-semna/summarySv",
+      "sv": "Senusret III för fälttåg i Nubien och låter en kedja av fästningar markera en ny sydlig gräns kring Semna vid Nilens andra katarakt.",
+      "en": "Senusret III campaigns in Nubia and has a chain of fortresses mark a new southern frontier around Semna at the Nile’s second cataract.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1887-senusret-iii-semna",
+        "fieldPath": "/summarySv",
+        "textSha256": "c9e3841b21124b3774921c81584dd20a2e0fa340ffe50f04dc40bb59f9844bc3"
+      }
+    },
+    {
+      "id": "event/ev-bc1887-senusret-iii-semna/geographySv",
+      "sv": "Semna och området kring Nilens andra katarakt, Nubien",
+      "en": "Semna and the area around the Nile’s second cataract, Nubia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1887-senusret-iii-semna",
+        "fieldPath": "/geographySv",
+        "textSha256": "28575055c40a256b78546b72b7212286b01c3ef6b34391743788fae19526217f"
+      }
+    },
+    {
+      "id": "event/ev-bc1887-senusret-iii-dahshur/date/displaySv",
+      "sv": "under Senusret III, med skilda dateringar inom cirka 1887–1838 f.Kr.",
+      "en": "During Senusret III’s reign, with differing dates within c. 1887–1838 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1887-senusret-iii-dahshur",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4130d955439b2e2c3cd364b51e1a10141dac254d0e4a13f647bc87fd569a76cb"
+      }
+    },
+    {
+      "id": "event/ev-bc1887-senusret-iii-dahshur/date/noteSv",
+      "sv": "Regeringstiden dateras olika: UCLA anger cirka 1887–1848 f.Kr., Met cirka 1878–1840, Diamond cirka 1878–1838 och UCL 1872–1853. Det samlade intervallet återger dessa alternativ och fastställer inga enskilda verksamhetsår. Met placerar utvidgningen senare under regeringen.",
+      "en": "The reign is dated differently: UCLA gives c. 1887–1848 BC, the Met c. 1878–1840, Diamond c. 1878–1838 and UCL 1872–1853. The combined interval represents these alternatives and establishes no individual years of activity. The Met places the expansion later in the reign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1887-senusret-iii-dahshur",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3ac8d700c73a565685ec36f1410893610173ee41fd35272d900173afc24fee1b"
+      }
+    },
+    {
+      "id": "event/ev-bc1887-senusret-iii-dahshur/titleSv",
+      "sv": "Byggare uppför och utvidgar Senusret III:s gravkomplex i Dahshur",
+      "en": "Builders construct and expand Senusret III’s funerary complex at Dahshur",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1887-senusret-iii-dahshur",
+        "fieldPath": "/titleSv",
+        "textSha256": "bac94bbb1345cf31e342ee0e5dda537144edb915743394e788593cebae6ac83e"
+      }
+    },
+    {
+      "id": "event/ev-bc1887-senusret-iii-dahshur/summarySv",
+      "sv": "Byggare uppför en pyramid, ett tempel och mindre pyramider för kungliga kvinnor. Senare utvidgar de komplexet och anlägger ett stort sydligt tempel. Senusret III:s begravning på platsen är inte fastställd.",
+      "en": "Builders construct a pyramid, a temple and smaller pyramids for royal women. They later expand the complex and build a large southern temple. Senusret III’s burial at the site is not established.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1887-senusret-iii-dahshur",
+        "fieldPath": "/summarySv",
+        "textSha256": "0201ae1632e2457a0e23079ea3debcb0c117a07e6aa3180b7c23ccfc1c61c160"
+      }
+    },
+    {
+      "id": "event/ev-bc1887-senusret-iii-dahshur/geographySv",
+      "sv": "Dahshur, Egypten",
+      "en": "Dahshur, Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1887-senusret-iii-dahshur",
+        "fieldPath": "/geographySv",
+        "textSha256": "ba87b259051cdc04683b878f3c9e9e677de9bd1735e306da184c45cf5e73c89f"
+      }
+    },
+    {
+      "id": "event/ev-bc1880-sumu-la-el-babylon/date/displaySv",
+      "sv": "under Sumu-la-El: 1880–1845 f.Kr.",
+      "en": "During Sumu-la-El’s reign: 1880–1845 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1880-sumu-la-el-babylon",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1517b40609bb71f49a134e8aa2cac4ae57a9341fbfd5e5a7f61a4b878a82b15c"
+      }
+    },
+    {
+      "id": "event/ev-bc1880-sumu-la-el-babylon/date/noteSv",
+      "sv": "De Boer anger regeringstiden till 1880–1845 f.Kr. och placerar underkuvandet av grannkungarna efter Sumu-abums död. Intervallet daterar regeringen, inte en oavbruten erövringskampanj.",
+      "en": "De Boer gives the reign as 1880–1845 BC and places the subjugation of neighbouring kings after Sumu-abum’s death. The interval dates the reign, not a continuous campaign of conquest.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1880-sumu-la-el-babylon",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "488303a65df5f292f3c905ba5c76707b3f99d06b3e77824f1812423b895670a5"
+      }
+    },
+    {
+      "id": "event/ev-bc1880-sumu-la-el-babylon/titleSv",
+      "sv": "Sumu-la-El bygger upp kärnan i Babylons kungadöme",
+      "en": "Sumu-la-El builds the core of the kingdom of Babylon",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1880-sumu-la-el-babylon",
+        "fieldPath": "/titleSv",
+        "textSha256": "a1f76b24aefa14051a62f8d36ae0606a6b1c8967e3adf29e5cc2f896779933bc"
+      }
+    },
+    {
+      "id": "event/ev-bc1880-sumu-la-el-babylon/summarySv",
+      "sv": "Enligt Rients de Boer grundar Sumu-la-El Babylons första dynasti. Efter Sumu-abums död underkuvar han flera grannkungar och bygger en kedja av fästningar kring sitt territorium.",
+      "en": "According to Rients de Boer, Sumu-la-El founds Babylon’s First Dynasty. After Sumu-abum’s death, he subjugates several neighbouring kings and builds a chain of fortresses around his territory.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1880-sumu-la-el-babylon",
+        "fieldPath": "/summarySv",
+        "textSha256": "9c99e11621f6b41494a3d18f0e206ee2da81c40f61161be1da7530d6e9dd6946"
+      }
+    },
+    {
+      "id": "event/ev-bc1880-sumu-la-el-babylon/geographySv",
+      "sv": "Babylon och dess omgivningar, Mesopotamien",
+      "en": "Babylon and its surroundings, Mesopotamia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1880-sumu-la-el-babylon",
+        "fieldPath": "/geographySv",
+        "textSha256": "b72271cb28669c63a3f497d55bcdb53a54c35b4c233bae3ed98c14156dd72358"
+      }
+    },
+    {
+      "id": "event/ev-bc1850-xinzhai-befasts/date/displaySv",
+      "sv": "Xinzhai-fasen: cirka 1850–1750 f.Kr.; äldre modell har vidare gränser",
+      "en": "Xinzhai phase: c. 1850–1750 BC; an older model has wider bounds",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1850-xinzhai-befasts",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2c63dc7f071f0e38033aaa675f8e09e8a66d73e88512dab743ac8220f7311fd7"
+      }
+    },
+    {
+      "id": "event/ev-bc1850-xinzhai-befasts/date/noteSv",
+      "sv": "An med flera anger 1850–1750 kalibrerade f.Kr. för fasen. Liu med flera modellerar startgränsen till 1850–1780 och slutgränsen till 1730–1675 f.Kr.; i löptext uppskattar de övergången till 1840–1820 och slutet till cirka 1720. Det samlade intervallet bevarar modellernas yttergränser och daterar inga enskilda byggår.",
+      "en": "An and colleagues give 1850–1750 calibrated BC for the phase. Liu and colleagues model the start boundary as 1850–1780 and the end boundary as 1730–1675 BC; in the prose, they estimate the transition at 1840–1820 and the end at c. 1720. The combined interval preserves the models’ outer bounds and dates no individual construction years.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1850-xinzhai-befasts",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5273033c5ad46bb5744ea9450a8eb8c271516a8b44fb043e5d31cd5fb868dbbc"
+      }
+    },
+    {
+      "id": "event/ev-bc1850-xinzhai-befasts/titleSv",
+      "sv": "Invånarna befäster Xinzhai som ett regionalt centrum",
+      "en": "The inhabitants fortify Xinzhai as a regional centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1850-xinzhai-befasts",
+        "fieldPath": "/titleSv",
+        "textSha256": "ce5a99d7e2700f4e5c10a018bdd4179d2e76736ad563f06ca1b52c88a5ed5e0a"
+      }
+    },
+    {
+      "id": "event/ev-bc1850-xinzhai-befasts/summarySv",
+      "sv": "Invånarna omger Xinzhai med två yttre diken samt en inre mur av stampad jord och vallgravar. En delvis nedsänkt byggnad på omkring 1 400 kvadratmeter hör till samma bebyggelsefas. Platsen fungerar enligt forskarna som ett regionalt centrum.",
+      "en": "The inhabitants surround Xinzhai with two outer ditches and an inner rammed-earth wall and moats. A partly sunken building of around 1,400 square metres belongs to the same settlement phase. According to the researchers, the site functions as a regional centre.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1850-xinzhai-befasts",
+        "fieldPath": "/summarySv",
+        "textSha256": "efec24825e37e70b00ecdd70cf93096047690f258dfe41a9e9a1f81927129a5d"
+      }
+    },
+    {
+      "id": "event/ev-bc1850-xinzhai-befasts/geographySv",
+      "sv": "Xinzhai nära Xinmi, Henan, Kina",
+      "en": "Xinzhai near Xinmi, Henan, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1850-xinzhai-befasts",
+        "fieldPath": "/geographySv",
+        "textSha256": "8e9b1d2217342000b03376465ac9d1bf6f3d40bff2a2cfa12ee2d585416abfc1"
+      }
+    },
+    {
+      "id": "event/ev-bc1812-sobekneferu-regerar/date/displaySv",
+      "sv": "cirka 1812–1809, 1798/1797–1794/1793 eller 1777–1773 f.Kr.",
+      "en": "c. 1812–1809, 1798/1797–1794/1793 or 1777–1773 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1812-sobekneferu-regerar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b40e11899c7791dbddd92022c6c3f91ce5dc488050c0d35e3c810f376b457e86"
+      }
+    },
+    {
+      "id": "event/ev-bc1812-sobekneferu-regerar/date/noteSv",
+      "sv": "UCLA anger 1812–1809 f.Kr., UCL 1798/1797–1794/1793 och Diamond cirka 1777–1773 enligt Shaw. Alternativen gäller samma korta regering och anger ingen sammanhängande 39-årig regeringstid.",
+      "en": "UCLA gives 1812–1809 BC, UCL 1798/1797–1794/1793 and Diamond c. 1777–1773 following Shaw. The alternatives concern the same short reign and do not indicate a continuous 39-year reign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1812-sobekneferu-regerar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "58333c4c3815aea85a81ffd99ca5774c874e83f3e47bc42895f0d9edc035655b"
+      }
+    },
+    {
+      "id": "event/ev-bc1812-sobekneferu-regerar/titleSv",
+      "sv": "Sobekneferu regerar över Egypten med kunglig titulatur",
+      "en": "Sobekneferu rules Egypt with royal titulary",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1812-sobekneferu-regerar",
+        "fieldPath": "/titleSv",
+        "textSha256": "4e88c3fb5c440648ae58876c9e8d6d93b05c9e8f982471496e0df0ce185108ac"
+      }
+    },
+    {
+      "id": "event/ev-bc1812-sobekneferu-regerar/summarySv",
+      "sv": "Efter Amenemhat IV härskar Sobekneferu över Egypten i egen rätt. Hon använder full kunglig titulatur och kungliga attribut i framställningar av sin makt.",
+      "en": "After Amenemhat IV, Sobekneferu rules Egypt in her own right. She uses full royal titulary and royal attributes in representations of her power.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1812-sobekneferu-regerar",
+        "fieldPath": "/summarySv",
+        "textSha256": "0a54f52845d8c6d7718697d6087cc5095c3e642bd9b4d557238b25c86445ed37"
+      }
+    },
+    {
+      "id": "event/ev-bc1812-sobekneferu-regerar/geographySv",
+      "sv": "Egypten",
+      "en": "Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1812-sobekneferu-regerar",
+        "fieldPath": "/geographySv",
+        "textSha256": "ca8d14e809a510e17d2f9c0d4e2c74c40f7e77c2e97bd71f3dbae109eff27335"
       }
     }
   ]
