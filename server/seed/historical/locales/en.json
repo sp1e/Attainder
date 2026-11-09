@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "a3e32afda06f6b07df46b08e8f377d86d2baac99",
+  "sourceRevision": "49ae3f833ea4598f275bab88d1c6fca0617554ad",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -53165,6 +53165,391 @@
         "eventId": "ev-bc0701-sanherib-intar-lakish",
         "fieldPath": "/geographySv",
         "textSha256": "61a0434a9aad4dcf6a5781f7985c55cedf4bef93e0b1e7b945215e3b86a93514"
+      }
+    },
+    {
+      "id": "event/ev-bc0700-la-ventas-bildstele/date/displaySv",
+      "sv": "700–600 f.Kr.",
+      "en": "700–600 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0700-la-ventas-bildstele",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "946f418f79418585fef518d1a0243edc0c6fbf4db0128f11aa6e8b3b74b8a49d"
+      }
+    },
+    {
+      "id": "event/ev-bc0700-la-ventas-bildstele/date/noteSv",
+      "sv": "Museet daterar stele 3 till hela intervallet 700–600 f.Kr. Ett särskilt tillverkningsår och de avbildade personernas identiteter är inte fastställda.",
+      "en": "The museum dates Stela 3 to the full interval 700–600 BC. A specific year of manufacture and the identities of the people depicted have not been established.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0700-la-ventas-bildstele",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "45a2fbee6a13101dacf8b98869aaa35b76ab253b84b0f77844f44ac9c2899412"
+      }
+    },
+    {
+      "id": "event/ev-bc0700-la-ventas-bildstele/titleSv",
+      "sv": "Bildhuggare skapar en berättande relief i La Venta",
+      "en": "Sculptors create a narrative relief at La Venta",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0700-la-ventas-bildstele",
+        "fieldPath": "/titleSv",
+        "textSha256": "a43788ec97f2cd72d2873bdb27fea2db550e3d22654fcf8845a7392c7b1c9168"
+      }
+    },
+    {
+      "id": "event/ev-bc0700-la-ventas-bildstele/summarySv",
+      "sv": "På stele 3 i La Venta avbildas två centrala gestalter som står vända mot varandra, tillsammans med flera mindre figurer. Museet ser reliefen som ett exempel på en förändring i det olmekiska bildspråket. Gestalternas samhällsställning är en tolkning.",
+      "en": "Stela 3 at La Venta depicts two central figures facing each other, together with several smaller figures. The museum sees the relief as an example of a change in Olmec visual imagery. The figures' social status is an interpretation.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0700-la-ventas-bildstele",
+        "fieldPath": "/summarySv",
+        "textSha256": "8fdebc5ed7c0f6aab8f3a74d2d1a5027787810a1683ad3246d3b2dfa42b2f06c"
+      }
+    },
+    {
+      "id": "event/ev-bc0700-la-ventas-bildstele/geographySv",
+      "sv": "La Venta i Tabasco, nuvarande Mexiko",
+      "en": "La Venta in Tabasco, present-day Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0700-la-ventas-bildstele",
+        "fieldPath": "/geographySv",
+        "textSha256": "faeb4e4d934c514355a01f2ea0e6697a83d90e12bb2679ebf2796f62846c4556"
+      }
+    },
+    {
+      "id": "event/ev-bc0689-sanherib-forstor-babylon/date/displaySv",
+      "sv": "689 f.Kr.",
+      "en": "689 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0689-sanherib-forstor-babylon",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f31b2f046764eb903d1524babe3c5dfe88a89724d889ac0076b6472d8646d1a3"
+      }
+    },
+    {
+      "id": "event/ev-bc0689-sanherib-forstor-babylon/date/noteSv",
+      "sv": "Året anges direkt i Levavis offentliga sammanfattning. Påståenden om stadens fullständiga utplåning behandlas som kunglig retorik; själva bokkapitlet har inte lästs.",
+      "en": "The year is stated directly in Levavi's public abstract. Claims of the city's complete obliteration are treated as royal rhetoric; the book chapter itself has not been read.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0689-sanherib-forstor-babylon",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "2e29bba7e3ffc216f466a66f2dec04062df45a94a2c366341c3b9985fca8c576"
+      }
+    },
+    {
+      "id": "event/ev-bc0689-sanherib-forstor-babylon/titleSv",
+      "sv": "Sanherib förstör Babylon",
+      "en": "Sennacherib destroys Babylon",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0689-sanherib-forstor-babylon",
+        "fieldPath": "/titleSv",
+        "textSha256": "3302056acdbd3bccc9072fcb60f4eb5494a73ab18edffd5701999761915ad790"
+      }
+    },
+    {
+      "id": "event/ev-bc0689-sanherib-forstor-babylon/summarySv",
+      "sv": "Den assyriske kungen Sanherib intar och förstör Babylon. Händelsen får stor betydelse i senare assyriska och babyloniska berättelser. Källtraditionerna skiljer sig åt om förstörelsen av stadens helgedomar.",
+      "en": "The Assyrian king Sennacherib captures and destroys Babylon. The event becomes highly significant in later Assyrian and Babylonian narratives. The source traditions differ concerning the destruction of the city's sanctuaries.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0689-sanherib-forstor-babylon",
+        "fieldPath": "/summarySv",
+        "textSha256": "f1ff7d9fb92e22b71d7b6b8866d3358a5f26c895d1127c095cec144ff46fe491"
+      }
+    },
+    {
+      "id": "event/ev-bc0689-sanherib-forstor-babylon/geographySv",
+      "sv": "Babylon, nuvarande Irak",
+      "en": "Babylon, present-day Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0689-sanherib-forstor-babylon",
+        "fieldPath": "/geographySv",
+        "textSha256": "bdcc3a21adbfd8f2a5daffb77cc0b439a18e6578b524a8ea5f698d31b85a38ad"
+      }
+    },
+    {
+      "id": "event/ev-bc0664-assyrierna-plundrar-thebe/date/displaySv",
+      "sv": "664 eller 663 f.Kr.",
+      "en": "664 or 663 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0664-assyrierna-plundrar-thebe",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b570befc39c8bd07627475ae0036345c7a709e613cace39fca87476878aa9ba8"
+      }
+    },
+    {
+      "id": "event/ev-bc0664-assyrierna-plundrar-thebe/date/noteSv",
+      "sv": "Manchester Museum anger 664 f.Kr. för plundringen; Larousse anger 663 f.Kr. Hjälmen i Manchester knöts till konflikten genom Petries förslag och används inte som ett säkert föremålsbelägg för slaget.",
+      "en": "Manchester Museum gives 664 BC for the sack; Larousse gives 663 BC. The helmet in Manchester was linked to the conflict through Petrie's suggestion and is not used as certain material evidence for the battle.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0664-assyrierna-plundrar-thebe",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b6c4d6326fbbd7a40d78caf2a289dc3c87028c030993c525cb0dbc0339a580e6"
+      }
+    },
+    {
+      "id": "event/ev-bc0664-assyrierna-plundrar-thebe/titleSv",
+      "sv": "Assurbanipals armé plundrar Thebe",
+      "en": "Ashurbanipal's army sacks Thebes",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0664-assyrierna-plundrar-thebe",
+        "fieldPath": "/titleSv",
+        "textSha256": "a64786858a827a8a367c6845365c5fffd8b7d9dfe5b8b58419f03c79fcacfb05"
+      }
+    },
+    {
+      "id": "event/ev-bc0664-assyrierna-plundrar-thebe/summarySv",
+      "sv": "En assyrisk armé under Assurbanipal plundrar Thebe i södra Egypten. Angreppet drabbar en av landets stora religiösa städer. De använda källorna skiljer sig med ett år i dateringen.",
+      "en": "An Assyrian army under Ashurbanipal sacks Thebes in southern Egypt. The attack strikes one of the country's major religious cities. The sources used differ by one year in their dating.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0664-assyrierna-plundrar-thebe",
+        "fieldPath": "/summarySv",
+        "textSha256": "38fa231d647c00678a04536f6416851f649b54120b0a94d5d24fca84de73b790"
+      }
+    },
+    {
+      "id": "event/ev-bc0664-assyrierna-plundrar-thebe/geographySv",
+      "sv": "Thebe, dagens Luxor i Egypten",
+      "en": "Thebes, present-day Luxor in Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0664-assyrierna-plundrar-thebe",
+        "fieldPath": "/geographySv",
+        "textSha256": "13cee7b10ffcd6b950ae159e293345547c283464f90b6c5fd5de2161813cb03b"
+      }
+    },
+    {
+      "id": "event/ev-bc0656-psamtik-kontrollerar-sodra-egypten/date/displaySv",
+      "sv": "656 f.Kr.",
+      "en": "656 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0656-psamtik-kontrollerar-sodra-egypten",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1b4e0eba37a6fec6c6d0277c15ff3b36038b0662836bc06348bd7749d2d0ae06"
+      }
+    },
+    {
+      "id": "event/ev-bc0656-psamtik-kontrollerar-sodra-egypten/date/noteSv",
+      "sv": "Metropolitan Museum skiljer denna kontroll över södern från assyriernas tillbakadragande efter invasionen 664 f.Kr. Ingen egen omräkning av regeringsår har gjorts.",
+      "en": "The Metropolitan Museum distinguishes this control over the south from the Assyrians' withdrawal after their invasion in 664 BC. No independent conversion of regnal years has been made.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0656-psamtik-kontrollerar-sodra-egypten",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "2a7556d43d48045bb2e6287cb2e4b773dd566ee0e96dac0cf1935fe69893d45f"
+      }
+    },
+    {
+      "id": "event/ev-bc0656-psamtik-kontrollerar-sodra-egypten/titleSv",
+      "sv": "Psamtik I tar kontroll över södra Egypten",
+      "en": "Psamtik I takes control of southern Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0656-psamtik-kontrollerar-sodra-egypten",
+        "fieldPath": "/titleSv",
+        "textSha256": "796420cb54ddd8aaedaddcb332f7dcdf53ac7eac4e5851cd0da328a0bce96e26"
+      }
+    },
+    {
+      "id": "event/ev-bc0656-psamtik-kontrollerar-sodra-egypten/summarySv",
+      "sv": "Den saitiske härskaren Psamtik I återupprättar sin kontroll över södra Egypten, där Thebe är det dominerande centret. Händelsen samlar landet under dynasti 26 efter den föregående splittringen.",
+      "en": "The Saite ruler Psamtik I reasserts control over southern Egypt, where Thebes is the dominant centre. The event unites the country under Dynasty 26 after the preceding division.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0656-psamtik-kontrollerar-sodra-egypten",
+        "fieldPath": "/summarySv",
+        "textSha256": "01b7128956664e23dba1d320c62d3dd465192ac7d52e970932906f1445c5d9d5"
+      }
+    },
+    {
+      "id": "event/ev-bc0656-psamtik-kontrollerar-sodra-egypten/geographySv",
+      "sv": "Södra Egypten och Thebe",
+      "en": "Southern Egypt and Thebes",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0656-psamtik-kontrollerar-sodra-egypten",
+        "fieldPath": "/geographySv",
+        "textSha256": "0412a94c53308af9b003c1186079c2b81242c3011b5058fb0057e97d096ca607"
+      }
+    },
+    {
+      "id": "event/ev-bc0632-jin-segrar-vid-chengpu/date/displaySv",
+      "sv": "12 mars 632 f.Kr., enligt Pankeniers omräkning",
+      "en": "12 March 632 BC, according to Pankenier's conversion",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0632-jin-segrar-vid-chengpu",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4e576ea91a7f13a764fe8869b2187908e72931eef8a22938e51353cb17d14ff8"
+      }
+    },
+    {
+      "id": "event/ev-bc0632-jin-segrar-vid-chengpu/date/noteSv",
+      "sv": "Källans ursprungliga dag är jisi i fjärde månaden. Pankenier omvandlar den till 12 mars 632 f.Kr.; datumet återges med denna attribution och är ingen egen kalenderberäkning.",
+      "en": "The source's original day is jisi in the fourth month. Pankenier converts it to 12 March 632 BC; the date is reproduced with this attribution and is not an independent calendar calculation.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0632-jin-segrar-vid-chengpu",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "40754fd42c73a1273e45a146de6596920890201fab40630de3809a768e1e35de"
+      }
+    },
+    {
+      "id": "event/ev-bc0632-jin-segrar-vid-chengpu/titleSv",
+      "sv": "Jin besegrar Chu vid Chengpu",
+      "en": "Jin defeats Chu at Chengpu",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0632-jin-segrar-vid-chengpu",
+        "fieldPath": "/titleSv",
+        "textSha256": "c3ec98393d55f57727867a095bd49787c22985778dfdb57141609f389859e6ee"
+      }
+    },
+    {
+      "id": "event/ev-bc0632-jin-segrar-vid-chengpu/summarySv",
+      "sv": "Jin och dess bundsförvanter möter Chu vid Chengpu. Jin vinner genom taktiska manövrer, medan Ziyus centrala styrka drar sig tillbaka utan att besegras. Segern är en viktig händelse i maktkampen mellan de båda rikena.",
+      "en": "Jin and its allies face Chu at Chengpu. Jin wins through tactical manoeuvres, while Ziyu's central force withdraws undefeated. The victory is an important event in the struggle for power between the two states.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0632-jin-segrar-vid-chengpu",
+        "fieldPath": "/summarySv",
+        "textSha256": "0fe3d5009379bd259391a5fe77ddc5799234ba33c42dbe96dd4ba56a3aaba479"
+      }
+    },
+    {
+      "id": "event/ev-bc0632-jin-segrar-vid-chengpu/geographySv",
+      "sv": "Chengpu i det forntida Kina",
+      "en": "Chengpu in ancient China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0632-jin-segrar-vid-chengpu",
+        "fieldPath": "/geographySv",
+        "textSha256": "dc3bdc1bb5efc94463499d566c9d142beaf1c77b9c466239ffb3a45cb205f730"
+      }
+    },
+    {
+      "id": "event/ev-bc0621-drakons-lag-om-dodande/date/displaySv",
+      "sv": "621/620 f.Kr.",
+      "en": "621/620 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0621-drakons-lag-om-dodande",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "90c2d9b9aa4d749ef279b9f7fe534ae5127a1a33036a863155b0f09812e26f8d"
+      }
+    },
+    {
+      "id": "event/ev-bc0621-drakons-lag-om-dodande/date/noteSv",
+      "sv": "Dateringen följer traditionen om Drakons lagstiftning under arkonten Aristaichmos. Den bevarade steninskriften är en återpublicering från 409/408 f.Kr. och behandlas inte som en samtida text från 600-talet.",
+      "en": "The dating follows the tradition that Draco legislated during the archonship of Aristaichmos. The surviving stone inscription is a republication from 409/408 BC and is not treated as a contemporary seventh-century text.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0621-drakons-lag-om-dodande",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "230fc453d666dc71e0feae1a1cd2aed264061c09fd0da90f62ff571d1b43d697"
+      }
+    },
+    {
+      "id": "event/ev-bc0621-drakons-lag-om-dodande/titleSv",
+      "sv": "Drakons lag om dödande får sin traditionella datering",
+      "en": "Draco's homicide law receives its traditional date",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0621-drakons-lag-om-dodande",
+        "fieldPath": "/titleSv",
+        "textSha256": "21e61fe6b94788b0ecbbcc5b0c922ed94e47fbe38184088ccd7e05428532189d"
+      }
+    },
+    {
+      "id": "event/ev-bc0621-drakons-lag-om-dodande/summarySv",
+      "sv": "Atensk tradition förlägger Drakons lagstiftning till detta arkontår. Hans lag om dödande bevaras genom en senare återpublicering och reglerar bland annat rättsliga förfaranden och landsförvisning vid oavsiktligt dödande.",
+      "en": "Athenian tradition places Draco's legislation in this archon year. His homicide law survives through a later republication and regulates matters including legal procedures and exile for unintentional killing.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0621-drakons-lag-om-dodande",
+        "fieldPath": "/summarySv",
+        "textSha256": "53ed1326500cb6eb261e4a41547f4336238f19ead18be63c6b2f3ed7923b18b2"
+      }
+    },
+    {
+      "id": "event/ev-bc0621-drakons-lag-om-dodande/geographySv",
+      "sv": "Aten, Grekland",
+      "en": "Athens, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0621-drakons-lag-om-dodande",
+        "fieldPath": "/geographySv",
+        "textSha256": "bafb846761d4d9f2eec198e0b894b9df8c9640c5d1fc3462f256fb413036a818"
+      }
+    },
+    {
+      "id": "event/ev-bc0612-nineve-forstors/date/displaySv",
+      "sv": "612 f.Kr.",
+      "en": "612 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0612-nineve-forstors",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4a6fa716df3a1c5144423edc701f640f374a37eebc1f05cb77cd10501de0c66c"
+      }
+    },
+    {
+      "id": "event/ev-bc0612-nineve-forstors/date/noteSv",
+      "sv": "Året anges i Iraks beskrivning på UNESCO:s preliminära lista. Texten är den inlämnande myndighetens uppgift och innebär inte ett beslut om världsarvsstatus.",
+      "en": "The year is given in Iraq's description on UNESCO's Tentative List. The text is a statement by the submitting authority and does not constitute a decision to grant World Heritage status.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0612-nineve-forstors",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "8c0f0ec23c92182c6c66d7ee29b78d3af54680fe08c0d95d27e209d2b29a4e33"
+      }
+    },
+    {
+      "id": "event/ev-bc0612-nineve-forstors/titleSv",
+      "sv": "Den assyriska huvudstaden Nineve förstörs",
+      "en": "The Assyrian capital Nineveh is destroyed",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0612-nineve-forstors",
+        "fieldPath": "/titleSv",
+        "textSha256": "a8518d280a92985bb87f05822d11b5c1f20d9f3ca0b836966dd699b87ede0899"
+      }
+    },
+    {
+      "id": "event/ev-bc0612-nineve-forstors/summarySv",
+      "sv": "Nineve, en av Assyriens viktigaste kungliga städer, förstörs. Därmed upphör dess roll som residens för de assyriska kungar som följt efter Sanherib.",
+      "en": "Nineveh, one of Assyria's most important royal cities, is destroyed. Its role as the residence of the Assyrian kings who succeeded Sennacherib comes to an end.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0612-nineve-forstors",
+        "fieldPath": "/summarySv",
+        "textSha256": "a19b30c422b341431def1b73d8b1f1b8cff9cc81820a70c16581422321a934a7"
+      }
+    },
+    {
+      "id": "event/ev-bc0612-nineve-forstors/geographySv",
+      "sv": "Nineve vid Tigris, nuvarande Mosul i Irak",
+      "en": "Nineveh on the Tigris, present-day Mosul in Iraq",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0612-nineve-forstors",
+        "fieldPath": "/geographySv",
+        "textSha256": "1ae12b8c14572f77f2599dfe35a5311c2cc81722b76e2e8014f977886399054d"
       }
     }
   ]

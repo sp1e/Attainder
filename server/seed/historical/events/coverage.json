@@ -159,6 +159,12 @@
     },
     {
       "startYear": -700,
+      "endYear": -601,
+      "status": "partial",
+      "note": "Seven independently source-checked records concern La Venta Stela 3, the destruction of Babylon, the sack of Thebes, Psamtik I in southern Egypt, Chengpu, the traditional date of Draco's homicide law and the destruction of Nineveh. All nine macroregions were searched; sub-Saharan Africa, South Asia, Southeast Asia, the steppe and Central Asia and Oceania have no retained event. Coverage remains partial. Late-century Lydian coinage and Arzhan 2 were held after source review because a broad century search frame is not a source-supported numeric event interval. La Venta retains 700-600 BC without extending researched coverage into the next century; Thebes retains 664 or 663 BC, Chengpu its attributed full converted date, and Draco 621/620 BC distinct from the later surviving republication. Babylon support is abstract-only. Empty years remain research gaps."
+    },
+    {
+      "startYear": -600,
       "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."

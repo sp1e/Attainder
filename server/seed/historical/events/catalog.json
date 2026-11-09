@@ -7928,6 +7928,102 @@
       "originalChronology": "The campaign and conquest are dated to 701 BC. The palace reliefs depicting them were made years later; their production is not dated to the campaign year.",
       "scopedClaim": "Sennacherib invades Judah during his third campaign, besieges and captures Lachish, deports inhabitants and destroys the city before moving against Jerusalem. The author distinguishes the later commemorative reliefs from the event.",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0700-tabasco-stele-three",
+      "title": "Parque Museo La Venta: Piezas selectas",
+      "institution": "Museums of Tabasco, Government of Tabasco",
+      "url": "https://museos.tabasco.gob.mx/?page_id=2314",
+      "locator": "Estela 3, web lines 28–36.",
+      "asWorded": "Preclásico medio (700 – 600 a. C.)",
+      "originalChronology": "The object is assigned the complete 700–600 BC interval. The identity and social relationship of the depicted people are uncertain.",
+      "scopedClaim": "La Venta Stele 3 is a basalt narrative relief with two central figures facing one another and accompanying figures.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0700-levavi-babylon",
+      "title": "The Sound of Silence: the Destruction of Babylon by Sennacherib and the Babylonian Chronicles",
+      "institution": "Yuval Levavi; University of Vienna research portal; chapter published in 2021",
+      "url": "https://ucrisportal.univie.ac.at/en/publications/the-sound-of-silence-the-destruction-of-babylon-by-sennacherib-an/",
+      "locator": "Public abstract, web lines 16–18; full chapter not accessed.",
+      "asWorded": "689 BCE",
+      "originalChronology": "The abstract gives the year directly. Descriptions of total annihilation and treatment of Marduk are presented as royal claims and later traditions, not adopted as literal facts here.",
+      "scopedClaim": "Sennacherib destroyed Babylon in 689 BCE; the Babylonian chronicle mentions capture of the city and king but omits the religious destruction described in other traditions.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0700-manchester-thebes",
+      "title": "Golden Mummies: Helmet",
+      "institution": "Manchester Museum; University of Manchester Digital Collections",
+      "url": "https://www.digitalcollections.manchester.ac.uk/view/MM-00001-12073",
+      "locator": "Object interpretation, web lines 6–7.",
+      "asWorded": "664 BC",
+      "originalChronology": "The museum assigns the sack to 664 BC. The helmet's connection is only Petrie's suggestion and is excluded from the event.",
+      "scopedClaim": "Ashurbanipal's Assyrian army sacked Thebes in southern Egypt.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0700-larousse-thebes",
+      "title": "Thèbes",
+      "institution": "Larousse, school reference dictionary",
+      "url": "https://www.larousse.fr/dictionnaires/college/Th%C3%A8bes/39820",
+      "locator": "Historical description, web line 18.",
+      "asWorded": "663 av. J.-C.",
+      "originalChronology": "This reference gives 663 BC, differing by one year from Manchester Museum's 664 BC.",
+      "scopedClaim": "Thebes was destroyed during the Assyrian invasion.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0700-met-psamtik",
+      "title": "Egypt in the Late Period (ca. 664–332 B.C.)",
+      "institution": "Marsha Hill and James P. Allen; The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/essays/egypt-in-the-late-period-ca-712-332-b-c",
+      "locator": "Saite Period, or Dynasty 26, web lines 125–128.",
+      "asWorded": "656 B.C.",
+      "originalChronology": "The essay distinguishes Assyrian withdrawal after the 664 BC invasion from Psamtik I's control over the Theban south in 656 BC.",
+      "scopedClaim": "Psamtik I reasserted control over southern Egypt, dominated by Thebes, in 656 BC.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0700-pankenier-chengpu",
+      "title": "Applied Field-Allocation Astrology in Zhou China: Duke Wen of Jin and the Battle of Chengpu (632 B.C.)",
+      "institution": "David W. Pankenier; Journal of the American Oriental Society 119 (2), 1999, pp. 261–279; author copy at Lehigh University",
+      "url": "https://www.lehigh.edu/~dwp0/Assets/images/dukewen.pdf",
+      "locator": "Appendix, printed pages 277–279 (PDF pages 18–20), especially battle entry on page 278.",
+      "asWorded": "4th month, jisi (6) [12 March]; 632 B.C.",
+      "originalChronology": "Pankenier supplies the calendar conversion to 12 March 632 BC. The event retains his conversion as attributed, rather than deriving a day independently.",
+      "scopedClaim": "Jin and its allies confronted Chu at Chengpu; Jin's tactics won the battle, while Ziyu's central force withdrew undefeated.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0700-athens-drakon",
+      "title": "Republication of Draco's law on homicide",
+      "institution": "Nautilos, Department of History and Archaeology, National and Kapodistrian University of Athens",
+      "url": "https://nautilos.arch.uoa.gr/exhibits/anadhmosieusi-tou-nomou-tou-drakonta-peri-phonou/",
+      "locator": "Commentary, web lines 123–128; republication date in lines 101 and 125–126.",
+      "asWorded": "621/0 π.Χ.; 409/8 π.Χ.",
+      "originalChronology": "The lawgiving is traditionally placed in the archon year 621/620 BC. The surviving stone republication dates to 409/408 BC and is not a contemporary seventh-century inscription.",
+      "scopedClaim": "Draco's homicide law belongs to the tradition of his Athenian legislation; the later preserved version sets out legal procedures and exile for unintentional homicide.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0700-iraq-nineveh",
+      "title": "The Ancient City of Nineveh",
+      "institution": "Department of Antiquities and Heritage, Iraq; tentative-list submission hosted by UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/tentativelists/1465",
+      "locator": "Description, web lines 80–83; submitting authority and date, lines 60–67.",
+      "asWorded": "destruction in 612 BC",
+      "originalChronology": "The submission gives 612 BC for destruction. This is the Iraqi submitting authority's text, not a UNESCO evaluation or inscription decision.",
+      "scopedClaim": "Nineveh served as an Assyrian capital and royal residence until its destruction in 612 BC.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
     }
   ],
   "events": [
@@ -24916,6 +25012,182 @@
       ],
       "historicalStatus": "sourced",
       "selectionNote": "Major Assyrian conquest and forced displacement, dated by a scholarly account and distinguished from its later monumental depiction. No casualty totals or exact siege length are invented.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0700-la-ventas-bildstele",
+      "date": {
+        "kind": "range",
+        "startYear": -700,
+        "endYear": -600,
+        "displaySv": "700–600 f.Kr.",
+        "noteSv": "Museet daterar stele 3 till hela intervallet 700–600 f.Kr. Ett särskilt tillverkningsår och de avbildade personernas identiteter är inte fastställda."
+      },
+      "titleSv": "Bildhuggare skapar en berättande relief i La Venta",
+      "summarySv": "På stele 3 i La Venta avbildas två centrala gestalter som står vända mot varandra, tillsammans med flera mindre figurer. Museet ser reliefen som ett exempel på en förändring i det olmekiska bildspråket. Gestalternas samhällsställning är en tolkning.",
+      "geographySv": "La Venta i Tabasco, nuvarande Mexiko",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc0700-tabasco-stele-three"
+      ],
+      "historicalStatus": "uncertain",
+      "selectionNote": "A specific narrative monument, distinct from the site's earlier offerings and broad occupation phases.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0689-sanherib-forstor-babylon",
+      "date": {
+        "kind": "exact",
+        "startYear": -689,
+        "endYear": -689,
+        "displaySv": "689 f.Kr.",
+        "noteSv": "Året anges direkt i Levavis offentliga sammanfattning. Påståenden om stadens fullständiga utplåning behandlas som kunglig retorik; själva bokkapitlet har inte lästs."
+      },
+      "titleSv": "Sanherib förstör Babylon",
+      "summarySv": "Den assyriske kungen Sanherib intar och förstör Babylon. Händelsen får stor betydelse i senare assyriska och babyloniska berättelser. Källtraditionerna skiljer sig åt om förstörelsen av stadens helgedomar.",
+      "geographySv": "Babylon, nuvarande Irak",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "bc0700-levavi-babylon"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "A major imperial destruction episode, with the abstract-only evidence boundary and royal rhetoric explicitly retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0664-assyrierna-plundrar-thebe",
+      "date": {
+        "kind": "disputed",
+        "startYear": -664,
+        "endYear": -663,
+        "displaySv": "664 eller 663 f.Kr.",
+        "noteSv": "Manchester Museum anger 664 f.Kr. för plundringen; Larousse anger 663 f.Kr. Hjälmen i Manchester knöts till konflikten genom Petries förslag och används inte som ett säkert föremålsbelägg för slaget."
+      },
+      "titleSv": "Assurbanipals armé plundrar Thebe",
+      "summarySv": "En assyrisk armé under Assurbanipal plundrar Thebe i södra Egypten. Angreppet drabbar en av landets stora religiösa städer. De använda källorna skiljer sig med ett år i dateringen.",
+      "geographySv": "Thebe, dagens Luxor i Egypten",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "bc0700-manchester-thebes",
+        "bc0700-larousse-thebes"
+      ],
+      "historicalStatus": "uncertain",
+      "selectionNote": "A major Egyptian and Assyrian military event preserving the opened sources' one-year discrepancy.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0656-psamtik-kontrollerar-sodra-egypten",
+      "date": {
+        "kind": "exact",
+        "startYear": -656,
+        "endYear": -656,
+        "displaySv": "656 f.Kr.",
+        "noteSv": "Metropolitan Museum skiljer denna kontroll över södern från assyriernas tillbakadragande efter invasionen 664 f.Kr. Ingen egen omräkning av regeringsår har gjorts."
+      },
+      "titleSv": "Psamtik I tar kontroll över södra Egypten",
+      "summarySv": "Den saitiske härskaren Psamtik I återupprättar sin kontroll över södra Egypten, där Thebe är det dominerande centret. Händelsen samlar landet under dynasti 26 efter den föregående splittringen.",
+      "geographySv": "Södra Egypten och Thebe",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "bc0700-met-psamtik"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Consolidation of Saite rule distinguished from the earlier Assyrian invasion.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0632-jin-segrar-vid-chengpu",
+      "date": {
+        "kind": "exact",
+        "startYear": -632,
+        "endYear": -632,
+        "displaySv": "12 mars 632 f.Kr., enligt Pankeniers omräkning",
+        "noteSv": "Källans ursprungliga dag är jisi i fjärde månaden. Pankenier omvandlar den till 12 mars 632 f.Kr.; datumet återges med denna attribution och är ingen egen kalenderberäkning."
+      },
+      "titleSv": "Jin besegrar Chu vid Chengpu",
+      "summarySv": "Jin och dess bundsförvanter möter Chu vid Chengpu. Jin vinner genom taktiska manövrer, medan Ziyus centrala styrka drar sig tillbaka utan att besegras. Segern är en viktig händelse i maktkampen mellan de båda rikena.",
+      "geographySv": "Chengpu i det forntida Kina",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "bc0700-pankenier-chengpu"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "A major Spring and Autumn battle with the source's full converted day retained and the central army's withdrawal qualified.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0621-drakons-lag-om-dodande",
+      "date": {
+        "kind": "range",
+        "startYear": -621,
+        "endYear": -620,
+        "displaySv": "621/620 f.Kr.",
+        "noteSv": "Dateringen följer traditionen om Drakons lagstiftning under arkonten Aristaichmos. Den bevarade steninskriften är en återpublicering från 409/408 f.Kr. och behandlas inte som en samtida text från 600-talet."
+      },
+      "titleSv": "Drakons lag om dödande får sin traditionella datering",
+      "summarySv": "Atensk tradition förlägger Drakons lagstiftning till detta arkontår. Hans lag om dödande bevaras genom en senare återpublicering och reglerar bland annat rättsliga förfaranden och landsförvisning vid oavsiktligt dödande.",
+      "geographySv": "Aten, Grekland",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0700-athens-drakon"
+      ],
+      "historicalStatus": "uncertain",
+      "selectionNote": "A foundational legal tradition confined to homicide law, separating traditional enactment from the surviving later inscription.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0612-nineve-forstors",
+      "date": {
+        "kind": "exact",
+        "startYear": -612,
+        "endYear": -612,
+        "displaySv": "612 f.Kr.",
+        "noteSv": "Året anges i Iraks beskrivning på UNESCO:s preliminära lista. Texten är den inlämnande myndighetens uppgift och innebär inte ett beslut om världsarvsstatus."
+      },
+      "titleSv": "Den assyriska huvudstaden Nineve förstörs",
+      "summarySv": "Nineve, en av Assyriens viktigaste kungliga städer, förstörs. Därmed upphör dess roll som residens för de assyriska kungar som följt efter Sanherib.",
+      "geographySv": "Nineve vid Tigris, nuvarande Mosul i Irak",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "bc0700-iraq-nineveh"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "The destruction of a major Assyrian capital; no unsupported aggressor details or claim that all Assyrian resistance ended that year.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",

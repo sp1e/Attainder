@@ -2,7 +2,7 @@
 
 ## Current publication checkpoint: 9 November 2026
 
-The latest verified merge is PR #98 at `53cf30dac65f1dd686e1644c78ee4b9ae099b5c5`: 699 approved event records, 645 sources and 6,234 bilingual entries. Its required tests and build passed. This branch prepares the BC0800 batch, which would raise those totals to 707 events, 655 sources and 6,294 bilingual entries; current-head CI and merge are separate publication gates. Every covered research interval remains partial. The chronological record below preserves earlier milestones and their limits. Claude owns runtime integration and gameplay verification.
+The latest verified merge is PR #99 at `f4f638389c63cffa587a86f7d4534342eaeb2ae0`: 707 approved event records, 655 sources and 6,294 bilingual entries. Its required tests and build passed. This branch prepares the BC0700 batch, which would raise those totals to 714 events, 663 sources and 6,345 bilingual entries; current-head CI and merge are separate publication gates. Every covered research interval remains partial. The chronological record below preserves earlier milestones and their limits. Claude owns runtime integration and gameplay verification.
 
 Updated by Codex on 7 November 2026 at main `b44c77d733d49fac34917c913f5845f4f8681760`.
 
@@ -611,3 +611,12 @@ An automatic tool review rejected the BC0600 operation that would write the reco
 BC0800 adds eight events, ten sources and sixty bilingual pairs (forty English event strings and twenty Swedish source strings). Independent source review confirmed all eight qualified event claims; nine source outcomes are confirmed and one remains limited to its public Summary. One unsupported cross-batch editorial clause was removed, with no change to historical fields, numeric dates or the sixty draft translation pairs. The independent final review passed. Root readback verified twenty-one original/copy input pairs and exact baseline equality against merged PR #98 before applying the reviewed prospective files.
 
 The resulting catalog has 707 approved events and 655 sources. Coverage changes only for 800–701 BC, reaching 3,530 partial years and 1,300 unresearched years. BC0900 and BC0600 remain on their recorded policy holds. Partial coverage does not establish an exhaustive annual history. Source-access limits and dating qualifications remain in the batch note. Claude retains runtime, Options-language, popup and gameplay integration; this research publication supplies no new runtime verification.
+
+
+## BC0800 merged; BC0700 reviewed publication
+
+[PR #99](https://github.com/sp1e/Attainder/pull/99) merged at `f4f638389c63cffa587a86f7d4534342eaeb2ae0`. All eight published blobs and the retained branch head `d7ccb0760ad355a4f16b81362a27145711ff7a21` were verified. Its data revision is `a3e32afda06f6b07df46b08e8f377d86d2baac99`. Required CI ran 5,339 tests: 5,337 passed, zero failed or skipped, two TODOs; the build passed in 37.81 seconds.
+
+BC0700 adds seven events, eight sources and fifty-one bilingual pairs (thirty-five English event strings and sixteen Swedish source strings). The unchanged source report records twenty PASS outcomes. A separate date-contract ruling withholds Lydian coinage and Arzhan 2, plus their three unused sources: late-century or second-half dating cannot justify a 700–601 BC event interval. No guessed boundary replaces these dates. All retained historical fields and translation records remain unchanged. Independent final review passed; root verified twenty-two original/copy input pairs and exact baseline equality against merged PR #99.
+
+The resulting catalog has 714 approved events and 663 sources. Coverage changes only for 700–601 BC, reaching 3,630 partial years and 1,200 unresearched years. BC0900 and BC0600 remain on their recorded policy holds. Thebes, Chengpu and Draco retain their dating qualifications. The source review's reported six web calls differ from five observed calls; complete raw passage preservation and visual PDF inspection are not certified. These limits remain in the batch note. Claude retains runtime, language-options, popup and gameplay integration.
