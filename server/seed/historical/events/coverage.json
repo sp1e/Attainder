@@ -189,6 +189,12 @@
     },
     {
       "startYear": -200,
+      "endYear": -101,
+      "status": "partial",
+      "note": "Thirty-six independently source-reviewed event candidates concern 200–101 BC, with 33 sources and full alternative or extended date ranges retained. The original source review returned 32 PASS and four CORRECTION event verdicts; the candidate applies twelve documented field replacements. Research covered all nine working macroregions, but the retained sample is concentrated in Mediterranean and East Asian political history. Oceania has no retained event; South Asia, Africa, the Americas and Central Asia remain unevenly represented. Public abstracts, publisher descriptions and previews support only the passages actually read. The nine-region search log does not reconstruct missing early query strings. Empty years remain research gaps. Long ranges do not establish coverage of later years."
+    },
+    {
+      "startYear": -100,
       "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
