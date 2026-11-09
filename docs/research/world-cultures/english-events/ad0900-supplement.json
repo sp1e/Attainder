@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad0900-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 900,
+    "endYear": 999
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0900en-aks-goryeo-examinations",
+      "title": "Korean Education: Educational Thought, Systems and Content",
+      "institution": "Jeong Mee-Ryang and Lee Woojin; translated by Sohn Tae-soo; The Academy of Korean Studies, Understanding Korea No. 9 (2018)",
+      "url": "https://www.aks.ac.kr/ikorea/upload/intl/korean/UserFiles/UKS9_Korean%20Education_eng.pdf",
+      "locator": "Printed pp. 30–32, The Civil Service Examination of the Goryeo Dynasty (PDF pages 17–18, one-based); title and publication details on PDF page 3. Extracted text read after an ordinary download of this exact public URL following a web-tool timeout.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "In 958, King Gwangjong adopted the civil service examination",
+      "originalChronology": "The book explicitly dates Gwangjong's adoption of the examination to 958. Its discussion of eligibility, examination types and examiner-candidate patronage describes the wider Goryeo system, without assigning every feature to 958.",
+      "scopedClaim": "The examination recruited government officials and was intended to strengthen royal authority and a centralized bureaucracy. The account recognizes Silla antecedents, restricted eligibility and elite patronage; it does not establish universal access or the immediate displacement of powerful families.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0900en-mpm-gwageo-history",
+      "title": "History of the Civil Service Examination",
+      "institution": "Ministry of Personnel Management, Republic of Korea",
+      "url": "https://www.mpm.go.kr/historyofexam/",
+      "locator": "English text in 1,200-year History of the Civil Service Examination, paragraphs on Silla 788 and Goryeo 958; web lines 149–155. Public institutional overview, not a primary medieval document.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "In 958, during the reign of King Gwangjong of Goryeo",
+      "originalChronology": "The English overview explicitly dates the introduction of gwageo under Gwangjong to 958 and separately dates a Silla examination antecedent to 788. No new conversion or reign arithmetic is used.",
+      "scopedClaim": "Goryeo introduced gwageo for appointment to government posts on Ssanggi's recommendation. The overview's celebratory description of fair and objective examinations is not adopted as evidence of equal access.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-ad0958-goryeo-civil-service-examinations",
+      "date": {
+        "kind": "exact",
+        "startYear": 958,
+        "endYear": 958,
+        "displayEn": "958 CE",
+        "noteEn": "Both institutional accounts date Gwangjong's introduction of the examination system to 958. This dates the reform, not every later examination practice. Silla had an earlier examination tradition; no day or month is assigned."
+      },
+      "titleEn": "Gwangjong introduces civil service examinations in Goryeo",
+      "summaryEn": "Gwangjong introduces examinations to recruit government officials. The reform aims to strengthen royal authority and build a more centralized civil administration; it does not establish equal access to office.",
+      "geographyEn": "Goryeo, Korean Peninsula",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0900en-aks-goryeo-examinations",
+        "ad0900en-mpm-gwageo-history"
+      ],
+      "selectionNote": "A major regional change in recruitment to government service, distinct from Goryeo's foundation in 918 and consolidation in 936. The sources identify a reform aimed at centralizing royal administration; the claim does not date every later rule to 958, imply universal eligibility or declare the immediate elimination of aristocratic influence.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
