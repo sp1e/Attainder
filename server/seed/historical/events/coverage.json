@@ -105,6 +105,18 @@
     },
     {
       "startYear": -1600,
+      "endYear": -1501,
+      "status": "unresearched",
+      "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": -1500,
+      "endYear": -1401,
+      "status": "partial",
+      "note": "Seven independently checked records concern more sedentary herding near Lake Chad, the broad Kent and San Lorenzo developments, Hatshepsut’s Punt expedition and temple, the disputed Megiddo battle and widespread destruction on Crete. Full approximate intervals remain intact. Megiddo retains the museum’s 1457 BC date and Derstine’s 1468 proposal; the rejected 1482 date remains historical context only. Yale’s public caption supports the Punt year; the full chapter was not accessed. Searches covered nine macroregions, with five represented. East Asia, South Asia, Southeast Asia and Oceania remain gaps. Period intervals establish no activity in every year or researched coverage of adjacent centuries. Empty years remain research gaps."
+    },
+    {
+      "startYear": -1400,
       "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."

@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "bd18dd07efe3e8b799d8c419bf43a00c2170a408",
+  "sourceRevision": "a6b363f669f538b552eaa981532395d13d46e158",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -13136,6 +13136,226 @@
         "sourceId": "ad0001-eh-britain",
         "fieldPath": "/institution",
         "textSha256": "f4ad466456ae90c587a6cb1c4ca64231c62493d7569eb7815a55ca2f7ababcf1"
+      }
+    },
+    {
+      "id": "source/bc1500-magnavita-gajiganna/institution",
+      "en": "Antiquity, Project Gallery",
+      "sv": "Antiquity, Project Gallery",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-magnavita-gajiganna",
+        "fieldPath": "/institution",
+        "textSha256": "c680b8a1443928240f3063588f7b12c43206cc9f0febab07eb76ad4d647aa135"
+      }
+    },
+    {
+      "id": "source/bc1500-magnavita-gajiganna/locator",
+      "en": "Magnavita, Kahlheber and Eichhorn (2004), opening settlement-history paragraphs and Table 1; web lines 48–59.",
+      "sv": "Magnavita, Kahlheber och Eichhorn (2004), inledande stycken om bosättningshistorien samt tabell 1; webbrader 48–59.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-magnavita-gajiganna",
+        "fieldPath": "/locator",
+        "textSha256": "751358b7aea0719d108bd74c196cafb905f726460d28b1c6206b345f2d642422"
+      }
+    },
+    {
+      "id": "source/bc1500-ventresca-kent/institution",
+      "en": "Frontiers in Earth Science",
+      "sv": "Frontiers in Earth Science",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-ventresca-kent",
+        "fieldPath": "/institution",
+        "textSha256": "4ef9ee6ba754316827d51ab110fae9adae9f01b8e12d493caef4df0716b956fb"
+      }
+    },
+    {
+      "id": "source/bc1500-ventresca-kent/locator",
+      "en": "Ventresca Miller et al. (2020), Foddering and Water Management in the Semi-Arid Steppe During the Final Bronze Age; web lines 438–442. DOI 10.3389/feart.2020.00168.",
+      "sv": "Ventresca Miller med flera (2020), Foddering and Water Management in the Semi-Arid Steppe During the Final Bronze Age; webbrader 438–442. DOI 10.3389/feart.2020.00168.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-ventresca-kent",
+        "fieldPath": "/locator",
+        "textSha256": "c069aad304aded6853a77712fc3b971d5b33c0b0e41b379515f185883bd596ea"
+      }
+    },
+    {
+      "id": "source/bc1500-sic-san-lorenzo/institution",
+      "en": "Mexico Secretariat of Culture, Cultural Information System; INAH site museum",
+      "sv": "Mexikos kultursekretariat, Sistema de Información Cultural; INAH:s platsmuseum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-sic-san-lorenzo",
+        "fieldPath": "/institution",
+        "textSha256": "4f4539c4f9ef4b8b45b730ec7b6d90696ea7fac6660968950fd354b1598db58b"
+      }
+    },
+    {
+      "id": "source/bc1500-sic-san-lorenzo/locator",
+      "en": "Datos generales, paragraph on the first important Olmec centre, and Salas de exhibición; web lines 292–299.",
+      "sv": "Datos generales, stycket om det första betydande olmekiska centrumet, samt Salas de exhibición; webbrader 292–299.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-sic-san-lorenzo",
+        "fieldPath": "/locator",
+        "textSha256": "70dd5f7725604c85bf477bcd348e9af03b7113e93d84126cb01de53c55a18087"
+      }
+    },
+    {
+      "id": "source/bc1500-warsaw-punt/institution",
+      "en": "University of Warsaw, Polish-Egyptian Archaeological and Conservation Expedition",
+      "sv": "Warszawas universitet, den polsk-egyptiska arkeologiska och konserveringsinriktade expeditionen",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-warsaw-punt",
+        "fieldPath": "/institution",
+        "textSha256": "286f4521b147fd1862b91f98e42703768f13c3420966644c1d49f8bf0c850130"
+      }
+    },
+    {
+      "id": "source/bc1500-warsaw-punt/locator",
+      "en": "Filip Taterka, description of the Punt Portico; web lines 100, 104 and 107–111.",
+      "sv": "Filip Taterka, beskrivning av Punthallen; webbrader 100, 104 och 107–111.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-warsaw-punt",
+        "fieldPath": "/locator",
+        "textSha256": "54f37aa9a1724632d717403af4f86261674b3c97fe2ccb50b62a7bcf9627b74c"
+      }
+    },
+    {
+      "id": "source/bc1500-yale-punt-caption/institution",
+      "en": "Yale University Press, A&AePortal; The Walters Art Museum",
+      "sv": "Yale University Press, A&AePortal; The Walters Art Museum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-yale-punt-caption",
+        "fieldPath": "/institution",
+        "textSha256": "e5d58164dc957c045d114e5246ae2012bc042c2c98218606a14e3c33087c2f7b"
+      }
+    },
+    {
+      "id": "source/bc1500-yale-punt-caption/locator",
+      "en": "Public image title/caption, web lines 118 and 133; associated Regine Schulz chapter, Ethiopia at the Crossroads (2023), metadata lines 151–173. Only public caption and metadata read.",
+      "sv": "Offentlig bildtitel/bildtext, webbrader 118 och 133; det tillhörande kapitlet av Regine Schulz, Ethiopia at the Crossroads (2023), metadata på rader 151–173. Endast offentlig bildtext och metadata lästa.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-yale-punt-caption",
+        "fieldPath": "/locator",
+        "textSha256": "387082cf31c766180871c3c12e8fe5a80fa8cd62a84cc92abb373ea05bbc9595"
+      }
+    },
+    {
+      "id": "source/bc1500-met-hatshepsut-temple/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-met-hatshepsut-temple",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/bc1500-met-hatshepsut-temple/locator",
+      "en": "Slide 14, Discovery of fragments of Hatshepsut’s sculpture, Thebes; printed page 86 (PDF page index 86), web lines 1681–1687.",
+      "sv": "Bild 14, Discovery of fragments of Hatshepsut’s sculpture, Thebes; tryckt sida 86 (PDF-sidindex 86), webbrader 1681–1687.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-met-hatshepsut-temple",
+        "fieldPath": "/locator",
+        "textSha256": "2f16d628fc78d3c11c073c9d96c09a092eaac1bbe5b3387ba1ad337db1761075"
+      }
+    },
+    {
+      "id": "source/bc1500-egypt-hatshepsut-temple/institution",
+      "en": "Egyptian Ministry of Tourism and Antiquities",
+      "sv": "Egyptens ministerium för turism och antikviteter",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-egypt-hatshepsut-temple",
+        "fieldPath": "/institution",
+        "textSha256": "0f3e9898fed27c5f09625a3efe7aa99290678a5c53f4d5fff2e22a7c7522d084"
+      }
+    },
+    {
+      "id": "source/bc1500-egypt-hatshepsut-temple/locator",
+      "en": "Temple description, web lines 131–135.",
+      "sv": "Tempelbeskrivning, webbrader 131–135.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-egypt-hatshepsut-temple",
+        "fieldPath": "/locator",
+        "textSha256": "17b33da58e61ae50366f8430474344a39aefb373e7bb7183b283d4cb5164c3c9"
+      }
+    },
+    {
+      "id": "source/bc1500-israel-megiddo/institution",
+      "en": "The Israel Museum, Jerusalem; Rockefeller Archaeological Museum",
+      "sv": "The Israel Museum, Jerusalem; Rockefeller Archaeological Museum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-israel-megiddo",
+        "fieldPath": "/institution",
+        "textSha256": "bc1e6df18ac3ce87303a9a9b16fa3d20220d55f60f0a4dfef95bfda4e94bd5d4"
+      }
+    },
+    {
+      "id": "source/bc1500-israel-megiddo/locator",
+      "en": "Exhibition historical paragraph, web line 127.",
+      "sv": "Utställningens historiska stycke, webbrad 127.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-israel-megiddo",
+        "fieldPath": "/locator",
+        "textSha256": "88a25770845a04bc6a0d650d6ebc9d5409b4834b0c30f8b84c2f6b2411f8acaa"
+      }
+    },
+    {
+      "id": "source/bc1500-derstine-megiddo/institution",
+      "en": "Göttinger Miszellen; author-uploaded full text on ResearchGate",
+      "sv": "Göttinger Miszellen; fulltext uppladdad av författaren på ResearchGate",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-derstine-megiddo",
+        "fieldPath": "/institution",
+        "textSha256": "885ac063b4a2eec452668404a7269454a2ccc85322d60a17fa11985e84dac449"
+      }
+    },
+    {
+      "id": "source/bc1500-derstine-megiddo/locator",
+      "en": "Philip Derstine (2016), volume 249, pages 39–57; abstract and pages 49–51, subsection Thutmose III’s first lunar date; web lines 1442–1459 and 1575–1763.",
+      "sv": "Philip Derstine (2016), volym 249, sidor 39–57; abstract och sidor 49–51, underavsnittet Thutmose III’s first lunar date; webbrader 1442–1459 och 1575–1763.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-derstine-megiddo",
+        "fieldPath": "/locator",
+        "textSha256": "8d24470279e36f532c717284f96e0bbb078ea2f10508853853c6de66c6a9269e"
+      }
+    },
+    {
+      "id": "source/bc1500-ashmolean-crete/institution",
+      "en": "Ashmolean Museum, University of Oxford",
+      "sv": "Ashmolean Museum, University of Oxford",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-ashmolean-crete",
+        "fieldPath": "/institution",
+        "textSha256": "744ec836cf7803e79027301a4f32ad656aab57e034cbda95d35a2ae81d2a8922"
+      }
+    },
+    {
+      "id": "source/bc1500-ashmolean-crete/locator",
+      "en": "Historical context paragraphs, web lines 167–169, distinct from the jar's 1450–1400 object date.",
+      "sv": "Styckena om historisk bakgrund, webbrader 167–169, åtskilda från krukans föremålsdatering 1450–1400.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1500-ashmolean-crete",
+        "fieldPath": "/locator",
+        "textSha256": "eb3e96daa44553592e60cd2d4d20a858959803908d2f73e09de1e614155d1516"
       }
     }
   ]
