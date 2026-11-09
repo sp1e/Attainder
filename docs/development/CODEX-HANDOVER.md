@@ -113,9 +113,9 @@ Put these on one branch.
 - `validateFamilyDemands` does not compare `story.actorId` with `family.headId`.
 - `reign.js` gives a builder with an overdue aqueduct the refusal `noBuilder`, which misstates the reason.
 
-### 7. The open Phase 0 check
+### 7. The Phase 0 check
 
-The panel in both themes and narrow layouts, with one submitted public choice and one submitted private choice, each followed by a reload.
+Done on 9 November 2026. A private choice (`Återhämta dig`, paid from the family purse) in the light theme at 1 400 px and a public choice (`Ändra skattepolitik` to `Hög`, paid from the treasury) in the dark theme at 390 px. After each reload the campaign kept the choice, its event and the theme. The check found two header faults at 390 px, both fixed: the 42 px civic mark overflowed its 30 px box into the eyebrow text, and the close button's `×` glyph sat 9 px below the middle of its circle. The close button now draws its cross as an SVG icon; pinned by `src/Game/Characters/panelHeader.test.js`.
 
 ### 8. Phase 4, then 5, 6 and 7
 
