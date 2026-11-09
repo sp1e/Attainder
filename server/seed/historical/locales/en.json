@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "92d9b138c21bf78c93faa5ef8bac159bf7697852",
+  "sourceRevision": "242df5e4b04f74405d986cd845999bf9b125a555",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -52340,6 +52340,391 @@
         "eventId": "ev-bc1050-ban-non-wats-koppargravar",
         "fieldPath": "/geographySv",
         "textSha256": "49ad12382dc69d8036d9f30605facacf535862eac7d2569c6d9442a04b7f971a"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-pirak-jarnfynd/date/displaySv",
+      "sv": "cirka 1000–800 f.Kr.",
+      "en": "Approximately 1000–800 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-pirak-jarnfynd",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7f4b8730c41a44fb758325c6991b6cd591a60173ca1931554e5998853d1bed99"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-pirak-jarnfynd/date/noteSv",
+      "sv": "Forskarna anger hela intervallet för de tidigaste järnfynden i Pirak. Dateringen ger inget enskilt år för när invånarna först använder järn.",
+      "en": "The researchers give the full interval for the earliest iron finds at Pirak. The dating does not establish a single year when the inhabitants first used iron.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-pirak-jarnfynd",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9b183436e1989922bee9ccfccb5ce11ed5d96920be11934e9106e498c4f40d8c"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-pirak-jarnfynd/titleSv",
+      "sv": "Invånarna i Pirak använder järn",
+      "en": "The inhabitants of Pirak use iron",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-pirak-jarnfynd",
+        "fieldPath": "/titleSv",
+        "textSha256": "b6050d7c33fc3dddb120a92acc2f8bad9808236c043cd7681daa10cb12e763c2"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-pirak-jarnfynd/summarySv",
+      "sv": "Arkeologer har funnit tidiga järnföremål i Pirak på Kachislätten i Baluchistan. De daterar de äldsta fynden till cirka 1000–800 f.Kr. och finner mer järn i senare bebyggelselager.",
+      "en": "Archaeologists have found early iron objects at Pirak on the Kachi Plain in Baluchistan. They date the earliest finds to approximately 1000–800 BC and find more iron in later settlement layers.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-pirak-jarnfynd",
+        "fieldPath": "/summarySv",
+        "textSha256": "86203ea467082183adaf043a567291d67a9e2050ee30684fa0caf6571c0e9d75"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-pirak-jarnfynd/geographySv",
+      "sv": "Pirak, Kachislätten i Baluchistan",
+      "en": "Pirak, Kachi Plain in Baluchistan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-pirak-jarnfynd",
+        "fieldPath": "/geographySv",
+        "textSha256": "a5524aead84563c69a3dfdcb84f755e84bb6d730eb08f6f772cc0b6f18c14cbc"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-genkai-vatris/date/displaySv",
+      "sv": "omkring 1000 f.Kr.",
+      "en": "Around 1000 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-genkai-vatris",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "229598cb2252855dca6bd759b28a40f99f27165f16069fbf92a28d6d080fcdb5"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-genkai-vatris/date/noteSv",
+      "sv": "Artikelförfattarna daterar risodlingens införande vid Genkaibukten till omkring 1000 f.Kr. I sammanfattningen anger de cirka 900 f.Kr.–250 e.Kr. för den bredare Yayoiperioden. Här följer dateringen det särskilda avsnittet om Genkaibukten; övergången sker vid olika tider i olika delar av Japan.",
+      "en": "The article's authors date the introduction of rice cultivation at Genkai Bay to around 1000 BC. In the abstract, they give approximately 900 BC–AD 250 for the broader Yayoi period. This entry follows the dating in the specific discussion of Genkai Bay; the transition takes place at different times in different parts of Japan.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-genkai-vatris",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "366b9a5033c6cddabf01d8c569bdd47fb99ccd8712cd272793732d241ae44951"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-genkai-vatris/titleSv",
+      "sv": "Odlare inför våtris vid Genkaibukten",
+      "en": "Farmers introduce wet-rice cultivation at Genkai Bay",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-genkai-vatris",
+        "fieldPath": "/titleSv",
+        "textSha256": "91db191d82562ca7d62c55094f77d999980198551f12f720b41f5ea745ecdac7"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-genkai-vatris/summarySv",
+      "sv": "Enligt forskarnas kronologi inför migranter från Mumunkulturen i södra Korea våtrisodling vid Genkaibukten i norra Kyushu omkring 1000 f.Kr. De möter lokala samhällen med Jomontraditioner. Förändringen sker i olika takt i olika delar av Japan.",
+      "en": "According to the researchers' chronology, migrants from the Mumun culture of southern Korea introduce wet-rice cultivation at Genkai Bay in northern Kyushu around 1000 BC. They encounter local communities with Jomon traditions. Change takes place at different rates in different parts of Japan.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-genkai-vatris",
+        "fieldPath": "/summarySv",
+        "textSha256": "bf6f7e66dc0e66a8abee7ef3a1efa41d0df0afa55fb9bcfc9dc1c9444df01ff9"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-genkai-vatris/geographySv",
+      "sv": "Genkaibukten, norra Kyushu, Japan",
+      "en": "Genkai Bay, northern Kyushu, Japan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-genkai-vatris",
+        "fieldPath": "/geographySv",
+        "textSha256": "33e973aca0c0456185deef36a5370a4b1a4b3883414bd0a9be0a3060912bd8ca"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-teouma-begravningsbruk/date/displaySv",
+      "sv": "omkring 1000 f.Kr.",
+      "en": "Around 1000 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-teouma-begravningsbruk",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "229598cb2252855dca6bd759b28a40f99f27165f16069fbf92a28d6d080fcdb5"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-teouma-begravningsbruk/date/noteSv",
+      "sv": "Forskarna använder 1000 f.Kr. som tidsangivelse för sitt Teoumaexempel i artikelns offentliga sammanfattning. Årtalet anger ett ungefärligt sammanhang för begravningsbruket. Källan fastställer varken gravplatsens första år eller hela användningstiden.",
+      "en": "The researchers use 1000 BC to date their Teouma example in the article's public abstract. The year gives an approximate context for the funerary practices. The source establishes neither the cemetery's first year nor its entire period of use.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-teouma-begravningsbruk",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9aa0c930da1b0c0f041e6645d3a39518178330f447954037bbc527ae6a9b0983"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-teouma-begravningsbruk/titleSv",
+      "sv": "Människorna vid Teouma begraver sina döda i flera steg",
+      "en": "People at Teouma bury their dead in several stages",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-teouma-begravningsbruk",
+        "fieldPath": "/titleSv",
+        "textSha256": "47406dc9acc6f9cbf12a61eec5d85d98c5ae94a19f43bf741f3dc8c0d31b02f8"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-teouma-begravningsbruk/summarySv",
+      "sv": "Vid Teouma på Efate i Vanuatu behandlar människor sina döda genom begravningsförlopp i flera steg. Forskarna tolkar fynden som exempel på att efterlevande kan tillmäta kvarlevor värde även under tidigare steg i sådana förlopp.",
+      "en": "At Teouma on Efate in Vanuatu, people treat their dead through funerary sequences involving several stages. The researchers interpret the finds as examples of how survivors may value human remains even during earlier stages of such sequences.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-teouma-begravningsbruk",
+        "fieldPath": "/summarySv",
+        "textSha256": "92efaffdfc744d56adff901f1276248c642148f1c83417074eb295cfb05c8b86"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-teouma-begravningsbruk/geographySv",
+      "sv": "Teouma, Efate, Vanuatu",
+      "en": "Teouma, Efate, Vanuatu",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-teouma-begravningsbruk",
+        "fieldPath": "/geographySv",
+        "textSha256": "fd40d447a9a0bd1c68b2bf8c5d7790eb46b80c619f17d63beded604a5f12f475"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-vilabouly-koppar/date/displaySv",
+      "sv": "cirka 1000 f.Kr.–700 e.Kr.",
+      "en": "Approximately 1000 BC–AD 700",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-vilabouly-koppar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "29880bb3e0b4534fe174ea16c503ba76afb3d7b3875d17494751cdfb91277e53"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-vilabouly-koppar/date/noteSv",
+      "sv": "Forskarna anger detta intervall för Vilaboulyområdets kol-14-daterade arkeologiska följd. De har undersökt koppargruvor och smältplatser där. Intervallet ger varken ett exakt startår för gruvdriften eller belägg för oavbruten produktion under hela perioden.",
+      "en": "The researchers give this interval for the radiocarbon-dated archaeological sequence in the Vilabouly area. They have investigated copper mines and smelting sites there. The interval provides neither an exact starting year for mining nor evidence of uninterrupted production throughout the period.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-vilabouly-koppar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b1a794f5952952ea578a2368e437233c042dca31f11d5c18a1ee23bc08b35df0"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-vilabouly-koppar/titleSv",
+      "sv": "Gruvarbetare och metallhantverkare framställer koppar vid Vilabouly",
+      "en": "Miners and metalworkers produce copper at Vilabouly",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-vilabouly-koppar",
+        "fieldPath": "/titleSv",
+        "textSha256": "442ddfb26721d6a507cf8511598c9cdf371d62b635c6ace02d0114c2d0f4491e"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-vilabouly-koppar/summarySv",
+      "sv": "Arkeologer har undersökt koppargruvor och smältplatser i Vilaboulyområdet, tidigare kallat Sepon, i centrala Laos. Där har de funnit malm, slagg och deglar. Forskarna placerar platsens arkeologiska följd inom ett långt intervall från cirka 1000 f.Kr. till 700 e.Kr.",
+      "en": "Archaeologists have investigated copper mines and smelting sites in the Vilabouly area, formerly known as Sepon, in central Laos. They have found ore, slag and crucibles there. The researchers place the site's archaeological sequence within a long interval from approximately 1000 BC to AD 700.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-vilabouly-koppar",
+        "fieldPath": "/summarySv",
+        "textSha256": "3fbbf9702a67ee41d4eb226e9f26cea3d9377dbd864e719952f64dc0439e3848"
+      }
+    },
+    {
+      "id": "event/ev-bc1000-vilabouly-koppar/geographySv",
+      "sv": "Vilabouly, Savannakhetprovinsen, centrala Laos",
+      "en": "Vilabouly, Savannakhet Province, central Laos",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1000-vilabouly-koppar",
+        "fieldPath": "/geographySv",
+        "textSha256": "d133d26966858c6a5b12eebb6184ce96dacf5313010c83e82558dde789c1440a"
+      }
+    },
+    {
+      "id": "event/ev-bc0950-lefkandi-elitcentrum/date/displaySv",
+      "sv": "cirka 950 f.Kr.",
+      "en": "Approximately 950 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0950-lefkandi-elitcentrum",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d260b9687f88ce68679f1afe8d8c27a5d141550fe597e3da1b39b5534fe76952"
+      }
+    },
+    {
+      "id": "event/ev-bc0950-lefkandi-elitcentrum/date/noteSv",
+      "sv": "IME anger 950 f.Kr. för Lefkandis blomstringstid. Oxford daterar byggnaden vid Toumba till mitten av 900-talet f.Kr. Årtalet här avser blomstringstiden; källorna fastställer inget exakt år för byggandet eller begravningarna.",
+      "en": "IME gives 950 BC for Lefkandi's heyday. Oxford dates the Toumba building to the middle of the tenth century BC. The year here concerns the settlement's heyday; the sources establish no exact year for construction or the burials.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0950-lefkandi-elitcentrum",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7f625d392674c0aaaacce0b54303d9d4f591dc3d5497544edb4e36992a373cdc"
+      }
+    },
+    {
+      "id": "event/ev-bc0950-lefkandi-elitcentrum/titleSv",
+      "sv": "En förmögen elit präglar Lefkandi",
+      "en": "A wealthy elite shapes Lefkandi",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0950-lefkandi-elitcentrum",
+        "fieldPath": "/titleSv",
+        "textSha256": "556708aeae2c27c073252ff83dcdc874d54acc2d8ddf6cac37e36e09b4dfcb6a"
+      }
+    },
+    {
+      "id": "event/ev-bc0950-lefkandi-elitcentrum/summarySv",
+      "sv": "Invånarna i Lefkandi på Euboia har ett välmående samhälle under mitten av 900-talet f.Kr. Vid Toumba uppför de en stor byggnad med gravschakt för en kremerad man, en jordbegravd kvinna och fyra hästar. De täcker senare byggnaden med en gravhög.",
+      "en": "The inhabitants of Lefkandi on Euboea have a prosperous community in the middle of the tenth century BC. At Toumba, they erect a large building with burial shafts for a cremated man, an inhumed woman and four horses. They later cover the building with a burial mound.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0950-lefkandi-elitcentrum",
+        "fieldPath": "/summarySv",
+        "textSha256": "75d1ef0d3b09f2e6a885d9fb9b2c692edff9c97674eca8c89a3b187d55074c3c"
+      }
+    },
+    {
+      "id": "event/ev-bc0950-lefkandi-elitcentrum/geographySv",
+      "sv": "Lefkandi på Euboia, Grekland",
+      "en": "Lefkandi on Euboea, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0950-lefkandi-elitcentrum",
+        "fieldPath": "/geographySv",
+        "textSha256": "68464200b230d0e59bbcfd9d50b5eff750b7cfff13dc9b9db029ae373b936abc"
+      }
+    },
+    {
+      "id": "event/ev-bc0950-ceibal-offentlig-plats/date/displaySv",
+      "sv": "omkring 950 f.Kr.",
+      "en": "Around 950 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0950-ceibal-offentlig-plats",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0384c025bdd63b628105cb865d5b838c2fac6477f1b804aa9b3d1ff453364f3b"
+      }
+    },
+    {
+      "id": "event/ev-bc0950-ceibal-offentlig-plats/date/noteSv",
+      "sv": "Universitetets forskningsrapport daterar Ceibals offentliga torg till omkring 950 f.Kr. Forskarnas förslag om samarbete mellan bofasta och rörliga grupper är en tolkning. Senare monumentalt byggande omkring 800 f.Kr. hör till en annan fas.",
+      "en": "The university's research report dates Ceibal's public plaza to around 950 BC. The researchers' suggestion of cooperation between settled and mobile groups is an interpretation. Later monumental construction around 800 BC belongs to a different phase.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0950-ceibal-offentlig-plats",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5544269ee4850967026fe1bb9648262d5d2e380ee5746c88880e2ab457f93821"
+      }
+    },
+    {
+      "id": "event/ev-bc0950-ceibal-offentlig-plats/titleSv",
+      "sv": "Människor anlägger ett offentligt torg i Ceibal",
+      "en": "People create a public plaza at Ceibal",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0950-ceibal-offentlig-plats",
+        "fieldPath": "/titleSv",
+        "textSha256": "415bc3957252f2ac6a31eb52db1e351a376b3edc0d706f73872475d3176f86e3"
+      }
+    },
+    {
+      "id": "event/ev-bc0950-ceibal-offentlig-plats/summarySv",
+      "sv": "Människorna i Ceibal i nuvarande Guatemala anlägger ett offentligt torg omkring 950 f.Kr. Forskarna föreslår att bofasta invånare och mer rörliga grupper samarbetar kring byggande och ceremonier.",
+      "en": "People at Ceibal in present-day Guatemala create a public plaza around 950 BC. The researchers suggest that settled inhabitants and more mobile groups cooperate in construction and ceremonies.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0950-ceibal-offentlig-plats",
+        "fieldPath": "/summarySv",
+        "textSha256": "aff8de909ee91e24e33eaf434f28d2b789553c0eb14db60873d4f710c5fb0a86"
+      }
+    },
+    {
+      "id": "event/ev-bc0950-ceibal-offentlig-plats/geographySv",
+      "sv": "Ceibal, Guatemala",
+      "en": "Ceibal, Guatemala",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0950-ceibal-offentlig-plats",
+        "fieldPath": "/geographySv",
+        "textSha256": "d3fc24f164f3f1f5caa680eabaf54496073c8142f66d772bfdb154e3bde53da5"
+      }
+    },
+    {
+      "id": "event/ev-bc0925-sheshonq-falttag/date/displaySv",
+      "sv": "cirka 925 f.Kr.",
+      "en": "Approximately 925 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0925-sheshonq-falttag",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ebcb3f23708b2a4b5df32f181fac1bdc872149ee603e72596664030e65ddbdb4"
+      }
+    },
+    {
+      "id": "event/ev-bc0925-sheshonq-falttag/date/noteSv",
+      "sv": "Chicagopublikationen daterar fälttåget till 925 f.Kr. UCL anger Sheshonqs regering till omkring 946/945–925/924 f.Kr. och nämner fälttåget utan ett särskilt årtal. Sambandet mellan fälttåget och enskilda förstörelselager i Megiddo är omdiskuterat.",
+      "en": "The Chicago publication dates the campaign to 925 BC. UCL gives Sheshonq's reign as approximately 946/945–925/924 BC and mentions the campaign without a specific year. The relationship between the campaign and individual destruction layers at Megiddo is debated.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0925-sheshonq-falttag",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e7de6892f3c653347ffee1fcdd2f0e6bc1f84b3db78fc3fee09ef67d88eb8e64"
+      }
+    },
+    {
+      "id": "event/ev-bc0925-sheshonq-falttag/titleSv",
+      "sv": "Sheshonq I leder ett egyptiskt fälttåg i Palestina",
+      "en": "Sheshonq I leads an Egyptian campaign in Palestine",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0925-sheshonq-falttag",
+        "fieldPath": "/titleSv",
+        "textSha256": "07a576d0a475539867885b65af1ec5603cf06dfabc76f01e80f85a701ca6da12"
+      }
+    },
+    {
+      "id": "event/ev-bc0925-sheshonq-falttag/summarySv",
+      "sv": "Den egyptiske kungen Sheshonq I genomför ett fälttåg i Palestina, som Chicagopublikationen daterar till cirka 925 f.Kr. Vid Karnak låter han avbilda sin triumf tillsammans med en lista över städer.",
+      "en": "The Egyptian king Sheshonq I conducts a campaign in Palestine, which the Chicago publication dates to approximately 925 BC. At Karnak, he has his triumph depicted alongside a list of towns.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0925-sheshonq-falttag",
+        "fieldPath": "/summarySv",
+        "textSha256": "d9f8ac702b79105bba3662043be80ab5e62e5b1e0680610fd4242245b1ae59f4"
+      }
+    },
+    {
+      "id": "event/ev-bc0925-sheshonq-falttag/geographySv",
+      "sv": "Egypten och Palestina",
+      "en": "Egypt and Palestine",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0925-sheshonq-falttag",
+        "fieldPath": "/geographySv",
+        "textSha256": "5c98fc31e906a59bfb1a8501b214d28135caef723d36003677e35c1fc3072992"
       }
     }
   ]

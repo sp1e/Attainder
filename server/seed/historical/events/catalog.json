@@ -7700,6 +7700,114 @@
       "originalChronology": "Modelled Neolithic-to-Early-Bronze-Age transition1053–996 cal BC; rounded phase1050–1000 in Table2. These describe different quantities, not rival full phase intervals.",
       "scopedClaim": "The earlier study also assigns the initial Bronze Age phase to1050–1000. Its modelled transition interval is kept distinct from phase duration; the abstract's circa1000 shorthand does not override Table2.",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1000-ime-lefkandi",
+      "title": "Lefkandi: the new theories about political organization",
+      "institution": "Foundation of the Hellenic World (IME)",
+      "url": "https://www.ime.gr/chronos/03/en/politics/newtheory/310leukandi.html",
+      "locator": "Politics page, paragraphs 1–3, web lines 1–4; heyday of Lefkandi and the Toumba burials.",
+      "asWorded": "middle of the 10th century BC (950 BC)",
+      "originalChronology": "The 950 BC marker dates Lefkandi's heyday. The page associates its elite building and burials with that setting, without an exact construction or burial year.",
+      "scopedClaim": "Lefkandi on Euboea flourished around the middle of the tenth century BC; the elite burial complex contained a cremated man, an inhumed woman and four horses.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1000-oxford-lefkandi",
+      "title": "Early Excavations at Lefkandi: The Protogeometric Building and the Cemetery of Toumba",
+      "institution": "University of Oxford, Lefkandi archaeological project",
+      "url": "https://lefkandi.classics.ox.ac.uk/Toumba.html",
+      "locator": "The Toumba building, web lines 1–10; construction dating and the two central burial shafts.",
+      "asWorded": "middle of the tenth century BC",
+      "originalChronology": "The building is dated to the middle of the tenth century BC; no single construction year is supplied. The site's heyday marker of 950 BC comes from the separate IME source.",
+      "scopedClaim": "The Toumba building at Lefkandi dates to the middle of the tenth century BC. Its central shafts held a cremated man, an inhumed woman and four horses. The building was subsequently destroyed and covered by a mound.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1000-inflibnet-pirak",
+      "title": "Iron Age: Antiquity of Iron in India",
+      "institution": "INFLIBNET Centre, e-PG Pathshala; Ravi Korisettar and Smitha S. Kumar",
+      "url": "https://ebooks.inflibnet.ac.in/icp02/chapter/iron-age-antiquity-of-iron-in-india/",
+      "locator": "Chapter 29, section 4.1 North West, paragraph on Pirak, web line 108.",
+      "asWorded": "c. 1000–800 BCE",
+      "originalChronology": "The chapter gives this full approximate interval for the earliest iron at Pirak. It associates limited iron with level VI and more iron with later levels IV and III. The interval is retained without choosing a single first-use year.",
+      "scopedClaim": "Archaeologists recovered early iron at Pirak in the Kachi plain of Baluchistan; the chapter dates the earliest iron there to approximately 1000–800 BCE.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1000-cambridge-genkai",
+      "title": "Japan considered from the hypothesis of farmer/language spread",
+      "institution": "Cambridge University Press, Evolutionary Human Sciences; Elisabeth de Boer, Melinda A. Yang, Aileen Kawagoe and Gina L. Barnes (2020)",
+      "url": "https://www.cambridge.org/core/journals/evolutionary-human-sciences/article/japan-considered-from-the-hypothesis-of-farmerlanguage-spread/BD91E69AEA3CCAEDC567519EF7F5AA97",
+      "locator": "Introduction, web lines 516–523; compare abstract line 480 and Agricultural transition in Japan, lines 620–623.",
+      "asWorded": "around 1000 BC; ca. 900 BC–AD 250",
+      "originalChronology": "The introduction dates wet-rice agriculture in the Genkai Bay area of North Kyushu to around 1000 BC. The abstract gives circa 900 BC–AD 250 for the broader Yayoi period, while the introduction uses around 1000 BC as its starting marker. The article describes a regionally uneven transition. The event follows the specific Genkai passage and preserves the broader period-label discrepancy.",
+      "scopedClaim": "Wet-rice agriculture reached the Genkai Bay area of northern Kyushu around 1000 BC in the introduction's chronology. The authors associate its introduction with Mumun migrants from southern Korea and describe the agricultural transition across Japan as uneven in time and region.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1000-chicago-sheshonq",
+      "title": "Ancient Israel: Highlights from the Collections of the Oriental Institute, University of Chicago",
+      "institution": "Oriental Institute, University of Chicago; Gabrielle V. Novacek (2011)",
+      "url": "https://oi-idb-static.uchicago.edu/multimedia/82/oimp31.pdf",
+      "locator": "Printed page 81, PDF page 97, discussion of Sheshonq I's Egyptian raid, web lines 2141–2153.",
+      "asWorded": "925 BC",
+      "originalChronology": "The museum publication dates Sheshonq I's Egyptian raid to 925 BC. The event labels that year approximate in view of the chronology's reconstructed character. The passage's debated association of Megiddo's destruction with particular strata is not adopted.",
+      "scopedClaim": "Sheshonq I conducted an Egyptian campaign dated to 925 BC in this museum publication; the text refers to the Karnak record. It does not establish an uncontested destruction date for a particular Megiddo stratum.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1000-ucl-sheshonq",
+      "title": "King Sheshonq",
+      "institution": "University College London, Digital Egypt for Universities",
+      "url": "https://www.ucl.ac.uk/museums-static/digitalegypt/chronology/sheshonqi.html",
+      "locator": "Reign heading and main biographical paragraph, web lines 2–3.",
+      "asWorded": "about 946/45–925/24 BC",
+      "originalChronology": "The heading gives an approximate reign interval. The campaign paragraph supplies no absolute campaign year; its 925 BC marker comes from the separate Chicago publication. No regnal year has been converted.",
+      "scopedClaim": "Sheshonq I was the first king of Dynasty 22. He campaigned in Palestine and had a triumph scene with a list of cities depicted at Karnak.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1000-arizona-ceibal",
+      "title": "Archaeologists Discover Maya 'Melting Pot'",
+      "institution": "University of Arizona News; Alexis Blue (23 March 2015)",
+      "url": "https://news.arizona.edu/news/archaeologists-discover-maya-melting-pot",
+      "locator": "Institutional research report, web lines 23–32; the public plaza around 950 BC and the researchers' interpretation of group participation.",
+      "asWorded": "about 950 B.C.",
+      "originalChronology": "The report dates the public plaza to about 950 BC. Its separate statement that ceremonial buildings became monumental by about 800 BC is excluded from this event. This source is the university's research report, not the full underlying PNAS article.",
+      "scopedClaim": "Researchers date Ceibal's public plaza in Guatemala to about 950 BC and hypothesize that more mobile groups and settled residents cooperated in ceremonial activity and construction.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1000-unv-teouma",
+      "title": "Du provisoire conçu pour durer ? La question du statut des restes dans les dépôts funéraires partiels",
+      "institution": "National University of Vanuatu research portal; Frédérique Valentin, Grégory Pereira and Jennifer Kerner (2013)",
+      "url": "https://portal.univ.edu.vu/fr/recherche/88-humanities-social-sciences/3004",
+      "locator": "Public French and English abstracts, web lines 15–22; Teouma as an example of multistage funerary sequences.",
+      "asWorded": "Teouma (Efate, Vanuatu, 1000 BC)",
+      "originalChronology": "The public abstract places its Teouma case around a 1000 BC marker. This contextual date is not a precisely dated cemetery foundation, first colonization or full cemetery-use interval. No radiocarbon BP value has been converted.",
+      "scopedClaim": "The authors use Teouma on Efate, Vanuatu, placed at 1000 BC in the public abstract, to discuss multistage funerary practices and the possible value attached to remains at earlier stages of burial sequences.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1000-oxford-vilabouly",
+      "title": "Copper smelting evidence at the Vilabouly Complex, a late prehistoric primary production site in Central Laos",
+      "institution": "University of Oxford, FLAME virtual conference programme, 25–26 March 2021; Mélissa Cadet",
+      "url": "https://flame.arch.ox.ac.uk/embers/Programme_Draft.pdf",
+      "locator": "Conference abstract on PDF page 17, web lines 438–480; radiocarbon sequence at lines 446–453 and mining and smelting evidence at lines 454–460. The timetable and abstract headings have inconsistent talk numbering.",
+      "asWorded": "c. 1000 BC; c. 700 AD",
+      "originalChronology": "The conference abstract gives the Vilabouly Complex a radiocarbon sequence from approximately 1000 BC to approximately AD 700. This is the site's archaeological sequence, not proof of uninterrupted copper production across every year or an exact mine-opening date.",
+      "scopedClaim": "Researchers have identified copper mining and smelting remains at the Vilabouly Complex, formerly called Sepon, in Savannakhet Province, central Laos. The public conference abstract places the site's radiocarbon sequence between circa 1000 BC and circa AD 700.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
     }
   ],
   "events": [
@@ -24316,6 +24424,176 @@
       ],
       "historicalStatus": "uncertain",
       "selectionNote": "A dated local mortuary and metal-consumption transition, distinct from earlier domestic chickens at the same site and from later local bronze casting or region-wide claims.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1000-pirak-jarnfynd",
+      "date": {
+        "kind": "range",
+        "startYear": -1000,
+        "endYear": -800,
+        "displaySv": "cirka 1000–800 f.Kr.",
+        "noteSv": "Forskarna anger hela intervallet för de tidigaste järnfynden i Pirak. Dateringen ger inget enskilt år för när invånarna först använder järn."
+      },
+      "titleSv": "Invånarna i Pirak använder järn",
+      "summarySv": "Arkeologer har funnit tidiga järnföremål i Pirak på Kachislätten i Baluchistan. De daterar de äldsta fynden till cirka 1000–800 f.Kr. och finner mer järn i senare bebyggelselager.",
+      "geographySv": "Pirak, Kachislätten i Baluchistan",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "bc1000-inflibnet-pirak"
+      ],
+      "selectionNote": "A regional iron-use development, represented by the complete earliest-find interval rather than an invented first-use year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1000-genkai-vatris",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1000,
+        "endYear": -1000,
+        "displaySv": "omkring 1000 f.Kr.",
+        "noteSv": "Artikelförfattarna daterar risodlingens införande vid Genkaibukten till omkring 1000 f.Kr. I sammanfattningen anger de cirka 900 f.Kr.–250 e.Kr. för den bredare Yayoiperioden. Här följer dateringen det särskilda avsnittet om Genkaibukten; övergången sker vid olika tider i olika delar av Japan."
+      },
+      "titleSv": "Odlare inför våtris vid Genkaibukten",
+      "summarySv": "Enligt forskarnas kronologi inför migranter från Mumunkulturen i södra Korea våtrisodling vid Genkaibukten i norra Kyushu omkring 1000 f.Kr. De möter lokala samhällen med Jomontraditioner. Förändringen sker i olika takt i olika delar av Japan.",
+      "geographySv": "Genkaibukten, norra Kyushu, Japan",
+      "category": "technology",
+      "importance": 3,
+      "sourceIds": [
+        "bc1000-cambridge-genkai"
+      ],
+      "selectionNote": "A regional agricultural transition with long-term significance; the specific Genkai chronology and the source's differing broad period label remain explicit.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1000-teouma-begravningsbruk",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1000,
+        "endYear": -1000,
+        "displaySv": "omkring 1000 f.Kr.",
+        "noteSv": "Forskarna använder 1000 f.Kr. som tidsangivelse för sitt Teoumaexempel i artikelns offentliga sammanfattning. Årtalet anger ett ungefärligt sammanhang för begravningsbruket. Källan fastställer varken gravplatsens första år eller hela användningstiden."
+      },
+      "titleSv": "Människorna vid Teouma begraver sina döda i flera steg",
+      "summarySv": "Vid Teouma på Efate i Vanuatu behandlar människor sina döda genom begravningsförlopp i flera steg. Forskarna tolkar fynden som exempel på att efterlevande kan tillmäta kvarlevor värde även under tidigare steg i sådana förlopp.",
+      "geographySv": "Teouma, Efate, Vanuatu",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc1000-unv-teouma"
+      ],
+      "selectionNote": "A distinct mortuary practice with an explicit BC context in the public abstract; no settlement or radiocarbon conversion claim is made.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1000-vilabouly-koppar",
+      "date": {
+        "kind": "range",
+        "startYear": -1000,
+        "endYear": 700,
+        "displaySv": "cirka 1000 f.Kr.–700 e.Kr.",
+        "noteSv": "Forskarna anger detta intervall för Vilaboulyområdets kol-14-daterade arkeologiska följd. De har undersökt koppargruvor och smältplatser där. Intervallet ger varken ett exakt startår för gruvdriften eller belägg för oavbruten produktion under hela perioden."
+      },
+      "titleSv": "Gruvarbetare och metallhantverkare framställer koppar vid Vilabouly",
+      "summarySv": "Arkeologer har undersökt koppargruvor och smältplatser i Vilaboulyområdet, tidigare kallat Sepon, i centrala Laos. Där har de funnit malm, slagg och deglar. Forskarna placerar platsens arkeologiska följd inom ett långt intervall från cirka 1000 f.Kr. till 700 e.Kr.",
+      "geographySv": "Vilabouly, Savannakhetprovinsen, centrala Laos",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "bc1000-oxford-vilabouly"
+      ],
+      "selectionNote": "A regional copper-production complex described within its complete published site sequence. The event preserves the long context instead of inventing an exact onset or continuous operation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0950-lefkandi-elitcentrum",
+      "date": {
+        "kind": "approximate",
+        "startYear": -950,
+        "endYear": -950,
+        "displaySv": "cirka 950 f.Kr.",
+        "noteSv": "IME anger 950 f.Kr. för Lefkandis blomstringstid. Oxford daterar byggnaden vid Toumba till mitten av 900-talet f.Kr. Årtalet här avser blomstringstiden; källorna fastställer inget exakt år för byggandet eller begravningarna."
+      },
+      "titleSv": "En förmögen elit präglar Lefkandi",
+      "summarySv": "Invånarna i Lefkandi på Euboia har ett välmående samhälle under mitten av 900-talet f.Kr. Vid Toumba uppför de en stor byggnad med gravschakt för en kremerad man, en jordbegravd kvinna och fyra hästar. De täcker senare byggnaden med en gravhög.",
+      "geographySv": "Lefkandi på Euboia, Grekland",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc1000-ime-lefkandi",
+        "bc1000-oxford-lefkandi"
+      ],
+      "selectionNote": "A wealthy regional centre and elite burial complex; the explicit IME heyday date supplies the approximate marker, without manufacturing a construction date from Oxford's century wording.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0950-ceibal-offentlig-plats",
+      "date": {
+        "kind": "approximate",
+        "startYear": -950,
+        "endYear": -950,
+        "displaySv": "omkring 950 f.Kr.",
+        "noteSv": "Universitetets forskningsrapport daterar Ceibals offentliga torg till omkring 950 f.Kr. Forskarnas förslag om samarbete mellan bofasta och rörliga grupper är en tolkning. Senare monumentalt byggande omkring 800 f.Kr. hör till en annan fas."
+      },
+      "titleSv": "Människor anlägger ett offentligt torg i Ceibal",
+      "summarySv": "Människorna i Ceibal i nuvarande Guatemala anlägger ett offentligt torg omkring 950 f.Kr. Forskarna föreslår att bofasta invånare och mer rörliga grupper samarbetar kring byggande och ceremonier.",
+      "geographySv": "Ceibal, Guatemala",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc1000-arizona-ceibal"
+      ],
+      "selectionNote": "A dated public ceremonial space in early Maya society, with the proposed social cooperation identified as an interpretation rather than an observed historical fact.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0925-sheshonq-falttag",
+      "date": {
+        "kind": "approximate",
+        "startYear": -925,
+        "endYear": -925,
+        "displaySv": "cirka 925 f.Kr.",
+        "noteSv": "Chicagopublikationen daterar fälttåget till 925 f.Kr. UCL anger Sheshonqs regering till omkring 946/945–925/924 f.Kr. och nämner fälttåget utan ett särskilt årtal. Sambandet mellan fälttåget och enskilda förstörelselager i Megiddo är omdiskuterat."
+      },
+      "titleSv": "Sheshonq I leder ett egyptiskt fälttåg i Palestina",
+      "summarySv": "Den egyptiske kungen Sheshonq I genomför ett fälttåg i Palestina, som Chicagopublikationen daterar till cirka 925 f.Kr. Vid Karnak låter han avbilda sin triumf tillsammans med en lista över städer.",
+      "geographySv": "Egypten och Palestina",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc1000-chicago-sheshonq",
+        "bc1000-ucl-sheshonq"
+      ],
+      "selectionNote": "A major Egyptian intervention in the Levant; the published campaign date is kept separate from debated destruction-layer correlations.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",

@@ -1,5 +1,9 @@
 # Research status
 
+## Current publication checkpoint: 9 November 2026
+
+The latest verified merge is PR #97 at `a502d142362b222317e1678617fa64fba55552a3`: 692 approved event records, 636 sources and 6,181 bilingual entries. Its required tests and build passed. This branch prepares the BC1000 batch, which would raise those totals to 699 events, 645 sources and 6,234 bilingual entries; current-head CI and merge are separate publication gates. Every covered research interval remains partial. The chronological record below preserves earlier milestones and their limits. Claude owns runtime integration and gameplay verification.
+
 Updated by Codex on 7 November 2026 at main `b44c77d733d49fac34917c913f5845f4f8681760`.
 
 | Batch | State | PR | Files | Counts | Waiting for Claude |
@@ -583,3 +587,18 @@ The BC1100 batch adds six events and eleven sources, with thirty English event f
 Independent final review passed the exact candidate and all 52 bilingual pairs. Its report SHA-256 is `6fc7e0ee5cbbbf0ed4360a00130895ea352b833ab78fcdd5928b619ebe4be14e`. All 21 frozen inputs and their review copies were rehashed before integration. The actually merged catalog and coverage match the reviewed baseline byte for byte. This closes the preparation gates described in the batch note; repository checks and current-head CI are recorded separately.
 
 The resulting candidate contains 692 events and 636 sources, with 3,330 partially researched and 1,500 unresearched years. Only 1100–1001 BC changes coverage. All nine regions were searched; regional and empty-year gaps remain. Higham and Higham evidence was extracted PDF text, including Results and Table 2; a later screenshot returned 403 and was not bypassed. No visual table verification is claimed. Claude retains runtime integration ownership. No Cloudflare, D1, R2, secret, binding, deployment or configuration change is required.
+
+
+## BC1000 publication preparation after PR #97
+
+PR #97 merged as `a502d142362b222317e1678617fa64fba55552a3`. All eight published file blobs and SHA-256 values match reviewed head `d7ec5ea0d6d0a038b15a5d32df3d8aa2669b846e`, retained on its remote branch. Required CI run 42603446752 passed: 5,339 tests, 5,337 passes, no failures or skips, two TODOs, and a successful build in 40.70 seconds. Both merged locale sidecars identify data revision `92d9b138c21bf78c93faa5ef8bac159bf7697852`.
+
+The BC1000 batch adds seven events and nine sources, with 35 English event fields and 18 Swedish source-panel fields. The independent source review returned seven PASS verdicts with no historical replacements. All 53 retained language pairs are unchanged from their drafts. The full Pirak and Vilabouly intervals remain intact; the latter describes a site sequence, not continuous copper production. Teouma is a funerary-practice record, not an invented foundation date. Public abstract and PDF-text limitations are preserved in the batch note.
+
+Independent final review passed the exact data and all 53 bilingual pairs. Its report SHA-256 is `2f297f1a067e6d368799f2bd909e97b07d102544d045568d3aca3ca498bfd415`. All 19 frozen inputs and their review copies were rehashed before integration. The actually merged catalog and coverage match the reviewed baseline byte for byte. This closes the preparation gates described in the batch note; repository checks and current-head CI are recorded separately.
+
+The resulting candidate contains 699 events and 645 sources, with 3,430 partially researched and 1,400 unresearched years. Exactly 100 coverage years, 1000–901 BC, change to partial; 4,730 others preserve their statuses and notes. Searches covered all nine working regions; sub-Saharan Africa, the steppe and Central Asia have no retained event. Empty years remain research gaps. No runtime code, Cloudflare, D1, R2, secret, binding, deployment or configuration change is required.
+
+### BC0600 policy hold
+
+An automatic tool review rejected the BC0600 operation that would write the reconciled candidate and decision files with `blocked by policy`, without a more detailed reason. Both target files were absent in the subsequent read-only check. The operation was stopped; it was not split, repackaged or reassigned. The original 31-event, 32-source draft, the source review's 25 PASS and six CORRECTION outcomes, and the 219 draft language pairs remain separate, unpromoted evidence. No final review or approved BC0600 candidate exists. Coverage for 600–501 BC remains unresearched. Independent BC0500 work instead uses the final-reviewed BC0700 baseline. Earlier policy-held batches remain held.
