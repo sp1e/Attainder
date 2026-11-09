@@ -1,0 +1,107 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc2700-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -2700,
+    "endYear": -2601
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc2700en-thy-preface",
+      "title": "Preface, in Bronze Age Settlement and Land-Use in Thy, Northwest Denmark, Vol. I",
+      "institution": "Jens-Henrik Bech, Berit Valentin Eriksen and Kristian Kristiansen; Aarhus University Press / Jutland Archaeological Society",
+      "url": "https://en.unipress.dk/media/15232/bronze-age-settlement.pdf",
+      "locator": "2018, preface p. 9, first PDF page, paragraph on the Hassing Huse Mose and Ove Sø pollen diagrams (web lines 52–61). Public four-page preface excerpt only. The publisher's book page confirms the title, editors and 4 June 2018 publication date; the underlying pollen studies were not independently read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "around 2700 BC",
+      "originalChronology": "An approximate date for a major landscape opening, linked by the authors to the Single Grave culture. They describe its development in less than a century without assigning a numerical end year. A separate clearance episode beginning around 1500 BCE is excluded.",
+      "scopedClaim": "The preface interprets the two Thy pollen sequences as evidence for a rapid opening of the landscape for grazing. Ove Sø is described as matching Hassing Huse Mose and having appeared only in an internal report; these are not independently inspected studies here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2700en-abydos-khasekhemwy",
+      "title": "Khasekhemwy Enclosure (Shunet el-Zebib)",
+      "institution": "Abydos Archaeology",
+      "url": "https://abydos.org/khasekhemwy",
+      "locator": "Public excavation-project page, introductory dated description and cultic function, web lines 45–52. Linked lecture, archive and conservation report were not read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "c. 2700 BCE",
+      "originalChronology": "The project dates the funerary temple of Khasekhemwy, the last king of the Second Dynasty, approximately to 2700 BCE. It supplies no exact construction year or numerical reign interval.",
+      "scopedClaim": "The Shunet el-Zebib at Abydos is Khasekhemwy's funerary and cultic enclosure, associated with rituals of divine kingship. No claim about being the first monument or the date of a later pyramid is retained.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2700en-adams-abydos-journal",
+      "title": "Abydos, Egypt, in Archaeology Journal 2017–2018, Issue 6",
+      "institution": "Matthew Adams; Institute of Fine Arts, New York University",
+      "url": "https://ifa.nyu.edu/assets/pdfs/archaeology/IFA_Archaeology_Journal_2017-2018.pdf",
+      "locator": "Printed p. 2 / PDF page 2: royal funerary enclosures and Khasekhemwy's surviving construction, web lines 70–85; dated caption at line 96. Author identification on PDF page 1. Text extraction only; photographs were not independently examined.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "ca. 2700 BCE",
+      "originalChronology": "The construction of Khasekhemwy's royal enclosure is placed approximately at 2700 BCE. The article discusses a group of earlier royal monuments but does not assign them all this date.",
+      "scopedClaim": "Royal enclosures were monumental, open-air cultic structures forming the visible part of royal funerary complexes. Khasekhemwy's surviving enclosure has mud-brick walls. This is another account from the same excavation project, not independent chronological corroboration.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc2700-thy-grazing-landscape",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2700,
+        "endYear": -2700,
+        "displayEn": "Around 2700 BCE",
+        "noteEn": "The Thy Project authors link the pollen evidence to the Single Grave culture and describe the change as taking less than a century. The approximate marker does not fix a single year or an end date; the later clearance beginning around 1500 BCE is separate."
+      },
+      "titleEn": "Open grazing landscapes spread in Thy",
+      "summaryEn": "Pollen sequences indicate a rapid opening of the landscape for grazing animals in Thy. The Thy Project authors associate this change with the Single Grave culture.",
+      "geographyEn": "Thy, northwest Denmark",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc2700en-thy-preface"
+      ],
+      "selectionNote": "A notable regional change in land use, retained with the authors' approximate date and cultural attribution. It is not a date for the origin or Europe-wide spread of the Single Grave or Corded Ware traditions, and it does not imply that all remaining woodland was removed at this time.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc2700-khasekhemwy-abydos-enclosure",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2700,
+        "endYear": -2700,
+        "displayEn": "Around 2700 BCE",
+        "noteEn": "The excavation project places Khasekhemwy's enclosure approximately at this date. The two accounts come from the same project and do not establish an exact building year or an independent chronology."
+      },
+      "titleEn": "Khasekhemwy builds a royal cult enclosure at Abydos",
+      "summaryEn": "Khasekhemwy's monumental mud-brick enclosure at Abydos forms part of his funerary complex. The open-air cultic structure is associated with rituals expressing divine kingship.",
+      "geographyEn": "Abydos, Egypt",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc2700en-abydos-khasekhemwy",
+        "bc2700en-adams-abydos-journal"
+      ],
+      "selectionNote": "A distinct royal ritual construction, separate from Abydos's older brewery and from later pyramid construction. The entry records one notable monument and its qualified approximate date, without treating the king's reign or the wider emergence of Egyptian monumental architecture as a newly dated event.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
