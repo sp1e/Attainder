@@ -33,6 +33,7 @@ import { ELECTION_REASON_SV, electOutsider, electiveCandidates, nextSuccessionLa
 import { primogenitureCandidates } from './succession.js';
 import { ensureRealmKind, presentRealm, validateRealmKind } from './realmKind.js';
 import { bondStep } from './bonds.js';
+import { inheritGrudges } from './grudges.js';
 import { birthsClosed, courtRenewalStep, ensureLineageState, validateLineageState } from './renewal.js';
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
@@ -289,6 +290,7 @@ function killPeople(state, ids, events, reason = 'Ålder och hälsa') {
     closePrisoner(state, person.id, 'dead', person.deathReason);
   }
   for (const person of deceased) {
+    inheritGrudges(state, person, actionHooks(state));
     const heirs = byAge(state, living(state).filter((p) => p.legalParentIds.includes(person.id)));
     const heir = heirs[0] || byAge(state, familyMembers(state, person.familyId))[0];
     if (heir) heir.wealth = rounded(heir.wealth + person.wealth); else state.families[person.familyId].treasury += person.wealth;
