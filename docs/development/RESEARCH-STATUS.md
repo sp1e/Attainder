@@ -54,6 +54,8 @@ PRs #120 and #121 each passed 5,337 tests with no failures and two TODOs; both b
 
 AD900 adds Gwangjong's examination reform in 958. Both review stages approved the unchanged event and its full selection note. The AKS evidence was independently read from the author-captured original PDF after a remote timeout; that provenance limit remains explicit. Uttaramērūr and Laguna remain outside the delivery, and no date from an unread search excerpt was promoted to evidence.
 
+An independent metadata review approved standardizing four reference-use fields in the AD300 and AD800 datasets to the brief's required wording. Only those four values change. Historical claims, source links, identifiers, dates, prior review reports and license notices remain unchanged. The wording records this project's reference-only use and does not change the sources' licenses; research totals remain the same.
+
 Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. Independent CI runs may overlap on dependent research branches; merge them in order only after verifying that the merged parent has the tested parent's exact tree. Preserve branch ancestry with merge commits for this chain. Further active research concerns AD 1–99 and AD 100–199; those records do not enter the delivery totals until integration. A preliminary Turkana chronology check supplied no episode with a justified 2700–2601 BC start, so it produced no event candidate or coverage promotion. The older BC1600 execution-policy hold remains preserved.
 
 ## Earlier catalog delivery
