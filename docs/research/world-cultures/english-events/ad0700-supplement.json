@@ -1,0 +1,120 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad0700-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 700,
+    "endYear": 799
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0700en-marmara-kul-tigin",
+      "title": "Tarihsel Süreçte Türkçenin Temel Eserleri: Köktürk Türkçesi Dönemi Eserleri",
+      "institution": "Marmara University, Department of Turkish Language and Literature",
+      "url": "https://tde-itbf.marmara.edu.tr/dosya/itbf/tde/t%C3%BCrkoloji%20d%C3%BCnyas%C4%B1/Ko%CC%88ktu%CC%88rk%20Tu%CC%88rkc%CC%A7esi%20Do%CC%88nemi%20Eserleri.pdf",
+      "locator": "2025 departmental booklet, PDF page 4, Köktürk Kitabeleri, and PDF page 6, Kül Tigin Kitabesi. Public PDF text extraction only.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Kül Tigin Kitabesi, 732",
+      "originalChronology": "The booklet dates Bilge Kagan's memorial for Kül Tigin to 732 and Kül Tigin's death to 731. The memorial's erection and the commemorated death are separate events.",
+      "scopedClaim": "Bilge Kagan commissioned a memorial with statuary and an inscription for Kül Tigin. The inscription uses Turkic on three faces and Chinese on the west face, and recounts Köktürk history in Bilge Kagan's voice. The booklet locates the Kül Tigin and Bilge Kagan inscriptions in the Orkhon Valley and treats them as sources for political thought.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0700en-bostan-kul-tigin",
+      "title": "Kül Tigin Yazıtı",
+      "institution": "Dil Araştırmaları; Celalettin Bulut Bostan; DergiPark",
+      "url": "https://dergipark.org.tr/tr/pub/dilarastirmalari/article/1225561",
+      "locator": "2023, volume 17, issue 32, pp. 326–329; public Turkish abstract paragraphs 1–2 and English abstract paragraphs 1–2, web lines 28–29 and 39–40. This is a scholarly book review; no full-PDF claim is made.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "erected in 732 by Bilge Kagan",
+      "originalChronology": "The abstract explicitly assigns erection to 732. It gives no day or month for that act.",
+      "scopedClaim": "The memorial honours Bilge Kagan's brother and discusses the Köktürk state's military and political affairs, relations with China and Kül Tigin's deeds. The abstract confirms the Turkic and Chinese faces and the location near Çaydam in Arhangey.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0700en-rusyanti-canggal",
+      "title": "Pertanggalan Relatif Candi Ronggeng di Kabupaten Ciamis, Jawa Barat",
+      "institution": "Amerta; Rusyanti, Nanang Saptono and Endang Widyastuti, West Java Archaeology Office; BRIN journal repository",
+      "url": "https://ejournal.brin.go.id/amerta/article/download/3306/2299/10120",
+      "locator": "2020, printed p. 155 (PDF page 11), paragraph below Table 1 beginning with Sanjaya's genealogy, especially the sentences on Canggal's date and linga dedication. Public PDF text extraction only.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Prasasti Canggal yang berangka tahun 732",
+      "originalChronology": "The article dates the Canggal inscription to 732. No birth-year calculation, accession date or later temple chronology is adopted for this event.",
+      "scopedClaim": "The Canggal inscription records King Sanjaya's inauguration of a linga on Sthirangga hill for his people's safety and welfare. The passage associates the inscription with Gunung Wukir, Magelang, Central Java. Its separate conditional discussion of genealogies and West Javanese rule is excluded.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0700en-klokke-canggal",
+      "title": "The Buddhist temples of the Śailendra dynasty in Central Java",
+      "institution": "Arts Asiatiques; Marijke J. Klokke; Persée",
+      "url": "https://www.persee.fr/doc/arasi_0004-3958_2008_num_63_1_1667?pageId=T1_155",
+      "locator": "2008, volume 63, p. 155, The Śailendra dynasty; paragraph naming Canggal as the first dated Central Javanese inscription, followed by discussion of competing dynastic models. Public page text, web lines 47–58.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "the inscription of Canggal, of 732 AD",
+      "originalChronology": "Klokke explicitly dates Canggal to AD 732. The later Mantyāsih king list and rival reconstructions of dynastic relationships do not independently date a kingdom's foundation to that year.",
+      "scopedClaim": "Sanjaya is named in Canggal, which Klokke describes as Central Java's first dated inscription. The article presents disagreement over whether the rulers belonged to one dynasty or two. This event neither selects a dynastic model nor assigns the Śailendras a foreign or indigenous origin.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-0732-kul-tigin-memorial",
+      "date": {
+        "kind": "exact",
+        "startYear": 732,
+        "endYear": 732,
+        "displayEn": "AD 732",
+        "noteEn": "The cited accounts date the erection of the memorial to 732. Kül Tigin's death is placed in 731 by the Marmara booklet; the inscription commemorates that earlier death."
+      },
+      "titleEn": "Bilge Kagan raises a memorial to Kül Tigin",
+      "summaryEn": "Bilge Kagan commissions an inscribed memorial honouring Kül Tigin. The monument carries Turkic and Chinese texts. Its Turkic narrative recounts Köktürk history in Bilge Kagan's voice, while the inscription discusses military and political affairs, including relations with China.",
+      "geographyEn": "Orkhon Valley, near Çaydam, present-day Mongolia",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0700en-marmara-kul-tigin",
+        "ad0700en-bostan-kul-tigin"
+      ],
+      "selectionNote": "A notable act of royal commemoration and political self-presentation in Central Asia. The record concerns the dated erection of a substantial memorial, with its royal narrative and bilingual inscription, rather than modern discovery or an unsupported claim that it created a state or writing system.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0732-sanjaya-canggal-dedication",
+      "date": {
+        "kind": "exact",
+        "startYear": 732,
+        "endYear": 732,
+        "displayEn": "AD 732",
+        "noteEn": "The date belongs to the Canggal inscription recording Sanjaya's linga dedication. It does not establish the foundation year of a kingdom or resolve competing reconstructions of Central Java's dynasties."
+      },
+      "titleEn": "Sanjaya commemorates a linga dedication at Canggal",
+      "summaryEn": "The Canggal inscription records King Sanjaya's dedication of a linga on Sthirangga hill for the safety and welfare of his people. Klokke identifies it as Central Java's first dated inscription, making it an important early record of royal religious patronage in the region.",
+      "geographyEn": "Gunung Wukir, Magelang, Central Java",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0700en-rusyanti-canggal",
+        "ad0700en-klokke-canggal"
+      ],
+      "selectionNote": "A notable dated act of royal religious patronage in Central Java. Significance is limited to the dedication and its early documentary importance; no precise dynastic foundation, territorial conquest or population-wide conversion is inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
