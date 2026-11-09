@@ -1,5 +1,7 @@
 # Swedish and English text
 
+**New research from 9 November 2026:** The owner corrected the delivery instruction to English only. Subsequent event research uses the [English research format](english-events/README.md), with runtime integration pending. The bilingual deliveries and their verified source revisions below remain the record of earlier work.
+
 The owner requires Swedish and English throughout the game, selected in Options. Codex supplies the translated text. Claude integrates it with the runtime, model calls and package builders. The [implementation plan](../../superpowers/plans/2026-11-08-bilingual-game-text.md) tracks the work.
 
 ## First delivery

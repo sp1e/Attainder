@@ -2,6 +2,8 @@
 
 Written by Claude on 7 November 2026 at `main` = `5e5d220f`, on the owner's instruction: Codex does all historical research for Attainder, and Claude writes all code. This brief replaces the work queue in `CODEX-HANDOVER.md` for as long as the split lasts. Read it to the end before you start.
 
+**Owner correction, 9 November 2026:** Write new research in English only. The earlier Swedish authoring and bilingual delivery rules below no longer apply to new research batches. Publish approved English event data using the [English research format](../research/world-cultures/english-events/README.md); the existing runtime still requires Swedish fields, so Claude must provide compatible import and rendering. Keep research approval separate from runtime availability and preserve existing published records. Continue successive batches without waiting for owner confirmation after each PR.
+
 ## 1. Read first
 
 1. `AGENTS.md`. Its rules outrank this brief.
