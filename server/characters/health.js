@@ -32,6 +32,10 @@ function emit(state, events, type, title, description, participants, extra = {})
 }
 
 const ongoing = (condition) => ['active', 'recovering'].includes(condition.stage);
+/** The yearly chance of death that annualStep rolls against: the age band plus (100 − health) × 0.0005. */
+export function ageDeathRisk(age, health) { const risk = age >= 95 ? 1 : age >= 80 ? 0.22 : age >= 70 ? 0.12 : age >= 60 ? 0.06 : age >= 45 ? 0.014 : 0.002; return risk + (100 - health) * 0.0005; }
+/** The chance an active condition kills when its acute phase ends, under its current care. advanceHealthTransitions compares outcomeRoll with it. */
+export function conditionFatalRisk(person, condition) { const care = condition.treatment?.kind; const baseRisk = condition.kind === 'smallpox' ? 0.012 * condition.severity : condition.kind === 'injury' ? 0.004 * condition.severity : 0.002 * condition.severity; return (baseRisk + (person.health < 30 ? 0.04 : 0)) * (care === 'physician' ? 0.55 : care === 'rest' ? 0.8 : 1); }
 export function getTreatableConditions(person) { return (person?.healthConditions || []).filter((condition) => ongoing(condition) && condition.kind !== 'bereavement' && !condition.treatment); }
 export function getConditionBurden(person) { return Math.min(0.45, (person?.healthConditions || []).filter(ongoing).reduce((sum, condition) => sum + (condition.kind === 'smallpox' ? 0.08 : condition.kind === 'injury' ? 0.06 : condition.kind === 'fever' ? 0.04 : 0) * condition.severity * (condition.stage === 'recovering' ? 0.5 : 1), 0)); }
 
@@ -139,8 +143,7 @@ export function advanceHealthTransitions(state, events, context = {}) {
     if (!ongoing(condition) || !condition.nextTransitionAt || compareGameDates(condition.nextTransitionAt, state.date) > 0) continue;
     const care = condition.treatment?.kind;
     if (condition.stage === 'active' && condition.kind !== 'bereavement') {
-      const baseRisk = condition.kind === 'smallpox' ? 0.012 * condition.severity : condition.kind === 'injury' ? 0.004 * condition.severity : 0.002 * condition.severity;
-      const fatalRisk = (baseRisk + (person.health < 30 ? 0.04 : 0)) * (care === 'physician' ? 0.55 : care === 'rest' ? 0.8 : 1);
+      const fatalRisk = conditionFatalRisk(person, condition);
       if (condition.outcomeRoll < fatalRisk) {
         person.health = 0; condition.nextTransitionAt = null; condition.nextExposureAt = null; condition.fatalAt = state.date;
         deaths.push({ personId: person.id, reason: HEALTH_CONDITION_LABELS[condition.kind] });
