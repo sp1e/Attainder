@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "710f7f094a509d091487a99bb556d232a496d760",
+  "sourceRevision": "dfd2e8806ae3ff81ccb90cc76785268842b96d3f",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -62075,6 +62075,116 @@
         "eventId": "ev-bc0019-balbus-falttag-i-sahara",
         "fieldPath": "/geographySv",
         "textSha256": "253d066807b10e58f1162a9e0f9670c71083b80ce025d8b4e9d7e2e6160d74bb"
+      }
+    },
+    {
+      "id": "event/ev-0211-septimius-severus-dor-i-york/date/displaySv",
+      "sv": "4 februari 211 e.Kr.",
+      "en": "4 February AD 211",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0211-septimius-severus-dor-i-york",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "71633aa2aae5c712b60fd9972d87bef5280dff2f046404526c39be194a435082"
+      }
+    },
+    {
+      "id": "event/ev-0211-septimius-severus-dor-i-york/date/noteSv",
+      "sv": "English Heritage daterar dödsfallet till den 4 februari 211.",
+      "en": "English Heritage dates the death to 4 February 211.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0211-septimius-severus-dor-i-york",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "bf313b30ef76d1ad642642f9d657892faa725f9e5c330fbf9057eeefb3382fda"
+      }
+    },
+    {
+      "id": "event/ev-0211-septimius-severus-dor-i-york/titleSv",
+      "sv": "Septimius Severus dör i York",
+      "en": "Septimius Severus dies at York",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0211-septimius-severus-dor-i-york",
+        "fieldPath": "/titleSv",
+        "textSha256": "10efb5887f152bcb72c68e631951a0783b2567b9b298d166a8e1a3fe3834a6af"
+      }
+    },
+    {
+      "id": "event/ev-0211-septimius-severus-dor-i-york/summarySv",
+      "sv": "Kejsar Septimius Severus dör i York medan han är sjuk. Han hinner därmed inte själv delta i det förnyade fälttåget norr om Hadrianus mur.",
+      "en": "Emperor Septimius Severus dies at York while ill. He therefore does not live to take part personally in the renewed campaign north of Hadrian’s Wall.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0211-septimius-severus-dor-i-york",
+        "fieldPath": "/summarySv",
+        "textSha256": "cafc295ccdd01ecaedd733a25b13f94702f9cfd7b6d4c75de01667063e59b034"
+      }
+    },
+    {
+      "id": "event/ev-0211-septimius-severus-dor-i-york/geographySv",
+      "sv": "York och området norr om Hadrianus mur, Britannien",
+      "en": "York and the area north of Hadrian’s Wall, Britain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0211-septimius-severus-dor-i-york",
+        "fieldPath": "/geographySv",
+        "textSha256": "44b496d0e83eaf1125747dc2a8b27e0e53e26d785968b7b0441b14075f03f48d"
+      }
+    },
+    {
+      "id": "event/ev-0251-decius-stupar-vid-abritus/date/displaySv",
+      "sv": "251 e.Kr., maj eller början av juni",
+      "en": "AD 251, May or early June",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0251-decius-stupar-vid-abritus",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9061ebd797e61a370c2de65f8fb3c9b67812cd931ca1087387c0973df0c87ba3"
+      }
+    },
+    {
+      "id": "event/ev-0251-decius-stupar-vid-abritus/date/noteSv",
+      "sv": "Året 251 är gemensamt för de lästa källorna. Potter anger maj; Huebner anger början av juni och använder även maj/juni. Månaden lämnas olöst.",
+      "en": "The sources read agree on the year 251. Potter gives May; Huebner gives early June and also uses May/June. The month remains unresolved.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0251-decius-stupar-vid-abritus",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "262787ff5030823db73656977c2a946973ca9e57aaa46bbd31f247876be9a11c"
+      }
+    },
+    {
+      "id": "event/ev-0251-decius-stupar-vid-abritus/titleSv",
+      "sv": "Decius stupar vid Abritus",
+      "en": "Decius falls in battle at Abritus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0251-decius-stupar-vid-abritus",
+        "fieldPath": "/titleSv",
+        "textSha256": "8c13d731db4d6e8d2cd7a26bac2e579576081059bf7c6312a54ce260ae9c1e61"
+      }
+    },
+    {
+      "id": "event/ev-0251-decius-stupar-vid-abritus/summarySv",
+      "sv": "Kejsar Decius och hans äldre son Herennius dör i slaget vid Abritus under kriget mot gotiska angripare. Därefter utropar trupperna Trebonianus Gallus till kejsare.",
+      "en": "Emperor Decius and his elder son Herennius die in the battle of Abritus during the war against Gothic invaders. The troops then proclaim Trebonianus Gallus emperor.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0251-decius-stupar-vid-abritus",
+        "fieldPath": "/summarySv",
+        "textSha256": "06b25f6d2f16715867e2bbc0bf0bfdeca0f9b3dee800fec06caf0573f1e2e598"
+      }
+    },
+    {
+      "id": "event/ev-0251-decius-stupar-vid-abritus/geographySv",
+      "sv": "Abritus, Romarriket",
+      "en": "Abritus, Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0251-decius-stupar-vid-abritus",
+        "fieldPath": "/geographySv",
+        "textSha256": "608f598084d916673e773b6af1a55892534ffc24f1d887866ab57f279f84deb8"
       }
     }
   ]

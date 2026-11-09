@@ -9621,6 +9621,42 @@
       "scopedClaim": "Lucius Cornelius Balbus campaigned against Saharan settlements associated with the Garamantes.",
       "retrievedOn": "2026-11-09",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0200-sup-eh-severus",
+      "title": "Septimius Severus",
+      "institution": "English Heritage",
+      "url": "https://www.english-heritage.org.uk/visit/places/hadrians-wall/hadrians-wall-history-and-stories/septimius-severus/",
+      "locator": "Section 'Campaigns north of Hadrian’s Wall', second paragraph; web lines 265–266.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Death at York on 4 February AD 211. The exact day is retained in the display; the catalog indexes the year.",
+      "reuseTerms": "Reference only; short date quotation, original paraphrase, no images redistributed.",
+      "asWorded": "4 February AD 211",
+      "scopedClaim": "Septimius Severus died at York on this date while ill, before he could personally join the renewed campaign north of Hadrian’s Wall."
+    },
+    {
+      "id": "ad0200-sup-potter-abritus",
+      "title": "Decius and the Battle near Abritus",
+      "institution": "David Potter; Edinburgh University Press; Cambridge Core",
+      "url": "https://www.cambridge.org/core/books/abs/generalship-in-ancient-greece-rome-and-byzantium/decius-and-the-battle-near-abritus/A61EF5E3D0B792FE00E4F8D2A30BCECD",
+      "locator": "Public Summary, first two paragraphs, web lines 478–481; chapter 8, print pages 139–150 (2022). Full chapter not accessed.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The public summary dates the end of Decius’s fatal campaign to May 251. Compared with Huebner’s early June 251, without resolving the month.",
+      "reuseTerms": "Reference only; short date quotation, original paraphrase; no restricted chapter text accessed.",
+      "asWorded": "May of 251",
+      "scopedClaim": "Decius died fighting Gothic invaders near Abritus; the summary places the fatal campaign’s end in May 251."
+    },
+    {
+      "id": "ad0200-sup-huebner-abritus",
+      "title": "The ‘Plague of Cyprian’: A revised view of the origin and spread of a 3rd-c. CE pandemic",
+      "institution": "Sabine R. Huebner; University of Basel; Journal of Roman Archaeology; Cambridge University Press",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/4DD870D473D3DDB1DF0328CE2C7E3280/S1047759421000349a.pdf/the-plague-of-cyprian-a-revised-view-of-the-origin-and-spread-of-a-3rd-c-ce-pandemic.pdf",
+      "locator": "Print page 157 (PDF page 7), opening paragraph continuing from page 156; web lines 250–252. Extracted text read; no visual page inspection.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Early June 251 CE for the deaths of Decius and Herennius at Abritus. The same page later uses May/June 251. Compared with Potter’s May 251.",
+      "reuseTerms": "CC BY 4.0; attribution retained; original paraphrase and short date quotation only.",
+      "asWorded": "early June 251 CE; May/June 251 CE",
+      "scopedClaim": "Decius and his elder son Herennius died at Abritus in 251; Trebonianus Gallus was then proclaimed emperor by the troops. Supplies the early-June dating alternative."
     }
   ],
   "events": [
@@ -30682,6 +30718,55 @@
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0211-septimius-severus-dor-i-york",
+      "date": {
+        "kind": "exact",
+        "startYear": 211,
+        "endYear": 211,
+        "displaySv": "4 februari 211 e.Kr.",
+        "noteSv": "English Heritage daterar dödsfallet till den 4 februari 211."
+      },
+      "titleSv": "Septimius Severus dör i York",
+      "summarySv": "Kejsar Septimius Severus dör i York medan han är sjuk. Han hinner därmed inte själv delta i det förnyade fälttåget norr om Hadrianus mur.",
+      "geographySv": "York och området norr om Hadrianus mur, Britannien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0200-sup-eh-severus"
+      ],
+      "selectionNote": "The death of the reigning emperor during a major British campaign is a major regional political event. The entry does not assign an unsupported immediate succession outcome.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and bilingual check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0251-decius-stupar-vid-abritus",
+      "date": {
+        "kind": "exact",
+        "startYear": 251,
+        "endYear": 251,
+        "displaySv": "251 e.Kr., maj eller början av juni",
+        "noteSv": "Året 251 är gemensamt för de lästa källorna. Potter anger maj; Huebner anger början av juni och använder även maj/juni. Månaden lämnas olöst."
+      },
+      "titleSv": "Decius stupar vid Abritus",
+      "summarySv": "Kejsar Decius och hans äldre son Herennius dör i slaget vid Abritus under kriget mot gotiska angripare. Därefter utropar trupperna Trebonianus Gallus till kejsare.",
+      "geographySv": "Abritus, Romarriket",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0200-sup-potter-abritus",
+        "ad0200-sup-huebner-abritus"
+      ],
+      "selectionNote": "An imperial military defeat and succession during the Gothic invasions, a major regional event. Numerical precision is annual; the competing month datings remain visible.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and bilingual check",
         "reviewedOn": "2026-11-09"
       }
     }

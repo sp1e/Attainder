@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "710f7f094a509d091487a99bb556d232a496d760",
+  "sourceRevision": "dfd2e8806ae3ff81ccb90cc76785268842b96d3f",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -17492,6 +17492,72 @@
         "sourceId": "bc0100-balbus",
         "fieldPath": "/locator",
         "textSha256": "061a20b82c69223aa58e7ff520493a1aa705a7b234921b9f299d9b861c11bf61"
+      }
+    },
+    {
+      "id": "source/ad0200-sup-eh-severus/institution",
+      "en": "English Heritage",
+      "sv": "English Heritage",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-sup-eh-severus",
+        "fieldPath": "/institution",
+        "textSha256": "1fde17fd286a11daa43763e2a16609ecb9a99c6a21a4d89903117f72e8322687"
+      }
+    },
+    {
+      "id": "source/ad0200-sup-eh-severus/locator",
+      "en": "Section 'Campaigns north of Hadrian’s Wall', second paragraph; web lines 265–266.",
+      "sv": "Avsnittet 'Campaigns north of Hadrian’s Wall', andra stycket; webbrader 265–266.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-sup-eh-severus",
+        "fieldPath": "/locator",
+        "textSha256": "c37c0a54b1bdb7c0228c3969834b412e03064942f386f1d4250366abe40d2fba"
+      }
+    },
+    {
+      "id": "source/ad0200-sup-potter-abritus/institution",
+      "en": "David Potter; Edinburgh University Press; Cambridge Core",
+      "sv": "David Potter; Edinburgh University Press; Cambridge Core",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-sup-potter-abritus",
+        "fieldPath": "/institution",
+        "textSha256": "e134cb3ae0fc6e4a6d9c191f08cc09da3f28a2bf31aefc1be8c6000c9de0059a"
+      }
+    },
+    {
+      "id": "source/ad0200-sup-potter-abritus/locator",
+      "en": "Public Summary, first two paragraphs, web lines 478–481; chapter 8, print pages 139–150 (2022). Full chapter not accessed.",
+      "sv": "Den offentliga sammanfattningen, de två första styckena, webbrader 478–481; kapitel 8, tryckta sidor 139–150 (2022). Hela kapitlet har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-sup-potter-abritus",
+        "fieldPath": "/locator",
+        "textSha256": "36b71cd0d46ce85bfd09d9053e657f6fc3b97919660749722c506b0eb16d5e25"
+      }
+    },
+    {
+      "id": "source/ad0200-sup-huebner-abritus/institution",
+      "en": "Sabine R. Huebner; University of Basel; Journal of Roman Archaeology; Cambridge University Press",
+      "sv": "Sabine R. Huebner; Basels universitet; Journal of Roman Archaeology; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-sup-huebner-abritus",
+        "fieldPath": "/institution",
+        "textSha256": "59bccee58a36cfeea143e2432c92687e1e95f95786962fcf8b851839eda9f7d3"
+      }
+    },
+    {
+      "id": "source/ad0200-sup-huebner-abritus/locator",
+      "en": "Print page 157 (PDF page 7), opening paragraph continuing from page 156; web lines 250–252. Extracted text read; no visual page inspection.",
+      "sv": "Tryckt sida 157 (PDF-sida 7), inledningsstycket som fortsätter från sida 156; webbrader 250–252. Extraherad text har lästs; ingen visuell sidgranskning har gjorts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0200-sup-huebner-abritus",
+        "fieldPath": "/locator",
+        "textSha256": "550d01fa9b67b0bf0a74dd9994036e82ab0b1133197475fff6a431ab260c23e9"
       }
     }
   ]
