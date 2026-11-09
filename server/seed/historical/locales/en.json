@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "6a3bac1476f6d1ff1d732fe808397e4cc474d45f",
+  "sourceRevision": "a9bcbced6865e4d55f753dd0cf5ae5153d9b06bc",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -42220,6 +42220,1601 @@
         "eventId": "ev-bc2200-svalare-och-torrare-forhallanden-i-levanten",
         "fieldPath": "/geographySv",
         "textSha256": "8f9157874eb20fa41e86811cff8c8a9dd98ffe873f1449f32772d9dc522e01bd"
+      }
+    },
+    {
+      "id": "event/ev-0301-tidiga-puranatexter/date/displaySv",
+      "sv": "Fjärde århundradet e.Kr. (301–400)",
+      "en": "Fourth century AD (301–400)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0301-tidiga-puranatexter",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "dde98ec645def324dbe649ceb8efeb557a601c1b9dee37ed220b14605c81c9ea"
+      }
+    },
+    {
+      "id": "event/ev-0301-tidiga-puranatexter/date/noteSv",
+      "sv": "Museet placerar sammanställningen av tidiga puranatexter i fjärde århundradet e.Kr. (301–400). Texttraditionen fortsatte under senare århundraden.",
+      "en": "The museum places the compilation of early Puranas in the fourth century AD (301–400). The textual tradition continued in later centuries.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0301-tidiga-puranatexter",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "0763e5634a3f3c8c54bbadc857dcf4526a0a4a8640c13414dc8138d9be303549"
+      }
+    },
+    {
+      "id": "event/ev-0301-tidiga-puranatexter/titleSv",
+      "sv": "Författare sammanställer tidiga puranatexter",
+      "en": "Authors compile early Puranas",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0301-tidiga-puranatexter",
+        "fieldPath": "/titleSv",
+        "textSha256": "52ed4bb62db6bcc3d68622d339a251cd423732b87427bd497b047356b2eacd01"
+      }
+    },
+    {
+      "id": "event/ev-0301-tidiga-puranatexter/summarySv",
+      "sv": "Författare sammanställer tidiga puranatexter om gudar, siare, hjältar och kungar. Museet placerar arbetet i fjärde århundradet e.Kr.; sammanställningen fortsätter under senare århundraden.",
+      "en": "Authors compile early Puranas about gods, seers, heroes and kings. The museum places this work in the fourth century AD; compilation continues in later centuries.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0301-tidiga-puranatexter",
+        "fieldPath": "/summarySv",
+        "textSha256": "cae3b3085b587735bb0f1f366b4e96ad06732e05e06ae38934a4b23acf0f0ef5"
+      }
+    },
+    {
+      "id": "event/ev-0301-tidiga-puranatexter/geographySv",
+      "sv": "Sydasien",
+      "en": "South Asia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0301-tidiga-puranatexter",
+        "fieldPath": "/geographySv",
+        "textSha256": "bc61fd3a20ef5e507ff76314e964b293fb2a26bb51b3d154717b6b05956953f7"
+      }
+    },
+    {
+      "id": "event/ev-0305-diocletianus-abdikerar/date/displaySv",
+      "sv": "305 e.Kr.",
+      "en": "AD 305",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0305-diocletianus-abdikerar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "54ab491f98a69b5b2e42337b841313ef5a0de5f022abe3cc9d95f8549c9a7c62"
+      }
+    },
+    {
+      "id": "event/ev-0305-diocletianus-abdikerar/date/noteSv",
+      "sv": "Året anges uttryckligen i Kroatiens nomineringsförslag. Det fastställer inte när palatset eller akvedukten i Split färdigställdes.",
+      "en": "The year is stated explicitly in Croatia’s nomination proposal. It does not establish when the palace or aqueduct at Split was completed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0305-diocletianus-abdikerar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "00914a96176f269d64ca74206c97eaa2804c7837641d43c2abeb5fad88aa4e2b"
+      }
+    },
+    {
+      "id": "event/ev-0305-diocletianus-abdikerar/titleSv",
+      "sv": "Diocletianus abdikerar",
+      "en": "Diocletian abdicates",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0305-diocletianus-abdikerar",
+        "fieldPath": "/titleSv",
+        "textSha256": "ae7e9a2a3b96dd3f75985e7066cd73e68ef76046fc7a668afb3418f8ce9cc66c"
+      }
+    },
+    {
+      "id": "event/ev-0305-diocletianus-abdikerar/summarySv",
+      "sv": "Diocletianus lämnar kejsarämbetet. Kroatiens nomineringsförslag daterar hans abdikation till 305.",
+      "en": "Diocletian relinquishes the imperial office. Croatia’s nomination proposal dates his abdication to 305.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0305-diocletianus-abdikerar",
+        "fieldPath": "/summarySv",
+        "textSha256": "c8e4f7d5dc77e199e21d7c2275bcd04d7f14782066180f92594ce80fba272a8b"
+      }
+    },
+    {
+      "id": "event/ev-0305-diocletianus-abdikerar/geographySv",
+      "sv": "Romarriket",
+      "en": "Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0305-diocletianus-abdikerar",
+        "fieldPath": "/geographySv",
+        "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
+      }
+    },
+    {
+      "id": "event/ev-0310-fotudeng-kommer-till-kina/date/displaySv",
+      "sv": "310 e.Kr.",
+      "en": "AD 310",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0310-fotudeng-kommer-till-kina",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e6c2ec2028e996e0e3a92036e2e11c82943cc98d99efa497d5000dac2fc9072d"
+      }
+    },
+    {
+      "id": "event/ev-0310-fotudeng-kommer-till-kina/date/noteSv",
+      "sv": "Museets redogörelse anger 310 för ankomsten till Centralslätten. Fotudengs senare verksamhet ges inget gemensamt startår här.",
+      "en": "The museum’s account gives 310 for the arrival in the Central Plains. No common starting year is assigned here to Fotudeng’s later activities.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0310-fotudeng-kommer-till-kina",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b15933720cc8aec4377955c83af571992c6638e0a54e0b1b28d2734afd2cbe79"
+      }
+    },
+    {
+      "id": "event/ev-0310-fotudeng-kommer-till-kina/titleSv",
+      "sv": "Fotudeng anländer till Kinas centralslätt",
+      "en": "Fotudeng arrives on China’s Central Plain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0310-fotudeng-kommer-till-kina",
+        "fieldPath": "/titleSv",
+        "textSha256": "d22431962486bfd1983a4ca1713f535c0da3cf1b23ed470d1ba5e0dcae025927"
+      }
+    },
+    {
+      "id": "event/ev-0310-fotudeng-kommer-till-kina/summarySv",
+      "sv": "Munken Fotudeng kommer till Centralslätten i Kina. Där predikar han buddhismen och söker anhängare.",
+      "en": "The monk Fotudeng arrives in China’s Central Plains. He preaches Buddhism there and seeks converts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0310-fotudeng-kommer-till-kina",
+        "fieldPath": "/summarySv",
+        "textSha256": "199f82eea2dd6cf82c2f62b9e69fd269acc6ec9b1e08bec830361994e17cdd42"
+      }
+    },
+    {
+      "id": "event/ev-0310-fotudeng-kommer-till-kina/geographySv",
+      "sv": "Centralslätten, Kina",
+      "en": "Central Plains, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0310-fotudeng-kommer-till-kina",
+        "fieldPath": "/geographySv",
+        "textSha256": "79518c2a1110fea09970fc5b88c4f3096d93d15b2896ff88081ff38811e90b65"
+      }
+    },
+    {
+      "id": "event/ev-0311-galerius-tillater-kristna-sammankomster/date/displaySv",
+      "sv": "311 e.Kr.",
+      "en": "AD 311",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0311-galerius-tillater-kristna-sammankomster",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4de742c193f1eb39e9ada8308fb2f03d28d44b9239969fb130d46b0fa708b569"
+      }
+    },
+    {
+      "id": "event/ev-0311-galerius-tillater-kristna-sammankomster/date/noteSv",
+      "sv": "Året följer utgivarens rubrik till Galerius edikt. Den återgivna texten anger också en romersk konsuldatering.",
+      "en": "The year follows the editor’s heading for Galerius’s edict. The reproduced text also gives a Roman consular date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0311-galerius-tillater-kristna-sammankomster",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6181a6579416673c927bfbaa65cab8b655fcf2ff30661d6c670ac23f35fb7b38"
+      }
+    },
+    {
+      "id": "event/ev-0311-galerius-tillater-kristna-sammankomster/titleSv",
+      "sv": "Galerius tillåter kristna sammankomster",
+      "en": "Galerius permits Christian assemblies",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0311-galerius-tillater-kristna-sammankomster",
+        "fieldPath": "/titleSv",
+        "textSha256": "3f03f12c17e69c1db00dc49fb049428576d3d04fc8704898ea881e327d35c228"
+      }
+    },
+    {
+      "id": "event/ev-0311-galerius-tillater-kristna-sammankomster/summarySv",
+      "sv": "Galerius tillåter kristna att åter samlas för sin religionsutövning. I den återgivna texten kräver han att de respekterar den allmänna ordningen.",
+      "en": "Galerius permits Christians to assemble again for religious worship. In the reproduced text, he requires them to respect public order.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0311-galerius-tillater-kristna-sammankomster",
+        "fieldPath": "/summarySv",
+        "textSha256": "e53aff24462554ee886f8b145c2f4b5f30b29ffdf3b6d217a8e6cc8b0dcdbe4c"
+      }
+    },
+    {
+      "id": "event/ev-0311-galerius-tillater-kristna-sammankomster/geographySv",
+      "sv": "Romarriket; texten anger Nikomedia för utfärdandet",
+      "en": "Roman Empire; the text names Nicomedia for the promulgation",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0311-galerius-tillater-kristna-sammankomster",
+        "fieldPath": "/geographySv",
+        "textSha256": "6dd9a3c2e54643f2c4fdf32d9116299ea70d376df2ca740daab7fbac8c74bcfe"
+      }
+    },
+    {
+      "id": "event/ev-0313-goguryeo-intar-lelang/date/displaySv",
+      "sv": "313 e.Kr.",
+      "en": "AD 313",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-goguryeo-intar-lelang",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "34bdf011cadc4f6228f8eef26d72846998908e75bbced4517b4f6684894fe67e"
+      }
+    },
+    {
+      "id": "event/ev-0313-goguryeo-intar-lelang/date/noteSv",
+      "sv": "Årtalet följer museets tidslinje. Ett senare stycke i samma publikation anger 313 f.Kr.; den interna motsägelsen är olöst här. Ingen månad eller dag anges.",
+      "en": "The year follows the museum’s timeline. A later paragraph in the same publication gives 313 BC; the internal contradiction remains unresolved here. No month or day is given.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-goguryeo-intar-lelang",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "def771944a9057fc013dfc0d3e51c81c5ab4e07d87a1d648fc40f2e747396661"
+      }
+    },
+    {
+      "id": "event/ev-0313-goguryeo-intar-lelang/titleSv",
+      "sv": "Goguryeo intar Lelang",
+      "en": "Goguryeo takes Lelang",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-goguryeo-intar-lelang",
+        "fieldPath": "/titleSv",
+        "textSha256": "2f0c34f2efc04d79a9c13ff68c4b91570c0db8fd899a05e4620bdaa4889817e9"
+      }
+    },
+    {
+      "id": "event/ev-0313-goguryeo-intar-lelang/summarySv",
+      "sv": "Goguryeo intar Lelang i norra delen av Koreahalvön. Museets tidslinje daterar erövringen till 313.",
+      "en": "Goguryeo takes Lelang in the northern Korean Peninsula. The museum’s timeline dates the conquest to 313.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-goguryeo-intar-lelang",
+        "fieldPath": "/summarySv",
+        "textSha256": "7b6f2fcfb45088e8d5cfbd90e805c5ffec00337e11c8f4b181a6a321e035480f"
+      }
+    },
+    {
+      "id": "event/ev-0313-goguryeo-intar-lelang/geographySv",
+      "sv": "Norra Koreahalvön",
+      "en": "Northern Korean Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-goguryeo-intar-lelang",
+        "fieldPath": "/geographySv",
+        "textSha256": "7e1492490560745597fe9d5797539d071a5391274b2b719f7eee5e150f4aec6b"
+      }
+    },
+    {
+      "id": "event/ev-0313-konstantin-licinius-religionsfrihet/date/displaySv",
+      "sv": "313 e.Kr.",
+      "en": "AD 313",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-konstantin-licinius-religionsfrihet",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "34bdf011cadc4f6228f8eef26d72846998908e75bbced4517b4f6684894fe67e"
+      }
+    },
+    {
+      "id": "event/ev-0313-konstantin-licinius-religionsfrihet/date/noteSv",
+      "sv": "Året följer utgivarens datering av texten som brukar kallas Milanoediktet. Händelsen gör inget påstående om ett bevarat, undertecknat original från Milano.",
+      "en": "The year follows the editor’s dating of the text commonly called the Edict of Milan. This event makes no claim about a surviving signed original from Milan.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-konstantin-licinius-religionsfrihet",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "18e49b414d1b02d4b706c3f3d6aade253d0b8b08d81099a9bbe24b1e17e186f5"
+      }
+    },
+    {
+      "id": "event/ev-0313-konstantin-licinius-religionsfrihet/titleSv",
+      "sv": "Konstantin och Licinius medger fri religionsutövning",
+      "en": "Constantine and Licinius grant freedom of worship",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-konstantin-licinius-religionsfrihet",
+        "fieldPath": "/titleSv",
+        "textSha256": "384cbb0a89f4db713c08d2060c0123a358a9d89af1d738b8457f0d8a7a333ac2"
+      }
+    },
+    {
+      "id": "event/ev-0313-konstantin-licinius-religionsfrihet/summarySv",
+      "sv": "Konstantin och Licinius medger kristna och andra att följa den religion de väljer. Den återgivna texten hänvisar till deras möte i Milano.",
+      "en": "Constantine and Licinius allow Christians and others to follow the religion they choose. The reproduced text refers to their meeting in Milan.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-konstantin-licinius-religionsfrihet",
+        "fieldPath": "/summarySv",
+        "textSha256": "359d5366e7d9c7505aa609cc2d9f640fb1c36bb9c2aac6f9e66aa27d4c66a4df"
+      }
+    },
+    {
+      "id": "event/ev-0313-konstantin-licinius-religionsfrihet/geographySv",
+      "sv": "Romarriket; möte i Milano",
+      "en": "Roman Empire; meeting in Milan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-konstantin-licinius-religionsfrihet",
+        "fieldPath": "/geographySv",
+        "textSha256": "21b1b5f56d0f0b81a28635c75bec7fc21e62f3740d1b497f25a3579e21dbf5e6"
+      }
+    },
+    {
+      "id": "event/ev-0313-miwnay-skriver-till-sin-mor/date/displaySv",
+      "sv": "cirka 313–314 e.Kr.",
+      "en": "circa AD 313–314",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-miwnay-skriver-till-sin-mor",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "dda43edfda2d1e2bd7bb24d3bec3c3ddd1bab8ceb7f26144a029f5e04d81de1b"
+      }
+    },
+    {
+      "id": "event/ev-0313-miwnay-skriver-till-sin-mor/date/noteSv",
+      "sv": "Utgivaren daterar brevgruppen ungefär till 313–314 och redovisar att dateringen har diskuterats. Det bevarade brevet visar inte att mottagaren fick det.",
+      "en": "The editor dates the group of letters to approximately 313–314 and notes debate over the dating. The surviving letter does not show that its recipient received it.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-miwnay-skriver-till-sin-mor",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e4f56f7838ef3005a2971db53dc3bb0d257314bee8cca8c4d34a223a56fd2e8f"
+      }
+    },
+    {
+      "id": "event/ev-0313-miwnay-skriver-till-sin-mor/titleSv",
+      "sv": "Miwnay ber sin mor om hjälp i ett brev",
+      "en": "Miwnay asks her mother for help in a letter",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-miwnay-skriver-till-sin-mor",
+        "fieldPath": "/titleSv",
+        "textSha256": "38637477b2be28b6a8b50df71dae15f089d3ea7a995f672ce72a154db9cc0c77"
+      }
+    },
+    {
+      "id": "event/ev-0313-miwnay-skriver-till-sin-mor/summarySv",
+      "sv": "Miwnay skriver till sin mor Chatis om sin utsatta situation i Dunhuang. Hon ber om hjälp att återvända till modern.",
+      "en": "Miwnay writes to her mother Chatis about her predicament in Dunhuang. She asks for help to return to her mother.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-miwnay-skriver-till-sin-mor",
+        "fieldPath": "/summarySv",
+        "textSha256": "7080ab5bddfe3d31365248fe599552e8b380d066903366de58e3244dba9e54c2"
+      }
+    },
+    {
+      "id": "event/ev-0313-miwnay-skriver-till-sin-mor/geographySv",
+      "sv": "Dunhuang, Kina; en sogdisk familjs brevväxling",
+      "en": "Dunhuang, China; correspondence within a Sogdian family",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-miwnay-skriver-till-sin-mor",
+        "fieldPath": "/geographySv",
+        "textSha256": "bc03563c124db4d3bb87dd78fa55e75d0b17641633720a13222dab85a6f55049"
+      }
+    },
+    {
+      "id": "event/ev-0313-nanai-vandak-skriver-till-samarkand/date/displaySv",
+      "sv": "cirka 313–314 e.Kr.",
+      "en": "circa AD 313–314",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-nanai-vandak-skriver-till-samarkand",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "dda43edfda2d1e2bd7bb24d3bec3c3ddd1bab8ceb7f26144a029f5e04d81de1b"
+      }
+    },
+    {
+      "id": "event/ev-0313-nanai-vandak-skriver-till-samarkand/date/noteSv",
+      "sv": "British Library daterar brevet till 313–314. Fyndplatsen vid Dunhuangs gränsbefästningar fastställer inte var avsändaren skrev brevet.",
+      "en": "The British Library dates the letter to 313–314. Its findspot at the Dunhuang frontier fortifications does not establish where the sender wrote it.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-nanai-vandak-skriver-till-samarkand",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e1abd34d61f50273f1d7de4972610d340374bd5187d58b96498a80e85d8cd032"
+      }
+    },
+    {
+      "id": "event/ev-0313-nanai-vandak-skriver-till-samarkand/titleSv",
+      "sv": "Nanai-vandak skickar nyheter till Varzakk i Samarkand",
+      "en": "Nanai-vandak sends news to Varzakk in Samarkand",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-nanai-vandak-skriver-till-samarkand",
+        "fieldPath": "/titleSv",
+        "textSha256": "e2b4d1e7633b9c979541c15c78d2f96d164691a1f3579adb9876063787121de8"
+      }
+    },
+    {
+      "id": "event/ev-0313-nanai-vandak-skriver-till-samarkand/summarySv",
+      "sv": "Nanai-vandak skriver till Varzakk i Samarkand om handel och oroligheter i Kina. Brevet bevarades nära Dunhuang, men dess överlevnad visar inte att det nådde mottagaren.",
+      "en": "Nanai-vandak writes to Varzakk in Samarkand about trade and unrest in China. The letter survived near Dunhuang, but its survival does not show that it reached its recipient.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-nanai-vandak-skriver-till-samarkand",
+        "fieldPath": "/summarySv",
+        "textSha256": "df4974292c3293fa9a2a0b0450bf75603a298910ec4681f3624824f8e60eb462"
+      }
+    },
+    {
+      "id": "event/ev-0313-nanai-vandak-skriver-till-samarkand/geographySv",
+      "sv": "Kina och Samarkand; fyndplats nära Dunhuang",
+      "en": "China and Samarkand; findspot near Dunhuang",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0313-nanai-vandak-skriver-till-samarkand",
+        "fieldPath": "/geographySv",
+        "textSha256": "561fecfbd9a0f10361cb2156b8cb889d74c26c8b7b44c95b2dd05d4a3721ff6b"
+      }
+    },
+    {
+      "id": "event/ev-0317-ostra-jin-etableras/date/displaySv",
+      "sv": "317 e.Kr.",
+      "en": "AD 317",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0317-ostra-jin-etableras",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e9798ea9dff199313e2ec1d7848a20e40e7b861fe4ede5f6d3886e09195e0fdc"
+      }
+    },
+    {
+      "id": "event/ev-0317-ostra-jin-etableras/date/noteSv",
+      "sv": "Året gäller dynastins etablering. Östra Jins senare historia anges i källan som 317–420.",
+      "en": "The year concerns the dynasty’s establishment. The source gives Eastern Jin’s subsequent span as 317–420.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0317-ostra-jin-etableras",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "823988c5fa2d88efff42e8bea827820d96dca88858c465b89c75374020d823fc"
+      }
+    },
+    {
+      "id": "event/ev-0317-ostra-jin-etableras/titleSv",
+      "sv": "Jinhovet etablerar Östra Jin söder om Yangtze",
+      "en": "The Jin court establishes Eastern Jin south of the Yangtze",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0317-ostra-jin-etableras",
+        "fieldPath": "/titleSv",
+        "textSha256": "13642aa255004a132b2f6c70095cafa955811b02692fa5be8342cddba07a165a"
+      }
+    },
+    {
+      "id": "event/ev-0317-ostra-jin-etableras/summarySv",
+      "sv": "Jinhovet etablerar Östra Jin söder om Yangtze. Hovet har sin huvudstad i nuvarande Nanjing.",
+      "en": "The Jin court establishes Eastern Jin south of the Yangtze. Its capital is at present-day Nanjing.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0317-ostra-jin-etableras",
+        "fieldPath": "/summarySv",
+        "textSha256": "ff84703924cfda723f87ac2797f82a259ed110b5825238879455555b19213a94"
+      }
+    },
+    {
+      "id": "event/ev-0317-ostra-jin-etableras/geographySv",
+      "sv": "Nanjing och området söder om Yangtze, Kina",
+      "en": "Nanjing and the area south of the Yangtze, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0317-ostra-jin-etableras",
+        "fieldPath": "/geographySv",
+        "textSha256": "621b59bebd86c23e812dd814a962e386bef74570d930b4ad11ef6dfddb4f9d60"
+      }
+    },
+    {
+      "id": "event/ev-0320-konstantin-bygger-peterskyrkan/date/displaySv",
+      "sv": "320–327 e.Kr.",
+      "en": "AD 320–327",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0320-konstantin-bygger-peterskyrkan",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "17c4e9849f53cf855db389fef908d9242c9eea130fae4e5ddb5341177a8e6ea7"
+      }
+    },
+    {
+      "id": "event/ev-0320-konstantin-bygger-peterskyrkan/date/noteSv",
+      "sv": "Museets hela byggnadsintervall behålls. Det gäller den äldre Peterskyrkan.",
+      "en": "The museum’s full construction interval is retained. It concerns Old Saint Peter’s.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0320-konstantin-bygger-peterskyrkan",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d3d19d4f445f6bb9bd79fb5b91e472420196f74fd2b460da93d84b78592e7a7b"
+      }
+    },
+    {
+      "id": "event/ev-0320-konstantin-bygger-peterskyrkan/titleSv",
+      "sv": "Konstantin låter bygga Peterskyrkan i Rom",
+      "en": "Constantine commissions Saint Peter’s in Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0320-konstantin-bygger-peterskyrkan",
+        "fieldPath": "/titleSv",
+        "textSha256": "f79c02421fc388739fc4b7297e503825760713febab1a24a8f7e2f1e07ec1cf9"
+      }
+    },
+    {
+      "id": "event/ev-0320-konstantin-bygger-peterskyrkan/summarySv",
+      "sv": "Konstantin låter bygga den äldre Peterskyrkan i Rom. Museet daterar bygget till 320–327.",
+      "en": "Constantine commissions Old Saint Peter’s in Rome. The museum dates its construction to 320–327.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0320-konstantin-bygger-peterskyrkan",
+        "fieldPath": "/summarySv",
+        "textSha256": "d7d5874c4d665c940d5784c7f9fdeb28e2dc08f650fe7d8ac8f16b83ba6677fe"
+      }
+    },
+    {
+      "id": "event/ev-0320-konstantin-bygger-peterskyrkan/geographySv",
+      "sv": "Rom, Italien",
+      "en": "Rome, Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0320-konstantin-bygger-peterskyrkan",
+        "fieldPath": "/geographySv",
+        "textSha256": "6891bf8a2728ccd419110af49208a4f9e999ca9737a13cd8268aa8ff74bae2bd"
+      }
+    },
+    {
+      "id": "event/ev-0324-konstantin-enar-romarriket/date/displaySv",
+      "sv": "324 e.Kr.",
+      "en": "AD 324",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0324-konstantin-enar-romarriket",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a9f3251fa40f100ea0a26a9535e4727c4d44bb034919f11f99ac76c73d042a9a"
+      }
+    },
+    {
+      "id": "event/ev-0324-konstantin-enar-romarriket/date/noteSv",
+      "sv": "Året följer museets historiska översikt.",
+      "en": "The year follows the museum’s historical overview.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0324-konstantin-enar-romarriket",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "41b1f2ee2aeccec30e2682e3cd22c0b4777a815fc5970dea6b6ffd8bcb288154"
+      }
+    },
+    {
+      "id": "event/ev-0324-konstantin-enar-romarriket/titleSv",
+      "sv": "Konstantin samlar Romarriket under sitt styre",
+      "en": "Constantine unites the Roman Empire under his rule",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0324-konstantin-enar-romarriket",
+        "fieldPath": "/titleSv",
+        "textSha256": "07c0ccdbece8175e76763d6e53ddb5a778e4c8e64650479aab8cf0e1765bce2b"
+      }
+    },
+    {
+      "id": "event/ev-0324-konstantin-enar-romarriket/summarySv",
+      "sv": "Konstantin samlar rikets östra och västra delar under sitt styre. Museet daterar återföreningen till 324.",
+      "en": "Constantine brings the empire’s eastern and western parts under his rule. The museum dates the reunification to 324.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0324-konstantin-enar-romarriket",
+        "fieldPath": "/summarySv",
+        "textSha256": "d3350b2034ee97df2d940b01081455785ddecf295ca085974945f0e430792c49"
+      }
+    },
+    {
+      "id": "event/ev-0324-konstantin-enar-romarriket/geographySv",
+      "sv": "Romarriket",
+      "en": "Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0324-konstantin-enar-romarriket",
+        "fieldPath": "/geographySv",
+        "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
+      }
+    },
+    {
+      "id": "event/ev-0325-nicaeamotet-trosbekannelse/date/displaySv",
+      "sv": "325 e.Kr.",
+      "en": "AD 325",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0325-nicaeamotet-trosbekannelse",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1d61945170d4e9ee92b3c46890c02b1e989ecec204994f0a9fd222b97acfb697"
+      }
+    },
+    {
+      "id": "event/ev-0325-nicaeamotet-trosbekannelse/date/noteSv",
+      "sv": "Året följer utgåvans rubrik till kyrkomötet. Uppgiften gäller den återgivna nicenska trosbekännelsen.",
+      "en": "The year follows the edition’s heading for the council. The claim concerns the Nicene Creed reproduced there.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0325-nicaeamotet-trosbekannelse",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "8c9630ccef59db3a7f53db4c6df29f53e10a74f9d8763f9aeaf76772d1d1e99f"
+      }
+    },
+    {
+      "id": "event/ev-0325-nicaeamotet-trosbekannelse/titleSv",
+      "sv": "Biskoparna i Nicaea antar en trosbekännelse",
+      "en": "The bishops at Nicaea adopt a creed",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0325-nicaeamotet-trosbekannelse",
+        "fieldPath": "/titleSv",
+        "textSha256": "50995da1ee1d211bdc1c12bc27d2622f04e8c802e3c6b056e85d1487635ffde5"
+      }
+    },
+    {
+      "id": "event/ev-0325-nicaeamotet-trosbekannelse/summarySv",
+      "sv": "Biskoparna vid kyrkomötet i Nicaea antar en trosbekännelse. Där bekänner de att Sonen är av samma väsen som Fadern.",
+      "en": "The bishops at the Council of Nicaea adopt a creed. In it they profess that the Son is of one substance with the Father.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0325-nicaeamotet-trosbekannelse",
+        "fieldPath": "/summarySv",
+        "textSha256": "b22bdc93e4f411c6b61267e9fd0fb0fcbaa3dfde21c7df6b8336036aa391fbcb"
+      }
+    },
+    {
+      "id": "event/ev-0325-nicaeamotet-trosbekannelse/geographySv",
+      "sv": "Nicaea, nuvarande İznik i Turkiet",
+      "en": "Nicaea, present-day İznik in Turkey",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0325-nicaeamotet-trosbekannelse",
+        "fieldPath": "/geographySv",
+        "textSha256": "f83cea1bb88d4d220d38eb568f2d59a59d015839bd124230d636d1e9319ea9c0"
+      }
+    },
+    {
+      "id": "event/ev-0330-ezana-antar-kristendomen/date/displaySv",
+      "sv": "cirka 330 eller cirka 360 e.Kr.",
+      "en": "circa AD 330 or circa AD 360",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0330-ezana-antar-kristendomen",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b0422f7cba345100a78b1f730e5eb9dc8678e8603d35ee263cef50bad74ccc95"
+      }
+    },
+    {
+      "id": "event/ev-0330-ezana-antar-kristendomen/date/noteSv",
+      "sv": "Frankrikes kulturministerium anger omkring 330, medan Ashmolean Museum anger omkring 360. Intervallets gränser återger dessa ungefärliga alternativ; de anger ingen trettioårig omvändelseprocess.",
+      "en": "France’s Ministry of Culture gives around 330, while the Ashmolean Museum gives around 360. The interval’s endpoints represent these approximate alternatives, not a thirty-year conversion process.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0330-ezana-antar-kristendomen",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b54016c19742f70855e5189a6e785a671c64a0a3996bd47b536d752ff8e38845"
+      }
+    },
+    {
+      "id": "event/ev-0330-ezana-antar-kristendomen/titleSv",
+      "sv": "Kung Ezana antar kristendomen",
+      "en": "King Ezana adopts Christianity",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0330-ezana-antar-kristendomen",
+        "fieldPath": "/titleSv",
+        "textSha256": "50f090837d8c75ee68ea7db6b6b803b2fdf73ab4f2f614f935117beac997f19a"
+      }
+    },
+    {
+      "id": "event/ev-0330-ezana-antar-kristendomen/summarySv",
+      "sv": "Ezana antar kristendomen i Aksum. De två institutionerna daterar kungens omvändelse olika; händelsen gäller kungen och fastställer inte när hela befolkningen blev kristen.",
+      "en": "Ezana adopts Christianity in Aksum. The two institutions date the king’s conversion differently; this event concerns the king and does not establish when the entire population became Christian.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0330-ezana-antar-kristendomen",
+        "fieldPath": "/summarySv",
+        "textSha256": "fc0634c7751c7007ef1a7f0c71df09b3f583f58d84a71276b5718d48d543509e"
+      }
+    },
+    {
+      "id": "event/ev-0330-ezana-antar-kristendomen/geographySv",
+      "sv": "Aksumriket, i nuvarande norra Etiopien och Eritrea",
+      "en": "Kingdom of Aksum, in present-day northern Ethiopia and Eritrea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0330-ezana-antar-kristendomen",
+        "fieldPath": "/geographySv",
+        "textSha256": "4c590e9b230d46dd8b051e2a4b5feaabb7f8c277038af3aa21b519fa92b49df8"
+      }
+    },
+    {
+      "id": "event/ev-0330-konstantinopel-blir-huvudstad/date/displaySv",
+      "sv": "330 eller 331 e.Kr.",
+      "en": "AD 330 or 331",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0330-konstantinopel-blir-huvudstad",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "117c641e7101571c9d2a17c9c9a86fa63cf1ca817c5d0b703146b78c7ebd58b9"
+      }
+    },
+    {
+      "id": "event/ev-0330-konstantinopel-blir-huvudstad/date/noteSv",
+      "sv": "Metropolitan Museum anger 330 för den nya huvudstaden. Robert K. Ritner anger 331 för den formella flytten; båda dateringsuppgifterna behålls.",
+      "en": "The Metropolitan Museum gives 330 for the new capital. Robert K. Ritner gives 331 for the formal transfer; both dates are retained.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0330-konstantinopel-blir-huvudstad",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e02f559d6f0062ae81798f3ef659091b82aaa6fbbf115597eb1db561a863d701"
+      }
+    },
+    {
+      "id": "event/ev-0330-konstantinopel-blir-huvudstad/titleSv",
+      "sv": "Konstantin gör Konstantinopel till huvudstad",
+      "en": "Constantine makes Constantinople the capital",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0330-konstantinopel-blir-huvudstad",
+        "fieldPath": "/titleSv",
+        "textSha256": "f2249b144199c480efdf4b10a602a7045847e2ae6f025d43a9558fe5f79a706b"
+      }
+    },
+    {
+      "id": "event/ev-0330-konstantinopel-blir-huvudstad/summarySv",
+      "sv": "Konstantin gör Konstantinopel till rikets huvudstad. De lästa källorna anger 330 respektive 331 för förändringen.",
+      "en": "Constantine makes Constantinople the empire’s capital. The sources read give 330 and 331 respectively for the change.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0330-konstantinopel-blir-huvudstad",
+        "fieldPath": "/summarySv",
+        "textSha256": "7b53c7469410d33fe6f318ff553b4653ba8b9ff134dcc96121cd56152c31d751"
+      }
+    },
+    {
+      "id": "event/ev-0330-konstantinopel-blir-huvudstad/geographySv",
+      "sv": "Konstantinopel, nuvarande Istanbul",
+      "en": "Constantinople, present-day Istanbul",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0330-konstantinopel-blir-huvudstad",
+        "fieldPath": "/geographySv",
+        "textSha256": "078bc69a232e66b2a4537d92cf533f8a489229f951410d2ed3e3d59fa75f68c7"
+      }
+    },
+    {
+      "id": "event/ev-0338-forgylld-buddha-i-hebei/date/displaySv",
+      "sv": "338 e.Kr.",
+      "en": "AD 338",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0338-forgylld-buddha-i-hebei",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b6f66ac42a6a623e579647991e8f245bb241166548dc5f6399fbe24cd133a100"
+      }
+    },
+    {
+      "id": "event/ev-0338-forgylld-buddha-i-hebei/date/noteSv",
+      "sv": "Museet omräknar inskriftens fjärde år i Jianwu-eran till 338. Inskriften anger även den åttonde månmånadens trettionde dag; ingen omräkning till ett modernt kalenderdatum görs här.",
+      "en": "The museum converts the inscription’s fourth year of the Jianwu era to 338. The inscription also names the thirtieth day of the eighth lunar month; no conversion to a modern calendar date is made here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0338-forgylld-buddha-i-hebei",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "db7b7cb48917d9a61599fe17fae6ca4ebc373181d49c4aa91b17f84adf010edf"
+      }
+    },
+    {
+      "id": "event/ev-0338-forgylld-buddha-i-hebei/titleSv",
+      "sv": "En buddhastaty i förgylld brons tillverkas under Senare Zhao",
+      "en": "A gilded bronze Buddha statue is made under Later Zhao",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0338-forgylld-buddha-i-hebei",
+        "fieldPath": "/titleSv",
+        "textSha256": "0937e72e8547f64e4631843c3a1de7495ce690c6283a4dce137f5340226aa4b7"
+      }
+    },
+    {
+      "id": "event/ev-0338-forgylld-buddha-i-hebei/summarySv",
+      "sv": "Hantverkare tillverkar en buddhastaty i förgylld brons under Senare Zhao. Asian Art Museum tillskriver föremålet Hebei och daterar det genom inskriften.",
+      "en": "Artisans make a gilded bronze Buddha statue under Later Zhao. The Asian Art Museum attributes the object to Hebei and dates it through its inscription.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0338-forgylld-buddha-i-hebei",
+        "fieldPath": "/summarySv",
+        "textSha256": "348a59d77686f571ecd210191412f31b0251108fd0747b74a05435a2793dcb32"
+      }
+    },
+    {
+      "id": "event/ev-0338-forgylld-buddha-i-hebei/geographySv",
+      "sv": "Hebei, Kina; museets geografiska attribuering",
+      "en": "Hebei, China; the museum’s geographical attribution",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0338-forgylld-buddha-i-hebei",
+        "fieldPath": "/geographySv",
+        "textSha256": "81102d69bbefe6df6919b538cc20e7fdda1b1aac5792c21e57753a2c047a7cff"
+      }
+    },
+    {
+      "id": "event/ev-0357-anak-tre-byggs/date/displaySv",
+      "sv": "357 e.Kr.",
+      "en": "AD 357",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0357-anak-tre-byggs",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "85eb48b1366ad1217e8a9949f73fcdba722285366cd1b21052f8777cac954d8d"
+      }
+    },
+    {
+      "id": "event/ev-0357-anak-tre-byggs/date/noteSv",
+      "sv": "UNESCO:s bildtext beskriver 357 som gravens inskrivna byggnadsdatum. Händelsen identifierar inte den gravlagda personen.",
+      "en": "The UNESCO caption describes 357 as the tomb’s inscribed construction date. This event does not identify the person buried there.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0357-anak-tre-byggs",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "cf334d74d1d8552a7f16989004d837ba53869f685afcee6dd2de2152320baec8"
+      }
+    },
+    {
+      "id": "event/ev-0357-anak-tre-byggs/titleSv",
+      "sv": "Byggare uppför Anak III-graven",
+      "en": "Builders construct Anak III tomb",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0357-anak-tre-byggs",
+        "fieldPath": "/titleSv",
+        "textSha256": "0613d87b8ecdd7919ab0c8d2904f811a548c86cb90a378e0ef7541ebc76f3616"
+      }
+    },
+    {
+      "id": "event/ev-0357-anak-tre-byggs/summarySv",
+      "sv": "Byggare uppför den grav som nu kallas Anak III. UNESCO:s beskrivning hänvisar till ett inskrivet byggnadsdatum.",
+      "en": "Builders construct the tomb now called Anak III. UNESCO’s description refers to an inscribed construction date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0357-anak-tre-byggs",
+        "fieldPath": "/summarySv",
+        "textSha256": "640f5b0bb6dd47791d200ec4a827aed7d1ebcfff4fc1dbb8c3ae830fb717e825"
+      }
+    },
+    {
+      "id": "event/ev-0357-anak-tre-byggs/geographySv",
+      "sv": "Hwanghae, nuvarande Nordkorea",
+      "en": "Hwanghae, present-day North Korea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0357-anak-tre-byggs",
+        "fieldPath": "/geographySv",
+        "textSha256": "71c9c907eb57a149e2cf506721cbbb67a1a95ed32e6964e393314c8b02bbf21f"
+      }
+    },
+    {
+      "id": "event/ev-0358-jordbavning-i-nikomedia/date/displaySv",
+      "sv": "358 e.Kr.",
+      "en": "AD 358",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0358-jordbavning-i-nikomedia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "cef71323260897f655c546791f066378f1f3055396110bcc0349ae9a6cc9f307"
+      }
+    },
+    {
+      "id": "event/ev-0358-jordbavning-i-nikomedia/date/noteSv",
+      "sv": "Thommens kapitelsammanfattning anger 358. Ingen magnitud eller dagdatering har lagts till.",
+      "en": "Thommen’s chapter summary gives 358. No magnitude or day-date has been added.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0358-jordbavning-i-nikomedia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "2ff8d7412ebebe4f02da3167709e066a704c45ba0c19e86b3d9289f70cec8044"
+      }
+    },
+    {
+      "id": "event/ev-0358-jordbavning-i-nikomedia/titleSv",
+      "sv": "Invånarna i Nikomedia drabbas av jordbävning",
+      "en": "An earthquake strikes the people of Nicomedia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0358-jordbavning-i-nikomedia",
+        "fieldPath": "/titleSv",
+        "textSha256": "3524dc35b17fc2442f26f33f8144fd2b72bf210781ede784de3224ef4aadd49d"
+      }
+    },
+    {
+      "id": "event/ev-0358-jordbavning-i-nikomedia/summarySv",
+      "sv": "Invånarna i Nikomedia drabbas av en jordbävning. Byggnader rasar och eld bryter ut i staden.",
+      "en": "An earthquake strikes the people of Nicomedia. Buildings collapse and fire breaks out in the city.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0358-jordbavning-i-nikomedia",
+        "fieldPath": "/summarySv",
+        "textSha256": "864184d1a038152a865078afb96c34217e8a1d18b647123a06b902cc92616d65"
+      }
+    },
+    {
+      "id": "event/ev-0358-jordbavning-i-nikomedia/geographySv",
+      "sv": "Nikomedia, nuvarande İzmit i Turkiet",
+      "en": "Nicomedia, present-day İzmit in Turkey",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0358-jordbavning-i-nikomedia",
+        "fieldPath": "/geographySv",
+        "textSha256": "03278cadfa8ebe0a157086ffbd03183a86405146c6a4e47d5d94003f60d33317"
+      }
+    },
+    {
+      "id": "event/ev-0363-jovianus-avstar-nisibis-och-singara/date/displaySv",
+      "sv": "363 e.Kr.",
+      "en": "AD 363",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0363-jovianus-avstar-nisibis-och-singara",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9fc857e1129308cab7b4fb5d48898f5b84a9089221ca2c63b14ca2a84a8a584d"
+      }
+    },
+    {
+      "id": "event/ev-0363-jovianus-avstar-nisibis-och-singara/date/noteSv",
+      "sv": "Bury daterar avtalet till 363. Ammianus Marcellinus återger villkoren i bok XXV, 7.9–11.",
+      "en": "Bury dates the treaty to 363. Ammianus Marcellinus records the terms in Book XXV, 7.9–11.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0363-jovianus-avstar-nisibis-och-singara",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "22362330e0bfc5cbf2ce386d26a7c043adfc7cf718de65c4599ea4e22f4d205d"
+      }
+    },
+    {
+      "id": "event/ev-0363-jovianus-avstar-nisibis-och-singara/titleSv",
+      "sv": "Jovianus avstår områden och städer till Persien",
+      "en": "Jovian cedes territories and cities to Persia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0363-jovianus-avstar-nisibis-och-singara",
+        "fieldPath": "/titleSv",
+        "textSha256": "2505282301f754383c45ee31eba901d6fde187736d6f2c99dbd21b31ea24de2c"
+      }
+    },
+    {
+      "id": "event/ev-0363-jovianus-avstar-nisibis-och-singara/summarySv",
+      "sv": "Jovianus sluter år 363 ett avtal om territoriella avträdelser till Persien. Ammianus räknar fem provinser samt Nisibis och Singara; Bury bekräftar året och städerna men invänder mot provinsindelningen och räknar tre återlämnade provinser.",
+      "en": "In 363, Jovian concludes a treaty ceding territory to Persia. Ammianus lists five provinces as well as Nisibis and Singara; Bury confirms the year and the cities but disputes the division into provinces and counts three provinces returned.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0363-jovianus-avstar-nisibis-och-singara",
+        "fieldPath": "/summarySv",
+        "textSha256": "b0b4d3be9015d159869fe350948ccff78c2b966432d05393d6efa96419779525"
+      }
+    },
+    {
+      "id": "event/ev-0363-jovianus-avstar-nisibis-och-singara/geographySv",
+      "sv": "Romersk-persiska gränsområdet; Nisibis och Singara",
+      "en": "Roman–Persian frontier; Nisibis and Singara",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0363-jovianus-avstar-nisibis-och-singara",
+        "fieldPath": "/geographySv",
+        "textSha256": "251bf493aa7ed866bddb0de55481ec84f6397f3bbcf530b43bf3a2aed4c18d7c"
+      }
+    },
+    {
+      "id": "event/ev-0365-jordbavning-och-tsunami-i-medelhavet/date/displaySv",
+      "sv": "365 e.Kr.",
+      "en": "AD 365",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0365-jordbavning-och-tsunami-i-medelhavet",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "fd1757597bb7d0b4cd10cc60922b502ddd6a93b82733c3a0c73e23ea1561253d"
+      }
+    },
+    {
+      "id": "event/ev-0365-jordbavning-och-tsunami-i-medelhavet/date/noteSv",
+      "sv": "Thommens kapitelsammanfattning anger 365. Händelsen anger ingen magnitud, exakt dag eller rekonstruerat epicentrum.",
+      "en": "Thommen’s chapter summary gives 365. This event specifies no magnitude, exact day or reconstructed epicentre.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0365-jordbavning-och-tsunami-i-medelhavet",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "a3ef1696f36998a4894edf87248cd5233683e6bcfa156a37cb8008f5835de0a7"
+      }
+    },
+    {
+      "id": "event/ev-0365-jordbavning-och-tsunami-i-medelhavet/titleSv",
+      "sv": "Kustbor drabbas av jordbävning och tsunami",
+      "en": "Coastal populations suffer an earthquake and tsunami",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0365-jordbavning-och-tsunami-i-medelhavet",
+        "fieldPath": "/titleSv",
+        "textSha256": "aad168681cf810af5e62e7344111684e2306246c4bf397ca92e625c62a07a1d4"
+      }
+    },
+    {
+      "id": "event/ev-0365-jordbavning-och-tsunami-i-medelhavet/summarySv",
+      "sv": "En jordbävning och en tsunami drabbar delar av Medelhavsområdet. I Thommens sammanfattning nämns Mothone och Alexandria bland de drabbade platserna.",
+      "en": "An earthquake and tsunami strike parts of the Mediterranean. Thommen’s summary names Mothone and Alexandria among the affected places.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0365-jordbavning-och-tsunami-i-medelhavet",
+        "fieldPath": "/summarySv",
+        "textSha256": "3bbd7e42483a0b92cac7185e9e3d2c81f932f2ce370118dae249405f40799d26"
+      }
+    },
+    {
+      "id": "event/ev-0365-jordbavning-och-tsunami-i-medelhavet/geographySv",
+      "sv": "Medelhavsområdet; Mothone och Alexandria",
+      "en": "Mediterranean; Mothone and Alexandria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0365-jordbavning-och-tsunami-i-medelhavet",
+        "fieldPath": "/geographySv",
+        "textSha256": "1eb34880f41fa3c1496f762e8c2e6144348b22ea74a559ad21b6ea8a497ea4a5"
+      }
+    },
+    {
+      "id": "event/ev-0370-hunnernas-framryckning-vid-donau/date/displaySv",
+      "sv": "370-talet e.Kr.",
+      "en": "AD 370s",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0370-hunnernas-framryckning-vid-donau",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5d158b67d52135755edd4a1a1ad23e89f7366e16c0341715b7243a4061748ad5"
+      }
+    },
+    {
+      "id": "event/ev-0370-hunnernas-framryckning-vid-donau/date/noteSv",
+      "sv": "Källan anger ett årtionde. Intervallet 370–379 återger detta årtionde och belägger inte verksamhet under vart och ett av åren.",
+      "en": "The source gives a decade. The interval 370–379 represents that decade and does not attest activity in every year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0370-hunnernas-framryckning-vid-donau",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1c035e269a5e0006a96302ab7eaaf886e0bed6f7c0a02ae309578ebcb95c3eb2"
+      }
+    },
+    {
+      "id": "event/ev-0370-hunnernas-framryckning-vid-donau/titleSv",
+      "sv": "Hunnernas framryckning driver folk in i romerska provinser",
+      "en": "The Huns’ advance drives peoples into Roman provinces",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0370-hunnernas-framryckning-vid-donau",
+        "fieldPath": "/titleSv",
+        "textSha256": "d72dda8a783a2e22af2d01e1fded9026642d99963491eb94a29542e8be03e8d1"
+      }
+    },
+    {
+      "id": "event/ev-0370-hunnernas-framryckning-vid-donau/summarySv",
+      "sv": "Hunnerna tränger in i områden längs Donau. Enligt museets översikt driver framryckningen andra folk, däribland visigoter, in i romerska provinser.",
+      "en": "The Huns enter territories along the Danube. According to the museum’s survey, their advance drives other peoples, including Visigoths, into Roman provinces.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0370-hunnernas-framryckning-vid-donau",
+        "fieldPath": "/summarySv",
+        "textSha256": "e6f647d8cb90a158c3e18ad4fe6894b4ad9f73e199e6ba3b4f125aaa3f992783"
+      }
+    },
+    {
+      "id": "event/ev-0370-hunnernas-framryckning-vid-donau/geographySv",
+      "sv": "Stäppområdet och Donauområdet",
+      "en": "Steppe and Danube region",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0370-hunnernas-framryckning-vid-donau",
+        "fieldPath": "/geographySv",
+        "textSha256": "b5cdc0f5030e4798307fc626dd3b001024829dfcfbf0b257b1ea69056897d770"
+      }
+    },
+    {
+      "id": "event/ev-0372-buddhismen-introduceras-i-goguryeo/date/displaySv",
+      "sv": "372 e.Kr.",
+      "en": "AD 372",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0372-buddhismen-introduceras-i-goguryeo",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e14b4ca16ba5e1dbb905855fbb225adeef7cc4a11dcb795dd5a35e49a230cff3"
+      }
+    },
+    {
+      "id": "event/ev-0372-buddhismen-introduceras-i-goguryeo/date/noteSv",
+      "sv": "Året följer museets tidslinje för introduktionen. Det fastställer inte när alla invånare blev buddhister.",
+      "en": "The year follows the museum’s timeline for the introduction. It does not establish when all inhabitants became Buddhist.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0372-buddhismen-introduceras-i-goguryeo",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7c05c6808f4f14ff3781185737b1c2fb4c7d308681d69ca7839347181c27a434"
+      }
+    },
+    {
+      "id": "event/ev-0372-buddhismen-introduceras-i-goguryeo/titleSv",
+      "sv": "Buddhismen introduceras i Goguryeo",
+      "en": "Buddhism is introduced to Goguryeo",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0372-buddhismen-introduceras-i-goguryeo",
+        "fieldPath": "/titleSv",
+        "textSha256": "019db3fbcef34b35ccc606294f60a0f9112325a8b469cdcedebf20057c2daff9"
+      }
+    },
+    {
+      "id": "event/ev-0372-buddhismen-introduceras-i-goguryeo/summarySv",
+      "sv": "Museet daterar buddhismens introduktion i Goguryeo till 372. Den korta tidslinjeposten ger inga närmare uppgifter om förloppet.",
+      "en": "The museum dates the introduction of Buddhism to Goguryeo to 372. Its brief timeline entry gives no further details of the process.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0372-buddhismen-introduceras-i-goguryeo",
+        "fieldPath": "/summarySv",
+        "textSha256": "00282acfd339825719598e86d80c1b31f32c8593a7fa4a986dd8f76cf4fc5530"
+      }
+    },
+    {
+      "id": "event/ev-0372-buddhismen-introduceras-i-goguryeo/geographySv",
+      "sv": "Goguryeo, norra Koreahalvön",
+      "en": "Goguryeo, northern Korean Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0372-buddhismen-introduceras-i-goguryeo",
+        "fieldPath": "/geographySv",
+        "textSha256": "a0eb1a9bb343aacdead30216d98620056011f5789cb11b092b8d993407a25b98"
+      }
+    },
+    {
+      "id": "event/ev-0378-goter-besegrar-valens/date/displaySv",
+      "sv": "378 e.Kr.",
+      "en": "AD 378",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0378-goter-besegrar-valens",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e0091480985e5f3e3982f3ab7de8ef975483b1bf2142cf7c1dd1cbca54285fd7"
+      }
+    },
+    {
+      "id": "event/ev-0378-goter-besegrar-valens/date/noteSv",
+      "sv": "Källan anger året för slaget och Valens död. Händelsen innehåller ingen rekonstruerad dagdatering.",
+      "en": "The source gives the year of the battle and Valens’s death. No reconstructed day-date is included.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0378-goter-besegrar-valens",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3ecda34e0785ff7153dc51e8111f9441161917bf5f3b85b1828b09b062ce283c"
+      }
+    },
+    {
+      "id": "event/ev-0378-goter-besegrar-valens/titleSv",
+      "sv": "Goter besegrar Valens vid Adrianopel",
+      "en": "Goths defeat Valens at Adrianople",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0378-goter-besegrar-valens",
+        "fieldPath": "/titleSv",
+        "textSha256": "aa23b7d98ce8c90bf905b5bda34e1ccad9f3d2d46a36ada9230eab32575cc385"
+      }
+    },
+    {
+      "id": "event/ev-0378-goter-besegrar-valens/summarySv",
+      "sv": "Goter besegrar kejsar Valens armé vid Adrianopel. Valens omkommer i nederlaget.",
+      "en": "Goths defeat Emperor Valens’s army at Adrianople. Valens dies in the defeat.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0378-goter-besegrar-valens",
+        "fieldPath": "/summarySv",
+        "textSha256": "16e76b0c8bfda658d13bfecac4f69dd267ff2130c8918d875b3dd5c389f53bab"
+      }
+    },
+    {
+      "id": "event/ev-0378-goter-besegrar-valens/geographySv",
+      "sv": "Adrianopel",
+      "en": "Adrianople",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0378-goter-besegrar-valens",
+        "fieldPath": "/geographySv",
+        "textSha256": "5d3b4eed5a53e774176f0d5b75a36f83642e571a10eeff0927e5e5a73c622dc6"
+      }
+    },
+    {
+      "id": "event/ev-0378-siyaj-kak-anlander-till-tikal/date/displaySv",
+      "sv": "378 e.Kr.",
+      "en": "AD 378",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0378-siyaj-kak-anlander-till-tikal",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e0091480985e5f3e3982f3ab7de8ef975483b1bf2142cf7c1dd1cbca54285fd7"
+      }
+    },
+    {
+      "id": "event/ev-0378-siyaj-kak-anlander-till-tikal/date/noteSv",
+      "sv": "Mesoweb daterar ankomsten till 378 och återger en inskrift om den tidigare kungens död samma dag. Att kungen avrättades är en tolkning, inte en säker uppgift.",
+      "en": "Mesoweb dates the arrival to 378 and reports an inscription recording the previous king’s death on the same day. Execution of the king is an interpretation, not an established fact.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0378-siyaj-kak-anlander-till-tikal",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6309b6b80715d9755067b60efd87a3568ba4e13b6e97aecc9531eed0e9d43358"
+      }
+    },
+    {
+      "id": "event/ev-0378-siyaj-kak-anlander-till-tikal/titleSv",
+      "sv": "Siyaj K’ak’ anländer till Tikal",
+      "en": "Siyaj K’ak’ arrives at Tikal",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0378-siyaj-kak-anlander-till-tikal",
+        "fieldPath": "/titleSv",
+        "textSha256": "424c20bd37e876b7ed6ea67c04be6886a1ec4e13b909f5d7fb93b87f9d79ec39"
+      }
+    },
+    {
+      "id": "event/ev-0378-siyaj-kak-anlander-till-tikal/summarySv",
+      "sv": "Siyaj K’ak’ anländer till Tikal. Enligt Mesoweb anger inskrifter att kungen Chak Tok Ich’aak dog samma dag.",
+      "en": "Siyaj K’ak’ arrives at Tikal. According to Mesoweb, inscriptions record that King Chak Tok Ich’aak died on the same day.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0378-siyaj-kak-anlander-till-tikal",
+        "fieldPath": "/summarySv",
+        "textSha256": "db5d551102b0a473744ffa8b76efc99f05c86bb08d8994ef2923d1d1d6549ab2"
+      }
+    },
+    {
+      "id": "event/ev-0378-siyaj-kak-anlander-till-tikal/geographySv",
+      "sv": "Tikal, nuvarande Guatemala",
+      "en": "Tikal, present-day Guatemala",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0378-siyaj-kak-anlander-till-tikal",
+        "fieldPath": "/geographySv",
+        "textSha256": "c5db2ec987f91ee9de06b7e5317d3df9b8e84fca46262eeea570a5c969e0bf09"
+      }
+    },
+    {
+      "id": "event/ev-0379-yax-nuun-ayiin-tilltrader/date/displaySv",
+      "sv": "379 e.Kr.",
+      "en": "AD 379",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0379-yax-nuun-ayiin-tilltrader",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8a896223a1ef9b0ef32c0b1540a2b9efb3c41c4d26a67c8442584899d905d7ae"
+      }
+    },
+    {
+      "id": "event/ev-0379-yax-nuun-ayiin-tilltrader/date/noteSv",
+      "sv": "Årtalet följer Mesowebs redogörelse. Händelsen gäller trontillträdet året efter Siyaj K’ak’s ankomst.",
+      "en": "The year follows Mesoweb’s account. The event concerns the accession in the year after Siyaj K’ak’s arrival.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0379-yax-nuun-ayiin-tilltrader",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "351baa70650ed008c259c7d8b1946006c3ab625e1b31ce9ad6060aef4bda7a2e"
+      }
+    },
+    {
+      "id": "event/ev-0379-yax-nuun-ayiin-tilltrader/titleSv",
+      "sv": "Yax Nuun Ayiin I tillträder i Tikal",
+      "en": "Yax Nuun Ayiin I accedes at Tikal",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0379-yax-nuun-ayiin-tilltrader",
+        "fieldPath": "/titleSv",
+        "textSha256": "b82b5ca9e8f723e7e3b8e76e43c6a1d5e6357dbfa822e42c0e4b28369b8aa72b"
+      }
+    },
+    {
+      "id": "event/ev-0379-yax-nuun-ayiin-tilltrader/summarySv",
+      "sv": "Yax Nuun Ayiin I tillträder som kung i Tikal. Mesoweb tillskriver Siyaj K’ak’ en roll i att föra honom till tronen.",
+      "en": "Yax Nuun Ayiin I becomes king at Tikal. Mesoweb attributes a role in his installation to Siyaj K’ak’.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0379-yax-nuun-ayiin-tilltrader",
+        "fieldPath": "/summarySv",
+        "textSha256": "7d75b9b3804f67b79bcba59a7dff8b64b726be29400da9a9b1de7b4fa23920fa"
+      }
+    },
+    {
+      "id": "event/ev-0379-yax-nuun-ayiin-tilltrader/geographySv",
+      "sv": "Tikal, nuvarande Guatemala",
+      "en": "Tikal, present-day Guatemala",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0379-yax-nuun-ayiin-tilltrader",
+        "fieldPath": "/geographySv",
+        "textSha256": "c5db2ec987f91ee9de06b7e5317d3df9b8e84fca46262eeea570a5c969e0bf09"
+      }
+    },
+    {
+      "id": "event/ev-0381-konstantinopels-biskop-hedersrang/date/displaySv",
+      "sv": "381 e.Kr.",
+      "en": "AD 381",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0381-konstantinopels-biskop-hedersrang",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a9ed33186c7f580376c80692f3f4daaedcdde6e4e8cc59e562bb97c017e3ff7d"
+      }
+    },
+    {
+      "id": "event/ev-0381-konstantinopels-biskop-hedersrang/date/noteSv",
+      "sv": "Uppgiften gäller kanon III i utgåvans avsnitt för mötet 381. Senare tillägg som diskuteras i samma utgåva ingår inte.",
+      "en": "The claim concerns Canon III in the edition’s section for the council of 381. Later additions discussed in the same edition are not included.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0381-konstantinopels-biskop-hedersrang",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "a059a27b279577f3a9e5074e86b689f81d3e742292cb1f903806cb8189cd7f52"
+      }
+    },
+    {
+      "id": "event/ev-0381-konstantinopels-biskop-hedersrang/titleSv",
+      "sv": "Kyrkomötet ger Konstantinopels biskop hedersrang efter Rom",
+      "en": "The council grants Constantinople’s bishop precedence of honour after Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0381-konstantinopels-biskop-hedersrang",
+        "fieldPath": "/titleSv",
+        "textSha256": "3b8ce6a4b030c2ed13256afec4e3c6f94d1445c49391041bf806f4e134489fd3"
+      }
+    },
+    {
+      "id": "event/ev-0381-konstantinopels-biskop-hedersrang/summarySv",
+      "sv": "Kyrkomötet ger Konstantinopels biskop hedersrang efter biskopen i Rom. I kanon III motiverar mötesdeltagarna detta med att Konstantinopel är det nya Rom.",
+      "en": "The council grants the bishop of Constantinople precedence of honour after the bishop of Rome. In Canon III, the participants justify this on the grounds that Constantinople is New Rome.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0381-konstantinopels-biskop-hedersrang",
+        "fieldPath": "/summarySv",
+        "textSha256": "b759bae59f203516e13ecdc3087221ac18956365911c07e83e1fe5241138ac2a"
+      }
+    },
+    {
+      "id": "event/ev-0381-konstantinopels-biskop-hedersrang/geographySv",
+      "sv": "Konstantinopel, nuvarande Istanbul",
+      "en": "Constantinople, present-day Istanbul",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0381-konstantinopels-biskop-hedersrang",
+        "fieldPath": "/geographySv",
+        "textSha256": "078bc69a232e66b2a4537d92cf533f8a489229f951410d2ed3e3d59fa75f68c7"
+      }
+    },
+    {
+      "id": "event/ev-0384-buddhismen-introduceras-i-baekje/date/displaySv",
+      "sv": "384 e.Kr.",
+      "en": "AD 384",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0384-buddhismen-introduceras-i-baekje",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9c8170355cc8effa15a15e0bed8cccee542048533b8489b27b6ef9c97e795798"
+      }
+    },
+    {
+      "id": "event/ev-0384-buddhismen-introduceras-i-baekje/date/noteSv",
+      "sv": "Året följer museets tidslinje för introduktionen. Det fastställer inte när alla invånare blev buddhister.",
+      "en": "The year follows the museum’s timeline for the introduction. It does not establish when all inhabitants became Buddhist.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0384-buddhismen-introduceras-i-baekje",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7c05c6808f4f14ff3781185737b1c2fb4c7d308681d69ca7839347181c27a434"
+      }
+    },
+    {
+      "id": "event/ev-0384-buddhismen-introduceras-i-baekje/titleSv",
+      "sv": "Buddhismen introduceras i Baekje",
+      "en": "Buddhism is introduced to Baekje",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0384-buddhismen-introduceras-i-baekje",
+        "fieldPath": "/titleSv",
+        "textSha256": "1c762810a0ffe99bff3840b0ff01c98cc404889d97645d889bb4e2a664f69308"
+      }
+    },
+    {
+      "id": "event/ev-0384-buddhismen-introduceras-i-baekje/summarySv",
+      "sv": "Museet daterar buddhismens introduktion i Baekje till 384. Den korta tidslinjeposten ger inga närmare uppgifter om förloppet.",
+      "en": "The museum dates the introduction of Buddhism to Baekje to 384. Its brief timeline entry gives no further details of the process.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0384-buddhismen-introduceras-i-baekje",
+        "fieldPath": "/summarySv",
+        "textSha256": "4f01494b4984d19441aaa2036103f2d9aac3a15a43aef535b0fb591723149696"
+      }
+    },
+    {
+      "id": "event/ev-0384-buddhismen-introduceras-i-baekje/geographySv",
+      "sv": "Baekje, Koreahalvön",
+      "en": "Baekje, Korean Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0384-buddhismen-introduceras-i-baekje",
+        "fieldPath": "/geographySv",
+        "textSha256": "1b00d092030957b75690a4b9c6e47e90d7fc2f53c7cc55019cc8bea17c9e69da"
+      }
+    },
+    {
+      "id": "event/ev-0386-tuoba-etablerar-norra-wei/date/displaySv",
+      "sv": "cirka 386 e.Kr.",
+      "en": "circa AD 386",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0386-tuoba-etablerar-norra-wei",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0565263e5ad30aad8fba631406b98335e0fc012d871d9ac78b9f21df5b618db2"
+      }
+    },
+    {
+      "id": "event/ev-0386-tuoba-etablerar-norra-wei/date/noteSv",
+      "sv": "Museet anger cirka 386. Årtalet gäller etableringen av Norra Wei och daterar inte erövringen av hela norra Kina.",
+      "en": "The museum gives around 386. The year concerns the establishment of Northern Wei and does not date the conquest of all northern China.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0386-tuoba-etablerar-norra-wei",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ec4890640b7b6585ac7450fcaa5f9aee13dac644dfe490207d0eb317433ce2f1"
+      }
+    },
+    {
+      "id": "event/ev-0386-tuoba-etablerar-norra-wei/titleSv",
+      "sv": "Tuoba etablerar Norra Wei",
+      "en": "The Tuoba establish Northern Wei",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0386-tuoba-etablerar-norra-wei",
+        "fieldPath": "/titleSv",
+        "textSha256": "b5465e126a5921186ea34cd03d8ab4a6016ea303fd232809ef5f974627f9b5f2"
+      }
+    },
+    {
+      "id": "event/ev-0386-tuoba-etablerar-norra-wei/summarySv",
+      "sv": "Tuoba, som museet beskriver som en gren av Xianbei, etablerar Norra Wei. De upprättar därmed ett nytt dynastiskt styre i norra Kina.",
+      "en": "The Tuoba, described by the museum as a branch of the Xianbei, establish Northern Wei. They thereby create a new dynastic government in northern China.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0386-tuoba-etablerar-norra-wei",
+        "fieldPath": "/summarySv",
+        "textSha256": "9fe35880b658ebd2ab8c023631d30c983ab380ccb8ab69202121b2721b777508"
+      }
+    },
+    {
+      "id": "event/ev-0386-tuoba-etablerar-norra-wei/geographySv",
+      "sv": "Norra Kina",
+      "en": "Northern China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0386-tuoba-etablerar-norra-wei",
+        "fieldPath": "/geographySv",
+        "textSha256": "b2b61b5d50d3fed753239ffda164c4cbb15f99d3f104beda2e5650ed3f646b1e"
+      }
+    },
+    {
+      "id": "event/ev-0391-theodosius-befaller-tempelstangning/date/displaySv",
+      "sv": "391 e.Kr.",
+      "en": "AD 391",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0391-theodosius-befaller-tempelstangning",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ecfc449515a383d230d7a9510922b8a4ab37f6bf55e666babaccb8560d486859"
+      }
+    },
+    {
+      "id": "event/ev-0391-theodosius-befaller-tempelstangning/date/noteSv",
+      "sv": "Året gäller kejsarens order. Källans tidslinje visar inte att varje tempel stängdes samma år.",
+      "en": "The year concerns the emperor’s order. The source’s timeline does not show that every temple closed in that year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0391-theodosius-befaller-tempelstangning",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7bef693706110d23801ccab8f95122f070e7b65417eb560525b56db849e2e5b0"
+      }
+    },
+    {
+      "id": "event/ev-0391-theodosius-befaller-tempelstangning/titleSv",
+      "sv": "Theodosius befaller att hedniska tempel ska stängas",
+      "en": "Theodosius orders pagan temples to close",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0391-theodosius-befaller-tempelstangning",
+        "fieldPath": "/titleSv",
+        "textSha256": "ff05b2dcf33e0f8d7414a663ce6a97bd529622d2a13adee6667526d5b26507a3"
+      }
+    },
+    {
+      "id": "event/ev-0391-theodosius-befaller-tempelstangning/summarySv",
+      "sv": "Theodosius befaller att hedniska tempel ska stängas. Museet daterar ordern till 391.",
+      "en": "Theodosius orders pagan temples to close. The museum dates the order to 391.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0391-theodosius-befaller-tempelstangning",
+        "fieldPath": "/summarySv",
+        "textSha256": "ee6d55cdd2dd4c1316c505a1bba2ccc0623023628fcc3fdf01c98fd29af122d6"
+      }
+    },
+    {
+      "id": "event/ev-0391-theodosius-befaller-tempelstangning/geographySv",
+      "sv": "Romarriket",
+      "en": "Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0391-theodosius-befaller-tempelstangning",
+        "fieldPath": "/geographySv",
+        "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
+      }
+    },
+    {
+      "id": "event/ev-0395-arcadius-och-honorius-eftertrader/date/displaySv",
+      "sv": "395 e.Kr.",
+      "en": "AD 395",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0395-arcadius-och-honorius-eftertrader",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2fdc0ed2d92d3fbe073d4818c5a0dfb8cdd0885751e11dc162eca11113069d1c"
+      }
+    },
+    {
+      "id": "event/ev-0395-arcadius-och-honorius-eftertrader/date/noteSv",
+      "sv": "Händelsen gäller successionen efter Theodosius död. Den gör inget påstående om att alla senare försök att samla rikets styre upphörde.",
+      "en": "The event concerns the succession after Theodosius’s death. It makes no claim that all later attempts to reunite imperial rule ceased.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0395-arcadius-och-honorius-eftertrader",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "19a48f2913af1cf6a1a689097bbc35747d811a0bdc9d45f0f095b1cbb7f8154c"
+      }
+    },
+    {
+      "id": "event/ev-0395-arcadius-och-honorius-eftertrader/titleSv",
+      "sv": "Arcadius och Honorius övertar var sin del av riket",
+      "en": "Arcadius and Honorius each take over part of the empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0395-arcadius-och-honorius-eftertrader",
+        "fieldPath": "/titleSv",
+        "textSha256": "e7456a1c249751df18eccd708bcb25196235e5d1dc4201309b13bab4833f212e"
+      }
+    },
+    {
+      "id": "event/ev-0395-arcadius-och-honorius-eftertrader/summarySv",
+      "sv": "Efter Theodosius död år 395 ligger styret i öster hos Arcadius och i väster hos Honorius.",
+      "en": "After Theodosius’s death in 395, Arcadius governs in the east and Honorius in the west.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0395-arcadius-och-honorius-eftertrader",
+        "fieldPath": "/summarySv",
+        "textSha256": "7baf8e15439f4fb5e5b82c7d2641e82eb8d62303aa827c229ae169a692dcbe15"
+      }
+    },
+    {
+      "id": "event/ev-0395-arcadius-och-honorius-eftertrader/geographySv",
+      "sv": "Romarrikets östra och västra delar",
+      "en": "Eastern and western parts of the Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0395-arcadius-och-honorius-eftertrader",
+        "fieldPath": "/geographySv",
+        "textSha256": "8c427d1108421c9bcae213b8f81de49862749fe627927718432540e73e409724"
       }
     }
   ]
