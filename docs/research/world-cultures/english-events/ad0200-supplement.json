@@ -1,0 +1,194 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad0200-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 200,
+    "endYear": 299
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0200en-huffman-bambata",
+      "title": "The stylistic origin of Bambata and the spread of mixed farming in southern Africa",
+      "institution": "Southern African Humanities",
+      "url": "https://sahumanities.org/index.php/sah/article/view/191",
+      "locator": "T. N. Huffman, Southern African Humanities 17 (2005), pp. 57–79. Public abstract, web lines 24–27; full paper not read. The site displays an upload/publication date of 2021, while the issue and recommended citation identify 2005. PDF marked Requires Subscription; not accessed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "at about AD 200",
+      "originalChronology": "The abstract distinguishes pottery dispersal around 200 from mixed-farming communities around 350.",
+      "scopedClaim": "Huffman's reconstruction of Bambata pottery spreading with hunter-gatherer groups into southeastern Africa; no precise locality, migration date or beginning of farming is established here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0200en-tnm-three-kingdoms",
+      "title": "Celebrating the 40th Anniversary of the Japan–China Cultural Exchange Agreement: Three Kingdoms Unveiling the Story",
+      "institution": "Tokyo National Museum",
+      "url": "https://www.tnm.jp/modules/r_free_page/index.php?id=1953&lang=en",
+      "locator": "2019 exhibition page, introduction and Chapter 3: Wei, Shu and Wu–A Tripartite Battle for Supremacy; web lines 173 and 225–226. Public English version read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "After Cao Cao passed away in 220",
+      "originalChronology": "Cao Pi succeeds Cao Cao after his death in 220 and takes the Eastern Han throne; the exhibition dates the transition into the Three Kingdoms period to 220.",
+      "scopedClaim": "Cao Pi's succession and seizure of the Eastern Han throne. The other kingdoms' proclamations are not assigned to the same year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0200en-met-china-timeline",
+      "title": "China, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/05/eac",
+      "locator": "Heilbrunn Timeline of Art History, Timeline entries for Eastern Han and Three Kingdoms, web lines 42–55. Public chronology read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Eastern Han dynasty, 25–220 A.D.",
+      "originalChronology": "Eastern Han ends in 220 and the Three Kingdoms period begins in 220 in this chronology.",
+      "scopedClaim": "Independent institutional chronology for the end of Eastern Han; no exact month or day supplied.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0200en-smithsonian-sasanians",
+      "title": "The Sasanians: The Sasanian Empire",
+      "institution": "Smithsonian National Museum of Asian Art",
+      "url": "https://asia-archive.si.edu/exhibition/the-shapur-plate-the-sasanians-the-sasanian-empire/",
+      "locator": "The Shapur Plate exhibition, opening historical paragraph, web line 9. Public text read; images not downloaded.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "In 224 CE",
+      "originalChronology": "The opening paragraph dates Ardashir's overthrow of the Parthians and foundation of the Sasanian dynasty to 224.",
+      "scopedClaim": "Dynastic transition under Ardashir in Iran; no battle day or claim of immediate conquest of every Parthian territory.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0200en-met-sasanians",
+      "title": "The Sasanians",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/exhibitions/listings/2012/byzantium-and-islam/blog/topical-essays/posts/sasanians",
+      "locator": "Betsy Williams, 17 May 2012, opening paragraph, web line 51. Public essay read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Ardashir I (r. 224–241)",
+      "originalChronology": "The essay gives Ardashir's reign as 224–241 and relates the dynasty's founding to his defeat of the Parthians. The event year is supplied directly by the Smithsonian account, not inferred from this reign span.",
+      "scopedClaim": "Ardashir establishes Sasanian authority after defeating the Parthians.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0200en-chen-funan-mission",
+      "title": "Analysis of the Time of Zhu Ying and Kang Tai's Serving as Diplomatic Envoys to Funan",
+      "institution": "Japan Society for Southeast Asian Studies / J-STAGE",
+      "url": "https://www.jstage.jst.go.jp/article/sea1971/1988/17/1988_17_107/_article/-char/en",
+      "locator": "Xian-Si Chen, Southeast Asia: History and Culture, 1988, issue 17, pp. 107–114, DOI 10.5512/sea.1988.107. Published English title and abstract, web lines 57–64; Japanese full article not read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "between 244 and 247 AD",
+      "originalChronology": "Chen reports Sugimoto's 229 and Watabe's 243–252 proposals, and argues for 244–247. The abstract gives Huanglong 1 as 229, Chiwu 6 as 243 and Tai-yuan 2 as 252; these are the author's conversions.",
+      "scopedClaim": "Wu's mission by Zhu Ying and Kang Tai to Funan, with the competing datings and Chen's interpretation preserved.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-ad0200-bambata-pottery-dispersal",
+      "date": {
+        "kind": "approximate",
+        "startYear": 200,
+        "endYear": 200,
+        "displayEn": "Around 200 CE",
+        "noteEn": "This approximate date follows Huffman's reconstruction in the public abstract. It concerns pottery dispersal with hunter-gatherers; his later date around 350 for mixed-farming communities is a separate development. The underlying excavation evidence was not reviewed here."
+      },
+      "titleEn": "Bambata pottery spreads into southeastern Africa",
+      "summaryEn": "In Huffman's reconstruction, hunter-gatherer groups carry Bambata pottery into southeastern Africa around 200 CE.",
+      "geographyEn": "Southeastern Africa",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "ad0200en-huffman-bambata"
+      ],
+      "selectionNote": "A regional transfer of pottery practices, selected for the distinction between dispersal among hunter-gatherers and the later presence of mixed-farming communities. No exact settlement foundation or continent-wide migration is claimed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-ad0220-cao-pi-takes-han-throne",
+      "date": {
+        "kind": "exact",
+        "startYear": 220,
+        "endYear": 220,
+        "displayEn": "220 CE",
+        "noteEn": "The year identifies the end of Eastern Han and Cao Pi's seizure of its throne. It does not date all three kingdoms' proclamations or the start of his separate nine-rank recruitment reform. No month or day is established here."
+      },
+      "titleEn": "Cao Pi takes the Eastern Han throne",
+      "summaryEn": "After succeeding Cao Cao, Cao Pi takes the throne from the Eastern Han emperor and establishes Wei's imperial claim.",
+      "geographyEn": "China",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0200en-tnm-three-kingdoms",
+        "ad0200en-met-china-timeline"
+      ],
+      "selectionNote": "The end of a dynasty and assertion of Wei's imperial authority constitute a major regional political change. The episode is distinct from Cao Cao's relocation of the Han court in 196 and Cao Pi's already cataloged nine-rank recruitment system.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-ad0224-ardashir-sasanian-dynasty",
+      "date": {
+        "kind": "exact",
+        "startYear": 224,
+        "endYear": 224,
+        "displayEn": "224 CE",
+        "noteEn": "The Smithsonian explicitly dates the dynastic overthrow and founding to 224. This entry does not assign a day to the battle or imply that every Parthian territory came under Sasanian control that year."
+      },
+      "titleEn": "Ardashir establishes the Sasanian dynasty",
+      "summaryEn": "Ardashir defeats the Parthians and establishes Sasanian dynastic rule in Iran.",
+      "geographyEn": "Iran",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0200en-smithsonian-sasanians",
+        "ad0200en-met-sasanians"
+      ],
+      "selectionNote": "A major change in the ruling dynasty of Iran. This marks the foundation of Sasanian rule, rather than dating the empire's later territorial extent, institutions or wars to its first year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-ad0229-wu-envoys-funan",
+      "date": {
+        "kind": "disputed",
+        "startYear": 229,
+        "endYear": 252,
+        "displayEn": "Disputed: 229, 243–252 or 244–247 CE",
+        "noteEn": "Chen reports Sugimoto's 229 and Watabe's 243–252 datings and proposes 244–247. The numeric bounds preserve these alternatives; they do not describe a 23-year mission. This is the mission to Funan, separate from Funan's embassy to Wu in 243."
+      },
+      "titleEn": "Wu sends Zhu Ying and Kang Tai to Funan",
+      "summaryEn": "The envoys Zhu Ying and Kang Tai travel from Wu to Funan. Historians disagree about the mission's date and the Funan ruler they met.",
+      "geographyEn": "Wu and Funan",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "ad0200en-chen-funan-mission"
+      ],
+      "selectionNote": "An interregional diplomatic mission between Wu and Funan, retained with all three chronological proposals reported in Chen's abstract. The competing proposals come through one study; the underlying chronicles and other historians' works were not independently examined.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
