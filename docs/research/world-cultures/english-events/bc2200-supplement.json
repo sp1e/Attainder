@@ -1,0 +1,120 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc2200-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -2200,
+    "endYear": -2101
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc2200en-uab-bastida-fortification",
+      "title": "The La Bastida fortification: New light and new questions on Early Bronze Age societies in the western Mediterranean",
+      "institution": "Universitat Autònoma de Barcelona Research Portal; Antiquity",
+      "url": "https://portalrecerca.uab.cat/en/publications/the-la-bastida-fortification-new-light-and-new-questions-on-early/",
+      "locator": "Public abstract, paragraphs 1–2; journal metadata: Antiquity 88(340), 2014, pp. 395–410, DOI 10.1017/S0003598X00101073. Only the abstract was read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "2200-2100 cal BC",
+      "originalChronology": "The article dates the stone fortification to 2200–2100 cal BC.",
+      "scopedClaim": "Stone walls and towers defended a major Argaric political and economic centre in southeastern Spain. The authors interpret the design as a possible response to changing warfare and weapons; they do not establish a particular siege or foreign origin.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2200en-uab-bastida-2018-phase",
+      "title": "Archaeological Excavation at La Bastida 2018 (April-June): Fieldwork Report",
+      "institution": "Universitat Autònoma de Barcelona Research Portal",
+      "url": "https://portalrecerca.uab.cat/ca/publications/archaeological-excavation-at-la-bastida-2018-april-june-fieldwork/",
+      "locator": "Public abstract, paragraph 2; English abstract in the bibliographic record. The report's full text was not read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "ca. 2200-2025 BCE",
+      "originalChronology": "The report provisionally places the hydraulic complex in the earliest settlement phase, about 2200–2025 BC, alongside the original fortification construction. This is a broader phase assignment, not an exact construction date.",
+      "scopedClaim": "The broader preliminary phase supplies a chronological qualification for the original fortification. No separate hydraulic event or claim of the world's earliest conduit is selected.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2200en-tartu-utuhegal",
+      "title": "Vana-Lähis-Ida ajalugu 3500–2000 eKr. Mesopotaamia ajalugu kiilkirja tekkest kuni Uus-Sumeri riigi languseni",
+      "institution": "University of Tartu Press; public copy hosted by the Estonian Research Council",
+      "url": "https://www.etag.ee/wp-content/uploads/2016/06/Espak-L%C3%A4his-Ida-ajalugu.pdf",
+      "locator": "Sazonov, Espak and Johandi (2015), printed p. 141, PDF page 141, paragraph immediately before section 2.2.9. Text extracted from an ordinary download of the same public PDF after a web size-limit error; no visual page inspection claimed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "ca 2120 eKr",
+      "originalChronology": "The authors explicitly place Utuhegal's defeat of the Gutians and their commander Tirigan around 2120 BC. This date is not calculated from a regnal span.",
+      "scopedClaim": "Utuhegal, king of Uruk, defeated the Gutians and Tirigan. The authors identify a surviving literary account of the battle. Details of Tirigan's subsequent death and the next dynasty are excluded.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2200en-cambridge-utuhegal",
+      "title": "Babylonia, c. 2120–1800 B.C., Chapter XXII, The Cambridge Ancient History",
+      "institution": "Cambridge University Press",
+      "url": "https://www.cambridge.org/core/books/abs/cambridge-ancient-history/babylonia-c-21201800-bc/85EDA95754C326B21CB3261F95466CFB",
+      "locator": "C. J. Gadd, public Summary, first paragraph under The Third Dynasty of Ur. Print edition 1971, chapter pp. 595–643. Only the public summary was read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "his expulsion of the Gutians",
+      "originalChronology": "The summary describes the expulsion and Uruk's briefly restored kingship. The chapter title's date span is not used as an independent date for the battle.",
+      "scopedClaim": "Utuhegal's expulsion of the Gutians restored Sumerian kingship to Uruk for a brief period. This supports regional political significance without adopting the source's celebratory language.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc2200-la-bastida-fortification",
+      "date": {
+        "kind": "range",
+        "startYear": -2200,
+        "endYear": -2025,
+        "displayEn": "2200–2100 cal BC; broader preliminary phase c. 2200–2025 BC",
+        "noteEn": "The 2014 article dates the fortification to 2200–2100 cal BC. A 2018 report provisionally associates its original construction with the wider earliest settlement phase, c. 2200–2025 BC. Neither gives an exact construction year."
+      },
+      "titleEn": "Stone fortifications defend La Bastida",
+      "summaryEn": "Walls and projecting towers guard a narrow entrance to La Bastida, a major political and economic centre of Argaric society in southeastern Spain. Their design may reflect changes in warfare and weapons; it does not identify a particular attack.",
+      "geographyEn": "La Bastida, southeastern Spain",
+      "category": "war",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc2200en-uab-bastida-fortification",
+        "bc2200en-uab-bastida-2018-phase"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      },
+      "selectionNote": "A notable defensive building programme at an important Argaric centre. The evidence supports importance 1; the site's prominence does not by itself establish a major regional event."
+    },
+    {
+      "id": "ev-bc2120-utuhegal-defeats-the-gutians",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2120,
+        "endYear": -2120,
+        "displayEn": "c. 2120 BC",
+        "noteEn": "Sazonov, Espak and Johandi date the victory to around 2120 BC. This is an approximate date in their chronology, not an exact battle year."
+      },
+      "titleEn": "Utuhegal defeats the Gutians",
+      "summaryEn": "Utuhegal, king of Uruk, defeats the Gutians and their commander Tirigan. The victory restores Sumerian kingship to Uruk for a brief period.",
+      "geographyEn": "Sumer, Mesopotamia; Uruk's kingdom",
+      "category": "war",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc2200en-tartu-utuhegal",
+        "bc2200en-cambridge-utuhegal"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      },
+      "selectionNote": "A major regional military and political reversal: Utuhegal's victory briefly restored Sumerian kingship to Uruk. Importance 2 reflects the change in regional sovereignty."
+    }
+  ]
+}

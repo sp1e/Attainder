@@ -2,7 +2,17 @@
 
 ## Current publication checkpoint: 9 November 2026
 
-This research delivery contains 873 approved event records, 801 sources and 7,416 bilingual entries. Coverage spans 4,130 partially researched years; 700 years remain unresearched in the approved catalog. The preceding verified publication is the AD200 supplement in [PR #107](https://github.com/sp1e/Attainder/pull/107) at `4a37e7c075f5364dd38ade042e79cfc1f64f28f0`. Its required CI passed 5,337 tests with no failures and two TODOs, and the build passed. The current BC2400 supplement requires its own current-head CI and verified merge. The chronological record below preserves the review chain, earlier milestones and remaining holds. Claude owns runtime integration and gameplay verification.
+The gameplay catalog contains 873 approved event records, 801 sources and 7,416 bilingual entries. Coverage spans 4,130 partially researched years; 700 years remain unresearched in that catalog. The latest verified catalog publication is the BC2400 supplement in [PR #108](https://github.com/sp1e/Attainder/pull/108) at `04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c`. Its required CI passed 5,337 tests with no failures and two TODOs, and the build passed. The chronological record below preserves earlier milestones and remaining holds. Claude owns runtime integration and gameplay verification.
+
+## New research: English only
+
+The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
+
+The current [BC2200 English supplement](../research/world-cultures/english-events/bc2200-supplement.md) adds two approved research records, four source records and ten English display fields. They concern La Bastida's fortification and Utuhegal's victory over the Gutians. A fresh final review confirmed the exact La Bastida importance correction, both selection notes and all unchanged historical and English fields. These research counts are separate from the gameplay catalog totals above. Publication requires current-head CI and a verified merge.
+
+Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. The next active batch concerns regional gaps in AD 300–399; its unapproved candidates do not count as delivered research.
+
+## Earlier catalog delivery
 
 The merged [AD200 supplement](../research/world-cultures/ad0200-supplement.md) added two events, three sources and sixteen reviewed language pairs. Its competing May and early June datings for Abritus remain visible. The [BC2400 supplement](../research/world-cultures/bc2400-supplement.md) adds two more events, three sources and sixteen reviewed language pairs after a separately checked chronology correction. All 7,416 locale source strings and hashes match data commit `5560998313e72cff9dc72bdd3416966b0bb0c066`; all prior entries are unchanged. The catalog check and 45 focused historical-event tests pass. Ruling: keep approximate object and attack dates distinct from reign intervals and sediment ages. Converting these into exact event years would invent precision.
 
