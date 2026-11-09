@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain seventy approved records, one hundred and twenty-four source records and three hundred and fifty display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain seventy-two approved records, one hundred and twenty-eight source records and three hundred and sixty display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -54,9 +54,14 @@ The English research deliveries now contain seventy approved records, one hundre
 | [2400–2301 BC](../research/world-cultures/english-events/bc2400-supplement.md) | 1 | 4 | 5 | Merged and remote-verified in [PR #151](https://github.com/sp1e/Attainder/pull/151), commit `a425c47d27c25057bb0bf81ede2cde8451535d06` |
 | [AD 1–300, second pass](../research/world-cultures/english-events/ad0001-ad0300-second-pass-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #152](https://github.com/sp1e/Attainder/pull/152), commit `ef179a86af402209cf0e1de48bb2f45b86ee7930` |
 | [AD 700–799, second pass](../research/world-cultures/english-events/ad0700-second-pass-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #153](https://github.com/sp1e/Attainder/pull/153), commit `7d3ce7ae571d4bd2a643022612794efd780a470b`; source HOLD and procedure deviation preserved |
-| [AD 1000–1100, second pass](../research/world-cultures/english-events/ad1000-second-supplement.md) | 1 | 3 | 5 | Reviewed in [PR #155](https://github.com/sp1e/Attainder/pull/155); original source HOLD preserved; current-head CI and verified merge required |
-| [500–201 BC, second pass](../research/world-cultures/english-events/bc0500-bc0300-second-pass-supplement.md) | 1 | 2 | 5 | Reviewed in [PR #156](https://github.com/sp1e/Attainder/pull/156); first evidence HOLD resolved and preserved; current-head CI and verified merge required |
-| [AD 800–999, second pass](../research/world-cultures/english-events/ad0800-0900-second-pass-supplement.md) | 2 | 3 | 10 | Source and final review passed; current-head CI and verified merge required |
+| [AD 1000–1100, second pass](../research/world-cultures/english-events/ad1000-second-supplement.md) | 1 | 3 | 5 | Merged and remote-verified in [PR #155](https://github.com/sp1e/Attainder/pull/155), commit `96a450218cde220fca354ec95d018fd60d2294a9`; original source HOLD preserved |
+| [500–201 BC, second pass](../research/world-cultures/english-events/bc0500-bc0300-second-pass-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #156](https://github.com/sp1e/Attainder/pull/156), commit `a5470638346905740f25158a97924035ae0d88e3`; first evidence HOLD resolved and preserved |
+| [AD 800–999, second pass](../research/world-cultures/english-events/ad0800-0900-second-pass-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #158](https://github.com/sp1e/Attainder/pull/158), commit `92add4bcd6b2136b016f56ec3e733fb4cafe9c26` |
+| [AD 1200–1299, second pass](../research/world-cultures/english-events/ad1200-second-pass-supplement.md) | 2 | 4 | 10 | Source follow-up and final review passed; current-head CI and verified merge required |
+
+AD1200 second pass adds the Goseibai shikimoku in 1232 and the Mustansiriyya opening in 1234. The original source HOLD remains preserved; an independent exact-URL follow-up verified the technically unavailable PDF. A fresh final review passed all twelve English texts, with no historical corrections. An interrupted earlier final and its supervisor newline-hash error remain disclosed. Root verified 94 inputs, twelve text hashes, 47 committed comparisons and three private originals.
+
+PRs #155, #156 and #158 each passed 5,350 tests with no failures and two TODOs; all builds passed. Remote commits, first parents, full trees, retained heads and changed blobs were verified. Merged main contains seventy English events and 124 source records; the AD1200 addition awaits publication checks.
 
 AD0800–AD0900 second pass adds Kairouan's linked water reservoirs in 860–862 and Gwangjong's personal-status review in 956. Independent source and final reviews approved both unchanged events, all twelve English texts and the complete note. Archnet's conflicting Hijri labels remain explicit; the Korean policy concerns previously free people and preserves the source's later reversals. Root verified seventy-one frozen inputs, twelve text hashes, forty-seven committed comparison files and two private originals.
 
