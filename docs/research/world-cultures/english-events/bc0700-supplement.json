@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc0700-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -700,
+    "endYear": -601
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "f9c59e1d36ef67528e9fc163cf5acd0a258bdd6c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc0700en-columbia-jerwan",
+      "title": "Jerwan Aqueduct",
+      "institution": "Columbia University, Mapping Mesopotamian Monuments; Department of Art History and Archaeology",
+      "url": "https://mcid.mcah.columbia.edu/mapping-mesopotamian-monuments/jerwan-aqueduct",
+      "locator": "Site Profile, introductory paragraph and Date field; web lines 19–29.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "690 BC",
+      "originalChronology": "The monument profile gives 690 BC. It separately gives Sennacherib's reign as 704–681 BC; those reign dates do not date the construction.",
+      "scopedClaim": "Sennacherib's aqueduct carried water across a ravine in the hydraulic system supplying Nineveh. The date field supplies the approximate chronological anchor used here, without a secure completion-year claim.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0700en-stampoultzidis-nineveh-canals",
+      "title": "The fluidity of empire: hydraulics of neo-assyrian canal systems in relation to their possible uses",
+      "institution": "A. Stampoultzidis, D. Morandi Bonacossi, H. Reculeau, A. Savioli, R. R. P. Van Nooijen and M. W. Ertsen; Water History 16 (2024), pp. 165–185",
+      "url": "https://link.springer.com/article/10.1007/s12685-024-00348-3",
+      "locator": "Introduction and The Nineveh canal system, especially the opening chronology paragraph and the fourth-stage Khinis paragraph; web lines 87–115. Abstract lines 46–50 for the limits of hydraulic modelling.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "703-688 BCE",
+      "originalChronology": "The study places four phases of the wider Nineveh canal system in 703–688 BCE and dates the Bavian inscription to 688 BCE. Jerwan belongs to its fourth, Khinis-canal stage. These are not separately measured opening and closing years of the aqueduct.",
+      "scopedClaim": "Jerwan was the largest of five identified stone aqueducts on the Khinis canal. The study establishes its place in the larger water network; its hydraulic models do not prove a precise historical increase in crop yields or independently fix Jerwan's completion in 690 BCE.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc0690-jerwan-stone-aqueduct",
+      "date": {
+        "kind": "approximate",
+        "startYear": -690,
+        "endYear": -690,
+        "displayEn": "Around 690 BCE",
+        "noteEn": "Columbia's monument profile gives 690 BCE. Stampoultzidis and colleagues place Jerwan in the fourth phase of the wider canal programme, dated 703–688 BCE; 688 dates the Bavian inscription in their account. Neither the whole programme's span nor the inscription year establishes Jerwan's exact construction dates."
+      },
+      "titleEn": "Sennacherib builds a stone aqueduct at Jerwan",
+      "summaryEn": "Builders carry a water channel across a ravine at Jerwan as part of Sennacherib's supply system for Nineveh. The aqueduct forms a major structure on the Khinis canal, which draws water from the Gomel River.",
+      "geographyEn": "Jerwan, north of Nineveh, northern Mesopotamia",
+      "category": "technology",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc0700en-columbia-jerwan",
+        "bc0700en-stampoultzidis-nineveh-canals"
+      ],
+      "selectionNote": "A notable monumental water-engineering project, distinct from the cataloged destruction of Babylon and Nineveh and from later aqueducts elsewhere. The episode concerns the Jerwan crossing, not the start of the entire canal programme, an invention priority or the Hanging Gardens. The larger programme's agricultural benefits remain debated and are not asserted here.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
