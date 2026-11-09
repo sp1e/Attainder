@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain forty-eight approved records, eighty-five source records and two hundred and forty display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain forty-nine approved records, eighty-six source records and two hundred and forty-five display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -28,7 +28,8 @@ The English research deliveries now contain forty-eight approved records, eighty
 | [1200–1101 BC](../research/world-cultures/english-events/bc1200-supplement.md) | 1 | 4 | 5 | Merged and remote-verified in [PR #138](https://github.com/sp1e/Attainder/pull/138), commit `a35015a0f2c63a9a8ad040ed4759577dbe3b59cb` |
 | [1000–901 BC](../research/world-cultures/english-events/bc1000-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #139](https://github.com/sp1e/Attainder/pull/139), commit `53d2ae9ca1dc7a2ccd48abee5235ddcd5a539ce6` |
 | [700–601 BC](../research/world-cultures/english-events/bc0700-supplement.md) | 1 | 2 | 5 | Reviewed in [PR #140](https://github.com/sp1e/Attainder/pull/140); current-head CI and verified merge required |
-| [3100–3001 BC](../research/world-cultures/english-events/bc3100-supplement.md) | 1 | 2 | 5 | Source, English and integration reviews approved; current-head CI and verified merge required |
+| [3100–3001 BC](../research/world-cultures/english-events/bc3100-supplement.md) | 1 | 2 | 5 | Reviewed in [PR #141](https://github.com/sp1e/Attainder/pull/141); current-head CI and verified merge required |
+| [3200–3101 BC](../research/world-cultures/english-events/bc3200-supplement.md) | 1 | 1 | 5 | Orkney-only revision approved after independent final follow-up; current-head CI and verified merge required |
 | [2100–2001 BC](../research/world-cultures/english-events/bc2100-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #111](https://github.com/sp1e/Attainder/pull/111), commit `d058dfd9a2e3e29150e08e4f0ea027cafdfcd1b4` |
 | [1700–1601 BC](../research/world-cultures/english-events/bc1700-supplement.md) | 2 | 5 | 10 | Merged and remote-verified in [PR #112](https://github.com/sp1e/Attainder/pull/112), commit `0c8058fe4974e358cfb2028d96f03ea69446820d` |
 | [AD 700–799](../research/world-cultures/english-events/ad0700-supplement.md) | 2 | 4 | 10 | Merged and remote-verified in [PR #113](https://github.com/sp1e/Attainder/pull/113), commit `e64f91bbef9491e750ccb49020f53c2ac68f774d` |
@@ -100,6 +101,8 @@ BC1000 adds a production peak at Timna's Site 34. Both independent reviews retur
 BC0700 adds Jerwan's stone aqueduct around 690 BC. Both independent reviews approved the unchanged candidate and all six English text values. The aqueduct's date remains distinct from the wider 703–688 BC canal programme and the Bavian inscription. Integration verified fifty-six frozen inputs, six text hashes and twenty-seven committed English comparison snapshots. No invention priority, Hanging Gardens identification or quantified agricultural benefit is asserted.
 
 BC3100 adds the end of three Uruk settlements on the Middle Euphrates, around 3100 BC in the accessible synthesis's chronology. Both independent reviews approved the unchanged candidate and all six English text values. The source's around/by distinction, continuity elsewhere and uncertain cause remain explicit; the contextual occupation range is not treated as an exact destruction date. Integration verified sixty-one frozen inputs, six text hashes and twenty-six committed English comparison snapshots. Unread chronology leads and stopped access routes remain limitations.
+
+BC3200 adds Orkney's settlement-mound development over the complete 3200–3000 calibrated BC interval. A separate integration finding withheld the initial Arslantepe fire event after explicit chronological disagreement and an access denial; its three unused sources were also removed. The original two-event PASS reports remain preserved. A fresh independent final follow-up approved the unchanged Orkney event, source, six text values and revised note. Integration verified fifty-seven frozen inputs, six text hashes, twenty-eight committed English comparison snapshots and the exact whole-event exclusion. No replacement Arslantepe date is adopted.
 
 PRs #137, #138 and #139 each passed 5,344 tests with no failures and two TODOs, followed by successful builds. All three merges, first parents, complete trees, retained heads and changed blobs were remote-verified. Merged main contains forty-six English events and eighty-one source records; Jerwan awaits its own publication checks.
 
