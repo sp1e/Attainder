@@ -1,0 +1,57 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc3200-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -3200,
+    "endYear": -3101
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc3200en-bayliss-orkney-timescape",
+      "title": "Islands of history: the Late Neolithic timescape of Orkney",
+      "institution": "Antiquity Publications / Cambridge University Press",
+      "url": "https://www.cambridge.org/core/journals/antiquity/article/islands-of-history-the-late-neolithic-timescape-of-orkney/0E5FE57F1C35F712E4E1590151F88781",
+      "locator": "Alex Bayliss, Peter Marshall, Colin Richards and Alasdair Whittle, Antiquity 91(359), October 2017, pp. 1171–1188, DOI 10.15184/aqy.2017.140; online 20 September 2017. Public full HTML: Discussion, paragraphs beginning Secondly and This phenomenon (web lines 624–629); methodological scope at lines 539–556. Figures and supplementary models were not independently inspected.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Between 3200 and 3000 cal BC",
+      "originalChronology": "The authors place the transformation of settlements into large mounds through recurrent or superimposed houses and accumulated midden material in 3200–3000 calibrated BCE. This is a regional development interval, not an individual settlement's first occupation or a numerical posterior-density interval. Earlier settlement histories and the later nucleated phase at Skara Brae around 2900 BCE remain separate.",
+      "scopedClaim": "House rebuilding and substantial midden accumulation formed large settlement mounds in Orkney, with Stonehall on Mainland and Pool on Sanday named as examples. The wider settlement sequence varies between sites; no universal uninterrupted occupation or single simultaneous foundation is asserted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc3200-orkney-settlement-mounds",
+      "date": {
+        "kind": "range",
+        "startYear": -3200,
+        "endYear": -3000,
+        "displayEn": "About 3200–3000 BCE (calibrated chronology)",
+        "noteEn": "Bayliss and colleagues give this complete interval for a regional development in settlement form. It does not date the first occupation of every site, imply continuous occupation throughout, or assign Skara Brae's later nucleated settlement to 3200 BCE."
+      },
+      "titleEn": "Orkney's settlements develop into large mounds",
+      "summaryEn": "Repeated house construction and accumulated refuse build up large settlement mounds in Orkney. Bayliss and colleagues identify this development at sites including Stonehall on Mainland and Pool on Sanday.",
+      "geographyEn": "Orkney, northern Scotland",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc3200en-bayliss-orkney-timescape"
+      ],
+      "selectionNote": "A notable regional change in the physical form of inhabited settlements, retained as one development with its full interval. It differs from the cataloged Stenness henge and later individual buildings at Ness of Brodgar. The entry does not date settlement foundations, the first use of stone houses or the invention of Grooved Ware.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# BC3200 research supplement
+
+The [dataset](bc3200-supplement.json) contains one approved event, one source and five English display fields, at importance 1.
+
+This English-only supplement retains one episode supported by one research article. It remains separate from the runtime catalog, locale sidecars and gameplay coverage; a compatible importer and display path are still required.
+
+Bayliss and colleagues place the development of large settlement mounds in Orkney in 3200–3000 calibrated BCE. The entry keeps the whole interval and distinguishes recurrent house building and refuse accumulation from the first occupation of individual settlements. It does not move Skara Brae's later nucleated settlement into 3200 BCE, or duplicate the cataloged Stenness monument and later building episodes at Ness of Brodgar. The public full article text was read; archaeological figures and supplementary chronological models were not independently inspected.
+
+An initial two-event draft also included Arslantepe's palace fire. Its cited property report supplied 3200 BCE, and the original source and final reviews passed that qualified draft. Subsequent chronological checking found an explicit fire date around 3000 BCE in a publicly readable 2011 uncorrected proof by the excavation director. The official download of a newer scholarly publication returned 403 Forbidden after the web reader reported a file-size limitation. That route was stopped without using another copy. Fresh confirmation of the newer chronology was unavailable in this follow-up, and supersession of the older date was not established. The entire Arslantepe event and its three sources are therefore withheld; this supplement chooses no replacement fire year. The original review outcomes remain preserved and do not resolve the newly surfaced disagreement.
+
+The retained Orkney event and source are unchanged. A fresh independent final review approved this narrower delivery, its public note and all six retained English text values. Integration verified fifty-seven frozen inputs, six text hashes and twenty-eight committed English comparison snapshots. The final follow-up process exited successfully. Deduplication uses a fixed comparison containing 873 runtime events and 28 published English datasets. Additional publications after that snapshot require an integration check.
+
+Regional gaps remain substantial. No archaeological phase boundary, uncalibrated date, BP conversion or midpoint has been promoted to an event year. Reference use redistributes no source prose or images. Existing project attribution and licensing remain unchanged.
