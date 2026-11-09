@@ -1556,6 +1556,14 @@ test("the forecast announces the election from outside in place of an empty succ
   assert.match(text, /Valet faller på en genererad person utanför hovet\./);
 });
 
+test("an elective forecast lists the electors' votes", () => {
+  const text = officesText(papalView("elective"));
+  assert.match(text, /Elektorernas röster/);
+  assert.match(text, /Sergius \(genererad\) · leder/);
+  assert.match(text, /Med bättre underrättelser syns hur många röster var och en har\./);
+  assert.doesNotMatch(officesText(papalView("merit")), /Elektorernas röster/);
+});
+
 test("a person who has died in the campaign loses the survival tag", () => {
   const view = seededView("charlemagne-800");
   const dead = { ...view, people: view.people.map((person) => person.id === "berta" ? { ...person, alive: false, diedAt: "0805-01-01" } : person) };

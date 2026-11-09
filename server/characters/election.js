@@ -35,6 +35,12 @@ export function marriedIn(state, oldRuler) {
  * and every house member who married a member of the ruler's blood line. Draws nothing.
  */
 export function electiveCandidates(state, oldRuler, people, score) {
+  const { adults, minors, others } = electiveTiers(state, oldRuler, people, score);
+  return [...adults, ...minors, ...others];
+}
+
+/** The three tiers of the elective order, each sorted as electiveCandidates gives them. Draws nothing. */
+export function electiveTiers(state, oldRuler, people, score) {
   const children = childIndex(state);
   const outside = new Set([...marriedIn(state, oldRuler), ...houseMarriedIn(state, oldRuler, children)]);
   const line = new Set(oldRuler ? descendantLine(state, oldRuler, children).map((p) => p.id) : []);
@@ -46,7 +52,7 @@ export function electiveCandidates(state, oldRuler, people, score) {
   const adults = kin.filter((p) => isAdultCharacter(p, state.date));
   const minors = kin.filter((p) => !isAdultCharacter(p, state.date));
   const others = people.filter((p) => !kinIds.has(p.id) && isAdultCharacter(p, state.date));
-  return [...adults.sort(byScore), ...minors.sort(byAge), ...others.sort(byScore)];
+  return { adults: adults.sort(byScore), minors: minors.sort(byAge), others: others.sort(byScore) };
 }
 
 /** The legislator's reform cycle; an unknown law restarts at primogeniture. */
