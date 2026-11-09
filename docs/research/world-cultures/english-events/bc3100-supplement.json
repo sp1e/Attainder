@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc3100-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -3100,
+    "endYear": -3001
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "f3ed716a15d562c619b3d88e56e6f1aaf579de24",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc3100en-clarke-middle-euphrates",
+      "title": "Climatic changes and social transformations in the Near East and North Africa during the ‘long’ 4th millennium BC: A comparative study of environmental and archaeological evidence",
+      "institution": "Joanne Clarke and colleagues; Quaternary Science Reviews; University of East Anglia repository",
+      "url": "https://ueaeprints.uea.ac.uk/id/eprint/56953/1/Clarke_et_al._2015._Climatic_Changes.pdf",
+      "locator": "Repository manuscript, section 4.3.3.1, printed pages 15–16 (PDF pages 15–16), and section 4.3.3.4, printed page 19 (PDF page 19); introductory qualifications on printed page 2. Extracted text only.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "~3100 BC; by 3100 BC",
+      "originalChronology": "The overview places the disappearance of the three Uruk settlements around 3100 BC; the case study describes their abandonment by 3100 BC. Neither formulation establishes an exact common year.",
+      "scopedClaim": "Approximate end of the named Middle Euphrates Uruk settlements, with continuing settlement elsewhere. Climate causation remains uncertain.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc3100en-nino-jebel-aruda",
+      "title": "Boekpresentatie Jebel Aruda (RMO)",
+      "institution": "The Netherlands Institute for the Near East",
+      "url": "https://www.nino-leiden.nl/event/boekpresentatie-jebel-aruda-(rmo)",
+      "locator": "Section De nederzetting Jebel Aruda (3300-3100 v.Chr.), two paragraphs; web lines 27–29. Public book-presentation page, not the excavation monograph.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "ca. 3300 en 3100 v.Chr.",
+      "originalChronology": "The institutional notice dates Jebel Aruda's occupation approximately between 3300 and 3100 BC and says its destruction occurred in unknown circumstances. It supplies no separately exact destruction year.",
+      "scopedClaim": "Jebel Aruda in northern Syria had a temple complex, houses and administrative objects. Its destruction is acknowledged without a known cause; the occupation range corroborates context rather than independently fixing a precise abandonment year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc3100-middle-euphrates-uruk-settlements-end",
+      "date": {
+        "kind": "approximate",
+        "startYear": -3100,
+        "endYear": -3100,
+        "displayEn": "Around 3100 BC",
+        "noteEn": "Clarke and colleagues place the settlements' disappearance around 3100 BC, also describing abandonment by that date. This does not establish simultaneous departures or an exact year. NINO's 3300–3100 BC range dates Jebel Aruda's occupation, not a precisely dated destruction."
+      },
+      "titleEn": "Uruk settlements on the Middle Euphrates come to an end",
+      "summaryEn": "The Uruk settlements at Habuba Kabira, Sheikh Hassan and Jebel Aruda are abandoned. This marks a regional contraction of Uruk settlement, while communities continue elsewhere in northern Mesopotamia and in the southern Uruk cities. A climatic cause is not established.",
+      "geographyEn": "Middle Euphrates, including Habuba Kabira, Sheikh Hassan and Jebel Aruda, present-day Syria",
+      "category": "culture",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc3100en-clarke-middle-euphrates",
+        "bc3100en-nino-jebel-aruda"
+      ],
+      "selectionNote": "A major regional settlement contraction, distinct from Uruk's earlier monumental construction. The approximate synthesis date does not establish a simultaneous collapse, a known cause or abandonment of the entire region; NINO's occupation range is contextual.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
