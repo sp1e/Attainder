@@ -1,0 +1,107 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad0300-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 300,
+    "endYear": 399
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0300en-kuckertz-meroe",
+      "title": "Meroe and Egypt",
+      "institution": "UCLA Encyclopedia of Egyptology",
+      "url": "https://escholarship.org/content/qt6061m848/qt6061m848_noSplash_4b84e2797f1ceb61d541be46191786f0.pdf?t=rzuef9",
+      "locator": "Josefine Kuckertz (2021), printed p. 22, section The End of Meroe, continuing onto p. 23; PDF page index 22.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "around the mid-fourth century CE",
+      "originalChronology": "An approximate scholarly dating of the transition at Meroe. No royal pyramid burials are known there after this period; an exact final burial year is not established.",
+      "scopedClaim": "The archaeological record of royal pyramid burial at Meroe ends around the mid-fourth century. The wider political transition involved multiple changes and cannot be reduced to one conquest or destruction event.",
+      "reuseTerms": "Reference only; no images or extended source text redistributed."
+    },
+    {
+      "id": "ad0300en-arqueomex-adosada",
+      "title": "El Templo de Quetzalcóatl, Teotihuacan, Estado de México",
+      "institution": "Arqueología Mexicana / Editorial Raíces",
+      "url": "https://arqueologiamexicana.mx/mexico-antiguo/el-templo-de-quetzalcoatl-teotihuacan-estado-de-mexico",
+      "locator": "Public web excerpt from Especial 28, Teotihuacan, guía visual (August 2008), opening paragraph and third image caption. The complete print issue was not accessed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "hacia 350 d.C.",
+      "originalChronology": "Approximate date explicitly assigned to the covering of the Feathered Serpent Pyramid by the Adosada construction.",
+      "scopedClaim": "Places the Adosada covering around 350 CE and states that its causes have not been established.",
+      "reuseTerms": "Reference only; no images or extended source text redistributed."
+    },
+    {
+      "id": "ad0300en-met-ciudadela",
+      "title": "Teotihuacan: Ciudadela",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/es/essays/teotihuacan-ciudadela",
+      "locator": "Trenton D. Barnes, updated March 2024, section Modifications. The page's citation also gives the longer title The Feathered Serpent Pyramid and Ciudadela of Teotihuacan (ca. 150–250 CE).",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "after about 350 CE",
+      "originalChronology": "Describes the Adosada about a century after the pyramid's completion and the absence of major alterations after about 350 CE. The event's approximate construction date is supplied independently by Arqueología Mexicana, not calculated from this relative chronology.",
+      "scopedClaim": "The Adosada covered the western façade. A change in governance and respectful ritual caching are alternative interpretations. Attacks on other façades are undated and are not treated as the same event.",
+      "reuseTerms": "Reference only; no images or extended source text redistributed."
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-0350-meroe-royal-pyramid-burials-end",
+      "date": {
+        "kind": "approximate",
+        "startYear": 350,
+        "endYear": 350,
+        "displayEn": "Around the mid-fourth century CE",
+        "noteEn": "Kuckertz places the transition around the middle of the fourth century; 350 is an approximate chronological anchor, not a securely dated final burial. No royal pyramid burials are known at Meroe thereafter. This does not establish a single year for political collapse or an Aksumite conquest."
+      },
+      "titleEn": "Royal pyramid burials at Meroe come to an end",
+      "summaryEn": "The known sequence of royal pyramid burials at Meroe ends around this period. This change in royal funerary practice forms part of a wider, gradual transition whose causes and political chronology remain debated.",
+      "geographyEn": "Meroe, Middle Nile Valley, present-day Sudan",
+      "category": "culture",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "ad0300en-kuckertz-meroe"
+      ],
+      "selectionNote": "A major regional change in royal funerary practice, distinct from the earlier establishment of the royal cemetery and from Ezana's conversion. No exact political collapse or conquest date is asserted.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0350-teotihuacan-adosada-platform",
+      "date": {
+        "kind": "approximate",
+        "startYear": 350,
+        "endYear": 350,
+        "displayEn": "Around 350 CE",
+        "noteEn": "Arqueología Mexicana dates the Adosada covering to around 350 CE. The Met describes it in relative terms and reports no major changes to the complex after about 350. Its purpose is disputed: a political change and respectful ritual caching are alternative interpretations. Damage to the other façades has no established date."
+      },
+      "titleEn": "The Adosada platform covers Teotihuacan's Feathered Serpent Pyramid façade",
+      "summaryEn": "Builders place a stepped platform against the western façade of the Feathered Serpent Pyramid in Teotihuacan's Ciudadela. The new construction conceals its sculptural decoration. Scholars disagree over whether this marked a change in government or a respectful ritual covering.",
+      "geographyEn": "Teotihuacan, central Mexico",
+      "category": "culture",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "ad0300en-arqueomex-adosada",
+        "ad0300en-met-ciudadela"
+      ],
+      "selectionNote": "A significant alteration to a major civic and ritual monument, distinct from the Ciudadela's earlier construction. The cause of the covering remains disputed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
