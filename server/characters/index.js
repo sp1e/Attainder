@@ -35,6 +35,7 @@ import { ELECTION_REASON_SV, electOutsider, electiveTiers, nextSuccessionLaw } f
 import { electionOrder, presentElection, tallyElection } from './electors.js';
 import { primogenitureCandidates } from './succession.js';
 import { biologicalFather, paternityStep, recordIllegitimacy } from './paternity.js';
+import { bastardClaimStep } from './bastardClaims.js';
 import { correctionNote, traitsAtAdulthood, tutorProspect } from './tutoring.js';
 import { ensureRealmKind, presentRealm, validateRealmKind } from './realmKind.js';
 import { bondStep } from './bonds.js';
@@ -858,6 +859,7 @@ function annualStep(state, events) {
   syncPlotSecrets(state);
   prisonerStep(state, events, actionHooks(state));
   paternityStep(state, actionHooks(state));
+  bastardClaimStep(state, actionHooks(state));
   bondStep(state, actionHooks(state));
   npcPlotStep(state, events, actionHooks(state));
   annualRevenue = rounded(annualRevenue + courtAnnualStep(state, events, actionHooks(state)));
