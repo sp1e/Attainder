@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc2100-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -2100,
+    "endYear": -2001
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc2100en-laursen-gulf-seals",
+      "title": "The westward transmission of Indus Valley sealing technology: origin and development of the Gulf Type seal and other administrative technologies in Early Dilmun, c. 2100–2000 BC",
+      "institution": "Arabian Archaeology and Epigraphy; Steffen Terp Laursen, Aarhus University and Moesgaard Museum",
+      "url": "https://www.harappa.com/sites/default/files/pdf/The_westward_transmission_of_Indus_Valle.pdf",
+      "locator": "2010, volume 21, pp. 96–134; abstract p. 96, discussion pp. 129–130 and conclusion p. 131 (PDF pages 1, 34–36). Public PDF text extraction only.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "around 2050 BC",
+      "originalChronology": "The study covers about 2100–2000 BC. It reconstructs an earlier Gulf-type production phase around 2100–2050 BC and wider adoption in Dilmun around 2050 BC. This does not establish an exact invention year.",
+      "scopedClaim": "Gulf-type seals adapt Indus sealing traditions within a regional trading network. Laursen links their wider use in Dilmun to socioeconomic change, but reconstructs the merchants' identities and movements as an interpretation. No precise migration route, deciphered language or central monopoly is asserted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2100en-parpola-gulf-seals",
+      "title": "Indus Civilization (–1750 BCE), 2012 proofs",
+      "institution": "University of Helsinki research repository; Asko Parpola, Brill's Encyclopedia of Hinduism",
+      "url": "https://tuhat.helsinki.fi/ws/portalfiles/portal/127256327/Parpola_A_2012._Indus_Civilization_1750_BCE_._Proofs_of_pp._3_18_in_Brill_s_Encyclopedia_of_Hinduism_vol._4.pdf",
+      "locator": "PDF page 4, proof-page label 4, paragraph on Gulf-type seals from Bahrain and Failaka; bibliography cites Laursen 2010. The file is a proof, not the final paginated edition. Public text extraction only.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Dated 2100–2000 BCE",
+      "originalChronology": "The Gulf-type seal group is dated 2100–2000 BC. This is the group's full date range, not a foundation date for Bahrain or Failaka.",
+      "scopedClaim": "Round Gulf-type seals with Indus features are documented on Bahrain and Failaka and preceded the later Dilmun type. This synthesis cites Laursen and is not an independent excavation or independent chronological determination.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc2100-gulf-sealing-technology",
+      "date": {
+        "kind": "range",
+        "startYear": -2100,
+        "endYear": -2000,
+        "displayEn": "c. 2100–2000 BC; wider Dilmun adoption c. 2050 BC",
+        "noteEn": "The full range dates the Gulf-type seal tradition. Laursen distinguishes an earlier c. 2100–2050 BC phase from wider use in Dilmun around 2050 BC. The traders' identities and movements are reconstructed from archaeological evidence; no exact invention or migration year is known."
+      },
+      "titleEn": "Indus sealing traditions are adapted in Gulf trade",
+      "summaryEn": "Round Gulf-type stamp seals adapt features of Indus sealing traditions within trade networks linking Mesopotamia, Iran and Dilmun. Their wider use on Bahrain around 2050 BC accompanies socioeconomic change; Laursen interprets the transfer as involving Harappan and Dilmunite merchants.",
+      "geographyEn": "Persian Gulf trade networks, especially Bahrain in Dilmun",
+      "category": "technology",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc2100en-laursen-gulf-seals",
+        "bc2100en-parpola-gulf-seals"
+      ],
+      "selectionNote": "The regional adoption of an administrative technology is distinct from a single object or a settlement foundation. Significance rests on the study's connection between wider sealing practices and socioeconomic change; the proposed agents of transfer remain qualified.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
