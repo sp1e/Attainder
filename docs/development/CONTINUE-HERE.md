@@ -143,7 +143,23 @@ Phase 4, moment 5 of `docs/superpowers/specs/2026-10-31-ai-game-master-design.md
 - `server/characters/tutoring.js` holds the rule. When the mentor holds a trait whose opposite (`OPPOSITE_TRAITS`) the child has, the adulthood step's existing draw replaces that trait in place below `CORRECTION_CHANCE` (0.6). Without an opposite the old rule applies: below 0.4 the traits become `[own first, mentor first]`.
 - The adulthood step still makes one `random(state)` call, only while the mentor lives. The educate event names the prospect and the adulthood event names a correction that took.
 - No NPC calls `educate`; a newborn's mentor is its mother. The demo and Charlemagne seeds 777 and 321 gave the same random streams, sequence and health values over 300 years on `main` and on the branch.
-- The other Phase 4 moments, smallest first: 10 (a handover card at `beginReign`), 8 (a revealed adult illegitimate child with a grudge becomes a faction claimant through `claimantFor`), 9 (a cadet branch splits off on the pattern in `renewal.js`), 6 (partition, which needs a spec for several realms or appanages, since the game holds one `state.realm`).
+- Moments 10 and 8 follow below. Moments 9 (a cadet branch splits off on the pattern in `renewal.js`) and 6 (partition, which needs a spec for several realms or appanages, since the game holds one `state.realm`) remain.
+
+## A handover card for a new reign
+
+Phase 4, moment 10. The spec is `docs/superpowers/specs/2026-11-09-reign-handover-design.md`, PR #166, `b0130272`.
+
+- `server/characters/handover.js` exports `reignHandover(state, hooks)` and `HANDOVER_MONTHS` (12). It reads only `offices.ruler.history` and `state.reign`, and the court panel (`CourtSections.jsx`) shows the card "Ett nytt styre" for the first twelve months of a reign.
+- There is no card at the campaign start, when the nearest earlier holder is the sitting ruler (a dissolution), when the last history entry is not dated `reign.startedAt` (old saves), or when nothing differs.
+- Every written person in the Charlemagne court has the same generated values (steward, dutiful, 5,6,5,5,4,4), so an abdication at the start shows no card. Over 150 years of seed 777 all 22 later pairs of rulers differ. Codex owns the court seeds.
+
+## A ruler's illegitimate child claims the throne
+
+Phase 4, moment 8. The spec is `docs/superpowers/specs/2026-11-10-bastard-claimant-design.md`, PR #167, `6e3b3ca5`.
+
+- `server/characters/bastardClaims.js` finds royal bastards: living subjects of an exposed `illegitimate_child` secret whose biological father appears in `offices.ruler.history`, the sitting ruler left out. `claimantFor` puts the eldest free adult one first.
+- The yearly step gives each adult royal bastard −20 "Förnekad arvsrätt" for 20 years towards the sitting ruler, one cause per ruler and none towards its own father. The ultimatum names the claimant "X, oäkta barn till Y".
+- The module draws nothing. Over 300 years of five seeds 11 of 72 children of an affair had a father who ruled, and NPC play exposed none, so a run matches `main` until the player, blackmail or a deathbed confession exposes one.
 
 ## Branch state
 
