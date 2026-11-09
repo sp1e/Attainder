@@ -2,7 +2,7 @@
 
 ## Current publication checkpoint: 9 November 2026
 
-The latest verified merge is PR #103 at `63f3005f1f6e0026b499cca96d92e26fd8654686`: 806 approved event records, 739 sources and 6,957 bilingual entries. Its required tests and build passed. This branch prepares the BC0200 batch, which would raise those totals to 842 events, 772 sources and 7,203 bilingual entries; current-head CI and merge are separate publication gates. Every covered research interval remains partial. The chronological record below preserves earlier milestones and their limits. Claude owns runtime integration and gameplay verification.
+This research delivery contains 869 approved event records, 795 sources and 7,384 bilingual entries. Coverage spans 4,130 partially researched years; 700 years remain unresearched in the approved catalog. The preceding verified merge is PR #104 at `8c1752ef15909e6bc90090a27f0a889f729036ba`, whose required tests and build passed. Publication requires current-head CI and a verified merge. The chronological record below preserves the review chain, earlier milestones and remaining holds. Claude owns runtime integration and gameplay verification.
 
 Updated by Codex on 7 November 2026 at main `b44c77d733d49fac34917c913f5845f4f8681760`.
 
@@ -656,3 +656,18 @@ The independent final review passed all 202 pairs and 63 checks. Root verified t
 BC0200 adds 36 events, 33 sources and 246 bilingual pairs (180 English event strings and 66 Swedish source strings). Source review records 32 PASS and four CORRECTION event outcomes, plus thirty PASS and three CORRECTION source outcomes. Twelve exact fields changed: six event fields, three explicit metadata fields and three consequential metadata fields. Numantia's neutral fall description preserves the distinction between Scullard's storming wording and Steel's surrender account. Bharhut's century wording is clarified and two importance values reduced. Five language records changed; 241 remained identical. Numeric date endpoints and date kinds are unchanged.
 
 The independent final review passed all 246 pairs and 306 checks. Root verified twenty-one original/copy input pairs, all twelve data changes and exact baseline equality against merged PR #103. The resulting catalog has 842 approved events and 772 sources. Coverage changes only for 200–101 BC, reaching 4,030 partial years and 800 unresearched years. BC0600 and BC0900 remain excluded under their policy holds. Source-access limits, competing dates and complete historical periods remain explicit. Claude retains runtime, language-options, popup and gameplay integration.
+
+
+## BC0200 merged; BC0100 reviewed publication
+
+[PR #104](https://github.com/sp1e/Attainder/pull/104) merged at `8c1752ef15909e6bc90090a27f0a889f729036ba`. All eight published blobs and the retained branch head `90d3622f5916121fe0c6bcc480248ad15d7b64a5` were verified. Its data revision is `30cdfec7d085dfd82c77446a0ac61aa5485eb65b`. Required CI ran 5,339 tests: 5,337 passed, zero failed or skipped, two TODOs; the build passed in 40.49 seconds.
+
+BC0100 adds 27 events, 23 sources and 181 bilingual pairs (135 English event strings and 46 Swedish source strings). The unchanged source report remains HOLD: nineteen event PASS, eight HOLD and eight FAIL; the retained FAIL findings concern editorial importance. Eight complete held events and seven unused sources are excluded. Eight importance corrections are applied. The first final review found two grammatical/idiomatic defects in the piracy event; revision 02 corrects those two fields and language pairs. All numeric historical dates and retained sources remain unchanged. The original HOLD and first final FAIL reports remain preserved.
+
+The independent revision 02 final review passed all 181 pairs and 63 checks. Root verified thirty-seven original/copy input pairs, exact ranking and wording changes, and exact baseline equality against merged PR #104. The resulting catalog has 869 approved events and 795 sources. Coverage changes only for 100–1 BC, reaching 4,130 partial years and 700 unresearched years. Source-access limits, traditional dates and calendar alternatives remain explicit. Claude retains runtime, language-options, popup and gameplay integration.
+
+## Remaining research coverage and supplement hold
+
+The approved catalog still marks seven windows unresearched: 2600–2501, 1600–1501, 1400–1301, 900–801 and 600–501 BC, plus AD 400–499 and 600–699. Their earlier source-access and tool-review holds remain in force. Private preparation does not establish approved catalog coverage. All other covered windows remain partial; this delivery does not supply a securely dated important event for every year.
+
+A separate BC0800 supplement was attempted after the active publication queue had completed review. Automatic tool review rejected its combined catalog-comparison and candidate-packaging operation before process start with `blocked by policy`, without a more specific reason. A read-only incident check found all seven intended output files absent. The saved discovery results remain separate from approved data. No candidate reconstruction, smaller-command retry, tool substitution, independent source-review launch or bilingual packaging followed the denial. The already published BC0800 batch is unchanged. This supplement hold is separate from the previously recorded BC0600 and other holds.

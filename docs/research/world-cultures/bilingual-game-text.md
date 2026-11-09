@@ -28,9 +28,9 @@ The [catalog README](../../../public/lang/attainder/help/README.md) describes th
 
 ## Later event batches
 
-The BC2300, AD700, AD500, BC2200, AD300, BC2100, AD200, BC2000, AD100, BC1900, BC1800, BC1700, AD1, BC1500, BC1300, BC1200, BC1100, BC1000, BC0800, BC0700, BC0500, BC0400 and BC0300 deliveries added 1,763 English event fields and 646 Swedish source-panel fields. The BC0200 batch adds another 180 English event fields and 66 Swedish source-panel fields. The sidecars now contain 5,659 English entries and 1,544 Swedish entries, covering all display fields for 842 events and all locators and institution fields for 772 sources. All prior translation entries are unchanged.
+The BC2300, AD700, AD500, BC2200, AD300, BC2100, AD200, BC2000, AD100, BC1900, BC1800, BC1700, AD1, BC1500, BC1300, BC1200, BC1100, BC1000, BC0800, BC0700, BC0500, BC0400, BC0300 and BC0200 deliveries added 1,943 English event fields and 712 Swedish source-panel fields. The BC0100 batch adds another 135 English event fields and 46 Swedish source-panel fields. The sidecars now contain 5,794 English entries and 1,590 Swedish entries, covering all display fields for 869 events and all locators and institution fields for 795 sources. All prior translation entries are unchanged.
 
-Both sidecars identify source revision `30cdfec7d085dfd82c77446a0ac61aa5485eb65b`, the preceding research-data commit on the retained `research/e-bc0200-events` branch. All 7,203 source strings and UTF-8 hashes were checked against that exact Git revision. A later event batch must commit its research data before advancing this pointer, then verify every existing and added entry against the new snapshot.
+Both sidecars identify source revision `710f7f094a509d091487a99bb556d232a496d760`, the preceding research-data commit on the retained `research/e-bc0100-events` branch. All 7,384 source strings and UTF-8 hashes were checked against that exact Git revision. A later event batch must commit its research data before advancing this pointer, then verify every existing and added entry against the new snapshot.
 
 ## Translation contract
 
