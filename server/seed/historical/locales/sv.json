@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "a3e32afda06f6b07df46b08e8f377d86d2baac99",
+  "sourceRevision": "49ae3f833ea4598f275bab88d1c6fca0617554ad",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -14412,6 +14412,182 @@
         "sourceId": "bc0800-ussishkin-lachish",
         "fieldPath": "/locator",
         "textSha256": "63708c8391206802fab076b8ba54e5e7701f01d33dfac750a0f138ca712af20c"
+      }
+    },
+    {
+      "id": "source/bc0700-tabasco-stele-three/institution",
+      "en": "Museums of Tabasco, Government of Tabasco",
+      "sv": "Tabascos museer, delstatsregeringen i Tabasco",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-tabasco-stele-three",
+        "fieldPath": "/institution",
+        "textSha256": "d04097e06e22f965f1344a7afdf9f2eda5d75823f41d88b70470c6f1a9c3041c"
+      }
+    },
+    {
+      "id": "source/bc0700-tabasco-stele-three/locator",
+      "en": "Estela 3, web lines 28–36.",
+      "sv": "Estela 3, webbrader 28–36.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-tabasco-stele-three",
+        "fieldPath": "/locator",
+        "textSha256": "b6943d19ea6708eb143b479d7d574211b492ce439b2b9242b46bb4f47307ce46"
+      }
+    },
+    {
+      "id": "source/bc0700-levavi-babylon/institution",
+      "en": "Yuval Levavi; University of Vienna research portal; chapter published in 2021",
+      "sv": "Yuval Levavi; forskningsportalen vid University of Vienna; kapitlet publicerat 2021",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-levavi-babylon",
+        "fieldPath": "/institution",
+        "textSha256": "109e8cfa03e05630463c2ba454cf1cdaed7ebd9ecd64342dad86f8db86357509"
+      }
+    },
+    {
+      "id": "source/bc0700-levavi-babylon/locator",
+      "en": "Public abstract, web lines 16–18; full chapter not accessed.",
+      "sv": "Offentligt abstract, webbrader 16–18; hela kapitlet har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-levavi-babylon",
+        "fieldPath": "/locator",
+        "textSha256": "072193aff6114463bb3c2277b388486dbc765173d54d97089afba19509f7cf75"
+      }
+    },
+    {
+      "id": "source/bc0700-manchester-thebes/institution",
+      "en": "Manchester Museum; University of Manchester Digital Collections",
+      "sv": "Manchester Museum; University of Manchester Digital Collections",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-manchester-thebes",
+        "fieldPath": "/institution",
+        "textSha256": "87276b719ead5c530e20598c04e061726f3a47fd7114b9489650e3d66e88d2b8"
+      }
+    },
+    {
+      "id": "source/bc0700-manchester-thebes/locator",
+      "en": "Object interpretation, web lines 6–7.",
+      "sv": "Föremålstolkning, webbrader 6–7.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-manchester-thebes",
+        "fieldPath": "/locator",
+        "textSha256": "9a87953272a760d86144c24a57b793016a7c0b6919ebdb661ba6131d53331c15"
+      }
+    },
+    {
+      "id": "source/bc0700-larousse-thebes/institution",
+      "en": "Larousse, school reference dictionary",
+      "sv": "Larousse, uppslagsverk för skolan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-larousse-thebes",
+        "fieldPath": "/institution",
+        "textSha256": "a2ef22fe72a8e53a551a7a07c89de3e178ad35f27273459b1fa18d3d3abd50fe"
+      }
+    },
+    {
+      "id": "source/bc0700-larousse-thebes/locator",
+      "en": "Historical description, web line 18.",
+      "sv": "Historisk beskrivning, webbrad 18.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-larousse-thebes",
+        "fieldPath": "/locator",
+        "textSha256": "69cd1b91d92305c29944ef018c27f8b3e0d89d8f3b4ae0dba282e58aae4d3712"
+      }
+    },
+    {
+      "id": "source/bc0700-met-psamtik/institution",
+      "en": "Marsha Hill and James P. Allen; The Metropolitan Museum of Art",
+      "sv": "Marsha Hill och James P. Allen; The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-met-psamtik",
+        "fieldPath": "/institution",
+        "textSha256": "25943768b12c172f3f727ccdc4b51f2717a7a554340377a5d82070f4f3f1e334"
+      }
+    },
+    {
+      "id": "source/bc0700-met-psamtik/locator",
+      "en": "Saite Period, or Dynasty 26, web lines 125–128.",
+      "sv": "Saite Period, or Dynasty 26, webbrader 125–128.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-met-psamtik",
+        "fieldPath": "/locator",
+        "textSha256": "be867d160039bf55af0b66f50942c9be74debfc5556110470f9f51016a75e67d"
+      }
+    },
+    {
+      "id": "source/bc0700-pankenier-chengpu/institution",
+      "en": "David W. Pankenier; Journal of the American Oriental Society 119 (2), 1999, pp. 261–279; author copy at Lehigh University",
+      "sv": "David W. Pankenier; Journal of the American Oriental Society 119 (2), 1999, s. 261–279; författarens exemplar vid Lehigh University",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-pankenier-chengpu",
+        "fieldPath": "/institution",
+        "textSha256": "cc3bc650568ea4efd5445c41f1cd0068136d6900e9b774445a816a3f3b43ab88"
+      }
+    },
+    {
+      "id": "source/bc0700-pankenier-chengpu/locator",
+      "en": "Appendix, printed pages 277–279 (PDF pages 18–20), especially battle entry on page 278.",
+      "sv": "Appendix, tryckta sidor 277–279 (PDF-sidor 18–20), särskilt posten om slaget på sida 278.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-pankenier-chengpu",
+        "fieldPath": "/locator",
+        "textSha256": "86f95abf02175e267f226db9f8223b4df9e8fae4c975e82cb3e888c3fb4ef875"
+      }
+    },
+    {
+      "id": "source/bc0700-athens-drakon/institution",
+      "en": "Nautilos, Department of History and Archaeology, National and Kapodistrian University of Athens",
+      "sv": "Nautilos, institutionen för historia och arkeologi, National and Kapodistrian University of Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-athens-drakon",
+        "fieldPath": "/institution",
+        "textSha256": "881a62cbddcf897e72e64b956418673e1d2b31e3492dfe963cf15122954b9336"
+      }
+    },
+    {
+      "id": "source/bc0700-athens-drakon/locator",
+      "en": "Commentary, web lines 123–128; republication date in lines 101 and 125–126.",
+      "sv": "Kommentar, webbrader 123–128; återpubliceringens datum på rader 101 och 125–126.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-athens-drakon",
+        "fieldPath": "/locator",
+        "textSha256": "4f52c8b14f9dc3d4de1e294a81f34f5961e96b727961d6e7610ce44b8f4f4ef8"
+      }
+    },
+    {
+      "id": "source/bc0700-iraq-nineveh/institution",
+      "en": "Department of Antiquities and Heritage, Iraq; tentative-list submission hosted by UNESCO World Heritage Centre",
+      "sv": "Department of Antiquities and Heritage, Irak; förslag till preliminära listan publicerat av UNESCO World Heritage Centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-iraq-nineveh",
+        "fieldPath": "/institution",
+        "textSha256": "90b0116970f3fb3fb3c87bd35bd608c7145a4c96e8fab710eab3e6dde50d04b0"
+      }
+    },
+    {
+      "id": "source/bc0700-iraq-nineveh/locator",
+      "en": "Description, web lines 80–83; submitting authority and date, lines 60–67.",
+      "sv": "Description, webbrader 80–83; inlämnande myndighet och datum, rader 60–67.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0700-iraq-nineveh",
+        "fieldPath": "/locator",
+        "textSha256": "19914730d96ed3b3077524e5da668cd6360c286213cb4e1c9640a1c731912ed5"
       }
     }
   ]
