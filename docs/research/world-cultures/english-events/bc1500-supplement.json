@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc1500-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -1500,
+    "endYear": -1401
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc1500en-walters-egyptian-glass",
+      "title": "Krateriskos",
+      "institution": "The Walters Art Museum",
+      "url": "https://art.thewalters.org/object/47.32/",
+      "locator": "Historical discussion preceding the object description, web lines 78–80. The object itself is separately dated at line 74; its manufacture is not the event selected here. Public text read; images not inspected or downloaded.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "around 1500 BCE",
+      "originalChronology": "The museum places the emergence of true-glass production in Egypt around 1500 BCE, in the early Eighteenth Dynasty. Its object date of approximately 1390–1336 BCE and the later industry's flourishing under Amenhotep III and Akhenaten are separate chronologies.",
+      "scopedClaim": "Glass becomes a craft material in Egypt, distinct from the much older faience tradition. The museum presents western Asian technological transfer as a hypothesis, with early imports of raw glass and finished vessels considered likely. It does not establish a particular immigrant artisan or a first workshop's exact founding year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1500en-nicholson-jackson-early-glass",
+      "title": "Glass of Amenhotep II from Tomb KV55 in the Valley of the Kings",
+      "institution": "Paul T. Nicholson and Caroline Jackson; The Journal of Egyptian Archaeology 99 (2013), Egypt Exploration Society; Cardiff University repository",
+      "url": "https://orca.cardiff.ac.uk/id/eprint/50789/1/Nicholson%2004JEA99-085-100.pdf",
+      "locator": "Printed page 89, PDF page 11, introduction and possible local-production chronology, extracted lines 289–300; printed page 99, PDF page 21, Conclusions, lines 648–659. Title, authors and volume date on PDF page 7. Extracted text read; no visual PDF verification claimed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "introduced to Egypt in around 1500 bc",
+      "originalChronology": "The authors place glass's introduction around 1500 BCE, while treating local production as potentially beginning under Thutmose III, whose full reign they give as 1479–1425 BCE. That reign is not converted into an exact first-production year. Their conclusions support local production relatively early, before the later Amarna industry.",
+      "scopedClaim": "The introduction of glass and the development of local raw-glass manufacture require separate treatment. Glass was a desirable, high-status commodity; the paper argues for Egyptian manufacture of early vessels without securely identifying the first local workshop or its start date.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1500-glassworking-takes-hold-in-egypt",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1500,
+        "endYear": -1500,
+        "displayEn": "Around 1500 BCE",
+        "noteEn": "The sources place glass's introduction or the emergence of its production in Egypt around 1500 BCE. Nicholson and Jackson distinguish this from possible local manufacture under Thutmose III, whose reign they date to 1479–1425 BCE. No exact first workshop, local production year or arrival of an individual artisan is established."
+      },
+      "titleEn": "Glassworking takes hold in Egypt",
+      "summaryEn": "Glass becomes a prized craft material in Egypt, alongside the older tradition of faience. The Walters Museum links the new technology to a possible transfer from western Asia, with early imports of raw glass and finished vessels. The timing of the first local raw-glass manufacture remains less certain than the approximate introduction of the material.",
+      "geographyEn": "Egypt; possible technological connections with western Asia",
+      "category": "technology",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc1500en-walters-egyptian-glass",
+        "bc1500en-nicholson-jackson-early-glass"
+      ],
+      "selectionNote": "A notable transfer and adoption of a craft material, distinct from the invention of glass worldwide, older faience, a single surviving vessel or later Amarna workshops. The approximate introduction around 1500 BCE remains separate from the uncertain onset of local raw-glass manufacture. Western Asian technological influence and early imports retain their qualified status; the full 1479–1425 BCE reign is context, not an invented production interval.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
