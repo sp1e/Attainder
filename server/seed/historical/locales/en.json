@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "a9bcbced6865e4d55f753dd0cf5ae5153d9b06bc",
+  "sourceRevision": "d59a7fa4a9c3e4faac4166d7a7eae83c68fd46a5",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -43815,6 +43815,446 @@
         "eventId": "ev-0395-arcadius-och-honorius-eftertrader",
         "fieldPath": "/geographySv",
         "textSha256": "8c427d1108421c9bcae213b8f81de49862749fe627927718432540e73e409724"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-dholaviras-vattenanlaggningar-forfaller/date/displaySv",
+      "sv": "cirka 2100–2000 f.Kr. (Dholaviras period V)",
+      "en": "circa 2100–2000 BC (Dholavira's Period V)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-dholaviras-vattenanlaggningar-forfaller",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7132f27cce22d103b3b380a7dd6ee09fe8ce7902cda6d635ed801749738b6f1e"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-dholaviras-vattenanlaggningar-forfaller/date/noteSv",
+      "sv": "ICOMOS daterar hela period V till cirka 2100–2000 f.Kr. Skador på vattenanläggningarna hör till fasens mitt. Dateringen anger inget enskilt skadeår.",
+      "en": "ICOMOS dates the whole of Period V to circa 2100–2000 BC. Damage to the water installations belongs to the middle of the phase. The dating gives no individual year for the damage.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-dholaviras-vattenanlaggningar-forfaller",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "bf56e06e53619aa6d9796e0d8b98eddb834c658b939934b210e32808e5194084"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-dholaviras-vattenanlaggningar-forfaller/titleSv",
+      "sv": "Invånarna lämnar skadade vattenanläggningar oreparerade i Dholavira",
+      "en": "Residents leave damaged water installations unrepaired at Dholavira",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-dholaviras-vattenanlaggningar-forfaller",
+        "fieldPath": "/titleSv",
+        "textSha256": "6da9836c9d8ab6d437146407a3893e209d2285515c435c46b8dd05422376834d"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-dholaviras-vattenanlaggningar-forfaller/summarySv",
+      "sv": "Invånarna underhåller Dholaviras byggnader allt sämre, och byggare utför reparationer av sämre kvalitet. Under fasens mitt skadas vattenanläggningar som sedan förblir oreparerade.",
+      "en": "Residents maintain Dholavira's buildings increasingly poorly, and builders carry out lower-quality repairs. Water installations are damaged in the middle of the phase and then remain unrepaired.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-dholaviras-vattenanlaggningar-forfaller",
+        "fieldPath": "/summarySv",
+        "textSha256": "643afcbfc6646dc848dc2305c7577eabc67097809d35220a180c74fcbd442cdb"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-dholaviras-vattenanlaggningar-forfaller/geographySv",
+      "sv": "Dholavira, Khadir, Gujarat, Indien",
+      "en": "Dholavira, Khadir, Gujarat, India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-dholaviras-vattenanlaggningar-forfaller",
+        "fieldPath": "/geographySv",
+        "textSha256": "9fdad17c60aa5b1e37beab57d8f6ef9ee6215434e2b6a461f7994aa44d8c0c95"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-taosi-stor-stadsmur/date/displaySv",
+      "sv": "cirka 2100–2000 f.Kr. (Taosis mellanskede)",
+      "en": "circa 2100–2000 BC (Taosi's Middle phase)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-taosi-stor-stadsmur",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8ead79c4f52371b4b0452a0996b66830aa0890d2ed7b9c940d747230944cf7e2"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-taosi-stor-stadsmur/date/noteSv",
+      "sv": "He Nu daterar den stora stadsinhägnaden och hantverksområdet till mellanskedet 2100–2000 f.Kr. Ingen gemensam byggstart för hela staden anges.",
+      "en": "He Nu dates the large city enclosure and craft area to the Middle phase, 2100–2000 BC. No common start of construction for the whole city is given.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-taosi-stor-stadsmur",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3b8f6bd60ad9e9122e67866aca367db1140d018849ffc8ee5c56078ea8aa746e"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-taosi-stor-stadsmur/titleSv",
+      "sv": "Byggare omger Taosis växande stad med en stor mur",
+      "en": "Builders enclose Taosi's growing city with a large wall",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-taosi-stor-stadsmur",
+        "fieldPath": "/titleSv",
+        "textSha256": "826f18fe66f10363dd995dc5a3e28069dc97885d5f0a91413b0df66d11a2956f"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-taosi-stor-stadsmur/summarySv",
+      "sv": "Byggare uppför en stor stadsinhägnad i Taosi. Hantverkare arbetar med keramik och sten i ett särskilt område i stadens sydvästra del.",
+      "en": "Builders construct a large city enclosure at Taosi. Craftspeople work with pottery and stone in a separate area in the southwestern part of the city.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-taosi-stor-stadsmur",
+        "fieldPath": "/summarySv",
+        "textSha256": "2291fd27166e8d7b275cd7a254b6a1277436a4c4e6b448a69c181f2ad6cf2d23"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-taosi-stor-stadsmur/geographySv",
+      "sv": "Taosi, Shanxi, Kina",
+      "en": "Taosi, Shanxi, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-taosi-stor-stadsmur",
+        "fieldPath": "/geographySv",
+        "textSha256": "5ce9b2264b28177c77a7d8c24f2bb48b41360e06cd323037bfe6cf9b778d7096"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-befasta-sintashta-bosattningar/date/displaySv",
+      "sv": "cirka 2100–1800 eller 2040–1730 f.Kr. (skilda arkeologiska tidsramar)",
+      "en": "circa 2100–1800 or 2040–1730 BC (different archaeological time frames)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-befasta-sintashta-bosattningar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0857601a47937e2d596677e20d1d3401e978f85589ec568345aa7b64f3ce6b35"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-befasta-sintashta-bosattningar/date/noteSv",
+      "sv": "Anthony anger cirka 2100–1800 f.Kr. Lindner redovisar cirka 2040–1730 kalibrerade f.Kr. för Sintashtaskedet med 95,4 procents konfidens och beskriver framväxten omkring 2000 f.Kr. Det samlade intervallet återger skilda ramar och anger ingen oavbruten byggperiod.",
+      "en": "Anthony gives circa 2100–1800 BC. Lindner reports circa 2040–1730 calibrated BC for the Sintashta stage at 95.4 per cent confidence and describes its emergence around 2000 BC. The combined interval represents different frameworks and gives no continuous construction period.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-befasta-sintashta-bosattningar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "4f12688d273dfe373cad6a5e68620f27a484b2bfcbaab7cd960c1ad87c34c1e3"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-befasta-sintashta-bosattningar/titleSv",
+      "sv": "Invånare bygger befästa bosättningar öster om Ural",
+      "en": "Residents build fortified settlements east of the Urals",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-befasta-sintashta-bosattningar",
+        "fieldPath": "/titleSv",
+        "textSha256": "d3ce55e385b36cef9db073de59ddc9f8d370cb9e593a2b38793abd26b87afffb"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-befasta-sintashta-bosattningar/summarySv",
+      "sv": "Invånare anlägger befästa bosättningar mellan övre Ural och övre Tobol. Metallhantverkare bearbetar koppar och arsenikbrons inne i bosättningarna, som arkeologer för till Sintashtakomplexet.",
+      "en": "Residents establish fortified settlements between the upper Ural and upper Tobol rivers. Metalworkers process copper and arsenical bronze within the settlements, which archaeologists assign to the Sintashta complex.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-befasta-sintashta-bosattningar",
+        "fieldPath": "/summarySv",
+        "textSha256": "6a9e3d0e06ffa4f426c2dc6903b29bfff2a5da5e220e4ee28c65b40ef913d61f"
+      }
+    },
+    {
+      "id": "event/ev-bc2100-befasta-sintashta-bosattningar/geographySv",
+      "sv": "Stäppen mellan övre Ural och övre Tobol, sydöst om Uralbergen",
+      "en": "The steppe between the upper Ural and upper Tobol rivers, southeast of the Ural Mountains",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2100-befasta-sintashta-bosattningar",
+        "fieldPath": "/geographySv",
+        "textSha256": "b22ba50e7b7bab73107e95cdcf895d3ae0a61bfebf7b8254a84ee8c37b6ee400"
+      }
+    },
+    {
+      "id": "event/ev-bc2094-shulgi-atertar-susa/date/displaySv",
+      "sv": "under Shulgi: 2094–2047 eller 2093–2046 f.Kr.",
+      "en": "under Shulgi: 2094–2047 or 2093–2046 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2094-shulgi-atertar-susa",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d33ad2718ae92ae14a2fa0b75b2303b5d4b5215832ad786005753c2bdb772509"
+      }
+    },
+    {
+      "id": "event/ev-bc2094-shulgi-atertar-susa/date/noteSv",
+      "sv": "Vallat placerar Shulgi i 2094–2047 f.Kr.; Sazonov anger 2093–2046 f.Kr. Dessa kronologiska ramar gäller regeringstiden och fastställer inget enskilt år för erövringen eller ett flerårigt fälttåg.",
+      "en": "Vallat places Shulgi in 2094–2047 BC; Sazonov gives 2093–2046 BC. These chronological frameworks concern the reign and establish no individual year for the conquest or a campaign lasting several years.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2094-shulgi-atertar-susa",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7694c293f6a0649cd5f1a44e1caecf0ee8216330200ba57af51e333be61387a0"
+      }
+    },
+    {
+      "id": "event/ev-bc2094-shulgi-atertar-susa/titleSv",
+      "sv": "Shulgi återtar Susa och området omkring staden",
+      "en": "Shulgi retakes Susa and the area around the city",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2094-shulgi-atertar-susa",
+        "fieldPath": "/titleSv",
+        "textSha256": "f7fd3db26757476119a5f9cba3207637dc0ccd6cf6cb8acdc7ec925c70ad8d10"
+      }
+    },
+    {
+      "id": "event/ev-bc2094-shulgi-atertar-susa/summarySv",
+      "sv": "Shulgi av Ur återtar Susa och dess omgivningar. Härskarna i Ur införlivar åter området i sitt rike.",
+      "en": "Shulgi of Ur retakes Susa and its surroundings. The rulers of Ur reincorporate the area into their realm.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2094-shulgi-atertar-susa",
+        "fieldPath": "/summarySv",
+        "textSha256": "0b5e28214d1099187583283b0c58e1c10919efe5e40e7bd2e9511a89c74f7b4b"
+      }
+    },
+    {
+      "id": "event/ev-bc2094-shulgi-atertar-susa/geographySv",
+      "sv": "Susa och dess omgivningar, sydvästra Iran",
+      "en": "Susa and its surroundings, southwestern Iran",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2094-shulgi-atertar-susa",
+        "fieldPath": "/geographySv",
+        "textSha256": "ee225c1fc2f76c4a2a18e0d03f7df18a04743c7d708d069f7bf9eca1b32d9fd1"
+      }
+    },
+    {
+      "id": "event/ev-bc2094-shulgi-gudomlig-kungakult/date/displaySv",
+      "sv": "under Shulgi: 2094–2047 eller 2093–2046 f.Kr.",
+      "en": "under Shulgi: 2094–2047 or 2093–2046 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2094-shulgi-gudomlig-kungakult",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d33ad2718ae92ae14a2fa0b75b2303b5d4b5215832ad786005753c2bdb772509"
+      }
+    },
+    {
+      "id": "event/ev-bc2094-shulgi-gudomlig-kungakult/date/noteSv",
+      "sv": "Sazonov placerar återupptagandet av kungakulten troligen i regeringstidens första hälft men ger inget årtal. Han daterar regeringen till 2093–2046 f.Kr.; Vallat anger 2094–2047 f.Kr. Intervallet återger regeringstidens alternativa gränser.",
+      "en": "Sazonov places the restoration of the royal cult probably in the first half of the reign but gives no year. He dates the reign to 2093–2046 BC; Vallat gives 2094–2047 BC. The interval represents the alternative limits of the reign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2094-shulgi-gudomlig-kungakult",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b74298b671dfb3703c808f1244e5a65a7fc50907f868e64dac4fe5c3e83b595b"
+      }
+    },
+    {
+      "id": "event/ev-bc2094-shulgi-gudomlig-kungakult/titleSv",
+      "sv": "Shulgi återupptar enligt Sazonov kulten av gudomliga kungar",
+      "en": "According to Sazonov, Shulgi restores the cult of divine kings",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2094-shulgi-gudomlig-kungakult",
+        "fieldPath": "/titleSv",
+        "textSha256": "c6a8a2824cc1094f538eb76754219804c78e0ffb5b9db1e3b82c02c944be6deb"
+      }
+    },
+    {
+      "id": "event/ev-bc2094-shulgi-gudomlig-kungakult/summarySv",
+      "sv": "Enligt Sazonov återupptar Shulgi kulten av gudomliga kungar, troligen under regeringstidens första hälft. Hymner och andra texter framställer honom som gudomlig och som hjälte.",
+      "en": "According to Sazonov, Shulgi restores the cult of divine kings, probably during the first half of his reign. Hymns and other texts portray him as divine and as a hero.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2094-shulgi-gudomlig-kungakult",
+        "fieldPath": "/summarySv",
+        "textSha256": "3386aafc32ed0a2b534abbf0f25bc683c1f9e4cb7c211ac8f89a5c5b9cb278ba"
+      }
+    },
+    {
+      "id": "event/ev-bc2094-shulgi-gudomlig-kungakult/geographySv",
+      "sv": "Ur och Mesopotamien",
+      "en": "Ur and Mesopotamia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2094-shulgi-gudomlig-kungakult",
+        "fieldPath": "/geographySv",
+        "textSha256": "ebb1916f7b5f9b7e7ed2b366125e93139801f8c8fe11d7fc0fb0d4ac53a4acc3"
+      }
+    },
+    {
+      "id": "event/ev-bc2050-mentuhoteps-gravkomplex/date/displaySv",
+      "sv": "omkring 2050–2000 f.Kr.",
+      "en": "around 2050–2000 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2050-mentuhoteps-gravkomplex",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5b00ea94d47f6b7337fb66d3e0cf7b1e8c75439a7e64888fdde22f88c9ba4678"
+      }
+    },
+    {
+      "id": "event/ev-bc2050-mentuhoteps-gravkomplex/date/noteSv",
+      "sv": "Metropolitan Museum daterar byggandet av gravkomplexet till omkring 2050–2000 f.Kr. Museets snävare datering av Henhenets helgedomsfragment, cirka 2051–2030 f.Kr., gäller ett annat dateringsobjekt.",
+      "en": "The Metropolitan Museum dates construction of the funerary complex to around 2050–2000 BC. The museum's narrower date for Henhenet's shrine fragment, circa 2051–2030 BC, concerns a different dating subject.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2050-mentuhoteps-gravkomplex",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "4d5f48b38d289380f359a8803c423b273bb78883af9e7a7153a644987398f947"
+      }
+    },
+    {
+      "id": "event/ev-bc2050-mentuhoteps-gravkomplex/titleSv",
+      "sv": "Byggare uppför Mentuhotep II:s gravkomplex i Deir el-Bahri",
+      "en": "Builders construct Mentuhotep II's funerary complex at Deir el-Bahri",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2050-mentuhoteps-gravkomplex",
+        "fieldPath": "/titleSv",
+        "textSha256": "a7ba81f832a3d17c4c2d17f519edddb5cfe003a62179aeaf47d523b314f2f24b"
+      }
+    },
+    {
+      "id": "event/ev-bc2050-mentuhoteps-gravkomplex/summarySv",
+      "sv": "Byggare uppför ett gravkomplex för Mentuhotep II och kvinnliga medlemmar av kungafamiljen. Där hedrar man också kungens återförening av Egypten och dyrkar guden Montu.",
+      "en": "Builders construct a funerary complex for Mentuhotep II and female members of the royal family. People there also commemorate the king's reunification of Egypt and worship the god Montu.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2050-mentuhoteps-gravkomplex",
+        "fieldPath": "/summarySv",
+        "textSha256": "719e4edbc4f368f84b811d13c9c5f099a3784013412b206b386f65cfea18a805"
+      }
+    },
+    {
+      "id": "event/ev-bc2050-mentuhoteps-gravkomplex/geographySv",
+      "sv": "Deir el-Bahri, Thebe, Övre Egypten",
+      "en": "Deir el-Bahri, Thebes, Upper Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2050-mentuhoteps-gravkomplex",
+        "fieldPath": "/geographySv",
+        "textSha256": "5e7cd2392f28d90b4bcb2007c3da183aa8fd831a9906049edf9cfb14708ee0c2"
+      }
+    },
+    {
+      "id": "event/ev-bc2030-mentuhotep-aterforenar-egypten/date/displaySv",
+      "sv": "omkring 2030 eller 2025 f.Kr. (olika kronologiska ramar)",
+      "en": "around 2030 or 2025 BC (different chronological frameworks)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2030-mentuhotep-aterforenar-egypten",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e8e50d7bbf2b0e278a25839de2e61a0ce8bcbdad4948612b2d3caab3dbdaa523"
+      }
+    },
+    {
+      "id": "event/ev-bc2030-mentuhotep-aterforenar-egypten/date/noteSv",
+      "sv": "Oppenheim kopplar återföreningen till Mellersta rikets början omkring 2030 f.Kr. UCL knyter den till periodens början omkring 2025 f.Kr. Årtalen är periodgränser i skilda kronologier och anger inget femårigt fälttåg.",
+      "en": "Oppenheim links the reunification to the beginning of the Middle Kingdom around 2030 BC. UCL links it to the beginning of the period around 2025 BC. The years are period boundaries in different chronologies and give no five-year campaign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2030-mentuhotep-aterforenar-egypten",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "2add17cacb8a31b736a79f1654ebc3ca315da3517d93d569bd34c298e5ad447c"
+      }
+    },
+    {
+      "id": "event/ev-bc2030-mentuhotep-aterforenar-egypten/titleSv",
+      "sv": "Mentuhotep II återförenar Egypten",
+      "en": "Mentuhotep II reunifies Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2030-mentuhotep-aterforenar-egypten",
+        "fieldPath": "/titleSv",
+        "textSha256": "95d03a9e07772fe7c232df449a19a1a63b9b01d303ffec85ba74f178f7e6bc2c"
+      }
+    },
+    {
+      "id": "event/ev-bc2030-mentuhotep-aterforenar-egypten/summarySv",
+      "sv": "Mentuhotep II återförenar Övre och Nedre Egypten. Härskarna i Thebe besegrar rivalerna i Herakleopolis efter en tid med konkurrerande kungadömen.",
+      "en": "Mentuhotep II reunifies Upper and Lower Egypt. The rulers of Thebes defeat their rivals in Herakleopolis after a period of competing kingdoms.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2030-mentuhotep-aterforenar-egypten",
+        "fieldPath": "/summarySv",
+        "textSha256": "9bf8f441f05ad5155ff5ade18b99c6a2743a940c0aefaca71c5bc4a9d2bf9708"
+      }
+    },
+    {
+      "id": "event/ev-bc2030-mentuhotep-aterforenar-egypten/geographySv",
+      "sv": "Övre och Nedre Egypten; Thebe och Herakleopolis",
+      "en": "Upper and Lower Egypt; Thebes and Herakleopolis",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2030-mentuhotep-aterforenar-egypten",
+        "fieldPath": "/geographySv",
+        "textSha256": "727aee1aef2b45abe62178931510094d59bd30cad6dc24d7e5560ea8f9685bdb"
+      }
+    },
+    {
+      "id": "event/ev-bc2004-elamiterna-intar-ur/date/displaySv",
+      "sv": "2004 eller 2003 f.Kr. (skilda kronologiska ramar)",
+      "en": "2004 or 2003 BC (different chronological frameworks)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2004-elamiterna-intar-ur",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7abbcfd4dabf9e1eeed1987d8016332810ec0070e55e58c6cc65adba64e383ee"
+      }
+    },
+    {
+      "id": "event/ev-bc2004-elamiterna-intar-ur/date/noteSv",
+      "sv": "Vallat daterar erövringen till 2004 f.Kr. Garcia-Ventura redovisar både 2004 och 2003 f.Kr. som slutår för Urs tredje dynasti och beskriver den absoluta kronologin som omdiskuterad. Intervallet gäller alternativa årtal för slutet på riket.",
+      "en": "Vallat dates the conquest to 2004 BC. Garcia-Ventura gives both 2004 and 2003 BC as end years for the Third Dynasty of Ur and describes the absolute chronology as debated. The interval concerns alternative years for the end of the realm.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2004-elamiterna-intar-ur",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "58e39e8193f518a8dd872cd9c13e67e241cff6b6420d2f26118ef093b136949c"
+      }
+    },
+    {
+      "id": "event/ev-bc2004-elamiterna-intar-ur/titleSv",
+      "sv": "Kindattus allians intar Ur och tar Ibbi-Sin till fånga",
+      "en": "Kindattu's alliance captures Ur and takes Ibbi-Sin prisoner",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2004-elamiterna-intar-ur",
+        "fieldPath": "/titleSv",
+        "textSha256": "eb83fcb701e9b50075c880e5a7e0b59666ec15808a1ec354b7f2f8db1ff6de5d"
+      }
+    },
+    {
+      "id": "event/ev-bc2004-elamiterna-intar-ur/summarySv",
+      "sv": "Elamiter och deras allierade från Susiana intar Ur under Kindattus ledning. De för bort kung Ibbi-Sin till Elam som fånge och gör slut på Urs rike.",
+      "en": "Elamites and their allies from Susiana capture Ur under Kindattu's leadership. They take King Ibbi-Sin to Elam as a prisoner and bring Ur's realm to an end.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2004-elamiterna-intar-ur",
+        "fieldPath": "/summarySv",
+        "textSha256": "b2e52a55bc652a4d0e4fada00862dcd90c45ed15267576ea0c55f84e8bee68e3"
+      }
+    },
+    {
+      "id": "event/ev-bc2004-elamiterna-intar-ur/geographySv",
+      "sv": "Ur i södra Mesopotamien; Elam",
+      "en": "Ur in southern Mesopotamia; Elam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2004-elamiterna-intar-ur",
+        "fieldPath": "/geographySv",
+        "textSha256": "3cf734631bf6db2704d3e19f70d29d0e2481c4721da573238b3cf23d1e93ec63"
       }
     }
   ]

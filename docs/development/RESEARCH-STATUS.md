@@ -415,3 +415,18 @@ Ruling: use the Met timeline's AD 313 placement for Lelang while explicitly pres
 The candidate preserves all 508 earlier events and 465 sources, reaching 537 events and 485 sources. Only AD 300–399 becomes partial, for 2,131 partial years and 2,699 unresearched years. The author logged 21 discovery queries across nine working regions. Europe and East Asia dominate; Southeast Asia and Oceania have no retained event. Public-summary, sample-PDF and tool-representation limits remain explicit, as do earlier unverified retrieval assertions.
 
 The language additions contain 145 English event fields and 40 Swedish source-panel fields. Current-head CI remains required before merge. The data-first commit and complete locale readback retain a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or deployment configuration change is needed.
+
+
+## AD300 published and BC2100 integrated, 9 November 2026
+
+[PR #78](https://github.com/sp1e/Attainder/pull/78) merged at verified main `659dafc89dbd2eeeafea466343ceaceddbc2e8d9`. All eight publication blobs match the approved readback. CI on synchronized head `87e96d2515795433a3c56856c1251dce43336d31` passed 5,296 of 5,298 tests, with zero failures, zero skips and two existing TODOs; the build took 35.92 seconds. The published catalog contains 537 events and 485 sources. Both locale sidecars identify retained data commit `a9bcbced6865e4d55f753dd0cf5ae5153d9b06bc`; all 5,104 referenced source strings and hashes match it.
+
+BC2100 adds eight events and ten sources. The independent source review returned seven confirmed and one corrected event, with all ten sources confirmed within their actual reading scopes. Two exact wording corrections retain Sazonov's attribution and uncertainty for Shulgi's royal cult. All original findings and 18 earlier withheld leads remain preserved. The author logged 32 queries across nine regions; four early queries lack saved raw results after a command-length failure.
+
+Ruling: retain Dholavira's local infrastructure decline at importance 1 under culture, consistent with the chronicle's domestic and urban history. Three editorial changes record this choice separately from the two Shulgi wording corrections. The entry establishes no exact damage year, earthquake year or climatic cause. All historical dates and source fields remain unchanged.
+
+The candidate preserves all 537 earlier events and 485 sources, reaching 545 events and 495 sources. Only 2100–2001 BC becomes partial, for 2,231 partial years and 2,599 unresearched years. Five retained records concern the Middle East and North Africa; five macroregions have no retained event. Full phases and reign alternatives remain intact, including intervals extending into 2000 BC. Sintashta's placement depends on the cited framework. Ur's alternative dynasty endpoint does not independently date a conquest.
+
+Independent subset, bilingual and prospective integration reviews passed. The actual merged catalog and coverage blobs match the reviewed baseline. All 60 language pairs passed review: 40 English event fields and 20 Swedish source locator and institution fields. Anthony's public summary, Sazonov's abstract and Garcia-Ventura's preview remain the stated reading scopes; earlier retrieval assertions remain unverified.
+
+Current-head CI remains required before merge. The data-first commit and complete locale readback retain a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or deployment configuration change is needed.
