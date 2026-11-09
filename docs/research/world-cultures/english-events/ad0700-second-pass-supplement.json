@@ -1,0 +1,94 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad0700-second-pass-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 700,
+    "endYear": 799
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "ca5308aa39663bab7270ff1a6b36d89da763a15e",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0700sp-dhj-konden",
+      "title": "548. Konden einen shizai hō",
+      "institution": "Dictionnaire historique du Japon 13 (1987), p. 52; Persée",
+      "url": "https://www.persee.fr/doc/dhjap_0000-0000_1987_dic_13_1_917_t1_0052_0000_2",
+      "locator": "Public French entry, p. 52, opening and paragraphs on rank, permission and continued administrative control; HTML text read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "743 (Tempyô, 15)",
+      "originalChronology": "The entry dates the imperial edict to 743, distinguishing it from the time-limited arrangement of 723.",
+      "scopedClaim": "Newly reclaimed rice fields could be held permanently, subject to rank-based limits and administrative conditions. State control did not simply disappear.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0700sp-tan-two-tax",
+      "title": "Exonerating the Horse Trade for the Shortage of Silk: Yuan Zhen’s “Yin Mountain Route”",
+      "institution": "Tan Mei Ah; Journal of Chinese Studies 57 (July 2013); The Chinese University of Hong Kong",
+      "url": "https://www.cuhk.edu.hk/ics/journal/articles/v57p049.pdf",
+      "locator": "Printed p. 58 note 33 and pp. 75–77, section The Defective Two-Tax System and Corrupt Bureaucrats (PDF pages 10 and 27–29). Extracted PDF text read; a technical web timeout was followed by an ordinary download of the same public PDF.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "promulgated by Dezong in 780",
+      "originalChronology": "The reform was promulgated in 780. Note 88 identifies earlier development of its principles and methods; 780 is not the first appearance of every component.",
+      "scopedClaim": "Yang Yan proposed the system promulgated by Dezong. Twice-yearly taxation assessed property, while collection and apportionment involved provincial officials. Intended revenue gains do not establish successful or equitable implementation.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-0743-japan-permanent-reclaimed-field-tenure",
+      "date": {
+        "kind": "exact",
+        "startYear": 743,
+        "endYear": 743,
+        "displayEn": "743 CE",
+        "noteEn": "The date belongs to the imperial edict on reclaimed fields. Permanent tenure remained subject to limits based on rank and to administrative conditions; the edict did not remove state control over all rice land."
+      },
+      "titleEn": "Japan permits permanent possession of newly reclaimed rice fields",
+      "summaryEn": "An imperial edict allows newly reclaimed rice fields to be held permanently, replacing the earlier time limit on possession. The area permitted depends on rank, and reclamation generally requires prior provincial authorization.",
+      "geographyEn": "Japan",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0700sp-dhj-konden"
+      ],
+      "selectionNote": "A major regional land-tenure decision absent from the fixed runtime and English comparisons. It is distinct from Nara's establishment, provincial monastery commissions and the Great Buddha dedication. The record asserts neither universal private ownership nor automatic tax exemption or an immediate collapse of the state land system.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data and English review; separate code review and root verification of disclosed procedure deviation",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0780-tang-two-tax-promulgation",
+      "date": {
+        "kind": "exact",
+        "startYear": 780,
+        "endYear": 780,
+        "displayEn": "780 CE",
+        "noteEn": "This dates promulgation of the reform, whose principles and methods had earlier antecedents. It does not date a sudden universal change in payment practice or establish that the reform reduced taxpayers' burdens."
+      },
+      "titleEn": "The Tang court promulgates the two-tax system",
+      "summaryEn": "Emperor Dezong promulgates the tax reform proposed by Yang Yan. It provides for twice-yearly collection and assessments based on property, with provincial officials involved in collection and allocation of quotas.",
+      "geographyEn": "Tang China",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0700sp-tan-two-tax"
+      ],
+      "selectionNote": "A major regional fiscal decision, distinct from the catalogued An Lushan rebellion and later Tang political crises. Its significance rests on the reorganization of assessment and collection, without claiming universal compliance, successful centralization or equitable outcomes. Neither this episode nor a source-identical tax-reform record appears in the fixed comparisons.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data and English review; separate code review and root verification of disclosed procedure deviation",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
