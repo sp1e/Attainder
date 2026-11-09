@@ -1,0 +1,107 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc0300-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -300,
+    "endYear": -201
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "d089d0dc5f9ad1627791762bf933a99492578758",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc0300en-csmvs-sopara-edict",
+      "title": "Ashokan Edict No. IX",
+      "institution": "Chhatrapati Shivaji Maharaj Vastu Sangrahalaya (CSMVS); hosted by Google Arts & Culture",
+      "url": "https://artsandculture.google.com/asset/ashokan-edict-no-ix/RgG7F2FPbryCmQ?hl=en",
+      "locator": "Museum record SI 167: date and provenance, web lines 43–52 and 64–72; displayed translation, lines 53–61. Public catalogue text only; no image-based epigraphic examination.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Maurya; About 250 BC",
+      "originalChronology": "The museum assigns this approximate creation date to the Sopara inscription fragment. It gives a separate reign interval and missionary narrative, neither of which is converted into an event date here.",
+      "scopedClaim": "Edict IX is attested at Sopara in Mauryan Brahmi. The museum's displayed translation recommends ethical duties toward dependants, elders, animals and religious practitioners. Its claims of historical priority and a specific missionary link are not adopted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0300en-upo-canopus-decree",
+      "title": "Trilingual decree of the priests gathered in Canopus in honour of Ptolemy III Euergetes and Berenice (2nd version)",
+      "institution": "Universidad Pablo de Olavide, Emperors and Kings in procession",
+      "url": "https://www.upo.es/investiga/processionsandempire/trilingual-decree-of-the-priests-gathered-in-canopus-in-honour-of-ptolemy-iii-euergetes-and-berenice/",
+      "locator": "Title and DATE, web lines 21–26; edition bibliography, lines 31–50; project institution, lines 92–98. Public epigraphic catalogue entry, not a fresh reading of its cited editions.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "March 7th, 238 BC",
+      "originalChronology": "The university entry supplies this modern date for the decree. Only the year is asserted in the event display; no independent conversion or new day-level reconciliation is performed.",
+      "scopedClaim": "Identification and year of the priests' decree in honour of Ptolemy and Berenice. This entry does not independently establish implementation of its calendar provisions.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0300en-budge-canopus-translation",
+      "title": "THE CANOPUS DECREE: HIEROGLYPHIC VERSION",
+      "institution": "E. A. W. Budge, The Decree of Canopus (Oxford University Press, 1904); translation reproduced by Attalus",
+      "url": "https://www.attalus.org/egypt/canopus_decree.html",
+      "locator": "Document identifiers and translation attribution, web lines 0–8 and 71–73; opening date formula, line 12; calendar provision, lines 45–46. Modern page annotations are distinguishable from Budge's translated text.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "in the ninth year of the reign",
+      "originalChronology": "The translated date is Apellaios day seven, corresponding to day seventeen of the first month of Peret, in the king's ninth year. The page labels the decree 238 BCE; its modern annotation gives March seven.",
+      "scopedClaim": "The decree orders an additional festival day for the Beneficent Gods every four years, beyond the five added days, to keep festivals aligned with the seasons. This is a prescriptive text, not evidence of sustained compliance. The old translation is used for this limited provision.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc0250-sopara-edict-ethical-conduct",
+      "date": {
+        "kind": "approximate",
+        "startYear": -250,
+        "endYear": -250,
+        "displayEn": "Around 250 BCE",
+        "noteEn": "This follows the museum's approximate date for the Sopara fragment of edict IX. It does not date all Ashokan inscriptions, a missionary's arrival or a conversion. The surviving text records prescribed conduct, not how widely the instructions were followed."
+      },
+      "titleEn": "Ashoka's edict at Sopara calls for ethical conduct",
+      "summaryEn": "A royal edict attested at Sopara emphasizes moral duties. In the museum's translation, these include considerate treatment of slaves and servants, respect for elders, gentleness toward animals and generosity to Brahmanas and Shramanas.",
+      "geographyEn": "Sopara, present-day Nalasopara near Mumbai, western India",
+      "category": "politics",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc0300en-csmvs-sopara-edict"
+      ],
+      "selectionNote": "A specific royal prescription concerning everyday conduct, attested in a western Indian port. The historical subject is the edict's content and communication, not the modern recovery of another stone. The existing Ashoka record concerns the conquest of Kalinga; no general edict or dhamma episode appears in the comparison collections. No first proclamation, sudden conversion or empire-wide compliance is claimed.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; Codex independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0238-canopus-calendar-provision",
+      "date": {
+        "kind": "exact",
+        "startYear": -238,
+        "endYear": -238,
+        "displayEn": "238 BCE",
+        "noteEn": "The university entry and the translated decree's heading supply the year. The original formula uses the king's ninth year, Apellaios day seven and day seventeen of the first month of Peret. The university's March seven conversion is retained as source metadata; the event makes no exact modern-day claim. This dates the decision, not proof of sustained calendar use."
+      },
+      "titleEn": "Priests at Canopus decree an additional festival day",
+      "summaryEn": "A priestly decree orders a festival day for Ptolemy and Berenice to be added every four years beyond the five extra days of the Egyptian year. The provision aims to keep festivals aligned with the seasons.",
+      "geographyEn": "Canopus in the Nile Delta, Egypt",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0300en-upo-canopus-decree",
+        "bc0300en-budge-canopus-translation"
+      ],
+      "selectionNote": "A documented attempt to regulate the ritual calendar through a priestly decree honouring the ruling couple. It is distinct from the dynasty's wars and the later Thebaid rebellion. The provision is important as a specific calendrical decision; it does not establish the invention of leap years, lasting adoption or the accuracy of every ancient calendar.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; Codex independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
