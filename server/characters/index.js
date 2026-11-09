@@ -36,6 +36,7 @@ import { electionOrder, presentElection, tallyElection } from './electors.js';
 import { primogenitureCandidates } from './succession.js';
 import { biologicalFather, paternityStep, recordIllegitimacy } from './paternity.js';
 import { bastardClaimStep } from './bastardClaims.js';
+import { cadetBranchStep } from './cadetBranches.js';
 import { correctionNote, traitsAtAdulthood, tutorProspect } from './tutoring.js';
 import { ensureRealmKind, presentRealm, validateRealmKind } from './realmKind.js';
 import { bondStep } from './bonds.js';
@@ -864,6 +865,7 @@ function annualStep(state, events) {
   npcPlotStep(state, events, actionHooks(state));
   annualRevenue = rounded(annualRevenue + courtAnnualStep(state, events, actionHooks(state)));
   courtRenewalStep(state, events, actionHooks(state));
+  cadetBranchStep(state, events, actionHooks(state));
   // Fill the existing event after the payment, preserving its id and position in both logs.
   yearEvent.description = `Statskassan förändras med ${annualRevenue.toFixed(1).replace('.', ',').replace('-', '−')} silver. Nya personliga beslut, ålder och politiska förhållanden har behandlats.`;
 }
