@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "2bc535d363f5a29d4dcac81993d8c017c97011c0",
+  "sourceRevision": "65cbab8a00f20e9953482cac4aa09735ec3e7d84",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -15688,6 +15688,578 @@
         "sourceId": "bc0400-sadasivan-hydaspes",
         "fieldPath": "/locator",
         "textSha256": "6badcf270ef2076b6ff05935c9da4135178275eceff8fee1fbd2618c60162621"
+      }
+    },
+    {
+      "id": "source/bc0300-antioch/institution",
+      "en": "Cambridge University Press",
+      "sv": "Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-antioch",
+        "fieldPath": "/institution",
+        "textSha256": "5fa80bacfa8abef3a617e5b4749e64c2361b847572b36d1d473e2070df1e26be"
+      }
+    },
+    {
+      "id": "source/bc0300-antioch/locator",
+      "en": "Isabella Sandwell, Religious Identity in Late Antiquity (2007), chapter 2, public Summary, line 461; online 2009.",
+      "sv": "Isabella Sandwell, Religious Identity in Late Antiquity (2007), kapitel 2, offentlig sammanfattning, rad 461; på nätet 2009.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-antioch",
+        "fieldPath": "/locator",
+        "textSha256": "0a0c8d9a1a0c1c1768a41d79efa7ff0c79337005bbacfbb4bceea9abd4a72997"
+      }
+    },
+    {
+      "id": "source/bc0300-stoicism/institution",
+      "en": "Stanford Encyclopedia of Philosophy",
+      "sv": "Stanford Encyclopedia of Philosophy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-stoicism",
+        "fieldPath": "/institution",
+        "textSha256": "043e6e56f255ab035f61e2f3601090c6411f4be40620b2fc2fe1b2a548b97684"
+      }
+    },
+    {
+      "id": "source/bc0300-stoicism/locator",
+      "en": "Section 1.1, The School and its History, line 57; introductory paragraph, line 13.",
+      "sv": "Avsnitt 1.1, The School and its History, rad 57; inledande stycke, rad 13.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-stoicism",
+        "fieldPath": "/locator",
+        "textSha256": "3bd0e522f73e8755a0460f3ccca0ce6abd98c93a0d89e3b4f4927e48b6d46753"
+      }
+    },
+    {
+      "id": "source/bc0300-meroe/institution",
+      "en": "UNESCO World Heritage Centre",
+      "sv": "UNESCO:s världsarvscentrum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-meroe",
+        "fieldPath": "/institution",
+        "textSha256": "0a082b6ed6dee4803d7c2687725d0e50ba1c6249718c0dfc6d7eee6659437a82"
+      }
+    },
+    {
+      "id": "source/bc0300-meroe/locator",
+      "en": "Outstanding Universal Value, Brief synthesis, line 47.",
+      "sv": "Outstanding Universal Value, Brief synthesis, rad 47.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-meroe",
+        "fieldPath": "/locator",
+        "textSha256": "e9aa3c5673b8c7c6452716f236a53e93a28ad809ee91e29e1b70cd439e0efec3"
+      }
+    },
+    {
+      "id": "source/bc0300-coloa-nicolas/institution",
+      "en": "Indo-Pacific Prehistory Association",
+      "sv": "Indo-Pacific Prehistory Association",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-coloa-nicolas",
+        "fieldPath": "/institution",
+        "textSha256": "9e3c18f20722098a68c3e9c97ad9fe838b5f4a88f9dd37aa517970505c7014e2"
+      }
+    },
+    {
+      "id": "source/bc0300-coloa-nicolas/locator",
+      "en": "Richard M. Nicolas, IPPA 2026 session S22-A5, public conference abstract, lines 21–33.",
+      "sv": "Richard M. Nicolas, IPPA 2026, session S22-A5, offentligt konferensabstract, rader 21–33.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-coloa-nicolas",
+        "fieldPath": "/locator",
+        "textSha256": "3624f1603a4719396eae89fb12fff70893e295ff10875b3c8e038894452fd412"
+      }
+    },
+    {
+      "id": "source/bc0300-coloa-kim/institution",
+      "en": "Springer Nature / Journal of Archaeological Research",
+      "sv": "Springer Nature / Journal of Archaeological Research",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-coloa-kim",
+        "fieldPath": "/institution",
+        "textSha256": "208c0c1ba86ab4abee1b63631c96f454712b1d3662e2097de991562467bf7c5d"
+      }
+    },
+    {
+      "id": "source/bc0300-coloa-kim/locator",
+      "en": "Nam C. Kim (2013), volume 21, pages 217–267, public Abstract, lines 31–35; DOI 10.1007/s10814-012-9064-7.",
+      "sv": "Nam C. Kim (2013), volym 21, sidor 217–267, offentligt abstract, rader 31–35; DOI 10.1007/s10814-012-9064-7.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-coloa-kim",
+        "fieldPath": "/locator",
+        "textSha256": "3391c4a12cd756e8df3ceb656deb0be1ab65896a90507ad1ef162a6336ea1651"
+      }
+    },
+    {
+      "id": "source/bc0300-chankillo-ghezzi/institution",
+      "en": "Springer / Handbook of Archaeoastronomy and Ethnoastronomy",
+      "sv": "Springer / Handbook of Archaeoastronomy and Ethnoastronomy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-chankillo-ghezzi",
+        "fieldPath": "/institution",
+        "textSha256": "209c28f5ac734d6f8e1e3a33cc855f51a3f0e3eeb5af6e0ce30df3f5189029c8"
+      }
+    },
+    {
+      "id": "source/bc0300-chankillo-ghezzi/locator",
+      "en": "Iván Ghezzi and Clive L. N. Ruggles (2014), pages 807–820, public Abstract, lines 33–36; DOI 10.1007/978-1-4614-6141-8_75.",
+      "sv": "Iván Ghezzi och Clive L. N. Ruggles (2014), sidor 807–820, offentligt abstract, rader 33–36; DOI 10.1007/978-1-4614-6141-8_75.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-chankillo-ghezzi",
+        "fieldPath": "/locator",
+        "textSha256": "03ff11605b160529e5f1e9094ccde95714de76449152a52e6259b9ace3900abd"
+      }
+    },
+    {
+      "id": "source/bc0300-chankillo-peru/institution",
+      "en": "Peru State Party submission, hosted by UNESCO World Heritage Centre",
+      "sv": "Perus statliga nominering, publicerad av UNESCO:s världsarvscentrum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-chankillo-peru",
+        "fieldPath": "/institution",
+        "textSha256": "22ecbe26fe36ea47a2df753736d95e321a2bc70b014ad7a4b470cfc24ead4f5b"
+      }
+    },
+    {
+      "id": "source/bc0300-chankillo-peru/locator",
+      "en": "Description, Monumental solar calendar of Chankillo, line 189.",
+      "sv": "Beskrivning, Monumental solar calendar of Chankillo, rad 189.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-chankillo-peru",
+        "fieldPath": "/locator",
+        "textSha256": "c14eb0e57e2f2ab245e1f1fb571beec5c8f10b71563ea78e0556822c2bef55a1"
+      }
+    },
+    {
+      "id": "source/bc0300-qin-met/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-qin-met",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/bc0300-qin-met/locator",
+      "en": "Department of Asian Art (2000), paragraphs on unification and book burning, lines 29–31.",
+      "sv": "Avdelningen för asiatisk konst (2000), stycken om enande och bokbränning, rader 29–31.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-qin-met",
+        "fieldPath": "/locator",
+        "textSha256": "f53f812b11f21b9956baeefe33d8e0a09912511c643cf275e661967e55db6b5e"
+      }
+    },
+    {
+      "id": "source/bc0300-qin-field/institution",
+      "en": "Field Museum",
+      "sv": "Field Museum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-qin-field",
+        "fieldPath": "/institution",
+        "textSha256": "5b6c91a5b5f89dda35161ca673a715dfc8c63b52bf6914558c2eb494c973a065"
+      }
+    },
+    {
+      "id": "source/bc0300-qin-field/locator",
+      "en": "Online China Hall case text, line 5.",
+      "sv": "China Halls utställningstext på nätet, rad 5.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-qin-field",
+        "fieldPath": "/locator",
+        "textSha256": "3d20a855e5af29e14a1ddf5d5c2e8dcf904a0da7eb4f95884be20ae45bd0bb01"
+      }
+    },
+    {
+      "id": "source/bc0300-lingqu/institution",
+      "en": "National Commission of the People's Republic of China for UNESCO",
+      "sv": "Folkrepubliken Kinas nationella UNESCO-kommission",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-lingqu",
+        "fieldPath": "/institution",
+        "textSha256": "de11b9c6a97eb12722c2287618726daea62f945a7b888b29249b76d3e27aad32"
+      }
+    },
+    {
+      "id": "source/bc0300-lingqu/locator",
+      "en": "State Party tentative-list submission, 29 January 2013, Description, lines 85–87.",
+      "sv": "Statens förslag till tentativ världsarvslista, 29 januari 2013, beskrivning, rader 85–87.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-lingqu",
+        "fieldPath": "/locator",
+        "textSha256": "ad2ccabbaec207eeb76db4f03589a7f18f71ac1c70675eac968103a18a90fc68"
+      }
+    },
+    {
+      "id": "source/bc0300-xiongnu/institution",
+      "en": "Cambridge University Press / Evolutionary Human Sciences",
+      "sv": "Cambridge University Press / Evolutionary Human Sciences",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-xiongnu",
+        "fieldPath": "/institution",
+        "textSha256": "be9f57c251acd015a042fdddf02eaa8d7d0f3c52ad4f645cd09713848ddd2da0"
+      }
+    },
+    {
+      "id": "source/bc0300-xiongnu/locator",
+      "en": "Alexander Savelyev and Choongwon Jeong (2020), section 2, line 517; DOI 10.1017/ehs.2020.18.",
+      "sv": "Alexander Savelyev och Choongwon Jeong (2020), avsnitt 2, rad 517; DOI 10.1017/ehs.2020.18.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-xiongnu",
+        "fieldPath": "/locator",
+        "textSha256": "1419fc656d89949325c9670b5833bd9fb8fe94cd4bd2c1e341c02e7d6d805194"
+      }
+    },
+    {
+      "id": "source/bc0300-first-punic/institution",
+      "en": "University of Michigan Press",
+      "sv": "University of Michigan Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-first-punic",
+        "fieldPath": "/institution",
+        "textSha256": "5118807517b68645bdf7a939ab20079b9be9934f615f072ab8f11e123908322e"
+      }
+    },
+    {
+      "id": "source/bc0300-first-punic/locator",
+      "en": "Thomas Biggs (2020), publisher description, lines 53–59.",
+      "sv": "Thomas Biggs (2020), förlagets beskrivning, rader 53–59.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-first-punic",
+        "fieldPath": "/locator",
+        "textSha256": "bfda77e6dbd3d8ef795f2f219168b249e5c34bddc93b9a096aeed0eb2fb1ed37"
+      }
+    },
+    {
+      "id": "source/bc0300-punic-ocr/institution",
+      "en": "University of Warwick / Warwick Classics Network",
+      "sv": "University of Warwick / Warwick Classics Network",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-punic-ocr",
+        "fieldPath": "/institution",
+        "textSha256": "bc6b0163016665dc44d80272f97e7a33bcf257d2748964b99977c2219f57ba5a"
+      }
+    },
+    {
+      "id": "source/bc0300-punic-ocr/locator",
+      "en": "OCR teaching guide, introduction and planning guide, lines 28–30, 56 and 61–62.",
+      "sv": "OCR:s lärarhandledning, inledning och undervisningsplanering, rader 28–30, 56 och 61–62.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-punic-ocr",
+        "fieldPath": "/locator",
+        "textSha256": "c55fe6251c8b113c42e73e16f8c9391ea8f7dacb5ae8b80c8a5aabc32ce2c07a"
+      }
+    },
+    {
+      "id": "source/bc0300-livy-xxii/institution",
+      "en": "Cambridge University Press",
+      "sv": "Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-livy-xxii",
+        "fieldPath": "/institution",
+        "textSha256": "5fa80bacfa8abef3a617e5b4749e64c2361b847572b36d1d473e2070df1e26be"
+      }
+    },
+    {
+      "id": "source/bc0300-livy-xxii/locator",
+      "en": "Livy, Ab urbe condita Book XXII; edited with introduction and notes by John Briscoe and Simon Hornblower (2020). Public publisher Description, first paragraph: Trasimene (217 BC), Cannae (216 BC).",
+      "sv": "Livius, Ab urbe condita bok XXII; utgiven med inledning och kommentarer av John Briscoe och Simon Hornblower (2020). Förlagets offentliga beskrivning, första stycket: Trasimenus (217 f.Kr.), Cannae (216 f.Kr.).",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-livy-xxii",
+        "fieldPath": "/locator",
+        "textSha256": "8201189ab809633646f4fca1c4c3c0d65ebca6d4a41697b206b52859e3e35991"
+      }
+    },
+    {
+      "id": "source/bc0300-polybius-cannae/institution",
+      "en": "Fordham University / Internet History Sourcebooks Project",
+      "sv": "Fordham University / Internet History Sourcebooks Project",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-polybius-cannae",
+        "fieldPath": "/institution",
+        "textSha256": "ca5a5e313852caad5a57dd673453ac74d5e8bfca7e62d6c71a172ac51f0a4528"
+      }
+    },
+    {
+      "id": "source/bc0300-polybius-cannae/locator",
+      "en": "Polybius, Histories III.107–118, translated excerpt; sections 116–117, lines 76–84.",
+      "sv": "Polybios, Historier III.107–118, översatt utdrag; avsnitt 116–117, rader 76–84.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-polybius-cannae",
+        "fieldPath": "/locator",
+        "textSha256": "21839f0d3e9281684cec548a77a2b009c954bcd2f9d658061d6f439c96a19fd4"
+      }
+    },
+    {
+      "id": "source/bc0300-syracuse/institution",
+      "en": "J. Paul Getty Museum",
+      "sv": "J. Paul Getty Museum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-syracuse",
+        "fieldPath": "/institution",
+        "textSha256": "2336a8ccf07d91f8b9c9d51ab3e49b97eb5464cab825449993024616383b784c"
+      }
+    },
+    {
+      "id": "source/bc0300-syracuse/locator",
+      "en": "Sicily: Art and Invention exhibition text, line 24.",
+      "sv": "Utställningstext till Sicily: Art and Invention, rad 24.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-syracuse",
+        "fieldPath": "/locator",
+        "textSha256": "cc6b12bdeb80630283dd86d751ca8b62df67e49bc4f16d9fe79b11462d966e6c"
+      }
+    },
+    {
+      "id": "source/bc0300-arsacids/institution",
+      "en": "Encyclopaedia Iranica",
+      "sv": "Encyclopaedia Iranica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-arsacids",
+        "fieldPath": "/institution",
+        "textSha256": "f73848ecbb70ca68207853153ffd8c11aed59c5faa5d609de1dc10d26e87a496"
+      }
+    },
+    {
+      "id": "source/bc0300-arsacids/locator",
+      "en": "Klaus Schippmann (1986; updated 2016), History, lines 37–45.",
+      "sv": "Klaus Schippmann (1986; uppdaterad 2016), History, rader 37–45.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-arsacids",
+        "fieldPath": "/locator",
+        "textSha256": "fc8d72a69acf5b97e9ef15ca4ddc5e45135e6a29027a90251c76628abd6cdf36"
+      }
+    },
+    {
+      "id": "source/bc0300-kalinga-msu/institution",
+      "en": "Manonmaniam Sundaranar University, Directorate of Distance and Continuing Education",
+      "sv": "Manonmaniam Sundaranar University, direktoratet för distansutbildning och fortbildning",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-kalinga-msu",
+        "fieldPath": "/institution",
+        "textSha256": "b755c87464622088eda09768b45fa588663716490a22db2a059fc09fbefb63d2"
+      }
+    },
+    {
+      "id": "source/bc0300-kalinga-msu/locator",
+      "en": "C. Amose, MA History learning material, printed page 140, PDF page index 139, line 4049 and following paragraph.",
+      "sv": "C. Amose, studiematerial för masterutbildning i historia, tryckt sida 140, PDF-sidindex 139, rad 4049 och följande stycke.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-kalinga-msu",
+        "fieldPath": "/locator",
+        "textSha256": "f8061085654f1731c4bb51d0b663603cfeb0a08bcdf876bd591a7e902b3f9a51"
+      }
+    },
+    {
+      "id": "source/bc0300-mleiha-gdh/institution",
+      "en": "Global Digital Heritage / Sharjah Archaeology Authority",
+      "sv": "Global Digital Heritage / Sharjahs arkeologiska myndighet",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-mleiha-gdh",
+        "fieldPath": "/institution",
+        "textSha256": "117b50df67c6665c8c2c146413bfe6631e197d97806b9d508d1be57447fd4a89"
+      }
+    },
+    {
+      "id": "source/bc0300-mleiha-gdh/locator",
+      "en": "Object documentation, lines 71–75, citing B. Overlaet (2018), pages 13–14, catalogue no. 1.",
+      "sv": "Föremålsdokumentation, rader 71–75, med hänvisning till B. Overlaet (2018), sidor 13–14, katalognummer 1.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-mleiha-gdh",
+        "fieldPath": "/locator",
+        "textSha256": "052a97c4d521afa9509a66f6a8bd9d27f510268cc821b475ecc3780adbfb4865"
+      }
+    },
+    {
+      "id": "source/bc0300-mleiha-uae/institution",
+      "en": "Ministry of Culture and Youth of the United Arab Emirates",
+      "sv": "Förenade arabemiratens kultur- och ungdomsministerium",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-mleiha-uae",
+        "fieldPath": "/institution",
+        "textSha256": "3367338350eac4bce95784d2d27b36b51b857a68b70871b22e988fe51525a2d4"
+      }
+    },
+    {
+      "id": "source/bc0300-mleiha-uae/locator",
+      "en": "State Party tentative-list submission, 1 February 2023, Description, line 89.",
+      "sv": "Statens förslag till tentativ världsarvslista, 1 februari 2023, beskrivning, rad 89.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-mleiha-uae",
+        "fieldPath": "/locator",
+        "textSha256": "a783eb282fb1a861ad9e76b22195fa8de88a4b12db26b336ca38df46e1889725"
+      }
+    },
+    {
+      "id": "source/bc0300-hellenistic-chronology/institution",
+      "en": "Cambridge University Press",
+      "sv": "Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-hellenistic-chronology",
+        "fieldPath": "/institution",
+        "textSha256": "5fa80bacfa8abef3a617e5b4749e64c2361b847572b36d1d473e2070df1e26be"
+      }
+    },
+    {
+      "id": "source/bc0300-hellenistic-chronology/locator",
+      "en": "Chronology, printed pages xvi–xvii, PDF page indices 2–3; DOI 10.1017/9781009408967. The table identifies Hammond and Griffith (1979) and The Cambridge Ancient History as its main references.",
+      "sv": "Kronologi, tryckta sidor xvi–xvii, PDF-sidindex 2–3; DOI 10.1017/9781009408967. Tabellen anger Hammond och Griffith (1979) och The Cambridge Ancient History som sina främsta referenser.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-hellenistic-chronology",
+        "fieldPath": "/locator",
+        "textSha256": "92ec7b392991e39befb4ac4006b8fe4f5d86430af2e7990cf550eecf91c2c71d"
+      }
+    },
+    {
+      "id": "source/bc0300-raphia/institution",
+      "en": "Cambridge University Press",
+      "sv": "Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-raphia",
+        "fieldPath": "/institution",
+        "textSha256": "5fa80bacfa8abef3a617e5b4749e64c2361b847572b36d1d473e2070df1e26be"
+      }
+    },
+    {
+      "id": "source/bc0300-raphia/locator",
+      "en": "Bezalel Bar-Kochva, The Seleucid Army (1976), chapter 10, pages 128–141, public Summary, lines 470–473.",
+      "sv": "Bezalel Bar-Kochva, The Seleucid Army (1976), kapitel 10, sidor 128–141, offentlig sammanfattning, rader 470–473.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-raphia",
+        "fieldPath": "/locator",
+        "textSha256": "39b0869c3a0c37af60e02efb150c451c4aacec97a27c3183c4411cc5d06b66ec"
+      }
+    },
+    {
+      "id": "source/bc0300-pyrrhus/institution",
+      "en": "Dickinson College Commentaries",
+      "sv": "Dickinson College Commentaries",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-pyrrhus",
+        "fieldPath": "/institution",
+        "textSha256": "d65c25e6a8481adb89adc2451307d0b3751fcd9f750621c81e39f1614c8134a8"
+      }
+    },
+    {
+      "id": "source/bc0300-pyrrhus/locator",
+      "en": "Edited by Kristin Masters; notes on ad Siciliam profectus est and M. Curius Dentatus et Cornelius Lentulus, lines 43 and 47.",
+      "sv": "Redigerad av Kristin Masters; noter till ad Siciliam profectus est och M. Curius Dentatus et Cornelius Lentulus, rader 43 och 47.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-pyrrhus",
+        "fieldPath": "/locator",
+        "textSha256": "8886c5c3ab116d9230cdff3efd81faccc0a9a31e29130fe1cd7604bf58ceab59"
+      }
+    },
+    {
+      "id": "source/bc0300-thebaid-met/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-thebaid-met",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/bc0300-thebaid-met/locator",
+      "en": "Object 22.3.474, curatorial description, lines 10–12.",
+      "sv": "Föremål 22.3.474, museets beskrivning, rader 10–12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-thebaid-met",
+        "fieldPath": "/locator",
+        "textSha256": "db68145a57fe763c055a7caddf1f4cf7e252cbea51b371ab06d5a229385ad793"
+      }
+    },
+    {
+      "id": "source/bc0300-thebaid-tau/institution",
+      "en": "Tel Aviv University / Cambridge University Press",
+      "sv": "Tel Aviv University / Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-thebaid-tau",
+        "fieldPath": "/institution",
+        "textSha256": "894ff97fa97df96b083a58d4d5d1fe1785e13882b2e3098bbc40be7bd988962b"
+      }
+    },
+    {
+      "id": "source/bc0300-thebaid-tau/locator",
+      "en": "Sylvie Honigman and Anne Emmanuelle Veïsse (2021), Comparing the Ptolemaic and Seleucid Empires, pages 301–328, public Abstract; DOI 10.1017/9781108782890.012.",
+      "sv": "Sylvie Honigman och Anne Emmanuelle Veïsse (2021), Comparing the Ptolemaic and Seleucid Empires, sidor 301–328, offentligt abstract; DOI 10.1017/9781108782890.012.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-thebaid-tau",
+        "fieldPath": "/locator",
+        "textSha256": "8c73f6f2dda8e75064d1d13afdf5a8555751c8e7e5e392f02b4c8f1b5d15f44c"
+      }
+    },
+    {
+      "id": "source/bc0300-kalinga-pbs/institution",
+      "en": "PBS (host); MayaVision International (copyright holder)",
+      "sv": "PBS (värd); MayaVision International (upphovsrättsinnehavare)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-kalinga-pbs",
+        "fieldPath": "/institution",
+        "textSha256": "2a5eaa9f7f550d96615e0252a4b8a5c8f0d2950e44818baf40c5e018a93626fe"
+      }
+    },
+    {
+      "id": "source/bc0300-kalinga-pbs/locator",
+      "en": "The Power of Ideas, Battle of Kalinga section, paragraph beginning The Battle of Kalinga; web lines 145-151.",
+      "sv": "The Power of Ideas, avsnittet Battle of Kalinga, stycket som börjar The Battle of Kalinga; webbrader 145-151.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0300-kalinga-pbs",
+        "fieldPath": "/locator",
+        "textSha256": "c51922dea70e6615ff37d64ff4c4c77e927a0f7ce23f2e16a820b0356789e29d"
       }
     }
   ]

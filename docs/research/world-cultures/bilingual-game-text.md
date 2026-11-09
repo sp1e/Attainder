@@ -28,9 +28,9 @@ The [catalog README](../../../public/lang/attainder/help/README.md) describes th
 
 ## Later event batches
 
-The BC2300, AD700, AD500, BC2200, AD300, BC2100, AD200, BC2000, AD100, BC1900, BC1800, BC1700, AD1, BC1500, BC1300, BC1200, BC1100, BC1000, BC0800, BC0700 and BC0500 deliveries added 1,463 English event fields and 548 Swedish source-panel fields. The BC0400 batch adds another 150 English event fields and 46 Swedish source-panel fields. The sidecars now contain 5,329 English entries and 1,426 Swedish entries, covering all display fields for 776 events and all locators and institution fields for 713 sources. All prior translation entries are unchanged.
+The BC2300, AD700, AD500, BC2200, AD300, BC2100, AD200, BC2000, AD100, BC1900, BC1800, BC1700, AD1, BC1500, BC1300, BC1200, BC1100, BC1000, BC0800, BC0700, BC0500 and BC0400 deliveries added 1,613 English event fields and 594 Swedish source-panel fields. The BC0300 batch adds another 150 English event fields and 52 Swedish source-panel fields. The sidecars now contain 5,479 English entries and 1,478 Swedish entries, covering all display fields for 806 events and all locators and institution fields for 739 sources. All prior translation entries are unchanged.
 
-Both sidecars identify source revision `2bc535d363f5a29d4dcac81993d8c017c97011c0`, the preceding research-data commit on the retained `research/e-bc0400-events` branch. All 6,755 source strings and UTF-8 hashes were checked against that exact Git revision. A later event batch must commit its research data before advancing this pointer, then verify every existing and added entry against the new snapshot.
+Both sidecars identify source revision `65cbab8a00f20e9953482cac4aa09735ec3e7d84`, the preceding research-data commit on the retained `research/e-bc0300-events` branch. All 6,957 source strings and UTF-8 hashes were checked against that exact Git revision. A later event batch must commit its research data before advancing this pointer, then verify every existing and added entry against the new snapshot.
 
 ## Translation contract
 

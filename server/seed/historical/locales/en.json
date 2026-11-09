@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "2bc535d363f5a29d4dcac81993d8c017c97011c0",
+  "sourceRevision": "65cbab8a00f20e9953482cac4aa09735ec3e7d84",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -56960,6 +56960,1656 @@
         "eventId": "ev-bc0400-ipsos",
         "fieldPath": "/geographySv",
         "textSha256": "82808cad6a5b8819e4032702b3be490daa5064b87aa7a7a9f6371c4d3daefc02"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-antiochia-grundas/date/displaySv",
+      "sv": "300 f.Kr.",
+      "en": "300 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-antiochia-grundas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7d4a113a33a0af966a3eeb9174d35d39a82915f78f99693e2eaaaa78938f9627"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-antiochia-grundas/date/noteSv",
+      "sv": "Årtalet kommer från den publicerade kapitelsammanfattningen. Någon dag anges inte här.",
+      "en": "The year comes from the published chapter summary. No day is specified here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-antiochia-grundas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "707c4809b51ec7e790741ba20cbb70d425216b060386f40540981b8cc73baf40"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-antiochia-grundas/titleSv",
+      "sv": "Seleukos grundar Antiochia",
+      "en": "Seleucus founds Antioch",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-antiochia-grundas",
+        "fieldPath": "/titleSv",
+        "textSha256": "23a8ebf820a7c85cb900aa166d20ddab6954bc9eed5f3e675b3d85fc6cbba379"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-antiochia-grundas/summarySv",
+      "sv": "Seleukos I grundar Antiochia vid floden Orontes. Staden ingår i hans utbyggnad av det seleukidiska riket.",
+      "en": "Seleucus I founds Antioch on the River Orontes. The city forms part of his expansion of the Seleucid kingdom.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-antiochia-grundas",
+        "fieldPath": "/summarySv",
+        "textSha256": "c34115ed9eaa104e61b965c3212a0fa86d4d8d10fbbfb772d847901cd92e5f8d"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-antiochia-grundas/geographySv",
+      "sv": "Orontesdalen, nuvarande södra Turkiet",
+      "en": "The Orontes Valley, in present-day southern Turkey",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-antiochia-grundas",
+        "fieldPath": "/geographySv",
+        "textSha256": "b5536e3f26abdb0ce96fedf5e5b3b178f4f2afd3da0d6c03194c7ff6d62b448b"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-zenon-stoicism/date/displaySv",
+      "sv": "cirka 300 f.Kr.",
+      "en": "Around 300 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-zenon-stoicism",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "bcffa8b4cee9a2f0afa0f40ce7392731b87345a572ba7a7e5285044d122336ce"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-zenon-stoicism/date/noteSv",
+      "sv": "Skolans grundande dateras ungefärligt. Ett exakt startår är inte belagt här.",
+      "en": "The school's foundation is dated approximately. An exact starting year is not established here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-zenon-stoicism",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b5c298b16dfe234b1f3f4aaadfce9b7d4071ee48fd532f859a47c6a73c44c2ce"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-zenon-stoicism/titleSv",
+      "sv": "Zenon grundar den stoiska skolan",
+      "en": "Zeno founds the Stoic school",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-zenon-stoicism",
+        "fieldPath": "/titleSv",
+        "textSha256": "9f9042d3b7adb64028161545cd55b833d0f9622bc626ff433cf785592f20417e"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-zenon-stoicism/summarySv",
+      "sv": "Zenon från Kition grundar en filosofisk skola i Aten. Dess tidiga lärare samlas vid den målade pelargången Stoa poikile.",
+      "en": "Zeno of Citium founds a philosophical school in Athens. Its early teachers gather at the painted porch, the Stoa Poikile.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-zenon-stoicism",
+        "fieldPath": "/summarySv",
+        "textSha256": "9efee4cf7b01c3dd92681195f55803e90ce7a3bb25ff495ae6d48b62b56a8022"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-zenon-stoicism/geographySv",
+      "sv": "Aten, Grekland",
+      "en": "Athens, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-zenon-stoicism",
+        "fieldPath": "/geographySv",
+        "textSha256": "bafb846761d4d9f2eec198e0b894b9df8c9640c5d1fc3462f256fb413036a818"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-meroe-kungagravar/date/displaySv",
+      "sv": "tredje århundradet f.Kr.",
+      "en": "Third century BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-meroe-kungagravar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1114f3581c86634e072ef14a44e0d1fe00aec5ac87af1caefd64f4f89f1ad227"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-meroe-kungagravar/date/noteSv",
+      "sv": "Källan anger att flertalet kungliga begravningar sker här från detta århundrade och framåt. Intervallet avser början på denna utveckling; något enskilt flyttår anges inte.",
+      "en": "The source states that most royal burials took place here from this century onward. The interval concerns the beginning of this development; no single year of relocation is given.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-meroe-kungagravar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "656a8e4f13e69f4da1a72d4564db52c22391e9787223359d5d32ce4dcc17bf05"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-meroe-kungagravar/titleSv",
+      "sv": "Meroe blir centrum för kungliga begravningar",
+      "en": "Meroe becomes a centre for royal burials",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-meroe-kungagravar",
+        "fieldPath": "/titleSv",
+        "textSha256": "ca7f88f34be0f31bfa15ec707d3860828246177dcb8b505ad994faee8099590f"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-meroe-kungagravar/summarySv",
+      "sv": "Från tredje århundradet f.Kr. och framåt sker flertalet kungliga begravningar i Meroe.",
+      "en": "From the third century BC onward, most royal burials take place at Meroe.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-meroe-kungagravar",
+        "fieldPath": "/summarySv",
+        "textSha256": "a536812575380922c7204aa49c693bca6dfc286bf70d41a4f4ec320460ccae06"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-meroe-kungagravar/geographySv",
+      "sv": "Meroe, nuvarande Sudan",
+      "en": "Meroe, in present-day Sudan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-meroe-kungagravar",
+        "fieldPath": "/geographySv",
+        "textSha256": "2da0bed067578393843f8e1dc3291e7a5c5b26d35d4e0cd3c0f1d73214cdd1a6"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-co-loa-maktcentrum/date/displaySv",
+      "sv": "300–100 f.Kr.",
+      "en": "300–100 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-co-loa-maktcentrum",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0869dd492e0e9da16ae035d7f0c28b1746330d30428a554240dfcee6e4fe89c0"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-co-loa-maktcentrum/date/noteSv",
+      "sv": "Intervallet är den undersökta perioden i konferensbidraget. Tolkningen av befästningarna kommer från en separat forskningssammanfattning; ett bestämt grundläggningsår är okänt.",
+      "en": "The interval is the period studied in the conference contribution. The interpretation of the fortifications comes from a separate research abstract; a specific foundation year is unknown.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-co-loa-maktcentrum",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "86b843d8f512d59f626388b23de62bd8da1886b757591b2b71e10492a18cda5b"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-co-loa-maktcentrum/titleSv",
+      "sv": "Co Loa utvecklas som befäst maktcentrum",
+      "en": "Co Loa develops as a fortified centre of power",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-co-loa-maktcentrum",
+        "fieldPath": "/titleSv",
+        "textSha256": "307f3edad000c4cc17d15379fb754a6f9fbc154568ef66b72d2003a3225b7508"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-co-loa-maktcentrum/summarySv",
+      "sv": "Co Loa är ett stort befäst centrum i Röda flodens dal. Forskare tolkar jordvallarnas omfattning som tecken på centraliserad makt över flera generationer.",
+      "en": "Co Loa is a large fortified centre in the Red River Valley. Researchers interpret the scale of its earthen ramparts as evidence of centralized power over several generations.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-co-loa-maktcentrum",
+        "fieldPath": "/summarySv",
+        "textSha256": "08ed27e2a9e56f1af793ebf0e1a0be4f43961a2761a5a1014f44d7a539824a27"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-co-loa-maktcentrum/geographySv",
+      "sv": "Röda flodens dal, norra Vietnam",
+      "en": "The Red River Valley, northern Vietnam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-co-loa-maktcentrum",
+        "fieldPath": "/geographySv",
+        "textSha256": "f8b485e04b2fc10b25aa1f966e6078dd0031cf9039acae3fdb25581e441773d6"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-chankillo-solkalender/date/displaySv",
+      "sv": "cirka 300 eller 250–200 f.Kr.",
+      "en": "Around 300 or 250–200 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-chankillo-solkalender",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9e1420d82c15b9ce3c16ae563791b904b48c4f3229e1c7551aabcfe86e0f2a37"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-chankillo-solkalender/date/noteSv",
+      "sv": "Forskningssammanfattningen anger cirka 300 f.Kr.; Perus förslag till världsarvslista anger cirka 250–200 f.Kr. Yttergränserna förenar dateringarna och visar ingen säker byggtid på hundra år.",
+      "en": "The research abstract gives around 300 BC; Peru's tentative World Heritage submission gives around 250–200 BC. The outer bounds combine the dates and do not establish a hundred-year construction period.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-chankillo-solkalender",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f0e57322178f0b060accb58b026aa147bdf925542b38cb9179e0fb99926dd740"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-chankillo-solkalender/titleSv",
+      "sv": "Chankillos torn används som solkalender",
+      "en": "Chankillo's towers serve as a solar calendar",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-chankillo-solkalender",
+        "fieldPath": "/titleSv",
+        "textSha256": "760f61a97bc8fb1a34d785ce69297492c35e1fcc82c57db5bd78f9d19ce63f7c"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-chankillo-solkalender/summarySv",
+      "sv": "Tretton torn ingår i en ceremoniell anläggning vid Perus kust. Forskare tolkar observationer av solen mot tornen som ett sätt att ordna en social och rituell kalender.",
+      "en": "Thirteen towers form part of a ceremonial complex on Peru's coast. Researchers interpret observations of the Sun against the towers as a way to organize a social and ritual calendar.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-chankillo-solkalender",
+        "fieldPath": "/summarySv",
+        "textSha256": "62ce75b8cfce57d6c86d63e673427c8cf7d5b14db6436297f3880ba0b6753f7f"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-chankillo-solkalender/geographySv",
+      "sv": "Casmadalen, Peru",
+      "en": "The Casma Valley, Peru",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-chankillo-solkalender",
+        "fieldPath": "/geographySv",
+        "textSha256": "0f535cb7aae6b88a414d88897e0dda5046ee7f0d975106ca2a67d80054434270"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-galler-mindre-asien/date/displaySv",
+      "sv": "279–278 f.Kr.",
+      "en": "279–278 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-galler-mindre-asien",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b31bbaccaff8e6a8bb980c16e2e2b47664af101969d937989a772b6e9867020c"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-galler-mindre-asien/date/noteSv",
+      "sv": "Kronologin anger 279/278 utan ett enskilt säkert år.",
+      "en": "The chronology gives 279/278 without a single certain year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-galler-mindre-asien",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "66290b26a1ba8b32dc59ebde5c12308c8abb61fbc7396a50bac663cd5e050b50"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-galler-mindre-asien/titleSv",
+      "sv": "Galliska grupper går in i Mindre Asien",
+      "en": "Gallic groups enter Asia Minor",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-galler-mindre-asien",
+        "fieldPath": "/titleSv",
+        "textSha256": "29ab142416d167730354eec13216b87d2c5b19d4f48619d0d77a400c94593aa5"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-galler-mindre-asien/summarySv",
+      "sv": "Galliska grupper invaderar Mindre Asien.",
+      "en": "Gallic groups invade Asia Minor.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-galler-mindre-asien",
+        "fieldPath": "/summarySv",
+        "textSha256": "0d1bd2368dd933a7181f8e33f7f2347991095b4d815cd1ee3cafdcc94df60ef9"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-galler-mindre-asien/geographySv",
+      "sv": "Mindre Asien",
+      "en": "Asia Minor",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-galler-mindre-asien",
+        "fieldPath": "/geographySv",
+        "textSha256": "128ca863eafd03ce3e84ffc8401ea906a6fd809605d01811555d32a993e03d85"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-pyrrhus-sicilien/date/displaySv",
+      "sv": "hösten 278–hösten 276 f.Kr.",
+      "en": "Autumn 278–autumn 276 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-pyrrhus-sicilien",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5371fd74835ad6a753a8de0931b88f83ab06740ec1a516fce73f70a0ca1d6dff"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-pyrrhus-sicilien/date/noteSv",
+      "sv": "Årstiderna och hela kampanjperioden anges i den moderna kommentaren till Eutropius.",
+      "en": "The seasons and the full campaign period are given in the modern commentary on Eutropius.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-pyrrhus-sicilien",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "93212014b77a8812dfaf1445c4e59ca9765184b475cc7f7846de6d891e0fddf5"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-pyrrhus-sicilien/titleSv",
+      "sv": "Pyrrhos för krig på Sicilien",
+      "en": "Pyrrhus wages war in Sicily",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-pyrrhus-sicilien",
+        "fieldPath": "/titleSv",
+        "textSha256": "dc88be86322172d2bb7725fd1cf15105c47630e903429e334fff95dcd559d0c8"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-pyrrhus-sicilien/summarySv",
+      "sv": "Pyrrhos seglar till Sicilien och bedriver ett fälttåg där under flera år.",
+      "en": "Pyrrhus sails to Sicily and campaigns there for several years.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-pyrrhus-sicilien",
+        "fieldPath": "/summarySv",
+        "textSha256": "19e63c300da92891877671935048df59dc7a41a49c14573dcda8ff4909c0330e"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-pyrrhus-sicilien/geographySv",
+      "sv": "Sicilien",
+      "en": "Sicily",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-pyrrhus-sicilien",
+        "fieldPath": "/geographySv",
+        "textSha256": "ca75e780909ffc8a56144a87b4116660c7761a46822df079c6a14290dcb709ce"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-beneventum/date/displaySv",
+      "sv": "275 f.Kr.",
+      "en": "275 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-beneventum",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "29b1fc2b742fd3cd8ea188309458565d3605ef9b98d15fa47aa838e3b499e029"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-beneventum/date/noteSv",
+      "sv": "Den moderna kommentaren daterar slaget till detta år. Ingen exakt dag eller förlustsiffra används.",
+      "en": "The modern commentary dates the battle to this year. No exact day or casualty figure is used.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-beneventum",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1abdc03b6dc8d7db45c1817a9c7a250ea048098f87aefa45d9b526658136caf7"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-beneventum/titleSv",
+      "sv": "Romarna hejdar Pyrrhos vid Beneventum",
+      "en": "The Romans halt Pyrrhus at Beneventum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-beneventum",
+        "fieldPath": "/titleSv",
+        "textSha256": "b80953d5aa13d809a5407dc4869e6aa52f69f03c321ce03e818b012d9d90c0f5"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-beneventum/summarySv",
+      "sv": "Romerska styrkor står emot Pyrrhos vid Beneventum. Han tvingas dra sig tillbaka till Tarentum.",
+      "en": "Roman forces withstand Pyrrhus at Beneventum. He is forced to withdraw to Tarentum.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-beneventum",
+        "fieldPath": "/summarySv",
+        "textSha256": "135ed13ac4e8fa9df40f2a7de0f16dcef5ca176c020ad3a322eb5ccddd5dc9d7"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-beneventum/geographySv",
+      "sv": "Beneventum, nuvarande Benevento i Italien",
+      "en": "Beneventum, present-day Benevento in Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-beneventum",
+        "fieldPath": "/geographySv",
+        "textSha256": "432a7ab3d142da5a979d65faa90ac6d1b210af27128ef44bca2a5ae0e432a57b"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-forsta-syriska-kriget/date/displaySv",
+      "sv": "274–271 f.Kr.",
+      "en": "274–271 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-forsta-syriska-kriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "775cd06810fa352a222e5392b52e4183ad24051292c422f0606da4d1047f32d0"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-forsta-syriska-kriget/date/noteSv",
+      "sv": "Hela krigsperioden följer kronologin.",
+      "en": "The full war period follows the chronology.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-forsta-syriska-kriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "dd5a73a4be904341a0d032e9c87786894e41610f416bce6c906764560a514d75"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-forsta-syriska-kriget/titleSv",
+      "sv": "Det första syriska kriget",
+      "en": "The First Syrian War",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-forsta-syriska-kriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "4b202811bd2ce2421109e938f58d6b6d93689ae904172936a86681457e760ffa"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-forsta-syriska-kriget/summarySv",
+      "sv": "Ptolemaios II och Antiochos I för krig mot varandra.",
+      "en": "Ptolemy II and Antiochus I wage war against each other.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-forsta-syriska-kriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "75b0603c8360a1eefc05e2fcc4c7dec32306b0a884be476e1745e304eb7322b2"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-forsta-syriska-kriget/geographySv",
+      "sv": "Östra Medelhavsområdet",
+      "en": "The eastern Mediterranean",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-forsta-syriska-kriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "e703268b0e5ef989cb1f904acc3df8ca23339c41bedec087c1cdb0ae530ff9a9"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-chremonideiska-kriget/date/displaySv",
+      "sv": "267–261 f.Kr.",
+      "en": "267–261 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-chremonideiska-kriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "82b21f6df75b055f6ce8d18442d8b8013227def2d0f8b72c34761698e1d5ffba"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-chremonideiska-kriget/date/noteSv",
+      "sv": "Hela krigsperioden följer kronologin.",
+      "en": "The full war period follows the chronology.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-chremonideiska-kriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "dd5a73a4be904341a0d032e9c87786894e41610f416bce6c906764560a514d75"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-chremonideiska-kriget/titleSv",
+      "sv": "Det chremonideiska kriget",
+      "en": "The Chremonidean War",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-chremonideiska-kriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "0944e2e57adbd9812ff1e17c2dc78f46d6a130cd653a5f1fd796bcb3033e72eb"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-chremonideiska-kriget/summarySv",
+      "sv": "Under kriget belägrar Antigonos Gonatas Aten.",
+      "en": "During the war, Antigonus Gonatas besieges Athens.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-chremonideiska-kriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "71753b2e0cc0130357f9010d0231fead495a54ac948fa6215f46ea595dec10e4"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-chremonideiska-kriget/geographySv",
+      "sv": "Aten och Grekland",
+      "en": "Athens and Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-chremonideiska-kriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "53a0788de573bd7cd6c2ab39d2005a2fd1f6a1aab76cfbb7613bcf2438c1da0c"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-forsta-puniska-kriget/date/displaySv",
+      "sv": "264–241 f.Kr.",
+      "en": "264–241 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-forsta-puniska-kriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "922db931130bf1010595d5ed15c2a6d27fe9ce9e0b8ae0984a510da02cdca172"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-forsta-puniska-kriget/date/noteSv",
+      "sv": "Intervallet avser hela kriget. Enskilda slag och fredsvillkor dateras inte genom denna post.",
+      "en": "The interval covers the entire war. This record does not date individual battles or peace terms.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-forsta-puniska-kriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "bfab4d7f6d8ee4c96ad2ee1a6f0221cf2ebd678f65c846c4a205ba86a0151030"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-forsta-puniska-kriget/titleSv",
+      "sv": "Det första puniska kriget",
+      "en": "The First Punic War",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-forsta-puniska-kriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "aa12fde3398a2662cc722f942064de83ec6aea7a01648e03f3825ac8eeca5ff7"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-forsta-puniska-kriget/summarySv",
+      "sv": "Rom och Karthago utkämpar det första puniska kriget. Konflikten varar i mer än två årtionden.",
+      "en": "Rome and Carthage fight the First Punic War. The conflict lasts for more than two decades.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-forsta-puniska-kriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "3a3aeee9e5fe4a1bfff76f147834144ea464853acbf99b8b1ccbfee5d1f48bed"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-forsta-puniska-kriget/geographySv",
+      "sv": "Västra Medelhavsområdet",
+      "en": "The western Mediterranean",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-forsta-puniska-kriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "c2a0eaefed51025a0d140ded8eb4307afc892af7d1b45daee8d539afabc87569"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-kalingakriget/date/displaySv",
+      "sv": "cirka 261 eller cirka 260 f.Kr.",
+      "en": "Around 261 or around 260 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-kalingakriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "73bc4a4cf3d05587335c65229458214e4c381275286ba70c28dec541e0ed87b4"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-kalingakriget/date/noteSv",
+      "sv": "PBS anger cirka 261 f.Kr.; universitetsmaterialet anger cirka 260 f.Kr. Inget nytt år räknas fram ur regeringsår, och en omedelbar religiös omvändelse påstås inte.",
+      "en": "PBS gives around 261 BC; the university material gives around 260 BC. No new year is calculated from regnal years, and an immediate religious conversion is not asserted.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-kalingakriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "85a3f7d55c1c63c0e416301f0d96b2eb7b0bc397d94693044db3281e488634a9"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-kalingakriget/titleSv",
+      "sv": "Ashoka erövrar Kalinga",
+      "en": "Ashoka conquers Kalinga",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-kalingakriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "498e2f63668ef48c0ea3dad0dd29563be2765b71bfc49135b8169894878536a4"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-kalingakriget/summarySv",
+      "sv": "Mauryahärskaren Ashoka angriper och erövrar Kalinga. Kriget blir en viktig händelse i hans regering.",
+      "en": "The Mauryan ruler Ashoka attacks and conquers Kalinga. The war becomes an important event in his reign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-kalingakriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "3eda2a4cf3111b2b5f92388393dd8bbc02c18a8040de4263e4cf30a7c8b99583"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-kalingakriget/geographySv",
+      "sv": "Kalinga, östra Indien",
+      "en": "Kalinga, eastern India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-kalingakriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "2fcdc2e965b478b1cfc55215318e3b94491cda0fcfcbcc754e3850699385aad5"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-andra-syriska-kriget/date/displaySv",
+      "sv": "260–253 f.Kr.",
+      "en": "260–253 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-andra-syriska-kriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7dd246b94d28489c7db5e8b0a80871aa0f42576a47256472b88bcfda0252131b"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-andra-syriska-kriget/date/noteSv",
+      "sv": "Hela krigsperioden följer kronologin.",
+      "en": "The full war period follows the chronology.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-andra-syriska-kriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "dd5a73a4be904341a0d032e9c87786894e41610f416bce6c906764560a514d75"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-andra-syriska-kriget/titleSv",
+      "sv": "Det andra syriska kriget",
+      "en": "The Second Syrian War",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-andra-syriska-kriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "c662f428c2fe543e87aa4d99271abbeb4f16b4e87a580b7576694249c6beb293"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-andra-syriska-kriget/summarySv",
+      "sv": "Ptolemaios II och Antiochos II för krig mot varandra.",
+      "en": "Ptolemy II and Antiochus II wage war against each other.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-andra-syriska-kriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "db322778aef9cdb10a945373fc9021e57f702f815aa43b1e6c8391861d08a81b"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-andra-syriska-kriget/geographySv",
+      "sv": "Östra Medelhavsområdet",
+      "en": "The eastern Mediterranean",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-andra-syriska-kriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "e703268b0e5ef989cb1f904acc3df8ca23339c41bedec087c1cdb0ae530ff9a9"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-arsakes-kung/date/displaySv",
+      "sv": "troligen cirka 247 f.Kr.",
+      "en": "Probably around 247 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-arsakes-kung",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "22de806b85ebcbb6ba3695d5f6b5c9becf03f6ef539c1e6f90fd04c252fbda7e"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-arsakes-kung/date/noteSv",
+      "sv": "Den tidiga arsakidiska kronologin är omstridd. Källan skiljer denna kungautropning från det senare övertagandet av Parthien.",
+      "en": "Early Arsacid chronology is disputed. The source distinguishes this royal proclamation from the later takeover of Parthia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-arsakes-kung",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c5fbf7736acb6e5f0c016bd42538201f4550982a96625ef46f3d33b2f2142919"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-arsakes-kung/titleSv",
+      "sv": "Arsakes utropas till kung",
+      "en": "Arsaces is proclaimed king",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-arsakes-kung",
+        "fieldPath": "/titleSv",
+        "textSha256": "ea42f4869188995336dba11d00003c1c346172564566bd48ca68fe63b2c157e4"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-arsakes-kung/summarySv",
+      "sv": "Parniernas ledare Arsakes utropas till kung i Asaak. Ortens exakta läge är okänt.",
+      "en": "Arsaces, the leader of the Parni, is proclaimed king at Asaak. The site's exact location is unknown.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-arsakes-kung",
+        "fieldPath": "/summarySv",
+        "textSha256": "a9c0b5e5d26673f55960ca8c99ea302d9d72037407f1d6d6693decc5d16c3fa0"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-arsakes-kung/geographySv",
+      "sv": "Asaak, i området kring nordöstra Iran och södra Turkmenistan",
+      "en": "Asaak, in the area of northeastern Iran and southern Turkmenistan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-arsakes-kung",
+        "fieldPath": "/geographySv",
+        "textSha256": "12bc736a67316d20ab622b03904f5088563cb314a4d504d014ffc32f3900aa95"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-tredje-syriska-kriget/date/displaySv",
+      "sv": "246–241 f.Kr.",
+      "en": "246–241 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-tredje-syriska-kriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ed6a5b39e823ad5d1a5d7c0e3b7a2204a77efcf0753334374998bc7a78b09a4a"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-tredje-syriska-kriget/date/noteSv",
+      "sv": "Hela krigsperioden följer kronologin.",
+      "en": "The full war period follows the chronology.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-tredje-syriska-kriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "dd5a73a4be904341a0d032e9c87786894e41610f416bce6c906764560a514d75"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-tredje-syriska-kriget/titleSv",
+      "sv": "Det tredje syriska kriget",
+      "en": "The Third Syrian War",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-tredje-syriska-kriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "3ca0a959f44fe133da9acc49c1f24c2f9dd6ec8e4a8c5cc3fcc7a382d37412af"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-tredje-syriska-kriget/summarySv",
+      "sv": "Ptolemaios III och Seleukos II för krig mot varandra.",
+      "en": "Ptolemy III and Seleucus II wage war against each other.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-tredje-syriska-kriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "ce59db7520e5bada7a5850f380fb90182879eb0c3cc31b85d65f83e7e6245ffb"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-tredje-syriska-kriget/geographySv",
+      "sv": "Östra Medelhavsområdet",
+      "en": "The eastern Mediterranean",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-tredje-syriska-kriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "e703268b0e5ef989cb1f904acc3df8ca23339c41bedec087c1cdb0ae530ff9a9"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-parnier-parthien/date/displaySv",
+      "sv": "cirka 238 f.Kr.",
+      "en": "Around 238 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-parnier-parthien",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5154a12f3427d29700643e00955d3fe4f7e0674f704e446a979420f5f57ee193"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-parnier-parthien/date/noteSv",
+      "sv": "Källan anger ett ungefärligt år. Detta är invasionen av Parthien; den tidigare kungautropningen dateras separat.",
+      "en": "The source gives an approximate year. This is the invasion of Parthia; the earlier royal proclamation is dated separately.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-parnier-parthien",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b50c319474c6351f5fc4825aa8182a7f3a42872b0b8e05fa0ce3b9189709fce6"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-parnier-parthien/titleSv",
+      "sv": "Parnierna invaderar Parthien",
+      "en": "The Parni invade Parthia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-parnier-parthien",
+        "fieldPath": "/titleSv",
+        "textSha256": "05f1f92c582b732a07da02d440c277630cbfcfdbe6ab661a14d1e72e90a6f308"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-parnier-parthien/summarySv",
+      "sv": "Parnierna går in i Parthien, där härskaren Andragoras dödas. Händelsen utvidgar deras välde över den tidigare satrapin.",
+      "en": "The Parni enter Parthia, where its ruler Andragoras is killed. The event extends their rule over the former satrapy.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-parnier-parthien",
+        "fieldPath": "/summarySv",
+        "textSha256": "e961ed86e602caa13f9ccafaad3acd1dcd87a40ec532a792ee2f21d5584fc5c7"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-parnier-parthien/geographySv",
+      "sv": "Parthien, nordöstra Iran",
+      "en": "Parthia, northeastern Iran",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-parnier-parthien",
+        "fieldPath": "/geographySv",
+        "textSha256": "0b7548d6dd74045640bb1ba1ae92e58e35719d92cfeca76efe302b349164d844"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-mleiha-oman-belagg/date/displaySv",
+      "sv": "222/221 eller 215/214 f.Kr.",
+      "en": "222/221 or 215/214 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-mleiha-oman-belagg",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "70ef65625fdb9b4cf36e5011ed622d03b7b41d71484ff1e3d09cf8dd11fc191a"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-mleiha-oman-belagg/date/noteSv",
+      "sv": "Två alternativa läsningar av inskriftens datering bevaras. Yttergränserna anger ingen åttaårig byggperiod och daterar inte rikets grundande.",
+      "en": "Two alternative readings of the inscription's date are preserved. The outer bounds do not indicate an eight-year construction period or date the kingdom's foundation.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-mleiha-oman-belagg",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d8e3fe9c7de73e58873b13da605ea453e7718aba5f10db44d47233608815d46d"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-mleiha-oman-belagg/titleSv",
+      "sv": "En inskrift belägger en kung av Oman",
+      "en": "An inscription attests a king of Oman",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-mleiha-oman-belagg",
+        "fieldPath": "/titleSv",
+        "textSha256": "b4be344bf114130a71a94ad4f5fb06519f8f6c2fa975c90890838f7457665ed0"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-mleiha-oman-belagg/summarySv",
+      "sv": "En gravinskrift i Mleiha nämner en ämbetsman i tjänst hos kungen av Oman. Texten på sydarabiska och arameiska ger belägg för ett kungarike i sydöstra Arabien.",
+      "en": "A funerary inscription at Mleiha names an official serving the king of Oman. The text in South Arabian and Aramaic provides evidence of a kingdom in southeastern Arabia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-mleiha-oman-belagg",
+        "fieldPath": "/summarySv",
+        "textSha256": "849dfb51634469356efae2b2fccff710d9f519ec261405922b239bd8c7013c26"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-mleiha-oman-belagg/geographySv",
+      "sv": "Mleiha, nuvarande Förenade arabemiraten",
+      "en": "Mleiha, in the present-day United Arab Emirates",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-mleiha-oman-belagg",
+        "fieldPath": "/geographySv",
+        "textSha256": "0ef0281d3dd951b372f7354ffa932a5e19a6ccdb697a4696c658dfaf74a17525"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-qin-enande/date/displaySv",
+      "sv": "221 f.Kr.",
+      "en": "221 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-qin-enande",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "47a996e92a26a3a7d228062b3f7a6a3f7ad39ded9d1008374a9e97dfae8e7890"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-qin-enande/date/noteSv",
+      "sv": "Året avser Qins enande efter de stridande staternas tid. Alla senare administrativa reformer förläggs inte till samma år.",
+      "en": "The year concerns Qin unification after the Warring States period. Later administrative reforms are not all assigned to the same year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-qin-enande",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e450087fb21bd97c25976b9d7852e37406df3ad74c9ca5a2dffaa0a44c0fd9e0"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-qin-enande/titleSv",
+      "sv": "Qin enar de stridande staterna",
+      "en": "Qin unifies the Warring States",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-qin-enande",
+        "fieldPath": "/titleSv",
+        "textSha256": "c4dea571feba103f438201666c0b882f8eb98d7dfe3747e5da24d4d4a4b40548"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-qin-enande/summarySv",
+      "sv": "Qins erövringar avslutar de stridande staternas tid. Härskaren antar titeln förste kejsare.",
+      "en": "Qin's conquests end the Warring States period. Its ruler adopts the title of First Emperor.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-qin-enande",
+        "fieldPath": "/summarySv",
+        "textSha256": "8b1534d684017a6d19880577c292eb838f70637526fb3c465dfa05d5913a62a1"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-qin-enande/geographySv",
+      "sv": "De tidigare stridande staternas områden i Kina",
+      "en": "The territories of the former Warring States in China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-qin-enande",
+        "fieldPath": "/geographySv",
+        "textSha256": "e1d6099610daa0b5a8a58c5512e6ebee0dc59303ca456b356c5e877a734426df"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-fjarde-syriska-kriget/date/displaySv",
+      "sv": "219–217 f.Kr.",
+      "en": "219–217 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-fjarde-syriska-kriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d53ddfd8baadc2b0d5fb2e8618eafd048df9062cb50276a2c3d93e70bee6685b"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-fjarde-syriska-kriget/date/noteSv",
+      "sv": "Hela krigsperioden följer kronologin.",
+      "en": "The full war period follows the chronology.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-fjarde-syriska-kriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "dd5a73a4be904341a0d032e9c87786894e41610f416bce6c906764560a514d75"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-fjarde-syriska-kriget/titleSv",
+      "sv": "Det fjärde syriska kriget",
+      "en": "The Fourth Syrian War",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-fjarde-syriska-kriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "6a16962a0b1ba738f404b5faec77ace77b9aa5b1480bdf53f0a7c781820bbd58"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-fjarde-syriska-kriget/summarySv",
+      "sv": "Antiochos III och Ptolemaios IV för krig mot varandra.",
+      "en": "Antiochus III and Ptolemy IV wage war against each other.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-fjarde-syriska-kriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "e9f6a1b822960cc0c4a5d05135e37824b4f06cde94fe4f8da9f81446e6828165"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-fjarde-syriska-kriget/geographySv",
+      "sv": "Östra Medelhavsområdet",
+      "en": "The eastern Mediterranean",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-fjarde-syriska-kriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "e703268b0e5ef989cb1f904acc3df8ca23339c41bedec087c1cdb0ae530ff9a9"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-andra-puniska-kriget/date/displaySv",
+      "sv": "218–201 f.Kr.",
+      "en": "218–201 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-andra-puniska-kriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2c4c737200bcb70c2944e32bd05320e40ffbb58f02aa9e768ace7629c41dc8ed"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-andra-puniska-kriget/date/noteSv",
+      "sv": "Hela kriget omfattas, inklusive tiden efter slaget vid Zama. Slagets år ersätter inte krigets slutår.",
+      "en": "The entire war is covered, including the period after the Battle of Zama. The battle's year does not replace the war's ending year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-andra-puniska-kriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "39f7cc38e54cb5ca21cba7c4b12d65be844403fd6ddd43e12cb0f1225554cbbc"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-andra-puniska-kriget/titleSv",
+      "sv": "Det andra puniska kriget",
+      "en": "The Second Punic War",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-andra-puniska-kriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "e97493a4870b7690407a44da511a4f93870db2c625a8eaf03bef437505a281a2"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-andra-puniska-kriget/summarySv",
+      "sv": "Rom och Karthago utkämpar ett nytt krig. Hannibal och Scipio hör till dess ledande befälhavare.",
+      "en": "Rome and Carthage fight another war. Hannibal and Scipio are among its leading commanders.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-andra-puniska-kriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "68f382adcc713588fde0782b0037723884d9daa2c1639febd49049b76456fc7d"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-andra-puniska-kriget/geographySv",
+      "sv": "Västra Medelhavsområdet",
+      "en": "The western Mediterranean",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-andra-puniska-kriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "c2a0eaefed51025a0d140ded8eb4307afc892af7d1b45daee8d539afabc87569"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-trasimenus/date/displaySv",
+      "sv": "217 f.Kr.",
+      "en": "217 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-trasimenus",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "cc0c83eb165d7b82cab6978056c81cc85f6e8531117144793690ae0300948a78"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-trasimenus/date/noteSv",
+      "sv": "Årtalet avser slaget; någon dag anges inte här.",
+      "en": "The year concerns the battle; no day is specified here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-trasimenus",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "4959f6220b74dfefe447fe945de046c00e0f20ac279341f1733dd208442dddc9"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-trasimenus/titleSv",
+      "sv": "Hannibal besegrar romarna vid Trasimenussjön",
+      "en": "Hannibal defeats the Romans at Lake Trasimene",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-trasimenus",
+        "fieldPath": "/titleSv",
+        "textSha256": "be836ad8d12f100aa67b69dd465fbdd07f1569c56a1a589abce0bd01ccfe332d"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-trasimenus/summarySv",
+      "sv": "Hannibals armé besegrar romarna vid Trasimenussjön.",
+      "en": "Hannibal's army defeats the Romans at Lake Trasimene.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-trasimenus",
+        "fieldPath": "/summarySv",
+        "textSha256": "860afa8c870ad600d87c61e4647b9e881a3fc40963e313a782fb96910fb2f8fe"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-trasimenus/geographySv",
+      "sv": "Trasimenussjön, Italien",
+      "en": "Lake Trasimene, Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-trasimenus",
+        "fieldPath": "/geographySv",
+        "textSha256": "9eb6103885ec88670c9d0c6f5668114e14783d4d87c8e0d2b88183455239afc8"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-raphia/date/displaySv",
+      "sv": "217 f.Kr.",
+      "en": "217 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-raphia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "cc0c83eb165d7b82cab6978056c81cc85f6e8531117144793690ae0300948a78"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-raphia/date/noteSv",
+      "sv": "Sammanfattningens juni 217 f.Kr. gäller marschen före slaget. Här anges endast slagets år.",
+      "en": "The summary's June 217 BC refers to the march preceding the battle. Only the battle's year is given here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-raphia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "802ab404966bc79de044a6e07472f62eb8fa723b5a0929729e8d839775137503"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-raphia/titleSv",
+      "sv": "Ptolemaios segrar vid Rafia",
+      "en": "Ptolemy wins at Raphia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-raphia",
+        "fieldPath": "/titleSv",
+        "textSha256": "7649e46434cb60604e46b90df3ec0db64efed02996ca44d07ae8c8e3aea81d84"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-raphia/summarySv",
+      "sv": "Ptolemaios IV besegrar Antiochos III vid Rafia.",
+      "en": "Ptolemy IV defeats Antiochus III at Raphia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-raphia",
+        "fieldPath": "/summarySv",
+        "textSha256": "b28cb0bac91c7c27198a58565f6f7e173724fba3254de8e10b82e0401317bf13"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-raphia/geographySv",
+      "sv": "Rafia, södra Levanten",
+      "en": "Raphia, the southern Levant",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-raphia",
+        "fieldPath": "/geographySv",
+        "textSha256": "8d243a4e382622d8ec351293813774deb0625a39c86737f6539548293224c8a6"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-cannae/date/displaySv",
+      "sv": "216 f.Kr.",
+      "en": "216 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-cannae",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b0d73996c2d6539511ec6bb19d45cbb004dcd07eb4597aeb2f2c430b5931378e"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-cannae/date/noteSv",
+      "sv": "Årtalet bekräftas av den moderna kommentaren. Polybios används för stridens förlopp; hans förlustsiffror återges inte.",
+      "en": "The year is confirmed by the modern commentary. Polybius is used for the course of the battle; his casualty figures are not repeated.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-cannae",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "0b805c5b50873ea94f774c729dd848a7a58331c8cac3d903d98d684e7193d276"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-cannae/titleSv",
+      "sv": "Hannibal besegrar romarna vid Cannae",
+      "en": "Hannibal defeats the Romans at Cannae",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-cannae",
+        "fieldPath": "/titleSv",
+        "textSha256": "3bf42d5647b79a8dd67d330b5e845ca8dd55b7495947c7b43951eba00a583b02"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-cannae/summarySv",
+      "sv": "Hannibals styrkor besegrar den romerska armén vid Cannae. Polybios beskriver hur kavalleri angriper romarna bakifrån.",
+      "en": "Hannibal's forces defeat the Roman army at Cannae. Polybius describes cavalry attacking the Romans from behind.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-cannae",
+        "fieldPath": "/summarySv",
+        "textSha256": "db9ca7cc3ab7449b0b37812e79316b7fd78fa5cdbec112253bd61f3f4922424b"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-cannae/geographySv",
+      "sv": "Cannae, södra Italien",
+      "en": "Cannae, southern Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-cannae",
+        "fieldPath": "/geographySv",
+        "textSha256": "64c4a4082f55ab25f75b319f65bf3a2b0b989fd795477a12fed319224317d167"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-lingqukanalen/date/displaySv",
+      "sv": "214 f.Kr.",
+      "en": "214 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-lingqukanalen",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0dc2e319ca16a8e110944248157978918ff98037f6984a4260a371bcbcc4bdf2"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-lingqukanalen/date/noteSv",
+      "sv": "Året avser kanalens färdigställande enligt Kinas statliga nominering. Dagens samtliga slussar och vattenbyggnader tillskrivs inte denna tid.",
+      "en": "The year concerns the canal's completion according to China's State Party nomination. Not all present-day locks and hydraulic structures are attributed to this period.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-lingqukanalen",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9e473c54c843fd0c53913ed1feeeceb68282bf46c0ce55c9f15e9a02a5bf64d0"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-lingqukanalen/titleSv",
+      "sv": "Lingqukanalen färdigställs",
+      "en": "The Lingqu Canal is completed",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-lingqukanalen",
+        "fieldPath": "/titleSv",
+        "textSha256": "b86ee4801b15d50657f08835136aa50d1b1ebecfb2d154f52a42a6c1c83e78ba"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-lingqukanalen/summarySv",
+      "sv": "En kanal för spannmålstransporter förbinder floderna Xiang och Li. Den knyter samman vattensystemen i centrala och södra Kina.",
+      "en": "A canal for grain transport connects the Xiang and Li rivers. It links the river systems of central and southern China.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-lingqukanalen",
+        "fieldPath": "/summarySv",
+        "textSha256": "3a0bb29964663cb7f2476b863939af56c0eda89715de6e800fc4e8bfd56289d2"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-lingqukanalen/geographySv",
+      "sv": "Xing'an, Guangxi, Kina",
+      "en": "Xing'an, Guangxi, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-lingqukanalen",
+        "fieldPath": "/geographySv",
+        "textSha256": "f0bee1520fee14d3968440f4a07fb6472c9493b551f582939d9f38c844a81e76"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-qin-bokbranning/date/displaySv",
+      "sv": "213 f.Kr.",
+      "en": "213 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-qin-bokbranning",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f9cf62f83b157e7ee6e667d290d466c12c09b4e96ac2ae5eb56638fb9d50373d"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-qin-bokbranning/date/noteSv",
+      "sv": "Årtalet följer museets historiska redogörelse. Posten påstår inte att alla böcker eller alla lärdomstraditioner förstörs.",
+      "en": "The year follows the museum's historical account. The record does not claim that all books or all intellectual traditions are destroyed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-qin-bokbranning",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6c0b1c2a2f16061406107362fe671adc86902818acb9fa0da986c60dc5fbc9d9"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-qin-bokbranning/titleSv",
+      "sv": "Qinmakten låter bränna klassiska texter",
+      "en": "The Qin authorities burn classical texts",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-qin-bokbranning",
+        "fieldPath": "/titleSv",
+        "textSha256": "e0a038e44057ce12a98259bd8645817d991045f62219d6f28804d9f74955d22b"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-qin-bokbranning/summarySv",
+      "sv": "Under Qin Shi Huang genomförs en statligt organiserad bränning av konfucianska verk och andra klassiska texter.",
+      "en": "Under Qin Shi Huang, the state organizes the burning of Confucian works and other classical texts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-qin-bokbranning",
+        "fieldPath": "/summarySv",
+        "textSha256": "3f2af1646abe4a56dd7d2af38fa916f02e4281077f1e825277c40042afc3c1e8"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-qin-bokbranning/geographySv",
+      "sv": "Qinriket, Kina",
+      "en": "The Qin Empire, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-qin-bokbranning",
+        "fieldPath": "/geographySv",
+        "textSha256": "04f51fefa6393e24d002aaa49978c4b9b3f18a5abbfae3685daec8f2e210daed"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-syrakusa-erovras/date/displaySv",
+      "sv": "212 f.Kr.",
+      "en": "212 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-syrakusa-erovras",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "cad0728392c0224955da2094a08b8bf32485115ae683445daa19426d5b016677"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-syrakusa-erovras/date/noteSv",
+      "sv": "Årtalet gäller stadens erövring och Arkimedes död. Berättelserna om hans uppfinningar dateras inte genom denna post.",
+      "en": "The year concerns the city's conquest and the death of Archimedes. This record does not date the stories about his inventions.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-syrakusa-erovras",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "80e2af44205ff8c990978a9a1e7f79742b207059b81dae133d6f0312195c1a9a"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-syrakusa-erovras/titleSv",
+      "sv": "Romarna erövrar Syrakusa",
+      "en": "The Romans conquer Syracuse",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-syrakusa-erovras",
+        "fieldPath": "/titleSv",
+        "textSha256": "78d9fb6b4126d3a847985f0fe434de7032a8b4395cd7de5a84aa376010371466"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-syrakusa-erovras/summarySv",
+      "sv": "Romerska styrkor intar Syrakusa. Arkimedes dödas av en romersk soldat under erövringen.",
+      "en": "Roman forces capture Syracuse. Archimedes is killed by a Roman soldier during the conquest.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-syrakusa-erovras",
+        "fieldPath": "/summarySv",
+        "textSha256": "c496e4eaa50b253d3907952f7f8847626b1cf1cb01d8a0ded0b889a8a212cb8e"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-syrakusa-erovras/geographySv",
+      "sv": "Syrakusa, Sicilien",
+      "en": "Syracuse, Sicily",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-syrakusa-erovras",
+        "fieldPath": "/geographySv",
+        "textSha256": "eb6626bd9ffb30d7974fd4f9cf452d07543166bb9fc4e597979ae7ccd95fc6d7"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-nya-karthago/date/displaySv",
+      "sv": "209 f.Kr.",
+      "en": "209 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-nya-karthago",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4400882ae34d6e7a00fb4bce220035122dd35f4380ca07d9e94b95a54136c4b9"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-nya-karthago/date/noteSv",
+      "sv": "Årtalet följer undervisningsmaterialets uttryckliga datering.",
+      "en": "The year follows the teaching material's explicit dating.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-nya-karthago",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "34d7f979dbc956e882086f326058ffc37a5f49e2fe4881030af9fb5f15955ecd"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-nya-karthago/titleSv",
+      "sv": "Scipio erövrar Nya Karthago",
+      "en": "Scipio captures New Carthage",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-nya-karthago",
+        "fieldPath": "/titleSv",
+        "textSha256": "c97e4c837c08a3dc4dad0792f070f8fafce29ed4f1b0d3790258494a8666cb2c"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-nya-karthago/summarySv",
+      "sv": "Scipio Africanus intar den karthagiska staden Nya Karthago i Iberien.",
+      "en": "Scipio Africanus captures the Carthaginian city of New Carthage in Iberia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-nya-karthago",
+        "fieldPath": "/summarySv",
+        "textSha256": "d7fa1d5e2e9b0dc16549e8a425afd1c1a4054ade4ecda638e8e164075ad19a70"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-nya-karthago/geographySv",
+      "sv": "Nya Karthago, nuvarande Cartagena i Spanien",
+      "en": "New Carthage, present-day Cartagena in Spain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-nya-karthago",
+        "fieldPath": "/geographySv",
+        "textSha256": "65b45750e896846ec60dd5f998e88d27f0e493a34a2373e06c8ada7209ca7c43"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-xiongnu-expansion/date/displaySv",
+      "sv": "209–161 f.Kr.",
+      "en": "209–161 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-xiongnu-expansion",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9508626a70a19e6be23c3de03e7a1fd788b799efe62b78bd60f56d85e438935e"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-xiongnu-expansion/date/noteSv",
+      "sv": "Hela expansionsperioden under Maodun och Jiyu bevaras. Början av intervallet anges inte som ett säkert enskilt grundläggningsår.",
+      "en": "The full expansion period under Maodun and Jiyu is preserved. The beginning of the interval is not given as a certain single foundation year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-xiongnu-expansion",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "2f91e79d01036fdd0edfffbe7665b60c9a208484cc81f20181007a5a96010782"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-xiongnu-expansion/titleSv",
+      "sv": "Xiongnu bygger ut sitt stäppförbund",
+      "en": "The Xiongnu expand their steppe confederation",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-xiongnu-expansion",
+        "fieldPath": "/titleSv",
+        "textSha256": "5319df830d4059ebab521b65709937baeb6e74cf5a33edec1dcdd2d9d2ab71cd"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-xiongnu-expansion/summarySv",
+      "sv": "Under Maodun och hans son Jiyu samlar Xiongnu grannfolk under sin kontroll. Förbundet omfattar stora delar av Mongoliet, Inre Mongoliet och södra Sibirien.",
+      "en": "Under Maodun and his son Jiyu, the Xiongnu bring neighbouring peoples under their control. The confederation encompasses large parts of Mongolia, Inner Mongolia and southern Siberia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-xiongnu-expansion",
+        "fieldPath": "/summarySv",
+        "textSha256": "e8c75ef197778310252366a8094930b729bcf40b07248c0e54650ce4e0f2bd25"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-xiongnu-expansion/geographySv",
+      "sv": "Östra Centralasiens stäpper",
+      "en": "The steppes of eastern Central Asia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-xiongnu-expansion",
+        "fieldPath": "/geographySv",
+        "textSha256": "b8a2dc15a761dd8f4112d37c5e35b1a63c98f2a98d3dc78661c643bdb6ec9d32"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-thebaid-upproret/date/displaySv",
+      "sv": "206–186 f.Kr.",
+      "en": "206–186 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-thebaid-upproret",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "34505cea92e95d5351881e600b2da6cb8d43bb857f6d886507f85150035c90ee"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-thebaid-upproret/date/noteSv",
+      "sv": "Intervallet avser upproret i Thebaid. Tidigare och senare oroligheter i Nildeltat omfattas inte automatiskt av samma datering.",
+      "en": "The interval concerns the revolt in the Thebaid. Earlier and later disturbances in the Nile Delta are not automatically included in the same dating.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-thebaid-upproret",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "69081f579179c05e990d99d01b6ecab587aa3d877bd56573794613a13e591338"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-thebaid-upproret/titleSv",
+      "sv": "Ett uppror skapar lokalt kungavälde i Övre Egypten",
+      "en": "A revolt establishes local kingship in Upper Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-thebaid-upproret",
+        "fieldPath": "/titleSv",
+        "textSha256": "d46204283228ebaa2eed738b09ed5e97c8ab901d28b0fb0f21c2d59508f6e796"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-thebaid-upproret/summarySv",
+      "sv": "Upprorsmän bryter det ptolemaiska styret i delar av Övre Egypten. Herwennefer och Ankhwennefer framträder som lokala härskare under den långvariga konflikten.",
+      "en": "Rebels break Ptolemaic rule in parts of Upper Egypt. Herwennefer and Ankhwennefer emerge as local rulers during the prolonged conflict.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-thebaid-upproret",
+        "fieldPath": "/summarySv",
+        "textSha256": "bb63a1ecbc7b93b46bba878ddec0c81473d56aa5a22686411db6d6ab9afea1d7"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-thebaid-upproret/geographySv",
+      "sv": "Thebaid, Övre Egypten",
+      "en": "The Thebaid, Upper Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-thebaid-upproret",
+        "fieldPath": "/geographySv",
+        "textSha256": "c81a3d9175a3f275a7647e6f7e2ef7e1fa3a8d734c39b98b74cc34926a28e471"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-zama/date/displaySv",
+      "sv": "202 f.Kr.",
+      "en": "202 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-zama",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "57323db0bcb87ea02b71964702cf6d0280df1718f921261b144a83d966d8b645"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-zama/date/noteSv",
+      "sv": "Slaget dateras till detta år. Det andra puniska krigets längre period redovisas separat.",
+      "en": "The battle is dated to this year. The longer period of the Second Punic War is given separately.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-zama",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ee750b0968373f0451c6e9c33040ef524aa55bc8924eef16240ec19e4a26e77e"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-zama/titleSv",
+      "sv": "Scipio besegrar Hannibal vid Zama",
+      "en": "Scipio defeats Hannibal at Zama",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-zama",
+        "fieldPath": "/titleSv",
+        "textSha256": "2f0e57e5a48673cbb8bb2681e30a189f5af4ba082bf024749fe6ea3ed880957b"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-zama/summarySv",
+      "sv": "Scipios romerska styrkor besegrar Hannibals armé vid Zama.",
+      "en": "Scipio's Roman forces defeat Hannibal's army at Zama.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-zama",
+        "fieldPath": "/summarySv",
+        "textSha256": "1a0691e1e368167222262eaf627df2ba6bf9b297956cfe5921d77849c8912354"
+      }
+    },
+    {
+      "id": "event/ev-bc0300-zama/geographySv",
+      "sv": "Zama, Nordafrika",
+      "en": "Zama, North Africa",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0300-zama",
+        "fieldPath": "/geographySv",
+        "textSha256": "de2fff9a312b77448994394729db6b8cd76c1bef596e403824e3440b1e0bb226"
       }
     }
   ]
