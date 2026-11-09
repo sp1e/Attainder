@@ -87,6 +87,12 @@
     },
     {
       "startYear": -1900,
+      "endYear": -1801,
+      "status": "partial",
+      "note": "Ten independently checked records concern Indus settlement changes, Man Bac burial practices, local cacao use, Egyptian urban, military and funerary projects, two attributed Babylonian developments, Xinzhai fortification and Sobekneferu. Bush Barrow remains withheld pending assessment of a referenced chronological reinterpretation. Full phases, Egyptian reign alternatives and separate Xinzhai models remain explicit; manuscript edition and public-abstract reading limits are retained. Searches covered nine macroregions, with Oceania and the steppe and Central Asia among the remaining gaps. Empty years remain research gaps. Intervals extending beyond this block establish no annual occurrence or researched coverage of later centuries."
+    },
+    {
+      "startYear": -1800,
       "endYear": 99,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
