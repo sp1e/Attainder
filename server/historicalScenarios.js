@@ -75,7 +75,7 @@ const validMechanics = m => m === undefined || (record(m) && known(ARCHETYPES,m.
   && Array.isArray(m.traits) && m.traits.length > 0 && m.traits.every(t => known(TRAITS,t))
   && Object.keys(SKILL_LABELS).every(k => Number.isFinite(m.skills?.[k]) && m.skills[k] >= 0));
 // The runtime allocator owns person-<number>; a later birth would overwrite such an authored person.
-const enginePerson = p => !/^person-\d+$/.test(p.id) && text(p.name) && p.spouseIds.length <= 1
+const enginePerson = p => !/^person-\d+$/.test(p.id) && text(p.name)
   && (p.sex === undefined || ['female','male'].includes(p.sex)) && validMechanics(p.mechanics);
 // Callers have checked that every legal parent id names a person in the court.
 function acyclicParents(people) {

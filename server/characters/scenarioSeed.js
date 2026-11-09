@@ -2,6 +2,7 @@ import { addGameMonths } from '../gameDates.js';
 import { ENGINE_OFFICE_IDS, playablePolityKind, safeId, validateHistoricalCourt } from '../historicalScenarios.js';
 import { ADULT_AGE, ARCHETYPES, TRAITS, SKILL_LABELS, SUCCESSION_LAWS, publicHistoricalOrigin, publicPersonOrigin, publicReligionOrigin } from './content.js';
 import { completeCharacterState, createCharacterState, getCharacterAge, normalizeCharacterSystem } from './index.js';
+import { spouseIdsOf } from './marriage.js';
 
 const refusal = () => new Error('Det historiska hovets uppgifter kan inte användas av karaktärssystemet.');
 const copy = value => JSON.parse(JSON.stringify(value));
@@ -17,7 +18,7 @@ function validateEngineSeed(court, familyId, polity) {
   for (const person of court.people) {
     // The unchanged runtime allocator owns person-<number>; authored identities
     // must not be overwritten by a later birth using the shared sequence.
-    if (/^person-\d+$/.test(person.id) || typeof person.name !== 'string' || !person.name.trim() || person.spouseIds.length > 1
+    if (/^person-\d+$/.test(person.id) || typeof person.name !== 'string' || !person.name.trim()
       || (person.sex !== undefined && !['female', 'male'].includes(person.sex))) throw refusal();
     const mechanics = person.mechanics;
     if (mechanics !== undefined && (!mechanics || !ARCHETYPES[mechanics.archetype]
@@ -57,6 +58,7 @@ function seedPerson(authored, date) {
     mentorId: null, education: null, goal: { type: 'security', since: date, progress: 0 },
     lastBirthAt: null, lastDecision: null, cooldowns: {},
   };
+  if (authored.spouseIds.length > 1) person.otherSpouseIds = authored.spouseIds.slice(1);
   if (getCharacterAge(person, date) < ADULT_AGE) person.wealth = 0;
   return person;
 }
@@ -83,7 +85,7 @@ function seedCourt(state, court) {
     state.cities[city.id] = { id: city.id, name: city.name || city.id, regionId: city.regionId, familyId: city.familyId, baseRevenue: 18, infrastructure: 0, unrest: 12, governorOfficeId };
     state.offices[governorOfficeId] = { id: governorOfficeId, name: `Guvernör: ${city.name || city.id}`, kind: 'governor', holderId: null, cityId: city.id, regentId: null, history: [], publicBudget: 30 };
   }
-  for (const person of Object.values(state.people)) if (person.spouseId) state.relations[`${person.id}:${person.spouseId}`] = { fromId: person.id, toId: person.spouseId, bonds: ['partner'], causes: [] };
+  for (const person of Object.values(state.people)) for (const spouseId of spouseIdsOf(person)) state.relations[`${person.id}:${spouseId}`] = { fromId: person.id, toId: spouseId, bonds: ['partner'], causes: [] };
 }
 
 /** Pure conversion of validated authored content; never reads assets or starts a game. */

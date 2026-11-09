@@ -3,6 +3,7 @@ import { SKILL_LABELS, SUCCESSION_LAWS, publicPersonOrigin } from './content.js'
 import { isAdultCharacter } from './characterCapacity.js';
 import { ensurePortraitIdentity } from './portraitState.js';
 import { childIndex, descendantLine, houseMarriedIn } from './succession.js';
+import { spouseIdsOf } from './marriage.js';
 
 export const ELECTION_REASON_SV = 'Valet föll på en person utanför hovet';
 const ELECTION_NOTE_SV = 'Personen valdes i simuleringen när hovet saknade behöriga vuxna.';
@@ -19,7 +20,7 @@ function adoptedBy(state, rulerId) {
 export function marriedIn(state, oldRuler) {
   const ids = new Set();
   if (!oldRuler) return ids;
-  if (oldRuler.spouseId) ids.add(oldRuler.spouseId);
+  for (const id of spouseIdsOf(oldRuler)) ids.add(id);
   const adopted = adoptedBy(state, oldRuler.id);
   for (const person of Object.values(state.people || {})) {
     if (person.legalParentIds?.includes(oldRuler.id) && !adopted.has(person.id)) for (const id of person.legalParentIds) ids.add(id);
