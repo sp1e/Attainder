@@ -1,0 +1,94 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc1100-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -1100,
+    "endYear": -1001
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc1100en-carson-ritidian-caves",
+      "title": "Cultural spaces inside and outside caves: a study in Guam, western Micronesia",
+      "institution": "Antiquity Publications / Cambridge University Press",
+      "url": "https://www.cambridge.org/core/journals/antiquity/article/cultural-spaces-inside-and-outside-caves-a-study-in-guam-western-micronesia/2851DE3F61AFA2FC47E245FD2C52FBF6",
+      "locator": "Mike T. Carson, Antiquity 91(356), April 2017, pp. 421–441, DOI 10.15184/aqy.2016.233. Public full HTML text: Ritidian between 1100 and 700 BC, web lines 568–578; compared with the earlier phase at lines 514–532 and later phase at 584–588. Figures and radiocarbon tables were not visually inspected.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Ritidian between 1100 and 700 BC",
+      "originalChronology": "The complete archaeological phase is 1100–700 BCE. Carson places a new stranded berm around its beginning and distinguishes it from earlier occupation in 1500–1100 BCE and more intensive inland engagement after 700 BCE. This does not date every activity or rock-art image to 1100.",
+      "scopedClaim": "Intensified activity in an elongated coastal settlement and differing artefact and shellfish assemblages outside cave entrances during the 1100–700 BCE phase. No exact foundation, directly dated painting or certain ritual interpretation is claimed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1100en-christopher-wu-geng-rebellion",
+      "title": "Colonialism and Diaspora in Early China",
+      "institution": "Society for the Study of Early China / Cambridge University Press",
+      "url": "https://www.cambridge.org/core/journals/early-china/article/colonialism-and-diaspora-in-early-china/1037EBA58174EB1F3D1495FC88A191C9",
+      "locator": "Jordan Thomas Christopher, Early China 48, pp. 67–98; page labels the issue September 2025 and online publication 6 April 2026, DOI 10.1017/eac.2026.10039. Public full HTML text: (How) Was the Western Zhou a Colonial Regime?, web lines 544–545; footnotes 29–31 at lines 807–818. Shaughnessy's cited chapter was not separately read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Wu Geng Rebellion 武庚之亂 of 1042–1039",
+      "originalChronology": "Christopher assigns the outbreak and suppression of the rebellion to 1042–1039 BCE, following the conquest in his early Zhou sequence. This is the article's chronology, not an independently reconciled consensus across alternative conquest chronologies. No new date is calculated from a reign or regency.",
+      "scopedClaim": "A rebellion and its suppression after the Zhou conquest of Shang. Christopher links the episode to a changed approach to controlling eastern conquests; this does not assign every later settlement or grant to the rebellion's interval.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1100-ritidian-coastal-activity",
+      "date": {
+        "kind": "range",
+        "startYear": -1100,
+        "endYear": -700,
+        "displayEn": "About 1100–700 BCE",
+        "noteEn": "This is Carson's complete archaeological phase, not a precisely dated foundation or a claim that every activity began in 1100 BCE. Earlier occupation in 1500–1100 BCE and the later shift toward inland areas remain separate. Rock-art production is not assigned an exact year."
+      },
+      "titleEn": "Ritidian's residents intensify coastal activity",
+      "summaryEn": "Carson identifies more intensive activity in an elongated settlement at Ritidian as its coastal environment changes. Pottery and shellfish remains outside nearby cave entrances differ from those at the beach-ridge settlement.",
+      "geographyEn": "Ritidian, northern Guam, Mariana Islands",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc1100en-carson-ritidian-caves"
+      ],
+      "selectionNote": "A notable local adaptation and differentiation of activity spaces in Micronesia, retained with the whole archaeological phase. It is distinct from the earlier settlement of the islands, Lapita episodes in the Bismarck Archipelago and later colonial encounters. Interpretations of human-bone manufacture and cave art are not promoted to established events.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1042-wu-geng-rebellion",
+      "date": {
+        "kind": "range",
+        "startYear": -1042,
+        "endYear": -1039,
+        "displayEn": "1042–1039 BCE in Christopher's chronology",
+        "noteEn": "The interval follows the article's dating of the rebellion and its suppression. Early Zhou chronologies differ; this record does not reconcile their absolute dates or calculate new years from reign lengths. The later redistribution of authority and settlement foundations is not confined to these four calendar years."
+      },
+      "titleEn": "Zhou suppresses the Wu Geng rebellion",
+      "summaryEn": "Following its conquest of Shang, Zhou faces and suppresses the Wu Geng rebellion. Christopher links the revolt to a change in how Zhou rulers control their eastern conquests.",
+      "geographyEn": "The early Zhou realm in northern China",
+      "category": "war",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc1100en-christopher-wu-geng-rebellion"
+      ],
+      "selectionNote": "A major regional challenge to the new dynasty and a distinct conflict after the already cataloged conquest of Shang. Its significance rests on the response to rebellion and the source's account of changed territorial control, without dating all later institutions or settlements to one campaign.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
