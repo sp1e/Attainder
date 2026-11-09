@@ -1,0 +1,107 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad1500-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 1500,
+    "endYear": 1530
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad1500en-africamuseum-henrique",
+      "title": "The Kongo kingdom",
+      "institution": "Royal Museum for Central Africa, Tervuren",
+      "url": "https://www.africamuseum.be/en/discover/history_articles/kongo-kingdom",
+      "locator": "Section An interest in European culture, but a preservation of autonomy, first paragraph; web line 116. The preceding paragraph identifies Afonso I's religious activity.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "In 1518, Henrique became bishop",
+      "originalChronology": "The museum dates Henrique's becoming a bishop to 1518, separately from his dispatch to the Vatican in 1513. His return to Kongo is mentioned without a year in this passage.",
+      "scopedClaim": "Henrique was Afonso I's son. His episcopal appointment formed part of Afonso's effort to make Kongo's church more independent and self-sufficient. The passage does not establish complete ecclesiastical independence or a precise consecration day.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1500en-hamburg-sundanese-manuscript",
+      "title": "The Oldest Dated Sundanese Manuscript: An Encyclopedia from West Java, Indonesia",
+      "institution": "Aditia Gunawan, National Library of Indonesia, and Arlo Griffiths, École française d’Extrême-Orient; University of Hamburg, Centre for the Study of Manuscript Cultures",
+      "url": "https://www.csmc.uni-hamburg.de/publications/aom/mom/27-en.html",
+      "locator": "Opening description, contents discussion, final colophon discussion and Description; web lines 127–142 and 149–171, with line numbering varying by one between opens. Shelfmark L 630 Peti 16.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Copied in 1518 CE",
+      "originalChronology": "The authors date this copy to month three of Śaka 1440 and supply the equivalent year 1518 CE. The date-bearing leaf is now missing; they rely on Holle's 1867 report of its colophon. No independent conversion to a modern month or day is made.",
+      "scopedClaim": "A gebang-leaf manuscript from West Java preserves the Old Sundanese Sang Hyang Siksa Kandang Karesian. Its guidance covers social life, moral conduct and religious ideas. Copying is distinct from original composition; the precise provenance is uncertain, with Galuh only presumed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1500en-anri-sundanese-manuscript",
+      "title": "Naskah Sang Hyang Siksa Kandang Karesian",
+      "institution": "National Library of Indonesia contribution; Indonesian National Memory of the World Committee, National Archives of Indonesia",
+      "url": "https://mow.anri.go.id/warisan-dokumenter/nasional/detail/naskah-sang-hyang-siksa-kandang-karesian",
+      "locator": "Public article dated 17 October 2022, credited By Perpusnas; four paragraphs under IKON, web lines 75–83. No login or attached nomination form was used.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1440 Saka (1518 M)",
+      "originalChronology": "The public article identifies kropak 630 and supplies 1440 Saka/1518 from its chronogram. It does not distinguish the present loss of the dated leaf; Hamburg's manuscript study supplies that limitation.",
+      "scopedClaim": "The Old Sundanese manuscript contains social rules and moral guidance reflecting customary law. It is a witness to Sundanese cultural knowledge, not evidence that all prescriptions were universally followed or first introduced in 1518.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-1518-henrique-kongo-bishop",
+      "date": {
+        "kind": "exact",
+        "startYear": 1518,
+        "endYear": 1518,
+        "displayEn": "1518",
+        "noteEn": "The museum dates Henrique's becoming a bishop to 1518. It gives no day or year for his return to Kongo in the cited passage. This dates his appointment, not the foundation or full independence of Kongo's church."
+      },
+      "titleEn": "Henrique of Kongo becomes a bishop",
+      "summaryEn": "Henrique, son of King Afonso I of Kongo, becomes a bishop. His appointment forms part of Afonso's effort to make the kingdom's church more independent and self-sufficient.",
+      "geographyEn": "Kongo kingdom, with papal connections to the Vatican",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1500en-africamuseum-henrique"
+      ],
+      "selectionNote": "A notable ecclesiastical appointment within Kongo's pursuit of institutional autonomy. The year concerns Henrique's appointment; no precise consecration day, return date, first-bishop superlative or achieved full independence is asserted.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-1518-sundanese-guide-copied",
+      "date": {
+        "kind": "exact",
+        "startYear": 1518,
+        "endYear": 1518,
+        "displayEn": "1518; month three of Śaka 1440",
+        "noteEn": "The manuscript study dates this copy through a now-lost colophon recorded by Holle in 1867. It supplies month three of Śaka 1440 and the equivalent year 1518; no modern month or day is independently calculated. The copying date does not establish when the teachings were first composed, and the precise provenance is uncertain."
+      },
+      "titleEn": "An Old Sundanese guide is copied in West Java",
+      "summaryEn": "A copy of Sang Hyang Siksa Kandang Karesian is made on gebang palm leaves in West Java. Its Old Sundanese text preserves social and moral guidance alongside knowledge of daily life and religious ideas.",
+      "geographyEn": "West Java, present-day Indonesia; precise provenance uncertain",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1500en-hamburg-sundanese-manuscript",
+        "ad1500en-anri-sundanese-manuscript"
+      ],
+      "selectionNote": "A notable dated witness to Sundanese social knowledge and manuscript culture. The date belongs to copying and rests on a reported, now-lost colophon; exact provenance remains uncertain. Neither original composition nor universal observance of its guidance is dated to this year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
