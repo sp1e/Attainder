@@ -309,7 +309,6 @@ const REFUSED = [
   ['a generated person named Odo without the generated suffix',c => { personIn(c,'generated-courtier-1').name = 'Odo'; }],
   ['the runtime person id person-7',c => rename(c,'people','generated-courtier-3','person-7')],
   ['a blank name',c => { personIn(c,'rotrud').name = '  '; }],
-  ['a second reciprocal spouse',c => { marry(c,'generated-courtier-1','generated-courtier-2'); marry(c,'generated-courtier-1','generated-courtier-3'); }],
   ['sex other',c => { personIn(c,'rotrud').sex = 'other'; }],
   ['an unknown trait',c => { mechanicsOf(c).traits.push('unknown-trait'); }],
   ['an empty trait list',c => { mechanicsOf(c).traits = []; }],

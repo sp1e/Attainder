@@ -1,4 +1,5 @@
 import { compareGameDates, normalizeGameDate } from '../gameDates.js';
+import { spouseIdsOf } from './marriage.js';
 
 // Who belongs to the old ruler's line and house when the crown passes.
 // Spec: docs/superpowers/specs/2026-11-08-married-in-succession-design.md. Draws nothing.
@@ -65,8 +66,8 @@ export function descendantLine(state, oldRuler, children = childIndex(state)) {
 /** The person's spouses and the other legal parents of the person's legal children, except through an adopted child. */
 function partnersOf(state, person, children, adopted) {
   const ids = new Set();
-  if (person.spouseId) ids.add(person.spouseId);
-  for (const other of Object.values(state.people || {})) if (other.spouseId === person.id) ids.add(other.id);
+  for (const id of spouseIdsOf(person)) ids.add(id);
+  for (const other of Object.values(state.people || {})) if (spouseIdsOf(other).includes(person.id)) ids.add(other.id);
   for (const child of children.get(person.id) || []) {
     for (const parentId of child.legalParentIds) {
       if (adopted.has(`${person.id}>${child.id}`) || adopted.has(`${parentId}>${child.id}`)) continue;
