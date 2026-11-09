@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain sixty-three approved records, one hundred and twelve source records and three hundred and fifteen display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain sixty-four approved records, one hundred and fourteen source records and three hundred and twenty display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -49,9 +49,14 @@ The English research deliveries now contain sixty-three approved records, one hu
 | [AD 1300–1399](../research/world-cultures/english-events/ad1300-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #119](https://github.com/sp1e/Attainder/pull/119), commit `887a4fa20095d921054adb088321314eb1c7e2f9` |
 | [AD 1400–1499](../research/world-cultures/english-events/ad1400-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #121](https://github.com/sp1e/Attainder/pull/121), commit `d60d09a7fdf097f52429da370829c85c2a72b5b3` |
 | [AD 1500–1530](../research/world-cultures/english-events/ad1500-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #120](https://github.com/sp1e/Attainder/pull/120), commit `aff37caa8b5221180c3f30eff0fdadb0bf0c91bd` |
-| [100–1 BC](../research/world-cultures/english-events/bc0100-supplement.md) | 3 | 6 | 15 | Reviewed in [PR #149](https://github.com/sp1e/Attainder/pull/149); original source HOLD preserved; current-head CI and verified merge required |
+| [100–1 BC](../research/world-cultures/english-events/bc0100-supplement.md) | 3 | 6 | 15 | Merged and remote-verified in [PR #149](https://github.com/sp1e/Attainder/pull/149), commit `292f723dc0b784fc678f8544c86b02bd637a5874`; original source HOLD preserved |
 | [700–601 BC, second pass](../research/world-cultures/english-events/bc0700-second-pass-supplement.md) | 1 | 1 | 5 | Reviewed in [PR #150](https://github.com/sp1e/Attainder/pull/150); current-head CI and verified merge required |
-| [2400–2301 BC](../research/world-cultures/english-events/bc2400-supplement.md) | 1 | 4 | 5 | Three source-metadata corrections verified by final review; current-head CI and verified merge required |
+| [2400–2301 BC](../research/world-cultures/english-events/bc2400-supplement.md) | 1 | 4 | 5 | Reviewed in [PR #151](https://github.com/sp1e/Attainder/pull/151); three metadata corrections verified; current-head CI and verified merge required |
+| [AD 1–300, second pass](../research/world-cultures/english-events/ad0001-ad0300-second-pass-supplement.md) | 1 | 2 | 5 | Source and final review passed; current-head CI and verified merge required |
+
+PR #149 passed 5,344 tests with no failures and two TODOs; the build passed. Remote commit, first parent, complete tree, retained head and changed blobs were verified. Merged main now contains sixty-one English events and one hundred and seven sources; later additions await their publication checks.
+
+AD0001–AD0300 second pass adds Aqua Claudia's construction in 38–52 CE. Independent source and final reviews approved the unchanged candidate, all six English texts and the complete note. The companion Anio Novus has conflicting start years in one leaflet and remains outside this event. Evidence is limited to the inspected heritage text and extracted PDF; no successful visual table check or independent archaeological corroboration is claimed. Root verified sixty-two frozen inputs, sixty original-copy pairs, six text hashes and forty committed comparison files.
 
 BC2400 adds Ross Island copper production and its supply into Ireland and Britain. Original source review required two exact date-quotation corrections and a more precise chapter locator; a fresh final review verified all three changes and passed the otherwise unchanged candidate, all six English texts and the full public note. Root verified sixty-five frozen inputs, six text hashes and thirty-six committed comparison files. Published phase intervals remain explicit, and later furnaces are excluded. The original CORRECTION report and raw process timestamps remain preserved.
 
