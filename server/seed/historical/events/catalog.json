@@ -6788,6 +6788,150 @@
       "originalChronology": "The authors conservatively date the positive Paso de la Amada vessel to 1900–1500 BC, spanning Barra (1900–1700) and Locona (1700–1500). The opening 1900 BC wording is not an exact date.",
       "scopedClaim": "Cacao beverage preparation inferred from a residue-bearing vessel in redeposited construction fill. No claim that this is the first cacao use worldwide or in all Mesoamerica.",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-efa-mu",
+      "title": "5b. Malia – the Mu Quarter",
+      "institution": "École française d’Athènes; Jean-Claude Poursat",
+      "url": "https://www.efa.gr/malia-le-quartier-mu-2/?lang=en",
+      "locator": "Opening description and craftspeople's houses, web lines 107–121.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "c.1800 BC",
+      "originalChronology": "Buildings and workshops were established at the beginning of Middle Minoan II, approximately 1800 BC. Their destruction around 1700 BC is a separate episode.",
+      "scopedClaim": "Construction of the Mu Quarter complex and surrounding craft workshops, not the foundation of the first palace at Malia.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-louvre-code",
+      "title": "Le Code de Hammurabi",
+      "institution": "Musée du Louvre, Department of Near Eastern Antiquities",
+      "url": "https://www.louvre.fr/le-code-de-hammurabi",
+      "locator": "Opening description, engraving date and image caption, web lines 26–28; chapter count, line 39.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "vers 1750 avant Jésus-Christ",
+      "originalChronology": "The stele was engraved around 1750 BC. The image caption's 1792–1750 BC dates describe Hammurabi's reign, not a 42-year carving project.",
+      "scopedClaim": "The law stele records judicial decisions concerning property, families, trade and work; no claim that these were humanity's first laws.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-yoffee-seri",
+      "title": "Negotiating Fragility in Ancient Mesopotamia: Arenas of Contestation and Institutions of Resistance",
+      "institution": "Norman Yoffee and Andrea Seri; McDonald Institute for Archaeological Research, University of Cambridge",
+      "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/38f6ad97-4abd-476d-a526-f001f31ac022/content",
+      "locator": "The Evolution of Fragility (2019), chapter 10, printed pp. 190–191 and 193; PDF pages 19–20 and 22.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1793; 1792; 1776; 1766; 1764; 1763; 1762; 1761",
+      "originalChronology": "The chapter's Middle Chronology framework dates Isin's conquest to 1793, Hammurabi's accession to 1792, Shamshi-Adad's death to 1776, and successive wars to 1766, 1764, 1763, 1762 and 1761 BC. The uprising under Samsu-iluna is identified by regnal year eight, not independently converted here.",
+      "scopedClaim": "Political sequence and participants; the rebellion involves multiple cities. No universal absolute-year certainty or automatic conversion into other chronology systems.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-cornell-chronology",
+      "title": "Cornell-led research resolves long-debated Mesopotamia timeline",
+      "institution": "Cornell University, Cornell Chronicle; Daniel Aloi reporting Sturt Manning's research",
+      "url": "https://news.cornell.edu/stories/2016/07/cornell-led-research-resolves-long-debated-mesopotamia-timeline",
+      "locator": "15 July 2016; chronology alternatives and interpretation, web lines 20–34.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1848–1806; 1792–1750; 1728–1686; 1696–1654 B.C.",
+      "originalChronology": "Four previously debated Hammurabi reign frameworks are preserved. The reported dendrochronological study argues for the Middle Chronology, with a remaining uncertainty of roughly eight years; the other frameworks are historical alternatives, not equally supported conclusions of this study.",
+      "scopedClaim": "Chronological qualification only. No arithmetic conversion of particular campaigns is derived from the listed reign dates.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-mari-hammurabi",
+      "title": "Hammurabi",
+      "institution": "French Ministry of Culture, Grands sites archéologiques, Mari",
+      "url": "https://archeologie.culture.gouv.fr/mari/en/glossary/hammurabi",
+      "locator": "Glossary entry, first two paragraphs; web lines 1–2.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1792; 1750; 1761",
+      "originalChronology": "Accession 1792 BC, reign ending 1750 BC; Mari conquered and destroyed in 1761 BC in this concise glossary.",
+      "scopedClaim": "Hammurabi's accession and capture of Mari. The event does not synchronize later burning or demolitions to the capture year.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-rubio-rebellion",
+      "title": "The Making of Sumerians: Language, literature, and politics",
+      "institution": "Institute for the Study of the Ancient World, New York University; Gonzalo Rubio, Pennsylvania State University",
+      "url": "https://isaw.nyu.edu/events/archive/2011/making-of-sumerians",
+      "locator": "Public lecture abstract, concluding sentence of the political-discontent paragraph; web lines 17–20.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "ca. 1742 BCE",
+      "originalChronology": "The southern rebellion against Samsu-iluna is dated approximately 1742 BCE. The page is a scholarly lecture abstract, not the full lecture or a tablet edition.",
+      "scopedClaim": "Approximate dating of the rebellion only; literary interpretation and ethnic claims are not adopted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-gajiganna",
+      "title": "The rise of organisational complexity in mid-first millennium BC Chad Basin",
+      "institution": "Carlos Magnavita, Stefanie Kahlheber and Barbara Eichhorn; Antiquity Project Gallery",
+      "url": "https://www.antiquity.ac.uk/projgall/magnavita301",
+      "locator": "Introduction and Table 1, Phase I; web lines 45–62.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "c.1800–1500",
+      "originalChronology": "Gajiganna Phase I is approximately 1800–1500 calibrated BC. Pastoralists are present by approximately 1800 BC. The more sedentary and cereal-growing phases are later.",
+      "scopedClaim": "Mobile herding communities occupy the southwestern Lake Chad basin; Phase I includes hunting, fishing and wild-plant collection.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-west-africa-landuse",
+      "title": "Diversification, Intensification and Specialization: Changing Land Use in Western Africa from 1800 BC to AD 1500",
+      "institution": "Journal of World Prehistory, Springer Nature",
+      "url": "https://link.springer.com/article/10.1007/s10963-019-09131-2",
+      "locator": "1800 BC time-window, paragraph on the Bama Deltaic Complex; web line 279.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Phase I: c. 1800–1500 BC",
+      "originalChronology": "The earliest Gajiganna phase is approximately 1800–1500 BC; mobile pastoral occupation begins approximately 1800 BC.",
+      "scopedClaim": "Independent scholarly synthesis of the mobile-pastoral phase; it reports no evidence of domesticated plants in Phase I.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-peru-monuments",
+      "title": "Chankillo and the Monumental Astronomical Traditions of the Casma, Sechin, and Nepeña Valleys",
+      "institution": "Permanent Delegation of Peru to UNESCO; UNESCO World Heritage Centre Tentative List 7055",
+      "url": "https://whc.unesco.org/en/tentativelists/7055/",
+      "locator": "Pampa de las Llamas–Moxeke description, web lines 161–165. Submitted 13 October 2026; state-party content, not a World Heritage Committee finding.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "between 1800 and 900 BC",
+      "originalChronology": "Construction and principal use of Pampa de las Llamas–Moxeke are assigned to 1800–900 BC. Possible earlier occupation in the Huaquilla building is mentioned without an absolute date.",
+      "scopedClaim": "Two major mounds, Huaca A and Moxeke, plazas and platforms form a major ceremonial centre. The dates describe a construction-and-use interval, not completion in 1800 BC.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-erlitou-models",
+      "title": "The Earliest States in China: A Long-term Trajectory Approach",
+      "institution": "Gideon Shelach and Yitzchak Jaffe; Journal of Archaeological Research 22 (2014), 327–364; author-uploaded full text",
+      "url": "https://www.researchgate.net/publication/265604720_The_Earliest_States_in_China_A_Long-term_Trajectory_Approach",
+      "locator": "The rise of the Erlitou state, full-text web lines 1418–1449; DOI 10.1007/s10814-014-9074-8. Author upload attributed to Gideon Shelach.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1800–1550 BC; 1700–1530 BC",
+      "originalChronology": "Phases II–IV are traditionally approximately 1800–1550 BC, or approximately 1700–1530 BC under the newer model discussed by the authors. Phase I separately has 1900–1800 versus 1750–1700 BC frameworks.",
+      "scopedClaim": "Expansion to approximately 300 hectares during phases II–IV and construction of the central monumental complex. No historical Xia king or absolute building-year assignment.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-fuller-south-india",
+      "title": "Dating the Neolithic of South India: New Radiometric Evidence for Key Economic, Social and Ritual Transformations",
+      "institution": "Dorian Q. Fuller, Nicole Boivin and Ravi Korisettar; University College London author manuscript",
+      "url": "https://www.homepages.ucl.ac.uk/~tcrndfu/web_project/docs/FullerBoivinKorisettar%20Manuscript%200706.pdf",
+      "locator": "Manuscript p. 13, first paragraph: directly dated wheat and barley at Piklihal.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1800–1700 BC at Piklihal",
+      "originalChronology": "Directly dated cereal remains at Piklihal span 1800–1700 BC. Earlier Sannarachamma samples are 1900–1800 BC; Hiregudda evidence is around 1700 BC.",
+      "scopedClaim": "Wheat and barley were used at Piklihal during the dated interval. The samples do not establish the exact first year of adoption or the first use in South India.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1800-fuller-rice",
+      "title": "How rice failed to unify Asia: Globalization and regionalism of early farming traditions in the monsoon world",
+      "institution": "Dorian Q. Fuller, Cristina Cobo Castillo and Charlene Murphy; Institute of Archaeology, University College London",
+      "url": "https://discovery.ucl.ac.uk/1538333/1/Fuller_How%20rice.pdf",
+      "locator": "Author manuscript for The Routledge Handbook of Globalization and Archaeology, p. 6; web lines 227–246.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "An Son (1800–1600 BC)",
+      "originalChronology": "Pig remains associated with An Son, southern Vietnam, are dated to 1800–1600 BC and interpreted as managed or domesticated. The northern Man Bac dating is a separate context.",
+      "scopedClaim": "Morphometric and age-profile interpretation of pig management at An Son; no claim of an exact introduction year, fully resolved domestication status, or exclusive agricultural subsistence.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
     }
   ],
   "events": [
@@ -21514,6 +21658,403 @@
         "bc1900-ucla-chronology"
       ],
       "selectionNote": "A woman exercising kingship in her own right, not merely a generic accession notice. Some live chronological frameworks place the entire reign in the following century; all are retained without moving it to fit this batch.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1800-malia-mukvarter",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1800,
+        "endYear": -1800,
+        "displaySv": "cirka 1800 f.Kr.",
+        "noteSv": "EFA placerar byggandet vid början av mellanminoisk tid II, omkring 1800 f.Kr. Det är en arkeologisk ungefärlig datering."
+      },
+      "titleSv": "Byggare uppför Mukvarteret i Malia",
+      "summarySv": "Byggare anlägger stora hus och mindre hantverkarbostäder i Malia. Verkstäder för bland annat metallarbete, keramik och sigillgravyr ingår i kvarteret.",
+      "geographySv": "Malia på Kreta, nuvarande Grekland",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc1800-efa-mu"
+      ],
+      "selectionNote": "Distinct construction episode from the first palace, already catalogued for 2000–1900 BC. Destruction around 1700 is excluded.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1800-gajiganna-herdar",
+      "date": {
+        "kind": "range",
+        "startYear": -1800,
+        "endYear": -1500,
+        "displaySv": "cirka 1800–1500 f.Kr.",
+        "noteSv": "Intervallet gäller Gajigannakulturens första fas och är kalibrerat i Antiquitys tabell. Det daterar en bosättningsfas, inte en enskild ankomst."
+      },
+      "titleSv": "Herdar lever vid Tchadsjöns sydvästra strand",
+      "summarySv": "Rörliga herdegrupper använder Bamadeltat söder om Tchadsjön. De kombinerar boskapsskötsel med jakt, fiske och insamling av vilda växter.",
+      "geographySv": "Tchadsjöns sydvästra bäcken, nuvarande nordöstra Nigeria",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-gajiganna",
+        "bc1800-west-africa-landuse"
+      ],
+      "selectionNote": "Regional settlement and subsistence development; later cereal farming and fortified settlements are excluded.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1800-pampa-las-llamas-moxeke",
+      "date": {
+        "kind": "range",
+        "startYear": -1800,
+        "endYear": -900,
+        "displaySv": "cirka 1800–900 f.Kr.",
+        "noteSv": "Perus nominering anger hela intervallet för byggande och huvudsaklig användning. Äldre lämningar kan finnas i delar av området; något exakt grundläggningsår anges inte."
+      },
+      "titleSv": "Invånare bygger och använder Pampa de las Llamas–Moxeke",
+      "summarySv": "Invånare i Casmadalen uppför stora plattformar, torg och byggnadskomplexen Huaca A och Moxeke. Platsen används som ett regionalt ceremoniellt centrum.",
+      "geographySv": "Casmadalen på Perus nordcentrala kust",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-peru-monuments"
+      ],
+      "selectionNote": "Major regional monumental development. Full long interval retained; not a single building completed at the block boundary.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1800-erlitou-expansion",
+      "date": {
+        "kind": "disputed",
+        "startYear": -1800,
+        "endYear": -1530,
+        "displaySv": "cirka 1800–1550 eller 1700–1530 f.Kr.",
+        "noteSv": "1800–1550 f.Kr. är den traditionella dateringen av faserna II–IV; den senare dateringen i studien är 1700–1530 f.Kr. Endast den traditionella modellen förankrar episoden i 1800–1701 f.Kr. Yttergränserna sammanför alternativ och daterar ingen oavbruten byggperiod. Centralområdet anläggs i fas II; de mest imponerande byggnaderna uppförs i fas III."
+      },
+      "titleSv": "Invånarna utvidgar Erlitou och bygger monumentala anläggningar",
+      "summarySv": "Erlitou växer till omkring 300 hektar under faserna II–IV. Byggare anlägger stora jordplattformar och gårdskomplex i den centrala delen av bosättningen.",
+      "geographySv": "Yiluoområdet i Henan, nuvarande Kina",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-erlitou-models"
+      ],
+      "selectionNote": "Urban and institutional transformation, with both published phase chronologies retained. No Xia ruler identification or single palace foundation year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1800-piklihal-spannmal",
+      "date": {
+        "kind": "range",
+        "startYear": -1800,
+        "endYear": -1700,
+        "displaySv": "cirka 1800–1700 f.Kr.",
+        "noteSv": "Intervallet avser direktdaterade rester av vete och korn från Piklihal. Det fastställer varken första odlingsåret där eller spannmålens första ankomst till Sydindien."
+      },
+      "titleSv": "Människor använder vete och korn i Piklihal",
+      "summarySv": "Daterade sädeskorn visar att människor i Piklihal använder grödor med ursprung i Sydvästasien. Fynden belyser hur Sydindiens jordbruk ingår i långväga utbyte.",
+      "geographySv": "Piklihal i Deccan, nuvarande södra Indien",
+      "category": "technology",
+      "importance": 1,
+      "sourceIds": [
+        "bc1800-fuller-south-india"
+      ],
+      "selectionNote": "Local directly dated evidence of crop adoption; avoids deriving a whole-region introduction date from one sample set.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1800-an-son-grishallning",
+      "date": {
+        "kind": "range",
+        "startYear": -1800,
+        "endYear": -1600,
+        "displaySv": "cirka 1800–1600 f.Kr.",
+        "noteSv": "Dateringen gäller grisfynden i den angivna fasen. Forskarna tolkar djuren som skötta eller domesticerade; skillnaden mot lokala vildsvin är svår att avgöra."
+      },
+      "titleSv": "Grisfynd tyder på djurhållning i An Son",
+      "summarySv": "Grisbenens mått och djurens åldersfördelning tyder på att invånarna i An Son sköter eller föder upp grisar.",
+      "geographySv": "An Son i nuvarande södra Vietnam",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc1800-fuller-rice"
+      ],
+      "selectionNote": "Notable local evidence for managed animals within changing food production. Domestication and first-arrival claims remain qualified.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1793-rim-sin-isin",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1793,
+        "endYear": -1793,
+        "displaySv": "cirka 1793 f.Kr. enligt mellankronologin",
+        "noteSv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering."
+      },
+      "titleSv": "Rim-Sin intar Isin",
+      "summarySv": "Kungen av Larsa besegrar Isin. Segern avslutar rivaliteten mellan städerna och blir utgångspunkt för Larsas följande årsnamn.",
+      "geographySv": "Isin och Larsa i södra Mesopotamien, nuvarande Irak",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-yoffee-seri",
+        "bc1800-cornell-chronology"
+      ],
+      "selectionNote": "Regional consolidation; source's 1793 retained, not silently reconciled to other 1794 conventions.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1792-hammurabi-kung",
+      "date": {
+        "kind": "disputed",
+        "startYear": -1848,
+        "endYear": -1696,
+        "displaySv": "1792 f.Kr. enligt mellankronologin; äldre alternativ 1848, 1728 eller 1696 f.Kr.",
+        "noteSv": "Tillträdet dateras till 1792 f.Kr. i Mariöversikten. Cornell redovisar äldre regeringsramar 1848–1806, 1792–1750, 1728–1686 och 1696–1654 f.Kr. Den refererade studien stöder mellankronologin; alternativen har därför olika stöd."
+      },
+      "titleSv": "Hammurabi blir kung i Babylon",
+      "summarySv": "Hammurabi efterträder sin far Sin-muballit som kung i Babylon. Hans senare erövringar gör riket till en dominerande makt i Mesopotamien.",
+      "geographySv": "Babylon i Mesopotamien, nuvarande Irak",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-mari-hammurabi",
+        "bc1800-cornell-chronology"
+      ],
+      "selectionNote": "Accession indexed to the Middle Chronology; full historical alternative accession bounds retained across century boundaries.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1776-shamshi-adad-dor",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1776,
+        "endYear": -1776,
+        "displaySv": "cirka 1776 f.Kr. enligt mellankronologin",
+        "noteSv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering. Rikets upplösning följer efter dödsfallet och dateras inte till samma enskilda år. Cornell anger dessutom Hammurabis artonde regeringsår för dödsfallet. Uppgifterna synkroniseras inte genom en egen omräkning."
+      },
+      "titleSv": "Shamshi-Adad dör i Övre Mesopotamien",
+      "summarySv": "Shamshi-Adad dör. Hans överregionala kungadöme faller därefter sönder och lokala makthavare tar åter större kontroll.",
+      "geographySv": "Övre Mesopotamien, i nuvarande Irak och Syrien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-yoffee-seri",
+        "bc1800-cornell-chronology"
+      ],
+      "selectionNote": "Death and subsequent political fragmentation explicitly separated; no invented fixed-year dissolution.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1766-elam-eshnunna",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1766,
+        "endYear": -1766,
+        "displaySv": "cirka 1766 f.Kr. enligt mellankronologin",
+        "noteSv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering."
+      },
+      "titleSv": "Elam angriper Eshnunna",
+      "summarySv": "Elam angriper Eshnunna i förbund med Babylon och Mari. Även Larsas medverkan är möjlig enligt källan.",
+      "geographySv": "Eshnunna i Diyaladalen, nuvarande Irak",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-yoffee-seri",
+        "bc1800-cornell-chronology"
+      ],
+      "selectionNote": "Opening coalition war in the sequence; Larsa's involvement remains uncertain.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1764-koalition-besegrar-elam",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1764,
+        "endYear": -1764,
+        "displaySv": "cirka 1764 f.Kr. enligt mellankronologin",
+        "noteSv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering."
+      },
+      "titleSv": "Hammurabi och hans allierade besegrar Elam",
+      "summarySv": "Babylon, Mari och Aleppo besegrar Elam. Eshnunna hjälper Hammurabi i kriget.",
+      "geographySv": "Mesopotamien och dess östra gränsområde",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-yoffee-seri",
+        "bc1800-cornell-chronology"
+      ],
+      "selectionNote": "Coalition reversal is distinct from the earlier attack on Eshnunna.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1763-hammurabi-larsa",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1763,
+        "endYear": -1763,
+        "displaySv": "cirka 1763 f.Kr. enligt mellankronologin",
+        "noteSv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering."
+      },
+      "titleSv": "Hammurabi störtar Rim-Sin i Larsa",
+      "summarySv": "Hammurabi besegrar Rim-Sin och införlivar Larsa med sitt växande babyloniska rike.",
+      "geographySv": "Larsa i södra Mesopotamien, nuvarande Irak",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-yoffee-seri",
+        "bc1800-cornell-chronology"
+      ],
+      "selectionNote": "Major conquest from a directly read scholarly chapter; Farber's unresolved footnote not used.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1762-hammurabi-eshnunna",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1762,
+        "endYear": -1762,
+        "displaySv": "cirka 1762 f.Kr. enligt mellankronologin",
+        "noteSv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering."
+      },
+      "titleSv": "Hammurabi plundrar Eshnunna",
+      "summarySv": "Hammurabi angriper och plundrar Eshnunna, som tidigare hade hjälpt honom mot Elam.",
+      "geographySv": "Eshnunna i Diyaladalen, nuvarande Irak",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-yoffee-seri",
+        "bc1800-cornell-chronology"
+      ],
+      "selectionNote": "Specific change in regional control following the coalition war.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1761-hammurabi-mari",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1761,
+        "endYear": -1761,
+        "displaySv": "cirka 1761 f.Kr. enligt mellankronologin",
+        "noteSv": "Årtalet följer kapitlets mellankronologi. Andra kronologiska system placerar perioden annorlunda; uppgiften är ingen oberoende säker absolut datering. Händelsen gäller erövringen; stadens senare förstörelseförlopp får inget separat år här."
+      },
+      "titleSv": "Hammurabi erövrar Mari",
+      "summarySv": "Hammurabi vänder sig mot sin tidigare allierade Zimri-Lim och intar Mari.",
+      "geographySv": "Mari vid Eufrat, nuvarande Syrien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-yoffee-seri",
+        "bc1800-mari-hammurabi",
+        "bc1800-cornell-chronology"
+      ],
+      "selectionNote": "Capture is separated from the debated timing and stages of destruction.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1750-hammurabis-lagstele",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1750,
+        "endYear": -1750,
+        "displaySv": "cirka 1750 f.Kr.",
+        "noteSv": "Louvren daterar ristningen till omkring 1750 f.Kr. Bildtextens 1792–1750 gäller kungens regering. Placeringen följer den använda babyloniska kronologin."
+      },
+      "titleSv": "Hammurabi låter rista rättsbeslut på en stele",
+      "summarySv": "På en hög stenstele samlas rättsbeslut om bland annat familj, egendom, handel och arbete. Texten framställer Hammurabi som rättvisans upprätthållare.",
+      "geographySv": "Babylonien, nuvarande Irak",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-louvre-code",
+        "bc1800-cornell-chronology"
+      ],
+      "selectionNote": "Major surviving royal legal compilation; avoids modern uniform-code and first-law claims.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1742-sydliga-upproret",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1742,
+        "endYear": -1742,
+        "displaySv": "cirka 1742 f.Kr.",
+        "noteSv": "Rubios föredragsabstract anger cirka 1742 f.Kr. Yoffee och Seri knyter upproret till Samsu-ilunas åttonde regeringsår. Årtalet återger den använda kronologin, inte en egen omräkning."
+      },
+      "titleSv": "Sydmesopotamiska ledare gör uppror mot Babylon",
+      "summarySv": "Rim-Sin II och andra lokala ledare utmanar Samsu-ilunas styre. Upproret berör flera städer som Hammurabi tidigare hade erövrat.",
+      "geographySv": "Södra Mesopotamien, bland annat Larsa och Uruk i nuvarande Irak",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc1800-rubio-rebellion",
+        "bc1800-yoffee-seri",
+        "bc1800-cornell-chronology"
+      ],
+      "selectionNote": "Regional rebellion with independent explicit approximate date; no Kassite invasion inferred from royal claims.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",

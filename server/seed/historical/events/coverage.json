@@ -93,6 +93,12 @@
     },
     {
       "startYear": -1800,
+      "endYear": -1701,
+      "status": "partial",
+      "note": "Sixteen independently checked records concern Malia construction, Gajiganna pastoral occupation, Pampa de las Llamas–Moxeke, Erlitou expansion, Piklihal cereals, interpreted pig management at An Son and ten Mesopotamian political or legal developments. All nine regions were searched; Oceania and the steppe and Central Asia remain gaps. Exact source corrections clarify Erlitou phase models and the An Son interpretation; Gajiganna describes culture rather than a dated migration. Numeric dates and alternatives remain unchanged. Only the traditional Erlitou framework places the phase onset in this century. Full archaeological intervals and competing chronologies establish neither annual occurrence nor researched coverage of adjacent centuries. Earlier retrieval assertions remain separately unverified; empty years remain gaps."
+    },
+    {
+      "startYear": -1700,
       "endYear": 99,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
