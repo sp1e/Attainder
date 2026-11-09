@@ -105,9 +105,15 @@
     },
     {
       "startYear": -1600,
-      "endYear": 99,
+      "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": 1,
+      "endYear": 99,
+      "status": "partial",
+      "note": "Twenty-six independently checked records concern Rome and its frontiers, Han succession, the Trung sisters and Ma Yuan, Kush, Aksum, Indian Ocean contacts, Tamil literature, Teotihuacan, Monte Alban and the chronicle-attributed Na embassy. All nine regions were searched; Oceania remains a gap and Europe is overrepresented. Four Iranica-dependent events are withheld after403, including Kujula with an unsupported numeric search interval. Fukuoka was separately read after an initial timeout. All retained event and source fields remain unchanged. Broad literary and archaeological periods, the disputed29–34 crucifixion interval, Ma Yuan42–44 and Boudica60/61 remain explicit. Full intervals establish neither annual occurrence nor researched coverage of later centuries. Empty years remain gaps."
     },
     {
       "startYear": 100,
