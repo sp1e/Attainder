@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc0200-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -200,
+    "endYear": -101
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "d3ed5fa726d41f86ccbc05523e8ff67e6c731de7",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc0200en-puglia-mawangdui-laozi",
+      "title": "Mawangdui Laozi 馬王堆老子",
+      "institution": "The Database of Religious History; Francesca Puglia; Zenodo repository",
+      "url": "https://zenodo.org/records/12573936",
+      "locator": "Description, web lines 24–34; especially the Tomb 3 inventory-slip date and contents at 26–27 and copying hypotheses at 32–34. Read the public HTML description, not the linked PDF or excavation reports. Repository metadata identifies publication on 27 June 2024.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "Tomb 3 was sealed in 168 BCE according to an inventory slip. The author separately dates Laozi A roughly to 221–206 BCE and Laozi B to around 206–194 BCE as copying hypotheses; neither interval is the burial date or the original composition date.",
+      "asWorded": "sealed in the year 168 BCE",
+      "scopedClaim": "Two Laozi silk manuscripts accompanied other texts in Mawangdui Tomb 3 near Changsha. The inventory-slip chronology dates the tomb's sealing, not the composition of its philosophical, astronomical, military or medical writings.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0200en-waring-mawangdui-manuscripts",
+      "title": "Mawangdui Manuscripts",
+      "institution": "Wiley, The Encyclopedia of Ancient History: Asia and Africa; Luke Waring, University of Texas at Austin",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1002/9781119399919.eahaa00774",
+      "locator": "Public Abstract, web lines 61–62; author and first-publication metadata at 14–34. First published 29 December 2021, while the generated citation at line 132 displays 2026. The full entry and cited excavation reports were not read.",
+      "retrievedOn": "2026-11-09",
+      "originalChronology": "The abstract gives modern excavation in 1973 and tentatively associates Tomb 3 with Li Xi, whose death it places around 168 BCE. This is not an independent exact sealing-date claim. No occupant identification is asserted in the event.",
+      "asWorded": "early editions of important texts as well as previously unknown works",
+      "scopedClaim": "The Tomb 3 corpus includes early textual editions and works absent from transmitted literature, providing evidence for early Chinese philosophy, history, divination, medicine and manuscript practices. Its modern scholarly importance does not establish a contemporary public reform or first invention.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc0168-mawangdui-manuscripts-buried",
+      "date": {
+        "kind": "exact",
+        "startYear": -168,
+        "endYear": -168,
+        "displayEn": "168 BC",
+        "noteEn": "Puglia dates Tomb 3's sealing to this year from an inventory slip. The date concerns the burial context, not the manuscripts' composition or copying. The two Laozi copies are assigned earlier copying dates, and the occupant's personal identity is not established here."
+      },
+      "titleEn": "Silk manuscripts are buried at Mawangdui",
+      "summaryEn": "Mawangdui Tomb 3 is sealed with a collection of writings, including two silk versions of the Laozi and texts on philosophy, astronomy, warfare and medicine. The manuscripts preserve evidence of early Chinese textual traditions and their place in burial practices.",
+      "geographyEn": "Mawangdui near Changsha, Hunan, China",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0200en-puglia-mawangdui-laozi",
+        "bc0200en-waring-mawangdui-manuscripts"
+      ],
+      "selectionNote": "A notable dated deposition of a substantial manuscript collection, preserving witnesses to intellectual traditions and burial practices. The year dates the sealed context, not original composition, copying, a public publication or an invention. The occupant is not named, and no contemporary regional reform or influence is inferred from modern scholarly importance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
