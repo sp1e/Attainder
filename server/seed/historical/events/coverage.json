@@ -129,6 +129,12 @@
     },
     {
       "startYear": -1200,
+      "endYear": -1101,
+      "status": "partial",
+      "note": "Eight independently source-checked records concern Pylos and Thebes palace destructions, the Hallur iron-bearing transition, pearl millet in the Gajiganna sequence, Chavin de Huantar, Ramesses III and the Sea Peoples, the Deir el-Medina work stoppage and the Kassite dynasty collapse. Source review returned eight event PASS and ten source PASS verdicts; the candidate expands only the Hallur locator. All nine working regions were searched, but East Asia, Southeast Asia, Oceania, the steppe and Central Asia have no newly retained record. Represented regions also remain incomplete. Full approximate dates, calibrated evidence, alternative chronologies and intervals remain intact; later endpoints imply neither annual occurrence nor researched coverage of later years. Empty years remain research gaps."
+    },
+    {
+      "startYear": -1100,
       "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
