@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "5df05508fb77c89b485fa6b0bdecb38a63c46b40",
+  "sourceRevision": "9ce9b159b9be1f98f5f6eeb1256bd0bc83d5ffd6",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -45190,6 +45190,886 @@
         "eventId": "ev-0293-tetrarkin",
         "fieldPath": "/geographySv",
         "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-taosis-murar-och-elitgravar-forstors/date/displaySv",
+      "sv": "cirka 2000–1900 f.Kr. (Taosis sena skede)",
+      "en": "c. 2000–1900 BC (Taosi’s late phase)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-taosis-murar-och-elitgravar-forstors",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8d5b0984f7f9fa741c8177a3fd4a22f1a9e18f389fff395e7dcc410628449f70"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-taosis-murar-och-elitgravar-forstors/date/noteSv",
+      "sv": "He Nu daterar det sena skedet till 2000–1900 f.Kr. Intervallet gäller de arkeologiska lämningarna och fastställer inget gemensamt förstörelseår. Hans tolkning av politisk vedergällning är en hypotes.",
+      "en": "He Nu dates the late phase to 2000–1900 BC. The interval applies to the archaeological remains and establishes no single year of destruction. His interpretation of political retaliation is a hypothesis.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-taosis-murar-och-elitgravar-forstors",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9c4b57374742f9d9262cef896a100eeae44fdabf77980b40d56710a9ce8fbee4"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-taosis-murar-och-elitgravar-forstors/titleSv",
+      "sv": "Människor förstör Taosis murar och elitgravar",
+      "en": "People destroy Taosi’s walls and elite graves",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-taosis-murar-och-elitgravar-forstors",
+        "fieldPath": "/titleSv",
+        "textSha256": "e65bd9742422a1a42a6d8c04f40c5760636aaa926368f5beb56603d22ecfb061"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-taosis-murar-och-elitgravar-forstors/summarySv",
+      "sv": "Människor river Taosis stadsmurar och plundrar eller skadar många elitgravar. He Nu tolkar förstörelsen som möjlig politisk vedergällning under stadens sena skede.",
+      "en": "People tear down Taosi’s city walls and loot or damage many elite graves. He Nu interprets the destruction as possible political retaliation during the city’s late phase.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-taosis-murar-och-elitgravar-forstors",
+        "fieldPath": "/summarySv",
+        "textSha256": "3bf8086cede8e1d49cf73626bcdb88fc3921206ad9167df7288cf18ec1870286"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-taosis-murar-och-elitgravar-forstors/geographySv",
+      "sv": "Taosi, Shanxi, Kina",
+      "en": "Taosi, Shanxi, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-taosis-murar-och-elitgravar-forstors",
+        "fieldPath": "/geographySv",
+        "textSha256": "5ce9b2264b28177c77a7d8c24f2bb48b41360e06cd323037bfe6cf9b778d7096"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-khok-phanom-di-borjar-bebos/date/displaySv",
+      "sv": "omkring 2000 f.Kr.",
+      "en": "around 2000 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-khok-phanom-di-borjar-bebos",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1655b1f03ef1734569f4d56ff8589b2a048319b1c688e985046742ca4ce01916"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-khok-phanom-di-borjar-bebos/date/noteSv",
+      "sv": "Higham, Higham och Douka anger uttryckligen den första bosättningen till omkring 2000 f.Kr. De daterar hela bosättningsperioden till 2000–1500 f.Kr.; handelsrollen gäller detta längre skede och har inget fastställt startår.",
+      "en": "Higham, Higham and Douka explicitly date the first settlement to around 2000 BC. They date the entire settlement period to 2000–1500 BC; the trading role applies to this longer phase and has no established starting year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-khok-phanom-di-borjar-bebos",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f0ece5f373d8d2d36377db1996b9daca6a6135dc052ceaa90a08eb9fa8eba3fd"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-khok-phanom-di-borjar-bebos/titleSv",
+      "sv": "Människor bosätter sig vid Khok Phanom Di",
+      "en": "People settle at Khok Phanom Di",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-khok-phanom-di-borjar-bebos",
+        "fieldPath": "/titleSv",
+        "textSha256": "57e00b0a37f1e240fd478597080e82754fe3d0d7fc9a578b0ba61b7340b1b6cf"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-khok-phanom-di-borjar-bebos/summarySv",
+      "sv": "Människor bosätter sig vid Bang Pakongs mynning. Under bosättningsperioden handlar de med bland annat sten och snäckskal och förser andra samhällen med snäckpärlor.",
+      "en": "People settle at the mouth of the Bang Pakong. During the settlement period, they trade in materials including stone and shells and supply other communities with shell beads.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-khok-phanom-di-borjar-bebos",
+        "fieldPath": "/summarySv",
+        "textSha256": "788fa1102cff97afa9e6443897e299cd0279e9614b4a9c6657c1ee70743fcf4f"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-khok-phanom-di-borjar-bebos/geographySv",
+      "sv": "Khok Phanom Di, Bang Pakongs mynning, centrala Thailand",
+      "en": "Khok Phanom Di, mouth of the Bang Pakong, central Thailand",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-khok-phanom-di-borjar-bebos",
+        "fieldPath": "/geographySv",
+        "textSha256": "95e9cc5df8b8c7daeaeb2a0e16c561d5254ebd51b29ad722bdecd9eddf3b2ac8"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-forsta-palatset-i-malia/date/displaySv",
+      "sv": "cirka 2000–1900 f.Kr.",
+      "en": "c. 2000–1900 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-forsta-palatset-i-malia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "85331f7bafd249884a16ba38a95df8e78e97415f338dfd7489c2222c8c40452d"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-forsta-palatset-i-malia/date/noteSv",
+      "sv": "Den grekiska nomineringens riskanalys daterar det ursprungliga palatset till cirka 2000–1900 f.Kr. Hela intervallet behålls. Senare ombyggnader hör till andra skeden.",
+      "en": "The Greek nomination’s risk analysis dates the original palace to c. 2000–1900 BC. The full interval is retained. Later rebuilding belongs to other phases.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-forsta-palatset-i-malia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "0d7f480fbd1fc3b46e408ade0acba8162e8df5677eb0df24f84ffcf73b04164d"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-forsta-palatset-i-malia/titleSv",
+      "sv": "Byggare uppför det första palatset i Malia",
+      "en": "Builders construct the first palace at Malia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-forsta-palatset-i-malia",
+        "fieldPath": "/titleSv",
+        "textSha256": "73a44e9e7b17d54f2f2dbd228387df8bb7be29a13ae6d678ed84cac559221116"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-forsta-palatset-i-malia/summarySv",
+      "sv": "Byggare uppför ett palats i Malia på Kretas nordkust. Platsen ligger nära en viktig förhistorisk hamn enligt den grekiska nomineringens beskrivning.",
+      "en": "Builders construct a palace at Malia on Crete’s north coast. According to the Greek nomination’s description, the site lies near an important prehistoric harbour.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-forsta-palatset-i-malia",
+        "fieldPath": "/summarySv",
+        "textSha256": "bf127f1bd6c2785936e16f917a2307ea49ec38ee1ae25100d29fbcd8db4d7e1f"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-forsta-palatset-i-malia/geographySv",
+      "sv": "Malia, norra Kreta",
+      "en": "Malia, northern Crete",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-forsta-palatset-i-malia",
+        "fieldPath": "/geographySv",
+        "textSha256": "7846222efe55c72c3be9efe7713c8aea0cff3aafdf357d01ed2dfc0637141fa9"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-umm-an-nar-overges/date/displaySv",
+      "sv": "omkring 2000 f.Kr.",
+      "en": "around 2000 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-umm-an-nar-overges",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1655b1f03ef1734569f4d56ff8589b2a048319b1c688e985046742ca4ce01916"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-umm-an-nar-overges/date/noteSv",
+      "sv": "Harriet Crawford placerar övergivandet omkring 2000 f.Kr. Dateringen anger ingen exakt avflyttningsdag och belägger ingen särskild orsak.",
+      "en": "Harriet Crawford places the abandonment around 2000 BC. The date identifies no exact day of departure and establishes no particular cause.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-umm-an-nar-overges",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "a74ddd401f6d80913d65b6db540d2362a673c8ec7f3c001c0272bc64e999163e"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-umm-an-nar-overges/titleSv",
+      "sv": "Invånarna lämnar Umm-an-Nar",
+      "en": "The inhabitants leave Umm-an-Nar",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-umm-an-nar-overges",
+        "fieldPath": "/titleSv",
+        "textSha256": "1275b2e1ef3122178c2bd655c7b5290022d0cf970afe6d27adca96c36f6a30cc"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-umm-an-nar-overges/summarySv",
+      "sv": "Invånarna överger bosättningen på Umm-an-Nar omkring 2000 f.Kr., enligt Harriet Crawfords genomgång. Förändringen avslutar ett tidigare blomstrande skede på ön.",
+      "en": "The inhabitants abandon the settlement on Umm-an-Nar around 2000 BC, according to Harriet Crawford’s account. The change ends an earlier prosperous phase on the island.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-umm-an-nar-overges",
+        "fieldPath": "/summarySv",
+        "textSha256": "1d994bd4855b8bd036291e578e68000893ea55a3feab4db1975f017738b5dbd6"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-umm-an-nar-overges/geographySv",
+      "sv": "Umm-an-Nar, nuvarande Förenade arabemiraten",
+      "en": "Umm-an-Nar, present-day United Arab Emirates",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-umm-an-nar-overges",
+        "fieldPath": "/geographySv",
+        "textSha256": "fe7c70a4ce7de0dd87f3e77b80d36c29a570449d530f855423b33b6eb6ad5b6d"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-bahrains-city-ii-anlaggs/date/displaySv",
+      "sv": "omkring 2000 f.Kr.",
+      "en": "around 2000 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-bahrains-city-ii-anlaggs",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1655b1f03ef1734569f4d56ff8589b2a048319b1c688e985046742ca4ce01916"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-bahrains-city-ii-anlaggs/date/noteSv",
+      "sv": "Crawford placerar anläggandet av City II ungefär vid denna tid och hänvisar till en Isin–Larsa-tavla vid stadsmurens grundläggningslager. Hennes årtal 1925 gäller ett sigill och används inte som stadens grundläggningsår.",
+      "en": "Crawford places the establishment of City II around this time and refers to an Isin–Larsa tablet in the city wall’s foundation layer. Her date of 1925 applies to a seal and is not used as the city’s foundation year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-bahrains-city-ii-anlaggs",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "92a6b3ebe4d2476eaa614f764c64cd213a52dc9bc8c6e313dbd2b8eec69570f6"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-bahrains-city-ii-anlaggs/titleSv",
+      "sv": "Invånare anlägger en ny stad på Bahrain",
+      "en": "Inhabitants establish a new city on Bahrain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-bahrains-city-ii-anlaggs",
+        "fieldPath": "/titleSv",
+        "textSha256": "ac22c78c4bd1204c02117260290b4c719ae4e26d3f5e0fcff868bfd4ae749a9f"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-bahrains-city-ii-anlaggs/summarySv",
+      "sv": "Invånare anlägger den stad på Bahrain som arkeologerna kallar City II. Crawford beskriver hur handelskontakterna med Mesopotamien koncentreras till Bahrain vid denna tid.",
+      "en": "Inhabitants establish the city on Bahrain that archaeologists call City II. Crawford describes how trade links with Mesopotamia become concentrated on Bahrain at this time.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-bahrains-city-ii-anlaggs",
+        "fieldPath": "/summarySv",
+        "textSha256": "a7eba4f4c1c4020d258991f184358e9051bb3211e06f29520b2ff1a7aa0cf8b4"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-bahrains-city-ii-anlaggs/geographySv",
+      "sv": "Bahrain, Persiska viken",
+      "en": "Bahrain, Persian Gulf",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-bahrains-city-ii-anlaggs",
+        "fieldPath": "/geographySv",
+        "textSha256": "42bdd098fec65235969ae2f004c4cfed9677203f80db9b4474fe4f20842e9ad8"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-failakas-stora-bosattning/date/displaySv",
+      "sv": "omkring 2000 f.Kr.",
+      "en": "around 2000 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-failakas-stora-bosattning",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "1655b1f03ef1734569f4d56ff8589b2a048319b1c688e985046742ca4ce01916"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-failakas-stora-bosattning/date/noteSv",
+      "sv": "Crawford daterar Failakas första större bosättning till omkring 2000 f.Kr. Hon bedömer ett ursprung på Bahrain som sannolikt; dateringen anger varken öns första mänskliga närvaro eller ett exakt grundläggningsår.",
+      "en": "Crawford dates Failaka’s first major settlement to around 2000 BC. She considers an origin on Bahrain likely; the date identifies neither the island’s first human presence nor an exact foundation year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-failakas-stora-bosattning",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9549beac8a3e08a50b74e95ef5dc60418473d2df5be81b28592ef72dbabf72ce"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-failakas-stora-bosattning/titleSv",
+      "sv": "Nybyggare anlägger en större bosättning på Failaka",
+      "en": "Settlers establish a major settlement on Failaka",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-failakas-stora-bosattning",
+        "fieldPath": "/titleSv",
+        "textSha256": "5483c601aeff729b890742876ac1a9b53d6781338e4c2b13a86fda3773ae4f5c"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-failakas-stora-bosattning/summarySv",
+      "sv": "Nybyggare anlägger en större bosättning på Failaka och deltar i handeln genom Persiska viken. Crawford bedömer att de troligen kommer från Bahrain.",
+      "en": "Settlers establish a major settlement on Failaka and take part in trade through the Persian Gulf. Crawford considers it likely that they come from Bahrain.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-failakas-stora-bosattning",
+        "fieldPath": "/summarySv",
+        "textSha256": "3ed5ee76c1dece6f7907de8311febc934e02c25e8bf1b1f1d6657b906f0fa455"
+      }
+    },
+    {
+      "id": "event/ev-bc2000-failakas-stora-bosattning/geographySv",
+      "sv": "Failaka, norra Persiska viken, nuvarande Kuwait",
+      "en": "Failaka, northern Persian Gulf, present-day Kuwait",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc2000-failakas-stora-bosattning",
+        "fieldPath": "/geographySv",
+        "textSha256": "4c0ee15b1b6d81b2a7862a256e3af0d0b6d67cdaf7f0f46da0eb53f928be35fd"
+      }
+    },
+    {
+      "id": "event/ev-bc1988-amenemhat-leder-hammamat-expedition/date/displaySv",
+      "sv": "under Mentuhotep IV: cirka 1988–1981 eller 1983–1976 f.Kr.",
+      "en": "during Mentuhotep IV’s reign: c. 1988–1981 or 1983–1976 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1988-amenemhat-leder-hammamat-expedition",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4297d6a30c29036253b3fe53eb32732c701c2bbd36a821725543be3895985737"
+      }
+    },
+    {
+      "id": "event/ev-bc1988-amenemhat-leder-hammamat-expedition/date/noteSv",
+      "sv": "Metropolitan Museum och UCL anger olika regeringsintervall för Mentuhotep IV. UCL knyter expeditionen till kungen utan att ge ett absolut år. Intervallet återger regeringstidens alternativa gränser och anger ingen tolvårig expedition.",
+      "en": "The Metropolitan Museum and UCL give different reign intervals for Mentuhotep IV. UCL associates the expedition with the king without giving an absolute year. The interval combines the alternative boundaries of the reign and does not indicate a twelve-year expedition.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1988-amenemhat-leder-hammamat-expedition",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "fa343d0ad270ba6348645cd96237bdcb9ac91e283734d5b78a6f19861d6d8c81"
+      }
+    },
+    {
+      "id": "event/ev-bc1988-amenemhat-leder-hammamat-expedition/titleSv",
+      "sv": "Visiren Amenemhat leder en expedition till Wadi Hammamat",
+      "en": "The vizier Amenemhat leads an expedition to Wadi Hammamat",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1988-amenemhat-leder-hammamat-expedition",
+        "fieldPath": "/titleSv",
+        "textSha256": "31ad7da7b7bc97a7a8d940be41bd23543f033c415e1140bb511904bcfcff23f4"
+      }
+    },
+    {
+      "id": "event/ev-bc1988-amenemhat-leder-hammamat-expedition/summarySv",
+      "sv": "Visiren Amenemhat leder en expedition till Wadi Hammamat för att hämta sten till Mentuhotep IV:s sarkofag. Deltagarna lämnar klippinskrifter som berättar om uppdraget.",
+      "en": "The vizier Amenemhat leads an expedition to Wadi Hammamat to obtain stone for Mentuhotep IV’s sarcophagus. The participants leave rock inscriptions describing the mission.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1988-amenemhat-leder-hammamat-expedition",
+        "fieldPath": "/summarySv",
+        "textSha256": "5d80a3b682bb6d8e5d31624d852caa96593d268525a4287d1ed18fd75e46adab"
+      }
+    },
+    {
+      "id": "event/ev-bc1988-amenemhat-leder-hammamat-expedition/geographySv",
+      "sv": "Wadi Hammamat, östra öknen, Egypten",
+      "en": "Wadi Hammamat, Eastern Desert, Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1988-amenemhat-leder-hammamat-expedition",
+        "fieldPath": "/geographySv",
+        "textSha256": "97bddd7ad5f7783eae62588bd0041a370e3c822daf21324c39036ba6b1a1120d"
+      }
+    },
+    {
+      "id": "event/ev-bc1981-amenemhat-flyttar-huvudstaden/date/displaySv",
+      "sv": "under Amenemhat I: cirka 1981–1952 eller 1976–1947 f.Kr.",
+      "en": "during Amenemhat I’s reign: c. 1981–1952 or 1976–1947 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1981-amenemhat-flyttar-huvudstaden",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e9ce6546b57e631925a373b5ed452fcd7cbfa281ec677c3806a46083c3e2e607"
+      }
+    },
+    {
+      "id": "event/ev-bc1981-amenemhat-flyttar-huvudstaden/date/noteSv",
+      "sv": "Metropolitan Museum placerar flytten tidigt under Amenemhat I, vars regeringstid museet daterar till cirka 1981–1952 f.Kr. UCL anger 1976–1947 f.Kr. Båda ramarna behålls; inget enskilt flyttår fastställs.",
+      "en": "The Metropolitan Museum places the move early in Amenemhat I’s reign, which it dates to c. 1981–1952 BC. UCL gives 1976–1947 BC. Both frameworks are retained; no individual year for the move is established.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1981-amenemhat-flyttar-huvudstaden",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "36f5191e393ea30aee3982fcb8a0da0588c0ccb6ae5701bcfb9971573d0597a4"
+      }
+    },
+    {
+      "id": "event/ev-bc1981-amenemhat-flyttar-huvudstaden/titleSv",
+      "sv": "Amenemhat I flyttar huvudstaden från Thebe till Itjtawy",
+      "en": "Amenemhat I moves the capital from Thebes to Itjtawy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1981-amenemhat-flyttar-huvudstaden",
+        "fieldPath": "/titleSv",
+        "textSha256": "f7fedf3bf9dfe933f3d4eb4d8dccf12d596bc3ea8892fccff9531b5e2ad462f3"
+      }
+    },
+    {
+      "id": "event/ev-bc1981-amenemhat-flyttar-huvudstaden/summarySv",
+      "sv": "Amenemhat I flyttar rikets administrativa centrum från Thebe till Itjtawy i norr. UCL placerar Itjtawy troligen vid dagens Lisht.",
+      "en": "Amenemhat I moves the kingdom’s administrative centre from Thebes to Itjtawy in the north. UCL places Itjtawy probably at modern Lisht.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1981-amenemhat-flyttar-huvudstaden",
+        "fieldPath": "/summarySv",
+        "textSha256": "7b03e878d22a9c4a85269fb11c7b2449bdc728911ad459799545bc50b2932b90"
+      }
+    },
+    {
+      "id": "event/ev-bc1981-amenemhat-flyttar-huvudstaden/geographySv",
+      "sv": "Thebe och Itjtawy, troligen vid Lisht, Egypten",
+      "en": "Thebes and Itjtawy, probably at Lisht, Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1981-amenemhat-flyttar-huvudstaden",
+        "fieldPath": "/geographySv",
+        "textSha256": "33a2211c386fc7600cd9441dd824ea7e7a51bcc8d62afda65b08c1a8f696650d"
+      }
+    },
+    {
+      "id": "event/ev-bc1974-erishum-oppnar-familjeforetagens-handel/date/displaySv",
+      "sv": "under Erishum I: cirka 1974–1935 f.Kr. (Metropolitan Museums kronologi)",
+      "en": "during Erishum I’s reign: c. 1974–1935 BC (the Metropolitan Museum’s chronology)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1974-erishum-oppnar-familjeforetagens-handel",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "66bb04fd15e6bc215da0798a51c1a03a1699f6460a784c5f3872de714a961a33"
+      }
+    },
+    {
+      "id": "event/ev-bc1974-erishum-oppnar-familjeforetagens-handel/date/noteSv",
+      "sv": "Museet anger Erishum I:s regeringstid till cirka 1974–1935 f.Kr. Turkiets UNESCO-förslag tillskriver honom handelsreformer men ger inget reformår. Intervallet daterar regeringstiden, inte en sammanhängande reformperiod.",
+      "en": "The museum gives Erishum I’s reign as c. 1974–1935 BC. Türkiye’s UNESCO submission attributes trade reforms to him but gives no reform year. The interval dates the reign, not a continuous period of reform.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1974-erishum-oppnar-familjeforetagens-handel",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "0172b8bf70d8e6aaa34d1672286bcbd9e1498f481234847b52ffd4d3e36c08c0"
+      }
+    },
+    {
+      "id": "event/ev-bc1974-erishum-oppnar-familjeforetagens-handel/titleSv",
+      "sv": "Erishum I tillåter familjeföretag att bedriva fjärrhandel",
+      "en": "Erishum I allows family businesses to conduct long-distance trade",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1974-erishum-oppnar-familjeforetagens-handel",
+        "fieldPath": "/titleSv",
+        "textSha256": "0d29e6093522ebd1803daee92899479d3304757e2270b5fc5f69faee1fd24ce7"
+      }
+    },
+    {
+      "id": "event/ev-bc1974-erishum-oppnar-familjeforetagens-handel/summarySv",
+      "sv": "Enligt Turkiets förslag till UNESCO:s tentativa lista häver Erishum I statens handelsmonopol och låter privata familjeföretag bedriva fjärrhandel. Museets översikt beskriver blomstrande handel under hans regering.",
+      "en": "According to Türkiye’s submission to UNESCO’s Tentative List, Erishum I ends the state’s trade monopoly and allows private family businesses to conduct long-distance trade. The museum’s overview describes flourishing trade during his reign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1974-erishum-oppnar-familjeforetagens-handel",
+        "fieldPath": "/summarySv",
+        "textSha256": "19d7ee3d72c2a6beea04150d1c82b9ed97fb4d4fb83a31ff89462a849a6af05d"
+      }
+    },
+    {
+      "id": "event/ev-bc1974-erishum-oppnar-familjeforetagens-handel/geographySv",
+      "sv": "Ashur, norra Mesopotamien, och handeln med Anatolien",
+      "en": "Ashur, northern Mesopotamia, and trade with Anatolia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1974-erishum-oppnar-familjeforetagens-handel",
+        "fieldPath": "/geographySv",
+        "textSha256": "170c4eb4a6b3b628437c8569940fe1831f43ecd5c7a714d35ff1e9cc26d058bc"
+      }
+    },
+    {
+      "id": "event/ev-bc1961-senusret-bygger-om-provinstempel/date/displaySv",
+      "sv": "under Senusret I: cirka 1961–1917 eller 1956–1911/1910 f.Kr.",
+      "en": "during Senusret I’s reign: c. 1961–1917 or 1956–1911/1910 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1961-senusret-bygger-om-provinstempel",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f59b3fc1196a5d9554fc503271146271dfeccdb788d53c43d1379f55ce77517f"
+      }
+    },
+    {
+      "id": "event/ev-bc1961-senusret-bygger-om-provinstempel/date/noteSv",
+      "sv": "Metropolitan Museum anger 1961–1917 f.Kr. och UCL 1956–1911/1910 f.Kr. för Senusret I. UCL beskriver ett program av tempelarbeten utan gemensamt byggår; det samlade intervallet bevarar regeringstidens alternativa gränser.",
+      "en": "The Metropolitan Museum gives 1961–1917 BC and UCL 1956–1911/1910 BC for Senusret I. UCL describes a programme of temple works without a common construction year; the combined interval preserves the reign’s alternative boundaries.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1961-senusret-bygger-om-provinstempel",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "0f545da6173a61d6ef8a30098b2035a291c0870b8a5d0ba107d34a69f5cb29c7"
+      }
+    },
+    {
+      "id": "event/ev-bc1961-senusret-bygger-om-provinstempel/titleSv",
+      "sv": "Senusret I låter bygga om tempel i Egyptens provinser",
+      "en": "Senusret I has temples rebuilt in Egypt’s provinces",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1961-senusret-bygger-om-provinstempel",
+        "fieldPath": "/titleSv",
+        "textSha256": "3f204d15475e95f3f4591b3d4659f144e684d95d9baa13d511e3be92df57c826"
+      }
+    },
+    {
+      "id": "event/ev-bc1961-senusret-bygger-om-provinstempel/summarySv",
+      "sv": "Senusret I låter förstora eller bygga om många lokala tempel. UCL beskriver arbetena som ett systematiskt program i rikets provinser.",
+      "en": "Senusret I has many local temples enlarged or rebuilt. UCL describes the works as a systematic programme in the kingdom’s provinces.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1961-senusret-bygger-om-provinstempel",
+        "fieldPath": "/summarySv",
+        "textSha256": "5b23ae18992ec33db97cc4c0bfcf36410b9c529b6893b83f8841c93f65102aad"
+      }
+    },
+    {
+      "id": "event/ev-bc1961-senusret-bygger-om-provinstempel/geographySv",
+      "sv": "Egyptens provinser",
+      "en": "Egypt’s provinces",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1961-senusret-bygger-om-provinstempel",
+        "fieldPath": "/geographySv",
+        "textSha256": "653419fb0c507b00bef8f112bccd688c4319cf2e7122e8f7f7359583a753346d"
+      }
+    },
+    {
+      "id": "event/ev-bc1961-egyptiska-kungar-bygger-fasten-i-nubien/date/displaySv",
+      "sv": "under Senusret I och Amenemhat II: cirka 1961–1885 eller 1956–1879/1876 f.Kr.",
+      "en": "during the reigns of Senusret I and Amenemhat II: c. 1961–1885 or 1956–1879/1876 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1961-egyptiska-kungar-bygger-fasten-i-nubien",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4a215e582cf7ad6a666565c675f1614a400df0f1f9f2cb33255b3e5437b90442"
+      }
+    },
+    {
+      "id": "event/ev-bc1961-egyptiska-kungar-bygger-fasten-i-nubien/date/noteSv",
+      "sv": "Metropolitan Museum beskriver ett fästningsbygge som Senusret I inleder och Amenemhat II fortsätter. Museets regeringsramar sträcker sig sammantaget från 1961 till 1885 f.Kr.; UCL:s från 1956 till 1879/1876 f.Kr. De fastställer inga enskilda fästningsår eller oavbrutet arbete genom hela intervallet.",
+      "en": "The Metropolitan Museum describes fort construction begun by Senusret I and continued by Amenemhat II. The museum’s reign frameworks together extend from 1961 to 1885 BC; UCL’s extend from 1956 to 1879/1876 BC. They establish neither individual years for the fortresses nor uninterrupted work throughout the interval.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1961-egyptiska-kungar-bygger-fasten-i-nubien",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d6be7344a81c4a2dad4f33498dbf30d1681dfe8075fff2b90d66a913ecd6e299"
+      }
+    },
+    {
+      "id": "event/ev-bc1961-egyptiska-kungar-bygger-fasten-i-nubien/titleSv",
+      "sv": "Senusret I och Amenemhat II låter bygga fästen i Nubien",
+      "en": "Senusret I and Amenemhat II have fortresses built in Nubia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1961-egyptiska-kungar-bygger-fasten-i-nubien",
+        "fieldPath": "/titleSv",
+        "textSha256": "7f86f78219695f47aec35944e0589a7efc789fe6ae2631a783d77f779543e547"
+      }
+    },
+    {
+      "id": "event/ev-bc1961-egyptiska-kungar-bygger-fasten-i-nubien/summarySv",
+      "sv": "Senusret I inleder byggandet av fästen i Nubien. Amenemhat II fortsätter arbetena under sin regering, enligt Metropolitan Museums historiska genomgång.",
+      "en": "Senusret I begins building fortresses in Nubia. Amenemhat II continues the works during his reign, according to the Metropolitan Museum’s historical account.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1961-egyptiska-kungar-bygger-fasten-i-nubien",
+        "fieldPath": "/summarySv",
+        "textSha256": "d0de893c8ccfb6dc72aa2c0f59e8d6c785368fe8e903669f82a21ccf8144a5c0"
+      }
+    },
+    {
+      "id": "event/ev-bc1961-egyptiska-kungar-bygger-fasten-i-nubien/geographySv",
+      "sv": "Nubien, söder om Egypten",
+      "en": "Nubia, south of Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1961-egyptiska-kungar-bygger-fasten-i-nubien",
+        "fieldPath": "/geographySv",
+        "textSha256": "bb1eb292364c845b95821d7a77ce104933a23f3d3108878b2bfbfbdbe9cf84ce"
+      }
+    },
+    {
+      "id": "event/ev-bc1955-ishme-dagan-atertar-nippur/date/displaySv",
+      "sv": "under Ishme-Dagan: 1955–1937 eller cirka 1953–1935 f.Kr.",
+      "en": "during Ishme-Dagan’s reign: 1955–1937 or c. 1953–1935 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1955-ishme-dagan-atertar-nippur",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6eea997703b840943e17561ea81a9081bb6533ab8399b20d6b8812614c27a250"
+      }
+    },
+    {
+      "id": "event/ev-bc1955-ishme-dagan-atertar-nippur/date/noteSv",
+      "sv": "Reculeau placerar återtagandet senare under Ishme-Dagans regering, som han daterar till 1955–1937 f.Kr. Bolognapublikationen anger cirka 1953–1935 f.Kr. för samma kung. Intervallet förenar regeringstidens alternativa gränser och daterar inget enskilt fälttåg.",
+      "en": "Reculeau places the recovery later in Ishme-Dagan’s reign, which he dates to 1955–1937 BC. The Bologna publication gives c. 1953–1935 BC for the same king. The interval combines the reign’s alternative boundaries and does not date an individual campaign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1955-ishme-dagan-atertar-nippur",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3e7d350644df3e7f6180225832f003106b530b29525ee225fc2861d6ae76d0ef"
+      }
+    },
+    {
+      "id": "event/ev-bc1955-ishme-dagan-atertar-nippur/titleSv",
+      "sv": "Ishme-Dagan återtar Nippur och ger invånarna skattefrihet",
+      "en": "Ishme-Dagan recovers Nippur and exempts its inhabitants from tax",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1955-ishme-dagan-atertar-nippur",
+        "fieldPath": "/titleSv",
+        "textSha256": "2487ab9b6091173a8e01647de1d5e0c49dd63bcd049dca99a2cc4211d474d5b5"
+      }
+    },
+    {
+      "id": "event/ev-bc1955-ishme-dagan-atertar-nippur/summarySv",
+      "sv": "Ishme-Dagan återtar Nippur senare under sin regering. Han befriar invånarna från skatt och militärtjänst.",
+      "en": "Ishme-Dagan recovers Nippur later in his reign. He exempts the inhabitants from taxation and military service.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1955-ishme-dagan-atertar-nippur",
+        "fieldPath": "/summarySv",
+        "textSha256": "108bd1245808eafd89eed77a33a4f192f4cc9f6403aa48882929de0280e674ad"
+      }
+    },
+    {
+      "id": "event/ev-bc1955-ishme-dagan-atertar-nippur/geographySv",
+      "sv": "Nippur, södra Mesopotamien",
+      "en": "Nippur, southern Mesopotamia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1955-ishme-dagan-atertar-nippur",
+        "fieldPath": "/geographySv",
+        "textSha256": "c3ea8f952d9777a8a6154d0c7766441f0128eb9f8f0bb384226157cec88cbc5a"
+      }
+    },
+    {
+      "id": "event/ev-bc1936-lipit-ishtar-utfardar-lagar/date/displaySv",
+      "sv": "under Lipit-Ishtar: 1936–1926 eller 1934–1924 f.Kr.",
+      "en": "during Lipit-Ishtar’s reign: 1936–1926 or 1934–1924 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1936-lipit-ishtar-utfardar-lagar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6a78986e49fcbeb8c71e72c7f8dece71f26f705fd2db14f8b56ef142be21d03f"
+      }
+    },
+    {
+      "id": "event/ev-bc1936-lipit-ishtar-utfardar-lagar/date/noteSv",
+      "sv": "Reculeau daterar regeringstiden till 1936–1926 f.Kr. och University of Oregon till 1934–1924 f.Kr. Källorna fastställer inget lagstiftningsår. Oregons föremålsdatering omkring 1850 f.Kr. gäller en senare minneskon.",
+      "en": "Reculeau dates the reign to 1936–1926 BC and the University of Oregon to 1934–1924 BC. The sources establish no year for the legislation. Oregon’s object date of around 1850 BC applies to a later commemorative cone.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1936-lipit-ishtar-utfardar-lagar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b82e9c2ef03b3ccadb6a8d8833a767228eafa03bf4e1dabc4d83c5c8d5570f89"
+      }
+    },
+    {
+      "id": "event/ev-bc1936-lipit-ishtar-utfardar-lagar/titleSv",
+      "sv": "Lipit-Ishtar utfärdar en lagsamling",
+      "en": "Lipit-Ishtar issues a collection of laws",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1936-lipit-ishtar-utfardar-lagar",
+        "fieldPath": "/titleSv",
+        "textSha256": "84809cea47349d8b3d6c8c68e932557bc3ca94b8340c63d88ee172ae899154e8"
+      }
+    },
+    {
+      "id": "event/ev-bc1936-lipit-ishtar-utfardar-lagar/summarySv",
+      "sv": "Lipit-Ishtar av Isin utfärdar en samling lagar. University of Oregon räknar honom till de tidiga mesopotamiska härskare som låter sammanställa sådana samlingar.",
+      "en": "Lipit-Ishtar of Isin issues a collection of laws. The University of Oregon places him among the early Mesopotamian rulers who have such collections compiled.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1936-lipit-ishtar-utfardar-lagar",
+        "fieldPath": "/summarySv",
+        "textSha256": "f4b85db607fca7145ed29b3c10117bd52db2955fc848ac8dfbddb8961120e2fc"
+      }
+    },
+    {
+      "id": "event/ev-bc1936-lipit-ishtar-utfardar-lagar/geographySv",
+      "sv": "Isin och södra Mesopotamien",
+      "en": "Isin and southern Mesopotamia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1936-lipit-ishtar-utfardar-lagar",
+        "fieldPath": "/geographySv",
+        "textSha256": "41d0eaf33bdd2bbf81597067653c1094a228ebeb2aaba106b82f3622313feb9b"
+      }
+    },
+    {
+      "id": "event/ev-bc1932-gungunum-far-kontroll-over-nippur/date/displaySv",
+      "sv": "under Gungunum: 1932–1906 f.Kr.",
+      "en": "during Gungunum’s reign: 1932–1906 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1932-gungunum-far-kontroll-over-nippur",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ecffa3e07b3ebebeae754dceffdcb8a4f97766700dac4d8d3d24b379215e1463"
+      }
+    },
+    {
+      "id": "event/ev-bc1932-gungunum-far-kontroll-over-nippur/date/noteSv",
+      "sv": "Reculeau anger Gungunums regeringstid till 1932–1906 f.Kr. Han bedömer att Lipit-Eshtar förlorar Nippur till honom men daterar inte övergången till ett enskilt år. Hela regeringsramen behålls.",
+      "en": "Reculeau gives Gungunum’s reign as 1932–1906 BC. He considers that Lipit-Eshtar loses Nippur to him but does not date the transfer to an individual year. The full reign framework is retained.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1932-gungunum-far-kontroll-over-nippur",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "868f191385c392d153d5a8f5baf07349752613328439387f52b7b6a23145be82"
+      }
+    },
+    {
+      "id": "event/ev-bc1932-gungunum-far-kontroll-over-nippur/titleSv",
+      "sv": "Gungunum tycks få kontroll över Nippur",
+      "en": "Gungunum appears to gain control of Nippur",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1932-gungunum-far-kontroll-over-nippur",
+        "fieldPath": "/titleSv",
+        "textSha256": "da24a278a81f7a665729574f7844dbfb228e7a03a6f650b8cee5e843cff69c82"
+      }
+    },
+    {
+      "id": "event/ev-bc1932-gungunum-far-kontroll-over-nippur/summarySv",
+      "sv": "Nippur tycks övergå från Lipit-Eshtars styre till Gungunum av Larsa, enligt Reculeau. Författaren beskriver dessa maktväxlingar som skiften i lojalitet utan tydliga tecken på tvångserövring.",
+      "en": "Nippur appears to pass from Lipit-Eshtar’s rule to Gungunum of Larsa, according to Reculeau. The author describes these changes of power as shifts in allegiance without clear signs of conquest by force.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1932-gungunum-far-kontroll-over-nippur",
+        "fieldPath": "/summarySv",
+        "textSha256": "2cfd9bea6d6958befb394f5e9ac2dc5d91035703b22b0f1689899d4c610f7231"
+      }
+    },
+    {
+      "id": "event/ev-bc1932-gungunum-far-kontroll-over-nippur/geographySv",
+      "sv": "Nippur, södra Mesopotamien",
+      "en": "Nippur, southern Mesopotamia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1932-gungunum-far-kontroll-over-nippur",
+        "fieldPath": "/geographySv",
+        "textSha256": "c3ea8f952d9777a8a6154d0c7766441f0128eb9f8f0bb384226157cec88cbc5a"
+      }
+    },
+    {
+      "id": "event/ev-bc1925-ur-ninurta-atertar-nippur/date/displaySv",
+      "sv": "under Ur-Ninurta: 1925–1898 f.Kr. (Reculeaus kronologi)",
+      "en": "during Ur-Ninurta’s reign: 1925–1898 BC (Reculeau’s chronology)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1925-ur-ninurta-atertar-nippur",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d2e68aa8cbdd2d60313fa5d7229ef43e88286d3aae51918ae366b5609021757d"
+      }
+    },
+    {
+      "id": "event/ev-bc1925-ur-ninurta-atertar-nippur/date/noteSv",
+      "sv": "Reculeau daterar Ur-Ninurtas regering till 1925–1898 f.Kr. Han knyter återtagandet och lättnaderna till kungen utan ett enskilt år. Hela regeringsintervallet behålls även efter batchens slut.",
+      "en": "Reculeau dates Ur-Ninurta’s reign to 1925–1898 BC. He associates the recovery and concessions with the king without giving an individual year. The full reign interval is retained, including its continuation beyond this batch.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1925-ur-ninurta-atertar-nippur",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "90c130c42d5e047a68eccceb967296b39dae9538f357aa8c70108bc5cdfec050"
+      }
+    },
+    {
+      "id": "event/ev-bc1925-ur-ninurta-atertar-nippur/titleSv",
+      "sv": "Ur-Ninurta återtar Nippur och efterskänker skulder",
+      "en": "Ur-Ninurta recovers Nippur and remits debts",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1925-ur-ninurta-atertar-nippur",
+        "fieldPath": "/titleSv",
+        "textSha256": "4fa13d0c7bb345b8d86c4c5469b5e3c5427c7d52e8300a02602698877fb6b18f"
+      }
+    },
+    {
+      "id": "event/ev-bc1925-ur-ninurta-atertar-nippur/summarySv",
+      "sv": "Ur-Ninurta av Isin återtar Nippur från Gungunum. Han förenar återtagandet med skattebefrielser och efterskänkning av skulder.",
+      "en": "Ur-Ninurta of Isin recovers Nippur from Gungunum. He accompanies the recovery with tax exemptions and the remission of debts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1925-ur-ninurta-atertar-nippur",
+        "fieldPath": "/summarySv",
+        "textSha256": "ecb653a7a0692fc6c24ecf1ed1b3b716a41a386117e341a1b19881722087d19e"
+      }
+    },
+    {
+      "id": "event/ev-bc1925-ur-ninurta-atertar-nippur/geographySv",
+      "sv": "Nippur, södra Mesopotamien",
+      "en": "Nippur, southern Mesopotamia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1925-ur-ninurta-atertar-nippur",
+        "fieldPath": "/geographySv",
+        "textSha256": "c3ea8f952d9777a8a6154d0c7766441f0128eb9f8f0bb384226157cec88cbc5a"
+      }
+    },
+    {
+      "id": "event/ev-bc1919-amenemhat-andres-falttag-i-syrien/date/displaySv",
+      "sv": "under Amenemhat II: cirka 1919–1885 eller 1914–1879/1876 f.Kr.",
+      "en": "during Amenemhat II’s reign: c. 1919–1885 or 1914–1879/1876 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1919-amenemhat-andres-falttag-i-syrien",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6bc171ccd78be21eb2e8a51fa408353774a769a49692d80083fdfcb82fb4eee7"
+      }
+    },
+    {
+      "id": "event/ev-bc1919-amenemhat-andres-falttag-i-syrien/date/noteSv",
+      "sv": "Metropolitan Museum knyter fälttåget till Amenemhat II, vars regeringstid museet daterar till cirka 1919–1885 f.Kr. UCL anger 1914–1879/1876 f.Kr. Dessa alternativa regeringsramar ger inget exakt fälttågsår.",
+      "en": "The Metropolitan Museum associates the campaign with Amenemhat II, whose reign it dates to c. 1919–1885 BC. UCL gives 1914–1879/1876 BC. These alternative reign frameworks provide no exact year for the campaign.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1919-amenemhat-andres-falttag-i-syrien",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "704b84f16a693585fd2c5b4e8c7528d20ab60bbb621cba3b6e046c972a82affe"
+      }
+    },
+    {
+      "id": "event/ev-bc1919-amenemhat-andres-falttag-i-syrien/titleSv",
+      "sv": "Amenemhat II för krig i området för dagens Syrien",
+      "en": "Amenemhat II wages war in the area of present-day Syria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1919-amenemhat-andres-falttag-i-syrien",
+        "fieldPath": "/titleSv",
+        "textSha256": "9cdb85d089dd7d892887856290ef7e9e9232b07590df921fd19c31a060464060"
+      }
+    },
+    {
+      "id": "event/ev-bc1919-amenemhat-andres-falttag-i-syrien/summarySv",
+      "sv": "Amenemhat II genomför ett fälttåg i området för dagens Syrien. Enligt Metropolitan Museum tar han krigsfångar som sedan får arbeta i kungens byggprojekt.",
+      "en": "Amenemhat II conducts a campaign in the area of present-day Syria. According to the Metropolitan Museum, he takes prisoners of war who are subsequently put to work on the king’s building projects.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1919-amenemhat-andres-falttag-i-syrien",
+        "fieldPath": "/summarySv",
+        "textSha256": "9af069733645a6db1d8ddea5723372213875ab59f960b01b1a19ac97a2791721"
+      }
+    },
+    {
+      "id": "event/ev-bc1919-amenemhat-andres-falttag-i-syrien/geographySv",
+      "sv": "Området för dagens Syrien och Egypten",
+      "en": "The area of present-day Syria and Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1919-amenemhat-andres-falttag-i-syrien",
+        "fieldPath": "/geographySv",
+        "textSha256": "8f6c6199b666d10de7babde99ddef0342a7042a07338c9304d3f34548e9cf2ae"
       }
     }
   ]

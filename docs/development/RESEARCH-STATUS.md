@@ -445,3 +445,16 @@ The candidate preserves all 545 earlier events and 495 sources, reaching 562 eve
 Independent final data, all 117 language pairs and prospective integration passed review. The actual merged catalog and coverage blobs match the reviewed baseline. The additions contain 85 English event fields and 32 Swedish source locator and institution fields. The AIBL public preface, Giessen introduction, selected scholarly passages and other reading scopes remain explicit, alongside unverified earlier retrieval assertions and runtime audit limitations.
 
 Current-head CI remains required before merge. The data-first commit and complete locale readback retain a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or deployment configuration change is needed.
+
+
+## AD200 published and BC2000 integrated, 9 November 2026
+
+[PR #81](https://github.com/sp1e/Attainder/pull/81) merged at verified main `0166f19127c4c2824029d4352eb85692309acd24`. All eight publication blobs match the reviewed delivery. CI on synchronized head `86a7b95c00494d2ad7a42e19e326ef1a81ac13d5` passed 5,311 of 5,313 tests, with zero failures, zero skips and two existing TODOs; the build took 40.06 seconds. The published catalog contains 562 events and 511 sources. Both locale sidecars identify retained data commit `5df05508fb77c89b485fa6b0bdecb38a63c46b40`; all 5,281 referenced source strings and hashes match it.
+
+BC2000 adds 16 events and 15 sources. A complete source check and focused public-PDF supplement support the retained claims. Five geographical labels are narrowed to the cited passages, Gungunum’s tentative control of Nippur has importance 1, and the Malia source identifies UNESCO as its verified document host. All date objects remain unchanged. Leubingen and its two unused sources remain held because the scientific dating passage was inaccessible.
+
+Ishme-Dagan’s alternative dates retain two separately documented successful readings. Bologna’s later security denial is preserved alongside its earlier successful review. Document-size limitations, genuine access denials and the first truncated review output remain distinct. The author logged 44 discovery queries across nine regions, 19 earlier held leads and 12 access limitations. Four macroregions have retained candidates; the other regions and empty years remain gaps.
+
+The combined independent final review passed all historical data, 110 language pairs and prospective integration: 80 English event fields and 30 Swedish source-panel fields. All 562 earlier events and 511 sources remain unchanged, reaching 578 events and 526 sources. Only 2000–1901 BC becomes partial, for 2,431 partial years and 2,399 unresearched years. Full phases and reign alternatives do not establish annual occurrence or researched coverage of later centuries.
+
+The actual merged baseline matches the reviewed snapshot. Current-head CI remains required before merge. Data-first commits and complete locale readback preserve a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or deployment configuration change is needed.

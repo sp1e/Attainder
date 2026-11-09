@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "5df05508fb77c89b485fa6b0bdecb38a63c46b40",
+  "sourceRevision": "9ce9b159b9be1f98f5f6eeb1256bd0bc83d5ffd6",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -11244,6 +11244,336 @@
         "sourceId": "ad0200-berlin-sacrifice",
         "fieldPath": "/institution",
         "textSha256": "6acda884e8a23aad27132ed82e23ca5a463bf0d3e9f6b037e964c51f5393a32b"
+      }
+    },
+    {
+      "id": "source/bc2000-he-taosi-late/locator",
+      "en": "2018, section I chronology list; section II[2], Political Retaliation in Late Period Taosi, two paragraphs (web lines 36–42 and 156–158).",
+      "sv": "2018, avsnitt I:s kronologiska lista; avsnitt II[2], Political Retaliation in Late Period Taosi, två stycken (webbrader 36–42 och 156–158).",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-he-taosi-late",
+        "fieldPath": "/locator",
+        "textSha256": "7b83f72e7cf8e6f35d4ddfd7f31a18bc5a8056acbe9388894c9f8e37b927a2fe"
+      }
+    },
+    {
+      "id": "source/bc2000-he-taosi-late/institution",
+      "en": "He Nu; Social Evolution & History",
+      "sv": "He Nu; Social Evolution & History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-he-taosi-late",
+        "fieldPath": "/institution",
+        "textSha256": "0f34902a80eddc1f01916621d41e501a245dd28b31c8617a445dbc650a322cf8"
+      }
+    },
+    {
+      "id": "source/bc2000-higham-khok/locator",
+      "en": "Journal of Indo-Pacific Archaeology 43 (2019), pp. 43–67; printed p. 64 (PDF page 22), Conclusions and adjacent Khok Phanom Di paragraph; extracted lines 648–654 and 685–694.",
+      "sv": "Journal of Indo-Pacific Archaeology 43 (2019), s. 43–67; tryckt s. 64 (PDF-sida 22), Conclusions och det intilliggande stycket om Khok Phanom Di; extraherade rader 648–654 och 685–694.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-higham-khok",
+        "fieldPath": "/locator",
+        "textSha256": "c945c101bce0e6ae4c74e8749e99f7fdaf38c191ab7b32bd95e86de6ed30dd0a"
+      }
+    },
+    {
+      "id": "source/bc2000-higham-khok/institution",
+      "en": "Charles Higham, Thomas Higham and Katerina Douka; Journal of Indo-Pacific Archaeology; University of Washington Libraries",
+      "sv": "Charles Higham, Thomas Higham och Katerina Douka; Journal of Indo-Pacific Archaeology; University of Washington Libraries",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-higham-khok",
+        "fieldPath": "/institution",
+        "textSha256": "6fc30d32ada99d85ad04eaea5a30b5f1c9a9d83724a82c0ed203e0f1969a025c"
+      }
+    },
+    {
+      "id": "source/bc2000-unesco-malia/locator",
+      "en": "Annex III, Short description of the study areas, printed p. 407, Malia paragraphs; extracted web lines 268–270.",
+      "sv": "Annex III, Short description of the study areas, tryckt s. 407, styckena om Malia; extraherade webbrader 268–270.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-unesco-malia",
+        "fieldPath": "/locator",
+        "textSha256": "774800b154c03139a4002e64faf970644470458b465370755a65bb6f3a4d461b"
+      }
+    },
+    {
+      "id": "source/bc2000-unesco-malia/institution",
+      "en": "UNESCO World Heritage Centre (document host)",
+      "sv": "UNESCO:s världsarvscentrum (dokumentvärd)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-unesco-malia",
+        "fieldPath": "/institution",
+        "textSha256": "4c6696913d0958592decbd1d888432e9584aa7e505e73e41b055922e6b7ed411"
+      }
+    },
+    {
+      "id": "source/bc2000-crawford-gulf/locator",
+      "en": "Chapter 7, Manufacturing industry and trade, paragraphs beginning It seems to have been a prosperous period and It is also about 2000 BC; PDF page 210, extracted lines 4805–4837. University-hosted converted text, not a verified print-edition pagination.",
+      "sv": "Kapitel 7, Manufacturing industry and trade, styckena som börjar It seems to have been a prosperous period och It is also about 2000 BC; PDF-sida 210, extraherade rader 4805–4837. Konverterad text på ett universitets webbplats, utan verifierad paginering för den tryckta utgåvan.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-crawford-gulf",
+        "fieldPath": "/locator",
+        "textSha256": "9e306c58dbd344aef156387c2688f2ed5b78518d6bf3a05c65652a48b3e6bd3e"
+      }
+    },
+    {
+      "id": "source/bc2000-crawford-gulf/institution",
+      "en": "Harriet Crawford; University of Diyala electronic library host",
+      "sv": "Harriet Crawford; University of Diyalas digitala bibliotek",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-crawford-gulf",
+        "fieldPath": "/institution",
+        "textSha256": "642ff5bea344c775e5152018252c3f6790607932ba8b077b1b093f6d628bac50"
+      }
+    },
+    {
+      "id": "source/bc2000-ucl-kings/locator",
+      "en": "Dynasty 11 and Dynasty 12 king-list entries for Mentuhotep IV, Amenemhat I, Senusret I and Amenemhat II; web lines 10 and 19–21.",
+      "sv": "Kunglistans poster för dynasti 11 och dynasti 12: Mentuhotep IV, Amenemhat I, Senusret I och Amenemhat II; webbrader 10 och 19–21.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-ucl-kings",
+        "fieldPath": "/locator",
+        "textSha256": "6d4c863d467aacf83a94ceea2b09fbc391ca9d14071d8f5ebe3a1813c7efe7b9"
+      }
+    },
+    {
+      "id": "source/bc2000-ucl-kings/institution",
+      "en": "University College London, Digital Egypt for Universities",
+      "sv": "University College London, Digital Egypt for Universities",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-ucl-kings",
+        "fieldPath": "/institution",
+        "textSha256": "22b4ed4dbde10debe5ea3c427a5d5cee3a976ea4d4ef29e062bf281c5a33970c"
+      }
+    },
+    {
+      "id": "source/bc2000-met-kings/locator",
+      "en": "Dynasty 11 and Dynasty 12 entries, Mentuhotep IV through Amenemhat II; web lines 320–338.",
+      "sv": "Posterna för dynasti 11 och dynasti 12, från Mentuhotep IV till Amenemhat II; webbrader 320–338.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-met-kings",
+        "fieldPath": "/locator",
+        "textSha256": "f5b4ca58fef7cd209807aa8a2d1987a7808eb9c279d6ca3cb54d005743370dd5"
+      }
+    },
+    {
+      "id": "source/bc2000-met-kings/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-met-kings",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/bc2000-ucl-mentuhotep-iv/locator",
+      "en": "Opening two paragraphs, web lines 2–4.",
+      "sv": "De två inledande styckena, webbrader 2–4.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-ucl-mentuhotep-iv",
+        "fieldPath": "/locator",
+        "textSha256": "96d099cbc832919c4706422be5abbf25bae83e9cd54f6ad269fbbd51a47e9e4e"
+      }
+    },
+    {
+      "id": "source/bc2000-ucl-mentuhotep-iv/institution",
+      "en": "University College London, Digital Egypt for Universities",
+      "sv": "University College London, Digital Egypt for Universities",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-ucl-mentuhotep-iv",
+        "fieldPath": "/institution",
+        "textSha256": "22b4ed4dbde10debe5ea3c427a5d5cee3a976ea4d4ef29e062bf281c5a33970c"
+      }
+    },
+    {
+      "id": "source/bc2000-ucl-middle-kingdom-tour/locator",
+      "en": "Table items 3 and 5; web lines 8 and 10.",
+      "sv": "Tabellposterna 3 och 5; webbrader 8 och 10.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-ucl-middle-kingdom-tour",
+        "fieldPath": "/locator",
+        "textSha256": "93e806cdab706e59c94e94f652b0cd0750ec2fdf7b8a47eb80a153d2694eab26"
+      }
+    },
+    {
+      "id": "source/bc2000-ucl-middle-kingdom-tour/institution",
+      "en": "University College London, Digital Egypt for Universities",
+      "sv": "University College London, Digital Egypt for Universities",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-ucl-middle-kingdom-tour",
+        "fieldPath": "/institution",
+        "textSha256": "22b4ed4dbde10debe5ea3c427a5d5cee3a976ea4d4ef29e062bf281c5a33970c"
+      }
+    },
+    {
+      "id": "source/bc2000-met-amenemhat-capital/locator",
+      "en": "Object description, paragraph on Amenemhat I's early reign and capital move; object date and description, web lines 26–30.",
+      "sv": "Föremålsbeskrivningen, stycket om Amenemhat I:s tidiga regering och flytten av huvudstaden; föremålets datering och beskrivning, webbrader 26–30.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-met-amenemhat-capital",
+        "fieldPath": "/locator",
+        "textSha256": "00324dfca4a88aa52c9a8492110dd09053dece05915b0b7785dc41b280fdc60c"
+      }
+    },
+    {
+      "id": "source/bc2000-met-amenemhat-capital/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-met-amenemhat-capital",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/bc2000-met-amenemhat-ii/locator",
+      "en": "5 August 2011, The Reign of Amenemhat II, paragraphs 1–2; web lines 69–71.",
+      "sv": "5 augusti 2011, The Reign of Amenemhat II, stycke 1–2; webbrader 69–71.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-met-amenemhat-ii",
+        "fieldPath": "/locator",
+        "textSha256": "a0fc6666f088e13b7689dd090a27403a2e4c5a4df9e9fd03c672cfe09edc07f1"
+      }
+    },
+    {
+      "id": "source/bc2000-met-amenemhat-ii/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-met-amenemhat-ii",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/bc2000-unesco-erishum/locator",
+      "en": "Description, Assyrian Trading Colonies Period, opening paragraph; web lines 91–93.",
+      "sv": "Description, Assyrian Trading Colonies Period, inledande stycket; webbrader 91–93.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-unesco-erishum",
+        "fieldPath": "/locator",
+        "textSha256": "48d80024afc418736872ce83e2bb997bc00a1c06c4a15face7bf8da98eef79b4"
+      }
+    },
+    {
+      "id": "source/bc2000-unesco-erishum/institution",
+      "en": "Republic of Türkiye, tentative-list submission; UNESCO World Heritage Centre",
+      "sv": "Republiken Türkiye, förslag till tentativ lista; UNESCO World Heritage Centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-unesco-erishum",
+        "fieldPath": "/institution",
+        "textSha256": "7ee9f68c7fa437ad8760876e6405a39945b1e8062c1f6332aa13d60709d018cc"
+      }
+    },
+    {
+      "id": "source/bc2000-met-erishum/locator",
+      "en": "Main essay paragraph beginning During the reign of Erishum I; web line 180.",
+      "sv": "Huvudtextens stycke som börjar During the reign of Erishum I; webbrad 180.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-met-erishum",
+        "fieldPath": "/locator",
+        "textSha256": "4bbcc9562d399401c406ef6bb69fcdcbd946088f5e2b9cff53d0f99bcd5d5f8e"
+      }
+    },
+    {
+      "id": "source/bc2000-met-erishum/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-met-erishum",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/bc2000-reculeau-nippur/locator",
+      "en": "Chapter 2, printed pp. 23–26; chronology table on p. 24; paragraphs on Ishme-Dagan, Lipit-Eshtar/Gungunum and Ur-Ninurta, extracted lines 631, 644–646, 672–673 and 689.",
+      "sv": "Kapitel 2, tryckta s. 23–26; kronologisk tabell på s. 24; styckena om Ishme-Dagan, Lipit-Eshtar/Gungunum och Ur-Ninurta, extraherade rader 631, 644–646, 672–673 och 689.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-reculeau-nippur",
+        "fieldPath": "/locator",
+        "textSha256": "068b7a94816270cc6811d0324b5e639fec787321f7b7c5e046504a0720606546"
+      }
+    },
+    {
+      "id": "source/bc2000-reculeau-nippur/institution",
+      "en": "Hervé Reculeau; Institute for the Study of Ancient Cultures, University of Chicago",
+      "sv": "Hervé Reculeau; Institute for the Study of Ancient Cultures, University of Chicago",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-reculeau-nippur",
+        "fieldPath": "/institution",
+        "textSha256": "02fa928bc635feb00ad3acc7feacc6bbe1f02cacaabdc8a2d6541248e860f747"
+      }
+    },
+    {
+      "id": "source/bc2000-bologna-ishme-chronology/locator",
+      "en": "Author postprint, paragraph describing cone EG 4200, PDF page 4, extracted lines 148–158; DOI 10.1109/MetroArchaeo43810.2018.13617.",
+      "sv": "Författarens accepterade manuskript, stycket om konen EG 4200, PDF-sida 4, extraherade rader 148–158; DOI 10.1109/MetroArchaeo43810.2018.13617.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-bologna-ishme-chronology",
+        "fieldPath": "/locator",
+        "textSha256": "469d5fb4b30c6d9d5310600e51de2a42b7ddcb10e15946dddc0ea783f4284f5f"
+      }
+    },
+    {
+      "id": "source/bc2000-bologna-ishme-chronology/institution",
+      "en": "University of Bologna institutional repository; IEEE MetroArchaeo 2018",
+      "sv": "Universitetet i Bolognas institutionella arkiv; IEEE MetroArchaeo 2018",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-bologna-ishme-chronology",
+        "fieldPath": "/institution",
+        "textSha256": "30a2bd7a6f3d1b008aeee70045984bbfe66885894934a34e18d322c43fe5f6bb"
+      }
+    },
+    {
+      "id": "source/bc2000-oregon-lipit-laws/locator",
+      "en": "Opening object label and historical paragraphs, web lines 7–9; Cuneiform 003.",
+      "sv": "Inledande föremålsetikett och historiska stycken, webbrader 7–9; Cuneiform 003.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-oregon-lipit-laws",
+        "fieldPath": "/locator",
+        "textSha256": "6125fdec43fbd04fe7d2539e7417e049fd89d1464cc6e7fef6f83d258d7171b8"
+      }
+    },
+    {
+      "id": "source/bc2000-oregon-lipit-laws/institution",
+      "en": "University of Oregon Libraries, Special Collections & University Archives",
+      "sv": "University of Oregon Libraries, Special Collections & University Archives",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc2000-oregon-lipit-laws",
+        "fieldPath": "/institution",
+        "textSha256": "9affbd10eb57cf3477fcbf53af46d1bc39992fdb88e56361e15591596858a372"
       }
     }
   ]
