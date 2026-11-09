@@ -141,6 +141,12 @@
     },
     {
       "startYear": -1000,
+      "endYear": -901,
+      "status": "partial",
+      "note": "Seven independently source-checked event records cover selected developments in Europe, the Middle East and North Africa, the Americas, East Asia, South Asia, Southeast Asia and Oceania. Searches also addressed sub-Saharan Africa and the steppe and Central Asia, which have no retained event. All represented regions remain incomplete. Records preserve the full Pirak 1000-800 BC interval and Vilabouly site sequence from circa 1000 BC to AD 700; these bounds establish neither continuous production nor adjacent researched years. Genkai retains differing regional and broad Yayoi period labels. Teouma uses an explicit BC funerary context from a public abstract, not a cemetery foundation or settlement date. Ceibal cooperation remains an attributed interpretation. Lefkandi uses a heyday marker and Sheshonq a qualified campaign date. Accession, Ahiram, Obobogo and other discovery leads remain withheld. Empty years are research gaps."
+    },
+    {
+      "startYear": -900,
       "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
