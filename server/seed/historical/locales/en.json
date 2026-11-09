@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "a068a054a0304bbefe25195947e3caf85513af89",
+  "sourceRevision": "ff4b6b8c92942614c1ba3a834b4158176e3c6e50",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -48985,6 +48985,336 @@
         "eventId": "ev-bc1742-sydliga-upproret",
         "fieldPath": "/geographySv",
         "textSha256": "51cb582b5b05a0c26b5c40361f7d8775747f54f21d05cb16d93f26736bdda548"
+      }
+    },
+    {
+      "id": "event/ev-bc1700-malias-forsta-palats-forstors/date/displaySv",
+      "sv": "cirka 1700 f.Kr.",
+      "en": "Approximately 1700 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1700-malias-forsta-palats-forstors",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d71c241d91d8aeee795ba86997507ff183c4f981907767a89f0ad6001bf3ca7b"
+      }
+    },
+    {
+      "id": "event/ev-bc1700-malias-forsta-palats-forstors/date/noteSv",
+      "sv": "Dateringen gäller förstörelsen vid slutet av den mellanminoiska perioden IIB. Orsaken är okänd; en brand i kvarter Mu visar inte vad som förstörde hela staden.",
+      "en": "The dating concerns the destruction at the end of Middle Minoan IIB. The cause is unknown; a fire in the Mu Quarter does not establish what destroyed the whole town.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1700-malias-forsta-palats-forstors",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "255ad75c702c83191aa7009687e6ca1df3338e051976646fbc522f363bb9276a"
+      }
+    },
+    {
+      "id": "event/ev-bc1700-malias-forsta-palats-forstors/titleSv",
+      "sv": "Malias första palats och kvarter Mu förstörs",
+      "en": "Malia’s first palace and Mu Quarter are destroyed",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1700-malias-forsta-palats-forstors",
+        "fieldPath": "/titleSv",
+        "textSha256": "cd372221f8719bee28f7acf7ec1fe43495d5c04e0baebe3b7e0301f9154d01d6"
+      }
+    },
+    {
+      "id": "event/ev-bc1700-malias-forsta-palats-forstors/summarySv",
+      "sv": "Det första palatset och flera delar av Malia förstörs. I kvarter Mu tyder lämningarna på en våldsam brand som får tegelväggarna att rasa. Det är osäkert om palatset återuppförs omedelbart efter förstörelsen.",
+      "en": "The first palace and several parts of Malia are destroyed. Remains in the Mu Quarter indicate a fierce fire that causes the brick walls to collapse. Whether the palace is rebuilt immediately after the destruction is uncertain.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1700-malias-forsta-palats-forstors",
+        "fieldPath": "/summarySv",
+        "textSha256": "1e52eb7eed03d9e52767c0974aa8d4bd57ab488aa48b10cfd31521c6fdde7beb"
+      }
+    },
+    {
+      "id": "event/ev-bc1700-malias-forsta-palats-forstors/geographySv",
+      "sv": "Malia på Kreta, Grekland",
+      "en": "Malia on Crete, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1700-malias-forsta-palats-forstors",
+        "fieldPath": "/geographySv",
+        "textSha256": "602278ec1adc29dad5b5ca9eaa15db0c786d12644b106387ae5bc5c8e57ea9e4"
+      }
+    },
+    {
+      "id": "event/ev-bc1700-stenyxor-i-hiregudda/date/displaySv",
+      "sv": "cirka 1700–1250 f.Kr., med möjligt uppehåll",
+      "en": "Approximately 1700–1250 BC, with a possible interruption",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1700-stenyxor-i-hiregudda",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "40bc95d7957bdc6cc4c1fe8205df58380e8cec40e320759bb50c41b37b3ee764"
+      }
+    },
+    {
+      "id": "event/ev-bc1700-stenyxor-i-hiregudda/date/noteSv",
+      "sv": "Den undersökta rundbyggnaden används under cirka 1700–1250 f.Kr. Ett uppehåll omkring 1500–1400 f.Kr. är möjligt. Merparten av det omfattande tillverkningsavfallet hör till den senare delen, cirka 1500/1400–1250 f.Kr.",
+      "en": "The round building investigated is used during approximately 1700–1250 BC. An interruption around 1500–1400 BC is possible. Most of the extensive manufacturing waste belongs to the later part, approximately 1500/1400–1250 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1700-stenyxor-i-hiregudda",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1f0162c928f8bcb99ef062e11fba0b3fc958fe1e5aa9d948d4a40dce11f63ff0"
+      }
+    },
+    {
+      "id": "event/ev-bc1700-stenyxor-i-hiregudda/titleSv",
+      "sv": "Hantverkare tillverkar stenyxor i Hiregudda",
+      "en": "Craftspeople make stone axes at Hiregudda",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1700-stenyxor-i-hiregudda",
+        "fieldPath": "/titleSv",
+        "textSha256": "0c9fbe5605203d19f7ad79654a0e306bc6e62df6d7d84be6c7b0716a7af37234"
+      }
+    },
+    {
+      "id": "event/ev-bc1700-stenyxor-i-hiregudda/summarySv",
+      "sv": "I en rundbyggnad vid Hiregudda tillverkar människor redskap av dolerit. Tillverkningen ökar under brukningsperiodens senare del. Skillnader i hantverksskicklighet får forskarna att tolka arbetet som en gemensam produktion där deltagarna arbetar med stenhuggning och slipning på deltid.",
+      "en": "People manufacture dolerite tools in a round building at Hiregudda. Production increases during the later part of its use. Differences in skill lead researchers to interpret the work as communal production in which participants work part-time at stone knapping and grinding.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1700-stenyxor-i-hiregudda",
+        "fieldPath": "/summarySv",
+        "textSha256": "c5d54b2dad35f1c9ffe8e8194b6da17cdfaae3e3af294d3ffe8dd8eb5eede03c"
+      }
+    },
+    {
+      "id": "event/ev-bc1700-stenyxor-i-hiregudda/geographySv",
+      "sv": "Hiregudda i Sanganakallu–Kupgal, Karnataka, Indien",
+      "en": "Hiregudda at Sanganakallu–Kupgal, Karnataka, India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1700-stenyxor-i-hiregudda",
+        "fieldPath": "/geographySv",
+        "textSha256": "c1c146b446560beebf286d4a8d3265d03e50ffe03625bb9b8e23552401810be4"
+      }
+    },
+    {
+      "id": "event/ev-bc1670-zincirlis-komplex-dd-forstors/date/displaySv",
+      "sv": "troligen cirka 1632–1610 f.Kr.; modellernas yttergränser 1670–1594 f.Kr.",
+      "en": "Probably approximately 1632–1610 BC; outer bounds of the models: 1670–1594 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1670-zincirlis-komplex-dd-forstors",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "59ec53b36aa6fc9668fabc3ee9d58e827a9a88c47df51bd3db3055a49250060b"
+      }
+    },
+    {
+      "id": "event/ev-bc1670-zincirlis-komplex-dd-forstors/date/noteSv",
+      "sv": "Studien från 2023 föredrar cirka 1632–1610 f.Kr., ett intervall med ungefär 56,2 procent av den kombinerade sannolikheten. Två föredragna modeller ger vid 95,4 procent 1670–1607 respektive 1667–1646 och 1643–1594 f.Kr. Yttergränserna är inte ett sammanhängande konfidensintervall eller förstörelsens varaktighet.",
+      "en": "The 2023 study favours approximately 1632–1610 BC, an interval containing around 56.2 percent of the combined probability. At 95.4 percent, two preferred models give 1670–1607 and, respectively, 1667–1646 plus 1643–1594 BC. The outer bounds are not a continuous confidence interval or the duration of the destruction.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1670-zincirlis-komplex-dd-forstors",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "bd332a2ea7d7b97f951d2715b8ff66f0734770ac0645a72c2125e9ed87002586"
+      }
+    },
+    {
+      "id": "event/ev-bc1670-zincirlis-komplex-dd-forstors/titleSv",
+      "sv": "En brand förstör byggnadskomplex DD i Zincirli",
+      "en": "A fire destroys Building Complex DD at Zincirli",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1670-zincirlis-komplex-dd-forstors",
+        "fieldPath": "/titleSv",
+        "textSha256": "7d0f5982fb254b2bf54902f29dbc272c6d070f3bdaa2debaf2d959599ac34c0c"
+      }
+    },
+    {
+      "id": "event/ev-bc1670-zincirlis-komplex-dd-forstors/summarySv",
+      "sv": "Byggnadskomplex DD förstörs i en brand som förkolnar lagrade växtrester. Arkeologerna förknippar förstörelsen med de hettitiska fälttågen i norra Levanten och bedömer att den troligen inträffade under Hattusili I:s regeringstid. Sambandet bygger på arkeologiska jämförelser och är inte en säker identifiering av angriparen.",
+      "en": "Building Complex DD is destroyed in a fire that chars stored plant remains. Archaeologists associate the destruction with Hittite campaigns in the northern Levant and consider it likely to have occurred during Hattusili I’s reign. The connection rests on archaeological comparisons and is not a secure identification of the attacker.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1670-zincirlis-komplex-dd-forstors",
+        "fieldPath": "/summarySv",
+        "textSha256": "fe0dc50ae3d6811694330f697fca7d93db260fe66992fcd3bb5517bfcc034edb"
+      }
+    },
+    {
+      "id": "event/ev-bc1670-zincirlis-komplex-dd-forstors/geographySv",
+      "sv": "Zincirli i sydöstra Turkiet, vid norra Levanten",
+      "en": "Zincirli in southeastern Turkey, near the northern Levant",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1670-zincirlis-komplex-dd-forstors",
+        "fieldPath": "/geographySv",
+        "textSha256": "a48599c3d6dee9060e7d6f5c8972b8896a2e584522099dab008402dfc2af33bf"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-mykenes-gravcirkel-b/date/displaySv",
+      "sv": "cirka 1650–1550 f.Kr.",
+      "en": "Approximately 1650–1550 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-mykenes-gravcirkel-b",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5c054c6f6e18622893c83f63591beb2d3958889615d02c1d1b811d0d89877300"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-mykenes-gravcirkel-b/date/noteSv",
+      "sv": "Dateringen omfattar gravläggningarna i gravcirkel B:s huvudsakliga brukningsfas. Grav Rho byggs senare, under 1400-talet f.Kr., i en äldre grav och ingår inte i denna post.",
+      "en": "The dating covers burials during Grave Circle B’s principal period of use. Tomb Rho is built later, in the fifteenth century BC, within an older tomb and is not included in this entry.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-mykenes-gravcirkel-b",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f9ecb63aafa15a1b99c482b3bcc5c60f7057bd4482d3682474865bf163dcc789"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-mykenes-gravcirkel-b/titleSv",
+      "sv": "Mykenes ledande familjer gravlägger sina döda i gravcirkel B",
+      "en": "Mycenae’s leading families bury their dead in Grave Circle B",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-mykenes-gravcirkel-b",
+        "fieldPath": "/titleSv",
+        "textSha256": "523db9ead75cd73b0a6cefd79aeb5273084ee86a1c00db2db253d80f5405173d"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-mykenes-gravcirkel-b/summarySv",
+      "sv": "Människor ur Mykenes översta samhällsskikt begravs med vapen, kärl och smycken av värdefulla material. Gravarna visar en växande elit som kan samla stora rikedomar. De dödas identiteter är inte säkert kända.",
+      "en": "Members of Mycenae’s highest social stratum are buried with weapons, vessels and jewellery made from valuable materials. The graves reveal a growing elite able to accumulate great wealth. The identities of the dead are not securely known.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-mykenes-gravcirkel-b",
+        "fieldPath": "/summarySv",
+        "textSha256": "9fb054cd8709368407820545bd5bf65946614c17c5dfb2af1b5aab9616d54621"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-mykenes-gravcirkel-b/geographySv",
+      "sv": "Mykene på Peloponnesos, Grekland",
+      "en": "Mycenae in the Peloponnese, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-mykenes-gravcirkel-b",
+        "fieldPath": "/geographySv",
+        "textSha256": "25aef970a5ba17b7fe37cdd1c6c4f727d55f62f7385b21fa4115c28810892302"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-hyksos-regerar-fran-avaris/date/displaySv",
+      "sv": "cirka 1650–1530 f.Kr. enligt olika dateringar",
+      "en": "Approximately 1650–1530 BC across differing chronologies",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-hyksos-regerar-fran-avaris",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "3b5eb5364e2b4ebcebd43fdfcfeff21f4051547ae0cb243145858f8d435c4352"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-hyksos-regerar-fran-avaris/date/noteSv",
+      "sv": "Källorna anger olika ramar: cirka 1650–1550, 1640–1550 respektive 1638–1530 f.Kr. Yttergränserna sammanfattar dessa alternativ. De anger ingen enskild invasion eller obruten kontroll över samma område.",
+      "en": "The sources give different frameworks: approximately 1650–1550, 1640–1550 and 1638–1530 BC. The outer bounds summarize these alternatives. They do not indicate a single invasion or uninterrupted control over the same area.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-hyksos-regerar-fran-avaris",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1413cd1672a142138239b5a719e5cfe63066ee328487b884b662891c4de4490c"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-hyksos-regerar-fran-avaris/titleSv",
+      "sv": "Hyksoskungar regerar över norra Egypten från Avaris",
+      "en": "Hyksos kings rule northern Egypt from Avaris",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-hyksos-regerar-fran-avaris",
+        "fieldPath": "/titleSv",
+        "textSha256": "6995357146461a5abc950c32e4868b1557a41020e9c809e9708422cdd177bc6f"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-hyksos-regerar-fran-avaris/summarySv",
+      "sv": "Hyksoskungar med anknytning till Främre Orienten regerar från Avaris i Nildeltat. De antar egyptisk kunglig titulatur, medan lokala kungar fortsätter att regera i Thebe. Inflyttning till deltat har pågått före maktövertagandet, vars förlopp är osäkert.",
+      "en": "Hyksos kings with ties to the Near East rule from Avaris in the Nile Delta. They adopt Egyptian royal titles, while local kings continue to rule at Thebes. Migration into the delta predates the takeover, whose course is uncertain.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-hyksos-regerar-fran-avaris",
+        "fieldPath": "/summarySv",
+        "textSha256": "b8724f345cceee2db9f2ce7bd4468803aa73c087c3b1b830b0d68821809f0769"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-hyksos-regerar-fran-avaris/geographySv",
+      "sv": "Avaris och norra Egypten, med Thebe i söder",
+      "en": "Avaris and northern Egypt, with Thebes to the south",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-hyksos-regerar-fran-avaris",
+        "fieldPath": "/geographySv",
+        "textSha256": "cf7ec5168a7cc2a29fe47486d9bb8a2f44608312d1360c352add16ab906756df"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-tidiga-tamhons-i-ban-non-wat/date/displaySv",
+      "sv": "cirka 1650–1250 f.Kr.",
+      "en": "Approximately 1650–1250 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-tidiga-tamhons-i-ban-non-wat",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "62eccb9750d66b2569fe44d9a84375a2492eaadac82c451eb100fdac9f4c7c06"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-tidiga-tamhons-i-ban-non-wat/date/noteSv",
+      "sv": "Benen hör till Ban Non Wats neolitiska fas. Studien från 2022 tolkar dem som de tidigaste säkra tamhönsen i sitt jämförelsematerial, men redovisar också att tamstatusen har ifrågasatts. Dateringen anger inte ett bestämt år för domesticering.",
+      "en": "The bones belong to Ban Non Wat’s Neolithic phase. The 2022 study interprets them as the earliest secure domestic chickens in its comparative material, but also reports that their domestic status has been questioned. The dating does not establish a specific year of domestication.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-tidiga-tamhons-i-ban-non-wat",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d9a77d1b225ae3b0c49cc13ede4cedd64b0f6eeb8497463d7307e4c717de563e"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-tidiga-tamhons-i-ban-non-wat/titleSv",
+      "sv": "Människor i Ban Non Wat håller sannolikt tidiga tamhöns",
+      "en": "People at Ban Non Wat probably keep early domestic chickens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-tidiga-tamhons-i-ban-non-wat",
+        "fieldPath": "/titleSv",
+        "textSha256": "ba50e25e90f34d74941b80546bbc86cfe0bf2d77ba741ab10bb40a7eb679a341"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-tidiga-tamhons-i-ban-non-wat/summarySv",
+      "sv": "I Ban Non Wat finns en stor andel hönsben och många ben från unga fåglar. Forskarna tolkar fynden som tidiga belägg för en tam population. Tolkningen gäller människors förhållande till fåglarna under en lång period, inte ett dokumenterat första domesticeringstillfälle.",
+      "en": "Ban Non Wat has a high proportion of chicken bones and many bones from young birds. Researchers interpret the finds as early evidence of a domestic population. The interpretation concerns people’s relationship with the birds over a long period, rather than a documented first instance of domestication.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-tidiga-tamhons-i-ban-non-wat",
+        "fieldPath": "/summarySv",
+        "textSha256": "1f401d351b0b2ca138b1cac47f1ca8b5b2087218830c402639cbb7b916ad5e98"
+      }
+    },
+    {
+      "id": "event/ev-bc1650-tidiga-tamhons-i-ban-non-wat/geographySv",
+      "sv": "Ban Non Wat i nordöstra Thailand",
+      "en": "Ban Non Wat in northeastern Thailand",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1650-tidiga-tamhons-i-ban-non-wat",
+        "fieldPath": "/geographySv",
+        "textSha256": "fbb56553a4bc062588767160415069591ae7f888768c11463cb901bcdbb342b2"
       }
     }
   ]

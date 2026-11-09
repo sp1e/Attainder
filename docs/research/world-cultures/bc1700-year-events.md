@@ -1,0 +1,15 @@
+# Historical events, 1700–1601 BC
+
+The reconciled candidate contains six events and nine references. A separate source review assessed eight events and eleven sources: five events were supported, two held and one required a wording correction; ten sources yielded relevant passages and one was inaccessible.
+
+The Zincirli summary adopts the exact correction from possible personal responsibility by Hattusili I to a probable occurrence during his reign. This preserves the archaeological attribution without identifying the attacker. Every retained date object and every retained source field remains unchanged. The preferred date estimate, its stated probability, both model-specific ranges and their disjoint components remain distinct; their outer bounds do not form a single confidence interval or a destruction duration.
+
+Poverty Point remains held as a complete record after the reviewer's source request returned HTTP 403. This is an access limitation, not contrary historical evidence. Karnab also remains held as a complete record: the source's Early Iron Age boundary of 800 BC does not establish the end of mining. Its accurate prose qualification does not resolve that unsupported numerical endpoint. Both unused references are omitted, and the original findings remain intact.
+
+The author recorded 52 new discovery queries plus four inherited queries across all nine macroregions, retaining 21 earlier held leads. The subset concerns Malia's destruction, stone-tool production at Hiregudda, Zincirli's destruction, Mycenae's Grave Circle B, Hyksos rule and early chicken keeping at Ban Non Wat. Sub-Saharan Africa, East Asia, the Americas, Oceania and the steppe and Central Asia have no retained event. Empty years remain research gaps.
+
+Malia's unknown destruction cause and uncertain rebuilding remain explicit. Hiregudda retains its full occupation interval and possible interruption. Mycenae's later Tomb Rho is excluded. Hyksos chronology alternatives describe differing frameworks, not an invasion date or uninterrupted control over the same area. Ban Non Wat retains the disputed domestic status of the birds and no exact domestication year. Full ranges do not establish occurrence in every year or researched coverage of adjacent centuries.
+
+The bilingual additions contain 30 English event fields and 18 Swedish source-panel fields. Final data, bilingual and prospective integration review and required CI are separate publication checks. Locale sidecars must identify a real preceding data commit, verified against every existing and added source reference. Runtime language switching and gameplay verification remain separate work.
+
+Earlier author retrieval dates remain independently unverified metadata. The supervisor verified immutable inputs and exact finding values; its audit describes observed local commands. Web-call metadata did not provide a second independent reproduction of source passages, and no operating-system isolation is claimed. The original report, access limits and skill-loader warnings remain preserved.
