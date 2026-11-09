@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "49ae3f833ea4598f275bab88d1c6fca0617554ad",
+  "sourceRevision": "12a8e775d7b64119c22f5ad51d52c63bbf99e3a7",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -53550,6 +53550,1766 @@
         "eventId": "ev-bc0612-nineve-forstors",
         "fieldPath": "/geographySv",
         "textSha256": "1ae12b8c14572f77f2599dfe35a5311c2cc81722b76e2e8014f977886399054d"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-monte-alban-grundas/date/displaySv",
+      "sv": "cirka 500 f.Kr.",
+      "en": "circa 500 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-monte-alban-grundas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "055af35fea2cbe7d889df3d8ce94776029617ac834712517bb184d68d27f0be4"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-monte-alban-grundas/date/noteSv",
+      "sv": "Årtalet är en arkeologisk grundningsdatering. Museets senare befolkningsuppgift gäller 300 f.Kr. och används inte för grundningen.",
+      "en": "The year is an archaeological foundation date. The museum's later population estimate concerns 300 BC and is not applied to the foundation.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-monte-alban-grundas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7810e651638f61de9fb3ee1a69161daac28fd94cd63967412bdc5773019fc093"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-monte-alban-grundas/titleSv",
+      "sv": "Monte Albán växer fram som nytt centrum",
+      "en": "Monte Albán emerges as a new centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-monte-alban-grundas",
+        "fieldPath": "/titleSv",
+        "textSha256": "d73ce93498bb4c833f00fe8c6a543bbb638e327d264f5d7ef32a4f811b912f2b"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-monte-alban-grundas/summarySv",
+      "sv": "Människor i Oaxacadalen flyttar till en ny bosättning på en höjd. Monte Albán får en central plats och befästningar och blir ett viktigt centrum i regionen.",
+      "en": "People in the Oaxaca Valley move to a new hilltop settlement. Monte Albán gains a central plaza and fortifications and becomes an important regional centre.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-monte-alban-grundas",
+        "fieldPath": "/summarySv",
+        "textSha256": "6b32553c944db03a723e1aae2121f9af7ddb50c7f9b0a56ce494d3571375f92f"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-monte-alban-grundas/geographySv",
+      "sv": "Monte Albán, Oaxacadalen i nuvarande Mexiko",
+      "en": "Monte Albán, Oaxaca Valley in present-day Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-monte-alban-grundas",
+        "fieldPath": "/geographySv",
+        "textSha256": "a23f3fe6884d13e27d2b1fa6ba3b3ba243ea6e0f413046732b87048ab531a176"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-danmark-utvinner-jarn/date/displaySv",
+      "sv": "cirka 500 f.Kr.",
+      "en": "circa 500 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-danmark-utvinner-jarn",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "055af35fea2cbe7d889df3d8ce94776029617ac834712517bb184d68d27f0be4"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-danmark-utvinner-jarn/date/noteSv",
+      "sv": "Lyngstrøms offentliga sammanfattning anger ungefär när lokal järnteknik införs. Hela konferensbidraget har inte lästs.",
+      "en": "Lyngstrøm's public abstract states approximately when local iron technology was introduced. The full conference paper has not been read.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-danmark-utvinner-jarn",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9caf097e4bd33d6746a7b551d950dec5f9ebf4f57998c571a47e691b27fca143"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-danmark-utvinner-jarn/titleSv",
+      "sv": "Järn utvinns ur dansk myrmalm",
+      "en": "Iron is extracted from Danish bog ore",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-danmark-utvinner-jarn",
+        "fieldPath": "/titleSv",
+        "textSha256": "2e2ae070e3f6ba38b75e9b6d427cf786d0aff5abb3a18888348d16e0c4fded22"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-danmark-utvinner-jarn/summarySv",
+      "sv": "Järnproduktion från lokal myrmalm etableras i Danmark. Forskaren beskriver järnhantering i vanliga jordbruksbyar, troligen som en bisyssla där malm och bränsle finns.",
+      "en": "Iron production from local bog ore becomes established in Denmark. The researcher describes ironworking in ordinary farming villages, probably as a sideline where ore and fuel are available.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-danmark-utvinner-jarn",
+        "fieldPath": "/summarySv",
+        "textSha256": "41d61060817a132c00c869cf3ee8a767aa4bccd9dda337144ba723763b0ca1af"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-danmark-utvinner-jarn/geographySv",
+      "sv": "Danmark",
+      "en": "Denmark",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-danmark-utvinner-jarn",
+        "fieldPath": "/geographySv",
+        "textSha256": "b2bebaaf55198f3166a7d7089112d30e245d6cf4a3249ae87b597fa988e7f1be"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-joniska-upproret/date/displaySv",
+      "sv": "499 f.Kr.",
+      "en": "499 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-joniska-upproret",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6a2c801b39b91d5f50c28e98148b0a788eefc7f46b1c2adb30ed43c89f5dbb6d"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-joniska-upproret/date/noteSv",
+      "sv": "Året gäller upprorets början enligt utställningens historiska översikt. Posten sätter inget eget slutår för hela upproret.",
+      "en": "The year concerns the beginning of the revolt according to the exhibition's historical overview. This record does not assign its own end year to the entire uprising.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-joniska-upproret",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "68b2f1768721e005cdf7a6aeb121caccb66fb500b5775c12b6b88d7586283f5b"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-joniska-upproret/titleSv",
+      "sv": "Joniska städer gör uppror mot Persien",
+      "en": "Ionian cities revolt against Persia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-joniska-upproret",
+        "fieldPath": "/titleSv",
+        "textSha256": "baac86b106d466e8e4b42c3c37b439bc71d116264ea231686b777246762ee6fe"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-joniska-upproret/summarySv",
+      "sv": "Joner i Mindre Asien gör uppror under Dareios I:s regering. Aten och Eretria ger dem stöd, vilket blir en del av bakgrunden till de följande perserkrigen.",
+      "en": "Ionians in Asia Minor rebel during the reign of Darius I. Athens and Eretria support them, forming part of the background to the ensuing Persian Wars.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-joniska-upproret",
+        "fieldPath": "/summarySv",
+        "textSha256": "42062fd958f7e018c0b17ba4e532932d113241b2b43109fc4df5fe3e30e13fba"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-joniska-upproret/geographySv",
+      "sv": "Jonien i västra Mindre Asien",
+      "en": "Ionia in western Asia Minor",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-joniska-upproret",
+        "fieldPath": "/geographySv",
+        "textSha256": "f3c716cafd38400f1bb851a8db006d5e93aea200758d0c2c73ff709959765d16"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-marathon/date/displaySv",
+      "sv": "september 490 f.Kr.",
+      "en": "September 490 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-marathon",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8a707cac5a9fbd68678034fc1d098e616d319ba71f297573a1266b460f05816f"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-marathon/date/noteSv",
+      "sv": "Källan placerar persernas landstigning i början av september och beskriver det följande slaget. Någon exakt slagdag anges inte här.",
+      "en": "The source places the Persian landing in early September and describes the ensuing battle. No exact battle day is given here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-marathon",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "35d790ffe513c9473e3d1f0a5d8a572516f38101fd5d28707e6cba01703ff939"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-marathon/titleSv",
+      "sv": "Atenare och plataier segrar vid Marathon",
+      "en": "Athenians and Plataeans win at Marathon",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-marathon",
+        "fieldPath": "/titleSv",
+        "textSha256": "a0c11916e90dfc87d74f3e84c437fb66865103f74104c28d9a4afaf8dfc1c300"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-marathon/summarySv",
+      "sv": "Atenska och plataiska styrkor besegrar den persiska expeditionen vid Marathon. Miltiades leder den grekiska krigföringen, varefter atenarna skyndar tillbaka mot sin stad.",
+      "en": "Athenian and Plataean forces defeat the Persian expedition at Marathon. Miltiades directs the Greek military effort, after which the Athenians hurry back toward their city.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-marathon",
+        "fieldPath": "/summarySv",
+        "textSha256": "d2f30325da8d28df03cedf9d30d22d7b711213f5887a9e39b21fadbc6c3214c8"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-marathon/geographySv",
+      "sv": "Marathonslätten i Attika, Grekland",
+      "en": "The plain of Marathon in Attica, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-marathon",
+        "fieldPath": "/geographySv",
+        "textSha256": "1c5acc60adef8c31a3a20380bb86ba5e6b957bc88e137548562d3dbcbba3f10e"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-laurion-finansierar-flottan/date/displaySv",
+      "sv": "483/482 f.Kr.",
+      "en": "483/482 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-laurion-finansierar-flottan",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "3f019758b7c66bc81eb86e793bb3477f4a9b106cd2e1ef345269af2e5e84b700"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-laurion-finansierar-flottan/date/noteSv",
+      "sv": "Källans årsspann gäller silverfyndet och beslutet om flottans finansiering. De följande årens skeppsbyggen räknas inte som färdiga samma år.",
+      "en": "The source's year span concerns the silver discovery and the decision on naval funding. Ships built in the following years are not counted as completed in the same year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-laurion-finansierar-flottan",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b589aff883c04927e9cffaed798054f0c62de93baa057dec9b8e888ec723ae30"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-laurion-finansierar-flottan/titleSv",
+      "sv": "Laurions silver finansierar Atens flotta",
+      "en": "Laurion's silver finances the Athenian fleet",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-laurion-finansierar-flottan",
+        "fieldPath": "/titleSv",
+        "textSha256": "e3552f89b849f8dace7f5b51288d5f3359efbd6ec7d8e28ab277d2e7f850a2ba"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-laurion-finansierar-flottan/summarySv",
+      "sv": "En rik silveråder upptäcks i Laurion. Themistokles får folkförsamlingen att använda inkomsterna till trierer i stället för att dela ut hela tillskottet till medborgarna.",
+      "en": "A rich silver vein is discovered at Laurion. Themistocles persuades the assembly to use the revenue for triremes instead of distributing the entire windfall to the citizens.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-laurion-finansierar-flottan",
+        "fieldPath": "/summarySv",
+        "textSha256": "ab263e65473840dac4d4c953ba9c21c9ff4f6ff0d8229c0e206ef97b35cb5c8c"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-laurion-finansierar-flottan/geographySv",
+      "sv": "Laurion och Aten i Attika",
+      "en": "Laurion and Athens in Attica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-laurion-finansierar-flottan",
+        "fieldPath": "/geographySv",
+        "textSha256": "48675777a2555765bf8503b94f5294376d45fac2961550c884f5fc57d36a3c2d"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-thermopyle/date/displaySv",
+      "sv": "sommaren 480 f.Kr.",
+      "en": "summer 480 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-thermopyle",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "eb6661a8c01f3c8d722afa9c2c2d5f2d603bfa726c54c85ffdc42de354ae0e94"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-thermopyle/date/noteSv",
+      "sv": "Årstiden anges i källan. Ingen egen omräkning till en exakt dag eller säkra totalsiffror för arméerna görs.",
+      "en": "The season is specified in the source. No independent conversion to an exact day or secure totals for the armies is made.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-thermopyle",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "79f0b2101c2921d682fd4597ec8e4e900b17d9f01979f4c92720389dae1b71d9"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-thermopyle/titleSv",
+      "sv": "Perserna bryter igenom vid Thermopyle",
+      "en": "The Persians break through at Thermopylae",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-thermopyle",
+        "fieldPath": "/titleSv",
+        "textSha256": "ef47bfcc01bd775ddfc60c22d1dd0822d79bc185ecad36caf21a9fc0ebea8489"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-thermopyle/summarySv",
+      "sv": "Grekiska styrkor under Leonidas försvarar det smala passet. Perserna leds runt deras ställning på en annan stig, och den kvarvarande försvarsstyrkan övermannas.",
+      "en": "Greek forces under Leonidas defend the narrow pass. The Persians are led around their position along another path, and the remaining defenders are overwhelmed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-thermopyle",
+        "fieldPath": "/summarySv",
+        "textSha256": "ec1c131e91a9ee6b6f1a465b80eb91c2a0f8169765df738b20abe693736f0067"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-thermopyle/geographySv",
+      "sv": "Thermopyle i centrala Grekland",
+      "en": "Thermopylae in central Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-thermopyle",
+        "fieldPath": "/geographySv",
+        "textSha256": "2e1e35724f96909609fcdc0bf52cee4c3eb217ee47099afdcfaad64755413125"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-salamis/date/displaySv",
+      "sv": "september 480 f.Kr.",
+      "en": "September 480 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-salamis",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e7004811e731f94de1f4aee7a21da4b09ac723cfacd9c7bf123c7987ad4d648e"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-salamis/date/noteSv",
+      "sv": "Månaden återges från Salaminas historiska beskrivning; ingen bestämd dag väljs.",
+      "en": "The month follows Salamina's historical account; no specific day is selected.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-salamis",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6515f7f1a88f28dd58ed6109193e8c6af96dcba8981df159061414955f5ab34c"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-salamis/titleSv",
+      "sv": "Den grekiska flottan segrar vid Salamis",
+      "en": "The Greek fleet wins at Salamis",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-salamis",
+        "fieldPath": "/titleSv",
+        "textSha256": "4fec49645ef00fba5d2d8e0571dba68c9baf35c7cf1970c7f57d93cb495c5ce8"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-salamis/summarySv",
+      "sv": "Den grekiska flottan besegrar persernas flotta i de trånga vattnen vid Salamis. Sjöslaget blir ett avgörande inslag i försvaret mot Xerxes invasion.",
+      "en": "The Greek fleet defeats the Persian fleet in the narrow waters off Salamis. The naval battle becomes a decisive part of the defence against Xerxes' invasion.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-salamis",
+        "fieldPath": "/summarySv",
+        "textSha256": "2e549a8e0a9d4ada3122559847f66cfac5ab13b2f042140d6596b49941156dca"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-salamis/geographySv",
+      "sv": "Sundet vid Salamis, Grekland",
+      "en": "The straits of Salamis, Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-salamis",
+        "fieldPath": "/geographySv",
+        "textSha256": "d05c4d3bf23a5d0bd229ab2a1a9bec9e929cfae965b9299393e32af5c777048b"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-akropolis-forstors/date/displaySv",
+      "sv": "480 f.Kr.",
+      "en": "480 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-akropolis-forstors",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f4fbf7d0b9295c8f32dfa92ccde0c07e384dfa1ee7c2d01690b0696ecc9eed16"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-akropolis-forstors/date/noteSv",
+      "sv": "Museet skiljer förstörelsen från byggstarten för det senare Parthenon 447 f.Kr.",
+      "en": "The museum distinguishes the destruction from the start of construction of the later Parthenon in 447 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-akropolis-forstors",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "19307faa6bf0aee6233e62350e8db639385d96a3254e8553553bfb55a33cbfd3"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-akropolis-forstors/titleSv",
+      "sv": "Perserna förstör Akropolis",
+      "en": "The Persians destroy the Acropolis",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-akropolis-forstors",
+        "fieldPath": "/titleSv",
+        "textSha256": "d99eb643aa8966b049c3ac233f8e98afe9e85f14fe506de09507f6e59ac1d19f"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-akropolis-forstors/summarySv",
+      "sv": "Persiska styrkor förstör helgedomarna på Atens Akropolis. De senare stora byggnadsverken uppförs efter denna förstörelse.",
+      "en": "Persian forces destroy the sanctuaries on the Athenian Acropolis. The later monumental buildings are erected after this destruction.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-akropolis-forstors",
+        "fieldPath": "/summarySv",
+        "textSha256": "41127329eed598ce4d1772fa065935fc3566c31c2ad231648dcc7c64a6547777"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-akropolis-forstors/geographySv",
+      "sv": "Akropolis i Aten",
+      "en": "The Acropolis in Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-akropolis-forstors",
+        "fieldPath": "/geographySv",
+        "textSha256": "b554cde6b6ab1049a814cac42b07855c1dfc62abb3f0d2b3047b02ea2bf89173"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-plataiai/date/displaySv",
+      "sv": "479 f.Kr.",
+      "en": "479 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-plataiai",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0253b845f8d3846a1774c1bc3b44b90eaced93acbb610658650093cbf1636f44"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-plataiai/date/noteSv",
+      "sv": "Museets översikt anger året för segern vid Plataiai direkt.",
+      "en": "The museum's overview states the year of the victory at Plataea directly.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-plataiai",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "fb990e5ab4107f2b8cc1770eb0089dcf3ad51eb07cdbf69eab4df4ff19996c33"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-plataiai/titleSv",
+      "sv": "Grekiska styrkor segrar vid Plataiai",
+      "en": "Greek forces win at Plataea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-plataiai",
+        "fieldPath": "/titleSv",
+        "textSha256": "ca973c22be720fa9cb54c9e31a92f8aa41e8fc65f39d32830edced27b0882b6e"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-plataiai/summarySv",
+      "sv": "Grekiska styrkor besegrar perserna vid Plataiai. Segern hör till de avgörande framgångarna under försvaret mot den persiska invasionen.",
+      "en": "Greek forces defeat the Persians at Plataea. The victory is among the decisive successes in the defence against the Persian invasion.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-plataiai",
+        "fieldPath": "/summarySv",
+        "textSha256": "32720557b1c7b41b4692452f24181241ff3ec3448454240752c9ccb09d7f94c1"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-plataiai/geographySv",
+      "sv": "Plataiai",
+      "en": "Plataea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-plataiai",
+        "fieldPath": "/geographySv",
+        "textSha256": "e680e77d373445835d5cef9b075912b0d29f35057cd05e3e170a386cbbad4fb5"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-konfucius-dor/date/displaySv",
+      "sv": "479 f.Kr., enligt traditionen",
+      "en": "479 BC, according to tradition",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-konfucius-dor",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a2fdfb64536dd9d0f9f32a6a0ea7d585979a6265646e52c0c01d5c9cb2c2dbb4"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-konfucius-dor/date/noteSv",
+      "sv": "Året följer den traditionella livsdateringen 551–479 f.Kr. De bevarade biografiska källorna tillkommer senare och ger inte en samtida dödsnotis.",
+      "en": "The year follows the traditional lifespan of 551–479 BC. The surviving biographical sources were written later and do not provide a contemporary death notice.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-konfucius-dor",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "8b411e447b15e35f3fa5c549784238f97469b5d3d4673d6bf9197aa3f1ade990"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-konfucius-dor/titleSv",
+      "sv": "Konfucius dör enligt den traditionella dateringen",
+      "en": "Confucius dies according to the traditional chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-konfucius-dor",
+        "fieldPath": "/titleSv",
+        "textSha256": "a500c095d28317c4d0a563b58a1c4f02896cb98d2603bbf8757d53741a5f533a"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-konfucius-dor/summarySv",
+      "sv": "Traditionen förlägger Konfucius död till detta år. Hans liv förknippas med staten Lu, och hans läror får stor betydelse i senare kinesisk filosofi.",
+      "en": "Tradition places Confucius' death in this year. His life is associated with the state of Lu, and his teachings become highly influential in later Chinese philosophy.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-konfucius-dor",
+        "fieldPath": "/summarySv",
+        "textSha256": "749f0f35ce8c9981f47695dd3480a7dd8e5185071ffd90abb6d3e8bd27643038"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-konfucius-dor/geographySv",
+      "sv": "Lu i nuvarande Shandong, Kina",
+      "en": "Lu in present-day Shandong, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-konfucius-dor",
+        "fieldPath": "/geographySv",
+        "textSha256": "70662540b79ddd673786055e1983f4ac2ab0b4d6be9ee252ff3292f21e6fbc91"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-deliska-forbundet/date/displaySv",
+      "sv": "478 f.Kr.",
+      "en": "478 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-deliska-forbundet",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "af355dcdfdc0767720abb89acc80a3b260fd63b7769258b3ce6860181492a658"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-deliska-forbundet/date/noteSv",
+      "sv": "Året anges direkt för förbundets grundande i museets historiska introduktion.",
+      "en": "The year is stated directly for the league's foundation in the museum's historical introduction.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-deliska-forbundet",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d84382300abba822bc1881d9d6bda7314e7884e46fbb7974543fb75b4b61e5bd"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-deliska-forbundet/titleSv",
+      "sv": "Det deliska förbundet bildas",
+      "en": "The Delian League is formed",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-deliska-forbundet",
+        "fieldPath": "/titleSv",
+        "textSha256": "06874164f9096818146ea2cd5390b8d2edf4cd54dfe20a24957341d6380752b1"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-deliska-forbundet/summarySv",
+      "sv": "Det deliska förbundet bildas efter segrarna över Persien. Förbundet blir en viktig del av den atenska maktställningen i den grekiska världen.",
+      "en": "The Delian League is formed after the victories over Persia. The league becomes an important part of Athens' position of power in the Greek world.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-deliska-forbundet",
+        "fieldPath": "/summarySv",
+        "textSha256": "4c7cd1d1e8a9af346cd62c1fd949fc59070ca8cd99527d52a51446e67f8a19ec"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-deliska-forbundet/geographySv",
+      "sv": "Den grekiska världen kring Egeiska havet",
+      "en": "The Greek world around the Aegean Sea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-deliska-forbundet",
+        "fieldPath": "/geographySv",
+        "textSha256": "a5e9fce847da698076f5d1465b1ea9ed4df08416d7b1e931325c1b1fb03acda2"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-yue-besegrar-wu/date/displaySv",
+      "sv": "473 f.Kr.",
+      "en": "473 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-yue-besegrar-wu",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "28b9b79a5b942b8bdf23998f7743c18a5f627ae13c88d4e0b15823bff0881155"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-yue-besegrar-wu/date/noteSv",
+      "sv": "Museet daterar Wus nederlag till 473 f.Kr. och anger att Fuchai därefter tog sitt liv. Bronskärlets tillverkning eller nedläggning dateras inte därmed.",
+      "en": "The museum dates Wu's defeat to 473 BC and states that Fuchai subsequently took his own life. This does not date the bronze vessel's manufacture or deposition.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-yue-besegrar-wu",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "2e50d2a35d06ced9c010cbf1f60c037be94d1f9979ca23566c8c5414db41b695"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-yue-besegrar-wu/titleSv",
+      "sv": "Yue besegrar Wu",
+      "en": "Yue defeats Wu",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-yue-besegrar-wu",
+        "fieldPath": "/titleSv",
+        "textSha256": "ac3e49925f8e403e175c8f96d25d85a83006b0a4bbb0858e9e07ebda5023771a"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-yue-besegrar-wu/summarySv",
+      "sv": "Staten Yue besegrar Wu. Wus kung Fuchai tar sitt liv när hans rike faller.",
+      "en": "The state of Yue defeats Wu. Wu's king Fuchai takes his own life as his kingdom falls.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-yue-besegrar-wu",
+        "fieldPath": "/summarySv",
+        "textSha256": "7e2f1603dcf36e6617c5329dc40ef5222f64871ccc9a8700c52f791b36cdb28b"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-yue-besegrar-wu/geographySv",
+      "sv": "Staterna Wu och Yue",
+      "en": "The states of Wu and Yue",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-yue-besegrar-wu",
+        "fieldPath": "/geographySv",
+        "textSha256": "5185f71ec72a627b62a72ab483035c5b5c82c04378560f023b0732de6f413bbe"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-perserna-skrivs/date/displaySv",
+      "sv": "472 f.Kr.",
+      "en": "472 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-perserna-skrivs",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4320cb02e9d52d0e092599f0fbe1eb3f6f6b3811b96c39f958874235cf7960ee"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-perserna-skrivs/date/noteSv",
+      "sv": "472 gäller verkets tillkomst i arkivets redaktionella datering. Handlingen utspelar sig efter Salamis 480 f.Kr.; dessa år hålls isär.",
+      "en": "472 dates the work's composition in the archive's editorial chronology. The action takes place after Salamis in 480 BC; these years are kept distinct.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-perserna-skrivs",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5bd508ac17a5c26db6ece16d282e98dca6234732bc4b572b14c09500ffac089c"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-perserna-skrivs/titleSv",
+      "sv": "Aischylos skriver Perserna",
+      "en": "Aeschylus writes The Persians",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-perserna-skrivs",
+        "fieldPath": "/titleSv",
+        "textSha256": "d2e469e2fb42fcca08d57b75c47aeaa9ef7515c0d6bb78e4c73285f8f426f150"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-perserna-skrivs/summarySv",
+      "sv": "Aischylos skildrar nederlaget vid Salamis genom det persiska kungahuset och en kör av persiska äldste. Tragedin återger ett nyligen inträffat krig ur de besegrades perspektiv.",
+      "en": "Aeschylus portrays the defeat at Salamis through the Persian royal household and a chorus of Persian elders. The tragedy presents a recent war from the perspective of the defeated.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-perserna-skrivs",
+        "fieldPath": "/summarySv",
+        "textSha256": "63957265482cf2a951e2e3283c5be3056b5f2ec2810251d8f6b10f26a51f6a5f"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-perserna-skrivs/geographySv",
+      "sv": "Den grekiska teatervärlden; handlingen är förlagd till Susa",
+      "en": "The Greek theatrical world; the action is set in Susa",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-perserna-skrivs",
+        "fieldPath": "/geographySv",
+        "textSha256": "d1c2c68a3f3b42989ebf148e42a9de50fc1d41e02dd4584587ae41efb6f08f61"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-jordbavning-sparta/date/displaySv",
+      "sv": "469–463 f.Kr.; ofta daterad till 464 f.Kr.",
+      "en": "469–463 BC; often dated to 464 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-jordbavning-sparta",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "31db676bce85283c65419cc72abee3c0b29b33ed61c67bac0df87442a30a5c44"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-jordbavning-sparta/date/noteSv",
+      "sv": "Ambraseys återger Diodoros 469–468, Plutarchos 466–464, Thukydides 464 och Pausanias 464–463 f.Kr. OASP använder 464. Det är osäkert om berättelserna gäller en jordbävning eller flera.",
+      "en": "Ambraseys gives Diodorus' 469–468, Plutarch's 466–464, Thucydides' 464 and Pausanias' 464–463 BC. OASP uses 464. It is uncertain whether the accounts concern one earthquake or several.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-jordbavning-sparta",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "eb44f855ca18fe353f80e15002a0a3d99acad0bfaf06d4cefa00d6c5b86489fd"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-jordbavning-sparta/titleSv",
+      "sv": "Jordbävningar ödelägger Sparta",
+      "en": "Earthquakes devastate Sparta",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-jordbavning-sparta",
+        "fieldPath": "/titleSv",
+        "textSha256": "ac21375c3fb494ab52858fef7198f470fd6e21f46f8fc41601dbbbf414268152"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-jordbavning-sparta/summarySv",
+      "sv": "En kraftig jordbävning eller en följd av skalv skadar Sparta och dess omgivningar. De antika berättelserna skiljer sig i datering, och någon säker dödssiffra kan inte anges.",
+      "en": "A powerful earthquake or a sequence of shocks damages Sparta and its surroundings. Ancient accounts differ in their dating, and no secure death toll can be given.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-jordbavning-sparta",
+        "fieldPath": "/summarySv",
+        "textSha256": "7722383d97b473e36a36234d3df5626d7dbbfc3b89a54c3c4f732f02aa4731d2"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-jordbavning-sparta/geographySv",
+      "sv": "Sparta och Lakonien på Peloponnesos",
+      "en": "Sparta and Laconia in the Peloponnese",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-jordbavning-sparta",
+        "fieldPath": "/geographySv",
+        "textSha256": "69d212c4e55944f0614f16255ac9e3d2d65b1bb2e993433cad8dc5fe0787cf92"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-xerxes-mordas/date/displaySv",
+      "sv": "465/464 f.Kr.",
+      "en": "465/464 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-xerxes-mordas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "82c9f266914cbb1171fdfc3a07acdee17cbfba4e5210302c96d0048d5a689490"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-xerxes-mordas/date/noteSv",
+      "sv": "UCL anger mordet till 465/464, och Schmitt placerar Artaxerxes trontillträde inom samma årsspann. Detaljer om hovintrigen är osäkra.",
+      "en": "UCL dates the murder to 465/464, and Schmitt places Artaxerxes' accession within the same year span. Details of the court intrigue are uncertain.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-xerxes-mordas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "cec368756d1c32888c3631ed9220c1276e41f9e244e1224b688c183fbc364b02"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-xerxes-mordas/titleSv",
+      "sv": "Xerxes mördas och Artaxerxes I tar makten",
+      "en": "Xerxes is murdered and Artaxerxes I takes power",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-xerxes-mordas",
+        "fieldPath": "/titleSv",
+        "textSha256": "509f1b1f38fa7c725f3aaed36c3e8347c577f1c7d23b95b84d123d55657b8852"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-xerxes-mordas/summarySv",
+      "sv": "Den persiske kungen Xerxes mördas tillsammans med sin son Dareios. Artaxerxes I efterträder honom som härskare.",
+      "en": "The Persian king Xerxes is murdered together with his son Darius. Artaxerxes I succeeds him as ruler.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-xerxes-mordas",
+        "fieldPath": "/summarySv",
+        "textSha256": "673acf29db604a18866f23f68aafcf9ba97a67bae350c799cbceaad2cb530df0"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-xerxes-mordas/geographySv",
+      "sv": "Det akemenidiska Persien",
+      "en": "Achaemenid Persia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-xerxes-mordas",
+        "fieldPath": "/geographySv",
+        "textSha256": "1fdf2d7a0fdfaaf17329a82f9a521b2c8eaa8a18bf03cbbdf608ed78878ef4a7"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-efialtes-reformer/date/displaySv",
+      "sv": "462/461 f.Kr.",
+      "en": "462/461 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-efialtes-reformer",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6057297af69b36c78ed261276891061ed56c970a8d794e7dcd1f6c681a512d3c"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-efialtes-reformer/date/noteSv",
+      "sv": "Hall anger Konons arkontår. Reformen skiljs från senare författningsändringar; endast offentlig sammanfattning och fotnot har lästs.",
+      "en": "Hall gives Konon's archon year. The reform is distinguished from later constitutional changes; only the public extract and footnote have been read.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-efialtes-reformer",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "49f094ea0577f5b117365c65b4edbc2ad1abb196890bb8e4dea43ce46fb0b90c"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-efialtes-reformer/titleSv",
+      "sv": "Efialtes begränsar Areopagens makt",
+      "en": "Ephialtes curtails the power of the Areopagus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-efialtes-reformer",
+        "fieldPath": "/titleSv",
+        "textSha256": "049207e068ad702a54ab472b21e81b76d1d45c94482ab731166965f6c6bfe743"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-efialtes-reformer/summarySv",
+      "sv": "Efialtes överför ytterligare befogenheter från Areopagen till rådet, folkförsamlingen och domstolarna. Förändringen förstärker de demokratiska institutionerna i Aten.",
+      "en": "Ephialtes transfers additional powers from the Areopagus to the council, assembly and courts. The change strengthens the democratic institutions of Athens.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-efialtes-reformer",
+        "fieldPath": "/summarySv",
+        "textSha256": "ef3034415d8048e36c9c6e18624e63107b582abce272193afa67f3447b1e8a71"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-efialtes-reformer/geographySv",
+      "sv": "Aten",
+      "en": "Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-efialtes-reformer",
+        "fieldPath": "/geographySv",
+        "textSha256": "51e524d0ebab07c668094007543f9dd78aac9e93472cff65067de42e1b095e97"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-inaros-uppror/date/displaySv",
+      "sv": "cirka 460 f.Kr.",
+      "en": "circa 460 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-inaros-uppror",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d815e12fa2d3ec6b086be4cb33ebb85bc66458248a930778cc6ea0e43a2a4cf7"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-inaros-uppror/date/noteSv",
+      "sv": "Bresciani daterar upprorets början ungefärligt. Senare återerövring och Inaros avrättning får inte samma datum.",
+      "en": "Bresciani dates the beginning of the revolt approximately. The later reconquest and Inarus' execution must not receive the same date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-inaros-uppror",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "bf0ed65c88c8922ba045c03f077df705a19e1e16a3a9a9718e8247f46585ac9e"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-inaros-uppror/titleSv",
+      "sv": "Inaros leder ett uppror i Egypten",
+      "en": "Inarus leads a revolt in Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-inaros-uppror",
+        "fieldPath": "/titleSv",
+        "textSha256": "4888a83233095c675a47f150545046780461c2d030525b488a7684b469f011b1"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-inaros-uppror/summarySv",
+      "sv": "Inaros leder ett omfattande uppror mot persiskt styre i Egypten. Aten understöder de upproriska med sjöstridskrafter.",
+      "en": "Inarus leads a major revolt against Persian rule in Egypt. Athens supports the rebels with naval forces.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-inaros-uppror",
+        "fieldPath": "/summarySv",
+        "textSha256": "96476df16998798ec194763b5ca63e56302540cd285e6a5bbd686ae8e019c7d8"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-inaros-uppror/geographySv",
+      "sv": "Egypten",
+      "en": "Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-inaros-uppror",
+        "fieldPath": "/geographySv",
+        "textSha256": "ca8d14e809a510e17d2f9c0d4e2c74c40f7e77c2e97bd71f3dbae109eff27335"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-orestien-premiar/date/displaySv",
+      "sv": "459/458 f.Kr.",
+      "en": "459/458 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-orestien-premiar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "bc9766cd3400a45caa79948070534eca6798036bfc5e9419eb5115f928ebdbdd"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-orestien-premiar/date/noteSv",
+      "sv": "Hall återger Philokles arkontår för den första föreställningen. Ingen egen omräkning till en enda modern kalenderårssiffra görs.",
+      "en": "Hall gives Philokles' archon year for the first performance. No independent conversion to a single modern calendar year is made.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-orestien-premiar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "4ecf4296036c73dd7f6c68abe113053ef786362f12280ebba7a94ad76623baf5"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-orestien-premiar/titleSv",
+      "sv": "Orestien framförs för första gången",
+      "en": "The Oresteia is performed for the first time",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-orestien-premiar",
+        "fieldPath": "/titleSv",
+        "textSha256": "a48e41ae1645620d9c0e180b13f0bff83425b96f1eff497caea3d747c5966b6f"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-orestien-premiar/summarySv",
+      "sv": "Aischylos Orestien framförs för första gången enligt dateringen som Hall återger från den antika inledningen till Agamemnon.",
+      "en": "Aeschylus' Oresteia is performed for the first time according to the dating Hall cites from the ancient introduction to Agamemnon.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-orestien-premiar",
+        "fieldPath": "/summarySv",
+        "textSha256": "cac8fd6ec4d610196bbf5b3d7c1b655966d2630750b72057afe1e650ed26a531"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-orestien-premiar/geographySv",
+      "sv": "Platsen anges inte i det lästa källavsnittet.",
+      "en": "The location is not stated in the consulted source passage.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-orestien-premiar",
+        "fieldPath": "/geographySv",
+        "textSha256": "4bccd2c88d3d1b9f36a9473d4bbe1e411dfb0444cd85d5ddaa5a197392f3dcd4"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-persisk-atererovring-egypten/date/displaySv",
+      "sv": "455–454 f.Kr.",
+      "en": "455–454 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-persisk-atererovring-egypten",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "c26453f7e439fd6d85097a7183bf6a9b8a2ce25101319bc656b44d5827b56329"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-persisk-atererovring-egypten/date/noteSv",
+      "sv": "Schmitt anger 455–454 för återerövringen; Bresciani anger upprorets slut 454. De skiljer sig om Inaros senare avrättning, som därför inte dateras i posten.",
+      "en": "Schmitt gives 455–454 for the reconquest; Bresciani places the revolt's end in 454. They differ concerning Inarus' later execution, which is therefore not dated in this record.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-persisk-atererovring-egypten",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d1638dc77c2634ab36795190708ad05d07802719273a343c745a3190c89cd684"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-persisk-atererovring-egypten/titleSv",
+      "sv": "Perserna återtar Egypten efter upproret",
+      "en": "The Persians recover Egypt after the revolt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-persisk-atererovring-egypten",
+        "fieldPath": "/titleSv",
+        "textSha256": "c0c288be0ac1b3f5f66ee25f6ca2d2568bd07a258f9f53d203878e6be040bde0"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-persisk-atererovring-egypten/summarySv",
+      "sv": "Persiska styrkor under Megabyzos återerövrar Egypten och återtar Memphis. Inaros uppror och den atenska hjälpexpeditionen misslyckas.",
+      "en": "Persian forces under Megabyzus reconquer Egypt and recover Memphis. Inarus' revolt and the Athenian relief expedition fail.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-persisk-atererovring-egypten",
+        "fieldPath": "/summarySv",
+        "textSha256": "d03e14cb556b2f94b70e4bf562dde8db17bd61ed2e996646fb0e130ba6d9da35"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-persisk-atererovring-egypten/geographySv",
+      "sv": "Egypten och Memphis",
+      "en": "Egypt and Memphis",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-persisk-atererovring-egypten",
+        "fieldPath": "/geographySv",
+        "textSha256": "228edf078d1d046e80591f8b1f9bdabc703a7102dd195b86636fb94404f1a682"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-tolv-tavlorna/date/displaySv",
+      "sv": "451–450 f.Kr., enligt romersk tradition",
+      "en": "451–450 BC, according to Roman tradition",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-tolv-tavlorna",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "65c6e10e0ad0944e8e823447e8c6ce357c13783e8b8a0ffd6efc163eefe971fc"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-tolv-tavlorna/date/noteSv",
+      "sv": "Dateringen gäller sammanställningen. Ratifikationen 449 är ett senare steg.",
+      "en": "The date concerns compilation. Ratification in 449 is a later step.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-tolv-tavlorna",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6d923da8ed189e542fa76e7a41f336d03f7cbf2f035bccb0e8cbf57c079e6add"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-tolv-tavlorna/titleSv",
+      "sv": "De tolv tavlornas lag sammanställs",
+      "en": "The Law of the Twelve Tables is compiled",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-tolv-tavlorna",
+        "fieldPath": "/titleSv",
+        "textSha256": "7106b4f79c91a452a488b15b0e88bf3359e532d0b720c4dcd5c3ce8f7b89a773"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-tolv-tavlorna/summarySv",
+      "sv": "Romersk tradition daterar sammanställningen av de tolv tavlornas lag till dessa år.",
+      "en": "Roman tradition dates the compilation of the Twelve Tables to these years.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-tolv-tavlorna",
+        "fieldPath": "/summarySv",
+        "textSha256": "7c4046efc0f93ffd43d37f98567d2a3ccb874603d737a93e22575a1660cad7df"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-tolv-tavlorna/geographySv",
+      "sv": "Rom",
+      "en": "Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-tolv-tavlorna",
+        "fieldPath": "/geographySv",
+        "textSha256": "1f268826c4d33921cbcec835bd71ab3bc2729936d3edb01befa02c46c41a71ed"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-parthenon-byggstart/date/displaySv",
+      "sv": "447 f.Kr.",
+      "en": "447 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-parthenon-byggstart",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4e82317624e60db4c53f27b1bcfe78854b84baaa0f26c6c927f8c81c1ea4ebd3"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-parthenon-byggstart/date/noteSv",
+      "sv": "Året gäller byggstarten. Museets uppgift om femton års byggande omvandlas inte till ett självständigt slutårsankare.",
+      "en": "The year concerns the start of construction. The museum's statement of fifteen years of building is not converted into an independent end-year anchor.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-parthenon-byggstart",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "52d0d5bf5d7f8c3780961f957088c260340c208325c23a909c09f12b462b8790"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-parthenon-byggstart/titleSv",
+      "sv": "Bygget av Parthenon inleds",
+      "en": "Construction of the Parthenon begins",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-parthenon-byggstart",
+        "fieldPath": "/titleSv",
+        "textSha256": "ba73a2a619a23c5a38174e78549a2e066046274328656e9af6542bedb51bedc0"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-parthenon-byggstart/summarySv",
+      "sv": "Ett nytt Parthenon börjar byggas på Atens Akropolis som del av Perikles byggnadsprogram. Iktinos och Kallikrates är arkitekter, medan Fidias leder den konstnärliga utsmyckningen.",
+      "en": "Construction of a new Parthenon begins on the Athenian Acropolis as part of Pericles' building programme. Iktinos and Kallikrates are the architects, while Pheidias directs the artistic decoration.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-parthenon-byggstart",
+        "fieldPath": "/summarySv",
+        "textSha256": "eacea4217094daaf670685a86b7e435a2a05675f7b1e9d5691b2e9a9a9a3dd37"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-parthenon-byggstart/geographySv",
+      "sv": "Akropolis i Aten",
+      "en": "The Acropolis in Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-parthenon-byggstart",
+        "fieldPath": "/geographySv",
+        "textSha256": "b554cde6b6ab1049a814cac42b07855c1dfc62abb3f0d2b3047b02ea2bf89173"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-samoskriget/date/displaySv",
+      "sv": "440–439 f.Kr.",
+      "en": "440–439 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-samoskriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "634c8e5978858aa62e18ce2aa9ee461aa69f4ba340db76fda7d5275e2d6b6eb1"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-samoskriget/date/noteSv",
+      "sv": "Källan anger hela krigsintervallet. Händelsen placeras inte i ett enda godtyckligt valt år.",
+      "en": "The source gives the full war interval. The event is not placed in a single arbitrarily chosen year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-samoskriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "237493249895c631ee583f14a21be6954bc522ecf8abba9971ebec22d887fbe4"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-samoskriget/titleSv",
+      "sv": "Aten för krig mot Samos",
+      "en": "Athens wages war against Samos",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-samoskriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "c492239b45279a92f60dd9d30a10a75647249ac4d2659cab27725d572ef1eb1e"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-samoskriget/summarySv",
+      "sv": "Aten för krig mot Samos. Konflikten visar motsättningarna inom den atenska maktsfären i Egeiska havet.",
+      "en": "Athens wages war against Samos. The conflict reveals tensions within the Athenian sphere of power in the Aegean.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-samoskriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "1b356b281958a8c4212c8b8f13b0710f05141a32cc641c30b3b343d2afcedefd"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-samoskriget/geographySv",
+      "sv": "Samos och Egeiska havet",
+      "en": "Samos and the Aegean Sea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-samoskriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "95983531afb0a870be2fe67ad0f6e46d065b801c9c5f7449a06705583a337519"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-peloponnesiska-kriget/date/displaySv",
+      "sv": "431–404 f.Kr.",
+      "en": "431–404 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-peloponnesiska-kriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "cfdebec426d0305fa65ae857eca3e1d924349672c8f748395de3f6b8cd373d57"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-peloponnesiska-kriget/date/noteSv",
+      "sv": "Hela krigets intervall bevaras. Enskilda slag, uppehåll och politiska följder innebär inte strider varje år eller på varje ort.",
+      "en": "The full interval of the war is preserved. Individual battles, pauses and political consequences do not imply fighting every year or in every place.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-peloponnesiska-kriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "cdf7ef2d1b18d78c616c5e938cc795a8e3f69eb994ae0ae61e3c677d7ac3e601"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-peloponnesiska-kriget/titleSv",
+      "sv": "Det peloponnesiska kriget förändrar Grekland",
+      "en": "The Peloponnesian War transforms Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-peloponnesiska-kriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "ca69950b0195eb877bbf3b348d32d33c3ebd2d746a086b64ee4a2b86ccb30d64"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-peloponnesiska-kriget/summarySv",
+      "sv": "Aten och Sparta med sina bundsförvanter för ett långvarigt krig. Det slutar med Spartas seger och ett svårt nederlag för Aten.",
+      "en": "Athens and Sparta, together with their allies, fight a prolonged war. It ends with Sparta's victory and a severe defeat for Athens.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-peloponnesiska-kriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "d64871a204b1203709533a5a6fb2467c683d5397c3659b0ecac12f1cf0c82ca0"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-peloponnesiska-kriget/geographySv",
+      "sv": "Grekland och den vidare egeiska världen",
+      "en": "Greece and the wider Aegean world",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-peloponnesiska-kriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "e1776ab29e6ee56c0be27e7ac04bfd74f22d0f6f04d1f477205ee62cd19f176b"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-atens-epidemi/date/displaySv",
+      "sv": "430 f.Kr.",
+      "en": "430 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-atens-epidemi",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f797d8992563ace8b1d68542a98be16cb24cb8685965e0630eda8a2346591c75"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-atens-epidemi/date/noteSv",
+      "sv": "Året följer källutgåvans rubrik för utbrottet. Posten identifierar inte sjukdomens smittämne och gör ingen egen modern diagnos.",
+      "en": "The year follows the source edition's heading for the outbreak. The record does not identify the pathogen or make its own modern diagnosis.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-atens-epidemi",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b334e449e0d6df9eb0e0e142e7c59c583feb6071e43657f69ef96c12d6aaa89c"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-atens-epidemi/titleSv",
+      "sv": "En epidemi slår mot Aten",
+      "en": "An epidemic strikes Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-atens-epidemi",
+        "fieldPath": "/titleSv",
+        "textSha256": "2d8a34fbe60bc8e39948a1ddd72ed6385388949d315b913880e9c628f4a39e21"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-atens-epidemi/summarySv",
+      "sv": "En svår epidemi sprids från Pireus in i Aten under kriget. Thukydides beskriver många dödsfall och hur trängseln förvärrar människornas utsatthet.",
+      "en": "A severe epidemic spreads from Piraeus into Athens during the war. Thucydides describes many deaths and how overcrowding worsens people's vulnerability.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-atens-epidemi",
+        "fieldPath": "/summarySv",
+        "textSha256": "08b368dd5f6e5fa2cb22e2ec7e6dc05e375676ee27f40d4d223ee2fd74ef3ea0"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-atens-epidemi/geographySv",
+      "sv": "Pireus och Aten",
+      "en": "Piraeus and Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-atens-epidemi",
+        "fieldPath": "/geographySv",
+        "textSha256": "e9249b17cd1f2ed9a28cef3f9ed467fdc812d0497cd107491145b25667631dc8"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-ban-non-wat-jarnalder/date/displaySv",
+      "sv": "cirka 420 f.Kr.",
+      "en": "circa 420 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-ban-non-wat-jarnalder",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9274c71935d2870a059dc4a2f3d69309b65e2c385e2cba39031381d29fdc3867"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-ban-non-wat-jarnalder/date/noteSv",
+      "sv": "Higham anger omkring 420 som den troligaste övergången till järnåldersfas I, vars hela period är 420–150 f.Kr. Detta är en platsdatering, inte ett exakt uppfinningsår för järn.",
+      "en": "Higham gives around 420 as the most likely transition to Iron Age 1, whose full period is 420–150 BC. This is a site chronology, not an exact year for the invention of iron.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-ban-non-wat-jarnalder",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "cf317a4bd564083fe9f1b6717a90020f92cdd3d41b674c1ea338e6b037467a44"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-ban-non-wat-jarnalder/titleSv",
+      "sv": "Ban Non Wat går in i en järnåldersfas",
+      "en": "Ban Non Wat enters an Iron Age phase",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-ban-non-wat-jarnalder",
+        "fieldPath": "/titleSv",
+        "textSha256": "e4c51ec8d4d5621cf7b3e5d07e4422968dd8374477e9bb73ce96f344be16e8d2"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-ban-non-wat-jarnalder/summarySv",
+      "sv": "Gravplatsens sena bronsåldersfas övergår i den första järnåldersfasen vid Ban Non Wat. Den arkeologiska kronologin bygger på dateringar av bland annat sötvattensmusslor.",
+      "en": "The cemetery's late Bronze Age phase gives way to the first Iron Age phase at Ban Non Wat. The archaeological chronology draws on dates from materials including freshwater shellfish.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-ban-non-wat-jarnalder",
+        "fieldPath": "/summarySv",
+        "textSha256": "5e359c52df0c0b4ed62ffa57d716ef673139aa0411ca8ebd65d99bd95cb142d8"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-ban-non-wat-jarnalder/geographySv",
+      "sv": "Ban Non Wat, övre Mundalen i nuvarande Thailand",
+      "en": "Ban Non Wat, upper Mun Valley in present-day Thailand",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-ban-non-wat-jarnalder",
+        "fieldPath": "/geographySv",
+        "textSha256": "0b9e3f0b168b57112462974bf9faca658eed40e567eee4a5a10e310084310e37"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-sicilianska-expeditionen/date/displaySv",
+      "sv": "415–413 f.Kr.",
+      "en": "415–413 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-sicilianska-expeditionen",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "c07dfa3642b48e7c886f4178056044eb137223a2e23e602935fd890abab30d66"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-sicilianska-expeditionen/date/noteSv",
+      "sv": "Kampanjens fulla intervall behålls. Thukydides skildrar beslutet under den föregående vintern 416/415, vilket inte flyttar själva fälttågets början.",
+      "en": "The full campaign interval is retained. Thucydides describes the decision in the preceding winter of 416/415, which does not shift the start of the campaign itself.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-sicilianska-expeditionen",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "2e5acedf748d1cf7c2aa433a6207a81a5e13241e76e4b1a97d303ea955a6f719"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-sicilianska-expeditionen/titleSv",
+      "sv": "Atens expedition till Sicilien slutar i katastrof",
+      "en": "Athens' Sicilian expedition ends in disaster",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-sicilianska-expeditionen",
+        "fieldPath": "/titleSv",
+        "textSha256": "9445c5d0bcda6f17097a0ac40c5b27ec9e61720fc3e4ad7b4b4fdbc0329bf3b3"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-sicilianska-expeditionen/summarySv",
+      "sv": "Aten sänder en stor expedition för att erövra Sicilien. Företaget misslyckas katastrofalt, och bara en liten del av deltagarna återvänder.",
+      "en": "Athens sends a large expedition to conquer Sicily. The undertaking fails catastrophically, and only a small proportion of the participants return.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-sicilianska-expeditionen",
+        "fieldPath": "/summarySv",
+        "textSha256": "f2a8b9a2fcf4c44af4734220ab4196547cf02737eeadc279baa7d4e07f56aafd"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-sicilianska-expeditionen/geographySv",
+      "sv": "Sicilien",
+      "en": "Sicily",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-sicilianska-expeditionen",
+        "fieldPath": "/geographySv",
+        "textSha256": "ca75e780909ffc8a56144a87b4116660c7761a46822df079c6a14290dcb709ce"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-fyrahundra-oligarki/date/displaySv",
+      "sv": "411/410 f.Kr.",
+      "en": "411/410 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-fyrahundra-oligarki",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2f769b45f6e4a3f23b3fd3d0c1002e034223f798b43d8996c9af844e61c56232"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-fyrahundra-oligarki/date/noteSv",
+      "sv": "Källans årsbeteckning bevaras; den anger inte att de fyrahundra styr under hela spannet.",
+      "en": "The source's year notation is preserved; it does not mean that the Four Hundred rule throughout the entire span.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-fyrahundra-oligarki",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3b1276413fc39185fcb163eaffddbd59a9e700608a770a68797f7b65a70494ea"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-fyrahundra-oligarki/titleSv",
+      "sv": "Oligarker tar makten i Aten",
+      "en": "Oligarchs seize power in Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-fyrahundra-oligarki",
+        "fieldPath": "/titleSv",
+        "textSha256": "254f501509062e603a358b3c225211291547829825933ebcfde28926e207edb9"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-fyrahundra-oligarki/summarySv",
+      "sv": "De fyrahundras råd utövar makten och folkförsamlingens deltagande begränsas till femtusen medborgare utifrån ställning och förmögenhet.",
+      "en": "The Council of Four Hundred exercises power, and participation in the popular assembly is restricted to five thousand citizens on the basis of status and wealth.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-fyrahundra-oligarki",
+        "fieldPath": "/summarySv",
+        "textSha256": "63d8b722f8cc72ed08904e314a94b0a892a10ee87eb14456fac6b0585999642e"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-fyrahundra-oligarki/geographySv",
+      "sv": "Aten",
+      "en": "Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-fyrahundra-oligarki",
+        "fieldPath": "/geographySv",
+        "textSha256": "51e524d0ebab07c668094007543f9dd78aac9e93472cff65067de42e1b095e97"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-amyrtaios-independens/date/displaySv",
+      "sv": "cirka 404 f.Kr.",
+      "en": "circa 404 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-amyrtaios-independens",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "74e82f451be42ff72e22e8f2ee4cdd6847370324d5a059c5c258f6cdf30c1248"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-amyrtaios-independens/date/noteSv",
+      "sv": "Lloyd anger ungefärligt trontillträde, medan UCL anger 404 för upprorets framgång. Kontroll över hela Egypten följer inte omedelbart: persiskt kunganamn används ännu i Elefantine 401.",
+      "en": "Lloyd gives an approximate accession date, while UCL gives 404 for the revolt's success. Control over all of Egypt does not follow immediately: a Persian royal name is still used at Elephantine in 401.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-amyrtaios-independens",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "907529af9346eeb78242708242a85d9f8c12b2f686e0b85f59978fef1c0e8e6a"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-amyrtaios-independens/titleSv",
+      "sv": "Amyrtaios bryter persernas styre i delar av Egypten",
+      "en": "Amyrtaeus ends Persian rule in parts of Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-amyrtaios-independens",
+        "fieldPath": "/titleSv",
+        "textSha256": "fb526ee12dfc1d396b60a1c8c4ac1b3840060b463c787a93092669ca4178f8bd"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-amyrtaios-independens/summarySv",
+      "sv": "Amyrtaios kommer till makten efter ett framgångsrikt uppror och inleder dynasti 28. Den nya egyptiska självständigheten får gradvis genomslag och omfattar inte genast hela landet.",
+      "en": "Amyrtaeus comes to power after a successful revolt and inaugurates Dynasty 28. Renewed Egyptian independence takes hold gradually and does not immediately extend throughout the country.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-amyrtaios-independens",
+        "fieldPath": "/summarySv",
+        "textSha256": "82873adf23d10b934ad50fb74068294a47991ce75f9052425959bae6c42ad443"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-amyrtaios-independens/geographySv",
+      "sv": "Egypten, med ojämn kontroll mellan olika områden",
+      "en": "Egypt, with uneven control across different areas",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-amyrtaios-independens",
+        "fieldPath": "/geographySv",
+        "textSha256": "3109d890d91ed2b464207340dc817ce38467d0117d2b4c23a5de81af1d533de2"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-de-trettio/date/displaySv",
+      "sv": "404–403 f.Kr.",
+      "en": "404–403 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-de-trettio",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "21e1d040b189c2e2d400a96a774884e31fa3e18c99a50c16fc04f77103c67452"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-de-trettio/date/noteSv",
+      "sv": "Perioden skiljs från den tidigare oligarkin 411/410 och demokratins återställande 403.",
+      "en": "The period is distinguished from the earlier oligarchy of 411/410 and the restoration of democracy in 403.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-de-trettio",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3cad89e67b36775cab1050632f4d64138318b9d485e3c1c2d07710b772ce36fa"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-de-trettio/titleSv",
+      "sv": "De trettio styr Aten",
+      "en": "The Thirty rule Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-de-trettio",
+        "fieldPath": "/titleSv",
+        "textSha256": "46e7ae7efdba9b51b93ec78c137dd30bc85cc58beffdb2f4c4952b7080c1a8f5"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-de-trettio/summarySv",
+      "sv": "Efter nederlaget mot Sparta införs de trettios oligarkiska styre i Aten under spartanskt tryck.",
+      "en": "After defeat by Sparta, the oligarchic rule of the Thirty is imposed in Athens under Spartan pressure.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-de-trettio",
+        "fieldPath": "/summarySv",
+        "textSha256": "fd9745202ec8b8b1e220d887edaf691ae009ad86f24a63d11128765fd78acdfa"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-de-trettio/geographySv",
+      "sv": "Aten",
+      "en": "Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-de-trettio",
+        "fieldPath": "/geographySv",
+        "textSha256": "51e524d0ebab07c668094007543f9dd78aac9e93472cff65067de42e1b095e97"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-han-wei-zhao/date/displaySv",
+      "sv": "403 f.Kr.",
+      "en": "403 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-han-wei-zhao",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "59469cfdff152f7dd1c61fbb4bc176a7541b0b3d4e4ef312dcf7c9eed801163a"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-han-wei-zhao/date/noteSv",
+      "sv": "Året gäller Zhoukungens formella erkännande. Den tidigare uppdelningen av Jin dateras inte till samma år.",
+      "en": "The year concerns the Zhou king's formal recognition. The earlier partition of Jin is not dated to the same year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-han-wei-zhao",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "066c384b411bb567f538dbc2b3822c84fe499704ea9accd002e7f08b4a9f1c76"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-han-wei-zhao/titleSv",
+      "sv": "Han, Wei och Zhao erkänns formellt",
+      "en": "Han, Wei and Zhao are formally recognized",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-han-wei-zhao",
+        "fieldPath": "/titleSv",
+        "textSha256": "fb530c1c644e086febc5a8d4945627de9d2e9fe580ec93bda8b352bedd0c74a8"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-han-wei-zhao/summarySv",
+      "sv": "Zhoukungen erkänner härskarna i Han, Wei och Zhao som furstar. Erkännandet följer på den tidigare uppdelningen av staten Jin.",
+      "en": "The Zhou king recognizes the rulers of Han, Wei and Zhao as lords. Recognition follows the earlier partition of the state of Jin.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-han-wei-zhao",
+        "fieldPath": "/summarySv",
+        "textSha256": "cd449e13795f75aab8310658fbc66f6da4ac14f528cd4b65474e861a556c5e3c"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-han-wei-zhao/geographySv",
+      "sv": "Staterna Han, Wei och Zhao",
+      "en": "The states of Han, Wei and Zhao",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-han-wei-zhao",
+        "fieldPath": "/geographySv",
+        "textSha256": "9d76eb0c16115a51bf934b0f15c101b0906ba30ddaffa81e3fec48807e6bd3e2"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-atensk-demokrati-aterstalls/date/displaySv",
+      "sv": "403 f.Kr.",
+      "en": "403 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-atensk-demokrati-aterstalls",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "59469cfdff152f7dd1c61fbb4bc176a7541b0b3d4e4ef312dcf7c9eed801163a"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-atensk-demokrati-aterstalls/date/noteSv",
+      "sv": "Källan anger full återgång till demokrati detta år.",
+      "en": "The source specifies a full return to democracy in this year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-atensk-demokrati-aterstalls",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5c75f4796c0bf92317a2873709b065c8defb2fe2c95ff82fc64f8d2847e4d639"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-atensk-demokrati-aterstalls/titleSv",
+      "sv": "Demokratin återställs i Aten",
+      "en": "Democracy is restored in Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-atensk-demokrati-aterstalls",
+        "fieldPath": "/titleSv",
+        "textSha256": "6a8812136849c67e86edcae0c28a29b7bb01b96856e62a1b54d800a9950e783f"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-atensk-demokrati-aterstalls/summarySv",
+      "sv": "Aten återgår till demokratiskt styre efter de trettios oligarki.",
+      "en": "Athens returns to democratic government after the oligarchy of the Thirty.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-atensk-demokrati-aterstalls",
+        "fieldPath": "/summarySv",
+        "textSha256": "e0511f1272918cf2309fe3ae34673e9d5125d08c4240cf4d3966f9ff28188e6c"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-atensk-demokrati-aterstalls/geographySv",
+      "sv": "Aten",
+      "en": "Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-atensk-demokrati-aterstalls",
+        "fieldPath": "/geographySv",
+        "textSha256": "51e524d0ebab07c668094007543f9dd78aac9e93472cff65067de42e1b095e97"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-kunaxa/date/displaySv",
+      "sv": "3 september 401 f.Kr.",
+      "en": "3 September 401 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-kunaxa",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "39b6f57afab017d5df6f30d584a73a12bc148b3d32c6e359ebd86c7d8a20bcc1"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-kunaxa/date/noteSv",
+      "sv": "Hela datumet återges från Shahbazi. Slagfältets exakta läge är omtvistat; ingen egen kalenderomräkning görs.",
+      "en": "The complete date follows Shahbazi. The battlefield's exact location is disputed; no independent calendar conversion is made.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-kunaxa",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "eabf5eb22ce318aa450594bc21b100f57264af8bbe495fb731c793c0a36050d3"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-kunaxa/titleSv",
+      "sv": "Kyros den yngre stupar vid Kunaxa",
+      "en": "Cyrus the Younger falls at Cunaxa",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-kunaxa",
+        "fieldPath": "/titleSv",
+        "textSha256": "4087fcb5874bfcb581f1d7387750f152810ddd734c16b3631e95c963ed59c655"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-kunaxa/summarySv",
+      "sv": "Kyros den yngre försöker störta Artaxerxes II men dödas i slaget vid Kunaxa. Hans försök att ta den persiska tronen misslyckas.",
+      "en": "Cyrus the Younger attempts to overthrow Artaxerxes II but is killed at Cunaxa. His attempt to seize the Persian throne fails.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-kunaxa",
+        "fieldPath": "/summarySv",
+        "textSha256": "01d53462499422e203339be709c266d890ac15d65d4201143696906e3e4d6d79"
+      }
+    },
+    {
+      "id": "event/ev-bc0500-kunaxa/geographySv",
+      "sv": "Kunaxa nära Babylon i nuvarande Irak; exakt läge osäkert",
+      "en": "Cunaxa near Babylon in present-day Iraq; exact location uncertain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0500-kunaxa",
+        "fieldPath": "/geographySv",
+        "textSha256": "7c9f13f49523b256c49a2a4ad62c53c57f0649cec73291d728a625aa035bfd7c"
       }
     }
   ]

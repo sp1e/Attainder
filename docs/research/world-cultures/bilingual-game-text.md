@@ -28,9 +28,9 @@ The [catalog README](../../../public/lang/attainder/help/README.md) describes th
 
 ## Later event batches
 
-The BC2300, AD700, AD500, BC2200, AD300, BC2100, AD200, BC2000, AD100, BC1900, BC1800, BC1700, AD1, BC1500, BC1300, BC1200, BC1100, BC1000 and BC0800 deliveries added 1,268 English event fields and 478 Swedish source-panel fields. The BC0700 batch adds another 35 English event fields and 16 Swedish source-panel fields. The sidecars now contain 5,019 English entries and 1,326 Swedish entries, covering all display fields for 714 events and all locators and institution fields for 663 sources. All prior translation entries are unchanged.
+The BC2300, AD700, AD500, BC2200, AD300, BC2100, AD200, BC2000, AD100, BC1900, BC1800, BC1700, AD1, BC1500, BC1300, BC1200, BC1100, BC1000, BC0800 and BC0700 deliveries added 1,303 English event fields and 494 Swedish source-panel fields. The BC0500 batch adds another 160 English event fields and 54 Swedish source-panel fields. The sidecars now contain 5,179 English entries and 1,380 Swedish entries, covering all display fields for 746 events and all locators and institution fields for 690 sources. All prior translation entries are unchanged.
 
-Both sidecars identify source revision `49ae3f833ea4598f275bab88d1c6fca0617554ad`, the preceding research-data commit on the retained `research/e-bc0700-events` branch. All 6,345 source strings and UTF-8 hashes were checked against that exact Git revision. A later event batch must commit its research data before advancing this pointer, then verify every existing and added entry against the new snapshot.
+Both sidecars identify source revision `12a8e775d7b64119c22f5ad51d52c63bbf99e3a7`, the preceding research-data commit on the retained `research/e-bc0500-events` branch. All 6,559 source strings and UTF-8 hashes were checked against that exact Git revision. A later event batch must commit its research data before advancing this pointer, then verify every existing and added entry against the new snapshot.
 
 ## Translation contract
 

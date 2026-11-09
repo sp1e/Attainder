@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "49ae3f833ea4598f275bab88d1c6fca0617554ad",
+  "sourceRevision": "12a8e775d7b64119c22f5ad51d52c63bbf99e3a7",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -14588,6 +14588,600 @@
         "sourceId": "bc0700-iraq-nineveh",
         "fieldPath": "/locator",
         "textSha256": "19914730d96ed3b3077524e5da668cd6360c286213cb4e1c9640a1c731912ed5"
+      }
+    },
+    {
+      "id": "source/bc0500-met-monte-alban/institution",
+      "en": "Department of the Arts of Africa, Oceania, and the Americas; The Metropolitan Museum of Art",
+      "sv": "Avdelningen för Afrikas, Oceaniens och Amerikas konst; Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-met-monte-alban",
+        "fieldPath": "/institution",
+        "textSha256": "e0594f818a331c40b3df16704901d28dd518245c5cf04d2616144c54e330a586"
+      }
+    },
+    {
+      "id": "source/bc0500-met-monte-alban/locator",
+      "en": "Settlement and founding discussion, web lines 28–31.",
+      "sv": "Diskussionen om bosättning och grundande, webbrader 28–31.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-met-monte-alban",
+        "fieldPath": "/locator",
+        "textSha256": "22e65ea6873e271c5ea970555ee9740fa8ed72e80f777998c3785ca2133bd214"
+      }
+    },
+    {
+      "id": "source/bc0500-ku-denmark-iron/institution",
+      "en": "University of Copenhagen research portal",
+      "sv": "Köpenhamns universitets forskningsportal",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-ku-denmark-iron",
+        "fieldPath": "/institution",
+        "textSha256": "40323a6ecffa39da1559026948883479db2a85cc315171ede009bbc97fb59821"
+      }
+    },
+    {
+      "id": "source/bc0500-ku-denmark-iron/locator",
+      "en": "Public abstract, web lines 16–19; full proceedings paper not consulted.",
+      "sv": "Offentlig sammanfattning, webbrader 16–19; det fullständiga konferensbidraget har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-ku-denmark-iron",
+        "fieldPath": "/locator",
+        "textSha256": "ba528b36b3793fad9469bd5c03c43f1ccfab0a0d7bcdba7e34de3d7c0a117758"
+      }
+    },
+    {
+      "id": "source/bc0500-greece-ionian/institution",
+      "en": "Hellenic Ministry of Culture; Directorate of Archaeological Museums, Exhibitions and Educational Programs",
+      "sv": "Greklands kulturministerium; direktoratet för arkeologiska museer, utställningar och utbildningsprogram",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-greece-ionian",
+        "fieldPath": "/institution",
+        "textSha256": "be2e9be5752185e7a22569b35be7a145484d8640954be32c71e21e115a13ff65"
+      }
+    },
+    {
+      "id": "source/bc0500-greece-ionian/locator",
+      "en": "Historical introduction, web lines 63–67.",
+      "sv": "Historisk inledning, webbrader 63–67.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-greece-ionian",
+        "fieldPath": "/locator",
+        "textSha256": "7063f0d287da700f11f9dd7dca8fad0af33c85c2d21f23eda0bbae815e07d622"
+      }
+    },
+    {
+      "id": "source/bc0500-greece-marathon/institution",
+      "en": "Hellenic Ministry of Culture; Directorate of Archaeological Museums, Exhibitions and Educational Programs",
+      "sv": "Greklands kulturministerium; direktoratet för arkeologiska museer, utställningar och utbildningsprogram",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-greece-marathon",
+        "fieldPath": "/institution",
+        "textSha256": "be2e9be5752185e7a22569b35be7a145484d8640954be32c71e21e115a13ff65"
+      }
+    },
+    {
+      "id": "source/bc0500-greece-marathon/locator",
+      "en": "Battle account, web lines 79–83.",
+      "sv": "Redogörelsen för slaget, webbrader 79–83.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-greece-marathon",
+        "fieldPath": "/locator",
+        "textSha256": "74911d81292b7fc3d822450ae0b7ee6dad97352333eae7e3dc4504e70546da5b"
+      }
+    },
+    {
+      "id": "source/bc0500-greece-naval-law/institution",
+      "en": "Hellenic Ministry of Culture; Ephorate of Antiquities of Eastern Attica",
+      "sv": "Greklands kulturministerium; antikvitetsmyndigheten för östra Attika",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-greece-naval-law",
+        "fieldPath": "/institution",
+        "textSha256": "a9395ee328b5d900af6c5567409f9e75db068c41faa8e9cc57eed4b293415bf5"
+      }
+    },
+    {
+      "id": "source/bc0500-greece-naval-law/locator",
+      "en": "Silver discovery and Naval Law, web lines 65–73.",
+      "sv": "Silverfyndet och flottlagen, webbrader 65–73.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-greece-naval-law",
+        "fieldPath": "/locator",
+        "textSha256": "34dbafc596503952eafb866a01bded3c2e061ca20cccdd9ce5f229307d144656"
+      }
+    },
+    {
+      "id": "source/bc0500-greece-thermopylae/institution",
+      "en": "Hellenic Ministry of Culture; Directorate of Archaeological Museums, Exhibitions and Educational Programs",
+      "sv": "Greklands kulturministerium; direktoratet för arkeologiska museer, utställningar och utbildningsprogram",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-greece-thermopylae",
+        "fieldPath": "/institution",
+        "textSha256": "be2e9be5752185e7a22569b35be7a145484d8640954be32c71e21e115a13ff65"
+      }
+    },
+    {
+      "id": "source/bc0500-greece-thermopylae/locator",
+      "en": "Battle narrative, web lines 70–74.",
+      "sv": "Skildringen av slaget, webbrader 70–74.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-greece-thermopylae",
+        "fieldPath": "/locator",
+        "textSha256": "335ac08610418fdd89bc4a74e2b768125222562e9306d648163ff40d7cfc40c5"
+      }
+    },
+    {
+      "id": "source/bc0500-salamina-salamis/institution",
+      "en": "Municipality of Salamina",
+      "sv": "Salaminas kommun",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-salamina-salamis",
+        "fieldPath": "/institution",
+        "textSha256": "200c5aad0904ec55c6c049631a4bdd5f73bae32cf54b254c209c86ddec018989"
+      }
+    },
+    {
+      "id": "source/bc0500-salamina-salamis/locator",
+      "en": "Historical account, web lines 96–102; victory at line 100.",
+      "sv": "Historisk redogörelse, webbrader 96–102; segern på rad 100.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-salamina-salamis",
+        "fieldPath": "/locator",
+        "textSha256": "979aad3ab9c697dd93ac0c70bf3a978303f686d03dda761da0203fb4e98b276b"
+      }
+    },
+    {
+      "id": "source/bc0500-acropolis-parthenon/institution",
+      "en": "Acropolis Museum",
+      "sv": "Akropolismuseet",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-acropolis-parthenon",
+        "fieldPath": "/institution",
+        "textSha256": "f5c54fb3f57244201595f0e5780366f3c998c023cbcfe5573b9376ee36c4bcbc"
+      }
+    },
+    {
+      "id": "source/bc0500-acropolis-parthenon/locator",
+      "en": "Destruction and rebuilding account, web lines 32–38.",
+      "sv": "Redogörelsen för förstörelsen och återuppbyggnaden, webbrader 32–38.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-acropolis-parthenon",
+        "fieldPath": "/locator",
+        "textSha256": "1da23f19a3add0d26e0d5e4fad6c17b3059e500169de2b68b2818774d6acfd89"
+      }
+    },
+    {
+      "id": "source/bc0500-nam-classical/institution",
+      "en": "National Archaeological Museum, Athens",
+      "sv": "Nationella arkeologiska museet i Aten",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-nam-classical",
+        "fieldPath": "/institution",
+        "textSha256": "91f0e5242e174daa69fd58d3f7ec0cc9191643b6a7e1901bfb37c0ebd758d892"
+      }
+    },
+    {
+      "id": "source/bc0500-nam-classical/locator",
+      "en": "Political introduction, web lines 169–171.",
+      "sv": "Politisk inledning, webbrader 169–171.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-nam-classical",
+        "fieldPath": "/locator",
+        "textSha256": "c1d0f60e0379b631355f8dc4cdb05c35d7c494d312fed6f17a2fbaf7a6f799da"
+      }
+    },
+    {
+      "id": "source/bc0500-iep-confucius/institution",
+      "en": "Internet Encyclopedia of Philosophy",
+      "sv": "Internet Encyclopedia of Philosophy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-iep-confucius",
+        "fieldPath": "/institution",
+        "textSha256": "a09db9962d0ed58d9c03a9d447ef6a25eb353fb221c082dc06bb07b28e644482"
+      }
+    },
+    {
+      "id": "source/bc0500-iep-confucius/locator",
+      "en": "Opening and sources discussion, web lines 1–4 and 18–26.",
+      "sv": "Inledningen och diskussionen om källor, webbrader 1–4 och 18–26.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-iep-confucius",
+        "fieldPath": "/locator",
+        "textSha256": "2195581f26cf7a0a295e6106fab87cf28e458beeb58d7ec1e43a20390554059d"
+      }
+    },
+    {
+      "id": "source/bc0500-nmc-wu/institution",
+      "en": "National Museum of China",
+      "sv": "Kinas nationalmuseum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-nmc-wu",
+        "fieldPath": "/institution",
+        "textSha256": "c6aa5862ee4a0618b527e243023f554a427fac8dbbd8f2b68ba9fc9be86bd0cb"
+      }
+    },
+    {
+      "id": "source/bc0500-nmc-wu/locator",
+      "en": "Object's historical background, web lines 65–73.",
+      "sv": "Föremålets historiska bakgrund, webbrader 65–73.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-nmc-wu",
+        "fieldPath": "/locator",
+        "textSha256": "0cbecbaa817d6057d98bc315f2d4895d8d4f50faf26c42bfa13f59bd37608f65"
+      }
+    },
+    {
+      "id": "source/bc0500-mit-persians/institution",
+      "en": "Internet Classics Archive, Massachusetts Institute of Technology",
+      "sv": "Internet Classics Archive vid Massachusetts Institute of Technology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-mit-persians",
+        "fieldPath": "/institution",
+        "textSha256": "5976e7f32567b4ce6d4161a7cb90f3dd369811b19ebb32638e53721fabc18da0"
+      }
+    },
+    {
+      "id": "source/bc0500-mit-persians/locator",
+      "en": "Editorial dating, cast and scene introduction, web lines 18–30.",
+      "sv": "Redaktionell datering, rollista och sceninledning, webbrader 18–30.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-mit-persians",
+        "fieldPath": "/locator",
+        "textSha256": "c388eee1f2d5e56af00283a97f45e1004e09b3ca829d0a9df9d390c046d069ef"
+      }
+    },
+    {
+      "id": "source/bc0500-ambraseys-sparta/institution",
+      "en": "Cambridge University Press; public chapter copy hosted by Dead Sea Quake",
+      "sv": "Cambridge University Press; offentlig kapitelkopia hos Dead Sea Quake",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-ambraseys-sparta",
+        "fieldPath": "/institution",
+        "textSha256": "1394b683b36b6ee178005845dfcba085c0f3b7a706bcc3ee4edac0970774a84c"
+      }
+    },
+    {
+      "id": "source/bc0500-ambraseys-sparta/locator",
+      "en": "Printed page 81, downloaded chapter PDF page 22, entry '469–463 BC Sparta'. Extracted text; no page-image inspection.",
+      "sv": "Tryckt sida 81, sida 22 i den nedladdade kapitel-PDF:en, posten '469–463 BC Sparta'. Extraherad text; inga sidbilder har granskats.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-ambraseys-sparta",
+        "fieldPath": "/locator",
+        "textSha256": "964d34e55b55511c9c25febc62fd1eda89c0587ca227eac80df2be08455ed8ea"
+      }
+    },
+    {
+      "id": "source/bc0500-oasp-sparta/institution",
+      "en": "Earthquake Planning and Protection Organization (OASP), Greece",
+      "sv": "Greklands organisation för jordbävningsplanering och skydd (OASP)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-oasp-sparta",
+        "fieldPath": "/institution",
+        "textSha256": "415882b3c5cdd3dd0b3a57e620d2522db783061c56725afd6ad30981a038f2a7"
+      }
+    },
+    {
+      "id": "source/bc0500-oasp-sparta/locator",
+      "en": "Heading and historical description, web lines 1–14.",
+      "sv": "Rubrik och historisk beskrivning, webbrader 1–14.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-oasp-sparta",
+        "fieldPath": "/locator",
+        "textSha256": "a346807db0f1ae110cee4fd12961bfe9e7b802b4848ace20638b320f983b88a2"
+      }
+    },
+    {
+      "id": "source/bc0500-ucl-xerxes/institution",
+      "en": "University College London, Digital Egypt for Universities",
+      "sv": "University College London, Digital Egypt for Universities",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-ucl-xerxes",
+        "fieldPath": "/institution",
+        "textSha256": "22b4ed4dbde10debe5ea3c427a5d5cee3a976ea4d4ef29e062bf281c5a33970c"
+      }
+    },
+    {
+      "id": "source/bc0500-ucl-xerxes/locator",
+      "en": "Chronology and death entry, web lines 2–4.",
+      "sv": "Kronologi och dödsnotis, webbrader 2–4.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-ucl-xerxes",
+        "fieldPath": "/locator",
+        "textSha256": "4b3d12643c1a44c9282cfc3131678e40f7ed0ff9a22682220322a2979cf004e0"
+      }
+    },
+    {
+      "id": "source/bc0500-iranica-artaxerxes/institution",
+      "en": "Encyclopaedia Iranica",
+      "sv": "Encyclopaedia Iranica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-iranica-artaxerxes",
+        "fieldPath": "/institution",
+        "textSha256": "f73848ecbb70ca68207853153ffd8c11aed59c5faa5d609de1dc10d26e87a496"
+      }
+    },
+    {
+      "id": "source/bc0500-iranica-artaxerxes/locator",
+      "en": "Accession and Egyptian revolt, web lines 32–38; Samos, web line 45.",
+      "sv": "Trontillträdet och det egyptiska upproret, webbrader 32–38; Samos, webbrad 45.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-iranica-artaxerxes",
+        "fieldPath": "/locator",
+        "textSha256": "309bf708b41ca30b3d4c6309dd165db5af785708ed708bee340f4ecf874f2bec"
+      }
+    },
+    {
+      "id": "source/bc0500-hall-ephialtes/institution",
+      "en": "The Classical Quarterly; Cambridge University Press",
+      "sv": "The Classical Quarterly; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-hall-ephialtes",
+        "fieldPath": "/institution",
+        "textSha256": "2e7c95e98b0b475be300b16528055455baf5a74ac708c6c3068726884cce147b"
+      }
+    },
+    {
+      "id": "source/bc0500-hall-ephialtes/locator",
+      "en": "Public Extract, web line 451; publicly visible footnote 5, web line 488. Full article not consulted.",
+      "sv": "Offentligt utdrag, webbrad 451; offentligt synlig fotnot 5, webbrad 488. Hela artikeln har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-hall-ephialtes",
+        "fieldPath": "/locator",
+        "textSha256": "9583bca78916cb7b6ed8f9111003cae44e6596b310b43d7a1e392e43766c4ecb"
+      }
+    },
+    {
+      "id": "source/bc0500-iranica-egypt/institution",
+      "en": "Encyclopaedia Iranica",
+      "sv": "Encyclopaedia Iranica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-iranica-egypt",
+        "fieldPath": "/institution",
+        "textSha256": "f73848ecbb70ca68207853153ffd8c11aed59c5faa5d609de1dc10d26e87a496"
+      }
+    },
+    {
+      "id": "source/bc0500-iranica-egypt/locator",
+      "en": "First Persian domination and Inarus, web lines 36–47.",
+      "sv": "Det första persiska herraväldet och Inaros, webbrader 36–47.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-iranica-egypt",
+        "fieldPath": "/locator",
+        "textSha256": "f26eefd61df10e4aa64aadb2f4375886159d2f2b74d227f9dfdfe146fd83eabb"
+      }
+    },
+    {
+      "id": "source/bc0500-yale-twelve-tables/institution",
+      "en": "Yale Law School, Avalon Project",
+      "sv": "Yale Law School, Avalon Project",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-yale-twelve-tables",
+        "fieldPath": "/institution",
+        "textSha256": "9a8c2fc7c4a45199f435b2e4130a7f692a4fe6cbbbbbc4e8d2a5d7218e90beb7"
+      }
+    },
+    {
+      "id": "source/bc0500-yale-twelve-tables/locator",
+      "en": "Editorial introduction, web lines 16–36.",
+      "sv": "Redaktionell inledning, webbrader 16–36.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-yale-twelve-tables",
+        "fieldPath": "/locator",
+        "textSha256": "b67ec847758b84a79c33df61de2bb086191005217d1465a9c3025b9c201c17b2"
+      }
+    },
+    {
+      "id": "source/bc0500-fordham-plague/institution",
+      "en": "Fordham University, Internet Ancient History Sourcebook",
+      "sv": "Fordham University, Internet Ancient History Sourcebook",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-fordham-plague",
+        "fieldPath": "/institution",
+        "textSha256": "519c4deacfcdbcde3fbbae5c5c7fe6ba101e1a821204398334cf71c2c78a3296"
+      }
+    },
+    {
+      "id": "source/bc0500-fordham-plague/locator",
+      "en": "Editorial heading and Book II extract, web lines 21–29 and 38–45.",
+      "sv": "Redaktionell rubrik och utdrag ur bok II, webbrader 21–29 och 38–45.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-fordham-plague",
+        "fieldPath": "/locator",
+        "textSha256": "0c66ac732e589fcaa3bcdeb3190bde43a11d994852bb3567cb50d59b0d7b4485"
+      }
+    },
+    {
+      "id": "source/bc0500-higham-iron/institution",
+      "en": "Fine Arts Department of Thailand; public publisher preview",
+      "sv": "Thailands konst- och kulturarvsmyndighet, Fine Arts Department; offentligt förhandsutdrag från förlaget",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-higham-iron",
+        "fieldPath": "/institution",
+        "textSha256": "7a080a2db52c89133edad870dd498277612861c1301c737de2453b29b38c1ad7"
+      }
+    },
+    {
+      "id": "source/bc0500-higham-iron/locator",
+      "en": "Chapter I by C. F. W. Higham, printed page 1 (PDF page 20), Chronology; printed page 10 (PDF page 29). Extracted text only.",
+      "sv": "Kapitel I av C. F. W. Higham, tryckt sida 1 (PDF-sida 20), avsnittet Chronology; tryckt sida 10 (PDF-sida 29). Endast extraherad text.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-higham-iron",
+        "fieldPath": "/locator",
+        "textSha256": "698cf86b6c7bf9bf69d84768c4e97c0d9cc7d4aa73db8af70007ae23a441bcde"
+      }
+    },
+    {
+      "id": "source/bc0500-livius-sicily/institution",
+      "en": "Livius.org; Richard Crawley translation with editorial introduction",
+      "sv": "Livius.org; Richard Crawleys översättning med redaktionell inledning",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-livius-sicily",
+        "fieldPath": "/institution",
+        "textSha256": "7e86cbaa54db0155f9944dcf7507ff13a5e55f5cda1aabcafc8cf3ec242b3e12"
+      }
+    },
+    {
+      "id": "source/bc0500-livius-sicily/locator",
+      "en": "Editorial introduction at web line 9 and Thucydides 6.1 at web line 16.",
+      "sv": "Redaktionell inledning på webbrad 9 och Thukydides 6.1 på webbrad 16.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-livius-sicily",
+        "fieldPath": "/locator",
+        "textSha256": "26842bb549eff4ee40687f97eaa6927a2d96cb67ee8e8ce4b84a03b42affd4b2"
+      }
+    },
+    {
+      "id": "source/bc0500-fhw-oligarchies/institution",
+      "en": "Foundation of the Hellenic World",
+      "sv": "Foundation of the Hellenic World",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-fhw-oligarchies",
+        "fieldPath": "/institution",
+        "textSha256": "f11bfcf126209b303e8d6d7bae8c03eb797a8a1600b086019a6c90436d0efa78"
+      }
+    },
+    {
+      "id": "source/bc0500-fhw-oligarchies/locator",
+      "en": "Full short political account, web lines 1–6.",
+      "sv": "Hela den korta politiska redogörelsen, webbrader 1–6.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-fhw-oligarchies",
+        "fieldPath": "/locator",
+        "textSha256": "9ad3c5a338df1918a28c2755ee05310841804c06d2e0090dcaef93d3a6590374"
+      }
+    },
+    {
+      "id": "source/bc0500-ucl-late-egypt/institution",
+      "en": "University College London, Digital Egypt for Universities",
+      "sv": "University College London, Digital Egypt for Universities",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-ucl-late-egypt",
+        "fieldPath": "/institution",
+        "textSha256": "22b4ed4dbde10debe5ea3c427a5d5cee3a976ea4d4ef29e062bf281c5a33970c"
+      }
+    },
+    {
+      "id": "source/bc0500-ucl-late-egypt/locator",
+      "en": "Opening chronology, web lines 2–4.",
+      "sv": "Inledande kronologi, webbrader 2–4.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-ucl-late-egypt",
+        "fieldPath": "/locator",
+        "textSha256": "4ce4d2f9176006b8f47ba332f50dda70c6e564f2fb29968741e0125bfef2db38"
+      }
+    },
+    {
+      "id": "source/bc0500-lloyd-egypt/institution",
+      "en": "The Cambridge Ancient History; Cambridge University Press",
+      "sv": "The Cambridge Ancient History; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-lloyd-egypt",
+        "fieldPath": "/institution",
+        "textSha256": "30aae6c02c01684f381e0dfb4e06cf44470f00c8be7aea906b7e83e0773d7e93"
+      }
+    },
+    {
+      "id": "source/bc0500-lloyd-egypt/locator",
+      "en": "Public Summary, web lines 504–512. Full chapter not consulted.",
+      "sv": "Offentlig sammanfattning, webbrader 504–512. Hela kapitlet har inte lästs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-lloyd-egypt",
+        "fieldPath": "/locator",
+        "textSha256": "af4b1f3fa924f1eaf00450c0585ed7ff3b847e05cddbe7a5f17d2f660085e74e"
+      }
+    },
+    {
+      "id": "source/bc0500-barenghi-jin/institution",
+      "en": "Ludwig Maximilian University of Munich, doctoral dissertation",
+      "sv": "Ludwig-Maximilians-Universität München, doktorsavhandling",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-barenghi-jin",
+        "fieldPath": "/institution",
+        "textSha256": "bc1818ab87a2cfe7ee9086bf6dc93486743be69c66e2a158f6467bbb43dd6eea"
+      }
+    },
+    {
+      "id": "source/bc0500-barenghi-jin/locator",
+      "en": "Printed pages 59–60 (PDF pages 66–67), early chronology discussion; web lines 1754–1786. Extracted text only.",
+      "sv": "Tryckta sidor 59–60 (PDF-sidor 66–67), diskussionen om den tidiga kronologin; webbrader 1754–1786. Endast extraherad text.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-barenghi-jin",
+        "fieldPath": "/locator",
+        "textSha256": "31283d846ddc35df1c0883330d55ef56b42e4f2d46df86251d14322b4ceb0a10"
+      }
+    },
+    {
+      "id": "source/bc0500-iranica-cunaxa/institution",
+      "en": "Encyclopaedia Iranica",
+      "sv": "Encyclopaedia Iranica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-iranica-cunaxa",
+        "fieldPath": "/institution",
+        "textSha256": "f73848ecbb70ca68207853153ffd8c11aed59c5faa5d609de1dc10d26e87a496"
+      }
+    },
+    {
+      "id": "source/bc0500-iranica-cunaxa/locator",
+      "en": "Battle entry, web lines 32–48.",
+      "sv": "Artikeln om slaget, webbrader 32–48.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0500-iranica-cunaxa",
+        "fieldPath": "/locator",
+        "textSha256": "711ff5485c0ed5100938a06279bf6d1c118bfcac1a92fe7a3b22960217eb8654"
       }
     }
   ]
