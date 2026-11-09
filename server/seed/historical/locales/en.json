@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "9ce9b159b9be1f98f5f6eeb1256bd0bc83d5ffd6",
+  "sourceRevision": "8ad9b25c5cd0a037c3393cdace971754a1eba4a5",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -46070,6 +46070,1491 @@
         "eventId": "ev-bc1919-amenemhat-andres-falttag-i-syrien",
         "fieldPath": "/geographySv",
         "textSha256": "8f6c6199b666d10de7babde99ddef0342a7042a07338c9304d3f34548e9cf2ae"
+      }
+    },
+    {
+      "id": "event/ev-0100-timgad-grundas/date/displaySv",
+      "sv": "100 e.Kr.",
+      "en": "AD 100",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0100-timgad-grundas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "8592a9d26589d2571a575495573916cb080880620927f09bc70ff152b86983ef"
+      }
+    },
+    {
+      "id": "event/ev-0100-timgad-grundas/date/noteSv",
+      "sv": "Årtalet avser kolonins grundande; senare byggnader har andra dateringar.",
+      "en": "The year refers to the colony’s foundation; later buildings have other dates.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0100-timgad-grundas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "bb0d23ea2e89a9bed1aeec93f4b1b5d3be9d4e77e67eb262063496ba66af7956"
+      }
+    },
+    {
+      "id": "event/ev-0100-timgad-grundas/titleSv",
+      "sv": "Trajanus grundar Timgad",
+      "en": "Trajan founds Timgad",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0100-timgad-grundas",
+        "fieldPath": "/titleSv",
+        "textSha256": "57fb6d8333fe33f764d28fd4cb44f8a2caf57b7849617542d80a144e3c9a81fb"
+      }
+    },
+    {
+      "id": "event/ev-0100-timgad-grundas/summarySv",
+      "sv": "En romersk militärkoloni anläggs vid Aurèsbergen med ett regelbundet gatunät.",
+      "en": "A Roman military colony is established near the Aurès Mountains with a regular street grid.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0100-timgad-grundas",
+        "fieldPath": "/summarySv",
+        "textSha256": "cb2abaaef3fc91145fb776f1d44cd7bafba40094b306dffbe9f55d95d2f23674"
+      }
+    },
+    {
+      "id": "event/ev-0100-timgad-grundas/geographySv",
+      "sv": "Timgad, nuvarande Algeriet",
+      "en": "Timgad, present-day Algeria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0100-timgad-grundas",
+        "fieldPath": "/geographySv",
+        "textSha256": "f7d47af2d906e3ec7e9277333de4c668ff4e36dbb87c3f3a91e0744735caffe5"
+      }
+    },
+    {
+      "id": "event/ev-0101-trajanus-forsta-daciska-krig/date/displaySv",
+      "sv": "101–102 e.Kr.",
+      "en": "AD 101–102",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-trajanus-forsta-daciska-krig",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "321c1a60c403f42279cbbd674784a0597dcf3e66bbe7fe6f9363266a852f26ce"
+      }
+    },
+    {
+      "id": "event/ev-0101-trajanus-forsta-daciska-krig/date/noteSv",
+      "sv": "Det första kriget hålls isär från fälttåget 105–106.",
+      "en": "The first war is kept separate from the campaign of 105–106.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-trajanus-forsta-daciska-krig",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "bdf97b3134a8f84da71b948d86b0aef64c75dca0b4a09be2a7569c3742ce1cf4"
+      }
+    },
+    {
+      "id": "event/ev-0101-trajanus-forsta-daciska-krig/titleSv",
+      "sv": "Trajanus för sitt första krig mot dakerna",
+      "en": "Trajan wages his first war against the Dacians",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-trajanus-forsta-daciska-krig",
+        "fieldPath": "/titleSv",
+        "textSha256": "46ca44b7ceb01eb68f6dea72e2fd6b0bb80c333c73441838b19cabb38470363e"
+      }
+    },
+    {
+      "id": "event/ev-0101-trajanus-forsta-daciska-krig/summarySv",
+      "sv": "Romerska styrkor under Trajanus strider mot dakerna.",
+      "en": "Roman forces under Trajan fight the Dacians.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-trajanus-forsta-daciska-krig",
+        "fieldPath": "/summarySv",
+        "textSha256": "1725c29051df7d332d573a8ae7f61a5fa40e4bfe4d3b77cda533253f19c15991"
+      }
+    },
+    {
+      "id": "event/ev-0101-trajanus-forsta-daciska-krig/geographySv",
+      "sv": "Dakien, nedre Donauområdet",
+      "en": "Dacia, lower Danube region",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-trajanus-forsta-daciska-krig",
+        "fieldPath": "/geographySv",
+        "textSha256": "99de3ef7b2fed006683c2c5f1894601a260258c5ea6af20d0460e3e96d705dec"
+      }
+    },
+    {
+      "id": "event/ev-0101-arikamedu-oc-eo-kontakter/date/displaySv",
+      "sv": "Andra århundradet e.Kr. (101–200)",
+      "en": "Second century AD (101–200)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-arikamedu-oc-eo-kontakter",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4a0654db29b89b540dd416c34a0408bb19c1ff2a92cdd06634be667ddd3c2247"
+      }
+    },
+    {
+      "id": "event/ev-0101-arikamedu-oc-eo-kontakter/date/noteSv",
+      "sv": "Dateringen gäller belagda kontakter under det andra århundradet, inte handelsledens början.",
+      "en": "The date concerns attested contacts during the second century, not the beginning of the trade route.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-arikamedu-oc-eo-kontakter",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e2d9f8588f2eeaf9e4bdcc9b6f6ed624c4e87bcd640ea1e63439273744e84cc1"
+      }
+    },
+    {
+      "id": "event/ev-0101-arikamedu-oc-eo-kontakter/titleSv",
+      "sv": "Handeln förbinder Arikamedu och Oc Eo",
+      "en": "Trade connects Arikamedu and Oc Eo",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-arikamedu-oc-eo-kontakter",
+        "fieldPath": "/titleSv",
+        "textSha256": "5bd5f32046b9019f748892ea55208e43d7797cd345cfe9208ca7a0e5fe161cf1"
+      }
+    },
+    {
+      "id": "event/ev-0101-arikamedu-oc-eo-kontakter/summarySv",
+      "sv": "Hamnorterna i sydöstra Indien och Mekongdeltat har betydande kontakter längs sjövägarna.",
+      "en": "The ports in southeastern India and the Mekong Delta have substantial contacts along the sea routes.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-arikamedu-oc-eo-kontakter",
+        "fieldPath": "/summarySv",
+        "textSha256": "ca2b96739ec2dc7f13ff100d5537a26f0ece560aa33ea00dd76d4252c69d7801"
+      }
+    },
+    {
+      "id": "event/ev-0101-arikamedu-oc-eo-kontakter/geographySv",
+      "sv": "Arikamedu i Indien och Oc Eo i nuvarande Vietnam",
+      "en": "Arikamedu in India and Oc Eo in present-day Vietnam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-arikamedu-oc-eo-kontakter",
+        "fieldPath": "/geographySv",
+        "textSha256": "6028c8d14d1cead972f04e2ff762ed81e246c61faef929568b1b320cf7a7d67f"
+      }
+    },
+    {
+      "id": "event/ev-0101-ptolemaios-almagest/date/displaySv",
+      "sv": "Andra århundradet e.Kr. (101–200)",
+      "en": "Second century AD (101–200)",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-ptolemaios-almagest",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4a0654db29b89b540dd416c34a0408bb19c1ff2a92cdd06634be667ddd3c2247"
+      }
+    },
+    {
+      "id": "event/ev-0101-ptolemaios-almagest/date/noteSv",
+      "sv": "Källpassagen anger det andra århundradet. Hela århundradet behålls utan ett konstruerat tillkomstår.",
+      "en": "The cited passage gives the second century. The full century is retained without inventing a year of composition.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-ptolemaios-almagest",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "939bae72c36dba575731a58943c459b6223529d09fd21f80104908cc0d8d5795"
+      }
+    },
+    {
+      "id": "event/ev-0101-ptolemaios-almagest/titleSv",
+      "sv": "Ptolemaios sammanställer Almagest",
+      "en": "Ptolemy compiles the Almagest",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-ptolemaios-almagest",
+        "fieldPath": "/titleSv",
+        "textSha256": "edcbf2bef521983fc54d0b891460f96072f1a17b94a9aa9b84de77b5565a6fea"
+      }
+    },
+    {
+      "id": "event/ev-0101-ptolemaios-almagest/summarySv",
+      "sv": "I tretton böcker beskriver Ptolemaios matematiska modeller för solens, månens och planeternas rörelser med jorden i centrum.",
+      "en": "In thirteen books, Ptolemy describes mathematical models of the movements of the sun, moon and planets with the earth at the centre.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-ptolemaios-almagest",
+        "fieldPath": "/summarySv",
+        "textSha256": "e3f3a36322ac69052d4e26050f3f682594fcf32198b5d71b30fd9faf38c29c03"
+      }
+    },
+    {
+      "id": "event/ev-0101-ptolemaios-almagest/geographySv",
+      "sv": "Alexandria, Egypten",
+      "en": "Alexandria, Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0101-ptolemaios-almagest",
+        "fieldPath": "/geographySv",
+        "textSha256": "0deade5a2e96959ba651b11109b689d52a015babcc6abc169678a99296b1b311"
+      }
+    },
+    {
+      "id": "event/ev-0105-cai-lun-papper/date/displaySv",
+      "sv": "105 e.Kr.",
+      "en": "AD 105",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0105-cai-lun-papper",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5da28c76e0a75bdc7fef201a7b5c7df1a7b70861b57705f345b0a94e558611ea"
+      }
+    },
+    {
+      "id": "event/ev-0105-cai-lun-papper/date/noteSv",
+      "sv": "Årtalet gäller Cai Luns förbättrade metod. Papper fanns redan tidigare i Kina.",
+      "en": "The year concerns Cai Lun’s improved method. Paper already existed in China.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0105-cai-lun-papper",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "afdfe5f71bd9351d383a5eacd4987c1a849b8b77e6d8c1925884e846c71c62af"
+      }
+    },
+    {
+      "id": "event/ev-0105-cai-lun-papper/titleSv",
+      "sv": "Cai Lun förbättrar papperstillverkningen",
+      "en": "Cai Lun improves papermaking",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0105-cai-lun-papper",
+        "fieldPath": "/titleSv",
+        "textSha256": "b34c13272b69cadda5ea18257ef3e1c2585c7c53a8062a28626994c49d63d90b"
+      }
+    },
+    {
+      "id": "event/ev-0105-cai-lun-papper/summarySv",
+      "sv": "Cai Lun utvecklar och standardiserar material och arbetsmetoder för att framställa papper.",
+      "en": "Cai Lun develops and standardises materials and methods for making paper.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0105-cai-lun-papper",
+        "fieldPath": "/summarySv",
+        "textSha256": "70ff01552b7ebaf75e9b0d1ea94863d033cbf6da2bd0653d928306ce0a945f84"
+      }
+    },
+    {
+      "id": "event/ev-0105-cai-lun-papper/geographySv",
+      "sv": "Kina",
+      "en": "China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0105-cai-lun-papper",
+        "fieldPath": "/geographySv",
+        "textSha256": "57e3795a3bddf3ecc09fd620078f1ace8c68974bf50e387e364d256bd9cb13ae"
+      }
+    },
+    {
+      "id": "event/ev-0105-trajanus-andra-daciska-krig/date/displaySv",
+      "sv": "105–106 e.Kr.",
+      "en": "AD 105–106",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0105-trajanus-andra-daciska-krig",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2d664979bd5f0c9004354370ca8c09198b6431f1735ef41a8912e669b9448edd"
+      }
+    },
+    {
+      "id": "event/ev-0105-trajanus-andra-daciska-krig/date/noteSv",
+      "sv": "Det andra krigets hela intervall behålls.",
+      "en": "The second war’s full interval is retained.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0105-trajanus-andra-daciska-krig",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "dd44fdf762d31bca77e734dbfa9df4304aad1c77ecfd1ba2638ee68b0ff25ebb"
+      }
+    },
+    {
+      "id": "event/ev-0105-trajanus-andra-daciska-krig/titleSv",
+      "sv": "Trajanus för sitt andra krig mot dakerna",
+      "en": "Trajan wages his second war against the Dacians",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0105-trajanus-andra-daciska-krig",
+        "fieldPath": "/titleSv",
+        "textSha256": "3ba296e58753edacdc2f92d9188304d3cbbec7547432455f0a03c07a6fd6bedd"
+      }
+    },
+    {
+      "id": "event/ev-0105-trajanus-andra-daciska-krig/summarySv",
+      "sv": "Romerska styrkor under Trajanus genomför ett nytt krig i Dakien.",
+      "en": "Roman forces under Trajan wage another war in Dacia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0105-trajanus-andra-daciska-krig",
+        "fieldPath": "/summarySv",
+        "textSha256": "c79f129ff23390c3afbab0f8c35c85d94a760b6eb1c11fc6522cad3e3ff477db"
+      }
+    },
+    {
+      "id": "event/ev-0105-trajanus-andra-daciska-krig/geographySv",
+      "sv": "Dakien, nedre Donauområdet",
+      "en": "Dacia, lower Danube region",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0105-trajanus-andra-daciska-krig",
+        "fieldPath": "/geographySv",
+        "textSha256": "99de3ef7b2fed006683c2c5f1894601a260258c5ea6af20d0460e3e96d705dec"
+      }
+    },
+    {
+      "id": "event/ev-0106-nabatea-arabia/date/displaySv",
+      "sv": "106 e.Kr.",
+      "en": "AD 106",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0106-nabatea-arabia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5185f6b033283058b647fd596d41c5f69725bad236a4806c3a1b928d9c69a313"
+      }
+    },
+    {
+      "id": "event/ev-0106-nabatea-arabia/date/noteSv",
+      "sv": "Dateringen avser rikets införlivande i provinsen Arabia.",
+      "en": "The date concerns the kingdom’s incorporation into the province of Arabia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0106-nabatea-arabia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "da4445191362af69c087ce6378d01d55d99c91ff9bb78b8665dc5f0a319af0e0"
+      }
+    },
+    {
+      "id": "event/ev-0106-nabatea-arabia/titleSv",
+      "sv": "Nabatéerriket införlivas i Romarriket",
+      "en": "The Nabataean kingdom is incorporated into the Roman Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0106-nabatea-arabia",
+        "fieldPath": "/titleSv",
+        "textSha256": "c1eb6eb7dc8312ba38dac31a34d350ae9dbba7d3bb2ea0839a09f17a3a464bb8"
+      }
+    },
+    {
+      "id": "event/ev-0106-nabatea-arabia/summarySv",
+      "sv": "Det tidigare självständiga riket blir en del av den romerska provinsen Arabia under Trajanus.",
+      "en": "The formerly independent kingdom becomes part of the Roman province of Arabia under Trajan.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0106-nabatea-arabia",
+        "fieldPath": "/summarySv",
+        "textSha256": "343a6eb0d51950f99cebbe2aea2f9c76591099640781454666c17f2236d9562d"
+      }
+    },
+    {
+      "id": "event/ev-0106-nabatea-arabia/geographySv",
+      "sv": "Nabatéerriket och Petra, nuvarande Jordanien med omgivningar",
+      "en": "Nabataean kingdom and Petra, present-day Jordan and surrounding areas",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0106-nabatea-arabia",
+        "fieldPath": "/geographySv",
+        "textSha256": "59ede00df584a8757f689a713e619a14608bb9dadc187880972a8f64eb2b0ff5"
+      }
+    },
+    {
+      "id": "event/ev-0106-pannonia-delas/date/displaySv",
+      "sv": "106 e.Kr.",
+      "en": "AD 106",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0106-pannonia-delas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5185f6b033283058b647fd596d41c5f69725bad236a4806c3a1b928d9c69a313"
+      }
+    },
+    {
+      "id": "event/ev-0106-pannonia-delas/date/noteSv",
+      "sv": "Årtalet avser provinsdelningen.",
+      "en": "The year concerns the division of the province.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0106-pannonia-delas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "011f1d3918984dea7e8675489ed22ad1ce0434dd0fa2931049034b0ab4eb9449"
+      }
+    },
+    {
+      "id": "event/ev-0106-pannonia-delas/titleSv",
+      "sv": "Trajanus delar Pannonien",
+      "en": "Trajan divides Pannonia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0106-pannonia-delas",
+        "fieldPath": "/titleSv",
+        "textSha256": "f37dac36702e4546de4627a7f5b6be977b214c580e22ee99a5be8e52cd860734"
+      }
+    },
+    {
+      "id": "event/ev-0106-pannonia-delas/summarySv",
+      "sv": "Provinsen delas i Övre och Nedre Pannonien.",
+      "en": "The province is divided into Upper and Lower Pannonia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0106-pannonia-delas",
+        "fieldPath": "/summarySv",
+        "textSha256": "cc2e9efc224b1d1b2ec723c48d65c5f3025d15a88ce6388f65f56b17b5f04d1c"
+      }
+    },
+    {
+      "id": "event/ev-0106-pannonia-delas/geographySv",
+      "sv": "Pannonien i Donauområdet",
+      "en": "Pannonia in the Danube region",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0106-pannonia-delas",
+        "fieldPath": "/geographySv",
+        "textSha256": "23ae54ae13439ece09414513a9397b4698ca6b984b6dabd6a486ddd2c5bbde08"
+      }
+    },
+    {
+      "id": "event/ev-0113-trajanuskolonnen/date/displaySv",
+      "sv": "113 e.Kr.",
+      "en": "AD 113",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0113-trajanuskolonnen",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "c8360bca81915544fb125d3db356b5dcf70662e684f9929ccffc6714f3a4892f"
+      }
+    },
+    {
+      "id": "event/ev-0113-trajanuskolonnen/date/noteSv",
+      "sv": "Årtalet gäller kolonnen, inte de krig som dess reliefer skildrar.",
+      "en": "The year concerns the column, not the wars depicted in its reliefs.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0113-trajanuskolonnen",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b3f7b694af75a91c1ceaec3ed0a1b55b708cec564a82046c1bcbe83200275f28"
+      }
+    },
+    {
+      "id": "event/ev-0113-trajanuskolonnen/titleSv",
+      "sv": "Trajanuskolonnen uppförs i Rom",
+      "en": "Trajan’s Column is erected in Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0113-trajanuskolonnen",
+        "fieldPath": "/titleSv",
+        "textSha256": "b98d0e5ab91c85d583635da170afad18d9eb7418d8fafb45da9fa8531bbb40fb"
+      }
+    },
+    {
+      "id": "event/ev-0113-trajanuskolonnen/summarySv",
+      "sv": "Kolonnens reliefer framställer kejsarens två krig mot dakerna.",
+      "en": "The column’s reliefs portray the emperor’s two wars against the Dacians.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0113-trajanuskolonnen",
+        "fieldPath": "/summarySv",
+        "textSha256": "4926a6976088f4443b58f6221b2e4a1faedb3f8c4fb5e7d3dfb13c32edd14bcd"
+      }
+    },
+    {
+      "id": "event/ev-0113-trajanuskolonnen/geographySv",
+      "sv": "Rom, Italien",
+      "en": "Rome, Italy",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0113-trajanuskolonnen",
+        "fieldPath": "/geographySv",
+        "textSha256": "6891bf8a2728ccd419110af49208a4f9e999ca9737a13cd8268aa8ff74bae2bd"
+      }
+    },
+    {
+      "id": "event/ev-0115-judiska-diasporaupproret/date/displaySv",
+      "sv": "115–117 e.Kr.",
+      "en": "AD 115–117",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0115-judiska-diasporaupproret",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2b1d2270486d681b2530afe1e5d0fbe620efb3913a3d0dadc805fdb817ced7d0"
+      }
+    },
+    {
+      "id": "event/ev-0115-judiska-diasporaupproret/date/noteSv",
+      "sv": "Intervallet följer Posen Librarys översikt. Fientliga antika skildringar av övergrepp återges inte som säkra fakta.",
+      "en": "The interval follows the Posen Library’s overview. Hostile ancient accounts of atrocities are not presented as established facts.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0115-judiska-diasporaupproret",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c62964acaed2eee887ea42028ce86e0b1fb3c593aa5e9cee36e5af7145ba2add"
+      }
+    },
+    {
+      "id": "event/ev-0115-judiska-diasporaupproret/titleSv",
+      "sv": "Judiska uppror bryter ut i romerska provinser",
+      "en": "Jewish revolts break out in Roman provinces",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0115-judiska-diasporaupproret",
+        "fieldPath": "/titleSv",
+        "textSha256": "047be79c4ab4dca4595a3357960b923961b8c3e9c3a3da01839850e43a5ed70d"
+      }
+    },
+    {
+      "id": "event/ev-0115-judiska-diasporaupproret/summarySv",
+      "sv": "Upproret börjar i Kyrene och våldet sprids till Egypten och Cypern.",
+      "en": "The revolt begins in Cyrene and violence spreads to Egypt and Cyprus.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0115-judiska-diasporaupproret",
+        "fieldPath": "/summarySv",
+        "textSha256": "35319fb275a489f609d5ac2840b433b2d0c114bd10abb387cde60474448a2f49"
+      }
+    },
+    {
+      "id": "event/ev-0115-judiska-diasporaupproret/geographySv",
+      "sv": "Kyrenaika, Egypten och Cypern",
+      "en": "Cyrenaica, Egypt and Cyprus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0115-judiska-diasporaupproret",
+        "fieldPath": "/geographySv",
+        "textSha256": "deaa5923b38eabeb2ec1f515537d828b7067dd15073dbf72fec6865d4352d078"
+      }
+    },
+    {
+      "id": "event/ev-0117-hadrianus-pannoniska-stadsrattigheter/date/displaySv",
+      "sv": "117–138 e.Kr.",
+      "en": "AD 117–138",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0117-hadrianus-pannoniska-stadsrattigheter",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5dc958a2604a0f9f5fac638e9cb49e7fab80e17be778085bbae16bd994c6f735"
+      }
+    },
+    {
+      "id": "event/ev-0117-hadrianus-pannoniska-stadsrattigheter/date/noteSv",
+      "sv": "Källan placerar åtgärderna under Hadrianus regering. Något gemensamt exakt år anges inte.",
+      "en": "The source places the measures during Hadrian’s reign. It gives no single exact year for them all.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0117-hadrianus-pannoniska-stadsrattigheter",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "74935256a11f693c28bb3f8b2a9d13e1a8ec0ba8b525f4ceb3b8029cb97df3a5"
+      }
+    },
+    {
+      "id": "event/ev-0117-hadrianus-pannoniska-stadsrattigheter/titleSv",
+      "sv": "Hadrianus ger pannoniska orter stadsrättigheter",
+      "en": "Hadrian grants town rights to Pannonian settlements",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0117-hadrianus-pannoniska-stadsrattigheter",
+        "fieldPath": "/titleSv",
+        "textSha256": "bcc2ceae10aa84d22e4e07d4b37bac4fdca3015f666823460a13f4eb2573edb8"
+      }
+    },
+    {
+      "id": "event/ev-0117-hadrianus-pannoniska-stadsrattigheter/summarySv",
+      "sv": "Aquincum, Carnuntum och Salla får stadsrättigheter. Hadrianus grundar också kolonin Mursa.",
+      "en": "Aquincum, Carnuntum and Salla receive town rights. Hadrian also founds the colony of Mursa.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0117-hadrianus-pannoniska-stadsrattigheter",
+        "fieldPath": "/summarySv",
+        "textSha256": "02bee5c32174c02e6fd45b7b00464e63d95c825a0c3121b4f031307d063bc9fa"
+      }
+    },
+    {
+      "id": "event/ev-0117-hadrianus-pannoniska-stadsrattigheter/geographySv",
+      "sv": "Pannonien, nuvarande Ungern, Österrike och Kroatien",
+      "en": "Pannonia, present-day Hungary, Austria and Croatia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0117-hadrianus-pannoniska-stadsrattigheter",
+        "fieldPath": "/geographySv",
+        "textSha256": "345e150609acf5635d95631a77a29ccfe9cb7ef5b5a6911d1450c6fca11c0186"
+      }
+    },
+    {
+      "id": "event/ev-0122-hadrianus-mur-byggstart/date/displaySv",
+      "sv": "Troligen från 122 e.Kr.",
+      "en": "Probably from AD 122",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0122-hadrianus-mur-byggstart",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6ad1502601a6f662482fd9687c7c014f2f72102b22ff8f326f2e11f9789c64be"
+      }
+    },
+    {
+      "id": "event/ev-0122-hadrianus-mur-byggstart/date/noteSv",
+      "sv": "Bygget började troligen 122, möjligen före Hadrianus besök, och tog minst sex år. Ett exakt färdigställandeår anges inte.",
+      "en": "Construction probably began in 122, possibly before Hadrian’s visit, and took at least six years. No exact completion year is given.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0122-hadrianus-mur-byggstart",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6699216e4b8c7f53019dd9675d0dc4122466afb93e471d7b40208ed459a26af2"
+      }
+    },
+    {
+      "id": "event/ev-0122-hadrianus-mur-byggstart/titleSv",
+      "sv": "Armén börjar bygga Hadrianus mur",
+      "en": "The army begins building Hadrian’s Wall",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0122-hadrianus-mur-byggstart",
+        "fieldPath": "/titleSv",
+        "textSha256": "5803a5b76f584f08216ea41778c1426746eb719eaa0649abe6c7113f059fa354"
+      }
+    },
+    {
+      "id": "event/ev-0122-hadrianus-mur-byggstart/summarySv",
+      "sv": "En romersk gränsbarriär byggs tvärs över norra Britannien.",
+      "en": "A Roman frontier barrier is built across northern Britain.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0122-hadrianus-mur-byggstart",
+        "fieldPath": "/summarySv",
+        "textSha256": "07a0d624f8cc03f7b2428b597bc127240f9946dd02f00ead229d323575214719"
+      }
+    },
+    {
+      "id": "event/ev-0122-hadrianus-mur-byggstart/geographySv",
+      "sv": "Norra England, Britannien",
+      "en": "Northern England, Britain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0122-hadrianus-mur-byggstart",
+        "fieldPath": "/geographySv",
+        "textSha256": "6d77297ec7f6313a37245d30b06c88a5d39d48a7487a49d61cbd388eacd50661"
+      }
+    },
+    {
+      "id": "event/ev-0127-kanishka-tilltrade/date/displaySv",
+      "sv": "127/128 e.Kr., enligt vald kronologi",
+      "en": "AD 127/128, under the selected chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0127-kanishka-tilltrade",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2ac03adc0b1963a39ace9f1fb9699db341834a2c5be5be99c119fc7ca9c0d6a4"
+      }
+    },
+    {
+      "id": "event/ev-0127-kanishka-tilltrade/date/noteSv",
+      "sv": "Sims-Williams godtar 127/128 och Cribb försvarar 127. Cribb redovisar fortsatt stöd för 78 hos vissa forskare och avvisar modellen 227; dessa modeller bildar inte ett sammanhängande tidsintervall.",
+      "en": "Sims-Williams accepts 127/128 and Cribb argues for 127. Cribb reports continuing support for 78 among some scholars and rejects the 227 model; these models do not form a continuous time interval.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0127-kanishka-tilltrade",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "4c4bf3a20728152d48333e418cc0dd4c59ca20128ecb641c73da3049d980626d"
+      }
+    },
+    {
+      "id": "event/ev-0127-kanishka-tilltrade/titleSv",
+      "sv": "Kanishka I tillträder enligt kronologin 127/128",
+      "en": "Kanishka I accedes under the 127/128 chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0127-kanishka-tilltrade",
+        "fieldPath": "/titleSv",
+        "textSha256": "ea9dacd14d6e0c9f4c2be17f835932817626f8378cc730ddade6e484d57286ea"
+      }
+    },
+    {
+      "id": "event/ev-0127-kanishka-tilltrade/summarySv",
+      "sv": "En ny era knyts till Kanishkas första regeringsår. Dateringen följer de lästa författarnas tolkning.",
+      "en": "A new era is linked to Kanishka’s first regnal year. The date follows the interpretation of the authors whose works were read.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0127-kanishka-tilltrade",
+        "fieldPath": "/summarySv",
+        "textSha256": "662741e0e43bf701ea177b21e3368a21923d02871b6252525518f8b215a5543e"
+      }
+    },
+    {
+      "id": "event/ev-0127-kanishka-tilltrade/geographySv",
+      "sv": "Kushanriket i Central- och Sydasien",
+      "en": "Kushan Empire in Central and South Asia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0127-kanishka-tilltrade",
+        "fieldPath": "/geographySv",
+        "textSha256": "12960b6c85baf1fe329e7810e66d40e506bd44d7d55b64b8faff9666c1e958c9"
+      }
+    },
+    {
+      "id": "event/ev-0132-zhang-heng-jordbavningsdetektor/date/displaySv",
+      "sv": "132 e.Kr.",
+      "en": "AD 132",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0132-zhang-heng-jordbavningsdetektor",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "c969e007f99f337a937a71cce56d9ec7a1f09ec3a1c95d4c91db9d19da7cb007"
+      }
+    },
+    {
+      "id": "event/ev-0132-zhang-heng-jordbavningsdetektor/date/noteSv",
+      "sv": "Året gäller konstruktionen; källans berättelse om en upptäckt jordbävning hör till 138.",
+      "en": "The year concerns the device’s construction; the source’s account of a detected earthquake belongs to 138.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0132-zhang-heng-jordbavningsdetektor",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "a37d07fe99fc3684bab4607752aa5fa910276275eb728841a04e9627d6f4dd23"
+      }
+    },
+    {
+      "id": "event/ev-0132-zhang-heng-jordbavningsdetektor/titleSv",
+      "sv": "Zhang Heng konstruerar en jordbävningsdetektor",
+      "en": "Zhang Heng constructs an earthquake detector",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0132-zhang-heng-jordbavningsdetektor",
+        "fieldPath": "/titleSv",
+        "textSha256": "375f115a31d61fca87fd6514befa86537c1decd571176cba0f7839458d53ca95"
+      }
+    },
+    {
+      "id": "event/ev-0132-zhang-heng-jordbavningsdetektor/summarySv",
+      "sv": "En kopparapparat signalerar jordbävningar genom att kulor faller ur drakhuvuden.",
+      "en": "A copper device signals earthquakes by dropping balls from dragons’ heads.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0132-zhang-heng-jordbavningsdetektor",
+        "fieldPath": "/summarySv",
+        "textSha256": "937aae8f435377df4e26b9cf4b141858f55c3b0a415820192add0ef60fc92225"
+      }
+    },
+    {
+      "id": "event/ev-0132-zhang-heng-jordbavningsdetektor/geographySv",
+      "sv": "Kina",
+      "en": "China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0132-zhang-heng-jordbavningsdetektor",
+        "fieldPath": "/geographySv",
+        "textSha256": "57e3795a3bddf3ecc09fd620078f1ace8c68974bf50e387e364d256bd9cb13ae"
+      }
+    },
+    {
+      "id": "event/ev-0132-bar-kokhba-upproret/date/displaySv",
+      "sv": "132–136 e.Kr.",
+      "en": "AD 132–136",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0132-bar-kokhba-upproret",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ed546537660c6295b436222efa804446bf773efdb112c6be1e9bd92f6696c048"
+      }
+    },
+    {
+      "id": "event/ev-0132-bar-kokhba-upproret/date/noteSv",
+      "sv": "Geigers abstract daterar hela upproret till 132–136. Enskilda föremåls dateringar används inte som upprorets slutår.",
+      "en": "Geiger’s abstract dates the whole revolt to 132–136. Dates of individual objects are not used as the revolt’s end year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0132-bar-kokhba-upproret",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "8e74262e404086c6147a2cd127e2aaf17f35863fd5c50d06c49d0b055ad4a443"
+      }
+    },
+    {
+      "id": "event/ev-0132-bar-kokhba-upproret/titleSv",
+      "sv": "Bar Kokhba leder ett uppror mot Rom",
+      "en": "Bar Kokhba leads a revolt against Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0132-bar-kokhba-upproret",
+        "fieldPath": "/titleSv",
+        "textSha256": "be6a2b857d87ffaea9ceec0fec34bce44afc112a9fbc9e3a4f2139187fc7cd46"
+      }
+    },
+    {
+      "id": "event/ev-0132-bar-kokhba-upproret/summarySv",
+      "sv": "Ett judiskt uppror under Bar Kokhba utmanar det romerska styret.",
+      "en": "A Jewish revolt under Bar Kokhba challenges Roman rule.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0132-bar-kokhba-upproret",
+        "fieldPath": "/summarySv",
+        "textSha256": "249f676d9a88e23ded27a0076b6a528e92d5e0c579d25f957a74d232fa799f49"
+      }
+    },
+    {
+      "id": "event/ev-0132-bar-kokhba-upproret/geographySv",
+      "sv": "Judeen",
+      "en": "Judaea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0132-bar-kokhba-upproret",
+        "fieldPath": "/geographySv",
+        "textSha256": "b36e5c6a3e5e17fa6a4870dee15b1466256d7819a5d6267058aad7a316d0293e"
+      }
+    },
+    {
+      "id": "event/ev-0142-antoninus-mur-byggstart/date/displaySv",
+      "sv": "Från omkring 142 e.Kr.",
+      "en": "From around AD 142",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0142-antoninus-mur-byggstart",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9648ecc07412af75f6b348be74a2148104b351cce6b475a54cdc8aefab758257"
+      }
+    },
+    {
+      "id": "event/ev-0142-antoninus-mur-byggstart/date/noteSv",
+      "sv": "Byggstarten anges som ungefärlig. Arbetet kan ha tagit upp till tolv år; inget exakt slutår räknas fram.",
+      "en": "The start of construction is approximate. Work may have taken up to twelve years; no exact end year is calculated.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0142-antoninus-mur-byggstart",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b52c691c9094daad586e702ec1ed541dee879c250c922a9aedd420570c0ac5af"
+      }
+    },
+    {
+      "id": "event/ev-0142-antoninus-mur-byggstart/titleSv",
+      "sv": "Romarna börjar bygga Antoninus mur",
+      "en": "The Romans begin building the Antonine Wall",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0142-antoninus-mur-byggstart",
+        "fieldPath": "/titleSv",
+        "textSha256": "0aae4bd1d2a881b4db2b232e7e015af56e60696356e07999b498dda7ace3dfae"
+      }
+    },
+    {
+      "id": "event/ev-0142-antoninus-mur-byggstart/summarySv",
+      "sv": "En ny gränslinje anläggs mellan Forth och Clyde norr om Hadrianus mur.",
+      "en": "A new frontier line is established between the Forth and the Clyde, north of Hadrian’s Wall.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0142-antoninus-mur-byggstart",
+        "fieldPath": "/summarySv",
+        "textSha256": "604f98500c58f1c10ac34326311c7b53a2d4dd30e75b459b0da1b7b52041aed6"
+      }
+    },
+    {
+      "id": "event/ev-0142-antoninus-mur-byggstart/geographySv",
+      "sv": "Centrala Skottland, Britannien",
+      "en": "Central Scotland, Britain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0142-antoninus-mur-byggstart",
+        "fieldPath": "/geographySv",
+        "textSha256": "6c204452c65442a8853b98d4f152bcdce5d80f86c74d96751ad01f2ee9d73ee2"
+      }
+    },
+    {
+      "id": "event/ev-0148-an-shigao-luoyang/date/displaySv",
+      "sv": "148 e.Kr.",
+      "en": "AD 148",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0148-an-shigao-luoyang",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "49b9cfc8eaf7bc3a162b9c3702c0bfe0f43bdd0bd30c048f216a839edde7a30d"
+      }
+    },
+    {
+      "id": "event/ev-0148-an-shigao-luoyang/date/noteSv",
+      "sv": "Året gäller An Shigaos ankomst. Översättningsarbetet och den organiserade verksamheten har en längre historia.",
+      "en": "The year concerns An Shigao’s arrival. Translation work and organised activity have a longer history.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0148-an-shigao-luoyang",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "a6469e891a8270afcff5a492b077981fd866e9848387e62e63190fec19351737"
+      }
+    },
+    {
+      "id": "event/ev-0148-an-shigao-luoyang/titleSv",
+      "sv": "An Shigao anländer till Luoyang",
+      "en": "An Shigao arrives in Luoyang",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0148-an-shigao-luoyang",
+        "fieldPath": "/titleSv",
+        "textSha256": "5cb4745ca06f844fddd61b7e46048ce608255645e3781d45510471c866f7f085"
+      }
+    },
+    {
+      "id": "event/ev-0148-an-shigao-luoyang/summarySv",
+      "sv": "Hans verksamhet bidrar till organiserad buddhism och tidiga översättningar i staden.",
+      "en": "His work contributes to organised Buddhism and early translations in the city.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0148-an-shigao-luoyang",
+        "fieldPath": "/summarySv",
+        "textSha256": "ab01df941ff58c40d7a6a85a0f2adcd49afe5d022b4b54fb8c8bd6e1ae6b1aa8"
+      }
+    },
+    {
+      "id": "event/ev-0148-an-shigao-luoyang/geographySv",
+      "sv": "Luoyang, Kina",
+      "en": "Luoyang, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0148-an-shigao-luoyang",
+        "fieldPath": "/geographySv",
+        "textSha256": "e260e15c832c5bccebf356934364291331083bc2aa53e384cdac16adaee06360"
+      }
+    },
+    {
+      "id": "event/ev-0150-rudradaman-sudarshana-inskrift/date/displaySv",
+      "sv": "150 e.Kr.",
+      "en": "AD 150",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0150-rudradaman-sudarshana-inskrift",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "64995527db2d71a21d8981036a709980e6ebd696291e70bb8ec358ba9c71fde3"
+      }
+    },
+    {
+      "id": "event/ev-0150-rudradaman-sudarshana-inskrift/date/noteSv",
+      "sv": "Neelis daterar inskriften till 150, motsvarande shakaår 72. Året ges inte som en oberoende datering av varje reparationsarbete.",
+      "en": "Neelis dates the inscription to 150, corresponding to Shaka year 72. The year is not given as an independent date for every repair.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0150-rudradaman-sudarshana-inskrift",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "85b2ae6019edb9002fd97a9bc96bd4e748583a58693f617a61f8802837461b00"
+      }
+    },
+    {
+      "id": "event/ev-0150-rudradaman-sudarshana-inskrift/titleSv",
+      "sv": "Rudradamans inskrift hyllar en reparerad fördämning",
+      "en": "Rudradaman’s inscription celebrates a repaired dam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0150-rudradaman-sudarshana-inskrift",
+        "fieldPath": "/titleSv",
+        "textSha256": "245b39a12d9319714f382149c0e2a7db442d50f1745441d33d93298240a05f5e"
+      }
+    },
+    {
+      "id": "event/ev-0150-rudradaman-sudarshana-inskrift/summarySv",
+      "sv": "En sanskritinskrift vid Junagadh minns reparationer vid Sudarshanasjön.",
+      "en": "A Sanskrit inscription at Junagadh commemorates repairs at Lake Sudarshana.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0150-rudradaman-sudarshana-inskrift",
+        "fieldPath": "/summarySv",
+        "textSha256": "ab10eda9657d07a8c719ee858e7febb1d86a550604a1d1e0bf1a66a4d8aba36e"
+      }
+    },
+    {
+      "id": "event/ev-0150-rudradaman-sudarshana-inskrift/geographySv",
+      "sv": "Junagadh, Gujarat, Indien",
+      "en": "Junagadh, Gujarat, India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0150-rudradaman-sudarshana-inskrift",
+        "fieldPath": "/geographySv",
+        "textSha256": "468118d1aa6f82f1c4be94215e5115ba2f8684b2ba286a0b2bebe5e8d6ef899a"
+      }
+    },
+    {
+      "id": "event/ev-0150-teotihuacan-civilt-centrum/date/displaySv",
+      "sv": "Omkring 150 e.Kr.",
+      "en": "Around AD 150",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0150-teotihuacan-civilt-centrum",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "93a7e263fab68297d4ab75f7881d00b7b47780b140e871d3196e80fd10a78542"
+      }
+    },
+    {
+      "id": "event/ev-0150-teotihuacan-civilt-centrum/date/noteSv",
+      "sv": "Museets tidslinje anger en ungefärlig datering för ombyggnaden.",
+      "en": "The museum’s timeline gives an approximate date for the redevelopment.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0150-teotihuacan-civilt-centrum",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "393ca66b2053ee031a833f60a6527be056bb05abd5ecd95901047a793c09c72e"
+      }
+    },
+    {
+      "id": "event/ev-0150-teotihuacan-civilt-centrum/titleSv",
+      "sv": "Teotihuacan får ett utvidgat stadscentrum",
+      "en": "Teotihuacan gains an expanded civic centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0150-teotihuacan-civilt-centrum",
+        "fieldPath": "/titleSv",
+        "textSha256": "2eac343cbd0b8b8de35b9defd735447473ad9ce110a0b60e74e4b04366803ea1"
+      }
+    },
+    {
+      "id": "event/ev-0150-teotihuacan-civilt-centrum/summarySv",
+      "sv": "Månpyramiden förstoras. Marknadsanläggningen Great Compound och det religiösa och administrativa området Ciudadela förskjuter centrum söderut.",
+      "en": "The Moon Pyramid is enlarged. The Great Compound market complex and the Ciudadela religious and administrative precinct shift the centre southwards.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0150-teotihuacan-civilt-centrum",
+        "fieldPath": "/summarySv",
+        "textSha256": "b12870f6a7ee730f1429900c3cd0b8b1de6c46d24479ac3e7716ee6c20bfe37e"
+      }
+    },
+    {
+      "id": "event/ev-0150-teotihuacan-civilt-centrum/geographySv",
+      "sv": "Teotihuacan, centrala Mexiko",
+      "en": "Teotihuacan, central Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0150-teotihuacan-civilt-centrum",
+        "fieldPath": "/geographySv",
+        "textSha256": "3e7d93e7c834212b60bd5befa70e9a7d77b4dec564c8d164e749434669082970"
+      }
+    },
+    {
+      "id": "event/ev-0166-pastaende-romerska-sandebud/date/displaySv",
+      "sv": "166 e.Kr.",
+      "en": "AD 166",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0166-pastaende-romerska-sandebud",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ac22286226ddb273d042ab7821cede8dbaa29dade8eeed746b7073969a1ec7a7"
+      }
+    },
+    {
+      "id": "event/ev-0166-pastaende-romerska-sandebud/date/noteSv",
+      "sv": "Personerna uppgav att de var romerska sändebud. Uppgiften fastställer inte att de hade ett officiellt romerskt uppdrag.",
+      "en": "The people claimed to be Roman envoys. This does not establish that they had an official Roman mission.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0166-pastaende-romerska-sandebud",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f922973e7e83481cc9949397fbcba97c37a3c4a8e4f485ff4530bf8daf0bdf39"
+      }
+    },
+    {
+      "id": "event/ev-0166-pastaende-romerska-sandebud/titleSv",
+      "sv": "Resenärer som kallar sig romerska sändebud når Vietnam",
+      "en": "Travellers claiming to be Roman envoys reach Vietnam",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0166-pastaende-romerska-sandebud",
+        "fieldPath": "/titleSv",
+        "textSha256": "b80bc521776fd00de1ad71b3613444207921802c0f126bbbaa8ca6101de9eb3d"
+      }
+    },
+    {
+      "id": "event/ev-0166-pastaende-romerska-sandebud/summarySv",
+      "sv": "Gruppen anländer sjövägen till norra Vietnam på väg till Hanrikets hov.",
+      "en": "The group arrives by sea in northern Vietnam on its way to the Han court.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0166-pastaende-romerska-sandebud",
+        "fieldPath": "/summarySv",
+        "textSha256": "7bc04c20e844562c2cf203a478eff52283ab02252cb36cbf6c1c44bddc839c56"
+      }
+    },
+    {
+      "id": "event/ev-0166-pastaende-romerska-sandebud/geographySv",
+      "sv": "Norra Vietnam och sjövägen mot Kina",
+      "en": "Northern Vietnam and the sea route towards China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0166-pastaende-romerska-sandebud",
+        "fieldPath": "/geographySv",
+        "textSha256": "7079f367b4598ccca0f508fb6d8b893d342b99146d25629a0673975188aa95a0"
+      }
+    },
+    {
+      "id": "event/ev-0166-marcus-germanska-sarmatiska-krig/date/displaySv",
+      "sv": "166–180 e.Kr.",
+      "en": "AD 166–180",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0166-marcus-germanska-sarmatiska-krig",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d45976e30f17723f2f4b2f2916d405e3ae3ab3c2eefe1d2e0d1f4fce6505d6e2"
+      }
+    },
+    {
+      "id": "event/ev-0166-marcus-germanska-sarmatiska-krig/date/noteSv",
+      "sv": "Hela det angivna krigsintervallet behålls.",
+      "en": "The full stated interval of the wars is retained.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0166-marcus-germanska-sarmatiska-krig",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e5df928bd176a39f72eaabef232029aa19a77941fc39ee1f0c8da02149008989"
+      }
+    },
+    {
+      "id": "event/ev-0166-marcus-germanska-sarmatiska-krig/titleSv",
+      "sv": "Marcus Aurelius leder krig vid Donaugränsen",
+      "en": "Marcus Aurelius leads wars along the Danube frontier",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0166-marcus-germanska-sarmatiska-krig",
+        "fieldPath": "/titleSv",
+        "textSha256": "8d8d005a752c3db527575f6ee398790a5224d92078c1c6e8b85bfadb3894dc6d"
+      }
+    },
+    {
+      "id": "event/ev-0166-marcus-germanska-sarmatiska-krig/summarySv",
+      "sv": "Kejsaren leder personligen krig mot germanska och sarmatiska folk.",
+      "en": "The emperor personally leads wars against Germanic and Sarmatian peoples.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0166-marcus-germanska-sarmatiska-krig",
+        "fieldPath": "/summarySv",
+        "textSha256": "52bb474652fb56bf00b50e180b63168ba1a6b8c7c1ac804b0611ac65ac5b990e"
+      }
+    },
+    {
+      "id": "event/ev-0166-marcus-germanska-sarmatiska-krig/geographySv",
+      "sv": "Donauområdet och Pannonien",
+      "en": "Danube region and Pannonia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0166-marcus-germanska-sarmatiska-krig",
+        "fieldPath": "/geographySv",
+        "textSha256": "507c3581fdb9089958bf478ad0bdb6cbb45b1ee81d1b42a77a6a698e3ee4f4ab"
+      }
+    },
+    {
+      "id": "event/ev-0167-lokaksema-oversattningar/date/displaySv",
+      "sv": "167–186 e.Kr.",
+      "en": "AD 167–186",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0167-lokaksema-oversattningar",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e58ea4c8e4a729e5b708d04f8aa9519773eac6cfa4abce9c6563eb740abb814c"
+      }
+    },
+    {
+      "id": "event/ev-0167-lokaksema-oversattningar/date/noteSv",
+      "sv": "Intervallet anger Lokaksemas verksamhetstid hos Teiser, inte datum för varje enskild text.",
+      "en": "The interval gives Lokaksema’s period of activity in Teiser’s account, not the date of every individual text.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0167-lokaksema-oversattningar",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f6b71e969a25d921c991196073a41d6d93fd9e63fb255cd7aac883fb0d2dbd00"
+      }
+    },
+    {
+      "id": "event/ev-0167-lokaksema-oversattningar/titleSv",
+      "sv": "Lokaksema och kinesiska medarbetare översätter buddhistiska texter",
+      "en": "Lokaksema and Chinese colleagues translate Buddhist texts",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0167-lokaksema-oversattningar",
+        "fieldPath": "/titleSv",
+        "textSha256": "36445bfa272a50aeb85810e520613f7f4d9675001ec7ede6e7ba24193bb819f4"
+      }
+    },
+    {
+      "id": "event/ev-0167-lokaksema-oversattningar/summarySv",
+      "sv": "Översättningsgruppen använder även uttryck från det talade kinesiska språket.",
+      "en": "The translation team also uses expressions from spoken Chinese.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0167-lokaksema-oversattningar",
+        "fieldPath": "/summarySv",
+        "textSha256": "a3237dea8367668f635961d7d7dfec04c03c221b005aa952d83abca7852e8286"
+      }
+    },
+    {
+      "id": "event/ev-0167-lokaksema-oversattningar/geographySv",
+      "sv": "Kina",
+      "en": "China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0167-lokaksema-oversattningar",
+        "fieldPath": "/geographySv",
+        "textSha256": "57e3795a3bddf3ecc09fd620078f1ace8c68974bf50e387e364d256bd9cb13ae"
+      }
+    },
+    {
+      "id": "event/ev-0177-lyon-kristna-forfoljs/date/displaySv",
+      "sv": "177 e.Kr.",
+      "en": "AD 177",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0177-lyon-kristna-forfoljs",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f29907e20ac9393eb58832a785e65d5c3743db481408e63b14a3fa48cd800a52"
+      }
+    },
+    {
+      "id": "event/ev-0177-lyon-kristna-forfoljs/date/noteSv",
+      "sv": "Årtalet gäller förföljelsen i Lyon.",
+      "en": "The year concerns the persecution in Lyon.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0177-lyon-kristna-forfoljs",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1509f7e21c45f4f33c2ed52910655ecfacef04fc18a12ec8dac4a4faef54d68e"
+      }
+    },
+    {
+      "id": "event/ev-0177-lyon-kristna-forfoljs/titleSv",
+      "sv": "Kristna förföljs i Lyon",
+      "en": "Christians are persecuted in Lyon",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0177-lyon-kristna-forfoljs",
+        "fieldPath": "/titleSv",
+        "textSha256": "066df0e5e91ff1ae16b1806f7319c3b116c36ee4e8475d10cb2165024bb4654a"
+      }
+    },
+    {
+      "id": "event/ev-0177-lyon-kristna-forfoljs/summarySv",
+      "sv": "Bland dem som dödas finns Pothinus och Blandina.",
+      "en": "Those killed include Pothinus and Blandina.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0177-lyon-kristna-forfoljs",
+        "fieldPath": "/summarySv",
+        "textSha256": "766393d700193894b546e89b2b5ed4595bdef10472c37cd1492f429773d2cc14"
+      }
+    },
+    {
+      "id": "event/ev-0177-lyon-kristna-forfoljs/geographySv",
+      "sv": "Lugdunum, nuvarande Lyon, Frankrike",
+      "en": "Lugdunum, present-day Lyon, France",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0177-lyon-kristna-forfoljs",
+        "fieldPath": "/geographySv",
+        "textSha256": "581fd25299abf35cf62d8dfa40f9659eeec475bf277c60660cf140cc8f5c2da8"
+      }
+    },
+    {
+      "id": "event/ev-0184-gula-turbaner-upproret/date/displaySv",
+      "sv": "184 e.Kr.",
+      "en": "AD 184",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0184-gula-turbaner-upproret",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "63ab267357682e7506bad02f08a80c5104c33514442bf3a1a1222b28631f557b"
+      }
+    },
+    {
+      "id": "event/ev-0184-gula-turbaner-upproret/date/noteSv",
+      "sv": "Året gäller upproret. Den efterföljande långa krigsperioden dateras inte i sin helhet till 184.",
+      "en": "The year concerns the uprising. The entire long period of warfare that follows is not dated to 184.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0184-gula-turbaner-upproret",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "000a17777ad9a92e63505af5443bb1ac931a5f7d79b5e93618c779652f94c0d4"
+      }
+    },
+    {
+      "id": "event/ev-0184-gula-turbaner-upproret/titleSv",
+      "sv": "De gula turbanerna gör uppror i Kina",
+      "en": "The Yellow Turbans rebel in China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0184-gula-turbaner-upproret",
+        "fieldPath": "/titleSv",
+        "textSha256": "6374f1a41bf1bfe6fcd1d05d2173de2bbf7f74f0b3adaccd43a51b9cf8a7bbde"
+      }
+    },
+    {
+      "id": "event/ev-0184-gula-turbaner-upproret/summarySv",
+      "sv": "Upproret följs av en lång period av inbördeskrig.",
+      "en": "The uprising is followed by a long period of civil war.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0184-gula-turbaner-upproret",
+        "fieldPath": "/summarySv",
+        "textSha256": "b4e043b82b98d00d7d416930f01c877f29b94ec0ad8af0fc4742921164b27e66"
+      }
+    },
+    {
+      "id": "event/ev-0184-gula-turbaner-upproret/geographySv",
+      "sv": "Kina",
+      "en": "China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0184-gula-turbaner-upproret",
+        "fieldPath": "/geographySv",
+        "textSha256": "57e3795a3bddf3ecc09fd620078f1ace8c68974bf50e387e364d256bd9cb13ae"
+      }
+    },
+    {
+      "id": "event/ev-0189-dong-zhuo-griper-makten/date/displaySv",
+      "sv": "189 e.Kr.",
+      "en": "AD 189",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0189-dong-zhuo-griper-makten",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2fca1af7fddf3d6894d81b35767478e788f2090ac05382fba1b99c952d88e199"
+      }
+    },
+    {
+      "id": "event/ev-0189-dong-zhuo-griper-makten/date/noteSv",
+      "sv": "Året gäller maktövertagandet och bytet av kejsare.",
+      "en": "The year concerns the seizure of power and replacement of the emperor.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0189-dong-zhuo-griper-makten",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f8ef8a7fcd91e1cfdfb901a4be1583bc9c6adf86de04b40f80bbeadf56d94b3b"
+      }
+    },
+    {
+      "id": "event/ev-0189-dong-zhuo-griper-makten/titleSv",
+      "sv": "Dong Zhuo griper makten i Luoyang",
+      "en": "Dong Zhuo seizes power in Luoyang",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0189-dong-zhuo-griper-makten",
+        "fieldPath": "/titleSv",
+        "textSha256": "29883cafee9f5b0d3620ca737b5e9b9a5a99059ba7b819f3883655068b75d5e6"
+      }
+    },
+    {
+      "id": "event/ev-0189-dong-zhuo-griper-makten/summarySv",
+      "sv": "Han avsätter Liu Bian och sätter Liu Xie, kejsar Xian, på tronen.",
+      "en": "He deposes Liu Bian and places Liu Xie, Emperor Xian, on the throne.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0189-dong-zhuo-griper-makten",
+        "fieldPath": "/summarySv",
+        "textSha256": "21af69cc9e4ef0de648897cf2d9d3f5ba234e823866d61ae653996db28a4d819"
+      }
+    },
+    {
+      "id": "event/ev-0189-dong-zhuo-griper-makten/geographySv",
+      "sv": "Luoyang, Kina",
+      "en": "Luoyang, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0189-dong-zhuo-griper-makten",
+        "fieldPath": "/geographySv",
+        "textSha256": "e260e15c832c5bccebf356934364291331083bc2aa53e384cdac16adaee06360"
+      }
+    },
+    {
+      "id": "event/ev-0196-cao-cao-hovet-xu/date/displaySv",
+      "sv": "196 e.Kr.",
+      "en": "AD 196",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0196-cao-cao-hovet-xu",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "500331aaff0c28fb54909f2b76799c48f44e81d27a226b740060b7fbb80eae09"
+      }
+    },
+    {
+      "id": "event/ev-0196-cao-cao-hovet-xu/date/noteSv",
+      "sv": "Dateringen gäller Cao Caos övertagande av hovets beskydd och flytten till Xu.",
+      "en": "The date concerns Cao Cao’s assumption of the court’s protection and its move to Xu.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0196-cao-cao-hovet-xu",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d1d7e6f2bcae96df6f2fc3ec459ac0847c966caccdc001f0a586a4463fb05b83"
+      }
+    },
+    {
+      "id": "event/ev-0196-cao-cao-hovet-xu/titleSv",
+      "sv": "Cao Cao för Hanhovet till Xu",
+      "en": "Cao Cao brings the Han court to Xu",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0196-cao-cao-hovet-xu",
+        "fieldPath": "/titleSv",
+        "textSha256": "cdca418a7411575ffb74f0c396665fb32f39fa4c4586de9b6b75ba36a35dab5f"
+      }
+    },
+    {
+      "id": "event/ev-0196-cao-cao-hovet-xu/summarySv",
+      "sv": "Kejsar Xian kommer under Cao Caos beskydd vid dennes högkvarter.",
+      "en": "Emperor Xian comes under Cao Cao’s protection at his headquarters.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0196-cao-cao-hovet-xu",
+        "fieldPath": "/summarySv",
+        "textSha256": "846981dfae7e882e7365087ac66cfc9077f2f34e0aa5bf1e7fd15b44f23e6788"
+      }
+    },
+    {
+      "id": "event/ev-0196-cao-cao-hovet-xu/geographySv",
+      "sv": "Xu, nära nuvarande Xuchang i Henan, Kina",
+      "en": "Xu, near present-day Xuchang in Henan, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0196-cao-cao-hovet-xu",
+        "fieldPath": "/geographySv",
+        "textSha256": "980aff9f20832d75a4192378d5a8423d349e38ea19e4a5c1f83666f1d3bdc99f"
+      }
+    },
+    {
+      "id": "event/ev-0197-lugdunum-slag/date/displaySv",
+      "sv": "197 e.Kr.",
+      "en": "AD 197",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0197-lugdunum-slag",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b3a631e6e71d8b9f4b9bd6153e188a6d5d7d82aae14d3249106ad750f183fb6e"
+      }
+    },
+    {
+      "id": "event/ev-0197-lugdunum-slag/date/noteSv",
+      "sv": "Året avser slaget vid Lugdunum.",
+      "en": "The year concerns the battle of Lugdunum.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0197-lugdunum-slag",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ca3196ce1ad9f06868062a252b62d1c9006383941e4cda2127ce7cac0c4173e2"
+      }
+    },
+    {
+      "id": "event/ev-0197-lugdunum-slag/titleSv",
+      "sv": "Septimius Severus besegrar Clodius Albinus",
+      "en": "Septimius Severus defeats Clodius Albinus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0197-lugdunum-slag",
+        "fieldPath": "/titleSv",
+        "textSha256": "d01ccdcdc6e044218dd3122b246d468525bd60359f14597abd56552d4233a663"
+      }
+    },
+    {
+      "id": "event/ev-0197-lugdunum-slag/summarySv",
+      "sv": "Severus vinner slaget och utsätter staden, som stött hans motståndare, för repressalier.",
+      "en": "Severus wins the battle and subjects the city, which had supported his opponent, to reprisals.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0197-lugdunum-slag",
+        "fieldPath": "/summarySv",
+        "textSha256": "8375d2945d72cbbd217120f8fca434858835711904e18033a55c2c1005922d9b"
+      }
+    },
+    {
+      "id": "event/ev-0197-lugdunum-slag/geographySv",
+      "sv": "Lugdunum, nuvarande Lyon, Frankrike",
+      "en": "Lugdunum, present-day Lyon, France",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0197-lugdunum-slag",
+        "fieldPath": "/geographySv",
+        "textSha256": "581fd25299abf35cf62d8dfa40f9659eeec475bf277c60660cf140cc8f5c2da8"
       }
     }
   ]

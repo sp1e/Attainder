@@ -6380,6 +6380,270 @@
       "originalChronology": "The ruler's reign is 1934–1924 BCE; ca. 1850 BCE dates the commemorative cone after his death.",
       "scopedClaim": "Lipit-Ishtar issued codified laws. The cone's later manufacture date must not become the law's promulgation date.",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-unesco-timgad",
+      "title": "Timgad",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/194/",
+      "locator": "English description and Outstanding Universal Value, Brief synthesis, first paragraph.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "AD 100",
+      "originalChronology": "The English text dates the foundation to AD 100; the encampment identification is qualified as probable.",
+      "scopedClaim": "Trajan established Timgad as a military colony with an orthogonal plan.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-mnm-dacian-column",
+      "title": "Trajan’s Column",
+      "institution": "Hungarian National Museum, Seuso Treasure chronology",
+      "url": "https://seuso.mnm.hu/en/the-seuso-treasuer/chronology/traian-column",
+      "locator": "Entry headed 113; opening description and paragraph identifying the two Dacian wars.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "101–102 and 105–106",
+      "originalChronology": "The monument is dated 113; the relief narrative covers wars in 101–102 and 105–106.",
+      "scopedClaim": "Trajan’s two Dacian wars were later commemorated on the column in Rome.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-mactutor-ptolemy",
+      "title": "Claudius Ptolemy",
+      "institution": "MacTutor History of Mathematics, University of St Andrews",
+      "url": "https://mathshistory.st-andrews.ac.uk/Biographies/Ptolemy/",
+      "locator": "Biography, paragraphs introducing the thirteen-book Almagest, its second-century composition and geocentric mathematical models.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "second century",
+      "originalChronology": "The discussion places the Almagest in the second century; no exact completion year is supplied in the retained passage.",
+      "scopedClaim": "Ptolemy systematised mathematical models of celestial motion in the Almagest.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-taylor-vietnam-trade",
+      "title": "What Lies Behind the Earliest Story of Buddhism in Ancient Vietnam?",
+      "institution": "K. W. Taylor; The Journal of Asian Studies, Cambridge University Press",
+      "url": "https://www.cambridge.org/core/journals/journal-of-asian-studies/article/what-lies-behind-the-earliest-story-of-buddhism-in-ancient-vietnam/DB39DCFD3FAD0971F056A896E3664C2F",
+      "locator": "77(1), 2018, 107–122; maritime-contact paragraphs at rendered lines 530–535 and note 9.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "In 166 CE",
+      "originalChronology": "Arikamedu–Oc Eo contact is assigned to the second century; a claimed Roman delegation passed through northern Vietnam in 166.",
+      "scopedClaim": "The article supports a maritime network and a reported delegation whose Roman credentials are not established.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-hunan-cai-lun",
+      "title": "Cai Lun",
+      "institution": "People’s Government of Hunan Province; Hunan Library",
+      "url": "https://enghunan.gov.cn/hneng/AboutHunan/HistoryCulture/Celebrities/201806/t20180619_5035364.html",
+      "locator": "Biographical paragraphs on pre-existing paper, improved materials and the process reported in AD 105; rendered lines 126–128.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "105 AD",
+      "originalChronology": "The improved composition/process is dated 105; paper itself existed centuries earlier.",
+      "scopedClaim": "Cai Lun improved and standardised papermaking rather than inventing all paper.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-mnm-pannonia",
+      "title": "Reign of Emperor Trajan",
+      "institution": "Hungarian National Museum, Seuso Treasure chronology",
+      "url": "https://seuso.mnm.hu/en/the-seuso-treasuer/chronology/reign-emperor-trajan",
+      "locator": "Entry headed 98–117, paragraph on the division of Pannonia.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "In 106",
+      "originalChronology": "The provincial division is specifically assigned to 106.",
+      "scopedClaim": "Trajan divided Pannonia into Upper and Lower Pannonia.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-met-nabataea",
+      "title": "Nabataean Kingdom and Petra",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/it/essays/nabataean-kingdom-and-petra",
+      "locator": "Paragraph on the end of Nabataean independence and incorporation into Arabia under Trajan.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "106 A.D.",
+      "originalChronology": "The incorporation is dated 106, not the entire development of Petra.",
+      "scopedClaim": "The Nabataean kingdom became part of the Roman province of Arabia.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-posen-diaspora",
+      "title": "The Diaspora Revolt",
+      "institution": "The Posen Library of Jewish Culture and Civilization",
+      "url": "https://www.posenlibrary.com/guide/diaspora-revolt",
+      "locator": "Public guide heading and introductory paragraphs; rendered lines 35–44.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "115–117",
+      "originalChronology": "The guide dates the revolt to 115–117 and describes its spread from Cyrene to Egypt and Cyprus.",
+      "scopedClaim": "Jewish communities rebelled in several Roman provinces; hostile ancient atrocity reports are not accepted at face value.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-mnm-hadrian-municipal",
+      "title": "Reign of Emperor Hadrian",
+      "institution": "Hungarian National Museum, Seuso Treasure chronology",
+      "url": "https://seuso.mnm.hu/en/the-seuso-treasuer/chronology/reign-emperor-hadrian",
+      "locator": "Entry heading and paragraph listing Aquincum, Carnuntum, Salla and Mursa.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "117–138",
+      "originalChronology": "The acts are placed within Hadrian’s reign, 117–138; no common exact grant year is given.",
+      "scopedClaim": "Hadrian granted urban rights to Aquincum, Carnuntum and Salla and founded the colony of Mursa.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-eh-hadrian-wall",
+      "title": "History of Hadrian’s Wall",
+      "institution": "David Breeze; English Heritage",
+      "url": "https://www.english-heritage.org.uk/visit/places/hadrians-wall/hadrians-wall-history-and-stories/history/",
+      "locator": "Sections on Hadrian’s visit, initial construction and the builders; rendered lines 225–230 and 254–255.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "probably began that year",
+      "originalChronology": "The wall probably began in 122 and took at least six years; construction may have started before Hadrian’s visit. No exact completion year is given.",
+      "scopedClaim": "The army built a frontier barrier across northern Britain under Hadrian.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-cribb-kanishka",
+      "title": "Numismatic evidence and the date of Kaniṣka I",
+      "institution": "Joe Cribb; Archaeopress, Oxford Gandhara Connections",
+      "url": "https://www.carc.ox.ac.uk/PublicFiles/media/Problems%20of%20chron%20indiv%20chapters/Cribb.pdf",
+      "locator": "Problems of Chronology in Gandhāran Art (2018), printed pp. 7–8 and 26, especially the accession discussion and rejection of the 227 model.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "AD 127",
+      "originalChronology": "Cribb endorses 127, reports continuing support for 78 among some scholars, and argues against 227. These are competing frameworks, not one continuous event interval.",
+      "scopedClaim": "The accession date is framework-dependent; 127 is the proposal defended here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-sims-williams-kanishka",
+      "title": "Bactrian Historical Inscriptions of the Kushan Period",
+      "institution": "Nicholas Sims-Williams; The Silk Road, American University",
+      "url": "https://edspace.american.edu/silkroadjournal/wp-content/uploads/sites/984/2017/09/srjournal_v10-2012.pdf",
+      "locator": "The Silk Road 10 (2012), printed p. 76 (PDF page 81), opening Rabatak discussion.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "127/8 CE",
+      "originalChronology": "The author accepts 127/8 for Kanishka’s era. Rabatak itself may date no earlier than 132/3; first-year events are retrospective.",
+      "scopedClaim": "Rabatak links Kanishka with a new era. Possible adoption of Bactrian is qualified and is not separately dated as fact.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-mactutor-zhang-heng",
+      "title": "Zhang Heng",
+      "institution": "MacTutor History of Mathematics, University of St Andrews",
+      "url": "https://mathshistory.st-andrews.ac.uk/Biographies/Zhang_Heng/",
+      "locator": "Biography, earthquake-detection paragraphs, rendered lines 52–54.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "In 132",
+      "originalChronology": "The invention is dated 132; the later detection report belongs to 138.",
+      "scopedClaim": "Zhang Heng designed a copper device that signalled earthquakes with falling balls; no magnitude measurement is inferred.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-geiger-bar-kokhba",
+      "title": "The Bar Kokhba Revolt: The Greek point of view",
+      "institution": "Joseph Geiger; Historia, Hebrew University of Jerusalem research portal",
+      "url": "https://cris.huji.ac.il/en/publications/the-bar-kokhba-revolt-the-greek-point-of-view/",
+      "locator": "Historia 65(4), 2016, 497–519; publicly displayed abstract and bibliographic record.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "132-136",
+      "originalChronology": "The abstract assigns the revolt to 132–136; this is not a museum object’s production date.",
+      "scopedClaim": "Bar Kokhba led a Jewish rebellion against Rome.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-hes-antonine-chronology",
+      "title": "History and Chronology of the Antonine Wall",
+      "institution": "Antonine Wall World Heritage Site",
+      "url": "https://www.antoninewall.org/education-and-research/history-and-chronology-of-the-wall",
+      "locator": "Roman occupation section, paragraphs on construction around 142 and withdrawal beginning around 158; rendered lines 37–44.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "starting around AD 142",
+      "originalChronology": "Construction began around 142 and may have lasted up to twelve years. Withdrawal was decided around 158 and may have continued to 164 or later; final dating is contested.",
+      "scopedClaim": "The wall marks a northward frontier move followed by a gradual withdrawal.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-neelis-transmission",
+      "title": "Early Buddhist Transmission and Trade Networks: Mobility and Exchange within and beyond the Northwestern Borderlands of South Asia",
+      "institution": "Jason Neelis; Brill, hosted by the Library of Congress",
+      "url": "https://tile.loc.gov/storage-services/master/gdc/gdcebookspublic/20/20/71/84/97/2020718497/2020718497.pdf",
+      "locator": "2011; printed pp. 6, 129 and 305 (PDF pages 25, 148 and 324).",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "150 CE (Śaka year 72)",
+      "originalChronology": "An Shigao arrives in 148; Rudradaman’s inscription is dated 150, explicitly equated with Śaka 72.",
+      "scopedClaim": "An Shigao contributed to organised Buddhist activity in Luoyang. Rudradaman’s Sanskrit inscription commemorates embankment repairs.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-met-mexico",
+      "title": "Mexico, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/zh/toah/ht/05/cam.html",
+      "locator": "Key Events, the two entries headed ca. 150 A.D.: Teotihuacan and La Mojarra.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "ca. 150 A.D.",
+      "originalChronology": "Both entries use approximate 150; the timeline does not give the specific Long Count dates mentioned in unverified discovery leads.",
+      "scopedClaim": "Teotihuacan’s civic centre expanded; La Mojarra’s stela combines a figure with a long, tentatively identified Epi-Olmec inscription.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-mnm-marcomannic",
+      "title": "Reign of Marcus Aurelius",
+      "institution": "Hungarian National Museum, Seuso Treasure chronology",
+      "url": "https://seuso.mnm.hu/en/the-seuso-treasuer/chronology/reign-marcus-aurelius",
+      "locator": "Entry heading and paragraph on wars against Germanic and Sarmatian peoples.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "166-180",
+      "originalChronology": "The war interval is 166–180, not the emperor’s whole reign.",
+      "scopedClaim": "Marcus Aurelius personally led wars against Germanic and Sarmatian peoples.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-teiser-translations",
+      "title": "The Spirits of Chinese Religion",
+      "institution": "Stephen F. Teiser; Princeton University Press",
+      "url": "https://assets.press.princeton.edu/chapters/i5804.pdf",
+      "locator": "Introduction, printed p. 19 (PDF page 17), paragraph on early translation teams.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "fl. 167–186",
+      "originalChronology": "Lokaksema’s activity is dated 167–186; these are floruit bounds, not the dates of every translation.",
+      "scopedClaim": "Lokaksema worked with Chinese assistants on early Buddhist translations.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-lugdunum-war-persecution",
+      "title": "Lyon’s origins",
+      "institution": "Lugdunum Museum and Roman Theatres, Métropole de Lyon",
+      "url": "https://lugdunum.grandlyon.com/en/a-museum-of-sites/lyon-s-origins",
+      "locator": "War and peace in Lugdunum, paragraphs on 177 and 197.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "in 197",
+      "originalChronology": "The persecution is dated 177 and the battle 197.",
+      "scopedClaim": "Christians were persecuted at Lyon; later Septimius Severus defeated Clodius Albinus there and punished the city.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-xiong-yellow-turban",
+      "title": "The Northern Economy",
+      "institution": "Victor Cunrui Xiong; Cambridge University Press",
+      "url": "https://www.cambridge.org/core/books/abs/cambridge-history-of-china/northern-economy/628CBB089FD8B642C7DB5858D5F6E1BF",
+      "locator": "The Cambridge History of China, volume 2, chapter 14; public Summary paragraph on the rebellion and later civil war.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Yellow Turban rebellion (184)",
+      "originalChronology": "184 dates the rebellion; the protracted civil wars extend beyond it.",
+      "scopedClaim": "The rebellion preceded a prolonged period of conflict in northern China.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0100-crespigny-han-preview",
+      "title": "Wei",
+      "institution": "Rafe de Crespigny; The Cambridge History of China, volume 2, Cambridge University Press",
+      "url": "https://api.pageplace.de/preview/DT0400.9781108660464_A45555048/preview-9781108660464_A45555048.pdf",
+      "locator": "2019, chapter 1, printed pp. 28 and 31 (PDF pages 52 and 56); Dong Zhuo’s seizure and Cao Cao’s custody of Emperor Xian.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "in 196",
+      "originalChronology": "Dong Zhuo’s coup is dated 189; Cao Cao’s transfer of the court to Xu is dated 196.",
+      "scopedClaim": "Two distinct transfers of effective control over the Han court.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
     }
   ],
   "events": [
@@ -20206,6 +20470,655 @@
         "bc2000-met-kings"
       ],
       "selectionNote": "A royal campaign with forced labor consequences merits a separate entry from Nubian fortification. Retain full alternative reign bounds; no year or unnamed conquered city is invented.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0100-timgad-grundas",
+      "date": {
+        "kind": "exact",
+        "startYear": 100,
+        "endYear": 100,
+        "displaySv": "100 e.Kr.",
+        "noteSv": "Årtalet avser kolonins grundande; senare byggnader har andra dateringar."
+      },
+      "titleSv": "Trajanus grundar Timgad",
+      "summarySv": "En romersk militärkoloni anläggs vid Aurèsbergen med ett regelbundet gatunät.",
+      "geographySv": "Timgad, nuvarande Algeriet",
+      "category": "politics",
+      "importance": 1,
+      "sourceIds": [
+        "ad0100-unesco-timgad"
+      ],
+      "selectionNote": "A new colonial town and regional instrument of Roman administration.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0101-trajanus-forsta-daciska-krig",
+      "date": {
+        "kind": "range",
+        "startYear": 101,
+        "endYear": 102,
+        "displaySv": "101–102 e.Kr.",
+        "noteSv": "Det första kriget hålls isär från fälttåget 105–106."
+      },
+      "titleSv": "Trajanus för sitt första krig mot dakerna",
+      "summarySv": "Romerska styrkor under Trajanus strider mot dakerna.",
+      "geographySv": "Dakien, nedre Donauområdet",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-mnm-dacian-column"
+      ],
+      "selectionNote": "First of two separately dated wars; the monument is a later act of commemoration.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0101-arikamedu-oc-eo-kontakter",
+      "date": {
+        "kind": "range",
+        "startYear": 101,
+        "endYear": 200,
+        "displaySv": "Andra århundradet e.Kr. (101–200)",
+        "noteSv": "Dateringen gäller belagda kontakter under det andra århundradet, inte handelsledens början."
+      },
+      "titleSv": "Handeln förbinder Arikamedu och Oc Eo",
+      "summarySv": "Hamnorterna i sydöstra Indien och Mekongdeltat har betydande kontakter längs sjövägarna.",
+      "geographySv": "Arikamedu i Indien och Oc Eo i nuvarande Vietnam",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ad0100-taylor-vietnam-trade"
+      ],
+      "selectionNote": "A specific interregional exchange network, kept distinct from the reported delegation of 166.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0101-ptolemaios-almagest",
+      "date": {
+        "kind": "range",
+        "startYear": 101,
+        "endYear": 200,
+        "displaySv": "Andra århundradet e.Kr. (101–200)",
+        "noteSv": "Källpassagen anger det andra århundradet. Hela århundradet behålls utan ett konstruerat tillkomstår."
+      },
+      "titleSv": "Ptolemaios sammanställer Almagest",
+      "summarySv": "I tretton böcker beskriver Ptolemaios matematiska modeller för solens, månens och planeternas rörelser med jorden i centrum.",
+      "geographySv": "Alexandria, Egypten",
+      "category": "discovery",
+      "importance": 3,
+      "sourceIds": [
+        "ad0100-mactutor-ptolemy"
+      ],
+      "selectionNote": "A major synthesis of mathematical astronomy; no invented completion year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0105-cai-lun-papper",
+      "date": {
+        "kind": "exact",
+        "startYear": 105,
+        "endYear": 105,
+        "displaySv": "105 e.Kr.",
+        "noteSv": "Årtalet gäller Cai Luns förbättrade metod. Papper fanns redan tidigare i Kina."
+      },
+      "titleSv": "Cai Lun förbättrar papperstillverkningen",
+      "summarySv": "Cai Lun utvecklar och standardiserar material och arbetsmetoder för att framställa papper.",
+      "geographySv": "Kina",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-hunan-cai-lun"
+      ],
+      "selectionNote": "A named technical improvement, without attributing the first invention of paper to one person.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0105-trajanus-andra-daciska-krig",
+      "date": {
+        "kind": "range",
+        "startYear": 105,
+        "endYear": 106,
+        "displaySv": "105–106 e.Kr.",
+        "noteSv": "Det andra krigets hela intervall behålls."
+      },
+      "titleSv": "Trajanus för sitt andra krig mot dakerna",
+      "summarySv": "Romerska styrkor under Trajanus genomför ett nytt krig i Dakien.",
+      "geographySv": "Dakien, nedre Donauområdet",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-mnm-dacian-column"
+      ],
+      "selectionNote": "A renewed war, not an extra event for every campaign season.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0106-nabatea-arabia",
+      "date": {
+        "kind": "exact",
+        "startYear": 106,
+        "endYear": 106,
+        "displaySv": "106 e.Kr.",
+        "noteSv": "Dateringen avser rikets införlivande i provinsen Arabia."
+      },
+      "titleSv": "Nabatéerriket införlivas i Romarriket",
+      "summarySv": "Det tidigare självständiga riket blir en del av den romerska provinsen Arabia under Trajanus.",
+      "geographySv": "Nabatéerriket och Petra, nuvarande Jordanien med omgivningar",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-met-nabataea"
+      ],
+      "selectionNote": "A change in sovereignty; no unsupported claim about the military manner of annexation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0106-pannonia-delas",
+      "date": {
+        "kind": "exact",
+        "startYear": 106,
+        "endYear": 106,
+        "displaySv": "106 e.Kr.",
+        "noteSv": "Årtalet avser provinsdelningen."
+      },
+      "titleSv": "Trajanus delar Pannonien",
+      "summarySv": "Provinsen delas i Övre och Nedre Pannonien.",
+      "geographySv": "Pannonien i Donauområdet",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-mnm-pannonia"
+      ],
+      "selectionNote": "A provincial reorganisation rather than a ruler-list entry.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0113-trajanuskolonnen",
+      "date": {
+        "kind": "exact",
+        "startYear": 113,
+        "endYear": 113,
+        "displaySv": "113 e.Kr.",
+        "noteSv": "Årtalet gäller kolonnen, inte de krig som dess reliefer skildrar."
+      },
+      "titleSv": "Trajanuskolonnen uppförs i Rom",
+      "summarySv": "Kolonnens reliefer framställer kejsarens två krig mot dakerna.",
+      "geographySv": "Rom, Italien",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "ad0100-mnm-dacian-column"
+      ],
+      "selectionNote": "Public imperial commemoration is distinct from the earlier wars; no separate event for each relief.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0115-judiska-diasporaupproret",
+      "date": {
+        "kind": "range",
+        "startYear": 115,
+        "endYear": 117,
+        "displaySv": "115–117 e.Kr.",
+        "noteSv": "Intervallet följer Posen Librarys översikt. Fientliga antika skildringar av övergrepp återges inte som säkra fakta."
+      },
+      "titleSv": "Judiska uppror bryter ut i romerska provinser",
+      "summarySv": "Upproret börjar i Kyrene och våldet sprids till Egypten och Cypern.",
+      "geographySv": "Kyrenaika, Egypten och Cypern",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-posen-diaspora"
+      ],
+      "selectionNote": "A connected multi-province conflict, distinct from the later Bar Kokhba revolt.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0117-hadrianus-pannoniska-stadsrattigheter",
+      "date": {
+        "kind": "range",
+        "startYear": 117,
+        "endYear": 138,
+        "displaySv": "117–138 e.Kr.",
+        "noteSv": "Källan placerar åtgärderna under Hadrianus regering. Något gemensamt exakt år anges inte."
+      },
+      "titleSv": "Hadrianus ger pannoniska orter stadsrättigheter",
+      "summarySv": "Aquincum, Carnuntum och Salla får stadsrättigheter. Hadrianus grundar också kolonin Mursa.",
+      "geographySv": "Pannonien, nuvarande Ungern, Österrike och Kroatien",
+      "category": "politics",
+      "importance": 1,
+      "sourceIds": [
+        "ad0100-mnm-hadrian-municipal"
+      ],
+      "selectionNote": "One regional programme across the full reign, not four artificially dated town events.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0122-hadrianus-mur-byggstart",
+      "date": {
+        "kind": "approximate",
+        "startYear": 122,
+        "endYear": 122,
+        "displaySv": "Troligen från 122 e.Kr.",
+        "noteSv": "Bygget började troligen 122, möjligen före Hadrianus besök, och tog minst sex år. Ett exakt färdigställandeår anges inte."
+      },
+      "titleSv": "Armén börjar bygga Hadrianus mur",
+      "summarySv": "En romersk gränsbarriär byggs tvärs över norra Britannien.",
+      "geographySv": "Norra England, Britannien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-eh-hadrian-wall"
+      ],
+      "selectionNote": "Construction onset only; the duration is retained without inventing a completion year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0127-kanishka-tilltrade",
+      "date": {
+        "kind": "disputed",
+        "startYear": 127,
+        "endYear": 128,
+        "displaySv": "127/128 e.Kr., enligt vald kronologi",
+        "noteSv": "Sims-Williams godtar 127/128 och Cribb försvarar 127. Cribb redovisar fortsatt stöd för 78 hos vissa forskare och avvisar modellen 227; dessa modeller bildar inte ett sammanhängande tidsintervall."
+      },
+      "titleSv": "Kanishka I tillträder enligt kronologin 127/128",
+      "summarySv": "En ny era knyts till Kanishkas första regeringsår. Dateringen följer de lästa författarnas tolkning.",
+      "geographySv": "Kushanriket i Central- och Sydasien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-cribb-kanishka",
+        "ad0100-sims-williams-kanishka"
+      ],
+      "selectionNote": "A source-attributed accession in a disputed chronological framework. Rabatak’s later engraving and tentative language-policy interpretation are not dated to the accession.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0132-zhang-heng-jordbavningsdetektor",
+      "date": {
+        "kind": "exact",
+        "startYear": 132,
+        "endYear": 132,
+        "displaySv": "132 e.Kr.",
+        "noteSv": "Året gäller konstruktionen; källans berättelse om en upptäckt jordbävning hör till 138."
+      },
+      "titleSv": "Zhang Heng konstruerar en jordbävningsdetektor",
+      "summarySv": "En kopparapparat signalerar jordbävningar genom att kulor faller ur drakhuvuden.",
+      "geographySv": "Kina",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-mactutor-zhang-heng"
+      ],
+      "selectionNote": "A distinct instrument innovation; no claim to measure earthquake magnitude.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0132-bar-kokhba-upproret",
+      "date": {
+        "kind": "range",
+        "startYear": 132,
+        "endYear": 136,
+        "displaySv": "132–136 e.Kr.",
+        "noteSv": "Geigers abstract daterar hela upproret till 132–136. Enskilda föremåls dateringar används inte som upprorets slutår."
+      },
+      "titleSv": "Bar Kokhba leder ett uppror mot Rom",
+      "summarySv": "Ett judiskt uppror under Bar Kokhba utmanar det romerska styret.",
+      "geographySv": "Judeen",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-geiger-bar-kokhba"
+      ],
+      "selectionNote": "A major revolt, dated from the scholarly abstract’s stated scope.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0142-antoninus-mur-byggstart",
+      "date": {
+        "kind": "approximate",
+        "startYear": 142,
+        "endYear": 142,
+        "displaySv": "Från omkring 142 e.Kr.",
+        "noteSv": "Byggstarten anges som ungefärlig. Arbetet kan ha tagit upp till tolv år; inget exakt slutår räknas fram."
+      },
+      "titleSv": "Romarna börjar bygga Antoninus mur",
+      "summarySv": "En ny gränslinje anläggs mellan Forth och Clyde norr om Hadrianus mur.",
+      "geographySv": "Centrala Skottland, Britannien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-hes-antonine-chronology"
+      ],
+      "selectionNote": "A distinct northward frontier move, with qualified construction timing.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0148-an-shigao-luoyang",
+      "date": {
+        "kind": "exact",
+        "startYear": 148,
+        "endYear": 148,
+        "displaySv": "148 e.Kr.",
+        "noteSv": "Året gäller An Shigaos ankomst. Översättningsarbetet och den organiserade verksamheten har en längre historia."
+      },
+      "titleSv": "An Shigao anländer till Luoyang",
+      "summarySv": "Hans verksamhet bidrar till organiserad buddhism och tidiga översättningar i staden.",
+      "geographySv": "Luoyang, Kina",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-neelis-transmission"
+      ],
+      "selectionNote": "A documented arrival linked to institutional religious change, not the first Buddhist presence in China.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0150-rudradaman-sudarshana-inskrift",
+      "date": {
+        "kind": "exact",
+        "startYear": 150,
+        "endYear": 150,
+        "displaySv": "150 e.Kr.",
+        "noteSv": "Neelis daterar inskriften till 150, motsvarande shakaår 72. Året ges inte som en oberoende datering av varje reparationsarbete."
+      },
+      "titleSv": "Rudradamans inskrift hyllar en reparerad fördämning",
+      "summarySv": "En sanskritinskrift vid Junagadh minns reparationer vid Sudarshanasjön.",
+      "geographySv": "Junagadh, Gujarat, Indien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-neelis-transmission"
+      ],
+      "selectionNote": "Regional water infrastructure and a significant Sanskrit public eulogy; ruler claims are not treated as independently verified conquests.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0150-teotihuacan-civilt-centrum",
+      "date": {
+        "kind": "approximate",
+        "startYear": 150,
+        "endYear": 150,
+        "displaySv": "Omkring 150 e.Kr.",
+        "noteSv": "Museets tidslinje anger en ungefärlig datering för ombyggnaden."
+      },
+      "titleSv": "Teotihuacan får ett utvidgat stadscentrum",
+      "summarySv": "Månpyramiden förstoras. Marknadsanläggningen Great Compound och det religiösa och administrativa området Ciudadela förskjuter centrum söderut.",
+      "geographySv": "Teotihuacan, centrala Mexiko",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-met-mexico"
+      ],
+      "selectionNote": "One linked urban reorganisation; later temple and housing phases are not pulled into this date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0166-pastaende-romerska-sandebud",
+      "date": {
+        "kind": "exact",
+        "startYear": 166,
+        "endYear": 166,
+        "displaySv": "166 e.Kr.",
+        "noteSv": "Personerna uppgav att de var romerska sändebud. Uppgiften fastställer inte att de hade ett officiellt romerskt uppdrag."
+      },
+      "titleSv": "Resenärer som kallar sig romerska sändebud når Vietnam",
+      "summarySv": "Gruppen anländer sjövägen till norra Vietnam på väg till Hanrikets hov.",
+      "geographySv": "Norra Vietnam och sjövägen mot Kina",
+      "category": "politics",
+      "importance": 1,
+      "sourceIds": [
+        "ad0100-taylor-vietnam-trade"
+      ],
+      "selectionNote": "A reported diplomatic encounter with explicit uncertainty about credentials; no claim of a first official Roman embassy.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0166-marcus-germanska-sarmatiska-krig",
+      "date": {
+        "kind": "range",
+        "startYear": 166,
+        "endYear": 180,
+        "displaySv": "166–180 e.Kr.",
+        "noteSv": "Hela det angivna krigsintervallet behålls."
+      },
+      "titleSv": "Marcus Aurelius leder krig vid Donaugränsen",
+      "summarySv": "Kejsaren leder personligen krig mot germanska och sarmatiska folk.",
+      "geographySv": "Donauområdet och Pannonien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-mnm-marcomannic"
+      ],
+      "selectionNote": "A sustained frontier conflict rather than annual campaign fillers.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0167-lokaksema-oversattningar",
+      "date": {
+        "kind": "range",
+        "startYear": 167,
+        "endYear": 186,
+        "displaySv": "167–186 e.Kr.",
+        "noteSv": "Intervallet anger Lokaksemas verksamhetstid hos Teiser, inte datum för varje enskild text."
+      },
+      "titleSv": "Lokaksema och kinesiska medarbetare översätter buddhistiska texter",
+      "summarySv": "Översättningsgruppen använder även uttryck från det talade kinesiska språket.",
+      "geographySv": "Kina",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-teiser-translations"
+      ],
+      "selectionNote": "A distinct translator’s work, preserving the full floruit rather than assigning all works to one year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0177-lyon-kristna-forfoljs",
+      "date": {
+        "kind": "exact",
+        "startYear": 177,
+        "endYear": 177,
+        "displaySv": "177 e.Kr.",
+        "noteSv": "Årtalet gäller förföljelsen i Lyon."
+      },
+      "titleSv": "Kristna förföljs i Lyon",
+      "summarySv": "Bland dem som dödas finns Pothinus och Blandina.",
+      "geographySv": "Lugdunum, nuvarande Lyon, Frankrike",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "ad0100-lugdunum-war-persecution"
+      ],
+      "selectionNote": "A local persecution remembered beyond the city; the museum’s victim total is not required for the claim.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0184-gula-turbaner-upproret",
+      "date": {
+        "kind": "exact",
+        "startYear": 184,
+        "endYear": 184,
+        "displaySv": "184 e.Kr.",
+        "noteSv": "Året gäller upproret. Den efterföljande långa krigsperioden dateras inte i sin helhet till 184."
+      },
+      "titleSv": "De gula turbanerna gör uppror i Kina",
+      "summarySv": "Upproret följs av en lång period av inbördeskrig.",
+      "geographySv": "Kina",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-xiong-yellow-turban"
+      ],
+      "selectionNote": "Major political rupture supported by the public summary; later consequences retain their separate timing.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0189-dong-zhuo-griper-makten",
+      "date": {
+        "kind": "exact",
+        "startYear": 189,
+        "endYear": 189,
+        "displaySv": "189 e.Kr.",
+        "noteSv": "Året gäller maktövertagandet och bytet av kejsare."
+      },
+      "titleSv": "Dong Zhuo griper makten i Luoyang",
+      "summarySv": "Han avsätter Liu Bian och sätter Liu Xie, kejsar Xian, på tronen.",
+      "geographySv": "Luoyang, Kina",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-crespigny-han-preview"
+      ],
+      "selectionNote": "A change in control of the court, not a claim that the formal Han dynasty ended in 189.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0196-cao-cao-hovet-xu",
+      "date": {
+        "kind": "exact",
+        "startYear": 196,
+        "endYear": 196,
+        "displaySv": "196 e.Kr.",
+        "noteSv": "Dateringen gäller Cao Caos övertagande av hovets beskydd och flytten till Xu."
+      },
+      "titleSv": "Cao Cao för Hanhovet till Xu",
+      "summarySv": "Kejsar Xian kommer under Cao Caos beskydd vid dennes högkvarter.",
+      "geographySv": "Xu, nära nuvarande Xuchang i Henan, Kina",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-crespigny-han-preview"
+      ],
+      "selectionNote": "Distinct from Dong Zhuo’s earlier coup and Cao Pi’s later accession already catalogued.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0197-lugdunum-slag",
+      "date": {
+        "kind": "exact",
+        "startYear": 197,
+        "endYear": 197,
+        "displaySv": "197 e.Kr.",
+        "noteSv": "Året avser slaget vid Lugdunum."
+      },
+      "titleSv": "Septimius Severus besegrar Clodius Albinus",
+      "summarySv": "Severus vinner slaget och utsätter staden, som stött hans motståndare, för repressalier.",
+      "geographySv": "Lugdunum, nuvarande Lyon, Frankrike",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0100-lugdunum-war-persecution"
+      ],
+      "selectionNote": "A decisive succession conflict, not a separate entry for the ruler’s accession.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",
