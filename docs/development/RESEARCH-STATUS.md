@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain twenty-two approved records, thirty-seven source records and one hundred ten display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain twenty-four approved records, thirty-nine source records and one hundred twenty display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -23,7 +23,8 @@ The English research deliveries now contain twenty-two approved records, thirty-
 | [AD 1100–1199](../research/world-cultures/english-events/ad1100-supplement.md) | 2 | 4 | 10 | Merged and remote-verified in [PR #117](https://github.com/sp1e/Attainder/pull/117), commit `1972e6edc4cd6ed03ed98650cf56673f93ce6215` |
 | [AD 1200–1299](../research/world-cultures/english-events/ad1200-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #118](https://github.com/sp1e/Attainder/pull/118), commit `8df12b7e44bad8d354241ebab49e3c4f71960753` |
 | [AD 1300–1399](../research/world-cultures/english-events/ad1300-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #119](https://github.com/sp1e/Attainder/pull/119), commit `887a4fa20095d921054adb088321314eb1c7e2f9` |
-| [AD 1500–1530](../research/world-cultures/english-events/ad1500-supplement.md) | 2 | 3 | 10 | Source, English and integration reviews approved; current-head CI and verified merge required |
+| [AD 1400–1499](../research/world-cultures/english-events/ad1400-supplement.md) | 2 | 2 | 10 | Source, English and integration reviews approved; current-head CI and verified merge required |
+| [AD 1500–1530](../research/world-cultures/english-events/ad1500-supplement.md) | 2 | 3 | 10 | Source, English and integration reviews approved; [PR #120](https://github.com/sp1e/Attainder/pull/120) awaits current-head CI and verified merge |
 
 PRs #109 and #110 each passed 5,337 tests with no failures and two TODOs; both builds passed. The BC2200 source correction reduced La Bastida's importance to 1. The AD300 batch concerns Meroe's royal pyramid burials and Teotihuacan's Adosada platform; its correction removes an unsupported temporal ordering of damage to other façades. BC2100 adds a regional sealing-technology event while withholding a separate law-collection candidate whose required passages were not fully verified. Original HOLD reports remain preserved separately from the final approvals.
 
@@ -45,7 +46,9 @@ AD1300 adds Terengganu's legal proclamation and Canggu's ferry regulations. Its 
 
 PRs #118 and #119 each passed 5,337 tests with no failures and two TODOs; both builds passed. AD1500 adds Henrique of Kongo's episcopal appointment and the copying of an Old Sundanese guide, both in 1518. Source and final reviews approved all text unchanged. The reported, now-lost manuscript colophon and uncertain precise provenance remain explicit; the appointment does not establish full church independence.
 
-Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. Independent CI runs may overlap on dependent research branches; merge them in order only after verifying that the merged parent has the tested parent's exact tree. Preserve branch ancestry with merge commits for this chain. The next active batches concern AD 1400–1499 and AD 800–899; their records do not enter the delivery totals until integration. A preliminary Turkana chronology check supplied no episode with a justified 2700–2601 BC start, so it produced no event candidate or coverage promotion. The older BC1600 execution-policy hold remains preserved.
+AD1400 adds the Dabra Metmaq council and Pegu's ordination reform. The final review approved removal of one inaccessible supporting source and its reference, plus a narrow attribution correction. The remaining directly read scholarship supports the qualified claims and both importance-2 ratings. The original source HOLD remains preserved; both complete selection notes passed the final review unchanged.
+
+Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. Independent CI runs may overlap on dependent research branches; merge them in order only after verifying that the merged parent has the tested parent's exact tree. Preserve branch ancestry with merge commits for this chain. The next active batches concern AD 800–899 and AD 900–999; their records do not enter the delivery totals until integration. A preliminary Turkana chronology check supplied no episode with a justified 2700–2601 BC start, so it produced no event candidate or coverage promotion. The older BC1600 execution-policy hold remains preserved.
 
 ## Earlier catalog delivery
 
