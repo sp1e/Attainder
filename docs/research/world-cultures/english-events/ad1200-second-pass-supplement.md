@@ -1,0 +1,13 @@
+# Legal and educational institutions in 1232 and 1234
+
+This English research supplement contains two events and four sources. It remains separate from the runtime catalog and awaits compatible import and display support.
+
+The Japanese record concerns promulgation of the Goseibai shikimoku in 1232. A scholarly course translation and a separately hosted translated anthology excerpt support the date, jurisdictional qualifications and provisions. Neither the explanatory letter's date nor rules prescribing conduct establish an exact Gregorian promulgation day or uniform enforcement. The anthology's underlying editions were not separately inspected.
+
+The Baghdad record concerns the Mustansiriyya's opening in 1234. Archnet and the TDV encyclopaedia agree on that year while describing earlier construction stages differently: commissioning in 1227, foundation in 1228 and completion in 1233. These stages remain explicit. The record makes no universal-priority claim and does not assign all associated medical facilities to the opening year.
+
+The first independent source review passed the Baghdad event and held the Japan event because its web reader could not retrieve the USC PDF. The two failures were technical errors, with no reported access denial. A fresh, scoped independent follow-up requested the exact cited USC address with ordinary TLS verification, followed its normal redirect to the hosted asset, and received a readable six-page PDF with HTTP 200. That reviewer checked the previously unverified attribution, clause count, letter date and jurisdictional qualifications and returned PASS. The original HOLD remains preserved. No historical, source or English-text correction was required. PDF extraction reported a malformed object pointer but returned the relevant readable passages; it was not treated as an access denial.
+
+This is a partial supplement. The fixed runtime and English datasets and separate private comparisons were checked for overlapping episodes. No previously stopped route or policy-held operation was resumed. An initial final-review attempt was stopped after the supervisor confused a pre-write text hash with a newline-normalized file read; the corrected byte-level check required no data changes. That interrupted attempt is preserved and supplies no final approval. A fresh final data and editorial review passed all ten display fields, both selection notes and this publication note. Its actual process exit was 0.
+
+The approved [English dataset](ad1200-second-pass-supplement.json) contains two events and four sources. Root verified 94 frozen inputs, twelve English text hashes, 47 committed comparison files and three private originals. The later Persepolis and Henry I records concern distinct episodes.
