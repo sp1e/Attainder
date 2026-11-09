@@ -10,6 +10,7 @@ import { actionRandom, plotRandom } from './extensions.js';
 import { demandStep } from './familyDemands.js';
 import { GRACE_MONTHS, claimantFor, crushOdds, factionStep, factionStrength, presentFactions, refreshFactions, resolveUltimatum, ultimatumChoices, validateFactions } from './factions.js';
 import { isImprisoned } from './prisoners.js';
+import { createSecret, exposeSecret } from './secrets.js';
 
 // The end of a faction: the ultimatum and the four ways it closes. factions.test.js holds how a faction forms and grows, factionsPresent.test.js what the player sees of one.
 
@@ -162,6 +163,14 @@ test('a leader who claims the throne is named once', () => {
   const { state, story } = opened({}, { claimantId: NAMAR });
   assert.ok(story.description.includes('sig själv'));
   assert.equal(story.description.split(state.people[NAMAR].name).length, 2);
+});
+
+test('an ultimatum names a claimant of exposed royal birth as the ruler\'s illegitimate child', () => {
+  const { state, story } = opened({}, { claimantId: BAREK });
+  assert.ok(!story.description.includes('oäkta'));
+  exposeSecret(state, createSecret(state, { type: 'illegitimate_child', subjectId: BAREK, holderIds: [YARA, AREL], evidence: 'weak' }).id);
+  stepOn(state, MISS);
+  assert.ok(storyOf(state, story.id).description.includes(`kräver tronen åt ${state.people[BAREK].name}, oäkta barn till ${state.people[AREL].name}.`));
 });
 
 test('an ultimatum waits while a coup is open and while the faction is appeased', () => {

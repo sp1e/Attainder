@@ -5,6 +5,7 @@ import { cowNobles } from './dread.js';
 import { actionRandom, normalizeDifficulty, plotRandom, spymasterOf } from './extensions.js';
 import { AGGRESSION } from './npcPlots.js';
 import { imprisonPerson, imprisonRefusal, isImprisoned } from './prisoners.js';
+import { bastardClaimant, claimLabel } from './bastardClaims.js';
 import { addPrestige, reignMonths } from './reign.js';
 
 // Factions: discontented nobles gather against the ruler in secret, and the spymaster uncovers them a person at a time. A record is { id: 'faction-<n>', targetRulerId, leaderId, claimantId, memberIds, knownMemberIds, formedAt, status, outcome, quietUntil, ultimatumAt, dueAt, storyId, concessions, closedAt } and lives in state.factions. memberIds and knownMemberIds stay sorted, every known member is a member, and one faction lives at a time.
@@ -112,12 +113,12 @@ export function discontentOf(state, person, hooks) {
   return -opinion * DISCONTENT.opinion + realm - family.grievance * DISCONTENT.grievance + natureTerm(state, person, ruler?.id, hooks) + fearTerm(person);
 }
 
-/** The ruler's oldest free adult sibling, else the first free adult in line, else the leader, else null. */
+/** The eldest free adult royal bastard whose birth is exposed, else the ruler's oldest free adult sibling, else the first free adult in line, else the leader, else null. */
 export function claimantFor(state, faction, hooks) {
   const ruler = hooks.ruler(), free = (person) => isFree(state, person, hooks), leader = state.people[faction.leaderId];
   const sharesParent = (person) => person.id !== ruler?.id && person.legalParentIds.some((id) => ruler?.legalParentIds.includes(id));
   const [sibling] = Object.values(state.people).filter((person) => free(person) && sharesParent(person)).sort(byBirth);
-  return sibling ?? hooks.rulerCandidates().find(free) ?? (free(leader) ? leader : null);
+  return bastardClaimant(state, free) ?? sibling ?? hooks.rulerCandidates().find(free) ?? (free(leader) ? leader : null);
 }
 
 function fullYears(from, to) {
@@ -168,7 +169,7 @@ function shiftMembers(state, faction, hooks) {
 }
 
 function ultimatumText(state, faction, hooks) {
-  const leader = state.people[faction.leaderId], claimant = faction.claimantId === leader.id ? 'sig själv' : state.people[faction.claimantId].name;
+  const leader = state.people[faction.leaderId], claimant = faction.claimantId === leader.id ? 'sig själv' : claimLabel(state, state.people[faction.claimantId]);
   return `${leader.name} leder adeln mot ${hooks.ruler().name} och kräver tronen åt ${claimant}.`;
 }
 
