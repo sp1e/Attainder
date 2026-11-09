@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc3000-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -3000,
+    "endYear": -2901
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc3000en-honegger-complex-settlement",
+      "title": "Recent Advances in Our Understanding of Prehistory in Northern Sudan",
+      "institution": "Matthieu Honegger; The Fourth Cataract and Beyond, British Museum Publications on Egypt and Sudan 1, Peeters; University of Neuchâtel repository",
+      "url": "https://libra.unine.ch/server/api/core/bitstreams/a829732c-f7b3-4175-bcf8-0e25e75c8b3f/content",
+      "locator": "2014 conference chapter, printed pp. 28–29 (PDF pages 20–21), Second Half of the Holocene: The Pre-Kerma and the Emergence of Complex Societies, and Figure 9 caption; geography on printed p. 19. Public PDF text extraction only.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "about 3000 BC",
+      "originalChronology": "The settlement and its general plan are dated around 3000 BC. This is an archaeological occupation estimate, not an exact foundation or construction year. The later town of Kerma is separately labelled 2500–1500 BC in Figure 2.",
+      "scopedClaim": "Honegger describes a sedentary settlement based on farming and herding, with concentrated storage pits, huts, rectangular buildings and cattle enclosures. He interprets six parallel fence rows as substantial wood-and-earth fortifications. The report concerns the settlement beneath the later Eastern Cemetery, not the date of a particular grave.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc3000en-honegger-settlement-chronology",
+      "title": "Kerma: The Neolithic and Pre-Kerma Occupation of the Eastern Necropolis",
+      "institution": "Matthieu Honegger; Kerma archaeological mission, translated excavation report in the public Genava report compilation",
+      "url": "https://www.kerma.ch/documents/Publications_PDF/Genava_2001/Rapport_2001.pdf",
+      "locator": "Translated Honegger section: PDF page 46 heading and geography; PDF page 47, chronology table and The Pre-Kerma Settlement and Burial; PDF page 48, palisades and radiocarbon-duration paragraphs. Printed Roman pages IX–XI. Text extraction only; the compilation repeats this material later.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "around 3000 BC",
+      "originalChronology": "Two samples from storage pits place occupation around 3000 BC but cannot establish its duration. Structural overlaps suggest at most two centuries; no absolute beginning or ending is provided. The burial's grave-goods date is independent of these settlement samples.",
+      "scopedClaim": "The report documents storage pits, circular huts, rectangular buildings and repeated palisades. Defensive and livestock-enclosure functions are considered for parts of the palisade system. It preserves uncertainty about settlement duration and whether the nearby burial was contemporary. This and the later chapter report the same excavation programme.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc3000-pre-kerma-defended-settlement",
+      "date": {
+        "kind": "approximate",
+        "startYear": -3000,
+        "endYear": -3000,
+        "displayEn": "c. 3000 BC",
+        "noteEn": "This estimate dates the Pre-Kerma occupation, not an exact year of construction. Two storage-pit samples cannot establish its duration; structural overlaps led Honegger to suggest at most two centuries. The nearby woman's burial has its own grave-goods chronology and is not dated by these settlement samples."
+      },
+      "titleEn": "Pre-Kerma residents occupy a settlement with possible defences",
+      "summaryEn": "Residents near Kerma combine farming and herding in a settlement with concentrated storage pits, huts and cattle enclosures. Honegger interprets parallel rows of wooden fences and earthwork as substantial defences, while the earlier report also considers livestock-enclosure functions for parts of the palisade system.",
+      "geographyEn": "Kerma area, Upper Nubia, present-day Sudan",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc3000en-honegger-complex-settlement",
+        "bc3000en-honegger-settlement-chronology"
+      ],
+      "selectionNote": "The organized storage, residential and possible defensive structures document a notable settlement-scale development in Nubia. Inclusion rests on the approximately dated occupation and the excavator's interpretation of its organization; it does not assert a new kingdom, an exact foundation year or the invention of farming.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
