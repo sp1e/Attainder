@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "12a8e775d7b64119c22f5ad51d52c63bbf99e3a7",
+  "sourceRevision": "2bc535d363f5a29d4dcac81993d8c017c97011c0",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -55310,6 +55310,1656 @@
         "eventId": "ev-bc0500-kunaxa",
         "fieldPath": "/geographySv",
         "textSha256": "7c9f13f49523b256c49a2a4ad62c53c57f0649cec73291d728a625aa035bfd7c"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-nubia-emalj/date/displaySv",
+      "sv": "fjärde århundradet f.Kr.",
+      "en": "Fourth century BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-nubia-emalj",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "394117ae33f031d3f8d1c43feb65368cb23b92e15d9dea5114a2b487276fcac7"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-nubia-emalj/date/noteSv",
+      "sv": "Museet anger århundradet för utvecklingen. Ett enskilt uppfinningsår är okänt.",
+      "en": "The museum dates the development to this century. A specific year of invention is unknown.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-nubia-emalj",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6ab36776f9fbcd87038a72153035af1f5529a8f8848f95dd690243a24514c8b3"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-nubia-emalj/titleSv",
+      "sv": "Nubiska hantverkare utvecklar emaljering",
+      "en": "Nubian craftspeople develop enameling",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-nubia-emalj",
+        "fieldPath": "/titleSv",
+        "textSha256": "e635f7e1590e8380192a9c3f21140538a1f7f139029f3aa47d276da06cea6785"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-nubia-emalj/summarySv",
+      "sv": "Hantverkare i Nubien utvecklar emaljering av metall i samband med en växande glastillverkning.",
+      "en": "Craftspeople in Nubia develop metal enameling alongside a growing glass industry.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-nubia-emalj",
+        "fieldPath": "/summarySv",
+        "textSha256": "bc724d63f7770b1c4e82331e9524381923f2293b9246c00da3c705c29b53dc66"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-nubia-emalj/geographySv",
+      "sv": "Nubien i Nildalen",
+      "en": "Nubia in the Nile Valley",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-nubia-emalj",
+        "fieldPath": "/geographySv",
+        "textSha256": "1bb0c8886c3d1aa31862109bd91944a68d5911a385ad636133f6d57afe218e4e"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-khao-sam-kaeo-kontakter/date/displaySv",
+      "sv": "fjärde till andra århundradet f.Kr.",
+      "en": "Fourth to second centuries BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-khao-sam-kaeo-kontakter",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a3db12f0119ef1f6b8bff21e376ecfb1e9367393a0236714b87da59938240e7b"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-khao-sam-kaeo-kontakter/date/noteSv",
+      "sv": "Hela källans period omfattar 400–101 f.Kr. Den daterar kontakterna brett och fastställer varken grundläggning år 400 eller oavbruten verksamhet.",
+      "en": "The source's full period covers 400–101 BC. It dates the contacts broadly and establishes neither a foundation in 400 nor uninterrupted activity.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-khao-sam-kaeo-kontakter",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1a0a34040de1429b99a73202932e09b3c61035cbf82f29acb7b5ea79f859c895"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-khao-sam-kaeo-kontakter/titleSv",
+      "sv": "Keramik visar kontakter mellan Khao Sam Kaeo och Indien",
+      "en": "Pottery reveals contacts between Khao Sam Kaeo and India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-khao-sam-kaeo-kontakter",
+        "fieldPath": "/titleSv",
+        "textSha256": "7047cb3538b5b52dc0cc42c402f524fecaaf08747e587c06c1100061f27bf2e2"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-khao-sam-kaeo-kontakter/summarySv",
+      "sv": "Keramik från Khao Sam Kaeo vittnar enligt Bouvets analys om kontakter med den indiska subkontinenten. Material och tillverkningsteknik används för att undersöka utbytet.",
+      "en": "According to Bouvet's analysis, pottery from Khao Sam Kaeo provides evidence of contacts with the Indian subcontinent. Materials and manufacturing techniques are used to investigate the exchange.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-khao-sam-kaeo-kontakter",
+        "fieldPath": "/summarySv",
+        "textSha256": "2d61ca0ce314f17e06f10d4d452288863c0b3cddbb97108931133fd4900285ed"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-khao-sam-kaeo-kontakter/geographySv",
+      "sv": "Khao Sam Kaeo på Malackahalvön, nuvarande Thailand",
+      "en": "Khao Sam Kaeo on the Malay Peninsula, in present-day Thailand",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-khao-sam-kaeo-kontakter",
+        "fieldPath": "/geographySv",
+        "textSha256": "81f9f59ef43c8f7d034892cc9efce5d8073976761169343edeb0d6f7edfcfe01"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-sokrates-avrattning/date/displaySv",
+      "sv": "399 f.Kr.",
+      "en": "399 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-sokrates-avrattning",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f01dfa4a46b24700c6b37d618d46f80d9b0a9a253686fb48c73e2067a92ff252"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-sokrates-avrattning/date/noteSv",
+      "sv": "Året gäller rättegången och avrättningen. Anklagelserna återges som anklagelser.",
+      "en": "The year concerns the trial and execution. The charges are presented as accusations.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-sokrates-avrattning",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "99d4c8340296f7694128cc052673da7b29c09fe691c39076dd7b402802a4f62e"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-sokrates-avrattning/titleSv",
+      "sv": "Sokrates döms till döden i Aten",
+      "en": "Socrates is sentenced to death in Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-sokrates-avrattning",
+        "fieldPath": "/titleSv",
+        "textSha256": "176694d9a2197209b5bc094c700b5f8e850245ab714d5cb3658d419832430847"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-sokrates-avrattning/summarySv",
+      "sv": "Sokrates ställs inför rätta i Aten för anklagelser om vanvördnad mot religionen och om att fördärva ungdomen. Han döms och avrättas.",
+      "en": "Socrates stands trial in Athens on charges of religious impiety and corrupting the young. He is convicted and executed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-sokrates-avrattning",
+        "fieldPath": "/summarySv",
+        "textSha256": "b1b23d7908e659c9ea355d68820c39ae71fcce49a05b37a8e6373bc799a7934e"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-sokrates-avrattning/geographySv",
+      "sv": "Aten",
+      "en": "Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-sokrates-avrattning",
+        "fieldPath": "/geographySv",
+        "textSha256": "51e524d0ebab07c668094007543f9dd78aac9e93472cff65067de42e1b095e97"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-kungafreden/date/displaySv",
+      "sv": "387–386 f.Kr.",
+      "en": "387–386 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-kungafreden",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b47e2481601b546c2898ce4a4151fc8a9dabd28fe2505bbe77e8a5e98d413dbc"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-kungafreden/date/noteSv",
+      "sv": "Källans 387/6 återges som två kalenderår. Den lästa delen ger inget underlag för en fullständig återgivning av fredsvillkoren.",
+      "en": "The source's 387/6 is represented as two calendar years. The section read does not support a full account of the peace terms.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-kungafreden",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "0bd7cfcd8373966fa044d5b034eb7588a4c1aeae3127e62f33c648356c02ded3"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-kungafreden/titleSv",
+      "sv": "Grekiska stater och perserkungen svär fredseder",
+      "en": "Greek states and the Persian king swear peace oaths",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-kungafreden",
+        "fieldPath": "/titleSv",
+        "textSha256": "ebbdaa33fa60f169c3b650427608fb8abbf28842a5e416f62da84335922dc622"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-kungafreden/summarySv",
+      "sv": "Aten, Sparta, andra grekiska stater och perserkungen binds genom eder till den så kallade kungafreden.",
+      "en": "Athens, Sparta, other Greek states and the Persian king are bound by oaths to the so-called King's Peace.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-kungafreden",
+        "fieldPath": "/summarySv",
+        "textSha256": "4ec8cef89e87c22207fdafe5b7cc51ac90ac25a67c1c9f207a88969bc1adee4f"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-kungafreden/geographySv",
+      "sv": "Grekland och det persiska riket",
+      "en": "Greece and the Persian Empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-kungafreden",
+        "fieldPath": "/geographySv",
+        "textSha256": "ff5c44f2cf66bf1bbad77c7adf7e048b9f90cc3e8792ce9041e0038d12046c26"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-leuktra/date/displaySv",
+      "sv": "371 f.Kr.",
+      "en": "371 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-leuktra",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "93b495cd20bba8a09d84a5ef932a3bf66b17a48333e68bc7db748cd21a122776"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-leuktra/date/noteSv",
+      "sv": "Källan anger juli eller augusti; ingen av månaderna väljs som säker.",
+      "en": "The source gives July or August; neither month is selected as certain.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-leuktra",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "c87022fbce307007d467d9fb4155d3412d193865095e7da0c482e20f81d950e2"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-leuktra/titleSv",
+      "sv": "Boiotierna besegrar Sparta vid Leuktra",
+      "en": "The Boeotians defeat Sparta at Leuctra",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-leuktra",
+        "fieldPath": "/titleSv",
+        "textSha256": "65a909ac2986c680cdf4610a6adeffb11c8cbf84317d59c9cffe63d29075b438"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-leuktra/summarySv",
+      "sv": "Det boiotiska förbundets styrkor besegrar den spartanska armén under kung Kleombrotos vid Leuktra.",
+      "en": "Forces of the Boeotian Confederation defeat the Spartan army led by King Cleombrotus at Leuctra.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-leuktra",
+        "fieldPath": "/summarySv",
+        "textSha256": "d8bb45832e6ab43745641b25aa0a1d5c4c1cd2f51cf3c9fdddcdf4a9da3963af"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-leuktra/geographySv",
+      "sv": "Leuktra i Boiotien",
+      "en": "Leuctra in Boeotia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-leuktra",
+        "fieldPath": "/geographySv",
+        "textSha256": "55d0cb8c815ce39ca41132169b8b07d0777599ce2b11e322faa6768ef34523b7"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-messene/date/displaySv",
+      "sv": "369 f.Kr.",
+      "en": "369 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-messene",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "bcfde9057c68a4e18ea9bb4c95e0cb629791a69885242dceb83ee4135bf72542"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-messene/date/noteSv",
+      "sv": "Året avser grundläggningen enligt Greklands förslag till världsarvslista.",
+      "en": "The year concerns the foundation according to Greece's World Heritage tentative-list submission.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-messene",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1cc449a8bf2c3b43c771f5c733fc5a37a1f88298283faba6c649f142f976aa3b"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-messene/titleSv",
+      "sv": "Messene grundas som huvudstad i ett fritt Messenien",
+      "en": "Messene is founded as the capital of a free Messenia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-messene",
+        "fieldPath": "/titleSv",
+        "textSha256": "2e281f1a0572501ad8b93c714d6574676a4ed5e1e391aff146c8f1b9b26b758b"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-messene/summarySv",
+      "sv": "Epameinondas grundar Messene som huvudstad för en fri messenisk stat efter det spartanska väldet.",
+      "en": "Epaminondas founds Messene as the capital of a free Messenian state after Spartan rule.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-messene",
+        "fieldPath": "/summarySv",
+        "textSha256": "91765fe16c38ea6d1f546b5489ed071b53a041c9477ed2b51594698295957816"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-messene/geographySv",
+      "sv": "Messenien på Peloponnesos",
+      "en": "Messenia in the Peloponnese",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-messene",
+        "fieldPath": "/geographySv",
+        "textSha256": "333a487d814b44ac0f5da20de77c449625f5f8e11c501b087ae97701901c965a"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-shang-yang/date/displaySv",
+      "sv": "omtvistat: 359 eller 356 f.Kr.",
+      "en": "Disputed: 359 or 356 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-shang-yang",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "0788bb8043e42596169a93f2e6a18e48237406dc8c7b3c7acfc904e07aa424a5"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-shang-yang/date/noteSv",
+      "sv": "Columbia anger att reformerna inleds 359, medan Berkshire förlägger den första reformberättelsen till 356. Uppgifterna kan avse olika steg; inget enhetligt startår fastställs.",
+      "en": "Columbia dates the beginning of the reforms to 359, while Berkshire places the first reform narrative in 356. The accounts may concern different stages; no single starting year is established.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-shang-yang",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "52a40a7ace2e6436dacb4b1a6798fd6fffc9c3e4f15851123f930afa2c6c9a17"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-shang-yang/titleSv",
+      "sv": "Shang Yang inleder reformer i Qin",
+      "en": "Shang Yang begins reforms in Qin",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-shang-yang",
+        "fieldPath": "/titleSv",
+        "textSha256": "188c28ea0fc9cf536030c995b85f55870d34c9e60f21ae3879c9845b485fc8d2"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-shang-yang/summarySv",
+      "sv": "Reformer i Qin knyter belöningar och straff till jordbruk och krigföring. Militär förtjänst får större vikt i förhållande till ärvda privilegier.",
+      "en": "Reforms in Qin link rewards and penalties to agriculture and warfare. Military merit gains greater weight relative to inherited privileges.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-shang-yang",
+        "fieldPath": "/summarySv",
+        "textSha256": "8e374994b703c27d882467ad46321790b6fc586df55d00c36fcd3d4dfc10c666"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-shang-yang/geographySv",
+      "sv": "Qin i nuvarande Kina",
+      "en": "Qin in present-day China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-shang-yang",
+        "fieldPath": "/geographySv",
+        "textSha256": "5f466d9b44334489dc1870210ccb8af949edfa0cc05de49add17442a71fe731a"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-olynthos/date/displaySv",
+      "sv": "348 f.Kr.",
+      "en": "348 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-olynthos",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "59a3fac1fbb98127b0cdee1a7885bf2554c68099be07f40e8bc18d88a78832d4"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-olynthos/date/noteSv",
+      "sv": "Förstörelsen innebär inget påstående om att all senare bosättning upphör.",
+      "en": "The destruction does not imply that all later settlement ceased.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-olynthos",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "73583260b3ac86ded042b96207ed4669c1b2b7137ff939d826384525010ec669"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-olynthos/titleSv",
+      "sv": "Filip II förstör Olynthos",
+      "en": "Philip II destroys Olynthus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-olynthos",
+        "fieldPath": "/titleSv",
+        "textSha256": "5581f19b29575e9c9cd0253ed9f34d020cf981676a4c07b14343f914f6e6a48c"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-olynthos/summarySv",
+      "sv": "Filip II:s styrkor förstör Olynthos, en central stad i det chalkidiska förbundet.",
+      "en": "Philip II's forces destroy Olynthus, a central city of the Chalcidian League.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-olynthos",
+        "fieldPath": "/summarySv",
+        "textSha256": "eef528c4c61b910f4d6517dfdb013dbe99d7b379c59afb72ef7b8a61b95456d5"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-olynthos/geographySv",
+      "sv": "Olynthos på Chalkidike",
+      "en": "Olynthus in Chalcidice",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-olynthos",
+        "fieldPath": "/geographySv",
+        "textSha256": "fd23fc38a9c75596433ef0927662ab430e727d68361898679c7bc811bf6a5e7f"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-chaironeia/date/displaySv",
+      "sv": "338 f.Kr.",
+      "en": "338 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-chaironeia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "86bbf3c7b9db71a86b93b03664d9213b76da21dcc7be7129971310fd1303b0f7"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-chaironeia/date/noteSv",
+      "sv": "Året avser slaget.",
+      "en": "The year concerns the battle.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-chaironeia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b116477112e1a19996449fdf6bc1f0cb30da80714c5aaad6863ef624515d49f3"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-chaironeia/titleSv",
+      "sv": "Filip II segrar vid Chaironeia",
+      "en": "Philip II wins at Chaeronea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-chaironeia",
+        "fieldPath": "/titleSv",
+        "textSha256": "6ccfaf07389e25b0d6dd12ec57f0fb102f84fce60a5e9166a4e7adfdc6a49762"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-chaironeia/summarySv",
+      "sv": "Segern vid Chaironeia befäster Filip II:s maktställning bland de grekiska staterna.",
+      "en": "The victory at Chaeronea strengthens Philip II's position among the Greek states.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-chaironeia",
+        "fieldPath": "/summarySv",
+        "textSha256": "584b341d2b066c59475236ec181f18ac81364e2ecb638b2e71fd8bed2559f201"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-chaironeia/geographySv",
+      "sv": "Chaironeia i Boiotien",
+      "en": "Chaeronea in Boeotia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-chaironeia",
+        "fieldPath": "/geographySv",
+        "textSha256": "ce667be5b6bcfbdef7674999361c2d570696205287df8da571ae44ebb34f7d6f"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexander-trontilltrade/date/displaySv",
+      "sv": "336 f.Kr.",
+      "en": "336 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexander-trontilltrade",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "09df1b546efa47e525068ce3e9ae16ce3346a11cf693cb0d45e7dafd5bc15e50"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexander-trontilltrade/date/noteSv",
+      "sv": "Året avser tronföljden efter Filip II:s död.",
+      "en": "The year concerns the succession after Philip II's death.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexander-trontilltrade",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1462c48618cfd12d80d3ee56267434665222a8bf951a57c4a0c194be2cbd25f8"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexander-trontilltrade/titleSv",
+      "sv": "Alexander efterträder Filip II",
+      "en": "Alexander succeeds Philip II",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexander-trontilltrade",
+        "fieldPath": "/titleSv",
+        "textSha256": "a39a77704bc31c8e68709e057e3f40ae7a96a6bbcd82791e4ea69c95d481d593"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexander-trontilltrade/summarySv",
+      "sv": "Efter mordet på Filip II blir Alexander kung av Makedonien.",
+      "en": "After the assassination of Philip II, Alexander becomes king of Macedonia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexander-trontilltrade",
+        "fieldPath": "/summarySv",
+        "textSha256": "03449ffc3b3f39c5fc8bbc661d9aa1d47d8221f66befb985772c1ec319a4e92e"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexander-trontilltrade/geographySv",
+      "sv": "Makedonien",
+      "en": "Macedonia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexander-trontilltrade",
+        "fieldPath": "/geographySv",
+        "textSha256": "373f60dfd43a685aaffd0433597a48d6746757fd2d30be04581fe3ed109c4f3c"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-thebe-forstorelse/date/displaySv",
+      "sv": "335 f.Kr.",
+      "en": "335 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-thebe-forstorelse",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5918b267c365a13eea956fa950b25afb8e4d58cb0f0cdc0c47ada0f300c884a1"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-thebe-forstorelse/date/noteSv",
+      "sv": "Året anges i kronologin.",
+      "en": "The year is given in the chronology.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-thebe-forstorelse",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b33f3e4cb83c89dbe660d73762ece3e6bedc102516e2219d727ea94f308c262b"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-thebe-forstorelse/titleSv",
+      "sv": "Alexander plundrar Thebe",
+      "en": "Alexander sacks Thebes",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-thebe-forstorelse",
+        "fieldPath": "/titleSv",
+        "textSha256": "866f35bbe8e0b5283636c5cb792a4c76af695ea0239d8c19a49449d740d0373d"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-thebe-forstorelse/summarySv",
+      "sv": "Alexanders styrkor plundrar Thebe.",
+      "en": "Alexander's forces sack Thebes.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-thebe-forstorelse",
+        "fieldPath": "/summarySv",
+        "textSha256": "cafff5a06cda97a945750f2c3122c4828c271e788718d5dcb5670362d827e12d"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-thebe-forstorelse/geographySv",
+      "sv": "Thebe i Boiotien",
+      "en": "Thebes in Boeotia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-thebe-forstorelse",
+        "fieldPath": "/geographySv",
+        "textSha256": "65593b3e1987f7a1857e3ba0460be32a49385fbe60265399847d98d98bb8c0e8"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-aristoteles-lykeion/date/displaySv",
+      "sv": "335 f.Kr.",
+      "en": "335 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-aristoteles-lykeion",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5918b267c365a13eea956fa950b25afb8e4d58cb0f0cdc0c47ada0f300c884a1"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-aristoteles-lykeion/date/noteSv",
+      "sv": "Året gäller återkomsten och skolans tillkomst.",
+      "en": "The year concerns the return and the establishment of the school.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-aristoteles-lykeion",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e10a32fc7d04f503833588e74ef3c784336e33493bb34ac7bf76d3e453a86f30"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-aristoteles-lykeion/titleSv",
+      "sv": "Aristoteles inrättar sin skola vid Lykeion",
+      "en": "Aristotle establishes his school at the Lyceum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-aristoteles-lykeion",
+        "fieldPath": "/titleSv",
+        "textSha256": "704b9c15db4c9d87bf45dd2b8d2ba1b7851b1f753ac2cc1d22a6f93959f55d18"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-aristoteles-lykeion/summarySv",
+      "sv": "Aristoteles återvänder till Aten och inrättar en skola vid Lykeion, en plats för undervisning och forskning.",
+      "en": "Aristotle returns to Athens and establishes a school at the Lyceum, a place for teaching and research.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-aristoteles-lykeion",
+        "fieldPath": "/summarySv",
+        "textSha256": "dfcf942f7b6fb4ab34fb930aca5a950a2e5cf88a7c48a2597795925476e2ac06"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-aristoteles-lykeion/geographySv",
+      "sv": "Aten",
+      "en": "Athens",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-aristoteles-lykeion",
+        "fieldPath": "/geographySv",
+        "textSha256": "51e524d0ebab07c668094007543f9dd78aac9e93472cff65067de42e1b095e97"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-granikos/date/displaySv",
+      "sv": "334 f.Kr.",
+      "en": "334 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-granikos",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "3448eb1eb6130c19987f085d0edbc26be81669281fbd6241fb48653bf5d5b519"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-granikos/date/noteSv",
+      "sv": "Den lästa undervisningsöversikten anger maj.",
+      "en": "The teaching overview read gives May.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-granikos",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "fcc67005ebe7f6c2980b6a83cca92c5fae067d38453a1ff854f410d64aa98a09"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-granikos/titleSv",
+      "sv": "Alexander besegrar persiska styrkor vid Granikos",
+      "en": "Alexander defeats Persian forces at the Granicus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-granikos",
+        "fieldPath": "/titleSv",
+        "textSha256": "52327b5e1e5364dbb1ad2f542268834a8e5c632181a6c0ff21cda8109a91ea96"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-granikos/summarySv",
+      "sv": "Alexander besegrar persiska satrapers armé vid floden Granikos.",
+      "en": "Alexander defeats an army of Persian satraps at the river Granicus.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-granikos",
+        "fieldPath": "/summarySv",
+        "textSha256": "fa70089e28f3f09408b82e2ea15bb1b13e51af935f3c2c9a43f0ab061bd14389"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-granikos/geographySv",
+      "sv": "Nordvästra Anatolien",
+      "en": "Northwestern Anatolia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-granikos",
+        "fieldPath": "/geographySv",
+        "textSha256": "d3f8b077451e300b154b21b2699219449d3308861223970cfe35f717fdcdc0c9"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-issos/date/displaySv",
+      "sv": "333 f.Kr.",
+      "en": "333 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-issos",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4bdd33b5b9f1238118ca43047840d59b1242c48f6ae6e921857e16a251c238ab"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-issos/date/noteSv",
+      "sv": "Den lästa undervisningsöversikten anger november.",
+      "en": "The teaching overview read gives November.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-issos",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "73d05fe85aa2142d89a854f07ef9fe36512d60e91998b0b39391020a4773f20f"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-issos/titleSv",
+      "sv": "Alexander besegrar Dareios III vid Issos",
+      "en": "Alexander defeats Darius III at Issus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-issos",
+        "fieldPath": "/titleSv",
+        "textSha256": "65fa44787f57f2cc62e22a3fd6172876aa13975746e68404fd38879a743c4f41"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-issos/summarySv",
+      "sv": "Alexander segrar över Dareios III vid Issos. Den persiske kungen flyr och hans familj hamnar i Alexanders händer.",
+      "en": "Alexander defeats Darius III at Issus. The Persian king flees, and his family falls into Alexander's hands.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-issos",
+        "fieldPath": "/summarySv",
+        "textSha256": "f4bb12b3ff58aa18b0bb89f00398eae1dcf9a73860d1300b15701f571e647f44"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-issos/geographySv",
+      "sv": "Issos i södra Anatolien",
+      "en": "Issus in southern Anatolia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-issos",
+        "fieldPath": "/geographySv",
+        "textSha256": "6b8257da5a96a281ceed2b216570752a0b31f6280c7bdc85ee894751561e9c0a"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-tyros/date/displaySv",
+      "sv": "332 f.Kr.",
+      "en": "332 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-tyros",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "254d27e101302be390d0160d96c25d9bfa536e591659ed00aec31b5a3699b78c"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-tyros/date/noteSv",
+      "sv": "Bygget utnyttjar en redan grund sedimentrygg. Sju månader är belägringens angivna längd.",
+      "en": "The construction uses an existing shallow sediment ridge. Seven months is the stated length of the siege.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-tyros",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "547a9d0dc6a2e65522dd9ba5c064f040e6f3890f7ae5bfc91b01dad4fb0a432f"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-tyros/titleSv",
+      "sv": "Alexander intar Tyros efter att ha byggt en förbindelse till ön",
+      "en": "Alexander takes Tyre after building a link to the island",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-tyros",
+        "fieldPath": "/titleSv",
+        "textSha256": "ec3f0f155d98cecd53eac08905270c096d42c17353fdd0c9bae677c68e16671b"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-tyros/summarySv",
+      "sv": "En vägbank gör det möjligt att angripa östaden Tyros från land. Alexander intar staden efter sju månaders belägring.",
+      "en": "A causeway makes it possible to attack the island city of Tyre from the mainland. Alexander captures the city after a seven-month siege.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-tyros",
+        "fieldPath": "/summarySv",
+        "textSha256": "ee382f9fb72cef746a58a15cd2cdc9aa5bf4fb938a068e1ab0b2ab89b066b6ef"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-tyros/geographySv",
+      "sv": "Tyros vid nuvarande Libanons kust",
+      "en": "Tyre on the coast of present-day Lebanon",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-tyros",
+        "fieldPath": "/geographySv",
+        "textSha256": "0fd77790a1d1aaa92324437548eb162c0ceaa782a7dfd28140cf1a88bb155965"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexandria/date/displaySv",
+      "sv": "332–331 f.Kr.",
+      "en": "332–331 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexandria",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "828b7d1d9814dacd058d9e96c82ccfcc3f96114d0332c1395aec94c6f89d5951"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexandria/date/noteSv",
+      "sv": "Projektets datering omfattar två år. Inget enskilt grundläggningsår väljs.",
+      "en": "The project's dating spans two years. No single foundation year is selected.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexandria",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6b8cc468f2644fdbe7d5d25b613b93d27546374cdff6c600272fe359f5084c93"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexandria/titleSv",
+      "sv": "Alexander grundar Alexandria",
+      "en": "Alexander founds Alexandria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexandria",
+        "fieldPath": "/titleSv",
+        "textSha256": "7edbc0dc99d6a6f94a0b07d32be80863582d12c4ab5ae585bebeeef4fe3d5326"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexandria/summarySv",
+      "sv": "Alexandria grundas på platsen för den äldre bosättningen Rakothis.",
+      "en": "Alexandria is founded on the site of the earlier settlement of Rakothis.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexandria",
+        "fieldPath": "/summarySv",
+        "textSha256": "c8b947506b86c8e921f17eecb8a696e7d20f8174b4c1e28606260c86bbb49332"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexandria/geographySv",
+      "sv": "Egyptens medelhavskust",
+      "en": "Egypt's Mediterranean coast",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexandria",
+        "fieldPath": "/geographySv",
+        "textSha256": "ad5b05b1f0b379bd6c30a5aa5e13e2c71bf2be3fd0d29c188885bff13924175d"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-gaugamela/date/displaySv",
+      "sv": "331 f.Kr.",
+      "en": "331 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-gaugamela",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4da176dc0c39ccfc5a1daf64e4922973c521f075544d5dc79523de1b0f79e9ea"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-gaugamela/date/noteSv",
+      "sv": "Briant anger den 1 oktober för slaget.",
+      "en": "Briant dates the battle to 1 October.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-gaugamela",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "8c6ed85981a9da08de66fdce22ff4fe25c8d8c652199e8f8c51f11664fce16f2"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-gaugamela/titleSv",
+      "sv": "Alexander besegrar Dareios III vid Gaugamela",
+      "en": "Alexander defeats Darius III at Gaugamela",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-gaugamela",
+        "fieldPath": "/titleSv",
+        "textSha256": "c832ba6a1a21392725d193a714fc4035e55f16332700240f0e3950dcaecab531"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-gaugamela/summarySv",
+      "sv": "Segern vid Gaugamela följs av att Babylon och Susa överlämnas till Alexander.",
+      "en": "The victory at Gaugamela is followed by the surrender of Babylon and Susa to Alexander.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-gaugamela",
+        "fieldPath": "/summarySv",
+        "textSha256": "84f95ee37a5c458e86bdb9b4af388d71a37f94079eaf28987d31d60973f30617"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-gaugamela/geographySv",
+      "sv": "Gaugamela i norra Mesopotamien",
+      "en": "Gaugamela in northern Mesopotamia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-gaugamela",
+        "fieldPath": "/geographySv",
+        "textSha256": "b2a36a36b3a2e35e1cbcafd9e30965c3bda2514efb51fc98ee0ac071b10486e4"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-persepolis/date/displaySv",
+      "sv": "330 f.Kr.",
+      "en": "330 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-persepolis",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e070377ccc1983958b27f1bec72eb35737a0f7e6aea9610a10d43a18d975d57a"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-persepolis/date/noteSv",
+      "sv": "Briant förlägger branden till våren.",
+      "en": "Briant places the fire in spring.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-persepolis",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "4dd0da658d1b3ac4e06b04d8e24bd3a2a5f6fc2f84fb7a2a4fb7b13d3470ff93"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-persepolis/titleSv",
+      "sv": "Persepolis bränns under Alexanders fälttåg",
+      "en": "Persepolis is burned during Alexander's campaign",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-persepolis",
+        "fieldPath": "/titleSv",
+        "textSha256": "e5d9ff5982b8f09313a55c6ec67c793abfea3db2b4602010bcb1f435a7cd8dff"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-persepolis/summarySv",
+      "sv": "Persepolis bränns under Alexanders vistelse i det persiska kärnlandet.",
+      "en": "Persepolis is burned during Alexander's stay in the Persian heartland.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-persepolis",
+        "fieldPath": "/summarySv",
+        "textSha256": "9f4402b668e574da9c4fc0973da29db54ddaa1287e67eceaa6342de1ed2097d6"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-persepolis/geographySv",
+      "sv": "Persis i nuvarande Iran",
+      "en": "Persis in present-day Iran",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-persepolis",
+        "fieldPath": "/geographySv",
+        "textSha256": "e30922ade7c41d1988afd70a58db5c9741d998fbeb9e7c70d0089400f6f3c7cd"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-baktrien-sogdiana/date/displaySv",
+      "sv": "330–327 f.Kr.",
+      "en": "330–327 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-baktrien-sogdiana",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "f3f096450deeb6bc5ab2ec201d2e5c88007bf438243c34524880c86d0724bf37"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-baktrien-sogdiana/date/noteSv",
+      "sv": "Intervallet följer Briants skildring av motståndet. Det fastställer ingen oavbruten strid på varje plats.",
+      "en": "The interval follows Briant's account of the resistance. It does not establish uninterrupted fighting at every location.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-baktrien-sogdiana",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "caeabd712383b279fae8efb601bb966716bb539839df2e158cc979a13d16addf"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-baktrien-sogdiana/titleSv",
+      "sv": "Motstånd möter Alexander i Baktrien och Sogdiana",
+      "en": "Alexander faces resistance in Bactria and Sogdiana",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-baktrien-sogdiana",
+        "fieldPath": "/titleSv",
+        "textSha256": "74b118931fcbabe423922a2dbdcfaff99b1cb2b4927e0f6a7ab649cabdf2bbd2"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-baktrien-sogdiana/summarySv",
+      "sv": "Lokala ledare och deras allierade gör motstånd mot Alexanders välde i Baktrien och Sogdiana.",
+      "en": "Local leaders and their allies resist Alexander's rule in Bactria and Sogdiana.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-baktrien-sogdiana",
+        "fieldPath": "/summarySv",
+        "textSha256": "456db39645155d5e89a3ffb599108c71ae6911e1bb24e9fdb5cce2cba7ed4fd1"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-baktrien-sogdiana/geographySv",
+      "sv": "Baktrien och Sogdiana i Centralasien",
+      "en": "Bactria and Sogdiana in Central Asia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-baktrien-sogdiana",
+        "fieldPath": "/geographySv",
+        "textSha256": "4db6db88d222dacb8ec1d03ad31e25f2f828d19ac96713dbda7b7c9c09f3c7cd"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-hydaspes/date/displaySv",
+      "sv": "326 f.Kr.",
+      "en": "326 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-hydaspes",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "3998c6de87f3612572ad210c60b3220c26690189e28646096be107a042873199"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-hydaspes/date/noteSv",
+      "sv": "Året anges i kapitlets offentliga sammanfattning.",
+      "en": "The year is given in the chapter's public summary.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-hydaspes",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5333b66f347c15c1de79bc762cdd6746a82d889338d59666e85f14d441f7b3d6"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-hydaspes/titleSv",
+      "sv": "Alexander besegrar Poros vid Hydaspes",
+      "en": "Alexander defeats Porus at the Hydaspes",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-hydaspes",
+        "fieldPath": "/titleSv",
+        "textSha256": "06f1509e450f6b57b04380af1031d372b9ed82b5d70110c13583f1c84e672205"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-hydaspes/summarySv",
+      "sv": "Alexander besegrar Poros vid floden Hydaspes, dagens Jhelum, i Punjab.",
+      "en": "Alexander defeats Porus at the river Hydaspes, today's Jhelum, in Punjab.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-hydaspes",
+        "fieldPath": "/summarySv",
+        "textSha256": "f4ac108536d650ecdc359ab62ee31bc04b7a41441bfde357bee732eecf2aff6a"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-hydaspes/geographySv",
+      "sv": "Punjab vid Jhelum",
+      "en": "Punjab along the Jhelum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-hydaspes",
+        "fieldPath": "/geographySv",
+        "textSha256": "e19fd8c3c5272dd85b9a9b940fb2fb9144696251515b41d7783ba37904bb5017"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexander-dod/date/displaySv",
+      "sv": "323 f.Kr.",
+      "en": "323 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexander-dod",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "50bddd0d6e9ed6adda47ad61e77d99c52e43caf5703a3b619d612d49ae9ebd2f"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexander-dod/date/noteSv",
+      "sv": "Året avser dödsfallet. Ingen säker medicinsk dödsorsak anges.",
+      "en": "The year concerns the death. No certain medical cause of death is given.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexander-dod",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "eac25f5b89f61073cd2b60463ffcda33791a5658b607e7a9b26a3a270a093186"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexander-dod/titleSv",
+      "sv": "Alexanders död lämnar riket utan honom",
+      "en": "Alexander's death leaves the empire without him",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexander-dod",
+        "fieldPath": "/titleSv",
+        "textSha256": "1bcb0580a1f83e8cd671ed44d3d84195bea1a43d8d90aed858bb955fb64e5566"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexander-dod/summarySv",
+      "sv": "Alexander dör i Babylon. Hans erövringar blir utgångspunkt för efterträdarnas riken.",
+      "en": "Alexander dies in Babylon. His conquests become the basis for his successors' kingdoms.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexander-dod",
+        "fieldPath": "/summarySv",
+        "textSha256": "e3099798b51b453c8c5fa9446056405a2a1314a930b06035d70017c5e65ca1a3"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-alexander-dod/geographySv",
+      "sv": "Babylon och Alexanders rike",
+      "en": "Babylon and Alexander's empire",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-alexander-dod",
+        "fieldPath": "/geographySv",
+        "textSha256": "a3eca08858c0ef0b29ded54737e9ef41f6a6cd8b2d3110a30007db685f0eb581"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-lamiska-kriget/date/displaySv",
+      "sv": "322 f.Kr.",
+      "en": "322 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-lamiska-kriget",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "dd7e9808f19299f985a21067882690de61d0de87ef5ded951b0236c4b762c6f4"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-lamiska-kriget/date/noteSv",
+      "sv": "Året gäller krigets slut.",
+      "en": "The year concerns the end of the war.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-lamiska-kriget",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "d4704c8e84ad8b85ec87ae4bd4fed13f054eb0369577f9bebf48dd2e09fa9de3"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-lamiska-kriget/titleSv",
+      "sv": "Antipatros avslutar det lamiska kriget",
+      "en": "Antipater ends the Lamian War",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-lamiska-kriget",
+        "fieldPath": "/titleSv",
+        "textSha256": "06407a451ed92214357f1026c9b6bceb2a0ac68debe4a7970d419ba6ab7b72c1"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-lamiska-kriget/summarySv",
+      "sv": "Antipatros slår ned motståndet i det lamiska kriget.",
+      "en": "Antipater puts down resistance in the Lamian War.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-lamiska-kriget",
+        "fieldPath": "/summarySv",
+        "textSha256": "460db5f25bc14c3a8c154827ceb327affe1ed4b9fb04335c020a72a5f6d13f79"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-lamiska-kriget/geographySv",
+      "sv": "Grekland",
+      "en": "Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-lamiska-kriget",
+        "fieldPath": "/geographySv",
+        "textSha256": "dc2d3a70a2c718d7af2c9391ec78461eef8897a62704b47344edd2ab517eaa16"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-qin-shu/date/displaySv",
+      "sv": "316 f.Kr.",
+      "en": "316 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-qin-shu",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "291d7fbc9765f43e4eece847bce890f6730e67f91e68f8625cd7d80a8b450d7d"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-qin-shu/date/noteSv",
+      "sv": "Året anges i kapitlets offentliga sammanfattning.",
+      "en": "The year is given in the chapter's public summary.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-qin-shu",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5333b66f347c15c1de79bc762cdd6746a82d889338d59666e85f14d441f7b3d6"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-qin-shu/titleSv",
+      "sv": "Qin erövrar Shu",
+      "en": "Qin conquers Shu",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-qin-shu",
+        "fieldPath": "/titleSv",
+        "textSha256": "9aba1f05b6e6fe5b24df9cac6c3dcf793bdd605b07ac71f38f443cb966d466a4"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-qin-shu/summarySv",
+      "sv": "Qin erövrar kungariket Shu i Sichuanbäckenet.",
+      "en": "Qin conquers the kingdom of Shu in the Sichuan Basin.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-qin-shu",
+        "fieldPath": "/summarySv",
+        "textSha256": "e151bd352438feefdf12c7e56bab91b084d9dbc8a87cd4f8e066025c49caa1f9"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-qin-shu/geographySv",
+      "sv": "Sichuan i nuvarande Kina",
+      "en": "Sichuan in present-day China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-qin-shu",
+        "fieldPath": "/geographySv",
+        "textSha256": "a2aaaf22a38958862a6a4cbfb564395e9ce6b442ff616448d88cabf07b131450"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-aqua-appia/date/displaySv",
+      "sv": "312 f.Kr.",
+      "en": "312 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-aqua-appia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b5049030f083719db810327c3de190a6c64378a82248ffb907070dadd2d3a994"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-aqua-appia/date/noteSv",
+      "sv": "Året avser Aqua Appias tillkomst.",
+      "en": "The year concerns the construction of the Aqua Appia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-aqua-appia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "8b15254937f3fc2460e7657a175939f35ec18d97267d731a56d9802a45168eee"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-aqua-appia/titleSv",
+      "sv": "Rom får sin första akvedukt",
+      "en": "Rome gets its first aqueduct",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-aqua-appia",
+        "fieldPath": "/titleSv",
+        "textSha256": "2c8275a122cb8e81fff9d19845aeb7f5bd2ce0d46e261de4e4697e2736c8a888"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-aqua-appia/summarySv",
+      "sv": "Aqua Appia byggs under Appius Claudius Caecus censur och förser Rom med vatten genom en akvedukt.",
+      "en": "The Aqua Appia is built during the censorship of Appius Claudius Caecus and supplies Rome with water through an aqueduct.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-aqua-appia",
+        "fieldPath": "/summarySv",
+        "textSha256": "29c5160db1b4593450eb3f62238f2b188870b4fad766e5e3c1efb6f3cc36740b"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-aqua-appia/geographySv",
+      "sv": "Rom",
+      "en": "Rome",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-aqua-appia",
+        "fieldPath": "/geographySv",
+        "textSha256": "1f268826c4d33921cbcec835bd71ab3bc2729936d3edb01befa02c46c41a71ed"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-via-appia/date/displaySv",
+      "sv": "312 f.Kr.",
+      "en": "312 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-via-appia",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b5049030f083719db810327c3de190a6c64378a82248ffb907070dadd2d3a994"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-via-appia/date/noteSv",
+      "sv": "Året gäller byggstarten. Vägens senare förlängningar till södra Italien var ännu inte färdiga.",
+      "en": "The year concerns the start of construction. The road's later extensions into southern Italy were not yet complete.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-via-appia",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6c7cdcf755bedca3cc5630550e19dacd40d8756461ed5b16c6d8f08a799049f5"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-via-appia/titleSv",
+      "sv": "Bygget av Via Appia inleds",
+      "en": "Construction of the Via Appia begins",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-via-appia",
+        "fieldPath": "/titleSv",
+        "textSha256": "d83297973a157f3e2f200b81426798fccd2cd363e5095eb4514cbe5483dade29"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-via-appia/summarySv",
+      "sv": "En väg börjar byggas mellan Rom och Capua under Appius Claudius Caecus.",
+      "en": "Construction begins on a road between Rome and Capua under Appius Claudius Caecus.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-via-appia",
+        "fieldPath": "/summarySv",
+        "textSha256": "17c66b1ec19c6ff19bff3194b76b505b03018f8f7a206e89f039073ddd5618e1"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-via-appia/geographySv",
+      "sv": "Rom och Capua på den italienska halvön",
+      "en": "Rome and Capua on the Italian Peninsula",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-via-appia",
+        "fieldPath": "/geographySv",
+        "textSha256": "7609fa2a6d2abf16d230e78a5578c3909ee63a395684b6fdddc7cd2480052260"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-zhao-ryttarbagskytte/date/displaySv",
+      "sv": "307 f.Kr.",
+      "en": "307 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-zhao-ryttarbagskytte",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "6ab83c46fb58dad5f7c460992bd08ed6b666a7792c62bfbd4303f20db61b7181"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-zhao-ryttarbagskytte/date/noteSv",
+      "sv": "Året gäller reformen i den skriftliga traditionen. Ridning förekom tidigare i Kina enligt arkeologiska fynd.",
+      "en": "The year concerns the reform in the written tradition. Archaeological finds show that riding occurred earlier in China.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-zhao-ryttarbagskytte",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f3adcd3cd952bc89ca120f375b89e5b527d26534f2caad57823c60619ba0a2c5"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-zhao-ryttarbagskytte/titleSv",
+      "sv": "Kung Wuling inför ryttarbågskytte i Zhao",
+      "en": "King Wuling introduces mounted archery in Zhao",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-zhao-ryttarbagskytte",
+        "fieldPath": "/titleSv",
+        "textSha256": "1123da86e6a11e4f5ac195e82558c6d446c2582dd3235a10e10545cadf663b01"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-zhao-ryttarbagskytte/summarySv",
+      "sv": "Historiska texter beskriver hur kung Wuling låter Zhao anta bågskytte från hästryggen som svar på ridande grannfolk.",
+      "en": "Historical texts describe King Wuling having Zhao adopt horseback archery in response to mounted neighboring peoples.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-zhao-ryttarbagskytte",
+        "fieldPath": "/summarySv",
+        "textSha256": "f53bbb0fad8b2359858c3fa46e2b3a2e9e90de3ecb93ce1fe0a0872c8b80fa5b"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-zhao-ryttarbagskytte/geographySv",
+      "sv": "Zhao i norra Kina",
+      "en": "Zhao in northern China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-zhao-ryttarbagskytte",
+        "fieldPath": "/geographySv",
+        "textSha256": "c106e4cb8dc2cf27c671db9cd95d1f26535e3f53459c17ab76c343d68dc48564"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-salamis-cypern/date/displaySv",
+      "sv": "306 f.Kr.",
+      "en": "306 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-salamis-cypern",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "c45f79315943a8e493bc6233e7a1edf3e3af104bd46c21df4840af355e1d5cef"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-salamis-cypern/date/noteSv",
+      "sv": "Året anges i kronologin.",
+      "en": "The year is given in the chronology.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-salamis-cypern",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b33f3e4cb83c89dbe660d73762ece3e6bedc102516e2219d727ea94f308c262b"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-salamis-cypern/titleSv",
+      "sv": "Seger vid Salamis följs av kungatitlar",
+      "en": "Victory at Salamis is followed by royal titles",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-salamis-cypern",
+        "fieldPath": "/titleSv",
+        "textSha256": "b997a3d720853701fbaf8270112ac0a53f75e243a42faf9d28baec4694848398"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-salamis-cypern/summarySv",
+      "sv": "Antigonos och Demetrios besegrar Ptolemaios vid Salamis på Cypern och antar kungatitlar.",
+      "en": "Antigonus and Demetrius defeat Ptolemy at Salamis on Cyprus and assume royal titles.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-salamis-cypern",
+        "fieldPath": "/summarySv",
+        "textSha256": "2935362c3ddd0ca0b90310cdfab197455e078b35a7bb0c683509d0cb6c862788"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-salamis-cypern/geographySv",
+      "sv": "Salamis på Cypern",
+      "en": "Salamis on Cyprus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-salamis-cypern",
+        "fieldPath": "/geographySv",
+        "textSha256": "4172831aef2be0807024e6103b4fdfc15bc06f1209810c25aaf1c7cac68f8a8c"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-chandragupta-seleukos/date/displaySv",
+      "sv": "cirka 305–303 f.Kr.",
+      "en": "Approximately 305–303 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-chandragupta-seleukos",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "86dde7fc593851a997e3967368a0303d953d6edc92adc7aef843f2399073f767"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-chandragupta-seleukos/date/noteSv",
+      "sv": "Jansaris sammanfattning anger hela intervallet. Bristen på tillförlitliga tidiga skildringar gör konfliktens segrare osäker; fredsvillkor och tronbestigningsår fastställs inte här.",
+      "en": "Jansari's summary gives the full interval. The lack of reliable early accounts leaves the victor in the conflict uncertain; peace terms and accession dates are not established here.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-chandragupta-seleukos",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "37e272e15b260063d54eed53ad39f359f9032628bb995e71c21df91a5a3ba610"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-chandragupta-seleukos/titleSv",
+      "sv": "Chandragupta och Seleukos sluter fred",
+      "en": "Chandragupta and Seleucus make peace",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-chandragupta-seleukos",
+        "fieldPath": "/titleSv",
+        "textSha256": "491410c7f9a16bb39bcdb11904aa875a20149abf9a8db4d7cdce0681d1eec92d"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-chandragupta-seleukos/summarySv",
+      "sv": "Efter en konflikt möts Chandragupta Maurya och Seleukos för att skapa fred vid Indus.",
+      "en": "After a conflict, Chandragupta Maurya and Seleucus meet to make peace by the Indus.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-chandragupta-seleukos",
+        "fieldPath": "/summarySv",
+        "textSha256": "a98276aa9de9b1fefff3d53e5cb05be05cc10ebc774711bad2507778a6f75986"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-chandragupta-seleukos/geographySv",
+      "sv": "Indusområdet i Sydasien",
+      "en": "The Indus region in South Asia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-chandragupta-seleukos",
+        "fieldPath": "/geographySv",
+        "textSha256": "9bdc5c04f1d20cf47eef678785b6539e83612032e90d2f3914281a73c3569fd2"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-rhodos-belagring/date/displaySv",
+      "sv": "305–304 f.Kr.",
+      "en": "305–304 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-rhodos-belagring",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a88294ed0274e177327a8cb54e43653a03bbfcea600b6f230f1ab4a9b4a84ae9"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-rhodos-belagring/date/noteSv",
+      "sv": "Källornas 305/304 bevaras som hela intervallet.",
+      "en": "The sources' 305/304 is preserved as the full interval.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-rhodos-belagring",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "974e5b371ffa723722875e281119b8fa77eca1be9ac2d24e2aa3de703ae3009b"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-rhodos-belagring/titleSv",
+      "sv": "Rhodos står emot Demetrios belägring",
+      "en": "Rhodes withstands Demetrius's siege",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-rhodos-belagring",
+        "fieldPath": "/titleSv",
+        "textSha256": "13ac61ae281dfceff8ce256903b24fa5f8cb675e68643f74de4519f71a0b97e7"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-rhodos-belagring/summarySv",
+      "sv": "Demetrios belägrar Rhodos utan att inta staden.",
+      "en": "Demetrius besieges Rhodes without capturing the city.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-rhodos-belagring",
+        "fieldPath": "/summarySv",
+        "textSha256": "e9a6fa16a0832fb954ddec4607a01796d916b095843e144a6d825a1ba5b00082"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-rhodos-belagring/geographySv",
+      "sv": "Rhodos i östra Medelhavet",
+      "en": "Rhodes in the eastern Mediterranean",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-rhodos-belagring",
+        "fieldPath": "/geographySv",
+        "textSha256": "4d6aa490f57f62cd300837ccac6d12086c18879ef9e48bd1d18956c89d8587a5"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-ipsos/date/displaySv",
+      "sv": "301 f.Kr.",
+      "en": "301 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-ipsos",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "a96bb49db7c3963cefbb8122240969bd0331ae5ecb1be0b4519f2a986e4c8a00"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-ipsos/date/noteSv",
+      "sv": "Året anges i kronologin.",
+      "en": "The year is given in the chronology.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-ipsos",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b33f3e4cb83c89dbe660d73762ece3e6bedc102516e2219d727ea94f308c262b"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-ipsos/titleSv",
+      "sv": "Antigonos faller vid Ipsos",
+      "en": "Antigonus falls at Ipsus",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-ipsos",
+        "fieldPath": "/titleSv",
+        "textSha256": "b58e2d45c0120e29e8bf41d8fa55bee6fabac8f63c9aaf75d401c0d732ac411f"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-ipsos/summarySv",
+      "sv": "Antigonos dör vid Ipsos. Hans rike delas efter slaget.",
+      "en": "Antigonus dies at Ipsus. His kingdom is divided after the battle.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-ipsos",
+        "fieldPath": "/summarySv",
+        "textSha256": "a862630e23e6e16b42d1ec9ec49c9ee4db18b19d59402b6687ef71ae03a60270"
+      }
+    },
+    {
+      "id": "event/ev-bc0400-ipsos/geographySv",
+      "sv": "Ipsos i Anatolien",
+      "en": "Ipsus in Anatolia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0400-ipsos",
+        "fieldPath": "/geographySv",
+        "textSha256": "82808cad6a5b8819e4032702b3be490daa5064b87aa7a7a9f6371c4d3daefc02"
       }
     }
   ]

@@ -177,6 +177,12 @@
     },
     {
       "startYear": -400,
+      "endYear": -301,
+      "status": "partial",
+      "note": "Thirty independently source-checked records concern selected political, military, cultural and technological developments in Europe, the Middle East and North Africa, sub-Saharan Africa, Central Asia, South Asia, East Asia and Southeast Asia. Searches attempted all nine macroregions; the Americas and Oceania have no retained event. Mediterranean warfare dominates and all regions remain incomplete. The Egypt reconquest in 343/342 event is held because its alternative chronology was access-limited in independent review. Seven bibliographic corrections do not change any retained historical event or numeric date. Full intervals and alternatives remain, including Khao Sam Kaeo 400–101, King's Peace 387–386, Shang Yang 359/356, Alexandria 332–331 and Chandragupta–Seleucus 305–303. Public abstracts and summaries are not represented as full-text access. Full event intervals do not extend researched coverage beyond 400–301 BC. Empty years remain research gaps."
+    },
+    {
+      "startYear": -300,
       "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
