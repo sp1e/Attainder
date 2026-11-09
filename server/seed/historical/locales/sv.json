@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "75235d536afcf446d10ccf254c0449e3d73e9257",
+  "sourceRevision": "16cd0b2d943e325efa42b228ed436e2bcfbc6ea3",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -9814,6 +9814,336 @@
         "sourceId": "review-ad0700-unesco-samarkand-geography",
         "fieldPath": "/institution",
         "textSha256": "0a082b6ed6dee4803d7c2687725d0e50ba1c6249718c0dfc6d7eee6659437a82"
+      }
+    },
+    {
+      "id": "source/ad0500-met-italy/locator",
+      "sv": "Key Events: ca. 530; stycket under ca. 535 (invigning 547); ca. 568; 590. Raderna 152–162 i textåtergivningen.",
+      "en": "Key Events: ca. 530; paragraph under ca. 535 (dedication in 547); ca. 568; 590. Native lines 152–162.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-met-italy",
+        "fieldPath": "/locator",
+        "textSha256": "4d9f214333057953f1b65a37a9246529945e81213c0e800513f884106b861ab9"
+      }
+    },
+    {
+      "id": "source/ad0500-met-italy/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-met-italy",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0500-met-north-south-asia/locator",
+      "sv": "Key Events, ca. 500–550; raderna 94–96 i textåtergivningen.",
+      "en": "Key Events, ca. 500–550; native lines 94–96.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-met-north-south-asia",
+        "fieldPath": "/locator",
+        "textSha256": "a8286341eb094a75267cc3eb068796fb35673a319352dd5a7ed767e10ff3b5db"
+      }
+    },
+    {
+      "id": "source/ad0500-met-north-south-asia/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-met-north-south-asia",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0500-wyoming-code/locator",
+      "sv": "Introduction, första stycket; raderna 52–59 i textåtergivningen.",
+      "en": "Introduction, opening paragraph; native lines 52–59.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-wyoming-code",
+        "fieldPath": "/locator",
+        "textSha256": "06cb393baf2cad61219584c13aa645d60722a871d3f24ecb47ba03b6cf1fdfa4"
+      }
+    },
+    {
+      "id": "source/ad0500-wyoming-code/institution",
+      "sv": "University of Wyoming, George W. Hopper Law Library",
+      "en": "University of Wyoming, George W. Hopper Law Library",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-wyoming-code",
+        "fieldPath": "/institution",
+        "textSha256": "40c95059038d14e35d2e51f5ec87edec24ddbaff3f0fd9b7a93e0b9b5415dc4a"
+      }
+    },
+    {
+      "id": "source/ad0500-unesco-hagia-sophia/locator",
+      "sv": "Outstanding Universal Value, Criterion (i); rad 53 i textåtergivningen.",
+      "en": "Outstanding Universal Value, Criterion (i); native line 53.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-unesco-hagia-sophia",
+        "fieldPath": "/locator",
+        "textSha256": "827d93b3a058858a109d3fdd5137115f60a82d94b3127863a797e5d92c72d5a8"
+      }
+    },
+    {
+      "id": "source/ad0500-unesco-hagia-sophia/institution",
+      "sv": "UNESCO World Heritage Centre",
+      "en": "UNESCO World Heritage Centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-unesco-hagia-sophia",
+        "fieldPath": "/institution",
+        "textSha256": "0a082b6ed6dee4803d7c2687725d0e50ba1c6249718c0dfc6d7eee6659437a82"
+      }
+    },
+    {
+      "id": "source/ad0500-van-dijk-volcanic-double-event/locator",
+      "sv": "Evelien van Dijk med flera (2023), 19, 357–398, sammanfattningen och Introduction; raderna 255–285 i textåtergivningen; DOI 10.5194/cp-19-357-2023.",
+      "en": "Evelien van Dijk et al. (2023), 19, 357–398, abstract and Introduction; native lines 255–285; DOI 10.5194/cp-19-357-2023.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-van-dijk-volcanic-double-event",
+        "fieldPath": "/locator",
+        "textSha256": "2261641c8a399a158a7074a6930258a6375da19ed5d95c9d5cf6fc2441cd4830"
+      }
+    },
+    {
+      "id": "source/ad0500-van-dijk-volcanic-double-event/institution",
+      "sv": "Climate of the Past, Copernicus Publications / European Geosciences Union",
+      "en": "Climate of the Past, Copernicus Publications / European Geosciences Union",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-van-dijk-volcanic-double-event",
+        "fieldPath": "/institution",
+        "textSha256": "2a28baea52e6338a7deafdb2e65d5eb1948adad364fa32f024d574a8efa85465"
+      }
+    },
+    {
+      "id": "source/ad0500-baekje-sabi-hangang/locator",
+      "sv": "Transfer of the Capital to Sabi and Further Development, Opening of the Sabi Period; raderna 70–77 i textåtergivningen.",
+      "en": "Transfer of the Capital to Sabi and Further Development, Opening of the Sabi Period; native lines 70–77.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-baekje-sabi-hangang",
+        "fieldPath": "/locator",
+        "textSha256": "d6c4dce2fe2b2748b31101d8a76cbcbd2a313397a8c445353e68670d077e7f67"
+      }
+    },
+    {
+      "id": "source/ad0500-baekje-sabi-hangang/institution",
+      "sv": "Baekje World Heritage Center",
+      "en": "Baekje World Heritage Center",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-baekje-sabi-hangang",
+        "fieldPath": "/institution",
+        "textSha256": "2100ad7f3f38feab9073f716e5a836aa0741311a0231c714aaf3d73f0cb8d37e"
+      }
+    },
+    {
+      "id": "source/ad0500-nara-buddhist-gift/locator",
+      "sv": "Term ID 1, förklaringsfältet; raderna 32–37 i textåtergivningen.",
+      "en": "Term ID 1, explanation field; native lines 32–37.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-nara-buddhist-gift",
+        "fieldPath": "/locator",
+        "textSha256": "c81d15495b91e3b7957f75a6f00138db304ede35b633487613130a3a39e39662"
+      }
+    },
+    {
+      "id": "source/ad0500-nara-buddhist-gift/institution",
+      "sv": "Nara Prefecture Complex of Man’yo Culture",
+      "en": "Nara Prefecture Complex of Man’yo Culture",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-nara-buddhist-gift",
+        "fieldPath": "/institution",
+        "textSha256": "7c62171592d03b87041e2ff56dbf7a0557c018b557ca6e784ca076a49b504fb3"
+      }
+    },
+    {
+      "id": "source/ad0500-harvard-procopius-plague/locator",
+      "sv": "Introduktionen till Procopius of Caesarea och diskussionen av Wars 2.22.9; raderna 48–55 i textåtergivningen.",
+      "en": "Procopius of Caesarea introduction and discussion of Wars 2.22.9; native lines 48–55.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-harvard-procopius-plague",
+        "fieldPath": "/locator",
+        "textSha256": "e839480b8aa8d52d59c10808f4b5672e6a140c0d20618e37ab1db76688b48c36"
+      }
+    },
+    {
+      "id": "source/ad0500-harvard-procopius-plague/institution",
+      "sv": "Harvard University, Initiative for the Science of the Human Past",
+      "en": "Harvard University, Initiative for the Science of the Human Past",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-harvard-procopius-plague",
+        "fieldPath": "/institution",
+        "textSha256": "2d8bb257fa8767d06aeaca6ed1dcc9d1c4fc976b6622971e2a03616250e57a99"
+      }
+    },
+    {
+      "id": "source/ad0500-scov-ly-bi/locator",
+      "sv": "Avsnitt 1, Lý Nam Đế; stycket som börjar Tháng Hai năm Giáp Tý - 544; rad 68 i textåtergivningen. Sidan är daterad 19 februari 2005.",
+      "en": "Section 1, Lý Nam Đế; paragraph beginning Tháng Hai năm Giáp Tý - 544; native line 68. Page dated 19 February 2005.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-scov-ly-bi",
+        "fieldPath": "/locator",
+        "textSha256": "e8f39dee72c24d883fc198a2a3c689690c1a756c79c725b150d4b95b256ac836"
+      }
+    },
+    {
+      "id": "source/ad0500-scov-ly-bi/institution",
+      "sv": "Ủy ban Nhà nước về người Việt Nam ở nước ngoài; Quê hương",
+      "en": "Ủy ban Nhà nước về người Việt Nam ở nước ngoài; Quê hương",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-scov-ly-bi",
+        "fieldPath": "/institution",
+        "textSha256": "b711eaaf9a7dd04361d3e7f06578d1c97e6d01ec94a34e093654712f3a05641e"
+      }
+    },
+    {
+      "id": "source/ad0500-felfoldi-hephthalite-chronology/locator",
+      "sv": "Szabolcs Felföldi (2002), volym 112, s. 63–87; slutsatserna på s. 84–86 och den engelska sammanfattningen på s. 87 (PDF-sidor 22–25); raderna 823–893 i textåtergivningen.",
+      "en": "Szabolcs Felföldi (2002), volume 112, pp. 63–87; conclusions pp. 84–86 and English summary p. 87 (PDF pages 22–25); native lines 823–893.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-felfoldi-hephthalite-chronology",
+        "fieldPath": "/locator",
+        "textSha256": "f48a34968bde7e6f0e219649fce5366a7fca77037347ba41420e0408b6d5933a"
+      }
+    },
+    {
+      "id": "source/ad0500-felfoldi-hephthalite-chronology/institution",
+      "sv": "University of Szeged, Acta Universitatis Szegediensis: Acta Historica",
+      "en": "University of Szeged, Acta Universitatis Szegediensis: Acta Historica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-felfoldi-hephthalite-chronology",
+        "fieldPath": "/institution",
+        "textSha256": "4952ed2dbcf688dc33869651a187503b6b922501bb611e1837dd70e89749bee0"
+      }
+    },
+    {
+      "id": "source/ad0500-chase-tikal-caracol/locator",
+      "sv": "Arlen F. Chase, Diane Z. Chase och Adrian S.Z. Chase, kapitel 7, s. 144 och 149 (PDF-sidor 2 och 7), Hieroglyphic History; DOI 10.5876/9781646422326.c007. Titel och författarnamn på PDF-sida 1.",
+      "en": "Arlen F. Chase, Diane Z. Chase and Adrian S.Z. Chase, chapter 7, pp. 144 and 149 (PDF pages 2 and 7), Hieroglyphic History; DOI 10.5876/9781646422326.c007. Title and author credit on PDF page 1.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-chase-tikal-caracol",
+        "fieldPath": "/locator",
+        "textSha256": "a436b53a38637b2674a2267b3427c51f249099c8fd5818998cfa22215f36b8e9"
+      }
+    },
+    {
+      "id": "source/ad0500-chase-tikal-caracol/institution",
+      "sv": "Caracol Archaeological Project, som tillhandahåller kapitlet av Arlen F. Chase, Diane Z. Chase och Adrian S. Z. Chase",
+      "en": "Caracol Archaeological Project, hosting the chapter by Arlen F. Chase, Diane Z. Chase and Adrian S. Z. Chase",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-chase-tikal-caracol",
+        "fieldPath": "/institution",
+        "textSha256": "4fe9a8c545b8188ce45255000d982f9bcd6a73155efccc81fbe2f5950ea7045b"
+      }
+    },
+    {
+      "id": "source/ad0500-adams-longinus/locator",
+      "sv": "William Y. Adams, LONGINUS, CE 1479b–1480b, PDF-sida 1, stycket som börjar In 575; författarnamn på PDF-sida 2.",
+      "en": "William Y. Adams, LONGINUS, CE 1479b–1480b, PDF page 1, paragraph beginning In 575; author credit on PDF page 2.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-adams-longinus",
+        "fieldPath": "/locator",
+        "textSha256": "4a06369cc58478f46aa7afec27875f8da7b24781f1fd034f03c65fd72330fa69"
+      }
+    },
+    {
+      "id": "source/ad0500-adams-longinus/institution",
+      "sv": "The Coptic Encyclopedia; Claremont Colleges Digital Library",
+      "en": "The Coptic Encyclopedia; Claremont Colleges Digital Library",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-adams-longinus",
+        "fieldPath": "/institution",
+        "textSha256": "1f43ee94e3133ba67cceeb2bdf11b6a305a4ca44ff5039f6b30ac7fdcf134b09"
+      }
+    },
+    {
+      "id": "source/ad0500-met-china-sui/locator",
+      "sv": "Key Events, 581; raderna 99–100 i textåtergivningen.",
+      "en": "Key Events, 581; native lines 99–100.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-met-china-sui",
+        "fieldPath": "/locator",
+        "textSha256": "95a0840058dd33b8251101c6e8e26132a1f42b7943e6691c42a21c3b98a787b4"
+      }
+    },
+    {
+      "id": "source/ad0500-met-china-sui/institution",
+      "sv": "The Metropolitan Museum of Art",
+      "en": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-met-china-sui",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0500-shitennoji-shotoku/locator",
+      "sv": "School Philosophy, Prince Shotoku (574–622); raderna 46–48 i textåtergivningen.",
+      "en": "School Philosophy, Prince Shotoku (574–622); native lines 46–48.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-shitennoji-shotoku",
+        "fieldPath": "/locator",
+        "textSha256": "56e78b5a4589839821838f59abb5375c84a5d776f94de2a6d50aea97121b2b17"
+      }
+    },
+    {
+      "id": "source/ad0500-shitennoji-shotoku/institution",
+      "sv": "Shitennoji University",
+      "en": "Shitennoji University",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-shitennoji-shotoku",
+        "fieldPath": "/institution",
+        "textSha256": "8d69512c2814e558537ecefca9e22a89ff268ffe6f1c13ce7097936953370401"
+      }
+    },
+    {
+      "id": "source/ad0500-english-heritage-augustine/locator",
+      "sv": "Augustine’s Mission, första stycket; rad 229 i textåtergivningen.",
+      "en": "Augustine’s Mission, opening paragraph; native line 229.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-english-heritage-augustine",
+        "fieldPath": "/locator",
+        "textSha256": "1fd3568f7cca9c74c149af9ecda3231ef6b3d766a0734f3390ad8b4807de8d66"
+      }
+    },
+    {
+      "id": "source/ad0500-english-heritage-augustine/institution",
+      "sv": "English Heritage",
+      "en": "English Heritage",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0500-english-heritage-augustine",
+        "fieldPath": "/institution",
+        "textSha256": "1fde17fd286a11daa43763e2a16609ecb9a99c6a21a4d89903117f72e8322687"
       }
     }
   ]

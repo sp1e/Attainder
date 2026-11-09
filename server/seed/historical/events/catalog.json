@@ -5435,6 +5435,171 @@
       "originalChronology": "Modern geographical identification only; no historical conquest date is asserted from this page.",
       "reuseTerms": "Reference-only research intention; no source prose or images redistributed. This statement does not assert a licence or additional reuse permission.",
       "scopedClaim": "Samarkand is in present-day Uzbekistan; supports only the modern country label."
+    },
+    {
+      "id": "ad0500-met-italy",
+      "title": "Italian Peninsula, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/ja/toah/ht/06/eust",
+      "locator": "Key Events: ca. 530; paragraph under ca. 535 (dedication in 547); ca. 568; 590. Native lines 152–162.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The timeline uses ca. 530 and ca. 568; its prose explicitly dates San Vitale dedication to 547 and the papal election to 590.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "Four distinct episodes: Monte Cassino foundation, San Vitale dedication, Lombard invasion and Gregory’s election. The approximate heading ca. 535 is not the dedication date."
+    },
+    {
+      "id": "ad0500-met-north-south-asia",
+      "title": "South Asia: North, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/ko/toah/ht/06/ssn.html",
+      "locator": "Key Events, ca. 500–550; native lines 94–96.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The source supplies the complete approximate interval ca. 500–550 for temporary Huna conquests. No individual conquest year is specified.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "Huna rulers temporarily conquered Punjab and Kashmir during the stated interval."
+    },
+    {
+      "id": "ad0500-wyoming-code",
+      "title": "ANNOTATED JUSTINIAN CODE Novels 1st Edition: Introduction",
+      "institution": "University of Wyoming, George W. Hopper Law Library",
+      "url": "https://www.uwyo.edu/lawlib/blume-justinian/ajc-edition-1/novels/edition1-novels-intro.html",
+      "locator": "Introduction, opening paragraph; native lines 52–59.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The Code was created in 529; Justinian incorporated subsequent laws in its second edition in 534. This is a two-edition interval, not the whole reign or an official collection of the later Novels.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "The first Code and its revised edition delimit the selected legal codification episode."
+    },
+    {
+      "id": "ad0500-unesco-hagia-sophia",
+      "title": "Historic Areas of Istanbul",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/356",
+      "locator": "Outstanding Universal Value, Criterion (i); native line 53.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "UNESCO dates the design by Anthemios of Tralles and Isidoros of Miletus to 532–537.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "The architects’ design phase, with the full interval supplied by UNESCO."
+    },
+    {
+      "id": "ad0500-van-dijk-volcanic-double-event",
+      "title": "Climatic and societal impacts in Scandinavia following the 536 and 540 CE volcanic double event",
+      "institution": "Climate of the Past, Copernicus Publications / European Geosciences Union",
+      "url": "https://cp.copernicus.org/articles/19/357/2023/",
+      "locator": "Evelien van Dijk et al. (2023), 19, 357–398, abstract and Introduction; native lines 255–285; DOI 10.5194/cp-19-357-2023.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "Two eruptions are dated 536 and 540 CE. The selected interval joins those two events; it does not date the full debated duration of subsequent cooling. Regional agricultural effects are modelled and spatially variable.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "The two eruptions initiated cooling; evidence and simulations indicate differing consequences in southern Norway. No precise universal death toll or single volcano is asserted."
+    },
+    {
+      "id": "ad0500-baekje-sabi-hangang",
+      "title": "Revival and Development of Baekje",
+      "institution": "Baekje World Heritage Center",
+      "url": "https://new.baekje-heritage.or.kr/html/en/historic/historic_010102.html",
+      "locator": "Transfer of the Capital to Sabi and Further Development, Opening of the Sabi Period; native lines 70–77.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "Capital relocation is dated 538; Silla’s attack on Baekje’s lower Hangang territory and the end of their alliance are dated 553.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "Seong moved the capital to Sabi; a later Silla attack ended the alliance. These are separate political episodes."
+    },
+    {
+      "id": "ad0500-nara-buddhist-gift",
+      "title": "仏教伝来 (Transmission of Buddhism), term ID 1",
+      "institution": "Nara Prefecture Complex of Man’yo Culture",
+      "url": "https://manyo-hyakka.pref.nara.jp/db/detail?cls=db_yougo3&pkey=1",
+      "locator": "Term ID 1, explanation field; native lines 32–37.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The year field displays 538, but the explanation explicitly preserves 538 and 552 as two chronologies for the royal gift. It allows earlier private Buddhist observance among immigrants.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "A Baekje king sent Buddhist images and scriptures to Emperor Kinmei. The royal transmission tradition is dated 538 or 552, not a secure first Buddhist presence in Japan."
+    },
+    {
+      "id": "ad0500-harvard-procopius-plague",
+      "title": "Selected Draft Translations of Primary Written Sources for Plague Outbreaks",
+      "institution": "Harvard University, Initiative for the Science of the Human Past",
+      "url": "https://sohp.fas.harvard.edu/selected-draft-translations",
+      "locator": "Procopius of Caesarea introduction and discussion of Wars 2.22.9; native lines 48–55.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The commentary dates the Constantinople outbreak to spring 542 and attributes eyewitness presence to Procopius. Its wording about the month is not adopted. The source is explicitly a draft translations page.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "The plague reached Constantinople in 542 according to the account discussed here. No mortality estimate is adopted."
+    },
+    {
+      "id": "ad0500-scov-ly-bi",
+      "title": "VII. Nhà tiền Lý và nhà Triệu 58 năm (544-602), quốc hiệu Vạn Xuân, kinh đô Long Biên",
+      "institution": "Ủy ban Nhà nước về người Việt Nam ở nước ngoài; Quê hương",
+      "url": "https://scov.gov.vn/dat-nuoc-con-nguoi/tom-tat-bien-nien-su-vn/vii.-nha-tien-ly-va-nha-trieu-58-nam-544-602-quoc-hieu-van-xuan-kinh-do-long-bien.html",
+      "locator": "Section 1, Lý Nam Đế; paragraph beginning Tháng Hai năm Giáp Tý - 544; native line 68. Page dated 19 February 2005.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The source gives the second lunar month of Giáp Tý, explicitly correlated to 544. Only its CE year is adopted; no independent month conversion is made.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "Lý Bí took the imperial title Lý Nam Đế, named the polity Vạn Xuân, and placed the capital at Long Biên."
+    },
+    {
+      "id": "ad0500-felfoldi-hephthalite-chronology",
+      "title": "A heftalita birodalom bukásának kronológiája",
+      "institution": "University of Szeged, Acta Universitatis Szegediensis: Acta Historica",
+      "url": "https://acta.bibl.u-szeged.hu/2891/1/historica_112_063-087.pdf",
+      "locator": "Szabolcs Felföldi (2002), volume 112, pp. 63–87; conclusions pp. 84–86 and English summary p. 87 (PDF pages 22–25); native lines 823–893.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The English summary reports five principal older datings between 554 and 567. Felföldi's reconstruction starts the Persian attack in late 557/early 558; Turks joined before 561, perhaps in 558; the Persian offensive ended in 561; the Turkic endpoint is uncertain but before late 568/early 569. The event's disputed 554–569 envelope combines those principal datings and bounds, not a continuous campaign or every outlier reported in the paper; the opening survey also mentions later datings into the 570s.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "Allied Persian and Turkic attacks defeated the Hephthalite Empire through distinct campaigns whose chronology remains disputed."
+    },
+    {
+      "id": "ad0500-chase-tikal-caracol",
+      "title": "Caracol, Belize, and Tikal, Guatemala: Ancient Maya Human-Nature Relationships and Their Sociopolitical Context",
+      "institution": "Caracol Archaeological Project, hosting the chapter by Arlen F. Chase, Diane Z. Chase and Adrian S. Z. Chase",
+      "url": "https://caracol.org/wp-content/uploads/2022/07/Chase-et-al-2022.pdf",
+      "locator": "Arlen F. Chase, Diane Z. Chase and Adrian S.Z. Chase, chapter 7, pp. 144 and 149 (PDF pages 2 and 7), Hieroglyphic History; DOI 10.5876/9781646422326.c007. Title and author credit on PDF page 1.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The chapter explicitly dates the star-war to 562 CE and interprets it as Caracol gaining independence from Tikal. No reconstructed day is adopted.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "The Tikal defeat and its interpretation by the cited Caracol researchers; the record does not settle competing reconstructions of the victorious coalition or the defeated ruler’s fate."
+    },
+    {
+      "id": "ad0500-adams-longinus",
+      "title": "LONGINUS",
+      "institution": "The Coptic Encyclopedia; Claremont Colleges Digital Library",
+      "url": "https://ccdl.claremont.edu/digital/api/collection/cce/id/1223/download",
+      "locator": "William Y. Adams, LONGINUS, CE 1479b–1480b, PDF page 1, paragraph beginning In 575; author credit on PDF page 2.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The article dates the return to Nobatia to 580 and the onward journey to Alwa only shortly afterward. It relies on ecclesiastical historians, including John of Ephesus.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "The dated event is Longinus’s return to Nobatia. The subsequent mission to Alwa is context, with no exact arrival or universal conversion date asserted."
+    },
+    {
+      "id": "ad0500-met-china-sui",
+      "title": "China, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/toah/ht/06/eac.html",
+      "locator": "Key Events, 581; native lines 99–100.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The entry dates Yang Jian’s defeat of Northern Zhou and control of the north to 581 and states that by 589 he had united China under Sui. The complete 581–589 interval is retained.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "The northern takeover and subsequent unification are treated as one extended process; later building projects are not assigned to 581."
+    },
+    {
+      "id": "ad0500-shitennoji-shotoku",
+      "title": "About Us: Prince Shotoku (574–622)",
+      "institution": "Shitennoji University",
+      "url": "https://www.shitennoji.ac.jp/en/about/",
+      "locator": "School Philosophy, Prince Shotoku (574–622); native lines 46–48.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "The university’s account dates Shotoku taking the office of regent to Empress Suiko to 593. Its later constitutional-state language and 603–607 actions are not imported into this event.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "The regency accession as presented in the university’s institutional historical account."
+    },
+    {
+      "id": "ad0500-english-heritage-augustine",
+      "title": "History of St Augustine’s Abbey",
+      "institution": "English Heritage",
+      "url": "https://www.english-heritage.org.uk/visit/places/st-augustines-abbey/history-and-stories/history/",
+      "locator": "Augustine’s Mission, opening paragraph; native line 229.",
+      "retrievedOn": "2026-11-08",
+      "originalChronology": "Augustine’s landing at Thanet is explicitly dated 597; the page notes earlier Christianity in Britain.",
+      "reuseTerms": "Reference-only citation and original paraphrase. Full retrieved representations remain local. This describes intended use and does not assert a reuse licence.",
+      "scopedClaim": "The arrival of Gregory’s mission in Kent, not Britain’s first Christian presence or a securely dated monastery foundation."
     }
   ],
   "events": [
@@ -17030,6 +17195,457 @@
         "ad0700-unesco-kyoto"
       ],
       "selectionNote": "Notable politics episode for east-asia; selected for regional or interregional historical significance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0500-hunafurstar-erovrar-punjab-och-kashmir",
+      "date": {
+        "kind": "range",
+        "startYear": 500,
+        "endYear": 550,
+        "displaySv": "cirka 500–550 e.Kr.",
+        "noteSv": "Källans ungefärliga intervall cirka 500–550 behålls i sin helhet. Den anger inget enskilt erövringsår."
+      },
+      "titleSv": "Hunafurstar erövrar Punjab och Kashmir",
+      "summarySv": "Hunafurstar erövrar tillfälligt Punjab och Kashmir. Deras framryckningar bidrar till Guptarikets sönderfall.",
+      "geographySv": "Punjab och Kashmir",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-met-north-south-asia"
+      ],
+      "selectionNote": "A military transformation affecting Punjab and Kashmir; retain the museum’s approximate full interval.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0529-justinianus-ger-ut-och-reviderar-lagkod",
+      "date": {
+        "kind": "range",
+        "startYear": 529,
+        "endYear": 534,
+        "displaySv": "529–534 e.Kr.",
+        "noteSv": "Intervallet omfattar den första och den reviderade utgåvan. Det daterar inte alla delar av Corpus iuris civilis."
+      },
+      "titleSv": "Justinianus ger ut och reviderar sin lagkod",
+      "summarySv": "Justinianus sammanför romerska lagar i en kod 529. Han låter införa senare lagstiftning i en reviderad utgåva 534.",
+      "geographySv": "Östromerska riket",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "ad0500-wyoming-code"
+      ],
+      "selectionNote": "A major legal compilation and its revision, treated as one two-edition episode rather than one event per volume.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0530-benedictus-grundar-monte-cassino",
+      "date": {
+        "kind": "approximate",
+        "startYear": 530,
+        "endYear": 530,
+        "displaySv": "cirka 530 e.Kr."
+      },
+      "titleSv": "Benedictus grundar Monte Cassino",
+      "summarySv": "Benedictus av Nursia grundar klostret Monte Cassino på platsen för ett äldre Apollontempel.",
+      "geographySv": "Monte Cassino, Italien",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-met-italy"
+      ],
+      "selectionNote": "A named monastic foundation with a source-supplied approximate date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0532-anthemios-isidoros-utformar-hagia-sofia",
+      "date": {
+        "kind": "range",
+        "startYear": 532,
+        "endYear": 537,
+        "displaySv": "532–537 e.Kr.",
+        "noteSv": "UNESCO anger 532–537 för arkitekternas arbete. Posten avser detta intervall och anger ingen separat invigningsdag."
+      },
+      "titleSv": "Anthemios och Isidoros utformar Hagia Sofia",
+      "summarySv": "Anthemios från Tralles och Isidoros från Miletos utformar Hagia Sofia i Konstantinopel.",
+      "geographySv": "Konstantinopel",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-unesco-hagia-sophia"
+      ],
+      "selectionNote": "A major surviving architectural work, scoped to the named designers and UNESCO’s complete design interval.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0536-tva-vulkanutbrott-inleder-nedkylning",
+      "date": {
+        "kind": "range",
+        "startYear": 536,
+        "endYear": 540,
+        "displaySv": "536–540 e.Kr.",
+        "noteSv": "Intervallet förenar två skilda utbrott. Nedkylningen fortsätter efter 540; dess längd och samhällsföljder är omdiskuterade."
+      },
+      "titleSv": "Två vulkanutbrott inleder en kraftig nedkylning",
+      "summarySv": "Vulkanutbrott 536 och 540 inleder en kall period på norra halvklotet. Studier av södra Norge visar att följderna för odling och bosättning varierar mellan områden.",
+      "geographySv": "Norra halvklotet, med belägg från Skandinavien",
+      "category": "nature",
+      "importance": 3,
+      "sourceIds": [
+        "ad0500-van-dijk-volcanic-double-event"
+      ],
+      "selectionNote": "A major environmental disturbance; regional differences and the distinction between eruptions and later cooling are retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0538-seong-flyttar-huvudstad-till-sabi",
+      "date": {
+        "kind": "exact",
+        "startYear": 538,
+        "endYear": 538,
+        "displaySv": "538 e.Kr."
+      },
+      "titleSv": "Seong flyttar Baekjes huvudstad till Sabi",
+      "summarySv": "Kung Seong flyttar Baekjes huvudstad från Ungjin till Sabi, nuvarande Buyeo.",
+      "geographySv": "Baekje, Koreahalvön",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-baekje-sabi-hangang"
+      ],
+      "selectionNote": "A royal relocation that defines the Sabi phase of Baekje’s political history.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0538-baekje-sander-buddhistiska-gavor-till-japan",
+      "date": {
+        "kind": "disputed",
+        "startYear": 538,
+        "endYear": 552,
+        "displaySv": "538–552 e.Kr.",
+        "noteSv": "De konkurrerande dateringarna är 538 och 552. Sifferintervallet täcker alternativen och betyder inte att gåvan pågick under hela perioden."
+      },
+      "titleSv": "Baekjes kung sänder buddhistiska gåvor till Japan",
+      "summarySv": "Baekjes kung sänder buddhabilder och skrifter till kejsar Kinmei. Den kungliga gåvan räknas som buddhismens officiella överföring till Japan, där invandrare kan ha utövat religionen tidigare.",
+      "geographySv": "Baekje och Japan",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-nara-buddhist-gift"
+      ],
+      "selectionNote": "A major royal religious exchange, retaining both chronologies and possible earlier private observance.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0542-pesten-nar-konstantinopel",
+      "date": {
+        "kind": "exact",
+        "startYear": 542,
+        "endYear": 542,
+        "displaySv": "542 e.Kr.",
+        "noteSv": "Året följer den citerade diskussionen av Prokopios. Ingen exakt ankomstdag eller dödssiffra anges."
+      },
+      "titleSv": "Pesten når Konstantinopel",
+      "summarySv": "Pesten når Konstantinopel. Prokopios uppger att han befinner sig i staden när epidemin bryter ut.",
+      "geographySv": "Konstantinopel",
+      "category": "nature",
+      "importance": 3,
+      "sourceIds": [
+        "ad0500-harvard-procopius-plague"
+      ],
+      "selectionNote": "A major urban epidemic documented through Procopius; later composition of his narrative is distinct from the outbreak.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0544-ly-bi-utropar-van-xuan",
+      "date": {
+        "kind": "exact",
+        "startYear": 544,
+        "endYear": 544,
+        "displaySv": "544 e.Kr.",
+        "noteSv": "Källan anger andra månmånaden i Giáp Tý och motsvarigheten 544. Posten använder endast årtalet."
+      },
+      "titleSv": "Lý Bí antar kejsartiteln och grundar Vạn Xuân",
+      "summarySv": "Lý Bí antar kejsartiteln Lý Nam Đế, ger sitt rike namnet Vạn Xuân och gör Long Biên till huvudstad.",
+      "geographySv": "Long Biên, norra Vietnam",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-scov-ly-bi"
+      ],
+      "selectionNote": "A named imperial proclamation and polity formation in northern Vietnam. The source’s nationalist judgements are not adopted.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0547-san-vitale-invigs",
+      "date": {
+        "kind": "exact",
+        "startYear": 547,
+        "endYear": 547,
+        "displaySv": "547 e.Kr.",
+        "noteSv": "547 anges uttryckligen i löptexten under en tidslinjerubrik märkt cirka 535."
+      },
+      "titleSv": "San Vitale invigs i Ravenna",
+      "summarySv": "Kyrkan San Vitale i Ravenna invigs. Den åttkantiga kyrkan pryds av mosaiker.",
+      "geographySv": "Ravenna, Italien",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-met-italy"
+      ],
+      "selectionNote": "A securely dated dedication within Ravenna’s major Byzantine monumental programme.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0553-silla-bryter-alliansen-med-baekje",
+      "date": {
+        "kind": "exact",
+        "startYear": 553,
+        "endYear": 553,
+        "displaySv": "553 e.Kr."
+      },
+      "titleSv": "Silla bryter alliansen med Baekje",
+      "summarySv": "Silla angriper Baekjes områden vid Hangangflodens nedre lopp. Angreppet avslutar alliansen mellan de två rikena.",
+      "geographySv": "Hangang, Koreahalvön",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-baekje-sabi-hangang"
+      ],
+      "selectionNote": "A distinct rupture in interstate relations on the Korean Peninsula, separate from Baekje’s capital relocation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0554-perser-turkar-besegrar-heftaliterna",
+      "date": {
+        "kind": "disputed",
+        "startYear": 554,
+        "endYear": 569,
+        "displaySv": "554–569 e.Kr.",
+        "noteSv": "Felföldis engelska sammanfattning redovisar fem äldre huvuddateringar mellan 554 och 567. Hans rekonstruktion börjar sent 557 eller tidigt 558: perserna avslutar sitt fälttåg 561 och turkarna före slutet av 568 eller början av 569. Intervallet 554–569 sammanför dessa dateringar och gränser; det anger ingen sammanhängande krigsperiod och omfattar inte alla avvikande dateringar som nämns i studien."
+      },
+      "titleSv": "Persiska och turkiska styrkor besegrar heftaliterna",
+      "summarySv": "Persiska och turkiska styrkor besegrar heftaliternas rike genom skilda fälttåg. Både krigets förlopp och dess datering är omstridda.",
+      "geographySv": "Centralasien kring Amu-Darja",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "ad0500-felfoldi-hephthalite-chronology"
+      ],
+      "selectionNote": "A major Central Asian political transformation; the full disputed envelope and separate Persian and Turkic phases are retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0562-tikal-besegras-i-stjarnkrig",
+      "date": {
+        "kind": "exact",
+        "startYear": 562,
+        "endYear": 562,
+        "displaySv": "562 e.Kr.",
+        "noteSv": "Året följer den citerade forskargruppen. Posten avgör inte vilka som ingick i den segrande koalitionen eller den besegrade kungens öde."
+      },
+      "titleSv": "Tikal besegras i ett stjärnkrig",
+      "summarySv": "Tikal besegras i ett så kallat stjärnkrig. Caracolprojektets forskare tolkar nederlaget som att Caracol frigör sig från Tikals överhöghet.",
+      "geographySv": "Tikal och Caracol, nuvarande Guatemala och Belize",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-chase-tikal-caracol"
+      ],
+      "selectionNote": "A major Maya military reversal. Attribution is explicitly tied to the cited researchers, with coalition details left unresolved.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0568-langobarder-invaderar-italien",
+      "date": {
+        "kind": "approximate",
+        "startYear": 568,
+        "endYear": 568,
+        "displaySv": "cirka 568 e.Kr.",
+        "noteSv": "Museets tidslinje anger cirka 568."
+      },
+      "titleSv": "Langobarder invaderar Italien",
+      "summarySv": "Langobarder invaderar den italienska halvön och upprättar hertigdömen i norr och söder. Bysantinarna behåller flera områden.",
+      "geographySv": "Italienska halvön",
+      "category": "migration",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-met-italy"
+      ],
+      "selectionNote": "A major invasion and settlement episode; the source’s approximate date is retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0580-longinus-atervander-till-nobatia",
+      "date": {
+        "kind": "exact",
+        "startYear": 580,
+        "endYear": 580,
+        "displaySv": "580 e.Kr.",
+        "noteSv": "580 avser återkomsten till Nobatia. Källan daterar fortsättningen till Alwa endast som kort därefter och anger inget exakt år för hela rikets kristnande."
+      },
+      "titleSv": "Longinus återvänder till Nobatia",
+      "summarySv": "Missionären Longinus återvänder till Nobatia. Kort därefter fortsätter han mot Alwa, vars kung har bjudit in honom.",
+      "geographySv": "Nobatia och Alwa, Nubien",
+      "category": "religion",
+      "importance": 1,
+      "sourceIds": [
+        "ad0500-adams-longinus"
+      ],
+      "selectionNote": "A dated return in the expansion of Christian missions in Nubia. Only Nobatia’s return is assigned to 580.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0581-yang-jian-enar-kina-under-sui",
+      "date": {
+        "kind": "range",
+        "startYear": 581,
+        "endYear": 589,
+        "displaySv": "581–589 e.Kr.",
+        "noteSv": "Källan anger en process från maktövertagandet 581 till ett riksenande som är genomfört senast 589. Den ger här inget exakt datum för det sista fälttåget."
+      },
+      "titleSv": "Yang Jian enar Kina under Suidynastin",
+      "summarySv": "Yang Jian tar makten i norra Kina 581. Senast 589 har han förenat Kina under Suidynastin.",
+      "geographySv": "Kina",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "ad0500-met-china-sui"
+      ],
+      "selectionNote": "A major reunification process, represented by its full interval rather than a falsely precise completion event.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0590-gregorius-valjs-till-pave",
+      "date": {
+        "kind": "exact",
+        "startYear": 590,
+        "endYear": 590,
+        "displaySv": "590 e.Kr."
+      },
+      "titleSv": "Gregorius den store väljs till påve",
+      "summarySv": "Gregorius den store väljs till påve i Rom. Han har tidigare verkat som diplomat och grundat kloster.",
+      "geographySv": "Rom",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-met-italy"
+      ],
+      "selectionNote": "A major papal accession; the selected passage supports the election and prior roles.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0593-shotoku-blir-regent",
+      "date": {
+        "kind": "exact",
+        "startYear": 593,
+        "endYear": 593,
+        "displaySv": "593 e.Kr.",
+        "noteSv": "593 är den citerade institutionens datering av regenttillträdet. Senare reformer dateras inte till detta år."
+      },
+      "titleSv": "Shōtoku blir regent åt kejsarinnan Suiko",
+      "summarySv": "Prins Shōtoku tillträder som regent åt kejsarinnan Suiko enligt den historieskrivning som Shitennoji University återger.",
+      "geographySv": "Japan",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-shitennoji-shotoku"
+      ],
+      "selectionNote": "A regional regency accession as presented by the cited university; later reform dates remain separate.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0597-augustinus-anlander-till-kent",
+      "date": {
+        "kind": "exact",
+        "startYear": 597,
+        "endYear": 597,
+        "displaySv": "597 e.Kr."
+      },
+      "titleSv": "Augustinus anländer till Kent",
+      "summarySv": "Augustinus går i land på Thanet i Kent. Han har sänts av påven Gregorius för att missionera bland anglosaxarna.",
+      "geographySv": "Thanet, Kent, Britannien",
+      "category": "religion",
+      "importance": 2,
+      "sourceIds": [
+        "ad0500-english-heritage-augustine"
+      ],
+      "selectionNote": "A major missionary arrival in Kent, distinguished from earlier Christianity in Britain.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",

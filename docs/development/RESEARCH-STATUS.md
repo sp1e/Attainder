@@ -374,3 +374,16 @@ AD700 adds 34 events and 25 sources. Independent reconciliation review verified 
 The new candidate preserves all 452 earlier events and 421 sources, reaching 486 events and 446 sources. Only AD 700–799 becomes partial, for 1,831 partial years and 2,999 unresearched years. Dates, complete intervals, competing chronologies and regional gaps remain explicit. Independent DATA review approved the exact prospective integration against baseline blobs that match the merged catalog.
 
 The accompanying language data contains 153 English event fields and 50 Swedish source-panel fields. All 203 pairs passed independent review with one exact English grammar correction in the Wanar date note. Original source text and hashes remain unchanged. The data-first commit and subsequent full locale readback preserve a reproducible source revision. Current-head CI remains required before merge. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or deployment configuration change is needed.
+
+
+## AD700 published and AD500 integrated, 9 November 2026
+
+[PR #74](https://github.com/sp1e/Attainder/pull/74) merged at verified main `554dfeb82f6748a62c686471380b793c1c8942a6`. All eight publication blobs match the approved readback. CI on synchronized head `161f33568140276912bdd976fd2ec1779f2aa9b6` passed 5,290 of 5,292 tests, with zero failures, zero skips and two existing TODOs; the build took 37.79 seconds. The published catalog contains 486 events and 446 sources. Both locale sidecars identify the retained data commit `75235d536afcf446d10ccf254c0449e3d73e9257`; all 4,776 referenced source strings and hashes match it.
+
+AD500 adds 19 events and 15 sources. Nine guarded corrections include four editorial importance decisions; original historical bounds and identifiers are unchanged. Rosalila and its sole source remain held as complete records. All 439 original findings remain preserved, including 16 unestablished earlier-retrieval assertions. Independent source reconciliation and the exact prospective integration passed review.
+
+Ruling: use the independently verified yearless Chase locator because the earlier saved bibliography did not establish its proposed publication year. The locator identifies the authors, chapter, DOI and printed/PDF page correspondence. The new bibliography reading supplies separate evidence without retrospectively changing the earlier findings. Omitting the year leaves the chapter identifiable through its DOI and authors.
+
+The candidate preserves all 486 earlier events and 446 sources, reaching 505 events and 461 sources. Only AD 500–599 becomes partial, for 1,931 partial years and 2,899 unresearched years. Europe and East Asia dominate; MENA and Oceania have no retained event. All 120 bilingual pairs passed independent review: 90 English event fields and 30 Swedish source-panel fields. Translation preserves chronology, uncertainty and source attribution.
+
+Current-head CI remains required before merge. The data-first commit and complete locale readback retain a reproducible source revision. Claude retains code, runtime integration, tests, built packages and gameplay verification. No Cloudflare, D1, R2, secrets, bindings or deployment configuration change is needed.
