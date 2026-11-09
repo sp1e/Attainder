@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc0400-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -400,
+    "endYear": -301
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "53d2ae9ca1dc7a2ccd48abee5235ddcd5a539ce6",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc0400en-getty-mausoleum",
+      "title": "Mausoleum at Halicarnassus",
+      "institution": "Getty Research Institute, Cultural Objects Names Authority",
+      "url": "https://www.getty.edu/cona/CONAFullSubject.aspx?subid=700008972",
+      "locator": "CONA 700008972, title and Note, web lines 15–17; Creation Date, line 38; location, line 45. Public record text; linked images and underlying reference works were not consulted.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Construction began ca. 367 BCE",
+      "originalChronology": "The record gives an approximate beginning in 367 BCE and completion around 350 BCE, after the deaths of Mausolus and Artemisia. These are building dates, not dates calculated from their reigns.",
+      "scopedClaim": "Approximate construction interval and identification of the monumental tomb at Halicarnassus, now Bodrum. The catalogue's linked architect authority and later destruction chronology are outside this claim.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0400en-pedersen-maussolleion",
+      "title": "The Maussolleion at Halikarnassos",
+      "institution": "Poul Pedersen; Cambridge University Press",
+      "url": "https://www.cambridge.org/core/books/afterlife-of-the-mausoleum-of-halicarnassus/maussolleion-at-halikarnassos/888E2C34B0964AD50D5D80786DADD3BE",
+      "locator": "Chapter 1 in The Afterlife of the Mausoleum of Halicarnassus (2026), pp. 13–27; public HTML, The Maussolleion, web lines 547–551, and The Maussolleion Reconstructed, lines 570–574. Relevant text read; no image or PDF assessment.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "already conceived and almost finished during the lifetime of Maussollos",
+      "originalChronology": "Pedersen contrasts later Roman accounts of Artemisia building after Maussollos's death in 353 BCE with his archaeological interpretation that the project was already nearly finished during the ruler's lifetime. He supplies no independent absolute construction interval here.",
+      "scopedClaim": "The tomb's place within the planned capital and its monumental architecture and sculpture. The interpretation of work during Maussollos's life qualifies the later widow-as-sole-builder narrative; it is not a second measurement of Getty's endpoints.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc0367-mausoleum-halicarnassus-construction",
+      "date": {
+        "kind": "range",
+        "startYear": -367,
+        "endYear": -350,
+        "displayEn": "Approximately 367–350 BCE",
+        "noteEn": "Getty supplies the approximate construction interval. Pedersen argues that the tomb was already nearly finished during Maussollos's lifetime, contrasting this with later Roman accounts that credited Artemisia after his death in 353 BCE. The bounds do not establish exact work years or uninterrupted activity."
+      },
+      "titleEn": "The Mausoleum rises at Halicarnassus",
+      "summaryEn": "Builders raise a monumental tomb for Maussollos at the centre of his capital. Its colonnade, stepped roof and sculptural decoration give the ruler's commemoration a prominent place in the city.",
+      "geographyEn": "Halicarnassus, Caria; present-day Bodrum, Türkiye",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc0400en-getty-mausoleum",
+        "bc0400en-pedersen-maussolleion"
+      ],
+      "selectionNote": "A notable architectural expression of dynastic commemoration, distinct from the century's conquests and political treaties. The record concerns this building campaign rather than the foundation of Halicarnassus, a new funerary invention or the later destruction of the monument. Its significance does not require treating approximate catalogue dates as exact or attributing the entire project to a single patron.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
