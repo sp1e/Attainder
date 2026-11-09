@@ -7,7 +7,7 @@ export { getCharacterAge } from './characterCapacity.js';
 import { ensureGovernance, refreshLegalClaims, registerAccession, familyRoyalClaim, claimSupportPenalty, relevantRegencies, royalRegency, regencyVeto, regencyVetoForRecord, consumeRegencyConsent, cleanHostCandidates, describeGovernance, validateGovernance } from './governance.js';
 import { ensurePortraitIdentity, freezeDeathAppearance, resolvePortraitState } from './portraitState.js';
 import { ensureHealthState, validateHealthState, runAnnualHealth, advanceHealthTransitions, getNextHealthTransitionDate, getTreatableConditions, treatCondition, recordBereavement, getConditionBurden, publicHealthConditions, ageDeathRisk, HEALTH_CONDITION_LABELS } from './health.js';
-import { fadeDeadConditions, fadeDeadDecisions, fadeDeadRelations, fadeMemories } from './memoryFade.js';
+import { fadeAll } from './memoryFade.js';
 import { STORY_DIRECTOR_VERSION, ensureStoryDirector, validateStoryDirector, scheduleDirectedStory, directedStoryChoices, resolveDirectedStory, refreshDirectedStories } from './storyDirector.js';
 import { DIFFICULTIES, ensureCharacterExtensions, normalizeDifficulty, validateCharacterExtensions } from './extensions.js';
 import { addSecretHolders, createSecret, exposeSecret, plotSecretFor, syncPlotSecrets } from './secrets.js';
@@ -22,14 +22,15 @@ import { presentRumors, validateRumors } from './rumors.js';
 import { conversationBrief, converse, estimateConversation as estimateConversationRequest, presentConversation, validateConversations } from './conversation.js';
 import { IMPRISONED, closePrisoner, executePrisoner, heldPrisoners, imprisonPerson, isImprisoned, passCrown, presentPrisoners, prisonerStep, ransomChoices, releasePrisoner, resolveRansom, validatePrisoners } from './prisoners.js';
 import { abortScheme, advanceSchemes, getSchemeDates, reinforceScheme, validateSchemes } from './schemes.js';
-import { COUNCIL_SEATS, advisorFor, filledSeats, flatteryRevealed, presentLoyalty, rewardClosedReason, rewardCouncillor, serviceOf } from './council.js';
+import { COUNCIL_SEATS, advisorFor, filledSeats, flatteryRevealed, loyaltyPrecision, presentLoyalty, rewardClosedReason, rewardCouncillor, serviceOf } from './council.js';
 import { COURT_STORY_TYPES, courtAnnualStep, courtDeadlineText, courtStoryChoices, onAccession, presentCourt, refreshCourtStories, resolveCourtStory, validateCourt } from './court.js';
 import { breakdownDue, fitsNature, natureStress } from './breakdowns.js';
 import { dreadOf, dreadRows } from './dread.js';
 import { seatReaction } from './familyDemands.js';
 import { goalClosedReason, openGoals, recordDeed, setReignGoal } from './reign.js';
 import { nicknameOf, nicknameProgress } from './nicknames.js';
-import { ELECTION_REASON_SV, electOutsider, electiveCandidates, nextSuccessionLaw } from './election.js';
+import { ELECTION_REASON_SV, electOutsider, electiveTiers, nextSuccessionLaw } from './election.js';
+import { electionOrder, presentElection, tallyElection } from './electors.js';
 import { primogenitureCandidates } from './succession.js';
 import { biologicalFather, paternityStep, recordIllegitimacy } from './paternity.js';
 import { ensureRealmKind, presentRealm, validateRealmKind } from './realmKind.js';
@@ -39,7 +40,7 @@ import { birthsClosed, courtRenewalStep, ensureLineageState, validateLineageStat
 import { EVENT_CHAIN_VERSION, ensureEventChains, validateEventChains, scheduleEventChain, refreshEventChains, eventChainChoices, resolveEventChain, getEventChainDates, presentEventChain, presentEventChainHistory } from './eventChains.js';
 export { ARCHETYPES, TRAITS, RULE_PROVENANCE } from './content.js';
 export { isImprisoned } from './prisoners.js';
-export { FADING_MEMORY_TYPES, fadeDeadConditions, fadeDeadDecisions, fadeDeadRelations, fadeMemories } from './memoryFade.js';
+export { FADING_MEMORY_TYPES, fadeAll, fadeDeadConditions, fadeDeadDecisions, fadeDeadRelations, fadeMemories, fadeSettledStories } from './memoryFade.js';
 export { STORY_MEMORY_WINDOW } from './storyDirector.js';
 export { PORTRAIT_STATES, PORTRAIT_AGE_GROUPS, resolvePortraitState } from './portraitState.js';
 const copy = (value) => JSON.parse(JSON.stringify(value));
@@ -123,7 +124,9 @@ function requirePerson(state, id, { grown = false } = {}) { const person = state
 function requireRule(state) { if (!canRule(state)) throw new Error('Beslutet kräver härskarens eller regentens mandat.'); }
 function requireOwn(state, person) { if (person.familyId !== controlledFamily(state)?.id) throw new Error('Familjebandet ger inte kontroll över denna persons beslut.'); }
 const meritScore = (state, p, excludedIds) => p.skills.diplomacy + p.skills.stewardship + familySupport(state, state.families[p.familyId], excludedIds) / 10;
-function rulerCandidates(state, oldRuler = ruler(state), excludedIds = []) { const people = living(state).filter((p) => p.id !== oldRuler?.id && !excludedIds.includes(p.id)); if (state.realm.successionLaw === 'merit') return people.filter((p) => adult(state, p)).sort((a, b) => meritScore(state, b, excludedIds) - meritScore(state, a, excludedIds) || a.id.localeCompare(b.id)); if (state.realm.successionLaw === 'elective') return electiveCandidates(state, oldRuler, people, (p) => meritScore(state, p, excludedIds)); return primogenitureCandidates(state, oldRuler, people, (p) => adult(state, p)); }
+// The elective order and the electors' vote on it. Reads only and draws nothing.
+function electiveTally(state, oldRuler, people, excludedIds) { const score = (p) => meritScore(state, p, excludedIds); const tiers = electiveTiers(state, oldRuler, people, score); return { ordered: [...tiers.adults, ...tiers.minors, ...tiers.others], tally: tallyElection(state, oldRuler, tiers, score, (fromId, toId) => getPersonalOpinion(state, fromId, toId)) }; }
+function rulerCandidates(state, oldRuler = ruler(state), excludedIds = []) { const people = living(state).filter((p) => p.id !== oldRuler?.id && !excludedIds.includes(p.id)); if (state.realm.successionLaw === 'merit') return people.filter((p) => adult(state, p)).sort((a, b) => meritScore(state, b, excludedIds) - meritScore(state, a, excludedIds) || a.id.localeCompare(b.id)); if (state.realm.successionLaw === 'elective') { const { ordered, tally } = electiveTally(state, oldRuler, people, excludedIds); return electionOrder(ordered, tally); } return primogenitureCandidates(state, oldRuler, people, (p) => adult(state, p)); }
 // Both the actual death transition and its read-only forecast use this branch.
 // Exclusions omit a departing person's secondary offices and personal support
 // from candidate scoring without changing their saved record.
@@ -169,7 +172,7 @@ export function getSuccessionForecast(state) {
     expectedRuler: expected, currentExercising: current,
     contestedCrown: Boolean(available && alive(lawful) && previous.id !== lawful.id),
     contestedRegency: Boolean(contestedRegency), currentUsesRegent: Boolean(exercising && exercising.id === regent?.id),
-    requiresRegency, electionFromOutside, abilityChanges: current && expected ? current.ability?.action !== expected.ability?.action : null,
+    requiresRegency, electionFromOutside, election: available && state.realm.successionLaw === 'elective' ? presentElection(state, electiveTally(state, previous, living(state).filter((p) => p.id !== previous.id), excludedIds).tally, loyaltyPrecision(state, actionHooks(state))) : null, abilityChanges: current && expected ? current.ability?.action !== expected.ability?.action : null,
     basis: 'Om bara den nuvarande härskaren avlider vid dagens datum och övriga förhållanden består. Senare dödsfall, nya lagar och maktkamper kan ändra utfallet.',
     authority: !available ? 'Inget aktivt härskarmandat att föra vidare.' : electionFromOutside ? 'Ingen vuxen vid hovet är behörig. Valet faller på en genererad person utanför hovet.' : !expected ? 'Ingen levande kandidat finns i dagens successionsordning.' : requiresRegency
       ? adult(state, incoming) ? 'Efterträdaren är svårt sjuk och behöver en behörig regent tills förmågan återkommer. Ämbetet och arvsrätten följer fortfarande efterträdaren.' : 'Efterträdaren är omyndig. En regent behöver utöva mandatet; barnets egen förmåga kan inte användas direkt. Regentens identitet och samtycke fastställs vid övergången.'
@@ -880,7 +883,7 @@ export function advanceCharacters(original, targetDate, options = {}) {
     refreshStories(state, events); updateStatus(state);
     if (state.status.ended) { if (compareGameDates(state.nextAnnualDate, state.date) <= 0) state.nextAnnualDate = addGameMonths(state.nextAnnualDate, 12); break; }
   }
-  if (!state.status.ended) state.date = date; state.appliedCommandIds.push(id); state.revision++; capLog(state); fadeMemories(state); fadeDeadConditions(state); fadeDeadRelations(state); fadeDeadDecisions(state); return { ok: true, state, events, error: null };
+  if (!state.status.ended) state.date = date; state.appliedCommandIds.push(id); state.revision++; capLog(state); fadeAll(state); return { ok: true, state, events, error: null };
   } catch (error) { return { ok: false, state: original, events: [], error: error.message }; }
 }
 
