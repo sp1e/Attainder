@@ -1,0 +1,57 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc0700-second-pass-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -700,
+    "endYear": -601
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "a6b0bd087e7551764067e5c6b35251ad90b31621",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc0700sp-barcina-succession",
+      "title": "The Display of Esarhaddon’s Succession Treaty at Kalḫu as a Means of Internal Political Control",
+      "institution": "Cristina Barcina; Antiguo Oriente 14 (2016), pp. 11–52; Pontificia Universidad Católica Argentina repository",
+      "url": "https://repositorio.uca.edu.ar/bitstream/123456789/7506/4/display-esarhaddon-succession.pdf",
+      "locator": "Printed pp. 11–16 (PDF pages 1–6), especially introduction pp. 12–13 and purpose p. 15. Text read; no independent examination of tablets.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Ayyāru (II) 672 B.C.",
+      "originalChronology": "The article dates the succession oaths to 672 BCE; no modern day is inferred.",
+      "scopedClaim": "The oath arrangements sought loyalty to Ashurbanipal. Preserved tablets and letters concern different groups of participants.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc0672-esarhaddon-succession-oaths",
+      "date": {
+        "kind": "exact",
+        "startYear": -672,
+        "endYear": -672,
+        "displayEn": "672 BCE",
+        "noteEn": "This dates the succession oaths, not Ashurbanipal's accession. Barcina distinguishes the oath-takers named in tablets from citizens mentioned in correspondence. The article's interpretation of the king's hidden motives is not treated as established fact."
+      },
+      "titleEn": "Esarhaddon binds oath-takers to his chosen successor",
+      "summaryEn": "Esarhaddon organizes loyalty oaths supporting Ashurbanipal as his successor. The arrangements extend to Assyrian participants and eastern city-lords; a surviving provincial version names a governor and administrative and military groups.",
+      "geographyEn": "Assyria and its provincial sphere, including Kalḫu and Kullania",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0700sp-barcina-succession"
+      ],
+      "selectionNote": "A major regional succession arrangement, distinct from the existing Thebes campaign, Nineveh's destruction and Jerwan's aqueduct. This records a political decision rather than the modern discovery of a tablet. It does not assert universal compliance, successful conflict prevention or a first use of loyalty oaths.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}

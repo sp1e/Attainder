@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain sixty-one approved records, one hundred and seven source records and three hundred and five display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain sixty-two approved records, one hundred and eight source records and three hundred and ten display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -49,7 +49,10 @@ The English research deliveries now contain sixty-one approved records, one hund
 | [AD 1300–1399](../research/world-cultures/english-events/ad1300-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #119](https://github.com/sp1e/Attainder/pull/119), commit `887a4fa20095d921054adb088321314eb1c7e2f9` |
 | [AD 1400–1499](../research/world-cultures/english-events/ad1400-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #121](https://github.com/sp1e/Attainder/pull/121), commit `d60d09a7fdf097f52429da370829c85c2a72b5b3` |
 | [AD 1500–1530](../research/world-cultures/english-events/ad1500-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #120](https://github.com/sp1e/Attainder/pull/120), commit `aff37caa8b5221180c3f30eff0fdadb0bf0c91bd` |
-| [100–1 BC](../research/world-cultures/english-events/bc0100-supplement.md) | 3 | 6 | 15 | Narrowed candidate passed final review; original source HOLD preserved; current-head CI and verified merge required |
+| [100–1 BC](../research/world-cultures/english-events/bc0100-supplement.md) | 3 | 6 | 15 | Reviewed in [PR #149](https://github.com/sp1e/Attainder/pull/149); original source HOLD preserved; current-head CI and verified merge required |
+| [700–601 BC, second pass](../research/world-cultures/english-events/bc0700-second-pass-supplement.md) | 1 | 1 | 5 | Source and final review passed; current-head CI and verified merge required |
+
+BC0700 second pass adds Esarhaddon's succession oaths in 672 BCE. Both independent reviews approved the unchanged historical content, all six English texts and the full publication note. The year dates the oath arrangements, not Ashurbanipal's accession or later tablet discoveries; no universal compliance or concealed motive is asserted. Root verified sixty-three frozen inputs, six text hashes, thirty-eight committed comparison files and seven private originals. The existing Jerwan dataset remains unchanged.
 
 BC0100 adds glassblowing, the Antikythera wreck and Juba II's accession. The original source review held the Libyka event and its unavailable Cambridge source. Both whole records are excluded; exactly three retained fields were corrected, with dates and all other historical values unchanged. A fresh final review passed all eighteen English texts and the full note. Root verified sixty-three frozen input pairs, eighteen text hashes and thirty-six committed comparison files. The failed same-URL download after HTTP 503 and its procedural extension remain disclosed.
 
