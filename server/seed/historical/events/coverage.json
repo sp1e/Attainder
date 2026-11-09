@@ -165,6 +165,18 @@
     },
     {
       "startYear": -600,
+      "endYear": -501,
+      "status": "unresearched",
+      "note": "Annual research has not started in this catalog."
+    },
+    {
+      "startYear": -500,
+      "endYear": -401,
+      "status": "partial",
+      "note": "Thirty-two source-checked event records concern selected developments in Europe, the Middle East and North Africa, East Asia, Southeast Asia and the Americas. Searches addressed all nine macroregions; sub-Saharan Africa, South Asia, the steppe and Central Asia and Oceania have no retained event. All regions remain incomplete. Two Himera events and their sole source are withheld after the independent reviewer encountered 403. Material corrections were separately checked; editorial importance ranks follow the project scale. Full alternatives remain, including Sparta 469-463 BC, Xerxes succession 465/464, Oresteia 459/458, Egypt 455-454 and Four Hundred 411/410. Approximate Ban Non Wat 420 is distinguished from the full Iron Age 1 phase 420-150. Dates do not imply annual activity, exhaustive coverage or researched adjacent centuries. Empty years remain gaps."
+    },
+    {
+      "startYear": -400,
       "endYear": -1,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."

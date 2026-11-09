@@ -8024,6 +8024,330 @@
       "scopedClaim": "Nineveh served as an Assyrian capital and royal residence until its destruction in 612 BC.",
       "retrievedOn": "2026-11-09",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-met-monte-alban",
+      "title": "Monte Albán",
+      "institution": "Department of the Arts of Africa, Oceania, and the Americas; The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/essays/monte-albn",
+      "locator": "Settlement and founding discussion, web lines 28–31.",
+      "asWorded": "founding in 500 B.C.",
+      "originalChronology": "An archaeological foundation marker; later population estimates belong to 300 BC and are not assigned to the foundation.",
+      "scopedClaim": "Monte Albán was founded on a hill above the Oaxaca Valley around 500 BC; inhabitants from the valley moved to the new centre.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-ku-denmark-iron",
+      "title": "Henriette Syrach Lyngstrøm, Iron Working in Denmark 500 BC–AD 1000 (2008)",
+      "institution": "University of Copenhagen research portal",
+      "url": "https://researchprofiles.ku.dk/da/publications/iron-working-in-denmark-500-bc-ad-1000/",
+      "locator": "Public abstract, web lines 16–19; full proceedings paper not consulted.",
+      "asWorded": "c. 500 BC",
+      "originalChronology": "Approximate introduction of local iron technology; the chapter covers a much longer study period.",
+      "scopedClaim": "Iron production from local bog ore began in Denmark around 500 BC; the abstract describes ironworking in ordinary farming villages.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-greece-ionian",
+      "title": "Persian Wars, Proving History exhibition",
+      "institution": "Hellenic Ministry of Culture; Directorate of Archaeological Museums, Exhibitions and Educational Programs",
+      "url": "https://2500years.culture.gov.gr/en/chapters/persiki-polemi",
+      "locator": "Historical introduction, web lines 63–67.",
+      "asWorded": "499 BC",
+      "originalChronology": "The passage dates the Ionian revolt's beginning. It does not establish an end year for the whole uprising.",
+      "scopedClaim": "Ionians in Asia Minor rebelled under Darius I; Athens and Eretria gave them assistance.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-greece-marathon",
+      "title": "The Battle of Marathon, Proving History exhibition",
+      "institution": "Hellenic Ministry of Culture; Directorate of Archaeological Museums, Exhibitions and Educational Programs",
+      "url": "https://2500years.culture.gov.gr/en/chapters/i-machi-tou-marathona/tmimata-vasis-mnimiou",
+      "locator": "Battle account, web lines 79–83.",
+      "asWorded": "early September 490 BC",
+      "originalChronology": "The month qualifies the Persian landing and ensuing battle sequence; no exact battle day is asserted.",
+      "scopedClaim": "Athenian and Plataean forces under Miltiades defeated the Persian expedition at Marathon; the Athenians then returned toward their city.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-greece-naval-law",
+      "title": "The Birth of the Naval Power, Proving History exhibition",
+      "institution": "Hellenic Ministry of Culture; Ephorate of Antiquities of Eastern Attica",
+      "url": "https://2500years.culture.gov.gr/en/chapters/i-gennisi-tis-nautikis-dinamis",
+      "locator": "Silver discovery and Naval Law, web lines 65–73.",
+      "asWorded": "483/2 BC",
+      "originalChronology": "The source's cross-calendar year dates the silver discovery and naval-financing episode; subsequent fleet expansion is not collapsed into that year.",
+      "scopedClaim": "After a rich silver vein was found at Laurion, Themistocles persuaded the assembly to finance triremes rather than distribute the windfall.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-greece-thermopylae",
+      "title": "The Battle of Thermopylae, Proving History exhibition",
+      "institution": "Hellenic Ministry of Culture; Directorate of Archaeological Museums, Exhibitions and Educational Programs",
+      "url": "https://2500years.culture.gov.gr/en/chapters/i-machi-ton-thermopilon",
+      "locator": "Battle narrative, web lines 70–74.",
+      "asWorded": "summer of 480 BC",
+      "originalChronology": "The source specifies summer, not an exact converted day; troop-total estimates are excluded.",
+      "scopedClaim": "Greek troops led by Leonidas defended the narrow pass; Persian forces used another route to surround them.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-salamina-salamis",
+      "title": "The great battle of Salamis (480 BC)",
+      "institution": "Municipality of Salamina",
+      "url": "https://www.salamina.gr/en/presentation-of-the-municipality/history/mythology-ancient-history/the-great-battle-of-salamis-480-b-c/",
+      "locator": "Historical account, web lines 96–102; victory at line 100.",
+      "asWorded": "September 480 B.C.",
+      "originalChronology": "Month retained without an inferred day.",
+      "scopedClaim": "The Greek fleet defeated the Persian fleet in the straits of Salamis in September 480 BC.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-acropolis-parthenon",
+      "title": "Parthenon Gallery",
+      "institution": "Acropolis Museum",
+      "url": "https://www.theacropolismuseum.gr/en/exhibit-halls/parthenon-gallery",
+      "locator": "Destruction and rebuilding account, web lines 32–38.",
+      "asWorded": "480 BC; 447 BC",
+      "originalChronology": "480 dates the Persian destruction; 447 dates the start of the new Parthenon. The stated fifteen-year construction duration is not silently converted to an independently asserted end year.",
+      "scopedClaim": "Persians destroyed the Acropolis in 480 BC. Construction of the new Parthenon began in 447 BC under Pericles' programme, with Iktinos, Kallikrates and Pheidias.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-nam-classical",
+      "title": "Classical Period",
+      "institution": "National Archaeological Museum, Athens",
+      "url": "https://www.namuseum.gr/en/collection/klasiki-periodos/",
+      "locator": "Political introduction, web lines 169–171.",
+      "asWorded": "479 BC; 478 BC; 431–404 BC",
+      "originalChronology": "Victory at Plataea, foundation of the Delian League and the full Peloponnesian War interval remain distinct.",
+      "scopedClaim": "Greek victory at Plataea occurred in 479 BC; the Delian League was established in 478 BC; the war of 431–404 BC ended with Sparta's victory.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-iep-confucius",
+      "title": "Confucius (551–479 B.C.E.)",
+      "institution": "Internet Encyclopedia of Philosophy",
+      "url": "https://iep.utm.edu/confucius/",
+      "locator": "Opening and sources discussion, web lines 1–4 and 18–26.",
+      "asWorded": "551–479 B.C.E.",
+      "originalChronology": "Traditional lifespan; surviving biographical sources postdate Confucius. The event concerns the traditional death year, not his full life.",
+      "scopedClaim": "Confucius is traditionally dated to 551–479 BC and associated with Lu in what is now Shandong.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-nmc-wu",
+      "title": "“King Fuchai of Wu” Bronze Jian",
+      "institution": "National Museum of China",
+      "url": "https://en.chnmuseum.cn/collections_577/collection_highlights_608/artifacts_handed___down_from_ancient_times_612/202109/t20210902_251154.html",
+      "locator": "Object's historical background, web lines 65–73.",
+      "asWorded": "473 BC",
+      "originalChronology": "473 dates Wu's defeat; Fuchai subsequently committed suicide. The bronze jian is a vessel; its manufacture or deposition is not dated by that event.",
+      "scopedClaim": "Yue defeated Wu in 473 BC and King Fuchai took his own life.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-mit-persians",
+      "title": "Aeschylus, The Persians; translation by Robert Potter",
+      "institution": "Internet Classics Archive, Massachusetts Institute of Technology",
+      "url": "https://classics.mit.edu/Aeschylus/persians.html",
+      "locator": "Editorial dating, cast and scene introduction, web lines 18–30.",
+      "asWorded": "Written 472 B.C.E",
+      "originalChronology": "472 dates the work; the dramatic scene after Salamis is set in 480 BC and is not the composition year.",
+      "scopedClaim": "Aeschylus' Persians presents the aftermath of the Persian defeat through the Persian royal household and elders.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-ambraseys-sparta",
+      "title": "Nicholas Ambraseys, Earthquakes in the Mediterranean and Middle East (2009), chapter 3",
+      "institution": "Cambridge University Press; public chapter copy hosted by Dead Sea Quake",
+      "url": "https://deadseaquake.info/pdfs/amc.pdf",
+      "locator": "Printed page 81, downloaded chapter PDF page 22, entry '469–463 BC Sparta'. Extracted text; no page-image inspection.",
+      "asWorded": "469–463 BC",
+      "originalChronology": "The entry preserves Diodorus 469–468, Plutarch 466–464, Thucydides 464 and Pausanias 464–463; one earthquake versus several remains unresolved.",
+      "scopedClaim": "A destructive earthquake or sequence damaged Sparta and its countryside; ancient narrative dates differ and the death toll is not secure.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-oasp-sparta",
+      "title": "Sparta 464 BC (VIII)",
+      "institution": "Earthquake Planning and Protection Organization (OASP), Greece",
+      "url": "https://oasp.gr/node/7001",
+      "locator": "Heading and historical description, web lines 1–14.",
+      "asWorded": "464 π.Χ.",
+      "originalChronology": "The official catalogue uses 464 BC; Ambraseys supplies the broader competing ancient chronology.",
+      "scopedClaim": "Strong earthquakes damaged Sparta, with cracks and rockfalls reported in the ancient literary accounts.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-ucl-xerxes",
+      "title": "Xerxes I",
+      "institution": "University College London, Digital Egypt for Universities",
+      "url": "https://www.ucl.ac.uk/museums-static/digitalegypt/chronology/xerxesi.html",
+      "locator": "Chronology and death entry, web lines 2–4.",
+      "asWorded": "465/64 BC",
+      "originalChronology": "Cross-calendar death date retained; no single-year selection.",
+      "scopedClaim": "Xerxes I was murdered together with his son Darius in 465/464 BC.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-iranica-artaxerxes",
+      "title": "Rüdiger Schmitt, Artaxerxes I",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/artaxerxes-i/",
+      "locator": "Accession and Egyptian revolt, web lines 32–38; Samos, web line 45.",
+      "asWorded": "465–64; 455–54; 440–39",
+      "originalChronology": "Accession follows Xerxes' murder. Reconquest is dated 455–454; Inarus' execution is placed later, so it is not assigned to the reconquest. Samos dates span two years.",
+      "scopedClaim": "Artaxerxes I succeeded Xerxes; Megabyzus reconquered Egypt; Athens fought the war against Samos in 440–439 BC.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-hall-ephialtes",
+      "title": "Lindsay G. H. Hall, Ephialtes, the Areopagus and the Thirty (1990)",
+      "institution": "The Classical Quarterly; Cambridge University Press",
+      "url": "https://www.cambridge.org/core/journals/classical-quarterly/article/abs/ephialtes-the-areopagus-and-the-thirty1/F595ACA894F24B3DE47B487411B33CBD",
+      "locator": "Public Extract, web line 451; publicly visible footnote 5, web line 488. Full article not consulted.",
+      "asWorded": "459/8; 462/1",
+      "originalChronology": "Footnote distinguishes Oresteia's first performance in Philokles' archon year from Ephialtes' reforms under Konon; neither is reduced to one modern calendar year.",
+      "scopedClaim": "Ephialtes redistributed additional Areopagus functions to the council, assembly and courts. The Oresteia's first performance is dated to 459/458 BC.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-iranica-egypt",
+      "title": "Edda Bresciani, Egypt I. Persians in Egypt in the Achaemenid Period",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/egypt-i/",
+      "locator": "First Persian domination and Inarus, web lines 36–47.",
+      "asWorded": "about 460; 454",
+      "originalChronology": "The approximate revolt beginning is retained. Its 454 conclusion is compatible with Schmitt's 455–454 reconquest, but Bresciani's execution timing conflicts with Schmitt; no execution year is claimed.",
+      "scopedClaim": "Inarus led a serious revolt against Persian rule in Egypt around 460 BC, with Athenian support; Persian forces subsequently recovered Memphis.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-yale-twelve-tables",
+      "title": "The Twelve Tables",
+      "institution": "Yale Law School, Avalon Project",
+      "url": "https://avalon.law.yale.edu/ancient/twelve_tables.asp",
+      "locator": "Editorial introduction, web lines 16–36.",
+      "asWorded": "451–450 B.C.; 449 B.C.",
+      "originalChronology": "Traditional composition dates; ratification in 449 is a later step.",
+      "scopedClaim": "Roman tradition dates the compilation of the Twelve Tables to 451–450 BC and subsequent ratification to 449 BC.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-fordham-plague",
+      "title": "Thucydides: The Plague of Athens, 430 BC",
+      "institution": "Fordham University, Internet Ancient History Sourcebook",
+      "url": "https://sourcebooks.web.fordham.edu/ancient/thuc-plague.asp",
+      "locator": "Editorial heading and Book II extract, web lines 21–29 and 38–45.",
+      "asWorded": "430 BC",
+      "originalChronology": "Editorial date of the outbreak; no modern pathogen identification is asserted.",
+      "scopedClaim": "Thucydides describes an epidemic spreading from Piraeus into Athens during the war, with crowded conditions and many deaths.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-higham-iron",
+      "title": "C. F. W. Higham and A. Kijngam, editors, The Origins of the Civilization of Angkor VI: Ban Non Wat, Part Four (2012)",
+      "institution": "Fine Arts Department of Thailand; public publisher preview",
+      "url": "https://api.pageplace.de/preview/DT0400.9781782977933_A24171085/preview-9781782977933_A24171085.pdf",
+      "locator": "Chapter I by C. F. W. Higham, printed page 1 (PDF page 20), Chronology; printed page 10 (PDF page 29). Extracted text only.",
+      "asWorded": "c. 420 BC; 420–150 BC",
+      "originalChronology": "The most likely transition estimate is circa 420 BC. The full Iron Age 1 phase 420–150 BC is context, not the duration of an invention or proof of annual production.",
+      "scopedClaim": "At Ban Non Wat the transition from the late Bronze Age cemetery to its first Iron Age phase is most likely dated around 420 BC.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-livius-sicily",
+      "title": "Thucydides on the Colonization of Sicily",
+      "institution": "Livius.org; Richard Crawley translation with editorial introduction",
+      "url": "https://www.livius.org/sources/content/thucydides-historian/the-colonization-of-sicily/",
+      "locator": "Editorial introduction at web line 9 and Thucydides 6.1 at web line 16.",
+      "asWorded": "415–413; winter [416/415]",
+      "originalChronology": "Campaign interval differs from the preceding winter decision; the editor supplies the calendar labels.",
+      "scopedClaim": "Athens attempted to conquer Sicily in a major expedition of 415–413 BC that ended in disaster.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-fhw-oligarchies",
+      "title": "The two oligarchic reforms",
+      "institution": "Foundation of the Hellenic World",
+      "url": "https://www.fhw.gr/chronos/05/en/politics/310oligarchies.html",
+      "locator": "Full short political account, web lines 1–6.",
+      "asWorded": "411/0; 404–3; 403",
+      "originalChronology": "Separate oligarchic episodes and later full restoration; slash-year and interval notations are preserved.",
+      "scopedClaim": "Athens experienced the Four Hundred and Five Thousand regime in 411/410, the Thirty in 404–403 and democratic restoration in 403 BC.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-ucl-late-egypt",
+      "title": "Late Dynastic Period",
+      "institution": "University College London, Digital Egypt for Universities",
+      "url": "https://www.ucl.ac.uk/museums-static/digitalegypt/lp/latedynastic.html",
+      "locator": "Opening chronology, web lines 2–4.",
+      "asWorded": "404 BC",
+      "originalChronology": "Successful revolt marker; the gradual geographic extension of control is qualified using Lloyd.",
+      "scopedClaim": "Amyrtaeus' successful revolt initiated renewed Egyptian independence and Dynasty 28.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-lloyd-egypt",
+      "title": "Alan B. Lloyd, Egypt, 404–332 B.C. (1994)",
+      "institution": "The Cambridge Ancient History; Cambridge University Press",
+      "url": "https://www.cambridge.org/core/books/abs/cambridge-ancient-history/egypt-404332-bc/7B70F72C3389EB2B29D646F7BAA6318D",
+      "locator": "Public Summary, web lines 504–512. Full chapter not consulted.",
+      "asWorded": "c. 404 B.C.; 401",
+      "originalChronology": "Amyrtaeus' accession did not mean immediate nationwide control: Elephantine still recognized Artaxerxes II in 401 BC.",
+      "scopedClaim": "Amyrtaeus came to power around 404 BC, while control spread unevenly and some southern documents continued to recognize Persian rule.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-barenghi-jin",
+      "title": "Maddalena Barenghi, Historiography and Narratives of the Later Tang (923–936) and Later Jin (936–947) in Tenth- to Eleventh-Century Sources",
+      "institution": "Ludwig Maximilian University of Munich, doctoral dissertation",
+      "url": "https://edoc.ub.uni-muenchen.de/20635/1/Barenghi_Maddalena.pdf",
+      "locator": "Printed pages 59–60 (PDF pages 66–67), early chronology discussion; web lines 1754–1786. Extracted text only.",
+      "asWorded": "403 B.C.E.",
+      "originalChronology": "403 is the formal recognition of Han, Wei and Zhao; the earlier partition and Jinyang episode are not redated to this year.",
+      "scopedClaim": "The Zhou king formally recognized the lords of Han, Wei and Zhao in 403 BC, following the earlier partition of Jin.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500-iranica-cunaxa",
+      "title": "Alireza Shapur Shahbazi, Cunaxa",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/cunaxa/",
+      "locator": "Battle entry, web lines 32–48.",
+      "asWorded": "3 September 401 B.C.",
+      "originalChronology": "The complete date is supplied by the reference article. The precise battlefield location is uncertain.",
+      "scopedClaim": "Cyrus the Younger fought Artaxerxes II near Babylon, died in the battle and failed to seize the throne.",
+      "retrievedOn": "2026-11-09",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
     }
   ],
   "events": [
@@ -25188,6 +25512,810 @@
       ],
       "historicalStatus": "sourced",
       "selectionNote": "The destruction of a major Assyrian capital; no unsupported aggressor details or claim that all Assyrian resistance ended that year.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-monte-alban-grundas",
+      "date": {
+        "kind": "approximate",
+        "startYear": -500,
+        "endYear": -500,
+        "displaySv": "cirka 500 f.Kr.",
+        "noteSv": "Årtalet är en arkeologisk grundningsdatering. Museets senare befolkningsuppgift gäller 300 f.Kr. och används inte för grundningen."
+      },
+      "titleSv": "Monte Albán växer fram som nytt centrum",
+      "summarySv": "Människor i Oaxacadalen flyttar till en ny bosättning på en höjd. Monte Albán får en central plats och befästningar och blir ett viktigt centrum i regionen.",
+      "geographySv": "Monte Albán, Oaxacadalen i nuvarande Mexiko",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-met-monte-alban"
+      ],
+      "historicalStatus": "uncertain",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-danmark-utvinner-jarn",
+      "date": {
+        "kind": "approximate",
+        "startYear": -500,
+        "endYear": -500,
+        "displaySv": "cirka 500 f.Kr.",
+        "noteSv": "Lyngstrøms offentliga sammanfattning anger ungefär när lokal järnteknik införs. Hela konferensbidraget har inte lästs."
+      },
+      "titleSv": "Järn utvinns ur dansk myrmalm",
+      "summarySv": "Järnproduktion från lokal myrmalm etableras i Danmark. Forskaren beskriver järnhantering i vanliga jordbruksbyar, troligen som en bisyssla där malm och bränsle finns.",
+      "geographySv": "Danmark",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-ku-denmark-iron"
+      ],
+      "historicalStatus": "uncertain",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-joniska-upproret",
+      "date": {
+        "kind": "exact",
+        "startYear": -499,
+        "endYear": -499,
+        "displaySv": "499 f.Kr.",
+        "noteSv": "Året gäller upprorets början enligt utställningens historiska översikt. Posten sätter inget eget slutår för hela upproret."
+      },
+      "titleSv": "Joniska städer gör uppror mot Persien",
+      "summarySv": "Joner i Mindre Asien gör uppror under Dareios I:s regering. Aten och Eretria ger dem stöd, vilket blir en del av bakgrunden till de följande perserkrigen.",
+      "geographySv": "Jonien i västra Mindre Asien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-greece-ionian"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-marathon",
+      "date": {
+        "kind": "exact",
+        "startYear": -490,
+        "endYear": -490,
+        "displaySv": "september 490 f.Kr.",
+        "noteSv": "Källan placerar persernas landstigning i början av september och beskriver det följande slaget. Någon exakt slagdag anges inte här."
+      },
+      "titleSv": "Atenare och plataier segrar vid Marathon",
+      "summarySv": "Atenska och plataiska styrkor besegrar den persiska expeditionen vid Marathon. Miltiades leder den grekiska krigföringen, varefter atenarna skyndar tillbaka mot sin stad.",
+      "geographySv": "Marathonslätten i Attika, Grekland",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-greece-marathon"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-laurion-finansierar-flottan",
+      "date": {
+        "kind": "range",
+        "startYear": -483,
+        "endYear": -482,
+        "displaySv": "483/482 f.Kr.",
+        "noteSv": "Källans årsspann gäller silverfyndet och beslutet om flottans finansiering. De följande årens skeppsbyggen räknas inte som färdiga samma år."
+      },
+      "titleSv": "Laurions silver finansierar Atens flotta",
+      "summarySv": "En rik silveråder upptäcks i Laurion. Themistokles får folkförsamlingen att använda inkomsterna till trierer i stället för att dela ut hela tillskottet till medborgarna.",
+      "geographySv": "Laurion och Aten i Attika",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-greece-naval-law"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-thermopyle",
+      "date": {
+        "kind": "exact",
+        "startYear": -480,
+        "endYear": -480,
+        "displaySv": "sommaren 480 f.Kr.",
+        "noteSv": "Årstiden anges i källan. Ingen egen omräkning till en exakt dag eller säkra totalsiffror för arméerna görs."
+      },
+      "titleSv": "Perserna bryter igenom vid Thermopyle",
+      "summarySv": "Grekiska styrkor under Leonidas försvarar det smala passet. Perserna leds runt deras ställning på en annan stig, och den kvarvarande försvarsstyrkan övermannas.",
+      "geographySv": "Thermopyle i centrala Grekland",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-greece-thermopylae"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-salamis",
+      "date": {
+        "kind": "exact",
+        "startYear": -480,
+        "endYear": -480,
+        "displaySv": "september 480 f.Kr.",
+        "noteSv": "Månaden återges från Salaminas historiska beskrivning; ingen bestämd dag väljs."
+      },
+      "titleSv": "Den grekiska flottan segrar vid Salamis",
+      "summarySv": "Den grekiska flottan besegrar persernas flotta i de trånga vattnen vid Salamis. Sjöslaget blir ett avgörande inslag i försvaret mot Xerxes invasion.",
+      "geographySv": "Sundet vid Salamis, Grekland",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "bc0500-salamina-salamis"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-akropolis-forstors",
+      "date": {
+        "kind": "exact",
+        "startYear": -480,
+        "endYear": -480,
+        "displaySv": "480 f.Kr.",
+        "noteSv": "Museet skiljer förstörelsen från byggstarten för det senare Parthenon 447 f.Kr."
+      },
+      "titleSv": "Perserna förstör Akropolis",
+      "summarySv": "Persiska styrkor förstör helgedomarna på Atens Akropolis. De senare stora byggnadsverken uppförs efter denna förstörelse.",
+      "geographySv": "Akropolis i Aten",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-acropolis-parthenon"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-plataiai",
+      "date": {
+        "kind": "exact",
+        "startYear": -479,
+        "endYear": -479,
+        "displaySv": "479 f.Kr.",
+        "noteSv": "Museets översikt anger året för segern vid Plataiai direkt."
+      },
+      "titleSv": "Grekiska styrkor segrar vid Plataiai",
+      "summarySv": "Grekiska styrkor besegrar perserna vid Plataiai. Segern hör till de avgörande framgångarna under försvaret mot den persiska invasionen.",
+      "geographySv": "Plataiai",
+      "category": "war",
+      "importance": 3,
+      "sourceIds": [
+        "bc0500-nam-classical"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-konfucius-dor",
+      "date": {
+        "kind": "exact",
+        "startYear": -479,
+        "endYear": -479,
+        "displaySv": "479 f.Kr., enligt traditionen",
+        "noteSv": "Året följer den traditionella livsdateringen 551–479 f.Kr. De bevarade biografiska källorna tillkommer senare och ger inte en samtida dödsnotis."
+      },
+      "titleSv": "Konfucius dör enligt den traditionella dateringen",
+      "summarySv": "Traditionen förlägger Konfucius död till detta år. Hans liv förknippas med staten Lu, och hans läror får stor betydelse i senare kinesisk filosofi.",
+      "geographySv": "Lu i nuvarande Shandong, Kina",
+      "category": "culture",
+      "importance": 1,
+      "sourceIds": [
+        "bc0500-iep-confucius"
+      ],
+      "historicalStatus": "uncertain",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-deliska-forbundet",
+      "date": {
+        "kind": "exact",
+        "startYear": -478,
+        "endYear": -478,
+        "displaySv": "478 f.Kr.",
+        "noteSv": "Året anges direkt för förbundets grundande i museets historiska introduktion."
+      },
+      "titleSv": "Det deliska förbundet bildas",
+      "summarySv": "Det deliska förbundet bildas efter segrarna över Persien. Förbundet blir en viktig del av den atenska maktställningen i den grekiska världen.",
+      "geographySv": "Den grekiska världen kring Egeiska havet",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-nam-classical"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-yue-besegrar-wu",
+      "date": {
+        "kind": "exact",
+        "startYear": -473,
+        "endYear": -473,
+        "displaySv": "473 f.Kr.",
+        "noteSv": "Museet daterar Wus nederlag till 473 f.Kr. och anger att Fuchai därefter tog sitt liv. Bronskärlets tillverkning eller nedläggning dateras inte därmed."
+      },
+      "titleSv": "Yue besegrar Wu",
+      "summarySv": "Staten Yue besegrar Wu. Wus kung Fuchai tar sitt liv när hans rike faller.",
+      "geographySv": "Staterna Wu och Yue",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-nmc-wu"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-perserna-skrivs",
+      "date": {
+        "kind": "exact",
+        "startYear": -472,
+        "endYear": -472,
+        "displaySv": "472 f.Kr.",
+        "noteSv": "472 gäller verkets tillkomst i arkivets redaktionella datering. Handlingen utspelar sig efter Salamis 480 f.Kr.; dessa år hålls isär."
+      },
+      "titleSv": "Aischylos skriver Perserna",
+      "summarySv": "Aischylos skildrar nederlaget vid Salamis genom det persiska kungahuset och en kör av persiska äldste. Tragedin återger ett nyligen inträffat krig ur de besegrades perspektiv.",
+      "geographySv": "Den grekiska teatervärlden; handlingen är förlagd till Susa",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-mit-persians"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-jordbavning-sparta",
+      "date": {
+        "kind": "disputed",
+        "startYear": -469,
+        "endYear": -463,
+        "displaySv": "469–463 f.Kr.; ofta daterad till 464 f.Kr.",
+        "noteSv": "Ambraseys återger Diodoros 469–468, Plutarchos 466–464, Thukydides 464 och Pausanias 464–463 f.Kr. OASP använder 464. Det är osäkert om berättelserna gäller en jordbävning eller flera."
+      },
+      "titleSv": "Jordbävningar ödelägger Sparta",
+      "summarySv": "En kraftig jordbävning eller en följd av skalv skadar Sparta och dess omgivningar. De antika berättelserna skiljer sig i datering, och någon säker dödssiffra kan inte anges.",
+      "geographySv": "Sparta och Lakonien på Peloponnesos",
+      "category": "nature",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-ambraseys-sparta",
+        "bc0500-oasp-sparta"
+      ],
+      "historicalStatus": "uncertain",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-xerxes-mordas",
+      "date": {
+        "kind": "range",
+        "startYear": -465,
+        "endYear": -464,
+        "displaySv": "465/464 f.Kr.",
+        "noteSv": "UCL anger mordet till 465/464, och Schmitt placerar Artaxerxes trontillträde inom samma årsspann. Detaljer om hovintrigen är osäkra."
+      },
+      "titleSv": "Xerxes mördas och Artaxerxes I tar makten",
+      "summarySv": "Den persiske kungen Xerxes mördas tillsammans med sin son Dareios. Artaxerxes I efterträder honom som härskare.",
+      "geographySv": "Det akemenidiska Persien",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-ucl-xerxes",
+        "bc0500-iranica-artaxerxes"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-efialtes-reformer",
+      "date": {
+        "kind": "range",
+        "startYear": -462,
+        "endYear": -461,
+        "displaySv": "462/461 f.Kr.",
+        "noteSv": "Hall anger Konons arkontår. Reformen skiljs från senare författningsändringar; endast offentlig sammanfattning och fotnot har lästs."
+      },
+      "titleSv": "Efialtes begränsar Areopagens makt",
+      "summarySv": "Efialtes överför ytterligare befogenheter från Areopagen till rådet, folkförsamlingen och domstolarna. Förändringen förstärker de demokratiska institutionerna i Aten.",
+      "geographySv": "Aten",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-hall-ephialtes"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-inaros-uppror",
+      "date": {
+        "kind": "approximate",
+        "startYear": -460,
+        "endYear": -460,
+        "displaySv": "cirka 460 f.Kr.",
+        "noteSv": "Bresciani daterar upprorets början ungefärligt. Senare återerövring och Inaros avrättning får inte samma datum."
+      },
+      "titleSv": "Inaros leder ett uppror i Egypten",
+      "summarySv": "Inaros leder ett omfattande uppror mot persiskt styre i Egypten. Aten understöder de upproriska med sjöstridskrafter.",
+      "geographySv": "Egypten",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-iranica-egypt"
+      ],
+      "historicalStatus": "uncertain",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-orestien-premiar",
+      "date": {
+        "kind": "range",
+        "startYear": -459,
+        "endYear": -458,
+        "displaySv": "459/458 f.Kr.",
+        "noteSv": "Hall återger Philokles arkontår för den första föreställningen. Ingen egen omräkning till en enda modern kalenderårssiffra görs."
+      },
+      "titleSv": "Orestien framförs för första gången",
+      "summarySv": "Aischylos Orestien framförs för första gången enligt dateringen som Hall återger från den antika inledningen till Agamemnon.",
+      "geographySv": "Platsen anges inte i det lästa källavsnittet.",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-hall-ephialtes"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-persisk-atererovring-egypten",
+      "date": {
+        "kind": "range",
+        "startYear": -455,
+        "endYear": -454,
+        "displaySv": "455–454 f.Kr.",
+        "noteSv": "Schmitt anger 455–454 för återerövringen; Bresciani anger upprorets slut 454. De skiljer sig om Inaros senare avrättning, som därför inte dateras i posten."
+      },
+      "titleSv": "Perserna återtar Egypten efter upproret",
+      "summarySv": "Persiska styrkor under Megabyzos återerövrar Egypten och återtar Memphis. Inaros uppror och den atenska hjälpexpeditionen misslyckas.",
+      "geographySv": "Egypten och Memphis",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-iranica-artaxerxes",
+        "bc0500-iranica-egypt"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-tolv-tavlorna",
+      "date": {
+        "kind": "range",
+        "startYear": -451,
+        "endYear": -450,
+        "displaySv": "451–450 f.Kr., enligt romersk tradition",
+        "noteSv": "Dateringen gäller sammanställningen. Ratifikationen 449 är ett senare steg."
+      },
+      "titleSv": "De tolv tavlornas lag sammanställs",
+      "summarySv": "Romersk tradition daterar sammanställningen av de tolv tavlornas lag till dessa år.",
+      "geographySv": "Rom",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-yale-twelve-tables"
+      ],
+      "historicalStatus": "uncertain",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-parthenon-byggstart",
+      "date": {
+        "kind": "exact",
+        "startYear": -447,
+        "endYear": -447,
+        "displaySv": "447 f.Kr.",
+        "noteSv": "Året gäller byggstarten. Museets uppgift om femton års byggande omvandlas inte till ett självständigt slutårsankare."
+      },
+      "titleSv": "Bygget av Parthenon inleds",
+      "summarySv": "Ett nytt Parthenon börjar byggas på Atens Akropolis som del av Perikles byggnadsprogram. Iktinos och Kallikrates är arkitekter, medan Fidias leder den konstnärliga utsmyckningen.",
+      "geographySv": "Akropolis i Aten",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-acropolis-parthenon"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-samoskriget",
+      "date": {
+        "kind": "range",
+        "startYear": -440,
+        "endYear": -439,
+        "displaySv": "440–439 f.Kr.",
+        "noteSv": "Källan anger hela krigsintervallet. Händelsen placeras inte i ett enda godtyckligt valt år."
+      },
+      "titleSv": "Aten för krig mot Samos",
+      "summarySv": "Aten för krig mot Samos. Konflikten visar motsättningarna inom den atenska maktsfären i Egeiska havet.",
+      "geographySv": "Samos och Egeiska havet",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-iranica-artaxerxes"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-peloponnesiska-kriget",
+      "date": {
+        "kind": "range",
+        "startYear": -431,
+        "endYear": -404,
+        "displaySv": "431–404 f.Kr.",
+        "noteSv": "Hela krigets intervall bevaras. Enskilda slag, uppehåll och politiska följder innebär inte strider varje år eller på varje ort."
+      },
+      "titleSv": "Det peloponnesiska kriget förändrar Grekland",
+      "summarySv": "Aten och Sparta med sina bundsförvanter för ett långvarigt krig. Det slutar med Spartas seger och ett svårt nederlag för Aten.",
+      "geographySv": "Grekland och den vidare egeiska världen",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-nam-classical"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-atens-epidemi",
+      "date": {
+        "kind": "exact",
+        "startYear": -430,
+        "endYear": -430,
+        "displaySv": "430 f.Kr.",
+        "noteSv": "Året följer källutgåvans rubrik för utbrottet. Posten identifierar inte sjukdomens smittämne och gör ingen egen modern diagnos."
+      },
+      "titleSv": "En epidemi slår mot Aten",
+      "summarySv": "En svår epidemi sprids från Pireus in i Aten under kriget. Thukydides beskriver många dödsfall och hur trängseln förvärrar människornas utsatthet.",
+      "geographySv": "Pireus och Aten",
+      "category": "nature",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-fordham-plague"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-ban-non-wat-jarnalder",
+      "date": {
+        "kind": "approximate",
+        "startYear": -420,
+        "endYear": -420,
+        "displaySv": "cirka 420 f.Kr.",
+        "noteSv": "Higham anger omkring 420 som den troligaste övergången till järnåldersfas I, vars hela period är 420–150 f.Kr. Detta är en platsdatering, inte ett exakt uppfinningsår för järn."
+      },
+      "titleSv": "Ban Non Wat går in i en järnåldersfas",
+      "summarySv": "Gravplatsens sena bronsåldersfas övergår i den första järnåldersfasen vid Ban Non Wat. Den arkeologiska kronologin bygger på dateringar av bland annat sötvattensmusslor.",
+      "geographySv": "Ban Non Wat, övre Mundalen i nuvarande Thailand",
+      "category": "technology",
+      "importance": 1,
+      "sourceIds": [
+        "bc0500-higham-iron"
+      ],
+      "historicalStatus": "uncertain",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-sicilianska-expeditionen",
+      "date": {
+        "kind": "range",
+        "startYear": -415,
+        "endYear": -413,
+        "displaySv": "415–413 f.Kr.",
+        "noteSv": "Kampanjens fulla intervall behålls. Thukydides skildrar beslutet under den föregående vintern 416/415, vilket inte flyttar själva fälttågets början."
+      },
+      "titleSv": "Atens expedition till Sicilien slutar i katastrof",
+      "summarySv": "Aten sänder en stor expedition för att erövra Sicilien. Företaget misslyckas katastrofalt, och bara en liten del av deltagarna återvänder.",
+      "geographySv": "Sicilien",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-livius-sicily"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-fyrahundra-oligarki",
+      "date": {
+        "kind": "range",
+        "startYear": -411,
+        "endYear": -410,
+        "displaySv": "411/410 f.Kr.",
+        "noteSv": "Källans årsbeteckning bevaras; den anger inte att de fyrahundra styr under hela spannet."
+      },
+      "titleSv": "Oligarker tar makten i Aten",
+      "summarySv": "De fyrahundras råd utövar makten och folkförsamlingens deltagande begränsas till femtusen medborgare utifrån ställning och förmögenhet.",
+      "geographySv": "Aten",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-fhw-oligarchies"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-amyrtaios-independens",
+      "date": {
+        "kind": "approximate",
+        "startYear": -404,
+        "endYear": -404,
+        "displaySv": "cirka 404 f.Kr.",
+        "noteSv": "Lloyd anger ungefärligt trontillträde, medan UCL anger 404 för upprorets framgång. Kontroll över hela Egypten följer inte omedelbart: persiskt kunganamn används ännu i Elefantine 401."
+      },
+      "titleSv": "Amyrtaios bryter persernas styre i delar av Egypten",
+      "summarySv": "Amyrtaios kommer till makten efter ett framgångsrikt uppror och inleder dynasti 28. Den nya egyptiska självständigheten får gradvis genomslag och omfattar inte genast hela landet.",
+      "geographySv": "Egypten, med ojämn kontroll mellan olika områden",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-ucl-late-egypt",
+        "bc0500-lloyd-egypt"
+      ],
+      "historicalStatus": "uncertain",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-de-trettio",
+      "date": {
+        "kind": "range",
+        "startYear": -404,
+        "endYear": -403,
+        "displaySv": "404–403 f.Kr.",
+        "noteSv": "Perioden skiljs från den tidigare oligarkin 411/410 och demokratins återställande 403."
+      },
+      "titleSv": "De trettio styr Aten",
+      "summarySv": "Efter nederlaget mot Sparta införs de trettios oligarkiska styre i Aten under spartanskt tryck.",
+      "geographySv": "Aten",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-fhw-oligarchies"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-han-wei-zhao",
+      "date": {
+        "kind": "exact",
+        "startYear": -403,
+        "endYear": -403,
+        "displaySv": "403 f.Kr.",
+        "noteSv": "Året gäller Zhoukungens formella erkännande. Den tidigare uppdelningen av Jin dateras inte till samma år."
+      },
+      "titleSv": "Han, Wei och Zhao erkänns formellt",
+      "summarySv": "Zhoukungen erkänner härskarna i Han, Wei och Zhao som furstar. Erkännandet följer på den tidigare uppdelningen av staten Jin.",
+      "geographySv": "Staterna Han, Wei och Zhao",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-barenghi-jin"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-atensk-demokrati-aterstalls",
+      "date": {
+        "kind": "exact",
+        "startYear": -403,
+        "endYear": -403,
+        "displaySv": "403 f.Kr.",
+        "noteSv": "Källan anger full återgång till demokrati detta år."
+      },
+      "titleSv": "Demokratin återställs i Aten",
+      "summarySv": "Aten återgår till demokratiskt styre efter de trettios oligarki.",
+      "geographySv": "Aten",
+      "category": "politics",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-fhw-oligarchies"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0500-kunaxa",
+      "date": {
+        "kind": "exact",
+        "startYear": -401,
+        "endYear": -401,
+        "displaySv": "3 september 401 f.Kr.",
+        "noteSv": "Hela datumet återges från Shahbazi. Slagfältets exakta läge är omtvistat; ingen egen kalenderomräkning görs."
+      },
+      "titleSv": "Kyros den yngre stupar vid Kunaxa",
+      "summarySv": "Kyros den yngre försöker störta Artaxerxes II men dödas i slaget vid Kunaxa. Hans försök att ta den persiska tronen misslyckas.",
+      "geographySv": "Kunaxa nära Babylon i nuvarande Irak; exakt läge osäkert",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc0500-iranica-cunaxa"
+      ],
+      "historicalStatus": "sourced",
+      "selectionNote": "Selected as a distinct historical episode or explicitly dated regional development; chronology and evidence limits retained.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",
