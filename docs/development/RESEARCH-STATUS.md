@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain nine approved records, eighteen source records and forty-five display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain eleven approved records, twenty-one source records and fifty-five display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -16,7 +16,8 @@ The English research deliveries now contain nine approved records, eighteen sour
 | [AD 300–399](../research/world-cultures/english-events/ad0300-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #110](https://github.com/sp1e/Attainder/pull/110), commit `59cda460d82b4a6fc8d5b18497cf6f2b290d309e` |
 | [2100–2001 BC](../research/world-cultures/english-events/bc2100-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #111](https://github.com/sp1e/Attainder/pull/111), commit `d058dfd9a2e3e29150e08e4f0ea027cafdfcd1b4` |
 | [1700–1601 BC](../research/world-cultures/english-events/bc1700-supplement.md) | 2 | 5 | 10 | Source, English and integration reviews approved; [PR #112](https://github.com/sp1e/Attainder/pull/112) awaits current-head CI and verified merge |
-| [AD 700–799](../research/world-cultures/english-events/ad0700-supplement.md) | 2 | 4 | 10 | Source, English and integration reviews approved; current-head CI and verified merge required |
+| [AD 700–799](../research/world-cultures/english-events/ad0700-supplement.md) | 2 | 4 | 10 | Source, English and integration reviews approved; [PR #113](https://github.com/sp1e/Attainder/pull/113) awaits current-head CI and verified merge |
+| [3300–3201 BC](../research/world-cultures/english-events/bc3300-supplement.md) | 2 | 3 | 10 | Source, English and integration reviews approved; current-head CI and verified merge required |
 
 PRs #109 and #110 each passed 5,337 tests with no failures and two TODOs; both builds passed. The BC2200 source correction reduced La Bastida's importance to 1. The AD300 batch concerns Meroe's royal pyramid burials and Teotihuacan's Adosada platform; its correction removes an unsupported temporal ordering of damage to other façades. BC2100 adds a regional sealing-technology event while withholding a separate law-collection candidate whose required passages were not fully verified. Original HOLD reports remain preserved separately from the final approvals.
 
@@ -24,7 +25,9 @@ PR #111 also passed 5,337 tests with no failures and two TODOs, followed by a su
 
 AD700 adds Kül Tigin's memorial and Sanjaya's Canggal dedication, both in 732 and at importance 1. Source and English review approved all ten display fields unchanged. A separate metadata check removed a catalog comparison from one selection note; the original HOLD and fresh correction PASS remain preserved.
 
-Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. Independent CI runs may overlap on dependent research branches; merge them in order only after verifying that the merged parent has the tested parent's exact tree. Preserve branch ancestry with merge commits for this chain. The next active batches concern 3300–3201 BC and 3000–2901 BC; their records do not enter the delivery totals until integration. The older BC1600 execution-policy hold remains preserved.
+BC3300 adds the Fanshan burial assemblage and Yamnaya's initial expansion. Their full approximate ranges extend beyond the selection century. The source reviewer reduced Fanshan's importance to 1 and retained Yamnaya's continental importance at 3; a fresh final review confirmed the exact correction. The sources are academic syntheses, with underlying studies and uncertain interpretations clearly distinguished.
+
+Ruling: publish new research with explicit English field names and `integrationStatus: awaiting-runtime-support`. Filling Swedish fields with English text would misrepresent their language contract. Continue research and publication while Claude handles the importer dependency. Independent CI runs may overlap on dependent research branches; merge them in order only after verifying that the merged parent has the tested parent's exact tree. Preserve branch ancestry with merge commits for this chain. The next active batches concern 3000–2901 BC and AD 1000–1099; their records do not enter the delivery totals until integration. The older BC1600 execution-policy hold remains preserved.
 
 ## Earlier catalog delivery
 
