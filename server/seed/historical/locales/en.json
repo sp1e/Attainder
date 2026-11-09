@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "0d29ad7bcaa5cd598f00003b3855a6dc33dcce44",
+  "sourceRevision": "76f735217c048660c21cdb3b1aa078e5bd1c4883",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -51570,6 +51570,446 @@
         "eventId": "ev-bc1208-merneptah-israel-stele",
         "fieldPath": "/geographySv",
         "textSha256": "8df51a944683da46870e0ba763d7ede39b8d26426dfc525d2483d72b83a33090"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-pylos-palatsbrand/date/displaySv",
+      "sv": "cirka 1200 f.Kr. eller 1190/1180–1150 f.Kr.",
+      "en": "Approximately 1200 BC or 1190/1180–1150 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-pylos-palatsbrand",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "df066391260f3f1e1280863d73cec7c7e745b085467231b70fc6d9cb603efe80"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-pylos-palatsbrand/date/noteSv",
+      "sv": "Museet anger omkring 1200 f.Kr. En forskningsöversikt återger i stället dateringen tidig senhelladisk IIIC, 1190/1180–1150 f.Kr. Intervallet samlar alternativa dateringar av förstörelsen; branden varar inte i femtio år.",
+      "en": "The museum gives approximately 1200 BC. A research review instead reports an Early Late Helladic IIIC date, 1190/1180–1150 BC. The interval brings together alternative dates for the destruction; the fire does not last fifty years.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-pylos-palatsbrand",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7850c2928d577e53b4dc54120c65f22848c817ad566d3bde51285dc7a2d2c478"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-pylos-palatsbrand/titleSv",
+      "sv": "Palatset i Pylos förstörs av brand",
+      "en": "Fire destroys the palace at Pylos",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-pylos-palatsbrand",
+        "fieldPath": "/titleSv",
+        "textSha256": "3f4ad6a93ea72573bba2dc5dce65ac29810f2ae16ea15593835a1f1969b233ce"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-pylos-palatsbrand/summarySv",
+      "sv": "En stor brand förstör palatset i Pylos och höjden Ano Englianos överges. Förstörelsen innebär slutet för ett viktigt mykenskt administrativt centrum i Messenien.",
+      "en": "A major fire destroys the palace at Pylos, and the hill of Ano Englianos is abandoned. The destruction marks the end of an important Mycenaean administrative centre in Messenia.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-pylos-palatsbrand",
+        "fieldPath": "/summarySv",
+        "textSha256": "29272eac6c8646d58869f107a23097e11d017b99d75962fbdb36e34cdbd3183b"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-pylos-palatsbrand/geographySv",
+      "sv": "Pylos och Ano Englianos i Messenien, nuvarande Grekland",
+      "en": "Pylos and Ano Englianos in Messenia, present-day Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-pylos-palatsbrand",
+        "fieldPath": "/geographySv",
+        "textSha256": "38b0aefba56c6965e45106b93c6c46b40bfbfd366d6917e886324a6e08c42313"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-thebes-palatsbrand/date/displaySv",
+      "sv": "cirka 1200 f.Kr.",
+      "en": "Approximately 1200 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-thebes-palatsbrand",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9fc7edf9b402cd3d1c34a67d425d8ff2d722a3c361c0b29bbaa38ddb01cf1589"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-thebes-palatsbrand/date/noteSv",
+      "sv": "Dateringen gäller slutet av den senhelladiska perioden IIIB. Den arkeologiska brandhorisonten ger inget säkert kalenderår eller namn på en angripare.",
+      "en": "The dating concerns the end of the Late Helladic IIIB period. The archaeological burn horizon provides neither a secure calendar year nor the name of an attacker.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-thebes-palatsbrand",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f84197b1b5082975c1ad61c52046be1191a153a3e9b542d9ed21dff3e004898d"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-thebes-palatsbrand/titleSv",
+      "sv": "Bränder förstör palatskomplexet i Thebe",
+      "en": "Fires destroy the palace complex at Thebes",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-thebes-palatsbrand",
+        "fieldPath": "/titleSv",
+        "textSha256": "1440c32c0a6c5b4ab296e7d68ba3a9815cf079309bcd613b97683ffcc3047028"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-thebes-palatsbrand/summarySv",
+      "sv": "Brandlager i flera delar av palatskomplexet på Kadmeiahöjden visar dess förstörelse. Denna händelse hör till slutet av den mykenska palatstiden i området.",
+      "en": "Burn layers in several parts of the palace complex on the Kadmeia hill show its destruction. This event belongs to the end of the Mycenaean palace period in the area.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-thebes-palatsbrand",
+        "fieldPath": "/summarySv",
+        "textSha256": "3253b51f0cd805175d9cde54cd09f59880b9d189f242d50b64a29237edeacd82"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-thebes-palatsbrand/geographySv",
+      "sv": "Thebe i Boiotien, nuvarande Grekland",
+      "en": "Thebes in Boeotia, present-day Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-thebes-palatsbrand",
+        "fieldPath": "/geographySv",
+        "textSha256": "866c38e90239a013c32d0f29d5b320b54418e7e76246ead3d7b8c5a6485dc4d6"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-hallur-jarnforande-fas/date/displaySv",
+      "sv": "1200–1100 f.Kr.",
+      "en": "1200–1100 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-hallur-jarnforande-fas",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "500e48bf1768768f57240993e9979d9e58f53b5050636324e007659e2894a753"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-hallur-jarnforande-fas/date/noteSv",
+      "sv": "Dateringsmodellen placerar övergången till Hallurs tredje fas inom detta intervall. Fynden anger varken ett exakt uppfinningsår eller den första järnframställningen i Indien.",
+      "en": "The dating model places the transition to Hallur’s third phase within this interval. The finds indicate neither an exact year of invention nor the first production of iron in India.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-hallur-jarnforande-fas",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "dc2b0e7a38cd2905b34de132455f247d21658dc27ab73b9758bff547a6f5f365"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-hallur-jarnforande-fas/titleSv",
+      "sv": "Järnfynd ingår i ett nytt bosättningsskede vid Hallur",
+      "en": "Iron finds appear in a new settlement phase at Hallur",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-hallur-jarnforande-fas",
+        "fieldPath": "/titleSv",
+        "textSha256": "97936ed45663961170e4e13472ea826d2324dd18a5371472a74d2ba4ad884337"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-hallur-jarnforande-fas/summarySv",
+      "sv": "Vid Hallur framträder ett skede med drejad svart-röd keramik och ett mindre antal järnfynd. Bosättningen visar kontinuitet från tidigare skeden in i järnåldern.",
+      "en": "At Hallur, a phase emerges with wheel-thrown black-and-red pottery and a small number of iron finds. The settlement shows continuity from earlier phases into the Iron Age.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-hallur-jarnforande-fas",
+        "fieldPath": "/summarySv",
+        "textSha256": "e9ce221ef26ffbfb9bb520c503d8ad0962682c30c90a20ba51508a9cda22deb6"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-hallur-jarnforande-fas/geographySv",
+      "sv": "Hallur vid övre Tungabhadra i nuvarande Karnataka, Indien",
+      "en": "Hallur on the upper Tungabhadra in present-day Karnataka, India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-hallur-jarnforande-fas",
+        "fieldPath": "/geographySv",
+        "textSha256": "c7a86b2a98e943f76f6393a34d7ce45191bc834896f28f78764dce2f55f1038f"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-gajiganna-parlhirs/date/displaySv",
+      "sv": "cirka 1200 kalibrerade år f.Kr.",
+      "en": "Approximately 1200 cal BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-gajiganna-parlhirs",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ae31050961771c822af8d8ba189908db0ed22ca91c569ca4ccb8d2b8b13d04f7"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-gajiganna-parlhirs/date/noteSv",
+      "sv": "Pärlhirs är belagd från omkring 1200 kalibrerade år f.Kr. i Gajigannas fas II. Det daterar det arkeologiska belägget, inte ett säkert första odlingsår.",
+      "en": "Pearl millet is attested from approximately 1200 cal BC in Gajiganna’s phase II. This dates the archaeological evidence, rather than a securely established first year of cultivation.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-gajiganna-parlhirs",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "4a10afe11efa93251adfd01caae35b164107eeff4c159772b9133d1f5ef6f163"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-gajiganna-parlhirs/titleSv",
+      "sv": "Pärlhirs ingår i försörjningen vid Tchadsjön",
+      "en": "Pearl millet forms part of subsistence around Lake Chad",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-gajiganna-parlhirs",
+        "fieldPath": "/titleSv",
+        "textSha256": "9740a60143643f05a89a5022a646b12dabfe53d86e4995c425ce6c5c5dc709b8"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-gajiganna-parlhirs/summarySv",
+      "sv": "I Gajigannaområdets arkeologiska material finns pärlhirs. Boskapsskötseln kombineras vid denna tid med odling i ett mer blandat försörjningssätt.",
+      "en": "Pearl millet occurs in the archaeological material from the Gajiganna area. At this time, herding is combined with cultivation in a more mixed subsistence economy.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-gajiganna-parlhirs",
+        "fieldPath": "/summarySv",
+        "textSha256": "50335e1054c48d9d6de231b1ef43d80101ca30f9c2f1778ae423bfc9383996b7"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-gajiganna-parlhirs/geographySv",
+      "sv": "Tchadsjöns sydvästra bäcken, nuvarande nordöstra Nigeria",
+      "en": "Southwestern Lake Chad basin, present-day northeastern Nigeria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-gajiganna-parlhirs",
+        "fieldPath": "/geographySv",
+        "textSha256": "8a2a5d6c6871f14ab46f632a043c5d6516ac46e3f5d260087c37c316f4ed2bfd"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-chavin-ceremoniellt-centrum/date/displaySv",
+      "sv": "cirka 1200 f.Kr.",
+      "en": "Approximately 1200 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-chavin-ceremoniellt-centrum",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "9fc7edf9b402cd3d1c34a67d425d8ff2d722a3c361c0b29bbaa38ddb01cf1589"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-chavin-ceremoniellt-centrum/date/noteSv",
+      "sv": "Perus nationalmuseum förlägger Chavín de Huántars framväxt till omkring 1200 f.Kr. Den bredare kulturperioden 1200–200 f.Kr. anger inte när varje byggnad uppförs.",
+      "en": "Peru’s national museum places the emergence of Chavín de Huántar around 1200 BC. The broader cultural period of 1200–200 BC does not indicate when each building was constructed.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-chavin-ceremoniellt-centrum",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9a06c510d2e3940bc1d32e21eaeba814c38cd7c41235c168af3f2939d298a4d2"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-chavin-ceremoniellt-centrum/titleSv",
+      "sv": "Chavín de Huántar växer fram som ceremoniellt centrum",
+      "en": "Chavín de Huántar emerges as a ceremonial centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-chavin-ceremoniellt-centrum",
+        "fieldPath": "/titleSv",
+        "textSha256": "e8f330423218986d1d4440e68eca6df5d76811013d14793946b4c146fbbdf6e7"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-chavin-ceremoniellt-centrum/summarySv",
+      "sv": "Chavín de Huántar utvecklas till en betydande helig plats i Anderna. Centret får en roll som mål för pilgrimsfärder och som orakelplats.",
+      "en": "Chavín de Huántar develops into a major sacred place in the Andes. The centre becomes a destination for pilgrimage and a place of oracles.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-chavin-ceremoniellt-centrum",
+        "fieldPath": "/summarySv",
+        "textSha256": "6c1ea24e41965152de4602fc5bb1d16ba5837f5676372aaca349327265b5a10e"
+      }
+    },
+    {
+      "id": "event/ev-bc1200-chavin-ceremoniellt-centrum/geographySv",
+      "sv": "Chavín de Huántar i nuvarande Peru",
+      "en": "Chavín de Huántar in present-day Peru",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1200-chavin-ceremoniellt-centrum",
+        "fieldPath": "/geographySv",
+        "textSha256": "40e624e79931d06b62fb547311c7582ccce348bfd8a575f849b8fd9234af9b69"
+      }
+    },
+    {
+      "id": "event/ev-bc1180-ramesses-havsfolk/date/displaySv",
+      "sv": "1180, 1177 eller 1176/1175 f.Kr.",
+      "en": "1180, 1177 or 1176/1175 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1180-ramesses-havsfolk",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b7bc744a91266df89b7757a933024dee8e6accdb1eb8ad732d438136dab7d668"
+      }
+    },
+    {
+      "id": "event/ev-bc1180-ramesses-havsfolk/date/noteSv",
+      "sv": "Händelsen knyts till Ramesses III:s åttonde regeringsår. Forskningen anger de alternativa kalenderåren 1180, 1177 och 1176/1175 f.Kr.; intervallet betyder inte att samma slag pågår i fem år.",
+      "en": "The event is associated with Ramesses III’s eighth regnal year. Research gives the alternative calendar years 1180, 1177 and 1176/1175 BC; the interval does not mean that the same battle lasts five years.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1180-ramesses-havsfolk",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "351412c816e22eae9cdd79a8e347392d5a5053aea92eff6ca7ed6ecd5cb2f0cc"
+      }
+    },
+    {
+      "id": "event/ev-bc1180-ramesses-havsfolk/titleSv",
+      "sv": "Ramesses III slår tillbaka ett angrepp från havsfolken",
+      "en": "Ramesses III repels an attack by the Sea Peoples",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1180-ramesses-havsfolk",
+        "fieldPath": "/titleSv",
+        "textSha256": "da70a3cab4ac3f0ff059353ca38cf68476ac4e0442bb48c4e7e8e17e33ff89e8"
+      }
+    },
+    {
+      "id": "event/ev-bc1180-ramesses-havsfolk/summarySv",
+      "sv": "Under Ramesses III:s åttonde regeringsår angriper grupper som brukar kallas havsfolken Egypten både landvägen och sjövägen. Faraonen slår tillbaka angreppet och låter skildra segern i Medinet Habu.",
+      "en": "During Ramesses III’s eighth regnal year, groups commonly called the Sea Peoples attack Egypt by land and sea. The pharaoh repels the attack and has the victory depicted at Medinet Habu.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1180-ramesses-havsfolk",
+        "fieldPath": "/summarySv",
+        "textSha256": "97103c19feb85f355657944e23c604165f2dfa4e345ab81f68068108cae6d141"
+      }
+    },
+    {
+      "id": "event/ev-bc1180-ramesses-havsfolk/geographySv",
+      "sv": "Egypten, särskilt Nildeltat",
+      "en": "Egypt, particularly the Nile Delta",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1180-ramesses-havsfolk",
+        "fieldPath": "/geographySv",
+        "textSha256": "d2b1ae15f2fe361148fdf336dddb8b9a31a6ce17b1bafa877c621ee2d970db54"
+      }
+    },
+    {
+      "id": "event/ev-bc1155-deir-el-medina-strejk/date/displaySv",
+      "sv": "1155 f.Kr., enligt Museo Egizios datering",
+      "en": "1155 BC, according to Museo Egizio’s dating",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1155-deir-el-medina-strejk",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "2d70a1abe667f462ee380b92e681a870a3f0c3516330641e6e330af8e91863db"
+      }
+    },
+    {
+      "id": "event/ev-bc1155-deir-el-medina-strejk/date/noteSv",
+      "sv": "Årtalet anges uttryckligen i museets offentliga presentation av strejken. Papyruskatalogens öppna beskrivning anger Ramesses III:s regeringstid; ingen omräkning av regeringsår har gjorts.",
+      "en": "The museum’s public account of the strike explicitly gives this year. The papyrus catalogue’s public description places it in Ramesses III’s reign; no conversion of regnal years has been made.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1155-deir-el-medina-strejk",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "393d99f60981da2a1bce4ee6b5278fee179dc4dcff4ea59717dfe99b63237bab"
+      }
+    },
+    {
+      "id": "event/ev-bc1155-deir-el-medina-strejk/titleSv",
+      "sv": "Gravarbetare i Deir el-Medina lägger ned arbetet",
+      "en": "Tomb workers at Deir el-Medina stop work",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1155-deir-el-medina-strejk",
+        "fieldPath": "/titleSv",
+        "textSha256": "2d00e9c1f2628e32abfd0a6f4ecc885ecc063c45f2353969bb96bd614c40653b"
+      }
+    },
+    {
+      "id": "event/ev-bc1155-deir-el-medina-strejk/summarySv",
+      "sv": "Efter utebliven betalning vägrar arbetarna från Deir el-Medina att fortsätta arbetet i nekropolen. Den bevarade strejkpapyrusen berättar om stoppade spannmålsransoner och arbetarnas krav på betalning.",
+      "en": "After payment fails to arrive, the workers of Deir el-Medina refuse to continue working in the necropolis. The surviving Strike Papyrus describes grain rations that were not delivered and the workers’ demands for payment.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1155-deir-el-medina-strejk",
+        "fieldPath": "/summarySv",
+        "textSha256": "3f5777c17280fb7ad69436ee6ec471f25df344d5b20c1a3c13d2fffdeeb3cb68"
+      }
+    },
+    {
+      "id": "event/ev-bc1155-deir-el-medina-strejk/geographySv",
+      "sv": "Deir el-Medina och nekropolen vid Thebe, Egypten",
+      "en": "Deir el-Medina and the necropolis at Thebes, Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1155-deir-el-medina-strejk",
+        "fieldPath": "/geographySv",
+        "textSha256": "aace363c0a6fe01edb065e5943640f5c3db61d33a171cb58c2acbd577789e615"
+      }
+    },
+    {
+      "id": "event/ev-bc1155-kassitdynastin-faller/date/displaySv",
+      "sv": "1155 f.Kr., enligt Metropolitanmuseets kronologi",
+      "en": "1155 BC, according to the Metropolitan Museum’s chronology",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1155-kassitdynastin-faller",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "dbd3738fa20b295ccb01b0adc3d539b5017641d8d0b09247289792694b9ff5f3"
+      }
+    },
+    {
+      "id": "event/ev-bc1155-kassitdynastin-faller/date/noteSv",
+      "sv": "Årtalet avser kassitdynastins fall i museets framställning. De elamitiska krigen och räderna pågår dessförinnan och reduceras inte till en enda dags händelse.",
+      "en": "The year refers to the fall of the Kassite dynasty in the museum’s account. The Elamite wars and raids take place beforehand and are not reduced to an event on a single day.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1155-kassitdynastin-faller",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "673080f52cafd2c89b422bd752a35f73689c344bceb86363e2586912807f8958"
+      }
+    },
+    {
+      "id": "event/ev-bc1155-kassitdynastin-faller/titleSv",
+      "sv": "Elamitiska angrepp leder till kassitdynastins fall",
+      "en": "Elamite attacks bring down the Kassite dynasty",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1155-kassitdynastin-faller",
+        "fieldPath": "/titleSv",
+        "textSha256": "3cedd6e2ff2e4cd76ee15857211a9f7b3618cb026fdbe822e01455c2a3ab82d6"
+      }
+    },
+    {
+      "id": "event/ev-bc1155-kassitdynastin-faller/summarySv",
+      "sv": "Krig och räder från Elam avslutar kassiternas styre i södra Mesopotamien. Under angreppen förs monument från områdets helgedomar bort till Susa.",
+      "en": "Wars and raids from Elam end Kassite rule in southern Mesopotamia. During the attacks, monuments from the region’s sanctuaries are taken to Susa.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1155-kassitdynastin-faller",
+        "fieldPath": "/summarySv",
+        "textSha256": "3d001afed3291b54ec1b82679c3339bb93fadc58001847eb481e7bfe6cda6452"
+      }
+    },
+    {
+      "id": "event/ev-bc1155-kassitdynastin-faller/geographySv",
+      "sv": "Södra Mesopotamien och Susa, nuvarande Irak och Iran",
+      "en": "Southern Mesopotamia and Susa, present-day Iraq and Iran",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1155-kassitdynastin-faller",
+        "fieldPath": "/geographySv",
+        "textSha256": "ea827124c379b8fb6a37de85d502adca49221342ed578d2799af75f7dd357383"
       }
     }
   ]

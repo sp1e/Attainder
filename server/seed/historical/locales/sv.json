@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "0d29ad7bcaa5cd598f00003b3855a6dc33dcce44",
+  "sourceRevision": "76f735217c048660c21cdb3b1aa078e5bd1c4883",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -13532,6 +13532,226 @@
         "sourceId": "bc1300-chicago-merneptah",
         "fieldPath": "/locator",
         "textSha256": "b6cc0ed8a4b5b0a7f8cfa10931e84d4609901f7e00af356f5e1515e6b0f7a0d9"
+      }
+    },
+    {
+      "id": "source/bc1200-nam-pylos/institution",
+      "en": "National Archaeological Museum, Athens",
+      "sv": "Nationella arkeologiska museet i Aten",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-nam-pylos",
+        "fieldPath": "/institution",
+        "textSha256": "91f0e5242e174daa69fd58d3f7ec0cc9191643b6a7e1901bfb37c0ebd758d892"
+      }
+    },
+    {
+      "id": "source/bc1200-nam-pylos/locator",
+      "en": "Palace history, web lines 231–233; final destruction and abandonment.",
+      "sv": "Palatsets historia, webbrader 231–233; den slutliga förstörelsen och övergivandet.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-nam-pylos",
+        "fieldPath": "/locator",
+        "textSha256": "e001b1b421beb7f736646218712e357dbcfdc4f566d5f811e513d1443e215d94"
+      }
+    },
+    {
+      "id": "source/bc1200-middleton-palaces/institution",
+      "en": "Guy D. Middleton, Newcastle University; Antiquity 98 (397), 2024, pp. 260–263",
+      "sv": "Guy D. Middleton, Newcastle University; Antiquity 98 (397), 2024, s. 260–263",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-middleton-palaces",
+        "fieldPath": "/institution",
+        "textSha256": "7f8aca8c3fb10f862e8655e922753a902c39729c39e13a870f5f060df1be9413"
+      }
+    },
+    {
+      "id": "source/bc1200-middleton-palaces/locator",
+      "en": "Review of Synchronizing the destructions of the Mycenaean palaces: Thebes discussion, web lines 504–505; Pylos discussion, lines 510–511.",
+      "sv": "Recension av Synchronizing the destructions of the Mycenaean palaces: diskussionen om Thebe, webbrader 504–505; diskussionen om Pylos, rader 510–511.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-middleton-palaces",
+        "fieldPath": "/locator",
+        "textSha256": "305150ba1ca9f49e90493ab9b878fae353b209cd3578d1c9712d68924cc52194"
+      }
+    },
+    {
+      "id": "source/bc1200-fuller-hallur/institution",
+      "en": "Dorian Q. Fuller, Nicole Boivin and Ravi Korisettar; author manuscript hosted by University College London",
+      "sv": "Dorian Q. Fuller, Nicole Boivin och Ravi Korisettar; författarmanuskript hos University College London",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-fuller-hallur",
+        "fieldPath": "/institution",
+        "textSha256": "d2b0cf8c202dbff0264252a85cc805cfecc920e7e1117c46c07896f5e1419b1e"
+      }
+    },
+    {
+      "id": "source/bc1200-fuller-hallur/locator",
+      "en": "Manuscript pages 16–17 (PDF pages 16–17), Hallur discussion, web lines 493–501.",
+      "sv": "Manuskriptets sidor 16–17 (PDF-sidor 16–17), diskussionen om Hallur, webbrader 493–501.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-fuller-hallur",
+        "fieldPath": "/locator",
+        "textSha256": "2010a7593d4498af1af9c5d78fe642a68c65b0b62e8610e524525bc81176e658"
+      }
+    },
+    {
+      "id": "source/bc1200-magnavita-gajiganna/institution",
+      "en": "Carlos Magnavita, Stefanie Kahlheber and Barbara Eichhorn; Antiquity 78 (301), 2004",
+      "sv": "Carlos Magnavita, Stefanie Kahlheber och Barbara Eichhorn; Antiquity 78 (301), 2004",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-magnavita-gajiganna",
+        "fieldPath": "/institution",
+        "textSha256": "efdaf2636b9936ae481dc76c7b896cb6d5350fb7b20014701f5ee739e587db93"
+      }
+    },
+    {
+      "id": "source/bc1200-magnavita-gajiganna/locator",
+      "en": "Gajiganna subsistence discussion, web lines 48–49; Table 1, phase II, line 59.",
+      "sv": "Diskussionen om Gajigannas försörjning, webbrader 48–49; tabell 1, fas II, rad 59.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-magnavita-gajiganna",
+        "fieldPath": "/locator",
+        "textSha256": "9c616ce1c363d8d7e4fe6d872801e9eb64a16a40713e487ed824aeb238d5e76e"
+      }
+    },
+    {
+      "id": "source/bc1200-mnaahp-chavin/institution",
+      "en": "Museo Nacional de Arqueología, Antropología e Historia del Perú; Ministry of Culture of Peru",
+      "sv": "Museo Nacional de Arqueología, Antropología e Historia del Perú; Perus kulturministerium",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-mnaahp-chavin",
+        "fieldPath": "/institution",
+        "textSha256": "8d5a3678ed9f5d85f1bdd4270844a35d07a69fddf2efb5031c304fb545855285"
+      }
+    },
+    {
+      "id": "source/bc1200-mnaahp-chavin/locator",
+      "en": "Permanent exhibition text, web lines 48–49.",
+      "sv": "Text i den permanenta utställningen, webbrader 48–49.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-mnaahp-chavin",
+        "fieldPath": "/locator",
+        "textSha256": "ab032367639cc38113fa206ac6752ba4a9b966ba6c42e568c7d5305ab1a97e8a"
+      }
+    },
+    {
+      "id": "source/bc1200-gem-seapeoples/institution",
+      "en": "Global Egyptian Museum",
+      "sv": "Global Egyptian Museum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-gem-seapeoples",
+        "fieldPath": "/institution",
+        "textSha256": "f7edcea68cc17896ecd6aeb1223b0a50992936f6c3e0a2bdfffdab188364e57d"
+      }
+    },
+    {
+      "id": "source/bc1200-gem-seapeoples/locator",
+      "en": "Ramesses III episode, web lines 5–6.",
+      "sv": "Avsnittet om Ramesses III, webbrader 5–6.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-gem-seapeoples",
+        "fieldPath": "/locator",
+        "textSha256": "4f83d300135a295619ecd5db3ec722444c199a404486197553118f181da17381"
+      }
+    },
+    {
+      "id": "source/bc1200-weninger-jung/institution",
+      "en": "Bernhard Weninger and Reinhard Jung; Austrian Academy of Sciences Press",
+      "sv": "Bernhard Weninger och Reinhard Jung; Österrikiska vetenskapsakademiens förlag",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-weninger-jung",
+        "fieldPath": "/institution",
+        "textSha256": "612d85baf0dc856fee905c57b571152103081b4bd546bb83aeaa332e678c7ca4"
+      }
+    },
+    {
+      "id": "source/bc1200-weninger-jung/locator",
+      "en": "Printed page 392 (PDF page 20), Egyptian chronological anchors, web lines 758–771.",
+      "sv": "Tryckt sida 392 (PDF-sida 20), egyptiska kronologiska hållpunkter, webbrader 758–771.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-weninger-jung",
+        "fieldPath": "/locator",
+        "textSha256": "c2996d33f8d6a7f94726a83e1edc84283af59e2f46637de768205cf262d6bbbf"
+      }
+    },
+    {
+      "id": "source/bc1200-egizio-strike-summary/institution",
+      "en": "Museo Egizio, Turin",
+      "sv": "Museo Egizio i Turin",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-egizio-strike-summary",
+        "fieldPath": "/institution",
+        "textSha256": "79aca145eab07f49a6594d7133da40e2cca85493e015cb7609381c1802d8a0ec"
+      }
+    },
+    {
+      "id": "source/bc1200-egizio-strike-summary/locator",
+      "en": "Public written episode summary, web lines 76–79. Audio was not listened to.",
+      "sv": "Offentlig skriftlig sammanfattning av avsnittet, webbrader 76–79. Ljudet har inte avlyssnats.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-egizio-strike-summary",
+        "fieldPath": "/locator",
+        "textSha256": "dfd3c2014bbd8d91af7884d96d0ae54843036e9c9ec9f3d32232016cccb6c334"
+      }
+    },
+    {
+      "id": "source/bc1200-egizio-strike-papyrus/institution",
+      "en": "Museo Egizio, Turin; Turin Papyrus Online Platform",
+      "sv": "Museo Egizio i Turin; Turin Papyrus Online Platform",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-egizio-strike-papyrus",
+        "fieldPath": "/institution",
+        "textSha256": "120940a101a9647baadaa6cf1bc59b5b8e7a23215faae89acb473a64cab67d2f"
+      }
+    },
+    {
+      "id": "source/bc1200-egizio-strike-papyrus/locator",
+      "en": "Public General description, web lines 49–55. Login-only translations were not accessed.",
+      "sv": "Den offentliga allmänna beskrivningen, General description, webbrader 49–55. Inloggningskrävande översättningar har inte öppnats.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-egizio-strike-papyrus",
+        "fieldPath": "/locator",
+        "textSha256": "53cd939e9cd32b3dc9f0b8709f41dc31b28828b604a2bbd231a758d97f62e336"
+      }
+    },
+    {
+      "id": "source/bc1200-met-kassites/institution",
+      "en": "Elizabeth Knott; Department of Ancient Near Eastern Art, The Metropolitan Museum of Art",
+      "sv": "Elizabeth Knott; avdelningen för konst från det forntida Främre Orienten, The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-met-kassites",
+        "fieldPath": "/institution",
+        "textSha256": "72ae098db749cf2f2861d2b6f0a4b7581efd1de2e7c8a0abd7f59bfb20647d48"
+      }
+    },
+    {
+      "id": "source/bc1200-met-kassites/locator",
+      "en": "Historical narrative, web lines 123–125; published June 2016.",
+      "sv": "Historisk redogörelse, webbrader 123–125; publicerad i juni 2016.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1200-met-kassites",
+        "fieldPath": "/locator",
+        "textSha256": "794f59f9de97762563211cccebaaffc6a0cfe40f02ce2351cf7e04603931f7f9"
       }
     }
   ]
