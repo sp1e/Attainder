@@ -1,0 +1,96 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc1200-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -1200,
+    "endYear": -1101
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "032bf3cba8e9fc0941b1cda62af2c78c8b983fd8",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc1200en-drower-ugarit",
+      "title": "UGARIT",
+      "institution": "Margaret S. Drower; Cambridge University Press",
+      "url": "https://www.cambridge.org/core/books/abs/cambridge-ancient-history/ugarit/0DD28A3167FEBFE1A51EB8791522CBCC",
+      "locator": "The Cambridge Ancient History, chapter (b), pp. 130–160, print publication 1975, online 2008. Public Summary only, first paragraph, web lines 490–496; author at line 430 and publication details at 512–518. Full chapter not accessed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "about 1200 B.C.",
+      "originalChronology": "The public summary places Ugarit's downfall about 1200 BCE. This older approximation is retained alongside the more specific estimates in the later archaeological discussions; it is not treated as an exact calendar year.",
+      "scopedClaim": "An approximate date for the downfall of Ugarit and its identification with Ras Shamra on the Syrian coast. Only the publicly readable summary is used.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1200en-callot-yon-ugarit-destruction",
+      "title": "Urbanisme et architecture",
+      "institution": "Olivier Callot and Marguerite Yon; Mission archéologique française de Ras Shamra-Ougarit / Éditions Recherche sur les Civilisations",
+      "url": "https://www.mission-ougarit.fr/wp-content/pdf/mission_ougarit_publication_rso_110.pdf",
+      "locator": "In Le pays d'Ougarit autour de 1200 av. J.-C., Ras Shamra-Ougarit XI (1995), printed p. 167, PDF page 168 of 275, final paragraph of Stratigraphie et implications historiques. Chapter title/authors at printed p. 155, PDF page 156; volume title/credits on PDF pages 3–4 and contents on page 6. Extracted PDF text read after ordinary same-URL download following a web size limit; no page-image verification.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "aux environs de 1190/1180 av. J.-C.",
+      "originalChronology": "Callot and Yon place the final destruction around 1190/1180 BCE. This is an approximate placement, not a securely dated ten-year campaign. The preceding proposed earthquake around 1250 and rebuilding are separate episodes.",
+      "scopedClaim": "The approximate destruction horizon of Ugarit and abandonment of homes to destruction and looting. The passage does not identify a certain attacker or establish permanent total abandonment of the site.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1200en-callot-ugarit-after-destruction",
+      "title": "Réflexions sur Ougarit après ca 1180 av. J.-C.",
+      "institution": "Olivier Callot; Maison de l'Orient et de la Méditerranée Jean Pouilloux / MOM Éditions",
+      "url": "https://www.persee.fr/doc/mom_1955-4982_2008_act_47_1_2523",
+      "locator": "Ougarit au Bronze moyen et au Bronze récent, TMO 47 (2008), pp. 119–125. Public first-page text, printed p. 119, web lines 41–52; bibliographic metadata at lines 14–27. Remaining article pages and page images not inspected.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "la date de 1180 ... n’est qu’indicative",
+      "originalChronology": "Callot describes destruction early in the twelfth century BCE, calls the frequently proposed 1180 date indicative, and discusses earlier claims of disappearance around 1190–1185. The exact date and whether destruction happened once or in several episodes remain unresolved. Traces of reoccupation qualify any claim of permanent abandonment.",
+      "scopedClaim": "Extensive burning and the end of Ugarit's political existence, with uncertainty over attackers, timing and number of destructive episodes. The site did not disappear entirely: the text explicitly notes traces of reoccupation. This qualifies the Met overview's categorical never-resettled statement.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1200en-met-ugarit",
+      "title": "Ugarit",
+      "institution": "Department of Ancient Near Eastern Art, The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/essays/ugarit",
+      "locator": "October 2004 essay: geographical and trading context at web lines 28–30 and 39; destruction and uncertain attribution at lines 42–43. Entire short essay read. Its final never-resettled statement is not adopted, in light of Callot's explicit qualification.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Around 1200 B.C.",
+      "originalChronology": "Around 1200 BCE explicitly dates the Hittite collapse in this passage. Ugarit's destruction is discussed in that context; this source alone is not used to assign Ugarit an exact year.",
+      "scopedClaim": "Ugarit's role as a trading centre, destruction of its palace, harbour and much of the city, and uncertainty over attribution to the groups called Sea Peoples. The exact destruction date and permanent total abandonment are not established by this source as used here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1200-ugarit-destruction",
+      "date": {
+        "kind": "disputed",
+        "startYear": -1200,
+        "endYear": -1180,
+        "displayEn": "About 1200 BCE, or around 1190/1180 BCE",
+        "noteEn": "Drower's older account gives about 1200 BCE; Callot and Yon give around 1190/1180 BCE. Callot later calls 1180 indicative and discusses estimates around 1190–1185. These bounds collect differing approximations, not a twenty-year duration. The exact date and whether destruction occurred in one episode or several remain uncertain."
+      },
+      "titleEn": "Ugarit suffers extensive destruction",
+      "summaryEn": "Fire and destruction devastate Ugarit, a trading centre on the Syrian coast, ending its Late Bronze Age political existence. The identity of the attackers and the sequence of destruction remain uncertain. Traces of later reoccupation mean that the site was not permanently deserted in every part.",
+      "geographyEn": "Ugarit, at Ras Shamra near Latakia on the Syrian coast",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc1200en-drower-ugarit",
+        "bc1200en-callot-yon-ugarit-destruction",
+        "bc1200en-callot-ugarit-after-destruction",
+        "bc1200en-met-ugarit"
+      ],
+      "selectionNote": "The destruction ended a regional kingdom and trading centre. This specific Ugarit episode is distinct from the catalogued Egyptian battle against the Sea Peoples and the separate Pylos and Thebes destruction records. The competing approximate dates, uncertain attackers and possible multiple episodes remain explicit. No universal cause of the Bronze Age collapse or permanent absence of all later occupation is inferred.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
