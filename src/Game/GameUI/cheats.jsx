@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { APP_HEIGHT, SAFE_RIGHT, SAFE_TOP, useTouchPrimary } from "../../runtime/mobileUi.js";
 import { useIsMobile } from "../../runtime/useIsMobile.js";
 import { useBackToClose } from "../../runtime/backToClose.js";
+import { worldFromSnapshot } from "../../runtime/snapshotWorld.js";
 import {
     JSON_URLS,
     loadCountryNames,
@@ -3298,9 +3299,11 @@ const ToolView = ({ tool, header, busy, status, game, polities, refresh, runBusy
                         style={{ ...primaryButtonStyle, padding: "0.25rem 0.55rem" }}
                         onClick={() => runBusy(async () => {
                             const s = snap.state ?? {};
+                            const liveWorld = await readJson(JSON_URLS.world, { defaultValue: {}, force: true });
+                            const restoredWorld = worldFromSnapshot(s.world ?? {}, liveWorld);
                             await Promise.all([
                                 writeJson(JSON_URLS.game, s.game ?? {}, { pretty: true }),
-                                writeJson(JSON_URLS.world, s.world ?? {}, { pretty: true }),
+                                writeJson(JSON_URLS.world, restoredWorld, { pretty: true }),
                                 writeJson(JSON_URLS.events, s.events ?? [], { pretty: true }),
                                 writeJson(JSON_URLS.actions, s.actions ?? [], { pretty: true }),
                                 writeJson(JSON_URLS.chat, s.chat ?? [], { pretty: true }),

@@ -5,6 +5,7 @@ import { jumpDayStep, jumpTargetDate } from "../../runtime/jumpDates.js";
 import { assertCharacterModelGeneration, assertCharacterTurnHorizon, buildCharacterPromptContext, buildHistoricalPromptContext, getCharacterEventBudget,
   planCharacterTurnHorizon, prepareCharacterTimeline } from "../../runtime/characterWorld.js";
 import { commitCharacterCampaign } from "../../runtime/characterRuntime.js";
+import { worldForSnapshot, worldFromSnapshot } from "../../runtime/snapshotWorld.js";
 import { getCharacterPresentation } from "../../runtime/characters/index.js";
 import { NATIVE_GAME_MASTER_PROMPT, normalizePromptPack } from "./gameplayPrompts.js";
 import { collectFoundedPolities, foundingPolityChange } from "../../runtime/polityFounding.js";
@@ -7382,7 +7383,7 @@ const captureRollbackSnapshot = async ({ round, fromDate, toDate, game, world, e
       capturedAt: new Date().toISOString(),
       state: {
         game: cloneValue(game),
-        world: cloneValue(world),
+        world: cloneValue(worldForSnapshot(world)),
         events: cloneValue(events),
         actions: cloneValue(actions),
         chat: cloneValue(chat),
@@ -7440,9 +7441,12 @@ export const rollBackToSnapshot = async (index = 0) => {
     // one set or changed after the snapshot — during the reveal, say, before an
     // Intervene — stays.
     const liveWorld = await readJson(JSON_URLS.world, { defaultValue: {}, force: true }).catch(() => null);
+    // The start and the licence texts are not in the restore point; they come
+    // from the live world (runtime/snapshotWorld.js).
+    const snapshotWorld = worldFromSnapshot(s.world ?? {}, liveWorld);
     const worldToRestore = liveWorld && typeof liveWorld === "object" && liveWorld.playerGoals !== undefined
-      ? { ...(s.world ?? {}), playerGoals: liveWorld.playerGoals }
-      : (s.world ?? {});
+      ? { ...snapshotWorld, playerGoals: liveWorld.playerGoals }
+      : snapshotWorld;
     await Promise.all([
       // writeGameData rather than a raw writeJson: the snapshot was captured a
       // whole turn ago and carries that turn's unit-system flag, and a setting
