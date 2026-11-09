@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain sixty-four approved records, one hundred and fourteen source records and three hundred and twenty display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain sixty-six approved records, one hundred and sixteen source records and three hundred and thirty display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -50,9 +50,14 @@ The English research deliveries now contain sixty-four approved records, one hun
 | [AD 1400–1499](../research/world-cultures/english-events/ad1400-supplement.md) | 2 | 2 | 10 | Merged and remote-verified in [PR #121](https://github.com/sp1e/Attainder/pull/121), commit `d60d09a7fdf097f52429da370829c85c2a72b5b3` |
 | [AD 1500–1530](../research/world-cultures/english-events/ad1500-supplement.md) | 2 | 3 | 10 | Merged and remote-verified in [PR #120](https://github.com/sp1e/Attainder/pull/120), commit `aff37caa8b5221180c3f30eff0fdadb0bf0c91bd` |
 | [100–1 BC](../research/world-cultures/english-events/bc0100-supplement.md) | 3 | 6 | 15 | Merged and remote-verified in [PR #149](https://github.com/sp1e/Attainder/pull/149), commit `292f723dc0b784fc678f8544c86b02bd637a5874`; original source HOLD preserved |
-| [700–601 BC, second pass](../research/world-cultures/english-events/bc0700-second-pass-supplement.md) | 1 | 1 | 5 | Reviewed in [PR #150](https://github.com/sp1e/Attainder/pull/150); current-head CI and verified merge required |
-| [2400–2301 BC](../research/world-cultures/english-events/bc2400-supplement.md) | 1 | 4 | 5 | Reviewed in [PR #151](https://github.com/sp1e/Attainder/pull/151); three metadata corrections verified; current-head CI and verified merge required |
-| [AD 1–300, second pass](../research/world-cultures/english-events/ad0001-ad0300-second-pass-supplement.md) | 1 | 2 | 5 | Source and final review passed; current-head CI and verified merge required |
+| [700–601 BC, second pass](../research/world-cultures/english-events/bc0700-second-pass-supplement.md) | 1 | 1 | 5 | Merged and remote-verified in [PR #150](https://github.com/sp1e/Attainder/pull/150), commit `0ea42d12840f1d3153a98b04b87ffc01141ceaba` |
+| [2400–2301 BC](../research/world-cultures/english-events/bc2400-supplement.md) | 1 | 4 | 5 | Merged and remote-verified in [PR #151](https://github.com/sp1e/Attainder/pull/151), commit `a425c47d27c25057bb0bf81ede2cde8451535d06` |
+| [AD 1–300, second pass](../research/world-cultures/english-events/ad0001-ad0300-second-pass-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #152](https://github.com/sp1e/Attainder/pull/152), commit `ef179a86af402209cf0e1de48bb2f45b86ee7930` |
+| [AD 700–799, second pass](../research/world-cultures/english-events/ad0700-second-pass-supplement.md) | 2 | 2 | 10 | Narrowed candidate passed final review; source HOLD and procedure deviation preserved; current-head CI and verified merge required |
+
+AD0700 second pass adds Japan's reclaimed-field edict and the Tang two-tax reform. Sijilmasa and its three sources remain withheld after failed independent access. All retained historical fields and twelve English texts are unchanged. Final data review passed; a separate code review assessed the reviewer's forbidden private helper, identified validation weaknesses and approved data publication supported by independent root checks. Root reverified seventy-five frozen inputs, twelve text hashes, forty-three Git comparison files, one private original, source closure and exact removals. The helper remains private and the procedure deviation stays disclosed.
+
+PRs #150, #151 and #152 each passed 5,344 tests with no failures and two TODOs; all builds passed. Remote commits, first parents, full trees, retained heads and changed blobs were verified. Merged main contains sixty-four English events and one hundred and fourteen sources; the AD0700 addition awaits publication checks.
 
 PR #149 passed 5,344 tests with no failures and two TODOs; the build passed. Remote commit, first parent, complete tree, retained head and changed blobs were verified. Merged main now contains sixty-one English events and one hundred and seven sources; later additions await their publication checks.
 
