@@ -1,0 +1,70 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc1300-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -1300,
+    "endYear": -1201
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "c5ecb2cec96054f8f13d3a73941e65309b6a80a7",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc1300en-henderson-qantir-chronology",
+      "title": "Ancient Glass: An Interdisciplinary Exploration",
+      "institution": "Julian Henderson; Cambridge University Press, 2013",
+      "url": "https://api.pageplace.de/preview/DT0400.9781139603201_A23868288/preview-9781139603201_A23868288.pdf",
+      "locator": "Public book preview: printed p. 18, PDF p. 40, section 1.5, Evidence of Production Sites; title and copyright pages also read. Extracted text only; no whole-book or visual-page inspection claimed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "thirteenth century b.c. Qantir",
+      "originalChronology": "Evidence for fritting at Qantir is placed in the thirteenth century BCE. This is an archaeological period attribution, not a factory's opening year.",
+      "scopedClaim": "Period assignment and recognition of primary glass production at Qantir; the passage cites Rehren and Pusch 2005 and is not an independent dating determination.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1300en-rehren-pusch-qantir-production",
+      "title": "Crushed Rock and Molten Salt? Some Aspects of the Primary Glass Production at Qantir/Pi-Ramesse",
+      "institution": "Thilo Rehren and Edgar B. Pusch; Oxbow Books, 2008; UCL Discovery",
+      "url": "https://discovery.ucl.ac.uk/id/eprint/93697/1/Jackson_Crushed_Rock_and_Molten_Salt_Some_Aspect.pdf",
+      "locator": "In Caroline M. Jackson and Emma C. Wager (eds.), Vitreous Materials in the Late Bronze Age Aegean: a Window to the East Mediterranean World, pp. 14–33. Printed pp. 15–17 (PDF pp. 5–7), definition of primary production and archaeological context. Relevant extracted text read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "early Ramesside period of activity",
+      "originalChronology": "Glass-bearing layers at Qantir's Q I, Q IV and Q V are assigned provisionally to early Ramesside activity, pending final stratigraphic interpretation. They precede redevelopment of the industrial complex.",
+      "scopedClaim": "Workshop evidence for making raw glass and coloured ingots, distinguished from workshops shaping finished objects. The authors retain uncertainty in the detailed technical reconstruction and stratigraphy.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1300-qantir-primary-glassmaking",
+      "date": {
+        "kind": "range",
+        "startYear": -1300,
+        "endYear": -1201,
+        "displayEn": "Thirteenth century BCE (archaeological period attribution)",
+        "noteEn": "Henderson places the Qantir production evidence in this century. Rehren and Pusch assign its glass-bearing layers provisionally to early Ramesside activity, pending final stratigraphic interpretation. The endpoints do not establish a workshop's opening or closure, continuous production throughout the century, or the first manufacture of glass in Egypt."
+      },
+      "titleEn": "Glassmakers produce raw glass at Qantir",
+      "summaryEn": "Workshops at Qantir make glass from raw materials and prepare coloured ingots. These stages are distinguished from the work of shaping finished objects in other workshops. The excavated production debris reveals specialized craft activity; the detailed reconstruction of its processes remains an archaeological interpretation.",
+      "geographyEn": "Qantir/Pi-Ramesse, eastern Nile Delta, Egypt",
+      "category": "technology",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc1300en-henderson-qantir-chronology",
+        "bc1300en-rehren-pusch-qantir-production"
+      ],
+      "selectionNote": "A notable, site-specific production system evidenced by workshop debris, distinct from Egypt's earlier introduction of glass and the uncertain onset of local manufacture. It adds an attested later craft installation rather than an invention claim or an isolated luxury object. The century-wide archaeological placement does not turn into a century of uninterrupted production. The synthesis and excavation discussion share underlying research.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
