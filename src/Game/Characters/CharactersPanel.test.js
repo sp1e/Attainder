@@ -1875,6 +1875,22 @@ test("the way to a nickname lists the three closest rows in table order and name
   assert.doesNotMatch(council(courtView()), /Vägen till ett tillnamn/);
 });
 
+test("the reign card names what changed with the new ruler during the first year", () => {
+  const handover = { rulerName: "Sera", predecessorName: "Arel", monthsLeft: 12,
+    archetype: { from: { name: "Fältherren", ability: "Samordnad mobilisering" }, to: { name: "Diplomaten", ability: "Försoningsråd" } },
+    traitsGone: ["Plikttrogen", "Ambitiös"], traitsNew: ["Medkännande"], skills: [{ label: "Diplomati", from: 4, to: 8 }] };
+  const html = council({ ...courtView(), handover });
+  assert.match(html, /<h4>Ett nytt styre<\/h4><p>Sera efterträder Arel\.<\/p>/);
+  assert.match(html, /<li>Förmågan Samordnad mobilisering \(Fältherren\) ersätts av Försoningsråd \(Diplomaten\)\.<\/li>/);
+  assert.match(html, /<li>Drag som försvinner: Plikttrogen, Ambitiös\.<\/li><li>Nya drag: Medkännande\.<\/li><li>Diplomati: 4 → 8<\/li>/);
+  assert.match(html, /Den förra regeringens mål gäller inte längre\. Rutan visas i 12 månader till\./);
+  assert.ok(html.indexOf("Ett nytt styre") < html.indexOf("Regeringsmål"), "above the goals");
+  const plain = council({ ...courtView(), handover: { ...handover, archetype: null, traitsGone: [], traitsNew: [] } });
+  assert.doesNotMatch(plain, /Förmågan|Drag som försvinner|Nya drag/);
+  assert.match(council({ ...courtView(), handover: { ...handover, monthsLeft: 1 } }), /Rutan visas i 1 månad till\./);
+  assert.doesNotMatch(council(courtView()), /Ett nytt styre/);
+});
+
 // The sections fed by the real presenters, so a renamed field leaves these tests red. The goal, demand and faction are the
 // saved records the engine writes; `known` sets how many of the faction's members the player has found.
 function courtCampaign({ spymaster = true, known = 1 } = {}) {

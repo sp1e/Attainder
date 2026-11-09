@@ -44,8 +44,27 @@ export function NicknamePath({ path }) {
   </div>;
 }
 
+const names = (list) => list.join(', ');
+
+/** What changed with the new ruler, during the reign's first year. */
+export function Handover({ handover }) {
+  if (!handover) return null;
+  const { archetype, traitsGone, traitsNew, skills } = handover;
+  return <div className="char-handover">
+    <h4>Ett nytt styre</h4>
+    <p>{`${handover.rulerName} efterträder ${handover.predecessorName}.`}</p>
+    <ul>
+      {archetype && <li>{`Förmågan ${archetype.from.ability} (${archetype.from.name}) ersätts av ${archetype.to.ability} (${archetype.to.name}).`}</li>}
+      {traitsGone.length > 0 && <li>{`Drag som försvinner: ${names(traitsGone)}.`}</li>}
+      {traitsNew.length > 0 && <li>{`Nya drag: ${names(traitsNew)}.`}</li>}
+      {skills.map((row) => <li key={row.label}>{`${row.label}: ${row.from} → ${row.to}`}</li>)}
+    </ul>
+    <p className="char-caption">{`Den förra regeringens mål gäller inte längre. Rutan visas i ${handover.monthsLeft} ${handover.monthsLeft === 1 ? 'månad' : 'månader'} till.`}</p>
+  </div>;
+}
+
 /** The reign under the leader. `Meter` is the panel's own, passed in because the panel imports this module. */
-export function ReignCard({ court, nicknamePath, Meter }) {
+export function ReignCard({ court, nicknamePath, handover, Meter }) {
   if (!court) return null;
   const sources = entries(court.legitimacy.sources), goals = entries(court.reign.goals);
   return <div className="char-reign">
@@ -53,6 +72,7 @@ export function ReignCard({ court, nicknamePath, Meter }) {
       <div><Meter label="Fruktan" value={court.dread.value} valueText={court.dread.label} danger /><p className="char-caption">{court.dread.label}</p></div>
       <div className="char-metric"><span>Ryktbarhet</span><strong>{number(court.prestige)}</strong></div>
     </div>
+    <Handover handover={handover} />
     {sources.length > 0 && <RowList summary="Vad bär legitimiteten?" rows={sources.map((row) => <li key={row.label}>{modifierText(row)}</li>)} />}
     <h4>Regeringsmål</h4>
     {goals.length ? <ul className="char-reign-goals">{goals.map((goal) => <li key={goal.id}>

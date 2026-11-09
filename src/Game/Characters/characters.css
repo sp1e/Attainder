@@ -254,6 +254,9 @@
 .char-nickname-path li { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
 .char-nickname-path li span { color: var(--char-muted); font-size: 13px; }
 .char-nickname-path li.is-earned strong { color: var(--char-gold); }
+.char-handover { border-left: 3px solid var(--char-gold); padding: 2px 0 2px 12px; margin: 0 0 12px; }
+.char-handover p { margin: 0 0 6px; }
+.char-handover ul { margin: 0 0 6px; padding-left: 18px; display: grid; gap: 4px; }
 .char-watches > summary { cursor: pointer; color: var(--char-muted); list-style: none; display: inline-flex; align-items: center; gap: 6px; }
 .char-watches > summary::-webkit-details-marker { display: none; }
 .char-watches > summary:focus-visible { outline: 2px solid var(--char-focus); outline-offset: 2px; }
