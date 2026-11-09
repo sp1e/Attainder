@@ -69,6 +69,12 @@
     },
     {
       "startYear": -2200,
+      "endYear": -2101,
+      "status": "partial",
+      "note": "Three independently checked records concern Akkad’s fragmentation, domestic reuse at Edfu and a qualified climate framework for the Levant. Full competing or approximate intervals remain intact; their endpoints establish no continuous collapse, annual activity, universal drought or researched coverage of later centuries. The author made 30 discovery queries across nine working regions; all retained events concern the Middle East and North Africa, leaving the other eight regions as gaps. Tell Leilan and three object-based event selections remain withheld. Four earlier author retrieval assertions remain separately unverified. Empty years remain research gaps."
+    },
+    {
+      "startYear": -2100,
       "endYear": 499,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
