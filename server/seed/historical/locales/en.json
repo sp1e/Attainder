@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "bd18dd07efe3e8b799d8c419bf43a00c2170a408",
+  "sourceRevision": "a6b363f669f538b552eaa981532395d13d46e158",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -50745,6 +50745,391 @@
         "eventId": "ev-0096-domitianus-mordas",
         "fieldPath": "/geographySv",
         "textSha256": "87d6e645dbefe97af5ce87a1dcb82e7cf6c341257329aa9776e0e4ecde34bff2"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-gajiganna-fastare-bosattning/date/displaySv",
+      "sv": "cirka 1500 f.Kr.",
+      "en": "Approximately 1500 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-gajiganna-fastare-bosattning",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "388ee513ffc5fa76498e9ad05c08389c262dc02f062b8a1ad5259dec32e9bbfc"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-gajiganna-fastare-bosattning/date/noteSv",
+      "sv": "Forskarna tolkar större boplatshögar som belägg för en övergång till ett mer bofast liv omkring 1500 f.Kr. Pärlhirsodling hör till ett senare skede, omkring 1200 f.Kr.",
+      "en": "Researchers interpret larger settlement mounds as evidence of a transition to a more settled way of life around 1500 BC. Pearl millet cultivation belongs to a later stage, around 1200 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-gajiganna-fastare-bosattning",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "db0ccb8aae506e71753753d0debc5eba9d3201ead3df96eb8a4ed096a02f660a"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-gajiganna-fastare-bosattning/titleSv",
+      "sv": "Herdar vid Tchadsjön börjar leva mer bofast",
+      "en": "Herders around Lake Chad begin living more sedentary lives",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-gajiganna-fastare-bosattning",
+        "fieldPath": "/titleSv",
+        "textSha256": "b358bd1040ea3bf3261f04396508bc06b329018f00ee300466a231005813c243"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-gajiganna-fastare-bosattning/summarySv",
+      "sv": "Människor i Tchadsjöns sydvästra bäcken bygger upp större boplatshögar. Arkeologerna tolkar förändringen som att herdegrupper stannar längre på samma platser.",
+      "en": "People in the southwestern Lake Chad basin build up larger settlement mounds. Archaeologists interpret the change as herding groups remaining longer in the same places.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-gajiganna-fastare-bosattning",
+        "fieldPath": "/summarySv",
+        "textSha256": "b895ee98b7d3d422283059304ebb6aba0b162646d3ea95a1c086737449bbe2b4"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-gajiganna-fastare-bosattning/geographySv",
+      "sv": "Tchadsjöns sydvästra bäcken, nuvarande nordöstra Nigeria",
+      "en": "Southwestern Lake Chad basin, present-day northeastern Nigeria",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-gajiganna-fastare-bosattning",
+        "fieldPath": "/geographySv",
+        "textSha256": "8a2a5d6c6871f14ab46f632a043c5d6516ac46e3f5d260087c37c316f4ed2bfd"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-kent-bosattningscentrum/date/displaySv",
+      "sv": "cirka 1500–1000 f.Kr.",
+      "en": "Approximately 1500–1000 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-kent-bosattningscentrum",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "43e176b09c5c32df984c39cf9eebb4f4903b95ec2dae0df23041eae4041acfcb"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-kent-bosattningscentrum/date/noteSv",
+      "sv": "Forskarna placerar utvecklingen inom den sena bronsålderns hela intervall 1500–1000 f.Kr. Posten anger ingen exakt grundning av Kent eller något gemensamt byggnadsår.",
+      "en": "Researchers place the development within the full Late Bronze Age interval of 1500–1000 BC. The entry gives neither an exact foundation date for Kent nor a common building year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-kent-bosattningscentrum",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "1101dd6da7ae2a920757eb83442117a33f4bae7b2f3fe871fb7e4025ac4302aa"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-kent-bosattningscentrum/titleSv",
+      "sv": "Herdar samlas i större bosättningar kring Kent",
+      "en": "Herders gather in larger settlements around Kent",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-kent-bosattningscentrum",
+        "fieldPath": "/titleSv",
+        "textSha256": "f5a9970afcd68e7fd052bdc372902d5773c72b5ae87c0cab368f42c269be0bef"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-kent-bosattningscentrum/summarySv",
+      "sv": "Herdegrupper i centrala Kazakstan samlas i större bosättningar. I Kent bygger invånarna omkring 130 grophus. Tillsammans med mindre bosättningar i närheten bildar platsen ett centrum med några tusen invånare enligt forskarnas uppskattning.",
+      "en": "Herding groups in central Kazakhstan gather in larger settlements. At Kent, inhabitants build around 130 pit houses. Together with smaller nearby settlements, the site forms a centre with a few thousand inhabitants, according to the researchers’ estimate.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-kent-bosattningscentrum",
+        "fieldPath": "/summarySv",
+        "textSha256": "114e10ce75b2c66f99a16da757f8fc71e50d2441d857d79b7ee463e1eec24aa1"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-kent-bosattningscentrum/geographySv",
+      "sv": "Kent och Saryarka, centrala Kazakstan",
+      "en": "Kent and Saryarka, central Kazakhstan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-kent-bosattningscentrum",
+        "fieldPath": "/geographySv",
+        "textSha256": "4d0a56ddd58d6ea97bcc44387e172f2beab32a4f312364bd11c1ab5942869a45"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-san-lorenzo-olmekiskt-centrum/date/displaySv",
+      "sv": "cirka 1500–900 f.Kr.",
+      "en": "Approximately 1500–900 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-san-lorenzo-olmekiskt-centrum",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e94d2bdfea4ab7bc07a3c5f5d097bf116423f5c5a0c098ef1e4e72e733e3bc1b"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-san-lorenzo-olmekiskt-centrum/date/noteSv",
+      "sv": "Museet använder 1500–900 f.Kr. som en bred periodram för San Lorenzo. Dateringen anger ingen exakt grundning och innebär inte att platsens monument eller befolkningsmaximum hör till intervallets början.",
+      "en": "The museum uses 1500–900 BC as a broad chronological framework for San Lorenzo. The dating gives no exact foundation year and does not imply that the site’s monuments or population peak belong to the beginning of the interval.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-san-lorenzo-olmekiskt-centrum",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "655ebed3f4dd944d53ea14a6770d4789fa7ebad7f85321ebc6403d352e059e38"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-san-lorenzo-olmekiskt-centrum/titleSv",
+      "sv": "Invånarna utvecklar San Lorenzo till ett olmekiskt centrum",
+      "en": "Inhabitants develop San Lorenzo into an Olmec centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-san-lorenzo-olmekiskt-centrum",
+        "fieldPath": "/titleSv",
+        "textSha256": "c6519b9ad8a9bb2d54e1923e05ba64a93448486ac426ddf3f36c41985294bf06"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-san-lorenzo-olmekiskt-centrum/summarySv",
+      "sv": "Invånarna utvecklar San Lorenzo till ett stort centrum i den olmekiska världen. De organiserar transporter av sten och framställer skulpturer. Museets beskrivning knyter lämningarna till ett samhälle med skilda sociala grupper.",
+      "en": "Inhabitants develop San Lorenzo into a major centre in the Olmec world. They organize stone transport and produce sculptures. The museum’s description associates the remains with a society divided into different social groups.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-san-lorenzo-olmekiskt-centrum",
+        "fieldPath": "/summarySv",
+        "textSha256": "1029f74c612ee0018010b6305c4e6fde84a50f296302df4fbd69a16fdd62970c"
+      }
+    },
+    {
+      "id": "event/ev-bc1500-san-lorenzo-olmekiskt-centrum/geographySv",
+      "sv": "San Lorenzo Tenochtitlán, Veracruz, Mexiko",
+      "en": "San Lorenzo Tenochtitlán, Veracruz, Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1500-san-lorenzo-olmekiskt-centrum",
+        "fieldPath": "/geographySv",
+        "textSha256": "105e68b1dd5ffbaaa6c102692746bffec926dd81d23ca4952026748430035c1c"
+      }
+    },
+    {
+      "id": "event/ev-bc1470-hatschepsuts-puntresa/date/displaySv",
+      "sv": "cirka 1470 f.Kr.",
+      "en": "Approximately 1470 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1470-hatschepsuts-puntresa",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "5d9bc2d5b56ba2cc8ff9aae1ce6119fa2895f2e2642e6a6ebf3ea2aadf5c7bdc"
+      }
+    },
+    {
+      "id": "event/ev-bc1470-hatschepsuts-puntresa/date/noteSv",
+      "sv": "Yale/Walters-katalogens bildtext daterar expeditionen till 1470 f.Kr. Warszawas arkeologiska expedition anger Thutmosis III:s regeringsår 9. Ingen egen omräkning görs. Punts exakta läge är osäkert.",
+      "en": "The Yale/Walters catalogue’s caption dates the expedition to 1470 BC. The Warsaw archaeological expedition gives Thutmose III’s regnal year 9. No independent conversion is made. Punt’s exact location is uncertain.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1470-hatschepsuts-puntresa",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f2b722b1e356e7aff02432376d3ba35289fa41b86fff67f16a5641402457e39a"
+      }
+    },
+    {
+      "id": "event/ev-bc1470-hatschepsuts-puntresa/titleSv",
+      "sv": "Hatschepsut sänder en expedition till Punt",
+      "en": "Hatshepsut sends an expedition to Punt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1470-hatschepsuts-puntresa",
+        "fieldPath": "/titleSv",
+        "textSha256": "33584b882dd6ac910eea770b0b36f8ba327d8f565dada6d6ab1b3973b189458b"
+      }
+    },
+    {
+      "id": "event/ev-bc1470-hatschepsuts-puntresa/summarySv",
+      "sv": "Hatschepsut sänder en expedition till Punt. På relieferna i hennes tempel återvänder besättningar med bland annat myrraträd, ebenholts och elfenben. Konstnärerna skildrar resan som en del av drottningens kungliga minnesprogram.",
+      "en": "Hatshepsut sends an expedition to Punt. Reliefs in her temple show crews returning with goods including myrrh trees, ebony and ivory. Artists depict the journey as part of the queen’s royal commemorative programme.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1470-hatschepsuts-puntresa",
+        "fieldPath": "/summarySv",
+        "textSha256": "16b14874d1cbfba5fef3479e129ebedf3f9fcd4fe01b13f1906528d5896fce46"
+      }
+    },
+    {
+      "id": "event/ev-bc1470-hatschepsuts-puntresa/geographySv",
+      "sv": "Egypten och Punt vid södra Röda havet; Punts exakta läge är osäkert",
+      "en": "Egypt and Punt near the southern Red Sea; Punt’s exact location is uncertain",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1470-hatschepsuts-puntresa",
+        "fieldPath": "/geographySv",
+        "textSha256": "82f3a539d26f4ca1ba23152530347dab8b2a4e1af8e1e8738ac86b3ff36f9974"
+      }
+    },
+    {
+      "id": "event/ev-bc1470-hatschepsuts-tempel/date/displaySv",
+      "sv": "cirka 1470–1460 f.Kr.",
+      "en": "Approximately 1470–1460 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1470-hatschepsuts-tempel",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4815dd52224ab3eda67b7b363bfb66df8a52496a4b4e492f8c82ad0a23dd3841"
+      }
+    },
+    {
+      "id": "event/ev-bc1470-hatschepsuts-tempel/date/noteSv",
+      "sv": "Metropolitan Museum daterar tempelbygget till cirka 1470–1460 f.Kr. Det egyptiska ministeriets 1473–1458 f.Kr. avser härskarens regeringstid och används inte som byggnadsdatering.",
+      "en": "The Metropolitan Museum dates the temple’s construction to approximately 1470–1460 BC. The Egyptian ministry’s 1473–1458 BC refers to the ruler’s reign and is not used as the building date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1470-hatschepsuts-tempel",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7ad9698398f04b064b785b3b88e1a8ea6d6b2e880de6ba67491e173fd44edd26"
+      }
+    },
+    {
+      "id": "event/ev-bc1470-hatschepsuts-tempel/titleSv",
+      "sv": "Hatschepsut låter uppföra sitt tempel i Deir al-Bahari",
+      "en": "Hatshepsut commissions her temple at Deir el-Bahari",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1470-hatschepsuts-tempel",
+        "fieldPath": "/titleSv",
+        "textSha256": "c8a95655b85db25bcfcae5085c70e6762a398de26f9a648164ce86ade0912a66"
+      }
+    },
+    {
+      "id": "event/ev-bc1470-hatschepsuts-tempel/summarySv",
+      "sv": "Hatschepsut låter bygga ett tempel i tre nivåer vid Deir al-Bahari. Enligt det egyptiska ministeriet utformar Senenmut anläggningen. Prästerna använder templet för Amun och för drottningens dödskult.",
+      "en": "Hatshepsut has a temple built on three levels at Deir el-Bahari. According to the Egyptian ministry, Senenmut designs the complex. Priests use the temple for Amun and the queen’s mortuary cult.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1470-hatschepsuts-tempel",
+        "fieldPath": "/summarySv",
+        "textSha256": "1af907c190b0c25184870641606691ec25f8337c341d9d0cc9a384805fe1b662"
+      }
+    },
+    {
+      "id": "event/ev-bc1470-hatschepsuts-tempel/geographySv",
+      "sv": "Deir al-Bahari vid Thebe, Egypten",
+      "en": "Deir el-Bahari near Thebes, Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1470-hatschepsuts-tempel",
+        "fieldPath": "/geographySv",
+        "textSha256": "14d0384bca8cdea4fbda5ffc3dddecda20f6e4ed353625e4f6ccc5e2bf15afbc"
+      }
+    },
+    {
+      "id": "event/ev-bc1482-megiddo-omtvistad-datering/date/displaySv",
+      "sv": "omtvistat: 1457 f.Kr.; Derstine föreslår 1468 f.Kr.",
+      "en": "Disputed: 1457 BC; Derstine proposes 1468 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1482-megiddo-omtvistad-datering",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "595d299830122f66000b620a0adec304516a735c36006392a83228abc98d45ae"
+      }
+    },
+    {
+      "id": "event/ev-bc1482-megiddo-omtvistad-datering/date/noteSv",
+      "sv": "Israel Museum anger 1457 f.Kr. Philip Derstine argumenterar för 1468 f.Kr. och beskriver den äldre dateringen 1482 f.Kr. som avvisad vid ett forskarkolloquium 1987. De numeriska gränserna 1468–1457 samlar de här redovisade alternativen för ett enda slag och anger ingen varaktighet. Annalerna anger regeringsår 23, dag 21 i första månaden av shemu.",
+      "en": "The Israel Museum gives 1457 BC. Philip Derstine argues for 1468 BC and describes the older date of 1482 BC as rejected at a scholarly colloquium in 1987. The numerical bounds 1468–1457 bring together the alternatives reported here for one battle and do not indicate its duration. The annals give regnal year 23, day 21 of the first month of shemu.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1482-megiddo-omtvistad-datering",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "3b983abb4c8be284fdaee98906333ca2e47829881faae651641a69b6eb5bb5e7"
+      }
+    },
+    {
+      "id": "event/ev-bc1482-megiddo-omtvistad-datering/titleSv",
+      "sv": "Thutmosis III besegrar kanaaneiska styrkor vid Megiddo",
+      "en": "Thutmose III defeats Canaanite forces at Megiddo",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1482-megiddo-omtvistad-datering",
+        "fieldPath": "/titleSv",
+        "textSha256": "1b93941d2e1551d0d19a311066a4acd1abadac20bf3db18478eaeebbd47af47f"
+      }
+    },
+    {
+      "id": "event/ev-bc1482-megiddo-omtvistad-datering/summarySv",
+      "sv": "Thutmosis III:s egyptiska armé besegrar kanaaneiska styrkor vid Megiddo. Egyptiska härskare befäster därefter sin militära och administrativa närvaro i Kanaan. Forskare ger olika absoluta årtal för slaget.",
+      "en": "Thutmose III’s Egyptian army defeats Canaanite forces at Megiddo. Egyptian rulers subsequently consolidate their military and administrative presence in Canaan. Scholars give different absolute years for the battle.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1482-megiddo-omtvistad-datering",
+        "fieldPath": "/summarySv",
+        "textSha256": "cb01a8b390597e8ca8b2fd56eac014613ea591a3c1bda80df755a37b8aa8d30f"
+      }
+    },
+    {
+      "id": "event/ev-bc1482-megiddo-omtvistad-datering/geographySv",
+      "sv": "Megiddo, Kanaan",
+      "en": "Megiddo, Canaan",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1482-megiddo-omtvistad-datering",
+        "fieldPath": "/geographySv",
+        "textSha256": "9979adee486ab26143890cb036764b7e35106916c234c81f89b3a0fd1811836f"
+      }
+    },
+    {
+      "id": "event/ev-bc1450-kretas-forstorelse/date/displaySv",
+      "sv": "cirka 1450 f.Kr.",
+      "en": "Approximately 1450 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1450-kretas-forstorelse",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "4157c57fc484e166afc818729c47ed991a894ee9d0b43243a3afbab63a9657f1"
+      }
+    },
+    {
+      "id": "event/ev-bc1450-kretas-forstorelse/date/noteSv",
+      "sv": "Ashmolean Museum daterar omfattande förstörelse på Kreta till omkring 1450 f.Kr. Museet lämnar frågan om en mykensk invasion öppen. Posten gäller förstörelseskedet, inte dateringen av museets kruka.",
+      "en": "The Ashmolean Museum dates widespread destruction on Crete to around 1450 BC. The museum leaves the question of a Mycenaean invasion open. The entry concerns the destruction phase, rather than the date of the museum’s jar.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1450-kretas-forstorelse",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b49ec50852a1e8fbf1258134e5799b5f6dcada71b8b7221cdb2bb9deb4252126"
+      }
+    },
+    {
+      "id": "event/ev-bc1450-kretas-forstorelse/titleSv",
+      "sv": "Kretas invånare drabbas av omfattande förstörelse",
+      "en": "Crete’s inhabitants suffer widespread destruction",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1450-kretas-forstorelse",
+        "fieldPath": "/titleSv",
+        "textSha256": "566a8eb006a7e73261d0d4fb44e8b4a61c7a818e6cd7bc6a599bad1dcef55a52"
+      }
+    },
+    {
+      "id": "event/ev-bc1450-kretas-forstorelse/summarySv",
+      "sv": "Invånare på Kreta drabbas av omfattande förstörelse omkring 1450 f.Kr. Under det följande skedet använder keramiker både minoiska och mykenska former och motiv, samtidigt som inflytandet från det grekiska fastlandet ökar.",
+      "en": "Inhabitants of Crete suffer widespread destruction around 1450 BC. During the following phase, potters use both Minoan and Mycenaean forms and motifs as influence from the Greek mainland increases.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1450-kretas-forstorelse",
+        "fieldPath": "/summarySv",
+        "textSha256": "284de8a53e71f371a2f955c6f16954d56a724599c0412ade26016392963a4a8f"
+      }
+    },
+    {
+      "id": "event/ev-bc1450-kretas-forstorelse/geographySv",
+      "sv": "Kreta, nuvarande Grekland",
+      "en": "Crete, present-day Greece",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1450-kretas-forstorelse",
+        "fieldPath": "/geographySv",
+        "textSha256": "99fc13949de18581f299399959c71e21d96481cf39229c05a2e27ea2974d20e1"
       }
     }
   ]
