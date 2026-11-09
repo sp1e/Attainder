@@ -6932,6 +6932,114 @@
       "originalChronology": "Pig remains associated with An Son, southern Vietnam, are dated to 1800–1600 BC and interpreted as managed or domesticated. The northern Man Bac dating is a separate context.",
       "scopedClaim": "Morphometric and age-profile interpretation of pig management at An Son; no claim of an exact introduction year, fully resolved domestication status, or exclusive agricultural subsistence.",
       "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700-efa-malia-palace",
+      "title": "5a. Malia – Le palais",
+      "institution": "French School at Athens",
+      "url": "https://www.efa.gr/malia-le-palais/?lang=en",
+      "locator": "Paragraph beginning 'Olivier Pelon a suggéré', and following paragraph; web lines 113–114.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "vers 1700 av. J.-C.",
+      "originalChronology": "End of Middle Minoan IIB, approximately 1700 BC. Reconstruction immediately afterwards is explicitly uncertain.",
+      "scopedClaim": "Destruction of the First Palace around 1700 BC; cause unknown, subsequent rebuilding not securely immediate.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700-efa-malia-mu",
+      "title": "5b. Malia – the Mu Quarter",
+      "institution": "French School at Athens",
+      "url": "https://www.efa.gr/malia-le-quartier-mu-2/?lang=en",
+      "locator": "Opening description, web lines 108–109; 'The material that has been discovered', line 125.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "c. 1700",
+      "originalChronology": "Destruction at the end of Middle Minoan II, approximately 1700 BC; building phase approximately 1800 BC is a separate episode.",
+      "scopedClaim": "Mu Quarter destruction contemporaneous with First Palace and other town sectors; preservation suggests a violent fire, not a demonstrated earthquake.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700-papadimitriou-mycenae",
+      "title": "Mycenae (abstracts from Alcestis Papadimitriou, Mycenae, 2015; translated by Deborah Kazazis)",
+      "institution": "Ephorate of Antiquities of Argolida; John S. Latsis Public Benefit Foundation",
+      "url": "https://www.argolisculture.gr/media/1577/mycenae.pdf",
+      "locator": "Grave Circle B, PDF pages 8–9, web lines 231–261.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1650-1600 BC; 1600-1550 BC",
+      "originalChronology": "Two successive portions of the principal burial sequence, 1650–1600 and 1600–1550 BC. Tomb Rho is a separate fifteenth-century reuse.",
+      "scopedClaim": "Elite burial sequence, 35 persons, rich metal vessels and weapons in Grave Circle B; no identification with mythical named rulers.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700-mota-hyksos",
+      "title": "Second Intermediate Period",
+      "institution": "Egyptian Ministry of Tourism and Antiquities",
+      "url": "https://egymonuments.gov.eg/historical-periods/second-intermediate-period/",
+      "locator": "Period heading and first three paragraphs, web lines 123–134.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1650 BC / 1550 BC",
+      "originalChronology": "Second Intermediate Period framework 1650–1550 BC; the narrative associates its beginning with Hyksos domination. No exact accession day or invasion date.",
+      "scopedClaim": "Fifteenth Dynasty based at Avaris controlled northern Egypt to al-Qusiya including Memphis; mechanisms of taking power unknown; Levantine migration predates rule.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700-met-hyksos",
+      "title": "The Art of Ancient Egypt: A Resource for Educators",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/-/media/files/learn/for-educators/publications-for-educators/the-art-of-ancient-egypt.pdf",
+      "locator": "Historical Outline, printed page 12 (PDF page 13), Dynasties 13–17.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "ca. 1640–1550 B.C.",
+      "originalChronology": "Second Intermediate Period approximately 1640–1550 BC; dynasties overlap, rather than a single succession of countrywide regimes.",
+      "scopedClaim": "Western Asiatic rulers from Avaris adopt Egyptian royal titulature; their rule is distinct from earlier settlement and from the local Theban dynasty.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700-stantis-hyksos",
+      "title": "Who were the Hyksos? Challenging traditional narratives using strontium isotope (87Sr/86Sr) analysis of human remains from ancient Egypt",
+      "institution": "PLOS ONE; Bournemouth University and collaborating institutions",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0235414",
+      "locator": "Abstract, web lines 165–169; Stantis et al. (2020), DOI 10.1371/journal.pone.0235414.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "c. 1638–1530 BCE",
+      "originalChronology": "Hyksos rule approximately 1638–1530 BCE; separate pre-Hyksos sampling period 1991–1649 BCE.",
+      "scopedClaim": "Chronological alternative for Hyksos rule and evidence consistent with an internal elite takeover after earlier immigration. Isotopes do not determine a unique ethnic origin or prove the precise mechanism.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700-zincirli-destruction",
+      "title": "New evidence for Middle Bronze Age chronology from the Syro-Anatolian frontier",
+      "institution": "Antiquity; Cambridge University Press",
+      "url": "https://www.cambridge.org/core/journals/antiquity/article/new-evidence-for-middle-bronze-age-chronology-from-the-syroanatolian-frontier/014ABB912CC50181E0F06E074BE071A2",
+      "locator": "Dating the destruction: Results, web lines 606–611; ceramic synchronisms, 569–572; Conclusion, 647–650. DOI 10.15184/aqy.2023.30 (2023).",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "c. 1632–1610 BC; 1670–1607 BC; 1667–1646; 1643–1594 BC",
+      "originalChronology": "Preferred combined approximation 1632–1610 BC (about 56.2% hpd). Model 2b: 1670–1607 BC at 95.4%. Model 3b: 1667–1646 (9.1%) and 1643–1594 (86.4%) BC. Outer envelope is 1670–1594 BC, not a continuous 95.4% interval or a duration. The authors favour High-Middle/Low-Middle chronologies over Low/Ultra-Low alternatives.",
+      "scopedClaim": "Complex DD destruction and radiocarbon chronology. Attribution to Hattusili I's campaigns is a probable archaeological synchronism, not direct naming of the attacker in the destruction layer.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700-risch-hiregudda",
+      "title": "4. Socio-economic Organisation",
+      "institution": "Internet Archaeology, University of York",
+      "url": "https://intarch.ac.uk/journal/issue26/26/4.html",
+      "locator": "Section 4, paragraphs on Feature 1, web lines 10–12 and 17–21.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1700 and 1250 cal BCE; 1500-1400 BCE; c. 1500/1400 and 1250 cal BCE",
+      "originalChronology": "Feature 1 use 1700–1250 calibrated BCE, possibly interrupted 1500–1400 BCE. Most abundant production deposits are late, approximately 1500/1400–1250 BCE.",
+      "scopedClaim": "Use of the circular structure in Hiregudda Area A for dolerite implement production across its sequence, followed by a later intensification. Varying skill levels support collective part-time production, not an exclusively highly skilled specialist caste.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1700-peters-chickens",
+      "title": "The biocultural origins and dispersal of domestic chickens",
+      "institution": "Proceedings of the National Academy of Sciences; Cardiff University repository",
+      "url": "https://orca.cardiff.ac.uk/151144/1/pnas.2121978119.pdf",
+      "locator": "Abstract (PDF page 1); Results: Early Domestic Chickens within the Distribution of Red Junglefowl (PDF pages 2–3), web lines 133–154. DOI 10.1073/pnas.2121978119 (2022).",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "~1650 to 1250 BCE",
+      "originalChronology": "Neolithic Ban Non Wat approximately 1650–1250 BCE. Bronze Age grave offerings are later and are not evidence of a Neolithic burial custom.",
+      "scopedClaim": "Authors identify Ban Non Wat as the earliest unambiguous domestic-chicken evidence in their reassessment, while the body explicitly notes unresolved domestic status; domestication is an interpretation, not a precisely dated invention.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
     }
   ],
   "events": [
@@ -22055,6 +22163,153 @@
         "bc1800-cornell-chronology"
       ],
       "selectionNote": "Regional rebellion with independent explicit approximate date; no Kassite invasion inferred from royal claims.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1700-malias-forsta-palats-forstors",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1700,
+        "endYear": -1700,
+        "displaySv": "cirka 1700 f.Kr.",
+        "noteSv": "Dateringen gäller förstörelsen vid slutet av den mellanminoiska perioden IIB. Orsaken är okänd; en brand i kvarter Mu visar inte vad som förstörde hela staden."
+      },
+      "titleSv": "Malias första palats och kvarter Mu förstörs",
+      "summarySv": "Det första palatset och flera delar av Malia förstörs. I kvarter Mu tyder lämningarna på en våldsam brand som får tegelväggarna att rasa. Det är osäkert om palatset återuppförs omedelbart efter förstörelsen.",
+      "geographySv": "Malia på Kreta, Grekland",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc1700-efa-malia-palace",
+        "bc1700-efa-malia-mu"
+      ],
+      "selectionNote": "Destruction of a major Cretan palatial centre; separate from BC2000 foundation and BC1800 Mu construction. No inferred earthquake or Thera causation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1700-stenyxor-i-hiregudda",
+      "date": {
+        "kind": "range",
+        "startYear": -1700,
+        "endYear": -1250,
+        "displaySv": "cirka 1700–1250 f.Kr., med möjligt uppehåll",
+        "noteSv": "Den undersökta rundbyggnaden används under cirka 1700–1250 f.Kr. Ett uppehåll omkring 1500–1400 f.Kr. är möjligt. Merparten av det omfattande tillverkningsavfallet hör till den senare delen, cirka 1500/1400–1250 f.Kr."
+      },
+      "titleSv": "Hantverkare tillverkar stenyxor i Hiregudda",
+      "summarySv": "I en rundbyggnad vid Hiregudda tillverkar människor redskap av dolerit. Tillverkningen ökar under brukningsperiodens senare del. Skillnader i hantverksskicklighet får forskarna att tolka arbetet som en gemensam produktion där deltagarna arbetar med stenhuggning och slipning på deltid.",
+      "geographySv": "Hiregudda i Sanganakallu–Kupgal, Karnataka, Indien",
+      "category": "technology",
+      "importance": 1,
+      "sourceIds": [
+        "bc1700-risch-hiregudda"
+      ],
+      "selectionNote": "A long-lived collective production installation with a clearly differentiated late intensification; not generic evidence that stone axes existed or a 1700 BC industrial peak.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1670-zincirlis-komplex-dd-forstors",
+      "date": {
+        "kind": "disputed",
+        "startYear": -1670,
+        "endYear": -1594,
+        "displaySv": "troligen cirka 1632–1610 f.Kr.; modellernas yttergränser 1670–1594 f.Kr.",
+        "noteSv": "Studien från 2023 föredrar cirka 1632–1610 f.Kr., ett intervall med ungefär 56,2 procent av den kombinerade sannolikheten. Två föredragna modeller ger vid 95,4 procent 1670–1607 respektive 1667–1646 och 1643–1594 f.Kr. Yttergränserna är inte ett sammanhängande konfidensintervall eller förstörelsens varaktighet."
+      },
+      "titleSv": "En brand förstör byggnadskomplex DD i Zincirli",
+      "summarySv": "Byggnadskomplex DD förstörs i en brand som förkolnar lagrade växtrester. Arkeologerna förknippar förstörelsen med de hettitiska fälttågen i norra Levanten och bedömer att den troligen inträffade under Hattusili I:s regeringstid. Sambandet bygger på arkeologiska jämförelser och är inte en säker identifiering av angriparen.",
+      "geographySv": "Zincirli i sydöstra Turkiet, vid norra Levanten",
+      "category": "war",
+      "importance": 2,
+      "sourceIds": [
+        "bc1700-zincirli-destruction"
+      ],
+      "selectionNote": "Specific dated destruction horizon connected cautiously with Hittite expansion. Uses the 2023 paper's preferred-model envelope; does not inflate the event interval with older low chronologies rejected by that paper or claim a securely dated Hattusa foundation.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1650-mykenes-gravcirkel-b",
+      "date": {
+        "kind": "range",
+        "startYear": -1650,
+        "endYear": -1550,
+        "displaySv": "cirka 1650–1550 f.Kr.",
+        "noteSv": "Dateringen omfattar gravläggningarna i gravcirkel B:s huvudsakliga brukningsfas. Grav Rho byggs senare, under 1400-talet f.Kr., i en äldre grav och ingår inte i denna post."
+      },
+      "titleSv": "Mykenes ledande familjer gravlägger sina döda i gravcirkel B",
+      "summarySv": "Människor ur Mykenes översta samhällsskikt begravs med vapen, kärl och smycken av värdefulla material. Gravarna visar en växande elit som kan samla stora rikedomar. De dödas identiteter är inte säkert kända.",
+      "geographySv": "Mykene på Peloponnesos, Grekland",
+      "category": "culture",
+      "importance": 2,
+      "sourceIds": [
+        "bc1700-papadimitriou-mycenae"
+      ],
+      "selectionNote": "Full principal burial phase, with later reuse expressly excluded. The general overview's circa1700 emergence of elites is not substituted for this source's more specific 1650–1550 burial chronology.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1650-hyksos-regerar-fran-avaris",
+      "date": {
+        "kind": "disputed",
+        "startYear": -1650,
+        "endYear": -1530,
+        "displaySv": "cirka 1650–1530 f.Kr. enligt olika dateringar",
+        "noteSv": "Källorna anger olika ramar: cirka 1650–1550, 1640–1550 respektive 1638–1530 f.Kr. Yttergränserna sammanfattar dessa alternativ. De anger ingen enskild invasion eller obruten kontroll över samma område."
+      },
+      "titleSv": "Hyksoskungar regerar över norra Egypten från Avaris",
+      "summarySv": "Hyksoskungar med anknytning till Främre Orienten regerar från Avaris i Nildeltat. De antar egyptisk kunglig titulatur, medan lokala kungar fortsätter att regera i Thebe. Inflyttning till deltat har pågått före maktövertagandet, vars förlopp är osäkert.",
+      "geographySv": "Avaris och norra Egypten, med Thebe i söder",
+      "category": "politics",
+      "importance": 3,
+      "sourceIds": [
+        "bc1700-mota-hyksos",
+        "bc1700-met-hyksos",
+        "bc1700-stantis-hyksos"
+      ],
+      "selectionNote": "Major political reorganisation. Retain whole reign-era alternatives; distinguish a ruling dynasty from earlier migration and avoid an unsupported invasion/ethnic-origin narrative.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent check",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc1650-tidiga-tamhons-i-ban-non-wat",
+      "date": {
+        "kind": "range",
+        "startYear": -1650,
+        "endYear": -1250,
+        "displaySv": "cirka 1650–1250 f.Kr.",
+        "noteSv": "Benen hör till Ban Non Wats neolitiska fas. Studien från 2022 tolkar dem som de tidigaste säkra tamhönsen i sitt jämförelsematerial, men redovisar också att tamstatusen har ifrågasatts. Dateringen anger inte ett bestämt år för domesticering."
+      },
+      "titleSv": "Människor i Ban Non Wat håller sannolikt tidiga tamhöns",
+      "summarySv": "I Ban Non Wat finns en stor andel hönsben och många ben från unga fåglar. Forskarna tolkar fynden som tidiga belägg för en tam population. Tolkningen gäller människors förhållande till fåglarna under en lång period, inte ett dokumenterat första domesticeringstillfälle.",
+      "geographySv": "Ban Non Wat i nordöstra Thailand",
+      "category": "technology",
+      "importance": 2,
+      "sourceIds": [
+        "bc1700-peters-chickens"
+      ],
+      "selectionNote": "A major domestication question grounded in a specific assemblage, retaining the article's explicit unresolved-status caveat and complete phase; later Bronze Age grave offerings are excluded.",
       "review": {
         "status": "approved",
         "reviewedBy": "Codex independent check",

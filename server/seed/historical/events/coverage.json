@@ -99,6 +99,12 @@
     },
     {
       "startYear": -1700,
+      "endYear": -1601,
+      "status": "partial",
+      "note": "Six independently checked records concern Malia destruction, Hiregudda stone-tool production, Zincirli destruction, Mycenae Grave Circle B, Hyksos rule and interpreted early chicken keeping at Ban Non Wat. All nine regions were searched; sub-Saharan Africa, East Asia, the Americas, Oceania and the steppe and Central Asia remain gaps. Poverty Point is withheld after source403 and Karnab after an unsupported numeric endpoint. Zincirli retains exact temporal attribution to a probable reign, separate model ranges and probability qualifications. Other full archaeological intervals, possible interruptions and chronology alternatives remain intact. Long ranges establish neither annual occurrence nor researched coverage of adjacent centuries. Earlier retrieval assertions remain separately unverified; empty years remain gaps."
+    },
+    {
+      "startYear": -1600,
       "endYear": 99,
       "status": "unresearched",
       "note": "Annual research has not started in this catalog."
