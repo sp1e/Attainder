@@ -1,0 +1,107 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad0800-0900-second-pass-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 800,
+    "endYear": 999
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "ef179a86af402209cf0e1de48bb2f45b86ee7930",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0800sp-amvppc-basins",
+      "title": "The Aghlabid pools",
+      "institution": "Agency for the Development of Heritage and Cultural Promotion (AMVPPC), Ministry of Cultural Affairs, Tunisia",
+      "url": "https://www.patrimoinedetunisie.com.tn/en/monuments/basins-of-the-aghlabids-kairouan/overview/",
+      "locator": "Overview, paragraphs on water supply, construction dates and the settling/storage/drawing components; public English HTML read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "860 and 862 AD",
+      "originalChronology": "The agency explicitly dates building to 246–248 AH / 860–862 CE, within Abu Ibrahim Ahmad's reign. The event uses those construction years directly, not years calculated from his reign.",
+      "scopedClaim": "Linked settling and storage pools with drawing cisterns supplemented Kairouan's water supply, including drought needs, caravans and livestock. The page does not date all regional reservoirs to this phase.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0800sp-archnet-basins",
+      "title": "Aghlabid Cisterns",
+      "institution": "Archnet",
+      "url": "https://www.archnet.org/sites/4189",
+      "locator": "Opening description, water-flow paragraph and Events field; public English HTML read. The chronology fields are internally inconsistent in their AH labels.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "860-862/245 AH",
+      "originalChronology": "The narrative gives 862/248 AH; Events gives 860–862/245 AH. The Gregorian range agrees with AMVPPC, but the AH labels are not silently harmonized or converted into another year.",
+      "scopedClaim": "Abu Ibrahim Ahmad commissioned the reservoirs. A settling pool feeds a larger storage pool. Archnet's broad engineering superlative is not adopted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0900sp-aks-nobi-review",
+      "title": "노비안검법",
+      "institution": "Kim Seong-jun (김성준); Encyclopedia of Korean Culture, Academy of Korean Studies; written 1995, last revised 7 February 2023",
+      "url": "https://encykorea.aks.ac.kr/Article/E0012765",
+      "locator": "Definition and Contents (정의; 내용), especially the 956 statement and restored-status passage; Changes and Current Status (변천과 현황) for later reversals. Public Korean HTML read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "956년(광종 7)",
+      "originalChronology": "The article explicitly dates implementation to 956, Gwangjong's seventh year. Its later discussion of renewed enslavement from Gyeongjong's reign onward is not assigned to 956 or given an invented exact date.",
+      "scopedClaim": "Gwangjong ordered review and restoration of commoner status for previously free people enslaved during unification warfare or by powerful local families. The policy was connected to limits on local magnates and royal power, not abolition of the entire institution.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-0860-kairouan-aghlabid-water-reservoirs",
+      "date": {
+        "kind": "range",
+        "startYear": 860,
+        "endYear": 862,
+        "displayEn": "860–862 CE",
+        "noteEn": "The Tunisian heritage agency dates construction to 860–862. Archnet's narrative gives 862 and its Events field gives 860–862, but its Hijri labels differ internally. No new calendar conversion is made, and the dates do not apply to every reservoir around Kairouan."
+      },
+      "titleEn": "Builders construct linked water reservoirs at Kairouan",
+      "summaryEn": "Under Abu Ibrahim Ahmad, builders create settling and storage pools with cisterns for drawing water. The system supplements the city's water supply during drought and serves caravans and livestock as well as residents.",
+      "geographyEn": "Kairouan, Ifriqiya, present-day Tunisia",
+      "category": "technology",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0800sp-amvppc-basins",
+        "ad0800sp-archnet-basins"
+      ],
+      "selectionNote": "A major regional urban water-supply project, distinct from Kairouan's mosque reconstruction and the later foundation of al-Mansuriya. Its social and caravan functions justify inclusion without an invention claim, a world ranking, or an assertion that the system eliminated drought. The fixed runtime, English and private comparisons contain no matching construction episode.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-0956-gwangjong-reviews-enslaved-status",
+      "date": {
+        "kind": "exact",
+        "startYear": 956,
+        "endYear": 956,
+        "displayEn": "956 CE",
+        "noteEn": "The date is the policy's implementation year. It concerns people restored to commoner status after enslavement, not a general abolition of slavery. The source also describes later reversals without supplying a single dated end to the policy."
+      },
+      "titleEn": "Gwangjong orders a review of enslaved people's status",
+      "summaryEn": "Gwangjong introduces a policy to examine the status of people who had been free before being enslaved during unification wars or by powerful local families. It provides for their restoration to commoner status and challenges the local magnates' control over them.",
+      "geographyEn": "Goryeo, Korean Peninsula",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0900sp-aks-nobi-review"
+      ],
+      "selectionNote": "A major regional intervention in personal status and the power of local families. It is distinct from Goryeo's establishment, unification and the already published civil-service examination reform of 958. The record does not quantify emancipation, promise universal freedom or treat every aspect of royal centralization as accomplished in 956.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
