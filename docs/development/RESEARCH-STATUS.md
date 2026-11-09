@@ -8,7 +8,7 @@ The gameplay catalog contains 873 approved event records, 801 sources and 7,416 
 
 The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
 
-The English research deliveries now contain thirty-six approved records, sixty-one source records and one hundred eighty display fields, separate from the gameplay catalog totals above.
+The English research deliveries now contain thirty-seven approved records, sixty-four source records and one hundred eighty-five display fields, separate from the gameplay catalog totals above.
 
 | Batch | Research records | Sources | English display fields | Publication |
 |---|---:|---:|---:|---|
@@ -18,7 +18,8 @@ The English research deliveries now contain thirty-six approved records, sixty-o
 | [AD 1–99](../research/world-cultures/english-events/ad0001-supplement.md) | 1 | 2 | 5 | Source, English and integration reviews approved; [PR #126](https://github.com/sp1e/Attainder/pull/126) awaits current-head CI and verified merge |
 | [2300–2201 BC](../research/world-cultures/english-events/bc2300-supplement.md) | 1 | 2 | 5 | Source, English and integration reviews approved; [PR #128](https://github.com/sp1e/Attainder/pull/128) awaits current-head CI and verified merge |
 | [2500–2401 BC](../research/world-cultures/english-events/bc2500-supplement.md) | 1 | 2 | 5 | Source, English and integration reviews approved; [PR #129](https://github.com/sp1e/Attainder/pull/129) awaits current-head CI and verified merge |
-| [AD 200–299](../research/world-cultures/english-events/ad0200-supplement.md) | 4 | 6 | 20 | Source, English and integration reviews approved; current-head CI and verified merge required |
+| [AD 200–299](../research/world-cultures/english-events/ad0200-supplement.md) | 4 | 6 | 20 | Source, English and integration reviews approved; [PR #131](https://github.com/sp1e/Attainder/pull/131) awaits current-head CI and verified merge |
+| [2000–1901 BC](../research/world-cultures/english-events/bc2000-supplement.md) | 1 | 3 | 5 | Final review approved the qualified source findings; integration checks, current-head CI and verified merge required |
 | [2100–2001 BC](../research/world-cultures/english-events/bc2100-supplement.md) | 1 | 2 | 5 | Merged and remote-verified in [PR #111](https://github.com/sp1e/Attainder/pull/111), commit `d058dfd9a2e3e29150e08e4f0ea027cafdfcd1b4` |
 | [1700–1601 BC](../research/world-cultures/english-events/bc1700-supplement.md) | 2 | 5 | 10 | Merged and remote-verified in [PR #112](https://github.com/sp1e/Attainder/pull/112), commit `0c8058fe4974e358cfb2028d96f03ea69446820d` |
 | [AD 700–799](../research/world-cultures/english-events/ad0700-supplement.md) | 2 | 4 | 10 | Merged and remote-verified in [PR #113](https://github.com/sp1e/Attainder/pull/113), commit `e64f91bbef9491e750ccb49020f53c2ac68f774d` |
@@ -70,6 +71,8 @@ PR #125 passed 5,337 tests with no failures and two TODOs; the build passed. BC2
 BC2500 adds the earliest British Beaker burials within the reported 2450–2325 BC interval. The wider phase chronology remains distinct from that interval and from any migration date. Both reviews approved the candidate unchanged, including the full selection note and importance 2. The two syntheses share underlying literature; the dating chapter cited by Parker Pearson was not independently read. Integration verified all thirty-two frozen inputs, six text hashes, current deduplication and the unchanged runtime catalog.
 
 AD200 adds Bambata pottery dispersal, Cao Pi's takeover of the Eastern Han throne, Ardashir's dynastic foundation and Wu's mission to Funan. Both independent reviews approved the unchanged candidate and all twenty-four text fields, including four selection notes. The abstract-only evidence, museum chronology differences and three Funan dating alternatives remain explicit. These records do not establish complete century coverage.
+
+BC2000 adds wooden burial beds at Kerma's eastern cemetery, with an attributed approximate 2000 BC date and the full relative-phase qualifications. The original source HOLD concerns access to existing comparison selection notes under an overbroad review instruction; the new candidate's note remained hidden. A fresh final review accepted the qualified findings, complete selection note and one metadata correction removing an unverified publication year. Historical content stayed unchanged. The original HOLD and the lack of visual PDF verification remain explicit.
 
 The first AD1 CI attempts failed before job creation with GitHub internal server errors during the reported Actions incident. A later attempt and BC2300 both passed 5,337 tests and built successfully. Before merging, the exact-tree gate detected the independently merged several-spouses feature in [PR #127](https://github.com/sp1e/Attainder/pull/127). The pending research branches require normal integration with that updated main and fresh checks on their resulting heads; earlier green checks do not approve the combined state.
 

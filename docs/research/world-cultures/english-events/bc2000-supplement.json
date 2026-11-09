@@ -1,0 +1,83 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc2000-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -2000,
+    "endYear": -1901
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc2000en-honegger-kerma-burial-beds",
+      "title": "Les royaumes de Kerma, Napata et Méroé",
+      "institution": "Matthieu Honegger; chapter in L'Afrique ancienne, edited by François-Xavier Fauvelle, Belin, 2018; Swiss Archaeological Mission at Kerma",
+      "url": "https://kerma.ch/application/files/6615/5362/0323/Honegger_2018_Les_royaumes_de_Nubie_de_Kerma_a_Meroe.pdf",
+      "locator": "Printed pages 68–69, PDF page 8, paragraph beginning Le cimetière oriental de Kerma; extracted web lines 386–394. Text read; no visual inspection claimed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "vers 2000 avant notre ère",
+      "originalChronology": "The author places burial on wooden beds from Middle Kerma, around 2000 BCE. This approximate date explicitly accompanies the burial practice; it is not derived from a sample, a reign or a general phase boundary.",
+      "scopedClaim": "In the eastern cemetery reserved for the capital's elite, wooden beds replace the earlier placement of bodies directly on cattle hides. Honegger describes the bed tradition as coming from Egypt. The account does not establish the first individual burial or simultaneous adoption throughout Nubia.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2000en-honegger-kerma-relative-sequence",
+      "title": "Aux origines des pharaons noirs, 10’000 ans d’archéologie en Nubie",
+      "institution": "Matthieu Honegger; Laténium and Fondation Kerma, 2014",
+      "url": "https://kerma.ch/documents/Publications_PDF/PN_livre_200814_planches_superlight.pdf",
+      "locator": "Printed pages 58–59, PDF page 32, sequence following the 2300–2100 BCE phase and the bed-burial discussion, extracted lines 1210–1230. Text read; screenshot request timed out, so no visual verification is claimed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "peu après cette phase",
+      "originalChronology": "The catalogue places the replacement of cattle hides with funerary beds shortly after a phase dated 2300–2100 BCE. It does not give an exact year for that replacement. The following Middle Kerma date is extracted as 2015–1750 BCE; that uncertain rendering is not used to assign an event year.",
+      "scopedClaim": "The change from hides to funerary beds belongs to a sequence of increasingly elaborate burials. This relative sequence qualifies the precision of the approximate date in the later synthesis. It is not evidence that the change happened in 2100 BCE.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2000en-chaix-kerma-burial-sequence",
+      "title": "Contribution to the knowledge of domestic cattle in Africa: The osteometry of fossil Bos taurus L. from Kerma, Sudan (2050–1750 BC).",
+      "institution": "Louis Chaix, Department of Archaeozoology, Museum of Natural History, Geneva; study hosted by the Swiss Archaeological Mission at Kerma",
+      "url": "https://kerma.ch/documents/Publications_PDF/Chaix_2007_Bos_Kerma.pdf",
+      "locator": "Printed pages 169 and 171, PDF pages 1 and 3: Middle Kerma chronology in The town and burial sequence in The cemetery, extracted lines 27–38 and 69–78.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "or, as seen in the later stage, upon wooden beds",
+      "originalChronology": "The study dates Middle Kerma to 2050–1750 BCE and describes wooden beds at a later stage than burial on hides. It gives no separate numerical start for the use of beds.",
+      "scopedClaim": "The cemetery sequence includes bodies placed on cattle skins and subsequently on wooden beds. The complete 2050–1750 BCE span is a period framework, not a dated duration of bed adoption or proof of adoption in 2050 BCE.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc2000-kerma-wooden-burial-beds",
+      "date": {
+        "kind": "approximate",
+        "startYear": -2000,
+        "endYear": -2000,
+        "displayEn": "Around 2000 BCE; the transition is not precisely dated",
+        "noteEn": "Honegger's 2018 synthesis places the use of wooden burial beds around 2000 BCE. His 2014 catalogue describes it only as shortly after the 2300–2100 BCE phase. Chaix places beds later in the Middle Kerma sequence, whose full framework is 2050–1750 BCE, without a separate start year. These relative descriptions do not establish an exact first burial or a precisely bounded adoption period."
+      },
+      "titleEn": "Wooden beds enter Kerma's burial practices",
+      "summaryEn": "In Kerma's eastern cemetery, used by the capital's elite, the dead come to be placed on wooden beds after an earlier practice of laying them directly on cattle hides. Honegger dates this change approximately to 2000 BCE and identifies the bed tradition as Egyptian in origin. Other accounts describe the transition through relative archaeological phases rather than a precise year.",
+      "geographyEn": "Kerma's eastern cemetery, Nubia, present-day Sudan",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc2000en-honegger-kerma-burial-beds",
+        "bc2000en-honegger-kerma-relative-sequence",
+        "bc2000en-chaix-kerma-burial-sequence"
+      ],
+      "selectionNote": "A notable change in elite funerary practice and an attributed Egyptian cultural influence at Kerma, distinct from its earlier city foundation and the separate early burial already represented. The approximate 2000 BCE placement follows the explicit later synthesis; the less precise relative sequences remain visible. This is not a claim of simultaneous adoption across Nubia, a securely dated first bed burial or a new foundation of the city.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
