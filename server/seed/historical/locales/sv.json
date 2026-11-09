@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "9ce9b159b9be1f98f5f6eeb1256bd0bc83d5ffd6",
+  "sourceRevision": "8ad9b25c5cd0a037c3393cdace971754a1eba4a5",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -11574,6 +11574,490 @@
         "sourceId": "bc2000-oregon-lipit-laws",
         "fieldPath": "/institution",
         "textSha256": "9affbd10eb57cf3477fcbf53af46d1bc39992fdb88e56361e15591596858a372"
+      }
+    },
+    {
+      "id": "source/ad0100-unesco-timgad/locator",
+      "en": "English description and Outstanding Universal Value, Brief synthesis, first paragraph.",
+      "sv": "Den engelska beskrivningen och Outstanding Universal Value, Brief synthesis, första stycket.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-unesco-timgad",
+        "fieldPath": "/locator",
+        "textSha256": "119f507452e4fcce1ceabcf7b36ff4091a60c612d55b96ce01c3875a340b83f9"
+      }
+    },
+    {
+      "id": "source/ad0100-unesco-timgad/institution",
+      "en": "UNESCO World Heritage Centre",
+      "sv": "UNESCO:s världsarvscentrum",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-unesco-timgad",
+        "fieldPath": "/institution",
+        "textSha256": "0a082b6ed6dee4803d7c2687725d0e50ba1c6249718c0dfc6d7eee6659437a82"
+      }
+    },
+    {
+      "id": "source/ad0100-mnm-dacian-column/locator",
+      "en": "Entry headed 113; opening description and paragraph identifying the two Dacian wars.",
+      "sv": "Post med rubriken 113; den inledande beskrivningen och stycket som anger de två daciska krigen.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mnm-dacian-column",
+        "fieldPath": "/locator",
+        "textSha256": "a58cf9da7e8c86d720a317179fb7778f00f5e148d457f5ea49b29770084538b8"
+      }
+    },
+    {
+      "id": "source/ad0100-mnm-dacian-column/institution",
+      "en": "Hungarian National Museum, Seuso Treasure chronology",
+      "sv": "Ungerns nationalmuseum, Seusoskattens kronologi",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mnm-dacian-column",
+        "fieldPath": "/institution",
+        "textSha256": "9e8e9f4eff5919d9168f3eda4b8c41ffd7a605f1710fe733bc6e6a60438046da"
+      }
+    },
+    {
+      "id": "source/ad0100-mactutor-ptolemy/locator",
+      "en": "Biography, paragraphs introducing the thirteen-book Almagest, its second-century composition and geocentric mathematical models.",
+      "sv": "Biografin, styckena om Almagests tretton böcker, verkets tillkomst under det andra århundradet och de geocentriska matematiska modellerna.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mactutor-ptolemy",
+        "fieldPath": "/locator",
+        "textSha256": "6568d222274da7058e52e773a38d7fb0499d8fce3e2c38ffda1c27328b3807c4"
+      }
+    },
+    {
+      "id": "source/ad0100-mactutor-ptolemy/institution",
+      "en": "MacTutor History of Mathematics, University of St Andrews",
+      "sv": "MacTutor History of Mathematics, University of St Andrews",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mactutor-ptolemy",
+        "fieldPath": "/institution",
+        "textSha256": "434a8d7b53901197403a30f033bceb99a90783842f6f3d40f7f0ec546b7c36c3"
+      }
+    },
+    {
+      "id": "source/ad0100-taylor-vietnam-trade/locator",
+      "en": "77(1), 2018, 107–122; maritime-contact paragraphs at rendered lines 530–535 and note 9.",
+      "sv": "77(1), 2018, 107–122; styckena om sjökontakter på de återgivna raderna 530–535 samt not 9.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-taylor-vietnam-trade",
+        "fieldPath": "/locator",
+        "textSha256": "56336b00c18fd9d7764cd1986dd9cf1a42bbb0df85ce07213fc54229e35423a2"
+      }
+    },
+    {
+      "id": "source/ad0100-taylor-vietnam-trade/institution",
+      "en": "K. W. Taylor; The Journal of Asian Studies, Cambridge University Press",
+      "sv": "K. W. Taylor; The Journal of Asian Studies, Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-taylor-vietnam-trade",
+        "fieldPath": "/institution",
+        "textSha256": "55db19dcd59b89dbf161d4ec2a4ddb15f8a9c8931afde5eaeba173100e73f67d"
+      }
+    },
+    {
+      "id": "source/ad0100-hunan-cai-lun/locator",
+      "en": "Biographical paragraphs on pre-existing paper, improved materials and the process reported in AD 105; rendered lines 126–128.",
+      "sv": "Biografiska stycken om tidigare papper, förbättrade material och den process som rapporterades 105 e.Kr.; återgivna rader 126–128.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-hunan-cai-lun",
+        "fieldPath": "/locator",
+        "textSha256": "4c7bb6c5fd536401a2460dacd05c4976c331c1e122f55d4a5ba5d4225d938c0d"
+      }
+    },
+    {
+      "id": "source/ad0100-hunan-cai-lun/institution",
+      "en": "People’s Government of Hunan Province; Hunan Library",
+      "sv": "People’s Government of Hunan Province; Hunan Library",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-hunan-cai-lun",
+        "fieldPath": "/institution",
+        "textSha256": "9ae84c10344f6967713c7b945f451159594de37aed30d86eaf7aded8dea6d516"
+      }
+    },
+    {
+      "id": "source/ad0100-mnm-pannonia/locator",
+      "en": "Entry headed 98–117, paragraph on the division of Pannonia.",
+      "sv": "Post med rubriken 98–117, stycket om Pannoniens delning.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mnm-pannonia",
+        "fieldPath": "/locator",
+        "textSha256": "4caf587d42f4c692259e467c3a446457a5dabf32b155214957e09d4038dbf444"
+      }
+    },
+    {
+      "id": "source/ad0100-mnm-pannonia/institution",
+      "en": "Hungarian National Museum, Seuso Treasure chronology",
+      "sv": "Ungerns nationalmuseum, Seusoskattens kronologi",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mnm-pannonia",
+        "fieldPath": "/institution",
+        "textSha256": "9e8e9f4eff5919d9168f3eda4b8c41ffd7a605f1710fe733bc6e6a60438046da"
+      }
+    },
+    {
+      "id": "source/ad0100-met-nabataea/locator",
+      "en": "Paragraph on the end of Nabataean independence and incorporation into Arabia under Trajan.",
+      "sv": "Stycket om slutet på nabateernas självständighet och införlivandet i Arabia under Trajanus.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-met-nabataea",
+        "fieldPath": "/locator",
+        "textSha256": "27a819a166ee8e60b292333407923222775bb2907963020a0da4490a532481c4"
+      }
+    },
+    {
+      "id": "source/ad0100-met-nabataea/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-met-nabataea",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0100-posen-diaspora/locator",
+      "en": "Public guide heading and introductory paragraphs; rendered lines 35–44.",
+      "sv": "Den offentliga guidens rubrik och inledande stycken; återgivna rader 35–44.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-posen-diaspora",
+        "fieldPath": "/locator",
+        "textSha256": "3d4bc6dd2800eb6c164ce9b55b2f3e81c51c03c26c957cef1ecb0bd070623e48"
+      }
+    },
+    {
+      "id": "source/ad0100-posen-diaspora/institution",
+      "en": "The Posen Library of Jewish Culture and Civilization",
+      "sv": "The Posen Library of Jewish Culture and Civilization",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-posen-diaspora",
+        "fieldPath": "/institution",
+        "textSha256": "005f0e4139c24ddad78c2282bb45a9669392d8b99ca96faac6d31bd4fb4170a5"
+      }
+    },
+    {
+      "id": "source/ad0100-mnm-hadrian-municipal/locator",
+      "en": "Entry heading and paragraph listing Aquincum, Carnuntum, Salla and Mursa.",
+      "sv": "Postens rubrik och stycket som räknar upp Aquincum, Carnuntum, Salla och Mursa.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mnm-hadrian-municipal",
+        "fieldPath": "/locator",
+        "textSha256": "652fed797f0c182f6c91a0a88372d019dd92989af03f0e594745b63887068ef4"
+      }
+    },
+    {
+      "id": "source/ad0100-mnm-hadrian-municipal/institution",
+      "en": "Hungarian National Museum, Seuso Treasure chronology",
+      "sv": "Ungerns nationalmuseum, Seusoskattens kronologi",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mnm-hadrian-municipal",
+        "fieldPath": "/institution",
+        "textSha256": "9e8e9f4eff5919d9168f3eda4b8c41ffd7a605f1710fe733bc6e6a60438046da"
+      }
+    },
+    {
+      "id": "source/ad0100-eh-hadrian-wall/locator",
+      "en": "Sections on Hadrian’s visit, initial construction and the builders; rendered lines 225–230 and 254–255.",
+      "sv": "Avsnitten om Hadrianus besök, det första byggandet och byggarna; återgivna rader 225–230 och 254–255.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-eh-hadrian-wall",
+        "fieldPath": "/locator",
+        "textSha256": "230a451744828744a1b7bba3444be71313e201ef6141f968bde5f8ddc33f4055"
+      }
+    },
+    {
+      "id": "source/ad0100-eh-hadrian-wall/institution",
+      "en": "David Breeze; English Heritage",
+      "sv": "David Breeze; English Heritage",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-eh-hadrian-wall",
+        "fieldPath": "/institution",
+        "textSha256": "9b6883c92c0e22d571358dc6ffe046587c3b44016f855331b85554308f3dd112"
+      }
+    },
+    {
+      "id": "source/ad0100-cribb-kanishka/locator",
+      "en": "Problems of Chronology in Gandhāran Art (2018), printed pp. 7–8 and 26, especially the accession discussion and rejection of the 227 model.",
+      "sv": "Problems of Chronology in Gandhāran Art (2018), tryckta sidor 7–8 och 26, särskilt diskussionen om trontillträdet och avvisandet av modellen med år 227.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-cribb-kanishka",
+        "fieldPath": "/locator",
+        "textSha256": "d2cc5ed96cdf98e6c5cd2ecaf22b1391501b69e8bb1a38ff64e353f773eb37f3"
+      }
+    },
+    {
+      "id": "source/ad0100-cribb-kanishka/institution",
+      "en": "Joe Cribb; Archaeopress, Oxford Gandhara Connections",
+      "sv": "Joe Cribb; Archaeopress, Oxford Gandhara Connections",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-cribb-kanishka",
+        "fieldPath": "/institution",
+        "textSha256": "81f16b1b07b8c145229bc5dc5f67bb92d96b893f0b7e89664d17b4ca3879d64a"
+      }
+    },
+    {
+      "id": "source/ad0100-sims-williams-kanishka/locator",
+      "en": "The Silk Road 10 (2012), printed p. 76 (PDF page 81), opening Rabatak discussion.",
+      "sv": "The Silk Road 10 (2012), tryckt sida 76 (PDF-sida 81), den inledande diskussionen om Rabatak.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-sims-williams-kanishka",
+        "fieldPath": "/locator",
+        "textSha256": "5eb7cfb41feed9ab96dfe7334e1ef6af6c68a1f490fa8e69918e5e33d1a83ba6"
+      }
+    },
+    {
+      "id": "source/ad0100-sims-williams-kanishka/institution",
+      "en": "Nicholas Sims-Williams; The Silk Road, American University",
+      "sv": "Nicholas Sims-Williams; The Silk Road, American University",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-sims-williams-kanishka",
+        "fieldPath": "/institution",
+        "textSha256": "551d320e3a53ff94969fd24266dbac53d84352b8f8ef662ad6b674cafa19e32f"
+      }
+    },
+    {
+      "id": "source/ad0100-mactutor-zhang-heng/locator",
+      "en": "Biography, earthquake-detection paragraphs, rendered lines 52–54.",
+      "sv": "Biografin, styckena om jordbävningsdetektering, återgivna rader 52–54.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mactutor-zhang-heng",
+        "fieldPath": "/locator",
+        "textSha256": "98da4d0668cfe0c190bb03ba0e3ace1f23127a1e0b5547b1f96908f019cff807"
+      }
+    },
+    {
+      "id": "source/ad0100-mactutor-zhang-heng/institution",
+      "en": "MacTutor History of Mathematics, University of St Andrews",
+      "sv": "MacTutor History of Mathematics, University of St Andrews",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mactutor-zhang-heng",
+        "fieldPath": "/institution",
+        "textSha256": "434a8d7b53901197403a30f033bceb99a90783842f6f3d40f7f0ec546b7c36c3"
+      }
+    },
+    {
+      "id": "source/ad0100-geiger-bar-kokhba/locator",
+      "en": "Historia 65(4), 2016, 497–519; publicly displayed abstract and bibliographic record.",
+      "sv": "Historia 65(4), 2016, 497–519; offentligt visad sammanfattning och bibliografisk post.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-geiger-bar-kokhba",
+        "fieldPath": "/locator",
+        "textSha256": "5c471e1e784559eda4ce87a3d896606d0f88bad9afc856195a20343b1252e495"
+      }
+    },
+    {
+      "id": "source/ad0100-geiger-bar-kokhba/institution",
+      "en": "Joseph Geiger; Historia, Hebrew University of Jerusalem research portal",
+      "sv": "Joseph Geiger; Historia, Hebrew University of Jerusalems forskningsportal",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-geiger-bar-kokhba",
+        "fieldPath": "/institution",
+        "textSha256": "8525a0f93c858ead78a75d006f3628d9399b87f6f15c70a57c54cb52e3e83fb4"
+      }
+    },
+    {
+      "id": "source/ad0100-hes-antonine-chronology/locator",
+      "en": "Roman occupation section, paragraphs on construction around 142 and withdrawal beginning around 158; rendered lines 37–44.",
+      "sv": "Avsnittet Roman occupation, styckena om byggandet omkring 142 och tillbakadragandet som började omkring 158; återgivna rader 37–44.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-hes-antonine-chronology",
+        "fieldPath": "/locator",
+        "textSha256": "da286155b507096b2381a51b4e9e3eb1681187e103469b1e320f735d7cef9199"
+      }
+    },
+    {
+      "id": "source/ad0100-hes-antonine-chronology/institution",
+      "en": "Antonine Wall World Heritage Site",
+      "sv": "Världsarvet Antoninus mur",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-hes-antonine-chronology",
+        "fieldPath": "/institution",
+        "textSha256": "de63af5930736cb9499011946fb37f98b4dd4a3b2b8f57bd12671deca604a39e"
+      }
+    },
+    {
+      "id": "source/ad0100-neelis-transmission/locator",
+      "en": "2011; printed pp. 6, 129 and 305 (PDF pages 25, 148 and 324).",
+      "sv": "2011; tryckta sidor 6, 129 och 305 (PDF-sidor 25, 148 och 324).",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-neelis-transmission",
+        "fieldPath": "/locator",
+        "textSha256": "c47fd8663c6515a22bd48530546f9bc87e646557549ab6a2d30f0fca53c95bfa"
+      }
+    },
+    {
+      "id": "source/ad0100-neelis-transmission/institution",
+      "en": "Jason Neelis; Brill, hosted by the Library of Congress",
+      "sv": "Jason Neelis; Brill, tillgänglig hos Library of Congress",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-neelis-transmission",
+        "fieldPath": "/institution",
+        "textSha256": "7fd4ce32fdc1a4620867c13c15b74bae1af7ca1364e06925b98dd051ee47c46f"
+      }
+    },
+    {
+      "id": "source/ad0100-met-mexico/locator",
+      "en": "Key Events, the two entries headed ca. 150 A.D.: Teotihuacan and La Mojarra.",
+      "sv": "Key Events, de två posterna med rubriken ca. 150 A.D.: Teotihuacan och La Mojarra.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-met-mexico",
+        "fieldPath": "/locator",
+        "textSha256": "d44c89c1ea85d9dc007d6b5b06cecc777e034d4cb6d0dc200429b055d455af5a"
+      }
+    },
+    {
+      "id": "source/ad0100-met-mexico/institution",
+      "en": "The Metropolitan Museum of Art",
+      "sv": "The Metropolitan Museum of Art",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-met-mexico",
+        "fieldPath": "/institution",
+        "textSha256": "ff3a15d69a670fdeef64ab2c7dbff96cf097a367e064859ded5686f342a5d8ac"
+      }
+    },
+    {
+      "id": "source/ad0100-mnm-marcomannic/locator",
+      "en": "Entry heading and paragraph on wars against Germanic and Sarmatian peoples.",
+      "sv": "Postens rubrik och stycket om krigen mot germanska och sarmatiska folk.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mnm-marcomannic",
+        "fieldPath": "/locator",
+        "textSha256": "b17ad5cf3df02e292e0d3a038f6af8b74f8e4439f0c8b3b6a56774a0102714fc"
+      }
+    },
+    {
+      "id": "source/ad0100-mnm-marcomannic/institution",
+      "en": "Hungarian National Museum, Seuso Treasure chronology",
+      "sv": "Ungerns nationalmuseum, Seusoskattens kronologi",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-mnm-marcomannic",
+        "fieldPath": "/institution",
+        "textSha256": "9e8e9f4eff5919d9168f3eda4b8c41ffd7a605f1710fe733bc6e6a60438046da"
+      }
+    },
+    {
+      "id": "source/ad0100-teiser-translations/locator",
+      "en": "Introduction, printed p. 19 (PDF page 17), paragraph on early translation teams.",
+      "sv": "Inledningen, tryckt sida 19 (PDF-sida 17), stycket om tidiga översättargrupper.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-teiser-translations",
+        "fieldPath": "/locator",
+        "textSha256": "92a06d86dff52ee56accde726d7438628c1fbe6bed7734e8b971c51de769e1a5"
+      }
+    },
+    {
+      "id": "source/ad0100-teiser-translations/institution",
+      "en": "Stephen F. Teiser; Princeton University Press",
+      "sv": "Stephen F. Teiser; Princeton University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-teiser-translations",
+        "fieldPath": "/institution",
+        "textSha256": "f565b1be90bb8b1cd4076d9ca5618bc575d1d6fd615534639b9b0d4ebb634af4"
+      }
+    },
+    {
+      "id": "source/ad0100-lugdunum-war-persecution/locator",
+      "en": "War and peace in Lugdunum, paragraphs on 177 and 197.",
+      "sv": "War and peace in Lugdunum, styckena om 177 och 197.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-lugdunum-war-persecution",
+        "fieldPath": "/locator",
+        "textSha256": "6a83e8ad35b31fb90c71753bbcecc518b1f7a1f8a4f003176ad15e5ef612c60f"
+      }
+    },
+    {
+      "id": "source/ad0100-lugdunum-war-persecution/institution",
+      "en": "Lugdunum Museum and Roman Theatres, Métropole de Lyon",
+      "sv": "Lugdunums museum och romerska teatrar, Métropole de Lyon",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-lugdunum-war-persecution",
+        "fieldPath": "/institution",
+        "textSha256": "51e0f6ebfcba93f4405156b65088fd426f887e3ff034908acf016978707713f2"
+      }
+    },
+    {
+      "id": "source/ad0100-xiong-yellow-turban/locator",
+      "en": "The Cambridge History of China, volume 2, chapter 14; public Summary paragraph on the rebellion and later civil war.",
+      "sv": "The Cambridge History of China, volym 2, kapitel 14; det offentliga Summary-stycket om upproret och det senare inbördeskriget.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-xiong-yellow-turban",
+        "fieldPath": "/locator",
+        "textSha256": "281ffa063a51cef4a29da8e1d9ff389df4dedf0a43e0d0ba9caa32d870075ba1"
+      }
+    },
+    {
+      "id": "source/ad0100-xiong-yellow-turban/institution",
+      "en": "Victor Cunrui Xiong; Cambridge University Press",
+      "sv": "Victor Cunrui Xiong; Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-xiong-yellow-turban",
+        "fieldPath": "/institution",
+        "textSha256": "d79d67a2c412ef47d96f141761334482d85c19fb57e86cccc41585914c25447d"
+      }
+    },
+    {
+      "id": "source/ad0100-crespigny-han-preview/locator",
+      "en": "2019, chapter 1, printed pp. 28 and 31 (PDF pages 52 and 56); Dong Zhuo’s seizure and Cao Cao’s custody of Emperor Xian.",
+      "sv": "2019, kapitel 1, tryckta sidor 28 och 31 (PDF-sidor 52 och 56); Dong Zhuos maktövertagande och Cao Caos kontroll över kejsar Xian.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-crespigny-han-preview",
+        "fieldPath": "/locator",
+        "textSha256": "ff9d383f8ef026017f5d2f50efbe224b006a15162bab58a4895d1b7d93618e4c"
+      }
+    },
+    {
+      "id": "source/ad0100-crespigny-han-preview/institution",
+      "en": "Rafe de Crespigny; The Cambridge History of China, volume 2, Cambridge University Press",
+      "sv": "Rafe de Crespigny; The Cambridge History of China, volym 2, Cambridge University Press",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0100-crespigny-han-preview",
+        "fieldPath": "/institution",
+        "textSha256": "13e14ff3dcc67f6b49e670f3c8e3a8d567c656fae9c87ac83001be62ac9ad2e6"
       }
     }
   ]
