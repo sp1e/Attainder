@@ -136,6 +136,15 @@ The spec is `docs/superpowers/specs/2026-11-09-several-spouses-design.md`, PR #1
 - The Swedish note for the `multiple-spouses` engine limit in `server/seed/historical/dossier-courts.mjs` still says the game allows one spouse, because `releases.json` pins John 1.2.0's bytes. Change it with the next John release. Codex decides whether Agnes of Merania enters `france-capetian` and whether the limit stays.
 - The demo and Charlemagne gave the same people, deaths, rulers and random streams over 300 years on `main` and on the branch.
 
+## A tutor who corrects a trait
+
+Phase 4, moment 5 of `docs/superpowers/specs/2026-10-31-ai-game-master-design.md`. The spec is `docs/superpowers/specs/2026-11-09-tutor-trait-correction-design.md`, PR #164, `7f5a0751`.
+
+- `server/characters/tutoring.js` holds the rule. When the mentor holds a trait whose opposite (`OPPOSITE_TRAITS`) the child has, the adulthood step's existing draw replaces that trait in place below `CORRECTION_CHANCE` (0.6). Without an opposite the old rule applies: below 0.4 the traits become `[own first, mentor first]`.
+- The adulthood step still makes one `random(state)` call, only while the mentor lives. The educate event names the prospect and the adulthood event names a correction that took.
+- No NPC calls `educate`; a newborn's mentor is its mother. The demo and Charlemagne seeds 777 and 321 gave the same random streams, sequence and health values over 300 years on `main` and on the branch.
+- The other Phase 4 moments, smallest first: 10 (a handover card at `beginReign`), 8 (a revealed adult illegitimate child with a grudge becomes a faction claimant through `claimantFor`), 9 (a cadet branch splits off on the pattern in `renewal.js`), 6 (partition, which needs a spec for several realms or appanages, since the game holds one `state.realm`).
+
 ## Branch state
 
 Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The whole-branch review found two reproduced issues; both now have reviewed fixes. The final follow-up review of `08d3518..55283dc` approved the branch with no new Critical, Important or Minor findings. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295). [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the fixes, and the remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`. The retained remote branch `fix/phase-3-review` ends at `55283dc`; its tested production code remains `cfa225238c5065441e4642481ab507629e498e73`. Nobody has run the Phase 3 play script; the owner deferred the Hadara script behind the historical foundation.
