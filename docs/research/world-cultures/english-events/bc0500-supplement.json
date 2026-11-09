@@ -1,0 +1,120 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "bc0500-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": -500,
+    "endYear": -401
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "53d2ae9ca1dc7a2ccd48abee5235ddcd5a539ce6",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc0500en-hubei-marquis-yi",
+      "title": "Introduction to Tomb of Marquis Yi of Zeng",
+      "institution": "Hubei Provincial Museum",
+      "url": "https://hbsbwg.cjyun.org/permanentexhibition/p/5200.html",
+      "locator": "Opening description and chronology, web lines 22–24; ritual vessels and instruments, lines 26–32. Public exhibition text, updated 13 May 2016.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "fifty-sixth year of his reign, or 433 BC",
+      "originalChronology": "The museum gives this date for the Chu king's presentation of a bell and places the marquis's burial at roughly the same time. It does not date manufacture of the entire musical assemblage to 433 BCE.",
+      "scopedClaim": "The identified burial contains bronze bells, stone chimes and other instruments associated with court ritual. The single gift inscription supplies an approximate burial anchor, not a precise date for every object.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500en-washington-marquis-yi",
+      "title": "Warring States Tomb of Marquis Yi",
+      "institution": "University of Washington, A Visual Sourcebook of Chinese Civilization",
+      "url": "https://depts.washington.edu/chinaciv/archae/tmarmain.htm",
+      "locator": "Opening description, chambers and inscription, web lines 4–11; interpretation of the instrument assemblage, line 24.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Dated around 430 BC",
+      "originalChronology": "The teaching account dates the tomb around 430 BCE and separately dates the Chu king's inscribed bell to 433 BCE. The two objects of dating remain distinct.",
+      "scopedClaim": "The four-chamber tomb contained a large musical assemblage and ritual vessels. Its layout is interpreted as recalling the marquis's living quarters. This is another account of the same excavation, not an independent absolute-dating measurement.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500en-hanson-elephantine-petition",
+      "title": "Petition to Authorize Elephantine Temple Reconstruction",
+      "institution": "K. C. Hanson, Collection of West Semitic Documents; scholarly translation adapted from Cowley, Ginsberg and Porten and colleagues",
+      "url": "https://www.kchanson.com/ANCDOCS/westsem/templeauth.html",
+      "locator": "Description, Date and document identifiers, web lines 2–36; English translation recto and verso, lines 102–111 and 178–183; regnal-year note, line 234. Updated 2 November 2011.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "On the twentieth of Marcheshwan, the seventeenth year of King Darius.",
+      "originalChronology": "The edition gives 25 November 407 BCE for the petition, whose closing date uses Marcheshwan day 20 in Darius's seventeenth year. Its notes identify that regnal year as 407 BCE. No independent conversion is performed.",
+      "scopedClaim": "Yedaniah and fellow priests address Bagohi, governor of Judah, asking him to support rebuilding the temple of Yahu at Elephantine. The text records a request and its account of earlier damage, not proof that restoration was completed.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0500en-posen-elephantine-petition",
+      "title": "Request about the Rebuilding of the Elephantine Temple",
+      "institution": "The Posen Library of Jewish Culture and Civilization",
+      "url": "https://www.posenlibrary.com/entry/request-about-rebuilding-elephantine-temple",
+      "locator": "Public date label and About This Entry, web lines 31 and 44–48. Only the public editorial description and opening excerpt were read; the remaining translation requires login and was not accessed, downloaded or printed.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "November 25, 407 BCE",
+      "originalChronology": "The public editorial description dates the request to 25 November 407 BCE and distinguishes the earlier temple destruction in 410 BCE. It does not establish a completed rebuilding date.",
+      "scopedClaim": "The surviving petition asks the governor of Judah to recommend restoration and resumption of sacrifices. The public editor states that whether the temple was rebuilt is unknown. The restricted translation is not evidence used here.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc0433-marquis-yi-musical-burial",
+      "date": {
+        "kind": "disputed",
+        "startYear": -433,
+        "endYear": -430,
+        "displayEn": "Around 433 BCE; alternatively around 430 BCE",
+        "noteEn": "Hubei Provincial Museum places the burial roughly at the time of a bell gift dated to 433 BCE. The University of Washington dates the tomb around 430 BCE while retaining 433 for that bell. The bounds preserve these approximate burial datings, not a three-year funeral or the manufacture dates of all the instruments."
+      },
+      "titleEn": "Marquis Yi is buried with a large musical assemblage",
+      "summaryEn": "A four-chamber tomb at Zeng receives Marquis Yi's burial, bronze bells, stone chimes and other instruments. The central chamber's instruments and ritual vessels are interpreted as recreating part of the court's ceremonial setting.",
+      "geographyEn": "Leigudun near present-day Suizhou, Hubei, China",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc0500en-hubei-marquis-yi",
+        "bc0500en-washington-marquis-yi"
+      ],
+      "selectionNote": "A notable court burial that preserves an extensive musical and ritual ensemble, adding a specific cultural episode to a century otherwise dominated by political and military events. The event concerns deposition and funerary practice; it does not claim that bells, orchestras or these instruments were invented in this year. Both accounts discuss the same excavation, with different approximate tomb dates.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-bc0407-elephantine-temple-petition",
+      "date": {
+        "kind": "exact",
+        "startYear": -407,
+        "endYear": -407,
+        "displayEn": "25 November 407 BCE, in the editions' conversion",
+        "noteEn": "Hanson and Posen supply this date for the petition. Its original closing formula gives Marcheshwan day 20 in Darius's seventeenth year; no new calendar conversion is made. The date belongs to the request, not the earlier destruction or a completed rebuilding. Whether the temple was rebuilt remains uncertain in Posen's account."
+      },
+      "titleEn": "Elephantine's priests seek support to rebuild their temple",
+      "summaryEn": "An Aramaic petition by Yedaniah and fellow priests asks Bagohi, governor of Judah, to support rebuilding the temple of Yahu at Elephantine. They seek the resumption of offerings and describe the earlier attack on their sanctuary.",
+      "geographyEn": "Elephantine, Egypt; petition addressed to the governor of Judah",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0500en-hanson-elephantine-petition",
+        "bc0500en-posen-elephantine-petition"
+      ],
+      "selectionNote": "A dated appeal linking a Jewish community in Egypt with religious restoration and Persian provincial authority. Its importance rests on the documented negotiation over a sanctuary, not an assumed successful rebuilding. It is distinct from Amyrtaeus's later political independence episode and that record's separate Elephantine reference to 401 BCE.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
