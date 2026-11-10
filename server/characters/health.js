@@ -49,15 +49,16 @@ export function getNextHealthTransitionDate(state) {
   return next;
 }
 
+// `context.rolls` ({ severity, scar, outcome }) replaces the draws, for an onset whose randomness is settled elsewhere; without it the condition draws as before.
 function createCondition(state, person, kind, events, context = {}) {
-  const severity = kind === 'bereavement' ? 1 : draw(state) < 0.15 ? 3 : draw(state) < 0.45 ? 2 : 1;
-  const condition = { id: nextId(state, 'condition'), kind, stage: 'active', severity, startedAt: state.date, nextTransitionAt: addGameMonths(state.date, kind === 'bereavement' ? 24 : kind === 'smallpox' ? 3 : kind === 'injury' ? 4 : 1), nextExposureAt: kind === 'smallpox' ? addGameMonths(state.date, 1) : null, stageHistory: [{ stage: 'active', date: state.date }], treatment: null, causeId: context.causeId || null, sourceKind: context.sourceKind || 'calendar', relatedPersonId: context.relatedPersonId || null, scarRoll: draw(state), outcomeRoll: draw(state), endedAt: null };
+  const severity = context.rolls?.severity ?? (kind === 'bereavement' ? 1 : draw(state) < 0.15 ? 3 : draw(state) < 0.45 ? 2 : 1);
+  const condition = { id: nextId(state, 'condition'), kind, stage: 'active', severity, startedAt: state.date, nextTransitionAt: addGameMonths(state.date, kind === 'bereavement' ? 24 : kind === 'smallpox' ? 3 : kind === 'injury' ? 4 : 1), nextExposureAt: kind === 'smallpox' ? addGameMonths(state.date, 1) : null, stageHistory: [{ stage: 'active', date: state.date }], treatment: null, causeId: context.causeId || null, sourceKind: context.sourceKind || 'calendar', relatedPersonId: context.relatedPersonId || null, scarRoll: context.rolls?.scar ?? draw(state), outcomeRoll: context.rolls?.outcome ?? draw(state), endedAt: null };
   person.healthConditions.push(condition);
   if (kind !== 'bereavement') {
     person.health = Math.max(1, person.health - severity * (kind === 'smallpox' ? 6 : kind === 'injury' ? 5 : 3));
     person.stress = clamp(person.stress + severity * 5, 0, 200);
   }
-  const description = kind === 'smallpox' ? `${person.name} insjuknar i smittkoppor. Sjukdomen påverkar ork och tjänsteförmåga; återhämtning kan lämna bestående ärr.` : kind === 'fever' ? `${person.name} får feber och behöver återhämtning.` : kind === 'injury' ? `${person.name} skadas ${context.sourceKind === 'military-training' ? 'under militär tjänst' : 'i ett olycksfall'}. Skadan begränsar arbetsförmågan medan den läker.` : `${person.name} sörjer ${state.people[context.relatedPersonId]?.name || 'en närstående'}. Sorgen klingar av med tiden men minnet består.`;
+  const description = kind === 'smallpox' ? `${person.name} insjuknar i smittkoppor. Sjukdomen påverkar ork och tjänsteförmåga; återhämtning kan lämna bestående ärr.` : kind === 'fever' ? `${person.name} får feber och behöver återhämtning.` : kind === 'injury' ? `${person.name} skadas ${context.sourceKind === 'military-training' ? 'under militär tjänst' : context.sourceKind === 'duel' ? 'i en duell' : 'i ett olycksfall'}. Skadan begränsar arbetsförmågan medan den läker.` : `${person.name} sörjer ${state.people[context.relatedPersonId]?.name || 'en närstående'}. Sorgen klingar av med tiden men minnet består.`;
   const event = emit(state, events, kind === 'bereavement' ? 'bereavement' : 'health_onset', `${person.name}: ${HEALTH_CONDITION_LABELS[kind].toLowerCase()}`, description, [person.id, context.relatedPersonId], { conditionId: condition.id });
   condition.causeId ||= event.id;
   return condition;
@@ -78,6 +79,12 @@ function arrangeHealthCare(state, person, condition, context = {}, events) {
     person.wealth -= 20;
     treatCondition(state, person, condition.id, 'physician', person.id, events);
   }
+}
+
+/** An injury whose severity and rolls are given (`rolls`: { severity, scar, outcome }), so it draws nothing. Returns the condition. */
+export function inflictInjury(state, person, events, context) {
+  ensureHealthState(state);
+  return createCondition(state, person, 'injury', events, context);
 }
 
 /** Called by the real death transition; it cannot invent a deceased relative. */

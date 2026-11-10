@@ -3,6 +3,7 @@ import { BREAKDOWN_EXPIRY, breakdownChoices, breakdownClosedReason, breakdownDea
 import { chancellorStep, loyaltyDriftStep, presentCouncil } from './council.js';
 import { DEATHBED_EXPIRY, deathbedChoices, deathbedClosedReason, deathbedLog, deathbedStep, resolveDeathbed } from './deathbed.js';
 import { dreadYearStep, presentDread } from './dread.js';
+import { DUEL_EXPIRY, duelChoices, duelClosedReason, duelStep, resolveDuel } from './duels.js';
 import { DEMAND_EXPIRY, demandChoices, demandClosedReason, demandStep, presentDemands, resolveDemand, validateFamilyDemands, voidDemand, voidOpenDemands } from './familyDemands.js';
 import { ULTIMATUM_EXPIRY, factionStep, presentFactions, refreshFactions, resolveUltimatum, ultimatumChoices, ultimatumClosedReason, validateFactions, voidFactions } from './factions.js';
 import { nicknameStep, validateNicknames } from './nicknames.js';
@@ -11,7 +12,7 @@ import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, va
 // The court: one orchestrator for what happens around the throne. These entry points keep the systems of Phase 3 out of the long functions in index.js.
 // `hooks` are the engine's (actionHooks in index.js). actionResolution.js, npcPlots.js and schemes.js import each other in a cycle, so their exports are used only inside functions here.
 
-export const COURT_STORY_TYPES = Object.freeze(['stress_breakdown', 'family_demand', 'faction_ultimatum', 'deathbed']);
+export const COURT_STORY_TYPES = Object.freeze(['stress_breakdown', 'family_demand', 'faction_ultimatum', 'deathbed', 'duel_challenge']);
 
 // One row per court story.
 // `expiry` is what a story past its due date resolves to, and `expiryText` replaces its log line where the cost depends on who is acting, as `deadlineText` replaces its caption; `closedReason` gives the text of a story that fell away, or ''; `onClose` is what such a story leaves behind; `log` writes the row's own log lines under ids of its own.
@@ -20,6 +21,7 @@ const COURT_STORIES = Object.freeze({
   family_demand: Object.freeze({ choices: demandChoices, resolve: resolveDemand, expiry: DEMAND_EXPIRY, closedReason: demandClosedReason, onClose: voidDemand }),
   faction_ultimatum: Object.freeze({ choices: ultimatumChoices, resolve: resolveUltimatum, expiry: ULTIMATUM_EXPIRY, closedReason: ultimatumClosedReason }),
   deathbed: Object.freeze({ choices: deathbedChoices, resolve: resolveDeathbed, expiry: DEATHBED_EXPIRY, closedReason: deathbedClosedReason, log: deathbedLog }),
+  duel_challenge: Object.freeze({ choices: duelChoices, resolve: resolveDuel, expiry: DUEL_EXPIRY, closedReason: duelClosedReason }),
 });
 
 /** Runs after npcPlotStep and returns the paid chancellor delta for annual accounting. A dissolved realm pays 0. */
@@ -37,6 +39,7 @@ export function courtAnnualStep(state, events, hooks) {
   stressPressureStep(state, hooks);
   breakdownStep(state, events, hooks);
   deathbedStep(state, events, hooks);
+  duelStep(state, events, hooks);
   return contribution;
 }
 
