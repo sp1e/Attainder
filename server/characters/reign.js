@@ -180,11 +180,11 @@ export function goalStep(state, events, hooks) {
   }
 }
 
-/** Yearly. Fame past the floor pays legitimacy, one point per 20, and then fades by one. A realm at the floor gains nothing, so a passive campaign keeps today's legitimacy. */
-export function prestigeStep(state) {
+/** Yearly. Fame past the floor pays legitimacy, one point per 20, and then fades by one. A realm at the floor gains nothing, so a passive campaign keeps today's legitimacy. `lift` (wonders.js) holds prestige at least that far above the floor. */
+export function prestigeStep(state, lift = 0) {
   const { prestige } = state.realm;
   grantLegitimacy(state, 'prestige', Math.floor(Math.max(0, prestige - PRESTIGE.floor) / PRESTIGE.perLegitimacy));
-  state.realm.prestige = Math.max(prestige - PRESTIGE.decay, Math.min(prestige, PRESTIGE.floor));
+  state.realm.prestige = Math.max(prestige - PRESTIGE.decay, Math.min(prestige, PRESTIGE.floor), lift > 0 ? clamp(PRESTIGE.floor + lift) : 0);
 }
 
 function presentGoal({ id, type, dueAt, status }) {

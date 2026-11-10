@@ -128,7 +128,7 @@ export function relevantRegencies(state) {
   return [guardian, royalRelevant && royal].filter(Boolean);
 }
 
-const RESERVED = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'mobilize', 'reform', 'concord', 'academy', 'succession_law', 'sanctuary', 'network', 'aqueduct', 'build_estate', 'adopt']);
+const RESERVED = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'mobilize', 'reform', 'concord', 'academy', 'succession_law', 'sanctuary', 'network', 'aqueduct', 'build_wonder', 'build_estate', 'adopt']);
 
 export function regencyVetoForRecord(state, record, type) {
     if (!RESERVED.has(type)) return '';
@@ -140,7 +140,7 @@ export function regencyVetoForRecord(state, record, type) {
     const regent = state.people[record.regentId];
     const veto = (has(regent, 'cautious') && ['mobilize', 'banish', 'network'].includes(type)) ||
       (has(regent, 'dutiful') && ['banish', 'succession_law'].includes(type)) ||
-      (has(regent, 'greedy') && ['academy', 'aqueduct', 'concord', 'build_estate'].includes(type)) ||
+      (has(regent, 'greedy') && ['academy', 'aqueduct', 'build_wonder', 'concord', 'build_estate'].includes(type)) ||
       (has(regent, 'ambitious') && ['appoint', 'dismiss', 'succession_law', 'adopt'].includes(type));
     if (veto) return `${regent.name} samtycker inte till detta beslut. Förhandla eller vänd dig till rådet.`;
     return '';

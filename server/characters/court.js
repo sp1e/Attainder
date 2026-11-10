@@ -10,6 +10,7 @@ import { ULTIMATUM_EXPIRY, factionStep, presentFactions, refreshFactions, resolv
 import { nicknameStep, validateNicknames } from './nicknames.js';
 import { PLAGUE_EXPIRY, plagueChoices, plagueClosedReason, plagueStep, resolvePlague } from './plague.js';
 import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, validateReign } from './reign.js';
+import { wonderPrestigeFloor } from './wonders.js';
 
 // The court: one orchestrator for what happens around the throne. These entry points keep the systems of Phase 3 out of the long functions in index.js.
 // `hooks` are the engine's (actionHooks in index.js). actionResolution.js, npcPlots.js and schemes.js import each other in a cycle, so their exports are used only inside functions here.
@@ -36,7 +37,7 @@ export function courtAnnualStep(state, events, hooks) {
   const contribution = chancellorStep(state, hooks);
   dreadYearStep(state, hooks);
   goalStep(state, events, hooks);
-  prestigeStep(state);
+  prestigeStep(state, wonderPrestigeFloor(state));
   nicknameStep(state, events, hooks);
   demandStep(state, events, hooks);
   factionStep(state, events, hooks);
