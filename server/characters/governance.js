@@ -128,7 +128,7 @@ export function relevantRegencies(state) {
   return [guardian, royalRelevant && royal].filter(Boolean);
 }
 
-const RESERVED = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'mobilize', 'reform', 'concord', 'academy', 'succession_law', 'sanctuary', 'network', 'aqueduct', 'build_wonder', 'build_estate', 'adopt']);
+const RESERVED = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'mobilize', 'reform', 'concord', 'academy', 'succession_law', 'sanctuary', 'network', 'aqueduct', 'build_wonder', 'foreign_marriage', 'build_estate', 'adopt']);
 
 export function regencyVetoForRecord(state, record, type) {
     if (!RESERVED.has(type)) return '';
