@@ -343,7 +343,7 @@ function SuccessionForecast({ forecast }) {
     <div className="char-succession-grid">
       <div><h4>Personliga effekter som upphör</h4><p>Den avlidna härskarens egna tidsbundna effekter avslutas.</p>{projectList(projects.ending)}</div>
       <div><h4>Andra personers effekter</h4><p>Dessa tillhör en annan person. Härskarens död avslutar dem inte i sig. En regents effekt kan upphöra när regentmandatet upphör och ger bara stöd med rätt aktiv innehavare.</p>{projectList(projects.otherPersonal)}</div>
-      <div><h4>Offentliga byggen fortsätter</h4><p>Akademier och vattenledningar behåller sitt byggschema vid ett personligt tronskifte. Ett upplöst rike kan inte fortsätta offentliga uppdrag.</p>{projectList(projects.publicConstruction)}{projects.academyEstablished && <p>Den färdiga akademin består vid ett tronskifte.</p>}</div>
+      <div><h4>Offentliga byggen fortsätter</h4><p>Akademier, vattenledningar och underverk behåller sitt byggschema vid ett personligt tronskifte. Ett upplöst rike kan inte fortsätta offentliga uppdrag.</p>{projectList(projects.publicConstruction)}{projects.academyEstablished && <p>Den färdiga akademin består vid ett tronskifte.</p>}</div>
       <div><h4>Familjens byggen fortsätter</h4><p>Familjeegendom behåller sin familjeägare och sitt byggschema.</p>{projectList(projects.familyEstates)}</div>
     </div>
   </section>;
