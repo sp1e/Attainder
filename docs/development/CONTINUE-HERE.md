@@ -143,7 +143,7 @@ Phase 4, moment 5 of `docs/superpowers/specs/2026-10-31-ai-game-master-design.md
 - `server/characters/tutoring.js` holds the rule. When the mentor holds a trait whose opposite (`OPPOSITE_TRAITS`) the child has, the adulthood step's existing draw replaces that trait in place below `CORRECTION_CHANCE` (0.6). Without an opposite the old rule applies: below 0.4 the traits become `[own first, mentor first]`.
 - The adulthood step still makes one `random(state)` call, only while the mentor lives. The educate event names the prospect and the adulthood event names a correction that took.
 - No NPC calls `educate`; a newborn's mentor is its mother. The demo and Charlemagne seeds 777 and 321 gave the same random streams, sequence and health values over 300 years on `main` and on the branch.
-- Moments 10 and 8 follow below. Moments 9 (a cadet branch splits off on the pattern in `renewal.js`) and 6 (partition, which needs a spec for several realms or appanages, since the game holds one `state.realm`) remain.
+- Moments 10, 8 and 9 follow below. Moment 6 (partition, which needs a spec for several realms or appanages, since the game holds one `state.realm`) remains.
 
 ## A handover card for a new reign
 
@@ -160,6 +160,14 @@ Phase 4, moment 8. The spec is `docs/superpowers/specs/2026-11-10-bastard-claima
 - `server/characters/bastardClaims.js` finds royal bastards: living subjects of an exposed `illegitimate_child` secret whose biological father appears in `offices.ruler.history`, the sitting ruler left out. `claimantFor` puts the eldest free adult one first.
 - The yearly step gives each adult royal bastard −20 "Förnekad arvsrätt" for 20 years towards the sitting ruler, one cause per ruler and none towards its own father. The ultimatum names the claimant "X, oäkta barn till Y".
 - The module draws nothing. Over 300 years of five seeds 11 of 72 children of an affair had a father who ruled, and NPC play exposed none, so a run matches `main` until the player, blackmail or a deathbed confession exposes one.
+
+## A large house loses a rival branch
+
+Phase 4, moment 9. The spec is `docs/superpowers/specs/2026-11-10-cadet-branch-design.md`, PR #169, `05e98580`.
+
+- `server/characters/cadetBranches.js` runs after court renewal on historical campaigns only. A house of 10 living members loses the line of its eldest free adult born into it, outside the head's line and below no living collateral parent, when at least 5 stay behind. One split a year.
+- The branch (founder, descendants, a spouse of the house) founds "`<founder>`s gren av `<root house>`" with its share of silver, influence and estates. Both heads get −25 "Husets splittring" for 30 years.
+- No draws. Hadara's 300-year state hash matches `main` for seeds 321, 777 and 2; Charlemagne seeds 777, 321 and 5 split 6, 7 and 8 times in 300 years.
 
 ## Branch state
 
