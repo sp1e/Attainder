@@ -143,7 +143,7 @@ Phase 4, moment 5 of `docs/superpowers/specs/2026-10-31-ai-game-master-design.md
 - `server/characters/tutoring.js` holds the rule. When the mentor holds a trait whose opposite (`OPPOSITE_TRAITS`) the child has, the adulthood step's existing draw replaces that trait in place below `CORRECTION_CHANCE` (0.6). Without an opposite the old rule applies: below 0.4 the traits become `[own first, mentor first]`.
 - The adulthood step still makes one `random(state)` call, only while the mentor lives. The educate event names the prospect and the adulthood event names a correction that took.
 - No NPC calls `educate`; a newborn's mentor is its mother. The demo and Charlemagne seeds 777 and 321 gave the same random streams, sequence and health values over 300 years on `main` and on the branch.
-- Moments 10, 8 and 9 follow below. Moment 6 (partition, which needs a spec for several realms or appanages, since the game holds one `state.realm`) remains.
+- Moments 10, 8, 9 and 6 follow below. Phase 4 is complete.
 
 ## A handover card for a new reign
 
@@ -168,6 +168,15 @@ Phase 4, moment 9. The spec is `docs/superpowers/specs/2026-11-10-cadet-branch-d
 - `server/characters/cadetBranches.js` runs after court renewal on historical campaigns only. A house of 10 living members loses the line of its eldest free adult born into it, outside the head's line and below no living collateral parent, when at least 5 stay behind. One split a year.
 - The branch (founder, descendants, a spouse of the house) founds "`<founder>`s gren av `<root house>`" with its share of silver, influence and estates. Both heads get −25 "Husets splittring" for 30 years.
 - No draws. Hadara's 300-year state hash matches `main` for seeds 321, 777 and 2; Charlemagne seeds 777, 321 and 5 split 6, 7 and 8 times in 300 years.
+
+## A dead ruler's house is divided among the children
+
+Phase 4, moment 6. The spec is `docs/superpowers/specs/2026-11-10-partition-design.md`, PR #171, `c5726147`.
+
+- A fourth law, `partition` ("delat arv"), ends the legislator's cycle. The crown passes by primogeniture.
+- When a ruler dies and a legal child takes the throne, up to three younger free adult children in the ruler's house found houses with their lines (`foundHouse`, shared with cadet branches). Each takes an equal share, rounded down, of silver, influence and estates; the heir's house keeps the remainder. Heir and founders get −30 "Delat arv" for 20 years.
+- The game holds one realm, so the house is divided, not the land. Dividing the map waits for phase 6 (foreign realms).
+- No draws. Hadara's 300-year state hash matches `main`; Charlemagne under partition for 300 years (seeds 777, 321, 5) divided 3, 4 and 3 times, and the realm survived.
 
 ## Branch state
 
