@@ -9,7 +9,7 @@ import {
 } from "./gameState.js";
 import { beginSimulation, endSimulation, isSimulationBusy } from "../Game/AI/simulationStatus.js";
 import { unseenEvents, latestTurnEventIds } from "./unseenEvents.js";
-import { createCharacterSystem, estimateCharacterAction, estimateConversation, getCharacterPresentation, getConversationBrief } from "./characters/index.js";
+import { createCharacterSystem, estimateCharacterAction, estimateConversation, estimateEnvoyRequest, getCharacterPresentation, getConversationBrief, getEnvoyBrief } from "./characters/index.js";
 import { characterTransitionEvents, executeCharacterWorldCommand, planCharacterAdvance } from "./characterWorld.js";
 import { readCharacterWatches } from "./characterWatchSettings.js";
 import { commitCharacterTransaction, recoverCharacterTransaction } from "./characterPersistence.js";
@@ -80,6 +80,20 @@ export const getConversationViewForModel = async (personId) => {
   const state = await readVisibleCharacterState();
   if (!state) return null;
   return { ...getCharacterPresentation(state), conversationBrief: getConversationBrief(state, personId) };
+};
+
+// Odds for one envoy to a foreign realm on the state the player sees. Read-only like the estimates above.
+export const estimateEnvoyForView = async (request) => {
+  const state = await readVisibleCharacterState();
+  if (!state) return { ok: false, reason: "Kampanjen saknar karaktärssystem." };
+  return { ...estimateEnvoyRequest(state, request), revision: state.revision };
+};
+
+// The presentation plus the engine's brief on one foreign ruler, as the envoy model calls read it (extractEnvoyRequest, replyAsRuler). Read-only.
+export const getEnvoyViewForModel = async (realmId) => {
+  const state = await readVisibleCharacterState();
+  if (!state) return null;
+  return { ...getCharacterPresentation(state), envoyBrief: getEnvoyBrief(state, realmId) };
 };
 
 // Shared by local decisions and the connected model's completed turn. The
@@ -181,16 +195,19 @@ export const recordCharacterNarrative = (payload = {}) => withCharacterMutation(
     events: characterTransitionEvents(bundle.world.characterSystem, result, operationId) } : result;
 });
 
-// The conversation step's only entry: the one caller that sets origin "converse", which converse_request requires.
+// The conversation step's only entry: the one place that sets origin "converse", which converse_request and envoy_request require.
 // `expectedRevision` is the revision the estimate was made on; without it the current revision is used.
-export const submitConversationRequest = (request = {}, { id, expectedRevision } = {}) => withCharacterMutation(async (bundle) => {
+const submitConverseCommand = (type, prefix, request, { id, expectedRevision } = {}) => withCharacterMutation(async (bundle) => {
   if (!bundle.world.characterSystem) return failure("Kampanjen saknar karaktärssystem.");
-  const operationId = id || idFor("character-conversation");
-  const result = executeCharacterWorldCommand(bundle.world, { id: operationId, type: "converse_request", payload: request,
+  const operationId = id || idFor(prefix);
+  const result = executeCharacterWorldCommand(bundle.world, { id: operationId, type, payload: request,
     expectedRevision: expectedRevision ?? bundle.world.characterSystem.revision, origin: "converse" });
   return result.ok ? { ...result, operationId,
     events: characterTransitionEvents(bundle.world.characterSystem, result, operationId) } : result;
 });
+export const submitConversationRequest = (request = {}, options = {}) => submitConverseCommand("converse_request", "character-conversation", request, options);
+// An envoy to a foreign ruler (envoys spec) goes through the same step: its words were read from the player's text.
+export const submitEnvoyRequest = (request = {}, options = {}) => submitConverseCommand("envoy_request", "character-envoy", request, options);
 
 // Explicit deterministic progression for tests and development. The normal
 // campaign button uses the connected model below.

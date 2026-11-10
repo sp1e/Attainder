@@ -8,7 +8,8 @@ import { createCharacterSystem, estimateCharacterAction, estimateConversation, g
 import { initializeCampaignCharacters, advanceCharacterYear, submitCharacterCommand,
   readVisibleCharacterState, getCharacterRuntimeStatus, revealLatestCharacterTurn,
   commitCharacterCampaign, recordCharacterNarrative, estimateCharacterActionForView,
-  estimateConversationForView, submitConversationRequest, getConversationViewForModel } from "./characterRuntime.js";
+  estimateConversationForView, submitConversationRequest, getConversationViewForModel,
+  estimateEnvoyForView, getEnvoyViewForModel, submitEnvoyRequest } from "./characterRuntime.js";
 import { prepareHistoricalCampaignStart } from "../../server/historicalPreparation.js";
 
 test("runtime campaign start, command, date, shared save and failed-write recovery use the same world", async () => {
@@ -220,6 +221,40 @@ test("a conversation is held only through submitConversationRequest, never throu
     // The estimate's revision is honoured: a stale one is refused.
     const stale = await submitConversationRequest({ ...request, personId: view.conversationTargets[1].id }, { expectedRevision: estimate.revision });
     assert.equal(stale.ok, false);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("an envoy goes only through the conversation step, and Hadara has none", async () => {
+  const originalFetch = globalThis.fetch;
+  const data = {
+    world: { units: [] },
+    game: { country: "Hadara", gameDate: "-0300-01-01", startDate: "-0300-01-01", round: 1 },
+    events: [], actions: [], chat: [], colors: { Hadara: "#789abc" }, snapshots: [],
+  };
+  let writes = 0;
+  globalThis.fetch = async (url, options = {}) => {
+    const key = new URL(String(url), "http://runtime.test").pathname.split("/").at(-1);
+    if (options.method === "PUT") { writes += 1; data[key] = JSON.parse(options.body); }
+    return new Response(JSON.stringify(data[key] ?? {}), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  setRuntimeAssetEndpoints({ token: "characters-envoy-test" });
+  try {
+    const init = await initializeCampaignCharacters({ mode: "family", seed: 41 });
+    assert.equal(init.ok, true, init.error);
+    const request = { realmId: "emirate-of-cordoba", kind: "reconcile", offerSilver: 0, arguments: [], argumentScore: 0 };
+    const writesBefore = writes;
+    assert.deepEqual(await estimateEnvoyForView(request), { ok: false, reason: "Sändebud finns bara i historiska kampanjer.", revision: init.state.revision });
+    assert.equal((await getEnvoyViewForModel(request.realmId)).envoyBrief, null);
+    assert.equal(writes, writesBefore);
+    const refused = await submitCharacterCommand({ id: "envoy-player", expectedRevision: init.state.revision, type: "envoy_request", payload: request });
+    assert.equal(refused.error, "Samtalsförfrågningar kan bara göras i samtalssteget.");
+    // The conversation step reaches the engine, which refuses an envoy outside a historical campaign.
+    const stepped = await submitEnvoyRequest(request);
+    assert.equal(stepped.ok, false);
+    assert.equal(stepped.error, "Sändebud finns bara i historiska kampanjer.");
+    assert.equal(writes, writesBefore);
   } finally {
     globalThis.fetch = originalFetch;
   }

@@ -91,8 +91,16 @@ function claimText(realm) {
   return `${claim}${war}${realm.lands ? ` · erövrade gränsland: ${realm.lands}` : ''}`;
 }
 
-/** The other realms of a historical campaign: ruler, heir, seat, distance and opinion. */
-export function ForeignRealms({ realms }) {
+// An envoy can go when the engine gives no reason against it; the reason is shown under a disabled button.
+function EnvoyButton({ realm, busy, onEnvoy }) {
+  return <>
+    <button type="button" className="char-button" aria-label={`Skicka sändebud till ${realm.name}`} disabled={busy || Boolean(realm.envoyReason)} onClick={() => onEnvoy(realm.id)}>Skicka sändebud</button>
+    {realm.envoyReason && <span className="char-caption">{realm.envoyReason}</span>}
+  </>;
+}
+
+/** The other realms of a historical campaign: ruler, heir, seat, distance and opinion. With `onEnvoy`, each realm offers an envoy, and `renderEnvoy(realm)` draws the open one (`openId`). */
+export function ForeignRealms({ realms, busy = false, openId = null, onEnvoy, renderEnvoy }) {
   const rows = entries(realms);
   if (!rows.length) return null;
   return <Section title="Grannriken" eyebrow="Utanför riket">
@@ -100,6 +108,7 @@ export function ForeignRealms({ realms }) {
       <strong>{realm.name}</strong>
       <span>{`${realm.rulerName}, ${realm.rulerAge} år${realm.heirName ? ` · arvinge: ${realm.heirName}` : ' · ingen känd arvinge'}`}</span>
       <span className="char-caption">{`${realm.seatName ?? 'Okänt säte'} · ${realm.distanceKm == null ? 'okänt avstånd' : `${number(realm.distanceKm)} km`}${realm.neighbor ? ' · granne' : ''}${realm.allied ? ' · allierad' : ''}${claimText(realm)} · hållning ${number(realm.opinion)}`}</span>
+      {renderEnvoy && openId === realm.id ? renderEnvoy(realm) : onEnvoy && <EnvoyButton realm={realm} busy={busy} onEnvoy={onEnvoy} />}
     </li>)}</ul>
   </Section>;
 }

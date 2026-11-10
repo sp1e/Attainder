@@ -5,11 +5,12 @@ import vm from "node:vm";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
-import { actionHooks, applyRealmDissolution, createCharacterSystem, estimateCharacterAction, estimateConversation, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation } from "../../runtime/characters/index.js";
+import { actionHooks, applyRealmDissolution, createCharacterSystem, estimateCharacterAction, estimateConversation, estimateEnvoyRequest, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation, getEnvoyBrief } from "../../runtime/characters/index.js";
 import { createHistoricalCharacterSystem } from "../../runtime/characters/scenarioSeed.js";
 import { REASONS as ODDS_REASONS } from "../../runtime/characters/actionOdds.js";
 import * as realDates from "../../runtime/gameDates.js";
 import { CONVERSATION_REQUESTS } from "../../runtime/characters/conversation.js";
+import { ENVOY_REQUESTS } from "../../runtime/characters/envoys.js";
 import * as realCounter from "../AI/modelCallCounter.js";
 import { createSecret, grantHook } from "../../runtime/characters/secrets.js";
 import { SHIPPED_START_FOLDERS } from "../../runtime/testing/shippedHistoricalStarts.js";
@@ -29,6 +30,7 @@ const actionBoxCompiled = compileFile("ActionBox.jsx");
 const courtCompiled = compileFile("CourtSections.jsx");
 const intrigueCompiled = compileFile("IntrigueView.jsx");
 const conversationCompiled = compileFile("ConversationView.jsx");
+const envoyCompiled = compileFile("EnvoyView.jsx");
 
 function runModule(code, modules, globals = {}) {
   const module = { exports: {} };
@@ -67,11 +69,16 @@ const conversationRuntime = (overrides = {}) => ({
   estimateConversationForView: async () => ({ ok: false, reason: "Ingen uppskattning." }),
   getConversationViewForModel: async () => null,
   submitConversationRequest: async () => ({ ok: true, state: { conversations: [] }, events: [] }),
+  estimateEnvoyForView: async () => ({ ok: false, reason: "Ingen uppskattning." }),
+  getEnvoyViewForModel: async () => null,
+  submitEnvoyRequest: async () => ({ ok: true, state: { foreignRealms: [] }, events: [] }),
   ...overrides,
 });
 const conversationModel = (overrides = {}) => ({
   extractConversationRequest: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
   replyAsCharacter: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
+  extractEnvoyRequest: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
+  replyAsRuler: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
   ...overrides,
 });
 
@@ -99,6 +106,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
       ...runtime,
     },
     "../../runtime/characters/conversation.js": { CONVERSATION_REQUESTS },
+    "../../runtime/characters/envoys.js": { ENVOY_REQUESTS },
     "../AI/modelCallCounter.js": counter || { getModelCallCounts: () => ({ total: modelCalls, byKind: {} }), subscribeModelCalls: () => () => {} },
     "./characterModelCalls.js": {
       interpretCharacterAction: async () => ({ ok: false, reason: "Ingen modell är ansluten.", fallback: "menu" }),
@@ -115,8 +123,10 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
   modules["./CourtSections.jsx"] = runModule(courtCompiled, modules);
   modules["./IntrigueView.jsx"] = runModule(intrigueCompiled, modules);
   modules["./ConversationView.jsx"] = runModule(conversationCompiled, modules);
+  modules["./EnvoyView.jsx"] = runModule(envoyCompiled, modules);
   const exports = runModule(compiled, modules, { window: { matchMedia: () => ({ matches: theme === "dark" }) }, localStorage: { getItem: () => "system" }, ...globals });
-  return { ...exports, IntrigueView: modules["./IntrigueView.jsx"].default, ConversationView: modules["./ConversationView.jsx"].default, calls };
+  return { ...exports, IntrigueView: modules["./IntrigueView.jsx"].default, ConversationView: modules["./ConversationView.jsx"].default,
+    EnvoyView: modules["./EnvoyView.jsx"].default, ForeignRealms: modules["./CourtSections.jsx"].ForeignRealms, calls };
 }
 
 const principal = { id: "ruler", name: "Astrid", age: 42, alive: true, stress: 19 };
@@ -2142,4 +2152,137 @@ test("the real-history segment shows for a historical campaign and opens the rec
   assert.match(open, /HISTORISK POST/);
   assert.match(open, /aria-pressed="true">I verklighetens historia/);
   assert.doesNotMatch(render({ historical: false, filter: "history" }), /HISTORISK POST/);
+});
+
+// --- Envoys ---
+
+const CHARLEMAGNE = JSON.parse(readFileSync(new URL("../../../server/seed/historical/charlemagne-800/scenario.json", import.meta.url), "utf8")).data;
+const CORDOBA = "emirate-of-cordoba";
+const reconcileRequest = { realmId: CORDOBA, kind: "reconcile", offerSilver: 20, arguments: [{ kind: "offer", refId: null }], argumentScore: 6 };
+
+// The envoy view under the hook driver, with the engine's real estimate and brief for Charlemagne's court; Córdoba remembers a betrayal.
+function mountEnvoy({ runtime = {}, model = {} } = {}) {
+  const state = createHistoricalCharacterSystem({ historicalScenario: JSON.parse(JSON.stringify(CHARLEMAGNE.world.historicalScenario)), date: CHARLEMAGNE.game.startDate, polityId: "carolingian-realm", mode: "realm", seed: 777 });
+  state.foreignRealms.find((realm) => realm.id === CORDOBA).memories.push({ date: "0780-06-01", label: "Svek i kriget", amount: -40, until: "0810-06-01" });
+  const view = getCharacterPresentation(state);
+  const realm = view.foreignRealms.find((entry) => entry.id === CORDOBA);
+  const driver = createHookDriver();
+  const panel = loadPanel(view, { react: driver.react, model, runtime: conversationRuntime({
+    getEnvoyViewForModel: async (id) => ({ ...view, envoyBrief: getEnvoyBrief(state, id) }),
+    estimateEnvoyForView: async (request) => ({ ...estimateEnvoyRequest(state, request), revision: state.revision }),
+    ...runtime }) });
+  const props = { realm, busy: false, onClose: () => {} };
+  let tree;
+  const draw = () => (tree = driver.render(React.createElement(panel.EnvoyView, props)));
+  props.runAction = async (work) => {
+    props.busy = true; draw();
+    try { return await work(); } finally { props.busy = false; }
+  };
+  draw();
+  const act = async (action) => { await action(); await settle(); return draw(); };
+  const say = (text) => act(async () => {
+    findAll(tree, (node) => node.type === "textarea")[0].props.onChange({ target: { value: text } });
+    draw();
+    formOf(tree, "char-talk-form").props.onSubmit({ preventDefault() {} });
+  });
+  return { state, realm, act, say, draw, get tree() { return tree; } };
+}
+// The engine itself behind the submit, so the view reads the record from the state shape the command really returns.
+const engineEnvoy = (mounted, roll) => async (request, { expectedRevision }) => {
+  mounted.state.plotRngState = roll;
+  return executeCharacterCommand(mounted.state, { id: `envoy-${roll}`, type: "envoy_request", payload: request, expectedRevision, origin: "converse" });
+};
+const envoyDecided = (state, accepted) => async () => ({ ok: true, state: { date: state.date, foreignRealms: [{ id: CORDOBA, lastEnvoy: { date: state.date, kind: "reconcile", value: 40, accepted } }] }, events: [] });
+const envoyCard = (tree) => findAll(tree, (node) => node.type === "section" && node.props["aria-label"] === "Bekräfta sändebudet")[0];
+
+test("an envoy's card shows what the ruler remembers, and the ruler answers an outcome already fixed", async () => {
+  const submitted = [], replies = [];
+  let mounted;
+  mounted = mountEnvoy({
+    model: { extractEnvoyRequest: async () => ({ ok: true, request: reconcileRequest }), replyAsRuler: async (call) => { replies.push(call); return { ok: true, reply: "Låt det gamla vara glömt." }; } },
+    runtime: { submitEnvoyRequest: async (request, options) => { submitted.push([request, options]); return envoyDecided(mounted.state, true)(); } } });
+  assert.match(textOf(mounted.tree), /Vad ska sändebudet säga\?/);
+  await mounted.say("Låt oss lägga det gamla bakom oss. Jag sänder 20 silver.");
+  const shown = textOf(envoyCard(mounted.tree));
+  assert.match(shown, /Be om försoning/);
+  assert.match(shown, /Svek i kriget \(780\)/);
+  assert.match(shown, /20 silver ur statskassan, betalas bara vid ja/);
+  assert.match(shown, /kostar en order/);
+  await mounted.act(() => buttonNamed(mounted.tree, "Skicka").props.onClick());
+  assert.deepEqual(JSON.parse(JSON.stringify(submitted)), [[reconcileRequest, { expectedRevision: mounted.state.revision }]]);
+  assert.deepEqual(JSON.parse(JSON.stringify(replies[0].outcome)), { kind: "reconcile", accepted: true });
+  const after = textOf(mounted.tree);
+  assert.match(after, new RegExp(`${mounted.realm.rulerName} går med på försoning\\.`));
+  assert.match(after, /20 silver betalades ur statskassan\./);
+  assert.match(after, /Låt det gamla vara glömt\./);
+});
+
+test("a refused envoy pays nothing, and a message that asks for nothing is answered without a roll", async () => {
+  let mounted;
+  mounted = mountEnvoy({
+    model: { extractEnvoyRequest: async () => ({ ok: true, request: reconcileRequest }), replyAsRuler: async () => ({ ok: true, reply: "Nej." }) },
+    runtime: { submitEnvoyRequest: async () => envoyDecided(mounted.state, false)() } });
+  await mounted.say("Försoning?");
+  await mounted.act(() => buttonNamed(mounted.tree, "Skicka").props.onClick());
+  assert.match(textOf(mounted.tree), /avvisar sändebudet\. Nästa sändebud kan gå om ett år\./);
+  assert.doesNotMatch(textOf(mounted.tree), /betalades/);
+  const replies = [];
+  const greeted = mountEnvoy({
+    model: { extractEnvoyRequest: async () => ({ ok: true, request: null }), replyAsRuler: async (call) => { replies.push(call); return { ok: true, reply: "Var hälsad." }; } },
+    runtime: { submitEnvoyRequest: async () => assert.fail("a greeting sends no envoy") } });
+  await greeted.say("Hälsningar från Aachen.");
+  assert.equal(replies[0].outcome, null);
+  assert.match(textOf(greeted.tree), /Var hälsad\./);
+  assert.equal(envoyCard(greeted.tree), undefined);
+});
+
+test("the view reads the engine's own record of the envoy, accepted or refused", async () => {
+  for (const roll of [1, 2, 3, 4, 5, 6, 7, 8]) {
+    const replies = [];
+    let mounted;
+    mounted = mountEnvoy({
+      model: { extractEnvoyRequest: async () => ({ ok: true, request: reconcileRequest }), replyAsRuler: async (call) => { replies.push(call); return { ok: true, reply: "Så får det bli." }; } },
+      runtime: { submitEnvoyRequest: (...args) => engineEnvoy(mounted, roll)(...args) } });
+    await mounted.say("Försoning, och 20 silver.");
+    await mounted.act(() => buttonNamed(mounted.tree, "Skicka").props.onClick());
+    assert.equal(replies.length, 1, "the ruler answers once the record is found");
+    const accepted = replies[0].outcome.accepted;
+    assert.match(textOf(mounted.tree), accepted ? /går med på försoning/ : /avvisar sändebudet/);
+    assert.doesNotMatch(textOf(mounted.tree), /Läs utfallet i krönikan/);
+  }
+});
+
+test("the envoy cannot be closed while it rides", async () => {
+  let release;
+  const mounted = mountEnvoy({ model: { extractEnvoyRequest: async () => ({ ok: true, request: reconcileRequest }) },
+    runtime: { submitEnvoyRequest: () => new Promise((resolve) => { release = resolve; }) } });
+  await mounted.say("Försoning?");
+  assert.equal(buttonNamed(mounted.tree, "Stäng").props.disabled, false);
+  const riding = mounted.act(() => buttonNamed(mounted.tree, "Skicka").props.onClick());
+  await settle();
+  assert.equal(buttonNamed(mounted.draw(), "Stäng").props.disabled, true);
+  release({ ok: false, error: "Världen har ändrats." });
+  await riding;
+  assert.match(textOf(mounted.tree), /Världen har ändrats\./);
+  assert.equal(buttonNamed(mounted.tree, "Stäng").props.disabled, false);
+});
+
+test("each neighbor offers an envoy, and a closed one says why", () => {
+  const driver = createHookDriver();
+  const { ForeignRealms } = loadPanel({}, { react: driver.react });
+  const base = { rulerName: "Alfons", rulerAge: 40, heirName: null, seatName: "Oviedo", distanceKm: 900, neighbor: true, allied: false, opinion: 0, claim: null, war: null, lands: 0 };
+  const realms = [{ ...base, id: "asturias", name: "Asturien", envoyReason: "" }, { ...base, id: "cordoba", name: "Córdoba", envoyReason: "Ett sändebud var där nyss. Riket tar inte emot ett nytt förrän om ett år." }];
+  const opened = [];
+  const tree = driver.render(React.createElement(ForeignRealms, { realms, onEnvoy: (id) => opened.push(id), renderEnvoy: () => React.createElement("p", null, "SÄNDEBUD") }));
+  const buttons = findAll(tree, (node) => node.type === "button" && /Skicka sändebud/.test(node.props["aria-label"] ?? ""));
+  assert.deepEqual(buttons.map((button) => [button.props["aria-label"], button.props.disabled]), [["Skicka sändebud till Asturien", false], ["Skicka sändebud till Córdoba", true]]);
+  assert.match(textOf(tree), /Ett sändebud var där nyss/);
+  buttons[0].props.onClick();
+  assert.deepEqual(opened, ["asturias"]);
+  const open = driver.render(React.createElement(ForeignRealms, { realms, openId: "asturias", onEnvoy: () => {}, renderEnvoy: () => React.createElement("p", null, "SÄNDEBUD") }));
+  assert.match(textOf(open), /SÄNDEBUD/);
+  assert.equal(findAll(open, (node) => node.type === "button").length, 1, "the open realm shows its envoy instead of the button");
+  assert.equal(findAll(driver.render(React.createElement(ForeignRealms, { realms })), (node) => node.type === "button").length, 0, "without onEnvoy the list only reads");
+  const busy = driver.render(React.createElement(ForeignRealms, { realms, busy: true, onEnvoy: () => {} }));
+  assert.ok(findAll(busy, (node) => node.type === "button").every((button) => button.props.disabled), "a busy panel sends no envoy");
 });

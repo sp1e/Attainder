@@ -12,6 +12,7 @@ import { getModelCallCounts, subscribeModelCalls } from "../AI/modelCallCounter.
 import "./characters.css";
 import ActionBox, { SchemeList, playerText } from "./ActionBox.jsx";
 import ConversationView from "./ConversationView.jsx";
+import EnvoyView from "./EnvoyView.jsx";
 import CharacterWatchToggles from "./CharacterWatchToggles.jsx";
 import { ChoiceOdds, CouncilSeats, DemandList, ForeignRealms, ReignCard } from "./CourtSections.jsx";
 import IntrigueView from "./IntrigueView.jsx";
@@ -349,13 +350,16 @@ function SuccessionForecast({ forecast }) {
   </section>;
 }
 
-function OfficesView({ view, setTab }) {
+function OfficesView({ view, setTab, busy = false, runAction, onHold }) {
+  // The realm an envoy is being written to; one at a time, and closed with the view.
+  const [envoyTo, setEnvoyTo] = useState(null);
   const people = Object.fromEntries(entries(view.people).map((person) => [person.id, person]));
   const succession = view.succession || {};
   return <><div className="char-section-heading"><div><span className="char-eyebrow">Befogenheter följer ämbetet</span><h3>Vem förvaltar makten?</h3></div><button className="char-button" onClick={() => setTab("decisions")}>Utnämningar och beslut →</button></div><div className="char-offices">{entries(view.offices).map((office) => {
     const holder = people[office.holderId || office.personId];
     return <article className="char-card char-office" key={office.id}><div><span className="char-eyebrow">{office.typeLabel || humanize(office.type || "Ämbete")}</span><h4>{office.name || office.title}</h4><p>{office.description || office.mandate || "Ämbetet har egna befogenheter och skyldigheter."}</p></div><div className="char-office-holder">{holder ? <><Portrait person={holder} size="small" /><span><strong>{holder.name}</strong><small>{holder.familyName}</small></span></> : <span className="char-badge char-badge--warning">Vakant</span>}</div>{office.regentId && <p>Regent: <strong>{people[office.regentId]?.name}</strong></p>}</article>;
-  })}</div><CouncilSeats council={view.court?.council} /><GovernanceSummary view={view} /><SuccessionForecast forecast={succession.forecast} /><ForeignRealms realms={view.foreignRealms} />
+  })}</div><CouncilSeats council={view.court?.council} /><GovernanceSummary view={view} /><SuccessionForecast forecast={succession.forecast} /><ForeignRealms realms={view.foreignRealms} busy={busy} openId={envoyTo} onEnvoy={setEnvoyTo}
+    renderEnvoy={(realm) => <EnvoyView realm={realm} busy={busy} runAction={runAction} onHold={onHold} onClose={() => setEnvoyTo(null)} />} />
   <section className="char-card char-succession"><span className="char-eyebrow">Nästa generation</span><h3>Succession och familjens framtid</h3>{view.realm && <p className="char-succession-law">Tronföljd: <strong>{view.realm.successionLawLabelSv}</strong></p>}<p>{succession.description || succession.lawLabel || "Härskarämbete, familjeledning och personlig egendom följer egna regler. Familjens gemensamma tillgångar består vid ett personligt arv."}</p><div className="char-succession-grid"><div><h4>Tronföljd</h4>{succession.heirName || succession.heirId ? <p>{succession.heirName || people[succession.heirId]?.name}</p> : <p className="char-caption">Kandidaternas behörighet och stöd avgör övergången.</p>}{entries(succession.candidates).map((candidate, index) => <div className="char-candidate" key={candidate.id || candidate.personId || index}><strong>{candidate.name || people[candidate.personId || candidate.id]?.name}</strong><span>{candidate.reason || candidate.description || [candidate.familyName, candidate.age != null ? `${candidate.age} år` : null, candidate.archetypeLabel].filter(Boolean).join(" · ")}</span></div>)}</div><div><h4>Familjeledning</h4><p>{view.mode === "family" ? "Du fortsätter följa samma familj även om den förlorar tronen. Ämbetets offentliga medel stannar i riket." : "Du fortsätter styra riket även när en ny familj tar makten. Den nya ledningens personlighet och förmågor gäller."}</p>{succession.familyHeadName && <p>Familjens nuvarande företrädare: <strong>{succession.familyHeadName}</strong></p>}{succession.regentName && <p>Regent: <strong>{succession.regentName}</strong></p>}<p className="char-caption">Personligt arv överför den avlidnes egendom och skulder. Det överför inte statens eller familjens gemensamma kassa.</p></div></div></section>
   </>;
 }
@@ -511,7 +515,7 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0 })
           {tab === "council" && <CouncilView view={view} pending={pending} onCommand={command} busy={busy} setTab={setTab} selectPerson={setPersonId} runAction={runAction} />}
           {tab === "people" && <PeopleView view={view} selectedId={personId} selectPerson={setPersonId} busy={busy} runAction={runAction} talks={talks} setTalk={setTalk} onHold={setTalkHold} />}
           {tab === "families" && <FamiliesView view={view} />}
-          {tab === "offices" && <OfficesView view={view} setTab={setTab} />}
+          {tab === "offices" && <OfficesView view={view} setTab={setTab} busy={busy} runAction={runAction} onHold={setTalkHold} />}
            {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Olika personer kan företräda riket och hushållet. Varje handling följer den ansvariga aktörens mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}<ChainHistory chains={view.chainHistory} /></>}
           {tab === "intrigue" && <IntrigueView view={view} busy={busy} onCommand={command} />}
           {tab === "chronicle" && <ChronicleView view={view} filter={chronicleFilter} setFilter={setChronicleFilter} historical={historical} startDate={game?.startDate} gameDate={game?.gameDate} />}

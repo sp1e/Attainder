@@ -3,6 +3,7 @@ import { MAX_AGENTS, MAX_EXTRA_SILVER } from '../../runtime/characters/actionCat
 import { STAFF_ROLES } from '../../runtime/characters/courtStaff.js';
 import { ADULT_AGE } from '../../runtime/characters/content.js';
 import { ARGUMENT_KINDS, CONVERSATION_REQUESTS, MAX_ARGUMENTS } from '../../runtime/characters/conversation.js';
+import { ENVOY, ENVOY_ARGUMENT_KINDS, ENVOY_REQUESTS } from '../../runtime/characters/envoys.js';
 import { extractJsonPayload } from '../AI/jsonSalvage.js';
 
 // Low-effort model calls for the character panel: interpret the player's free text as one catalog action, narrate what an action's outcome looked like, and hold a conversation (read what the player asks of one person, and reply in that person's voice; callKind 'converse'). The model never sets odds and never writes state; its answers are validated here, and the engine validates them again when they arrive as commands.
@@ -418,5 +419,112 @@ export async function replyAsCharacter({ personId, text: playerText, history = [
   const { systemPrompt, userText } = replyPrompt(brief, view?.representative?.name ?? '', String(playerText ?? ''), history, fixed.value, view);
   const result = await askWithRetry({ callModel, systemPrompt, userText, tool: REPLY_TOOL, callKind: 'converse', validate: validateReply });
   if (result.failed) return failedResult(result, REPLY_FAILED);
+  return result.value;
+}
+
+// --- Envoys ------------------------------------------------------------------------------------------
+// An envoy carries the player's message to a foreign ruler (envoys spec). The same two steps as the court conversation: read the
+// message into a request the engine prices and rolls, then answer as the ruler about an outcome that is already fixed.
+
+const ENVOY_REQUEST_FAILED = 'Sändebudets ärende kunde inte tolkas. Försök formulera dig på nytt.';
+const RULER_REPLY_FAILED = 'Härskaren kunde inte svara just nu. Försök igen.';
+const WRONG_REALM = 'Underlaget hör till ett annat rike.';
+
+const ENVOY_EXTRACT_TOOL = Object.freeze({
+  name: 'extract_envoy_request',
+  description: 'Read the message the player sends by envoy to a foreign ruler and report whether it asks for reconciliation or peace, with the gift and the arguments the message actually gives.',
+  schema: {
+    type: 'object',
+    properties: {
+      kind: { type: 'string', enum: ['none', ...Object.keys(ENVOY_REQUESTS)] },
+      offerSilver: { type: 'integer', minimum: 0, description: 'Silver the message offers as a gift. 0 when none.' },
+      arguments: { type: 'array', maxItems: ENVOY.maxArguments, items: { type: 'object', properties: { kind: { type: 'string', enum: [...ENVOY_ARGUMENT_KINDS] }, refId: { type: 'string' } }, required: ['kind'] } },
+      argumentScore: { type: 'integer', minimum: 0, maximum: SCORE_MAX, description: 'How convincing the arguments are, 0 to ' + SCORE_MAX + '.' },
+    },
+    required: ['kind', 'offerSilver', 'arguments', 'argumentScore'],
+  },
+});
+
+const RULER_REPLY_TOOL = Object.freeze({
+  name: 'reply_as_ruler',
+  description: 'Write the answer the foreign ruler sends back with the envoy, in character.',
+  schema: { type: 'object', properties: { reply: { type: 'string', maxLength: REPLY_MAX } }, required: ['reply'] },
+});
+
+// The engine's brief on the ruler (view.envoyBrief, from getEnvoyBrief). There is no fallback: without the ruler's memories the model could only guess.
+function rulerBrief(view, realmId) {
+  const given = view?.envoyBrief;
+  if (!given) return { reason: 'Riket finns inte bland grannrikena.' };
+  return given.realmId === realmId ? { brief: given } : { reason: WRONG_REALM };
+}
+
+function envoyExtractPrompt(brief, view, playerText, history) {
+  return {
+    systemPrompt: [
+      'You read the message the player of a ' + setting(view) + ' sends by envoy to ' + brief.rulerName + ', ruler of ' + brief.realmName + ', and report what it asks for. This step sets no odds and invents nothing: the game checks every argument against the facts.',
+      'kind is "reconcile" (the ruler sets old wrongs aside) or "peace" (the ruler ends the war between the realms). A greeting, a question or anything else is "none". offerSilver is the silver the message offers as a gift, 0 if none.',
+      'List in arguments only the reasons the message actually gives, each as { kind, refId }: "offer" (silver offered) or "shared_memory" (refId is the refId of one of the ruler\'s memories; list it also when the message recalls a wrong the ruler holds against the player\'s realm, because the game counts a grievance). argumentScore is how convincing the reasons are, 0 to ' + SCORE_MAX + '; the game caps it again.',
+      DATA_NOTE,
+      ...historicalGuidance(view),
+    ].join('\n'),
+    userText: JSON.stringify({ ...historicalData(view), playerText, ruler: brief, conversation: turnsOf(history) }),
+  };
+}
+
+function rulerReplyPrompt(brief, playerName, playerText, history, outcome, view) {
+  const { realmId, memories, ...ruler } = brief;
+  return {
+    systemPrompt: [
+      'You speak as ' + brief.rulerName + ', ruler of ' + brief.realmName + ', in a ' + setting(view) + '. Write the Swedish answer the ruler sends back with the envoy, in first person, in character, of at most ' + REPLY_MAX + ' characters. The ruler data below shows how the ruler regards the player\'s realm and what the ruler remembers of it; stay within it.',
+      'The outcome of the request is already decided by the game and is fixed. If outcome is null the message asked for nothing: answer in character and grant nothing. If accepted is true you agree to what was asked; if false you refuse. Never contradict the outcome, never mention odds, dice or the game, and name no person or event beyond the data.',
+      DATA_NOTE,
+      ...historicalGuidance(view),
+    ].join('\n'),
+    userText: JSON.stringify({ ...historicalData(view), player: playerName, playerText, ruler: { ...ruler, memories: memories.map(({ refId, ...memory }) => memory) }, conversation: turnsOf(history), outcome }),
+  };
+}
+
+// A gift or a score the model gave in the wrong form is asked for again, so a gift the player named is not lost. The arguments are made to pass
+// the engine's shape check; whether an argument is real, and whether the gift is allowed, is the engine's call.
+function validateEnvoyRequest(realmId, answer) {
+  if (answer.kind === 'none') return { ok: true, request: null };
+  if (!Object.hasOwn(ENVOY_REQUESTS, answer.kind)) throw new Rejection(`kind "${answer.kind}" is not one of none, ${Object.keys(ENVOY_REQUESTS).join(', ')}.`);
+  if (!Number.isInteger(answer.offerSilver) || answer.offerSilver < 0) throw new Rejection('offerSilver must be a whole number of silver, 0 or more.');
+  if (!Number.isFinite(answer.argumentScore)) throw new Rejection('argumentScore must be a number from 0 to ' + SCORE_MAX + '.');
+  const given = Array.isArray(answer.arguments) ? answer.arguments : [];
+  const argumentsList = given.filter((item) => plain(item) && ENVOY_ARGUMENT_KINDS.includes(item.kind)).slice(0, ENVOY.maxArguments).map((item) => ({ kind: item.kind, refId: idOrNull(item.refId) }));
+  return { ok: true, request: { realmId, kind: answer.kind, offerSilver: answer.offerSilver, arguments: argumentsList,
+    argumentScore: Math.max(0, Math.min(SCORE_MAX, Math.round(answer.argumentScore))) } };
+}
+
+/**
+ * Reads the message the player sends by envoy to one foreign realm. Resolves to { ok: true, request } where request is { realmId, kind, offerSilver, arguments, argumentScore } for estimateEnvoyRequest, or null when the message asks for nothing, or to { ok: false, reason, detail }. `view` carries `envoyBrief` (getEnvoyBrief) for the realm. The model sets no odds.
+ */
+export async function extractEnvoyRequest({ realmId, text: playerText, history = [], view, callModel = defaultCallModel }) {
+  const { brief, reason } = rulerBrief(view, realmId);
+  if (!brief) return { ok: false, reason };
+  const { systemPrompt, userText } = envoyExtractPrompt(brief, view, String(playerText ?? ''), history);
+  const result = await askWithRetry({ callModel, systemPrompt, userText, tool: ENVOY_EXTRACT_TOOL, callKind: 'converse', validate: (answer) => validateEnvoyRequest(realmId, answer) });
+  if (result.failed) return failedResult(result, ENVOY_REQUEST_FAILED);
+  return result.value;
+}
+
+const readEnvoyOutcome = (outcome) => {
+  if (outcome === null || outcome === undefined) return { value: null };
+  const valid = plain(outcome) && Object.hasOwn(ENVOY_REQUESTS, outcome.kind) && typeof outcome.accepted === 'boolean';
+  return valid ? { value: { kind: outcome.kind, accepted: outcome.accepted } } : { invalid: true };
+};
+
+/**
+ * Writes the foreign ruler's answer, in character. `outcome` is null when the message asked for nothing, or { kind, accepted }, which the engine has already decided. Resolves to { ok: true, reply } or { ok: false, reason, detail }.
+ */
+export async function replyAsRuler({ realmId, text: playerText, history = [], view, outcome = null, callModel = defaultCallModel }) {
+  const { brief, reason } = rulerBrief(view, realmId);
+  if (!brief) return { ok: false, reason };
+  const fixed = readEnvoyOutcome(outcome);
+  if (fixed.invalid) return { ok: false, reason: 'Utfallet av förfrågan är ogiltigt.' };
+  const { systemPrompt, userText } = rulerReplyPrompt(brief, view?.ruler?.name ?? view?.representative?.name ?? '', String(playerText ?? ''), history, fixed.value, view);
+  const result = await askWithRetry({ callModel, systemPrompt, userText, tool: RULER_REPLY_TOOL, callKind: 'converse', validate: validateReply });
+  if (result.failed) return failedResult(result, RULER_REPLY_FAILED);
   return result.value;
 }
