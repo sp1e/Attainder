@@ -3,6 +3,7 @@ import { rememberAbroad } from './alliances.js';
 import { hashRoll } from './duels.js';
 import { FOREIGN } from './foreignRealms.js';
 import { addPrestige } from './reign.js';
+import { TRIBE, hiredTribes } from './tribes.js';
 
 // A fabricated claim on a neighbor's border land, pressed by war (spec docs/superpowers/specs/2026-11-10-fabricated-claim-design.md). Historical campaigns only.
 // Every roll is hashRoll of text; nothing here moves a random stream, and the map does not change.
@@ -83,10 +84,10 @@ export function makePeace(state, { realmId }, actor, events, hooks) {
   endWar(state, realm, WAR_ENDS.stalemate, events, hooks, `${actor.name} sluter fred. ${borderLand(realm)} stannar hos ${realm.name}.`);
 }
 
-/** The chance to win a battle, held to 0.2..0.8. Reads only. */
+/** The chance to win a battle, held to 0.2..0.8: allied realms and hired border tribes (tribes spec) each add their bonus. Reads only. */
 export function warChance(state, realm, readiness) {
   const allies = state.foreignRealms.filter((entry) => entry.id !== realm.id && entry.alliance).length;
-  return Math.min(0.8, Math.max(0.2, 0.3 + readiness / 200 + CLAIM.allyBonus * allies));
+  return Math.min(0.8, Math.max(0.2, 0.3 + readiness / 200 + CLAIM.allyBonus * allies + TRIBE.hireBonus * hiredTribes(state)));
 }
 
 function ripen(state, realm, events, hooks) {

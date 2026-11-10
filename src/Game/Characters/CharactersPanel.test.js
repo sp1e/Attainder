@@ -126,7 +126,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
   modules["./EnvoyView.jsx"] = runModule(envoyCompiled, modules);
   const exports = runModule(compiled, modules, { window: { matchMedia: () => ({ matches: theme === "dark" }) }, localStorage: { getItem: () => "system" }, ...globals });
   return { ...exports, IntrigueView: modules["./IntrigueView.jsx"].default, ConversationView: modules["./ConversationView.jsx"].default,
-    EnvoyView: modules["./EnvoyView.jsx"].default, ForeignRealms: modules["./CourtSections.jsx"].ForeignRealms, calls };
+    EnvoyView: modules["./EnvoyView.jsx"].default, ForeignRealms: modules["./CourtSections.jsx"].ForeignRealms, BorderTribes: modules["./CourtSections.jsx"].BorderTribes, calls };
 }
 
 const principal = { id: "ruler", name: "Astrid", age: 42, alive: true, stress: 19 };
@@ -2285,4 +2285,15 @@ test("each neighbor offers an envoy, and a closed one says why", () => {
   assert.equal(findAll(driver.render(React.createElement(ForeignRealms, { realms })), (node) => node.type === "button").length, 0, "without onEnvoy the list only reads");
   const busy = driver.render(React.createElement(ForeignRealms, { realms, busy: true, onEnvoy: () => {} }));
   assert.ok(findAll(busy, (node) => node.type === "button").every((button) => button.props.disabled), "a busy panel sends no envoy");
+});
+
+test("the border tribes show distance, state and the last raid, and no list appears without tribes", () => {
+  const driver = createHookDriver();
+  const { BorderTribes } = loadPanel({}, { react: driver.react });
+  const tribes = [{ id: "a", name: "Testobodriter", distanceKm: 451, stateLabel: "oroligt", lastRaidYear: 803 }, { id: "b", name: "Testsorber", distanceKm: null, stateLabel: "betalt till 805", lastRaidYear: null }];
+  const shown = textOf(driver.render(React.createElement(BorderTribes, { tribes })));
+  assert.match(shown, /Gränsfolk/);
+  assert.match(shown, /Testobodriter451 km · oroligt · senaste räd 803/);
+  assert.match(shown, /Testsorberokänt avstånd · betalt till 805/);
+  assert.equal(driver.render(React.createElement(BorderTribes, { tribes: [] })), null);
 });

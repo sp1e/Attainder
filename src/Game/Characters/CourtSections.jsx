@@ -113,6 +113,18 @@ export function ForeignRealms({ realms, busy = false, openId = null, onEnvoy, re
   </Section>;
 }
 
+/** The peoples without a court near the border (tribes spec): distance, whether they are paid, hired or beaten, and the last raid. */
+export function BorderTribes({ tribes }) {
+  const rows = entries(tribes);
+  if (!rows.length) return null;
+  return <Section title="Gränsfolk" eyebrow="Utanför riket">
+    <ul className="char-reign-goals">{rows.map((tribe) => <li key={tribe.id}>
+      <strong>{tribe.name}</strong>
+      <span className="char-caption">{`${tribe.distanceKm == null ? 'okänt avstånd' : `${number(tribe.distanceKm)} km`} · ${tribe.stateLabel}${tribe.lastRaidYear == null ? '' : ` · senaste räd ${tribe.lastRaidYear}`}`}</span>
+    </li>)}</ul>
+  </Section>;
+}
+
 export function CouncilSeats({ council }) {
   if (!council) return null;
   const ambitions = entries(council.ambitions);
