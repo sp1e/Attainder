@@ -84,6 +84,13 @@ export function ReignCard({ court, nicknamePath, handover, Meter }) {
   </div>;
 }
 
+// A claim being forged, a ready claim, a war with its score and the border lands taken (fabricated-claim spec).
+function claimText(realm) {
+  const claim = realm.claim === 'forging' ? ' · anspråk smids' : realm.claim === 'ready' ? ' · anspråk klart' : '';
+  const war = realm.war ? ` · i krig, ställning ${realm.war.score > 0 ? '+' : ''}${realm.war.score}` : '';
+  return `${claim}${war}${realm.lands ? ` · erövrade gränsland: ${realm.lands}` : ''}`;
+}
+
 /** The other realms of a historical campaign: ruler, heir, seat, distance and opinion. */
 export function ForeignRealms({ realms }) {
   const rows = entries(realms);
@@ -92,7 +99,7 @@ export function ForeignRealms({ realms }) {
     <ul className="char-reign-goals">{rows.map((realm) => <li key={realm.id}>
       <strong>{realm.name}</strong>
       <span>{`${realm.rulerName}, ${realm.rulerAge} år${realm.heirName ? ` · arvinge: ${realm.heirName}` : ' · ingen känd arvinge'}`}</span>
-      <span className="char-caption">{`${realm.seatName ?? 'Okänt säte'} · ${realm.distanceKm == null ? 'okänt avstånd' : `${number(realm.distanceKm)} km`}${realm.neighbor ? ' · granne' : ''}${realm.allied ? ' · allierad' : ''} · hållning ${number(realm.opinion)}`}</span>
+      <span className="char-caption">{`${realm.seatName ?? 'Okänt säte'} · ${realm.distanceKm == null ? 'okänt avstånd' : `${number(realm.distanceKm)} km`}${realm.neighbor ? ' · granne' : ''}${realm.allied ? ' · allierad' : ''}${claimText(realm)} · hållning ${number(realm.opinion)}`}</span>
     </li>)}</ul>
   </Section>;
 }
