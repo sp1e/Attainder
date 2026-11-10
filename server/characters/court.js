@@ -4,6 +4,7 @@ import { chancellorStep, loyaltyDriftStep, presentCouncil } from './council.js';
 import { DEATHBED_EXPIRY, deathbedChoices, deathbedClosedReason, deathbedLog, deathbedStep, resolveDeathbed } from './deathbed.js';
 import { dreadYearStep, presentDread } from './dread.js';
 import { DUEL_EXPIRY, duelChoices, duelClosedReason, duelStep, resolveDuel } from './duels.js';
+import { ECHO_EXPIRY, echoChoices, echoClosedReason, echoExpiry, echoStep, resolveEcho } from './echoes.js';
 import { DEMAND_EXPIRY, demandChoices, demandClosedReason, demandStep, presentDemands, resolveDemand, validateFamilyDemands, voidDemand, voidOpenDemands } from './familyDemands.js';
 import { ULTIMATUM_EXPIRY, factionStep, presentFactions, refreshFactions, resolveUltimatum, ultimatumChoices, ultimatumClosedReason, validateFactions, voidFactions } from './factions.js';
 import { nicknameStep, validateNicknames } from './nicknames.js';
@@ -12,16 +13,17 @@ import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, va
 // The court: one orchestrator for what happens around the throne. These entry points keep the systems of Phase 3 out of the long functions in index.js.
 // `hooks` are the engine's (actionHooks in index.js). actionResolution.js, npcPlots.js and schemes.js import each other in a cycle, so their exports are used only inside functions here.
 
-export const COURT_STORY_TYPES = Object.freeze(['stress_breakdown', 'family_demand', 'faction_ultimatum', 'deathbed', 'duel_challenge']);
+export const COURT_STORY_TYPES = Object.freeze(['stress_breakdown', 'family_demand', 'faction_ultimatum', 'deathbed', 'duel_challenge', 'decision_echo']);
 
 // One row per court story.
-// `expiry` is what a story past its due date resolves to, and `expiryText` replaces its log line where the cost depends on who is acting, as `deadlineText` replaces its caption; `closedReason` gives the text of a story that fell away, or ''; `onClose` is what such a story leaves behind; `log` writes the row's own log lines under ids of its own.
+// `expiry` is what a story past its due date resolves to, and `expiryFor` gives it per story where it depends on the story, and `expiryText` replaces its log line where the cost depends on who is acting, as `deadlineText` replaces its caption; `closedReason` gives the text of a story that fell away, or ''; `onClose` is what such a story leaves behind; `log` writes the row's own log lines under ids of its own.
 const COURT_STORIES = Object.freeze({
   stress_breakdown: Object.freeze({ choices: breakdownChoices, resolve: resolveBreakdown, expiry: BREAKDOWN_EXPIRY, expiryText: breakdownExpiryText, deadlineText: breakdownDeadlineText, closedReason: breakdownClosedReason }),
   family_demand: Object.freeze({ choices: demandChoices, resolve: resolveDemand, expiry: DEMAND_EXPIRY, closedReason: demandClosedReason, onClose: voidDemand }),
   faction_ultimatum: Object.freeze({ choices: ultimatumChoices, resolve: resolveUltimatum, expiry: ULTIMATUM_EXPIRY, closedReason: ultimatumClosedReason }),
   deathbed: Object.freeze({ choices: deathbedChoices, resolve: resolveDeathbed, expiry: DEATHBED_EXPIRY, closedReason: deathbedClosedReason, log: deathbedLog }),
   duel_challenge: Object.freeze({ choices: duelChoices, resolve: resolveDuel, expiry: DUEL_EXPIRY, closedReason: duelClosedReason }),
+  decision_echo: Object.freeze({ choices: echoChoices, resolve: resolveEcho, expiry: ECHO_EXPIRY, expiryFor: echoExpiry, closedReason: echoClosedReason }),
 });
 
 /** Runs after npcPlotStep and returns the paid chancellor delta for annual accounting. A dissolved realm pays 0. */
@@ -40,6 +42,7 @@ export function courtAnnualStep(state, events, hooks) {
   breakdownStep(state, events, hooks);
   deathbedStep(state, events, hooks);
   duelStep(state, events, hooks);
+  echoStep(state, events, hooks);
   return contribution;
 }
 
@@ -60,7 +63,7 @@ export function resolveCourtStory(state, story, choiceId, events, hooks) {
 
 // An expiry writes the outcome itself: resolveStory refuses a choice outside the list, and the expiry is one.
 function expireStory(state, story, row, events, hooks) {
-  const { choiceId, text } = row.expiry;
+  const { choiceId, text } = row.expiryFor?.(story) ?? row.expiry;
   row.resolve(state, story, choiceId, events, hooks);
   Object.assign(story, { status: 'resolved', choiceId, resolvedAt: state.date });
   storyLog(state, story, row, 'expired', events, hooks, row.expiryText?.(hooks) ?? text);
