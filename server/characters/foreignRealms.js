@@ -3,6 +3,7 @@ import { getCharacterAge } from './characterCapacity.js';
 import { hashRoll } from './duels.js';
 import { isMarried } from './marriage.js';
 import { presentClaim, validClaimFields } from './claims.js';
+import { validEnvoy } from './envoys.js';
 
 // Foreign realms live beside the court (spec docs/superpowers/specs/2026-11-10-foreign-realms-design.md). Historical campaigns only.
 // Each realm keeps its ruling family from the package court seed. Foreign people never enter state.people. Rolls are hashRoll; nothing draws from a stream.
@@ -139,7 +140,7 @@ function validRealm(realm) {
   if ((realm.seatName !== null && typeof realm.seatName !== 'string') || (realm.distanceKm !== null && !Number.isFinite(realm.distanceKm)) || !Number.isInteger(realm.sequence) || realm.sequence < 0) return false;
   const people = Object.entries(realm.people);
   return people.length <= FOREIGN.peopleLimit && people.every(([id, person]) => validPerson(person, id) && !(bornNumber(realm, id) > realm.sequence)) && plain(realm.people[realm.rulerId])
-    && realm.memories.every((entry) => plain(entry) && typeof entry.label === 'string' && Number.isFinite(entry.amount) && normalizeGameDate(entry.until) === entry.until);
+    && realm.memories.every((entry) => plain(entry) && typeof entry.label === 'string' && Number.isFinite(entry.amount) && normalizeGameDate(entry.date) === entry.date && normalizeGameDate(entry.until) === entry.until);
 }
 
 // An alliance (marriage-alliance spec) names a married couple at court and its start.
@@ -151,5 +152,5 @@ export function validateForeignRealms(state) {
   if (!Object.hasOwn(state, 'foreignRealms')) return;
   const realms = state.foreignRealms;
   if (!state.historicalOrigin || !Array.isArray(realms) || realms.length > FOREIGN.realms || !realms.every(validRealm)
-    || !realms.every((realm) => validAlliance(state, realm.alliance) && validClaimFields(realm)) || new Set(realms.map((realm) => realm.id)).size !== realms.length) throw new Error('Sparfilens grannriken är ogiltiga.');
+    || !realms.every((realm) => validAlliance(state, realm.alliance) && validClaimFields(realm) && validEnvoy(realm.lastEnvoy)) || new Set(realms.map((realm) => realm.id)).size !== realms.length) throw new Error('Sparfilens grannriken är ogiltiga.');
 }
