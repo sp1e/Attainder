@@ -13,7 +13,8 @@ const EARTH_KM = 6371;
 const clampOpinion = (value) => Math.max(-FOREIGN.opinion, Math.min(FOREIGN.opinion, value));
 const plain = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
 
-function distanceKm([lon1, lat1], [lon2, lat2]) {
+/** Great-circle distance in whole kilometres between two [longitude, latitude] points. */
+export function distanceKm([lon1, lat1], [lon2, lat2]) {
   const rad = (deg) => (deg * Math.PI) / 180;
   const a = Math.sin(rad(lat2 - lat1) / 2) ** 2 + Math.cos(rad(lat1)) * Math.cos(rad(lat2)) * Math.sin(rad(lon2 - lon1) / 2) ** 2;
   return Math.round(2 * EARTH_KM * Math.asin(Math.sqrt(a)));
