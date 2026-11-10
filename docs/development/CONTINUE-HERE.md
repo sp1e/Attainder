@@ -186,6 +186,15 @@ Phase 5, moment 23. The spec is `docs/superpowers/specs/2026-11-10-duel-design.m
 - The ruler lets the heir fight, sends a better fighter of the family for 15 silver, or forbids it (+20 stress, −20 towards the ruler). An unanswered challenge goes ahead. The loser dies (25 %) or takes an injury.
 - A hash of the story id settles the fight; no stream draws. Hadara's 300-year hash matches `main`; Charlemagne seeds 777, 321 and 5 saw 3, 2 and 5 duels in 300 years.
 
+## A choice from ten years earlier comes back
+
+Phase 5, moment 22. The spec is `docs/superpowers/specs/2026-11-10-decision-echo-design.md`, PR #175, `02620e69`. Moments 20 and 21 remain.
+
+- `server/characters/echoes.js` adds the court story `decision_echo` on historical campaigns. A directed-story or chain decision of the player's house that moved someone's opinion by 5 or more comes back in its eleventh year, when the original opinion cause has just expired.
+- The witness remembers, or the witness's eldest adult child when the witness has died. A kind memory can be welcomed or cashed in for influence; a harsh one can be paid off, apologised for or left standing as a grudge.
+- At most one echo in three years. No draws: Hadara's 300-year hash matches `main`; Charlemagne seeds 777, 321 and 5 saw 16, 23 and 6 echoes in 300 years.
+- `court.js` rows may give `expiryFor(story)` when the default choice depends on the story.
+
 ## Branch state
 
 Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The whole-branch review found two reproduced issues; both now have reviewed fixes. The final follow-up review of `08d3518..55283dc` approved the branch with no new Critical, Important or Minor findings. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295). [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the fixes, and the remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`. The retained remote branch `fix/phase-3-review` ends at `55283dc`; its tested production code remains `cfa225238c5065441e4642481ab507629e498e73`. Nobody has run the Phase 3 play script; the owner deferred the Hadara script behind the historical foundation.
