@@ -1,6 +1,6 @@
 # Development checkpoint: Phase 3 of the AI game master
 
-Updated on 9 November 2026.
+Updated on 10 November 2026.
 
 ## Historical foundation checkpoint
 
@@ -194,6 +194,62 @@ Phase 5, moment 22. The spec is `docs/superpowers/specs/2026-11-10-decision-echo
 - The witness remembers, or the witness's eldest adult child when the witness has died. A kind memory can be welcomed or cashed in for influence; a harsh one can be paid off, apologised for or left standing as a grudge.
 - At most one echo in three years. No draws: Hadara's 300-year hash matches `main`; Charlemagne seeds 777, 321 and 5 saw 16, 23 and 6 echoes in 300 years.
 - `court.js` rows may give `expiryFor(story)` when the default choice depends on the story.
+
+## A feast where someone seduces, quarrels or poisons
+
+Phase 5, moment 20. The spec is `docs/superpowers/specs/2026-11-10-feast-outcomes-design.md`, PR #177, `fd866841`.
+
+- `server/characters/feastOutcomes.js` runs at the end of `hold_feast` on historical campaigns, dated the feast's first day. The host and the active representative take no part.
+- A married guest who dislikes the living spouse is seduced by the guest of the other sex they like most: an `affair` secret, a `lover` bond and +20 "Gästabudets natt". `paternity.js` names the seducer when a child of the affair is born.
+- The two guests of different houses who like each other least quarrel: −15 "Grälet på gästabudet" each way and 10 stress.
+- A guest outside the player's family who hates another guest at −40 or lower poisons them half the time. The victim dies in 3 cases of 10; the poisoner is caught in 4 of 10, and the crime is otherwise left for `investigate`.
+- Every roll is `hashRoll` of the occasion id. No stream moves.
+
+## Plague reaches the capital
+
+Phase 5, moment 21. The spec is `docs/superpowers/specs/2026-11-10-plague-design.md`, PR #178, `fec3ff22`. Phase 5 is complete.
+
+- `server/characters/plague.js` adds the court story `plague_outbreak` on historical campaigns. An outbreak starts when a yearly `hashRoll` of the plot stream state rolls below 0.04, at most once in 180 months.
+- The representative closes the gates (20 silver, infection 0.10), orders prayer (5 silver, 0.25, +3 legitimacy) or flees (free; the player's family is spared, everyone else 0.30, −5 legitimacy). No answer means 0.30 for everyone.
+- An infected person dies in 4 cases of 10; deaths go through `hooks.kill`, so succession runs as for any death.
+
+## A wonder lifts prestige for generations
+
+Phase 6, moment 25. The spec is `docs/superpowers/specs/2026-11-10-wonders-design.md`, PR #179, `476dfd68`.
+
+- `build_wonder` costs 100 silver and one order and opens a public project of 120 months: a cathedral, a palace or a library, each built once, at most three.
+- A finished wonder gives 15 prestige. Each standing wonder lifts the prestige floor by 20 through `prestigeStep(state, lift)`, so it pays one legitimacy a year for the rest of the campaign.
+
+## Foreign realms beside the court
+
+Phase 6 foundation. The spec is `docs/superpowers/specs/2026-11-10-foreign-realms-design.md`, PR #180, `7cc4c5b6`. Moments 7, 26 and 27 build on it.
+
+- `createHistoricalCharacterSystem` seeds `state.foreignRealms` before `narrowToChosenCourt` drops the other court seeds: the eight nearest courts of the package, with ruler, documented family, seat and distance. A realm within 2,500 km is a neighbor.
+- Each year the foreign families age, marry, have children and die by `hashRoll`; a dead ruler's crown passes by the realm's law. A realm holds at most 16 people after the yearly step.
+- `memories` and `foreignOpinion(state, realmId)` hold what each realm thinks of the player's. The court tab lists the neighbors. Hadara has no field.
+
+## A marriage alliance that brings the ally's war
+
+Phase 6, moment 7. The spec is `docs/superpowers/specs/2026-11-10-marriage-alliance-design.md`, PR #181, `e08bdb12`.
+
+- `foreign_marriage` (30 silver, one order) marries an unmarried adult of the player's family to an unmarried foreign adult of a neighbor. The partner moves to court as a generated adult, and the realm records `alliance` with +20 "Giftermål" for 30 years.
+- An ally calls the player to war in 15 % of years, at most once in five. Joining costs 40 silver and rolls one battle; refusing, or no answer in six months, ends the alliance and leaves "Svek i kriget" at −40 for 30 years.
+
+## A fabricated claim pressed by war
+
+Phase 6, moment 26. The spec is `docs/superpowers/specs/2026-11-10-fabricated-claim-design.md`, PR #182, `473e1e0e`.
+
+- `fabricate_claim` (40 silver, 24 months) forges a claim on a neighbor's border land; the neighbor exposes it in 25 % of cases. `press_claim` was already taken by throne claims, hence the name.
+- `declare_war` (60 silver) fights one battle a year. Score +2 wins a border land worth 10 silver a year, −2 loses 50 silver in reparations, and five battles end in a stalemate. `make_peace` ends a war as a stalemate.
+
+## An envoy to a ruler who remembers
+
+Phase 6, moment 27. The spec is `docs/superpowers/specs/2026-11-10-envoys-design.md`. Part one, the engine, is PR #183, `93a7b78a`; part two, the view and the model calls, is PR #184 (`54716d1f`). Moment 24 remains.
+
+- `server/characters/envoys.js` adds `envoy_request`, which only the conversation step may send (`origin: "converse"`). The player asks for reconciliation (base 35) or, during a war, for peace (base 30), once a year per realm.
+- Each live memory of the realm is a row of the odds worth its amount divided by 4, held together to −20…20. A gift of 20 to 60 silver adds up to 15 and is paid only on acceptance. A gift or a cited favour the realm owes lets the model's argument score add up to 10; citing a grievance costs 5. The chance is held to 5…95.
+- `EnvoyView.jsx` opens under each neighbor in the offices view. `extractEnvoyRequest` reads the player's message into a request; the engine shows the odds and rolls; `replyAsRuler` answers in character about the fixed outcome. The model never sets odds.
+- The flow has tests with a stubbed model. It has not been played in a browser with a live model.
 
 ## Branch state
 

@@ -427,3 +427,18 @@ Write it in English, under the same writing rules.
   Propose sourced Swedish wording for both texts that holds for Karls rike and for Kyrkostaten. Keep the sources `ROME_800` cites, or name sources you opened in this session. Record both texts and their sources under `## Corrections for files Codex may not change` in `RESEARCH-STATUS.md`. You may also bring `settlements[0].noteSv` in `ad800-review.json` in line with the new Rome note. That one field is an exception to section 2; the rest of the file stays Claude's.
 
   Claude then changes `ROME_800` and `contextSv` and releases Charlemagne 1.2.0. Charlemagne's provenance is frozen at 1.1.0, so the release needs a new frozen record in `released-provenance.json` and `contentVersion` `1.2.0` in `HISTORICAL_BOOKMARKS` as well as a rebuild. Installed 1.1.0 copies then upgrade on the next library read.
+
+- **Border tribes, for Phase 6 moment 24.** The moment reads "Barbarian tribes on the border can be bribed, hired or crushed." The engine has no tribes to offer. The non-state rows in `allFeatures` of `ad800-review.json` (for example "Slavonic tribes" and "Magyars", status `cultural-or-nonstate`) have no game geometry and no Swedish name.
+
+  For each start, list the peoples without a collective sovereign that lived within 2,500 km of a playable seat in the start year. Add them as a top-level `tribes` array in that start's review file (`ad800-review.json` first, then `ad1200-review.json`, `ad1500-review.json` and `bc3000-review.json`), one entry per people:
+
+  ```json
+  { "id": "ad800-tribe-obodrites", "nameSv": "Obodriter", "coordinates": [11.4, 53.9], "sourceIds": ["<id in this file's sources>"] }
+  ```
+
+  - `id` is unique in the file and stable across releases.
+  - `nameSv` is the Swedish name a player would read on the neighbor list.
+  - `coordinates` is one point, `[longitude, latitude]`, inside the area the people held in the start year. Leave a people out when no source you opened places it.
+  - `sourceIds` names one or more entries of the file's `sources`.
+
+  The example is a shape, not a researched row. Record progress in `RESEARCH-STATUS.md`. Claude then copies the list into `historicalScenario.tribes` in the builder and builds moment 24 on it.
