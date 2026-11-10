@@ -84,6 +84,19 @@ export function ReignCard({ court, nicknamePath, handover, Meter }) {
   </div>;
 }
 
+/** The other realms of a historical campaign: ruler, heir, seat, distance and opinion. */
+export function ForeignRealms({ realms }) {
+  const rows = entries(realms);
+  if (!rows.length) return null;
+  return <Section title="Grannriken" eyebrow="Utanför riket">
+    <ul className="char-reign-goals">{rows.map((realm) => <li key={realm.id}>
+      <strong>{realm.name}</strong>
+      <span>{`${realm.rulerName}, ${realm.rulerAge} år${realm.heirName ? ` · arvinge: ${realm.heirName}` : ' · ingen känd arvinge'}`}</span>
+      <span className="char-caption">{`${realm.seatName ?? 'Okänt säte'} · ${realm.distanceKm == null ? 'okänt avstånd' : `${number(realm.distanceKm)} km`}${realm.neighbor ? ' · granne' : ''} · hållning ${number(realm.opinion)}`}</span>
+    </li>)}</ul>
+  </Section>;
+}
+
 export function CouncilSeats({ council }) {
   if (!council) return null;
   const ambitions = entries(council.ambitions);
