@@ -1,6 +1,7 @@
 import { addGameMonths, compareGameDates, gameDateYear, normalizeGameDate } from '../gameDates.js';
 import { getCharacterAge } from './characterCapacity.js';
 import { hashRoll } from './duels.js';
+import { isMarried } from './marriage.js';
 
 // Foreign realms live beside the court (spec docs/superpowers/specs/2026-11-10-foreign-realms-design.md). Historical campaigns only.
 // Each realm keeps its ruling family from the package court seed. Foreign people never enter state.people. Rolls are hashRoll; nothing draws from a stream.
@@ -116,7 +117,7 @@ export function presentForeignRealms(state) {
   return state.foreignRealms.map((realm) => {
     const ruler = realm.people[realm.rulerId], heir = foreignHeir(realm, ruler, state.date);
     return { id: realm.id, name: realm.name, seatName: realm.seatName, distanceKm: realm.distanceKm, neighbor: realm.distanceKm != null && realm.distanceKm <= FOREIGN.neighborKm,
-      rulerName: ruler.name, rulerAge: getCharacterAge(ruler, state.date), heirName: heir?.name ?? null, opinion: foreignOpinion(state, realm.id) };
+      rulerName: ruler.name, rulerAge: getCharacterAge(ruler, state.date), heirName: heir?.name ?? null, opinion: foreignOpinion(state, realm.id), allied: Boolean(realm.alliance) };
   });
 }
 
@@ -140,9 +141,14 @@ function validRealm(realm) {
     && realm.memories.every((entry) => plain(entry) && typeof entry.label === 'string' && Number.isFinite(entry.amount) && normalizeGameDate(entry.until) === entry.until);
 }
 
+// An alliance (marriage-alliance spec) names a married couple at court and its start.
+const validAlliance = (state, alliance) => alliance == null || (plain(alliance) && normalizeGameDate(alliance.since) === alliance.since
+  && [alliance.personId, alliance.spouseId].every((id) => typeof id === 'string' && Object.hasOwn(state.people, id))
+  && isMarried(state.people[alliance.personId], state.people[alliance.spouseId]));
+
 export function validateForeignRealms(state) {
   if (!Object.hasOwn(state, 'foreignRealms')) return;
   const realms = state.foreignRealms;
   if (!state.historicalOrigin || !Array.isArray(realms) || realms.length > FOREIGN.realms || !realms.every(validRealm)
-    || new Set(realms.map((realm) => realm.id)).size !== realms.length) throw new Error('Sparfilens grannriken är ogiltiga.');
+    || !realms.every((realm) => validAlliance(state, realm.alliance)) || new Set(realms.map((realm) => realm.id)).size !== realms.length) throw new Error('Sparfilens grannriken är ogiltiga.');
 }

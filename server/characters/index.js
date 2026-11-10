@@ -20,6 +20,7 @@ import { punishCrimeChoices, resolvePunishment } from './crimes.js';
 import { feastRefusal, feastRows, holdFeast, presentOccasions, validateOccasions } from './occasions.js';
 import { WONDER, WONDER_KINDS, completeWonder, startWonder, wonderRefusal } from './wonders.js';
 import { ensureForeignRealms, presentForeignRealms, validateForeignRealms } from './foreignRealms.js';
+import { ALLIANCE, arrangeForeignMarriage, foreignMarriageRefusal, foreignPartners, marriageableKin } from './alliances.js';
 import { npcPlotStep, plotUncoveredChoices, resolvePlotUncovered } from './npcPlots.js';
 import { presentRumors, validateRumors } from './rumors.js';
 import { conversationBrief, converse, estimateConversation as estimateConversationRequest, presentConversation, validateConversations } from './conversation.js';
@@ -100,7 +101,7 @@ function royalDecisionReason(state, type) {
 }
 function consumeRoyalConsent(state, type) { const record = royalRegency(state); if (record) consumeRegencyConsent(state, type, [record]); }
 function canRule(state) { const actor = activeRepresentative(state); const executive = realmExecutive(state); const office = state.offices.ruler; if (state.identity.mode === 'family') { const ownHead = state.families[state.identity.familyId]?.headId; if (ownHead !== office.holderId && ownHead !== office.regentId) return false; } return Boolean(actor && executive && actor.id === executive.id); }
-const PUBLIC_COMMANDS = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'abdicate', 'recognize_claim', 'release_prisoner', 'execute_prisoner', 'reward_councillor', 'set_reign_goal', 'build_wonder', ...Object.values(ARCHETYPES).map((archetype) => archetype.action)]);
+const PUBLIC_COMMANDS = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'abdicate', 'recognize_claim', 'release_prisoner', 'execute_prisoner', 'reward_councillor', 'set_reign_goal', 'build_wonder', 'foreign_marriage', ...Object.values(ARCHETYPES).map((archetype) => archetype.action)]);
 // Every command type with its own branch in handleCommand. attempt_action refuses these ids and points to the command instead.
 const COMMAND_TYPES = new Set([...PUBLIC_COMMANDS, 'provide_care', 'rest', 'gift', 'exercise_office', 'educate', 'marry', 'adopt', 'build_estate', 'seek_office', 'build_support', 'press_claim', 'seek_patron', 'return_exile', 'livelihood', 'sell_estate', 'patronize_faith', 'seek_refuge', 'request_regent_consent', 'resolve_regency', 'resolve_story', 'abort_scheme', 'reinforce_scheme', 'hold_feast', 'converse_request', 'realm_effect', 'npc_intent']);
 function commandActor(state, type) {
@@ -790,6 +791,7 @@ function handleCommand(state, command, events) {
   else if (type === 'attempt_action') resolveAttempt(state, command, events, actionHooks(state));
   else if (type === 'hold_feast') holdFeast(state, events, actionHooks(state));
   else if (type === 'build_wonder') { requireRule(state); startWonder(state, p.wonderKind, actor, nextId(state, 'project'), events, actionHooks(state)); }
+  else if (type === 'foreign_marriage') { requireRule(state); arrangeForeignMarriage(state, p, actor, nextId(state, 'person'), events, actionHooks(state)); }
   else if (type === 'reward_councillor') { requireRule(state); rewardCouncillor(state, p.officeId, events, actionHooks(state)); }
   else if (type === 'set_reign_goal') { requireRule(state); setReignGoal(state, p.goalType, actionHooks(state)); }
   else if (type === 'release_prisoner') releasePrisoner(state, p, events, actionHooks(state));
@@ -928,6 +930,7 @@ export function getAvailableCharacterActions(state) {
   add('hold_feast', 'Håll gästabud', 'Bjud in alla myndiga personer i riket i en månad. Gästerna kommer närmare och intriger mot dem blir lättare att föra, men fler ser vad som sker.', 30, [], false, 'generous', family ? feastRefusal(state, family.id) : '');
   actions.at(-1).category = 'court';
   if (state.historicalOrigin && publicRight) add('build_wonder', 'Bygg ett underverk', `Ett tioårigt bygge ur statskassan. Det färdiga underverket ger ${WONDER.prestige} ryktbarhet och håller rikets ryktbarhet uppe så länge riket består.`, WONDER.cost, [selectField('wonderKind', 'Underverk', Object.entries(WONDER_KINDS).map(([value, kind]) => ({ value, label: kind.label })))], true, 'duty', wonderRefusal(state));
+  if (state.historicalOrigin && publicRight) add('foreign_marriage', 'Gifte med ett grannhus', 'Gift bort en person i din familj med en ogift person i ett grannrike. Partnern flyttar till hovet och riket får en allierad, som kan kalla er till krig.', ALLIANCE.cost, [selectField('personId', 'Person', marriageableKin(state, actionHooks(state))), selectField('partnerKey', 'Partner', foreignPartners(state))], true, 'duty', foreignMarriageRefusal(state, actionHooks(state)));
   add('build_estate', 'Utveckla familjens egendom', 'En bestående egendom färdigställs om två år och ger inkomster.', 45, [], false, 'duty', family?.exiled && !family.hostFamilyId && !family.hostPolityId ? 'Sök en beskyddare före jordköp.' : '');
   add('build_support', 'Bygg politiskt stöd', 'Förhandla med en annan familj. Inflytande +12 och en personlig förbindelse.', 15, [selectField('familyId', 'Familj', otherFamilies)], false, 'generous');
   if (state.realm.alive) add('seek_office', 'Sök ett ämbete', 'Rådet väger inflytande, diplomati och härskarens personliga inställning.', 15, [selectField('officeId', 'Ämbete', offices)], false, 'duty', family?.exiled ? 'Återvänd från exil först.' : '');

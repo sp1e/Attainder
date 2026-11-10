@@ -92,7 +92,7 @@ export function ForeignRealms({ realms }) {
     <ul className="char-reign-goals">{rows.map((realm) => <li key={realm.id}>
       <strong>{realm.name}</strong>
       <span>{`${realm.rulerName}, ${realm.rulerAge} år${realm.heirName ? ` · arvinge: ${realm.heirName}` : ' · ingen känd arvinge'}`}</span>
-      <span className="char-caption">{`${realm.seatName ?? 'Okänt säte'} · ${realm.distanceKm == null ? 'okänt avstånd' : `${number(realm.distanceKm)} km`}${realm.neighbor ? ' · granne' : ''} · hållning ${number(realm.opinion)}`}</span>
+      <span className="char-caption">{`${realm.seatName ?? 'Okänt säte'} · ${realm.distanceKm == null ? 'okänt avstånd' : `${number(realm.distanceKm)} km`}${realm.neighbor ? ' · granne' : ''}${realm.allied ? ' · allierad' : ''} · hållning ${number(realm.opinion)}`}</span>
     </li>)}</ul>
   </Section>;
 }
