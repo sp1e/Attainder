@@ -25,7 +25,10 @@ export function crimeOfSecret(state, secretId) {
   if (!secret || secret.causeId === null) return null;
   const entry = state.actionLog.find((item) => item.memoryId === secret.causeId);
   const record = entry?.effects.find((effect) => effect.kind === 'crime' && effect.secretId === secretId);
-  return record ? { crime: record.crime, victimId: entry.targetIds[0] } : null;
+  if (record) return { crime: record.crime, victimId: entry.targetIds[0] };
+  // A poisoning at a feast (feastOutcomes.js) has no log entry; its memory names the crime and, first, the victim.
+  const feast = state.memories.find((memory) => memory.id === secret.causeId && memory.type === 'feast_poisoning');
+  return feast && CRIME_LABELS[feast.crime] ? { crime: feast.crime, victimId: feast.participants[0] } : null;
 }
 
 /**

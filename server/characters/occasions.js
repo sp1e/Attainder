@@ -1,6 +1,7 @@
 import { addGameMonths, compareGameDates, normalizeGameDate } from '../gameDates.js';
 import { isAdultCharacter } from './characterCapacity.js';
 import { isImprisoned } from './prisoners.js';
+import { feastOutcomes } from './feastOutcomes.js';
 
 // Occasions: dated gatherings that change the odds of other actions. Phase 2 has one kind, the feast the player holds with the command hold_feast. An occasion is { id: 'occasion-<n>', kind, hostFamilyId, hostId, startedAt, endsAt, guestIds } and lives in state.occasions.
 // Nothing here draws randomness. The odds side (feastRows) is pure; holdFeast is the only writer and runs inside a command.
@@ -71,6 +72,7 @@ export function holdFeast(state, events, hooks) {
     const head = state.people[state.families[familyId].headId];
     if (head && !head.diedAt) hooks.opinionCause(head.id, host.id, FEAST.opinion, 'Bjöds på gästabud', memory.id, FEAST.opinionYears);
   }
+  feastOutcomes(state, occasion, memory.id, events, hooks);
   return occasion;
 }
 

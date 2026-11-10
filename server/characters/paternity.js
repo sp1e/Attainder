@@ -30,6 +30,13 @@ function earlierLover(state, mother, affair, eligible) {
   return earlier ? eligible.find((man) => man.id === earlier.holderIds[1]) ?? null : null;
 }
 
+// The lover a feast gave this affair (feastOutcomes.js ties both to one memory), when he can still be the father.
+function feastLover(state, mother, affair, eligible) {
+  const bond = affair.causeId && state.relationships.find((item) => item.kind === 'lover' && item.causeId === affair.causeId && (item.aId === mother.id || item.bId === mother.id));
+  const partnerId = bond && (bond.aId === mother.id ? bond.bId : bond.aId);
+  return eligible.find((man) => man.id === partnerId) ?? null;
+}
+
 /** Who fathers the child a married mother bears now. Without a hidden affair: the husband, with no draw. With one: a paternityDraw below LOVER_SHARE gives the lover, else the husband. */
 export function biologicalFather(state, mother, husband, hooks) {
   const affair = hiddenAffair(state, mother);
@@ -38,7 +45,7 @@ export function biologicalFather(state, mother, husband, hooks) {
   if (!(u < LOVER_SHARE)) return husband;
   const eligible = eligibleLovers(state, mother, husband, hooks);
   if (!eligible.length) return husband;
-  return earlierLover(state, mother, affair, eligible) ?? eligible[Math.floor((u / LOVER_SHARE) * eligible.length)];
+  return earlierLover(state, mother, affair, eligible) ?? feastLover(state, mother, affair, eligible) ?? eligible[Math.floor((u / LOVER_SHARE) * eligible.length)];
 }
 
 /** The hidden secret of a child whose biological father is the lover: subject the child, held by mother and lover, caused by the birth memory. */
