@@ -166,8 +166,8 @@ test('court size is authored data; a one-family court works with vacant generate
   assert.ok(getCharacterPresentation(state).ruler);
 });
 
-test('SUCCESSION_LAWS is frozen and lists primogeniture, merit and elective in reform order', () => {
-  assert.deepEqual(SUCCESSION_LAWS, ['primogeniture', 'merit', 'elective']);
+test('SUCCESSION_LAWS is frozen and lists primogeniture, merit, elective and partition in reform order', () => {
+  assert.deepEqual(SUCCESSION_LAWS, ['primogeniture', 'merit', 'elective', 'partition']);
   assert.ok(Object.isFrozen(SUCCESSION_LAWS));
 });
 

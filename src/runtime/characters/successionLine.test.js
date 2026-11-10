@@ -21,8 +21,8 @@ const child = (state, id, bornAt, legalParentIds) => {
   return id;
 };
 
-test('with every heir alive the daughter inherits under all three laws', () => {
-  for (const law of ['primogeniture', 'merit', 'elective']) assert.equal(getSuccessionForecast(court(law)).expectedRuler.id, SERA, law);
+test('with every heir alive the daughter inherits under all four laws', () => {
+  for (const law of ['primogeniture', 'merit', 'elective', 'partition']) assert.equal(getSuccessionForecast(court(law)).expectedRuler.id, SERA, law);
 });
 
 test("under primogeniture the dead daughter's children inherit before the widow and the widower", () => {
