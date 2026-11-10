@@ -3,6 +3,7 @@ import { ENGINE_OFFICE_IDS, playablePolityKind, safeId, validateHistoricalCourt 
 import { ADULT_AGE, ARCHETYPES, TRAITS, SKILL_LABELS, SUCCESSION_LAWS, publicHistoricalOrigin, publicPersonOrigin, publicReligionOrigin } from './content.js';
 import { completeCharacterState, createCharacterState, getCharacterAge, normalizeCharacterSystem } from './index.js';
 import { spouseIdsOf } from './marriage.js';
+import { seedForeignRealms } from './foreignRealms.js';
 
 const refusal = () => new Error('Det historiska hovets uppgifter kan inte användas av karaktärssystemet.');
 const copy = value => JSON.parse(JSON.stringify(value));
@@ -104,6 +105,8 @@ export function createHistoricalCharacterSystem({ historicalScenario, date, poli
     state.realm.kind = polity.kind ?? 'state';
     state.historicalOrigin = publicHistoricalOrigin({ ...h, polityNoteSv: polity.noteSv, mechanicsNoteSv: court.mechanics.noteSv });
     seedCourt(state, court);
+    // Read before the package is narrowed to the chosen court; draws no randomness.
+    state.foreignRealms = seedForeignRealms(h, polityId);
     completeCharacterState(state, difficulty);
     state.log.push({ id: `event-${++state.sequence}`, date, type: 'foundation', title: 'Det historiska hovet tar form',
       description: `${state.realm.name}. ${court.mechanics.noteSv}`, participants: [court.rulerId], public: true });

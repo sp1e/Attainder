@@ -11,6 +11,7 @@ import { nicknameStep, validateNicknames } from './nicknames.js';
 import { PLAGUE_EXPIRY, plagueChoices, plagueClosedReason, plagueStep, resolvePlague } from './plague.js';
 import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, validateReign } from './reign.js';
 import { wonderPrestigeFloor } from './wonders.js';
+import { foreignRealmStep } from './foreignRealms.js';
 
 // The court: one orchestrator for what happens around the throne. These entry points keep the systems of Phase 3 out of the long functions in index.js.
 // `hooks` are the engine's (actionHooks in index.js). actionResolution.js, npcPlots.js and schemes.js import each other in a cycle, so their exports are used only inside functions here.
@@ -31,7 +32,8 @@ const COURT_STORIES = Object.freeze({
 
 /** Runs after npcPlotStep and returns the paid chancellor delta for annual accounting. A dissolved realm pays 0. */
 export function courtAnnualStep(state, events, hooks) {
-  if (!state.realm.alive) return 0;
+  // The neighbors live on after the player's realm falls.
+  if (!state.realm.alive) { foreignRealmStep(state, events, hooks); return 0; }
   lostOrdersStep(state);
   loyaltyDriftStep(state, hooks);
   const contribution = chancellorStep(state, hooks);
@@ -47,6 +49,7 @@ export function courtAnnualStep(state, events, hooks) {
   duelStep(state, events, hooks);
   echoStep(state, events, hooks);
   plagueStep(state, events, hooks);
+  foreignRealmStep(state, events, hooks);
   return contribution;
 }
 
