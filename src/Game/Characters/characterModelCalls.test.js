@@ -3,13 +3,13 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHistoricalCharacterSystem } from '../../runtime/characters/scenarioSeed.js';
 import { advanceCharacters } from '../../runtime/characters/index.js';
-import { actionHooks, createCharacterSystem, estimateCharacterAction, estimateConversation, getCharacterPresentation, getConversationBrief } from '../../runtime/characters/index.js';
+import { actionHooks, createCharacterSystem, estimateCharacterAction, estimateConversation, estimateEnvoyRequest, getCharacterPresentation, getConversationBrief, getEnvoyBrief } from '../../runtime/characters/index.js';
 import { createRumor } from '../../runtime/characters/rumors.js';
 import { createSecret, grantHook } from '../../runtime/characters/secrets.js';
 import { getModelCallCounts, recordModelCall, subscribeModelCalls } from '../AI/modelCallCounter.js';
 import { addGameMonths } from '../../runtime/gameDates.js';
 import { SHIPPED_START_FOLDERS } from '../../runtime/testing/shippedHistoricalStarts.js';
-import { extractConversationRequest, interpretCharacterAction, narrateCharacterResolution, replyAsCharacter } from './characterModelCalls.js';
+import { extractConversationRequest, extractEnvoyRequest, interpretCharacterAction, narrateCharacterResolution, replyAsCharacter, replyAsRuler } from './characterModelCalls.js';
 
 const REP = 'person-0-0';
 const TARGET = 'person-1-0';
@@ -705,4 +705,61 @@ test('a brief for another person is refused in Swedish, without a model call', a
     assert.deepEqual([result.ok, result.reason], [false, 'Samtalsunderlaget hör till en annan person.']);
     assert.equal(calls.length, 0);
   }
+});
+
+// --- Envoys ------------------------------------------------------------------------------------------
+
+const CORDOBA = 'emirate-of-cordoba';
+const BETRAYAL = { date: '0780-06-01', label: 'Svek i kriget', amount: -40, until: '0810-06-01' };
+function envoyCourt() {
+  const data = JSON.parse(readFileSync(new URL('../../../server/seed/historical/charlemagne-800/scenario.json', import.meta.url), 'utf8')).data;
+  const state = createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: 'carolingian-realm', mode: 'realm', seed: 777 });
+  state.foreignRealms.find((realm) => realm.id === CORDOBA).memories.push({ ...BETRAYAL });
+  return state;
+}
+const envoyView = (state, realmId = CORDOBA) => ({ ...getCharacterPresentation(state), envoyBrief: getEnvoyBrief(state, realmId) });
+
+test('an envoy message becomes a request the engine can price, and the ruler brief reaches the prompt', async () => {
+  const state = envoyCourt();
+  const { callModel, calls } = fakeModel({ kind: 'reconcile', offerSilver: 20, arguments: [{ kind: 'offer' }, { kind: 'shared_memory', refId: `${BETRAYAL.date}|${BETRAYAL.label}` }, { kind: 'hook', refId: 'x' }], argumentScore: 30 });
+  const result = await extractEnvoyRequest({ realmId: CORDOBA, text: 'Glöm sveket, ta emot 20 silver.', view: envoyView(state), callModel });
+  assert.deepEqual(result, { ok: true, request: { realmId: CORDOBA, kind: 'reconcile', offerSilver: 20,
+    arguments: [{ kind: 'offer', refId: null }, { kind: 'shared_memory', refId: '0780-06-01|Svek i kriget' }], argumentScore: 10 } });
+  assert.equal(estimateEnvoyRequest(state, result.request).ok, true);
+  assert.equal(calls[0].tool.name, 'extract_envoy_request');
+  assert.equal(calls[0].callKind, 'converse');
+  const prompt = promptOf(calls[0]);
+  assert.match(prompt, /0780-06-01\|Svek i kriget/);
+  assert.doesNotMatch(prompt, /"value"|chance|precision/, 'no odds reach the model');
+});
+
+test('an envoy message that asks for nothing gives no request, and a brief for another realm is refused', async () => {
+  const state = envoyCourt();
+  assert.deepEqual(await extractEnvoyRequest({ realmId: CORDOBA, text: 'Hälsningar.', view: envoyView(state), callModel: fakeModel({ kind: 'none', offerSilver: 0, arguments: [], argumentScore: 0 }).callModel }), { ok: true, request: null });
+  const { callModel, calls } = fakeModel();
+  assert.deepEqual(await extractEnvoyRequest({ realmId: CORDOBA, text: 'x', view: envoyView(state, 'papal-states'), callModel }), { ok: false, reason: 'Underlaget hör till ett annat rike.' });
+  assert.equal((await replyAsRuler({ realmId: CORDOBA, text: 'x', view: getCharacterPresentation(state), callModel })).ok, false);
+  assert.equal(calls.length, 0);
+});
+
+test('a gift in the wrong form is asked for once more, not dropped', async () => {
+  const state = envoyCourt();
+  const { callModel, calls } = fakeModel({ kind: 'reconcile', offerSilver: '20', arguments: [], argumentScore: 0 }, { kind: 'reconcile', offerSilver: 20, arguments: [], argumentScore: 0 });
+  const result = await extractEnvoyRequest({ realmId: CORDOBA, text: 'Ta emot 20 silver.', view: envoyView(state), callModel });
+  assert.equal(result.request.offerSilver, 20);
+  assert.equal(calls.length, 2);
+  assert.match(calls[1].history.at(-1).parts[0].text, /offerSilver/);
+});
+
+test('the ruler answers a fixed outcome and sees no memory ids', async () => {
+  const state = envoyCourt();
+  const { callModel, calls } = fakeModel({ reply: 'Vi har ett avtal.' });
+  const result = await replyAsRuler({ realmId: CORDOBA, text: 'Fred?', view: envoyView(state), outcome: { kind: 'reconcile', accepted: true }, callModel });
+  assert.deepEqual(result, { ok: true, reply: 'Vi har ett avtal.' });
+  assert.equal(calls[0].tool.name, 'reply_as_ruler');
+  const prompt = promptOf(calls[0]);
+  assert.match(prompt, /Svek i kriget/);
+  assert.doesNotMatch(prompt, /refId/);
+  assert.match(prompt, /"outcome":\{"kind":"reconcile","accepted":true\}/);
+  assert.deepEqual(await replyAsRuler({ realmId: CORDOBA, text: 'x', view: envoyView(state), outcome: { kind: 'tribute', accepted: true }, callModel }), { ok: false, reason: 'Utfallet av förfrågan är ogiltigt.' });
 });

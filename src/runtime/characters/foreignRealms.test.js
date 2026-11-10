@@ -33,7 +33,7 @@ test('a historical court starts with the eight nearest courts of its package, ru
   assert.ok(state.foreignRealms.every((realm) => Object.values(realm.people).every((person) => person.origin === 'documented')));
   assert.ok(!Object.keys(state.people).some((id) => id === 'leo-iii'), 'foreign people stay out of the court');
   const shown = getCharacterPresentation(state).foreignRealms;
-  assert.deepEqual(shown[0], { id: 'papal-states', name: rome.name, seatName: 'Rom', distanceKm: rome.distanceKm, neighbor: true, rulerName: 'Leo III', rulerAge: 50, heirName: null, opinion: 0, allied: false, claim: null, war: null, lands: 0 });
+  assert.deepEqual(shown[0], { id: 'papal-states', name: rome.name, seatName: 'Rom', distanceKm: rome.distanceKm, neighbor: true, rulerName: 'Leo III', rulerAge: 50, heirName: null, opinion: 0, allied: false, claim: null, war: null, lands: 0, envoyReason: '' });
   assert.equal(shown.at(-1).neighbor, false);
 });
 

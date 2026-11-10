@@ -3,7 +3,7 @@ import { getCharacterAge } from './characterCapacity.js';
 import { hashRoll } from './duels.js';
 import { isMarried } from './marriage.js';
 import { presentClaim, validClaimFields } from './claims.js';
-import { validEnvoy } from './envoys.js';
+import { presentEnvoy, validEnvoy } from './envoys.js';
 
 // Foreign realms live beside the court (spec docs/superpowers/specs/2026-11-10-foreign-realms-design.md). Historical campaigns only.
 // Each realm keeps its ruling family from the package court seed. Foreign people never enter state.people. Rolls are hashRoll; nothing draws from a stream.
@@ -113,13 +113,13 @@ export function foreignOpinion(state, realmId) {
   return clampOpinion(realm.memories.filter((entry) => compareGameDates(entry.until, state.date) > 0).reduce((sum, entry) => sum + entry.amount, 0));
 }
 
-/** The neighbors as the court tab shows them. Reads only. */
-export function presentForeignRealms(state) {
+/** The neighbors as the court tab shows them, with whether an envoy can go (`hooks` are the action hooks). Reads only. */
+export function presentForeignRealms(state, hooks) {
   if (!state.historicalOrigin) return [];
   return state.foreignRealms.map((realm) => {
     const ruler = realm.people[realm.rulerId], heir = foreignHeir(realm, ruler, state.date);
     return { id: realm.id, name: realm.name, seatName: realm.seatName, distanceKm: realm.distanceKm, neighbor: realm.distanceKm != null && realm.distanceKm <= FOREIGN.neighborKm,
-      rulerName: ruler.name, rulerAge: getCharacterAge(ruler, state.date), heirName: heir?.name ?? null, opinion: foreignOpinion(state, realm.id), allied: Boolean(realm.alliance), ...presentClaim(realm) };
+      rulerName: ruler.name, rulerAge: getCharacterAge(ruler, state.date), heirName: heir?.name ?? null, opinion: foreignOpinion(state, realm.id), allied: Boolean(realm.alliance), ...presentClaim(realm), ...presentEnvoy(state, realm, hooks) };
   });
 }
 

@@ -117,6 +117,9 @@ export function sendEnvoy(state, request, actor, events, hooks) {
   if (accepted) apply(state, realm, estimate.kind, events, hooks);
 }
 
+/** For the neighbors list: '' when an envoy can go to this realm now, otherwise the Swedish reason. Reads only. */
+export const presentEnvoy = (state, realm, hooks) => ({ envoyReason: envoyRefusal(state, realm, 'reconcile', hooks) || (state.actionPoints < 1 ? REASONS.orders : '') });
+
 /** What the model may know to speak as the realm's ruler: names, age, opinion, live memories and the standing between the realms. No odds, no roll. Null when the realm is missing. */
 export function envoyBrief(state, realmId) {
   const realm = realmOf(state, realmId);
