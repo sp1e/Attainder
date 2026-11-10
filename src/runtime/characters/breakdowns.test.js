@@ -431,7 +431,7 @@ test('the choices, the pressure and the opening draw nothing', () => {
 });
 
 test('the court story list names the six types, and a choice outside the list is refused', () => {
-  assert.deepEqual(COURT_STORY_TYPES, ['stress_breakdown', 'family_demand', 'faction_ultimatum', 'deathbed', 'duel_challenge', 'decision_echo']);
+  assert.deepEqual(COURT_STORY_TYPES, ['stress_breakdown', 'family_demand', 'faction_ultimatum', 'deathbed', 'duel_challenge', 'decision_echo', 'plague_outbreak']);
   const { state, story } = broken();
   const result = executeCharacterCommand(state, { id: 'refused-collapse', expectedRevision: state.revision, type: 'resolve_story', payload: { storyId: story.id, choiceId: 'collapse' } });
   assert.equal(result.ok, false);
