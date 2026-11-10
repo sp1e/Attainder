@@ -178,6 +178,14 @@ Phase 4, moment 6. The spec is `docs/superpowers/specs/2026-11-10-partition-desi
 - The game holds one realm, so the house is divided, not the land. Dividing the map waits for phase 6 (foreign realms).
 - No draws. Hadara's 300-year state hash matches `main`; Charlemagne under partition for 300 years (seeds 777, 321, 5) divided 3, 4 and 3 times, and the realm survived.
 
+## The heir challenges a rival to a duel
+
+Phase 5, moment 23. The spec is `docs/superpowers/specs/2026-11-10-duel-design.md`, PR #173, `9b0708dc`. Moments 20, 21 and 22 remain.
+
+- `server/characters/duels.js` adds the court story `duel_challenge` on historical campaigns. The heir, an adult of the player's family, challenges the person outside the house they hate most (opinion −25 or a rival bond), at most once in five years.
+- The ruler lets the heir fight, sends a better fighter of the family for 15 silver, or forbids it (+20 stress, −20 towards the ruler). An unanswered challenge goes ahead. The loser dies (25 %) or takes an injury.
+- A hash of the story id settles the fight; no stream draws. Hadara's 300-year hash matches `main`; Charlemagne seeds 777, 321 and 5 saw 3, 2 and 5 duels in 300 years.
+
 ## Branch state
 
 Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The whole-branch review found two reproduced issues; both now have reviewed fixes. The final follow-up review of `08d3518..55283dc` approved the branch with no new Critical, Important or Minor findings. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295). [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the fixes, and the remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`. The retained remote branch `fix/phase-3-review` ends at `55283dc`; its tested production code remains `cfa225238c5065441e4642481ab507629e498e73`. Nobody has run the Phase 3 play script; the owner deferred the Hadara script behind the historical foundation.
