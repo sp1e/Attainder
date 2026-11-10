@@ -21,6 +21,7 @@ import { feastRefusal, feastRows, holdFeast, presentOccasions, validateOccasions
 import { WONDER, WONDER_KINDS, completeWonder, startWonder, wonderRefusal } from './wonders.js';
 import { ensureForeignRealms, presentForeignRealms, validateForeignRealms } from './foreignRealms.js';
 import { ALLIANCE, arrangeForeignMarriage, foreignMarriageRefusal, foreignPartners, marriageableKin } from './alliances.js';
+import { envoyBrief, estimateEnvoy, sendEnvoy } from './envoys.js';
 import { CLAIM, claimRefusal, claimTargets, declareWar, fabricateClaim, makePeace, peaceTargets, pressTargets } from './claims.js';
 import { npcPlotStep, plotUncoveredChoices, resolvePlotUncovered } from './npcPlots.js';
 import { presentRumors, validateRumors } from './rumors.js';
@@ -102,7 +103,7 @@ function royalDecisionReason(state, type) {
 }
 function consumeRoyalConsent(state, type) { const record = royalRegency(state); if (record) consumeRegencyConsent(state, type, [record]); }
 function canRule(state) { const actor = activeRepresentative(state); const executive = realmExecutive(state); const office = state.offices.ruler; if (state.identity.mode === 'family') { const ownHead = state.families[state.identity.familyId]?.headId; if (ownHead !== office.holderId && ownHead !== office.regentId) return false; } return Boolean(actor && executive && actor.id === executive.id); }
-const PUBLIC_COMMANDS = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'abdicate', 'recognize_claim', 'release_prisoner', 'execute_prisoner', 'reward_councillor', 'set_reign_goal', 'build_wonder', 'foreign_marriage', 'fabricate_claim', 'declare_war', 'make_peace', ...Object.values(ARCHETYPES).map((archetype) => archetype.action)]);
+const PUBLIC_COMMANDS = new Set(['appoint', 'dismiss', 'banish', 'tax_policy', 'abdicate', 'recognize_claim', 'release_prisoner', 'execute_prisoner', 'reward_councillor', 'set_reign_goal', 'build_wonder', 'foreign_marriage', 'fabricate_claim', 'declare_war', 'make_peace', 'envoy_request', ...Object.values(ARCHETYPES).map((archetype) => archetype.action)]);
 // Every command type with its own branch in handleCommand. attempt_action refuses these ids and points to the command instead.
 const COMMAND_TYPES = new Set([...PUBLIC_COMMANDS, 'provide_care', 'rest', 'gift', 'exercise_office', 'educate', 'marry', 'adopt', 'build_estate', 'seek_office', 'build_support', 'press_claim', 'seek_patron', 'return_exile', 'livelihood', 'sell_estate', 'patronize_faith', 'seek_refuge', 'request_regent_consent', 'resolve_regency', 'resolve_story', 'abort_scheme', 'reinforce_scheme', 'hold_feast', 'converse_request', 'realm_effect', 'npc_intent']);
 function commandActor(state, type) {
@@ -501,6 +502,10 @@ export function estimateCharacterAction(state, intent) { return estimateAction(s
 export function estimateConversation(state, request) { return estimateConversationRequest(state, request, actionHooks(state)); }
 /** What the model may know to speak as one person (conversation.js). Engine-side only: it holds the speaker's view of the representative and the secrets both share as labels, so it is not part of the presentation. */
 export function getConversationBrief(state, personId) { return conversationBrief(state, personId, actionHooks(state)); }
+/** Odds for one envoy to a foreign realm (envoys.js), or a Swedish refusal. Pure. */
+export function estimateEnvoyRequest(state, request) { return estimateEnvoy(state, request, actionHooks(state)); }
+/** What the model may know to speak as a foreign ruler (envoys.js). Engine-side only. */
+export function getEnvoyBrief(state, realmId) { return envoyBrief(state, realmId); }
 // Spouse, parent, child, sibling or the same family. Relatives by marriage count through the spouse bond only.
 function kin(state, aId, bId) {
   const a = state.people[aId], b = state.people[bId];
@@ -744,6 +749,8 @@ function handleCommand(state, command, events) {
   if (type === 'record_action_narrative') { if (command.origin !== 'narrate') throw new Error(NARRATE_ONLY); recordNarrative(state, p, actionHooks(state), events); refreshMandates(state, events); refreshStories(state, events); updateStatus(state); return; }
   // A conversation is held by the active representative, who is checked by the conversation rules themselves.
   if (type === 'converse_request') { if (command.origin !== 'converse') throw new Error(CONVERSE_ONLY); converse(state, p, events, actionHooks(state)); refreshMandates(state, events); refreshStories(state, events); updateStatus(state); return; }
+  // An envoy carries words the model read from the player's text (envoys spec), so it comes only through the conversation step.
+  if (type === 'envoy_request') { if (command.origin !== 'converse') throw new Error(CONVERSE_ONLY); requireRule(state); sendEnvoy(state, p, actor, events, actionHooks(state)); refreshMandates(state, events); refreshStories(state, events); updateStatus(state); return; }
   if (!canExerciseMandate(actor, state.date)) throw new Error('Beslutet saknar en handlingsförmögen företrädare. Kalendern kan fortsätta.');
   if (type === 'provide_care') { const patient = requirePerson(state, p.personId); requireOwn(state, patient); if (!['physician', 'rest'].includes(p.care)) throw new Error('Välj vila eller en läkekunnig.'); if (!getTreatableConditions(patient).some((condition) => condition.id === p.conditionId)) throw new Error('Välj ett obehandlat pågående tillstånd.'); charge(state, p.care === 'physician' ? 20 : 5, { tag: p.care === 'physician' ? 'generous' : 'duty' }); treatCondition(state, patient, p.conditionId, p.care, actor.id, events); }
   else if (type === 'rest') { charge(state, 10, { orders: 1, tag: 'duty' }); actor.stress = Math.max(0, actor.stress - 30); actor.health = clamp(actor.health + 5); logEvent(state, events, 'rest', 'Tid för återhämtning', `${actor.name} återhämtar sig. Stress −30, hälsa +5.`, [actor.id]); }

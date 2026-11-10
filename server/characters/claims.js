@@ -63,8 +63,8 @@ export function declareWar(state, { realmId }, actor, events, hooks) {
   hooks.logEvent(events, 'war_declared', `Krig mot ${realm.name}`, `${actor.name} gör anspråk på ${borderLand(realm)} och för hären över gränsen.`, [actor.id]);
 }
 
-// The claim and the war end; the outcome falls on the player's realm, and the foreign realm remembers a lost land.
-function endWar(state, realm, outcome, events, hooks, text) {
+/** The claim and the war end; the outcome falls on the player's realm, and the foreign realm keeps the outcome's memory. */
+export function endWar(state, realm, outcome, events, hooks, text) {
   if (outcome === WAR_ENDS.victory) realm.lands = lands(realm) + 1;
   realm.claim = null; realm.war = null;
   addPrestige(state, outcome.prestige);
