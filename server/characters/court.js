@@ -13,6 +13,7 @@ import { beginReign, goalStep, legitimacySources, presentReign, prestigeStep, va
 import { wonderPrestigeFloor } from './wonders.js';
 import { foreignRealmStep } from './foreignRealms.js';
 import { CALL_EXPIRY, allianceStep, callChoices, callClosedReason, resolveCall } from './alliances.js';
+import { claimStep } from './claims.js';
 
 // The court: one orchestrator for what happens around the throne. These entry points keep the systems of Phase 3 out of the long functions in index.js.
 // `hooks` are the engine's (actionHooks in index.js). actionResolution.js, npcPlots.js and schemes.js import each other in a cycle, so their exports are used only inside functions here.
@@ -53,7 +54,7 @@ export function courtAnnualStep(state, events, hooks) {
   plagueStep(state, events, hooks);
   foreignRealmStep(state, events, hooks);
   allianceStep(state, events, hooks);
-  return contribution;
+  return contribution + claimStep(state, events, hooks);
 }
 
 /** The choices of a court story, for rawStoryChoices. Reads only. */

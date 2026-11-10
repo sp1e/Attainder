@@ -2,6 +2,7 @@ import { addGameMonths, compareGameDates, gameDateYear, normalizeGameDate } from
 import { getCharacterAge } from './characterCapacity.js';
 import { hashRoll } from './duels.js';
 import { isMarried } from './marriage.js';
+import { presentClaim, validClaimFields } from './claims.js';
 
 // Foreign realms live beside the court (spec docs/superpowers/specs/2026-11-10-foreign-realms-design.md). Historical campaigns only.
 // Each realm keeps its ruling family from the package court seed. Foreign people never enter state.people. Rolls are hashRoll; nothing draws from a stream.
@@ -117,7 +118,7 @@ export function presentForeignRealms(state) {
   return state.foreignRealms.map((realm) => {
     const ruler = realm.people[realm.rulerId], heir = foreignHeir(realm, ruler, state.date);
     return { id: realm.id, name: realm.name, seatName: realm.seatName, distanceKm: realm.distanceKm, neighbor: realm.distanceKm != null && realm.distanceKm <= FOREIGN.neighborKm,
-      rulerName: ruler.name, rulerAge: getCharacterAge(ruler, state.date), heirName: heir?.name ?? null, opinion: foreignOpinion(state, realm.id), allied: Boolean(realm.alliance) };
+      rulerName: ruler.name, rulerAge: getCharacterAge(ruler, state.date), heirName: heir?.name ?? null, opinion: foreignOpinion(state, realm.id), allied: Boolean(realm.alliance), ...presentClaim(realm) };
   });
 }
 
@@ -150,5 +151,5 @@ export function validateForeignRealms(state) {
   if (!Object.hasOwn(state, 'foreignRealms')) return;
   const realms = state.foreignRealms;
   if (!state.historicalOrigin || !Array.isArray(realms) || realms.length > FOREIGN.realms || !realms.every(validRealm)
-    || !realms.every((realm) => validAlliance(state, realm.alliance)) || new Set(realms.map((realm) => realm.id)).size !== realms.length) throw new Error('Sparfilens grannriken är ogiltiga.');
+    || !realms.every((realm) => validAlliance(state, realm.alliance) && validClaimFields(realm)) || new Set(realms.map((realm) => realm.id)).size !== realms.length) throw new Error('Sparfilens grannriken är ogiltiga.');
 }

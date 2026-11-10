@@ -28,7 +28,7 @@ export function rememberAbroad(state, realm, { label, amount, years }) {
   realm.memories.push({ date: state.date, label, amount, until: addGameMonths(state.date, 12 * years) });
 }
 
-const neighbor = (state, realm) => realm.distanceKm != null && realm.distanceKm <= FOREIGN.neighborKm && !realm.alliance && foreignOpinion(state, realm.id) >= ALLIANCE.minOpinion;
+const neighbor = (state, realm) => realm.distanceKm != null && realm.distanceKm <= FOREIGN.neighborKm && !realm.alliance && !realm.claim && !realm.war && foreignOpinion(state, realm.id) >= ALLIANCE.minOpinion;
 const offered = (state, realm, person) => !person.diedAt && !person.spouseIds.length && person.id !== realm.rulerId && getCharacterAge(person, state.date) >= 16;
 
 /** The foreign persons the player can marry into the court, as select options `{ value: '<realmId>|<personId>', label }`. Reads only. */
