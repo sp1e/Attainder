@@ -38,7 +38,7 @@ export const ARCHETYPES = {
   steward: { name: 'Förvaltaren', ability: 'Förvaltningsreform', action: 'reform', description: 'Reformera skatteförvaltningen i tre år. Familjerna kräver inflytande.', cost: 30 },
   diplomat: { name: 'Diplomaten', ability: 'Försoningsråd', action: 'concord', description: 'Förhandla fram stöd från familjer och religiösa institutioner.', cost: 30 },
   scholar: { name: 'Läraren', ability: 'Kunglig akademi', action: 'academy', description: 'Grunda en bestående akademi som stärker kommande generationers utbildning.', cost: 60 },
-  legislator: { name: 'Lagstiftaren', ability: 'Successionsreform', action: 'succession_law', description: 'Byt tronföljd i ordningen förstfödslorätt, förtjänst och val. Familjerna reagerar.', cost: 40 },
+  legislator: { name: 'Lagstiftaren', ability: 'Successionsreform', action: 'succession_law', description: 'Byt tronföljd i ordningen förstfödslorätt, förtjänst, val och delat arv. Familjerna reagerar.', cost: 40 },
   guardian: { name: 'Beskyddaren', ability: 'Helgedomsfördrag', action: 'sanctuary', description: 'Säkra religiöst stöd genom ett tidsbundet fördrag.', cost: 30 },
   schemer: { name: 'Intrigören', ability: 'Underrättelsenät', action: 'network', description: 'Upptäck en dold plan och förbättra beredskapen mot maktövertagande.', cost: 25 },
   builder: { name: 'Byggherren', ability: 'Vattenledningsprogram', action: 'aqueduct', description: 'Anlägg vattenledningar. Projektet kan fortsätta under nästa ledare.', cost: 50 },
@@ -89,10 +89,10 @@ export const FAMILY_SEEDS = [
 ];
 // The engine's succession laws; the historical validator and the authored-court seed both check against this list.
 // The order is the reform cycle.
-export const SUCCESSION_LAWS = Object.freeze(['primogeniture', 'merit', 'elective']);
-export const SUCCESSION_LAW_LABELS_SV = Object.freeze({ primogeniture: 'förstfödslorätt', merit: 'förtjänst', elective: 'val' });
+export const SUCCESSION_LAWS = Object.freeze(['primogeniture', 'merit', 'elective', 'partition']);
+export const SUCCESSION_LAW_LABELS_SV = Object.freeze({ primogeniture: 'förstfödslorätt', merit: 'förtjänst', elective: 'val', partition: 'delat arv' });
 // The rule each law applies, as the succession panel states it.
-export const SUCCESSION_LAW_RULES_SV = Object.freeze({ primogeniture: 'Äldsta erkända barn, därefter familjen och rådet', merit: 'Rådets meriterade utnämning', elective: 'Val efter förmåga bland vuxna i härskarens hus, därefter husets barn efter ålder och sist hovets övriga vuxna' });
+export const SUCCESSION_LAW_RULES_SV = Object.freeze({ primogeniture: 'Äldsta erkända barn, därefter familjen och rådet', merit: 'Rådets meriterade utnämning', elective: 'Val efter förmåga bland vuxna i härskarens hus, därefter husets barn efter ålder och sist hovets övriga vuxna', partition: 'Äldsta erkända barn ärver tronen; upp till tre yngre vuxna barn i härskarens hus delar husets arv och grundar egna hus' });
 // Kinds of historical polity; a non-state polity can stand on the map but is never playable.
 export const POLITY_KINDS = Object.freeze(['state', 'city-state', 'confederation', 'chiefdom', 'non-state']);
 export const POLITY_KIND_LABELS_SV = Object.freeze({ state: 'stat', 'city-state': 'stadsstat', confederation: 'förbund', chiefdom: 'hövdingadöme', 'non-state': 'statslöst samhälle' });

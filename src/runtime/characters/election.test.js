@@ -155,10 +155,11 @@ test('abdication with an empty elective court still refuses', () => {
   assert.equal(Object.keys(result.state.people).length, count);
 });
 
-test('the legislator cycles three laws', () => {
+test('the legislator cycles four laws', () => {
   assert.equal(nextSuccessionLaw('primogeniture'), 'merit');
   assert.equal(nextSuccessionLaw('merit'), 'elective');
-  assert.equal(nextSuccessionLaw('elective'), 'primogeniture');
+  assert.equal(nextSuccessionLaw('elective'), 'partition');
+  assert.equal(nextSuccessionLaw('partition'), 'primogeniture');
   assert.equal(nextSuccessionLaw('tanistry'), 'primogeniture');
   let state = papal('merit');
   state.people['leo-iii'].archetype = 'legislator';
@@ -169,8 +170,8 @@ test('the legislator cycles three laws', () => {
     // The ability has a yearly cooldown and costs an order; reset both to test the cycle alone.
     state.people['leo-iii'].cooldowns = {}; state.actionPoints = 4; state.realm.treasury = 500;
   }
-  assert.deepEqual(laws, ['elective', 'primogeniture', 'merit']);
-  assert.equal(ARCHETYPES.legislator.description, 'Byt tronföljd i ordningen förstfödslorätt, förtjänst och val. Familjerna reagerar.');
+  assert.deepEqual(laws, ['elective', 'partition', 'primogeniture']);
+  assert.equal(ARCHETYPES.legislator.description, 'Byt tronföljd i ordningen förstfödslorätt, förtjänst, val och delat arv. Familjerna reagerar.');
 });
 
 test('the heir claim names the law in Swedish', () => {

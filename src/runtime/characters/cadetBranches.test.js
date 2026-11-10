@@ -100,7 +100,12 @@ test('a Hadara campaign never splits, and a second branch of the same root is nu
   step(state);
   assert.ok(Object.values(state.families).some((family) => family.name === 'Bertas gren av Hovhus 1 2'));
   const nested = court();
+  nested.families['family-anna'] = { ...plain(nested.families[HOUSE]), id: 'family-anna', name: 'Annas gren av Hovhus 1', headId: HEAD };
   nested.families[HOUSE].name = 'Annas gren av Hovhus 1 2';
   step(nested);
   assert.equal(nested.families[nested.people.berta.familyId].name, 'Bertas gren av Hovhus 1', 'a branch of a branch names the root house');
+  const numbered = court();
+  numbered.families[HOUSE].name = 'Annas gren av Hovhus 6';
+  step(numbered);
+  assert.equal(numbered.families[numbered.people.berta.familyId].name, 'Bertas gren av Hovhus 6', 'a number in the name of the root house stays');
 });

@@ -37,6 +37,7 @@ import { primogenitureCandidates } from './succession.js';
 import { biologicalFather, paternityStep, recordIllegitimacy } from './paternity.js';
 import { bastardClaimStep } from './bastardClaims.js';
 import { cadetBranchStep } from './cadetBranches.js';
+import { partitionInheritance } from './partition.js';
 import { correctionNote, traitsAtAdulthood, tutorProspect } from './tutoring.js';
 import { ensureRealmKind, presentRealm, validateRealmKind } from './realmKind.js';
 import { bondStep } from './bonds.js';
@@ -315,6 +316,7 @@ function killPeople(state, ids, events, reason = 'Ålder och hälsa') {
     const successor = selectDeathSuccessor(state, oldRuler, oldLawfulId, state.people[state.realm.lawfulRulerId]);
     if (!successor && state.realm.successionLaw === 'elective') crown(state, electOutsider(state, oldRuler), events, ELECTION_REASON_SV, 55, oldRuler.id === oldLawfulId);
     else crown(state, successor, events, 'Successionsordningen har tillämpats', 55, oldRuler.id === oldLawfulId);
+    partitionInheritance(state, oldRuler, events, actionHooks(state));
   }
   refreshMandates(state, events); refreshStories(state, events); updateStatus(state);
 }

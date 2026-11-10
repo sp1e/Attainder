@@ -7,14 +7,19 @@ import { isImprisoned } from './prisoners.js';
 export const CADET_SIZE = 10, CADET_GRUDGE = -25, CADET_YEARS = 30, CADET_LABEL = 'Husets splittring';
 
 const compareIds = (a, b) => a.localeCompare(b, 'en', { numeric: true });
-const byAge = (a, b) => compareGameDates(a.bornAt, b.bornAt) || compareIds(a.id, b.id);
+export const byAge = (a, b) => compareGameDates(a.bornAt, b.bornAt) || compareIds(a.id, b.id);
 // A name without its trailing notes in parentheses; a house name without the branches it has come through.
 const plainName = (name) => name.split(' (')[0];
-const rootHouse = (name) => { const parts = plainName(name).split(' gren av '); return parts.length > 1 ? parts.at(-1).replace(/ \d+$/, '') : parts[0]; };
+/** The root house a branch name points to. A trailing number is cut only when it marks a taken name, so 'Hovhus 6' keeps its 6. */
+const rootHouse = (state, name) => {
+  const plain = plainName(name), parts = plain.split(' gren av '), unnumbered = plain.replace(/ \d+$/, '');
+  if (parts.length < 2) return parts[0];
+  return unnumbered !== plain && Object.values(state.families).some((family) => family.name === unnumbered) ? parts.at(-1).replace(/ \d+$/, '') : parts.at(-1);
+};
 const genitive = (name) => (/\d$/.test(name) ? `${name}:s` : /[sxz]$/i.test(name) ? name : `${name}s`);
 
 /** Legal parent id → ids of that parent's legal children, over every person alive or dead. */
-function childrenIndex(state) {
+export function childrenIndex(state) {
   const index = new Map();
   for (const person of Object.values(state.people)) for (const parentId of person.legalParentIds || []) {
     if (!index.has(parentId)) index.set(parentId, []);
@@ -24,7 +29,7 @@ function childrenIndex(state) {
 }
 
 /** The person and every legal descendant, traced through the dead. */
-function lineOf(rootId, index) {
+export function lineOf(rootId, index) {
   const line = new Set([rootId]), queue = [rootId];
   while (queue.length) for (const id of index.get(queue.shift()) || []) if (!line.has(id)) { line.add(id); queue.push(id); }
   return line;
@@ -52,24 +57,38 @@ export function cadetBranchOf(state, family, hooks, index = childrenIndex(state)
 }
 
 function branchName(state, family, founder) {
-  const base = `${genitive(plainName(founder.name))} gren av ${rootHouse(family.name)}`;
+  const base = `${genitive(plainName(founder.name))} gren av ${rootHouse(state, family.name)}`;
   let name = base;
   for (let n = 2; Object.values(state.families).some((other) => other.name === name); n++) name = `${base} ${n}`;
   return name;
 }
 
+/**
+ * Moves the branch into a new house headed by the founder, which takes `take` ({ treasury, estates, influence }) from the old one.
+ * An old head who leaves is replaced by the eldest free member who stays. Returns the new house.
+ */
+export function foundHouse(state, family, founder, branch, take) {
+  const familyId = `family-${++state.sequence}`, name = branchName(state, family, founder);
+  Object.assign(family, { estates: family.estates - take.estates, treasury: family.treasury - take.treasury, influence: family.influence - take.influence });
+  const house = {
+    id: familyId, name, color: family.color, religionId: founder.religionId, headId: founder.id, guardianId: null,
+    treasury: take.treasury, estates: take.estates, influence: take.influence, grievance: 0, exiled: false, hostFamilyId: null, claims: [], cooldowns: {},
+  };
+  state.families[familyId] = house;
+  for (const person of branch) person.familyId = familyId;
+  if (branch.some((person) => person.id === family.headId)) {
+    const stay = Object.values(state.people).filter((p) => !p.diedAt && p.familyId === family.id).sort(byAge);
+    family.headId = (stay.find((p) => !isImprisoned(state, p.id)) || stay[0])?.id ?? null;
+  }
+  return house;
+}
+
 /** Moves the branch into a new house that takes its share of the silver, estates and influence. Both heads resent each other. */
 function splitHouse(state, family, { founder, branch, size }, events, hooks) {
-  const familyId = `family-${++state.sequence}`, share = branch.length / size, headId = family.headId;
+  const share = branch.length / size, headId = family.headId;
   const estates = Math.min(Math.floor(family.estates * share), Math.max(0, family.estates - 1));
-  const treasury = Math.round(family.treasury * share), influence = Math.round(family.influence * share);
-  Object.assign(family, { estates: family.estates - estates, treasury: family.treasury - treasury, influence: family.influence - influence });
-  const name = branchName(state, family, founder);
-  state.families[familyId] = {
-    id: familyId, name, color: family.color, religionId: founder.religionId, headId: founder.id, guardianId: null,
-    treasury, estates, influence, grievance: 0, exiled: false, hostFamilyId: null, claims: [], cooldowns: {},
-  };
-  for (const person of branch) person.familyId = familyId;
+  const take = { estates, treasury: Math.round(family.treasury * share), influence: Math.round(family.influence * share) };
+  const { name } = foundHouse(state, family, founder, branch, take);
   const others = branch.length - 1, kin = others === 1 ? 'en anhörig' : `${others} anhöriga`;
   const event = hooks.logEvent(events, 'cadet_branch', 'Ett hus delas', `${founder.name} lämnar ${family.name} med ${kin} och grundar ${name}.`, [founder.id, headId]);
   const note = hooks.memory('cadet_branch', 'Ett hus delas', [founder.id, headId], { causeId: event.id }).id;
