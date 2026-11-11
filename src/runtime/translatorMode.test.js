@@ -8,12 +8,15 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
+import { characterTransitionEvents } from "./characterWorld.js";
 import { hasShippedPack } from "./i18n.js";
 import { createPhraseBook } from "./phraseBook.js";
 import {
+  CHARACTER_EVENT_SOURCE,
   NATIVE_TEXT_SELECTOR,
   bookOptions,
   mayQueueForModel,
+  nativeEventProps,
   tierFor,
   translateOptions,
   translatorMode,
@@ -105,6 +108,28 @@ test("en: the whole book inside a Swedish-native view, the strong tier outside",
   assert.deepEqual(translateOptions("strong"), { strongOnly: true });
   assert.equal(translateOptions("full"), undefined);
   assert.equal(NATIVE_TEXT_SELECTOR, "[data-native-text]");
+});
+
+test("a world event the character system wrote is marked as Swedish-native text, any other event is not", () => {
+  assert.equal(CHARACTER_EVENT_SOURCE, "character-system");
+  const marked = nativeEventProps({ source: CHARACTER_EVENT_SOURCE, title: "Karl föds" });
+  assert.deepEqual(marked, { "data-native-text": "" });
+  assert.equal(`[${Object.keys(marked)[0]}]`, NATIVE_TEXT_SELECTOR, "the attribute the translator looks for");
+  for (const event of [{ source: "ai" }, { source: "scenario" }, { source: "fallback" }, { source: "game-master" }, { title: "No source" }, null, undefined, "character-system"]) {
+    assert.deepEqual(nativeEventProps(event), {}, JSON.stringify(event));
+  }
+});
+
+test("the events the character system adds to the world's stream carry the marked source", () => {
+  const state = { date: "0800-01-01", revision: 0 };
+  const engine = [{ title: "Karl föds", description: "Ett barn föds vid hovet.", type: "birth" }, { title: "Dold", public: false }];
+  const written = characterTransitionEvents(null, { ok: true, state, events: engine }, "op-1");
+  assert.deepEqual(written.map((event) => event.title), ["Karl föds"]);
+  assert.deepEqual(nativeEventProps(written[0]), { "data-native-text": "" });
+  // A transition without a public event still writes one card, in Swedish.
+  const [card] = characterTransitionEvents(null, { ok: true, state, events: [] }, "op-2");
+  assert.equal(card.title, "En ny dynastisk kampanj");
+  assert.deepEqual(nativeEventProps(card), { "data-native-text": "" });
 });
 
 test("sv and de: the pack applies whole everywhere, marked view or not", () => {

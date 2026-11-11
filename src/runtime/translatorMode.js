@@ -20,6 +20,22 @@ import { looksSwedish } from "./swedishText.js";
 // The roots of the views written in Swedish carry this attribute.
 export const NATIVE_TEXT_SELECTOR = "[data-native-text]";
 
+// The source the character system stamps on the public events it adds to the
+// world's event stream (characterTransitionEvents in characterWorld.js).
+export const CHARACTER_EVENT_SOURCE = "character-system";
+
+const NATIVE_TEXT_PROPS = Object.freeze({ "data-native-text": "" });
+const NO_PROPS = Object.freeze({});
+
+// The props for an element of an upstream view (the event log, a country's
+// history) that shows one world event's title or description. The character
+// system writes its events in Swedish, and most of their titles are short
+// patterns ("{{name}} föds") that the strong tier never applies, so such an
+// element is marked as Swedish-native and gets the whole book. Every other
+// event is the model's or the scenario author's text and stays unmarked.
+export const nativeEventProps = (event) =>
+  (event && typeof event === "object" && event.source === CHARACTER_EVENT_SOURCE ? NATIVE_TEXT_PROPS : NO_PROPS);
+
 // English as the interface writes it: two Latin letters side by side. Only
 // such text is English source that a pack or a model could translate. What a
 // model wrote in the player's own script (Chinese, Russian, Arabic) and a

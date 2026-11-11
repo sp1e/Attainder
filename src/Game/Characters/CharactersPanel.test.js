@@ -2412,3 +2412,34 @@ test("the roots of the Swedish-native views carry data-native-text, and no panel
   const { default: Panel } = loadPanel(baseView(), { globals: { window: { matchMedia: () => ({ matches: false }), addEventListener() {}, removeEventListener() {} }, document: { activeElement: null } } });
   assert.match(renderToStaticMarkup(React.createElement(Panel, { open: true, onClose: () => {} })), /^<div class="char-backdrop" data-char-theme="light" data-native-text="true">/);
 });
+
+// The character system also writes its public events into the world's event stream, which upstream views show.
+// Those views are English, so only the elements that hold such an event's own title and description are marked,
+// and only for an event whose source is the character system (nativeEventProps in translatorMode.js).
+test("the upstream views that show world events mark a character-system event's title and description as Swedish-native", () => {
+  const read = (file) => readFileSync(new URL(`../${file}`, import.meta.url), "utf8");
+  const uses = (code) => (code.match(/\{\.\.\.nativeEventProps\(/g) || []).length;
+  const imported = /import \{[^}]*\bnativeEventProps\b[^}]*\} from "\.\.\/\.\.\/runtime\/translatorMode\.js";/;
+
+  const timeline = read("GameUI/time.jsx");
+  assert.match(timeline, imported);
+  assert.match(timeline, /<div \{\.\.\.nativeEventProps\(event\)\} style=[^>]*>\s*\{event\.title\}\s*<\/div>/, "the Events panel's card title");
+  assert.match(timeline, /<div \{\.\.\.nativeEventProps\(event\)\} className="timeline-markdown"[^>]*>\s*<ReactMarkdown[^>]*>\{normalizeMarkdown\(event\.description\)\}/, "the Events panel's card description");
+  assert.match(timeline, /<strong \{\.\.\.nativeEventProps\(visibleEvents\[visibleEvents\.length - 1\]\)\}>\{visibleEvents\[visibleEvents\.length - 1\]\?\.title\}<\/strong>/, "the title in the stop-the-round question");
+  assert.equal(uses(timeline), 3);
+
+  const country = read("Selection/CountryPanel.jsx");
+  assert.match(country, imported);
+  assert.match(country, /<span \{\.\.\.nativeEventProps\(event\)\} style=[^>]*>\{event\.title\}<\/span>/, "the country panel's event title");
+  assert.match(country, /<div \{\.\.\.nativeEventProps\(event\)\} style=[^>]*>\s*\{String\(event\.description\)\.length > 220 /, "the country panel's event description");
+  assert.equal(uses(country), 2);
+
+  const gameMaster = read("GameUI/cheats.jsx");
+  assert.match(gameMaster, imported);
+  assert.match(gameMaster, /<div \{\.\.\.nativeEventProps\(event\)\} style=[^>]*>\{event\.title \|\| "\(untitled\)"\}<\/div>/, "the Game Master timeline's event title");
+  assert.match(gameMaster, /<div \{\.\.\.nativeEventProps\(event\)\} style=[^>]*>\s*\{event\.description\.length > 260 /, "the Game Master timeline's event description");
+  assert.equal(uses(gameMaster), 2);
+
+  // Never the whole card or a list: the date, the tags and the buttons beside the text are the English interface.
+  for (const code of [timeline, country, gameMaster]) assert.doesNotMatch(code, /data-native-text/);
+});

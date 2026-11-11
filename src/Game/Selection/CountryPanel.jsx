@@ -13,6 +13,7 @@ import { requestDiplomaticChat } from "../GameUI/chat.jsx";
 import GameFlagPicker from "../GameUI/GameFlagPicker.jsx";
 import { resolvePolityFlag } from "../../runtime/polityFlags.js";
 import { resolvePolityIdentity } from "../../runtime/polityIdentity.js";
+import { nativeEventProps } from "../../runtime/translatorMode.js";
 import { generateCountryStats } from "../AI/gameplayLazy.js";
 
 // Bridge: the region popup's info button opens this panel from outside React.
@@ -336,11 +337,12 @@ const CountryInfoPanel = () => {
             {filteredEvents.slice(0, 30).map((event) => (
                 <div key={event.id} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "0.55rem 0.7rem" }}>
                 <div style={{ alignItems: "baseline", display: "flex", gap: "0.5rem", justifyContent: "space-between" }}>
-                <span style={{ fontSize: "0.82rem", fontWeight: 700 }}>{event.title}</span>
+                {/* nativeEventProps: a character-system event is Swedish court text (translatorMode.js). */}
+                <span {...nativeEventProps(event)} style={{ fontSize: "0.82rem", fontWeight: 700 }}>{event.title}</span>
                 <span style={{ color: "rgba(255,255,255,0.4)", flexShrink: 0, fontSize: "0.68rem" }}>{event.date}</span>
                 </div>
                 {event.description && (
-                    <div style={{ color: "rgba(255,255,255,0.62)", fontSize: "0.74rem", lineHeight: 1.5, marginTop: "0.2rem" }}>
+                    <div {...nativeEventProps(event)} style={{ color: "rgba(255,255,255,0.62)", fontSize: "0.74rem", lineHeight: 1.5, marginTop: "0.2rem" }}>
                     {String(event.description).length > 220 ? `${String(event.description).slice(0, 220)}…` : event.description}
                     </div>
                 )}

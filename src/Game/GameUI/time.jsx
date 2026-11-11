@@ -54,6 +54,7 @@ import { MAP_SETTING_KEYS, getMapSettingDefaultOn, useMapSetting } from "../../r
 import { formatGameDateReadable, isGameDate, normalizeGameDate } from "../../runtime/gameDates.js";
 import { jumpDayStep, jumpTargetDate } from "../../runtime/jumpDates.js";
 import { normalizeGroupOp } from "../../runtime/groups.js";
+import { nativeEventProps } from "../../runtime/translatorMode.js";
 
 dayjs.extend(advancedFormat);
 
@@ -926,12 +927,14 @@ const EventCard = ({ event, footer = null, lookups, openMapChanges = null, onTog
             </div>
         )}
 
-        <div style={{ color: "rgba(255,255,255,0.94)", fontSize: "0.82rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase" }}>
+        {/* nativeEventProps: a character-system event is Swedish court text, so the
+            translator reads its title and description with the whole native book. */}
+        <div {...nativeEventProps(event)} style={{ color: "rgba(255,255,255,0.94)", fontSize: "0.82rem", fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase" }}>
         {event.title}
         </div>
 
         {event.description && (
-            <div className="timeline-markdown" style={{ color: "rgba(228,228,231,0.82)", fontSize: "0.77rem", lineHeight: "1.58" }}>
+            <div {...nativeEventProps(event)} className="timeline-markdown" style={{ color: "rgba(228,228,231,0.82)", fontSize: "0.77rem", lineHeight: "1.58" }}>
             <ReactMarkdown remarkPlugins={EVENT_REMARK_PLUGINS} components={TEXT_COMPONENTS}>{normalizeMarkdown(event.description)}</ReactMarkdown>
             </div>
         )}
@@ -2029,7 +2032,7 @@ const TimelineHistoryPanel = ({
                         }}
                         >
                         <span>
-                            Stop the round after <strong>{visibleEvents[visibleEvents.length - 1]?.title}</strong>? The
+                            Stop the round after <strong {...nativeEventProps(visibleEvents[visibleEvents.length - 1])}>{visibleEvents[visibleEvents.length - 1]?.title}</strong>? The
                             {" "}{totalEvents - visibleEvents.length} event{totalEvents - visibleEvents.length === 1 ? "" : "s"} not yet revealed
                             will be discarded — they never happen — and the date becomes {visibleEvents[visibleEvents.length - 1]?.date}.
                             You can still undo the round afterwards.
