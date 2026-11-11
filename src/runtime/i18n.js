@@ -3,9 +3,14 @@
 // UI language: chosen in Settings, stored on the SERVER (shared by every
 // device that plays through it — desktop browser and the Android app see the
 // same choice) and mirrored in localStorage so boot doesn't wait on a fetch.
-// "en" (the authored language) means no translation work happens at all.
 const STORAGE_KEY = "ui_language";
+// The language the upstream interface is written in: its text is shown as
+// written, and its prompts carry no language directive.
 export const DEFAULT_LANGUAGE = "en";
+// What an install reads before anyone has picked a language: Swedish, the
+// language the character system is written in. English is a choice like any
+// other and is stored as "en"; it used to be the absence of a stored value.
+export const INITIAL_LANGUAGE = "sv";
 
 // What the advisor and diplomatic chats reply in, so the interface can be read
 // in one language and the chats held in another. Defaults to the UI language —
@@ -90,44 +95,60 @@ export const getLanguageOptions = () => LANGUAGES;
 export const languageDisplayName = (code) =>
   LANGUAGES.find((entry) => entry.code === code)?.name || code;
 
-export const getStoredLanguage = () => {
+const isLanguageCode = (code) => LANGUAGES.some((entry) => entry.code === code);
+
+// This device's own copy: the code, or null when none is stored or storage
+// cannot be read.
+const readLocalLanguage = () => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored && stored.trim() ? stored.trim() : DEFAULT_LANGUAGE;
+    return stored && stored.trim() ? stored.trim() : null;
   } catch {
-    return DEFAULT_LANGUAGE;
+    return null;
   }
 };
 
+export const getStoredLanguage = () => readLocalLanguage() ?? INITIAL_LANGUAGE;
+
+// Every code is stored, "en" included. Says whether the value now reads back
+// as written: with storage blocked it does not, and the caller must not act as
+// if the language had changed.
 const writeLocalLanguage = (code) => {
+  const value = typeof code === "string" && code.trim() ? code.trim() : null;
   try {
-    if (!code || code === DEFAULT_LANGUAGE) {
-      localStorage.removeItem(STORAGE_KEY);
+    if (value) {
+      localStorage.setItem(STORAGE_KEY, value);
     } else {
-      localStorage.setItem(STORAGE_KEY, code);
+      localStorage.removeItem(STORAGE_KEY);
     }
   } catch {
-    // Private-mode storage failures just leave the game in English.
+    // Private-mode storage failures leave the game in its first language.
   }
+  return readLocalLanguage() === value;
 };
 
 // Persist locally AND on the server, so the choice follows the player to
-// every device connected to this server (the Android app included).
+// every device connected to this server (the Android app included). The
+// server gets the code as given: "en" is a choice it has to remember.
 export const setStoredLanguage = async (code) => {
   writeLocalLanguage(code);
   try {
     await fetch("/api/ui-settings", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ language: code || DEFAULT_LANGUAGE }),
+      body: JSON.stringify({ language: code }),
     });
   } catch {
     // Offline/hub-hosted: the local copy still applies on this device.
   }
 };
 
-// Boot-time reconcile: the server's choice wins. Returns true when the local
-// value changed (caller reloads so the translator restarts cleanly).
+// Boot-time reconcile: the server's choice wins, when it has one. A server
+// that never stored a language (or stores a code this build does not know) has
+// no opinion, and this device keeps what it reads. Returns true only when the
+// language this device reads changed and the new value reads back (the caller
+// reloads so the translator restarts cleanly): a missing server value or
+// blocked storage must never reload the page on every boot.
 export const syncLanguageFromServer = async () => {
   try {
     const response = await fetch("/api/ui-settings");
@@ -136,14 +157,12 @@ export const syncLanguageFromServer = async () => {
     }
 
     const settings = await response.json();
-    const serverLanguage = typeof settings?.language === "string" && settings.language.trim()
-      ? settings.language.trim()
-      : DEFAULT_LANGUAGE;
-
-    if (serverLanguage !== getStoredLanguage()) {
-      writeLocalLanguage(serverLanguage);
-      return true;
+    const serverLanguage = typeof settings?.language === "string" ? settings.language.trim() : "";
+    if (!isLanguageCode(serverLanguage) || serverLanguage === getStoredLanguage()) {
+      return false;
     }
+
+    return writeLocalLanguage(serverLanguage);
   } catch {
     // Server unreachable: keep the local value.
   }
