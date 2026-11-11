@@ -338,10 +338,13 @@ test("a post reads its count, its file's copy, its cover's copy and its checked 
 // GitHub's API, and nothing calls the old counter.
 test("the game downloads hub files through hubFiles.js only, asks GitHub's API for comments only, and reports imports nowhere", () => {
   const sources = [];
+  // src/runtime/web/generated holds git-ignored package data, and seed-web-defaults.mjs
+  // removes and recreates it while other test files run in parallel.
+  const generated = path.join(ROOT, "src", "runtime", "web", "generated");
   const walk = (dir) => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
-      if (entry.isDirectory()) walk(full);
+      if (entry.isDirectory()) { if (full !== generated) walk(full); }
       else if (/\.(?:js|jsx)$/.test(entry.name) && !/\.test\.js$/.test(entry.name)) sources.push(full);
     }
   };

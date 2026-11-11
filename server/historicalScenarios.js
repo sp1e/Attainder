@@ -69,6 +69,9 @@ const generatedName = p => p.identityOrigin !== 'generated' || (typeof p.name ==
 // defence in depth; the validator mirrors it so the start card never offers a court the engine refuses.
 export const RESERVED_IDS = Object.freeze(['__proto__','constructor','prototype']);
 export const ENGINE_OFFICE_IDS = Object.freeze(['ruler','general','chancellor','priest','spymaster']);
+// The shared faith traditions a court religion may name (holy-war spec ruling 3); the research brief lists the same ids.
+export const FAITH_TRADITIONS = Object.freeze(['christian','islamic','jewish','buddhist','hindu','zoroastrian','chinese-state-cult','norse','egyptian','mesopotamian','other']);
+const validTradition = r => !Object.hasOwn(r,'tradition') || FAITH_TRADITIONS.includes(r.tradition);
 export const safeId = x => typeof x === 'string' && /^[a-zA-Z0-9_:.-]{1,160}$/.test(x) && !RESERVED_IDS.includes(x);
 const known = (table, key) => typeof key === 'string' && Object.hasOwn(table,key);
 const validMechanics = m => m === undefined || (record(m) && known(ARCHETYPES,m.archetype)
@@ -123,7 +126,7 @@ function validCourt(court, polityId, h, date) {
   if (!court.families.every(f => people.get(f.headId)?.familyId === f.id
     && (f.religionId === undefined || religions.has(f.religionId)) && validClaims(f.claims, h.sources))) return false;
   if (!court.offices.every(o => (o.holderId === null || people.has(o.holderId)) && validClaims(o.claims, h.sources))) return false;
-  if (!court.religions.every(r => (r.leaderId == null || people.has(r.leaderId)) && validClaims(r.claims, h.sources))) return false;
+  if (!court.religions.every(r => (r.leaderId == null || people.has(r.leaderId)) && validTradition(r) && validClaims(r.claims, h.sources))) return false;
   if (!court.cities.every(c => h.settlements.some(s => s.id === c.settlementId && s.regionId === c.regionId && s.polityId === polityId)
     && families.has(c.familyId) && validClaims(c.claims, h.sources))) return false;
   return court.mechanics?.status === 'generated' && text(court.mechanics.noteSv);

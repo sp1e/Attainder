@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import { validateHistoricalCourt, validateHistoricalScenario } from './historicalScenarios.js';
+import { FAITH_TRADITIONS, validateHistoricalCourt, validateHistoricalScenario } from './historicalScenarios.js';
 import { prepareHistoricalCampaignStart } from './historicalPreparation.js';
 import { createHistoricalCharacterSystem } from './characters/scenarioSeed.js';
 import { getCharacterPresentation } from './characters/index.js';
@@ -297,6 +297,7 @@ const ACCEPTED = [
   ['successionLaw elective',c => { c.successionLaw = 'elective'; }],
   ['an absent successionLaw',c => { delete c.successionLaw; }],
   ['a court start text of 600 characters citing a package source',c => withCourtContext(c,'å'.repeat(600))],
+  ...FAITH_TRADITIONS.map(tradition => [`the faith tradition ${tradition}`,c => { c.religions[0].tradition = tradition; }]),
 ];
 for (const [name,mutate] of ACCEPTED) test(`both validators accept ${name}`,() => {
   for (const result of probe(mutate)) assert.equal(result.ok,true,`${name}: ${result.code}`);
@@ -333,6 +334,7 @@ const REFUSED = [
   // Karls rike ships both fields, so each probe removes the other one.
   ['a court start text without source ids',c => { c.contextSv = 'Karl i Rom.'; delete c.contextSourceIds; }],
   ['court start source ids without a text',c => { delete c.contextSv; c.contextSourceIds = personIn(c,'karl').claims.identity.sourceIds.slice(0,1); }],
+  ...[['catholic','an unlisted'],['Christian','a capitalized'],['','an empty'],[null,'a null'],[7,'a numeric'],['toString','an inherited']].map(([tradition,kind]) => [`${kind} faith tradition`,c => { c.religions[0].tradition = tradition; }]),
 ];
 for (const [name,mutate] of REFUSED) test(`both validators refuse ${name}`,() => {
   for (const result of probe(mutate)) assert.equal(result.code,'invalidCourt',name);

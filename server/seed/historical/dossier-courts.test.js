@@ -165,6 +165,16 @@ test('the polity\'s engineLimitNotesSv joins the coverage lines', () => {
   assert.ok(build1500('aztec-empire').coverageLinesSv.includes(polity.engineLimitNotesSv));
 });
 
+// The dossiers name no tradition yet (research brief section 13), so these tests add one.
+test('a dossier religion\'s tradition reaches the court, and a religion without one gets no field', () => {
+  const dossier = structuredClone(AD1500);
+  dossierPolity(dossier,'inca-empire').religion.tradition = 'other';
+  const result = dossierCourt({ dossier,polityId: 'inca-empire',bookmarkYear: 1500,successionLaw: 'primogeniture',courtierNames,courtierBornAt: i => `${1455 + i}-01-01` });
+  assert.equal(result.court.religions[0].tradition,'other');
+  assert.equal(validateHistoricalCourt(scenarioFor(dossier,'inca-empire',result),{ date: dossier.bookmark,polityId: 'inca-empire' }).ok,true);
+  assert.equal(Object.hasOwn(build1500('inca-empire').court.religions[0],'tradition'),false);
+});
+
 test('religionLeader null leaves the religion without a leader', () => {
   assert.equal(build1500('aztec-empire',{ religionLeader: null }).court.religions[0].leaderId,null);
   assert.equal(build1500('inca-empire').court.religions[0].leaderId,'generated-courtier-3');
