@@ -1,5 +1,27 @@
 # Research status
 
+## Claude research checkpoint, 11 November 2026
+
+The owner's Codex subscription has ended. From 11 November 2026 a Claude research session does the work the research brief assigns to Codex; read "Codex" there as that session. Codex's `codex exec` check becomes a fresh Claude subagent that receives only the delivered file, opens every cited URL and returns `confirmed`, `corrected` or `unsupported` per claim. Its records read `Claude independent check`. The developer session keeps the builder, the engine and the releases.
+
+| Batch | State | PR | Files | Counts | Waiting for the developer session |
+|---|---|---|---|---|---|
+| §13 faith traditions | Ready for merge | pending | `server/seed/historical/courts/faith-traditions.json` | 17 courts, 18 sources; independent check 35 checked, 29 confirmed, 6 corrected, 0 unsupported | Read the file into the court seeds, set `tradition` on each court religion, rebuild and release |
+
+### §13 faith traditions
+
+The file covers all eight AD 800 dossier courts, `carolingian-realm` and `papal-states`, all five AD 1200 dossier courts, `johns-realms` and `egypt-early-dynastic` (start `bc3000`). It leaves out the two AD 1500 courts. Each `religionId` equals the dossier religion id or the authored id (`latin-church`, `horus-context`); a scratch validator checked that, the tradition vocabulary, unique `(start, polityId)` pairs, source resolution and LF line endings. Source records carry `institution`, `scopedClaim` and `license` beside the four fields of the §13 example.
+
+Tally: christian 8, islamic 4, buddhist 4, egyptian 1, other 1 (Chimú).
+
+The independent check opened all 18 sources. It corrected two locators, one misread Turkish sentence (who accused al-Hakam I in front of the mosques) and three `noteEn` texts that said more than their source. All six corrections are applied. It flagged Tang, Silla and Western Xia: the passages show royal Buddhist patronage and leave the court's tradition implied.
+
+- Ruling: leave out `aztec-empire` and `inca-empire` at AD 1500 — the only id that fits either court is `other`, and `faithReform.js` treats two courts with the same tradition as one faith (`own.tradition !== foreign.tradition`); no source supports a shared Aztec and Inca faith — if wrong, the two courts lack a holy-war tradition until the vocabulary grows.
+- Proposal: add `mesoamerican` (Aztec) and `andean` (Inca; Chimú at AD 1200 would move from `other` to `andean`) to `FAITH_TRADITIONS`. The dossier sources `b2-aztec-inah-templo` and `b2-inca-nmai-religion` describe both state cults; the research session adds both courts once the ids exist.
+- Ruling: give Chimú `other` — it is the only `other` court at AD 1200, so the id claims no shared faith; the dossier keeps the court blocked and its religious relationship uncertain — if wrong, a blocked court carries a tradition the game does not yet use.
+- Ruling: count Tang, Silla and Western Xia as `buddhist` from royal patronage — each dossier's court religion is a Buddhist institution, and each `noteEn` states the limit — if wrong, the engine treats these courts as co-religionists of Khmer and of each other.
+- Ruling: count the Church of Constantinople as `christian` with the Latin courts, as §13 directs.
+
 ## Current publication checkpoint: 9 November 2026
 
 The gameplay catalog contains 873 approved event records, 801 sources and 7,416 bilingual entries. Coverage spans 4,130 partially researched years; 700 years remain unresearched in that catalog. The latest verified catalog publication is the BC2400 supplement in [PR #108](https://github.com/sp1e/Attainder/pull/108) at `04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c`. Its required CI passed 5,337 tests with no failures and two TODOs, and the build passed. The chronological record below preserves earlier milestones and remaining holds. Claude owns runtime integration and gameplay verification.
