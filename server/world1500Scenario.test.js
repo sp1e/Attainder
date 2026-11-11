@@ -56,13 +56,13 @@ test('the dossier primary refuses to build without the dossier', () => {
   assert.throws(() => authoredScenario(ID), /world-1500: the primary aztec-empire comes from a court dossier/);
 });
 
-test('the package carries the AD 1500 bookmark, era label and content version 1.1.0', () => {
+test('the package carries the AD 1500 bookmark, era label and content version 1.2.0', () => {
   const h = authored();
   assert.equal(h.contentId, ID);
   assert.equal(h.bookmarkDate, DATE);
   assert.equal(h.eraLabelSv, '1500 e.Kr.');
-  assert.equal(h.contentVersion, '1.1.0');
-  assert.equal(loadPackage().assetManifest.contentVersion, '1.1.0');
+  assert.equal(h.contentVersion, '1.2.0');
+  assert.equal(loadPackage().assetManifest.contentVersion, '1.2.0');
 });
 
 test('the rulers hold their dossier titles, and Huáscar belongs to Huayna Capac\'s family', () => {
@@ -134,7 +134,7 @@ test('both playable polities pass the scenario and court validators in the built
   assert.equal(game.country, 'aztec-empire');
   assert.equal(bundle.scenario.name, 'Aztekriket, 1500 e.Kr.');
   for (const polityId of h.playablePolityIds) {
-    assert.deepEqual(validateHistoricalScenario(input, { date: DATE, polityId }), { ok: true, contentId: ID, contentVersion: '1.1.0', date: DATE, polityId });
+    assert.deepEqual(validateHistoricalScenario(input, { date: DATE, polityId }), { ok: true, contentId: ID, contentVersion: '1.2.0', date: DATE, polityId });
     const checked = validateHistoricalCourt(h, { date: DATE, polityId });
     assert.equal(checked.ok, true, `${polityId}: ${checked.code}`);
   }
@@ -204,15 +204,15 @@ test('both Getty seat records are city sources and appear in the ODC-By notice',
   }
 });
 
-// The released rows of Egypt 1.0.0, John 1.2.0, Charlemagne 1.3.0 and world-1500 1.1.0 as [file, bytes, sha256]; a change needs a version bump.
+// The released rows of Egypt 1.1.0, John 1.3.0, Charlemagne 1.4.0 and world-1500 1.2.0 as [file, bytes, sha256]; a change needs a version bump.
 const RELEASED_ROWS = [
   ['egypt-3000bc/regions.geojson', 2033872, '324681692eda15eb8d8927cdec6b3a2f72f279da6ab37ef046927c7e198fcefd'],
   ['egypt-3000bc/cities.geojson', 406, '9640cbde26814a1ca01560d66f9a4b67a87a47c75471513b39dc03acc0fca3a8'],
-  ['egypt-3000bc/scenario.json', 3895204, 'f52f7d4cb8a6ba6120b9078b767d6629b0ac4fe7a14474f147a987968afd16ef'],
+  ['egypt-3000bc/scenario.json', 3895216, 'f241f481cd5101b9c3e13e7dd1b0fdcad3469043ef8c178eaac77c6f0bd42ce2'],
   ['egypt-3000bc/manifest.json', 2489, '42368ead19cce444dc110ca3d9f7602011da79633f2f051aaa78630b49c7bb13'],
   ['john-1200/regions.geojson', 2077205, '94308b5d9fabf18b87b3742f82dbc35d7286beb03a4d61e65e86f725d4c2d440'],
   ['john-1200/cities.geojson', 1953, 'cefed90d6abde489be1fde2273d97ab54336a2825c24dc928b412c7e0cf0ece5'],
-  ['john-1200/scenario.json', 4552922, '5fd663f2d4a9654ef5c93425d1d3ea6254ecfa025189d8fa13dd93d306ce37eb'],
+  ['john-1200/scenario.json', 4557608, '7aedcc6950b3db3a8c44f86088f52944db918fa5f94cba64cbbe492c49366f91'],
   ['john-1200/manifest.json', 2871, '2cf760fd6db97830033eee971f17ca4f2eb68603cfe017fcc918f7a4fa7d3206'],
   ['charlemagne-800/regions.geojson', 2191514, '83cd982d563954d49d110bd616e71196a4369b0f7f659c209945514514e3217c'],
   ['charlemagne-800/cities.geojson', 4560, 'eef2d09798684f6f5dd83a16d791a206b307ced19a7416468e6fa0f1564d5d7b'],
@@ -220,8 +220,8 @@ const RELEASED_ROWS = [
   ['charlemagne-800/manifest.json', 2930, 'a1ed836eddca995f39c8e4ff9e9e3f6f3918f3f19c04be635be86a364403f98f'],
   ['world-1500/regions.geojson', 2049578, 'd4e90914ae1fc8e8c37c060115d1dad5fb54506e7cc1b3fce04b68f40bfb99a9'],
   ['world-1500/cities.geojson', 830, '5466fb0f0a5aa4ae067732dc405fa6a4e7c45eb95ea583b942da88507f31f52d'],
-  ['world-1500/scenario.json', 4749067, '8fcf577a460b40bb51c63915bb324a4a5578dd0aacd06b4e0d61c63bd4760fe7'],
-  ['world-1500/manifest.json', 2854, '602e3d4d8a1137e6f67b41fff3cdf77b72d68c7b78620f4f04beff8c1b3b8f1b'],
+  ['world-1500/scenario.json', 4752932, '7960f87f1afd1f83da8c5852f9beeb178a1a8b9b07e2d89cfe85ff79dd313f54'],
+  ['world-1500/manifest.json', 2854, 'a912e33e8f4617ab661dcc7bef52a6b6eeebcc09b0fa9b8d6aac57e69bf47815'],
 ];
 
 test('releases.json pins world_1500 and every released row, and each file keeps its bytes', () => {

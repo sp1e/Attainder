@@ -248,7 +248,7 @@ const AUTHORED_PACKAGES = {
   },
   // The builder writes the polity's name, sourceIds and noteSv from the review's mapping of feature 80.
   'world-1500': {
-    sources: WORLD_1500_SOURCES,...AZTEC_1500,contentVersion: '1.1.0',bookmarkDate: '1500-12-31',eraLabelSv: '1500 e.Kr.',
+    sources: WORLD_1500_SOURCES,...AZTEC_1500,contentVersion: '1.2.0',bookmarkDate: '1500-12-31',eraLabelSv: '1500 e.Kr.',
     extraPlayables: [INCA_1500],
     contextSv: names => `Nyårsafton 1500. Spelbara riken: ${listSv(names)}. Du möter dokumenterade personer med genererade spelvärden och genererade hovmän.`,
     coverageNotePrefixSv: names => `Av 291 former i källkartan har 2 godkänts som ungefärliga områden. Mingriket och Osmanska riket saknar godkänd form och är inte spelbara. ${names.length} riken är spelbara. `,
@@ -300,7 +300,9 @@ export function courtNamePool(file) {
 const RESEARCH_STARTS = { 'egypt-3000bc': 'bc3000','charlemagne-800': 'ad800','john-1200': 'ad1200','world-1500': 'ad1500' };
 // Swedish game names for the border tribes; the research file carries English names only.
 const TRIBE_NAMES_SV = { 'ad800-tribe-obodrites': 'Obodriterna','ad800-tribe-wilzi': 'Wilzerna','ad800-tribe-sorbs': 'Sorberna','ad800-tribe-bohemians': 'Böhmarna',
-  'ad800-tribe-nordalbingian-saxons': 'Nordalbingiska saxarna','ad800-tribe-bretons': 'Bretonerna','ad800-tribe-emishi': 'Emishi' };
+  'ad800-tribe-nordalbingian-saxons': 'Nordalbingiska saxarna','ad800-tribe-bretons': 'Bretonerna','ad800-tribe-emishi': 'Emishi',
+  'ad1200-tribe-estonians': 'Esterna','ad1200-tribe-lithuanians': 'Litauerna','ad1200-tribe-prussians': 'Prussarna',
+  'ad1500-tribe-chichimecs': 'Chichimekerna','ad1500-tribe-chiriguanos': 'Chiriguanerna' };
 
 // Sets each playable court religion's tradition from courts/faith-traditions.json. A court the package
 // does not play is skipped; a religion id the court lacks stops the build.

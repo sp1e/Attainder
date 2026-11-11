@@ -54,3 +54,6 @@ export const johnRelease120 = () => releaseFromPatch('john-1200-1.2.0.patch.json
 
 // The Egypt bundle as release 1.0.0 shipped it (name pools at 079ce062).
 export const egyptRelease100 = () => releaseFromPatch('egypt-3000bc-1.0.0.patch.json');
+
+// The world-1500 bundle as release 1.1.0 shipped it (main at 472b7bb6).
+export const world1500Release110 = () => releaseFromPatch('world-1500-1.1.0.patch.json');

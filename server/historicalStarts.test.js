@@ -7,10 +7,10 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { HISTORICAL_BOOKMARKS, contentFingerprint, shippedStartEdited, shippedStartNeedsUpgrade } from './historicalStarts.js';
-import { charlemagneRelease110, charlemagneRelease120, charlemagneRelease130, egyptRelease100, world1500Release100 } from './fixtures/releaseFixtures.js';
+import { charlemagneRelease110, charlemagneRelease120, charlemagneRelease130, egyptRelease100, world1500Release100, world1500Release110 } from './fixtures/releaseFixtures.js';
 
 test('each shipped start names the content version its built package carries', () => {
-  assert.deepEqual(HISTORICAL_BOOKMARKS.map(({ id, contentVersion }) => [id,contentVersion]),[['egypt-3000bc','1.1.0'],['charlemagne-800','1.4.0'],['world-1500','1.1.0']]);
+  assert.deepEqual(HISTORICAL_BOOKMARKS.map(({ id, contentVersion }) => [id,contentVersion]),[['egypt-3000bc','1.1.0'],['charlemagne-800','1.4.0'],['world-1500','1.2.0']]);
   for (const { id, contentVersion } of HISTORICAL_BOOKMARKS) {
     const built = JSON.parse(readFileSync(new URL(`./seed/historical/${id}/scenario.json`,import.meta.url),'utf8'));
     const manifest = JSON.parse(readFileSync(new URL(`./seed/historical/${id}/manifest.json`,import.meta.url),'utf8'));
@@ -457,8 +457,8 @@ test('the installed 1.1.0 copy, as that release shipped it, is replaced in place
   } finally { rmSync(root,{recursive:true,force:true}); }
 });
 
-test('installed Charlemagne 1.2.0 and 1.3.0, Egypt 1.0.0 and world-1500 1.0.0 copies are each replaced in place by the shipped release', () => {
-  for (const [id,release,from,to] of [['charlemagne-800',charlemagneRelease120(),'1.2.0','1.4.0'],['charlemagne-800',charlemagneRelease130(),'1.3.0','1.4.0'],['egypt-3000bc',egyptRelease100(),'1.0.0','1.1.0'],['world-1500',world1500Release100(),'1.0.0','1.1.0']]) {
+test('installed Charlemagne 1.2.0 and 1.3.0, Egypt 1.0.0 and world-1500 1.0.0 and 1.1.0 copies are each replaced in place by the shipped release', () => {
+  for (const [id,release,from,to] of [['charlemagne-800',charlemagneRelease120(),'1.2.0','1.4.0'],['charlemagne-800',charlemagneRelease130(),'1.3.0','1.4.0'],['egypt-3000bc',egyptRelease100(),'1.0.0','1.1.0'],['world-1500',world1500Release100(),'1.0.0','1.2.0'],['world-1500',world1500Release110(),'1.1.0','1.2.0']]) {
     const { root, boot, worldPath, citiesPath, metaPath } = desktopLibrary(id);
     try {
       boot('store.ensureScenarioStore();');

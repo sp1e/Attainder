@@ -361,7 +361,7 @@ The play scripts reached four of the five tiers. `Det slog tillbaka` did not com
 
 ## Traditions and name pools release
 
-Charlemagne 1.4.0, John 1.3.0 and Egypt 1.1.0 read three research side files: `courts/faith-traditions.json` gives every court religion its `tradition`, `courts/border-tribes.json` gives Charlemagne seven border tribes with Swedish names and their sources, and `name-pools/frankish-saint-germain-823-829.json` names the children and staff of Karls rike. world-1500 stays at 1.1.0 until the traditions file names Aztekriket (`mesoamerican`) and Inkariket (`andean`). The release patches in `server/fixtures/` cover every shipped version, and a patch op may drop a key the release lacked.
+Charlemagne 1.4.0, John 1.3.0, Egypt 1.1.0 and world-1500 1.2.0 read three research side files: `courts/faith-traditions.json` gives every court religion its `tradition` (Aztekriket `mesoamerican`, Inkariket `andean`), `courts/border-tribes.json` gives Charlemagne seven, John three and world-1500 two border tribes with Swedish names and their sources, and `name-pools/frankish-saint-germain-823-829.json` names the children and staff of Karls rike. The research session sends changes to these files to Claude, who ships them in a rebuild. The release patches in `server/fixtures/` cover every shipped version, and a patch op may drop a key the release lacked.
 
 ## Next step
 

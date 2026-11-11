@@ -22,7 +22,7 @@ const desktop = root => body => execFileSync(process.execPath, ['--input-type=mo
 const START = { date: '1500-12-31', seed: 7, difficulty: 'normal' };
 const CAMPAIGNS = [['inca-empire', 'realm'], ['aztec-empire', 'family']];
 
-test('a campaign started on the shipped world-1500 1.0.0 loads, restores from its companion and plays a year after the 1.1.0 upgrade', () => {
+test('a campaign started on the shipped world-1500 1.0.0 loads, restores from its companion and plays a year after the 1.2.0 upgrade', () => {
   const root = mkdtempSync(path.join(os.tmpdir(), 'attainder-world1500-100-')), run = desktop(root);
   const releaseFile = path.join(root, 'world-1500-1.0.0.json');
   writeFileSync(releaseFile, JSON.stringify(world1500Release100()));
@@ -42,12 +42,12 @@ test('a campaign started on the shipped world-1500 1.0.0 loads, restores from it
       });
       keep({ campaigns, companion: store.exportScenarioBundle('world-1500') });
     `);
-    // The next start of the app reads the library, which replaces the installed copy with 1.1.0.
+    // The next start of the app reads the library, which replaces the installed copy with 1.2.0.
     run(`
       store.ensureScenarioStore();
-      assert.equal(store.getScenarioDetails('world-1500').data.world.historicalScenario.contentVersion, '1.1.0');
-      const { campaigns, companion: companion100 } = recall(), companion110 = store.exportScenarioBundle('world-1500');
-      assert.deepEqual(companion110.data.world.historicalScenario.playablePolityIds, ['aztec-empire', 'inca-empire']);
+      assert.equal(store.getScenarioDetails('world-1500').data.world.historicalScenario.contentVersion, '1.2.0');
+      const { campaigns, companion: companion100 } = recall(), companion120 = store.exportScenarioBundle('world-1500');
+      assert.deepEqual(companion120.data.world.historicalScenario.playablePolityIds, ['aztec-empire', 'inca-empire']);
       const playsAYear = (world, label) => {
         const state = world.characterSystem, target = addGameMonths(state.date, 12);
         const year = advanceCharacters(state, target, { id: 'after-upgrade' });
@@ -64,13 +64,13 @@ test('a campaign started on the shipped world-1500 1.0.0 loads, restores from it
         const bundle = store.exportGameBundle(saved.id);
         assert.deepEqual(bundle.data, saved.bundle.data);
         playsAYear(loaded.data.world, saved.id + ' loaded');
-        for (const [label, companion] of [['1.1.0', companion110], ['1.0.0', companion100]]) {
+        for (const [label, companion] of [['1.2.0', companion120], ['1.0.0', companion100]]) {
           const restored = store.restoreGameBundle({ bundle, scenarioBundle: companion });
           assert.deepEqual(restored.data.world, bundle.data.world, saved.id + ' restored with ' + label);
           playsAYear(restored.data.world, saved.id + ' restored with ' + label);
         }
-        const rebound = store.restoreScenarioForGame(saved.id, companion110);
-        assert.deepEqual(rebound.data.world, saved.data.world, saved.id + ': its companion is restored from the 1.1.0 export');
+        const rebound = store.restoreScenarioForGame(saved.id, companion120);
+        assert.deepEqual(rebound.data.world, saved.data.world, saved.id + ': its companion is restored from the 1.2.0 export');
         playsAYear(rebound.data.world, saved.id + ' rebound');
         // Inkariket keeps the primogeniture its 1.0.0 world was started with.
         if (saved.polityId === 'inca-empire') {
