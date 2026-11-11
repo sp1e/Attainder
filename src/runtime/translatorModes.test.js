@@ -202,11 +202,27 @@ const until = async (condition, what) => {
 const settle = () => new Promise((resolve) => setTimeout(resolve, 30));
 const watching = () => page.observers.filter((observer) => observer.connected).length;
 
-test("English mode: the native book translates the page in two tiers and asks no one else", async (t) => {
-  t.mock.method(console, "warn", () => {});
+// A page of its own for one test: the translator stopped, no node, observer or
+// request left from the test before, the language stored on the device and on
+// the server, and the translator stopped again when the test ends. Each test
+// below starts here, so it passes alone and in any order.
+const freshPage = (t, { language, serverPack = {} }) => {
+  stopTranslator();
+  page.elements.length = 0;
+  page.observers.length = 0;
+  page.texts.length = 0;
+  page.startupScreen = false;
+  page.reloads = 0;
+  requests.length = 0;
   installPage();
-  globalThis.localStorage = createMemoryStorage({ ui_language: "en" });
-  installFetch({ settings: { language: "en" } });
+  globalThis.localStorage = createMemoryStorage({ ui_language: language });
+  installFetch({ settings: { language }, serverPack });
+  t.mock.method(console, "warn", () => {});
+  t.after(() => stopTranslator());
+};
+
+test("English mode: the native book translates the page in two tiers and asks no one else", async (t) => {
+  freshPage(t, { language: "en" });
 
   const inside = addText("Karl dog 814", { native: true });
   const outside = addText("Karl dog 814");
@@ -284,8 +300,14 @@ test("English mode: the native book translates the page in two tiers and asks no
 });
 
 test("a second start changes nothing; a start after a stop watches the page again", async (t) => {
-  t.mock.method(console, "warn", () => {});
+  freshPage(t, { language: "en" });
+  const early = addText("Sändebud");
+  startTranslator();
+  await until(() => watching() === 1, "the page to be watched");
+  assert.equal(early.nodeValue, "Envoy");
+
   const before = requests.length;
+  assert.ok(before > 0, "the first start asked for its files");
   startTranslator();
   await settle();
   assert.equal(page.observers.length, 1);
@@ -306,15 +328,10 @@ test("a second start changes nothing; a start after a stop watches the page agai
 });
 
 test("Swedish mode: the pack, then the research's Swedish under it, and no Swedish text for the model", async (t) => {
-  t.mock.method(console, "warn", () => {});
   const locators = Object.entries(readPublic(SWEDISH_HISTORICAL_PATH));
   const [locator, locatorSv] = locators[0];
   const [claimed] = locators[1];
-  requests.length = 0;
-  page.texts.length = 0;
-  page.elements.length = 0;
-  globalThis.localStorage = createMemoryStorage({ ui_language: "sv" });
-  installFetch({ settings: { language: "sv" }, serverPack: { "Save game": "Spara spelet", [claimed]: "Packens egen text" } });
+  freshPage(t, { language: "sv", serverPack: { "Save game": "Spara spelet", [claimed]: "Packens egen text" } });
 
   const button = addText("Save game", { native: true });
   const court = addText("Karl dog 814", { native: true });
