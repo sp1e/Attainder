@@ -20,6 +20,7 @@ import { punishCrimeChoices, resolvePunishment } from './crimes.js';
 import { feastRefusal, feastRows, holdFeast, presentOccasions, validateOccasions } from './occasions.js';
 import { WONDER, WONDER_KINDS, completeWonder, startWonder, wonderRefusal } from './wonders.js';
 import { ensureForeignRealms, presentForeignRealms, validateForeignRealms } from './foreignRealms.js';
+import { validateHolyWar } from './holyWar.js';
 import { FAITH_MODES, FAITH_REFORM, faithReformRefusal, foundedYear, reformFaith, validateFaithFoundings } from './faithReform.js';
 import { TRIBE, bribeTribe, crushTargets, crushTribe, dealTargets, ensureTribes, hasTribes, hireTribe, presentTribes, validateTribes } from './tribes.js';
 import { ALLIANCE, arrangeForeignMarriage, foreignMarriageRefusal, foreignPartners, marriageableKin } from './alliances.js';
@@ -452,7 +453,7 @@ export function normalizeCharacterSystem(raw) {
   validateRumors(state);
   validateConversations(state);
   ensureForeignRealms(state); validateForeignRealms(state);
-  ensureTribes(state); validateTribes(state); validateFaithFoundings(state);
+  ensureTribes(state); validateTribes(state); validateFaithFoundings(state); validateHolyWar(state);
   return state;
 }
 

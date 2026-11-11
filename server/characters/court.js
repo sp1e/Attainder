@@ -15,11 +15,12 @@ import { foreignRealmStep } from './foreignRealms.js';
 import { CALL_EXPIRY, allianceStep, callChoices, callClosedReason, resolveCall } from './alliances.js';
 import { claimStep } from './claims.js';
 import { tribeStep } from './tribes.js';
+import { HOLY_WAR_EXPIRY, holyWarChoices, holyWarClosedReason, holyWarStep, resolveHolyWar } from './holyWar.js';
 
 // The court: one orchestrator for what happens around the throne. These entry points keep the systems of Phase 3 out of the long functions in index.js.
 // `hooks` are the engine's (actionHooks in index.js). actionResolution.js, npcPlots.js and schemes.js import each other in a cycle, so their exports are used only inside functions here.
 
-export const COURT_STORY_TYPES = Object.freeze(['stress_breakdown', 'family_demand', 'faction_ultimatum', 'deathbed', 'duel_challenge', 'decision_echo', 'plague_outbreak', 'call_to_arms']);
+export const COURT_STORY_TYPES = Object.freeze(['stress_breakdown', 'family_demand', 'faction_ultimatum', 'deathbed', 'duel_challenge', 'decision_echo', 'plague_outbreak', 'call_to_arms', 'holy_war_call']);
 
 // One row per court story.
 // `expiry` is what a story past its due date resolves to, and `expiryFor` gives it per story where it depends on the story, and `expiryText` replaces its log line where the cost depends on who is acting, as `deadlineText` replaces its caption; `closedReason` gives the text of a story that fell away, or ''; `onClose` is what such a story leaves behind; `log` writes the row's own log lines under ids of its own.
@@ -32,6 +33,7 @@ const COURT_STORIES = Object.freeze({
   decision_echo: Object.freeze({ choices: echoChoices, resolve: resolveEcho, expiry: ECHO_EXPIRY, expiryFor: echoExpiry, closedReason: echoClosedReason }),
   plague_outbreak: Object.freeze({ choices: plagueChoices, resolve: resolvePlague, expiry: PLAGUE_EXPIRY, closedReason: plagueClosedReason }),
   call_to_arms: Object.freeze({ choices: callChoices, resolve: resolveCall, expiry: CALL_EXPIRY, closedReason: callClosedReason }),
+  holy_war_call: Object.freeze({ choices: holyWarChoices, resolve: resolveHolyWar, expiry: HOLY_WAR_EXPIRY, closedReason: holyWarClosedReason }),
 });
 
 /** Runs after npcPlotStep and returns the paid chancellor delta for annual accounting. A dissolved realm pays 0. */
@@ -55,6 +57,7 @@ export function courtAnnualStep(state, events, hooks) {
   plagueStep(state, events, hooks);
   foreignRealmStep(state, events, hooks);
   allianceStep(state, events, hooks);
+  holyWarStep(state, events, hooks);
   return contribution + claimStep(state, events, hooks) + tribeStep(state, events, hooks);
 }
 

@@ -73,7 +73,8 @@ function seedCourt(state, court) {
     guardianId: null, treasury: 110, estates: 2, influence: 45, grievance: 0, exiled: false,
     hostFamilyId: null, claims: [], cooldowns: {},
   };
-  for (const religion of court.religions) state.religions[religion.id] = { id: religion.id, name: religion.name || religion.id, support: 55, leaderId: religion.leaderId ?? null, historicalOrigin: publicReligionOrigin(religion) };
+  for (const religion of court.religions) state.religions[religion.id] = { id: religion.id, name: religion.name || religion.id, support: 55, leaderId: religion.leaderId ?? null, historicalOrigin: publicReligionOrigin(religion),
+    ...(typeof religion.tradition === 'string' && religion.tradition ? { tradition: religion.tradition } : {}) };
   for (const [id, name] of [['ruler', 'Härskare'], ['general', 'Överbefälhavare'], ['chancellor', 'Kansler'], ['priest', 'Religiös företrädare']]) {
     state.offices[id] = { id, name, kind: id, holderId: null, regentId: null, history: [], publicBudget: 30 };
   }

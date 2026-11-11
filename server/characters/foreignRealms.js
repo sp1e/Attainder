@@ -4,6 +4,7 @@ import { hashRoll } from './duels.js';
 import { isMarried } from './marriage.js';
 import { presentClaim, validClaimFields } from './claims.js';
 import { presentEnvoy, validEnvoy } from './envoys.js';
+import { otherFaith } from './faithReform.js';
 
 // Foreign realms live beside the court (spec docs/superpowers/specs/2026-11-10-foreign-realms-design.md). Historical campaigns only.
 // Each realm keeps its ruling family from the package court seed. Foreign people never enter state.people. Rolls are hashRoll; nothing draws from a stream.
@@ -20,6 +21,12 @@ export function distanceKm([lon1, lat1], [lon2, lat2]) {
   return Math.round(2 * EARTH_KM * Math.asin(Math.sqrt(a)));
 }
 
+// The court's first religion, with a tradition only when the package names one (holy-war spec); null without a religion.
+function seedFaith(court) {
+  const religion = court.religions?.[0];
+  return religion ? { id: religion.id, name: religion.name || religion.id, tradition: typeof religion.tradition === 'string' && religion.tradition ? religion.tradition : null } : null;
+}
+
 function seedRealm(h, court, home) {
   const polity = h.polities.find((entry) => entry.id === court.polityId);
   const seat = h.settlements.find((entry) => entry.id === court.seatId);
@@ -31,7 +38,7 @@ function seedRealm(h, court, home) {
     { id, name, sex, bornAt, diedAt: null, parentIds: legalParentIds.filter((other) => ids.has(other)), spouseIds: spouseIds.filter((other) => ids.has(other)),
       origin: identityOrigin === 'generated' ? 'generated' : 'documented' }]));
   return { id: court.polityId, name: polity?.nameSv ?? court.polityId, successionLaw: court.successionLaw ?? 'primogeniture', seatName: seat?.nameSv ?? null,
-    distanceKm: home && seat ? distanceKm(home.coordinates, seat.coordinates) : null, rulerId: court.rulerId, people, sequence: 0, memories: [] };
+    distanceKm: home && seat ? distanceKm(home.coordinates, seat.coordinates) : null, rulerId: court.rulerId, people, sequence: 0, memories: [], faith: seedFaith(court) };
 }
 
 /** The eight nearest other courts of the package, as state.foreignRealms. Reads only; called before the package is narrowed. */
@@ -120,7 +127,8 @@ export function presentForeignRealms(state, hooks) {
   return state.foreignRealms.map((realm) => {
     const ruler = realm.people[realm.rulerId], heir = foreignHeir(realm, ruler, state.date);
     return { id: realm.id, name: realm.name, seatName: realm.seatName, distanceKm: realm.distanceKm, neighbor: realm.distanceKm != null && realm.distanceKm <= FOREIGN.neighborKm,
-      rulerName: ruler.name, rulerAge: getCharacterAge(ruler, state.date), heirName: heir?.name ?? null, opinion: foreignOpinion(state, realm.id), allied: Boolean(realm.alliance), ...presentClaim(realm), ...presentEnvoy(state, realm, hooks) };
+      rulerName: ruler.name, rulerAge: getCharacterAge(ruler, state.date), heirName: heir?.name ?? null, opinion: foreignOpinion(state, realm.id), allied: Boolean(realm.alliance),
+      faithName: realm.faith?.name ?? null, otherFaith: otherFaith(state, hooks.ruler()?.religionId, realm.faith ?? null), ...presentClaim(realm), ...presentEnvoy(state, realm, hooks) };
   });
 }
 
@@ -134,10 +142,13 @@ function validPerson(person, id) {
     && (person.diedAt === null || normalizeGameDate(person.diedAt) === person.diedAt) && Array.isArray(person.parentIds) && Array.isArray(person.spouseIds);
 }
 
+// Absent in saves from before the holy-war spec.
+const validFaith = (faith) => faith === undefined || faith === null || (plain(faith) && typeof faith.id === 'string' && typeof faith.name === 'string' && (faith.tradition === null || typeof faith.tradition === 'string'));
+
 const bornNumber = (realm, id) => (id.startsWith(`${realm.id}-born-`) ? Number(id.slice(realm.id.length + 6)) : 0);
 
 function validRealm(realm) {
-  if (!plain(realm) || typeof realm.id !== 'string' || typeof realm.name !== 'string' || typeof realm.successionLaw !== 'string' || !plain(realm.people) || !Array.isArray(realm.memories)) return false;
+  if (!plain(realm) || typeof realm.id !== 'string' || typeof realm.name !== 'string' || typeof realm.successionLaw !== 'string' || !plain(realm.people) || !Array.isArray(realm.memories) || !validFaith(realm.faith)) return false;
   if ((realm.seatName !== null && typeof realm.seatName !== 'string') || (realm.distanceKm !== null && !Number.isFinite(realm.distanceKm)) || !Number.isInteger(realm.sequence) || realm.sequence < 0) return false;
   const people = Object.entries(realm.people);
   return people.length <= FOREIGN.peopleLimit && people.every(([id, person]) => validPerson(person, id) && !(bornNumber(realm, id) > realm.sequence)) && plain(realm.people[realm.rulerId])

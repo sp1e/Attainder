@@ -2274,6 +2274,17 @@ test("the envoy cannot be closed while it rides", async () => {
   assert.equal(buttonNamed(mounted.tree, "Stäng").props.disabled, false);
 });
 
+test("a neighbor names its faith and marks another faith, and an older save shows none", () => {
+  const driver = createHookDriver();
+  const { ForeignRealms } = loadPanel({}, { react: driver.react });
+  const base = { rulerName: "Leo III", rulerAge: 50, heirName: null, seatName: "Rom", distanceKm: 1100, neighbor: true, allied: false, opinion: 0, claim: null, war: null, lands: 0, envoyReason: "" };
+  const realms = [{ ...base, id: "papal", name: "Kyrkostaten", faithName: "Den latinska kyrkan", otherFaith: true }, { ...base, id: "asturias", name: "Asturien", faithName: "Kyrkan i Asturien", otherFaith: false }, { ...base, id: "old", name: "Gammalt rike", faithName: null, otherFaith: false }];
+  const shown = textOf(driver.render(React.createElement(ForeignRealms, { realms })));
+  assert.match(shown, /hållning 0 · tro: Den latinska kyrkan \(annan tro\)/);
+  assert.match(shown, /tro: Kyrkan i Asturien(?! \(annan)/);
+  assert.equal((shown.match(/tro:/g) ?? []).length, 2);
+});
+
 test("each neighbor offers an envoy, and a closed one says why", () => {
   const driver = createHookDriver();
   const { ForeignRealms } = loadPanel({}, { react: driver.react });

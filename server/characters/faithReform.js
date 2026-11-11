@@ -55,7 +55,8 @@ export function reformFaith(state, { mode }, _actor, faithId, events, hooks) {
   if (refusal) throw new Error(refusal);
   hooks.charge(FAITH_REFORM.cost, { publicFunds: true, tag: 'risky' });
   const ruler = hooks.ruler(), fromId = ruler.religionId, old = state.religions[fromId], rules = FAITH_MODES[mode];
-  const faith = { id: faithId, name: faithName(state, mode, ruler, old), support: FAITH_REFORM.support, leaderId: null, founding: { date: state.date, mode, fromId, founderId: ruler.id } };
+  const faith = { id: faithId, name: faithName(state, mode, ruler, old), support: FAITH_REFORM.support, leaderId: null, founding: { date: state.date, mode, fromId, founderId: ruler.id },
+    ...(typeof old.tradition === 'string' ? { tradition: old.tradition } : {}) };
   state.religions[faithId] = faith;
   ruler.religionId = faithId;
   if (state.families[ruler.familyId]) convert(state, state.families[ruler.familyId], fromId, faithId);
@@ -77,9 +78,19 @@ export function reformFaith(state, { mode }, _actor, faithId, events, hooks) {
 /** The founded year of a faith for the religion list, or null. Reads only. */
 export const foundedYear = (faith) => (faith.founding ? gameDateYear(faith.founding.date) : null);
 
-/** A save's founding record on each religion; absent on seeded faiths. */
+/** Whether a neighbor's faith stands against the faith `faithId` (holy-war spec): one it broke from, or another named tradition. Reads only. */
+export function otherFaith(state, faithId, foreign) {
+  const own = state.religions[faithId];
+  if (!own || !foreign || foreign.id === faithId) return false;
+  const left = new Set();
+  for (let faith = own; faith?.founding && !left.has(faith.founding.fromId); faith = state.religions[faith.founding.fromId]) left.add(faith.founding.fromId);
+  return left.has(foreign.id) || (typeof own.tradition === 'string' && typeof foreign.tradition === 'string' && own.tradition !== foreign.tradition);
+}
+
+/** A save's founding record and tradition on each religion; both are absent on seeded faiths without them. */
 export function validateFaithFoundings(state) {
   for (const faith of Object.values(state.religions)) {
+    if (faith.tradition !== undefined && typeof faith.tradition !== 'string') throw new Error('Sparfilens trosreform är ogiltig.');
     const { founding } = faith;
     if (founding === undefined) continue;
     const ok = founding !== null && typeof founding === 'object' && normalizeGameDate(founding.date) === founding.date && Object.hasOwn(FAITH_MODES, founding.mode)

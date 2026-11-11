@@ -107,7 +107,7 @@ export function ForeignRealms({ realms, busy = false, openId = null, onEnvoy, re
     <ul className="char-reign-goals">{rows.map((realm) => <li key={realm.id}>
       <strong>{realm.name}</strong>
       <span>{`${realm.rulerName}, ${realm.rulerAge} år${realm.heirName ? ` · arvinge: ${realm.heirName}` : ' · ingen känd arvinge'}`}</span>
-      <span className="char-caption">{`${realm.seatName ?? 'Okänt säte'} · ${realm.distanceKm == null ? 'okänt avstånd' : `${number(realm.distanceKm)} km`}${realm.neighbor ? ' · granne' : ''}${realm.allied ? ' · allierad' : ''}${claimText(realm)} · hållning ${number(realm.opinion)}`}</span>
+      <span className="char-caption">{`${realm.seatName ?? 'Okänt säte'} · ${realm.distanceKm == null ? 'okänt avstånd' : `${number(realm.distanceKm)} km`}${realm.neighbor ? ' · granne' : ''}${realm.allied ? ' · allierad' : ''}${claimText(realm)} · hållning ${number(realm.opinion)}${realm.faithName ? ` · tro: ${realm.faithName}${realm.otherFaith ? ' (annan tro)' : ''}` : ''}`}</span>
       {renderEnvoy && openId === realm.id ? renderEnvoy(realm) : onEnvoy && <EnvoyButton realm={realm} busy={busy} onEnvoy={onEnvoy} />}
     </li>)}</ul>
   </Section>;
