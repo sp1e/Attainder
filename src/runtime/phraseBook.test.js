@@ -143,3 +143,139 @@ test("a later entry replaces an earlier one, patterns included", () => {
   book.set("Save game", "Spiel speichern");
   assert.equal(book.translate("Save game"), "Spiel speichern");
 });
+
+// The native book: keyed by the game's own Swedish, for English mode. Its three
+// extra lookups are for sentences the engine builds from other sentences, and
+// a book keyed by English never gets them.
+
+const nativeBookOf = (entries) => {
+  const book = createPhraseBook({ native: true });
+  book.setAll(entries);
+  return book;
+};
+
+const REALMS = {
+  "Spelbara riken: {{list}}": "Playable realms: {{list}}",
+  "{{name}} och {{other}}": "{{name}} and {{other}}",
+  Frankerriket: "Frankish kingdom",
+  Tangriket: "Tang Empire",
+};
+
+const NESTED = {
+  "Hovet meddelar: {{news}}": "The court announces: {{news}}",
+  "Budbäraren säger: {{words}}": "The messenger says: {{words}}",
+  "Brevet lyder: {{text}}": "The letter reads: {{text}}",
+  "Sigillet visar: {{mark}}": "The seal shows: {{mark}}",
+  Lejon: "Lion",
+};
+
+test("native: a slot's value is translated by pattern too", () => {
+  const book = nativeBookOf(REALMS);
+  assert.equal(book.translate("Spelbara riken: Frankerriket och Tangriket"), "Playable realms: Frankish kingdom and Tang Empire");
+  assert.equal(book.translate("Spelbara riken: Wessex och Tangriket"), "Playable realms: Wessex and Tang Empire", "an unknown name inside the value stays");
+  assert.equal(
+    bookOf(REALMS).translate("Spelbara riken: Frankerriket och Tangriket"),
+    "Playable realms: Frankerriket och Tangriket",
+    "an English-keyed book looks a value up exactly, by rule or as a list, as before",
+  );
+});
+
+test("native: patterns inside values stop two levels down", () => {
+  const book = nativeBookOf(NESTED);
+  assert.equal(
+    book.translate("Budbäraren säger: Brevet lyder: Sigillet visar: Lejon"),
+    "The messenger says: The letter reads: The seal shows: Lion",
+    "two patterns inside the first, and an entry inside the last",
+  );
+  assert.equal(
+    book.translate("Hovet meddelar: Budbäraren säger: Brevet lyder: Sigillet visar: Lejon"),
+    "The court announces: The messenger says: The letter reads: Sigillet visar: Lejon",
+    "the third pattern down is not looked for",
+  );
+});
+
+test("native: a comma list of entries is translated item by item", () => {
+  const cities = { Rom: "Rome", Aten: "Athens", Kairo: "Cairo", "Spelbara riken: {{list}}": "Playable realms: {{list}}" };
+  const book = nativeBookOf(cities);
+  assert.equal(book.translate("Rom, Aten, Kairo"), "Rome, Athens, Cairo");
+  assert.equal(book.translate("Spelbara riken: Rom, Aten"), "Playable realms: Rome, Athens", "as a slot's value too");
+  assert.equal(book.translate("Rom, Aten, Sparta"), null, "one unknown item and it is prose with commas");
+  assert.equal(book.translate("Rom,Aten"), null, "the separator is a comma and a space");
+  assert.equal(book.translate(Array(16).fill("Rom").join(", ")), null, "at most fifteen items");
+  assert.equal(book.translate(Array(15).fill("Rom").join(", ")), Array(15).fill("Rome").join(", "));
+  const plain = bookOf(cities);
+  assert.equal(plain.translate("Rom, Aten, Kairo"), null, "not in an English-keyed book");
+  assert.equal(plain.translate("Spelbara riken: Rom, Aten"), "Playable realms: Rom, Aten");
+});
+
+test("native: a sentence is found without its final period, and gets it back", () => {
+  const court = {
+    "Hovet flyttar till Aachen": "The court moves to Aachen",
+    "{{name}} kröns i Rom": "{{name}} is crowned in Rome",
+    "Källan nämner inget år": "The source gives no year.",
+  };
+  const book = nativeBookOf(court);
+  assert.equal(book.translate("Hovet flyttar till Aachen."), "The court moves to Aachen.");
+  assert.equal(book.translate("Karl kröns i Rom."), "Karl is crowned in Rome.", "by pattern when no entry has it");
+  assert.equal(book.translate("Källan nämner inget år."), "The source gives no year.", "a translation with its own period keeps one");
+  assert.equal(book.translate("Hovet flyttar till Aachen..."), null, "an ellipsis is not a final period");
+  assert.equal(book.translate("Hovet flyttar till Aachen!"), null);
+  assert.equal(book.translate("Hovet flyttar till Pavia."), null, "the sentence must be known");
+  const plain = bookOf(court);
+  assert.equal(plain.translate("Hovet flyttar till Aachen."), null, "not in an English-keyed book");
+  assert.equal(plain.translate("Karl kröns i Rom."), null);
+});
+
+// The strong tier is what the translator uses outside the views written in the
+// book's language, where the text is someone else's.
+
+const COURT = {
+  "{{name}} dog {{date}}": "{{name}} died {{date}}",
+  "Riket går i krig vid {{name}}s sida": "The realm goes to war at {{name}}'s side",
+  "Hovet flyttar till Aachen": "The court moves to Aachen",
+  "{{name}} kröns i Rom": "{{name}} is crowned in Rome",
+  Karl: "Charles",
+  Rom: "Rome",
+};
+
+test("strongOnly: a weak pattern answers in the full tier only", () => {
+  const book = nativeBookOf(COURT);
+  assert.equal(book.translate("Karl dog 814"), "Charles died 814");
+  assert.equal(book.translate("Karl dog 814", { strongOnly: true }), null);
+  assert.equal(book.translate("Hot dog stand"), "Hot died stand", "what the weak pattern does to text that is not Swedish");
+  assert.equal(book.translate("Hot dog stand", { strongOnly: true }), null);
+  assert.equal(book.translate("Karl dog 814"), "Charles died 814", "the strong tier's answer is not remembered for the full tier");
+  assert.equal(book.translate("Erik dog 1160", { strongOnly: true }), null);
+  assert.equal(book.translate("Erik dog 1160"), "Erik died 1160", "nor the other way round");
+  assert.equal(book.translate("Erik dog 1160", { strongOnly: true }), null);
+});
+
+test("strongOnly: entries and patterns with eight letters of their own still answer", () => {
+  const book = nativeBookOf(COURT);
+  assert.equal(book.translate("Rom", { strongOnly: true }), "Rome");
+  assert.equal(book.translate("Riket går i krig vid Karls sida", { strongOnly: true }), "The realm goes to war at Charles's side");
+  assert.equal(book.translate("Riket går i krig vid Karl dog 814s sida", { strongOnly: true }), "The realm goes to war at Karl dog 814's side", "no weak pattern inside a strong one");
+  assert.equal(book.translate("Riket går i krig vid Karl dog 814s sida"), "The realm goes to war at Charles died 814's side");
+});
+
+test("strongOnly: a list or a missing period is resolved through entries alone", () => {
+  const book = nativeBookOf(COURT);
+  assert.equal(book.translate("Rom · Karl dog 814"), "Rome · Charles died 814");
+  assert.equal(book.translate("Rom · Karl dog 814", { strongOnly: true }), "Rome · Karl dog 814");
+  assert.equal(book.translate("Paris · Karl dog 814", { strongOnly: true }), null);
+  assert.equal(book.translate("Rom, Karl", { strongOnly: true }), "Rome, Charles");
+  assert.equal(book.translate("Hovet flyttar till Aachen.", { strongOnly: true }), "The court moves to Aachen.");
+  assert.equal(book.translate("Karl kröns i Rom", { strongOnly: true }), "Charles is crowned in Rome");
+  assert.equal(book.translate("Karl kröns i Rom."), "Charles is crowned in Rome.");
+  assert.equal(book.translate("Karl kröns i Rom.", { strongOnly: true }), null, "the sentence without its period is no entry");
+});
+
+test("strongOnly: the rule answers for a value inside a strong pattern, not for a whole string", () => {
+  const book = createPhraseBook({ localizeValue: (text) => (text === "Jan 1, 2016" ? "1. Jan. 2016" : null) });
+  book.setAll({ "Last saved on {{date}}": "Zuletzt gespeichert am {{date}}", "by {{author}}": "von {{author}}" });
+  assert.equal(book.translate("Jan 1, 2016"), "1. Jan. 2016");
+  assert.equal(book.translate("Jan 1, 2016", { strongOnly: true }), null);
+  assert.equal(book.translate("Last saved on Jan 1, 2016", { strongOnly: true }), "Zuletzt gespeichert am 1. Jan. 2016");
+  assert.equal(book.translate("by Arkniem", { strongOnly: true }), null, "the tiers are the same in an English-keyed book");
+  assert.equal(book.translate("by Arkniem"), "von Arkniem");
+});
