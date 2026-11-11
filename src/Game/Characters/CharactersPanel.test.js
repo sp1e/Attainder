@@ -15,6 +15,7 @@ import * as realCounter from "../AI/modelCallCounter.js";
 import { createSecret, grantHook } from "../../runtime/characters/secrets.js";
 import { SHIPPED_START_FOLDERS } from "../../runtime/testing/shippedHistoricalStarts.js";
 import { interpretCharacterAction } from "./characterModelCalls.js";
+import * as playerTextModule from "./playerText.js";
 import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testing/hookDriver.js";
 
 // Render the real JSX with supplied presentation data. Runtime and portrait
@@ -60,6 +61,7 @@ function loadActionBox(stubs = {}) {
       narrateCharacterResolution: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
       ...stubs.model,
     },
+    "./playerText.js": playerTextModule,
   };
   return runModule(actionBoxCompiled, modules);
 }
@@ -113,6 +115,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
       narrateCharacterResolution: async () => ({ ok: false, reason: "Ingen modell är ansluten." }),
       ...conversationModel(model),
     },
+    "./playerText.js": playerTextModule,
     "./characters.css": {},
     "./HistoricalRecordView.jsx": { default: () => React.createElement("p", null, "HISTORISK POST"), holdFocus: () => {}, useChronicleRequest: () => {}, __esModule: true },
     "./LocalModelConnect.jsx": { default: () => null, __esModule: true },
@@ -777,7 +780,7 @@ test("a schema failure from the model shows the Swedish sentence; a no-match exp
   assert.equal(noMatch.reason, "Ingen handling låter dig flyga.");
 });
 
-test("an English no-match reason and an English explanation never reach the player", async () => {
+test("an English reason without the model's origin and an explanation that is no sentence never reach the player", async () => {
   const box = loadActionBox();
   const { state, view } = engineCampaign();
   const { result: noMatch, warnings } = await withWarnings(() => box.prepareInterpretedAction({ text: "Jag flyger till månen", view,
@@ -2314,4 +2317,98 @@ test("the border tribes show distance, state and the last raid, and no list appe
   assert.match(shown, /Testobodriter451 km · oroligt · senaste räd 803/);
   assert.match(shown, /Testsorberokänt avstånd · betalt till 805/);
   assert.equal(driver.render(React.createElement(BorderTribes, { tribes: [] })), null);
+});
+
+// --- Two languages: the model's own text and the translator's markers --------------------------------------------
+
+test("a model's English refusal and explanation reach the player as written, marked as the model's text", async () => {
+  const box = loadActionBox();
+  const { state, view } = engineCampaign();
+  const noMatch = await box.prepareInterpretedAction({ text: "I fly to the moon", view,
+    interpret: ({ text, view: seen }) => interpretCharacterAction({ text, view: seen, language: "English", callModel: async () => ({ toolInput: { status: "no_match", explanation: "The council refuses to back the plan.", suggestions: [] } }) }), estimate: async () => assert.fail() });
+  assert.deepEqual([noMatch.kind, noMatch.reason, noMatch.reasonFromModel], ["menu", "The council refuses to back the plan.", true]);
+  const menu = renderToStaticMarkup(React.createElement(box.ActionMenu, { view, reason: noMatch.reason, reasonFromModel: noMatch.reasonFromModel, onPropose: () => {} }));
+  assert.match(menu, /<p class="char-reason" role="status" data-no-translate="">The council refuses to back the plan\.<\/p>/);
+  const step = await box.prepareInterpretedAction({ text: "I flatter Iset", view,
+    interpret: async () => ({ ...swayAnswer(view), explanation: "You want to win the favour of Iset." }), estimate: async (intent) => estimateCharacterAction(state, intent) });
+  assert.equal(step.proposal.explanation, "You want to win the favour of Iset.");
+  const card = renderToStaticMarkup(React.createElement(box.ConfirmationCard, { proposal: step.proposal, view, onConfirm: () => {}, onCancel: () => {} }));
+  assert.match(card, /<p class="char-caption" data-no-translate="true">You want to win the favour of Iset\.<\/p>/);
+});
+
+test("a reason with the model's origin that is no sentence gives the Swedish sentence, and the game's own reason is not marked", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  for (const broken of ["Failed to fetch", "Line one.\nLine two.", `${"a".repeat(300)}.`]) {
+    const { result, warnings } = await withWarnings(() => box.prepareInterpretedAction({ text: "x", view,
+      interpret: async () => ({ ok: false, reason: broken, origin: "model", fallback: "menu" }), estimate: async () => assert.fail() }));
+    assert.deepEqual([result.kind, result.reason, result.reasonFromModel], ["menu", INTERPRET_FAILED, undefined], broken.slice(0, 20));
+    assert.equal(warnings.length, 1, "what was kept back goes to the log");
+  }
+  const html = renderToStaticMarkup(React.createElement(box.ActionMenu, { view, reason: INTERPRET_FAILED, onPropose: () => {} }));
+  assert.match(html, /<p class="char-reason" role="status">Texten kunde inte tolkas/);
+  assert.doesNotMatch(html, /data-no-translate/);
+});
+
+test("a narrated outcome is marked as the model's text; the engine's default text is not", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const proposal = { mode: "contested", catalogId: "sway", entry: view.catalog.find((entry) => entry.catalogId === "sway"), payload: swayAnswer(view).payload };
+  const resolution = { id: "resolution-9", tier: "clean_success", tierLabel: "Lyckat i det tysta", refused: false, actionLabel: "Påverka", effects: [] };
+  const run = (narrate, recordNarrative) => box.executeProposal({ proposal, view: { ...view, recentResolutions: [] }, narrate, recordNarrative, present: (state) => state,
+    submit: async () => ({ ok: true, state: { recentResolutions: [resolution], schemes: [] }, events: [{ title: "Påverka: lyckat i det tysta", description: "Standardtext." }] }) });
+  const story = async () => ({ ok: true, title: "A smile", narrative: "Iset smiled.\n\nThe court saw nothing.", adjustments: [] });
+  const told = await run(story, async () => ({ ok: true }));
+  assert.equal(told.narrated, true);
+  const narrated = renderToStaticMarkup(React.createElement(box.OutcomeCard, { outcome: { ...told, revealed: "Spionmästaren fann något." } }));
+  assert.match(narrated, /<strong class="char-outcome-title" data-no-translate="">A smile<\/strong>/);
+  assert.match(narrated, /<p data-no-translate="">Iset smiled\.<\/p><p data-no-translate="">The court saw nothing\.<\/p>/);
+  assert.match(narrated, /<p class="char-caption">Spionmästaren fann något\.<\/p>/);
+  assert.equal((narrated.match(/data-no-translate/g) || []).length, 3, "the heading and the game's own notes stay unmarked");
+  const untold = [await run(async () => ({ ok: false, reason: "Modellanropet misslyckades." }), async () => assert.fail()),
+    (await withWarnings(() => run(story, async () => ({ ok: false, error: "Berättelsen kan bara skrivas av berättarsteget." })))).result];
+  for (const outcome of untold) {
+    assert.equal(outcome.narrated, undefined);
+    assert.equal(outcome.text, "Standardtext.");
+    assert.doesNotMatch(renderToStaticMarkup(React.createElement(box.OutcomeCard, { outcome })), /data-no-translate/);
+  }
+});
+
+test("what the player said and what the model answered are marked as written; the game's notes are not", async () => {
+  const { ConversationView } = loadPanel(baseView());
+  const turns = [{ from: "player", text: "Stöd mig." }, { from: "note", text: "Sera Arel ger sitt stöd." }, { from: "speaker", text: "You have my support." }];
+  const html = renderToStaticMarkup(React.createElement(ConversationView, { person: { id: "person-0-2", name: "Sera Arel" }, busy: false, setTurns: () => {}, turns }));
+  assert.match(html, /<strong>Du<\/strong><p data-no-translate="true">Stöd mig\.<\/p>/);
+  assert.match(html, /<strong>Sera Arel<\/strong><p data-no-translate="true">You have my support\.<\/p>/);
+  assert.match(html, /<li class="char-talk-note">Sera Arel ger sitt stöd\.<\/li>/);
+  assert.equal((html.match(/data-no-translate/g) || []).length, 2);
+  const envoy = mountEnvoy({ model: { extractEnvoyRequest: async () => ({ ok: true, request: null }), replyAsRuler: async () => ({ ok: true, reply: "We have nothing to discuss." }) } });
+  await envoy.say("Hälsningar från hovet.");
+  const asWritten = findAll(envoy.tree, (node) => node.props?.["data-no-translate"] === true);
+  assert.deepEqual(asWritten.map((node) => [node.type, textOf(node)]), [["p", "Hälsningar från hovet."], ["p", "We have nothing to discuss."]]);
+});
+
+test("a narrated action in the chronicle is marked as the model's text; the engine's entries are not", () => {
+  const { ChronicleView } = loadPanel(baseView());
+  const log = [{ id: "event-2", date: "-0300-02-01", type: "action_narrative", title: "A smile", description: "Iset smiled." },
+    { id: "event-1", date: "-0300-02-01", type: "action_resolution", title: "Påverka: lyckat i det tysta", description: "Iset lyssnade." },
+    { id: "event-0", date: "-0300-01-01", type: "realm_effect", title: "Rikets läge förändras", description: "Skörden slog fel. Förändring: Statskassa -10." }];
+  const html = renderToStaticMarkup(React.createElement(ChronicleView, { view: { ...baseView(), log, memories: [] }, filter: "log", setFilter: () => {} }));
+  assert.match(html, /<strong data-no-translate="">A smile<\/strong><p data-no-translate="">Iset smiled\.<\/p>/);
+  assert.match(html, /<strong>Påverka: lyckat i det tysta<\/strong><p>Iset lyssnade\.<\/p>/);
+  assert.match(html, /<strong>Rikets läge förändras<\/strong><p>Skörden slog fel\. Förändring: Statskassa -10\.<\/p>/);
+  assert.equal((html.match(/data-no-translate/g) || []).length, 2);
+});
+
+test("the roots of the Swedish-native views carry data-native-text, and no panel view leaves its root through a portal", () => {
+  const read = (file) => readFileSync(new URL(`./${file}`, import.meta.url), "utf8");
+  assert.match(read("CharactersPanel.jsx"), /return <div className="char-backdrop" data-char-theme=\{theme\} data-native-text /);
+  assert.match(read("HistoricalYearNotice.jsx"), /return <div className="char-backdrop hist-backdrop" data-char-theme=\{theme\} data-native-text>/);
+  assert.match(read("HistoricalRecordView.jsx"), /return <div className="hist-record" data-native-text>/);
+  for (const file of ["CharactersPanel.jsx", "ActionBox.jsx", "ConversationView.jsx", "EnvoyView.jsx", "IntrigueView.jsx", "CourtSections.jsx", "LocalModelConnect.jsx",
+    "CharacterWatchToggles.jsx", "HistoricalYearNotice.jsx", "HistoricalRecordView.jsx", "HistoricalEventCard.jsx", "Portrait.jsx"]) {
+    assert.doesNotMatch(read(file), /createPortal/, file);
+  }
+  const { default: Panel } = loadPanel(baseView(), { globals: { window: { matchMedia: () => ({ matches: false }), addEventListener() {}, removeEventListener() {} }, document: { activeElement: null } } });
+  assert.match(renderToStaticMarkup(React.createElement(Panel, { open: true, onClose: () => {} })), /^<div class="char-backdrop" data-char-theme="light" data-native-text="true">/);
 });

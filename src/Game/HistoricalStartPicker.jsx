@@ -44,7 +44,7 @@ export default function HistoricalStartPicker({ options, value, onChange, disabl
     const next = shown[steppedIndex(shown.length, shown.findIndex(row => row.key === chosenKey), event.key)];
     choose(next); event.currentTarget.querySelector(rowSelector(next.key))?.focus();
   };
-  return <div className="historical-start-picker">
+  return <div className="historical-start-picker" data-native-text>
     <label htmlFor="historical-search">Sök rike, härskare eller tid</label>
     <input id="historical-search" type="search" autoComplete="off" value={query} onChange={event => setQuery(event.target.value)} disabled={disabled} />
     {rows.length > 0 && shown.length === 0 && <p className="dynasty-start-detail">Inga starter matchar sökningen.</p>}

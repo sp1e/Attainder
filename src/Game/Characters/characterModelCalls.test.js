@@ -9,6 +9,7 @@ import { createSecret, grantHook } from '../../runtime/characters/secrets.js';
 import { getModelCallCounts, recordModelCall, subscribeModelCalls } from '../AI/modelCallCounter.js';
 import { addGameMonths } from '../../runtime/gameDates.js';
 import { SHIPPED_START_FOLDERS } from '../../runtime/testing/shippedHistoricalStarts.js';
+import { dataLanguageClause } from '../../runtime/characterLanguage.js';
 import { extractConversationRequest, extractEnvoyRequest, interpretCharacterAction, narrateCharacterResolution, replyAsCharacter, replyAsRuler } from './characterModelCalls.js';
 
 const REP = 'person-0-0';
@@ -239,12 +240,12 @@ test('narrate passes adjustments through untouched', async () => {
 
 test('the narrate prompt holds tier, indexed effects with ranges and people, never the odds', async () => {
   const { callModel, calls } = fakeModel({ title: 'T', narrative: 'N', adjustments: [] });
-  await narrateCharacterResolution({ resolution: resolution(), view: view(), callModel });
+  await narrateCharacterResolution({ resolution: resolution(), view: view(), language: 'Swedish', callModel });
   const prompt = `${calls[0].systemPrompt}\n${calls[0].history[0].parts[0].text}`;
   assert.ok(prompt.includes('exposed_success'));
   assert.ok(prompt.includes('"effectIndex":0') && prompt.includes('"min":10') && prompt.includes('"max":25'));
   assert.ok(prompt.includes('Arel Ett') && prompt.includes('Bran Ett'));
-  assert.match(prompt, /Swedish/);
+  assert.match(prompt, /Write Swedish prose/);
   assert.match(prompt, /1500/);
   for (const forbidden of ['71', '33', 'estimate', 'odds', 'secrecy', 'hög', 'låg']) assert.ok(!prompt.includes(forbidden), `prompt leaks ${forbidden}`);
 });
@@ -762,4 +763,86 @@ test('the ruler answers a fixed outcome and sees no memory ids', async () => {
   assert.doesNotMatch(prompt, /refId/);
   assert.match(prompt, /"outcome":\{"kind":"reconcile","accepted":true\}/);
   assert.deepEqual(await replyAsRuler({ realmId: CORDOBA, text: 'x', view: envoyView(state), outcome: { kind: 'tribute', accepted: true }, callModel }), { ok: false, reason: 'Utfallet av förfrågan är ogiltigt.' });
+});
+
+// --- The language the model writes in ----------------------------------------------------------------
+// Every call below names its language, so no test reads the stored Options choice.
+
+// One request per model call: its name, the call with a language, and the answer the fake model gives.
+const languageCalls = () => {
+  const state = createCharacterSystem({ seed: 321 });
+  const court = envoyCourt();
+  return [
+    ['interpret', (language, callModel) => interpretCharacterAction({ text: 'smickra', view: getCharacterPresentation(state), language, callModel }), swayAnswer()],
+    ['narrate', (language, callModel) => narrateCharacterResolution({ resolution: resolution(), view: getCharacterPresentation(state), language, callModel }), { title: 'T', narrative: 'N', adjustments: [] }],
+    ['extract', (language, callModel) => extractConversationRequest({ personId: TARGET, text: 'Stöd mig.', view: talkView(state), language, callModel }), askAnswer()],
+    ['reply', (language, callModel) => replyAsCharacter({ personId: TARGET, text: 'God dag', view: talkView(state), language, callModel }), { reply: 'God dag.' }],
+    ['envoy extract', (language, callModel) => extractEnvoyRequest({ realmId: CORDOBA, text: 'Fred?', view: envoyView(court), language, callModel }), { kind: 'none', offerSilver: 0, arguments: [], argumentScore: 0 }],
+    ['ruler reply', (language, callModel) => replyAsRuler({ realmId: CORDOBA, text: 'Fred?', view: envoyView(court), language, callModel }), { reply: 'Nej.' }],
+  ];
+};
+// What the model is told outside the campaign data: the system prompt and the tool with its schema descriptions.
+const instructionsOf = (call) => `${call.systemPrompt}\n${JSON.stringify(call.tool)}`;
+
+test('with English every prompt names English, carries the data clause and asks for no Swedish', async () => {
+  const clause = dataLanguageClause('English');
+  for (const [name, run, answer] of languageCalls()) {
+    const { callModel, calls } = fakeModel(answer);
+    assert.equal((await run('English', callModel)).ok, true, name);
+    assert.equal(calls.length, 1, name);
+    const instructions = instructionsOf(calls[0]);
+    assert.match(instructions, /English/, name);
+    assert.ok(calls[0].systemPrompt.includes(clause), `${name}: the data clause is in the system prompt`);
+    assert.doesNotMatch(instructions.replace(clause, ''), /Swedish/, `${name}: Swedish is named only as the language of the data`);
+  }
+});
+
+test('with Swedish every prompt is as it was: Swedish where prose is asked for, and no data clause', async () => {
+  const asksFor = { interpret: /The explanation is one Swedish sentence\./,
+    narrate: /Write Swedish prose of at most 1500 characters and a short Swedish title of at most 120 characters\./,
+    reply: /Write the Swedish reply of one person in first person/, 'ruler reply': /Write the Swedish answer the ruler sends back with the envoy/ };
+  for (const [name, run, answer] of languageCalls()) {
+    const { callModel, calls } = fakeModel(answer);
+    assert.equal((await run('Swedish', callModel)).ok, true, name);
+    const instructions = instructionsOf(calls[0]);
+    assert.doesNotMatch(instructions, /English|The campaign data is written/, name);
+    if (asksFor[name]) assert.match(calls[0].systemPrompt, asksFor[name], name);
+    else assert.doesNotMatch(instructions, /Swedish/, `${name} asks for no prose`);
+  }
+});
+
+test('the tool descriptions name the language the model writes in', async () => {
+  for (const [language, other] of [['English', 'Swedish'], ['Swedish', 'English']]) {
+    const interpret = fakeModel(swayAnswer());
+    await interpretCharacterAction({ text: 'smickra', view: view(), language, callModel: interpret.callModel });
+    assert.equal(interpret.calls[0].tool.schema.properties.explanation.description, `One ${language} sentence.`);
+    const narrate = fakeModel({ title: 'T', narrative: 'N', adjustments: [] });
+    await narrateCharacterResolution({ resolution: resolution(), view: view(), language, callModel: narrate.callModel });
+    assert.match(narrate.calls[0].tool.description, new RegExp(`^Write the ${language} story of an action's outcome`));
+    for (const call of [interpret.calls[0], narrate.calls[0]]) assert.doesNotMatch(JSON.stringify(call.tool), new RegExp(other));
+  }
+});
+
+test('the language changes the prompt text only: the user data and the answer keys stay the same', async () => {
+  for (const [name, run, answer] of languageCalls()) {
+    const english = fakeModel(answer), swedish = fakeModel(answer);
+    const results = [await run('English', english.callModel), await run('Swedish', swedish.callModel)];
+    assert.deepEqual(results[0], results[1], name);
+    assert.equal(english.calls[0].history[0].parts[0].text, swedish.calls[0].history[0].parts[0].text, `${name}: the same campaign data`);
+    assert.deepEqual(Object.keys(english.calls[0].tool.schema.properties), Object.keys(swedish.calls[0].tool.schema.properties), `${name}: the same answer keys`);
+    assert.deepEqual(english.calls[0].tool.schema.required, swedish.calls[0].tool.schema.required, name);
+  }
+});
+
+test('a no-match reason the model wrote carries its origin; the game\'s own reasons carry none', async () => {
+  const noMatch = (explanation) => fakeModel({ status: 'no_match', catalogId: '', targetIds: [], explanation, suggestions: [] }).callModel;
+  const written = await interpretCharacterAction({ text: 'flyg', view: view(), language: 'English', callModel: noMatch('No action lets you fly.') });
+  assert.deepEqual([written.ok, written.reason, written.origin], [false, 'No action lets you fly.', 'model']);
+  const silent = await interpretCharacterAction({ text: 'flyg', view: view(), language: 'English', callModel: noMatch('  ') });
+  assert.deepEqual([silent.reason, Object.hasOwn(silent, 'origin')], ['Ingen handling passar texten.', false]);
+  const offline = await interpretCharacterAction({ text: 'flyg', view: view(), language: 'English', callModel: fakeModel(new Error('Failed to fetch')).callModel });
+  assert.deepEqual([offline.reason, offline.detail, Object.hasOwn(offline, 'origin')], ['Texten kunde inte tolkas. Välj en handling i listan.', 'Failed to fetch', false]);
+  const stranger = await interpretCharacterAction({ text: 'flyg', view: view(), language: 'English',
+    callModel: fakeModel({ status: 'unknown_person', catalogId: '', targetIds: [], explanation: 'No such person.', personText: 'Gorm' }).callModel });
+  assert.deepEqual([stranger.reason, Object.hasOwn(stranger, 'origin')], ['Personen finns inte i spelet: Gorm.', false]);
 });

@@ -7,6 +7,7 @@ import { transformSync } from 'esbuild';
 import * as campaignSeed from '../runtime/campaignSeed.js';
 import { coverageLineSv, historicalCampaignName, historicalStartOptionFromSummary, orderHistoricalStarts } from '../runtime/historicalStartOptions.js';
 import * as startPicker from '../runtime/historicalStartPicker.js';
+import * as playerTextModule from './Characters/playerText.js';
 import { historicalStartSummary } from '../../server/historicalStartSummary.js';
 import { buttonNamed, createHookDriver, findAll, settle, textOf } from './testing/hookDriver.js';
 
@@ -20,7 +21,7 @@ function load(file, loader, modules, globals = {}) {
 // The card with its real picker; the other imports are the test's.
 const loadCard = (driver, modules) => load('./DynastyStartCard.jsx','jsx',{
   react:driver.react, './Characters/LocalModelConnect.jsx':{default:()=>null,__esModule:true},
-  './AI/providerConfig.js':{isFallbackListConfigured:()=>true}, './dynastyStart.css':{},
+  './AI/providerConfig.js':{isFallbackListConfigured:()=>true}, './dynastyStart.css':{}, './Characters/playerText.js':playerTextModule,
   './HistoricalStartPicker.jsx':load('./HistoricalStartPicker.jsx','jsx',{react:driver.react,'../runtime/historicalStartPicker.js':startPicker}),
   '../runtime/historicalStartOptions.js':{coverageLineSv},
   ...modules,
@@ -59,7 +60,7 @@ test('orchestrator creates once with the selected historical options before acti
     loadScenarioDetails:async()=>({}), downloadScenarioJsonAsset:async()=>({}),
     createGame:async request=>{calls.push(['create',request]);return {game:{id:'game-1'}};},
     activateGame:async id=>calls.push(['activate',id])};
-  const mod=load('../runtime/startDynastyCampaign.js','js',{'./library.js':library,'./campaignSeed.js':campaignSeed,'./historicalStartOptions.js':{offersHistoricalStart:()=>true,historicalStartOptionFromSummary:()=>bookmark,orderHistoricalStarts,historicalCampaignName}});
+  const mod=load('../runtime/startDynastyCampaign.js','js',{'./library.js':library,'./campaignSeed.js':campaignSeed,'./characterLanguage.js':{characterLanguage:()=>'Swedish'},'./historicalStartOptions.js':{offersHistoricalStart:()=>true,historicalStartOptionFromSummary:()=>bookmark,orderHistoricalStarts,historicalCampaignName}});
   await mod.startDynastyCampaign({scenarioId:'default',date:bookmark.date,polityId:'johns-realms',mode:'family',familyId:'plantagenet',seed:7,difficulty:'hard'});
   assert.deepEqual(calls.map(c=>c[0]),['create','activate']);
   assert.deepEqual(JSON.parse(JSON.stringify(calls[0][1].historicalStart)),{date:'1200-12-31',polityId:'johns-realms',mode:'family',familyId:'plantagenet',seed:7,difficulty:'hard'});
@@ -261,8 +262,53 @@ test('a start with no chosen scenario takes Charlemagne from the four-start cata
     loadScenarioDetails:async id=>({id}), downloadScenarioJsonAsset:async()=>({}),
     createGame:async request=>{calls.push(request);return {game:{id:'game-1'}};}, activateGame:async()=>{}};
   const historicalStartOptionFromSummary=id=>({scenarioId:id,name:id,date:'0800-12-25',polities:[{id:`${id}-realm`}]});
-  const mod=load('../runtime/startDynastyCampaign.js','js',{'./library.js':library,'./campaignSeed.js':campaignSeed,'./historicalStartOptions.js':{offersHistoricalStart:()=>true,historicalStartOptionFromSummary,orderHistoricalStarts,historicalCampaignName}});
+  const mod=load('../runtime/startDynastyCampaign.js','js',{'./library.js':library,'./campaignSeed.js':campaignSeed,'./characterLanguage.js':{characterLanguage:()=>'Swedish'},'./historicalStartOptions.js':{offersHistoricalStart:()=>true,historicalStartOptionFromSummary,orderHistoricalStarts,historicalCampaignName}});
   assert.deepEqual([...await mod.loadHistoricalStartOptions()].map(o=>o.scenarioId),['charlemagne-800','default','egypt-3000bc','world-1500']);
   await mod.startDynastyCampaign({});
   assert.equal(calls[0].scenarioId,'charlemagne-800'); assert.equal(calls[0].historicalStart.polityId,'charlemagne-800-realm');
+});
+
+// Runs `work` with console.warn captured, so the test can read what was kept from the player.
+async function withWarnings(work) {
+  const warnings=[], realWarn=console.warn;
+  console.warn=(...args)=>warnings.push(args.join(' '));
+  try { return { result: await work(), warnings }; } finally { console.warn=realWarn; }
+}
+const alertText = tree => findAll(tree,n=>n.props?.role==='alert').map(textOf).join(' | ');
+
+test('a failed read of the starts shows a Swedish sentence, and a Swedish refusal as written', async () => {
+  for (const [message, shown] of [['Failed to fetch','De historiska starterna kunde inte läsas. Försök igen.'],['Katalogen saknar historiska starter.','Katalogen saknar historiska starter.']]) {
+    const driver=createHookDriver();
+    const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>{throw new Error(message);},startDynastyCampaign:async()=>{}}});
+    const render=()=>driver.render(React.createElement(card.default,{}));
+    const { result: tree, warnings } = await withWarnings(async()=>{ render(); await settle(); return render(); });
+    assert.equal(alertText(tree),shown,message);
+    assert.equal(warnings.some(line=>line.includes('Failed to fetch')),message==='Failed to fetch','only the internal error goes to the log');
+  }
+});
+
+test('a failed start shows a Swedish sentence, never the internal error, also when the library bar hands it over', async () => {
+  const driver=createHookDriver();
+  const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>[bookmark],startDynastyCampaign:async()=>{throw new Error('Request failed with status 503.');}}});
+  const render=()=>driver.render(React.createElement(card.default,{}));
+  render(); await settle();
+  const { result: tree, warnings } = await withWarnings(async()=>{ await buttonNamed(render(),'Starta som riket').props.onClick(); return render(); });
+  assert.equal(alertText(tree),'Kampanjen kunde inte startas.');
+  assert.ok(warnings.some(line=>line.includes('status 503')));
+  const refusing=createHookDriver();
+  const refused=loadCard(refusing,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>[bookmark],startDynastyCampaign:async()=>{throw new Error('Det finns inget giltigt historiskt scenario att starta.');}}});
+  const draw=()=>refusing.render(React.createElement(refused.default,{}));
+  draw(); await settle(); await buttonNamed(draw(),'Starta som riket').props.onClick();
+  assert.equal(alertText(draw()),'Det finns inget giltigt historiskt scenario att starta.');
+  const outer=createHookDriver();
+  const handed=loadCard(outer,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>[bookmark],startDynastyCampaign:async()=>{}}});
+  const { result: outerTree } = await withWarnings(async()=>{ const show=()=>outer.render(React.createElement(handed.default,{errorMessage:'Unexpected token < in JSON at position 0'})); show(); await settle(); return show(); });
+  assert.equal(alertText(outerTree),'Kampanjen kunde inte startas.');
+});
+
+test('the card and its picker are marked as Swedish-native text, and the card no longer opts out of translation', () => {
+  const card=readFileSync(new URL('./DynastyStartCard.jsx',import.meta.url),'utf8');
+  assert.match(card,/<section className="dynasty-start"[^>]* data-native-text>/);
+  assert.doesNotMatch(card,/data-no-translate/);
+  assert.match(readFileSync(new URL('./HistoricalStartPicker.jsx',import.meta.url),'utf8'),/return <div className="historical-start-picker" data-native-text>/);
 });

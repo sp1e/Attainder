@@ -72,10 +72,13 @@ test('server prepares both historical courts and refuses invalid requests withou
       const { buildPromptContext } = await import(${JSON.stringify(new URL('../src/Game/AI/promptContext.js',import.meta.url).href)});
       const { renderTemplateCached } = await import(${JSON.stringify(new URL('../src/Game/AI/promptLayout.js',import.meta.url).href)});
       const prompts=JSON.parse(fs.readFileSync(${JSON.stringify(fileURLToPath(new URL('../src/Game/AI/defaultPrompts.json',import.meta.url)))},'utf8'));
-      const checkLanguage = async (created, expected) => {
-        assert.equal(created.data.game.language,expected); assert.equal(created.data.world.language,expected);
-        const context=await buildPromptContext(created.data,{requiredKeys:['language']}); assert.equal(context.language,expected);
-        assert.ok(renderTemplateCached(prompts.tasks.jumpForward,context).text.includes('Write everything the player reads in '+expected));
+      // A character campaign keeps its stamp in the save; its prompts name the Options language, given here as campaignLanguage.
+      const checkLanguage = async (created, stamped) => {
+        assert.equal(created.data.game.language,stamped); assert.equal(created.data.world.language,stamped);
+        for (const campaignLanguage of ['Swedish','English']) {
+          const context=await buildPromptContext(created.data,{requiredKeys:['language'],campaignLanguage}); assert.equal(context.language,campaignLanguage);
+          assert.ok(renderTemplateCached(prompts.tasks.jumpForward,context).text.includes('Write everything the player reads in '+campaignLanguage));
+        }
       };
       const a=store.createGame({gamePatch:{language:'Swedish'}}); assert.equal(a.data.game.gameDate,'1200-12-31'); assert.equal(a.data.world.characterSystem.date,'1200-12-31');
       await checkLanguage(a,'Swedish'); await checkLanguage(store.createGame({}),'Svenska'); await checkLanguage(store.createGame({gamePatch:{language:'French'}}),'French');

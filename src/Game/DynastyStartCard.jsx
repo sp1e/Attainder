@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import LocalModelConnect from './Characters/LocalModelConnect.jsx';
+import { playerText } from './Characters/playerText.js';
 import HistoricalStartPicker from './HistoricalStartPicker.jsx';
 import { loadHistoricalStartOptions, startDynastyCampaign } from '../runtime/startDynastyCampaign.js';
 import { coverageLineSv } from '../runtime/historicalStartOptions.js';
@@ -9,6 +10,9 @@ import './dynastyStart.css';
 // The character engine's difficulty ids (extensions.js DIFFICULTIES); the game's own difficulty is a separate setting.
 // The library bar's scenario picker offers the same three.
 export const DYNASTY_DIFFICULTIES = Object.freeze([['easy','Lätt'],['normal','Normal'],['hard','Svår']]);
+// A refusal written in Swedish reaches the player; an internal English error is logged and gives one of these.
+const OPTIONS_FAILED = 'De historiska starterna kunde inte läsas. Försök igen.';
+const START_FAILED = 'Kampanjen kunde inte startas.';
 
 export default function DynastyStartCard({ onStart, errorMessage = '' }) {
   const [error,setError] = useState('');
@@ -25,7 +29,7 @@ export default function DynastyStartCard({ onStart, errorMessage = '' }) {
       setBookmarks(options);
       const first = options[0];
       if (first) { setScenarioId(first.scenarioId); setPolityId(first.polities[0].id); setFamilyId(first.polities[0].families[0].id); }
-    }).catch(failure => { if (alive) setError(failure.message); });
+    }).catch(failure => { if (alive) setError(playerText(failure?.message, OPTIONS_FAILED)); });
     return () => { alive = false; };
   },[]);
   const chooseStart = choice => {
@@ -49,9 +53,12 @@ export default function DynastyStartCard({ onStart, errorMessage = '' }) {
   const start = async () => {
     setBusy(true); setError('');
     try { const options = {option:selected,mode,seed,difficulty,scenarioId,date:selected?.date,polityId,...(mode === 'family' ? {familyId} : {})}; await (onStart ? onStart(options) : startDynastyCampaign(options)); }
-    catch (failure) { setError(failure.message); setBusy(false); }
+    catch (failure) { setError(playerText(failure?.message, START_FAILED)); setBusy(false); }
   };
-  return <section className="dynasty-start" data-theme={theme} aria-labelledby="dynasty-start-heading" data-no-translate>
+  // The library bar hands over the same failure as written; it gets the same check, once per message.
+  const outerError = useMemo(() => errorMessage ? playerText(errorMessage, START_FAILED) : '', [errorMessage]);
+  // data-native-text: the card is written in Swedish, so the page translator applies its whole native book here.
+  return <section className="dynasty-start" data-theme={theme} aria-labelledby="dynasty-start-heading" data-native-text>
     <div className="dynasty-start-heading"><span>HISTORISKA DYNASTIER · 3300 F.KR.–1530 E.KR.</span><button type="button" onClick={toggleTheme} aria-label="Växla mellan ljust och mörkt tema">Ljust / mörkt</button></div>
     <div className="dynasty-start-layout"><div>
       <h1 id="dynasty-start-heading">Vem för du vidare?</h1>
@@ -73,7 +80,7 @@ export default function DynastyStartCard({ onStart, errorMessage = '' }) {
       <details className="dynasty-seed"><summary>Kampanjfrö (valfritt)</summary><label htmlFor="dynasty-seed">Frö för kampanjens start</label><input id="dynasty-seed" type="number" min="1" max="4294967295" step="1" value={seed} onChange={event=>setSeed(event.target.value)} placeholder="104729" disabled={busy} /><p>Återskapa samma start med ett valt frö. Modellens berättelse kan variera.</p></details>
       <button className="dynasty-start-play" type="button" onClick={start} disabled={busy || !connected || !selected}>{busy?'Kampanjen skapas…':mode==='realm'?'Starta som riket':'Starta som familjen'}</button>
       {!connected&&<p className="dynasty-start-detail">Anslut Claude Code eller Codex för att starta.</p>}
-      {(error||errorMessage)&&<p role="alert">{error||errorMessage}</p>}
+      {(error||outerError)&&<p role="alert">{error||outerError}</p>}
     </div><div className="dynasty-start-connection"><LocalModelConnect onConnected={()=>setConnected(true)} /></div></div>
   </section>;
 }
