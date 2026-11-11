@@ -7,7 +7,8 @@ The owner's Codex subscription has ended. From 11 November 2026 a Claude researc
 | Batch | State | PR | Files | Counts | Waiting for the developer session |
 |---|---|---|---|---|---|
 | §13 faith traditions | Merged | [#193](https://github.com/sp1e/Attainder/pull/193), `7910c619` | `server/seed/historical/courts/faith-traditions.json` | 17 courts, 18 sources; independent check 35 checked, 29 confirmed, 6 corrected, 0 unsupported | Read the file into the court seeds, set `tradition` on each court religion, rebuild and release |
-| §13 border tribes, AD 800 | Ready for merge | pending | `server/seed/historical/courts/border-tribes.json` (`starts.ad800`) | 7 tribes, 15 sources; independent check 22 checked, 18 confirmed, 4 corrected, 0 unsupported | Copy `starts.ad800.tribes` into `historicalScenario.tribes` and add Swedish names in the builder |
+| §13 border tribes, AD 800 | Merged | [#194](https://github.com/sp1e/Attainder/pull/194), `7d9bb8ea` | `server/seed/historical/courts/border-tribes.json` (`starts.ad800`) | 7 tribes, 15 sources; independent check 22 checked, 18 confirmed, 4 corrected, 0 unsupported | Copy `starts.ad800.tribes` into `historicalScenario.tribes` and add Swedish names in the builder |
+| §13 border tribes, AD 1200, AD 1500, BC 3000 | Ready for merge | pending | `server/seed/historical/courts/border-tribes.json` (`starts.ad1200`, `starts.ad1500`, `starts.bc3000`) | 5 tribes, 10 sources; `bc3000` empty; independent check 15 checked, 11 confirmed, 4 corrected, 0 unsupported | Copy each start's `tribes` into its `historicalScenario.tribes` and add Swedish names in the builder |
 
 ### §13 faith traditions
 
@@ -33,6 +34,18 @@ The independent check opened all 15 sources. It corrected the Annales regni Fran
 - Ruling: leave out the Danes, Avars, Khitan, Heishui Mohe, Magyars and the Navarrese and Pamplonese. The Annales regni Francorum name Danish kings (Sigifrid, then Godofrid) and an Avar khagan; no source opened in this session places the Khitan or the Heishui Mohe, or dates the Magyars near a playable seat, as peoples without a sovereign in 800; the annal for 806 says the Navarrese and Pamplonese had gone over to the Saracens in earlier years, which may put them under the emir of Córdoba, a playable court, in 800 — if wrong, five peoples are missing until a source places them.
 - Ruling: keep the Nordalbingian Saxons and Bretons although the Franks claimed both — royal legates sat among the Saxons until they rose in 798, and the annal says the Breton surrender of 799 did not last — if wrong, the engine offers two peoples the Carolingian court already rules.
 - Not yet researched for AD 800: Berber groups near Kairouan and Córdoba, Slavic groups in the Balkans near Constantinople and Benevento, Basques near Oviedo, and steppe and Arabian peoples near Raqqa. Each needs a source that places the people and shows it had no sovereign in 800.
+
+### §13 border tribes, AD 1200, AD 1500 and BC 3000
+
+`border-tribes.json` gains `starts.ad1200` (Estonians, Lithuanians, Prussians), `starts.ad1500` (Chichimecs, Chiriguanos) and an empty `starts.bc3000`. Rows and sources follow the AD 800 shape. The scratch validator found the Prussians 1,401 km, the Lithuanians 1,617 km and the Estonians 1,891 km from the nearest playable AD 1200 seat (Paris or Windsor); the Chichimecs lie 517 km from Tenochtitlan and the Chiriguanos 1,159 km from Cusco.
+
+The independent check opened all ten sources. It corrected the Estonia `uncertainty` text (the study names Tallinn and Tartu for later periods), the Estonian `noteEn`, the Chiriguano locator and the Chichimec `noteEn` (Braniff places Altavista, in Zacatecas state, in her region and does not name the city). All four corrections are applied, with two optional precisions: no year within the 13th century for the Prussian conquest, and Braniff's p. 31 on Postclassic nomadism. The check could not view Braniff's two maps.
+
+- Ruling: leave `starts.bc3000` empty. The Met Heilbrunn timeline for Nubia says the A-Group people of Lower Nubia, once governed by local rulers, seem to be ruled by a series of kings about 3100–2800 B.C., and no source opened in this session places the Libyans (Tjehenu) or another people near Memphis without a sovereign in 3000 BC — if wrong, the Egyptian court has no tribe to deal with until a source places one.
+- Ruling: leave out the Latvians at AD 1200. The Library of Congress study for Latvia says the Latvian people lived in half a dozen or so independent kingdoms until about 1300 — if wrong, one Baltic people is missing.
+- Ruling: leave out the Mapuche at AD 1500. Their homeland in south-central Chile lies beyond the validator's 2,500 km limit from Cusco, the nearest playable seat.
+- Ruling: count the Lithuanians at AD 1200. The study dates Mindaugas's union of the tribes to about 1230 and names no ruler for 1200 — if wrong, the engine offers a people that already had a duke.
+- Not yet researched: peoples near Angkor and Marrakech at AD 1200, and near Western Xia and Chimú once those courts are playable.
 
 ## Current publication checkpoint: 9 November 2026
 
