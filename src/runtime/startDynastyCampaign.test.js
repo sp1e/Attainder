@@ -28,9 +28,11 @@ function fakeLibrary(scenarios) {
   return { library, calls };
 }
 
-function loadStart(library) {
+// optionsLanguage stands in for the stored Options choice, so no test reads localStorage.
+function loadStart(library, optionsLanguage = 'Swedish') {
   const module = { exports: {} };
-  const modules = { './library.js': library, './campaignSeed.js': campaignSeed, './historicalStartOptions.js': startOptions };
+  const modules = { './library.js': library, './campaignSeed.js': campaignSeed, './historicalStartOptions.js': startOptions,
+    './characterLanguage.js': { characterLanguage: () => optionsLanguage } };
   const code = transformSync(readFileSync(new URL('./startDynastyCampaign.js', import.meta.url), 'utf8'), { loader: 'js', format: 'cjs' }).code;
   vm.runInNewContext(code, { module, exports: module.exports, localStorage: { getItem: () => null, setItem: () => {} },
     require: id => { assert.ok(id in modules, `Unexpected import: ${id}`); return modules[id]; } });
@@ -86,4 +88,13 @@ test('without an option the start reads the catalog and takes the named scenario
   assert.equal(calls.create[0].historicalStart.polityId, 'carolingian-realm');
   assert.equal(calls.create[0].name, 'Karls rike (karolingiska riket), 800 e.Kr. · Familjen');
   await assert.rejects(loadStart(fakeLibrary([]).library).startDynastyCampaign({}), /inget giltigt historiskt scenario/);
+});
+
+test('a new campaign is stamped with the Options language, or with the language the caller names', async () => {
+  for (const [optionsLanguage, request, stamped] of [['Swedish', {}, 'Swedish'], ['English', {}, 'English'], ['English', { language: 'Swedish' }, 'Swedish']]) {
+    const { library, calls } = fakeLibrary([entry('charlemagne-800', CHARLEMAGNE)]);
+    await loadStart(library, optionsLanguage).startDynastyCampaign({ scenarioId: 'charlemagne-800', ...request });
+    assert.equal(calls.create[0].gamePatch.language, stamped, `${optionsLanguage} ${JSON.stringify(request)}`);
+  }
+  assert.doesNotMatch(readFileSync(new URL('./startDynastyCampaign.js', import.meta.url), 'utf8'), /language: 'Swedish'/);
 });

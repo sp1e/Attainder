@@ -22,6 +22,7 @@ import { unitHandles } from "./nameRefs.js";
 import { STALE_ROUNDS, describeTimeline, deriveProjectFlags, isPlayerProject } from "../../runtime/projects.js";
 import { buildTerritoryIndex } from "./territoryOutlines.js";
 import { compareGameDates, formatGameDateReadable } from "../../runtime/gameDates.js";
+import { campaignPromptLanguage } from "../../runtime/characterLanguage.js";
 
 const normalizeString = (value) => String(value ?? "").trim();
 const normalizeArray = (value) => (Array.isArray(value) ? value : []);
@@ -1573,7 +1574,9 @@ export const rankedPolitySummary = (world, context = {}) => {
 // `regionListsViaTools`: the task has the lookup functions (lookupTools.js),
 // so the summary names the powers with their region counts and leaves the
 // region names and ids to find_region / list_regions / map_around.
-export const buildWorldSummary = async (bundle, regionCatalog = null, { regionListsViaTools = false } = {}) => {
+// `campaignLanguage` is the language name a character campaign is written in; left out, it is the Options choice
+// (campaignPromptLanguage). A campaign without the character system keeps the language its world or game states.
+export const buildWorldSummary = async (bundle, regionCatalog = null, { regionListsViaTools = false, campaignLanguage } = {}) => {
   const world = normalizeWorldState(bundle.world);
   const regions = filterToRenderedRegions(regionCatalog ?? await loadRegions(world), world, { scenarioOnly: Boolean(world.historicalScenario) });
   const regionLookup = new Map(regions.map((region) => [region.id, region]));
@@ -1650,7 +1653,7 @@ export const buildWorldSummary = async (bundle, regionCatalog = null, { regionLi
     `Player polity: ${bundle.game.country || "Unknown polity"}${playerTags.length ? ` (${playerTags.join(", ")})` : ""}`,
     `Current round: ${bundle.game.round || 1}`,
     `Current date: ${bundle.game.gameDate || "unknown"}`,
-    `Language: ${world.language || bundle.game.language || "English"}`,
+    `Language: ${campaignPromptLanguage(world, bundle.game, campaignLanguage)}`,
     `Difficulty: ${bundle.game.difficulty || "standard"}`,
     `World before round one: ${world.startingTimelineText || "No world briefing provided."}`,
     `Simulation rules: ${world.simulationRules || "No extra simulation rules were provided."}`,
@@ -1682,6 +1685,9 @@ export const buildPromptContext = async (bundle, {
   actionInput = "",
   actionsToConsolidate = "",
   advisorLimit = 18,
+  // The language name a character campaign is written in. It has no default here: campaignPromptLanguage reads the
+  // Options choice when it is left out.
+  campaignLanguage,
   interactiveChoice = "",
   interactiveHistory = "",
   interactiveOpening = "",
@@ -1746,7 +1752,7 @@ export const buildPromptContext = async (bundle, {
 
   let worldSummary = "";
   if (wants("worldSummary", "worldSummaryNoCity")) {
-    worldSummary = await buildWorldSummary(bundle, regionCatalog, { regionListsViaTools: lookups });
+    worldSummary = await buildWorldSummary(bundle, regionCatalog, { regionListsViaTools: lookups, campaignLanguage });
   }
 
   if (wants("citiesSummary")) {
@@ -1966,7 +1972,7 @@ export const buildPromptContext = async (bundle, {
     );
   }
   put("gameMasterRequest", gameMasterRequest);
-  put("language", bundle.world.language || bundle.game.language || "English");
+  if (wants("language")) result.language = campaignPromptLanguage(bundle.world, bundle.game, campaignLanguage);
   if (wants("markersSummary")) {
     const markerAttention = buildMarkerAttentionEvidence(bundle, { chat });
     result.markersSummary = buildMarkersSummaryText(bundle.world, {

@@ -32,3 +32,12 @@ test('portable scenario contains its complete original map and date', () => {
   assert.equal(bundle.assets.citiesGeojson.data.features.length,4);
   assert.equal(bundle.data.world.background.kind,'vector');
 });
+
+test('the Hadara world and bundle are stamped with the language they are given', () => {
+  for (const language of ['Swedish', 'English']) {
+    assert.equal(createDynastyWorld({ language }).language, language);
+    const bundle = createDynastyScenarioBundle({ language });
+    assert.equal(bundle.data.game.language, language);
+    assert.equal(bundle.data.world.language, language);
+  }
+});

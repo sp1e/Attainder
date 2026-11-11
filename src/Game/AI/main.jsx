@@ -37,6 +37,7 @@ import {
   parseDiplomaticEnvelope,
 } from "../../runtime/diplomaticEnvelope.js";
 import { chatLanguageDirective, languageDirective } from "../../runtime/i18n.js";
+import { isCharacterCampaign } from "../../runtime/characterLanguage.js";
 import { difficultyDirective } from "../../runtime/difficulty.js";
 import { normalizePromptPack } from "./gameplayPrompts.js";
 import { promptTranslationsVersion } from "../../runtime/promptTranslations.js";
@@ -2413,6 +2414,24 @@ function announceFallbackSwitch({ skipped, to }) {
     } catch { /* no window (tests, the harness) — the log line stands */ }
 }
 
+// The interface directive for one call. English is unstated for an ordinary
+// campaign. A character campaign states it too: its package says "Svenska" and
+// its stored stories, memories and labels are Swedish, so without the directive
+// an English player would get Swedish answers. The world is read only when the
+// plain directive is empty; the read is unforced and uncloned, so an open
+// campaign answers it from memory.
+const campaignLanguageDirective = async () => {
+    const directive = languageDirective();
+    if (directive) return directive;
+    let world = null;
+    try {
+        world = await readJson(JSON_URLS.world, { defaultValue: {}, clone: false });
+    } catch (error) {
+        logDebugEvent("ai", `Language directive: the campaign could not be read (${error?.message || error}).`);
+    }
+    return isCharacterCampaign(world) ? languageDirective(undefined, { force: true }) : "";
+};
+
 export async function callAI(systemPrompt, history, opts = {}) {
     // Non-English players get replies in their language at the source —
     // native answers beat post-translating them (see runtime/i18n.js).
@@ -2437,7 +2456,7 @@ export async function callAI(systemPrompt, history, opts = {}) {
     } = opts;
     const directive = languageMode === "none" ? ""
         : languageMode === "chat" ? chatLanguageDirective()
-        : languageDirective();
+        : await campaignLanguageDirective();
     if (directive) {
         systemPrompt = `${systemPrompt}\n\n${directive}`;
     }

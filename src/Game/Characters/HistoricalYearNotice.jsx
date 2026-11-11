@@ -160,7 +160,7 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
 
   if (!open) return null;
 
-  return <div className="char-backdrop hist-backdrop" data-char-theme={theme}>
+  return <div className="char-backdrop hist-backdrop" data-char-theme={theme} data-native-text>
     <div ref={dialogRef} className="hist-notice" role="dialog" aria-modal="true" aria-labelledby="hist-notice-title" tabIndex={-1}>
       <header>
         <h2 id="hist-notice-title">I verklighetens historia</h2>

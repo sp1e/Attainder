@@ -1,3 +1,4 @@
+import { characterLanguage } from './characterLanguage.js';
 import { createCharacterSystem } from './characters/index.js';
 
 export const DYNASTY_SCENARIO_ID = 'dynasties-hadara-v1';
@@ -27,13 +28,14 @@ export function createDynastyMap() {
   return { type: 'FeatureCollection', features };
 }
 
-export function createDynastyWorld({ mode = 'realm', seed = 104729 } = {}) {
+// language is the language name stamped on the campaign: the Options choice when the world is created.
+export function createDynastyWorld({ mode = 'realm', seed = 104729, language = characterLanguage() } = {}) {
   const characterSystem = createCharacterSystem({ date: DYNASTY_DATE, polityId: 'Hadara', polityName: 'Hadara', mode, seed, cities: DYNASTY_CITIES });
   return {
     ownerSchema: 2, customRegions: true, customCities: true,
     background: { kind: 'vector' }, basemap: 'strategy',
     author: 'Simon · Open Historia Dynasties', mapCredit: 'Egen fiktiv geografi',
-    language: 'Swedish', allowedUnitTypes: ['infantry','garrison','naval'],
+    language, allowedUnitTypes: ['infantry','garrison','naval'],
     characterScenarioId: DYNASTY_SCENARIO_ID, characterSystem,
     initialCameraBounds: [[26.7,32.0],[33.4,37.5]],
     polityOverrides: { Hadara: { name: 'Hadara', status: 'active', color: '#b99755', note: 'Ett fiktivt antikt rike mellan flod, kust och höjder.' } },
@@ -48,7 +50,7 @@ export function createDynastyWorld({ mode = 'realm', seed = 104729 } = {}) {
   };
 }
 
-export function createDynastyScenarioBundle() {
+export function createDynastyScenarioBundle({ language = characterLanguage() } = {}) {
   const regions = createDynastyMap();
   const land = { type:'FeatureCollection',features:regions.features.map(f => ({ ...f,properties:{fill:'#a98d60'} })) };
   const cities = { type:'FeatureCollection',features:DYNASTY_CITIES.map((c,i)=>({ type:'Feature',id:c.id,properties:{ id:c.id,name:c.name,NAME:c.name,city:c.name,capital:i===0,population:60000,owner:'Hadara',GID_0:'Hadara',country:'Hadara',regionId:c.regionId },geometry:{type:'Point',coordinates:[c.lng,c.lat]} })) };
@@ -59,7 +61,7 @@ export function createDynastyScenarioBundle() {
       description:'Ett fiktivt antikt rike med fyra politiska familjer, levande karaktärer och skilda arv. Följ riket eller familjen genom generationerna.',
       subtitle:'Fyra familjer · fyra städer · två sätt att styra',accentColor:'#c49b53',
       features:{idleDiplomacy:{enabled:false},espionage:{enabled:false}} },
-    data:{game:{country:'Hadara',startDate:DYNASTY_DATE,gameDate:DYNASTY_DATE,round:1,difficulty:'standard',language:'Swedish'},world:createDynastyWorld(),prompts:{},actions:[],events:[],chat:[],advisor:[]},
+    data:{game:{country:'Hadara',startDate:DYNASTY_DATE,gameDate:DYNASTY_DATE,round:1,difficulty:'standard',language},world:createDynastyWorld({language}),prompts:{},actions:[],events:[],chat:[],advisor:[]},
     assets:{regionsGeojson:embedded(regions),citiesGeojson:embedded(cities),backgroundData:embedded({geojson:land}),colors:embedded({Hadara:'#b99755'}),flags:embedded({}),tags:embedded({}),stats:embedded({})},
   };
 }
