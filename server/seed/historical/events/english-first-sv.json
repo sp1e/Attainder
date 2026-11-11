@@ -1,0 +1,2099 @@
+{
+  "schema": "attainder-english-first-events-sv-v1",
+  "sourceLocale": "en",
+  "events": {
+    "ev-ad0038-aqua-claudia-construction": {
+      "titleSv": "Rom bygger Aqua Claudia",
+      "summarySv": "Arbetet påbörjas under Caligula och fullbordas under Claudius. Det ger Rom en akvedukt som leder källvatten från Anienedalen mot staden. Höga valv bär delar av sträckningen.",
+      "geographySv": "Anienedalen och Rom, Italien",
+      "date": {
+        "displaySv": "38–52 e.Kr.",
+        "noteSv": "Intervallet gäller bygget av Aqua Claudia under Caligula och Claudius. Parkens broschyr anger motstridiga startår för systerakvedukten Anio Novus, som inte är ämnet för den här posten. Inget oavbrutet arbetsschema och ingen invigningsdag härleds."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0001-ad0300-second-pass-supplement.json",
+        "textSha256": {
+          "titleEn": "425f251332d22bd8482fcb2feb6861fab9c64e5bac0887df8ca15d48588a24eb",
+          "summaryEn": "d8e6113ac71fa275f25d8e51167be1484242e1d00a29533079820a5abcf107a8",
+          "geographyEn": "db77f184980e2c21205e815a9b64d976e680cf729d4c96d3ea97cdf79d3e887d",
+          "date.displayEn": "edfa6139a59f22128b818d85db5fa4956e7170c2e32f78d0a465fdc9f8b2c277",
+          "date.noteEn": "f445a2e70a336f8adc7b0823dde0a40aa900fafa3d998b02b395ade97b36ee1e"
+        }
+      }
+    },
+    "ev-ad0038-alexandria-anti-jewish-violence": {
+      "titleSv": "Judarna i Alexandria förföljs och fördrivs",
+      "summarySv": "Våld driver judiska invånare från deras hem i Alexandria, med plundring och dödande. Filon kopplar förföljelsen till prefekten Flaccus förklaring att judarna var främlingar och till att deras rättigheter togs ifrån dem.",
+      "geographySv": "Alexandria, romerska Egypten",
+      "date": {
+        "displaySv": "38 e.Kr.",
+        "noteSv": "Året daterar våldet, inte Filons skildring, som Posen placerar omkring 39–40. Hans bevarade ögonvittnesskildring är polemisk och präglad av teologiska hänsyn. Hans förklaring av ansvaret återges som hans egen; inget antal döda och ingen enskild orsak fastställs här."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0001-supplement.json",
+        "textSha256": {
+          "titleEn": "39a563094daf0c961ccb370baf0d4281f62d8dfbb1494d287920fcffe647612f",
+          "summaryEn": "f5c0c7e4f8551f37949de0dd354b24b0af826dc9fe5f2e1cbdbe45a62cfac6b1",
+          "geographyEn": "69247ccb9457768b7b39ac10287ffa6ba35f1bcf9929032b4b090ffd944b747a",
+          "date.displayEn": "b309723b52f0938206ee8f44cf4dae3d67bbd00403ad10f603ff999171ded515",
+          "date.noteEn": "a306ea3f878866702607dfae234941fbaeebf7c25c25a5c52325c2990e6eabfe"
+        }
+      }
+    },
+    "ev-0137-palmyra-tax-rules-published": {
+      "titleSv": "Palmyras råd offentliggör reviderade skatteregler",
+      "summarySv": "Palmyras råd beslutar att de reviderade avgiftsbestämmelserna och deras äldre föreskrifter ska anslås offentligt på grekiska och lokal arameiska. Syftet är att minska tvisterna mellan skatteindrivarna och dem som betalar avgifter på varor och tjänster.",
+      "geographySv": "Palmyra, Syrien",
+      "date": {
+        "displaySv": "137",
+        "noteSv": "Det citerade offentliga utdraget och sammandraget anger 137 för revisionen och offentliggörandet av stadens tulltaxa. Äldre bestämmelser som ingår i inskriften hör till tidigare år. Ingen månad eller dag anges i dessa passager."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0100-supplement.json",
+        "textSha256": {
+          "titleEn": "e2dcb3275c28b72b6c9328006abe308983f3b11d69be0cec6665b96d58d76f7a",
+          "summaryEn": "577cd5feac9bc010f80d2374b894c01a831767bc40add776574dc278d009f970",
+          "geographyEn": "10a45613b43efe9946f5088bc132ff3d6dd03e5d489136413e60cdb94c4b2dee",
+          "date.displayEn": "d80eae6e96d148b3b2abbbc6760077b66c4ea071f847dab573d507a32c4d99a5",
+          "date.noteEn": "4d31611be6c4c8967a9b0f76fabcffe6ca907fdc2c19e7e371408747e47b3a2e"
+        }
+      }
+    },
+    "ev-0175-xiping-stone-classics": {
+      "titleSv": "Xiping-klassikerna i sten förbereds i Luoyang",
+      "summarySv": "Med kejserligt godkännande fastställer lärda normerade versioner av konfucianska texter för inhuggning i sten. Tavlorna ställs upp vid Kejserliga akademin i Luoyang och bildar en statligt stödd stenutgåva av klassikerna.",
+      "geographySv": "Luoyang, Kina under Östra Handynastin",
+      "date": {
+        "displaySv": "cirka 175–183",
+        "noteSv": "Palatsmuseet daterar projektet från Xiping år fyra (175) till Guanghe år sex (183); Tian Mi anger cirka 175–183. Hela det ungefärliga intervallet behålls. Det daterar arbetet med stenutgåvan, inte klassikernas ursprungliga tillkomst eller senare rekonstruktioner."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0100-supplement.json",
+        "textSha256": {
+          "titleEn": "35070c687835b2c907e3af9df52ac50431b6408c3cc04e3f8518b4e8b5c2f51f",
+          "summaryEn": "7a9b38f1a9d0d50e8dedcf66702383954d822db4219cb8cdd1e4f8d40dc83233",
+          "geographyEn": "df4ebbd9fae05a1f5d2029515e7cbc980679308001656d0cec17dccdb6a45f51",
+          "date.displayEn": "713415a5aa7b8f8245a703c246523da3da96d4b3bbd77de4421c1026bcd06896",
+          "date.noteEn": "5c89b22bbc6e8b5355673251b89d3b9bb9722d8b41f52620e065a533fe3be091"
+        }
+      }
+    },
+    "ev-ad0200-bambata-pottery-dispersal": {
+      "titleSv": "Bambatakeramik sprids till sydöstra Afrika",
+      "summarySv": "I Huffmans rekonstruktion för grupper av jägare och samlare med sig Bambatakeramik till sydöstra Afrika omkring 200 e.Kr.",
+      "geographySv": "Sydöstra Afrika",
+      "date": {
+        "displaySv": "omkring 200 e.Kr.",
+        "noteSv": "Den ungefärliga dateringen följer Huffmans rekonstruktion i det offentliga sammandraget. Den gäller keramikens spridning med jägare och samlare; hans senare datering omkring 350 för samhällen med blandat jordbruk är en separat utveckling. Det underliggande utgrävningsmaterialet har inte granskats här."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0200-supplement.json",
+        "textSha256": {
+          "titleEn": "1c10df2c2029cc1286a0a54ffb5f9baca84d714e1f5b9a83d6d65bcb8fb26f70",
+          "summaryEn": "5228d3be156d33df9d35ff8a64a301350a9d1f1aecbed84610265d1cef258853",
+          "geographyEn": "18ee19828145e23db040b2f351e2159ec8c001ed70d86a47c6763297387d2a5c",
+          "date.displayEn": "68678add5b5379dee8b08e8db76741dde0b8f5907d50539ea9fb0d9c6652da17",
+          "date.noteEn": "bd213bad3008e77e350104c6476f4d48415cb59786b93d381d33c03786475fcc"
+        }
+      }
+    },
+    "ev-ad0220-cao-pi-takes-han-throne": {
+      "titleSv": "Cao Pi tar Östra Hans tron",
+      "summarySv": "Efter att ha efterträtt Cao Cao tar Cao Pi tronen från Östra Hans kejsare och upprättar Weis kejserliga anspråk.",
+      "geographySv": "Kina",
+      "date": {
+        "displaySv": "220 e.Kr.",
+        "noteSv": "Året anger slutet för Östra Han och att Cao Pi tog dess tron. Det daterar inte alla de tre kungarikenas utropanden eller starten för hans separata rekryteringsreform med nio rangklasser. Ingen månad eller dag fastställs här."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0200-supplement.json",
+        "textSha256": {
+          "titleEn": "be38caf41d87776833c67c9d889db51a185054bf876d1d69f2b3776ae5a09e7d",
+          "summaryEn": "0831bab96ef2806bd5880ded02b2f6373c5c44f42b8e2286ffd97d9f6b9a57ab",
+          "geographyEn": "10436829032f361a3de50048de41755140e581467bc1895e6c1a17f423e42d10",
+          "date.displayEn": "382f16725d58729a598cc92349bc51ac341ec8a9f6b2a0fb9e3131b54fefa46d",
+          "date.noteEn": "b9712eada6ced69b572c114edd7abd8f0b360c82296e531c23df8561d90399de"
+        }
+      }
+    },
+    "ev-ad0224-ardashir-sasanian-dynasty": {
+      "titleSv": "Ardashir grundar den sasanidiska dynastin",
+      "summarySv": "Ardashir besegrar partherna och upprättar sasanidiskt dynastiskt styre i Iran.",
+      "geographySv": "Iran",
+      "date": {
+        "displaySv": "224 e.Kr.",
+        "noteSv": "Smithsonian daterar uttryckligen dynastiskiftet och grundandet till 224. Posten anger ingen dag för slaget och antyder inte att varje parthiskt område kom under sasanidisk kontroll det året."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0200-supplement.json",
+        "textSha256": {
+          "titleEn": "582bc289b0d6680a1ef91157c91a853fa6f4ea6287d4965b88dfcef312df4c90",
+          "summaryEn": "b8644128cc2719bba57af360d123cb03fee11b7e9b5a1d19b34a27969464a652",
+          "geographyEn": "18d4e170765cc48842d847de1d0545a2e379e9c87b2af2a6f761681309939ce5",
+          "date.displayEn": "0690e8ebcd8561e1e09ef8e29ac18e0c37a159edbc63b65c42c256e986510065",
+          "date.noteEn": "6828e4499962ec1907493bc0cb3e6e801ebaf10a76bf2e0a4bc8bdc7d9a9e0cd"
+        }
+      }
+    },
+    "ev-ad0229-wu-envoys-funan": {
+      "titleSv": "Wu sänder Zhu Ying och Kang Tai till Funan",
+      "summarySv": "Sändebuden Zhu Ying och Kang Tai reser från Wu till Funan. Historikerna är oeniga om beskickningens datering och om vilken härskare i Funan de mötte.",
+      "geographySv": "Wu och Funan",
+      "date": {
+        "displaySv": "Omtvistat: 229, 243–252 eller 244–247 e.Kr.",
+        "noteSv": "Chen återger Sugimotos datering till 229 och Watabes till 243–252 och föreslår själv 244–247. Talgränserna bevarar dessa alternativ; de beskriver inte en beskickning som varade i 23 år. Detta är beskickningen till Funan, skild från Funans sändebud till Wu år 243."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0200-supplement.json",
+        "textSha256": {
+          "titleEn": "20ab04147ccf250b01666eb62af58553fbf3e3479eb94ba2d5a54e61ff449311",
+          "summaryEn": "33e7186fd8e9c15b59b5e0192014cb55051df88b687016b11b61b2bc4fdb43c7",
+          "geographyEn": "362b4a920e39dda2e4933c17bfa0ff3be2d4431750e98fc0cae023cda98cb686",
+          "date.displayEn": "ec36e7cd083f1b4c74356c5e6f0a21e7ee6c61754bd00615ebbab84a54b0664e",
+          "date.noteEn": "759a3a713f23f87c98eb34d932aeaada81df2e6b211058be5afee806db7d8129"
+        }
+      }
+    },
+    "ev-0350-meroe-royal-pyramid-burials-end": {
+      "titleSv": "De kungliga pyramidgravarna i Meroe upphör",
+      "summarySv": "Den kända serien av kungliga pyramidgravar i Meroe upphör omkring den här tiden. Förändringen i kunglig gravsed ingår i en bredare, gradvis övergång vars orsaker och politiska kronologi fortfarande diskuteras.",
+      "geographySv": "Meroe, mellersta Nildalen, nuvarande Sudan",
+      "date": {
+        "displaySv": "omkring mitten av fjärde århundradet e.Kr.",
+        "noteSv": "Kuckertz placerar övergången omkring mitten av 300-talet; 350 är en ungefärlig kronologisk fästpunkt, inte en säkert daterad sista begravning. Inga kungliga pyramidgravar är kända i Meroe därefter. Detta fastställer inget enskilt år för ett politiskt sammanbrott eller en aksumitisk erövring."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0300-supplement.json",
+        "textSha256": {
+          "titleEn": "692042e101b94f83d61b65bf5bf79b6ccff574d6eb0f969fa69703e62fc4e0c2",
+          "summaryEn": "2b56e571c218a13374812125629c2adde30bc6e9942b9531f99f27e67870b82d",
+          "geographyEn": "f1b889febd5bcebde05c2f20e1eac8acdbadab79173356c0822fb90cdc9d64ef",
+          "date.displayEn": "4f947d742c48b2813b0d65829ee7b90560de7ca89f830170e58a0a2ae92f5625",
+          "date.noteEn": "71da30f2bb6d99ebfb196926866381a385d18029c81da2800cd71ceb04a93ecb"
+        }
+      }
+    },
+    "ev-0350-teotihuacan-adosada-platform": {
+      "titleSv": "Adosadaplattformen täcker fasaden på Teotihuacans Pyramid för den befjädrade ormen",
+      "summarySv": "Byggare lägger en trappstegsformad plattform mot västfasaden på Pyramiden för den befjädrade ormen i Teotihuacans Ciudadela. Den nya konstruktionen döljer pyramidens skulpturala dekor. Forskarna är oeniga om huruvida detta markerade ett regeringsskifte eller en respektfull rituell övertäckning.",
+      "geographySv": "Teotihuacan, centrala Mexiko",
+      "date": {
+        "displaySv": "omkring 350 e.Kr.",
+        "noteSv": "Arqueología Mexicana daterar Adosadaövertäckningen till omkring 350 e.Kr. Met beskriver den i relativa termer och rapporterar inga större förändringar av komplexet efter omkring 350. Syftet är omtvistat: ett politiskt skifte och en respektfull rituell nedläggning är alternativa tolkningar. Skadorna på de andra fasaderna har ingen fastställd datering."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0300-supplement.json",
+        "textSha256": {
+          "titleEn": "c6e9c049f39314c66bfabefaff48f0c20e58773b83fd0433f3c02b80634b95e7",
+          "summaryEn": "965f58994ff441085102da2ae79c0a5deda4fb3a7fc3de68a79fb5fe584a0def",
+          "geographyEn": "8fe02c07b4e5833c0a70a82499af60f4a5842c2853828d981a79d85bc1c175b5",
+          "date.displayEn": "11a0a8948486b23ff749d0ccdb26751bc5cbae9bcff7f02574b2bd09bede06ca",
+          "date.noteEn": "ac48ca621fe7f88a1c1acf9c4ae6e739a585bb78faa88a3276e82cf03c2b3dc9"
+        }
+      }
+    },
+    "ev-0410-roman-legions-leave-britain": {
+      "titleSv": "De romerska legionerna lämnar Britannien",
+      "summarySv": "De romerska legionerna lämnar Britannien. Romersk-brittiska kungar bjuder in germanska grupper som angler och saxare att försvara dem, och ett uppror bland dessa legosoldater leder till omfattande germansk bosättning i sydöstra England.",
+      "geographySv": "Britannien",
+      "date": {
+        "displaySv": "410 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0400-supplement.json",
+        "textSha256": {
+          "titleEn": "049683dcaaa1e0ea0cee3eddc3ca0420a1c14bdcbe5e8ff40c8a139ea4b06eaf",
+          "summaryEn": "b251307e6ae7f0a646e8df07c3f86f6b4dbdcc97fec4d38c2aa050b4b29132d8",
+          "geographyEn": "0eb045301ef38da83508dc5d4f10042473506daf7ffb7267188ebd5bd20e47f5",
+          "date.displayEn": "7117772e52f618230753b801224fb6b3fd9574919f4f8bdb3f4990d09d479f4c"
+        }
+      }
+    },
+    "ev-0429-vandals-invade-north-africa": {
+      "titleSv": "Vandalerna invaderar Nordafrika",
+      "summarySv": "Vandalerna, ett germanskt folk, går över från Spanien och invaderar Nordafrika. Erövringen är snabb och brutal, och de gör Karthago till sin huvudstad. När ordningen återvänt behåller de romerska seder: de skriver latin, bor i villor i romersk stil och restaurerar bad, teatrar och kyrkor.",
+      "geographySv": "Romerska Nordafrika; Karthago",
+      "date": {
+        "displaySv": "429 e.Kr.",
+        "noteSv": "Met daterar invasionen till 429 och anger inget år för intagandet av Karthago."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0400-supplement.json",
+        "textSha256": {
+          "titleEn": "65bbe5bb51dc121634f25925056fa2aabd331488a122368f6c59491219beb06e",
+          "summaryEn": "8c6060d1eb0805a9c57db3b4ae22505c573bb2d505b21400959af0f723462149",
+          "geographyEn": "558502b15c3de6305fb673be69319ff3f3106aed033e30fd80c4b96587e01dc5",
+          "date.displayEn": "e1ad3182dc2fe563d8c4f68c841b6328e126ba62c967d0b300795936783a86fc",
+          "date.noteEn": "cb5e7d22c186d55b14e706be84375d4056787f5be7f0eb7cc470852ab8b23026"
+        }
+      }
+    },
+    "ev-0451-egyptian-church-rejects-chalcedon": {
+      "titleSv": "Den egyptiska kyrkan förkastar konciliet i Chalkedon",
+      "summarySv": "Den egyptiska kyrkan förkastar konciliet i Chalkedon och tar avstånd från Roms och Konstantinopels auktoritet. Brytningen lägger grunden till det som i dag kallas den koptiska kyrkan.",
+      "geographySv": "Egypten",
+      "date": {
+        "displaySv": "451 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0400-supplement.json",
+        "textSha256": {
+          "titleEn": "2463ffdbe01736766a1fd24e2a7cd83cbe5f0cab3c7162774f0231537a5908d5",
+          "summaryEn": "4f4fa853a73237899d9293e62dea6036b9ebfcef0d1a06d4fe7adf1832d0cf47",
+          "geographyEn": "557c1599d9a04895d3817d293e0806a4419a14de31958386182798d0d2ed3a56",
+          "date.displayEn": "91b8d1ca27be377eea0fd17de6db7c4690b36313043d4c2aca56612e65f646b4"
+        }
+      }
+    },
+    "ev-0475-goguryeo-takes-hanseong": {
+      "titleSv": "Goguryeo intar Hanseong, Baekjes huvudstad",
+      "summarySv": "Goguryeos arméer sveper in i Baekjes kärnområde vid Hanfloden, intar huvudstaden Hanseong (nuvarande Seoul) och avrättar kung Gaero. Sillas undsättningstrupper kommer för sent, och Baekjes kvarvarande hov flyttar huvudstaden söderut till Ungjin (nuvarande Gongju).",
+      "geographySv": "Hanflodens dal, Korea",
+      "date": {
+        "displaySv": "475 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0400-supplement.json",
+        "textSha256": {
+          "titleEn": "2e2be391dffd24ebca09d72d5ef575856afd98e9f22ca2c1ac71e795a4bfe684",
+          "summaryEn": "a61779575fca57bc73263840ea8fd9999f2a82560dc5452428b114b5c4b71145",
+          "geographyEn": "8d3f3882178fae94a2b37c1ce6c27583907a22bb44448302066c4808c0340196",
+          "date.displayEn": "9a6ac01e87a44cb87d34dfcd4f6b106a5a067316d884e8afb6149bf9c98c3693"
+        }
+      }
+    },
+    "ev-0494-northern-wei-moves-capital-to-luoyang": {
+      "titleSv": "Norra Wei flyttar sin huvudstad till Luoyang",
+      "summarySv": "Kejsar Xiaowen flyttar Norra Weis huvudstad till Luoyang. Han inför en försiniseringspolitik som kräver att xianbei och andra antar kinesiska släktnamn, kinesiskt språk och kinesisk dräkt. Missnöjet med politiken bidrar till dynastins fall i mitten av 500-talet.",
+      "geographySv": "Luoyang, norra Kina",
+      "date": {
+        "displaySv": "494 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0400-supplement.json",
+        "textSha256": {
+          "titleEn": "d0660bb40675a9729bc1cc70c70b697a18fdbfb065365f3ce0f74b354ab1adea",
+          "summaryEn": "6f57d38907ca3e4c6b799ecb3ba168358b78de55109c212a4df49e80694d2721",
+          "geographyEn": "b4ada773a9aa0b6be0eea79f4e5c571478b110790ffec7b644d7c15936a422a2",
+          "date.displayEn": "c94ce70c39dd21e9ac39e56528d2d57e02bf0fe3815e7d40cb28faa584ba285b"
+        }
+      }
+    },
+    "ev-0496-clovis-converts": {
+      "titleSv": "Klodvig I omvänder sig till kristendomen",
+      "summarySv": "Klodvig I, de saliska frankernas kung, omvänder sig till kristendomen tillsammans med hela sitt följe. Hans tidiga övergång till den romerska kristendomen och hans senare segrar ger honom ett större välde, och vid hans död hör frankerriket till de mäktigaste i Västeuropa.",
+      "geographySv": "Gallien",
+      "date": {
+        "displaySv": "496 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0400-supplement.json",
+        "textSha256": {
+          "titleEn": "5a716d7f161f6d8acf79d8bcd4a5c80019fc794d093ef784f9363fa63c0173e3",
+          "summaryEn": "f20583421ec7e36164aeee56dba2c0ddffc886af5fd71f2436732545159a0eae",
+          "geographyEn": "fa635ae2f591f4cefbc70d3be2993dd9d6bfa94f671e03c8c2e5bc1969dd9a0d",
+          "date.displayEn": "ca2d1d4303ffb11934bb8c4f280d9aff1ae97c62b7aa6e3fa40f0b412de940da"
+        }
+      }
+    },
+    "ev-0607-horyuji-established": {
+      "titleSv": "Hōryūji grundas i Asuka",
+      "summarySv": "Det buddhistiska templet Hōryūji grundas i Asukaområdet. Met beskriver anläggningen som Japans äldsta bevarade buddhistiska tempel, med världens äldsta bevarade träbyggnad.",
+      "geographySv": "Asukaområdet, Japan",
+      "date": {
+        "displaySv": "cirka 607 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "288ae03203e49bdd2260e87fe9be43fd83bc0686edc0fc02a82f235dca52cb46",
+          "summaryEn": "abbab9dee9d6555d285529918cf7bd22d9c28e9a07c0e408fb6f2e42f2319bad",
+          "geographyEn": "58bc2aa6fc349c90f70a13adb8dae48b7cce1a2d9e6a043e7142ac65dbfd0ee0",
+          "date.displayEn": "c52d8fdc92db60d18564c2f0b9fd00d9ff98e8153cbae78b84ddfe0d5c21a779"
+        }
+      }
+    },
+    "ev-0618-tang-dynasty-founded": {
+      "titleSv": "Li Yuan grundar Tangdynastin",
+      "summarySv": "Li Yuan, från en nordlig aristokratsläkt med lång tradition av statstjänst, tar tronen, återställer ordningen och grundar Tangdynastin. Han regerar som kejsar Gaozu fram till 626.",
+      "geographySv": "Kina",
+      "date": {
+        "displaySv": "618 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "9491692e5b827798afafff867b752b132c6294455b13464645e70d54b75c14fb",
+          "summaryEn": "b485bce260fc7b980bafe1135429475c05fb4e765153f265d53c14ddb119d60c",
+          "geographyEn": "10436829032f361a3de50048de41755140e581467bc1895e6c1a17f423e42d10",
+          "date.displayEn": "28315e6bdacb00939adcfdcadc387464dcc03efbb8756bbcae550d7a3eb8eb3d"
+        }
+      }
+    },
+    "ev-0625-sutton-hoo-ship-burial": {
+      "titleSv": "En skeppsgrav anläggs i Sutton Hoo",
+      "summarySv": "En skeppsgrav anläggs under en hög i Sutton Hoo, med gravgåvor i ett träskepp: en järnhjälm med förtennad bronsfolie, guldspännen med inlagd niello och ett pungbeslag med cloisonnéemalj. Ingen kropp har hittats, kanske på grund av den sura jorden, och mynt bland gravgåvorna hjälper till att datera graven.",
+      "geographySv": "Sutton Hoo, England",
+      "date": {
+        "displaySv": "cirka 625 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "63b3627a7b0aab39699c1d75cfd7399f60ec3056c62b3b22fab23565c933a3a3",
+          "summaryEn": "a045029651bb2aa2282ca36b6518941d72cc41d7beb480a31fa616de13b89046",
+          "geographyEn": "573e6aa8eb6109f851cb6d00adf6b34c90bff17b2d4edeae9ba0374e66e0fe43",
+          "date.displayEn": "eb1c567cbc2dace3385204dfbc0ba70de3c9d0703db0559aed174359880a3403"
+        }
+      }
+    },
+    "ev-0629-xuanzang-travels-to-india": {
+      "titleSv": "Xuanzang reser till Indien",
+      "summarySv": "Pilgrimen Xuanzang reser till Indien och Sydostasien. Hans översättningar driver på buddhismens tillväxt i Kina, och hans reseskildring, Records of the Western Regions, är fortfarande en viktig källa till Sydasiens historia.",
+      "geographySv": "Kina, Indien och Sydostasien",
+      "date": {
+        "displaySv": "629–645 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "a1b4318653f0a1df9215ef7d2c2734896532c451d1bc51a1981e4da718223e3f",
+          "summaryEn": "58ba7b78c210e1d5f87c101e028b7892b1599913599507a24fb3b79d079948c6",
+          "geographyEn": "ac2a52d4c4447438a37dcecb9b59fad10da48eec4f9792afca81191f0ffa4774",
+          "date.displayEn": "a6934b1bd889bf9718d8ff3a94b05b02e567f34707f4ec9f45a61b302fc05e1b"
+        }
+      }
+    },
+    "ev-0639-arab-conquest-of-egypt": {
+      "titleSv": "Arabiska arméer erövrar Egypten",
+      "summarySv": "Arabiska muslimska arméer erövrar Egypten under 'Umar ibn al-Khattabs kalifat. De grundar al-Fustat, garnisonsstaden som senare blir en del av Kairo, och bygger Egyptens första fredagsmoské för armén.",
+      "geographySv": "Egypten; al-Fustat",
+      "date": {
+        "displaySv": "639–642 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "a523de766b428c201db39da885802d38a674f0f21e5d8e8d3d483f0c2de9a5dd",
+          "summaryEn": "47c97e6f1590f2a367de5239331c5ff8eabf35ad1a6834f76fc09cfb75096f22",
+          "geographyEn": "d16efdf3b7c35594f54c10e7dbab5b7e11f61448827bcbf6e71f26d13038499f",
+          "date.displayEn": "046776fe8985e8bac93d89cb07bdd5e46fbe4ed12b93a40cba84168c7ff3ae29"
+        }
+      }
+    },
+    "ev-0642-battle-of-nahavand": {
+      "titleSv": "Arabiska arméer besegrar sasaniderna vid Nahavand",
+      "summarySv": "Arabiska muslimska arméer besegrar sasanidiska styrkor i slaget vid Nahavand, som i praktiken blir slutet för Sasanidriket. Den siste sasanidiske härskaren, Yazdgard III, flyr till Merv, där han dör 651.",
+      "geographySv": "Nahavand, västra Iran",
+      "date": {
+        "displaySv": "642 e.Kr.",
+        "noteSv": "Mets post omfattar 634–644, 'Umars regeringstid, och daterar själva slaget till 642."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "26afa216cf72e98158f00b54c90efa11c8f0709b463dfd0df2ad672aba89b43d",
+          "summaryEn": "7f1b8cbc03090659389a5381fd5c24eb55112246e146420916621be3cf65f555",
+          "geographyEn": "7a7acbb43a1e8b9273a6b85c9b51afb35e9594ceabe3c8a039d25eba7affda61",
+          "date.displayEn": "9289a7647a292a3b6e523a0622455e7669a004bd3279e5753a1ff3d93276cb11",
+          "date.noteEn": "85c1e2236ab4fe4941957255742070d822798cc41f5578b710f4c2248715477b"
+        }
+      }
+    },
+    "ev-0646-taika-reform": {
+      "titleSv": "Kejsar Kōtoku utfärdar Taikareformen",
+      "summarySv": "Kejsar Kōtoku utfärdar Taikareformen för att stärka den kejserliga makten och försvaga aristokratsläkterna. Efter kinesisk förebild blir all åkerjord kejsarens egendom och alla invånare hans undersåtar, styrda av en meritbaserad byråkrati.",
+      "geographySv": "Japan",
+      "date": {
+        "displaySv": "646 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "43b2129fae7807a1e34c89b2d7a6b5bdd8aab34c81d7be37cfc9af70af0907f1",
+          "summaryEn": "421ba3db0d89a45e1914470cc9df67a93256f1bd4fa6496a723a05b52545576a",
+          "geographyEn": "647294383b2cbc24b18f629498fc7c6f61d3819fb42a2287e93305aaa01b74e7",
+          "date.displayEn": "701d8a7b5d7e99856d023370bdf853a6e23b112e5305674f5192f6cc736593d2"
+        }
+      }
+    },
+    "ev-0650-teotihuacan-centre-burned": {
+      "titleSv": "Teotihuacans centrum bränns",
+      "summarySv": "De främsta templen och elitens bostäder i Teotihuacans centrum bränns och huggna kultföremål slås sönder, kanske under en inre politisk och ekonomisk kris. Många bostadskomplex överges, men delar av staden förblir bebodda fram till omkring 900.",
+      "geographySv": "Teotihuacan, Mexikodalen",
+      "date": {
+        "displaySv": "cirka 650 e.Kr.",
+        "noteSv": "Met daterar branden till omkring 650 och kallar orsaken en möjlig inre kris."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "c14a1a780922d0696a6c102d936026c2982d9ae4f32ef29140af29bd135966af",
+          "summaryEn": "a4270ac4ef3d7eacd8bd9f88618966deaa85e8f0fe65138e971672494f409a8a",
+          "geographyEn": "e035184161b478a899e89910dcb73f0e5827acf30092a37cf5983d72e02c3d38",
+          "date.displayEn": "533d18ea7bdf30d28c5b225ff7b3e2de056b886f39fb890ab2063b5c12f72bf1",
+          "date.noteEn": "c137bddb496bf5aad45f4c506ab81e9fa5c41679b0d5d4c3e805dd33480bf24f"
+        }
+      }
+    },
+    "ev-0664-synod-of-whitby": {
+      "titleSv": "Synoden i Whitby väljer romersk praxis",
+      "summarySv": "Synoden i Whitby sammanträder för att lösa liturgiska konflikter mellan den keltiska och den romerska grenen av kristendomen i England. Den beslutar att följa den romerska kyrkan, vilket för England närmare Rom och det europeiska fastlandet.",
+      "geographySv": "Whitby, England",
+      "date": {
+        "displaySv": "664 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "52195f793047c15f64d1ff6cc1dc4ba5ec6f597c1f3ab7cd8344fd3ca05cc590",
+          "summaryEn": "911273e1c714d0c565215841be0936a7b929f1b69e2eb08546220a33f8a70f41",
+          "geographyEn": "2698d8ad559055661cae8d8838058cbd71a526dd753d2f380c93ec757e1628db",
+          "date.displayEn": "8c0752c985c5ff57bf406231c13ad2422cbf1a4b309dc761bc034acf40d9946d"
+        }
+      }
+    },
+    "ev-0668-goguryeo-falls": {
+      "titleSv": "Tang och Silla förstör Goguryeo",
+      "summarySv": "De allierade Tang och Silla har under åtta år befäst sitt grepp om Baekjes tidigare land och invaderar nu Goguryeo. Försvagat av tidigare angrepp från Sui och Tang och av inre splittring faller det nordliga kungariket snabbt.",
+      "geographySv": "Norra Korea och Manchuriet",
+      "date": {
+        "displaySv": "668 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "ee8eb2efa9fa2fa9fd83ba76c630f113a8603c8ff3921d2886a535df674e718e",
+          "summaryEn": "765a36c9798944abf207325802487faf89ad5737159d8ea2fc61ad7fc0f46871",
+          "geographyEn": "d6111f90e00f05ea7fd3a9ff296b97e86cf001be8d42f703f42248f3388cb681",
+          "date.displayEn": "59d4fff9f3f66b92c43b09751f95f059070278636e8d48de0adc74bf8fb56a53"
+        }
+      }
+    },
+    "ev-0670-uqba-founds-kairouan": {
+      "titleSv": "'Uqba ibn Nafi' erövrar Maghreb och grundar Kairouan",
+      "summarySv": "Muslimska arméer under 'Uqba ibn Nafi' strider mot berbergrupper och erövrar landet från norra Tunisien till Tanger, vilket upprättar umayyadiskt styre i Nordafrika. 'Uqba grundar staden Kairouan.",
+      "geographySv": "Nuvarande Tunisien till Marocko; Kairouan",
+      "date": {
+        "displaySv": "670 e.Kr.",
+        "noteSv": "Met placerar fälttåget och grundandet av Kairouan under 670 utan att skilja deras år åt."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "7068c440a89d42150aa4b9824b50cb09cb65315495402f36939ff522e7e964f7",
+          "summaryEn": "0c89669b7ca346075b8a9c396081c9e72fe736deefe126a384834069c1421a72",
+          "geographyEn": "6c9af195ee613d3b70894f0ecfc1074079d76d0dcae84c9c216dd7ee3456fbac",
+          "date.displayEn": "848708fe4f0eaa8738a7d167ad0d843210e9c709725af020acdaf3e93ebfa7fa",
+          "date.noteEn": "b362f47525893c6951c3db193d475d8a7e24cd1088af8a62414b5ac2875024fd"
+        }
+      }
+    },
+    "ev-0676-silla-unifies-korea": {
+      "titleSv": "Silla driver ut Tang och enar Korea",
+      "summarySv": "Ett motstånd under Sillas ledning tvingar Tangs trupper att dra sig tillbaka till Manchuriet. För första gången kommer nästan hela Koreahalvön, utom en smal remsa i norr, under en och samma koreanska regering, Enade Silla.",
+      "geographySv": "Koreahalvön",
+      "date": {
+        "displaySv": "676 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "79e9fb1635c2be3d2cd1de4e4fc82441f38e09155903d565a5b518f900dfa50e",
+          "summaryEn": "be1dd83ac710ead650e1afde5b434a838293fc36c00908bae5f14ae98a8412dd",
+          "geographyEn": "064ba25f977aefc70f7b40b99b4b7a3321245923d6fa8bd7272942aa6042ed1e",
+          "date.displayEn": "877b95d88e3822e0bc235fbb3eed872e984544bcaf621312fb095a686e7f77da"
+        }
+      }
+    },
+    "ev-0698-barhae-founded": {
+      "titleSv": "En tidigare general från Goguryeo grundar Barhae",
+      "summarySv": "En tidigare general från Goguryeo grundar kungariket Barhae (kinesiska: Bohai), som omfattar större delen av Goguryeos tidigare land i Manchuriet. Barhae och Enade Silla undviker krig tills khitanerna förstör Barhae 926.",
+      "geographySv": "Manchuriet",
+      "date": {
+        "displaySv": "698 e.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0600-supplement.json",
+        "textSha256": {
+          "titleEn": "31edea9a41e06898414535b887c11eea0485bf7f53912109072016711093a4c3",
+          "summaryEn": "0d8f9976cdc7f395a5d41b82eadd16d004f59b4b953021df9ee6152184ddd10b",
+          "geographyEn": "999efcfa8b55044cda1eeca8dd0dcd31836ca2b75bc4e63e09bd9d5ab044b737",
+          "date.displayEn": "7ea76e4b01e00bcfb715085e84a4c431f3669f3a771aa1f27ab2a0ec1c092acf"
+        }
+      }
+    },
+    "ev-0743-japan-permanent-reclaimed-field-tenure": {
+      "titleSv": "Japan tillåter permanent innehav av nyodlade risfält",
+      "summarySv": "Ett kejserligt edikt låter nyodlade risfält innehas permanent och ersätter den tidigare tidsgränsen för innehavet. Den tillåtna arealen beror på rang, och nyodling kräver i regel provinsens tillstånd i förväg.",
+      "geographySv": "Japan",
+      "date": {
+        "displaySv": "743 e.Kr.",
+        "noteSv": "Datumet gäller det kejserliga ediktet om nyodlade fält. Det permanenta innehavet förblev begränsat efter rang och av administrativa villkor; ediktet tog inte bort statens kontroll över all risjord."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0700-second-pass-supplement.json",
+        "textSha256": {
+          "titleEn": "26c01c0d71f85819e340d39d8e19fc391a19baada525fd112a7bd704d0a303a7",
+          "summaryEn": "9d1d43dd55e60c21feef091c575e55b9ff466a117d5a54647d050284aef42cf9",
+          "geographyEn": "647294383b2cbc24b18f629498fc7c6f61d3819fb42a2287e93305aaa01b74e7",
+          "date.displayEn": "82dc4fd1deefc8b4a6a4d7519548425a9d1dc3f68833f1a51c9e5c3d900c637f",
+          "date.noteEn": "5abc9789bcc962433d4116ddf6738d6f14a9e3e63a3b189b5e6c0cc3c0f43788"
+        }
+      }
+    },
+    "ev-0780-tang-two-tax-promulgation": {
+      "titleSv": "Tanghovet utfärdar tvåskattesystemet",
+      "summarySv": "Kejsar Dezong utfärdar den skattereform som Yang Yan föreslagit. Den föreskriver uppbörd två gånger om året och taxering efter egendom, med provinsämbetsmän delaktiga i uppbörden och i fördelningen av kvoter.",
+      "geographySv": "Tangdynastins Kina",
+      "date": {
+        "displaySv": "780 e.Kr.",
+        "noteSv": "Detta daterar utfärdandet av reformen, vars principer och metoder hade tidigare föregångare. Det daterar ingen plötslig och allmän förändring i betalningspraxis och visar inte att reformen minskade skattebetalarnas bördor."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0700-second-pass-supplement.json",
+        "textSha256": {
+          "titleEn": "669259fa9db134dfe0ae0410f1958abd38faa1fd51e87620bc1f374829abfdb2",
+          "summaryEn": "0f999db946d65cc8f501cc4f4b11f05ae4dbfe2e34b4c881bac7cab2adc41d15",
+          "geographyEn": "1d2e460738695ee03eae16a0982e280e027cff11a332e0708392901245bdbda3",
+          "date.displayEn": "021a702ba26232e92168181feadfa32c2c54af9ebc690d17cc29450f1d540b63",
+          "date.noteEn": "49e1b06a19adcb71253f7c0484a0b70abedbce43adc95e337b97ad2a93eac3fa"
+        }
+      }
+    },
+    "ev-0732-kul-tigin-memorial": {
+      "titleSv": "Bilge Kagan reser ett minnesmärke över Kül Tigin",
+      "summarySv": "Bilge Kagan låter uppföra ett minnesmärke med inskrift till Kül Tigins ära. Monumentet bär turkiska och kinesiska texter. Dess turkiska berättelse återger köktürkernas historia med Bilge Kagans röst, medan inskriften behandlar militära och politiska frågor, däribland förbindelserna med Kina.",
+      "geographySv": "Orchondalen, nära Çaydam, nuvarande Mongoliet",
+      "date": {
+        "displaySv": "732 e.Kr.",
+        "noteSv": "De citerade framställningarna daterar resandet av minnesmärket till 732. Marmarahäftet placerar Kül Tigins död 731; inskriften tillkom till minne av detta tidigare dödsfall."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0700-supplement.json",
+        "textSha256": {
+          "titleEn": "8cb57e822a5938d28340b540103f2c6b5518c5298be4d00289b43a53c604ab39",
+          "summaryEn": "543a6c2457a7655cc8b7867137799d06dc5ae3ea889cc7457920eb618d6ad8a5",
+          "geographyEn": "da65ddd1b7cdb24bc4f061556d641765126f99ab681ea4d84a22d04e12ac08bd",
+          "date.displayEn": "59cb0fc4cbdfc326de200dc071ba6828bea0153e19835e20dd5e26eb79617989",
+          "date.noteEn": "cdafe071ad697adf467ebbaccf1d25adf19626b732b5b28d6c86e57abf6d6e6d"
+        }
+      }
+    },
+    "ev-0732-sanjaya-canggal-dedication": {
+      "titleSv": "Sanjaya högtidlighåller invigningen av en linga vid Canggal",
+      "summarySv": "Canggalinskriften dokumenterar kung Sanjayas invigning av en linga på kullen Sthirangga för sitt folks säkerhet och välfärd. Klokke betecknar den som Centraljavas första daterade inskrift, vilket gör den till ett viktigt tidigt vittnesbörd om kungligt religiöst beskydd i regionen.",
+      "geographySv": "Gunung Wukir, Magelang, Centraljava",
+      "date": {
+        "displaySv": "732 e.Kr.",
+        "noteSv": "Datumet gäller Canggalinskriften om Sanjayas lingainvigning. Det fastställer inte året då ett kungarike grundades och avgör inte mellan konkurrerande rekonstruktioner av Centraljavas dynastier."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0700-supplement.json",
+        "textSha256": {
+          "titleEn": "a45385efe3bbc7c315a8af072965dc2b3b850323093d1f05ea23078fc598f863",
+          "summaryEn": "50977cfcae9e473cbf8f64b4cb380d1c15f7685fdd675361c19e789d15a59363",
+          "geographyEn": "6c7b98c383dd3ed3ff9ac37c95243d119794ab02cf03c550c6c94cd4ef180192",
+          "date.displayEn": "59cb0fc4cbdfc326de200dc071ba6828bea0153e19835e20dd5e26eb79617989",
+          "date.noteEn": "2a907cbbe851ee661a35d03cd8dc78ec65fafd5ceaa9fa60e92dd3af02be96a8"
+        }
+      }
+    },
+    "ev-0860-kairouan-aghlabid-water-reservoirs": {
+      "titleSv": "Byggare anlägger sammankopplade vattenreservoarer i Kairouan",
+      "summarySv": "Under Abu Ibrahim Ahmad anlägger byggare bassänger för sedimentering och lagring, med cisterner för vattenhämtning. Anläggningen kompletterar stadens vattenförsörjning under torka och betjänar karavaner och boskap liksom invånarna.",
+      "geographySv": "Kairouan, Ifriqiya, nuvarande Tunisien",
+      "date": {
+        "displaySv": "860–862 e.Kr.",
+        "noteSv": "Tunisiens kulturarvsmyndighet daterar bygget till 860–862. Archnets berättelse anger 862 och dess fält Events anger 860–862, men dess hidjra-angivelser skiljer sig inbördes. Ingen ny kalenderomräkning görs, och dateringen gäller inte varje reservoar runt Kairouan."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0800-0900-second-pass-supplement.json",
+        "textSha256": {
+          "titleEn": "fd05b0073bbb392f6d8a4482b2da18dd50000e0c2297d06a66a04b7101abbee4",
+          "summaryEn": "a12dfef26979aea89fb4ba27ee3a4e8132bfb2e1ba8edcac683bc48bd2fadbe0",
+          "geographyEn": "77c7475ec4893d0e6ed545634340bca83049d46a11a4a1a226e70be110227def",
+          "date.displayEn": "06bb8bf03e3ab78dc7dadd6f6e91a9ef8065ffe2c9ac1eda822576c6855be2d9",
+          "date.noteEn": "c7117bcb187d1f69b8ce4af8656bc652cea77c869e1f98fe3009d184ca77940d"
+        }
+      }
+    },
+    "ev-0956-gwangjong-reviews-enslaved-status": {
+      "titleSv": "Gwangjong beordrar en prövning av förslavade människors ställning",
+      "summarySv": "Gwangjong inför en politik för att pröva ställningen hos människor som varit fria innan de förslavades under enandekrigen eller av mäktiga lokala släkter. Den föreskriver att de återfår ställningen som fri allmoge och utmanar de lokala stormännens kontroll över dem.",
+      "geographySv": "Goryeo, Koreahalvön",
+      "date": {
+        "displaySv": "956 e.Kr.",
+        "noteSv": "Datumet är året då politiken genomfördes. Den gäller människor som återfick ställningen som fri allmoge efter förslavning, inte ett allmänt avskaffande av slaveriet. Källan beskriver också senare bakslag utan att ange ett enda datum då politiken upphörde."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0800-0900-second-pass-supplement.json",
+        "textSha256": {
+          "titleEn": "3fdafd879d7922c9f5e5ff2b53503d54830a4267b73b2b4c59ab1689cf7b8b40",
+          "summaryEn": "fed6dec02777f43e03cd9ae9b698127c61ba51b1cbe43026e2890d69e683e289",
+          "geographyEn": "74a87e83208da699e990993d531addd9098998de87d251e418ae0a6ba650238e",
+          "date.displayEn": "72e492b699772da4d31f6e8aa8e8a1ada4a18427eebcc4c0cbb86d53bf55a5cc",
+          "date.noteEn": "4a0a714cc1988118fc5de9feb070c282e95e0c6d7bacfdd4b1237f1e29e43d8e"
+        }
+      }
+    },
+    "ev-857-foguang-east-hall-rebuilt": {
+      "titleSv": "Foguangtemplets östra hall byggs upp på nytt",
+      "summarySv": "Byggare rekonstruerar Foguangtemplets östra hall i Shanxi. Dess träkonstruktion i sju fack, med bärbalkar och bjälkar, blir ett viktigt bevarat exempel på buddhistisk arkitektur från Tangdynastin.",
+      "geographySv": "Foguangtemplet, Shanxi, Kina",
+      "date": {
+        "displaySv": "857",
+        "noteSv": "ICOMOS daterar den bevarade östra hallen till 857, och Li, Gu och Zhang beskriver detta som en återuppbyggnad. Datumet gäller denna hall, inte grundandet av det tidigare Foguangtemplet. Ingen månad eller dag anges."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0800-supplement.json",
+        "textSha256": {
+          "titleEn": "d36782c5fae99776a0f44fa1eabc6622fe60a19f5bf49d4d3327f15c7a72b38b",
+          "summaryEn": "13f578d6338052f96a5b1f3649246f713426aab7ed367b881e34750a81049f99",
+          "geographyEn": "f7ac23cd254f06265c0607425801a7069a33c0e818d97c2a9fc3d6d1eb262a46",
+          "date.displayEn": "22cdd352056c42ac1a6d01d6bd4f8e8ed1c27fb9addc6e500a59f88b57e4612a",
+          "date.noteEn": "27c506cdaff987926fd0788e7d72912f31ef72037bbe3f6b3d7e653f6f3b3fc1"
+        }
+      }
+    },
+    "ev-861-rawda-nilometer-built": {
+      "titleSv": "Al-Mutawakkil låter bygga nilometern på Rawda",
+      "summarySv": "En nilometer byggs på ön Rawda på order av den abbasidiske kalifen al-Mutawakkil. Mätningen av Nilens flodnivå hjälper ämbetsmän att förbereda kanaler och vallar och att bedöma jordbrukets avkastning och skatterna.",
+      "geographySv": "Ön Rawda, i nuvarande Gamla Kairo, Egypten",
+      "date": {
+        "displaySv": "861; 247 AH i ministeriets redogörelse, 246–247 AH i Archnet",
+        "noteSv": "Båda källorna anger 861 för bygget under al-Mutawakkil. Ministeriet anger 247 AH och Archnet 246–247 AH; deras ursprungliga kalenderangivelser behålls utan egen omräkning. Detta daterar byggnaden, inte uppfinningen av mätningen av Nilens nivå eller alla senare ändringar."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0800-supplement.json",
+        "textSha256": {
+          "titleEn": "513187c68e2711c285d6f76388c907c97ad8cb74f626d8d3313497f8eed2b190",
+          "summaryEn": "ea6eb432f71190342bc84545212252073dced61e61fd5feac420fc8f1ac4aed1",
+          "geographyEn": "56864d52410e4991753bc0bb7f785e8053fc1d56fa3c45ecb95f25d4d186dcd8",
+          "date.displayEn": "f1a8d719c45c30911629f211675e01e8830a1ef84e4da67c13c63b52746d2695",
+          "date.noteEn": "8f1ef7842db2006889db1df3d6ac8d5e9d69fcf19072dcee65f3e3fad33583ba"
+        }
+      }
+    },
+    "ev-ad0958-goryeo-civil-service-examinations": {
+      "titleSv": "Gwangjong inför ämbetsmannaexamina i Goryeo",
+      "summarySv": "Gwangjong inför examina för att rekrytera ämbetsmän. Reformen syftar till att stärka kungamakten och bygga upp en mer centraliserad civil förvaltning; den ger inte lika tillträde till ämbeten.",
+      "geographySv": "Goryeo, Koreahalvön",
+      "date": {
+        "displaySv": "958 e.Kr.",
+        "noteSv": "Båda institutionernas framställningar daterar Gwangjongs införande av examenssystemet till 958. Detta daterar reformen, inte varje senare examenspraxis. Silla hade en tidigare examenstradition; ingen dag eller månad anges."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad0900-supplement.json",
+        "textSha256": {
+          "titleEn": "0fafd475879e00c4772174f8ce47ee114473781ea1039a8c8a7713484fb034eb",
+          "summaryEn": "92ea34dd90ede18f7754202d79c9dbc05b9733f2a30f4f2871f8d7bda46d54e5",
+          "geographyEn": "74a87e83208da699e990993d531addd9098998de87d251e418ae0a6ba650238e",
+          "date.displayEn": "14472c6f07d8fdb5d18b6736d98ff0ecb63f471efa3076254d22edd777c55044",
+          "date.noteEn": "a6a8ade24e76294fa1509e85cdaba17be81c7595457ec6d14109c7cb29fd117c"
+        }
+      }
+    },
+    "ev-ad1023-song-jiaozi-administration": {
+      "titleSv": "Songmyndigheterna tar över utgivningen av jiaozi i Sichuan",
+      "summarySv": "Songmyndigheterna för in ett system med papperssedlar, utvecklat av köpmän i Sichuan, under statlig förvaltning. Jiaozikontoret i Yizhou sköter den officiella utgivningen, vilket markerar ett skifte i vem som kontrollerar sedlarna. Källorna skiljer sig om datumet för den administrativa övergången.",
+      "geographySv": "Yizhou (Chengdu) och Sichuan, Songdynastins Kina",
+      "date": {
+        "displaySv": "1023–1024 e.Kr.; framställningarna skiljer sig om det administrativa datumet",
+        "noteSv": "ANA daterar statens övertagande till 1023, och Lin Feng daterar kontoret i Yizhou till 1023. I en senare publicerad intervju anger Luo Tianyun i stället 12 januari 1024 för hovets godkännande och 1 april 1024 för den officiella utgivningen. Källornas datum behålls utan egen kalenderomräkning och utan påstående att varje steg skedde båda åren."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1000-second-supplement.json",
+        "textSha256": {
+          "titleEn": "13b4c860c3c2c78fe09c000ce79d8c2f497b54dc8ed63666c8827fa90612070f",
+          "summaryEn": "99fd764b2e1d1717e9df272902d033fb7dfdc8b1df55def6a9919fb8e7f63ddd",
+          "geographyEn": "28c27170aaf804c72dbd55a6f7d335d9d4a0d471d071c28672bf0a4c4927a10f",
+          "date.displayEn": "c950131b8102cba5ae8c169790493b18367ab72f483f070d5b014a4d13caf8e8",
+          "date.noteEn": "72bf3f46fefba6fa4329445b29937dfc057ea642df952dc278b40ce99db610b4"
+        }
+      }
+    },
+    "ev-ad1037-kamalagyan-waterworks-charter": {
+      "titleSv": "Airlangga dokumenterar stöd till översvämningsskydd vid Kamalagyan",
+      "summarySv": "En kunglig inskrift dokumenterar arbete på vallen Waringin Sapta och tilldelar lokala intäkter och underhållsansvar för att hålla den i stånd. Åtgärden gäller översvämningar längs Brantas och knyter samman vattenförvaltning med jordbruk och flodtransporter.",
+      "geographySv": "Kamalagyan och Waringin Sapta, nedre Brantasfloden, Östjava, Indonesien",
+      "date": {
+        "displaySv": "1037 e.Kr.",
+        "noteSv": "Datumet gäller Kamalagyaninskriften. Den högtidlighåller arbetena för översvämningsskydd och dokumenterar bestämmelser för deras underhåll; den fastställer inte när bygget började eller hur länge arbetet pågick."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1000-supplement.json",
+        "textSha256": {
+          "titleEn": "ddb978736eca1e4e4d7d8c50ec9a67966e14d2d66c2607b1e48137fbdbf0fb14",
+          "summaryEn": "43a7e077d1ce9a5a5be4241f0139b76b1b61338969ba497cb0e565debf98262d",
+          "geographyEn": "1dc58d0f57514dda7dc3dcdefae46fff2846a6d974aff72982ae2025f82d4f93",
+          "date.displayEn": "bd94381a65396e1ec2cc6fa8031b119adba36d9d9e21b2d15ac4440ed3409039",
+          "date.noteEn": "fa0b30acc18d0b4a84cb14d8a3967c66f2a49d48d496bfb73414f113cc2791d9"
+        }
+      }
+    },
+    "ev-ad1088-barus-tamil-merchants-meeting": {
+      "titleSv": "Tamilska köpmän dokumenterar ett gillesmöte i Barus",
+      "summarySv": "En inskrift från Lobu Tua dokumenterar ett möte i Barus för den tamilska köpmannasammanslutningen som kallades De femhundra. Den vittnar om organiserad handel över havet i en sumatransk hamn förknippad med handeln med kamfer och bensoe.",
+      "geographySv": "Lobu Tua, Barus, norra Sumatras västkust, Indonesien",
+      "date": {
+        "displaySv": "1088 e.Kr.",
+        "noteSv": "Året daterar den tamilska inskriften som omtalar ett möte i köpmannagillet. Det daterar inte grundandet av Barus, gillets ursprung eller de tamilska handelsmännens första ankomst."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1000-supplement.json",
+        "textSha256": {
+          "titleEn": "e8d463b97098e051959bb5b2fe399eaa6eebbf31cb1d642983fadf41edec9685",
+          "summaryEn": "577f13f221004e1a35edf4a4558c9f9ec213019d4a3a9e5ebc5faff29d0a40c7",
+          "geographyEn": "bf38933ba9f53f0375f8f2444ade0450178934979cc9e23c5ce42c86e9eac7de",
+          "date.displayEn": "f3133598faf9d076b977f2b9c5b9b5d983cab0b5c6f8f27739081fef0a663859",
+          "date.noteEn": "8d8fadbd1777a779b4bafbf7158d53bb409d715eaea5e93460d2bf9827b4f21c"
+        }
+      }
+    },
+    "ev-1134-qarawiyyin-mosque-expansion": {
+      "titleSv": "Ali ibn Yusuf bygger ut al-Qarawiyyin-moskén",
+      "summarySv": "Ali ibn Yusuf bekostar en utbyggnad av fredagsmoskén i Fès. Byggare förlänger bönesalen efter att ha rivit dess tidigare qiblavägg och angränsande hus.",
+      "geographySv": "Fès, Marocko",
+      "date": {
+        "displaySv": "cirka 1134–1143/44",
+        "noteSv": "Archnet anger byggkampanjen till ungefär 1134–1143. Serrat med kolleger anger färdigställandet till 1143–44 och citerar separat ett inskriftsdatum 1136 för byggnaderna. Kampanjens hela spann behåller dessa olika angivelser för färdigställandet; 1136 daterar inte allt arbete."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1100-supplement.json",
+        "textSha256": {
+          "titleEn": "85ea7da8957e6f4f0a4dfbe2a0a081be186586edf4929823d4f298076b275fa5",
+          "summaryEn": "034c4b0fc0a7a0a71d2c23a5c08ddc8a56723de0a7dde6cd7954de84ecaa0a79",
+          "geographyEn": "cb51d23cb9e467aba7d048dad66097f750b55cbe6e52ff6847662fe099733249",
+          "date.displayEn": "933d8ad040544a3cba593a64f35833a2175581dab40dcd57de5a6106861015d1",
+          "date.noteEn": "655e463fce996846313ec850263e2df08bf6baa3cab076f435a185f715dc6df9"
+        }
+      }
+    },
+    "ev-1154-nur-al-din-damascus-hospital": {
+      "titleSv": "Nur al-Din bygger ett sjukhus i Damaskus",
+      "summarySv": "Nur al-Din Mahmud ibn Zangi låter bygga ett sjukhus i Damaskus. Inrättningen vårdar patienter och utbildar läkare, med en sal för medicinska föreläsningar och tillgång till medicinska böcker.",
+      "geographySv": "Damaskus, Syrien",
+      "date": {
+        "displaySv": "1154 e.Kr.",
+        "noteSv": "Båda källorna daterar huvudbyggnaden till 1154 e.Kr. Deras hidjra-angivelser vid sidan av årtalet skiljer sig: 549 AH i museets post och 548 AH i Archnet. Datumet gäller huvudbyggnaden, inte den senare tillbyggnaden eller all medicinsk verksamhet som beskrivs."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1100-supplement.json",
+        "textSha256": {
+          "titleEn": "c9dfc273584f5dcb6f3781ff7d87004eb5c892a52ea95f912a186d725d2a6df1",
+          "summaryEn": "35bcf15ab1bccf64270eb86752350603ef01ff97164855143d6cf924b95c8dfe",
+          "geographyEn": "150ab918c48baabb93dc30be61d7eb29ec8b4720faca828625fdc727143e9ae5",
+          "date.displayEn": "8c7b630996301bf415ab7b8f566e70d5774f2543bdf7aaefacb651f37516ce56",
+          "date.noteEn": "ae8b45d148af009f2b441f7e087f13386c55ec2740d9abe63a4133dee9fbc559"
+        }
+      }
+    },
+    "ev-ad1257-samalas-eruption": {
+      "titleSv": "Samalas får ett utbrott på Lombok",
+      "summarySv": "Ett kraftigt utbrott i Samalas släpper ut stora mängder vulkaniska gaser i stratosfären. Geokemisk forskning drar slutsatsen att dessa utsläpp räckte för att ge den globala avkylning som rapporterades efter utbrottet.",
+      "geographySv": "Samalas, vulkankomplexet Rinjani, Lombok, Indonesien",
+      "date": {
+        "displaySv": "1257 e.Kr.",
+        "noteSv": "Året följer Vidals och kollegers studie av Samalas utbrott. Ingen dag eller månad anges. De härledda klimateffekterna dateras inte till ett enda år och antas inte ha varit identiska i varje region."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1200-supplement.json",
+        "textSha256": {
+          "titleEn": "8314332fe89cfff0960f70074b8e2319a7fff92e0a87f9986a2274d571f66c96",
+          "summaryEn": "152e6d58fec75fc37509288e5ca9c274e124dadd2d8d052caae7349f178b15ae",
+          "geographyEn": "7dc2a34709dccaf6cb9f69c54326fe96a993ebbd3cbedc0ff57b67c6481c39e9",
+          "date.displayEn": "b0450f304945e45399b08750127f395de1fe94900fa7173cb47887bf50f58d6e",
+          "date.noteEn": "a6785201924afcb391e4a0f0e116b3029b97435802901578153e2c83a21335d6"
+        }
+      }
+    },
+    "ev-ad1281-quanzhou-shiva-installation": {
+      "titleSv": "Sambandapperumal installerar Shiva i ett tempel i Quanzhou",
+      "summarySv": "En tamilsk inskrift dokumenterar Sambandapperumals installation av Shiva med ett skriftligt tillstånd som tillskrivs mongolhärskaren Chekachai Khan. Den vittnar om shaivitisk dyrkan i den kinesiska hamnen och dess koppling till människor som använde tamil.",
+      "geographySv": "Quanzhou, en hamn i södra Kina",
+      "date": {
+        "displaySv": "cirka 1281 e.Kr.",
+        "noteSv": "Utgivarna anger ungefär 1281 e.Kr. för inskriftens datum Saka 1203. Händelsen gäller den dokumenterade installationen, inte början på tempelbygget. Identifieringen av Chekachai Khan med Kublai är fortfarande preliminär och behövs inte för denna framställning."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1200-supplement.json",
+        "textSha256": {
+          "titleEn": "02421addefe1f2623ffe2028bd9c6a21ca7fedf3268db8cab230e2a8a557d806",
+          "summaryEn": "e58be2d48940d6f65a7a8ccdfcf58369b49ec2a6bf3a8b1efebcec78c04bc865",
+          "geographyEn": "28910b968452a8239b17b28cc5415265e99060d4d239e87e337465f22197a3cf",
+          "date.displayEn": "3612e63064d635d238ff3a1494126f4909fdc8d51b28bad131e35f221b681860",
+          "date.noteEn": "9173a0608d287edaf439317d4a5142c44a193c139559e1d10bf8a4341f610ffd"
+        }
+      }
+    },
+    "ev-1303-terengganu-legal-inscription": {
+      "titleSv": "Terengganuinskriften kungör islamiska rättsregler",
+      "summarySv": "En inskrift på malajiska, skriven med jawiskrift, lägger fram islamiska rättsregler i Terengganu. Dess bestämmelser gäller skulder, religiösa avgifter och sexuellt beteende, medan dess exakta datum är omtvistat.",
+      "geographySv": "Terengganu, östra Malackahalvön, nuvarande Malaysia",
+      "date": {
+        "displaySv": "Omtvistat: 1303 eller 1308; äldre föreslaget spann 1303–1387",
+        "noteSv": "Kulturarvsnomineringen använder 1303. Buangs översikt redovisar al-Attas datering 22 februari 1303 och Adams datering 20 december 1308, liksom Blagdens äldre spann 1303–1387. Detta är konkurrerande läsningar av inskriftens datum, inte en episod på åttiofyra år. Stenen daterar inte islams första ankomst och visar inte hur fullt ut dess regler tillämpades."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1300-supplement.json",
+        "textSha256": {
+          "titleEn": "d1803cd3821b520e96f3e4fd0970ff24e7d058737238e0e72ecc3c594f9fe4ff",
+          "summaryEn": "7806b4e52b8b3450de5cbc8302ae3da1d7021cd8f485e4c547e8164d2a45c707",
+          "geographyEn": "5f70381f72884a522a40df2487837c4aeb17c5ab9aa6d9ea3d2d4d9655b58de4",
+          "date.displayEn": "d68000540aa9c7f68f2bf2771e74b076d63fe880a281e7a49fb218c73d54c380",
+          "date.noteEn": "f6b155d1bb2aef35850e5bec90eaa5cf18e01edbc276d9e1aa6bd545202e47a7"
+        }
+      }
+    },
+    "ev-1358-canggu-ferry-charter": {
+      "titleSv": "Hayam Wuruk bekräftar bestämmelser för Javas färjkarlar",
+      "summarySv": "Hayam Wuruks privilegiebrev bekräftar privilegier och skyldigheter för färjkarlar, bland dem de vid Canggu och Terung. Det begränsar uppbördsmännens anspråk, fastställer en festavgift och anger skydd för färjkarlar som för över människor och varor.",
+      "geographySv": "Java, däribland Canggu och Terung, nuvarande Indonesien",
+      "date": {
+        "displaySv": "juli–augusti 1358",
+        "noteSv": "Universitetsutgåvan anger detta månadsspann för ett ofullständigt privilegiebrev daterat Shaka 1280, Shrawana. Året är uttryckligt, men ingen exakt modern dag anges. Brevet dokumenterar bestämmelser och privilegier, inte bevis för att varje bestämmelse tillämpades enhetligt."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1300-supplement.json",
+        "textSha256": {
+          "titleEn": "30851ffe0a0d2586718fa5341201b0da41e9a8123878c4bf88d7add176573341",
+          "summaryEn": "27b2d32de27402ee51bef5a6ec77438c97ebcce6d401268052cc6d0a53865404",
+          "geographyEn": "03e21780b345e37ca007f07794a3d2a7810387189cb23b867e6ea61c7e33d44b",
+          "date.displayEn": "08065542b74f148a5c6153e1ce8794f32cb41493913ec732c45ace7e8e97f8b5",
+          "date.noteEn": "76e862a1b6334368b2938d558b555a0b6ca1d49e15a5cef8e22ee1904867347e"
+        }
+      }
+    },
+    "ev-ad1450-dabra-metmaq-sabbath-council": {
+      "titleSv": "Konciliet i Dabra Metmaq godkänner sabbatsfirande",
+      "summarySv": "Under Zara Yaqob beslutar ett koncilium i Dabra Metmaq till förmån för den hållning som förknippas med Ewostatewos: att hålla sabbaten jämte söndagen. Beslutet gäller en stor tvist inom den etiopiska kyrkan.",
+      "geographySv": "Dabra Metmaq, Etiopien",
+      "date": {
+        "displaySv": "1450 e.Kr.",
+        "noteSv": "Pinggera daterar konciliet till 1450. Detta daterar dess beslut om sabbatsfirande, inte brukets ursprung eller bevis för att varje församling genast godtog det. Ingen månad eller dag anges."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1400-supplement.json",
+        "textSha256": {
+          "titleEn": "87c8d08f6943d9ec17274c257404a9c6bec2059f342c92dbdfccfa336cf3e708",
+          "summaryEn": "51996e27788ab1655a7d5030fe6a911e1517108772ff8c0b96efd49dddcc8e90",
+          "geographyEn": "ad109ad8d7a33eb53c3dc6a02643d88eeb1b59324f09148fb6180ef1832905e4",
+          "date.displayEn": "1d0723632844df248abb782f610a485e332da6d0f4c8423ef93ec9b1dfbba176",
+          "date.noteEn": "e61bff045bcfbde9183f80baefc97305f73ac676756b56c33cb5d5cfc5beb271"
+        }
+      }
+    },
+    "ev-ad1475-pegu-ordination-reform": {
+      "titleSv": "Pegu antar en lankesisk ordinationstradition",
+      "summarySv": "Dhammazedi sänder en beskickning till Sri Lanka, vilket leder till att munkgemenskapen i Pegu antar ordination på singalesiskt vis. En ny ordinationsplats vid namn Kalyani inrättas i Pegu året därpå.",
+      "geographySv": "Pegu i Nedre Burma och Sri Lanka",
+      "date": {
+        "displaySv": "1475–1476 e.Kr.",
+        "noteSv": "Leider daterar Dhammazedis beskickning till Sri Lanka till 1475 och inrättandet av ordinationsplatsen Kalyani i Pegu till 1476. Spannet förenar dessa sammanlänkade milstolpar; det innebär inte en oavbruten tvåårig resa och daterar varken varje omordination eller tillkomsten av alla Kalyaniinskrifter."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1400-supplement.json",
+        "textSha256": {
+          "titleEn": "3c4c7d8157dddebcc4cb7e368cd8d710c9519a60f54dc2c4c1321d03beafdad0",
+          "summaryEn": "3f71edbef766dbd5cac9ff87c95d0b48604a84c52ad30fe4dfe391ce7f278027",
+          "geographyEn": "7d49a47bbcf4f660e66025f8a8ee7067275bf56e65a1a075b1dcbc3ecf63eba1",
+          "date.displayEn": "9e10a556b553f9d1a874e44b0fc1dae0ea47e006512c462567cc399491a39103",
+          "date.noteEn": "ac767a49ff1c0c3be405da87ec662320f7b5a738e48289856f331be23a529bde"
+        }
+      }
+    },
+    "ev-1518-henrique-kongo-bishop": {
+      "titleSv": "Henrique av Kongo blir biskop",
+      "summarySv": "Henrique, son till kung Afonso I av Kongo, blir biskop. Hans utnämning ingår i Afonsos strävan att göra rikets kyrka mer oberoende och självförsörjande.",
+      "geographySv": "Kungariket Kongo, med påvliga förbindelser till Vatikanen",
+      "date": {
+        "displaySv": "1518",
+        "noteSv": "Museet daterar Henriques utnämning till biskop till 1518. Det citerade stycket anger ingen dag eller år för hans återkomst till Kongo. Detta daterar hans utnämning, inte grundandet av Kongos kyrka eller dess fulla självständighet."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1500-supplement.json",
+        "textSha256": {
+          "titleEn": "4de7881bdf14c92e0cc43938f9db6d08b8f2f7f141ad63aa42e02c79f78d2ed0",
+          "summaryEn": "8c02536f3514581665d673999f2cc8e9f06a51217f77bd440ff0cf3e71cac445",
+          "geographyEn": "1be673eca8cd38f74755294d2db5c7374968c212c7659f0b9fc129f5333caf11",
+          "date.displayEn": "1eb3da012cf952c58269bd949984611b7884583f20bac1322719580757161e98",
+          "date.noteEn": "e5fb2d3a5a92e1ed27e5b66a2a489c516fcb591b1f4b471b1f4e9ef0af24a8ed"
+        }
+      }
+    },
+    "ev-1518-sundanese-guide-copied": {
+      "titleSv": "En fornsundanesisk vägledning skrivs av på Västjava",
+      "summarySv": "En avskrift av Sang Hyang Siksa Kandang Karesian görs på gebangpalmblad på Västjava. Dess fornsundanesiska text bevarar sociala och moraliska råd jämte kunskap om vardagslivet och religiösa idéer.",
+      "geographySv": "Västjava, nuvarande Indonesien; exakt proveniens osäker",
+      "date": {
+        "displaySv": "1518; tredje månaden av Śaka 1440",
+        "noteSv": "Manuskriptstudien daterar denna avskrift genom en nu förlorad kolofon som Holle återgav 1867. Den anger tredje månaden av Śaka 1440 och motsvarande år 1518; ingen modern månad eller dag räknas fram oberoende. Avskriftens datum fastställer inte när lärorna först författades, och den exakta proveniensen är osäker."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/ad1500-supplement.json",
+        "textSha256": {
+          "titleEn": "9f27ffa16a13a5d1ef8fdcadb845679a975ebee89b7961e0ebc3ec6540b0f2d5",
+          "summaryEn": "d50076ea3e8c729c4907b684d38e5616a377b83b76071791fa8327ea14506c8d",
+          "geographyEn": "e990174b51b05b6c6fe204ddfcac0b50bbf93d10012093d390602188f79d3445",
+          "date.displayEn": "bfdd1c692ce9481160d9b99ef12cbb8fba5a7d60a9343e1b33ef805ae5cb5805",
+          "date.noteEn": "dae3d7718979c4eb18e8a31a9d2476386be678d8ba7266598b114e04415aff35"
+        }
+      }
+    },
+    "ev-bc0100-glassblowing-development": {
+      "titleSv": "Glasarbetare utvecklar glasblåsning",
+      "summarySv": "Glasarbetare i östra Medelhavsområdet utvecklar uppblåsning av glas genom ett ihåligt rör. Tekniken gör produktionen snabbare och mer anpassningsbar och hjälper till att göra glaskärl tillgängliga för fler människor.",
+      "geographySv": "Syrisk-palestinska regionen; Corning anger trakten kring Jerusalem",
+      "date": {
+        "displaySv": "första århundradet f.Kr.; uppskattningar till början och mitten av århundradet",
+        "noteSv": "Met placerar innovationen tidigt i århundradet; Corning placerar den nära mitten. De numeriska gränserna täcker deras gemensamma århundrade, inte en hundraårig uppfinningsprocess eller belägg för slutårtalen."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0100-supplement.json",
+        "textSha256": {
+          "titleEn": "576b749da9813ed3c5cbcded1603eb75474fd41cb6f85517ec7dbac1fb554971",
+          "summaryEn": "25809f90562bc0c5f0f5b71596f604a81937f6c71454f9161a20878fb00bce1d",
+          "geographyEn": "d47445920f0351790b2d4e48de71668b60d89981e224eea7434739bbe3bb5fb9",
+          "date.displayEn": "32f0e7f3c2f424d7361e27f0e1b1a20080596f3492fa221dc0574ba2b26881c1",
+          "date.noteEn": "be5d69bd91b657e8fffe3744e1a5cf1abcceec9940ce6fe06cc2d4184d48dc65"
+        }
+      }
+    },
+    "ev-bc0100-antikythera-shipwreck": {
+      "titleSv": "Ett handelsfartyg sjunker utanför Antikythera",
+      "summarySv": "Ett fartyg lastat med konstverk, lyxvaror och Antikytheramekanismen sjunker utanför ön. Dess blandade last vittnar om handeln i Medelhavet.",
+      "geographySv": "Utanför Antikythera, Grekland",
+      "date": {
+        "displaySv": "ungefär 85–50 f.Kr.; uppskattningarna skiljer sig",
+        "noteSv": "Museet anger omkring 60–50 f.Kr. och WHOI 70–60 f.Kr. Forskningsprojektets FAQ anger både 80–50 och 85–60 f.Kr. Det yttre spannet rymmer dessa alternativ; fartyget sjönk inte under hela spannet. Dateringarna av last och virke är separata."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0100-supplement.json",
+        "textSha256": {
+          "titleEn": "8c40e95af33ecf6588ff7d6c3abaa08be1069547448fb5e38664b036cfa806f1",
+          "summaryEn": "7992381d1931331600b5c7c5001ea25b439c64fb57bcb63f4735851e878e3627",
+          "geographyEn": "719335d337995b37eecb9a4fc6921ea971730f00044d9f9d96e669128bb8b4df",
+          "date.displayEn": "8fc775bde68812bc279f8119e5a70b4fab86453103dc676aaa3195855c255525",
+          "date.noteEn": "2080c8d803ded63f2f97fde106a938bb7533d11a5fda4c872721a5c369b732bb"
+        }
+      }
+    },
+    "ev-bc0025-juba-mauretania": {
+      "titleSv": "Juba II blir kung av Mauretanien",
+      "summarySv": "Med Augustus stöd tar Juba II över styret av det mauretanska kungarike som Bocchus tidigare innehade.",
+      "geographySv": "Mauretanien, Nordafrika",
+      "date": {
+        "displaySv": "25 f.Kr.",
+        "noteSv": "Desanges daterar uttryckligen tronbestigningen till detta år utifrån numismatiska och litterära belägg. Ingen månad, dag eller exakt territoriell gräns anges."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0100-supplement.json",
+        "textSha256": {
+          "titleEn": "9cc13288d113de09d66a9a95c05d8400b8e605cf24acb40f48aed06c6f6432a7",
+          "summaryEn": "0c3dc1cd55f13511aeea7b714103ff9bcc2794077ed4ca454415eb6f057bc183",
+          "geographyEn": "d0fe3a45cba962ada47d7b488925c1318cd8ea21695b6ceaa6200efc8888c07c",
+          "date.displayEn": "d8ebb30042fc1ebb7a3b47792e5e7351bf6d3f95e04b182debe3085840acd93c",
+          "date.noteEn": "209576e8f6d07f445eb9e872fade9855c906c81a6d4455969ce895807466a969"
+        }
+      }
+    },
+    "ev-bc0168-mawangdui-manuscripts-buried": {
+      "titleSv": "Silkesmanuskript begravs i Mawangdui",
+      "summarySv": "Grav 3 i Mawangdui försluts med en samling skrifter, bland dem två versioner av Laozi på siden och texter om filosofi, astronomi, krigföring och medicin. Manuskripten bevarar belägg för tidiga kinesiska texttraditioner och deras plats i gravskicket.",
+      "geographySv": "Mawangdui nära Changsha, Hunan, Kina",
+      "date": {
+        "displaySv": "168 f.Kr.",
+        "noteSv": "Puglia daterar förslutningen av grav 3 till detta år utifrån en inventarielapp. Datumet gäller gravsammanhanget, inte manuskriptens tillkomst eller avskrivning. De två Laozikopiorna har tilldelats tidigare avskriftsdatum, och den gravlagdes personliga identitet fastställs inte här."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0200-supplement.json",
+        "textSha256": {
+          "titleEn": "5ef39b17be40cfef94cad8622c04a943afd324b3c3b5c4f06786c20f1b9986cd",
+          "summaryEn": "da33caf3873080e0e01c15065af4bf7e362490e38b64416a2f19b88a44fa708b",
+          "geographyEn": "25c2fa854038637fb96cffec9cbe03d604a04c0d8cef49785cff82d7720b1d98",
+          "date.displayEn": "4c8fe500d67ea64c78be9120304390b0727dc3e9ed79b18184362370fc99aba8",
+          "date.noteEn": "a578f81f5ddd9e7738292946f19eea7a02fa2145a594796da20597e33c4b80a1"
+        }
+      }
+    },
+    "ev-bc0250-sopara-edict-ethical-conduct": {
+      "titleSv": "Ashokas edikt i Sopara uppmanar till etiskt uppförande",
+      "summarySv": "Ett kungligt edikt belagt i Sopara betonar moraliska plikter. I museets översättning ingår hänsynsfull behandling av slavar och tjänare, respekt för äldre, mildhet mot djur och generositet mot brahmaner och shramaner.",
+      "geographySv": "Sopara, nuvarande Nalasopara nära Mumbai, västra Indien",
+      "date": {
+        "displaySv": "omkring 250 f.Kr.",
+        "noteSv": "Detta följer museets ungefärliga datering av Soparafragmentet av edikt IX. Det daterar inte alla Ashokas inskrifter, en missionärs ankomst eller en omvändelse. Den bevarade texten dokumenterar föreskrivet uppförande, inte hur allmänt anvisningarna följdes."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0300-supplement.json",
+        "textSha256": {
+          "titleEn": "d683c03c4a955aa9b3eb6260961ff6402f20c264e91965ac4dbefaf53083d05b",
+          "summaryEn": "4168db86aa51a5f29f92997dd70ea24f233db04903f9488f5bd08faa00565989",
+          "geographyEn": "1f3e327b1406876cab29de583d32762af4c664fc2f3a8c46be81814e055f25fa",
+          "date.displayEn": "47d41396026a54f9b2598223535e9e2befca60c2ff69106280843a553910824b",
+          "date.noteEn": "aefe3e5af9a1187909de9eec367751c22249304e6d570c327ac05ff2f911aa74"
+        }
+      }
+    },
+    "ev-bc0238-canopus-calendar-provision": {
+      "titleSv": "Präster i Kanopos förordnar om en extra festdag",
+      "summarySv": "Ett prästerligt dekret föreskriver att en festdag för Ptolemaios och Berenike ska läggas till vart fjärde år utöver det egyptiska årets fem extra dagar. Bestämmelsen syftar till att hålla högtiderna i takt med årstiderna.",
+      "geographySv": "Kanopos i Nildeltat, Egypten",
+      "date": {
+        "displaySv": "238 f.Kr.",
+        "noteSv": "Universitetets post och rubriken i det översatta dekretet anger året. Den ursprungliga formeln använder kungens nionde år, Apellaios dag sju och dag sjutton i Perets första månad. Universitetets omräkning till 7 mars behålls som källmetadata; händelsen gör inget anspråk på en exakt modern dag. Detta daterar beslutet, inte bevis för att kalendern användes varaktigt."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0300-supplement.json",
+        "textSha256": {
+          "titleEn": "9371664f6c23155aec03477389661d4c3c03c6c2435bd3711edbfd6586f41b5a",
+          "summaryEn": "b3ff94d9995e1b4bb2aa9982e119aa21cb05dfd74c3a0d2b7e19e2d7d5249fe7",
+          "geographyEn": "a6e245820842e884b47ecb612bf5b8f3df3a4c817beb18de67e9ead5c45f96de",
+          "date.displayEn": "2f4629542d03f9ec48307dc9b46f7dce4b9af405d4125d3f7dfa2ba75c869385",
+          "date.noteEn": "d3171b04139f367797d606b8fb18a44ccfc8f3876b7024a5c92f44c5e046ff8d"
+        }
+      }
+    },
+    "ev-bc0367-mausoleum-halicarnassus-construction": {
+      "titleSv": "Mausoleet reser sig i Halikarnassos",
+      "summarySv": "Byggare uppför en monumental grav för Maussollos mitt i hans huvudstad. Dess kolonnad, trappstegsformade tak och skulpturala utsmyckning ger härskarens minne en framträdande plats i staden.",
+      "geographySv": "Halikarnassos, Karien; nuvarande Bodrum, Turkiet",
+      "date": {
+        "displaySv": "ungefär 367–350 f.Kr.",
+        "noteSv": "Getty anger det ungefärliga byggintervallet. Pedersen hävdar att graven redan var nästan färdig under Maussollos livstid, i motsats till senare romerska framställningar som tillskrev Artemisia verket efter hans död 353 f.Kr. Gränserna fastställer varken exakta arbetsår eller oavbruten verksamhet."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0400-supplement.json",
+        "textSha256": {
+          "titleEn": "a0e982637ac0d2592b58e0f360717a6d995e1bbb044fbe4d8753521d883a2f1f",
+          "summaryEn": "d25e3a988a63dd6438d16704aa4498751d123b66d427b7ced0625fcd96897f60",
+          "geographyEn": "dc7329e0c5441d61b69f37acf4410ce40af2fe8a11f90bbe6123a0060df09808",
+          "date.displayEn": "a2dee0ea88008408a2a77600c5771df808a982bcb26e935f7b869a56b8dc5442",
+          "date.noteEn": "e92e3c2ec5f971871a6d5c384a6f524847609110dc6bedea1f263fae760826f0"
+        }
+      }
+    },
+    "ev-bc0492-persepolis-silver-ration-payments": {
+      "titleSv": "Persepolis dokumenterar silverbetalningar i stället för ransoner",
+      "summarySv": "Skattkammarens räkenskaper dokumenterar utbetalningar i silver i stället för en del av ransonbetalningarna, och ibland för hela. De ger belägg för den kungliga betalningsförvaltningen i Persepolis.",
+      "geographySv": "Persepolis, nuvarande Iran",
+      "date": {
+        "displaySv": "492–458 eller 492–457 f.Kr.",
+        "noteSv": "Detta är de publicerade spannen för skattkammarens räkenskaper, inte början och slutet på en reform. Hallock anger Dareios I:s år 30 till Artaxerxes I:s år 7 som 492–458 f.Kr.; Garrisons förlag anger 492–457. Det yttre spannet behåller båda slutpunkterna utan att anta oavbrutna betalningar."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0500-bc0300-second-pass-supplement.json",
+        "textSha256": {
+          "titleEn": "a6bb455341ebb679967fdee92c32c27883f67235ac29cb7eec106c5f43c4f940",
+          "summaryEn": "4ba513d449c6952f8954dfea4cffaaaa8b0eb0d7136e32f74a4a25bd5a6c8175",
+          "geographyEn": "b45093af337aaa6401c86344ac9398715526ddd8b3f92478c12144b4fd3b9171",
+          "date.displayEn": "75ec355fff45ad580de4f220cd4c0958ec9470684cd5b3c6db68c31b1b009f97",
+          "date.noteEn": "885131d1ce4fb13b5ef91bf0102e2c5574b7ab40cde23cd89eedfee749d4c530"
+        }
+      }
+    },
+    "ev-bc0433-marquis-yi-musical-burial": {
+      "titleSv": "Markis Yi begravs med en stor samling musikinstrument",
+      "summarySv": "En grav med fyra kammare i Zeng tar emot markis Yis begravning, bronsklockor, klingstenar och andra instrument. Den centrala kammarens instrument och rituella kärl tolkas som att de återskapar en del av hovets ceremoniella miljö.",
+      "geographySv": "Leigudun nära nuvarande Suizhou, Hubei, Kina",
+      "date": {
+        "displaySv": "omkring 433 f.Kr.; alternativt omkring 430 f.Kr.",
+        "noteSv": "Hubei Provincial Museum placerar begravningen ungefär vid tiden för en klockgåva daterad till 433 f.Kr. University of Washington daterar graven till omkring 430 f.Kr. men behåller 433 för den klockan. Gränserna behåller dessa ungefärliga dateringar av begravningen, inte en treårig begravning eller tillverkningsåren för alla instrument."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0500-supplement.json",
+        "textSha256": {
+          "titleEn": "1986334a2f999f82b2b5f076364cd51e37a95c7b530560a166cd344f6c01271c",
+          "summaryEn": "1109122aa5f5a1b73fef8d0801aa33015bb78d8c3e2f7016c8ccba768c0f5a15",
+          "geographyEn": "6984c2ff3ca92523550618962fcd1286202c0d41e32d60b888cf107071a6cf16",
+          "date.displayEn": "16d5865d25b4181066d9060d86ff59778eaa6c9ce2d64dce2eca16ed8f1fe5f5",
+          "date.noteEn": "69fe15f8aabb91ccfc36f01824d60ef72aac22dedbc98d42b15d66f42fb1bd96"
+        }
+      }
+    },
+    "ev-bc0407-elephantine-temple-petition": {
+      "titleSv": "Prästerna på Elefantine söker stöd för att återuppbygga sitt tempel",
+      "summarySv": "En arameisk petition från Yedaniah och hans medpräster ber Bagohi, ståthållare i Juda, att stödja återuppbyggnaden av Yahus tempel på Elefantine. De begär att offren återupptas och beskriver det tidigare angreppet på deras helgedom.",
+      "geographySv": "Elefantine, Egypten; petitionen ställd till ståthållaren i Juda",
+      "date": {
+        "displaySv": "25 november 407 f.Kr., enligt utgåvornas omräkning",
+        "noteSv": "Hanson och Posen anger detta datum för petitionen. Dess ursprungliga slutformel anger Marcheshwan dag 20 i Dareios sjuttonde år; ingen ny kalenderomräkning görs. Datumet gäller begäran, inte den tidigare förstörelsen eller en fullbordad återuppbyggnad. Om templet återuppbyggdes förblir osäkert i Posens framställning."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0500-supplement.json",
+        "textSha256": {
+          "titleEn": "88861a011c63db43eca6e4c071f130643366a8e0e5780422cd6557ebe5e09489",
+          "summaryEn": "b6145da3b63610fd201ff29ceb99baf285962338db1fb6a3f72589b29bab9e57",
+          "geographyEn": "27ec6e01130837fc5f0940c29474ceab128c9a65d3de3412f2b443830f225f15",
+          "date.displayEn": "3e9395eeb33247923f1e58b65978466aab1f1298e7b45cc09211d6f4869914a7",
+          "date.noteEn": "136e6c485647bcfa9d5c96f6615659337b6f70c6fea7692ad69c703963f011f0"
+        }
+      }
+    },
+    "ev-bc0600-chiripa-ceremonial-complex": {
+      "titleSv": "Bygget av ceremonikomplexet i Chiripá påbörjas",
+      "summarySv": "På den bolivianska sidan av Titicacasjön börjar byggare uppföra ceremonikomplexet i Chiripá. Rektangulära enrumsbyggnader, några med målade väggar och nischer i väggarna inomhus, omger en central patio med en nedsänkt gård.",
+      "geographySv": "Chiripá, Titicacasjön, Bolivia",
+      "date": {
+        "displaySv": "cirka 600 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0600-supplement.json",
+        "textSha256": {
+          "titleEn": "c316567a30edeaaa9dc49e28a654e88cc8263bac5123f16e2fc9648eb44a0afa",
+          "summaryEn": "3cb9faf70c3b48537c2ba4168a8a976cdee9d38c3f9a6019b6cc59e7768c3d61",
+          "geographyEn": "84a3dd1041553e8aa4c7a40cfeb8bf2e3f1ba21b47c36ce89960c950755f4722",
+          "date.displayEn": "e3b66e150fcbbd16d7a522ecb4437c1ba60db79cc27dd702875bde88340ba7a1"
+        }
+      }
+    },
+    "ev-bc0600-kuntur-wasi-gold-crown-burial": {
+      "titleSv": "En betydande person begravs med en guldkrona i Kuntur Wasi",
+      "summarySv": "En betydande person begravs i Kuntur Wasi i en schaktgrav med en krona av hamrat guldbleck, omkring sju tum hög och behängd med fjorton hängen i form av människohuvuden. Keramik från platsen liknar samtida Cupisniquegods från nordkusten.",
+      "geographySv": "Kuntur Wasi, Peru",
+      "date": {
+        "displaySv": "cirka 600 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0600-supplement.json",
+        "textSha256": {
+          "titleEn": "41ddd67e1018a60be0f52777418341badeddf8460da5a971bb2d9e1c25f04023",
+          "summaryEn": "b57f2f9e9ae9e4db396cd22d197edd9a31d7da5870b8b33ce13b62ef171a1ad8",
+          "geographyEn": "748e30d0860576174a61fe381251b4f78080d193eca78d0cf156a3666e00c765",
+          "date.displayEn": "e3b66e150fcbbd16d7a522ecb4437c1ba60db79cc27dd702875bde88340ba7a1"
+        }
+      }
+    },
+    "ev-bc0600-milesian-colonies-on-the-black-sea": {
+      "titleSv": "Greker från Miletos koloniserar Svarta havets norra kust",
+      "summarySv": "Greker från Miletos på den joniska kusten koloniserar Svarta havets norra kust. De grundar långlivade, kosmopolitiska städer som Panticapaeum, Olbia och pontiska Chersonesos.",
+      "geographySv": "Svarta havets norra kust",
+      "date": {
+        "displaySv": "cirka 600 f.Kr.",
+        "noteSv": "Met daterar koloniseringen till omkring 600 f.Kr. och anger inget grundläggningsår för någon enskild stad."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0600-supplement.json",
+        "textSha256": {
+          "titleEn": "cd8285b0e3b247f8509c5d0620531562971aaa685826cc865dce1566ae0fec20",
+          "summaryEn": "50b61b567c6b34a0b86f0ffc1531f6e42f243c99abc77e1da26fe6c6cafd8cd7",
+          "geographyEn": "6c1426d06571373207d1caf3640a2c623fccc7ed58d8ced4774ba594f14f3029",
+          "date.displayEn": "e3b66e150fcbbd16d7a522ecb4437c1ba60db79cc27dd702875bde88340ba7a1",
+          "date.noteEn": "67a4d69a98bf8ecaaf578d7bd6863f8d89db2b257e99b2362240c4cbe31dbe28"
+        }
+      }
+    },
+    "ev-bc0600-scythian-animal-style": {
+      "titleSv": "Skytiska konstnärer utvecklar djurstilen",
+      "summarySv": "Djurstilen utvecklas i den skytiska konsten. Skyterna, som vandrar från Altajbergen till Svartahavsområdet, avbildar hemlandets leoparder, hjortar och örnar som djur som hoppar, springer och flyter samman med varandra; några av de mest kända verken är guld som hamrats över en snidad matris.",
+      "geographySv": "Svartahavsområdet",
+      "date": {
+        "displaySv": "cirka 600 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0600-supplement.json",
+        "textSha256": {
+          "titleEn": "fb2f98b7eb8f699a7b7c5a2d995a23ca9acb585e6c14dc4c6d803d8a8b5b5474",
+          "summaryEn": "61b11b4761983bfd1549faccf13464cb8cecba50adf6c2092cf17386bce93b5a",
+          "geographyEn": "50ea28ef5a6af98e61f93ee624003ff72e530b7c1442c93f0ef7ceb8311db767",
+          "date.displayEn": "e3b66e150fcbbd16d7a522ecb4437c1ba60db79cc27dd702875bde88340ba7a1"
+        }
+      }
+    },
+    "ev-bc0600-zapotec-earliest-recorded-date": {
+      "titleSv": "I San José Mogote ristas det tidigaste belagda zapotekiska datumet",
+      "summarySv": "De större byggnaderna i San José Mogote uppförs nu i murverk. En huggen relief, insatt i golvet i en korridor, visar en dödad gestalt med hieroglyfen för ”1 Jordbävning” mellan fötterna, det tidigaste belagda datumet i zapotekisk skrift.",
+      "geographySv": "San José Mogote, Oaxacadalen, Mexiko",
+      "date": {
+        "displaySv": "cirka 600 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0600-supplement.json",
+        "textSha256": {
+          "titleEn": "527aa8d257405936668931a8e9c293c6dfd8260bf697b448fdd7ebecc48a4f01",
+          "summaryEn": "2ab894e97af68d8b57c30d980556a1f4c76a1ac8aaa3c1acdda5b19e282ab9e1",
+          "geographyEn": "c2782d07e46c5109026aa5320b50fafe351e00ed4450d28f26add1f0d9ffafaa",
+          "date.displayEn": "e3b66e150fcbbd16d7a522ecb4437c1ba60db79cc27dd702875bde88340ba7a1"
+        }
+      }
+    },
+    "ev-bc0559-cyrus-founds-achaemenid-empire": {
+      "titleSv": "Kyros den store grundar akemenidernas rike",
+      "summarySv": "Den persiske kungen Kyros II, den store, lägger grunden till akemenidernas rike genom att i tur och ordning störta Medien, Lydien och det babyloniska riket.",
+      "geographySv": "Iran, Anatolien och Mesopotamien",
+      "date": {
+        "displaySv": "cirka 559–530 f.Kr.",
+        "noteSv": "Met anger Kyros regeringstid till omkring 559–530 f.Kr. och daterar inte varje erövring; spannet omfattar regeringstiden."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0600-supplement.json",
+        "textSha256": {
+          "titleEn": "7cf129d5af0a15dc55dcfc14f0f21fd4427a36f3c8b6862a6ef60a2b707bfb55",
+          "summaryEn": "350242c8f481f5d2befe59620747f2e3989e61e92d66dbb5243d24dcb661c0a9",
+          "geographyEn": "99649836724000ad113526a97eece8c16e7c018a9fbac333eb81568d7535df1a",
+          "date.displayEn": "b64140d4cbbbaecd05ad19cd094acafa12f64e717fb1a5d80aa08e1fcf4bdd52",
+          "date.noteEn": "45973cf093fcb8b0712fbe3e5d47538eda88258695d8dc3ec8148e37a302d36a"
+        }
+      }
+    },
+    "ev-bc0540-battle-of-aleria": {
+      "titleSv": "Karthago och etruskerna utkämpar slaget vid Aleria",
+      "summarySv": "Karthagiska och etruskiska styrkor förenas i slaget vid Aleria på Korsika för att vinna kontroll över Medelhavet. Strax därefter faller kungariket Tartessos samman.",
+      "geographySv": "Aleria, Korsika",
+      "date": {
+        "displaySv": "cirka 540 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0600-supplement.json",
+        "textSha256": {
+          "titleEn": "cec2a7496c7ccf0e62616b3d11a5a0134d622c4af3fbcd9df3752c37c0dd460e",
+          "summaryEn": "3ce7140f931260141f074b43e51cf9d41398df7725e3b6268c9b3e22abb95905",
+          "geographyEn": "c16ca38758cd1d09e2459f40d7584b602764cd526fc58782e5b2c62d29b25b1d",
+          "date.displayEn": "3d6dca3a0f5c1596b4be99c27779ba94b0fa1e728587422c3b846502bfcb4914"
+        }
+      }
+    },
+    "ev-bc0672-esarhaddon-succession-oaths": {
+      "titleSv": "Asarhaddon binder edsavläggare vid sin utvalde efterträdare",
+      "summarySv": "Asarhaddon organiserar trohetseder till stöd för Assurbanipal som hans efterträdare. Arrangemangen omfattar assyriska deltagare och östliga stadsfurstar; en bevarad provinsversion nämner en ståthållare samt administrativa och militära grupper.",
+      "geographySv": "Assyrien och dess provinsiella sfär, däribland Kalḫu och Kullania",
+      "date": {
+        "displaySv": "672 f.Kr.",
+        "noteSv": "Detta daterar trohetsederna om tronföljden, inte Assurbanipals tronbestigning. Barcina skiljer de edsavläggare som nämns i tavlorna från de medborgare som nämns i korrespondensen. Artikelns tolkning av kungens dolda motiv behandlas inte som fastställt faktum."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0700-second-pass-supplement.json",
+        "textSha256": {
+          "titleEn": "7a82c5cdeed0a69f4c3890473609a0dc43d28b3df883594edd431f7c19867cc3",
+          "summaryEn": "0f80bb78c720a3cdc9a2e97e431ed430ea7ef65693a7454bf6b8385557de6a4a",
+          "geographyEn": "70919ae6139bd8f7e5c226fb31b05235a1c118dce9fc79df808beb393342ad62",
+          "date.displayEn": "dd4ca1fef428b0b8a5bb19093ed9c8a77d4ae17d0476aaaf8793df9055b7c1f9",
+          "date.noteEn": "92034bb7a989c8cbeb2c232a44daf1ca9defb0eb984894bf433e8b928b3d3823"
+        }
+      }
+    },
+    "ev-bc0690-jerwan-stone-aqueduct": {
+      "titleSv": "Sanherib bygger en akvedukt av sten vid Jerwan",
+      "summarySv": "Byggare leder en vattenkanal över en ravin vid Jerwan som en del av Sanheribs vattenförsörjning för Nineve. Akvedukten är en större anläggning på Khiniskanalen, som hämtar vatten från floden Gomel.",
+      "geographySv": "Jerwan, norr om Nineve, norra Mesopotamien",
+      "date": {
+        "displaySv": "omkring 690 f.Kr.",
+        "noteSv": "Columbias monumentprofil anger 690 f.Kr. Stampoultzidis med kolleger placerar Jerwan i den fjärde fasen av det större kanalprogrammet, daterad 703–688 f.Kr.; 688 daterar Bavianinskriften i deras framställning. Varken hela programmets spann eller inskriftens år fastställer Jerwans exakta byggår."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0700-supplement.json",
+        "textSha256": {
+          "titleEn": "d6eb7513f1ae9761e963d589642638ea798525c996e66737824c2322933679ee",
+          "summaryEn": "830c2a63083a96a33ac8b40a900bf95c6b118f9a537d085d3eafbf5959b01383",
+          "geographyEn": "4d3587edfcebb7f504f30d343bab10dca5440f615a87454984dfd02c4d53070b",
+          "date.displayEn": "4bf08c9861470f5726016ec9a7d3eb528aa05c0ed7a907cc004eab3b13417bb5",
+          "date.noteEn": "d4219889ce7e6c98b5aaaf7dc1d42516eab911217480c38b831895dabf36dcf1"
+        }
+      }
+    },
+    "ev-bc0900-chalcatzingo-terraces-and-reliefs": {
+      "titleSv": "Chalcatzingo anlägger terrasser och huggar klippreliefer",
+      "summarySv": "Folket i Chalcatzingo i centrala Mexikos högland formar om det naturliga landskapet till breda terrasser och hugger rituella scener i låg relief i den fasta klippan. Keramik i olmekisk stil dyker upp i andra höglandscentra som Tlatilco och Las Bocas.",
+      "geographySv": "Chalcatzingo, centrala Mexikos högland",
+      "date": {
+        "displaySv": "cirka 900 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0900-supplement.json",
+        "textSha256": {
+          "titleEn": "7d6378c844b92e7f0daa9ba51821d6d5122859a6c383dfaba96c14d2605f1885",
+          "summaryEn": "b610827b4f24294180f06bcc24b0d120776a29a2ecdf87d98f4894467bb68ac4",
+          "geographyEn": "331c380dd41db24ab8efc3c889298529c32d399ce07b51e3d846d46de202e270",
+          "date.displayEn": "ed718077c5ff1ee2d80d4bce1a56b746b3bbb49a248e9813cd6b83ee0dba84c8"
+        }
+      }
+    },
+    "ev-bc0900-korean-dolmen-burials": {
+      "titleSv": "Koreanska begravningar blir mer utarbetade, med dösar",
+      "summarySv": "Begravningsskicket i Korea blir mer utarbetat i takt med att samhället blir mer skiktat. Dösar, upprätta stenar under en vågrät häll, är fler i Korea än någon annanstans i Östasien, vid sidan av nya stenkistor och krukkistor av lergods.",
+      "geographySv": "Koreahalvön",
+      "date": {
+        "displaySv": "cirka 900 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0900-supplement.json",
+        "textSha256": {
+          "titleEn": "7a86599f5d293939c18b2b7050b389a33ca7c097215517c7cfa8f759dab8d3db",
+          "summaryEn": "13115585b8c1b9446c5e04b2d3d9ca07e000a3786e294105795f28d4d427a16e",
+          "geographyEn": "064ba25f977aefc70f7b40b99b4b7a3321245923d6fa8bd7272942aa6042ed1e",
+          "date.displayEn": "ed718077c5ff1ee2d80d4bce1a56b746b3bbb49a248e9813cd6b83ee0dba84c8"
+        }
+      }
+    },
+    "ev-bc0900-la-venta-ceremonial-layout": {
+      "titleSv": "La Ventas ceremoniella centrum får sin planerade utformning",
+      "summarySv": "La Ventas ceremoniella kärna anläggs som ett orienterat mönster av högar och öppna torg. Byggare av heliga mesoamerikanska centra återanvänder sådana planlösningar, med regionala och senare variationer, i mer än 2 000 år.",
+      "geographySv": "La Venta, Mexiko",
+      "date": {
+        "displaySv": "cirka 900 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0900-supplement.json",
+        "textSha256": {
+          "titleEn": "d1142aa674a7fa89f6c47220983428cc30ec0f8d4bd5ce4b8caa86892f4f2cfe",
+          "summaryEn": "ca9152b710aad696fa6aeeb2dd8bbb419970630fbfa586e0fd04af98fa5997fb",
+          "geographyEn": "18393f026ec4c804c991016538455a5de7c67a6bc281abeb7cfb7f7e476542ba",
+          "date.displayEn": "ed718077c5ff1ee2d80d4bce1a56b746b3bbb49a248e9813cd6b83ee0dba84c8"
+        }
+      }
+    },
+    "ev-bc0900-manchay-bajo-flood-wall": {
+      "titleSv": "Manchay Bajo skyddar sitt tempel mot översvämningar med en mur",
+      "summarySv": "I Manchay Bajo i Luríndalen i Peru uppför byggare en 820 yard (omkring 750 meter) lång mur för att skydda det U-formade tempelkomplexet mot centralkustens översvämningar och lerskred.",
+      "geographySv": "Manchay Bajo, Luríndalen, Peru",
+      "date": {
+        "displaySv": "cirka 900 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0900-supplement.json",
+        "textSha256": {
+          "titleEn": "022f5ceede337cbe33bd7fa4f1458f56b4b62de9e012dab9fa7f76e73114221e",
+          "summaryEn": "69efd4690a647dfe4f2771f1985b1226984e32917b8f62ef3a6648d6ba8c4c7b",
+          "geographyEn": "c069331aecbbb3b352df14806bed7e9830d83ceef4bbff0a5723a151589213f8",
+          "date.displayEn": "ed718077c5ff1ee2d80d4bce1a56b746b3bbb49a248e9813cd6b83ee0dba84c8"
+        }
+      }
+    },
+    "ev-bc0879-ashurnasirpal-moves-capital-to-nimrud": {
+      "titleSv": "Assurnasirpal II flyttar Assyriens huvudstad till Nimrud",
+      "summarySv": "Assurnasirpal II flyttar Assyriens huvudstad från Assur till Nimrud (forntida Kalhu). Kolossala lamassu vaktar ingångarna till hans palats, och huggna alabasterreliefer visar kungen när han jagar, förrättar ritualer och besegrar fiender. När palatset är färdigt håller han en veckolång fest för nästan 70 000 gäster.",
+      "geographySv": "Nimrud (Kalhu), norra Mesopotamien",
+      "date": {
+        "displaySv": "879 f.Kr.",
+        "noteSv": "Met daterar posten till 879 f.Kr. utan att säga om året avser flytten eller palatsets färdigställande."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0900-supplement.json",
+        "textSha256": {
+          "titleEn": "107e3b717411cbf105a8fbbeda9918ed39ff359a7d891802be1a21d0e7ad610a",
+          "summaryEn": "9730d07308fc73ad1c5be8caf54bf89487ad5dd3336145acb5fd63b260ca7fa9",
+          "geographyEn": "29f1cd2114411fcbf643b81f2fc53ee5b3e9e108897a8e7d8fd4d90e1b33731a",
+          "date.displayEn": "d6c4472194e22c14ceccf57ede9057b8b59ba15e2964c0f4f8a45e75497c58a2",
+          "date.noteEn": "d154271e8aafa1ddc40d5027a892eb32b8621d3762b935257b28c38d0f544db0"
+        }
+      }
+    },
+    "ev-bc0814-carthage-founded-by-tradition": {
+      "titleSv": "Feniciska kolonister grundar Karthago, enligt traditionen",
+      "summarySv": "Enligt traditionen grundar feniciska kolonister från Levanten Karthago 814 f.Kr., vid kusten i nuvarande Tunisien. De lokala folken är fientliga och kräver tribut av kolonisterna, däribland arrende för deras mark, fram till femte århundradet f.Kr.",
+      "geographySv": "Karthago, nuvarande Tunisien",
+      "date": {
+        "displaySv": "814 f.Kr. (traditionellt datum)",
+        "noteSv": "Met anger 814 f.Kr. som det år traditionen bevarar. Posten gör inget anspråk på ett arkeologiskt datum."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc0900-supplement.json",
+        "textSha256": {
+          "titleEn": "c8177d14d4651ecc9a0b4501ebb0de2a73107a89bf47dc26d6048c1a6a1ddac7",
+          "summaryEn": "0f4979d60ad98cac70bf9e566beefcefb8a9d835d1568c9357f352f9bc0ec2d2",
+          "geographyEn": "a5f1615c784de34a5cb3c286e6dfbcef5b8ed9ce82acbe823b719761f2b197a0",
+          "date.displayEn": "7d5c3e320e0875eeff979ec9e88fd55df04cd8693a75b5e11f528c5d5cfab707",
+          "date.noteEn": "5dd6778b391c3377a223cbf9d76afaba14be9f43f6f0dd546b01739598952ea4"
+        }
+      }
+    },
+    "ev-bc1000-timna-site34-production-peak": {
+      "titleSv": "Metallarbetare når en produktionstopp vid Timnas Site 34",
+      "summarySv": "Metallarbetare smälter koppar i ett stort läger i Timna. Ben-Yosef tolkar anläggningarna och försvarslämningarna som belägg för att ett organiserat samhälle styrde produktionen.",
+      "geographySv": "Site 34, Timnadalen, södra Araba",
+      "date": {
+        "displaySv": "första hälften av tionde århundradet f.Kr.",
+        "noteSv": "Ben-Yosef placerar produktionstoppen inom detta halvsekel. Heltalsgränserna motsvarar denna kalenderperiod, inte uppmätta start- och slutår eller en oavbruten toppproduktion. Greener och Ben-Yosef ger ett vidare sammanhang för Timna från elfte till nionde århundradet; det daterar inte just denna topp."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1000-supplement.json",
+        "textSha256": {
+          "titleEn": "42250edfa59df86237e4471a490941757d71e4669abe5e30a735a5007bfe174a",
+          "summaryEn": "b1aafaa13efe96872f0311cbee2378e0f0da698e04dd8d30b5ae99eece57de80",
+          "geographyEn": "746303410681b673fae50d70c98cf48a2eebe750868eb5594a32939860a8c1fb",
+          "date.displayEn": "66541a45e68f598f1d8993822ed3fe4bb5abe27934d99fa64ddc98b50b5dd8c6",
+          "date.noteEn": "e13d03d363c218532b53a09c1a2b3c855a11c8391c35eb62e80a1d05ee6cc1e7"
+        }
+      }
+    },
+    "ev-bc1100-ritidian-coastal-activity": {
+      "titleSv": "Invånarna i Ritidian intensifierar verksamheten vid kusten",
+      "summarySv": "Carson identifierar mer intensiv verksamhet i en långsträckt bosättning i Ritidian när kustmiljön förändras. Keramik och skalrester utanför närliggande grottmynningar skiljer sig från dem vid bosättningen på strandvallen.",
+      "geographySv": "Ritidian, norra Guam, Marianerna",
+      "date": {
+        "displaySv": "omkring 1100–700 f.Kr.",
+        "noteSv": "Detta är Carsons hela arkeologiska fas, inte ett exakt daterat grundande eller ett påstående att varje verksamhet började 1100 f.Kr. Tidigare bosättning 1500–1100 f.Kr. och den senare förskjutningen mot inlandet hålls isär. Hällkonstens tillkomst tilldelas inget exakt år."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1100-supplement.json",
+        "textSha256": {
+          "titleEn": "e3c88ced4ccc943e2d21f5f9a3d2da45bd394bec07164704abc792b2e476d84a",
+          "summaryEn": "1a2f33b1fcac9dcad531f29e6612ccb83400c99e99f7ed5b30457dc8b27576f1",
+          "geographyEn": "cce89e0512bdb47c5305e6274ba113847b1dab348c701939dc18a2167222d7e0",
+          "date.displayEn": "1941eb000105acc7b034457e6ec66c9cd21c156085d70295f0ff36f8bce0ca09",
+          "date.noteEn": "d4fd4cce002dc994301c8af1eb519d931b4b5c73bad928c48698ab1318af1453"
+        }
+      }
+    },
+    "ev-bc1042-wu-geng-rebellion": {
+      "titleSv": "Zhou slår ned Wu Gengs uppror",
+      "summarySv": "Efter erövringen av Shang ställs Zhou inför Wu Gengs uppror och slår ned det. Christopher kopplar revolten till en förändring i hur Zhous härskare kontrollerar sina östliga erövringar.",
+      "geographySv": "Det tidiga Zhouriket i norra Kina",
+      "date": {
+        "displaySv": "1042–1039 f.Kr. i Christophers kronologi",
+        "noteSv": "Intervallet följer artikelns datering av upproret och hur det slogs ned. Tidiga Zhoukronologier skiljer sig åt; denna post jämkar inte samman deras absoluta datum och räknar inte fram nya år ur regeringslängder. Den senare omfördelningen av makt och grundandet av bosättningar begränsas inte till dessa fyra kalenderår."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1100-supplement.json",
+        "textSha256": {
+          "titleEn": "19cc52ee271b9c6a617fccf6d181a3678a68c3cbd1d4e2eb035ff7ec54d0a1a4",
+          "summaryEn": "fe48dcfce48489af9c5dcf51593516a57343873b6518f09bb1f456d85b4fb612",
+          "geographyEn": "aab8cf1284a18c15d97ed7141c1410c557431cfa9d9c77520aec28ec914bd0cf",
+          "date.displayEn": "42ba997b61c64bdf8c3833531d1cc67a77087bb2e9a4f08c2859a829f1ba898f",
+          "date.noteEn": "5ddcd4c31df83a161f3707f55d7550a787ddcf71b209cb5d744d65ea46eaecc8"
+        }
+      }
+    },
+    "ev-bc1200-ugarit-destruction": {
+      "titleSv": "Ugarit drabbas av omfattande förstörelse",
+      "summarySv": "Brand och förstörelse ödelägger Ugarit, ett handelscentrum på den syriska kusten, och gör slut på dess politiska tillvaro under senbronsåldern. Angriparnas identitet och förstörelsens förlopp är fortfarande osäkra. Spår av senare återbosättning innebär att platsen inte övergavs för gott i alla delar.",
+      "geographySv": "Ugarit, vid Ras Shamra nära Latakia på den syriska kusten",
+      "date": {
+        "displaySv": "omkring 1200 f.Kr., eller omkring 1190/1180 f.Kr.",
+        "noteSv": "Drowers äldre framställning anger omkring 1200 f.Kr.; Callot och Yon anger omkring 1190/1180 f.Kr. Callot kallar senare 1180 vägledande och diskuterar uppskattningar kring 1190–1185. Dessa gränser samlar olika närmevärden, inte en varaktighet på tjugo år. Det exakta datumet och om förstörelsen skedde i en eller flera omgångar är fortfarande osäkert."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1200-supplement.json",
+        "textSha256": {
+          "titleEn": "1819b3a17d3808b7da1307a4bcb1869debb95955cce3e6ebd78ed408fc79bac2",
+          "summaryEn": "3f7513c8d184fb0de2753d6c5019c8d37a0a83bf411ee634f5a66cdb3c5717cf",
+          "geographyEn": "3b993f836dd7f4c035c13874fd21e429735fccf3d3c8cd8742d6a71b01f333a0",
+          "date.displayEn": "03a0ac08397d56454eb86315b38431649b9414755c8535c7158feeeaf78ba23d",
+          "date.noteEn": "45809297c321b2fc41e60c299c9de7daa64b8a285df68ec55b9780cbdc33a143"
+        }
+      }
+    },
+    "ev-bc1300-qantir-primary-glassmaking": {
+      "titleSv": "Glasmakare framställer råglas i Qantir",
+      "summarySv": "Verkstäder i Qantir framställer glas ur råmaterial och bereder färgade tackor. Dessa led skiljs från arbetet med att forma färdiga föremål i andra verkstäder. Det utgrävda produktionsavfallet vittnar om specialiserat hantverk; den detaljerade rekonstruktionen av dess processer förblir en arkeologisk tolkning.",
+      "geographySv": "Qantir/Pi-Ramesse, östra Nildeltat, Egypten",
+      "date": {
+        "displaySv": "trettonde århundradet f.Kr. (arkeologisk periodtillskrivning)",
+        "noteSv": "Henderson placerar produktionsbeläggen från Qantir i detta århundrade. Rehren och Pusch tillskriver preliminärt dess glasförande lager tidig ramessidisk verksamhet, i väntan på en slutlig stratigrafisk tolkning. Slutpunkterna fastställer inte när en verkstad öppnade eller stängde, en oavbruten produktion genom hela århundradet eller den första glastillverkningen i Egypten."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1300-supplement.json",
+        "textSha256": {
+          "titleEn": "889e590d7fbd1f59d1cdbe12db9f88e9f59f5d6e37080332880fc75f2476d87c",
+          "summaryEn": "d7d04aabcef72613f3314a2f500ffd1db9f7e9f422205d5e181db9227267f379",
+          "geographyEn": "e67d8c452e7430a22e90d8a591e03e864f7505f52dd8c645104084dfe9b6d0d4",
+          "date.displayEn": "c028359937dcee52d1618f5f7bcdcd2bd15ff9f0bc40c4b66936a2119d2e616d",
+          "date.noteEn": "5d2c8a82cbee634218c863bae862de2e9dd4ff3ff4be2230cdfda1cd40703124"
+        }
+      }
+    },
+    "ev-bc1380-hittite-empire-reaches-greatest-extent": {
+      "titleSv": "Hettiterriket når sin största utbredning",
+      "summarySv": "Efter år av fälttåg når hettiterriket, styrt från Hattusha (Boğazköy), sin största utbredning i centrala och sydöstra Anatolien och i länderna söderut som gränsar till egyptiskt territorium. Dess härskare Shuppiluliuma I är både fältherre och byggherre av stora stenbyggnader med reliefer.",
+      "geographySv": "Centrala och sydöstra Anatolien och länderna söderut",
+      "date": {
+        "displaySv": "cirka 1380–1340 f.Kr.",
+        "noteSv": "Met anger ett ungefärligt spann och daterar Shuppiluliuma I:s regeringstid till 1370–1330 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1400-supplement.json",
+        "textSha256": {
+          "titleEn": "4522dc2a19e64c77f7f4c46b8afc325b855426a81f1cb5f3573217a6fa6c8de5",
+          "summaryEn": "89139f3bcb8557084b2f69f1e0b05b83b736534ca8684003700be774a03feeba",
+          "geographyEn": "a32c37d09d68977f17ae3c181273fabee5aac35f90ba19b2638dd283f7b91ff1",
+          "date.displayEn": "df49c58e91b33a2589b186f7dc0b60875ba5471c659f98193584c75c158cb4d2",
+          "date.noteEn": "ac6762264268eebe94ad2dc4903c81ceda623a6a7013bd97666c597feec57a0a"
+        }
+      }
+    },
+    "ev-bc1380-pylos-palace-thrives": {
+      "titleSv": "Det mykenska palatset i Pylos blomstrar",
+      "summarySv": "Det mykenska palatset i Pylos, det bäst bevarade i sitt slag, blomstrar. Dess lertavlor med Linear B tyder på en kung i spetsen för ett högt organiserat feodalt system.",
+      "geographySv": "Pylos, grekiska fastlandet",
+      "date": {
+        "displaySv": "cirka 1380 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1400-supplement.json",
+        "textSha256": {
+          "titleEn": "3a8bdb7790c74c5b9059ab568543863e5c3cc7f5f3a83b7fcff9ae9f1db2a984",
+          "summaryEn": "6dd753bdb3fd9cbe52d9962fe12ddcbc4e8e6dadc42d7edcf0a7c9076efd7b5a",
+          "geographyEn": "cf4a0ddaf97a9972801b4714a3d3af9eeffe542ac0a2ae941c612f5dc1a6f176",
+          "date.displayEn": "1eb8f0c81780b6b78da5c66af06e5df561d2347933c4d051a32c00c5cfc9b6e9"
+        }
+      }
+    },
+    "ev-bc1350-san-jose-mogote-first-public-building": {
+      "titleSv": "San José Mogote uppför den första offentliga byggnaden i Oaxacadalen",
+      "summarySv": "Byggare i San José Mogote, Oaxacadalens främsta regionala centrum, uppför dalens första offentliga byggnad. Den är en stuckaterad konstruktion av flätverk och lera på en plattformsliknande grund.",
+      "geographySv": "San José Mogote, Oaxacadalen, Mexiko",
+      "date": {
+        "displaySv": "cirka 1350 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1400-supplement.json",
+        "textSha256": {
+          "titleEn": "b19efdbf6c1f9f7cc5a7465f91604b40e3c871dd2579e10d98b5250c7b3f10da",
+          "summaryEn": "6bb95ddb5f78920e64f3de23fd3cbf10975e44363dd70751de1d1f56a0ee356b",
+          "geographyEn": "c2782d07e46c5109026aa5320b50fafe351e00ed4450d28f26add1f0d9ffafaa",
+          "date.displayEn": "2820dad97b07fe0e996192e40ff569f4d10edd57526d69d508358fdd1ca81580"
+        }
+      }
+    },
+    "ev-bc1340-chogha-zanbil-built": {
+      "titleSv": "Untash-Napirisha bygger zigguratkomplexet i Chogha Zanbil",
+      "summarySv": "Kung Untash-Napirisha bygger en ny huvudstad och ett religiöst komplex med en ziggurat i Chogha Zanbil. Glaserad blå och grön terrakotta täcker zigguratens fasad, och mosaiker av glas och elfenben smyckar dess inre.",
+      "geographySv": "Chogha Zanbil, Elam (nuvarande Iran)",
+      "date": {
+        "displaySv": "cirka 1340–1300 f.Kr.",
+        "noteSv": "Met anger ett ungefärligt spann för bygget."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1400-supplement.json",
+        "textSha256": {
+          "titleEn": "f3bd594462af26af22c51d2bd74154d9cc3cbd66d07fbd63558a80b107b6bc2f",
+          "summaryEn": "0defce69a7c8feb872a14c33d330ff9c0b2675f60966a55c11f05a099ddfbfc5",
+          "geographyEn": "600be97ad2adc7bfd3da21cc47be6c52d39ed2445dbdc3d5b80f682476cab12b",
+          "date.displayEn": "c459fbcad6ac06bb54401ff5e8c6fcab66fe82d87ddb6db82bdd5c15152d50f9",
+          "date.noteEn": "e89520e2d56667028a8363ce31403e6faac4f1e299674d9079ad7a577aa975c1"
+        }
+      }
+    },
+    "ev-bc1500-glassworking-takes-hold-in-egypt": {
+      "titleSv": "Glashantverket slår rot i Egypten",
+      "summarySv": "Glas blir ett uppskattat hantverksmaterial i Egypten, vid sidan av den äldre traditionen med fajans. Walters Museum kopplar den nya tekniken till en möjlig överföring från västra Asien, med tidig import av råglas och färdiga kärl. Tidpunkten för den första lokala råglastillverkningen är mer osäker än materialets ungefärliga introduktion.",
+      "geographySv": "Egypten; möjliga tekniska förbindelser med västra Asien",
+      "date": {
+        "displaySv": "omkring 1500 f.Kr.",
+        "noteSv": "Källorna placerar glasets introduktion eller framväxten av dess tillverkning i Egypten omkring 1500 f.Kr. Nicholson och Jackson skiljer detta från en möjlig lokal tillverkning under Thutmosis III, vars regeringstid de daterar till 1479–1425 f.Kr. Ingen exakt första verkstad, inget lokalt produktionsår och ingen enskild hantverkares ankomst fastställs."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1500-supplement.json",
+        "textSha256": {
+          "titleEn": "954b732f62a63c2b7beb2ace9a10129f553e16d3a29fb3344a95b6978b579ec1",
+          "summaryEn": "cc1b39afc30ece1893e71592af1203f804f6fc98ed6dab7e9dcc8355f1000ffd",
+          "geographyEn": "1eb50ba7586064ba7cd6daa15d4822659f388eb1812e9ca59a896b89b4a611ea",
+          "date.displayEn": "c0a0e9435050b5c736de6c70cc9cd51ccab47543d1b45d61dceb40add9f139e4",
+          "date.noteEn": "078d5a4e923d4784d21b0d05258dab7f0458d435cace8dbce75dc174c835cd69"
+        }
+      }
+    },
+    "ev-bc1600-boat-images-appear-in-scandinavia": {
+      "titleSv": "Båtbilder dyker upp i skandinavisk konst",
+      "summarySv": "Schematiska båtar dyker upp i skandinavisk konst; det tidigaste kända exemplet är inristat på ett bronssvärd från Rørby i Danmark. Båtar hör till de vanligaste motiven på de ristade hällarna i Sverige.",
+      "geographySv": "Skandinavien; Rørby, Danmark",
+      "date": {
+        "displaySv": "cirka 1600 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1600-supplement.json",
+        "textSha256": {
+          "titleEn": "dad8dd6d2aea3db00249f9e9e016054722499ebfc1f837f9d3593432aab80063",
+          "summaryEn": "9d06cd3bc1beb0817ea615c8722aeeaba287610a1567f09d4e1928ff70d93ba4",
+          "geographyEn": "3d31b27190eb04a8f9603a397045be7334f37260356bcbaa304b765f44f55ae0",
+          "date.displayEn": "bcc9aa5e21de8c1e61135d612aaf33b9711c49c3619102e6f4c6ce48e5788025"
+        }
+      }
+    },
+    "ev-bc1600-scandinavia-takes-up-bronze": {
+      "titleSv": "Skandinavien och Östersjöområdet börjar använda brons",
+      "summarySv": "Folk i Skandinavien och Östersjöområdet börjar skaffa sig bronsteknik. Utan eget tenn eller koppar bygger de ut fjärrhandeln med Central- och Sydeuropa, och bärnsten blir deras mest värdefulla exportvara.",
+      "geographySv": "Skandinavien och Östersjöområdet",
+      "date": {
+        "displaySv": "cirka 1600–1500 f.Kr.",
+        "noteSv": "Met anger ett ungefärligt århundrade."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1600-supplement.json",
+        "textSha256": {
+          "titleEn": "aacbe126c7624a18cde6c73a8217589741ff1f8c8845b148488570b36fc2a218",
+          "summaryEn": "c765eba145f404894449cdf8845fa6572a131b48919caa625f31c345ab9f0715",
+          "geographyEn": "e1c5dd84a2e6d8af18ee6b66282098226a592bc77e4bfc5d001f61098155547e",
+          "date.displayEn": "d0b08cb8496630ab80b18c97c48b7ebe2386f11dcaabe98a51266e332eb8ba68",
+          "date.noteEn": "a4feeb545815628ce4c581a88ab7dc593ec8b7aa97a8377debdbc074ac75d1a3"
+        }
+      }
+    },
+    "ev-bc1600-shang-dynasty-rules-north-china": {
+      "titleSv": "Shangdynastin styr ett stort område i norra Kina",
+      "summarySv": "Shangdynastin kontrollerar ett stort område i nordöstra och norra centrala Kina. Zhengzhou, som anses ha varit ett kultcentrum, hör till dess viktigaste platser, och Anyang är huvudstad från omkring 1300 f.Kr. Shangs verkstäder gjuter rituella bronskärl för vin och mat med flera keramiska formar.",
+      "geographySv": "Nordöstra och norra centrala Kina",
+      "date": {
+        "displaySv": "cirka 1600 f.Kr.",
+        "noteSv": "Met daterar Shangs kontroll över området till omkring 1600 f.Kr. och anger inget grundläggningsår."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1600-supplement.json",
+        "textSha256": {
+          "titleEn": "83017368750e935c847845cb49dfde14983d09ce394973f34b2912943197baa2",
+          "summaryEn": "ff5523dae50fe433bc5169bdde022bee401af29d6f806392981712974bacc50d",
+          "geographyEn": "a0df557f862dc756ae123026abd625d00c6f385204e483f4ff7353467ad916ea",
+          "date.displayEn": "bcc9aa5e21de8c1e61135d612aaf33b9711c49c3619102e6f4c6ce48e5788025",
+          "date.noteEn": "e6e7abf08b9f719763800d947dfeea8d26038fe661a07667a224671ed3ab230f"
+        }
+      }
+    },
+    "ev-bc1550-ahmose-reunites-egypt": {
+      "titleSv": "Ahmose I återförenar Egypten och grundar 18:e dynastin",
+      "summarySv": "Den thebanske kungen Ahmose I återförenar Egypten och grundar 18:e dynastin, Nya rikets första dynasti. Hans efterträdare, i synnerhet Thutmosis III, utvidgar det egyptiska inflytandet genom Levanten fram till hettiterrikets gränser.",
+      "geographySv": "Thebe och Nildalen, Egypten",
+      "date": {
+        "displaySv": "cirka 1550 f.Kr.",
+        "noteSv": "Met daterar Nya riket till omkring 1550–1070 f.Kr. och placerar Ahmoses återförening vid dess början utan ett eget år."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1600-supplement.json",
+        "textSha256": {
+          "titleEn": "3015d25bb929f81a2fea642969fab0853b1a431218396c6cdccb6a3ee8292ce7",
+          "summaryEn": "dc54a9802cbb97e1adbcbec0799b6192546f97ec8d50c80f8e2ebb68bea261b8",
+          "geographyEn": "7e3d5d7a6418b3b510380d216fc86cd1195d2ad87df8965c52d55df023329669",
+          "date.displayEn": "754159de170bf9ffcce16833a1b4f90d04bfc786983cd469561316b3a4a711a9",
+          "date.noteEn": "c9765ec9fc77224a137dfbf7d24d02b6018ba8b82002bbfbbbbf55a26e1f455e"
+        }
+      }
+    },
+    "ev-bc1550-kerma-loses-lower-nubia": {
+      "titleSv": "Kerma förlorar Nedre Nubien till Egypten",
+      "summarySv": "Kerma förlorar kontrollen över Nedre Nubien när de egyptiska kungarna av 18:e dynastin inleder fälttåg mot Övre Nubien. Omkring 1450 f.Kr. styr Egypten Nubien ända söderut till fjärde katarakten genom en vicekung, Kungens son av Kush.",
+      "geographySv": "Nedre och Övre Nubien, nuvarande Egypten och Sudan",
+      "date": {
+        "displaySv": "cirka 1550 f.Kr.",
+        "noteSv": "Met placerar förlusten vid Nya rikets början och den egyptiska kontrollen fram till fjärde katarakten omkring 1450 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1600-supplement.json",
+        "textSha256": {
+          "titleEn": "06aa0be0a1f8aa5ca818a93249d07add3b7cdb4fd88615667957b39de0b0cb09",
+          "summaryEn": "23728f0c3cea5ea191dcc93efd8eca6f4d84345ce9509ebd54c8dca65437bf6d",
+          "geographyEn": "a5f884af62dbed3817fc69e090eff5adba1d54e307c88b36e00718d80f35707b",
+          "date.displayEn": "754159de170bf9ffcce16833a1b4f90d04bfc786983cd469561316b3a4a711a9",
+          "date.noteEn": "a52b070bde9754dfd6c990e6f86877cd266a5f53e47958194da6a0abc6ac7d6f"
+        }
+      }
+    },
+    "ev-bc1650-hattusa-becomes-hittite-royal-seat": {
+      "titleSv": "Hattusili gör Hattusa till sitt kungasäte",
+      "summarySv": "Hattusili gör den redan existerande staden Hattusa till hettiternas kungliga centrum. En tolkning av Zalpatexten placerar hans tronbestigning i Nesa innan hovet flyttade. Denna politiska förändring ska inte förväxlas med stadens första bosättning.",
+      "geographySv": "Hattusa, nära nuvarande Boğazkale i centrala Turkiet",
+      "date": {
+        "displaySv": "omkring 1650 f.Kr., i den konventionella kronologin",
+        "noteSv": "Strupler placerar valet av Hattusa som huvudstad omkring 1650 f.Kr. Herrmann med kolleger förklarar att 1650 är en konventionell uppskattning av tronbestigningen byggd på generationsräkning, inte ett daterat grundande. Kloekhorst tolkar hovets flytt som att den följde på en tronbestigning i Nesa. Det exakta året för flytten är okänt; inga regeringsdatum räknas om till ett nytt händelsedatum."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1700-supplement.json",
+        "textSha256": {
+          "titleEn": "2310ea0d886a0b526968abe7fa55c18dca871a533f2a14b8ea108bc260ec1934",
+          "summaryEn": "7f0d211e61503e17e40145780025d12b407ea8be2adc3f848c2501d40c33c3d6",
+          "geographyEn": "5182abf3123d00185cdcbd7be658dfce4fbb731e5f57d59e0dcb8921b7d1ef8f",
+          "date.displayEn": "6c73248fffc5e3ad54a9a125ffd9f0997cd919677a00b4224cfa5959007e4708",
+          "date.noteEn": "7f650d19590dc4fb900a0111009ddc1946c421ef23924a365a7338e8198280aa"
+        }
+      }
+    },
+    "ev-bc1650-paso-de-la-amada-ballcourt-built": {
+      "titleSv": "Byggare anlägger en bollplan av jord i Paso de la Amada",
+      "summarySv": "Byggare anlägger en formell spelgång mellan parallella jordvallar i Paso de la Amada. Dess storlek och förhållande till närliggande bostäder har fått forskare att koppla spelen till framväxande ledarskap och social tävlan, även om den politiska förklaringen förblir en tolkning.",
+      "geographySv": "Paso de la Amada, regionen Soconusco, Chiapas, Mexiko",
+      "date": {
+        "displaySv": "omkring 1650–1600 f.Kr.",
+        "noteSv": "2016 års studie anger ungefär 1650–1600 f.Kr. för bygget; BYU:s institutionella rapport från 1998 om utgrävningen anger omkring 1600 f.Kr. Hela det ungefärliga fönstret behålls över sekelgränsen. Det innebär inte femtio år av oavbrutet byggande och daterar inte uppfinningen av bollspelet."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1700-supplement.json",
+        "textSha256": {
+          "titleEn": "79a96abe85f3f5c53418a58ea9b626f97562ab2c33ea719569a2da5ee9a2b8a1",
+          "summaryEn": "1e7e16d6fa2e98d403ce4344907c55f99b7d74f4c1237306a61e8ae9e5fe6dae",
+          "geographyEn": "5fee4c4d75754d167bf43e510096d6637f68eb3b128cbbdc5d318b8a85c8e8ac",
+          "date.displayEn": "65432f6530c1354e3706dd99678ad9fc62af5d9e7b26b1fdf18f2f92d72d5381",
+          "date.noteEn": "95366a3a897ec5d66b83a9d8d7cb07717c387418babba5036f8054a1cbf0bf1e"
+        }
+      }
+    },
+    "ev-bc1800-anitta-reports-nesha-cult-image-return": {
+      "titleSv": "Anitta berättar att han förde tillbaka Neshas kultbild",
+      "summarySv": "Anittas redogörelse säger att han förde tillbaka Neshas gudom från Zalpuwa, dit en tidigare kung hade fört den. Stycket dokumenterar ett kungligt anspråk på att ha återvunnit en stads heliga bild; det fastställer inte en oberoende bekräftad återvinning av en utgrävd staty.",
+      "geographySv": "Nesha och Zalpuwa, Anatolien",
+      "date": {
+        "displaySv": "artonde århundradet f.Kr. (exakt år okänt)",
+        "noteSv": "Intervallet motsvarar forskningens placering av de omtalade händelserna i artonde århundradet f.Kr., inte en handling som varade ett århundrade. Anittas redogörelse anger inget exakt år för återförandet. Textens ursprungliga språk och tradering är omdebatterade; intervallet daterar inte de bevarade handskrifterna. Den andra källan stöder detta textsammanhang, inte en oberoende bekräftelse av återförandet."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1800-supplement.json",
+        "textSha256": {
+          "titleEn": "6b333d630bd0f271f1ae402a80c66c51dd442c644241c570a297fbff9c0f9aa3",
+          "summaryEn": "ab5b51baaacf7ad37541f1db0fc83be386705de71de61350ba9a4abeec2eb398",
+          "geographyEn": "856d9d3d9e9211f7c09e55323e9b60d1ad50d6e85a051bc5c8aa971248139028",
+          "date.displayEn": "a16d32d8fa46f04678e25acbaaf20150a723995ba64899835e8e339cd98ae03b",
+          "date.noteEn": "b8e38dbb8e20e005401ae30ffc342a3d9888e2f9306d5728f787070080b1b13b"
+        }
+      }
+    },
+    "ev-bc1900-phaistos-palace-construction": {
+      "titleSv": "Ett palats byggs i Faistos",
+      "summarySv": "Byggare uppför det minoiska palatset i Faistos på Kreta omkring 1900 f.Kr., enligt den officiella beskrivningen av den arkeologiska platsen.",
+      "geographySv": "Faistos, Messara, Kreta",
+      "date": {
+        "displaySv": "omkring 1900 f.Kr.",
+        "noteSv": "Platsens officiella beskrivning anger ett ungefärligt byggdatum. Faistos var bebott redan tidigare; posten daterar inte bosättningens grundande eller den senare ombyggnaden av palatset till 1900 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1900-supplement.json",
+        "textSha256": {
+          "titleEn": "2b5219d7106d3d2a937ef84a64ae05dfdcd3a62d85e75510c6d532301e456967",
+          "summaryEn": "e265c7040adb87497c77172140ce2eb7e08dbf886cf6b55d9f7fef2fbd538c33",
+          "geographyEn": "0537c148da0fd5d3fa61db394df489757471affc2a21a113dc66475d467d697c",
+          "date.displayEn": "ae22e04d5dce06a8f05010f613125018578f6a932a5c29e522a6b5650be0735a",
+          "date.noteEn": "c0f5a23f7cadcd99d089db2ea20ddcf6b5e95ce51d518c1ba99298298c0c193c"
+        }
+      }
+    },
+    "ev-bc1900-kerma-monumental-burials": {
+      "titleSv": "Monumentala gravar byggs i Kerma",
+      "summarySv": "Honegger beskriver monumentala gravar i Kerma omkring 1900 f.Kr. Stora gravgropar och gravhögar åtföljs i regel av kapell av soltorkat tegel och arrangemang av nötkreaturskranier.",
+      "geographySv": "Kermas östra gravfält, Nubien, nuvarande Sudan",
+      "date": {
+        "displaySv": "omkring 1900 f.Kr.",
+        "noteSv": "Honegger lyfter fram omkring 1900 f.Kr. inom en bredare utveckling under Mellersta Kerma. Detta daterar en episod av monumentala begravningar, inte en exakt första grav eller början på social hierarki. Hans senare bildtext daterar en grav till ungefär samma tid; den är ingen oberoende bekräftelse av hela förloppet."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc1900-supplement.json",
+        "textSha256": {
+          "titleEn": "e66f34e2467c9c7e8aab11f0507fa3d9641ca8d4bd7b803665029ddc4e4e9ea5",
+          "summaryEn": "31b06f3ee5dff5af75ca50894c52a4bf330de5b3cd6191010469137200ab465d",
+          "geographyEn": "561dabe30e2f7a7303d39c7ec5fa765088f1862c56c78305224aaa9817c47323",
+          "date.displayEn": "ae22e04d5dce06a8f05010f613125018578f6a932a5c29e522a6b5650be0735a",
+          "date.noteEn": "e75a0d04ca35cf154b10c1bc9d684d271ef8f21425302a8212f8720e00633b88"
+        }
+      }
+    },
+    "ev-bc2000-kerma-wooden-burial-beds": {
+      "titleSv": "Träbäddar införs i Kermas gravskick",
+      "summarySv": "På Kermas östra gravfält, som användes av huvudstadens elit, börjar de döda läggas på träbäddar efter ett tidigare bruk att lägga dem direkt på nöthudar. Honegger daterar förändringen till ungefär 2000 f.Kr. och anger att bäddtraditionen har egyptiskt ursprung. Andra framställningar beskriver övergången genom relativa arkeologiska faser i stället för ett exakt år.",
+      "geographySv": "Kermas östra gravfält, Nubien, nuvarande Sudan",
+      "date": {
+        "displaySv": "omkring 2000 f.Kr.; övergången är inte exakt daterad",
+        "noteSv": "Honeggers syntes från 2018 placerar bruket av träbäddar i gravar omkring 2000 f.Kr. Hans katalog från 2014 beskriver det bara som kort efter fasen 2300–2100 f.Kr. Chaix placerar bäddarna senare i förloppet under Mellersta Kerma, vars hela ram är 2050–1750 f.Kr., utan ett eget startår. Dessa relativa beskrivningar fastställer varken en exakt första begravning eller en exakt avgränsad period för införandet."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2000-supplement.json",
+        "textSha256": {
+          "titleEn": "ef2e6f80190226afe740e030c1af793d1dcb31411745cfd370488657613ad2de",
+          "summaryEn": "138377bc9fa1b404fcb6471cffb0f3726170ef5d95344a5c6113017e343df8dc",
+          "geographyEn": "561dabe30e2f7a7303d39c7ec5fa765088f1862c56c78305224aaa9817c47323",
+          "date.displayEn": "8e5076c98bed3ac9d5b51791804bdf128586de6923b6d7be56e713bf2490ef39",
+          "date.noteEn": "31ff7d291d905914f1589b1cdf3b952fb0bc65be0b38c09a9f038be4c9802337"
+        }
+      }
+    },
+    "ev-bc2100-gulf-sealing-technology": {
+      "titleSv": "Indusdalens sigilltraditioner anpassas i handeln i Persiska viken",
+      "summarySv": "Runda stämpelsigill av gulftyp tar upp drag från Indusdalens sigilltraditioner inom handelsnät som förbinder Mesopotamien, Iran och Dilmun. Deras bredare användning på Bahrain omkring 2050 f.Kr. sammanfaller med socioekonomiska förändringar; Laursen tolkar överföringen som att den involverade harappiska och dilmunitiska köpmän.",
+      "geographySv": "Handelsnäten i Persiska viken, särskilt Bahrain i Dilmun",
+      "date": {
+        "displaySv": "cirka 2100–2000 f.Kr.; bredare användning i Dilmun cirka 2050 f.Kr.",
+        "noteSv": "Hela spannet daterar traditionen med sigill av gulftyp. Laursen skiljer en tidigare fas cirka 2100–2050 f.Kr. från den bredare användningen i Dilmun omkring 2050 f.Kr. Handelsmännens identitet och förflyttningar rekonstrueras ur arkeologiska belägg; inget exakt år för uppfinning eller migration är känt."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2100-supplement.json",
+        "textSha256": {
+          "titleEn": "652ccc25f0efe903be197c7614c29a44230e5085004f42bbd60c27f02ef0abf4",
+          "summaryEn": "a8ef43f3d815f701c7c9d3e57ac4fa155342fc28452a8cb55bc37e93f57900fe",
+          "geographyEn": "031cc4bcda722a3c7baae4e015e68afd85419030bdb9ff40381c13f3c8d512c5",
+          "date.displayEn": "52b0d123271e55c8e303be089cfa7433968ca5fe5260feb9ddd9e1a68460682c",
+          "date.noteEn": "9db5a135f2834e8d8c9864eecb0b50eacd767914948b80dcd279efd747efa8c7"
+        }
+      }
+    },
+    "ev-bc2200-la-bastida-fortification": {
+      "titleSv": "Befästningar av sten försvarar La Bastida",
+      "summarySv": "Murar och utskjutande torn skyddar en smal ingång till La Bastida, ett viktigt politiskt och ekonomiskt centrum i det argariska samhället i sydöstra Spanien. Deras utformning kan spegla förändringar i krigföring och vapen; den pekar inte ut ett visst angrepp.",
+      "geographySv": "La Bastida, sydöstra Spanien",
+      "date": {
+        "displaySv": "2200–2100 kal. f.Kr.; bredare preliminär fas cirka 2200–2025 f.Kr.",
+        "noteSv": "Artikeln från 2014 daterar befästningen till 2200–2100 kal. f.Kr. En rapport från 2018 knyter preliminärt dess ursprungliga uppförande till den bredare äldsta bosättningsfasen, cirka 2200–2025 f.Kr. Ingen av dem anger ett exakt byggår."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2200-supplement.json",
+        "textSha256": {
+          "titleEn": "2eb009ed6e6251a228f0873597d6055a1c63117360df252136ab68e454eb9201",
+          "summaryEn": "69443e84c80fb80535cd27f40b5d5da60260b95af6f6e62d1ddfc987d18d7fec",
+          "geographyEn": "6ada0858714d8b9ad187c19b7cff16d7d24780d7cea72fa15cb072e909261ec3",
+          "date.displayEn": "96c02df9aa99c1d5bed30930c798cedce9028f8d582d387c35f337d7a1c902c2",
+          "date.noteEn": "9ae8cc7dbfdef662e2eb0a394e6faaa1f507e6cd1c4949d2cb95b96590f84da6"
+        }
+      }
+    },
+    "ev-bc2120-utuhegal-defeats-the-gutians": {
+      "titleSv": "Utuhegal besegrar gutierna",
+      "summarySv": "Utuhegal, kung av Uruk, besegrar gutierna och deras befälhavare Tirigan. Segern återför det sumeriska kungadömet till Uruk för en kort tid.",
+      "geographySv": "Sumer, Mesopotamien; Uruks kungarike",
+      "date": {
+        "displaySv": "cirka 2120 f.Kr.",
+        "noteSv": "Sazonov, Espak och Johandi daterar segern till omkring 2120 f.Kr. Detta är ett ungefärligt datum i deras kronologi, inte ett exakt år för slaget."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2200-supplement.json",
+        "textSha256": {
+          "titleEn": "379a61b76af215adc760c4146c0027f36d8752236c710512de027b9284c6d5a0",
+          "summaryEn": "2e92516a42ce5156bb50432b519905d327b0a6fb7df7f2a2f908fd13cfef6c87",
+          "geographyEn": "daecd8e91c7eeea2b8ce225b6f0995a23c0d03cff28e22cc10b852ac1d711a7e",
+          "date.displayEn": "955ef246f4934ed9683c0087d373d58890ed84688518a7c85285ce272a2b7e1c",
+          "date.noteEn": "8e3ed009d97bb7f1ffad3efb0de997df21a580220e4406b44e7a2405f39d1eae"
+        }
+      }
+    },
+    "ev-bc2300-sannai-maruyama-occupation-ends": {
+      "titleSv": "Den långa bosättningen i Sannai Maruyama upphör",
+      "summarySv": "Det arkeologiska förloppet i jomonbosättningen Sannai Maruyama slutar omkring 2300 f.Kr. i Habus kronologi. Den officiella kulturarvsbeskrivningen förlänger bosättningen till 2200 f.Kr. Dessa uppskattningar fastställer inte ett enskilt år för uppbrottet, en orsak eller vart invånarna tog vägen.",
+      "geographySv": "Sannai Maruyama, Aomori, norra Japan",
+      "date": {
+        "displaySv": "omkring 2300 f.Kr.; alternativ slutpunkt för bosättningen: 2200 f.Kr.",
+        "noteSv": "Habu daterar bosättningsförloppet till omkring 3900–2300 kal. f.Kr.; den officiella kulturarvssammanfattningen anger 3900–2200 f.Kr. Denna post gäller deras alternativa slutpunkter, inte hela bosättningen eller ett uppbrott som varade ett århundrade. Tidigare förändringar i försörjning och bosättningsstorlek har sin egen kronologi."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2300-supplement.json",
+        "textSha256": {
+          "titleEn": "723f5f8f1392a8468f70a53eb66309f08c2ef744df9d1f7f45ecb2de6fb99a86",
+          "summaryEn": "1f4d03071c3a448099bd5a75b067e036f308e2b3a3e6b360f70a89dcedf90611",
+          "geographyEn": "231262b4d53f146bed9d8d6dbb763ca657c45b289323f180d9b462ee5ee49b11",
+          "date.displayEn": "f83d757f19132104e93c3926525146032e1553ad9669b6730b26aa3d121bc425",
+          "date.noteEn": "3ff20be0b52be0f0e2816d13e0fa1029e45155ab99ea66201e38cdd7efa9e20e"
+        }
+      }
+    },
+    "ev-bc2400-ross-island-copper-production": {
+      "titleSv": "Ross Island förser Irland och Britannien med koppar",
+      "summarySv": "Gruvdrift och metallhantverk på Ross Island ger en viktig tidig kopparkälla. Det tillhörande lägret bevarar avlagringar från malmberedning, behandlingsgropar och hyddor med klockbägarkeramik. Arsenikhaltig koppar från gruvan cirkulerar på Irland och når Britannien, vilket knyter den lokala produktionen till bredare nätverk för metallhantverk.",
+      "geographySv": "Ross Island, County Kerry, Irland; kopparförsörjning till Britannien",
+      "date": {
+        "displaySv": "cirka 2400–1900/1800 f.Kr.; tidigare rapport: 2400–2100 kal. f.Kr.",
+        "noteSv": "O’Briens framställning från 2023 anger cirka 2400–1900/1800 f.Kr. för gruvdrift och smältning. Hans rapport om arbetslägret från 1995 anger 2400–1800 f.Kr., medan rapporten om gruvan och bosättningen från 1992 anger 2400–2100 kal. f.Kr. Detta är publicerade arkeologiska intervall, inte ett exakt grundläggningsdatum eller belägg för en oavbruten årlig produktion."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2400-supplement.json",
+        "textSha256": {
+          "titleEn": "733158389515f48e391fdb4e02bb44d59e79ca4b371f198e27e7037eb9c13879",
+          "summaryEn": "55350029430b0655f18191d903d612d35c7e3703815f5817267b60d0eb3bcb67",
+          "geographyEn": "e1466671ba14c0c40f3a6aece3a2ce260aac8bb240112afa1d5abeab4073f0f4",
+          "date.displayEn": "d53acd82ab54f5d3ae3995c9d7d7513e0dff63945f78d895ef83c7d50c5282da",
+          "date.noteEn": "9ff529da048cf7c91beb87edbccfc18a6dfe86a59714fafddaa3bdd2302b3ad5"
+        }
+      }
+    },
+    "ev-bc2450-britain-early-beaker-burials": {
+      "titleSv": "Tidiga klockbägargravar markerar en förändring i Britanniens gravskick",
+      "summarySv": "Gravar med klockbägarkeramik och andra gravgåvor dyker upp i Britannien och för in bruk med kontinentala förbindelser. De ingår i en stor förändring av gravskicket, medan kremering och andra äldre seder fortsätter vid sidan av dem.",
+      "geographySv": "Britannien",
+      "date": {
+        "displaySv": "2450–2325 f.Kr. (de tidigaste brittiska klockbägargravarna)",
+        "noteSv": "Parker Pearson redovisar detta spann för de tidigaste gravarna; det mäter inte hur länge gravtraditionen varade och fastställer inte migranternas första ankomst, som kan ha skett tidigare. Vander Linden daterar den bredare tidiga brittiska fasen till 2450/2400–2300 kal. f.Kr. Ingen av kronologierna anger ett exakt startår."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2500-supplement.json",
+        "textSha256": {
+          "titleEn": "dc63306b597631ae170da622d2d10ea391171e68fef16fb772b800f88c7b995d",
+          "summaryEn": "60f89c7988ab61cd2fed2b7cea3365c0618c02a7bdaad6cc40b7552644154146",
+          "geographyEn": "0eb045301ef38da83508dc5d4f10042473506daf7ffb7267188ebd5bd20e47f5",
+          "date.displayEn": "f3a410ae9ba6b3372283cfe1166720d75f5fc1707ed805f4d02d2453a8787b85",
+          "date.noteEn": "fe2ee92f1e7089fd62c6a4cba092fff47059780717b27c4b088c45855d69a241"
+        }
+      }
+    },
+    "ev-bc2600-indus-cities-flourish": {
+      "titleSv": "Mohenjo Daro och Harappa blomstrar i en planerad stadskultur",
+      "summarySv": "En sammanhållen stadskultur blomstrar i nordvästra Sydasien. Stora städer som Mohenjo Daro och Harappa följer rutnätsplaner och blir välmående genom handel med kulturer i väster, medan mindre bosättningar sprids över slätterna i nuvarande Pakistan och norra Indien. Sigill från dessa platser bär ett skriftsystem som fortfarande inte är dechiffrerat.",
+      "geographySv": "Nordvästra Sydasien: nuvarande Pakistan och norra Indien",
+      "date": {
+        "displaySv": "cirka 2600–1900 f.Kr.",
+        "noteSv": "Met anger ett ungefärligt spann för stadsfasen. Posten markerar dess början och gör inget anspråk på ett grundläggningsår för någon stad."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2600-supplement.json",
+        "textSha256": {
+          "titleEn": "4211eb056fb1e61ed21f906584f910e081b71e8e9597d8a3bf1b461726a7bd82",
+          "summaryEn": "3344b2d4aa67891755196a75088321454aec3da5b0870d23a6e94ea98f883709",
+          "geographyEn": "9980464e3709d8e5c8ad94ba1990cdc714bf290882a15594e710c7a7df02f3aa",
+          "date.displayEn": "3be741f7b1574408d3e21418a151285c8968ccb96ef1231935c3be7d310fc3c2",
+          "date.noteEn": "0b9ce2c360d07763899accceaf50e37452f7c0a8197568f7dc42ca60db7711ef"
+        }
+      }
+    },
+    "ev-bc2600-intercultural-style-chlorite-vessels": {
+      "titleSv": "Södra Iran och Gulfområdet tillverkar kloritkärl i Intercultural Style",
+      "summarySv": "Kloritkärl tillverkade i södra Iran och det större Gulfområdet dekoreras över hela ytan med abstrakta mönster, växt- och arkitekturmotiv eller djur och människor. Kärlen sprids genom handel över hela Främre Orienten, från Syrien till Indusdalen.",
+      "geographySv": "Södra Iran och det större Gulfområdet",
+      "date": {
+        "displaySv": "cirka 2600–2250 f.Kr.",
+        "noteSv": "Met anger ett ungefärligt spann för stilen."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2600-supplement.json",
+        "textSha256": {
+          "titleEn": "f2786fab5052b34f8c34d4f3ec45c002aada429832743065a12add8ff107deeb",
+          "summaryEn": "70e69d7f31898869d940123adf4f557426f8cbbcff422a22f9630ab1413a08bb",
+          "geographyEn": "bd3d9e8c9528dc19f5c6c6bcb8d4cce4d93fb8773596c6e37545473469362de3",
+          "date.displayEn": "62517c4c11b24decefa6529b03def2bf570907a5291ae8ee4c6dc9672582b00b",
+          "date.noteEn": "5ae7ca05873255798099e431a59461e60df4b3c88fc2a20d28f8c5d73cc94ee2"
+        }
+      }
+    },
+    "ev-bc2700-thy-grazing-landscape": {
+      "titleSv": "Öppna betesmarker breder ut sig i Thy",
+      "summarySv": "Pollenserier tyder på att landskapet i Thy snabbt öppnas för betande djur. Thyprojektets författare förknippar förändringen med enkelgravskulturen.",
+      "geographySv": "Thy, nordvästra Danmark",
+      "date": {
+        "displaySv": "omkring 2700 f.Kr.",
+        "noteSv": "Thyprojektets författare kopplar pollenbeläggen till enkelgravskulturen och beskriver att förändringen tog mindre än ett århundrade. Den ungefärliga markören fastställer varken ett enskilt år eller ett slutdatum; den senare röjningen som börjar omkring 1500 f.Kr. är separat."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2700-supplement.json",
+        "textSha256": {
+          "titleEn": "851e2a1273e6e223c995ac8dc2ac2219980d96efd7ff32b19c870d9a28e0f49f",
+          "summaryEn": "39ee21246a35387e97e3ffaf4e7a98a04ad05947fa373ebf2072c6d128219c86",
+          "geographyEn": "8637a575aff67c03f14a9391a5e096bc3bdbe607fe688351e28ca6c5307d8dd7",
+          "date.displayEn": "df41c878952330b1edb7839e69d759e49bb6e79a25a887fd59f40f7363cde266",
+          "date.noteEn": "967f80c8674e348b73295c29c6f04ff526587c7db16b8e896f506ba3d237a645"
+        }
+      }
+    },
+    "ev-bc2700-khasekhemwy-abydos-enclosure": {
+      "titleSv": "Khasekhemwy bygger en kunglig kultinhägnad i Abydos",
+      "summarySv": "Khasekhemwys monumentala inhägnad av soltorkat tegel i Abydos ingår i hans gravkomplex. Kultbyggnaden under bar himmel förknippas med ritualer som uttrycker gudomligt kungadöme.",
+      "geographySv": "Abydos, Egypten",
+      "date": {
+        "displaySv": "omkring 2700 f.Kr.",
+        "noteSv": "Utgrävningsprojektet placerar Khasekhemwys inhägnad ungefär vid detta datum. De två framställningarna kommer från samma projekt och fastställer varken ett exakt byggår eller en oberoende kronologi."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2700-supplement.json",
+        "textSha256": {
+          "titleEn": "343f3f1e2c4657daa6146a9a34ac3bfff4f7433264db57c346948e3c40cc694b",
+          "summaryEn": "a76d77b79a5e1f92818335a57139ae0a8e6dc8b9acc1405e31a75a9256573002",
+          "geographyEn": "33f01675f317dd49138dddc2bb154b104372ddf91868ab38941655cd28ba43e2",
+          "date.displayEn": "df41c878952330b1edb7839e69d759e49bb6e79a25a887fd59f40f7363cde266",
+          "date.noteEn": "23b2338a1e9f51b1d451872e1c30eb4bc0150f211d19ebeb4a40a1a5d0871e06"
+        }
+      }
+    },
+    "ev-bc2750-vinelz-pottery-adopts-corded-ware-elements": {
+      "titleSv": "Keramiken i Vinelz tar upp snörkeramiska inslag",
+      "summarySv": "Nya kärlformer och dekor med snörintryck dyker upp i Vinelz–Strandboden. I Tresjöområdet förenas dessa inslag med lokala keramiktraditioner till stilen Auvernier-Cordé.",
+      "geographySv": "Vinelz–Strandboden vid Bielsjön och Tresjöområdet, nuvarande Schweiz",
+      "date": {
+        "displaySv": "omkring 2750 f.Kr.",
+        "noteSv": "Platsbeskrivningen ger en ungefärlig datering av när de nya keramikformerna framträder. Detta är inte grundläggningsdatumet för Vinelz eller snörkeramikens första framträdande någonstans; beskrivningen nämner tidigare exempel på andra håll i norra Schweiz."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc2800-supplement.json",
+        "textSha256": {
+          "titleEn": "aaf551279b00f33c62f24638797b8448d44988f97a35006a29e304e63cad86a5",
+          "summaryEn": "aced7ae11e6f8323e10ef98c121c1cc948ecf65ca608164175db9cd8cb5230c1",
+          "geographyEn": "7f10b929ac90af45c2c0e9ad3a32a9fa1693a5b3734c8c5c1863c0afb99595d2",
+          "date.displayEn": "32966e42ad3b092597d89b4d8b64b3cc54e5d517855951a5b46f01aba4668052",
+          "date.noteEn": "0044c3937166b517f5096e8888aa65d75e4b47d6cb0283872c5671e6c5537687"
+        }
+      }
+    },
+    "ev-bc3000-pre-kerma-defended-settlement": {
+      "titleSv": "Invånare i Pre-Kerma bebor en bosättning med möjliga försvarsverk",
+      "summarySv": "Invånare nära Kerma förenar jordbruk och boskapsskötsel i en bosättning med koncentrerade förrådsgropar, hyddor och fållor för nötkreatur. Honegger tolkar parallella rader av trästaket och jordvallar som betydande försvarsverk, medan den tidigare rapporten också överväger att delar av palissadsystemet fungerade som fållor för boskap.",
+      "geographySv": "Kermaområdet, Övre Nubien, nuvarande Sudan",
+      "date": {
+        "displaySv": "cirka 3000 f.Kr.",
+        "noteSv": "Denna uppskattning daterar bosättningen under Pre-Kerma, inte ett exakt byggår. Två prover från förrådsgropar kan inte fastställa dess varaktighet; överlappande strukturer fick Honegger att föreslå högst två århundraden. Den närliggande kvinnograven har en egen kronologi utifrån gravgåvorna och dateras inte av dessa bosättningsprover."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc3000-supplement.json",
+        "textSha256": {
+          "titleEn": "5564cd42da8ad0f6487021ceaa326ddbef5e1d38941f4fdbd23b42fdb176fcf9",
+          "summaryEn": "e57ebdd75cc7379e35ed8e631e9091ebadf065e373b2fff34db9b5dbdfb0746d",
+          "geographyEn": "1501227ab752148105602ed76d45b786eaa6334238b8f44ec4755caae643fd4c",
+          "date.displayEn": "f5c9d609b77d5736c7f59849107e222784339d7b4849b773c742a927ca291a45",
+          "date.noteEn": "2667999106636cb158be64496c96cefe59a7e4d9b7d63d01fd2f17043d0c4cf4"
+        }
+      }
+    },
+    "ev-bc3100-middle-euphrates-uruk-settlements-end": {
+      "titleSv": "Urukbosättningarna vid mellersta Eufrat upphör",
+      "summarySv": "Urukbosättningarna i Habuba Kabira, Sheikh Hassan och Jebel Aruda överges. Detta markerar en regional tillbakagång för Urukbosättningen, medan samhällen fortlever på andra håll i norra Mesopotamien och i de sydliga Urukstäderna. En klimatorsak är inte fastställd.",
+      "geographySv": "Mellersta Eufrat, däribland Habuba Kabira, Sheikh Hassan och Jebel Aruda, nuvarande Syrien",
+      "date": {
+        "displaySv": "omkring 3100 f.Kr.",
+        "noteSv": "Clarke med kolleger placerar bosättningarnas försvinnande omkring 3100 f.Kr. och beskriver också att de övergavs senast då. Detta fastställer inte samtidiga uppbrott eller ett exakt år. NINO:s spann 3300–3100 f.Kr. daterar bosättningen i Jebel Aruda, inte en exakt daterad förstörelse."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc3100-supplement.json",
+        "textSha256": {
+          "titleEn": "a932c23801119cae558fe1cdaccdbca4844e067d9edfe429986d42575c657d7f",
+          "summaryEn": "c03f41419ddeec5c7bad983cac8b70d4c278226ad6f2a1765ba1b82e604fb16e",
+          "geographyEn": "c1ace880b80ae7d3be8053d16f8b4bd8718df2b4de3eabfd795622c4437cece4",
+          "date.displayEn": "438f7534cebdf68ef7b106fc422c8556b1fa30d22d1c0ea2897fb95cabd49464",
+          "date.noteEn": "3f6a715c132b6f28a54bd11918028bc36e85a3c9de2f538acd222c2cc6adad68"
+        }
+      }
+    },
+    "ev-bc3200-orkney-settlement-mounds": {
+      "titleSv": "Bosättningarna på Orkney växer till stora högar",
+      "summarySv": "Upprepat husbyggande och ackumulerat avfall bygger upp stora boplatshögar på Orkney. Bayliss med kolleger påvisar denna utveckling på platser som Stonehall på Mainland och Pool på Sanday.",
+      "geographySv": "Orkney, norra Skottland",
+      "date": {
+        "displaySv": "omkring 3200–3000 f.Kr. (kalibrerad kronologi)",
+        "noteSv": "Bayliss med kolleger anger detta fullständiga intervall för en regional utveckling av bosättningsformen. Det daterar inte den första bosättningen på varje plats, innebär inte en oavbruten bosättning under hela tiden och placerar inte Skara Braes senare samlade bosättning till 3200 f.Kr."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc3200-supplement.json",
+        "textSha256": {
+          "titleEn": "08931ebed9e3adc3d13c694fac558c7ae8765f46d840e13e8dddbbb09e2cc270",
+          "summaryEn": "4891c52f00d481d2245b590a8d64e90e76566a6f42839d39935fe897efe7777f",
+          "geographyEn": "43eefdd00141cf7c52baf8680fc0b846592de9130a374c221b2acfff56e58d79",
+          "date.displayEn": "946f7b055eeb9b6e10a1ee0b8a22f984e85183483cfbf19a5f21dbdef0e00e60",
+          "date.noteEn": "33c3f956daaa33b92547261b655ac80ee7ffc8d462cd62e0519f3927e07ae283"
+        }
+      }
+    },
+    "ev-bc3300-fanshan-elite-burials": {
+      "titleSv": "Rikt utrustade gravar utmärker ett elitgravfält i Fanshan",
+      "summarySv": "I Fanshan innehåller elva gravar påkostade gravgåvor av jade. Deras regelbundna anordning och gemensamma rituella föremål tyder på standardiserat gravskick och koncentrerad rikedom inom Liangzhusamhället. Dessa mönster stöder en tolkning av elitstatus, utan att namngivna härskare identifieras.",
+      "geographySv": "Fanshans gravfält, Liangzhu, Zhejiang, nedre Yangziområdet, Kina",
+      "date": {
+        "displaySv": "omkring 3300–2900 f.Kr.",
+        "noteSv": "Lian tilldelar Fanshans gravfält hela detta spann. Det daterar gravmaterialet, inte grundandet av Liangzhu, och placerar inte alla gravar till samma år. De enskilda gravarnas exakta ordningsföljd och varaktighet förblir ospecificerade."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc3300-supplement.json",
+        "textSha256": {
+          "titleEn": "80c2651fe15b45246e855532ad108756354cca680e751dc84a104473d7447449",
+          "summaryEn": "bc25c7a98d9ac71fc25feaacfd2397c4fb5d7370e293283518e01aee36d96375",
+          "geographyEn": "fd60603604c0dbab7664558a27b1ac973bce59cd374fa94ee6339bc32b39dfdc",
+          "date.displayEn": "02dab82a459a67848360a61a11580f2c9973586f4c79e5e28acae93e8bb5f0d7",
+          "date.noteEn": "1b9039752c805abb1b8ad43776e21e597492b8706b8cec9ff5c791efe6bd6a84"
+        }
+      }
+    },
+    "ev-bc3300-yamnaya-initial-expansion": {
+      "titleSv": "Jamnajasamhällen breder ut sig över den eurasiska stäppen",
+      "summarySv": "Samhällen som förknippas med det arkeologiska Jamnajakomplexet sprider sig österut och västerut från stäpperna norr om Svarta havet och Kaspiska havet. Omkring 3000 f.Kr. sträcker sig komplexet från Ungern till Kazakstan. Denna vida spridning förbinder avlägsna herdefolk; den fastställer varken en enda stat eller ett gemensamt språk överallt.",
+      "geographySv": "Pontisk-kaspiska stäppen och växande nätverk från Ungern till Kazakstan",
+      "date": {
+        "displaySv": "omkring 3300–3000 f.Kr.",
+        "noteSv": "Kaliff och Oestigaard placerar det utvecklade Jamnajakomplexets framträdande omkring 3300 f.Kr. och dess utbredning från Ungern till Kazakstan omkring 3000 f.Kr. Detta är ungefärliga gränser för en första expansion, inte en enda migration eller en exakt början. Deras vidare kulturspann, cirka 3300–2500 f.Kr., fortsätter efter denna episod."
+      },
+      "source": {
+        "file": "docs/research/world-cultures/english-events/bc3300-supplement.json",
+        "textSha256": {
+          "titleEn": "60ebefcadc7e2dd990bbf2a78bd626e12bd163bcb61f63ecff685dab6259cdea",
+          "summaryEn": "f562fc17236fcee32bf85867934eb569ebe99d27283ba77215d3caca7130434e",
+          "geographyEn": "09f233105e4667315f59e8f7c0bc797799651e4529b20cc5aa2aa6f92a107818",
+          "date.displayEn": "4d01639174c1fac65f150f56d602b3ddd38d111f699ee0d69ed7438dbb1f594c",
+          "date.noteEn": "8f0a03e347eee0d8ee280decd1ab55df0f0384aab5d0074bf4c816513883286a"
+        }
+      }
+    }
+  }
+}
