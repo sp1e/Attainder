@@ -115,6 +115,21 @@
     "reason": "technical"
   },
   {
+    "file": "src/runtime/nativePack.js",
+    "text": "${BASE}lang/attainder/en.json",
+    "reason": "technical"
+  },
+  {
+    "file": "src/runtime/nativePack.js",
+    "text": "${BASE}lang/attainder/historical-en.json",
+    "reason": "technical"
+  },
+  {
+    "file": "src/runtime/nativePack.js",
+    "text": "${BASE}lang/attainder/packages-en.json",
+    "reason": "technical"
+  },
+  {
     "file": "src/runtime/placeSearch.js",
     "text": "Under construction",
     "reason": "not-swedish"
