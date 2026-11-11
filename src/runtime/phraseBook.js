@@ -46,6 +46,11 @@ const literalSource = (text) => text.split(/\s+/).map(escapeRegex).join("\\s+");
 
 export const isPatternKey = (text) => typeof text === "string" && text.includes("{{") && new RegExp(SLOT.source).test(text);
 
+// The names of a text's slots, in order, each as often as it is written. The
+// pack check (scripts/i18n/check-native-pack.mjs) compares a pattern's slots
+// with its translation's, and has to read them the way the book does.
+export const slotNames = (text) => (typeof text === "string" ? Array.from(text.matchAll(SLOT), (match) => match[1]) : []);
+
 // One pattern, compiled; null for a key without a slot or without any words
 // outside its slots (it would match anything).
 export const compilePattern = (english, translated) => {
