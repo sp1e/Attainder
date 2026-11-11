@@ -442,3 +442,17 @@ Write it in English, under the same writing rules.
   - `sourceIds` names one or more entries of the file's `sources`.
 
   The example is a shape, not a researched row. Record progress in `RESEARCH-STATUS.md`. Claude then copies the list into `historicalScenario.tribes` in the builder and builds moment 24 on it.
+
+- **Faith traditions, for Phase 7 moment 19.** The moment reads "The priests call a holy war against the neighbor." The engine compares the ruler's faith with a neighbor's. Each court's religion has a court-specific id (`latin-church`, `asturian-church`, `congregational-mosque-unspecified`), so an id cannot say that Asturias and the Carolingian court share a faith. Today a holy war only targets the faith a ruler broke from in the campaign.
+
+  Add a `tradition` field to the `religion` object of every court in `courts/ad800-courts.json`, `ad1200-courts.json` and `ad1500-courts.json`, for example:
+
+  ```json
+  "religion": { "id": "asturian-church", "nameSv": "Kyrkan i Asturien", "tradition": "christian", ... }
+  ```
+
+  - `tradition` is one lowercase id. Use a short shared list: `christian`, `islamic`, `jewish`, `buddhist`, `hindu`, `zoroastrian`, `chinese-state-cult`, `norse`, `egyptian`, `mesopotamian`, `other`. Propose a new id in `RESEARCH-STATUS.md` before you use it.
+  - Two courts get the same id only when a source you opened supports that they shared the faith in the start year. Latin and Greek Christianity both count as `christian`; the game does not split them.
+  - Leave the field out where the court's faith is unclear, and say why in the religion's `noteSv`.
+
+  Record progress in `RESEARCH-STATUS.md`. Claude then copies `tradition` into the court seeds in the builder (`dossier-courts.mjs` and the authored Charlemagne, Kyrkostaten and John courts) and releases the packages.

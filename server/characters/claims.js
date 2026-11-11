@@ -24,8 +24,10 @@ const realmOf = (state, realmId) => (typeof realmId === 'string' ? state.foreign
 /** The border land's name in the court log and the panel. */
 export const borderLand = (realm) => `Gränslandet mot ${realm.name}`;
 
-const targetable = (realm) => realm.distanceKm != null && realm.distanceKm <= FOREIGN.neighborKm && !realm.alliance && !realm.claim && !realm.war && lands(realm) < CLAIM.lands;
-const atWar = (state) => state.foreignRealms.some((realm) => realm.war);
+/** A neighbor that a claim or a holy war can strike. Reads only. */
+export const targetable = (realm) => realm.distanceKm != null && realm.distanceKm <= FOREIGN.neighborKm && !realm.alliance && !realm.claim && !realm.war && lands(realm) < CLAIM.lands;
+/** Whether the player's realm fights any war. Reads only. */
+export const atWar = (state) => state.foreignRealms.some((realm) => realm.war);
 
 /** The realms a claim can be fabricated on, as `{ value, label }`. Reads only. */
 export const claimTargets = (state) => (state.historicalOrigin ? state.foreignRealms.filter(targetable).map((realm) => ({ value: realm.id, label: realm.name })) : []);
