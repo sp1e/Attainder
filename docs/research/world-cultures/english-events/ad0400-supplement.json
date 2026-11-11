@@ -1,0 +1,237 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-11",
+  "batchId": "ad0400-supplement-2026-11-11",
+  "researchWindow": {
+    "startYear": 400,
+    "endYear": 499
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "7d9bb8ea6c87a6372391e4106c3f1cabb01b7525",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0400en-met-roman-legions-leave-britain",
+      "title": "Great Britain and Ireland, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/euwb",
+      "locator": "Key Events, entry \"410\" beginning \"The Roman legions leave Britain\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "410",
+      "originalChronology": "410.",
+      "scopedClaim": "The Roman legions leave Britain in 410; Romano-Briton kings invite Germanic tribes such as the Angles and Saxons, and a revolt by these mercenaries results in large Germanic settlements in southeast England.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0400en-met-vandals-invade-north-africa",
+      "title": "Western North Africa, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/05/afw",
+      "locator": "Key Events, entry \"429 A.D.\" beginning \"The Vandals, a Germanic tribe\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "429 A.D.",
+      "originalChronology": "429 A.D.",
+      "scopedClaim": "The Vandals invade North Africa from Spain in 429, conquer swiftly and occupy Carthage as their capital; they later adopt written Latin, keep Roman-style villas and restore baths, theatres and churches.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0400en-met-egyptian-church-rejects-chalcedon",
+      "title": "Egypt, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/05/afe",
+      "locator": "Key Events, entry \"451 A.D.\" beginning \"Rejecting the Council of Chalcedon\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "451 A.D.",
+      "originalChronology": "451 A.D.",
+      "scopedClaim": "Rejecting the Council of Chalcedon in 451, the Egyptian church distances itself from Rome and Constantinople, laying the groundwork for the Coptic Church.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0400en-met-goguryeo-takes-hanseong",
+      "title": "Korea, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/05/eak",
+      "locator": "Key Events, entry \"475 A.D.\" beginning \"The armies of Goguryeo sweep\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "475 A.D.",
+      "originalChronology": "475 A.D.; Gaero r. 455–75.",
+      "scopedClaim": "In 475 Goguryeo captures Baekje's capital Hanseong and executes King Gaero (r. 455–75); Silla's troops arrive too late; the Baekje court moves south to Ungjin.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0400en-met-northern-wei-moves-capital-to-luoyang",
+      "title": "China, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/05/eac",
+      "locator": "Key Events, entry \"494 A.D.\" beginning \"Under Emperor Xiaowen\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "494 A.D.",
+      "originalChronology": "494 A.D.; Xiaowen r. 471–99.",
+      "scopedClaim": "Under Emperor Xiaowen (r. 471–99) the Northern Wei capital moves to Luoyang in 494; he requires the Xianbei and others to adopt Chinese surnames, language and dress; resentment contributes to the dynasty's downfall in the mid-sixth century.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0400en-met-clovis-converts",
+      "title": "Western and Central Europe, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/05/euw",
+      "locator": "Key Events, entry \"496 A.D.\" beginning \"Clovis I, king of the Salian Franks\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "496 A.D.",
+      "originalChronology": "496 A.D.",
+      "scopedClaim": "Clovis I, king of the Salian Franks, converts with all his entourage to Christianity in 496; his embrace of Roman Christianity and his victories earn him wider dominion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-0410-roman-legions-leave-britain",
+      "date": {
+        "kind": "exact",
+        "startYear": 410,
+        "endYear": 410,
+        "displayEn": "410 CE"
+      },
+      "titleEn": "The Roman legions leave Britain",
+      "summaryEn": "The Roman legions leave Britain. Romano-British kings invite Germanic groups such as the Angles and Saxons to defend them, and a revolt by these mercenaries leads to large Germanic settlements in southeast England.",
+      "geographyEn": "Britain",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0400en-met-roman-legions-leave-britain"
+      ],
+      "selectionNote": "Ends Roman military rule in Britain.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0429-vandals-invade-north-africa",
+      "date": {
+        "kind": "exact",
+        "startYear": 429,
+        "endYear": 429,
+        "displayEn": "429 CE",
+        "noteEn": "The Met dates the invasion to 429 and gives no year for the capture of Carthage."
+      },
+      "titleEn": "The Vandals invade North Africa",
+      "summaryEn": "The Vandals, a Germanic people, cross from Spain and invade North Africa. Their conquest is swift and brutal, and they make Carthage their capital. Once order returns, they keep Roman customs: they write Latin, live in Roman-style villas and restore baths, theatres and churches.",
+      "geographyEn": "Roman North Africa; Carthage",
+      "category": "war",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0400en-met-vandals-invade-north-africa"
+      ],
+      "selectionNote": "A Germanic people takes Roman North Africa and makes Carthage its capital.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0451-egyptian-church-rejects-chalcedon",
+      "date": {
+        "kind": "exact",
+        "startYear": 451,
+        "endYear": 451,
+        "displayEn": "451 CE"
+      },
+      "titleEn": "The Egyptian church rejects the Council of Chalcedon",
+      "summaryEn": "The Egyptian church rejects the Council of Chalcedon and distances itself from the authority of Rome and Constantinople. The break lays the groundwork for what is today called the Coptic Church.",
+      "geographyEn": "Egypt",
+      "category": "religion",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0400en-met-egyptian-church-rejects-chalcedon"
+      ],
+      "selectionNote": "The break that the source says laid the groundwork for the Coptic Church.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0475-goguryeo-takes-hanseong",
+      "date": {
+        "kind": "exact",
+        "startYear": 475,
+        "endYear": 475,
+        "displayEn": "475 CE"
+      },
+      "titleEn": "Goguryeo captures Hanseong, the Baekje capital",
+      "summaryEn": "Goguryeo's armies sweep into Baekje's Han River heartland, capture its capital Hanseong (modern Seoul) and execute King Gaero. Silla's relief troops arrive too late, and the surviving Baekje court moves its capital south to Ungjin (modern Gongju).",
+      "geographyEn": "Han River valley, Korea",
+      "category": "war",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0400en-met-goguryeo-takes-hanseong"
+      ],
+      "selectionNote": "The catalog records Baekje's move from Ungjin to Sabi (538). This record covers the loss of Hanseong that forced the earlier move.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0494-northern-wei-moves-capital-to-luoyang",
+      "date": {
+        "kind": "exact",
+        "startYear": 494,
+        "endYear": 494,
+        "displayEn": "494 CE"
+      },
+      "titleEn": "The Northern Wei move their capital to Luoyang",
+      "summaryEn": "Emperor Xiaowen moves the Northern Wei capital to Luoyang. He imposes a policy of sinicization, requiring the Xianbei and others to adopt Chinese surnames, language and dress. Resentment of these policies contributes to the dynasty's fall in the mid-sixth century.",
+      "geographyEn": "Luoyang, northern China",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0400en-met-northern-wei-moves-capital-to-luoyang"
+      ],
+      "selectionNote": "The catalog records the founding of the Northern Wei (386). This record covers its move to Luoyang.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0496-clovis-converts",
+      "date": {
+        "kind": "exact",
+        "startYear": 496,
+        "endYear": 496,
+        "displayEn": "496 CE"
+      },
+      "titleEn": "Clovis I converts to Christianity",
+      "summaryEn": "Clovis I, king of the Salian Franks, converts to Christianity with all his entourage. His early adoption of Roman Christianity and his later victories win him wider rule, and at his death the Frankish kingdom is among the most powerful in western Europe.",
+      "geographyEn": "Gaul",
+      "category": "religion",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0400en-met-clovis-converts"
+      ],
+      "selectionNote": "The conversion of the Frankish king whose kingdom the source ranks among the most powerful in western Europe at his death.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    }
+  ]
+}

@@ -8,7 +8,8 @@ The owner's Codex subscription has ended. From 11 November 2026 a Claude researc
 |---|---|---|---|---|---|
 | §13 faith traditions | Merged | [#193](https://github.com/sp1e/Attainder/pull/193), `7910c619` | `server/seed/historical/courts/faith-traditions.json` | 17 courts, 18 sources; independent check 35 checked, 29 confirmed, 6 corrected, 0 unsupported | Read the file into the court seeds, set `tradition` on each court religion, rebuild and release |
 | §13 border tribes, AD 800 | Merged | [#194](https://github.com/sp1e/Attainder/pull/194), `7d9bb8ea` | `server/seed/historical/courts/border-tribes.json` (`starts.ad800`) | 7 tribes, 15 sources; independent check 22 checked, 18 confirmed, 4 corrected, 0 unsupported | Copy `starts.ad800.tribes` into `historicalScenario.tribes` and add Swedish names in the builder |
-| §13 border tribes, AD 1200, AD 1500, BC 3000 | Ready for merge | pending | `server/seed/historical/courts/border-tribes.json` (`starts.ad1200`, `starts.ad1500`, `starts.bc3000`) | 5 tribes, 10 sources; `bc3000` empty; independent check 15 checked, 11 confirmed, 4 corrected, 0 unsupported | Copy each start's `tribes` into its `historicalScenario.tribes` and add Swedish names in the builder |
+| §13 border tribes, AD 1200, AD 1500, BC 3000 | Merged | [#196](https://github.com/sp1e/Attainder/pull/196), `2ad7d5a7` | `server/seed/historical/courts/border-tribes.json` (`starts.ad1200`, `starts.ad1500`, `starts.bc3000`) | 5 tribes, 10 sources; `bc3000` empty; independent check 15 checked, 11 confirmed, 4 corrected, 0 unsupported | Copy each start's `tribes` into its `historicalScenario.tribes` and add Swedish names in the builder |
+| English events, seven unresearched windows | Ready for merge | pending | `docs/research/world-cultures/english-events/{bc2600,bc1600,bc1400,bc0900,bc0600,ad0400,ad0600}-supplement.{json,md}` | 43 events, 43 sources; independent check 43 checked, 31 confirmed, 12 corrected, 0 unsupported | English runtime support (importer, validation, rendering) before the events reach the game |
 
 ### §13 faith traditions
 
@@ -46,6 +47,16 @@ The independent check opened all ten sources. It corrected the Estonia `uncertai
 - Ruling: leave out the Mapuche at AD 1500. Their homeland in south-central Chile lies beyond the validator's 2,500 km limit from Cusco, the nearest playable seat.
 - Ruling: count the Lithuanians at AD 1200. The study dates Mindaugas's union of the tribes to about 1230 and names no ruler for 1200 — if wrong, the engine offers a people that already had a duke.
 - Not yet researched: peoples near Angkor and Marrakech at AD 1200, and near Western Xia and Chimú once those courts are playable.
+
+### English events for the seven unresearched windows
+
+Seven new datasets in `docs/research/world-cultures/english-events/` cover the windows the catalog marks unresearched: `bc2600` (2 events), `bc1600` (5), `bc1400` (4), `bc0900` (6), `bc0600` (7), `ad0400` (6) and `ad0600` (13), 43 events and 43 sources in all. Each event cites one Key Events entry of the Met's Heilbrunn Timeline of Art History; each research note lists the entries withheld and why. A scratch validator checked the README rules: schema and locale, id form, unique ids against the catalog and every English dataset, date kinds and window, categories, importance, source fields, source resolution, uncited sources and LF line endings.
+
+The independent check opened all 31 cited pages and checked 43 events: 31 confirmed, 12 corrected, 0 unsupported, 0 unreachable. The corrections removed place names, a period label, an adverb and one wrong title ("a ruler" where the entry says "an important individual"). All twelve are applied.
+
+- Ruling: treat the Codex holds on these windows (BC0600 and the other tool-review holds) as tool refusals in the Codex environment; the hold records name no fault in the sources. The Claude session researched the windows afresh from public pages and did not use Codex's private drafts — if wrong, a hold that concerned the sources themselves goes unaddressed.
+- Ruling: accept one institutional timeline entry per event. The Met's entries are dated and attributed, and each summary stays within its entry — if wrong, the records need a second source before they reach the game.
+- Ruling: leave `coverage.json` and the catalog unchanged. The datasets wait for English runtime support like the earlier supplements.
 
 ## Current publication checkpoint: 9 November 2026
 
@@ -901,6 +912,6 @@ The independent revision 02 final review passed all 181 pairs and 63 checks. Roo
 
 ## Remaining research coverage and supplement hold
 
-The approved catalog still marks seven windows unresearched: 2600–2501, 1600–1501, 1400–1301, 900–801 and 600–501 BC, plus AD 400–499 and 600–699. Their earlier source-access and tool-review holds remain in force. Private preparation does not establish approved catalog coverage. All other covered windows remain partial; this delivery does not supply a securely dated important event for every year.
+The approved catalog still marks seven windows unresearched: 2600–2501, 1600–1501, 1400–1301, 900–801 and 600–501 BC, plus AD 400–499 and 600–699. English supplements for all seven windows (43 events) are listed in the Claude research checkpoint at the top of this file; the catalog coverage for these windows changes only when English runtime support lands. Private preparation does not establish approved catalog coverage. All other covered windows remain partial; this delivery does not supply a securely dated important event for every year.
 
 A separate BC0800 supplement was attempted after the active publication queue had completed review. Automatic tool review rejected its combined catalog-comparison and candidate-packaging operation before process start with `blocked by policy`, without a more specific reason. A read-only incident check found all seven intended output files absent. The saved discovery results remain separate from approved data. No candidate reconstruction, smaller-command retry, tool substitution, independent source-review launch or bilingual packaging followed the denial. The already published BC0800 batch is unchanged. This supplement hold is separate from the previously recorded BC0600 and other holds.

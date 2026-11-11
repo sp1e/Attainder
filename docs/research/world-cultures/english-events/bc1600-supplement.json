@@ -1,0 +1,204 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-11",
+  "batchId": "bc1600-supplement-2026-11-11",
+  "researchWindow": {
+    "startYear": -1600,
+    "endYear": -1501
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "7d9bb8ea6c87a6372391e4106c3f1cabb01b7525",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc1600en-met-boat-images-appear-in-scandinavia",
+      "title": "Eastern Europe and Scandinavia, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/eue",
+      "locator": "Key Events, entry \"ca. 1600 B.C.\" beginning \"Schematized representations of boats\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 1600 B.C.",
+      "originalChronology": "About 1600 B.C.; ship-shaped stone enclosures about 1300 B.C. and after.",
+      "scopedClaim": "Schematised representations of boats appear in Scandinavia about 1600 B.C., the earliest incised on a bronze sword from Rørby, Denmark; boats become among the most frequent motifs on the engraved rock faces of Sweden.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1600en-met-scandinavia-takes-up-bronze",
+      "title": "Eastern Europe and Scandinavia, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/eue",
+      "locator": "Key Events, entry \"ca. 1600–1500 B.C.\" beginning \"The peoples of Scandinavia and the Baltic\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 1600–1500 B.C.",
+      "originalChronology": "About 1600 to 1500 B.C.",
+      "scopedClaim": "The peoples of Scandinavia and the Baltic region begin to acquire bronze technology; lacking local tin and copper they expand long-distance trade with central and southern Europe, and amber proves the most valuable export.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1600en-met-shang-dynasty-rules-north-china",
+      "title": "China, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/eac",
+      "locator": "Key Events, entry \"ca. 1600 B.C.\" beginning \"The Shang dynasty controls\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 1600 B.C.",
+      "originalChronology": "About 1600 B.C.; Anyang as capital about 1300–1046 B.C.",
+      "scopedClaim": "The Shang dynasty controls a large area in northeast and north-central China; major sites include Zhengzhou and Anyang, capital from about 1300 to 1046 B.C.; its ritual bronzes are cast in multiple ceramic moulds.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1600en-met-ahmose-reunites-egypt",
+      "title": "Egypt, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/afe",
+      "locator": "Key Events, entry \"ca. 1550–1070 B.C. (New Kingdom, Dynasties 18–20)\" beginning \"The Theban king Ahmose I\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 1550–1070 B.C. (New Kingdom, Dynasties 18–20)",
+      "originalChronology": "New Kingdom about 1550–1070 B.C.; the reunification opens it.",
+      "scopedClaim": "The Theban king Ahmose I reunites Egypt and founds Dynasty 18; warrior kings, Thutmose III in particular, extend Egyptian influence through the Levant to the borders of the Hittite empire.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1600en-met-kerma-loses-lower-nubia",
+      "title": "Sudan, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/afs",
+      "locator": "Key Events, entry \"ca. 1550–1070 B.C.\" beginning \"Kerma loses control\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 1550–1070 B.C.",
+      "originalChronology": "Beginning of the New Kingdom, about 1550 B.C.; control to the fourth cataract by about 1450 B.C.",
+      "scopedClaim": "Kerma loses control of Lower Nubia at the beginning of Egypt's New Kingdom as Dynasty 18 kings campaign against Upper Nubia; by about 1450 B.C. Egypt controls Nubia to the fourth cataract, ruled by a viceroy called the King's Son of Kush.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1600-boat-images-appear-in-scandinavia",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1600,
+        "endYear": -1600,
+        "displayEn": "c. 1600 BCE"
+      },
+      "titleEn": "Boat images appear in Scandinavian art",
+      "summaryEn": "Schematised boats appear in Scandinavian art; the earliest known example is incised on a bronze sword from Rørby, Denmark. Boats are among the most frequent motifs on the engraved rock faces of Sweden.",
+      "geographyEn": "Scandinavia; Rørby, Denmark",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1600en-met-boat-images-appear-in-scandinavia"
+      ],
+      "selectionNote": "Dates the start of a motif that runs through Scandinavian Bronze Age art.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc1600-scandinavia-takes-up-bronze",
+      "date": {
+        "kind": "range",
+        "startYear": -1600,
+        "endYear": -1500,
+        "displayEn": "c. 1600–1500 BCE",
+        "noteEn": "The Met gives an approximate century."
+      },
+      "titleEn": "Scandinavia and the Baltic take up bronze",
+      "summaryEn": "Peoples of Scandinavia and the Baltic region begin to acquire bronze technology. With no local tin or copper, they expand long-distance trade with central and southern Europe, and amber becomes their most valuable export.",
+      "geographyEn": "Scandinavia and the Baltic region",
+      "category": "technology",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1600en-met-scandinavia-takes-up-bronze"
+      ],
+      "selectionNote": "Records the arrival of bronze technology in Scandinavia and the amber trade that paid for it.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc1600-shang-dynasty-rules-north-china",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1600,
+        "endYear": -1600,
+        "displayEn": "c. 1600 BCE",
+        "noteEn": "The Met dates Shang control of this area to about 1600 BCE and gives no founding year."
+      },
+      "titleEn": "The Shang dynasty rules a large area of northern China",
+      "summaryEn": "The Shang dynasty controls a large area of northeastern and north-central China. Zhengzhou, thought to be a cult centre, is among its major sites, and Anyang serves as capital from about 1300 BCE. Shang workshops cast ritual bronze vessels for wine and food in multiple ceramic moulds.",
+      "geographyEn": "Northeastern and north-central China",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1600en-met-shang-dynasty-rules-north-china"
+      ],
+      "selectionNote": "The catalog records Erlitou, the Yin capital (1300 BCE) and the Zhou conquest (1050 BCE), with no record for the start of Shang rule.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc1550-ahmose-reunites-egypt",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1550,
+        "endYear": -1550,
+        "displayEn": "c. 1550 BCE",
+        "noteEn": "The Met dates the New Kingdom to about 1550–1070 BCE and places Ahmose's reunification at its start without a separate year."
+      },
+      "titleEn": "Ahmose I reunites Egypt and founds Dynasty 18",
+      "summaryEn": "The Theban king Ahmose I reunites Egypt and founds Dynasty 18, the first dynasty of the New Kingdom. His successors, Thutmose III in particular, extend Egyptian influence through the Levant to the borders of the Hittite empire.",
+      "geographyEn": "Thebes and the Nile valley, Egypt",
+      "category": "politics",
+      "importance": 3,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1600en-met-ahmose-reunites-egypt"
+      ],
+      "selectionNote": "The catalog records Hyksos rule from Avaris (1650–1530 BCE). This record covers the Theban reunification that opens the New Kingdom.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc1550-kerma-loses-lower-nubia",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1550,
+        "endYear": -1550,
+        "displayEn": "c. 1550 BCE",
+        "noteEn": "The Met places the loss at the beginning of the New Kingdom and Egyptian control to the fourth cataract by about 1450 BCE."
+      },
+      "titleEn": "Kerma loses Lower Nubia to Egypt",
+      "summaryEn": "Kerma loses control of Lower Nubia when the Egyptian kings of Dynasty 18 begin campaigns against Upper Nubia. By about 1450 BCE Egypt rules Nubia as far south as the fourth cataract through a viceroy, the King's Son of Kush.",
+      "geographyEn": "Lower and Upper Nubia, present-day Egypt and Sudan",
+      "category": "war",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1600en-met-kerma-loses-lower-nubia"
+      ],
+      "selectionNote": "The catalog records the founding of Kerma (2500 BCE) and its monumental burials. This record covers the loss of Lower Nubia.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    }
+  ]
+}
