@@ -722,6 +722,22 @@ export const translateLabel = (text) => {
   return text;
 };
 
+// What the page shows for a Swedish string inside a Swedish-native view in
+// English mode: the whole native book's reading of it. For text such a view
+// searches without rendering it (the start picker matches the typed query
+// against each row's fields), so a search finds what the player reads. The
+// string comes back unchanged in every other mode, while the translator is not
+// running, and when the book has nothing for it.
+//
+// translateLabel will not do here: in pack mode it queues an unknown string
+// for the model, and the picker's fields are Swedish names. This lookup queues
+// nothing and lists nothing; the same strings are on the page, where the scan
+// lists what the book lacks.
+export const nativeReading = (text) => {
+  if (!translatorActive || mode !== "native" || typeof text !== "string") return text;
+  return book.translate(text) ?? text;
+};
+
 // Proactively queue content that exists as data but may not be rendered yet
 // (e.g. freshly fetched Community-hub posts). Only unknown strings cost a call.
 export const enqueueStrings = (strings) => {

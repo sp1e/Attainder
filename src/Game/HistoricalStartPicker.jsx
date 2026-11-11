@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { groupHistoricalStartRows, historicalStartRows } from '../runtime/historicalStartPicker.js';
+import { nativeReading } from '../runtime/translator.js';
 
 // The start card's list of historical starts: a search field over rows grouped by region and era.
 // The rows form one radio group with a roving tab stop, as the card's mode buttons do.
@@ -26,9 +27,23 @@ function StartRow({ row, chosen, tabStop, disabled, onChoose }) {
   </button>;
 }
 
+// Draws the picker again when the page translator announces new translations ("i18n:updated", as the
+// map's labels listen for). In English mode the native book can arrive after the picker is on screen,
+// and the rows' search text is built from the book's readings.
+const useTranslatorUpdates = () => {
+  const [, setUpdates] = useState(0);
+  useEffect(() => {
+    const onUpdated = () => setUpdates(count => count + 1);
+    window.addEventListener('i18n:updated', onUpdated);
+    return () => window.removeEventListener('i18n:updated', onUpdated);
+  }, []);
+};
+
 export default function HistoricalStartPicker({ options, value, onChange, disabled = false }) {
   const [query, setQuery] = useState('');
-  const rows = historicalStartRows(options);
+  useTranslatorUpdates();
+  // nativeReading: in English mode the rows read English on the page, and the search must match that too.
+  const rows = historicalStartRows(options, nativeReading);
   const groups = groupHistoricalStartRows(rows, query);
   const shown = groups.flatMap(region => region.eras.flatMap(era => era.rows));
   const chosenKey = keyOf(value);

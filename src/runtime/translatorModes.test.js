@@ -18,6 +18,7 @@ import {
   enqueueContentStrings,
   enqueueEventStrings,
   enqueueStrings,
+  nativeReading,
   startTranslator,
   stopTranslator,
   translateLabel,
@@ -228,6 +229,13 @@ test("English mode: the native book translates the page in two tiers and asks no
   assert.equal(translateLabel("Rome"), "Rome");
   assert.equal(translateLabel("Kungen av Asturien"), "Kungen av Asturien");
   assert.ok(state.missing.has("Kungen av Asturien"), "a Swedish label the book lacks is a gap too");
+  // What a Swedish-native view searches without rendering: the whole book's
+  // reading, weak patterns included, and nothing listed for what it lacks.
+  assert.equal(nativeReading("Karl dog 814"), "Charles died 814");
+  assert.equal(nativeReading("Sändebud"), "Envoy");
+  assert.equal(nativeReading("Drottningen av Navarra"), "Drottningen av Navarra");
+  assert.equal(state.missing.has("Drottningen av Navarra"), false, "a searched field is not a rendered gap");
+  assert.equal(nativeReading(null), null);
   enqueueStrings(["Declare war on France", "A new scenario"]);
   enqueueContentStrings({ name: "The Long Peace", description: "A scenario about a long peace." });
   enqueueEventStrings([{ title: "A war begins", description: "It begins in spring." }]);
@@ -257,6 +265,7 @@ test("a second start changes nothing; a start after a stop watches the page agai
   stopTranslator();
   assert.equal(watching(), 0);
   assert.equal(translateLabel("Karl"), "Karl", "a stopped translator translates nothing");
+  assert.equal(nativeReading("Sändebud"), "Sändebud");
 
   const late = addText("Sändebud");
   startTranslator();
@@ -300,6 +309,9 @@ test("Swedish mode: the pack, then the research's Swedish under it, and no Swedi
   assert.equal(translateLabel("Hovet saknar silver"), "Hovet saknar silver");
   enqueueStrings(["Krig med Danmark", "Kungen är död"]);
   assert.equal(pending.size, 0, "Swedish text is never queued for the model");
+  assert.equal(nativeReading("Save game"), "Save game", "the native reading is English mode's: the pack is not asked");
+  assert.equal(nativeReading("Frankrike"), "Frankrike");
+  assert.equal(pending.size, 0, "and a searched field is never queued");
   assert.equal(translateLabel("The Long Peace"), "The Long Peace");
   assert.deepEqual([...pending], ["The Long Peace"], "English content still is");
   stopTranslator();

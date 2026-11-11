@@ -18,11 +18,20 @@ function load(file, loader, modules, globals = {}) {
   vm.runInNewContext(compile(file,loader),{module,exports:module.exports,require:id=>{assert.ok(id in modules,`Unexpected import: ${id}`); return modules[id];},React,localStorage:{getItem:()=>null,setItem:()=>{}},...globals});
   return module.exports;
 }
+// A stand-in for the page translator and the window it announces on. `english` is what the native book
+// would hold; `announce()` is the translator's "i18n:updated" event.
+const createTranslatorStub = (english = {}) => {
+  const listeners = new Set();
+  return { english, listeners,
+    module: { nativeReading: text => english[text] ?? text },
+    window: { addEventListener:(name,listener)=>{ if (name==='i18n:updated') listeners.add(listener); }, removeEventListener:(_name,listener)=>listeners.delete(listener) },
+    announce: () => listeners.forEach(listener => listener()) };
+};
 // The card with its real picker; the other imports are the test's.
-const loadCard = (driver, modules) => load('./DynastyStartCard.jsx','jsx',{
+const loadCard = (driver, modules, translator = createTranslatorStub()) => load('./DynastyStartCard.jsx','jsx',{
   react:driver.react, './Characters/LocalModelConnect.jsx':{default:()=>null,__esModule:true},
   './AI/providerConfig.js':{isFallbackListConfigured:()=>true}, './dynastyStart.css':{}, './Characters/playerText.js':playerTextModule,
-  './HistoricalStartPicker.jsx':load('./HistoricalStartPicker.jsx','jsx',{react:driver.react,'../runtime/historicalStartPicker.js':startPicker}),
+  './HistoricalStartPicker.jsx':load('./HistoricalStartPicker.jsx','jsx',{react:driver.react,'../runtime/historicalStartPicker.js':startPicker,'../runtime/translator.js':translator.module},{window:translator.window}),
   '../runtime/historicalStartOptions.js':{coverageLineSv},
   ...modules,
 });
@@ -117,6 +126,33 @@ test('typing in the search field filters the rows and shows an empty state', asy
   searchField(tree).props.onChange({target:{value:'zzz'}}); tree=render();
   assert.equal(startRows(tree).length,0);
   assert.equal(findAll(tree,n=>n.type==='p' && textOf(n)==='Inga starter matchar sökningen.').length,1);
+});
+
+// English mode: the rows read English on the page, so a search typed in English must find them, also when
+// the native book arrives after the picker is on screen.
+test('the search finds a row by what the page shows for it, and follows the translator when its book arrives', async () => {
+  const base=createHookDriver(), options=shippedOptions(), translator=createTranslatorStub();
+  // Counts state changes, which is what makes React draw the picker again.
+  let stateChanges=0;
+  const useState=initial=>{ const [value,set]=base.react.useState(initial); return [value,next=>{ stateChanges+=1; set(next); }]; };
+  const driver={...base,react:{...base.react,useState}};
+  const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>options,startDynastyCampaign:async()=>{}}},translator);
+  const render=()=>driver.render(React.createElement(card.default,{}));
+  render(); await settle(); let tree=render();
+  assert.equal(translator.listeners.size,1,'the picker listens for i18n:updated, once');
+  searchField(tree).props.onChange({target:{value:'Papal'}}); tree=render();
+  assert.equal(startRows(tree).length,0,'the book has not arrived: only the Swedish is searched');
+  assert.equal(translator.listeners.size,1,'and a new render adds no second listener');
+
+  translator.english.Kyrkostaten='Papal States';
+  const before=stateChanges;
+  translator.announce();
+  assert.equal(stateChanges,before+1,'the announcement changes state, so the picker is drawn again');
+  tree=render();
+  assert.deepEqual(startRows(tree).map(r=>r.props['data-start-key']),['charlemagne-800/papal-states']);
+  assert.equal(textOf(startRows(tree)[0].props.children[0]),'Kyrkostaten · 800 e.Kr.','the row renders its source text; the page translator swaps it');
+  searchField(tree).props.onChange({target:{value:'kyrko'}}); tree=render();
+  assert.deepEqual(startRows(tree).map(r=>r.props['data-start-key']),['charlemagne-800/papal-states'],'the Swedish name still matches');
 });
 
 test('choosing Kyrkostaten starts the papal court from the Charlemagne start', async () => {
