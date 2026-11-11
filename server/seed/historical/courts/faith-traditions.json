@@ -1,0 +1,331 @@
+{
+  "schema": "attainder-faith-traditions-v1",
+  "sources": {
+    "ft-sun2024-zhangjing": {
+      "title": "Mingli Sun, A Forgotten Eminent Buddhist Monk and His Social Network for Constructing Buddhist Statues in Qionglai: A Study Based on the Statue Construction Account in 798",
+      "institution": "Religions 15 (2024), article 412",
+      "url": "https://www.wisdomlib.org/uploads/journals/mdpi-relig/2024-volume-15-issue-4--2077-1444-15-4-412-.pdf",
+      "locator": "Article pp. 7–9, sections 3.2.1–3.2.2: Zhangjing Temple as a royal monastery; Dezong receiving the Bodhisattva precepts; the 789 palace ordinations",
+      "scopedClaim": "Emperor Dezong received the Bodhisattva precepts at the royal Zhangjing Temple in Chang'an in 786 and had Daocheng confer them on palace women in 789.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-iranica-harun": {
+      "title": "Clifford Edmund Bosworth, HĀRUN AL-RAŠID",
+      "institution": "Encyclopaedia Iranica",
+      "url": "https://www.iranicaonline.org/articles/harun-al-rasid/",
+      "locator": "Paragraph on Harun's religious policy, following the paragraph on Ḥamza's movement",
+      "scopedClaim": "Harun regarded his caliphal role as a defence of Sunnism and acted against the Shiʿa and heterodoxy.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-pbe-tarasios": {
+      "title": "Prosopography of the Byzantine Empire: Tarasios 1",
+      "institution": "King's College London, PBE I",
+      "url": "https://pbe.kcl.ac.uk/data/D73/F07.htm",
+      "locator": "Narrative paragraphs on appointment and tenure",
+      "scopedClaim": "Tarasios was patriarch of Constantinople from 784 until his death on 25 February 806; Eirene nominated or co-chose him.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-unesco-gyeongju": {
+      "title": "Gyeongju Historic Areas",
+      "institution": "UNESCO World Heritage Centre",
+      "url": "https://whc.unesco.org/en/list/976/",
+      "locator": "Outstanding Universal Value, Brief synthesis, opening paragraph",
+      "scopedClaim": "The Silla capital preserves Buddhist sculpture, pagodas and temple remains from the 7th to 10th centuries, under the Silla dynasty that ruled until 935.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-tdv-hakam": {
+      "title": "HAKEM I",
+      "institution": "TDV İslâm Araştırmaları Merkezi, TDV İslâm Ansiklopedisi 15 (1997), pp. 173–174",
+      "url": "https://islamansiklopedisi.org.tr/hakem-i",
+      "locator": "Heading; paragraph on the jurists' (fukaha) conspiracy of 189/805",
+      "scopedClaim": "Al-Hakam I was Umayyad emir of al-Andalus 796–822; Muslim jurists (fukaha) plotted to depose him, 72 people were executed in 189/805, and the people the jurists had incited accused him openly in front of the mosques.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-tdv-ibrahim": {
+      "title": "Nadir Özkuyumcu, İBRÂHİM I",
+      "institution": "TDV İslâm Araştırmaları Merkezi",
+      "url": "https://islamansiklopedisi.org.tr/ibrahim-i",
+      "locator": "Third paragraph, beginning \"Herseme b. A‘yen’den sonra\"",
+      "scopedClaim": "Ibrahim ibn al-Aghlab remained loyal to the Abbasid caliph after founding Aghlabid rule in Ifriqiya in 184/800.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-venegas-asturias": {
+      "title": "Alberto Venegas Ramos, La consolidación de la monarquía asturiana a través de la cronística y la herencia visigoda (2013)",
+      "institution": "Roda da Fortuna 2(2), pp. 308–339; Universidad de La Rioja Dialnet host",
+      "url": "https://dialnet.unirioja.es/descarga/articulo/4748605.pdf",
+      "locator": "Section 4.2, printed p. 322 (Crónica de Albelda, Casariego 1985: 37–38): Church and Palace at Oviedo; section 4.3.1, printed p. 327 (Casariego 1985: 60): Alfonso II's anointing in 791",
+      "scopedClaim": "The chronicles cited by the author report Alfonso II anointed king in 791 and establishing at Oviedo, in Church and Palace, the Gothic order of Toledo.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-treccani-grimoaldo": {
+      "title": "Andrea Bedina, Grimoaldo, Dizionario Biografico degli Italiani 59 (2002)",
+      "institution": "Istituto della Enciclopedia Italiana Treccani",
+      "url": "https://www.treccani.it/enciclopedia/grimoaldo_(Dizionario-Biografico)/",
+      "locator": "Paragraph beginning \"Giunto a Benevento\"",
+      "scopedClaim": "Grimoald, ruler of Benevento from about May 788 to April 806, began his rule by giving thanks in the cathedral.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-einhard-26-28": {
+      "title": "Einhard, Life of Charlemagne, trans. S. E. Turner (1880)",
+      "institution": "Fordham University, Internet Medieval Sourcebook",
+      "url": "https://sourcebooks.fordham.edu/basis/einhard.asp",
+      "locator": "Chapters 26 (piety) and 28 (Rome and the imperial title)",
+      "scopedClaim": "Einhard describes Charles as devoted to the Christian religion and a constant worshipper at the Aachen basilica, and reports his winter in Rome, where he received the titles of Emperor and Augustus.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-ce-leo3": {
+      "title": "H. K. Mann, Pope St. Leo III",
+      "institution": "Catholic Encyclopedia (1910), New Advent edition",
+      "url": "https://www.newadvent.org/cathen/09157b.htm",
+      "locator": "Opening paragraphs on the election",
+      "scopedClaim": "Leo III was elected pope on 26 December 795 and died in 816. The entry is 1910 scholarship.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-galambos-tangut": {
+      "title": "Imre Galambos, Translating Chinese Tradition and Teaching Tangut Culture: Manuscripts and Printed Books from Khara-khoto (2015)",
+      "institution": "De Gruyter; Library of Congress digital copy",
+      "url": "https://tile.loc.gov/storage-services/master/gdc/gdcebookspublic/20/20/71/85/13/2020718513/2020718513.pdf",
+      "locator": "Printed pp. 112–114, section 3.3, notes 411–414",
+      "scopedClaim": "Chunyou reigned 1193–1206; the printing of Buddhist sutras continued during his reign, attested by surviving copies from the 1190s.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-getty-gods-angkor": {
+      "title": "Gods of Angkor: Bronzes from the National Museum of Cambodia",
+      "institution": "J. Paul Getty Museum",
+      "url": "https://www.getty.edu/art/exhibitions/gods_angkor/",
+      "locator": "Section \"Bronzes in the Reign of Jayavarman VII\"",
+      "scopedClaim": "Jayavarman VII (ruled 1181–about 1218) placed the Buddha at the apex of a religious system in which Hindu gods kept subsidiary roles.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-met-maghrib": {
+      "title": "Western North Africa (The Maghrib), 1000–1400 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/pt/toah/ht/07/afw",
+      "locator": "Key Events, entry 1147–1269",
+      "scopedClaim": "Religious reformation was integral to the Almohad establishment, and their courts at Marrakesh and Seville became centres of Islamic learning.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-vatican-innocent": {
+      "title": "Innocent III",
+      "institution": "The Holy See",
+      "url": "https://www.vatican.va/content/vatican/en/holy-father/innocenzo-iii.html",
+      "locator": "Biography table: Beginning Pontificate, End Pontificate",
+      "scopedClaim": "Innocent III, 176th pope of the Catholic Church, held the pontificate from 1198 to 16 July 1216.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-lex-ingeborg": {
+      "title": "Niels Henrik Holmqvist-Larsen, Ingeborg",
+      "institution": "Dansk Kvindebiografisk Leksikon, KVINFO/Lex",
+      "url": "https://kvindebiografiskleksikon.lex.dk/Ingeborg/",
+      "locator": "Biography paragraph on 1199–1200",
+      "scopedClaim": "Innocent III declared Philip Augustus a bigamist in 1199, and France was placed under interdict in January 1200, suspending church rites except infant baptism and confession of the dying.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-westminster-john": {
+      "title": "John",
+      "institution": "Westminster Abbey",
+      "url": "https://www.westminster-abbey.org/abbey-commemorations/royals/john",
+      "locator": "Section \"Coronation\"",
+      "scopedClaim": "John was crowned in Westminster Abbey on 27 May 1199; Isabella's coronation in the Abbey followed on 8 October 1200.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-volakova-chimu": {
+      "title": "Sylvie Voláková, Chimu Ceramics in the Naprstek Museum",
+      "institution": "National Museum, Prague; Annals of the Náprstek Museum 25 (2004)",
+      "url": "https://publikace.nm.cz/en/file/852dfc9c985d17c1af78d37dde55d127/29686/ANpM_2004_4_Volakova_ocred.pdf",
+      "locator": "Printed pp. 57–58, Brief Characteristics of the Chimu Culture, paragraph on Taycanamo and the Moon",
+      "scopedClaim": "Legends derive the Chimú rulers' descent from a pair of stars, and the author calls the Moon the presumably highest deity of the Chimú pantheon.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-met-raneb": {
+      "title": "Stela of King Raneb, 60.144",
+      "institution": "The Metropolitan Museum of Art",
+      "url": "https://www.metmuseum.org/art/collection/search/545799",
+      "locator": "Curatorial text, first paragraph",
+      "scopedClaim": "The serekh is surmounted by a falcon of the god Horus, implying the king's identity with that deity; the Horus name is the commonest royal designation from Dynasty 0 into Dynasty 3. The object dates to about 2880 BCE.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    }
+  },
+  "courts": [
+    {
+      "start": "ad800",
+      "polityId": "carolingian-realm",
+      "religionId": "latin-church",
+      "tradition": "christian",
+      "sourceIds": [
+        "ft-einhard-26-28"
+      ]
+    },
+    {
+      "start": "ad800",
+      "polityId": "papal-states",
+      "religionId": "latin-church",
+      "tradition": "christian",
+      "sourceIds": [
+        "ft-ce-leo3"
+      ]
+    },
+    {
+      "start": "ad800",
+      "polityId": "tang-empire",
+      "religionId": "tang-zhangjing-buddhism",
+      "tradition": "buddhist",
+      "sourceIds": [
+        "ft-sun2024-zhangjing"
+      ],
+      "noteEn": "The source shows the emperor's Buddhist precepts at a royal temple. This file makes no claim about the other cults of the Tang court."
+    },
+    {
+      "start": "ad800",
+      "polityId": "abbasid-caliphate",
+      "religionId": "sunni-islam",
+      "tradition": "islamic",
+      "sourceIds": [
+        "ft-iranica-harun"
+      ]
+    },
+    {
+      "start": "ad800",
+      "polityId": "byzantine-empire",
+      "religionId": "constantinopolitan-church",
+      "tradition": "christian",
+      "sourceIds": [
+        "ft-pbe-tarasios"
+      ],
+      "noteEn": "Church of Constantinople; the game counts it with the Latin courts as christian."
+    },
+    {
+      "start": "ad800",
+      "polityId": "silla",
+      "religionId": "silla-royal-buddhism",
+      "tradition": "buddhist",
+      "sourceIds": [
+        "ft-unesco-gyeongju"
+      ],
+      "noteEn": "The source dates the flowering of Silla Buddhist art in particular to the 7th–10th centuries and names no king at the bookmark."
+    },
+    {
+      "start": "ad800",
+      "polityId": "emirate-of-cordoba",
+      "religionId": "congregational-mosque-unspecified",
+      "tradition": "islamic",
+      "sourceIds": [
+        "ft-tdv-hakam"
+      ]
+    },
+    {
+      "start": "ad800",
+      "polityId": "aghlabid-emirate",
+      "religionId": "islam",
+      "tradition": "islamic",
+      "sourceIds": [
+        "ft-tdv-ibrahim"
+      ]
+    },
+    {
+      "start": "ad800",
+      "polityId": "kingdom-of-asturias",
+      "religionId": "asturian-church",
+      "tradition": "christian",
+      "sourceIds": [
+        "ft-venegas-asturias"
+      ]
+    },
+    {
+      "start": "ad800",
+      "polityId": "duchy-of-benevento",
+      "religionId": "beneventan-church",
+      "tradition": "christian",
+      "sourceIds": [
+        "ft-treccani-grimoaldo"
+      ]
+    },
+    {
+      "start": "ad1200",
+      "polityId": "johns-realms",
+      "religionId": "latin-church",
+      "tradition": "christian",
+      "sourceIds": [
+        "ft-westminster-john"
+      ]
+    },
+    {
+      "start": "ad1200",
+      "polityId": "western-xia",
+      "religionId": "western-xia-court-buddhism",
+      "tradition": "buddhist",
+      "sourceIds": [
+        "ft-galambos-tangut"
+      ],
+      "noteEn": "The dossier keeps this court blocked; the tradition applies once the court is playable."
+    },
+    {
+      "start": "ad1200",
+      "polityId": "khmer-angkor",
+      "religionId": "khmer-mahayana-court",
+      "tradition": "buddhist",
+      "sourceIds": [
+        "ft-getty-gods-angkor"
+      ],
+      "noteEn": "Hindu gods kept subsidiary roles in Jayavarman VII's system."
+    },
+    {
+      "start": "ad1200",
+      "polityId": "almohad",
+      "religionId": "almohad-islam",
+      "tradition": "islamic",
+      "sourceIds": [
+        "ft-met-maghrib"
+      ],
+      "noteEn": "The source calls religious reformation integral to the Almohad establishment; the game does not split Islamic schools."
+    },
+    {
+      "start": "ad1200",
+      "polityId": "france-capetian",
+      "religionId": "latin-christianity",
+      "tradition": "christian",
+      "sourceIds": [
+        "ft-vatican-innocent",
+        "ft-lex-ingeborg"
+      ]
+    },
+    {
+      "start": "ad1200",
+      "polityId": "chimu",
+      "religionId": "chimu-ritual-traditions",
+      "tradition": "other",
+      "sourceIds": [
+        "ft-volakova-chimu"
+      ],
+      "noteEn": "The only court at this start with tradition other. The dossier keeps the court blocked and its religious relationship uncertain."
+    },
+    {
+      "start": "bc3000",
+      "polityId": "egypt-early-dynastic",
+      "religionId": "horus-context",
+      "tradition": "egyptian",
+      "sourceIds": [
+        "ft-met-raneb"
+      ],
+      "noteEn": "The object dates to about 2880 BCE, after the bookmark; it supports the early royal Horus tradition, not a named ruler in 3000 BC."
+    }
+  ]
+}
