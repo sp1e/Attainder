@@ -28771,12 +28771,12 @@
     },
     {
       "id": "record/server/seed/historical/ad800-review.json/settlements/@settlementId=rome/noteSv",
-      "sv": "Ungefärlig ortsmarkör från Getty. Staden hör till påvens område på kartan. Karl var här på bokmärkets dag; spelsätet är Aachen. Titeln patricius gav den dagen vika för kejsartiteln.",
-      "en": "Approximate place marker from Getty. The city belongs to the pope’s territory on the map. Charles was here on the bookmark date; the game seat is Aachen. The title patricius gave way to the imperial title that day.",
+      "sv": "Ungefärlig ortsmarkör från Getty. Staden hör till påvens område på kartan. Karls rike har Aachen som spelsäte och Kyrkostaten har Rom. Karl var här på bokmärkets dag. Titeln patricius gav den dagen vika för kejsartiteln.",
+      "en": "Approximate place marker from Getty. The city belongs to the pope’s territory on the map. Charles’s realm has Aachen as its game seat, and the Papal States have Rome. Charles was here on the bookmark date. The title patricius gave way to the imperial title that day.",
       "source": {
         "path": "server/seed/historical/ad800-review.json",
         "jsonPointer": "/settlements/0/noteSv",
-        "textSha256": "f95e67d5a6e3bcb147e3e5e9ca307f066006e59307d524dffb2f1e15b21f563d"
+        "textSha256": "ab257aedf5446831045f919c5c19763f1b401a9434c3cd497994494f6deee4d8"
       }
     },
     {
