@@ -175,7 +175,7 @@ const INCA_1500 = dossierPlayable('inca-empire','elective',['Kuntur Rimaq','Qori
 // contextSv and coverageNotePrefixSv may be functions of the playable polity names; namePlayables() fills them in.
 const AUTHORED_PACKAGES = {
   'egypt-3000bc': {
-    sources,polityId: 'egypt-early-dynastic',bookmarkDate: '-3000-01-01',eraLabelSv: 'Cirka 3000 f.Kr.',
+    sources,polityId: 'egypt-early-dynastic',contentVersion: '1.1.0',bookmarkDate: '-3000-01-01',eraLabelSv: 'Cirka 3000 f.Kr.',
     seat: { id: 'memphis',nameSv: 'Ineb-Hedj (Memfis)',coordinates: [31.25,29.85],regionId: 'hbm-bc3000-19',placement: 'inside',sourceIds: ['egypt','memphis'],noteSv: 'Ungefärlig placering vid dagens Mit Rahina; det tidiga palatsets läge är okänt.' },
     contextSv: `Egypten, cirka 3000 f.Kr. Kungahuset är genererat. ${EGYPT_CORE_NOTE_SV}`,
     coverageNotePrefixSv: `${EGYPT_CORE_NOTE_SV} `,
@@ -190,7 +190,7 @@ const AUTHORED_PACKAGES = {
     },
   },
   'john-1200': {
-    sources,polityId: 'johns-realms',contentVersion: '1.2.0',bookmarkDate: '1200-12-31',eraLabelSv: '1200 e.Kr.',
+    sources,polityId: 'johns-realms',contentVersion: '1.3.0',bookmarkDate: '1200-12-31',eraLabelSv: '1200 e.Kr.',
     seat: { id: 'windsor',nameSv: 'Windsor',coordinates: [-0.6,51.4833],regionId: 'hbm-ad1200-275',placement: 'inside',sourceIds: ['windsor','windsorResidence'],noteSv: 'Ungefärlig ortsmarkör. Vald som spelsäte; kungaparets närvaro denna dag är inte belagd.' },
     extraPlayables: AD1200_DOSSIER_PLAYABLES,
     contextSv: names => `Nyårsafton 1200. Spelbara riken: ${listSv(names)}. Du möter dokumenterade personer med genererade spelvärden och genererade hovmän.`,
@@ -214,7 +214,7 @@ const AUTHORED_PACKAGES = {
     },
   },
   'charlemagne-800': {
-    sources: CHARLEMAGNE_SOURCES,polityId: 'carolingian-realm',contentVersion: '1.3.0',bookmarkDate: '0800-12-25',eraLabelSv: '800 e.Kr.',
+    sources: CHARLEMAGNE_SOURCES,polityId: 'carolingian-realm',contentVersion: '1.4.0',namePoolId: 'frankish-saint-germain-823-829',bookmarkDate: '0800-12-25',eraLabelSv: '800 e.Kr.',
     seat: { id: 'aachen',nameSv: 'Aachen',coordinates: [6.1053,50.7708],regionId: 'hbm-ad800-151',placement: 'inside',sourceIds: ['aachen',...evidence('rfa-800-itinerary','rfa-801-coronation','einhard-28')],noteSv: 'Ungefärlig ortsmarkör från Getty. Vald som spelsäte. Karl lämnade Aachen i mars 800 och återvände under året, men på bokmärkets dag var han i Rom.' },
     otherSettlements: [settlement(ROME_800,'papal-states')],
     extraPlayables: [PAPAL_STATES_800,...AD800_DOSSIER_PLAYABLES],
@@ -296,6 +296,42 @@ export function courtNamePool(file) {
   return { id: file.id,male: file.male.map(entry => entry.nameSv),female: file.female.map(entry => entry.nameSv) };
 }
 
+// The research start key of each package, as the side files of research brief section 13 name it.
+const RESEARCH_STARTS = { 'egypt-3000bc': 'bc3000','charlemagne-800': 'ad800','john-1200': 'ad1200','world-1500': 'ad1500' };
+// Swedish game names for the border tribes; the research file carries English names only.
+const TRIBE_NAMES_SV = { 'ad800-tribe-obodrites': 'Obodriterna','ad800-tribe-wilzi': 'Wilzerna','ad800-tribe-sorbs': 'Sorberna','ad800-tribe-bohemians': 'Böhmarna',
+  'ad800-tribe-nordalbingian-saxons': 'Nordalbingiska saxarna','ad800-tribe-bretons': 'Bretonerna','ad800-tribe-emishi': 'Emishi' };
+
+// Sets each playable court religion's tradition from courts/faith-traditions.json. A court the package
+// does not play is skipped; a religion id the court lacks stops the build.
+export function applyFaithTraditions(contentId,courtSeeds,file) {
+  if (file == null) return;
+  if (file.schema !== 'attainder-faith-traditions-v1') throw new Error('Faith traditions: unknown schema');
+  for (const entry of file.courts.filter(e => e.start === RESEARCH_STARTS[contentId] && Object.hasOwn(courtSeeds,e.polityId))) {
+    const religion = courtSeeds[entry.polityId].religions.find(r => r.id === entry.religionId);
+    if (!religion) throw new Error(`${contentId} ${entry.polityId}: faith tradition names religion ${entry.religionId}, which the court lacks`);
+    religion.tradition = entry.tradition;
+  }
+}
+
+// The package's border tribes from courts/border-tribes.json, with Swedish names, or undefined without a start
+// there. Each tribe source joins the package sources in the package's source shape.
+export function borderTribes(contentId,file,sources) {
+  const start = file?.starts?.[RESEARCH_STARTS[contentId]];
+  if (!start) return undefined;
+  if (file.schema !== 'attainder-border-tribes-v1') throw new Error('Border tribes: unknown schema');
+  for (const [id,s] of Object.entries(start.sources)) {
+    const record = { title: s.title,institution: s.institution,url: s.url,locator: s.locator,chronology: s.chronology,uncertainty: s.uncertainty,license: s.license,
+      retrievedAt: s.retrievedOn,review: `Research session source review for border tribes: ${s.scopedClaim}` };
+    if (Object.hasOwn(sources,id) && JSON.stringify(sources[id]) !== JSON.stringify(record)) throw new Error(`Border tribe source ${id} differs from a package source`);
+    sources[id] = record;
+  }
+  return start.tribes.map(t => {
+    if (!Object.hasOwn(TRIBE_NAMES_SV,t.id)) throw new Error(`Border tribe ${t.id} has no Swedish name in TRIBE_NAMES_SV`);
+    return { id: t.id,nameSv: TRIBE_NAMES_SV[t.id],coordinates: [...t.coordinates],sourceIds: [...t.sourceIds] };
+  });
+}
+
 // The name pools a package's playables name with namePoolId; the build script reads exactly these files from name-pools/.
 export function namePoolIds(contentId) {
   const a = AUTHORED_PACKAGES[contentId];
@@ -306,7 +342,8 @@ export function namePoolIds(contentId) {
 // record and map feature from the review file; the builder adds both.
 // dossier: the parsed court dossier, required when the package has dossier playables.
 // namePools: the parsed pool files by id, for every id namePoolIds(contentId) lists.
-export function authoredScenario(contentId,{ dossier = null,namePools = {} } = {}) {
+// faithTraditions, tribes: the parsed side files courts/faith-traditions.json and courts/border-tribes.json.
+export function authoredScenario(contentId,{ dossier = null,namePools = {},faithTraditions = null,tribes = null } = {}) {
   if (!Object.hasOwn(AUTHORED_PACKAGES,contentId)) throw new Error(`Unknown historical scenario: ${contentId}`);
   const a = AUTHORED_PACKAGES[contentId], polityId = a.polityId, extras = a.extraPlayables ?? [], year = Number(a.bookmarkDate.slice(0,4));
   const calendarNoteSv = 'Startdagen är vald för simuleringen. Källornas datering och kalenderkonventioner finns kvar i proveniensen.' + (a.calendarNoteSuffixSv ?? '');
@@ -323,6 +360,8 @@ export function authoredScenario(contentId,{ dossier = null,namePools = {} } = {
     if (!Object.hasOwn(namePools,e.namePoolId)) throw new Error(`${e.polityId}: name pool ${e.namePoolId} was not passed`);
     courtSeeds[e.polityId].namePool = courtNamePool(namePools[e.namePoolId]);
   }
+  applyFaithTraditions(contentId,courtSeeds,faithTraditions);
+  const borderTribeList = borderTribes(contentId,tribes,sources);
   const namedLater = typeof a.contextSv === 'function';
   return { schemaVersion: 1,kind: 'historical',contentId,contentVersion: a.contentVersion ?? '1.0.0',calendar: 'proleptic-gregorian-no-year-zero',bookmarkDate: a.bookmarkDate,
     eraLabelSv: a.eraLabelSv,contextSv: namedLater ? null : a.contextSv,
@@ -330,6 +369,7 @@ export function authoredScenario(contentId,{ dossier = null,namePools = {} } = {
     coverageNoteSv: namedLater ? null : a.coverageNotePrefixSv + (a.coverageBaseNoteSv ?? COVERAGE_BASE_NOTE_SV),
     sources,polities: [{ id: polityId,nameSv: a.polity.nameSv,sourceIds: a.polity.sourceIds,boundary: 'approximate',...a.polity.extra,noteSv: a.polity.noteSv }],
     playablePolityIds: [polityId,...extras.map(e => e.polityId)],settlements: [seat,...extraSeats(a,seats),...(a.otherSettlements ?? [])],courtSeeds,
+    ...(borderTribeList ? { tribes: borderTribeList } : {}),
   };
 }
 

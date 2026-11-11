@@ -7,7 +7,7 @@ import { createHistoricalCharacterSystem } from './characters/scenarioSeed.js';
 import { historicalStartOption } from '../src/runtime/historicalStartOptions.js';
 import { ENGINE_LIMIT_TEXT_SV } from './seed/historical/dossier-courts.mjs';
 
-// John 1.2.0: Johns riken and the three reviewed AD 1200 dossier courts. The package is also the built-in scenario `default`.
+// John 1.3.0: Johns riken and the three reviewed AD 1200 dossier courts. The package is also the built-in scenario `default`.
 const DATE = '1200-12-31', POLITY = 'johns-realms', ID = 'john-1200';
 const readJson = name => JSON.parse(readFileSync(new URL(`./seed/historical/${name}`, import.meta.url), 'utf8'));
 const loadPackage = () => {
@@ -27,15 +27,15 @@ const DOSSIER_POLITIES = [
 const PLAYABLE_IDS = [POLITY, ...DOSSIER_POLITIES.map(([id]) => id)];
 const JOHN_CONTEXT_SV = 'Johan av England efter äktenskapet med Isabella. Dokumenterade identiteter, ungefärliga födelsedatum och genererade hovmän.';
 
-test('John 1.2.0 lists four playable polities in the ruled order, and each passes both validators', () => {
+test('John 1.3.0 lists four playable polities in the ruled order, and each passes both validators', () => {
   const input = loadPackage(), { h, game, bundle } = input;
-  assert.equal(h.contentVersion, '1.2.0');
-  assert.equal(input.assetManifest.contentVersion, '1.2.0');
+  assert.equal(h.contentVersion, '1.3.0');
+  assert.equal(input.assetManifest.contentVersion, '1.3.0');
   assert.deepEqual(h.playablePolityIds, PLAYABLE_IDS);
   assert.equal(game.country, POLITY);
   assert.equal(bundle.scenario.name, 'Johns riken (angevinskt välde), 1200 e.Kr.');
   for (const polityId of PLAYABLE_IDS) {
-    assert.deepEqual(validateHistoricalScenario(input, { date: DATE, polityId }), { ok: true, contentId: ID, contentVersion: '1.2.0', date: DATE, polityId });
+    assert.deepEqual(validateHistoricalScenario(input, { date: DATE, polityId }), { ok: true, contentId: ID, contentVersion: '1.3.0', date: DATE, polityId });
     assert.equal(validateHistoricalCourt(h, { date: DATE, polityId }).ok, true, polityId);
   }
   // Polity colours follow list position, so the new playables keep the reviewed order of the map.
@@ -87,7 +87,7 @@ test('the French court holds Philip II, Ingeborg, Louis VIII and Blanche in one 
   }
 });
 
-test('every polity record of John 1.2.0 is a state, and the Almohad court carries the elective-rule sentence', () => {
+test('every polity record of John 1.3.0 is a state, and the Almohad court carries the elective-rule sentence', () => {
   const { h } = loadPackage();
   assert.deepEqual(h.polities.map(p => p.kind), h.polities.map(() => 'state'));
   assert.ok(h.courtSeeds.almohad.mechanics.noteSv.includes(ENGINE_LIMIT_TEXT_SV['elective-rule']));

@@ -9,8 +9,8 @@ export const HISTORICAL_START_REFUSAL = "Välj ett giltigt startdatum mellan 330
 // `contentVersion` is the built package's `historicalScenario.contentVersion`: an installed
 // copy with an older one is replaced in place on the next library read.
 export const HISTORICAL_BOOKMARKS = Object.freeze([
-  Object.freeze({ id: "egypt-3000bc", marker: "historical-bookmarks-v1", contentVersion: "1.0.0" }),
-  Object.freeze({ id: "charlemagne-800", marker: "historical-bookmarks-charlemagne-800", contentVersion: "1.3.0" }),
+  Object.freeze({ id: "egypt-3000bc", marker: "historical-bookmarks-v1", contentVersion: "1.1.0" }),
+  Object.freeze({ id: "charlemagne-800", marker: "historical-bookmarks-charlemagne-800", contentVersion: "1.4.0" }),
   Object.freeze({ id: "world-1500", marker: "historical-bookmarks-world-1500", contentVersion: "1.1.0" }),
 ]);
 // Catalog order by scenario id. The first start present is the default.

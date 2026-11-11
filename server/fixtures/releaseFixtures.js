@@ -8,13 +8,15 @@ import { readFileSync } from 'node:fs';
 const sha = text => createHash('sha256').update(text).digest('hex');
 const readText = url => readFileSync(url, 'utf8');
 
-// Each op is [path, value]: the value the release held at that path of the bundle.
+// Each op is [path, value]: the value the release held at that path of the bundle,
+// or [path] alone: a key the release did not have.
 export function applyReleasePatch(current, patch) {
   let bundle = JSON.parse(JSON.stringify(current));
-  for (const [keys, value] of patch.ops) {
-    if (!keys.length) { bundle = value; continue; }
+  for (const [keys, ...value] of patch.ops) {
+    if (!keys.length) { bundle = value[0]; continue; }
     const parent = keys.slice(0, -1).reduce((node, key) => node[key], bundle);
-    parent[keys.at(-1)] = value;
+    if (value.length) parent[keys.at(-1)] = value[0];
+    else delete parent[keys.at(-1)];
   }
   const text = JSON.stringify(bundle) + '\n';
   if (sha(text) !== patch.sha256) {
@@ -43,3 +45,12 @@ export const johnRelease110 = () => releaseFromPatch('john-1200-1.1.0.patch.json
 
 // The world-1500 bundle as release 1.0.0 shipped it (Phase 4 at 02aea551).
 export const world1500Release100 = () => releaseFromPatch('world-1500-1.0.0.patch.json');
+
+// The Charlemagne bundle as release 1.3.0 shipped it (name pools at 079ce062).
+export const charlemagneRelease130 = () => releaseFromPatch('charlemagne-800-1.3.0.patch.json');
+
+// The John bundle as release 1.2.0 shipped it (name pools at 079ce062), which the built-in scenario `default` held at revision 3.
+export const johnRelease120 = () => releaseFromPatch('john-1200-1.2.0.patch.json');
+
+// The Egypt bundle as release 1.0.0 shipped it (name pools at 079ce062).
+export const egyptRelease100 = () => releaseFromPatch('egypt-3000bc-1.0.0.patch.json');

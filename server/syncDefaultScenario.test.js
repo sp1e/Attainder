@@ -35,13 +35,13 @@ test('a one-byte edit to a copy of the default scenario fails the check, which n
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
-test('the default world keeps the John map stamp at revision 3 and carries the package world', () => {
+test('the default world keeps the John map stamp at revision 4 and carries the package world', () => {
   const world = readDefault('world.json'), bundle = johnBundle();
   assert.equal(world.builtInMap, 'historical-john-1200-v1');
-  assert.equal(world.builtInRevision, 3);
+  assert.equal(world.builtInRevision, 4);
   const { builtInMap, builtInRevision, ...rest } = world;
   assert.deepEqual(rest, bundle.data.world);
-  assert.equal(world.historicalScenario.contentVersion, '1.2.0');
+  assert.equal(world.historicalScenario.contentVersion, '1.3.0');
   assert.deepEqual(readDefault('game.json'), bundle.data.game);
   assert.equal(readDefault('scenario.json').description, world.historicalScenario.contextSv);
   assert.equal(readDefault('cities.geojson').features.length, world.historicalScenario.settlements.length);

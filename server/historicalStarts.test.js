@@ -7,10 +7,10 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { HISTORICAL_BOOKMARKS, contentFingerprint, shippedStartEdited, shippedStartNeedsUpgrade } from './historicalStarts.js';
-import { charlemagneRelease110, charlemagneRelease120, world1500Release100 } from './fixtures/releaseFixtures.js';
+import { charlemagneRelease110, charlemagneRelease120, charlemagneRelease130, egyptRelease100, world1500Release100 } from './fixtures/releaseFixtures.js';
 
 test('each shipped start names the content version its built package carries', () => {
-  assert.deepEqual(HISTORICAL_BOOKMARKS.map(({ id, contentVersion }) => [id,contentVersion]),[['egypt-3000bc','1.0.0'],['charlemagne-800','1.3.0'],['world-1500','1.1.0']]);
+  assert.deepEqual(HISTORICAL_BOOKMARKS.map(({ id, contentVersion }) => [id,contentVersion]),[['egypt-3000bc','1.1.0'],['charlemagne-800','1.4.0'],['world-1500','1.1.0']]);
   for (const { id, contentVersion } of HISTORICAL_BOOKMARKS) {
     const built = JSON.parse(readFileSync(new URL(`./seed/historical/${id}/scenario.json`,import.meta.url),'utf8'));
     const manifest = JSON.parse(readFileSync(new URL(`./seed/historical/${id}/manifest.json`,import.meta.url),'utf8'));
@@ -314,8 +314,8 @@ test('a desktop library read replaces an older shipped start in place and leaves
     assert.equal(manifest.selectedScenarioId,'egypt-3000bc');
     // (a) The next read replaces the old copy where it stands, map files included.
     assert.deepEqual(boot().at(-1),first.at(-1),'the catalog keeps its order');
-    assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.3.0');
-    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the installed copy is the shipped 1.3.0');
+    assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.4.0');
+    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the installed copy is the shipped 1.4.0');
     assert.equal(romeIsSeat(citiesPath),true,'the shipped city file makes Rome a seat');
     assert.equal(readJson(metaPath).createdAt,createdAt);
     assert.equal(readJson(metaPath).playCount,5,'the play count stays');
@@ -380,7 +380,7 @@ test('a desktop upgrade keeps an edited start as a copy with its campaigns and r
     editCourtText(worldPath);
     const edited = readFileSync(worldPath,'utf8'), order = readJson(manifestPath).order;
     const catalog = JSON.parse(boot().at(-1));
-    // The edited copy is kept after the start, with its campaign; the start is the shipped 1.3.0.
+    // The edited copy is kept after the start, with its campaign; the start is the shipped 1.4.0.
     const at = order.indexOf(id) + 1;
     assert.deepEqual(catalog,[...order.slice(0,at),`${id}-edited`,...order.slice(at)]);
     assert.equal(readFileSync(path.join(keptDir,'world.json'),'utf8'),edited,'the kept copy holds the edited world');
@@ -390,7 +390,7 @@ test('a desktop upgrade keeps an edited start as a copy with its campaigns and r
     assert.equal(keptMeta.id,`${id}-edited`);
     assert.equal(keptMeta.shippedContentFingerprint,undefined,'the kept copy is the player’s own');
     assert.equal(readJson(path.join(root,'games',gameId,'game-instance.json')).scenarioId,`${id}-edited`,'the campaign goes with the kept copy');
-    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the start is the shipped 1.3.0');
+    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the start is the shipped 1.4.0');
     assert.equal(readJson(metaPath).shippedContentFingerprint,fingerprintOnDisk(worldPath),'the upgrade records what it wrote');
     assert.equal(readJson(manifestPath).selectedScenarioId,'egypt-3000bc','the selection stands');
     // The next read writes no world: the start is current and the kept copy is never upgraded.
@@ -413,7 +413,7 @@ test('a desktop upgrade replaces an unedited start and a start without a fingerp
       ageToFirstRelease({ worldPath, citiesPath });
       prepare(library);
       boot();
-      assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${label}: the start is the shipped 1.3.0`);
+      assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${label}: the start is the shipped 1.4.0`);
       assert.deepEqual(readdirSync(path.join(root,'scenarios')).filter(name => name.endsWith('-edited')),[],`${label}: no copy`);
     } finally { rmSync(root,{recursive:true,force:true}); }
   }
@@ -435,7 +435,7 @@ test('a current desktop copy without a fingerprint gets the shipped one, so an e
   }
 });
 
-test('the installed 1.1.0 copy, as that release shipped it, is replaced in place by 1.3.0 with its ten seats', () => {
+test('the installed 1.1.0 copy, as that release shipped it, is replaced in place by 1.4.0 with its ten seats', () => {
   const { root, boot, worldPath, citiesPath, metaPath } = desktopLibrary(), release = charlemagneRelease110();
   const seats = file => readJson(file).features.filter(f => f.properties.seat).map(f => f.id);
   try {
@@ -448,8 +448,8 @@ test('the installed 1.1.0 copy, as that release shipped it, is replaced in place
     assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.1.0');
     assert.deepEqual(seats(citiesPath),['aachen','rome']);
     boot();
-    assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.3.0');
-    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the installed copy is the shipped 1.3.0');
+    assert.equal(readJson(worldPath).historicalScenario.contentVersion,'1.4.0');
+    assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),'the installed copy is the shipped 1.4.0');
     assert.equal(hash(readFileSync(citiesPath,'utf8')),hash(shippedCities),'the city file is the shipped one');
     assert.deepEqual(seats(citiesPath),['aachen','changan','raqqa','constantinople','gyeongju','cordoba','kairouan','oviedo','benevento','rome']);
     assert.equal(readJson(worldPath).historicalScenario.playablePolityIds.length,10);
@@ -457,8 +457,8 @@ test('the installed 1.1.0 copy, as that release shipped it, is replaced in place
   } finally { rmSync(root,{recursive:true,force:true}); }
 });
 
-test('an installed Charlemagne 1.2.0 copy and an installed world-1500 1.0.0 copy are each replaced in place by the shipped release', () => {
-  for (const [id,release,from,to] of [['charlemagne-800',charlemagneRelease120(),'1.2.0','1.3.0'],['world-1500',world1500Release100(),'1.0.0','1.1.0']]) {
+test('installed Charlemagne 1.2.0 and 1.3.0, Egypt 1.0.0 and world-1500 1.0.0 copies are each replaced in place by the shipped release', () => {
+  for (const [id,release,from,to] of [['charlemagne-800',charlemagneRelease120(),'1.2.0','1.4.0'],['charlemagne-800',charlemagneRelease130(),'1.3.0','1.4.0'],['egypt-3000bc',egyptRelease100(),'1.0.0','1.1.0'],['world-1500',world1500Release100(),'1.0.0','1.1.0']]) {
     const { root, boot, worldPath, citiesPath, metaPath } = desktopLibrary(id);
     try {
       boot('store.ensureScenarioStore();');
@@ -500,7 +500,7 @@ test('a desktop upgrade cut short before world.json is repeated on the next read
       assert.equal(temporary.length,leftover,`${fsCall}: temporary world files after the crash`);
       for (const name of temporary) assert.match(name,/^world\.json\.[0-9]+\.[0-9]+\.tmp$/,fsCall);
       boot();
-      assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${fsCall}: the next read finishes at the shipped 1.3.0`);
+      assert.equal(hash(readFileSync(worldPath,'utf8')),hash(shipped),`${fsCall}: the next read finishes at the shipped 1.4.0`);
       assert.equal(romeIsSeat(citiesPath),true,fsCall);
       assert.deepEqual(readdirSync(path.dirname(worldPath)).filter(name => name.startsWith('world.json.')),[],`${fsCall}: no half-written world file is left`);
     } finally { rmSync(root,{recursive:true,force:true}); }

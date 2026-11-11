@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { installFakeIndexedDb } from './fakeIndexedDb.js';
-import { johnRelease100, johnRelease110 } from '../../../server/fixtures/releaseFixtures.js';
+import { johnRelease100, johnRelease110, johnRelease120 } from '../../../server/fixtures/releaseFixtures.js';
 import { defaultScenarioFiles } from '../../../scripts/sync-default-scenario.mjs';
 import { advanceCharacters } from '../../../server/characters/index.js';
 import { addGameMonths } from '../../../server/gameDates.js';
@@ -45,7 +45,7 @@ async function storeJohnRelease(idb, release, revision) {
 }
 
 // Starts `campaigns` on the built-in John `version` at `revision`, then seeds again, which refreshes the built-in to
-// 1.2.0 at revision 3. Every campaign must load, restore from both companions and play a year; `check(saved, loaded)`
+// 1.3.0 at revision 4. Every campaign must load, restore from both companions and play a year; `check(saved, loaded)`
 // adds release-specific assertions. Both tests share one in-memory library: idb.js keeps its first connection.
 async function refreshFrom({ version, revision, release, campaigns, check = () => {} }) {
   if (!globalThis.indexedDB) installFakeIndexedDb();
@@ -77,16 +77,16 @@ async function refreshFrom({ version, revision, release, campaigns, check = () =
     assert.equal((await idb.idbGet(idb.STORES.scenarios, 'default')).meta.playCount, playCount, 'the refresh keeps the play count');
     const world = await defaultWorld();
     assert.equal(world.builtInMap, 'historical-john-1200-v1');
-    assert.equal(world.builtInRevision, 3);
-    assert.equal(world.historicalScenario.contentVersion, '1.2.0');
+    assert.equal(world.builtInRevision, 4);
+    assert.equal(world.historicalScenario.contentVersion, '1.3.0');
     assert.deepEqual(world.historicalScenario.playablePolityIds, ['johns-realms', 'khmer-angkor', 'almohad', 'france-capetian']);
-    const companion120 = await companion();
+    const companion130 = await companion();
     for (const saved of started) {
       const loaded = await call('GET', [saved.id]);
       assert.equal(loaded.game.scenarioId, 'default', `${saved.id}: the campaign stays on the built-in`);
       assert.deepEqual(loaded.data, saved.data, `${saved.id}: the campaign keeps its own ${version} world`);
       playsAYear(loaded.data.world, `${saved.id} loaded`);
-      for (const [label, scenarioBundle] of [['1.2.0', companion120], [version, companionOld]]) {
+      for (const [label, scenarioBundle] of [['1.3.0', companion130], [version, companionOld]]) {
         const restored = await call('POST', ['restore'], { bundle: saved.bundle, scenarioBundle });
         assert.deepEqual(restored.data.world, saved.bundle.data.world, `${saved.id} restored with ${label}`);
         playsAYear(restored.data.world, `${saved.id} restored with ${label}`);
@@ -96,11 +96,11 @@ async function refreshFrom({ version, revision, release, campaigns, check = () =
   } finally { globalThis.fetch = originalFetch; restoreClock(); }
 }
 
-test('a web library holding John at revision 1 refreshes to 1.2.0, keeps the map stamp, and its campaigns load, restore and play a year', async () => {
+test('a web library holding John at revision 1 refreshes to 1.3.0, keeps the map stamp, and its campaigns load, restore and play a year', async () => {
   await refreshFrom({ version: '1.0.0', revision: 1, release: johnRelease100(), campaigns: [['johns-realms', 'realm'], ['johns-realms', 'family']] });
 });
 
-test('a web library holding John 1.1.0 at revision 2 refreshes to 1.2.0, and its campaigns load, restore and play a year', async () => {
+test('a web library holding John 1.1.0 at revision 2 refreshes to 1.3.0, and its campaigns load, restore and play a year', async () => {
   await refreshFrom({ version: '1.1.0', revision: 2, release: johnRelease110(), campaigns: [['johns-realms', 'realm'], ['johns-realms', 'family'], ['almohad', 'realm']],
     check: (saved, loaded) => {
       if (saved.polityId !== 'almohad') return;
@@ -108,4 +108,8 @@ test('a web library holding John 1.1.0 at revision 2 refreshes to 1.2.0, and its
       assert.equal(loaded.data.world.characterSystem.realm.successionLaw, 'merit', 'the Almohads keep their 1.1.0 law');
       assert.equal(playsAYear(loaded.data.world, 'Almohads loaded').realm.successionLaw, 'merit', 'the Almohads play a year under merit');
     } });
+});
+
+test('a web library holding John 1.2.0 at revision 3 refreshes to 1.3.0, and its campaigns load, restore and play a year', async () => {
+  await refreshFrom({ version: '1.2.0', revision: 3, release: johnRelease120(), campaigns: [['johns-realms', 'realm'], ['khmer-angkor', 'realm'], ['france-capetian', 'family']] });
 });

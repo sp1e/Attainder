@@ -469,7 +469,7 @@ Deliver both requests in new files of your own under `server/seed/historical/cou
   ```
 
   - `polityId` and `religionId` are the ids the package uses. `religionId` must match the court's religion id in the dossier, or the authored id (`latin-church` for the three Christian courts, `horus-context` for Egypt).
-  - `tradition` is one of: `christian`, `islamic`, `jewish`, `buddhist`, `hindu`, `zoroastrian`, `chinese-state-cult`, `norse`, `egyptian`, `mesopotamian`, `other`. The package validator refuses any other value. Propose a new id in `RESEARCH-STATUS.md` before you use it.
+  - `tradition` is one of: `christian`, `islamic`, `jewish`, `buddhist`, `hindu`, `zoroastrian`, `chinese-state-cult`, `norse`, `egyptian`, `mesopotamian`, `mesoamerican`, `andean`, `other`. The package validator refuses any other value. Propose a new id in `RESEARCH-STATUS.md` before you use it.
   - Two courts get the same id only when a source you opened supports that they shared the faith in the start year. Latin and Greek Christianity both count as `christian`; the game does not split them.
   - Leave a court out where its faith is unclear, and give the reason in `RESEARCH-STATUS.md`. `noteEn` is optional and holds a limit a reader should know.
 

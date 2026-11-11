@@ -16,7 +16,9 @@ const streams = (s) => [s.rngState, s.actionRngState, s.plotRngState, s.lineageR
 
 function scenario(pool) {
   const h = plain(DATA.world.historicalScenario);
-  if (pool !== undefined) h.courtSeeds['carolingian-realm'].namePool = pool;
+  const seed = h.courtSeeds['carolingian-realm'];
+  if (pool === undefined) delete seed.namePool;
+  else seed.namePool = pool;
   return h;
 }
 const court = (pool) => createHistoricalCharacterSystem({ historicalScenario: scenario(pool), date: DATA.game.startDate, polityId: 'carolingian-realm', mode: 'realm', seed: 777 });
@@ -27,6 +29,7 @@ const parents = (state) => {
 const newest = (state) => Object.values(state.people).at(-1);
 
 test('a court with a name pool carries it into the campaign', () => {
+  assert.equal(DATA.world.historicalScenario.courtSeeds['carolingian-realm'].namePool.id, 'frankish-saint-germain-823-829');
   assert.equal(validateHistoricalCourt(scenario(POOL), { date: DATA.game.startDate, polityId: 'carolingian-realm' }).ok, true);
   assert.deepEqual(court(POOL).namePool, POOL);
   assert.equal(Object.hasOwn(court(), 'namePool'), false);
