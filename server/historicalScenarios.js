@@ -3,6 +3,7 @@ import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { validateHistoricalStartDate } from './historicalStarts.js';
 import { compareGameDates, parseGameDate, formatGameDate } from './gameDates.js';
 import { ARCHETYPES, TRAITS, SKILL_LABELS, SUCCESSION_LAWS, POLITY_KINDS } from './characters/content.js';
+import { validNamePool } from './characters/namePools.js';
 
 export const HISTORICAL_SCHEMA_VERSION = 1;
 export const isHistoricalWorld = world => world?.historicalScenario?.kind === 'historical';
@@ -109,6 +110,7 @@ const validCourtContext = (court, sources) => (!Object.hasOwn(court,'contextSv')
 function validCourt(court, polityId, h, date) {
   if (!record(court) || court.polityId !== polityId || !h.settlements.some(s => s.id === court.seatId && s.polityId === polityId)) return false;
   if (!validCourtContext(court, h.sources)) return false;
+  if (Object.hasOwn(court,'namePool') && !validNamePool(court.namePool)) return false;
   if (!['people','families','religions','offices','cities'].every(k => validIds(court[k]))) return false;
   const people = new Map(court.people.map(p => [p.id,p]));
   const families = new Set(ids(court.families)), religions = new Set(ids(court.religions));
