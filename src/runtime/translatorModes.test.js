@@ -23,7 +23,7 @@ import {
   stopTranslator,
   translateLabel,
 } from "./translator.js";
-import { bookOptions } from "./translatorMode.js";
+import { bookOptions, translateInTier } from "./translatorMode.js";
 
 const PUBLIC = new URL("../../public", import.meta.url);
 const readPublic = (path) => JSON.parse(fs.readFileSync(new URL(`${PUBLIC.href}${path}`), "utf8"));
@@ -42,6 +42,16 @@ const TITLE = "Hugo Capet kröns till kung";
 const TITLE_EN = "Hugh Capet is crowned king";
 
 const fileJson = async (path) => (path === NATIVE_PACK_PATHS.code ? { ...readPublic(path), ...SAMPLE_CODE } : readPublic(path));
+
+// The code layer as it will be when en.json is complete: every entry of
+// catalog-sv.json as a key, mapped to itself behind a marker (a pattern keeps
+// its slots, so it matches as the real translation will). What en.json
+// already has wins.
+const MARKER = "EN:";
+const markerCodePack = () => ({
+  ...Object.fromEntries(readPublic("/lang/attainder/catalog-sv.json").entries.map((entry) => [entry, `${MARKER}${entry}`])),
+  ...readPublic(NATIVE_PACK_PATHS.code),
+});
 
 // ---- the native book ----
 
@@ -77,14 +87,21 @@ test("a strong pattern answers in both tiers", async () => {
   }
 });
 
-test("the strong tier leaves every string of the English interface untouched", async () => {
-  const book = await nativeBook();
+test("the strong tier leaves every string of the English interface untouched, with every key of the code catalog in the book", async () => {
+  // The book as the translator makes it, with the code layer complete: each
+  // entry of catalog-sv.json is a key (markerCodePack), beside the samples.
+  const complete = async (path) => (path === NATIVE_PACK_PATHS.code ? { ...markerCodePack(), ...SAMPLE_CODE } : readPublic(path));
+  const book = createPhraseBook(bookOptions("en"));
+  book.setAll(await loadNativePack(complete));
+  assert.ok(book.patternCount() > 600, `${book.patternCount()} patterns`);
+  assert.equal(translateInTier(book, "Karl föds", "full"), `${MARKER}Charles föds`, "a real weak pattern of the catalog");
+  assert.equal(translateInTier(book, "Karl föds", "strong"), null);
   const catalog = readPublic("/lang/catalog-en.json");
   assert.ok(catalog.length > 5000);
-  const touched = catalog.filter((english) => book.translate(english, { strongOnly: true }) != null);
+  const touched = catalog.filter((english) => translateInTier(book, english, "strong") != null);
   assert.deepEqual(touched, []);
   for (const english of ["Save game", "Declare war on {{target}}", "Hot dog stand"]) {
-    assert.equal(book.translate(english, { strongOnly: true }), null, english);
+    assert.equal(translateInTier(book, english, "strong"), null, english);
   }
 });
 

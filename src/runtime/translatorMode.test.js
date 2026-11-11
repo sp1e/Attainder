@@ -14,10 +14,12 @@ import { createPhraseBook } from "./phraseBook.js";
 import {
   CHARACTER_EVENT_SOURCE,
   NATIVE_TEXT_SELECTOR,
+  SHARED_WITH_INTERFACE,
   bookOptions,
   mayQueueForModel,
   nativeEventProps,
   tierFor,
+  translateInTier,
   translateOptions,
   translatorMode,
   unknownTextFate,
@@ -108,6 +110,19 @@ test("en: the whole book inside a Swedish-native view, the strong tier outside",
   assert.deepEqual(translateOptions("strong"), { strongOnly: true });
   assert.equal(translateOptions("full"), undefined);
   assert.equal(NATIVE_TEXT_SELECTOR, "[data-native-text]");
+});
+
+test("en: outside the Swedish views, a Swedish entry the English interface also writes is left alone", () => {
+  const book = createPhraseBook(bookOptions("en"));
+  book.setAll({ stat: "state", "Sändebud": "Envoy", "Riket blir en {{kind}} igen": "The realm is a {{kind}} again" });
+  assert.deepEqual([...SHARED_WITH_INTERFACE], ["stat"]);
+  assert.equal(translateInTier(book, "stat", "full"), "state", "inside a Swedish view it is the Swedish word");
+  assert.equal(translateInTier(book, "stat", "strong"), null, "outside one it is the interface's own word");
+  assert.equal(translateInTier(book, " stat ", "strong"), null, "whitespace around it changes nothing");
+  assert.equal(translateInTier(book, "Sändebud", "strong"), "Envoy", "any other entry answers in both tiers");
+  assert.equal(translateInTier(book, "Riket blir en stat igen", "strong"), "The realm is a state again", "and the word still translates as a value of a Swedish sentence");
+  assert.equal(translateInTier(book, "Okänt", "strong"), null);
+  assert.equal(translateInTier(book, null, "strong"), null);
 });
 
 test("a world event the character system wrote is marked as Swedish-native text, any other event is not", () => {

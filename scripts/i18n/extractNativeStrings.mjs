@@ -524,12 +524,16 @@ const kindOf = (text, unit) => (text.includes("{{") ? "pattern" : unit.jsx ? "js
 
 // The Swedish-looking literals of the units that gave no entry, each once, unless a
 // unit that did give one holds the literal too (JSX text is in its run as well).
-const skippedLiterals = (dropped, held, code, file) => {
+// A literal the exclusions name is reported whatever it looks like: a Swedish file
+// takes its unmarked labels with it (rule 3), English ones too ("Politics", an upstream
+// tag), and the build has to see that the exclusion still names something.
+const skippedLiterals = (dropped, held, code, file, excluded) => {
   const seen = new Set(held);
   const out = [];
   for (const { unit, why } of dropped) {
     for (const node of unit.literals) {
-      if (seen.has(node) || !looksSwedish(literalWords(node))) continue;
+      const named = why === "excluded" && excluded.has(literalText(node, code));
+      if (seen.has(node) || !(named || looksSwedish(literalWords(node)))) continue;
       seen.add(node);
       out.push({ file, line: node.loc?.start?.line ?? 0, text: literalText(node, code), why });
     }
@@ -565,7 +569,7 @@ export const extractNativeFromSource = (code, file, excluded = new Set()) => {
     // A variant that is English from end to end is the upstream half of a mixed choice.
     for (const text of unit.texts) if (!looksEnglish(withoutSlots(text))) taken.push({ text, kind: kindOf(text, unit), rule, ref });
   }
-  return { taken, skipped: skippedLiterals(dropped, held, code, file), swedish };
+  return { taken, skipped: skippedLiterals(dropped, held, code, file, excluded), swedish };
 };
 
 // ---------------------------------------------------------------------------

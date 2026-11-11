@@ -189,3 +189,22 @@ test("English that a Swedish word also spells is named in the exclusions, and a 
   assert.deepEqual(nativeCatalogProblems(extraction, [{ file, text: "Under construction", reason: "not-swedish" }]), []);
   assert.equal(nativeCatalogProblems({ entries: new Map(), skipped: [] }, [{ file, text: "Under construction", reason: "not-swedish" }]).length, 1);
 });
+
+// A Swedish file takes its unmarked labels with it (rule 3), English ones too: characterWorld.js
+// stamps the upstream tag "Politics" on its Swedish event cards.
+test("English with no Swedish word in it, taken with its Swedish file, can be named in the exclusions too", () => {
+  const code = "export const card = (title) => ({ title: title || 'Familjerna och riket', description: 'Förvaltningen har uppdaterats.', tags: ['Politics', 'Ekonomi'] });";
+  const file = "src/runtime/probe.js";
+  assert.deepEqual(extract(code, file).texts, ["Ekonomi", "Familjerna och riket", "Förvaltningen har uppdaterats.", "Politics"]);
+  const named = extract(code, file, new Set(["Politics"]));
+  assert.deepEqual(named.texts, ["Ekonomi", "Familjerna och riket", "Förvaltningen har uppdaterats."]);
+  assert.deepEqual(named.skipped.map((item) => [item.text, item.why]), [["Politics", "excluded"]], "reported, so the exclusion is seen to name something");
+  const extraction = { entries: new Map(named.texts.map((text) => [text, { kind: "string", refs: [] }])), skipped: named.skipped };
+  assert.deepEqual(nativeCatalogProblems(extraction, [{ file, text: "Politics", reason: "not-swedish" }]), []);
+});
+
+test("the upstream tag Politics is not in the catalog, and the Swedish word for a state is", () => {
+  assert.equal(ENTRIES.has("Politics"), false);
+  assert.ok(readNativeExclusions(ROOT).some((item) => item.file === "src/runtime/characterWorld.js" && item.text === "Politics" && item.reason === "not-swedish"));
+  assert.equal(ENTRIES.has("stat"), true, "POLITY_KIND_LABELS_SV.state is player text");
+});

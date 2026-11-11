@@ -95,6 +95,26 @@ export const tierFor = (mode, insideNativeText) =>
 // The options book.translate takes for a tier.
 export const translateOptions = (tier) => (tier === "strong" ? { strongOnly: true } : undefined);
 
+// Entries of the native book that the English interface writes too, with
+// another meaning: "stat" is the Swedish for a state (a kind of polity,
+// POLITY_KIND_LABELS_SV) and the interface's word for a statistic. Outside the
+// Swedish-native views such a string is the interface's own, so the strong
+// tier leaves it alone; inside one, and as a value of a Swedish sentence, it
+// is translated like any other entry.
+//
+// The interface catalog (public/lang/catalog-en.json) is not loaded at run
+// time, so the shared strings are named here. nativePackData.test.js compares
+// this list with the real overlap of the catalogs and fails when they differ.
+export const SHARED_WITH_INTERFACE = Object.freeze(["stat"]);
+const SHARED = new Set(SHARED_WITH_INTERFACE);
+
+// The book's answer for a string under a tier, or null.
+export const translateInTier = (book, text, tier) => {
+  if (typeof text !== "string") return null;
+  if (tier === "strong" && SHARED.has(text.trim())) return null;
+  return book.translate(text, translateOptions(tier));
+};
+
 // Swedish mode reads the research's Swedish for source locators and
 // institutions (historical-sv.json) beside its pack.
 export const usesSwedishHistoricalPack = (language) => translatorMode(language) === "pack" && language.trim() === "sv";

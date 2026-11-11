@@ -51,7 +51,7 @@ import {
   bookOptions,
   mayQueueForModel,
   tierFor,
-  translateOptions,
+  translateInTier,
   translatorMode,
   unknownTextFate,
   usesModel,
@@ -281,7 +281,7 @@ const translateValue = (value, { note = true, tier = "full" } = {}) => {
   const trimmed = value.trim();
   const numericDate = isNumericDate(trimmed);
   if (!numericDate && !isTranslatable(trimmed)) return null;
-  const translated = book.translate(trimmed, translateOptions(tier));
+  const translated = translateInTier(book, trimmed, tier);
   if (translated == null) {
     if (note && !numericDate) noteUnknown(trimmed);
     return null;

@@ -110,6 +110,11 @@
     "reason": "developer-only"
   },
   {
+    "file": "src/runtime/characterWorld.js",
+    "text": "Politics",
+    "reason": "not-swedish"
+  },
+  {
     "file": "src/runtime/countryFlags.js",
     "text": "OM",
     "reason": "technical"
