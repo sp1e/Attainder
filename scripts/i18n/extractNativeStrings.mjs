@@ -49,20 +49,26 @@ import {
   NON_TEXT_PROPS, UI_ATTRS_DOM, calleeName, choiceShape, cleanJsxText, cleanSlot, cross, jsxName, render, shapeOf, slotName,
   withVariantLimit,
 } from "./extractStrings.mjs";
+import { SWEDISH_WORDS as TRANSLATOR_WORDS, hasSwedishLetter } from "../../src/runtime/swedishText.js";
 
 const traverse = traverseModule.default ?? traverseModule;
 
 // ---------------------------------------------------------------------------
 // What counts as Swedish.
 
-export const SWEDISH_WORDS = [
-  "och", "att", "för", "med", "inte", "som", "den", "det", "har", "kan", "ska", "eller", "till", "från", "år", "hov",
-  "rike", "kung", "drottning", "är", "en", "ett", "på", "av", "om", "vid", "blir", "får", "sin", "sitt", "sina", "mot",
-  "utan", "efter", "under", "inget", "ingen", "inga", "hos", "igen", "kunde", "finns", "saknas", "saknar", "redan",
-];
+// The words are the translator's (src/runtime/swedishText.js), so the detector that
+// builds the catalog and the one that reads the page know the same Swedish. On top come
+// six words the translator leaves out because English shares them. Here they still make
+// a literal Swedish-looking: this detector also has an English veto, a prose test and the
+// file's other text to go by, and without them "Till:" and "den Store" would miss the
+// catalog. "finns" counts in full (the source has no text about the Finns); the other five
+// are weak, as before. The translator's other shared words ("i", "de", "man", "men") stay
+// out: English source text is full of them.
+const WEAK_SHARED_WORDS = ["den", "till", "en", "sin", "under"];
+export const SWEDISH_WORDS = [...TRANSLATOR_WORDS, "finns", ...WEAK_SHARED_WORDS];
 // Swedish function words that English text and codes hold too ("under way", "en-US",
 // "OM"): enough to make a literal Swedish-looking, too weak to speak for its neighbours.
-const AMBIGUOUS_WORDS = new Set(["under", "en", "den", "till", "sin", "om", "mot", "av", "med"]);
+const AMBIGUOUS_WORDS = new Set([...WEAK_SHARED_WORDS, "om", "mot", "av", "med"]);
 // Words English prose is full of and Swedish never uses: text with one of these and no
 // å, ä or ö is English, whatever else it holds.
 const ENGLISH_WORDS = [
@@ -76,14 +82,13 @@ const wholeWord = (words) => new RegExp(`(?<![\\p{L}\\p{N}_])(?:${words.join("|"
 const SWEDISH_WORD = wholeWord(SWEDISH_WORDS);
 const CLEAR_WORD = wholeWord(SWEDISH_WORDS.filter((word) => !AMBIGUOUS_WORDS.has(word)));
 const ENGLISH_WORD = wholeWord(ENGLISH_WORDS);
-const DIACRITIC = /[åäöÅÄÖ]/;
 // The English possessive, also after a slot that has been blanked: "{{to}}'s control".
 const POSSESSIVE = /(?:^|[\p{L}\s])['’]s(?!\p{L})/u;
 
-const looksEnglish = (text) => !DIACRITIC.test(text) && (ENGLISH_WORD.test(text) || POSSESSIVE.test(text));
-export const looksSwedish = (text) => DIACRITIC.test(text) || (SWEDISH_WORD.test(text) && !looksEnglish(text));
+const looksEnglish = (text) => !hasSwedishLetter(text) && (ENGLISH_WORD.test(text) || POSSESSIVE.test(text));
+export const looksSwedish = (text) => hasSwedishLetter(text) || (SWEDISH_WORD.test(text) && !looksEnglish(text));
 // Swedish beyond doubt: evidence for the text beside it (rule 2) and for its file (rule 3).
-const clearlySwedish = (text) => DIACRITIC.test(text) || (CLEAR_WORD.test(text) && !looksEnglish(text));
+const clearlySwedish = (text) => hasSwedishLetter(text) || (CLEAR_WORD.test(text) && !looksEnglish(text));
 
 const SLOT = /\{\{[^{}]+\}\}/g;
 const withoutSlots = (text) => text.replace(SLOT, " ");

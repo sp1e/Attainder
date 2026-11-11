@@ -16,10 +16,12 @@ import {
   NATIVE_CATALOG_PATH, NATIVE_CATALOG_SCHEMA, extractNativeCatalog, extractNativeFromSource, nativeCatalogProblems,
   readNativeExclusions, renderNativeCatalog,
 } from "../../scripts/i18n/build-native-catalog.mjs";
+import { SWEDISH_WORDS as EXTRACTOR_WORDS, looksSwedish as extractorLooksSwedish } from "../../scripts/i18n/extractNativeStrings.mjs";
 import { borderLand } from "./characters/claims.js";
 import { advanceCharacters, createCharacterSystem } from "./characters/index.js";
 import { addGameMonths } from "./gameDates.js";
 import { compilePattern, createPhraseBook } from "./phraseBook.js";
+import { SHARED_WITH_ENGLISH, SWEDISH_WORDS as RUNTIME_WORDS } from "./swedishText.js";
 
 const ROOT = fileURLToPath(new URL("../../", import.meta.url));
 const COMMITTED = fs.readFileSync(new URL(`../../${NATIVE_CATALOG_PATH}`, import.meta.url), "utf8").replace(/\r\n/g, "\n");
@@ -201,6 +203,21 @@ test("English with no Swedish word in it, taken with its Swedish file, can be na
   assert.deepEqual(named.skipped.map((item) => [item.text, item.why]), [["Politics", "excluded"]], "reported, so the exclusion is seen to name something");
   const extraction = { entries: new Map(named.texts.map((text) => [text, { kind: "string", refs: [] }])), skipped: named.skipped };
   assert.deepEqual(nativeCatalogProblems(extraction, [{ file, text: "Politics", reason: "not-swedish" }]), []);
+});
+
+// The extractor and the translator once kept their own word lists, and each knew words the other
+// did not. The extractor now reads the translator's (swedishText.js).
+test("the extractor knows Swedish by the translator's words, plus six that English shares", () => {
+  for (const word of RUNTIME_WORDS) assert.ok(EXTRACTOR_WORDS.includes(word), `the extractor lacks ${word}`);
+  const extra = EXTRACTOR_WORDS.filter((word) => !RUNTIME_WORDS.includes(word)).sort();
+  assert.deepEqual(extra, ["den", "en", "finns", "sin", "till", "under"]);
+  for (const word of extra) assert.ok(SHARED_WITH_ENGLISH.includes(word), `${word} is a word the translator leaves out as shared with English`);
+  assert.equal(new Set(EXTRACTOR_WORDS).size, EXTRACTOR_WORDS.length);
+  // Words only the translator had.
+  for (const text of ["Arv enligt testamentet", "Kungen abdikerar", "Arvet efter deras far"]) assert.equal(extractorLooksSwedish(text), true, text);
+  // The extractor's own rules stay on top: the English veto, and a shared word as a weak marker.
+  assert.equal(extractorLooksSwedish("Under the old law"), false);
+  assert.equal(extractorLooksSwedish("Till: Karl"), true);
 });
 
 test("the upstream tag Politics is not in the catalog, and the Swedish word for a state is", () => {
