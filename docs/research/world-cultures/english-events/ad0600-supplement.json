@@ -1,0 +1,491 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-11",
+  "batchId": "ad0600-supplement-2026-11-11",
+  "researchWindow": {
+    "startYear": 600,
+    "endYear": 699
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "7d9bb8ea6c87a6372391e4106c3f1cabb01b7525",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad0600en-met-horyuji-established",
+      "title": "Japan, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/eaj",
+      "locator": "Key Events, entry \"ca. 607\" beginning \"The Buddhist temple Hōryūji\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 607",
+      "originalChronology": "About 607.",
+      "scopedClaim": "The Buddhist temple Hōryūji is established in the Asuka region about 607; it is Japan's earliest extant Buddhist temple and contains the world's oldest surviving wood structure.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-tang-dynasty-founded",
+      "title": "China, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/eac",
+      "locator": "Key Events, entry \"618\" beginning \"Li Yuan (566–635)\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "618",
+      "originalChronology": "618; Gaozu r. 618–26.",
+      "scopedClaim": "Li Yuan (566–635) usurps the throne in 618, restores order and establishes the Tang dynasty, ruling as Emperor Gaozu (618–26).",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-sutton-hoo-ship-burial",
+      "title": "Great Britain and Ireland, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/euwb",
+      "locator": "Key Events, entry \"ca. 625\" beginning \"The Sutton Hoo ship burial\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 625",
+      "originalChronology": "About 625.",
+      "scopedClaim": "The Sutton Hoo ship burial is interred around 625, with grave goods in a wooden ship under a mound; no body has been found; coins help date it.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-xuanzang-travels-to-india",
+      "title": "China, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/eac",
+      "locator": "Key Events, entry \"629–645\" beginning \"Famous pilgrim Xuanzang\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "629–645",
+      "originalChronology": "629–645.",
+      "scopedClaim": "The pilgrim Xuanzang travels to India and Southeast Asia in 629–645; his translations spur Buddhism in China, and his Records of the Western Regions remains important for South Asian history.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-arab-conquest-of-egypt",
+      "title": "Egypt, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/afe",
+      "locator": "Key Events, entry \"639–642\" beginning \"Arab armies under the banner of Islam conquer Egypt\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "639–642",
+      "originalChronology": "639–642; 'Umar r. 634–44.",
+      "scopedClaim": "Arab armies conquer Egypt in 639–642 under the caliph 'Umar ibn al-Khattab (r. 634–44); al-Fustat is established and Egypt's first congregational mosque is built for the army.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-battle-of-nahavand",
+      "title": "Iran, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/wai",
+      "locator": "Key Events, entry \"634–644\" beginning \"During the reign of the Rightly Guided Caliph\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "634–644",
+      "originalChronology": "Entry 634–644; battle 642; Yazdgard's death 651.",
+      "scopedClaim": "Arab armies defeat Sasanian forces at the battle of Nahavand (642), the de facto end of the Sasanian empire; Yazdgard III flees to Merv and dies there in 651.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-taika-reform",
+      "title": "Japan, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/eaj",
+      "locator": "Key Events, entry \"646\" beginning \"The Taika Reform is issued\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "646",
+      "originalChronology": "646; Kotoku r. 645–54.",
+      "scopedClaim": "The Taika Reform of 646, issued by Emperor Kotoku (r. 645–54), makes all agricultural land imperial property and all inhabitants imperial subjects, with a merit-based bureaucracy on the Chinese model.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-teotihuacan-centre-burned",
+      "title": "Mexico, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/cam",
+      "locator": "Key Events, entry \"ca. 650\" beginning \"Principal temples and elite residences\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 650",
+      "originalChronology": "About 650; occupation until about 900.",
+      "scopedClaim": "About 650 the principal temples and elite residences of central Teotihuacan are burned and cult objects smashed, perhaps from internal crisis; many apartment compounds are abandoned, parts remain inhabited until about 900.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-synod-of-whitby",
+      "title": "Great Britain and Ireland, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/euwb",
+      "locator": "Key Events, entry \"664\" beginning \"The Synod of Whitby\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "664",
+      "originalChronology": "664.",
+      "scopedClaim": "The Synod of Whitby in 664 deals with liturgical conflicts between Celtic and Roman Christianity and decides to conform to Rome.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-goguryeo-falls",
+      "title": "Korea, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/eak",
+      "locator": "Key Events, entry \"668\" beginning \"The Tang-Silla allies, having spent\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "668",
+      "originalChronology": "668.",
+      "scopedClaim": "In 668 the Tang–Silla allies invade Goguryeo, which, weakened by Sui and Tang assaults and internal dissension, is swiftly vanquished.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-uqba-founds-kairouan",
+      "title": "Western North Africa (The Maghrib), 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/afw",
+      "locator": "Key Events, entry \"670\" beginning \"Under the leadership of Arab warrior\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "670",
+      "originalChronology": "670.",
+      "scopedClaim": "Under 'Uqba ibn Nafi' Muslim armies fight Berber tribes and conquer the area from northern Tunisia to Tangier, establishing Umayyad rule in North Africa; he founds Kairouan.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-silla-unifies-korea",
+      "title": "Korea, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/eak",
+      "locator": "Key Events, entry \"676\" beginning \"The broad-based peninsular effort\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "676",
+      "originalChronology": "676.",
+      "scopedClaim": "In 676 the Silla-led effort forces Chinese troops to withdraw into Manchuria, and nearly all the peninsula comes under one Korean government, Unified Silla.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600en-met-barhae-founded",
+      "title": "Korea, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/eak",
+      "locator": "Key Events, entry \"698\" beginning \"A former Goguryeo general\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "698",
+      "originalChronology": "698; destruction 926.",
+      "scopedClaim": "In 698 a former Goguryeo general establishes Barhae, covering most of Goguryeo's former Manchurian holdings; it avoids war with Unified Silla until the Khitan destroy it in 926.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-0607-horyuji-established",
+      "date": {
+        "kind": "approximate",
+        "startYear": 607,
+        "endYear": 607,
+        "displayEn": "c. 607 CE"
+      },
+      "titleEn": "Hōryūji is established in Asuka",
+      "summaryEn": "The Buddhist temple Hōryūji is established in the Asuka region. The Met describes the compound as Japan's earliest extant Buddhist temple, containing the world's oldest surviving wooden structure.",
+      "geographyEn": "Asuka region, Japan",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-horyuji-established"
+      ],
+      "selectionNote": "The source calls it Japan's earliest extant Buddhist temple.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0618-tang-dynasty-founded",
+      "date": {
+        "kind": "exact",
+        "startYear": 618,
+        "endYear": 618,
+        "displayEn": "618 CE"
+      },
+      "titleEn": "Li Yuan founds the Tang dynasty",
+      "summaryEn": "Li Yuan, from a northern aristocratic family with a long record of government service, seizes the throne, restores order and founds the Tang dynasty, ruling as Emperor Gaozu until 626.",
+      "geographyEn": "China",
+      "category": "politics",
+      "importance": 3,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-tang-dynasty-founded"
+      ],
+      "selectionNote": "The founding of the Tang dynasty.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0625-sutton-hoo-ship-burial",
+      "date": {
+        "kind": "approximate",
+        "startYear": 625,
+        "endYear": 625,
+        "displayEn": "c. 625 CE"
+      },
+      "titleEn": "A ship burial is laid at Sutton Hoo",
+      "summaryEn": "A ship burial is laid under a mound at Sutton Hoo, with grave goods inside a wooden ship: an iron helmet with tinned bronze foil, gold buckles inlaid with niello and a purse cover with cloisonné enamel. No body has been found, perhaps because of the acid soil, and coins among the goods help date the burial.",
+      "geographyEn": "Sutton Hoo, England",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-sutton-hoo-ship-burial"
+      ],
+      "selectionNote": "A dated elite ship burial in early Anglo-Saxon England.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0629-xuanzang-travels-to-india",
+      "date": {
+        "kind": "range",
+        "startYear": 629,
+        "endYear": 645,
+        "displayEn": "629–645 CE"
+      },
+      "titleEn": "Xuanzang travels to India",
+      "summaryEn": "The pilgrim Xuanzang travels to India and Southeast Asia. His translations spur the growth of Buddhism in China, and his travel account, Records of the Western Regions, remains a key source for South Asian history.",
+      "geographyEn": "China, India and Southeast Asia",
+      "category": "religion",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-xuanzang-travels-to-india"
+      ],
+      "selectionNote": "A pilgrimage whose translations and travel account the source credits with spurring Chinese Buddhism and documenting South Asian history.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0639-arab-conquest-of-egypt",
+      "date": {
+        "kind": "range",
+        "startYear": 639,
+        "endYear": 642,
+        "displayEn": "639–642 CE"
+      },
+      "titleEn": "Arab armies conquer Egypt",
+      "summaryEn": "Arab Muslim armies conquer Egypt during the caliphate of 'Umar ibn al-Khattab. They found al-Fustat, the garrison town that later becomes part of Cairo, and build Egypt's first congregational mosque for the army.",
+      "geographyEn": "Egypt; al-Fustat",
+      "category": "war",
+      "importance": 3,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-arab-conquest-of-egypt"
+      ],
+      "selectionNote": "Egypt comes under Muslim rule and gains its first congregational mosque.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0642-battle-of-nahavand",
+      "date": {
+        "kind": "exact",
+        "startYear": 642,
+        "endYear": 642,
+        "displayEn": "642 CE",
+        "noteEn": "The Met's entry spans 634–644, the reign of 'Umar, and dates the battle itself to 642."
+      },
+      "titleEn": "Arab armies defeat the Sasanians at Nahavand",
+      "summaryEn": "Arab Muslim armies defeat Sasanian forces at the battle of Nahavand, the de facto end of the Sasanian empire. The last Sasanian ruler, Yazdgard III, flees to Merv, where he dies in 651.",
+      "geographyEn": "Nahavand, western Iran",
+      "category": "war",
+      "importance": 3,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-battle-of-nahavand"
+      ],
+      "selectionNote": "The battle that the source calls the de facto end of the Sasanian empire.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0646-taika-reform",
+      "date": {
+        "kind": "exact",
+        "startYear": 646,
+        "endYear": 646,
+        "displayEn": "646 CE"
+      },
+      "titleEn": "Emperor Kōtoku issues the Taika Reform",
+      "summaryEn": "Emperor Kōtoku issues the Taika Reform to strengthen imperial authority and weaken the aristocratic families. On the Chinese model, all farmland becomes the emperor's property and all inhabitants his subjects, governed by a merit-based bureaucracy.",
+      "geographyEn": "Japan",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-taika-reform"
+      ],
+      "selectionNote": "Centralises land and government in Japan on the Chinese model.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0650-teotihuacan-centre-burned",
+      "date": {
+        "kind": "approximate",
+        "startYear": 650,
+        "endYear": 650,
+        "displayEn": "c. 650 CE",
+        "noteEn": "The Met dates the burning to about 650 and calls the cause a possible internal crisis."
+      },
+      "titleEn": "Central Teotihuacan is burned",
+      "summaryEn": "The main temples and elite residences of central Teotihuacan are burned and carved cult objects smashed, perhaps in an internal political and economic crisis. Many apartment compounds are abandoned, though parts of the city remain inhabited until about 900.",
+      "geographyEn": "Teotihuacan, Valley of Mexico",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "ad0600en-met-teotihuacan-centre-burned"
+      ],
+      "selectionNote": "Marks the collapse of central Teotihuacan; the status marks the uncertain cause.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0664-synod-of-whitby",
+      "date": {
+        "kind": "exact",
+        "startYear": 664,
+        "endYear": 664,
+        "displayEn": "664 CE"
+      },
+      "titleEn": "The Synod of Whitby chooses Roman practice",
+      "summaryEn": "The Synod of Whitby meets to settle liturgical conflicts between the Celtic and Roman branches of Christianity in England. It decides to follow the Roman church, which draws England closer to Rome and continental Europe.",
+      "geographyEn": "Whitby, England",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-synod-of-whitby"
+      ],
+      "selectionNote": "Settles the English church's alignment with Rome.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0668-goguryeo-falls",
+      "date": {
+        "kind": "exact",
+        "startYear": 668,
+        "endYear": 668,
+        "displayEn": "668 CE"
+      },
+      "titleEn": "Tang and Silla destroy Goguryeo",
+      "summaryEn": "The Tang–Silla allies, after eight years consolidating their hold on former Baekje lands, invade Goguryeo. Weakened by earlier Sui and Tang assaults and by internal dissension, the northern kingdom falls quickly.",
+      "geographyEn": "Northern Korea and Manchuria",
+      "category": "war",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-goguryeo-falls"
+      ],
+      "selectionNote": "Ends the northern Korean kingdom of Goguryeo.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0670-uqba-founds-kairouan",
+      "date": {
+        "kind": "exact",
+        "startYear": 670,
+        "endYear": 670,
+        "displayEn": "670 CE",
+        "noteEn": "The Met places the campaign and the founding of Kairouan under 670 without separating their years."
+      },
+      "titleEn": "'Uqba ibn Nafi' conquers the Maghrib and founds Kairouan",
+      "summaryEn": "Muslim armies under 'Uqba ibn Nafi' fight Berber groups and conquer the land from northern Tunisia to Tangier, establishing Umayyad rule in North Africa. 'Uqba founds the city of Kairouan.",
+      "geographyEn": "Present-day Tunisia to Morocco; Kairouan",
+      "category": "war",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-uqba-founds-kairouan"
+      ],
+      "selectionNote": "Establishes Umayyad rule in North Africa and founds Kairouan.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0676-silla-unifies-korea",
+      "date": {
+        "kind": "exact",
+        "startYear": 676,
+        "endYear": 676,
+        "displayEn": "676 CE"
+      },
+      "titleEn": "Silla drives out the Tang and unifies Korea",
+      "summaryEn": "Silla-led resistance forces Tang troops to withdraw into Manchuria. For the first time almost the whole Korean peninsula, all but a narrow band in the north, comes under one Korean government, Unified Silla.",
+      "geographyEn": "Korean peninsula",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-silla-unifies-korea"
+      ],
+      "selectionNote": "The source calls it the first time nearly the whole peninsula came under one Korean government.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-0698-barhae-founded",
+      "date": {
+        "kind": "exact",
+        "startYear": 698,
+        "endYear": 698,
+        "displayEn": "698 CE"
+      },
+      "titleEn": "A former Goguryeo general founds Barhae",
+      "summaryEn": "A former Goguryeo general founds the kingdom of Barhae (Chinese: Bohai), which holds most of Goguryeo's former lands in Manchuria. Barhae and Unified Silla avoid war until the Khitan destroy Barhae in 926.",
+      "geographyEn": "Manchuria",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600en-met-barhae-founded"
+      ],
+      "selectionNote": "The successor kingdom to Goguryeo in Manchuria.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    }
+  ]
+}

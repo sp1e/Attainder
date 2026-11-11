@@ -1,0 +1,238 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-11",
+  "batchId": "bc0900-supplement-2026-11-11",
+  "researchWindow": {
+    "startYear": -900,
+    "endYear": -801
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "7d9bb8ea6c87a6372391e4106c3f1cabb01b7525",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc0900en-met-chalcatzingo-terraces-and-reliefs",
+      "title": "Mexico, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/cam",
+      "locator": "Key Events, entry \"ca. 900 B.C.\" beginning \"The people of Chalcatzingo\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 900 B.C.",
+      "originalChronology": "About 900 B.C.",
+      "scopedClaim": "The people of Chalcatzingo remodel the landscape into broad terraces and carve ritual scenes in low relief on living rock; Olmec-style ceramics are present at Tlatilco and Las Bocas.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0900en-met-korean-dolmen-burials",
+      "title": "Korea, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/eak",
+      "locator": "Key Events, entry \"ca. 900 B.C.\" beginning \"Burial practices become more elaborate\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 900 B.C.",
+      "originalChronology": "About 900 B.C.",
+      "scopedClaim": "Burial practices become more elaborate, reflecting increasing social stratification; dolmen tombs are more numerous in Korea than in other parts of East Asia; stone cists and earthenware jar coffins are new forms.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0900en-met-la-venta-ceremonial-layout",
+      "title": "Mexico, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/cam",
+      "locator": "Key Events, entry \"ca. 900 B.C.\" beginning \"The layout of the ceremonial heart of La Venta\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 900 B.C.",
+      "originalChronology": "About 900 B.C.",
+      "scopedClaim": "The layout of the ceremonial heart of La Venta, an oriented pattern of juxtaposed mounds and open plazas, is established; such layouts are used in sacred Mesoamerican centres for more than 2,000 years.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0900en-met-manchay-bajo-flood-wall",
+      "title": "Central and Southern Andes, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/sac",
+      "locator": "Key Events, entry \"ca. 900 B.C.\" beginning \"At Manchay Bajo\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 900 B.C.",
+      "originalChronology": "About 900 B.C.",
+      "scopedClaim": "At Manchay Bajo in the Lurín Valley a wall 820 yards long protects the U-shaped temple complex from flooding and mudslides.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0900en-met-ashurnasirpal-moves-capital-to-nimrud",
+      "title": "Mesopotamia, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/wam",
+      "locator": "Key Events, entry \"879 B.C.\" beginning \"Ashurnasirpal II\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "879 B.C.",
+      "originalChronology": "879 B.C.; reign 883–859 B.C.",
+      "scopedClaim": "Ashurnasirpal II (r. 883–859 B.C.) moves the Assyrian capital from Ashur to Nimrud; lamassu guard the palace entrances, reliefs show the king hunting, in ritual and in victory, and he holds a week-long party for nearly 70,000 guests at the palace's completion.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0900en-met-carthage-founded-by-tradition",
+      "title": "Western North Africa, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/afw",
+      "locator": "Key Events, entry \"814 B.C.\" beginning \"Tradition preserves this date\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "814 B.C.",
+      "originalChronology": "814 B.C., stated as a traditional date.",
+      "scopedClaim": "Tradition preserves 814 B.C. as the year Phoenician colonists from the Levant establish Carthage on the coast of modern Tunisia; the native peoples require tribute, such as rent on their land, through the fifth century B.C.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc0900-chalcatzingo-terraces-and-reliefs",
+      "date": {
+        "kind": "approximate",
+        "startYear": -900,
+        "endYear": -900,
+        "displayEn": "c. 900 BCE"
+      },
+      "titleEn": "Chalcatzingo builds terraces and carves rock reliefs",
+      "summaryEn": "The people of Chalcatzingo in the central Mexican highlands reshape the natural landscape into broad terraces and carve ritual scenes in low relief on the living rock. Olmec-style ceramics appear at other highland centres such as Tlatilco and Las Bocas.",
+      "geographyEn": "Chalcatzingo, central Mexican highlands",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0900en-met-chalcatzingo-terraces-and-reliefs"
+      ],
+      "selectionNote": "Documents Olmec-style art at central highland centres.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc0900-korean-dolmen-burials",
+      "date": {
+        "kind": "approximate",
+        "startYear": -900,
+        "endYear": -900,
+        "displayEn": "c. 900 BCE"
+      },
+      "titleEn": "Korean burials grow more elaborate, with dolmen tombs",
+      "summaryEn": "Burial practices in Korea grow more elaborate as society becomes more stratified. Dolmen tombs, upright stones under a horizontal slab, are more numerous in Korea than elsewhere in East Asia, beside new stone cists and earthenware jar coffins.",
+      "geographyEn": "Korean peninsula",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0900en-met-korean-dolmen-burials"
+      ],
+      "selectionNote": "Records increasing social stratification in Korea through its burials.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc0900-la-venta-ceremonial-layout",
+      "date": {
+        "kind": "approximate",
+        "startYear": -900,
+        "endYear": -900,
+        "displayEn": "c. 900 BCE"
+      },
+      "titleEn": "La Venta's ceremonial centre takes its planned layout",
+      "summaryEn": "The ceremonial heart of La Venta is laid out as an oriented pattern of mounds and open plazas. Builders of sacred Mesoamerican centres reuse such layouts, with regional and later variations, for more than 2,000 years.",
+      "geographyEn": "La Venta, Mexico",
+      "category": "culture",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0900en-met-la-venta-ceremonial-layout"
+      ],
+      "selectionNote": "The catalog's La Venta relief (700–600 BCE) is a later record at the same site; this record covers the site plan.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc0900-manchay-bajo-flood-wall",
+      "date": {
+        "kind": "approximate",
+        "startYear": -900,
+        "endYear": -900,
+        "displayEn": "c. 900 BCE"
+      },
+      "titleEn": "Manchay Bajo walls its temple against floods",
+      "summaryEn": "At Manchay Bajo in Peru's Lurín Valley, builders raise a wall 820 yards (about 750 metres) long to protect the U-shaped temple complex from the floods and mudslides of the central coast.",
+      "geographyEn": "Manchay Bajo, Lurín Valley, Peru",
+      "category": "technology",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0900en-met-manchay-bajo-flood-wall"
+      ],
+      "selectionNote": "A dated public work of flood protection on the Peruvian coast.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc0879-ashurnasirpal-moves-capital-to-nimrud",
+      "date": {
+        "kind": "exact",
+        "startYear": -879,
+        "endYear": -879,
+        "displayEn": "879 BCE",
+        "noteEn": "The Met dates the entry to 879 BCE without saying whether the year marks the move or the palace's completion."
+      },
+      "titleEn": "Ashurnasirpal II moves the Assyrian capital to Nimrud",
+      "summaryEn": "Ashurnasirpal II moves the Assyrian capital from Ashur to Nimrud (ancient Kalhu). Colossal lamassu guard his palace entrances, and carved alabaster reliefs show the king hunting, performing rituals and defeating enemies. When the palace is complete, he holds a week-long feast for nearly 70,000 guests.",
+      "geographyEn": "Nimrud (Kalhu), northern Mesopotamia",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0900en-met-ashurnasirpal-moves-capital-to-nimrud"
+      ],
+      "selectionNote": "A new imperial capital for Assyria; no catalog record covers it.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc0814-carthage-founded-by-tradition",
+      "date": {
+        "kind": "exact",
+        "startYear": -814,
+        "endYear": -814,
+        "displayEn": "814 BCE (traditional date)",
+        "noteEn": "The Met gives 814 BCE as the year tradition preserves. The record claims no archaeological date."
+      },
+      "titleEn": "Phoenician colonists found Carthage, by tradition",
+      "summaryEn": "Tradition dates to 814 BCE the founding of Carthage by Phoenician colonists from the Levant on the coast of present-day Tunisia. The local peoples are hostile and demand tribute from the colonists, including rent for their land, until the fifth century BCE.",
+      "geographyEn": "Carthage, present-day Tunisia",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "uncertain",
+      "sourceIds": [
+        "bc0900en-met-carthage-founded-by-tradition"
+      ],
+      "selectionNote": "The traditional founding of Carthage; the status marks the date as tradition.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    }
+  ]
+}

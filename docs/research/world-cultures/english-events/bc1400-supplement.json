@@ -1,0 +1,166 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-11",
+  "batchId": "bc1400-supplement-2026-11-11",
+  "researchWindow": {
+    "startYear": -1400,
+    "endYear": -1301
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "7d9bb8ea6c87a6372391e4106c3f1cabb01b7525",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc1400en-met-hittite-empire-reaches-greatest-extent",
+      "title": "Anatolia and the Caucasus, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/waa",
+      "locator": "Key Events, entry \"ca. 1380–1340 B.C.\" beginning \"After many years of successful military\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 1380–1340 B.C.",
+      "originalChronology": "About 1380 to 1340 B.C.; Shuppiluliuma I r. 1370–1330 B.C.",
+      "scopedClaim": "The Hittite empire, capital Hattusha (Boğazköy), reaches its maximum extent in central and southeast Anatolia and lands to the south bordering Egyptian-controlled territory; Shuppiluliuma I (r. 1370–1330 B.C.) is a general and builder.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1400en-met-pylos-palace-thrives",
+      "title": "Southern Europe, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/eus",
+      "locator": "Key Events, entry \"ca. 1380 B.C.\" beginning \"The Mycenaean palace at Pylos\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 1380 B.C.",
+      "originalChronology": "About 1380 B.C.",
+      "scopedClaim": "The Mycenaean palace at Pylos, the best preserved of its kind, thrives; its Linear B tablets suggest a king heading a highly organised feudal system.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1400en-met-san-jose-mogote-first-public-building",
+      "title": "Mesoamerica and Central America, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/ca",
+      "locator": "Key Events, entry \"ca. 1350 B.C.\" beginning \"The first public building in the Valley\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 1350 B.C.",
+      "originalChronology": "About 1350 B.C.",
+      "scopedClaim": "The first public building in the Valley of Oaxaca, a stuccoed wattle-and-daub structure on a platform-like foundation, is built at the regional centre of San José Mogote.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1400en-met-chogha-zanbil-built",
+      "title": "Iran, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/wai",
+      "locator": "Key Events, entry \"ca. 1340–1300 B.C.\" beginning \"A new capital and religious complex\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 1340–1300 B.C.",
+      "originalChronology": "About 1340 to 1300 B.C.",
+      "scopedClaim": "King Untash-Napirisha builds a new capital and religious complex, including a ziggurat, at Chogha Zanbil; the facade is covered with glazed blue and green terracotta and the interior with glass and ivory mosaics.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1380-hittite-empire-reaches-greatest-extent",
+      "date": {
+        "kind": "range",
+        "startYear": -1380,
+        "endYear": -1340,
+        "displayEn": "c. 1380–1340 BCE",
+        "noteEn": "The Met gives an approximate span and dates Shuppiluliuma I's reign to 1370–1330 BCE."
+      },
+      "titleEn": "The Hittite empire reaches its greatest extent",
+      "summaryEn": "After years of campaigning, the Hittite empire, ruled from Hattusha (Boğazköy), reaches its greatest extent in central and southeastern Anatolia and in lands to the south bordering Egyptian territory. Its ruler Shuppiluliuma I is both a general and a builder of large stone structures with reliefs.",
+      "geographyEn": "Central and southeastern Anatolia and lands to the south",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1400en-met-hittite-empire-reaches-greatest-extent"
+      ],
+      "selectionNote": "Records the Hittite empire at its greatest extent.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc1380-pylos-palace-thrives",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1380,
+        "endYear": -1380,
+        "displayEn": "c. 1380 BCE"
+      },
+      "titleEn": "The Mycenaean palace at Pylos thrives",
+      "summaryEn": "The Mycenaean palace at Pylos, the best preserved of its kind, thrives. Its clay Linear B tablets suggest a king at the head of a highly organised feudal system.",
+      "geographyEn": "Pylos, mainland Greece",
+      "category": "politics",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1400en-met-pylos-palace-thrives"
+      ],
+      "selectionNote": "The catalog dates the burning of the Pylos palace to 1200 BCE. This record covers its earlier prosperity.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc1350-san-jose-mogote-first-public-building",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1350,
+        "endYear": -1350,
+        "displayEn": "c. 1350 BCE"
+      },
+      "titleEn": "San José Mogote raises the first public building in the Valley of Oaxaca",
+      "summaryEn": "Builders at San José Mogote, the major regional centre of the Valley of Oaxaca, construct the valley's first public building. It is a stuccoed wattle-and-daub structure on a platform-like foundation.",
+      "geographyEn": "San José Mogote, Valley of Oaxaca, Mexico",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1400en-met-san-jose-mogote-first-public-building"
+      ],
+      "selectionNote": "Marks the start of public architecture in the Valley of Oaxaca.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc1340-chogha-zanbil-built",
+      "date": {
+        "kind": "range",
+        "startYear": -1340,
+        "endYear": -1300,
+        "displayEn": "c. 1340–1300 BCE",
+        "noteEn": "The Met gives an approximate span for the building."
+      },
+      "titleEn": "Untash-Napirisha builds the ziggurat complex at Chogha Zanbil",
+      "summaryEn": "King Untash-Napirisha builds a new capital and religious complex with a ziggurat at Chogha Zanbil. Glazed blue and green terracotta covers the ziggurat's facade, and glass and ivory mosaics decorate its interior.",
+      "geographyEn": "Chogha Zanbil, Elam (present-day Iran)",
+      "category": "religion",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1400en-met-chogha-zanbil-built"
+      ],
+      "selectionNote": "A royal Elamite capital and temple complex; no catalog record covers it.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    }
+  ]
+}
