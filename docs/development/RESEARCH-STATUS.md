@@ -10,6 +10,7 @@ The owner's Codex subscription has ended. From 11 November 2026 a Claude researc
 | §13 border tribes, AD 800 | Merged | [#194](https://github.com/sp1e/Attainder/pull/194), `7d9bb8ea` | `server/seed/historical/courts/border-tribes.json` (`starts.ad800`) | 7 tribes, 15 sources; independent check 22 checked, 18 confirmed, 4 corrected, 0 unsupported | Copy `starts.ad800.tribes` into `historicalScenario.tribes` and add Swedish names in the builder |
 | §13 border tribes, AD 1200, AD 1500, BC 3000 | Merged | [#196](https://github.com/sp1e/Attainder/pull/196), `2ad7d5a7` | `server/seed/historical/courts/border-tribes.json` (`starts.ad1200`, `starts.ad1500`, `starts.bc3000`) | 5 tribes, 10 sources; `bc3000` empty; independent check 15 checked, 11 confirmed, 4 corrected, 0 unsupported | Copy each start's `tribes` into its `historicalScenario.tribes` and add Swedish names in the builder |
 | English events, seven unresearched windows | Merged | [#197](https://github.com/sp1e/Attainder/pull/197), `472b7bb6` | `docs/research/world-cultures/english-events/{bc2600,bc1600,bc1400,bc0900,bc0600,ad0400,ad0600}-supplement.{json,md}` | 43 events, 43 sources; independent check 43 checked, 31 confirmed, 12 corrected, 0 unsupported | English runtime support (importer, validation, rendering) before the events reach the game |
+| English-first events in the catalog | Integrated | [#203](https://github.com/sp1e/Attainder/pull/203); branch `research/english-first-integrate` kept for `sourceRevision` | `server/seed/historical/events/{catalog,coverage}.json`, `server/seed/historical/locales/{en,sv}.json`, the 52 `*-supplement.json` files | 113 events, 167 sources; 538 English and 334 Swedish sidecar entries; 0 unresearched years | Runtime check of the new events in both languages |
 | §13 faith traditions, Aztec, Inca and Chimú | Branch pushed, no PR | branch `research/faith-traditions-andean`, `ed9203ff` | `server/seed/historical/courts/faith-traditions.json` | 2 courts added, Chimú moved to `andean`; 19 courts, 21 sources; independent check 3 rows and 4 sources, 2 corrected, 1 precision, 0 unsupported | The builder reads this file after release PR #198: ship the branch content in a rebuild |
 
 ### §13 faith traditions
@@ -60,15 +61,25 @@ The independent check opened all 31 cited pages and checked 43 events: 31 confir
 
 - Ruling: treat the Codex holds on these windows (BC0600 and the other tool-review holds) as tool refusals in the Codex environment; the hold records name no fault in the sources. The Claude session researched the windows afresh from public pages and did not use Codex's private drafts — if wrong, a hold that concerned the sources themselves goes unaddressed.
 - Ruling: accept one institutional timeline entry per event. The Met's entries are dated and attributed, and each summary stays within its entry — if wrong, the records need a second source before they reach the game.
-- Ruling: leave `coverage.json` and the catalog unchanged. The datasets wait for English runtime support like the earlier supplements.
+- Ruling: leave `coverage.json` and the catalog unchanged. The datasets wait for English runtime support like the earlier supplements. Superseded on 11 November 2026 by the catalog integration below.
 
-## Current publication checkpoint: 9 November 2026
+### English-first events in the catalog
 
-The gameplay catalog contains 873 approved event records, 801 sources and 7,416 bilingual entries. Coverage spans 4,130 partially researched years; 700 years remain unresearched in that catalog. The latest verified catalog publication is the BC2400 supplement in [PR #108](https://github.com/sp1e/Attainder/pull/108) at `04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c`. Its required CI passed 5,337 tests with no failures and two TODOs, and the build passed. The chronological record below preserves earlier milestones and remaining holds. Claude owns runtime integration and gameplay verification.
+The 113 approved events of the 52 English-first supplements now sit in `catalog.json` with the Swedish display fields of `english-first-sv.json` ([PR #202](https://github.com/sp1e/Attainder/pull/202)), and their 167 sources join `catalog.sources`. Date kind and endpoints, category, importance, source ids, selection note, review and historical status come unchanged from the supplements, whose `integrationStatus` now reads `integrated`. The catalog holds 986 events and 968 sources.
+
+`coverage.json` marks the seven windows above `partial`; each note names its records and the entries withheld. No year of the 4,830 remains unresearched. The 39 other partial windows that gained records keep their notes and add one sentence listing the English-first titles.
+
+`locales/en.json` gains 538 entries (four fields per event plus 86 date notes) with the supplement's English and a hash over the Swedish catalog text. `locales/sv.json` gains 334 Swedish source-panel entries, one institution and one locator per source; official names and quoted section titles keep their original form. Both sidecars point at research commit `5e8f0bdbaab1784492aa5f631297acfce856057c`, and all 6,352 English and 1,936 Swedish entries were read back against it.
+
+- Ruling: the seven window notes say what each supplement retained and withheld, and that other regions and empty years remain research gaps. The windows are partial and make no claim of complete coverage.
+
+## Current publication checkpoint: 11 November 2026
+
+The gameplay catalog contains 986 approved event records, 968 sources and 8,288 bilingual entries. Coverage spans 4,830 partially researched years; no year remains unresearched. The English-first integration on 11 November 2026 added 113 events and 167 sources (see the Claude research checkpoint above). The previous catalog publication was the BC2400 supplement in [PR #108](https://github.com/sp1e/Attainder/pull/108) at `04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c`. Its required CI passed 5,337 tests with no failures and two TODOs, and the build passed. The chronological record below preserves earlier milestones and remaining holds. Claude owns runtime integration and gameplay verification.
 
 ## New research: English only
 
-The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets await Claude's English import and rendering changes. Existing published catalog and locale entries remain unchanged.
+The owner's 9 November correction requires English-only text for new research. The [English research format](../research/world-cultures/english-events/README.md) separates source approval from runtime support. The current loader and validator require Swedish fields, so these new datasets awaited Claude's English import and rendering changes. On 11 November 2026 their 113 approved records entered the catalog with Swedish display fields, and the English text moved to the locale sidecar. Earlier catalog and locale entries remain unchanged.
 
 The English research deliveries now contain seventy approved records, one hundred and twenty-four source records and three hundred and fifty display fields, separate from the gameplay catalog totals above.
 
@@ -916,6 +927,6 @@ The independent revision 02 final review passed all 181 pairs and 63 checks. Roo
 
 ## Remaining research coverage and supplement hold
 
-The approved catalog still marks seven windows unresearched: 2600–2501, 1600–1501, 1400–1301, 900–801 and 600–501 BC, plus AD 400–499 and 600–699. English supplements for all seven windows (43 events) are listed in the Claude research checkpoint at the top of this file; the catalog coverage for these windows changes only when English runtime support lands. Private preparation does not establish approved catalog coverage. All other covered windows remain partial; this delivery does not supply a securely dated important event for every year.
+Until 11 November 2026 the approved catalog marked seven windows unresearched: 2600–2501, 1600–1501, 1400–1301, 900–801 and 600–501 BC, plus AD 400–499 and 600–699. The English-first integration added their 43 events and set all seven to partial. Private preparation does not establish approved catalog coverage. Every window is now partial; this delivery does not supply a securely dated important event for every year.
 
 A separate BC0800 supplement was attempted after the active publication queue had completed review. Automatic tool review rejected its combined catalog-comparison and candidate-packaging operation before process start with `blocked by policy`, without a more specific reason. A read-only incident check found all seven intended output files absent. The saved discovery results remain separate from approved data. No candidate reconstruction, smaller-command retry, tool substitution, independent source-review launch or bilingual packaging followed the denial. The already published BC0800 batch is unchanged. This supplement hold is separate from the previously recorded BC0600 and other holds.
