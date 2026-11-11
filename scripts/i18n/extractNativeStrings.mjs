@@ -573,6 +573,8 @@ export const extractNativeFromSource = (code, file, excluded = new Set()) => {
 
 const SOURCE_DIRS = ["server", "src"];
 const SKIPPED_DIRS = new Set(["node_modules", "generated"]);
+// The detector's own word list is Swedish words, not player text.
+const SKIPPED_FILES = new Set(["src/runtime/swedishText.js"]);
 
 // Every non-test source file under server/ and src/, sorted, as repo-relative paths.
 export const nativeSourceFiles = (root) => {
@@ -582,7 +584,7 @@ export const nativeSourceFiles = (root) => {
       const next = `${relative}/${entry.name}`;
       if (entry.isDirectory()) {
         if (!SKIPPED_DIRS.has(entry.name) && !entry.name.startsWith(".") && next !== "server/fixtures") walk(next);
-      } else if (/\.(?:js|jsx|mjs)$/.test(entry.name) && !/\.test\.(?:js|jsx|mjs)$/.test(entry.name)) out.push(next);
+      } else if (/\.(?:js|jsx|mjs)$/.test(entry.name) && !/\.test\.(?:js|jsx|mjs)$/.test(entry.name) && !SKIPPED_FILES.has(next)) out.push(next);
     }
   };
   SOURCE_DIRS.filter((dir) => fs.existsSync(path.join(root, dir))).forEach(walk);
