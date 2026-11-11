@@ -7,7 +7,7 @@
     "startYear": -1800,
     "endYear": -1701
   },
-  "integrationStatus": "awaiting-runtime-support",
+  "integrationStatus": "integrated",
   "catalogBaseline": {
     "commit": "6544af4bae23202aab291ff185ca19563bd3c45f",
     "eventCount": 873,
