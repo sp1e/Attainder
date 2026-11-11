@@ -128,7 +128,7 @@ test('interpret maps a command entry and checks its payload keys against the fie
 test('an unknown target is reported, not guessed', async () => {
   const { callModel, calls } = fakeModel({ status: 'unknown_person', catalogId: 'sway', targetIds: [], personText: 'Lord Valdemar', explanation: 'Okänd person.', suggestions: [] });
   const result = await interpretCharacterAction({ text: 'Smickra Lord Valdemar', view: view(), callModel });
-  assert.deepEqual(result, { ok: false, reason: 'Personen finns inte i spelet: Lord Valdemar.', fallback: 'menu' });
+  assert.deepEqual(result, { ok: false, reason: 'Personen finns inte i spelet: Lord Valdemar.', quoted: 'Lord Valdemar', fallback: 'menu' });
   assert.equal(calls.length, 1, 'no retry for a person the model could not find');
   const invented = fakeModel(swayAnswer({ targetIds: ['person-9-9'], personText: 'Valdemar' }));
   const second = await interpretCharacterAction({ text: 'Smickra Valdemar', view: view(), callModel: invented.callModel });
@@ -314,7 +314,7 @@ test('a person field naming someone who is not in the game is an unknown person,
   const gift = (targetId, personText) => ({ status: 'action', catalogId: 'gift', targetIds: [], payload: { targetId }, personText, explanation: 'Ge en gåva.', suggestions: [] });
   const unknown = fakeModel(gift('person-9-9', 'Valdemar'));
   assert.deepEqual(await interpretCharacterAction({ text: 'gåva till Valdemar', view: view(), callModel: unknown.callModel }),
-    { ok: false, reason: 'Personen finns inte i spelet: Valdemar.', fallback: 'menu' });
+    { ok: false, reason: 'Personen finns inte i spelet: Valdemar.', quoted: 'Valdemar', fallback: 'menu' });
   assert.equal(unknown.calls.length, 1);
   const state = createCharacterSystem({ seed: 321 });
   state.people['person-0-1'].diedAt = state.date;
@@ -345,9 +345,11 @@ test('the unknown-person reason names the reported person text, and is bare when
   const answer = (personText) => ({ status: 'unknown_person', catalogId: 'sway', targetIds: [], personText, explanation: 'Förklaring som inte ska visas.', suggestions: [] });
   const named = await interpretCharacterAction({ text: 'x', view: view(), callModel: fakeModel(answer('Lord Valdemar')).callModel });
   assert.equal(named.reason, 'Personen finns inte i spelet: Lord Valdemar.');
+  assert.equal(named.quoted, 'Lord Valdemar', 'the part of the reason that is the model\'s reading of the player\'s text');
   for (const empty of ['', '   ', undefined]) {
     const bare = await interpretCharacterAction({ text: 'x', view: view(), callModel: fakeModel(answer(empty)).callModel });
     assert.equal(bare.reason, 'Personen finns inte i spelet.');
+    assert.equal(Object.hasOwn(bare, 'quoted'), false, 'a bare reason quotes nothing');
   }
   const { callModel, calls } = fakeModel(answer('x'));
   await interpretCharacterAction({ text: 'x', view: view(), callModel });
@@ -845,4 +847,8 @@ test('a no-match reason the model wrote carries its origin; the game\'s own reas
   const stranger = await interpretCharacterAction({ text: 'flyg', view: view(), language: 'English',
     callModel: fakeModel({ status: 'unknown_person', catalogId: '', targetIds: [], explanation: 'No such person.', personText: 'Gorm' }).callModel });
   assert.deepEqual([stranger.reason, Object.hasOwn(stranger, 'origin')], ['Personen finns inte i spelet: Gorm.', false]);
+  // The sentence is the game's, so it carries no model origin; only the name in it is quoted, in the session's language.
+  const duke = await interpretCharacterAction({ text: 'I write to the Duke of York.', view: view(), language: 'English',
+    callModel: fakeModel({ status: 'unknown_person', catalogId: '', targetIds: [], explanation: 'No such person.', personText: 'the Duke of York.' }).callModel });
+  assert.deepEqual([duke.reason, duke.quoted, Object.hasOwn(duke, 'origin')], ['Personen finns inte i spelet: the Duke of York.', 'the Duke of York', false]);
 });

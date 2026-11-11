@@ -2350,6 +2350,23 @@ test("a reason with the model's origin that is no sentence gives the Swedish sen
   assert.doesNotMatch(html, /data-no-translate/);
 });
 
+test("the unknown-person message reaches the player with an English name in it, and is the game's text for the translator", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const callModel = async () => ({ toolInput: { status: "unknown_person", personText: "the Duke of York" } });
+  const { result, warnings } = await withWarnings(() => box.prepareInterpretedAction({ text: "I write to the Duke of York", view,
+    interpret: ({ text, view: seen }) => interpretCharacterAction({ text, view: seen, language: "English", callModel }), estimate: async () => assert.fail() }));
+  assert.deepEqual([result.kind, result.reason, result.reasonFromModel], ["menu", "Personen finns inte i spelet: the Duke of York.", undefined]);
+  assert.deepEqual(warnings, [], "nothing was kept back");
+  // Not marked as the model's: the page translator reads the sentence by its pattern in English mode.
+  const html = renderToStaticMarkup(React.createElement(box.ActionMenu, { view, reason: result.reason, reasonFromModel: result.reasonFromModel, onPropose: () => {} }));
+  assert.match(html, /<p class="char-reason" role="status">Personen finns inte i spelet: the Duke of York\.<\/p>/);
+  // The same sentence from a caller that does not name the quote is held back, as any English is.
+  const untagged = await withWarnings(() => box.prepareInterpretedAction({ text: "x", view,
+    interpret: async () => ({ ok: false, reason: "Personen finns inte i spelet: the Duke of York.", fallback: "menu" }), estimate: async () => assert.fail() }));
+  assert.deepEqual([untagged.result.reason, untagged.warnings.length], [INTERPRET_FAILED, 1]);
+});
+
 test("a narrated outcome is marked as the model's text; the engine's default text is not", async () => {
   const box = loadActionBox();
   const { view } = engineCampaign();
