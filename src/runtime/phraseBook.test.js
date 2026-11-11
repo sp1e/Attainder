@@ -9,7 +9,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { compilePattern, createPhraseBook, isPatternKey } from "./phraseBook.js";
+import { compilePattern, createPhraseBook, isPatternKey, slotNames } from "./phraseBook.js";
 
 const bookOf = (entries) => {
   const book = createPhraseBook();
@@ -224,6 +224,83 @@ test("native: a sentence is found without its final period, and gets it back", (
   const plain = bookOf(court);
   assert.equal(plain.translate("Hovet flyttar till Aachen."), null, "not in an English-keyed book");
   assert.equal(plain.translate("Karl kröns i Rom."), null);
+});
+
+// The engine writes a label into a sentence in lower case (label.toLowerCase()
+// in crimes.js, health.js, conversation.js and others), and the catalog has
+// the label as it is declared, with its capital.
+const LABELS = {
+  "{{name}} har avslöjats för {{crime}}. Du avgör hur brottet ska straffas.": "{{name}} has been exposed for {{crime}}. You decide how the crime is punished.",
+  "Personen är {{trait}}": "The person is {{trait}}",
+  "{{name}} lider av {{condition}}": "{{name}} suffers from {{condition}}",
+  "{{name}} använder {{archetype}}s särskilda möjlighet.": "{{name}} uses {{archetype}}'s special opportunity.",
+  Mord: "Murder",
+  Girig: "Greedy",
+  "Svår sjukdom": "Serious illness",
+  "Fältherren": "The commander",
+  HIV: "HIV",
+  "Silla": "Silla",
+  "Tang-sändebud": "Tang envoy",
+  Karl: "Charles",
+  dygdig: "virtuous",
+  Dygdig: "The Virtuous",
+};
+
+test("native: a lowercased label in a slot is found by its capital, and the translation gets the lower case back", () => {
+  const book = nativeBookOf(LABELS);
+  assert.equal(book.translate("Karl har avslöjats för mord. Du avgör hur brottet ska straffas."), "Charles has been exposed for murder. You decide how the crime is punished.");
+  assert.equal(book.translate("Personen är girig"), "The person is greedy");
+  assert.equal(book.translate("Karl lider av svår sjukdom"), "Charles suffers from serious illness", "a label of several words");
+  assert.equal(book.translate("Karl använder fältherrens särskilda möjlighet."), "Charles uses the commander's special opportunity.");
+  assert.equal(book.translate("Personen är Girig"), "The person is Greedy", "a value written with its capital is the entry itself");
+  assert.equal(book.translate("Personen är dygdig"), "The person is virtuous", "an entry for the lower case wins over the fallback");
+});
+
+test("native: a whole string in lower case is found by its capital too", () => {
+  const book = nativeBookOf(LABELS);
+  assert.equal(book.translate("mord"), "murder");
+  assert.equal(book.translate("svår sjukdom"), "serious illness");
+  assert.equal(book.translate("  mord "), "murder");
+  assert.equal(book.translate("dygdig"), "virtuous");
+});
+
+test("native: the lower case is not forced on an acronym or on a name both languages write alike", () => {
+  const book = nativeBookOf(LABELS);
+  assert.equal(book.translate("Personen är hIV"), "The person is HIV", "the translation's second letter is a capital");
+  assert.equal(book.translate("Personen är silla"), "The person is Silla", "the same word opens the Swedish and the English");
+  assert.equal(book.translate("Personen är tang-sändebud"), "The person is Tang envoy");
+  assert.equal(book.translate("Personen är karl"), "The person is charles", "a name the languages write differently cannot be told from a label");
+});
+
+test("native: a lowercased value the book knows in neither case stays as it is", () => {
+  const book = nativeBookOf(LABELS);
+  assert.equal(book.translate("Personen är feg"), "The person is feg");
+  assert.equal(book.translate("feg"), null);
+  assert.equal(book.translate("mORD"), null, "only the first letter is put back");
+  assert.equal(book.translate("7 mord"), null, "a string that does not start with a lowercase letter is not tried");
+  assert.equal(book.translate("mord."), null, "the fallback is for a label, not for a sentence");
+});
+
+test("native: outside the Swedish views the fallback answers for a value in a strong pattern, never for a whole string", () => {
+  const book = nativeBookOf(LABELS);
+  assert.equal(book.translate("Karl har avslöjats för mord. Du avgör hur brottet ska straffas.", { strongOnly: true }),
+    "Charles has been exposed for murder. You decide how the crime is punished.");
+  assert.equal(book.translate("mord", { strongOnly: true }), null, "a lowercase word of the English interface is not capitalised into a Swedish entry");
+  assert.equal(book.translate("mord"), "murder", "and the full tier's answer is still its own");
+});
+
+test("a book that is not native has no lowercase fallback", () => {
+  const book = bookOf({ "Edit {{label}}": "{{label}} bearbeiten", Borders: "Grenzen", War: "Krieg" });
+  assert.equal(book.translate("Edit Borders"), "Grenzen bearbeiten");
+  assert.equal(book.translate("Edit borders"), "borders bearbeiten", "the value is left as written");
+  assert.equal(book.translate("war"), null);
+  assert.equal(book.translate("borders"), null);
+});
+
+test("slotNames lists a text's slots in order, each as often as it is written", () => {
+  assert.deepEqual(slotNames("{{a}} gifter sig med {{ b }} och {{a}}"), ["a", "b", "a"]);
+  assert.deepEqual(slotNames("Sändebud"), []);
+  assert.deepEqual(slotNames(null), []);
 });
 
 // The strong tier is what the translator uses outside the views written in the
