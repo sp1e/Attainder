@@ -255,10 +255,12 @@ const isTranslatable = (text) => {
 
 // A rendered string the book has nothing for. With a shipped pack it stays
 // English and is listed for the next pack; without one it goes to the AI,
-// unless it is Swedish. In native mode only Swedish text is listed, and
-// nothing is queued.
-const noteUnknown = (trimmed) => {
-  const fate = unknownTextFate(mode, trimmed, { packed });
+// unless it is Swedish. In native mode nothing is queued: inside a
+// Swedish-native view (tier "full") every such string is listed, outside one
+// only Swedish text is. A caller without a place on the page (a map label)
+// gives no tier and is read as outside.
+const noteUnknown = (trimmed, tier) => {
+  const fate = unknownTextFate(mode, trimmed, { packed, tier });
   if (fate === "missing") {
     if (missing.size < MISSING_LIMIT) missing.add(trimmed);
   } else if (fate === "model") {
@@ -283,7 +285,7 @@ const translateValue = (value, { note = true, tier = "full" } = {}) => {
   if (!numericDate && !isTranslatable(trimmed)) return null;
   const translated = translateInTier(book, trimmed, tier);
   if (translated == null) {
-    if (note && !numericDate) noteUnknown(trimmed);
+    if (note && !numericDate) noteUnknown(trimmed, tier);
     return null;
   }
   const leading = value.slice(0, value.length - value.trimStart().length);

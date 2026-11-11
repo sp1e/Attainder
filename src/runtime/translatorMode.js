@@ -73,12 +73,18 @@ export const mayQueueForModel = (mode, text) =>
 //   "model"    queued for the player's AI model;
 //   "none"     left as it is.
 // With a shipped pack an English string the pack lacks is listed for the next
-// pack, as before. Without one it goes to the model, unless it is Swedish. In
-// native mode a Swedish string is a gap in the native book; anything else is
-// the English interface, which is meant to stay.
-export const unknownTextFate = (mode, text, { packed = false } = {}) => {
+// pack, as before. Without one it goes to the model, unless it is Swedish.
+//
+// In native mode it depends on where the string is (`tier`, from tierFor).
+// Inside a Swedish-native view ("full") everything is written in Swedish, so
+// every string the book lacks is a gap. The detector is not asked there: it
+// knows Swedish by å, ä, ö and a short word list, and misses a fifth of the
+// catalog ("Till:", "den Store", "Krig"). Outside such a view ("strong", and
+// the default) the page is the English interface, which is meant to stay, and
+// only a string the detector reads as Swedish is a gap.
+export const unknownTextFate = (mode, text, { packed = false, tier = "strong" } = {}) => {
   if (typeof text !== "string") return "none";
-  if (mode === "native") return looksSwedish(text) ? "missing" : "none";
+  if (mode === "native") return tier === "full" || looksSwedish(text) ? "missing" : "none";
   if (mode !== "pack" || !ENGLISH_WORDS.test(text)) return "none";
   if (packed) return "missing";
   return mayQueueForModel(mode, text) ? "model" : "none";

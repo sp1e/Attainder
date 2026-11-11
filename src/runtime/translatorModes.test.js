@@ -35,6 +35,7 @@ const SAMPLE_CODE = {
   "Riket går i krig vid {{name}}s sida": "The realm goes to war at {{name}}'s side",
   "Sändebud": "Envoy",
   "Hovet saknar silver": "The court lacks silver",
+  "stat": "state",
 };
 
 // A real event title and a real name of historical-en.json.
@@ -213,9 +214,16 @@ test("English mode: the native book translates the page in two tiers and asks no
   const title = addText(TITLE);
   const strong = addText("Riket går i krig vid Karls sida");
   const gap = addText("Hovet har inget silver kvar");
-  const word = addText("Mål", { native: true });
+  addText("Mål", { native: true });
+  // Swedish the detector does not recognise: a gap inside a native view, the
+  // English interface for all the translator knows outside one.
+  const unmarked = addText("Under beskydd", { native: true });
+  addText("Fly till landsbygden");
+  // A Swedish entry the English interface also writes.
+  const stateInside = addText("stat", { native: true });
+  const statOutside = addText("stat");
   const free = addText("Sändebud", { skip: true });
-  const hinted = addText("Envoy", { native: true, attributes: { title: "Karl dog 814" } }).parentElement;
+  const hinted = addText("Sändebud", { native: true, attributes: { title: "Karl dog 814" } }).parentElement;
   const plain = addText("Envoy", { attributes: { title: "Karl dog 814", "aria-label": "Sändebud" } }).parentElement;
   document.title = TITLE;
 
@@ -228,6 +236,9 @@ test("English mode: the native book translates the page in two tiers and asks no
   assert.equal(title.nodeValue, TITLE_EN, "an entry applies everywhere");
   assert.equal(strong.nodeValue, "The realm goes to war at Charles's side", "and so does a strong pattern");
   assert.equal(gap.nodeValue, "Hovet har inget silver kvar", "what the book lacks stays Swedish");
+  assert.equal(unmarked.nodeValue, "Under beskydd");
+  assert.equal(stateInside.nodeValue, "state", "the Swedish word inside a native view");
+  assert.equal(statOutside.nodeValue, "stat", "the interface's own word outside one");
   assert.equal(free.nodeValue, "Sändebud", "data-no-translate is still skipped");
   assert.equal(hinted.attributes.title, "Charles died 814", "an attribute takes its element's tier");
   assert.equal(plain.attributes.title, "Karl dog 814");
@@ -238,7 +249,8 @@ test("English mode: the native book translates the page in two tiers and asks no
   const state = window.__ohI18n;
   assert.deepEqual([state.language, state.mode, state.packed], ["en", "native", false]);
   assert.equal(typeof state.rescan, "function");
-  assert.deepEqual([...state.missing].sort(), ["Hovet har inget silver kvar", "Mål"], "only Swedish text is a gap");
+  assert.deepEqual([...state.missing].sort(), ["Hovet har inget silver kvar", "Mål", "Under beskydd"],
+    "outside a native view only text the detector reads as Swedish is a gap; inside one every unknown string is");
   assert.equal(state.pending.size, 0);
 
   // The map's labels, and the calls that queue content in pack mode.

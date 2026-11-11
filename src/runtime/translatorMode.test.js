@@ -11,6 +11,7 @@ import assert from "node:assert/strict";
 import { characterTransitionEvents } from "./characterWorld.js";
 import { hasShippedPack } from "./i18n.js";
 import { createPhraseBook } from "./phraseBook.js";
+import { looksSwedish } from "./swedishText.js";
 import {
   CHARACTER_EVENT_SOURCE,
   NATIVE_TEXT_SELECTOR,
@@ -60,6 +61,40 @@ test("en: a Swedish string the book lacks is listed as missing, anything else is
   assert.equal(fateIn("en", SWEDISH_WORD), "missing", "a word with no two Latin letters together still counts");
   assert.equal(fateIn("en", ENGLISH), "none", "the English interface is meant to stay");
   assert.equal(fateIn("en", CHINESE), "none");
+});
+
+// Catalog entries the detector does not read as Swedish: their only marker is
+// a word English shares, or they have none.
+const UNMARKED_SWEDISH = ["Till:", "den Store", "Under beskydd", "Fly till landsbygden", "Karl den yngre", "Krig", "Stark"];
+
+test("en: inside a Swedish-native view every string the book lacks is a gap, whatever the detector says", () => {
+  const mode = translatorMode("en");
+  for (const text of [...UNMARKED_SWEDISH, SWEDISH, SWEDISH_WORD, ENGLISH, CHINESE]) {
+    assert.equal(unknownTextFate(mode, text, { tier: tierFor(mode, true) }), "missing", text);
+  }
+  assert.equal(unknownTextFate(mode, null, { tier: "full" }), "none");
+});
+
+test("en: outside the Swedish-native views the detector still decides, and that is the default", () => {
+  const mode = translatorMode("en");
+  for (const text of [...UNMARKED_SWEDISH, ENGLISH, CHINESE]) {
+    assert.equal(looksSwedish(text), false, text);
+    assert.equal(unknownTextFate(mode, text, { tier: tierFor(mode, false) }), "none", text);
+    assert.equal(unknownTextFate(mode, text), "none", `${text}: no tier given`);
+  }
+  assert.equal(unknownTextFate(mode, SWEDISH, { tier: "strong" }), "missing");
+  assert.equal(unknownTextFate(mode, SWEDISH_WORD, { tier: "strong" }), "missing");
+});
+
+test("sv, de and fi: the tier changes nothing about an unknown string", () => {
+  for (const language of ["sv", "de", "fi"]) {
+    const mode = translatorMode(language);
+    const packed = hasShippedPack(language);
+    for (const text of [ENGLISH, SWEDISH, SWEDISH_WORD, CHINESE, "Under beskydd"]) {
+      assert.equal(unknownTextFate(mode, text, { packed, tier: "full" }), unknownTextFate(mode, text, { packed }), `${language}: ${text}`);
+      assert.equal(unknownTextFate(mode, text, { packed, tier: "strong" }), unknownTextFate(mode, text, { packed }), `${language}: ${text}`);
+    }
+  }
 });
 
 test("sv and de: English content may be queued, Swedish text never", () => {
