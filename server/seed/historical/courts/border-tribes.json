@@ -1,0 +1,269 @@
+{
+  "schema": "attainder-border-tribes-v1",
+  "starts": {
+    "ad800": {
+      "sources": {
+        "bt800-rfa-798": {
+          "title": "Annales regni Francorum, ed. Friedrich Kurze (MGH Scriptores rerum Germanicarum 6, Hannover 1895)",
+          "institution": "Internet Archive, scan of the 1895 edition (University of Toronto copy)",
+          "url": "https://archive.org/stream/annalesregnifran00anna/annalesregnifran00anna_djvu.txt",
+          "locator": "s.a. 798, pp. 102–105, with Kurze's note 4 on p. 105",
+          "scopedClaim": "The Nordliudi living beyond the Elbe seized and killed royal legates at Easter 798; Thrasco, dux of the Obodrites, the Franks' allies, defeated them at Suentana, which Kurze's note identifies with Bornhöved.",
+          "chronology": "The annal's year 798.",
+          "uncertainty": "The annal names the Obodrites' leader dux and the battle site, not the borders of either people.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-rfa-789": {
+          "title": "Annales regni Francorum, ed. Friedrich Kurze (MGH Scriptores rerum Germanicarum 6, Hannover 1895)",
+          "institution": "Internet Archive, scan of the 1895 edition (University of Toronto copy)",
+          "url": "https://archive.org/stream/annalesregnifran00anna/annalesregnifran00anna_djvu.txt",
+          "locator": "s.a. 789, pp. 84–85 and 87, with Kurze's notes 2–3 on p. 84",
+          "scopedClaim": "The Wilzi (Welatabi) were a Slavic people on the Baltic coast, hostile to the Franks; Charles crossed the Elbe into their land, a Frisian fleet came up the Havel, and Dragawit ranked first among the other Wilzi reguli. Kurze's note says the name covered all Slavs between the Obodrites and the Sorbs.",
+          "chronology": "The annal's year 789, eleven years before the start.",
+          "uncertainty": "The passage gives the Wilzi several reguli and no single ruler; it draws no border.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-rfa-782": {
+          "title": "Annales regni Francorum, ed. Friedrich Kurze (MGH Scriptores rerum Germanicarum 6, Hannover 1895)",
+          "institution": "Internet Archive, scan of the 1895 edition (University of Toronto copy)",
+          "url": "https://archive.org/stream/annalesregnifran00anna/annalesregnifran00anna_djvu.txt",
+          "locator": "s.a. 782, p. 61 (revised text)",
+          "scopedClaim": "The Sorbian Slavs lived on the plains between the Elbe and the Saale and raided the Thuringians and Saxons next to them.",
+          "chronology": "The annal's year 782, eighteen years before the start.",
+          "uncertainty": "The 806 entry is the nearest later placement.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-rfa-806": {
+          "title": "Annales regni Francorum, ed. Friedrich Kurze (MGH Scriptores rerum Germanicarum 6, Hannover 1895)",
+          "institution": "Internet Archive, scan of the 1895 edition (University of Toronto copy)",
+          "url": "https://archive.org/stream/annalesregnifran00anna/annalesregnifran00anna_djvu.txt",
+          "locator": "s.a. 806, p. 121",
+          "scopedClaim": "Charles the Younger led an army against the Slavs called Sorbs, who sit on the Elbe; Miliduoch, a dux of the Slavs, was killed and two forts were built, one on the Saale and one by the Elbe.",
+          "chronology": "The annal's year 806.",
+          "uncertainty": "The passage calls Miliduoch a Slavic dux and does not say he ruled all Sorbs.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-rfa-805": {
+          "title": "Annales regni Francorum, ed. Friedrich Kurze (MGH Scriptores rerum Germanicarum 6, Hannover 1895)",
+          "institution": "Internet Archive, scan of the 1895 edition (University of Toronto copy)",
+          "url": "https://archive.org/stream/annalesregnifran00anna/annalesregnifran00anna_djvu.txt",
+          "locator": "s.a. 805, p. 120",
+          "scopedClaim": "Charles the Younger led an army into the land of the Slavs called Beheimi, laid waste the whole country and killed their dux Lecho.",
+          "chronology": "The annal's year 805.",
+          "uncertainty": "The passage names one dux in 805 and is silent on who led the Bohemians in 800.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-rfa-799": {
+          "title": "Annales regni Francorum, ed. Friedrich Kurze (MGH Scriptores rerum Germanicarum 6, Hannover 1895)",
+          "institution": "Internet Archive, scan of the 1895 edition (University of Toronto copy)",
+          "url": "https://archive.org/stream/annalesregnifran00anna/annalesregnifran00anna_djvu.txt",
+          "locator": "s.a. 799, pp. 108–109",
+          "scopedClaim": "Count Wido of the Breton march toured all Brittany, took its surrender and brought Charles the arms of the duces who had surrendered, each inscribed with its owner's name; the revised text adds that the faithless people soon undid the conquest.",
+          "chronology": "The annal's year 799.",
+          "uncertainty": "The passage counts several Breton duces and no king.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-brorsson-reric": {
+          "title": "Torbjörn Brorsson, The Pottery from the Early Medieval Trading Site and Cemetery at Groß Strömkendorf, Lkr. Nordwestmecklenburg (Forschungen zu Groß Strömkendorf III, 2010)",
+          "institution": "Philipp von Zabern / Römisch-Germanische Kommission; publisher's reading sample hosted by beck-shop.de",
+          "url": "https://beckassets.blob.core.windows.net/product/readingsample/6063572/9783895007514_excerpt_002.pdf",
+          "locator": "Introduction, first two paragraphs and Fig. 1",
+          "scopedClaim": "Groß Strömkendorf lies about 7 km north of Wismar; in the 8th and early 9th century the site belonged to the territory of the Slavonic Obodrites, who controlled the whole western part of Mecklenburg.",
+          "chronology": "8th and early 9th century.",
+          "uncertainty": "The sample is the book's introduction; it gives no year-by-year border.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-kb-isawa": {
+          "title": "Kuwabara Shigeo, 胆沢城 (Isawa castle), 改訂新版 世界大百科事典",
+          "institution": "Heibonsha; Kotobank (Asahi Shimbun) edition",
+          "url": "https://kotobank.jp/word/%E8%83%86%E6%B2%A2%E5%9F%8E-31393",
+          "locator": "Entry \"胆沢城\", section 改訂新版 世界大百科事典, first two paragraphs",
+          "scopedClaim": "Campaigns against the Emishi of the Isawa land, the Kitakami river basin in southern Iwate, were repeated through the Hōki and Enryaku eras; in 801 Sakanoue no Tamuramaro is said to have suppressed their long revolt, and Isawa castle was built in 803 in the former city of Mizusawa.",
+          "chronology": "Late 8th century to 803.",
+          "uncertainty": "Other dictionaries on the same page date the castle to 802 and name Aterui as one Emishi leader, without saying he ruled all Emishi; the entry names no single Emishi ruler.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-tgn-wismar": {
+          "title": "Getty Thesaurus of Geographic Names: Wismar (7004719)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=7004719",
+          "locator": "Coordinates field",
+          "scopedClaim": "Wismar lies at latitude 53.9000, longitude 11.4667.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-tgn-brandenburg": {
+          "title": "Getty Thesaurus of Geographic Names: Brandenburg (7004462)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=7004462",
+          "locator": "Coordinates field",
+          "scopedClaim": "Brandenburg lies at latitude 52.4167, longitude 12.5500.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-tgn-leipzig": {
+          "title": "Getty Thesaurus of Geographic Names: Leipzig (7012329)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=7012329",
+          "locator": "Coordinates field",
+          "scopedClaim": "Leipzig lies at latitude 51.3000, longitude 12.3333.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-tgn-bohemia": {
+          "title": "Getty Thesaurus of Geographic Names: Bohemia (7006470)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=7006470",
+          "locator": "Coordinates field",
+          "scopedClaim": "Bohemia lies at latitude 49.3333, longitude 14.5000.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-tgn-bornhoved": {
+          "title": "Getty Thesaurus of Geographic Names: Bornhöved (7005967)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=7005967",
+          "locator": "Coordinates field",
+          "scopedClaim": "Bornhöved lies at latitude 54.0667, longitude 10.2333.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-tgn-brittany": {
+          "title": "Getty Thesaurus of Geographic Names: Brittany (7012216)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=7012216",
+          "locator": "Coordinates field",
+          "scopedClaim": "Brittany lies at latitude 48.1660, longitude -2.8330.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt800-tgn-mizusawa": {
+          "title": "Getty Thesaurus of Geographic Names: Mizusawa (1080851)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=1080851",
+          "locator": "Coordinates field",
+          "scopedClaim": "Mizusawa lies at latitude 39.1667, longitude 141.1167.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        }
+      },
+      "tribes": [
+        {
+          "id": "ad800-tribe-obodrites",
+          "nameEn": "Obodrites",
+          "coordinates": [
+            11.4667,
+            53.9
+          ],
+          "sourceIds": [
+            "bt800-brorsson-reric",
+            "bt800-rfa-798",
+            "bt800-tgn-wismar"
+          ],
+          "noteEn": "The annal calls Thrasco dux of the Obodrites, Frankish allies; the point is Wismar, 7 km from the Obodrite trading site."
+        },
+        {
+          "id": "ad800-tribe-wilzi",
+          "nameEn": "Wilzi",
+          "coordinates": [
+            12.55,
+            52.4167
+          ],
+          "sourceIds": [
+            "bt800-rfa-789",
+            "bt800-tgn-brandenburg"
+          ],
+          "noteEn": "The point is Brandenburg on the Havel, chosen from the Frisian route up the Havel and Kurze's note placing the Wilzi between the Obodrites and the Sorbs; no source names the town. The revised annal puts the Wilzi on the Baltic coast, north of this point."
+        },
+        {
+          "id": "ad800-tribe-sorbs",
+          "nameEn": "Sorbs",
+          "coordinates": [
+            12.3333,
+            51.3
+          ],
+          "sourceIds": [
+            "bt800-rfa-782",
+            "bt800-rfa-806",
+            "bt800-tgn-leipzig"
+          ],
+          "noteEn": "The point is Leipzig, between the Elbe and the Saale."
+        },
+        {
+          "id": "ad800-tribe-bohemians",
+          "nameEn": "Bohemians",
+          "coordinates": [
+            14.5,
+            49.3333
+          ],
+          "sourceIds": [
+            "bt800-rfa-805",
+            "bt800-tgn-bohemia"
+          ],
+          "noteEn": "The annal names their dux, Lecho, in 805."
+        },
+        {
+          "id": "ad800-tribe-nordalbingian-saxons",
+          "nameEn": "Nordalbingian Saxons",
+          "coordinates": [
+            10.2333,
+            54.0667
+          ],
+          "sourceIds": [
+            "bt800-rfa-798",
+            "bt800-tgn-bornhoved"
+          ],
+          "noteEn": "The annal calls them Nordliudi beyond the Elbe; royal legates were holding court among them when they rose in 798. The point is Bornhöved, the battle site."
+        },
+        {
+          "id": "ad800-tribe-bretons",
+          "nameEn": "Bretons",
+          "coordinates": [
+            -2.833,
+            48.166
+          ],
+          "sourceIds": [
+            "bt800-rfa-799",
+            "bt800-tgn-brittany"
+          ],
+          "noteEn": "The Breton duces surrendered to a Frankish count in 799; the revised annal says the conquest did not last."
+        },
+        {
+          "id": "ad800-tribe-emishi",
+          "nameEn": "Emishi",
+          "coordinates": [
+            141.1167,
+            39.1667
+          ],
+          "sourceIds": [
+            "bt800-kb-isawa",
+            "bt800-tgn-mizusawa"
+          ],
+          "noteEn": "The point is Mizusawa in the Isawa land; by the entry's account the court suppressed the Isawa Emishi in 801."
+        }
+      ]
+    }
+  }
+}
