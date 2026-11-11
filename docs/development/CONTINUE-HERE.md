@@ -1,6 +1,6 @@
 # Development checkpoint: Phase 3 of the AI game master
 
-Updated on 10 November 2026.
+Updated on 11 November 2026.
 
 ## Historical foundation checkpoint
 
@@ -250,6 +250,27 @@ Phase 6, moment 27. The spec is `docs/superpowers/specs/2026-11-10-envoys-design
 - Each live memory of the realm is a row of the odds worth its amount divided by 4, held together to −20…20. A gift of 20 to 60 silver adds up to 15 and is paid only on acceptance. A gift or a cited favour the realm owes lets the model's argument score add up to 10; citing a grievance costs 5. The chance is held to 5…95.
 - `EnvoyView.jsx` opens under each neighbor in the offices view. `extractEnvoyRequest` reads the player's message into a request; the engine shows the odds and rolls; `replyAsRuler` answers in character about the fixed outcome. The model never sets odds.
 - The flow has tests with a stubbed model. It has not been played in a browser with a live model.
+
+## Border tribes to bribe, hire or crush
+
+Phase 6, moment 24. The spec is `docs/superpowers/specs/2026-11-10-border-tribes-design.md`, PR #186, `8104a120`.
+
+- `server/characters/tribes.js` seeds `state.tribes` from `historicalScenario.tribes`: the six nearest within 2,500 km of the seat. No shipped package carries tribes yet, so every start seeds an empty list; section 13 of the research brief asks Codex for the data.
+- A restless tribe raids in 10 % of years for 15 silver and 2 legitimacy. `bribe_tribe` (20 silver) buys five years of peace, `hire_tribe` (30 silver) three years and +0.1 to the chance of a battle, and `crush_tribe` (50 silver) one campaign a year that keeps a beaten tribe away for 30 years.
+
+## A ruler reforms or founds a faith
+
+Phase 7, moment 18. The spec is `docs/superpowers/specs/2026-11-11-faith-reform-design.md`, PR #187, `962bd0b4`.
+
+- `reform_faith` (60 silver, one order) takes `mode` `reform` or `found`. The new faith gets support 30 and a `founding` record, and is named "<old> (reformerad)" or "<given name>s lära".
+- The ruler's house converts. Each other house with a living head follows at 0.5 or 0.25, moved ±0.2 by the head's view of the ruler, by `hashRoll`. Houses that stay hold "Reformen" −10 or "Kätteri vid hovet" −20 for 20 years. A faith founded in the campaign holds the next reform for 30 years.
+
+## The priests call a holy war
+
+Phase 7, moment 19. The spec is `docs/superpowers/specs/2026-11-11-holy-war-design.md`, PR #188, `60d11366`.
+
+- Each foreign realm carries `faith` from its court seed. `otherFaith` holds when the ruler's faith broke from the neighbor's in the campaign, or when both name a different `tradition`. No package names a tradition yet; section 13 of the research brief asks Codex for one per court religion.
+- At most once in ten years (`state.lastHolyWarCall`), the priest or the faith's leader calls in 15 % of years. Going to war (60 silver) starts the border war at once; refusing or silence costs the caller's goodwill (−20) and 10 faith support.
 
 ## Branch state
 
