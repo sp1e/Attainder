@@ -1,5 +1,6 @@
 import { addGameMonths, compareGameDates, normalizeGameDate } from '../gameDates.js';
 import { NAME_POOL, SKILL_LABELS, TRAITS } from './content.js';
+import { poolStaffName } from './namePools.js';
 
 // Minor court staff (cook, guard captain, physician, steward, servant) live in state.courtStaff, keyed by their own id, and never in state.people. Succession, marriage, birth, death and the annual AI only walk state.people, so they cannot see staff. Nothing here draws from a random stream; the only counter spent is state.sequence, for the id.
 export const STAFF_ROLES = Object.freeze({ cook: 'Kock', guard_captain: 'Vaktchef', physician: 'Läkare', steward: 'Hovmästare', servant: 'Tjänare' });
@@ -57,7 +58,7 @@ export function ensureStaff(state, familyId, role) {
   const n = ++state.sequence;
   const staff = {
     id: `staff-${n}`,
-    name: `${NAME_POOL[n % NAME_POOL.length]} (${STAFF_ROLES[role]})`,
+    name: `${poolStaffName(state, n) ?? NAME_POOL[n % NAME_POOL.length]} (${STAFF_ROLES[role]})`,
     familyId,
     role,
     skills: Object.fromEntries(SKILL_KEYS.map((key) => [key, key === skill ? value : BASE_SKILL])),
