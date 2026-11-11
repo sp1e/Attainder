@@ -73,7 +73,10 @@ export const mayQueueForModel = (mode, text) =>
 //   "model"    queued for the player's AI model;
 //   "none"     left as it is.
 // With a shipped pack an English string the pack lacks is listed for the next
-// pack, as before. Without one it goes to the model, unless it is Swedish.
+// pack, as before. A string that reads as Swedish is not: pack mode shows the
+// court's text as written, and a pack keyed by the interface's English has no
+// gap where the page holds Swedish. Without a shipped pack the string goes to
+// the model, unless it is Swedish.
 //
 // In native mode it depends on where the string is (`tier`, from tierFor).
 // Inside a Swedish-native view ("full") everything is written in Swedish, so
@@ -86,7 +89,7 @@ export const unknownTextFate = (mode, text, { packed = false, tier = "strong" } 
   if (typeof text !== "string") return "none";
   if (mode === "native") return tier === "full" || looksSwedish(text) ? "missing" : "none";
   if (mode !== "pack" || !ENGLISH_WORDS.test(text)) return "none";
-  if (packed) return "missing";
+  if (packed) return looksSwedish(text) ? "none" : "missing";
   return mayQueueForModel(mode, text) ? "model" : "none";
 };
 

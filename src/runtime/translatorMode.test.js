@@ -113,9 +113,11 @@ test("sv and de: with a shipped pack an unknown English string is listed, as bef
   for (const language of ["sv", "de"]) {
     assert.equal(hasShippedPack(language), true);
     assert.equal(fateIn(language, ENGLISH), "missing", language);
-    // As before the modes: the pack's list takes whatever the page shows with
-    // English letters in it, and nothing rendered goes to the model.
-    assert.equal(fateIn(language, SWEDISH), "missing", language);
+    // The court's Swedish is shown as written in pack mode. It is no gap in a
+    // pack keyed by the interface's English, so it stays off the list.
+    for (const text of [SWEDISH, "Krig med Danmark", "Kungen är död", "Familjen saknar silver"]) {
+      assert.equal(fateIn(language, text), "none", `${language}: ${text}`);
+    }
     // As before the wider letter rule: text without two Latin letters together
     // was never looked at, and is still neither listed nor queued.
     assert.equal(fateIn(language, SWEDISH_WORD), "none", language);

@@ -336,6 +336,10 @@ test("Swedish mode: the pack, then the research's Swedish under it, and no Swedi
   const button = addText("Save game", { native: true });
   const court = addText("Karl dog 814", { native: true });
   const source = addText(locator);
+  // Court text the pack was never meant to hold, and interface text it lacks.
+  addText("Hovet saknar silver.", { native: true });
+  addText("Kungen är död");
+  addText("Declare war on Mars");
 
   startTranslator();
   await until(() => watching() === 1, "the page to be watched");
@@ -351,7 +355,10 @@ test("Swedish mode: the pack, then the research's Swedish under it, and no Swedi
   assert.equal(source.nodeValue, locatorSv, "a source locator reads Swedish");
   assert.equal(translateLabel(claimed), "Packens egen text", "the pack's entry is not replaced by a research pair");
 
-  const { pending } = window.__ohI18n;
+  const { missing, pending } = window.__ohI18n;
+  assert.ok(missing.has("Declare war on Mars"), "English the pack lacks is a gap in the pack");
+  assert.equal(missing.has("Hovet saknar silver."), false, "the court's Swedish is not");
+  assert.equal(missing.has("Kungen är död"), false);
   assert.equal(translateLabel("Hovet saknar silver"), "Hovet saknar silver");
   enqueueStrings(["Krig med Danmark", "Kungen är död"]);
   assert.equal(pending.size, 0, "Swedish text is never queued for the model");
