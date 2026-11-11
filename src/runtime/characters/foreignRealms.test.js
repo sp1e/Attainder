@@ -93,6 +93,7 @@ test('saves: an older historical save gains an empty list, Hadara refuses one, a
   assert.throws(() => normalizeCharacterSystem(hadara), /grannriken/);
   delete hadara.foreignRealms;
   delete hadara.tribes;
+  delete hadara.namePool;
   assert.equal(Object.hasOwn(normalizeCharacterSystem(hadara), 'foreignRealms'), false);
   assert.equal(getCharacterPresentation(normalizeCharacterSystem(hadara)).foreignRealms, undefined);
   const broken = plain(court());

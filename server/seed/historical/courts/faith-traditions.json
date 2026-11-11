@@ -162,6 +162,33 @@
       "scopedClaim": "The serekh is surmounted by a falcon of the god Horus, implying the king's identity with that deity; the Horus name is the commonest royal designation from Dynasty 0 into Dynasty 3. The object dates to about 2880 BCE.",
       "license": "Reference only; no source prose or images redistributed",
       "retrievedOn": "2026-11-11"
+    },
+    "ft-inah-templo-mayor": {
+      "title": "Templo Mayor",
+      "institution": "Instituto Nacional de Antropología e Historia (INAH), Lugares INAH",
+      "url": "https://lugares.inah.gob.mx/es/node/4463",
+      "locator": "Opening summary and section VISÍTANOS; Punto 4, Etapa VI, Gobierno de Ahuízotl (1486-1502)",
+      "scopedClaim": "INAH calls the Templo Mayor site the centre of Mexica religious and political life; the temple was dedicated to Tláloc and Huitzilopochtli, and its sixth building stage dates to the government of Ahuítzotl, 1486–1502.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-nmai-road-religion": {
+      "title": "A Road for Religion, The Great Inka Road: Engineering an Empire",
+      "institution": "Smithsonian National Museum of the American Indian",
+      "url": "https://americanindian.si.edu/inkaroad/inkauniverse/inkaroadexpansion/road-religion.html",
+      "locator": "Opening paragraph and section \"Ushnus—Altars of the Sun\"; read through the Internet Archive capture of 27 April 2025 because the live page returned a bot check",
+      "scopedClaim": "Worship of Inti, the sun, was a driving force behind Inka conquest; the Inka built ushnus, stone altars for worshipping Inti, throughout their empire.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
+    },
+    "ft-nmai-cusco": {
+      "title": "Heart of the Inka Universe (Cusco), The Great Inka Road: Engineering an Empire",
+      "institution": "Smithsonian National Museum of the American Indian",
+      "url": "https://americanindian.si.edu/inkaroad/inkauniverse/cusco/cusco-experience.html",
+      "locator": "Map point 4, \"The Qorikancha—Temple of the Sun\"; read through the Internet Archive capture of 4 October 2026 because the live page returned a bot check",
+      "scopedClaim": "The Qorikancha, dedicated to the sun, was the religious centre of the empire and the most important temple in Tawantinsuyu.",
+      "license": "Reference only; no source prose or images redistributed",
+      "retrievedOn": "2026-11-11"
     }
   },
   "courts": [
@@ -311,11 +338,30 @@
       "start": "ad1200",
       "polityId": "chimu",
       "religionId": "chimu-ritual-traditions",
-      "tradition": "other",
+      "tradition": "andean",
       "sourceIds": [
         "ft-volakova-chimu"
       ],
-      "noteEn": "The only court at this start with tradition other. The dossier keeps the court blocked and its religious relationship uncertain."
+      "noteEn": "The tradition andean groups Chimú with the Andean courts. The source calls the Moon the presumably highest Chimú deity and says nothing about Inka religion; the dossier keeps the court blocked and its religious relationship uncertain."
+    },
+    {
+      "start": "ad1500",
+      "polityId": "aztec-empire",
+      "religionId": "mexica-templo-mayor-cults",
+      "tradition": "mesoamerican",
+      "sourceIds": [
+        "ft-inah-templo-mayor"
+      ]
+    },
+    {
+      "start": "ad1500",
+      "polityId": "inca-empire",
+      "religionId": "inca-state-cult",
+      "tradition": "andean",
+      "sourceIds": [
+        "ft-nmai-road-religion",
+        "ft-nmai-cusco"
+      ]
     },
     {
       "start": "bc3000",

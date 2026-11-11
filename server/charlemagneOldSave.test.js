@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { charlemagneRelease110, charlemagneRelease120 } from './fixtures/releaseFixtures.js';
+import { charlemagneRelease110, charlemagneRelease120, charlemagneRelease130 } from './fixtures/releaseFixtures.js';
 
 const moduleUrl = file => JSON.stringify(new URL(file, import.meta.url).href);
 // Each run is one start of the desktop app on the same data folder. `keep` hands values to the next run.
@@ -22,8 +22,8 @@ const desktop = root => body => execFileSync(process.execPath, ['--input-type=mo
 const START = { date: '0800-12-25', seed: 7, difficulty: 'normal' };
 
 // Installs `release` as the Charlemagne start, starts `campaigns` on it, then starts the app again, which upgrades
-// the start to 1.3.0. Every campaign must load, restore from both companions and play a year. `checks` runs inside
-// the campaign loop of the second start with `saved`, `loaded`, `bundle`, `companion130` and `playsAYear` in scope.
+// the start to 1.4.0. Every campaign must load, restore from both companions and play a year. `checks` runs inside
+// the campaign loop of the second start with `saved`, `loaded`, `bundle`, `companion140` and `playsAYear` in scope.
 function oldSaveFlow({ version, release, campaigns, checks = '' }) {
   const root = mkdtempSync(path.join(os.tmpdir(), `attainder-charlemagne-${version.replaceAll('.', '')}-`)), run = desktop(root);
   const releaseFile = path.join(root, `charlemagne-800-${version}.json`);
@@ -44,12 +44,12 @@ function oldSaveFlow({ version, release, campaigns, checks = '' }) {
       });
       keep({ campaigns, companion: store.exportScenarioBundle('charlemagne-800') });
     `);
-    // The next start of the app reads the library, which replaces the installed copy with 1.3.0.
+    // The next start of the app reads the library, which replaces the installed copy with 1.4.0.
     run(`
       store.ensureScenarioStore();
-      assert.equal(store.getScenarioDetails('charlemagne-800').data.world.historicalScenario.contentVersion, '1.3.0');
-      const { campaigns, companion: companionOld } = recall(), companion130 = store.exportScenarioBundle('charlemagne-800');
-      assert.equal(companion130.data.world.historicalScenario.playablePolityIds.length, 10);
+      assert.equal(store.getScenarioDetails('charlemagne-800').data.world.historicalScenario.contentVersion, '1.4.0');
+      const { campaigns, companion: companionOld } = recall(), companion140 = store.exportScenarioBundle('charlemagne-800');
+      assert.equal(companion140.data.world.historicalScenario.playablePolityIds.length, 10);
       const playsAYear = (world, label) => {
         const state = world.characterSystem, target = addGameMonths(state.date, 12);
         const year = advanceCharacters(state, target, { id: 'after-upgrade' });
@@ -66,13 +66,13 @@ function oldSaveFlow({ version, release, campaigns, checks = '' }) {
         const bundle = store.exportGameBundle(saved.id);
         assert.deepEqual(bundle.data, saved.bundle.data);
         playsAYear(loaded.data.world, saved.id + ' loaded');
-        for (const [label, companion] of [['1.3.0', companion130], [${JSON.stringify(version)}, companionOld]]) {
+        for (const [label, companion] of [['1.4.0', companion140], [${JSON.stringify(version)}, companionOld]]) {
           const restored = store.restoreGameBundle({ bundle, scenarioBundle: companion });
           assert.deepEqual(restored.data.world, bundle.data.world, saved.id + ' restored with ' + label);
           playsAYear(restored.data.world, saved.id + ' restored with ' + label);
         }
-        const rebound = store.restoreScenarioForGame(saved.id, companion130);
-        assert.deepEqual(rebound.data.world, saved.data.world, saved.id + ': its companion is restored from the 1.3.0 export');
+        const rebound = store.restoreScenarioForGame(saved.id, companion140);
+        assert.deepEqual(rebound.data.world, saved.data.world, saved.id + ': its companion is restored from the 1.4.0 export');
         playsAYear(rebound.data.world, saved.id + ' rebound');
         ${checks}
       }
@@ -81,11 +81,11 @@ function oldSaveFlow({ version, release, campaigns, checks = '' }) {
   } finally { rmSync(root, { recursive: true, force: true }); }
 }
 
-test('a campaign started on the shipped Charlemagne 1.1.0 loads, restores from its companion and plays a year after the 1.3.0 upgrade', () => {
+test('a campaign started on the shipped Charlemagne 1.1.0 loads, restores from its companion and plays a year after the 1.4.0 upgrade', () => {
   oldSaveFlow({ version: '1.1.0', release: charlemagneRelease110(), campaigns: [['carolingian-realm', 'realm'], ['papal-states', 'family']] });
 });
 
-test('a campaign started on the shipped Charlemagne 1.2.0 loads, restores from its companion and plays a year after the 1.3.0 upgrade', () => {
+test('a campaign started on the shipped Charlemagne 1.2.0 loads, restores from its companion and plays a year after the 1.4.0 upgrade', () => {
   // Kyrkostaten keeps the merit law its 1.2.0 world was started with. A save written before Phase 5 has no realm
   // kind: a copy without it restores and plays a year as a state.
   oldSaveFlow({ version: '1.2.0', release: charlemagneRelease120(), campaigns: [['papal-states', 'realm'], ['kingdom-of-asturias', 'family']], checks: `
@@ -94,7 +94,7 @@ test('a campaign started on the shipped Charlemagne 1.2.0 loads, restores from i
       assert.equal(playsAYear(loaded.data.world, 'Kyrkostaten loaded').realm.successionLaw, 'merit', 'Kyrkostaten plays a year under merit');
       const stripped = JSON.parse(JSON.stringify(bundle));
       delete stripped.data.world.characterSystem.realm.kind;
-      const restored = store.restoreGameBundle({ bundle: stripped, scenarioBundle: companion130 });
+      const restored = store.restoreGameBundle({ bundle: stripped, scenarioBundle: companion140 });
       assert.deepEqual(restored.data.world, stripped.data.world, 'the store keeps the save as written');
       // The game reads a saved character system through normalizeCharacterSystem, which adds the kind.
       const migrated = normalizeCharacterSystem(restored.data.world.characterSystem);
@@ -104,4 +104,8 @@ test('a campaign started on the shipped Charlemagne 1.2.0 loads, restores from i
       assert.equal(year.realm.successionLaw, 'merit');
     }
   ` });
+});
+
+test('a campaign started on the shipped Charlemagne 1.3.0 loads, restores from its companion and plays a year after the 1.4.0 upgrade', () => {
+  oldSaveFlow({ version: '1.3.0', release: charlemagneRelease130(), campaigns: [['carolingian-realm', 'realm'], ['papal-states', 'family']] });
 });

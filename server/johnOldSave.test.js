@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { johnRelease100, johnRelease110 } from './fixtures/releaseFixtures.js';
+import { johnRelease100, johnRelease110, johnRelease120 } from './fixtures/releaseFixtures.js';
 import { defaultScenarioFiles } from '../scripts/sync-default-scenario.mjs';
 
 const moduleUrl = file => JSON.stringify(new URL(file, import.meta.url).href);
@@ -47,7 +47,7 @@ function writeReleaseSeed(dir, release, revision) {
 const START = { date: '1200-12-31', seed: 7, difficulty: 'normal' };
 
 // Starts `campaigns` on the built-in John `version` at `revision`, then starts today's app, which refreshes the
-// built-in to 1.2.0 at revision 3. Every campaign must load, restore from both companions and play a year.
+// built-in to 1.3.0 at revision 4. Every campaign must load, restore from both companions and play a year.
 // `checks` runs inside the campaign loop of the second start with `saved` and `loaded` in scope.
 function oldSaveFlow({ version, revision, release, campaigns, checks = '' }) {
   const root = mkdtempSync(path.join(os.tmpdir(), `attainder-john-${version.replaceAll('.', '')}-`)), run = desktop(root), seedDir = path.join(root, `seed-${version}`);
@@ -68,15 +68,15 @@ function oldSaveFlow({ version, revision, release, campaigns, checks = '' }) {
       });
       keep({ campaigns, companion: store.exportScenarioBundle('default') });
     `, seedDir);
-    // The next start runs the 1.2.0 app: same map stamp, revision 3, so the built-in refreshes in place.
+    // The next start runs the 1.3.0 app: same map stamp, revision 4, so the built-in refreshes in place.
     run(`
       store.ensureScenarioStore();
       const world = store.getScenarioDetails('default').data.world;
       assert.equal(world.builtInMap, 'historical-john-1200-v1');
-      assert.equal(world.builtInRevision, 3);
-      assert.equal(world.historicalScenario.contentVersion, '1.2.0');
+      assert.equal(world.builtInRevision, 4);
+      assert.equal(world.historicalScenario.contentVersion, '1.3.0');
       assert.deepEqual(world.historicalScenario.playablePolityIds, ['johns-realms', 'khmer-angkor', 'almohad', 'france-capetian']);
-      const { campaigns, companion: companionOld } = recall(), companion120 = store.exportScenarioBundle('default');
+      const { campaigns, companion: companionOld } = recall(), companion130 = store.exportScenarioBundle('default');
       for (const saved of campaigns) {
         const loaded = store.getGameDetails(saved.id);
         assert.equal(loaded.game.scenarioId, 'default', saved.id + ': the campaign stays on the built-in');
@@ -84,13 +84,13 @@ function oldSaveFlow({ version, revision, release, campaigns, checks = '' }) {
         const bundle = store.exportGameBundle(saved.id);
         assert.deepEqual(bundle.data, saved.bundle.data);
         playsAYear(loaded.data.world, saved.id + ' loaded');
-        for (const [label, companion] of [['1.2.0', companion120], [${JSON.stringify(version)}, companionOld]]) {
+        for (const [label, companion] of [['1.3.0', companion130], [${JSON.stringify(version)}, companionOld]]) {
           const restored = store.restoreGameBundle({ bundle, scenarioBundle: companion });
           assert.deepEqual(restored.data.world, bundle.data.world, saved.id + ' restored with ' + label);
           playsAYear(restored.data.world, saved.id + ' restored with ' + label);
         }
-        const rebound = store.restoreScenarioForGame(saved.id, companion120);
-        assert.deepEqual(rebound.data.world, saved.data.world, saved.id + ': its companion is restored from the 1.2.0 export');
+        const rebound = store.restoreScenarioForGame(saved.id, companion130);
+        assert.deepEqual(rebound.data.world, saved.data.world, saved.id + ': its companion is restored from the 1.3.0 export');
         playsAYear(rebound.data.world, saved.id + ' rebound');
         ${checks}
       }
@@ -103,11 +103,11 @@ function oldSaveFlow({ version, revision, release, campaigns, checks = '' }) {
   } finally { rmSync(root, { recursive: true, force: true }); }
 }
 
-test('a campaign started on the built-in John 1.0.0 loads, restores from its companion and plays a year after the 1.2.0 refresh', () => {
+test('a campaign started on the built-in John 1.0.0 loads, restores from its companion and plays a year after the 1.3.0 refresh', () => {
   oldSaveFlow({ version: '1.0.0', revision: 1, release: johnRelease100(), campaigns: [['johns-realms', 'realm'], ['johns-realms', 'family']] });
 });
 
-test('a campaign started on the built-in John 1.1.0 loads, restores from its companion and plays a year after the 1.2.0 refresh', () => {
+test('a campaign started on the built-in John 1.1.0 loads, restores from its companion and plays a year after the 1.3.0 refresh', () => {
   // The Almohads keep the merit law their 1.1.0 world was started with.
   oldSaveFlow({ version: '1.1.0', revision: 2, release: johnRelease110(), campaigns: [['johns-realms', 'realm'], ['johns-realms', 'family'], ['almohad', 'realm']], checks: `
     if (saved.polityId === 'almohad') {
@@ -115,4 +115,8 @@ test('a campaign started on the built-in John 1.1.0 loads, restores from its com
       assert.equal(playsAYear(loaded.data.world, 'Almohads loaded').realm.successionLaw, 'merit', 'the Almohads play a year under merit');
     }
   ` });
+});
+
+test('a campaign started on the built-in John 1.2.0 loads, restores from its companion and plays a year after the 1.3.0 refresh', () => {
+  oldSaveFlow({ version: '1.2.0', revision: 3, release: johnRelease120(), campaigns: [['johns-realms', 'realm'], ['khmer-angkor', 'realm'], ['france-capetian', 'family']] });
 });

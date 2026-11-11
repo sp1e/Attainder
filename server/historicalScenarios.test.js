@@ -41,7 +41,7 @@ const dossierPolity = id => dossier.polities.find(p => p.polityId === id);
 
 test('the package validates for its bookmark and carries the reviewed names',() => {
   const input = loadPackage(), { h,game,bundle } = input;
-  assert.deepEqual(validate(input),{ ok: true,contentId: ID,contentVersion: '1.3.0',date: DATE,polityId: POLITY });
+  assert.deepEqual(validate(input),{ ok: true,contentId: ID,contentVersion: '1.4.0',date: DATE,polityId: POLITY });
   assert.equal(h.bookmarkDate,DATE);
   assert.equal(game.country,POLITY);
   assert.deepEqual(h.playablePolityIds,PLAYABLE_IDS);
@@ -53,7 +53,7 @@ test('the package validates for its bookmark and carries the reviewed names',() 
 test('every playable polity passes both validators, and polity order follows the source features',() => {
   const input = loadPackage(), { h } = input;
   for (const polityId of h.playablePolityIds) {
-    assert.deepEqual(validateHistoricalScenario(input,{ date: DATE,polityId }),{ ok: true,contentId: ID,contentVersion: '1.3.0',date: DATE,polityId });
+    assert.deepEqual(validateHistoricalScenario(input,{ date: DATE,polityId }),{ ok: true,contentId: ID,contentVersion: '1.4.0',date: DATE,polityId });
     assert.equal(validateHistoricalCourt(h,{ date: DATE,polityId }).ok,true,polityId);
   }
   // Polity colours are assigned by list position, so the Papal States addition must not move any polity.

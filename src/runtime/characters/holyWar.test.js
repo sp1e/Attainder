@@ -1,5 +1,5 @@
 // The priests call a holy war against a neighbor of another faith. Spec: docs/superpowers/specs/2026-11-11-holy-war-design.md.
-// The traditions below are test fixtures, not researched values: no shipped package names a faith tradition yet.
+// The fixture courts drop the shipped traditions; the traditions they set are test fixtures, not researched values.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -25,9 +25,13 @@ const story = (state) => state.stories.find((item) => item.type === 'holy_war_ca
 const answer = (state, choiceId) => ok(command(state, 'resolve_story', { storyId: story(state).id, choiceId })).state;
 const hooks = (state) => actionHooks(state);
 
-function court(traditions = null) {
+// Drops the shipped traditions unless `traditions` is 'shipped', then sets the given ones on each court's first religion.
+function court(traditions = {}) {
   const historicalScenario = plain(DATA.world.historicalScenario);
-  for (const [polityId, tradition] of Object.entries(traditions ?? {})) historicalScenario.courtSeeds[polityId].religions[0].tradition = tradition;
+  if (traditions !== 'shipped') {
+    for (const seed of Object.values(historicalScenario.courtSeeds)) for (const religion of seed.religions) delete religion.tradition;
+    for (const [polityId, tradition] of Object.entries(traditions)) historicalScenario.courtSeeds[polityId].religions[0].tradition = tradition;
+  }
   const state = createHistoricalCharacterSystem({ historicalScenario, date: DATA.game.startDate, polityId: 'carolingian-realm', mode: 'realm', seed: 777 });
   state.actionPoints = 3;
   state.realm.treasury = 500;
@@ -47,12 +51,19 @@ function call(state) {
   return story(state);
 }
 
-test('each neighbor carries the faith of its court, and no package names a tradition yet', () => {
+test('each neighbor carries the faith of its court, and without traditions no neighbor is a target', () => {
   const state = court();
   assert.deepEqual(realmOf(state, PAPAL).faith, { id: 'latin-church', name: 'Den latinska kyrkan', tradition: null });
   assert.deepEqual(realmOf(state, CORDOBA).faith.id, 'congregational-mosque-unspecified');
   assert.equal(Object.hasOwn(state.religions['latin-church'], 'tradition'), false);
   assert.deepEqual(holyWarTargets(state, hooks(state)), [], 'without a founded faith or traditions, no neighbor counts as another faith');
+});
+
+test('the shipped traditions set Karls rike against the two emirates', () => {
+  const state = court('shipped');
+  assert.equal(state.religions['latin-church'].tradition, 'christian');
+  assert.equal(realmOf(state, PAPAL).faith.tradition, 'christian');
+  assert.deepEqual(holyWarTargets(state, hooks(state)).map((realm) => realm.id), [CORDOBA, 'aghlabid-emirate']);
 });
 
 test('another faith: the faith the ruler broke from, or a different tradition', () => {

@@ -33,17 +33,24 @@ const tribeOf = (state, id) => state.tribes.find((tribe) => tribe.id === id);
 function court(tribes = FIXTURE) {
   const historicalScenario = plain(DATA.world.historicalScenario);
   if (tribes) historicalScenario.tribes = plain(tribes);
+  else delete historicalScenario.tribes;
   const state = createHistoricalCharacterSystem({ historicalScenario, date: DATA.game.startDate, polityId: 'carolingian-realm', mode: 'realm', seed: 777 });
   state.actionPoints = 3;
   return state;
 }
 
-test('a shipped start has no tribes and offers no tribe command', () => {
+test('a start without tribe data has no tribes and offers no tribe command', () => {
   const state = court(null);
   assert.deepEqual(state.tribes, []);
   assert.deepEqual(getCharacterPresentation(state).tribes, []);
   for (const type of ['bribe_tribe', 'hire_tribe', 'crush_tribe']) assert.equal(action(state, type), undefined, type);
   assert.equal(tribeStep(state, [], actionHooks(state)), 0);
+});
+
+test('the shipped Charlemagne tribes within reach of Aachen are seeded nearest first, and the Emishi are out of reach', () => {
+  const state = court(DATA.world.historicalScenario.tribes);
+  assert.equal(DATA.world.historicalScenario.tribes.length, 7);
+  assert.deepEqual(state.tribes.map((tribe) => tribe.name), ['Sorberna', 'Nordalbingiska saxarna', 'Wilzerna', 'Obodriterna', 'Böhmarna', 'Bretonerna']);
 });
 
 test('the tribes within reach of the seat are seeded nearest first, and a broken or distant entry is left out', () => {

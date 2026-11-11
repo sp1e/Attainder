@@ -21,7 +21,7 @@ test('package coverage pins the shipped counts', () => {
   assert.deepEqual(ids.map(id => coverage[id].playable.length), [1, 10, 4, 2]);
   assert.deepEqual(ids.map(id => coverage[id].mapOnly.map(p => p.id)), [[], [], ['western-xia', 'chimu'], []]);
   assert.deepEqual(ids.map(id => coverage[id].features.byBoundary['withheld-control']), [137, 214, 280, 289]);
-  assert.deepEqual(ids.map(id => coverage[id].sourceCount), [57, 112, 68, 32]);
+  assert.deepEqual(ids.map(id => coverage[id].sourceCount), [57, 127, 74, 36]);
 });
 
 test('map-only polities carry the dossier status and reason', () => {

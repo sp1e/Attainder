@@ -359,9 +359,13 @@ The play scripts reached four of the five tiers. `Det slog tillbaka` did not com
 - A failed year showed the model call's English error. The panel now shows a Swedish sentence and logs the original.
 - The panel header still read `Open Historia · Dynastier`.
 
+## Traditions and name pools release
+
+Charlemagne 1.4.0, John 1.3.0, Egypt 1.1.0 and world-1500 1.2.0 read three research side files: `courts/faith-traditions.json` gives every court religion its `tradition` (Aztekriket `mesoamerican`, Inkariket `andean`), `courts/border-tribes.json` gives Charlemagne seven, John three and world-1500 two border tribes with Swedish names and their sources, and `name-pools/frankish-saint-germain-823-829.json` names the children and staff of Karls rike. The research session sends changes to these files to Claude, who ships them in a rebuild. The release patches in `server/fixtures/` cover every shipped version, and a patch op may drop a key the release lacked.
+
 ## Next step
 
-Codex has taken over development for now. Current priorities are in `docs/development/DEVELOPMENT-BACKLOG.md`; the earlier queue is in `docs/development/CODEX-HANDOVER.md`.
+Claude writes the code. Since 11 November 2026 a separate Claude research session does the work `docs/development/CODEX-RESEARCH-BRIEF.md` assigned to Codex, in its own worktrees and pull requests. Current priorities are in `docs/development/DEVELOPMENT-BACKLOG.md`; the earlier queue is in `docs/development/CODEX-HANDOVER.md`.
 
 The owner changed the setting on 5 November: use the real world and historical polities, with new starts from the Bronze Age through about AD 1200 and no modern starts. `docs/superpowers/specs/2026-11-05-historical-world-direction.md` supersedes the fictional Hadara default. The Phase 3 follow-up is merged. Follow `docs/superpowers/plans/2026-11-05-historical-campaign-foundation.md`. Tasks 1–2 are accepted through `6397177`: pure start policy and sourced Egypt/AD 1200 packages. Task 3 is accepted through `808361e`. Its mechanical shared-engine relocation was published as `d9633af`; historical construction uses that same engine. Tasks 4–5 are accepted through `1addf27`: historical prompt context and combined guards/defaults/UI have passed their task reviews. Task 6 and final documentation review are accepted with documented limits; current-head CI is required before merge. The annual research and popup are the next separate milestone.
 

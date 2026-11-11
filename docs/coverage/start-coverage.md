@@ -7,16 +7,16 @@ Counts only. Each start's numbers come from its built package and court dossier.
 
 | Start | Date | Content version | Playable | Map-only | Review features | Withheld control | Sources |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| egypt-3000bc | -3000-01-01 | 1.0.0 | 1 | 0 | 138 | 137 | 57 |
-| charlemagne-800 | 0800-12-25 | 1.3.0 | 10 | 0 | 225 | 214 | 112 |
-| world-1500 | 1500-12-31 | 1.1.0 | 2 | 0 | 291 | 289 | 32 |
-| john-1200 | 1200-12-31 | 1.2.0 | 4 | 2 | 286 | 280 | 68 |
+| egypt-3000bc | -3000-01-01 | 1.1.0 | 1 | 0 | 138 | 137 | 57 |
+| charlemagne-800 | 0800-12-25 | 1.4.0 | 10 | 0 | 225 | 214 | 127 |
+| world-1500 | 1500-12-31 | 1.2.0 | 2 | 0 | 291 | 289 | 36 |
+| john-1200 | 1200-12-31 | 1.3.0 | 4 | 2 | 286 | 280 | 74 |
 
 ## egypt-3000bc
 
 - Swedish era label: Cirka 3000 f.Kr.
 - Start date: -3000-01-01
-- Content version: 1.0.0
+- Content version: 1.1.0
 
 ### Playable polities
 
@@ -59,7 +59,7 @@ None.
 
 - Swedish era label: 800 e.Kr.
 - Start date: 0800-12-25
-- Content version: 1.3.0
+- Content version: 1.4.0
 
 ### Playable polities
 
@@ -111,7 +111,7 @@ None.
 
 - Swedish era label: 1500 e.Kr.
 - Start date: 1500-12-31
-- Content version: 1.1.0
+- Content version: 1.2.0
 
 ### Playable polities
 
@@ -154,7 +154,7 @@ None.
 
 - Swedish era label: 1200 e.Kr.
 - Start date: 1200-12-31
-- Content version: 1.2.0
+- Content version: 1.3.0
 
 ### Playable polities
 

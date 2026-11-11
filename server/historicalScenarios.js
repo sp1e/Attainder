@@ -71,7 +71,7 @@ const generatedName = p => p.identityOrigin !== 'generated' || (typeof p.name ==
 export const RESERVED_IDS = Object.freeze(['__proto__','constructor','prototype']);
 export const ENGINE_OFFICE_IDS = Object.freeze(['ruler','general','chancellor','priest','spymaster']);
 // The shared faith traditions a court religion may name (holy-war spec ruling 3); the research brief lists the same ids.
-export const FAITH_TRADITIONS = Object.freeze(['christian','islamic','jewish','buddhist','hindu','zoroastrian','chinese-state-cult','norse','egyptian','mesopotamian','other']);
+export const FAITH_TRADITIONS = Object.freeze(['christian','islamic','jewish','buddhist','hindu','zoroastrian','chinese-state-cult','norse','egyptian','mesopotamian','mesoamerican','andean','other']);
 const validTradition = r => !Object.hasOwn(r,'tradition') || FAITH_TRADITIONS.includes(r.tradition);
 export const safeId = x => typeof x === 'string' && /^[a-zA-Z0-9_:.-]{1,160}$/.test(x) && !RESERVED_IDS.includes(x);
 const known = (table, key) => typeof key === 'string' && Object.hasOwn(table,key);
