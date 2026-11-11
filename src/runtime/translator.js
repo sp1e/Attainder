@@ -31,8 +31,9 @@
 // (nativePack.js). Native mode never asks a model, reads or writes no cache
 // and sends nothing to the server. Inside a view marked [data-native-text] the
 // whole book applies; elsewhere only its entries and strong patterns do. A
-// Swedish string the book lacks stays Swedish and is listed in
-// window.__ohI18n.missing.
+// string the book lacks stays as it is and is listed in
+// window.__ohI18n.missing: every such string inside a marked view, and outside
+// one the strings that read as Swedish.
 
 import {
   DEFAULT_LANGUAGE,
@@ -254,13 +255,14 @@ const isTranslatable = (text) => {
 };
 
 // A rendered string the book has nothing for. With a shipped pack it stays
-// English and is listed for the next pack; without one it goes to the AI,
-// unless it is Swedish. In native mode nothing is queued: inside a
-// Swedish-native view (tier "full") every such string is listed, outside one
-// only Swedish text is. A caller without a place on the page (a map label)
-// gives no tier and is read as outside.
+// as it is, and is listed for the next pack unless it is Swedish; without one
+// it goes to the AI, unless the language is Swedish and so is the string. In
+// native mode nothing is queued: inside a Swedish-native view (tier "full")
+// every such string is listed, outside one only Swedish text is. A caller
+// without a place on the page (a map label) gives no tier and is read as
+// outside.
 const noteUnknown = (trimmed, tier) => {
-  const fate = unknownTextFate(mode, trimmed, { packed, tier });
+  const fate = unknownTextFate(mode, trimmed, { packed, tier, language });
   if (fate === "missing") {
     if (missing.size < MISSING_LIMIT) missing.add(trimmed);
   } else if (fate === "model") {
@@ -597,11 +599,11 @@ const processQueue = async () => {
 // ---- content ----
 
 // A content string for the AI: once, and only when nothing has it yet. Never
-// in native mode, and never Swedish text (mayQueueForModel).
+// in native mode, and in Swedish never Swedish text (mayQueueForModel).
 const queueContent = (value) => {
   if (typeof value !== "string") return false;
   const trimmed = value.trim();
-  if (!trimmed || !isTranslatable(trimmed) || !mayQueueForModel(mode, trimmed)) return false;
+  if (!trimmed || !isTranslatable(trimmed) || !mayQueueForModel(mode, trimmed, language)) return false;
   if (book.has(trimmed) || pending.has(trimmed)) return false;
   pending.add(trimmed);
   return true;

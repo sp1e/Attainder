@@ -62,11 +62,26 @@ export const bookOptions = (language) => {
   return {};
 };
 
-// May this string be sent to the model as English content? Never Swedish
-// text: the court's and the packages' sentences are not English, and a model
-// asked to translate them "from English" returns them changed or guessed at.
-export const mayQueueForModel = (mode, text) =>
-  usesModel(mode) && typeof text === "string" && ENGLISH_WORDS.test(text) && !looksSwedish(text);
+const isSwedish = (language) => typeof language === "string" && language.trim() === "sv";
+
+// May this string be sent to the model as English content?
+//
+// In Swedish, never a string that reads as Swedish, sentence or label: the
+// court's and the packages' text would be sent off to be put "from English"
+// into the language it is already in, and come back changed or guessed at.
+//
+// In every other language the Swedish check is not made. looksSwedish knows
+// Swedish by å, ä, ö and a short word list, and English content is full of
+// both: region names (Kärnten, Oberösterreich, Bingöl, Hövsgöl) and words the
+// list shares ("kung fu", "ska"). Held back, such a string would never be
+// translated for a player in German or Turkish. Swedish text that reaches the
+// model there is translated like any other content, as it was before the
+// modes (the design keeps those languages "as today").
+//
+// In Swedish the same wrong yes costs little: a name with those letters reads
+// the same in Swedish, and a sentence held back stays English.
+export const mayQueueForModel = (mode, text, language) =>
+  usesModel(mode) && typeof text === "string" && ENGLISH_WORDS.test(text) && !(isSwedish(language) && looksSwedish(text));
 
 // What becomes of a rendered string the book has nothing for:
 //   "missing"  listed in window.__ohI18n.missing;
@@ -76,7 +91,8 @@ export const mayQueueForModel = (mode, text) =>
 // pack, as before. A string that reads as Swedish is not: pack mode shows the
 // court's text as written, and a pack keyed by the interface's English has no
 // gap where the page holds Swedish. Without a shipped pack the string goes to
-// the model, unless it is Swedish.
+// the model, unless the language is Swedish and so is the string
+// (mayQueueForModel; `language` is the translator's).
 //
 // In native mode it depends on where the string is (`tier`, from tierFor).
 // Inside a Swedish-native view ("full") everything is written in Swedish, so
@@ -85,12 +101,12 @@ export const mayQueueForModel = (mode, text) =>
 // catalog ("Till:", "den Store", "Krig"). Outside such a view ("strong", and
 // the default) the page is the English interface, which is meant to stay, and
 // only a string the detector reads as Swedish is a gap.
-export const unknownTextFate = (mode, text, { packed = false, tier = "strong" } = {}) => {
+export const unknownTextFate = (mode, text, { packed = false, tier = "strong", language } = {}) => {
   if (typeof text !== "string") return "none";
   if (mode === "native") return tier === "full" || looksSwedish(text) ? "missing" : "none";
   if (mode !== "pack" || !ENGLISH_WORDS.test(text)) return "none";
   if (packed) return looksSwedish(text) ? "none" : "missing";
-  return mayQueueForModel(mode, text) ? "model" : "none";
+  return mayQueueForModel(mode, text, language) ? "model" : "none";
 };
 
 // Which part of the book answers for a piece of the page. In native mode the

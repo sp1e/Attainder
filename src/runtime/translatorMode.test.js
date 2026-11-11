@@ -33,7 +33,7 @@ const SWEDISH = "Hovet saknar silver.";
 const SWEDISH_WORD = "Mål";
 const CHINESE = "中国向日本宣战";
 
-const fateIn = (language, text) => unknownTextFate(translatorMode(language), text, { packed: hasShippedPack(language) });
+const fateIn = (language, text) => unknownTextFate(translatorMode(language), text, { packed: hasShippedPack(language), language });
 
 test("English is native mode, every other language is pack mode, no language is off", () => {
   assert.equal(translatorMode("en"), "native");
@@ -97,16 +97,42 @@ test("sv, de and fi: the tier changes nothing about an unknown string", () => {
   }
 });
 
-test("sv and de: English content may be queued, Swedish text never", () => {
-  for (const language of ["sv", "de", "fi"]) {
-    const mode = translatorMode(language);
-    assert.equal(mayQueueForModel(mode, ENGLISH), true, language);
-    assert.equal(mayQueueForModel(mode, SWEDISH), false, language);
-    assert.equal(mayQueueForModel(mode, "Krig med Danmark"), false, language);
-    assert.equal(mayQueueForModel(mode, SWEDISH_WORD), false, language);
-    assert.equal(mayQueueForModel(mode, CHINESE), false, `${language}: text in another script is not English content`);
-    assert.equal(mayQueueForModel(mode, null), false, language);
+// What the detector reads as Swedish and is not: names with å, ä or ö from the
+// region catalog, and English with a word the list shares.
+const NOT_SWEDISH = ["Kärnten", "Oberösterreich", "Bingöl", "Hövsgöl", "Kung fu fighting", "A night of ska music"];
+
+test("sv: English content may be queued, the court's Swedish never, sentence or label", () => {
+  const mode = translatorMode("sv");
+  assert.equal(mayQueueForModel(mode, ENGLISH, "sv"), true);
+  assert.equal(mayQueueForModel(mode, ENGLISH, " sv "), true);
+  for (const text of [SWEDISH, "Krig med Danmark", "Kungen är död", "Riket går i krig vid Karls sida", "Förvaltning", "Sändebud", "Hög", SWEDISH_WORD]) {
+    assert.equal(mayQueueForModel(mode, text, "sv"), false, text);
+    assert.equal(mayQueueForModel(mode, text, " sv "), false, text);
   }
+  // The price of the rule in Swedish: these are kept back too. A name with
+  // those letters reads the same in Swedish, and the rest stays English.
+  for (const text of NOT_SWEDISH) assert.equal(mayQueueForModel(mode, text, "sv"), false, text);
+  assert.equal(mayQueueForModel(mode, CHINESE, "sv"), false, "text in another script is not English content");
+  assert.equal(mayQueueForModel(mode, null, "sv"), false);
+});
+
+test("de, tr and fi: the Swedish check is not made, so a foreign name and English with a shared word reach the model", () => {
+  for (const language of ["de", "tr", "fi"]) {
+    const mode = translatorMode(language);
+    assert.equal(mayQueueForModel(mode, ENGLISH, language), true, language);
+    for (const text of NOT_SWEDISH) {
+      assert.equal(looksSwedish(text), true, `${text} is a wrong yes of the detector`);
+      assert.equal(mayQueueForModel(mode, text, language), true, `${language}: ${text}`);
+    }
+    // Swedish that reaches the model in such a language is translated like any
+    // other content, as it was before the modes.
+    assert.equal(mayQueueForModel(mode, "Krig med Danmark", language), true, language);
+    assert.equal(mayQueueForModel(mode, SWEDISH_WORD, language), false, `${language}: no two Latin letters together`);
+    assert.equal(mayQueueForModel(mode, CHINESE, language), false, `${language}: text in another script is not English content`);
+    assert.equal(mayQueueForModel(mode, null, language), false, language);
+  }
+  // Without a language the check cannot be Swedish's.
+  assert.equal(mayQueueForModel("pack", "Kärnten"), true);
 });
 
 test("sv and de: with a shipped pack an unknown English string is listed, as before, and none is queued", () => {
@@ -125,12 +151,19 @@ test("sv and de: with a shipped pack an unknown English string is listed, as bef
   }
 });
 
-test("a language without a pack sends unknown English to the model and keeps Swedish from it", () => {
+test("a language without a pack sends what the page shows in Latin letters to the model, as before the modes", () => {
   assert.equal(hasShippedPack("fi"), false);
   assert.equal(fateIn("fi", ENGLISH), "model");
-  assert.equal(fateIn("fi", SWEDISH), "none");
-  assert.equal(fateIn("fi", "Krig med Danmark"), "none");
+  for (const text of [...NOT_SWEDISH, SWEDISH, "Krig med Danmark"]) assert.equal(fateIn("fi", text), "model", text);
+  assert.equal(fateIn("fi", SWEDISH_WORD), "none");
   assert.equal(fateIn("fi", CHINESE), "none");
+});
+
+test("Swedish without a shipped pack would still keep its own text from the model", () => {
+  const fate = (text) => unknownTextFate("pack", text, { packed: false, language: "sv" });
+  assert.equal(fate(ENGLISH), "model");
+  assert.equal(fate(SWEDISH), "none");
+  assert.equal(fate("Krig med Danmark"), "none");
 });
 
 test("off: nothing happens to anything", () => {

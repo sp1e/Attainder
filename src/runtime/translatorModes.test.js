@@ -370,3 +370,18 @@ test("Swedish mode: the pack, then the research's Swedish under it, and no Swedi
   stopTranslator();
   assert.equal(watching(), 0);
 });
+
+test("German mode: a name with ä or ö and English with a word Swedish shares are content for the model", async (t) => {
+  freshPage(t, { language: "de", serverPack: { "Save game": "Spiel speichern" } });
+  const button = addText("Save game");
+  startTranslator();
+  await until(() => watching() === 1, "the page to be watched");
+  assert.deepEqual([window.__ohI18n.language, window.__ohI18n.mode, window.__ohI18n.packed], ["de", "pack", true]);
+  assert.equal(button.nodeValue, "Spiel speichern");
+
+  // translateLabel queues a name the book lacks, as the map's labels do.
+  const { pending } = window.__ohI18n;
+  for (const name of ["Kärnten", "Oberösterreich", "Bingöl", "Hövsgöl", "Kung fu fighting"]) assert.equal(translateLabel(name), name);
+  assert.deepEqual([...pending], ["Kärnten", "Oberösterreich", "Bingöl", "Hövsgöl", "Kung fu fighting"], "only Swedish mode holds text back for looking Swedish");
+  stopTranslator();
+});
