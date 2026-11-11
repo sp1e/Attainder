@@ -1599,6 +1599,13 @@ test("a historical religion names the representative at court and shows its sour
   assert.match(families(seededView("egypt-3000bc")), /Företrädare vid hovet/);
 });
 
+test("a faith founded in the campaign shows its year, and a seeded faith shows none", () => {
+  const view = seededView("charlemagne-800");
+  assert.doesNotMatch(families(view), /Grundad/);
+  const founded = { id: "faith-1", name: "Karls lära", support: 40, leaderId: null, foundedYear: 812 };
+  assert.match(families({ ...view, religions: [...view.religions, founded] }), /<h4>Karls lära<\/h4>.*Grundad <strong>812<\/strong>/s);
+});
+
 test("a saved historical campaign without religion claims keeps the label and shows no claim", () => {
   const view = seededView("john-1200");
   const old = { ...view, religions: view.religions.map(({ historicalOrigin, ...religion }) => religion) };
