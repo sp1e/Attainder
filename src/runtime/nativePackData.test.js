@@ -27,7 +27,7 @@ const KNOWN_STALE = [];
 // pack is still {} on this branch, so this is the size of the catalog; the
 // translation slice lowers it to 0. A catalog rebuild changes it with the
 // catalog, and a translation that lands must lower it here.
-const EXPECTED_MISSING = 3156;
+const EXPECTED_MISSING = 3169;
 
 const REPO = new URL("../../", import.meta.url);
 const readText = (relative) => fs.readFileSync(new URL(relative, REPO), "utf8").replace(/\r\n/g, "\n");

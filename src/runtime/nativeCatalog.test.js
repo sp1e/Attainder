@@ -151,6 +151,100 @@ test("labels beside Swedish text are taken with it", () => {
   assert.deepEqual(table.texts, ["Girig", "Ståndaktig"]);
 });
 
+// Four places where a label stood beside Swedish text and the catalog still missed it: the
+// shapes are the engine's own (council.js, actionOdds.js, nicknames.js, index.js,
+// authored-scenarios.mjs).
+test("a constant the code names as labels gives its values in a Swedish file, marker or not", () => {
+  const code = [
+    "export const REFUSAL = 'Rådsmedlemmen belönades nyligen.';",
+    "const LOYALTY_LABELS = Object.freeze({ five: Object.freeze(['mycket svag', 'svag', 'jämn', 'stark', 'mycket stark']), three: Object.freeze(['svag', 'oviss', 'stark']) });",
+    "const REALM_EFFECT_LABELS = Object.freeze({ treasury: 'statskassan', legitimacy: 'legitimiteten', armyStrength: 'arméns styrka' });",
+    "const ADVISOR_SEATS = Object.freeze({ intrigue: 'spymaster', diplomacy: 'chancellor' });",
+    "const SEAT_KEYS = ['spymaster', 'chancellor'];",
+    "const CATEGORY_LABELS = [['intrigue', 'Intrig'], ['family', 'Familj'], ['military', 'Krigföring']];",
+  ].join("\n");
+  assert.deepEqual(extract(code).texts, ["Familj", "Intrig", "Krigföring", "Rådsmedlemmen belönades nyligen.", "arméns styrka", "jämn", "legitimiteten", "mycket stark", "mycket svag",
+    "oviss", "stark", "statskassan", "svag"], "a table's rows are left to the sibling rule: its id column is no label");
+  // The name alone is not enough: an upstream file with a line of Swedish keeps its English labels.
+  const upstream = [
+    "export const STATUS_LABELS = { planned: 'planned', building: 'building' };",
+    "export const NOTE = 'Sök rike';",
+    "export const HELP = ['Pick a start', 'Load a saved game', 'Choose a country'];",
+  ].join("\n");
+  assert.deepEqual(extract(upstream, "src/Game/probe.js").texts, ["Sök rike"]);
+  assert.deepEqual(extract("export const REFUSAL = 'Ämbetet är vakant.';\nconst STATUS_LABELS = { a: 'needs the council', b: 'öppen' };").texts, ["Ämbetet är vakant.", "öppen"], "and English among the labels stays out");
+});
+
+test("the other returns of a function with a Swedish return are taken with it", () => {
+  const code = [
+    "export const REFUSAL = 'Rådsmedlemmen belönades nyligen.';",
+    "export function serviceTier(service) {",
+    "  if (service >= 80) return 'trogen';",
+    "  if (service >= 60) return 'pålitlig';",
+    "  return service >= 40 ? 'motvillig' : 'opålitlig';",
+    "}",
+    "export function seatOf(skill) {",
+    "  if (skill === 'intrigue') return 'spymaster';",
+    "  return 'chancellor';",
+    "}",
+    "export function tone(value) {",
+    "  if (value > 5) return 'warm';",
+    "  return [1, 2].map(() => { return 'Hovet är kallt'; }).join('');",
+    "}",
+  ].join("\n");
+  assert.deepEqual(extract(code).texts, ["Hovet är kallt", "Rådsmedlemmen belönades nyligen.", "motvillig", "opålitlig", "pålitlig", "trogen"],
+    "a function without a Swedish return gives nothing, and a nested function's return is not the outer one's");
+});
+
+test("the same argument of the other calls in a list is a field, as in a table", () => {
+  const bands = [
+    "const band = (max, label) => Object.freeze({ max, label });",
+    "export const PRECISION_BANDS = Object.freeze({",
+    "  five: Object.freeze([band(20, 'mycket låg'), band(40, 'låg'), band(60, 'jämn'), band(80, 'hög'), band(95, 'mycket hög')]),",
+    "  three: Object.freeze([band(35, 'osannolik'), band(65, 'osäker'), band(95, 'trolig')]),",
+    "});",
+  ].join("\n");
+  assert.deepEqual(extract(bands).texts, ["hög", "jämn", "låg", "mycket hög", "mycket låg", "osannolik", "osäker", "trolig"]);
+  const nicknames = [
+    "const count = (label, read, threshold) => ({ label, read, threshold });",
+    "export const NICKNAMES = Object.freeze([",
+    "  { id: 'cruel', male: 'den Grymme', counts: [count('avrättningar', (r) => r.executions, 2), count('grymma gärningar', (r) => r.cruel, 4)] },",
+    "  { id: 'great', male: 'den Store', counts: [count('uppnådda regeringsmål', (r) => r.goals, 2), count('ryktbarhet', (r) => r.prestige, 40)] },",
+    "  { id: 'treacherous', male: 'den Lömske', counts: [count('svek', (r) => r.betrayal, 4)] },",
+    "  { id: 'frail', male: 'den Bräcklige', counts: [count('sammanbrott', (r) => r.breakdowns, 1)] },",
+    "].map((row) => Object.freeze(row)));",
+  ].join("\n");
+  for (const label of ["ryktbarhet", "svek", "sammanbrott"]) assert.ok(extract(nicknames).texts.includes(label), label);
+  // Calls of another function are no rows of the same table, and the arguments of one call are no list.
+  const mixed = "export const ROWS = [band(20, 'mycket låg'), other(20, 'spymaster'), pair('general', 'Överbefälhavare')];";
+  assert.deepEqual(extract(mixed).texts, ["mycket låg", "Överbefälhavare"]);
+});
+
+test("the same key elsewhere in the file is a field too", () => {
+  const code = [
+    "const PAPAL = { court: { household: [], rulerName: 'Leo III', rulerOfficeName: 'Påve', familyName: 'Leos hushåll' } };",
+    "const PACKAGES = { 'charlemagne-800': { court: { household: [], rulerId: 'karl', rulerOfficeName: 'Kejsare', familyName: 'Karls hus' } } };",
+    "export const SOURCE = { title: 'Royal Frankish Annals', institution: 'Fordham University' };",
+  ].join("\n");
+  const { texts } = extract(code, "server/seed/historical/probe.mjs");
+  assert.ok(texts.includes("Kejsare"), "beside 'Påve' under the same key");
+  assert.ok(texts.includes("Karls hus"), "beside 'Leos hushåll'");
+  for (const text of ["karl", "Leo III", "Royal Frankish Annals", "Fordham University"]) assert.equal(texts.includes(text), false, text);
+  // English under the same key anywhere in the file: the key is mixed, and nothing is taken through it.
+  const english = "export const NOTES = ['Checked against the annals', 'Read in the translation', 'Printed in the edition', 'Kept in the archive', 'Copied from the original'];";
+  const mixed = `const A = { rulerOfficeName: 'Påve' };\nconst B = { rulerOfficeName: 'Kejsare' };\nconst C = { rulerOfficeName: 'King of the Franks' };\n${english}`;
+  assert.deepEqual(extract(mixed, "server/seed/historical/probe.mjs").texts, ["Påve"]);
+  // A key can be the id of a row, and a lone lowercase word under it is an enum value.
+  const ids = `const LABELS_BY_KIND = { support: 'stöd för tronen', pledge: 'ett löfte' };\nconst EFFECT = { support: 'opinion', pledge: 'hook' };\n${english}`;
+  assert.deepEqual(extract(ids, "server/seed/historical/probe.mjs").texts, ["ett löfte", "stöd för tronen"]);
+});
+
+test("the labels the catalog missed beside their list-mates are in it", () => {
+  for (const label of ["svag", "oviss", "trogen", "osannolik", "statskassan", "legitimiteten", "ryktbarhet", "svek", "sammanbrott", "Kejsare"]) {
+    assert.ok(ENTRIES.has(label), label);
+  }
+});
+
 test("a Swedish component's text is taken whole, markers or not", () => {
   const code = [
     "export function Card({ name, onSend }) {",
