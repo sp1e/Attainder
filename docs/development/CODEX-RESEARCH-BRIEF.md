@@ -420,7 +420,11 @@ Write it in English, under the same writing rules.
 
 ## 13. Open requests from Claude
 
-- **Rome at AD 800, for Charlemagne 1.2.0.** Two Swedish texts in the Charlemagne package say `spelsätet är Aachen`. Kyrkostaten has been playable at AD 800 since 1.1.0, with Rome as its seat, so both read wrong in that start:
+Order: faith traditions first, then border tribes for AD 800, then the other starts. Write new text in English, as the owner's 9 November correction requires.
+
+Deliver both requests in new files of your own under `server/seed/historical/courts/`, and leave the dossiers and review files as they are. The builder records a hash of every file it reads (`ad800-courts.json`, `ad800-review.json` and the others), so a change to one of them fails the `test` check ("a second build gives identical bytes") until Claude rebuilds and releases the packages. The builder does not read the new files, so your PR stays green. Claude wires them in, rebuilds and releases.
+
+- **Rome at AD 800, for Charlemagne 1.2.0.** Delivered in [PR #24](https://github.com/sp1e/Attainder/pull/24); it waits for Claude's release work and needs nothing more from Codex. Two Swedish texts in the Charlemagne package say `spelsätet är Aachen`. Kyrkostaten has been playable at AD 800 since 1.1.0, with Rome as its seat, so both read wrong in that start:
   - The Rome settlement note is the `noteSv` literal in `ROME_800` (`server/seed/historical/authored-scenarios.mjs`, line 71). The builder copies it into the package. It never reads `settlements[0].noteSv` in `ad800-review.json`.
   - The AD 800 context is `contextSv` (`authored-scenarios.mjs`, line 185). The start card shows it for both polities, and the narrator receives it as the campaign context.
 
@@ -428,31 +432,45 @@ Write it in English, under the same writing rules.
 
   Claude then changes `ROME_800` and `contextSv` and releases Charlemagne 1.2.0. Charlemagne's provenance is frozen at 1.1.0, so the release needs a new frozen record in `released-provenance.json` and `contentVersion` `1.2.0` in `HISTORICAL_BOOKMARKS` as well as a rebuild. Installed 1.1.0 copies then upgrade on the next library read.
 
-- **Border tribes, for Phase 6 moment 24.** The moment reads "Barbarian tribes on the border can be bribed, hired or crushed." The engine has no tribes to offer. The non-state rows in `allFeatures` of `ad800-review.json` (for example "Slavonic tribes" and "Magyars", status `cultural-or-nonstate`) have no game geometry and no Swedish name.
+- **Border tribes, for Phase 6 moment 24.** The moment reads "Barbarian tribes on the border can be bribed, hired or crushed." The engine has no tribes to offer. The non-state rows in `allFeatures` of `ad800-review.json` (for example "Slavonic tribes" and "Magyars", status `cultural-or-nonstate`) have no game geometry and no game name.
 
-  For each start, list the peoples without a collective sovereign that lived within 2,500 km of a playable seat in the start year. Add them as a top-level `tribes` array in that start's review file (`ad800-review.json` first, then `ad1200-review.json`, `ad1500-review.json` and `bc3000-review.json`), one entry per people:
+  For each start, list the peoples without a collective sovereign that lived within 2,500 km of a playable seat in the start year. Write them to `server/seed/historical/courts/border-tribes.json`, keyed by the start's review file, AD 800 first:
 
   ```json
-  { "id": "ad800-tribe-obodrites", "nameSv": "Obodriter", "coordinates": [11.4, 53.9], "sourceIds": ["<id in this file's sources>"] }
+  {
+    "schema": "attainder-border-tribes-v1",
+    "starts": {
+      "ad800": {
+        "sources": { "<source id>": { "title": "...", "url": "...", "locator": "...", "retrievedOn": "2026-11-12" } },
+        "tribes": [ { "id": "ad800-tribe-obodrites", "nameEn": "Obodrites", "coordinates": [11.4, 53.9], "sourceIds": ["<source id>"] } ]
+      }
+    }
+  }
   ```
 
+  - The keys of `starts` are `ad800`, `ad1200`, `ad1500` and `bc3000`, after the review files.
   - `id` is unique in the file and stable across releases.
-  - `nameSv` is the Swedish name a player would read on the neighbor list.
+  - `nameEn` is the people's usual English name in the sources you opened. Claude adds the Swedish game name in the builder.
   - `coordinates` is one point, `[longitude, latitude]`, inside the area the people held in the start year. Leave a people out when no source you opened places it.
-  - `sourceIds` names one or more entries of the file's `sources`.
+  - `sourceIds` names one or more entries of that start's `sources`. A source record follows the fields of section 6 for court sources.
 
-  The example is a shape, not a researched row. Record progress in `RESEARCH-STATUS.md`. Claude then copies the list into `historicalScenario.tribes` in the builder and builds moment 24 on it.
+  The example is a shape, not a researched row. Record progress in `RESEARCH-STATUS.md`. Claude then copies the list into `historicalScenario.tribes` in the builder, and moment 24 plays on it.
 
 - **Faith traditions, for Phase 7 moment 19.** The moment reads "The priests call a holy war against the neighbor." The engine compares the ruler's faith with a neighbor's. Each court's religion has a court-specific id (`latin-church`, `asturian-church`, `congregational-mosque-unspecified`), so an id cannot say that Asturias and the Carolingian court share a faith. Today a holy war only targets the faith a ruler broke from in the campaign.
 
-  Add a `tradition` field to the `religion` object of every court in `courts/ad800-courts.json`, `ad1200-courts.json` and `ad1500-courts.json`, for example:
+  Write one `tradition` per court religion to `server/seed/historical/courts/faith-traditions.json`. Cover every court in `ad800-courts.json`, `ad1200-courts.json` and `ad1500-courts.json`, and the authored courts the dossiers lack: `carolingian-realm` and `papal-states` at AD 800, `johns-realms` at AD 1200 and `egypt-early-dynastic` at 3000 BC (start key `bc3000`).
 
   ```json
-  "religion": { "id": "asturian-church", "nameSv": "Kyrkan i Asturien", "tradition": "christian", ... }
+  {
+    "schema": "attainder-faith-traditions-v1",
+    "sources": { "<source id>": { "title": "...", "url": "...", "locator": "...", "retrievedOn": "2026-11-12" } },
+    "courts": [ { "start": "ad800", "polityId": "asturias", "religionId": "asturian-church", "tradition": "christian", "sourceIds": ["<source id>"], "noteEn": "..." } ]
+  }
   ```
 
-  - `tradition` is one lowercase id. Use a short shared list: `christian`, `islamic`, `jewish`, `buddhist`, `hindu`, `zoroastrian`, `chinese-state-cult`, `norse`, `egyptian`, `mesopotamian`, `other`. Propose a new id in `RESEARCH-STATUS.md` before you use it.
+  - `polityId` and `religionId` are the ids the package uses. `religionId` must match the court's religion id in the dossier, or the authored id (`latin-church` for the three Christian courts, `horus-context` for Egypt).
+  - `tradition` is one of: `christian`, `islamic`, `jewish`, `buddhist`, `hindu`, `zoroastrian`, `chinese-state-cult`, `norse`, `egyptian`, `mesopotamian`, `other`. The package validator refuses any other value. Propose a new id in `RESEARCH-STATUS.md` before you use it.
   - Two courts get the same id only when a source you opened supports that they shared the faith in the start year. Latin and Greek Christianity both count as `christian`; the game does not split them.
-  - Leave the field out where the court's faith is unclear, and say why in the religion's `noteSv`.
+  - Leave a court out where its faith is unclear, and give the reason in `RESEARCH-STATUS.md`. `noteEn` is optional and holds a limit a reader should know.
 
-  Record progress in `RESEARCH-STATUS.md`. Claude then copies `tradition` into the court seeds in the builder (`dossier-courts.mjs` and the authored Charlemagne, Kyrkostaten and John courts) and releases the packages.
+  Record progress in `RESEARCH-STATUS.md`. The builder already copies a dossier religion's `tradition` and validates it (PR #190). Claude reads your file into the court seeds, rebuilds and releases the packages.
