@@ -6,7 +6,8 @@ The owner's Codex subscription has ended. From 11 November 2026 a Claude researc
 
 | Batch | State | PR | Files | Counts | Waiting for the developer session |
 |---|---|---|---|---|---|
-| §13 faith traditions | Ready for merge | pending | `server/seed/historical/courts/faith-traditions.json` | 17 courts, 18 sources; independent check 35 checked, 29 confirmed, 6 corrected, 0 unsupported | Read the file into the court seeds, set `tradition` on each court religion, rebuild and release |
+| §13 faith traditions | Merged | [#193](https://github.com/sp1e/Attainder/pull/193), `7910c619` | `server/seed/historical/courts/faith-traditions.json` | 17 courts, 18 sources; independent check 35 checked, 29 confirmed, 6 corrected, 0 unsupported | Read the file into the court seeds, set `tradition` on each court religion, rebuild and release |
+| §13 border tribes, AD 800 | Ready for merge | pending | `server/seed/historical/courts/border-tribes.json` (`starts.ad800`) | 7 tribes, 15 sources; independent check 22 checked, 18 confirmed, 4 corrected, 0 unsupported | Copy `starts.ad800.tribes` into `historicalScenario.tribes` and add Swedish names in the builder |
 
 ### §13 faith traditions
 
@@ -21,6 +22,17 @@ The independent check opened all 18 sources. It corrected two locators, one misr
 - Ruling: give Chimú `other` — it is the only `other` court at AD 1200, so the id claims no shared faith; the dossier keeps the court blocked and its religious relationship uncertain — if wrong, a blocked court carries a tradition the game does not yet use.
 - Ruling: count Tang, Silla and Western Xia as `buddhist` from royal patronage — each dossier's court religion is a Buddhist institution, and each `noteEn` states the limit — if wrong, the engine treats these courts as co-religionists of Khmer and of each other.
 - Ruling: count the Church of Constantinople as `christian` with the Latin courts, as §13 directs.
+
+### §13 border tribes, AD 800
+
+`border-tribes.json` follows the §13 shape. `starts.ad800` lists seven peoples: Obodrites, Wilzi, Sorbs, Bohemians, Nordalbingian Saxons, Bretons and Emishi. Each point is a Getty TGN place inside the area a cited passage gives the people, and each row cites both the passage and the TGN record. Source records carry the §6 fields (`institution`, `scopedClaim`, `chronology`, `uncertainty`, `license`) and the §13 field `retrievedOn`. A scratch validator checked unique ids, the `ad800-tribe-` prefix, source resolution, uncited sources, LF line endings and the distance to the nearest playable seat: every European row lies within 620 km of a playable seat, and the Emishi lie 1,112 km from Gyeongju.
+
+The independent check opened all 15 sources. It corrected the Annales regni Francorum locator for 798 (the rising starts on p. 102), the Kotobank locator, and the Obodrite and Emishi `noteEn` texts. All four corrections are applied.
+
+- Ruling: a people counts as having no collective sovereign when the sources give it no king or khagan; leaders the annals call dux, princeps or regulus are allowed — the brief's own example row is the Obodrites, whose leader Thrasco the annals call dux — if wrong, the Bohemians drop out, since the annal names one dux of theirs, Lecho, in 805.
+- Ruling: leave out the Danes, Avars, Khitan, Heishui Mohe, Magyars and the Navarrese and Pamplonese. The Annales regni Francorum name Danish kings (Sigifrid, then Godofrid) and an Avar khagan; no source opened in this session places the Khitan or the Heishui Mohe, or dates the Magyars near a playable seat, as peoples without a sovereign in 800; the annal for 806 says the Navarrese and Pamplonese had gone over to the Saracens in earlier years, which may put them under the emir of Córdoba, a playable court, in 800 — if wrong, five peoples are missing until a source places them.
+- Ruling: keep the Nordalbingian Saxons and Bretons although the Franks claimed both — royal legates sat among the Saxons until they rose in 798, and the annal says the Breton surrender of 799 did not last — if wrong, the engine offers two peoples the Carolingian court already rules.
+- Not yet researched for AD 800: Berber groups near Kairouan and Córdoba, Slavic groups in the Balkans near Constantinople and Benevento, Basques near Oviedo, and steppe and Arabian peoples near Raqqa. Each needs a source that places the people and shows it had no sovereign in 800.
 
 ## Current publication checkpoint: 9 November 2026
 
