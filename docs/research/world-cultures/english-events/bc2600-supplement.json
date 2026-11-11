@@ -1,0 +1,94 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-11",
+  "batchId": "bc2600-supplement-2026-11-11",
+  "researchWindow": {
+    "startYear": -2600,
+    "endYear": -2501
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "7d9bb8ea6c87a6372391e4106c3f1cabb01b7525",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc2600en-met-indus-cities-flourish",
+      "title": "South Asia, 8000–2000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/02/ssa",
+      "locator": "Key Events, entry \"ca. 2600–1900 B.C.\" beginning \"An integrated urban culture flourishes\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 2600–1900 B.C.",
+      "originalChronology": "Approximate span, about 2600 to 1900 B.C.",
+      "scopedClaim": "An integrated urban culture with grid-planned large settlements flourishes in the northwest; Mohenjo Daro and Harappa prosper through trade with cultures to the west, smaller settlements expand across the plains of present-day Pakistan and North India, and seals carry an undeciphered writing system.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc2600en-met-intercultural-style-chlorite-vessels",
+      "title": "Iran, 8000–2000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/02/wai",
+      "locator": "Key Events, entry \"ca. 2600–2250 B.C.\" beginning \"Chlorite vessels of the\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 2600–2250 B.C.",
+      "originalChronology": "Approximate span, about 2600 to 2250 B.C.",
+      "scopedClaim": "Chlorite vessels of the Intercultural Style, decorated over the whole surface, are made in southern Iran and the greater Gulf region and traded widely across the Near East from Syria to the Indus Valley.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc2600-indus-cities-flourish",
+      "date": {
+        "kind": "range",
+        "startYear": -2600,
+        "endYear": -1900,
+        "displayEn": "c. 2600–1900 BCE",
+        "noteEn": "The Met gives an approximate span for the urban phase. The record marks its start and claims no founding year for any city."
+      },
+      "titleEn": "Mohenjo Daro and Harappa flourish in a planned urban culture",
+      "summaryEn": "An integrated urban culture flourishes in the northwest of South Asia. Large cities such as Mohenjo Daro and Harappa follow grid plans and prosper through trade with cultures to the west, while smaller settlements spread across the plains of present-day Pakistan and northern India. Seals from these sites carry a writing system that remains undeciphered.",
+      "geographyEn": "Northwest South Asia: present-day Pakistan and northern India",
+      "category": "culture",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc2600en-met-indus-cities-flourish"
+      ],
+      "selectionNote": "The catalog records walls at Harappa (2800–2600 BCE) and the shrinking of the Indus cities (from 1900 BCE). This record covers the mature urban phase between them.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc2600-intercultural-style-chlorite-vessels",
+      "date": {
+        "kind": "range",
+        "startYear": -2600,
+        "endYear": -2250,
+        "displayEn": "c. 2600–2250 BCE",
+        "noteEn": "The Met gives an approximate span for the style."
+      },
+      "titleEn": "Southern Iran and the Gulf region produce Intercultural Style chlorite vessels",
+      "summaryEn": "Chlorite vessels made in southern Iran and the greater Gulf region are decorated over the entire surface with abstract patterns, plant and architectural motifs, or animals and humans. The vessels are traded across the Near East, from Syria to the Indus Valley.",
+      "geographyEn": "Southern Iran and the greater Gulf region",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc2600en-met-intercultural-style-chlorite-vessels"
+      ],
+      "selectionNote": "One recognisable ware documents trade across the Near East, from Syria to the Indus Valley, in this century.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    }
+  ]
+}

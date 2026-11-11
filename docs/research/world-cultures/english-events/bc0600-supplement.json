@@ -1,0 +1,274 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-11",
+  "batchId": "bc0600-supplement-2026-11-11",
+  "researchWindow": {
+    "startYear": -600,
+    "endYear": -501
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "7d9bb8ea6c87a6372391e4106c3f1cabb01b7525",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "bc0600en-met-chiripa-ceremonial-complex",
+      "title": "Central and Southern Andes, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/sac",
+      "locator": "Key Events, entry \"ca. 600 B.C.\" beginning \"In the southern Andes, on the Bolivian\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 600 B.C.",
+      "originalChronology": "About 600 B.C.",
+      "scopedClaim": "Construction begins on the ceremonial complex at Chiripá on the Bolivian side of Lake Titicaca: one-room rectangular buildings, some painted with interior niches, around a central patio with a sunken court.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0600en-met-kuntur-wasi-gold-crown-burial",
+      "title": "Central and Southern Andes, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/sac",
+      "locator": "Key Events, entry \"ca. 600 B.C.\" beginning \"An important individual is laid\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 600 B.C.",
+      "originalChronology": "About 600 B.C.",
+      "scopedClaim": "An important individual is laid to rest at Kuntur Wasi in a lavish shaft tomb with a seven-inch hammered gold crown with fourteen human-head dangles; ceramics show affinities with contemporary north coast Cupisnique wares.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0600en-met-milesian-colonies-on-the-black-sea",
+      "title": "Eastern Europe and Scandinavia, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/eue",
+      "locator": "Key Events, entry \"ca. 600 B.C.\" beginning \"Greeks from the city of Miletos\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 600 B.C.",
+      "originalChronology": "About 600 B.C.",
+      "scopedClaim": "Greeks from Miletos colonise the northern Black Sea coast and establish long-lived, cosmopolitan cities such as Panticapaeum, Olbia and Pontic Chersonesus.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0600en-met-scythian-animal-style",
+      "title": "Eastern Europe and Scandinavia, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/eue",
+      "locator": "Key Events, entry \"ca. 600 B.C.\" beginning \"The “Animal Style”\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 600 B.C.",
+      "originalChronology": "About 600 B.C.",
+      "scopedClaim": "The Animal Style in Scythian art develops; the Scythians, migrating from the Altai to the Black Sea region, depict leopard, deer and eagle in motion; some of the best-known works are gold hammered over a carved matrix.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0600en-met-zapotec-earliest-recorded-date",
+      "title": "Mexico, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/cam",
+      "locator": "Key Events, entry \"ca. 600 B.C.\" beginning \"Major buildings at San José Mogote\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 600 B.C.",
+      "originalChronology": "About 600 B.C.",
+      "scopedClaim": "Major buildings at San José Mogote are built of masonry; a carved relief in a corridor floor shows a slain figure with a hieroglyph for 1 Earthquake, the earliest recorded date in Zapotec.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0600en-met-cyrus-founds-achaemenid-empire",
+      "title": "Iran, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/wai",
+      "locator": "Key Events, entry \"559–486 B.C.\" beginning \"The Persian king Cyrus II\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "559–486 B.C.",
+      "originalChronology": "Entry 559–486 B.C.; Cyrus r. ca. 559–530 B.C.",
+      "scopedClaim": "Cyrus II (the Great, r. ca. 559–530 B.C.) lays the foundation of the Achaemenid empire by successively overthrowing Media, Lydia and the Babylonian empire.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0600en-met-battle-of-aleria",
+      "title": "Iberian Peninsula, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/eusi",
+      "locator": "Key Events, entry \"ca. 540 B.C.\" beginning \"The Battle of Aleria\". Page text only; no images or linked object records examined.",
+      "retrievedOn": "2026-11-11",
+      "asWorded": "ca. 540 B.C.",
+      "originalChronology": "About 540 B.C.",
+      "scopedClaim": "The Battle of Aleria takes place on Corsica; the Carthaginians combine with the Etruscans to gain control of the Mediterranean, and soon afterward the kingdom of Tartessos collapses.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc0600-chiripa-ceremonial-complex",
+      "date": {
+        "kind": "approximate",
+        "startYear": -600,
+        "endYear": -600,
+        "displayEn": "c. 600 BCE"
+      },
+      "titleEn": "Construction begins on the ceremonial complex at Chiripá",
+      "summaryEn": "On the Bolivian side of Lake Titicaca, builders begin the ceremonial complex at Chiripá. One-room rectangular buildings, some with painted walls and interior niches, surround a central patio with a sunken court.",
+      "geographyEn": "Chiripá, Lake Titicaca, Bolivia",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0600en-met-chiripa-ceremonial-complex"
+      ],
+      "selectionNote": "An early ceremonial centre of the Titicaca basin.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc0600-kuntur-wasi-gold-crown-burial",
+      "date": {
+        "kind": "approximate",
+        "startYear": -600,
+        "endYear": -600,
+        "displayEn": "c. 600 BCE"
+      },
+      "titleEn": "An important individual is buried with a gold crown at Kuntur Wasi",
+      "summaryEn": "An important individual is buried at Kuntur Wasi in a shaft tomb with a crown of hammered sheet gold about seven inches high, hung with fourteen human-head dangles. Ceramics from the site resemble contemporary Cupisnique wares of the north coast.",
+      "geographyEn": "Kuntur Wasi, Peru",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0600en-met-kuntur-wasi-gold-crown-burial"
+      ],
+      "selectionNote": "A lavish shaft-tomb burial with a gold crown.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc0600-milesian-colonies-on-the-black-sea",
+      "date": {
+        "kind": "approximate",
+        "startYear": -600,
+        "endYear": -600,
+        "displayEn": "c. 600 BCE",
+        "noteEn": "The Met dates the colonisation to about 600 BCE and gives no founding year for any single city."
+      },
+      "titleEn": "Milesian Greeks colonise the northern Black Sea coast",
+      "summaryEn": "Greeks from Miletos on the Ionian coast colonise the northern Black Sea coast. They found long-lived, cosmopolitan cities such as Panticapaeum, Olbia and Pontic Chersonesus.",
+      "geographyEn": "Northern Black Sea coast",
+      "category": "migration",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0600en-met-milesian-colonies-on-the-black-sea"
+      ],
+      "selectionNote": "Greek settlement reaches the northern Black Sea coast with long-lived cities.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc0600-scythian-animal-style",
+      "date": {
+        "kind": "approximate",
+        "startYear": -600,
+        "endYear": -600,
+        "displayEn": "c. 600 BCE"
+      },
+      "titleEn": "Scythian artists develop the Animal Style",
+      "summaryEn": "The Animal Style develops in Scythian art. The Scythians, who migrate from the Altai Mountains to the Black Sea region, depict the leopards, deer and eagles of their homeland as animals leaping, running and blending into each other; some of the best-known works are gold hammered over a carved matrix.",
+      "geographyEn": "Black Sea region",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0600en-met-scythian-animal-style"
+      ],
+      "selectionNote": "Dates the start of the Scythian Animal Style.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc0600-zapotec-earliest-recorded-date",
+      "date": {
+        "kind": "approximate",
+        "startYear": -600,
+        "endYear": -600,
+        "displayEn": "c. 600 BCE"
+      },
+      "titleEn": "San José Mogote carves the earliest recorded Zapotec date",
+      "summaryEn": "Major buildings at San José Mogote are now built of masonry. A carved relief set in a corridor floor shows a slain figure with the hieroglyph for \"1 Earthquake\" between its feet, the earliest recorded date in Zapotec writing.",
+      "geographyEn": "San José Mogote, Valley of Oaxaca, Mexico",
+      "category": "culture",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0600en-met-zapotec-earliest-recorded-date"
+      ],
+      "selectionNote": "The catalog dates the founding of Monte Albán to 500 BCE. This record covers the earlier Zapotec centre and the first dated Zapotec glyph.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc0559-cyrus-founds-achaemenid-empire",
+      "date": {
+        "kind": "range",
+        "startYear": -559,
+        "endYear": -530,
+        "displayEn": "c. 559–530 BCE",
+        "noteEn": "The Met gives Cyrus's reign as about 559–530 BCE and does not date each conquest; the range spans the reign."
+      },
+      "titleEn": "Cyrus the Great founds the Achaemenid empire",
+      "summaryEn": "The Persian king Cyrus II, the Great, lays the foundation of the Achaemenid empire by overthrowing Media, Lydia and the Babylonian empire in turn.",
+      "geographyEn": "Iran, Anatolia and Mesopotamia",
+      "category": "politics",
+      "importance": 3,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0600en-met-cyrus-founds-achaemenid-empire"
+      ],
+      "selectionNote": "The founding of the Achaemenid empire, which the same entry says later stretched from Greece and Egypt to Central Asia and India.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    },
+    {
+      "id": "ev-bc0540-battle-of-aleria",
+      "date": {
+        "kind": "approximate",
+        "startYear": -540,
+        "endYear": -540,
+        "displayEn": "c. 540 BCE"
+      },
+      "titleEn": "Carthage and the Etruscans fight the Battle of Aleria",
+      "summaryEn": "Carthaginian and Etruscan forces combine at the Battle of Aleria on Corsica to gain control of the Mediterranean. Soon afterwards the kingdom of Tartessos collapses.",
+      "geographyEn": "Aleria, Corsica",
+      "category": "war",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0600en-met-battle-of-aleria"
+      ],
+      "selectionNote": "A contest for control of the western Mediterranean; the source names the Carthaginian and Etruscan side only.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-11"
+      }
+    }
+  ]
+}
