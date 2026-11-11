@@ -13,7 +13,7 @@ Each century batch uses `schema: attainder-historical-event-research-en-v1` and 
 | `preparedOn` | ISO date of this delivery. |
 | `batchId` | Stable identifier for the century and research pass. |
 | `researchWindow` | Inclusive `startYear` and `endYear` used to select event start years. |
-| `integrationStatus` | `awaiting-runtime-support` until a compatible importer and display path are verified. |
+| `integrationStatus` | `awaiting-runtime-support` until the records enter the runtime catalog, then `integrated`. |
 | `catalogBaseline` | `commit`, `eventCount` and `sourceCount` of the runtime catalog used for deduplication. |
 | `sources` | Source records, each cited by at least one retained event. |
 | `events` | Independently approved English research records. |
@@ -30,6 +30,8 @@ Each event's `review` contains `status: approved`, `reviewedBy` and `reviewedOn`
 
 ## Integration boundary
 
-The current `validateEventCatalog` requires nonempty Swedish display fields, and `HistoricalEventCard` renders those fields directly. The catalog loader reads only `server/seed/historical/events/catalog.json`. The existing English locale sidecar references Swedish source strings and their hashes; it cannot serve as an authoritative English event feed.
+The current `validateEventCatalog` requires nonempty Swedish display fields, and `HistoricalEventCard` renders those fields directly. The catalog loader reads only `server/seed/historical/events/catalog.json`. The English locale sidecar references Swedish source strings and their hashes.
 
-These datasets therefore remain separate from the current catalog, locale sidecars and gameplay coverage totals. Claude must provide compatible validation, loading and English rendering before claiming in-game availability. Integration must retain event IDs, source references, chronology, interpretation limits and the approved English wording. The [delivery plan](../../../superpowers/plans/2026-11-09-english-event-research.md) records the checks and ownership.
+On 11 November 2026 all 52 supplements in this folder entered the runtime catalog, and each now reads `integrationStatus: integrated`. The 113 events keep their IDs, dates, categories, importance, source references, selection notes, reviews and historical status. Their Swedish display fields come from [`english-first-sv.json`](../../../../server/seed/historical/events/english-first-sv.json), which remains the record of that translation. The approved English wording sits in `server/seed/historical/locales/en.json`, and the 167 sources gain Swedish source-panel text in `locales/sv.json`. Both sidecars point at research commit `5e8f0bdbaab1784492aa5f631297acfce856057c`.
+
+A later English batch follows the same path: translate its display fields into Swedish, add the events and sources to the catalog, add the sidecar entries and advance the source revision. In-game availability in each language still needs runtime verification. The [delivery plan](../../../superpowers/plans/2026-11-09-english-event-research.md) records the checks and ownership.

@@ -1,6 +1,6 @@
 # Swedish and English text
 
-**New research from 9 November 2026:** The owner corrected the delivery instruction to English only. Subsequent event research uses the [English research format](english-events/README.md), with runtime integration pending. The bilingual deliveries and their verified source revisions below remain the record of earlier work.
+**New research from 9 November 2026:** The owner corrected the delivery instruction to English only. Subsequent event research uses the [English research format](english-events/README.md). The 113 English-first events entered the catalog on 11 November 2026 with Swedish display fields and English sidecar text. The bilingual deliveries and their verified source revisions below remain the record of earlier work.
 
 The owner requires Swedish and English throughout the game, selected in Options. Codex supplies the translated text. Claude integrates it with the runtime, model calls and package builders. The [implementation plan](../../superpowers/plans/2026-11-08-bilingual-game-text.md) tracks the work.
 
@@ -30,9 +30,11 @@ The [catalog README](../../../public/lang/attainder/help/README.md) describes th
 
 ## Later event batches
 
-The century batches through BC0100 added 2,078 English event fields and 758 Swedish source-panel fields after the first two deliveries. The AD200 and BC2400 supplements each add ten English event fields and six Swedish source-panel fields. The sidecars now contain 5,814 English entries and 1,602 Swedish entries, covering all display fields for 873 events and all locators and institution fields for 801 sources. All prior translation entries are unchanged.
+The century batches through BC0100 added 2,078 English event fields and 758 Swedish source-panel fields after the first two deliveries. The AD200 and BC2400 supplements each add ten English event fields and six Swedish source-panel fields. Those batches brought the sidecars to 5,814 English entries and 1,602 Swedish entries.
 
-Both sidecars identify source revision `5560998313e72cff9dc72bdd3416966b0bb0c066`, the preceding research-data commit on the retained `research/e-bc2400-supplement` branch. All 7,416 source strings and UTF-8 hashes were checked against that exact Git revision. A later event batch must commit its research data before advancing this pointer, then verify every existing and added entry against the new snapshot.
+The 52 English-first supplements add 113 events and 167 sources. Their Swedish display fields come from [`english-first-sv.json`](../../../server/seed/historical/events/english-first-sv.json); the English sidecar takes the supplement's original English, with `textSha256` over the Swedish catalog text. The 538 new English entries cover four fields per event plus 86 date notes. The 334 new Swedish entries give an explanatory locator and institution text for each source; official names and quoted section titles keep their original form. The sidecars now contain 6,352 English entries and 1,936 Swedish entries, covering all display fields for 986 events and all locators and institution fields for 968 sources. All prior translation entries are unchanged.
+
+Both sidecars identify source revision `5e8f0bdbaab1784492aa5f631297acfce856057c`, the research-data commit on the retained `research/english-first-integrate` branch. All 8,288 source strings and UTF-8 hashes were checked against that exact Git revision. A later event batch must commit its research data before advancing this pointer, then verify every existing and added entry against the new snapshot.
 
 ## Translation contract
 
