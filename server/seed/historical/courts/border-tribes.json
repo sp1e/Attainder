@@ -264,6 +264,198 @@
           "noteEn": "The point is Mizusawa in the Isawa land; by the entry's account the court suppressed the Isawa Emishi in 801."
         }
       ]
+    },
+    "ad1200": {
+      "sources": {
+        "bt1200-loc-estonia": {
+          "title": "Estonia: History, Early History",
+          "institution": "U.S. Library of Congress, Federal Research Division, Country Studies; countrystudies.us copy",
+          "url": "https://countrystudies.us/estonia/1.htm",
+          "locator": "Section \"Early History\", first paragraph",
+          "scopedClaim": "Before 1200 the Estonians lived largely as free peasants loosely organized into parishes, which were grouped into counties; their resistance to the German crusaders lasted some twenty years and failed in 1227, in part for lack of a centralized political organization.",
+          "chronology": "Before 1200 to 1227.",
+          "uncertainty": "The study names no county, parish or elder before 1227; it names towns (Tallinn, Tartu) only for the conquest and Hanseatic periods.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt1200-loc-lithuania": {
+          "title": "Lithuania: History, Early History",
+          "institution": "U.S. Library of Congress, Federal Research Division, Country Studies; countrystudies.us copy",
+          "url": "https://countrystudies.us/lithuania/1.htm",
+          "locator": "Section \"Early History\", first and second paragraphs",
+          "scopedClaim": "Lithuania emerged as a nation about 1230 under Duke Mindaugas, who united the Lithuanian tribes against the Teutonic Knights; the Knights had conquered the kindred tribes of Prussia.",
+          "chronology": "About 1230; the Prussian conquest is undated.",
+          "uncertainty": "The study gives no picture of the Lithuanian tribes in 1200 and no date for the Prussian conquest.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt1200-lex-preussen": {
+          "title": "Preussen",
+          "institution": "Lex.dk (Den Store Danske)",
+          "url": "https://lex.dk/Preussen",
+          "locator": "Fact box and the paragraph on the origin of the name",
+          "scopedClaim": "The name Prussia comes from the Baltic people of the Prussians, who in the Middle Ages lived between the Vistula and the Neman, spoke Old Prussian, and were subjugated and christianized by the Teutonic Order in the 13th century.",
+          "chronology": "Middle Ages; conquest in the 13th century.",
+          "uncertainty": "The article gives no year within the 13th century and says nothing about Prussian leaders before the conquest.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt1200-tgn-tartu": {
+          "title": "Getty Thesaurus of Geographic Names: Tartu (7006624)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=7006624",
+          "locator": "Coordinates field",
+          "scopedClaim": "Tartu lies at latitude 58.3660, longitude 26.7450.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt1200-tgn-kaunas": {
+          "title": "Getty Thesaurus of Geographic Names: Kaunas (7006538)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=7006538",
+          "locator": "Coordinates field",
+          "scopedClaim": "Kaunas lies at latitude 54.8667, longitude 23.9167.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt1200-tgn-kaliningrad": {
+          "title": "Getty Thesaurus of Geographic Names: Kaliningrad (7013050)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=7013050",
+          "locator": "Coordinates field",
+          "scopedClaim": "Kaliningrad lies at latitude 54.6667, longitude 20.5000.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        }
+      },
+      "tribes": [
+        {
+          "id": "ad1200-tribe-estonians",
+          "nameEn": "Estonians",
+          "coordinates": [
+            26.745,
+            58.366
+          ],
+          "sourceIds": [
+            "bt1200-loc-estonia",
+            "bt1200-tgn-tartu"
+          ],
+          "noteEn": "The point is Tartu, which the study names only as a later Hanseatic town."
+        },
+        {
+          "id": "ad1200-tribe-lithuanians",
+          "nameEn": "Lithuanians",
+          "coordinates": [
+            23.9167,
+            54.8667
+          ],
+          "sourceIds": [
+            "bt1200-loc-lithuania",
+            "bt1200-tgn-kaunas"
+          ],
+          "noteEn": "Duke Mindaugas united the tribes about 1230; the point is Kaunas, and the study names no place."
+        },
+        {
+          "id": "ad1200-tribe-prussians",
+          "nameEn": "Prussians",
+          "coordinates": [
+            20.5,
+            54.6667
+          ],
+          "sourceIds": [
+            "bt1200-lex-preussen",
+            "bt1200-loc-lithuania",
+            "bt1200-tgn-kaliningrad"
+          ],
+          "noteEn": "The point is Kaliningrad, between the Vistula and the Neman."
+        }
+      ]
+    },
+    "ad1500": {
+      "sources": {
+        "bt1500-braniff": {
+          "title": "Beatriz Braniff Cornejo, Comercio e interrelaciones entre Mesoamérica y la Gran Chichimeca, in Janet Long Towell and Amalia Attolini Lecón (coords.), Caminos y mercados de México (2009), pp. 27–50",
+          "institution": "Universidad Nacional Autónoma de México, Instituto de Investigaciones Históricas; Instituto Nacional de Antropología e Historia",
+          "url": "https://historicas.unam.mx/publicaciones/publicadigital/libros/caminosymercados/cm004.pdf",
+          "locator": "Section \"Los territorios\", pp. 28–30 with figs. 1–2, including the paragraph naming Altavista, Zacatecas; p. 31, first paragraph (Postclassic nomadism)",
+          "scopedClaim": "After the first millennium AD the region Braniff calls Mesoamérica Chichimeca, which includes Altavista in Zacatecas, passed to hunter-gatherer groups such as the Guamares, Guachichiles and Zacatecos, whom the Mexica and the Spaniards knew in the 16th century.",
+          "chronology": "Known from 16th-century sources.",
+          "uncertainty": "Braniff draws the region on a map and gives no year; she says nothing about the groups' leaders.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt1500-langer-chiriguanos": {
+          "title": "Erick D. Langer, Chiriguanos",
+          "institution": "Encyclopedia of Latin American History and Culture (Gale); Encyclopedia.com",
+          "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/chiriguanos",
+          "locator": "Opening sentences (migration, Incas) and the sentence after the 17th-century population estimate (government)",
+          "scopedClaim": "The Chiriguanos, descendants of the Tupi-Guaraní, migrated in the 15th century to the foothills of the southeastern Bolivian Andes and threatened the Incas, who built fortresses against them; their government was highly decentralized, under village chiefs who accepted the loose leadership of regional chiefs.",
+          "chronology": "15th-century migration; the government is described as a lasting feature into the colonial period.",
+          "uncertainty": "The entry gives no year for the migration and describes the government chiefly for the colonial period.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt1500-tgn-zacatecas": {
+          "title": "Getty Thesaurus of Geographic Names: Zacatecas (1018666)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=1018666",
+          "locator": "Coordinates field",
+          "scopedClaim": "Zacatecas lies at latitude 22.7833, longitude -102.5833.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        },
+        "bt1500-tgn-camiri": {
+          "title": "Getty Thesaurus of Geographic Names: Camiri (1020264)",
+          "institution": "J. Paul Getty Trust",
+          "url": "https://www.getty.edu/vow/TGNFullDisplay?find=x&place=&nation=&english=Y&subjectid=1020264",
+          "locator": "Coordinates field",
+          "scopedClaim": "Camiri lies at latitude -20.1333, longitude -63.5500.",
+          "chronology": "Modern coordinates.",
+          "uncertainty": "The record locates the modern place; the tribe row cites it only for the point.",
+          "license": "Reference only; no source prose or images redistributed",
+          "retrievedOn": "2026-11-11"
+        }
+      },
+      "tribes": [
+        {
+          "id": "ad1500-tribe-chichimecs",
+          "nameEn": "Chichimecs",
+          "coordinates": [
+            -102.5833,
+            22.7833
+          ],
+          "sourceIds": [
+            "bt1500-braniff",
+            "bt1500-tgn-zacatecas"
+          ],
+          "noteEn": "Braniff names Guamares, Guachichiles and Zacatecos among the hunter-gatherers and places Altavista, in Zacatecas state, in the region she calls Mesoamérica Chichimeca; the point is the city of Zacatecas."
+        },
+        {
+          "id": "ad1500-tribe-chiriguanos",
+          "nameEn": "Chiriguanos",
+          "coordinates": [
+            -63.55,
+            -20.1333
+          ],
+          "sourceIds": [
+            "bt1500-langer-chiriguanos",
+            "bt1500-tgn-camiri"
+          ],
+          "noteEn": "The point is Camiri, in the southeastern Bolivian foothills where the entry places them; no source names the town."
+        }
+      ]
+    },
+    "bc3000": {
+      "sources": {},
+      "tribes": []
     }
   }
 }
