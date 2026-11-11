@@ -264,6 +264,7 @@ Phase 7, moment 18. The spec is `docs/superpowers/specs/2026-11-11-faith-reform-
 
 - `reform_faith` (60 silver, one order) takes `mode` `reform` or `found`. The new faith gets support 30 and a `founding` record, and is named "<old> (reformerad)" or "<given name>s lära".
 - The ruler's house converts. Each other house with a living head follows at 0.5 or 0.25, moved ±0.2 by the head's view of the ruler, by `hashRoll`. Houses that stay hold "Reformen" −10 or "Kätteri vid hovet" −20 for 20 years. A faith founded in the campaign holds the next reform for 30 years.
+- Browser run on 11 November 2026 at `5d66f613` (web adapter, Claude selected, 1440 × 900, light theme, Karls rike at seed 104729): "Grunda en ny tro" logged "Karls lära grundas" with 2 houses following and 1 staying. The religion list showed Karls lära with support +50 and "Grundad 800", and Den latinska kyrkan at +40. Both survived a reload. No model call was made.
 
 ## The priests call a holy war
 
@@ -271,6 +272,8 @@ Phase 7, moment 19. The spec is `docs/superpowers/specs/2026-11-11-holy-war-desi
 
 - Each foreign realm carries `faith` from its court seed. `otherFaith` holds when the ruler's faith broke from the neighbor's in the campaign, or when both name a different `tradition`. No package names a tradition yet; section 13 of the research brief asks Codex for one per court religion.
 - At most once in ten years (`state.lastHolyWarCall`), the priest or the faith's leader calls in 15 % of years. Going to war (60 silver) starts the border war at once; refusing or silence costs the caller's goodwill (−20) and 10 faith support.
+- The builder copies a court religion's `tradition` into the package, and the package validator accepts only the eleven ids of section 13 (PR #190, `5d66f613`). The court dossiers name none yet, so a rebuild after Codex adds the field is what turns on the tradition test.
+- In the same browser run, the neighbor list showed each realm's faith ("tro: Den latinska kyrkan"). After Karls lära was founded, Kyrkostaten read "(annan tro)" and no other neighbor did, before and after a reload. A priests' call needs yearly turns with the model and was not played.
 
 ## Branch state
 
