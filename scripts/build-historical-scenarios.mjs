@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import polygonClipping from 'polygon-clipping';
-import { authoredScenario, namePlayables, SOURCE_REVISION, EGYPT_CORE_NOTE_SV, EGYPT_CORE_SOURCE_IDS, EGYPT_CORE_TRANSFORM } from '../server/seed/historical/authored-scenarios.mjs';
+import { authoredScenario, namePlayables, namePoolIds, SOURCE_REVISION, EGYPT_CORE_NOTE_SV, EGYPT_CORE_SOURCE_IDS, EGYPT_CORE_TRANSFORM } from '../server/seed/historical/authored-scenarios.mjs';
 import { historicalGeometryCenter, validateHistoricalScenario } from '../src/runtime/historicalScenarios.js';
 import { withScenarioLicense } from '../src/runtime/scenarioLicense.js';
 
@@ -95,7 +95,7 @@ const SOURCE_HASHES = {
 // addRegionalSources(h, review, pkg) and unmappedSourceIds(reviewRow, index, h) may ignore their last argument.
 const PACKAGE_RECORDS = [
   { contentId: 'egypt-3000bc',idPrefix: 'hbm-bc3000',sourceFile: 'hbm-world_bc3000.geojson',reviewFile: 'bc3000-review.json',
-    authored: () => authoredScenario('egypt-3000bc'),addRegionalSources: sourcesFromNamedFeatures,
+    authored: (dossier,namePools) => authoredScenario('egypt-3000bc',{ namePools }),addRegionalSources: sourcesFromNamedFeatures,
     coverage: [
       { area: 'Africa',status: 'partial',sourceIds: ['egypt'],noteSv: 'Egypten har en ungefärlig politisk rekonstruktion. Övriga områdens kontroll är okänd; Bantuutbredningen och ett Kermarike år 3000 används inte.' },
       { area: 'Asia',status: 'unresolved',sourceIds: ['regional-17-0','regional-20-0'],noteSv: 'Protoelamitisk och tidigharappansk kultur är belagd, men inga gemensamma härskare eller gränser tilldelas. Urpolygonen kan inte belägga kontroll över Uruk.' },
@@ -113,7 +113,7 @@ const PACKAGE_RECORDS = [
     unmappedSourceIds: (r,index) => (r?.references ?? []).map((_,i) => `regional-${index}-${i}`),
     mappedBoundaryDecision: 'developer-authored-selective-core' },
   { contentId: 'john-1200',polityKinds: true,idPrefix: 'hbm-ad1200',sourceFile: 'hbm-world_1200.geojson',reviewFile: 'ad1200-review.json',dossierFile: 'courts/ad1200-courts.json',
-    authored: dossier => authoredScenario('john-1200',{ dossier }),addRegionalSources: (h,review) => sourcesFromEvidence(h,review),
+    authored: (dossier,namePools) => authoredScenario('john-1200',{ dossier,namePools }),addRegionalSources: (h,review) => sourcesFromEvidence(h,review),
     coverage: [
       { area: 'Africa',status: 'partial',sourceIds: ['regional-almohad'],noteSv: 'Almohadernas täckning är partiell. Fatimidernas gamla område byter inte automatiskt ägare; ayyubidiska och andra lokala gränser återstår.' },
       { area: 'Asia',status: 'partial',sourceIds: ['regional-china','regional-khmer'],noteSv: 'Västra Xia och Khmerriket visas ungefärligt. Song, Liao, Chola, Pyu, Delhi, Buyid och mongoliska kartanspråk innehåller olösta eller felaktiga delar. Goryeos trasiga polygon används inte.' },
@@ -134,7 +134,7 @@ const PACKAGE_RECORDS = [
     unmappedSourceIds: (r) => (r?.sourceEvidenceIds ?? []).map(id => `regional-${id}`),
     mappedBoundaryDecision: 'accepted-world-scale-approximation' },
   { contentId: 'charlemagne-800',polityKinds: true,idPrefix: 'hbm-ad800',sourceFile: 'hbm-world_800.geojson',reviewFile: 'ad800-review.json',dossierFile: 'courts/ad800-courts.json',
-    authored: dossier => authoredScenario('charlemagne-800',{ dossier }),addRegionalSources: sourcesFromAd800Review,
+    authored: (dossier,namePools) => authoredScenario('charlemagne-800',{ dossier,namePools }),addRegionalSources: sourcesFromAd800Review,
     coverage: [
       { area: 'Africa',status: 'partial',sourceIds: ['regional-qantara-aghlabids','regional-qantara-idrisids','regional-virtual-nubia','regional-soba'],noteSv: 'Aghlabidernas emirat har en ungefärlig form. Idrisidernas form används inte eftersom källan inte ger någon utbredning för år 800 och formen når in i Sahara. Makuria och Alwa saknar belagda gränser. Ghana, Aksum och Kanem har ingen granskad källa och står som okänd kontroll.' },
       { area: 'Asia',status: 'partial',sourceIds: ['regional-qantara-abbasids','regional-columbia-china','regional-columbia-korea','regional-rubin-jug','regional-waugh-tibet','regional-daniels-nanzhao','regional-columbia-japan','regional-virji-valabhi'],noteSv: 'Abbasidiska kalifatet, Tang och Silla har ungefärliga former. Parhae, Nanzhao, Japan, Tibet och uigurerna saknar ägare eftersom källorna inte stöder deras former. Valabhi avvisas eftersom Virji räknar riket som utslocknat 783. Övriga former har ingen godkänd ägare.' },
@@ -156,7 +156,7 @@ const PACKAGE_RECORDS = [
     mappedBoundaryDecision: 'accepted-world-scale-approximation' },
   // Both courts and seats come from the dossier. The seats cite their own Getty records, so the mappings drop the review's.
   { contentId: 'world-1500',polityKinds: true,idPrefix: 'hbm-ad1500',sourceFile: 'hbm-world_1500.geojson',reviewFile: 'ad1500-review.json',dossierFile: 'courts/ad1500-courts.json',
-    authored: dossier => authoredScenario('world-1500',{ dossier }),addRegionalSources: sourcesFromAd1500Review,
+    authored: (dossier,namePools) => authoredScenario('world-1500',{ dossier,namePools }),addRegionalSources: sourcesFromAd1500Review,
     coverage: [
       { area: 'Africa',status: 'unresolved',sourceIds: ['hbm','naturalEarth'],noteSv: 'Granskningen av år 1500 har ingen källa för Afrika. Formerna saknar godkänd ägare och kontrollen är okänd.' },
       { area: 'Asia',status: 'unresolved',sourceIds: regional(['palace-hongzhi-range','ming-empire-diversity','ming-korea-border-song']),noteSv: 'Hongzhi regerar i Mingriket år 1500, men Mingrikets form står i karantän: källorna löser inte en överlappande kontroll eller utbredningen i sydväst och nordväst. Övriga former saknar godkänd ägare.' },
@@ -338,7 +338,8 @@ function bundleFor(h,world,game,regions,cities) {
 }
 
 async function buildPackage(pkg,{ inputs,physical,land }) {
-  const h = pkg.authored(pkg.dossierFile ? await readJson(pkg.dossierFile) : null);
+  const namePools = Object.fromEntries(await Promise.all(namePoolIds(pkg.contentId).map(async id => [id,await readJson(`name-pools/${id}.json`)])));
+  const h = pkg.authored(pkg.dossierFile ? await readJson(pkg.dossierFile) : null,namePools);
   const source = JSON.parse(inputs[pkg.sourceFile]);
   const review = await readJson(pkg.reviewFile);
   pkg.addRegionalSources(h,review,pkg);

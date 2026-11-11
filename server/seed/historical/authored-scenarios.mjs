@@ -290,10 +290,23 @@ function dossierPlayableCourt(e,dossier,bookmarkYear,sources) {
   return { seat: built.seat,court };
 }
 
+// An attested name pool file (research brief section 8.3) as a court's { id, male, female }.
+export function courtNamePool(file) {
+  if (file?.schema !== 'attainder-name-pool-v1') throw new Error(`Name pool ${file?.id}: unknown schema`);
+  return { id: file.id,male: file.male.map(entry => entry.nameSv),female: file.female.map(entry => entry.nameSv) };
+}
+
+// The name pools a package's playables name with namePoolId; the build script reads exactly these files from name-pools/.
+export function namePoolIds(contentId) {
+  const a = AUTHORED_PACKAGES[contentId];
+  return [...new Set([a,...(a.extraPlayables ?? [])].map(e => e.namePoolId).filter(Boolean))];
+}
+
 // Playable polities: the primary first, then each extra in authored order. An extra playable takes its polity
 // record and map feature from the review file; the builder adds both.
 // dossier: the parsed court dossier, required when the package has dossier playables.
-export function authoredScenario(contentId,{ dossier = null } = {}) {
+// namePools: the parsed pool files by id, for every id namePoolIds(contentId) lists.
+export function authoredScenario(contentId,{ dossier = null,namePools = {} } = {}) {
   if (!Object.hasOwn(AUTHORED_PACKAGES,contentId)) throw new Error(`Unknown historical scenario: ${contentId}`);
   const a = AUTHORED_PACKAGES[contentId], polityId = a.polityId, extras = a.extraPlayables ?? [], year = Number(a.bookmarkDate.slice(0,4));
   const calendarNoteSv = 'Startdagen är vald för simuleringen. Källornas datering och kalenderkonventioner finns kvar i proveniensen.' + (a.calendarNoteSuffixSv ?? '');
@@ -305,6 +318,10 @@ export function authoredScenario(contentId,{ dossier = null } = {}) {
   for (const e of extras) {
     if (e.dossier) ({ seat: seats[e.polityId],court: courtSeeds[e.polityId] } = dossierPlayableCourt(e,dossier,year,sources));
     else { seats[e.polityId] = settlement(e.seat,e.polityId); courtSeeds[e.polityId] = court({ polityId: e.polityId,seat: seats[e.polityId],spec: { ...e.court,successionLaw: e.successionLaw } }); }
+  }
+  for (const e of [a,...extras].filter(entry => entry.namePoolId)) {
+    if (!Object.hasOwn(namePools,e.namePoolId)) throw new Error(`${e.polityId}: name pool ${e.namePoolId} was not passed`);
+    courtSeeds[e.polityId].namePool = courtNamePool(namePools[e.namePoolId]);
   }
   const namedLater = typeof a.contextSv === 'function';
   return { schemaVersion: 1,kind: 'historical',contentId,contentVersion: a.contentVersion ?? '1.0.0',calendar: 'proleptic-gregorian-no-year-zero',bookmarkDate: a.bookmarkDate,
