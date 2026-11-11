@@ -10,6 +10,11 @@
 //
 // Pure (no DOM, no storage): the translator (translator.js) asks it about text
 // nodes and attributes, and the tests ask it directly.
+//
+// The character system is written in Swedish, so in English mode the translator
+// holds a second book keyed by the Swedish (nativePack.js). That book is made
+// with `native: true`, which adds three lookups Swedish text needs and the
+// English-keyed books must not get; createPhraseBook describes them.
 
 const SLOT = /\{\{\s*([A-Za-z_$][\w$]*)\s*\}\}/g;
 
@@ -17,7 +22,7 @@ const SLOT = /\{\{\s*([A-Za-z_$][\w$]*)\s*\}\}/g;
 // "Our {{label}}". Anchored at both ends it can still match prose that happens
 // to start with its words (a model's reply in another chat language: "Our
 // forces are ready…"), so a weak pattern only takes a few words of value.
-const STRONG_LETTERS = 8;
+export const STRONG_LETTERS = 8;
 const WEAK_MAX_VALUE_WORDS = 4;
 // A value never spans sentences unless the pattern around it is substantial:
 // a template does not wrap a paragraph in a few words.
@@ -25,6 +30,11 @@ const SENTENCE_LETTERS = 16;
 const MEMO_LIMIT = 5000;
 const LIST_SEPARATOR = / [/·•|] /;
 const LIST_SPLIT = /( [/·•|] )/;
+// A native book looks for a pattern inside a pattern's value this many levels
+// down: "Spelbara riken: {{list}}" over a value that is itself a built sentence.
+const NATIVE_VALUE_DEPTH = 2;
+const COMMA_SPLIT = /(, )/;
+const COMMA_LIST_MAX_ITEMS = 15;
 
 const collapse = (text) => text.replace(/\s+/g, " ").trim();
 const letterCount = (text) => (text.match(/\p{L}/gu) ?? []).length;
@@ -107,13 +117,26 @@ const acceptsValues = (pattern, values) => {
 // put into the player's language, a date for one (localDates.js). It is asked
 // about a whole string the book does not know, and about each value in a
 // pattern ("Round {{round}} · {{date}}").
-export const createPhraseBook = ({ localizeValue = null } = {}) => {
+//
+// `native` (optional): the book is keyed by the game's own Swedish. That text is
+// sentences the engine builds from other sentences and from data, so three more
+// lookups apply, and only in such a book:
+//  - a slot's value is looked up with everything the book has, patterns
+//    included, NATIVE_VALUE_DEPTH levels down;
+//  - a value or a whole string that is a comma list of entries ("Rom, Aten")
+//    is translated item by item;
+//  - a string that ends in one period and is otherwise unknown is looked up
+//    without it, and the period is put back: the package builders close a
+//    dossier's sentence with a period, and "{{x}}." cannot be a pattern.
+export const createPhraseBook = ({ localizeValue = null, native = false } = {}) => {
   // English (as extracted, and whitespace-collapsed) → translation.
   const exact = new Map();
   // Pattern keys → translation; compiled lazily, most specific first.
   const patternEntries = new Map();
   let patterns = null;
+  // Answers already worked out, kept apart for the two tiers of translate().
   const memo = new Map();
+  const strongMemo = new Map();
 
   const compiled = () => {
     if (!patterns) {
@@ -129,6 +152,7 @@ export const createPhraseBook = ({ localizeValue = null } = {}) => {
 
   const changed = () => {
     memo.clear();
+    strongMemo.clear();
   };
 
   const set = (english, translated) => {
@@ -167,8 +191,23 @@ export const createPhraseBook = ({ localizeValue = null } = {}) => {
     }
   };
 
-  const matchPattern = (text) => {
+  // A value the book knows is translated too ("Edit Borders"), and a date,
+  // and a list: a last slot runs to the end, so "Playing as {{country}}"
+  // over "Playing as France · Jan 1, 2016" holds the whole "France · …".
+  // A native book's value can be a built sentence, so it gets the whole book.
+  const valueOf = (inner, strong, depth) => {
+    const known = get(inner) ?? byRule(inner);
+    if (known != null) return known;
+    return native ? derive(inner, strong, depth) : byParts(inner, strong, depth);
+  };
+
+  // `strong`: only patterns with STRONG_LETTERS of their own are tried (see
+  // translate). `depth`: how many patterns already surround this text.
+  const matchPattern = (text, strong = false, depth = 0) => {
+    if (!patternEntries.size || (native && depth > NATIVE_VALUE_DEPTH)) return null;
     for (const pattern of compiled()) {
+      // Sorted by strength: after the first weak pattern, all are weak.
+      if (strong && pattern.strength < STRONG_LETTERS) break;
       if (pattern.anchor && !text.includes(pattern.anchor)) continue;
       if (text.length > pattern.english.length + 300) continue;
       const match = pattern.regex.exec(text);
@@ -182,13 +221,10 @@ export const createPhraseBook = ({ localizeValue = null } = {}) => {
         const inner = value.trim();
         return /\p{L}/u.test(inner) && /\d/.test(inner) && get(inner) === undefined && byRule(inner) == null;
       })) continue;
-      // A value the book knows is translated too ("Edit Borders"), and a date,
-      // and a list: a last slot runs to the end, so "Playing as {{country}}"
-      // over "Playing as France · Jan 1, 2016" holds the whole "France · …".
       const translatedValues = values.map((value) => {
         const inner = value.trim();
         if (!inner) return value;
-        const known = get(inner) ?? byRule(inner) ?? byParts(inner);
+        const known = valueOf(inner, strong, depth + 1);
         return known == null ? value : value.replace(inner, () => known);
       });
       return fill(pattern.translated, pattern.slots, translatedValues).trim();
@@ -199,8 +235,9 @@ export const createPhraseBook = ({ localizeValue = null } = {}) => {
   // A list the game joins with " / " or " · " ("Modern Day Session / Japan /
   // 2016-01-01"): no pattern holds it, having no words of its own, so each
   // part is looked up by itself. Only when some part is known; dashes are not
-  // separators, since prose uses them.
-  const byParts = (text) => {
+  // separators, since prose uses them. In the strong tier a part must be an
+  // entry.
+  const byParts = (text, strong = false, depth = 0) => {
     if (text.length > 240 || !LIST_SEPARATOR.test(text)) return null;
     const parts = text.split(LIST_SPLIT);
     if (parts.length > 15) return null;
@@ -208,7 +245,7 @@ export const createPhraseBook = ({ localizeValue = null } = {}) => {
     const out = parts.map((part, index) => {
       const inner = part.trim();
       if (index % 2 === 1 || !inner) return part;
-      const known = get(inner) ?? byRule(inner) ?? (patternEntries.size ? matchPattern(inner) : null);
+      const known = get(inner) ?? (strong ? null : byRule(inner) ?? matchPattern(inner, false, depth));
       if (known == null) return part;
       changed = true;
       return part.replace(inner, () => known);
@@ -216,18 +253,62 @@ export const createPhraseBook = ({ localizeValue = null } = {}) => {
     return changed ? out.join("") : null;
   };
 
+  // Native only. "Rom, Aten, Paris": a comma list whose every item is an
+  // entry. One unknown item and the string is prose with commas, which stays.
+  const byCommaList = (text) => {
+    const parts = text.split(COMMA_SPLIT);
+    const items = (parts.length + 1) / 2;
+    if (items < 2 || items > COMMA_LIST_MAX_ITEMS) return null;
+    const out = [];
+    for (let index = 0; index < parts.length; index += 1) {
+      const known = index % 2 === 1 ? parts[index] : get(parts[index]);
+      if (known === undefined) return null;
+      out.push(known);
+    }
+    return out.join("");
+  };
+
+  // Native only. "Hovet flyttar till Aachen." when the book has the sentence
+  // without its period. Two periods end an ellipsis, not a sentence. In the
+  // strong tier the sentence must be an entry.
+  const withoutPeriod = (text, strong, depth) => {
+    if (!text.endsWith(".") || text.endsWith("..")) return null;
+    const bare = text.slice(0, -1).trimEnd();
+    if (!bare) return null;
+    const known = get(bare) ?? (strong ? null : matchPattern(bare, false, depth));
+    if (known == null) return null;
+    return known.endsWith(".") ? known : `${known}.`;
+  };
+
+  // What the book makes of a string it has no entry for: a pattern, then a
+  // list; a native book then tries its comma list and the missing period.
+  const derive = (key, strong, depth) => {
+    const found = matchPattern(key, strong, depth) ?? byParts(key, strong, depth);
+    if (found != null || !native) return found;
+    return byCommaList(key) ?? withoutPeriod(key, strong, depth);
+  };
+
   // The translation of a whole string (already trimmed by the caller or not),
   // or null when the book has nothing for it.
-  const translate = (text) => {
+  //
+  // `strongOnly` is for text outside the views written in the book's language,
+  // where a short pattern would rewrite text that is not its own ("Hot dog
+  // stand" under "{{name}} dog {{date}}"). Only entries and patterns with
+  // STRONG_LETTERS of their own answer. A list or a missing period is resolved
+  // through entries alone, and the rule is asked only about a value inside
+  // such a pattern. Each tier remembers its own answers.
+  const translate = (text, options) => {
     if (typeof text !== "string") return null;
     const key = text.trim();
     if (!key) return null;
     const known = get(key);
     if (known !== undefined) return known;
-    if (memo.has(key)) return memo.get(key);
-    const result = byRule(key) ?? (patternEntries.size ? matchPattern(key) : null) ?? byParts(key);
-    if (memo.size >= MEMO_LIMIT) memo.clear();
-    memo.set(key, result);
+    const strong = options?.strongOnly === true;
+    const remembered = strong ? strongMemo : memo;
+    if (remembered.has(key)) return remembered.get(key);
+    const result = (strong ? null : byRule(key)) ?? derive(key, strong, 0);
+    if (remembered.size >= MEMO_LIMIT) remembered.clear();
+    remembered.set(key, result);
     return result;
   };
 
