@@ -189,7 +189,7 @@ function courtFor(polity,polityId,seat,{ successionLaw,courtierNames,courtierBor
   const courtiers = generatedCourtiers({ courtierNames,courtierBornAt },religionId);
   people.push(...courtiers.people); families.push(...courtiers.families);
   return { polityId,rulerId: ruler.id,seatId: seat.id,...(successionLaw ? { successionLaw } : {}),people,families,offices: officesFor(polity,ruler.id),
-    religions: [{ id: religionId,name: religion.nameSv,leaderId,
+    religions: [{ id: religionId,name: religion.nameSv,leaderId,...(religion.tradition === undefined ? {} : { tradition: religion.tradition }),
       claims: { identity: claim(religion.status,religion.claimSv,religion.sourceIds),mechanics } }],
     cities: [{ id: seat.id,settlementId: seat.id,name: seat.nameSv,regionId: seat.regionId,familyId: rulingFamilyId,claims: { mechanics } }],
     mechanics: { status: 'generated',noteSv: 'Resurser, succession, familjegrupper, myndighetsålder och hovämbeten följer spelets regler. De beskriver inte belagda historiska värden.' } };

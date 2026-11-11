@@ -46,7 +46,7 @@ function court({ polityId, seat, spec }) {
   if (spec.nonRulingFamiliesFirst) families.push(families.shift());
   const offices = [['ruler',spec.rulerOfficeName ?? 'Kung',rulerId],['general','Överbefälhavare','generated-courtier-1'],['chancellor','Kansler','generated-courtier-2'],['priest','Religiös företrädare','generated-courtier-3']].map(([id,name,holderId]) => ({ id,name,holderId,claims: { identity: id === 'ruler' && spec.rulerOfficeClaim ? spec.rulerOfficeClaim : generated('Ämbete och utnämning följer spelets regler.'), mechanics } }));
   return { polityId,rulerId,seatId: seat.id,...(spec.successionLaw ? { successionLaw: spec.successionLaw } : {}),people,families,offices,
-    religions: [{ id: religionId,name: spec.religionName,leaderId: spec.religionLeaderId ?? 'generated-courtier-3',claims: { identity: spec.religionClaim, mechanics } }],
+    religions: [{ id: religionId,name: spec.religionName,leaderId: spec.religionLeaderId ?? 'generated-courtier-3',...(spec.religionTradition === undefined ? {} : { tradition: spec.religionTradition }),claims: { identity: spec.religionClaim, mechanics } }],
     cities: [{ id: seat.id,settlementId: seat.id,name: seat.nameSv,regionId: seat.regionId,familyId: rulingFamilyId,claims: { mechanics } }],
     mechanics: { status: 'generated',noteSv: 'Resurser, succession, familjegrupper, myndighetsålder och hovämbeten följer spelets regler. De beskriver inte belagda historiska värden.' },
     ...(spec.contextSv ? { contextSv: spec.contextSv,contextSourceIds: spec.contextSourceIds } : {}) };
