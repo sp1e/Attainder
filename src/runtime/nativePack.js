@@ -38,24 +38,35 @@ export const mergeNativePack = ({ code = {}, packages = {}, historical = {} } = 
   return merged;
 };
 
-// `fetchJson(path)` resolves to the parsed file or rejects. A file that is
-// missing or is not an object costs its own translations only: the game still
-// starts, and the warning names the file.
+// The other direction, for Swedish mode: the research's English source
+// locators and institutions → Swedish (scripts/i18n/build-historical-pairs.mjs).
+// The Swedish book takes it beside public/lang/sv.json.
+export const SWEDISH_HISTORICAL_PATH = `${BASE}lang/attainder/historical-sv.json`;
+
+// One file as an object. `fetchJson(path)` resolves to the parsed file or
+// rejects. A file that is missing or is not an object costs its own
+// translations only: the game still starts, and the warning names the file.
+const readLayer = async (fetchJson, path, book) => {
+  try {
+    const value = await fetchJson(path);
+    if (isPlainObject(value)) return value;
+    console.warn(`[i18n] ${path} is not a JSON object; the ${book} goes without it.`);
+  } catch (error) {
+    console.warn(`[i18n] ${path} could not be loaded (${error?.message ?? error}); the ${book} goes without it.`);
+  }
+  return {};
+};
+
 export const loadNativePack = async (fetchJson) => {
-  const read = async (path) => {
-    try {
-      const value = await fetchJson(path);
-      if (isPlainObject(value)) return value;
-      console.warn(`[i18n] ${path} is not a JSON object; the native pack goes without it.`);
-    } catch (error) {
-      console.warn(`[i18n] ${path} could not be loaded (${error?.message ?? error}); the native pack goes without it.`);
-    }
-    return {};
-  };
   const [code, packages, historical] = await Promise.all([
-    read(NATIVE_PACK_PATHS.code),
-    read(NATIVE_PACK_PATHS.packages),
-    read(NATIVE_PACK_PATHS.historical),
+    readLayer(fetchJson, NATIVE_PACK_PATHS.code, "native pack"),
+    readLayer(fetchJson, NATIVE_PACK_PATHS.packages, "native pack"),
+    readLayer(fetchJson, NATIVE_PACK_PATHS.historical, "native pack"),
   ]);
   return mergeNativePack({ code, packages, historical });
 };
+
+// The pairs of historical-sv.json that are text, as one flat object; empty
+// when the file cannot be read.
+export const loadSwedishHistoricalPack = async (fetchJson) =>
+  mergeNativePack({ historical: await readLayer(fetchJson, SWEDISH_HISTORICAL_PATH, "Swedish book") });
