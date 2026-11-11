@@ -17,11 +17,9 @@ import { mergeNativePack } from "./nativePack.js";
 import { createPhraseBook } from "./phraseBook.js";
 
 // Sidecar entries whose source text changed after they were translated. The
-// research session owns the sidecars (PR #201 corrects this one); empty the
-// list when the branch has that correction.
-const KNOWN_STALE = [
-  "record/server/seed/historical/ad800-review.json/settlements/@settlementId=rome/noteSv",
-];
+// research session owns the sidecars and corrects them (PR #201 did for the
+// Rome settlement note).
+const KNOWN_STALE = [];
 
 const REPO = new URL("../../", import.meta.url);
 const readText = (relative) => fs.readFileSync(new URL(relative, REPO), "utf8").replace(/\r\n/g, "\n");
