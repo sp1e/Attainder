@@ -17,234 +17,234 @@
       "id": "help/index",
       "route": "/wiki/",
       "file": "pages/index.json",
-      "sha256": "1cc404ddbe3ff72628402dfa36fdd51c4e03014bc4d167bd1bae99a076cfa64f",
+      "sha256": "5397bcfaff53442bd330c0d9f5b58f8980c5cdf6a4bf4c8830e234b208cf688f",
       "sections": 3
     },
     {
       "id": "help/advisor",
       "route": "/wiki/advisor/",
       "file": "pages/advisor.json",
-      "sha256": "410c5a466a6484e6d194e839100ad224f93c16c4b3662c48ae38956681573c1a",
+      "sha256": "c436b2a9478bc12743a7d88e80c11020f5d1cdbcf5fe293c66a2510476859465",
       "sections": 5
     },
     {
       "id": "help/ai-providers",
       "route": "/wiki/ai-providers/",
       "file": "pages/ai-providers.json",
-      "sha256": "5163bf38646667d12400b93a8d24af48fe04588661d2e3783f9231575acf5797",
+      "sha256": "43c8b2c10979f75687c855a544941432ca9476e0023355748b4f3a2104ab25ce",
       "sections": 5
     },
     {
       "id": "help/ai-setup",
       "route": "/wiki/ai-setup/",
       "file": "pages/ai-setup.json",
-      "sha256": "cb79038b369b6288e9911a1ba88f97dc5847658ed7a41a080b5fc7a792e504d5",
+      "sha256": "ccbab4ac99b82dabdbc8925b2bc0ad2186b5a4b603b631a26c221d73a9125c4a",
       "sections": 5
     },
     {
       "id": "help/cheats",
       "route": "/wiki/cheats/",
       "file": "pages/cheats.json",
-      "sha256": "048e3494ebf672094ac9a1cbb0b8e64c1fd3235cdf47231da316ba1ebd55531b",
+      "sha256": "a762c535414501f35bf254b70954b868d263ae21c185e73700625c9ec0018e34",
       "sections": 4
     },
     {
       "id": "help/cities",
       "route": "/wiki/cities/",
       "file": "pages/cities.json",
-      "sha256": "6b328900c2116fa05fcf69e654ca0e6b9a793c3bc771e04363fa6ac108be057b",
+      "sha256": "f4539feb8243fcde9b00573db702f0ec8a16aa5a48c6a081a0b49c3fefb47e4f",
       "sections": 4
     },
     {
       "id": "help/community-hub",
       "route": "/wiki/community-hub/",
       "file": "pages/community-hub.json",
-      "sha256": "f076ac44ed99f07a00ef4ca2f5ddb29c7967464b2c13d78d48d83fb30608f498",
+      "sha256": "87aeebb9d03dfdd0a550a4466dd4ce3f39840b33c04351da2f6d6d88af8e13d7",
       "sections": 4
     },
     {
       "id": "help/countries",
       "route": "/wiki/countries/",
       "file": "pages/countries.json",
-      "sha256": "7888480b1182e9d953b6a3f7b7b1ce3b0e2b876cb35414309b6821521138765b",
+      "sha256": "f1a34fe29c5b77218f020c50e551b92d506f448a99d0579cebcc0be00243b817",
       "sections": 3
     },
     {
       "id": "help/diplomacy",
       "route": "/wiki/diplomacy/",
       "file": "pages/diplomacy.json",
-      "sha256": "a62f29f63c587598097af33f9c9a053cb06d732f6c2bbd7af9c7bbabce4e915b",
+      "sha256": "7d74171f951da773d7c56429a7352da666afdddaee29e034d7886a69ca6cce7e",
       "sections": 5
     },
     {
       "id": "help/editor",
       "route": "/wiki/editor/",
       "file": "pages/editor.json",
-      "sha256": "9ad2927679926abefdc5d64bca596b726944e599371282c938c6c528bed97022",
+      "sha256": "7dd4dc010bc7586710bb8703224e001f153ccdc3f84f040977809aaa5e50b1c6",
       "sections": 5
     },
     {
       "id": "help/espionage",
       "route": "/wiki/espionage/",
       "file": "pages/espionage.json",
-      "sha256": "d5ddf7d0df4a357bf4fd13cb85b2d4ba9e72ebc3e2c4bf35f60e1d71653f04c7",
+      "sha256": "af1055d2dfad4b6296998cc2479baa2d68221817e9a760cadff120929c352b3e",
       "sections": 4
     },
     {
       "id": "help/events",
       "route": "/wiki/events/",
       "file": "pages/events.json",
-      "sha256": "5bfe591c34ab888e9da22d873912aafdcbc53fd4e341e2fe7199715ebf101eda",
+      "sha256": "a083bddf9c7f8092b75c9f0714e493b9117503e52cc5e267cf669ee4edc65de0",
       "sections": 5
     },
     {
       "id": "help/first-campaign",
       "route": "/wiki/first-campaign/",
       "file": "pages/first-campaign.json",
-      "sha256": "9263089ec0c381063c0b7d56a284ea7e63358b9dbae4d33714662b2000f3c4db",
+      "sha256": "e78e24c2bee46aae5e630c9e52fd0ce150a59613b3726e27908c20cb0f739147",
       "sections": 4
     },
     {
       "id": "help/how-to-play",
       "route": "/wiki/how-to-play/",
       "file": "pages/how-to-play.json",
-      "sha256": "cfc9549021b02f63622a9342627cd18120842d97fe73d5c7cfa44e5184964da2",
+      "sha256": "909df63f666ea49fc67297d14048bd585c4c4c95b9cfbbe951f01b17024b3e0d",
       "sections": 4
     },
     {
       "id": "help/install",
       "route": "/wiki/install/",
       "file": "pages/install.json",
-      "sha256": "5b40455819daa97348bfd7a299a07015a446d93b409f6dca30009fda7ce8b853",
+      "sha256": "66ac3d2bc3df367cfa3eece1357b25690baa08e8f8b57a8bdfc6f7283e576892",
       "sections": 4
     },
     {
       "id": "help/interface",
       "route": "/wiki/interface/",
       "file": "pages/interface.json",
-      "sha256": "16b7b975ab743dee68a46972c4aeefcba05b2896f7f50f224acb24419d3555c9",
+      "sha256": "5c74995a8bff829fb8641355e0a22bc9c99acf5ad977dc0bbde868718397b288",
       "sections": 4
     },
     {
       "id": "help/military",
       "route": "/wiki/military/",
       "file": "pages/military.json",
-      "sha256": "e05648c6c63cf542a24d4b86c648cb1662b86ccf41f00427a72daf6b65375950",
+      "sha256": "a3678f97208f0bce1e8f3133c2745d8a0ac2a801e471ee2f98313f040bb0cba4",
       "sections": 4
     },
     {
       "id": "help/mobile",
       "route": "/wiki/mobile/",
       "file": "pages/mobile.json",
-      "sha256": "ea27ed722ab3ae4ef0198bb1423621f32668e43d15ba1e0c1eb3f96200ad722e",
+      "sha256": "21382060e0e6072310ff832c83ad825f58419c3de9f2055549162cd6c84acdb6",
       "sections": 4
     },
     {
       "id": "help/new-game",
       "route": "/wiki/new-game/",
       "file": "pages/new-game.json",
-      "sha256": "f19c11d45a6240c030c817657bfd4ca345d5d2f9d2cbdc065d53dbbcea20b22a",
+      "sha256": "1878d292d5822896809c98ec10275d05d7cee84162623bc103fdf4e4bf85fcf5",
       "sections": 5
     },
     {
       "id": "help/orders",
       "route": "/wiki/orders/",
       "file": "pages/orders.json",
-      "sha256": "f082910e207861c56a4671d348e2881f05d97637dd93f3090ab35dd2a0a47696",
+      "sha256": "bcb1610c722ee2a360afd4926a47f501ad9dd0c0816fe39d23fb99f5d2f730f9",
       "sections": 5
     },
     {
       "id": "help/projects",
       "route": "/wiki/projects/",
       "file": "pages/projects.json",
-      "sha256": "2b24114273b31ebb9160092a7bae2428c600976bda787e7353fadff3623d6258",
+      "sha256": "f78b556535be22a9f2785930fa4bdea2c0de88aed4ca5d37b4f538f0a8c39d24",
       "sections": 5
     },
     {
       "id": "help/saves",
       "route": "/wiki/saves/",
       "file": "pages/saves.json",
-      "sha256": "5a0bf067d9fa8d780a4c129e155a346ee1b1f7c110f2be1db79d3af7b0e97b16",
+      "sha256": "1bb3c5fc325c26ef4999a4df9f387384db354dc9187de39da5c47a8444367c61",
       "sections": 4
     },
     {
       "id": "help/self-hosting",
       "route": "/wiki/self-hosting/",
       "file": "pages/self-hosting.json",
-      "sha256": "9813323ca888ba43bf4cb4e4d7f8dfe9f8081e4185241d7e14b4eca8f19a6106",
+      "sha256": "442955d6dc5d396db664b801f3ffb7677e03bb7e13f6bdfb7b8ee68002c5998a",
       "sections": 5
     },
     {
       "id": "help/settings",
       "route": "/wiki/settings/",
       "file": "pages/settings.json",
-      "sha256": "15fffce8762fbd61552ccc5f12442cce560fbed40644d4498e632d6b5c8a6fb4",
+      "sha256": "df1acfc1f9d7cc9def6b6dd081cde60c26a94b5c5908c7ac18527757b8c5e593",
       "sections": 5
     },
     {
       "id": "help/statistics",
       "route": "/wiki/statistics/",
       "file": "pages/statistics.json",
-      "sha256": "ece47c724a4daad485bdeb73b584b58c06aefce4ceb96d80df11c951b4606b5a",
+      "sha256": "153918bf0bd90859d11b8d58a9a42e25a27f4813d01086c3dabd7634a27e6854",
       "sections": 5
     },
     {
       "id": "help/territory",
       "route": "/wiki/territory/",
       "file": "pages/territory.json",
-      "sha256": "618f36a039d5ca9f748733b7aec546459e0ed02f0ee9aa51b8b630f2bb98ae3f",
+      "sha256": "5fc802f7c197ae6c9db8003af246a00cd6814d6b1bf3a03cfe73eba6dda59ce6",
       "sections": 4
     },
     {
       "id": "help/time",
       "route": "/wiki/time/",
       "file": "pages/time.json",
-      "sha256": "2b5f1a8b0e6eb9ab7fbbe0e272e79d59c20a9343a3014eca0eabe8d82098f74e",
+      "sha256": "d02f012fcac52b2dccb75f60744fc420bf73b502c7d762018b7cded20e940efb",
       "sections": 5
     },
     {
       "id": "help/troubleshooting",
       "route": "/wiki/troubleshooting/",
       "file": "pages/troubleshooting.json",
-      "sha256": "714e448dbcd6d3de7c1665db2898636ece7059bb34fe07ee984af3a030fe79bb",
+      "sha256": "e276cd5fec973ab3a78fffd85b4582ceb8f41d499c990a0e8943317939e304f7",
       "sections": 6
     },
     {
       "id": "help/war-at-sea",
       "route": "/wiki/war-at-sea/",
       "file": "pages/war-at-sea.json",
-      "sha256": "e8e2370ea33b7c9bedbc7d6c75c02dbed45b814411689e56fc0370dd93f8a351",
+      "sha256": "b1e22ac530f291cdf98e07a4803685dd165b03aed8337392ca61c6e329a3a2a7",
       "sections": 2
     },
     {
       "id": "help/war-room",
       "route": "/wiki/war-room/",
       "file": "pages/war-room.json",
-      "sha256": "00c52d2146297fa27dc8abb61c0c134b82e22268463a893bf7303ade7ec940ad",
+      "sha256": "e713d77aa1876f052f932e2b5d73b5a7adde1e19db5aaf3b0fa6d1f3d1d87516",
       "sections": 2
     },
     {
       "id": "help/war",
       "route": "/wiki/war/",
       "file": "pages/war.json",
-      "sha256": "4b686cb7444a1ed1d8a03262c0ebbb73d01674f2809f91df7ff9bb6354da0a0c",
+      "sha256": "adfc04b63ebc5f240957acb2842ebd875bada787b801c397c91343ebf1f45e2b",
       "sections": 4
     },
     {
       "id": "help/world-map",
       "route": "/wiki/world-map/",
       "file": "pages/world-map.json",
-      "sha256": "a6b9b95ba6ed3114ef2fe200e4bdee746b9ae1ac863f49ee480eb58d00c1b182",
+      "sha256": "cab06e59b8c404bc5c4d4df9ff3cffc23cfa28a4eeb72c4cad1f090efec21f9f",
       "sections": 4
     }
   ],
   "shell": {
     "file": "shell.json",
-    "sha256": "da44a15d6a944a410925cc693aa8114c7f1e5e82966a21a4eac90afa22b35c35"
+    "sha256": "92365c6396e0542896340a9a82f676cacd8708fa0474a5d4c81871cbdadca82e"
   },
   "navigation": {
     "file": "navigation.json",
-    "sha256": "3a000ff92b4f4d55f9c983fd00a9407ed5f182664e73e19c7f5f2f8d8f5d84dc"
+    "sha256": "6159be210658afd6d955d744dc855932dc2d58d8ee5a50fa1d830e9ec6cde9b6"
   },
   "attribution": {
     "upstreamProject": "Open Historia",
