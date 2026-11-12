@@ -254,7 +254,7 @@
   },
   "integration": {
     "runtimeWired": true,
-    "browserVerified": false,
+    "browserVerified": true,
     "required": [
       "Read the selected Options locale for page, navigation, shell and search text.",
       "Generate both localized help routes and search indexes with the correct document language.",
