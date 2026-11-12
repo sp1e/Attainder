@@ -29,6 +29,13 @@ test('a leading English article gives no initial and a number takes the second p
   assert.equal(nameInitials('The', same), 'T', 'an article alone is the name');
 });
 
+test('a cadet branch keeps initials of its own, apart from its numbered parent house', () => {
+  assert.equal(nameInitials('Child person-193’s branch of Court house 5', same), 'Cp');
+  assert.equal(nameInitials('Court house 5 (generated)', same), 'C5');
+  assert.equal(nameInitials('Barn person-193:s gren av Hovhus 5', same), 'Bp');
+  assert.equal(nameInitials('Hovhus 5 (genererat)', same), 'H5');
+});
+
 test('the first initial is a capital letter', () => {
   assert.equal(nameInitials('al-Hakam I', same), 'AI');
   assert.equal(nameInitials('karl den yngre', same), 'Kd');

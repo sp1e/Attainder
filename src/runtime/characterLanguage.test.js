@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import { campaignPromptLanguage, characterLanguage, characterLanguageCode, dataLanguageClause, isCharacterCampaign } from './characterLanguage.js';
 import { buildCharacterPromptContext } from './characterWorld.js';
 import { englishNameData, englishNames, viewNames, withEnglishNames } from './englishNames.js';
+import { readFileSync } from 'node:fs';
 import { createCharacterSystem, getCharacterPresentation } from './characters/index.js';
+import { createHistoricalCharacterSystem } from './characters/scenarioSeed.js';
 import { addGameMonths } from './gameDates.js';
 
 // Every call names its language or its code, so no test reads the stored Options choice.
@@ -95,6 +97,20 @@ test('the year prompt ends with the names the player reads in English and has no
   assert.equal(names[data.representative.name], `${data.representative.name} (en)`);
   const rest = lines.slice(0, -1).join('\n');
   for (const name of Object.keys(names)) assert.ok(rest.includes(JSON.stringify(name).slice(1, -1)), `${name} is in the prompt`);
+  assert.doesNotMatch(buildCharacterPromptContext(state, { language: 'Swedish', readName }), /"englishNames"/);
+});
+
+test('the year prompt names a foreign marriage candidate in English, with and without a forecast', () => {
+  const data = JSON.parse(readFileSync(new URL('../../server/seed/historical/charlemagne-800/scenario.json', import.meta.url), 'utf8')).data;
+  const state = createHistoricalCharacterSystem({ historicalScenario: JSON.parse(JSON.stringify(data.world.historicalScenario)), date: data.game.startDate, polityId: 'carolingian-realm', mode: 'realm', seed: 777 });
+  const cordoba = state.foreignRealms.find((realm) => realm.id === 'emirate-of-cordoba');
+  cordoba.people['test-bride'] = { id: 'test-bride', name: 'Prova bint al-Hakam', sex: 'female', bornAt: '0782-03-01', diedAt: null, parentIds: ['al-hakam-i'], spouseIds: [], origin: 'documented' };
+  const readName = (name) => `${name} (en)`;
+  for (const targetDate of [undefined, addGameMonths(state.date, 12)]) {
+    const prompt = buildCharacterPromptContext(state, { language: 'English', readName, targetDate });
+    assert.match(prompt, /Prova bint al-Hakam, 18 år/, 'the marriage option is in the prompt');
+    assert.equal(JSON.parse(prompt.split('\n').at(-1)).englishNames['Prova bint al-Hakam'], 'Prova bint al-Hakam (en)', String(targetDate));
+  }
   assert.doesNotMatch(buildCharacterPromptContext(state, { language: 'Swedish', readName }), /"englishNames"/);
 });
 
