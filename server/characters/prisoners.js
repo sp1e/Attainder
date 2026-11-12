@@ -20,6 +20,8 @@ const EXECUTION_OPINION = -50;
 const RELEASE_OPINION = 10;
 const ACCEPT_OPINION = 10;
 const REFUSE_OPINION = -10;
+// Until #216 the refusal wrote the change with a hyphen, and saves keep that text in the chronicle.
+const HYPHEN_REFUSAL = /(Familjens huvudman tar det illa \(åsikt om dig )-(\d+)\)\.$/;
 const REVOLT_GRIEVANCE = -6;
 const REVOLT_OPINION = -15;
 const OFFER_MONTHS = 12;
@@ -248,6 +250,9 @@ export function prisonerStep(state, events, hooks) {
 }
 
 /** The two answers to a ransom offer. `context.controller` tells whether the player holds the mandate. A demand from another captor (demandRansom) is paid from the prisoner's family treasury and needs no mandate, so a family whose head sits in prison can still buy him free. */
+// The chronicle shows an old refusal with the minus sign the English book reads.
+export const currentRefusalText = (text) => text.replace(HYPHEN_REFUSAL, `$1−$2).`);
+
 export function ransomChoices(state, story, { controller }) {
   const record = heldById(state, story.prisonerId);
   if (demanded(state, story, record)) {

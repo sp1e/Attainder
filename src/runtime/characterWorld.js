@@ -608,11 +608,11 @@ const withoutPersonProvenance = (person) => {
   return { ...visible, ...characterOriginLabel(person) };
 };
 
-// `language` is the name of the language the model writes in ('Swedish' or 'English'); the data in the block stays Swedish.
-// `readName` gives the name the player reads for a Swedish name (the native book by default); tests inject it.
 /** Everyone recorded at a foreign court, living or dead: a marriage option or a parent's name in a label can name them. */
 const foreignCourtNames = (state) => (state.foreignRealms || []).flatMap((realm) => Object.values(realm?.people || {}).map((person) => person?.name));
 
+// `language` is the name of the language the model writes in ('Swedish' or 'English'); the data in the block stays Swedish.
+// `readName` gives the name the player reads for a Swedish name (the native book by default); tests inject it.
 export const buildCharacterPromptContext = (state, { targetDate = "", watches = [], language = characterLanguage(), readName } = {}) => {
   if (!state) return "";
   const view = getCharacterPresentation(state);

@@ -448,6 +448,23 @@ test('refusing the ransom keeps him and sours the head; the offer is not repeate
   assert.equal(done.stories.find((item) => item.id === story.id).status, 'resolved');
 });
 
+test('a save from before #216 shows the refusal and its people in the chronicle as a new save does', () => {
+  const state = heldYear({ plotSeed: OFFER });
+  const next = advance(state, state.nextAnnualDate);
+  const story = next.stories.find((item) => item.type === 'ransom_offer');
+  const done = ok(run(next, 'resolve_story', { storyId: story.id, choiceId: 'refuse' }));
+  const old = copy(done);
+  const entry = old.log.findLast((item) => item.type === 'choice');
+  entry.description = entry.description.replace('−', '-');
+  entry.participants = [...entry.participants, ...entry.participants];
+  const fresh = getCharacterPresentation(done).log.find((item) => item.id === entry.id);
+  const shown = getCharacterPresentation(normalizeCharacterSystem(old)).log.find((item) => item.id === entry.id);
+  assert.match(fresh.description, /\(åsikt om dig −10\)\.$/);
+  assert.equal(shown.description, fresh.description);
+  assert.deepEqual(shown.participants, fresh.participants);
+  assert.match(old.log.findLast((item) => item.type === 'choice').description, /dig -10/, 'the save itself is left as it was');
+});
+
 test('an open offer is not offered again and draws nothing', () => {
   const state = heldYear({ plotSeed: OFFER });
   const open = advance(state, state.nextAnnualDate);
