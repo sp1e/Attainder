@@ -392,3 +392,38 @@ test("a book that is not native reads none of these", () => {
   book.setAll({ "Tronföljd": "Succession", "ryktbarhet": "prestige" });
   for (const text of ["Tronföljd: +65", "ryktbarhet 10 av 40", "Tronföljd eller ryktbarhet"]) assert.equal(book.translate(text), null, text);
 });
+
+const storyBook = () => {
+  const book = createPhraseBook({ native: true });
+  book.setAll({
+    "Avböj bidraget": "Decline the contribution", "Personlig åsikt −8.": "Personal opinion −8.", "Kostnad:": "Cost:", "0 silver": "0 silver",
+    "Kostnad: {{cost}}": "Cost: {{cost}}", "Hovhus {{k}} (genererat)": "Court house {{k}} (generated)",
+    "{{name}} kräver {{name2}}": "{{name}} demands {{name2}}", "Årets förvaltning är avslutad": "The year’s administration is concluded",
+    "Karls rike": "Charles’s realm", "800 e.Kr.": "AD 800", "Riket": "The realm",
+    "Om du avstår till tidsgränsen: {{choice}}": "If you make no choice by the deadline: {{choice}}",
+  });
+  return book;
+};
+
+test("native: sentences set one after another are read one by one", () => {
+  const book = storyBook();
+  assert.equal(book.translate("Avböj bidraget. Personlig åsikt −8. Kostnad: 0 silver."), "Decline the contribution. Personal opinion −8. Cost: 0 silver.");
+  assert.equal(book.translate("Om du avstår till tidsgränsen: Avböj bidraget. Personlig åsikt −8. Kostnad: 0 silver."),
+    "If you make no choice by the deadline: Decline the contribution. Personal opinion −8. Cost: 0 silver.", "also as a value in a pattern");
+  assert.equal(book.translate("Avböj bidraget. En okänd mening."), null, "every sentence must be known");
+  assert.equal(book.translate("Avböj bidraget. Personlig åsikt −8.", { strongOnly: true }), null, "not outside the Swedish views");
+});
+
+test("native: a weak pattern takes a value the book reads by another pattern", () => {
+  const book = storyBook();
+  assert.equal(book.translate("Hovhus 1 (genererat) kräver Aachen"), "Court house 1 (generated) demands Aachen");
+  assert.equal(book.translate("Årets förvaltning är avslutad · Hovhus 1 (genererat) kräver Aachen"),
+    "The year’s administration is concluded · Court house 1 (generated) demands Aachen", "and as a part of a list");
+  assert.equal(book.translate("Found 12 kräver Aachen"), null, "words and a number the book cannot read are still another sentence");
+});
+
+test("native, strong tier: a part of a list may be a comma list of entries", () => {
+  const book = storyBook();
+  assert.equal(book.translate("Karls rike, 800 e.Kr. · Riket", { strongOnly: true }), "Charles’s realm, AD 800 · The realm");
+  assert.equal(book.translate("Hovhus 1 (genererat) kräver Aachen · Riket", { strongOnly: true }), "Hovhus 1 (genererat) kräver Aachen · The realm", "a weak pattern still stays inside the Swedish views");
+});

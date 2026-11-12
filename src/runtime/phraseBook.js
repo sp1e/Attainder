@@ -40,6 +40,10 @@ const NATIVE_JOINERS = [[" eller ", " or "], [" och ", " and "]];
 // A count against its threshold as the Swedish views write it, and its English.
 const NATIVE_TALLY = /^(.*\S) (\d+(?:[.,]\d+)?) av (\d+(?:[.,]\d+)?)$/u;
 const NATIVE_TALLY_WORD = " of ";
+// Where one sentence ends and the next begins.
+const SENTENCE_BREAK = /[.!?]\s+(?=\S)/gu;
+const SENTENCES_MAX = 600;
+const SENTENCE_BREAKS_MAX = 8;
 const FULL_NAME = /^\p{Lu}[\p{L}\p{M}’'-]*(?: \p{Lu}[\p{L}\p{M}’'-]*)+$/u;
 const COMMA_SPLIT = /(, )/;
 const COMMA_LIST_MAX_ITEMS = 15;
@@ -255,7 +259,10 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
       // other sentence, unless the book knows them (a date).
       if (pattern.strength < STRONG_LETTERS && values.some((value) => {
         const inner = value.trim();
-        return /\p{L}/u.test(inner) && /\d/.test(inner) && get(inner) === undefined && byRule(inner) == null;
+        if (!/\p{L}/u.test(inner) || !/\d/.test(inner) || get(inner) !== undefined || byRule(inner) != null) return false;
+        // A native book also knows a value it can read by a pattern of its
+        // own ("Hovhus 1 (genererat)").
+        return !(native && valueOf(inner, strong, depth + 1) != null);
       })) continue;
       const translatedValues = values.map((value) => {
         const inner = value.trim();
@@ -273,15 +280,23 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
   // part is looked up by itself. Only when some part is known; dashes are not
   // separators, since prose uses them. In the strong tier a part must be an
   // entry.
+  // A part of a list the book has no entry for. A native book reads it with
+  // everything it has in the full tier, and as a comma list of entries ("Karls
+  // rike, 800 e.Kr.") in the strong one.
+  const partOf = (inner, strong, depth) => {
+    if (native) return strong ? byCommaList(inner) : byRule(inner) ?? derive(inner, false, depth + 1);
+    return strong ? null : byRule(inner) ?? matchPattern(inner, false, depth);
+  };
+
   const byParts = (text, strong = false, depth = 0) => {
-    if (text.length > 240 || !LIST_SEPARATOR.test(text)) return null;
+    if (text.length > 240 || !LIST_SEPARATOR.test(text) || depth > NATIVE_VALUE_DEPTH) return null;
     const parts = text.split(LIST_SPLIT);
     if (parts.length > 15) return null;
     let changed = false;
     const out = parts.map((part, index) => {
       const inner = part.trim();
       if (index % 2 === 1 || !inner) return part;
-      const known = get(inner) ?? (strong ? null : byRule(inner) ?? matchPattern(inner, false, depth));
+      const known = get(inner) ?? partOf(inner, strong, depth);
       if (known == null) return part;
       changed = true;
       return part.replace(inner, () => known);
@@ -381,6 +396,23 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
     return null;
   };
 
+  // Native only, full tier. Sentences the engine sets one after another ("Avböj
+  // bidraget. Personlig åsikt −8. Kostnad: 0 silver."): the longest beginning
+  // the book knows, then the rest read the same way. Every sentence must be
+  // known.
+  const bySentences = (text, depth) => {
+    if (text.length > SENTENCES_MAX || depth > NATIVE_VALUE_DEPTH) return null;
+    const breaks = Array.from(text.matchAll(SENTENCE_BREAK), (match) => match.index + match[0].length);
+    if (!breaks.length || breaks.length > SENTENCE_BREAKS_MAX) return null;
+    for (const at of breaks.reverse()) {
+      const head = pieceOf(text.slice(0, at), depth);
+      if (head == null) continue;
+      const tail = pieceOf(text.slice(at), depth);
+      if (tail != null) return head + tail;
+    }
+    return null;
+  };
+
   // What the book makes of a string it has no entry for: a pattern, then a
   // list; a native book then tries its comma list, the missing period and the
   // label behind a lowercased text. That last one answers for a value inside
@@ -393,7 +425,7 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
     if (found != null || !native) return found;
     const simple = byCommaList(key) ?? withoutPeriod(key, strong, depth) ?? (strong && depth === 0 ? null : byLoweredLabel(key));
     if (simple != null || strong) return simple;
-    return byTally(key, depth) ?? byLabelValue(key, depth) ?? byJoiner(key, depth);
+    return byTally(key, depth) ?? byLabelValue(key, depth) ?? byJoiner(key, depth) ?? bySentences(key, depth);
   };
 
   // The translation of a whole string (already trimmed by the caller or not),
