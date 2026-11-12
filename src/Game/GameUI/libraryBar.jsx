@@ -45,6 +45,7 @@ import FactionCreator from "./FactionCreator.jsx";
 import DynastyStartCard, { DYNASTY_DIFFICULTIES } from "../DynastyStartCard.jsx";
 import { startDynastyCampaign } from "../../runtime/startDynastyCampaign.js";
 import { pickerCampaignName } from "../../runtime/historicalStartOptions.js";
+import { readNative, useTranslatorUpdates } from "../../runtime/useTranslatorUpdates.js";
 import FeaturesSectionEditor from "./FeaturesSectionEditor.jsx";
 import StatsSheetEditor, { normalizeStatsEditorValue } from "./StatsSheetEditor.jsx";
 import { normalizeFeatureOverrides, normalizeFeatureSettings } from "../../runtime/gameFeatures.js";
@@ -879,6 +880,8 @@ const ScenarioCard = ({ onClone, onEdit, onPlay, onSelect, onUpdate, scenario, s
 // player came to press; the other three are occasional, and none of them is
 // destructive, which is why Archive stays out here on its own.
 const GameCard = ({ active, busy, game, onActivate, onArchive, onClone, onEdit, onExport }) => {
+  // The menu button's label holds the campaign name, which the native book reads only once it has loaded.
+  const updates = useTranslatorUpdates();
   const cardImageUrl = game.coverImageUrl || DEFAULT_SCENARIO_COVER;
   const touch = useTouchPrimary();
   const [cardMenuOpen, setCardMenuOpen] = useState(false);
@@ -1017,7 +1020,7 @@ const GameCard = ({ active, busy, game, onActivate, onArchive, onClone, onEdit, 
                 ref={cardMenuButtonRef}
                 aria-haspopup="menu"
                 aria-expanded={cardMenuOpen}
-                aria-label={busy ? "Working…" : `More for ${game.name}`}
+                aria-label={busy ? "Working…" : `More for ${readNative(game.name, updates)}`}
                 className="oh-tap"
                 disabled={busy}
                 onClick={() => setCardMenuOpen((open) => !open)}

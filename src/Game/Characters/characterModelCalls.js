@@ -1,4 +1,5 @@
 import { characterLanguage, dataLanguageClause } from '../../runtime/characterLanguage.js';
+import { englishNameData, viewNames } from '../../runtime/englishNames.js';
 import { buildHistoricalPromptContext, characterOriginLabel, HISTORICAL_CHARACTER_GUIDANCE } from '../../runtime/characterWorld.js';
 import { MAX_AGENTS, MAX_EXTRA_SILVER } from '../../runtime/characters/actionCatalog.js';
 import { STAFF_ROLES } from '../../runtime/characters/courtStaff.js';
@@ -137,7 +138,7 @@ const historicalGuidance = view => buildHistoricalPromptContext(view) ? [HISTORI
 // The prompt lines that hold the model to `language` over Swedish data; none when the clause is empty.
 const dataLanguage = (language) => { const clause = dataLanguageClause(language); return clause ? [clause] : []; };
 
-function interpretPrompt(view, text, language) {
+function interpretPrompt(view, text, language, readName) {
   const people = livingAdults(view).map((person) => ({ id: person.id, name: person.name, ...characterOriginLabel(person), family: person.familyName || '', office: (person.roleNames || []).join(', ') }));
   const staff = (view?.staff || []).map((member) => ({ role: member.role, label: member.roleLabel || STAFF_ROLES[member.role] || member.role, name: member.name }));
   const catalog = (view?.catalog || []).map((entry) => ({ catalogId: entry.catalogId, mode: entry.mode, label: entry.label, description: entry.description,
@@ -150,7 +151,7 @@ function interpretPrompt(view, text, language) {
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historicalData(view), playerText: text, representativeId: view?.representative?.id ?? null, people, staff, catalog }),
+    userText: JSON.stringify({ ...historicalData(view), ...englishNameData(viewNames(view, staff.map((member) => member.name)), language, readName), playerText: text, representativeId: view?.representative?.id ?? null, people, staff, catalog }),
   };
 }
 
@@ -243,8 +244,8 @@ function validateInterpretation(view, answer) {
 /**
  * Maps the player's free text to one catalog entry. Resolves to { ok: true, intent: { type, payload }, catalogId, mode, payload, explanation }, where a contested entry's intent is an attempt_action command, or to { ok: false, reason, fallback: 'menu' } when nothing usable came back. `explanation` is the model's own sentence, and so is a `reason` that comes with `origin: 'model'`; both are in `language`. A `reason` that names a person the game does not know comes with `quoted`, the name as the model read it. One corrective retry follows a schema or JSON failure.
  */
-export async function interpretCharacterAction({ text: playerText, view, language = characterLanguage(), callModel = defaultCallModel }) {
-  const { systemPrompt, userText } = interpretPrompt(view, String(playerText ?? ''), language);
+export async function interpretCharacterAction({ text: playerText, view, language = characterLanguage(), callModel = defaultCallModel, readName }) {
+  const { systemPrompt, userText } = interpretPrompt(view, String(playerText ?? ''), language, readName);
   const result = await askWithRetry({ callModel, systemPrompt, userText, tool: interpretTool(language), callKind: 'interpret', validate: (answer) => validateInterpretation(view, answer) });
   // The sentence is the game's own; the name in it is the model's reading of the player's text, in the player's language
   // (English in an English session). `quoted` names that part, so playerText can let the Swedish sentence through with it.
@@ -257,7 +258,7 @@ export async function interpretCharacterAction({ text: playerText, view, languag
 
 const EFFECT_FIELDS = ['kind', 'min', 'max', 'value', 'label', 'title', 'visibility', 'strength', 'type', 'reason', 'crime', 'topic'];
 
-function narratePrompt(resolution, view, language) {
+function narratePrompt(resolution, view, language, readName) {
   const historical = historicalData(view);
   const participants = new Set([resolution?.actorName, ...(resolution?.targetNames || []), ...(resolution?.agentNames || [])]);
   const personOrigins = historical.historicalContext
@@ -277,7 +278,7 @@ function narratePrompt(resolution, view, language) {
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historical, ...(personOrigins ? { personOrigins } : {}), action: resolution?.actionLabel ?? '', date: resolution?.date ?? '', tier: resolution?.tier ?? '', tierLabel: resolution?.tierLabel ?? '',
+    userText: JSON.stringify({ ...historical, ...englishNameData(viewNames(view, [...participants]), language, readName), ...(personOrigins ? { personOrigins } : {}), action: resolution?.actionLabel ?? '', date: resolution?.date ?? '', tier: resolution?.tier ?? '', tierLabel: resolution?.tierLabel ?? '',
       people: { actor: resolution?.actorName ?? '', targets: resolution?.targetNames ?? [], agents: resolution?.agentNames ?? [] }, effects }),
   };
 }
@@ -295,8 +296,8 @@ function validateNarration(answer) {
 /**
  * Writes the story of a resolved action. `resolution` is a presented resolution (presentResolutions); the prompt takes only its tier, effects with index and range, and the people involved, never its odds. Resolves to { ok: true, title, narrative, adjustments } or { ok: false, reason }.
  */
-export async function narrateCharacterResolution({ resolution, view, language = characterLanguage(), callModel = defaultCallModel }) {
-  const { systemPrompt, userText } = narratePrompt(resolution, view, language);
+export async function narrateCharacterResolution({ resolution, view, language = characterLanguage(), callModel = defaultCallModel, readName }) {
+  const { systemPrompt, userText } = narratePrompt(resolution, view, language, readName);
   const result = await askWithRetry({ callModel, systemPrompt, userText, tool: narrateTool(language), callKind: 'narrate', validate: validateNarration });
   if (result.failed) return { ok: false, reason: result.reason };
   return result.value;
@@ -336,7 +337,7 @@ const withoutIds = ({ hooksKnown, ...brief }) => ({ ...brief, memories: brief.me
 // The extraction does not use the speaker's secrets, so they stay out of its prompt. The reply keeps the ones the engine's brief lists, which are only secrets the representative also holds.
 const forExtraction = ({ hooksKnown, secrets, ...brief }) => brief;
 
-function extractPrompt(brief, view, playerText, history, language) {
+function extractPrompt(brief, view, playerText, history, language, readName) {
   const people = livingAdults(view).filter((person) => person.id !== brief.personId && person.id !== view?.representative?.id).map((person) => ({ id: person.id, name: person.name, ...characterOriginLabel(person) }));
   return {
     systemPrompt: [
@@ -347,11 +348,11 @@ function extractPrompt(brief, view, playerText, history, language) {
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historicalData(view), playerText, speaker: { ...forExtraction(brief), ...characterOriginLabel(view?.people?.find(p => p.id === brief.personId)) }, people, conversation: turnsOf(history) }),
+    userText: JSON.stringify({ ...historicalData(view), ...englishNameData(viewNames(view, [brief.name]), language, readName), playerText, speaker: { ...forExtraction(brief), ...characterOriginLabel(view?.people?.find(p => p.id === brief.personId)) }, people, conversation: turnsOf(history) }),
   };
 }
 
-function replyPrompt(brief, playerName, playerText, history, outcome, view, language) {
+function replyPrompt(brief, playerName, playerText, history, outcome, view, language, readName) {
   return {
     systemPrompt: [
       'You speak as ' + brief.name + ' in a ' + setting(view) + '. Write the ' + language + ' reply of one person in first person, in character, of at most ' + REPLY_MAX + ' characters. The speaker data below shows what you know, how you feel about the player and what you hold; stay within it.',
@@ -361,7 +362,7 @@ function replyPrompt(brief, playerName, playerText, history, outcome, view, lang
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historicalData(view), player: playerName, playerText, speaker: { ...withoutIds(brief), ...characterOriginLabel(view?.people?.find(p => p.id === brief.personId)) }, conversation: turnsOf(history), outcome }),
+    userText: JSON.stringify({ ...historicalData(view), ...englishNameData(viewNames(view, [brief.name, playerName]), language, readName), player: playerName, playerText, speaker: { ...withoutIds(brief), ...characterOriginLabel(view?.people?.find(p => p.id === brief.personId)) }, conversation: turnsOf(history), outcome }),
   };
 }
 
@@ -401,10 +402,10 @@ const failedResult = (result, reason) => ({ ok: false, reason, detail: result.re
 /**
  * Reads what the player said to one person. Resolves to { ok: true, request } where request is { personId, kind, offerSilver, hookId, arguments, argumentScore } that passes the engine's shape check, or null for small talk, or to { ok: false, reason, detail }. `view` is the presentation, ideally with `conversationBrief` (getConversationBrief) for the person. The model sets no odds; one corrective retry follows a schema or JSON failure.
  */
-export async function extractConversationRequest({ personId, text: playerText, history = [], view, language = characterLanguage(), callModel = defaultCallModel }) {
+export async function extractConversationRequest({ personId, text: playerText, history = [], view, language = characterLanguage(), callModel = defaultCallModel, readName }) {
   const { brief, reason } = speakerBrief(view, personId);
   if (!brief) return { ok: false, reason };
-  const { systemPrompt, userText } = extractPrompt(brief, view, String(playerText ?? ''), history, language);
+  const { systemPrompt, userText } = extractPrompt(brief, view, String(playerText ?? ''), history, language, readName);
   const result = await askWithRetry({ callModel, systemPrompt, userText, tool: EXTRACT_TOOL, callKind: 'converse', validate: (answer) => validateRequest(brief, personId, answer) });
   if (result.failed) return failedResult(result, REQUEST_FAILED);
   return result.value;
@@ -427,12 +428,12 @@ const readOutcome = (outcome) => {
 /**
  * Writes what one person answers, in character. `outcome` is null for small talk or { kind, accepted, nothingToTell? }, which the game has already decided: the prompt states it as fixed and forbids a reply that contradicts it. Resolves to { ok: true, reply } or { ok: false, reason, detail }; a reply over 800 characters is rejected and asked for once more.
  */
-export async function replyAsCharacter({ personId, text: playerText, history = [], view, outcome = null, language = characterLanguage(), callModel = defaultCallModel }) {
+export async function replyAsCharacter({ personId, text: playerText, history = [], view, outcome = null, language = characterLanguage(), callModel = defaultCallModel, readName }) {
   const { brief, reason } = speakerBrief(view, personId);
   if (!brief) return { ok: false, reason };
   const fixed = readOutcome(outcome);
   if (fixed.invalid) return { ok: false, reason: 'Utfallet av förfrågan är ogiltigt.' };
-  const { systemPrompt, userText } = replyPrompt(brief, view?.representative?.name ?? '', String(playerText ?? ''), history, fixed.value, view, language);
+  const { systemPrompt, userText } = replyPrompt(brief, view?.representative?.name ?? '', String(playerText ?? ''), history, fixed.value, view, language, readName);
   const result = await askWithRetry({ callModel, systemPrompt, userText, tool: REPLY_TOOL, callKind: 'converse', validate: validateReply });
   if (result.failed) return failedResult(result, REPLY_FAILED);
   return result.value;
@@ -474,7 +475,7 @@ function rulerBrief(view, realmId) {
   return given.realmId === realmId ? { brief: given } : { reason: WRONG_REALM };
 }
 
-function envoyExtractPrompt(brief, view, playerText, history, language) {
+function envoyExtractPrompt(brief, view, playerText, history, language, readName) {
   return {
     systemPrompt: [
       'You read the message the player of a ' + setting(view) + ' sends by envoy to ' + brief.rulerName + ', ruler of ' + brief.realmName + ', and report what it asks for. This step sets no odds and invents nothing: the game checks every argument against the facts.',
@@ -484,11 +485,11 @@ function envoyExtractPrompt(brief, view, playerText, history, language) {
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historicalData(view), playerText, ruler: brief, conversation: turnsOf(history) }),
+    userText: JSON.stringify({ ...historicalData(view), ...englishNameData(viewNames(view, [brief.rulerName, brief.realmName]), language, readName), playerText, ruler: brief, conversation: turnsOf(history) }),
   };
 }
 
-function rulerReplyPrompt(brief, playerName, playerText, history, outcome, view, language) {
+function rulerReplyPrompt(brief, playerName, playerText, history, outcome, view, language, readName) {
   const { realmId, memories, ...ruler } = brief;
   return {
     systemPrompt: [
@@ -498,7 +499,7 @@ function rulerReplyPrompt(brief, playerName, playerText, history, outcome, view,
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historicalData(view), player: playerName, playerText, ruler: { ...ruler, memories: memories.map(({ refId, ...memory }) => memory) }, conversation: turnsOf(history), outcome }),
+    userText: JSON.stringify({ ...historicalData(view), ...englishNameData(viewNames(view, [brief.rulerName, brief.realmName, playerName]), language, readName), player: playerName, playerText, ruler: { ...ruler, memories: memories.map(({ refId, ...memory }) => memory) }, conversation: turnsOf(history), outcome }),
   };
 }
 
@@ -518,10 +519,10 @@ function validateEnvoyRequest(realmId, answer) {
 /**
  * Reads the message the player sends by envoy to one foreign realm. Resolves to { ok: true, request } where request is { realmId, kind, offerSilver, arguments, argumentScore } for estimateEnvoyRequest, or null when the message asks for nothing, or to { ok: false, reason, detail }. `view` carries `envoyBrief` (getEnvoyBrief) for the realm. The model sets no odds.
  */
-export async function extractEnvoyRequest({ realmId, text: playerText, history = [], view, language = characterLanguage(), callModel = defaultCallModel }) {
+export async function extractEnvoyRequest({ realmId, text: playerText, history = [], view, language = characterLanguage(), callModel = defaultCallModel, readName }) {
   const { brief, reason } = rulerBrief(view, realmId);
   if (!brief) return { ok: false, reason };
-  const { systemPrompt, userText } = envoyExtractPrompt(brief, view, String(playerText ?? ''), history, language);
+  const { systemPrompt, userText } = envoyExtractPrompt(brief, view, String(playerText ?? ''), history, language, readName);
   const result = await askWithRetry({ callModel, systemPrompt, userText, tool: ENVOY_EXTRACT_TOOL, callKind: 'converse', validate: (answer) => validateEnvoyRequest(realmId, answer) });
   if (result.failed) return failedResult(result, ENVOY_REQUEST_FAILED);
   return result.value;
@@ -536,12 +537,12 @@ const readEnvoyOutcome = (outcome) => {
 /**
  * Writes the foreign ruler's answer, in character. `outcome` is null when the message asked for nothing, or { kind, accepted }, which the engine has already decided. Resolves to { ok: true, reply } or { ok: false, reason, detail }.
  */
-export async function replyAsRuler({ realmId, text: playerText, history = [], view, outcome = null, language = characterLanguage(), callModel = defaultCallModel }) {
+export async function replyAsRuler({ realmId, text: playerText, history = [], view, outcome = null, language = characterLanguage(), callModel = defaultCallModel, readName }) {
   const { brief, reason } = rulerBrief(view, realmId);
   if (!brief) return { ok: false, reason };
   const fixed = readEnvoyOutcome(outcome);
   if (fixed.invalid) return { ok: false, reason: 'Utfallet av förfrågan är ogiltigt.' };
-  const { systemPrompt, userText } = rulerReplyPrompt(brief, view?.ruler?.name ?? view?.representative?.name ?? '', String(playerText ?? ''), history, fixed.value, view, language);
+  const { systemPrompt, userText } = rulerReplyPrompt(brief, view?.ruler?.name ?? view?.representative?.name ?? '', String(playerText ?? ''), history, fixed.value, view, language, readName);
   const result = await askWithRetry({ callModel, systemPrompt, userText, tool: RULER_REPLY_TOOL, callKind: 'converse', validate: validateReply });
   if (result.failed) return failedResult(result, RULER_REPLY_FAILED);
   return result.value;

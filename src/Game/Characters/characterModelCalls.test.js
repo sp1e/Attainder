@@ -775,12 +775,12 @@ const languageCalls = () => {
   const state = createCharacterSystem({ seed: 321 });
   const court = envoyCourt();
   return [
-    ['interpret', (language, callModel) => interpretCharacterAction({ text: 'smickra', view: getCharacterPresentation(state), language, callModel }), swayAnswer()],
-    ['narrate', (language, callModel) => narrateCharacterResolution({ resolution: resolution(), view: getCharacterPresentation(state), language, callModel }), { title: 'T', narrative: 'N', adjustments: [] }],
-    ['extract', (language, callModel) => extractConversationRequest({ personId: TARGET, text: 'Stöd mig.', view: talkView(state), language, callModel }), askAnswer()],
-    ['reply', (language, callModel) => replyAsCharacter({ personId: TARGET, text: 'God dag', view: talkView(state), language, callModel }), { reply: 'God dag.' }],
-    ['envoy extract', (language, callModel) => extractEnvoyRequest({ realmId: CORDOBA, text: 'Fred?', view: envoyView(court), language, callModel }), { kind: 'none', offerSilver: 0, arguments: [], argumentScore: 0 }],
-    ['ruler reply', (language, callModel) => replyAsRuler({ realmId: CORDOBA, text: 'Fred?', view: envoyView(court), language, callModel }), { reply: 'Nej.' }],
+    ['interpret', (language, callModel, readName) => interpretCharacterAction({ text: 'smickra', view: getCharacterPresentation(state), language, callModel, readName }), swayAnswer()],
+    ['narrate', (language, callModel, readName) => narrateCharacterResolution({ resolution: resolution(), view: getCharacterPresentation(state), language, callModel, readName }), { title: 'T', narrative: 'N', adjustments: [] }],
+    ['extract', (language, callModel, readName) => extractConversationRequest({ personId: TARGET, text: 'Stöd mig.', view: talkView(state), language, callModel, readName }), askAnswer()],
+    ['reply', (language, callModel, readName) => replyAsCharacter({ personId: TARGET, text: 'God dag', view: talkView(state), language, callModel, readName }), { reply: 'God dag.' }],
+    ['envoy extract', (language, callModel, readName) => extractEnvoyRequest({ realmId: CORDOBA, text: 'Fred?', view: envoyView(court), language, callModel, readName }), { kind: 'none', offerSilver: 0, arguments: [], argumentScore: 0 }],
+    ['ruler reply', (language, callModel, readName) => replyAsRuler({ realmId: CORDOBA, text: 'Fred?', view: envoyView(court), language, callModel, readName }), { reply: 'Nej.' }],
   ];
 };
 // What the model is told outside the campaign data: the system prompt and the tool with its schema descriptions.
@@ -834,6 +834,38 @@ test('the language changes the prompt text only: the user data and the answer ke
     assert.deepEqual(Object.keys(english.calls[0].tool.schema.properties), Object.keys(swedish.calls[0].tool.schema.properties), `${name}: the same answer keys`);
     assert.deepEqual(english.calls[0].tool.schema.required, swedish.calls[0].tool.schema.required, name);
   }
+});
+
+// A reader that gives every name an English form, as the native book does for the names it knows.
+const readInEnglish = (name) => `${name} (en)`;
+
+test('in English every prompt gives the model the names the player reads; in Swedish none does', async () => {
+  for (const [name, run, answer] of languageCalls()) {
+    const english = fakeModel(answer), swedish = fakeModel(answer);
+    await run('English', english.callModel, readInEnglish);
+    await run('Swedish', swedish.callModel, readInEnglish);
+    const names = JSON.parse(english.calls[0].history[0].parts[0].text).englishNames;
+    assert.ok(names && Object.keys(names).length > 0, `${name}: the English prompt lists names`);
+    for (const [swedishName, englishName] of Object.entries(names)) assert.equal(englishName, `${swedishName} (en)`, name);
+    assert.equal(JSON.parse(swedish.calls[0].history[0].parts[0].text).englishNames, undefined, `${name}: Swedish needs no list`);
+  }
+});
+
+test('the name list holds the people the prompt is about', async () => {
+  const state = createCharacterSystem({ seed: 321 });
+  const reply = fakeModel({ reply: 'God dag.' });
+  const talk = talkView(state);
+  await replyAsCharacter({ personId: TARGET, text: 'God dag', view: talk, language: 'English', callModel: reply.callModel, readName: readInEnglish });
+  const names = JSON.parse(reply.calls[0].history[0].parts[0].text).englishNames;
+  assert.equal(names[talk.conversationBrief.name], `${talk.conversationBrief.name} (en)`, 'the speaker');
+  assert.equal(names[talk.representative.name], `${talk.representative.name} (en)`, 'the player');
+  const court = envoyCourt();
+  const ruler = fakeModel({ reply: 'Nej.' });
+  const envoy = envoyView(court);
+  await replyAsRuler({ realmId: CORDOBA, text: 'Fred?', view: envoy, language: 'English', callModel: ruler.callModel, readName: readInEnglish });
+  const rulerNames = JSON.parse(ruler.calls[0].history[0].parts[0].text).englishNames;
+  assert.equal(rulerNames[envoy.envoyBrief.rulerName], `${envoy.envoyBrief.rulerName} (en)`, 'the foreign ruler');
+  assert.equal(rulerNames[envoy.envoyBrief.realmName], `${envoy.envoyBrief.realmName} (en)`, 'the foreign realm');
 });
 
 test('a no-match reason the model wrote carries its origin; the game\'s own reasons carry none', async () => {

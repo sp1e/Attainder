@@ -8,6 +8,7 @@ import { useCountryDisplayName } from "../../runtime/polityNames.js";
 import { flagEmojiFromGid, flagImageUrlFromGid } from "../../runtime/countryFlags.js";
 import { resolvePolityFlag } from "../../runtime/polityFlags.js";
 import { useLibraryState } from "../../runtime/library.js";
+import { readNative, useTranslatorUpdates } from "../../runtime/useTranslatorUpdates.js";
 
 const baseStyle = {
     position: "fixed",
@@ -28,10 +29,13 @@ const baseStyle = {
 // "YUAN") has no flag — flagImageUrlFromGid/flagEmojiFromGid both return null
 // for it, which this component uses directly as the fallback signal instead
 // of maintaining a separate "is this a real country" check.
-const FallbackBadge = ({ label }) => (
+// The label is the polity's Swedish name; in English the accessible name reads it through the native book.
+const FallbackBadge = ({ label }) => {
+    const updates = useTranslatorUpdates();
+    return (
     <div
     title={label}
-    aria-label={label ? `${label} flag unavailable` : "Flag unavailable"}
+    aria-label={label ? `${readNative(label, updates)} flag unavailable` : "Flag unavailable"}
     style={{
         alignItems: "center",
         background: "rgba(255,255,255,0.063)",
@@ -48,7 +52,8 @@ const FallbackBadge = ({ label }) => (
     >
     🏳️
     </div>
-);
+    );
+};
 
 // dockStyle places the standalone badge beside the advisor drawer (main.jsx).
 const DEFAULT_DOCK_STYLE = { right: "0.5rem" };

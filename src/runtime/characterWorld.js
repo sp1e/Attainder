@@ -15,6 +15,7 @@ import {
 import { ACTION_CATALOG, requiresOf } from "./characters/actionCatalog.js";
 import { COURT_STORY_TYPES } from "./characters/court.js";
 import { characterLanguage, dataLanguageClause } from "./characterLanguage.js";
+import { englishNameData, viewNames } from "./englishNames.js";
 import { firedWatch, watchBaseline } from "./characterWatches.js";
 import { compareGameDates, diffGameDays, normalizeGameDate } from "./gameDates.js";
 import { buildOwnerAliasMap, createOwnerResolver } from "./ownerNames.js";
@@ -608,7 +609,8 @@ const withoutPersonProvenance = (person) => {
 };
 
 // `language` is the name of the language the model writes in ('Swedish' or 'English'); the data in the block stays Swedish.
-export const buildCharacterPromptContext = (state, { targetDate = "", watches = [], language = characterLanguage() } = {}) => {
+// `readName` gives the name the player reads for a Swedish name (the native book by default); tests inject it.
+export const buildCharacterPromptContext = (state, { targetDate = "", watches = [], language = characterLanguage(), readName } = {}) => {
   if (!state) return "";
   const view = getCharacterPresentation(state);
   const historicalContext = buildHistoricalPromptContext(view);
@@ -627,7 +629,7 @@ export const buildCharacterPromptContext = (state, { targetDate = "", watches = 
     "A dissolved realm has no government or public revenue. Its family may continue as a household without commanding a conqueror. Foreign refuge is possible only through a currently existing candidate and an accepted seek_refuge action; do not invent a host state, an automatic welcome or a replacement heir. Loss of territorial control alone is not dissolution: use the host's explicit polity lifecycle and settle sovereignty first.",
     ...(historicalContext ? [HISTORICAL_CHARACTER_GUIDANCE] : []),
     ...(dataLanguage ? [dataLanguage] : []),
-    JSON.stringify({ date: view.date, ...(historicalContext ? { historicalContext } : {}), mode: view.mode, playerCanDirectRealm: canCharacterDirectRealm(state), ruler: withoutPersonProvenance(view.ruler),
+    JSON.stringify({ date: view.date, ...(historicalContext ? { historicalContext } : {}), ...englishNameData(viewNames(view), language, readName), mode: view.mode, playerCanDirectRealm: canCharacterDirectRealm(state), ruler: withoutPersonProvenance(view.ruler),
       realmExists: state.realm.alive, status: state.status, externalHosts: state.externalHosts,
       representative: withoutPersonProvenance(view.representative), economy: view.economy, succession: view.succession,
       families: view.families, offices: view.offices, people: view.people.map(withoutPersonProvenance),
