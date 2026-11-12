@@ -359,6 +359,10 @@ The play scripts reached four of the five tiers. `Det slog tillbaka` did not com
 - A failed year showed the model call's English error. The panel now shows a Swedish sentence and logs the original.
 - The panel header still read `Open Historia · Dynastier`.
 
+## Swedish and English
+
+The game reads Swedish or English by the Options choice (design `docs/superpowers/specs/2026-11-11-bilingual-runtime-design.md`, mechanism in the last sections of `docs/i18n.md`, play script and browser run in `docs/play-scripts/bilingual.md`). English mode translates the Swedish court text on the page with a phrase book keyed by the Swedish source; saves are not rewritten. New Swedish text in code fails `node scripts/i18n/build-native-catalog.mjs --check` until the catalog is rebuilt, and `node scripts/i18n/check-native-pack.mjs --check` until `public/lang/attainder/en.json` has its English. A rebuilt package with new display text fails `node scripts/i18n/build-package-catalog.mjs --check` until `packages-en.json` has it. After a change to the research sidecars under `server/seed/historical/locales/`, run `node scripts/i18n/build-historical-pairs.mjs`.
+
 ## Traditions and name pools release
 
 Charlemagne 1.4.0, John 1.3.0, Egypt 1.1.0 and world-1500 1.2.0 read three research side files: `courts/faith-traditions.json` gives every court religion its `tradition` (Aztekriket `mesoamerican`, Inkariket `andean`), `courts/border-tribes.json` gives Charlemagne seven, John three and world-1500 two border tribes with Swedish names and their sources, and `name-pools/frankish-saint-germain-823-829.json` names the children and staff of Karls rike. The research session sends changes to these files to Claude, who ships them in a rebuild. The release patches in `server/fixtures/` cover every shipped version, and a patch op may drop a key the release lacked.
