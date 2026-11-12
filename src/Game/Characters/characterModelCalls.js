@@ -1,5 +1,5 @@
 import { characterLanguage, dataLanguageClause } from '../../runtime/characterLanguage.js';
-import { englishNameData, viewNames } from '../../runtime/englishNames.js';
+import { viewNames, withEnglishNames } from '../../runtime/englishNames.js';
 import { buildHistoricalPromptContext, characterOriginLabel, HISTORICAL_CHARACTER_GUIDANCE } from '../../runtime/characterWorld.js';
 import { MAX_AGENTS, MAX_EXTRA_SILVER } from '../../runtime/characters/actionCatalog.js';
 import { STAFF_ROLES } from '../../runtime/characters/courtStaff.js';
@@ -151,7 +151,8 @@ function interpretPrompt(view, text, language, readName) {
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historicalData(view), ...englishNameData(viewNames(view, staff.map((member) => member.name)), language, readName), playerText: text, representativeId: view?.representative?.id ?? null, people, staff, catalog }),
+    userText: JSON.stringify(withEnglishNames({ ...historicalData(view), playerText: text, representativeId: view?.representative?.id ?? null, people, staff, catalog },
+      viewNames(view, staff.map((member) => member.name)), language, readName)),
   };
 }
 
@@ -278,8 +279,8 @@ function narratePrompt(resolution, view, language, readName) {
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historical, ...englishNameData(viewNames(view, [...participants]), language, readName), ...(personOrigins ? { personOrigins } : {}), action: resolution?.actionLabel ?? '', date: resolution?.date ?? '', tier: resolution?.tier ?? '', tierLabel: resolution?.tierLabel ?? '',
-      people: { actor: resolution?.actorName ?? '', targets: resolution?.targetNames ?? [], agents: resolution?.agentNames ?? [] }, effects }),
+    userText: JSON.stringify(withEnglishNames({ ...historical, ...(personOrigins ? { personOrigins } : {}), action: resolution?.actionLabel ?? '', date: resolution?.date ?? '', tier: resolution?.tier ?? '', tierLabel: resolution?.tierLabel ?? '',
+      people: { actor: resolution?.actorName ?? '', targets: resolution?.targetNames ?? [], agents: resolution?.agentNames ?? [] }, effects }, viewNames(view, [...participants]), language, readName)),
   };
 }
 
@@ -348,7 +349,8 @@ function extractPrompt(brief, view, playerText, history, language, readName) {
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historicalData(view), ...englishNameData(viewNames(view, [brief.name]), language, readName), playerText, speaker: { ...forExtraction(brief), ...characterOriginLabel(view?.people?.find(p => p.id === brief.personId)) }, people, conversation: turnsOf(history) }),
+    userText: JSON.stringify(withEnglishNames({ ...historicalData(view), playerText, speaker: { ...forExtraction(brief), ...characterOriginLabel(view?.people?.find(p => p.id === brief.personId)) }, people, conversation: turnsOf(history) },
+      viewNames(view, [brief.name]), language, readName)),
   };
 }
 
@@ -362,7 +364,8 @@ function replyPrompt(brief, playerName, playerText, history, outcome, view, lang
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historicalData(view), ...englishNameData(viewNames(view, [brief.name, playerName]), language, readName), player: playerName, playerText, speaker: { ...withoutIds(brief), ...characterOriginLabel(view?.people?.find(p => p.id === brief.personId)) }, conversation: turnsOf(history), outcome }),
+    userText: JSON.stringify(withEnglishNames({ ...historicalData(view), player: playerName, playerText, speaker: { ...withoutIds(brief), ...characterOriginLabel(view?.people?.find(p => p.id === brief.personId)) }, conversation: turnsOf(history), outcome },
+      viewNames(view, [brief.name, playerName]), language, readName)),
   };
 }
 
@@ -485,7 +488,8 @@ function envoyExtractPrompt(brief, view, playerText, history, language, readName
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historicalData(view), ...englishNameData(viewNames(view, [brief.rulerName, brief.realmName]), language, readName), playerText, ruler: brief, conversation: turnsOf(history) }),
+    userText: JSON.stringify(withEnglishNames({ ...historicalData(view), playerText, ruler: brief, conversation: turnsOf(history) },
+      viewNames(view, [brief.rulerName, brief.realmName]), language, readName)),
   };
 }
 
@@ -499,7 +503,8 @@ function rulerReplyPrompt(brief, playerName, playerText, history, outcome, view,
       ...dataLanguage(language),
       ...historicalGuidance(view),
     ].join('\n'),
-    userText: JSON.stringify({ ...historicalData(view), ...englishNameData(viewNames(view, [brief.rulerName, brief.realmName, playerName]), language, readName), player: playerName, playerText, ruler: { ...ruler, memories: memories.map(({ refId, ...memory }) => memory) }, conversation: turnsOf(history), outcome }),
+    userText: JSON.stringify(withEnglishNames({ ...historicalData(view), player: playerName, playerText, ruler: { ...ruler, memories: memories.map(({ refId, ...memory }) => memory) }, conversation: turnsOf(history), outcome },
+      viewNames(view, [brief.rulerName, brief.realmName, playerName]), language, readName)),
   };
 }
 

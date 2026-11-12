@@ -868,6 +868,25 @@ test('the name list holds the people the prompt is about', async () => {
   assert.equal(rulerNames[envoy.envoyBrief.realmName], `${envoy.envoyBrief.realmName} (en)`, 'the foreign realm');
 });
 
+test('the name list comes last and holds only the names the prompt data holds', async () => {
+  const inData = (data, name) => JSON.stringify(data).includes(JSON.stringify(name).slice(1, -1));
+  for (const [name, run, answer] of languageCalls()) {
+    const english = fakeModel(answer);
+    await run('English', english.callModel, readInEnglish);
+    const data = JSON.parse(english.calls[0].history[0].parts[0].text);
+    assert.equal(Object.keys(data).at(-1), 'englishNames', `${name}: the list comes last`);
+    const { englishNames: names, ...rest } = data;
+    for (const swedishName of Object.keys(names)) assert.ok(inData(rest, swedishName), `${name}: ${swedishName} is in the data`);
+  }
+  const envoy = envoyView(envoyCourt());
+  const ruler = fakeModel({ reply: 'Nej.' });
+  await replyAsRuler({ realmId: CORDOBA, text: 'Fred?', view: envoy, language: 'English', callModel: ruler.callModel, readName: readInEnglish });
+  const { englishNames: names, ...rest } = JSON.parse(ruler.calls[0].history[0].parts[0].text);
+  const leftOut = envoy.people.map((person) => person.name).filter((personName) => personName && !inData(rest, personName));
+  assert.ok(leftOut.length > 0, 'the ruler prompt leaves out people of the court');
+  for (const personName of leftOut) assert.equal(names[personName], undefined, `${personName} stays out of the list`);
+});
+
 test('a no-match reason the model wrote carries its origin; the game\'s own reasons carry none', async () => {
   const noMatch = (explanation) => fakeModel({ status: 'no_match', catalogId: '', targetIds: [], explanation, suggestions: [] }).callModel;
   const written = await interpretCharacterAction({ text: 'flyg', view: view(), language: 'English', callModel: noMatch('No action lets you fly.') });

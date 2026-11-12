@@ -17,16 +17,35 @@ export function englishNames(names, language, readName = nativeReading) {
   return map;
 }
 
-/** The names a character view puts in a prompt: every person's and family's name and the realm's, then `extra`. */
+/**
+ * The names a prompt may hold from a character view: people; families and the polities that host them; the realm;
+ * its cities, religions and border tribes; each foreign realm with its seat, ruler, heir and faith; then `extra`.
+ */
 export const viewNames = (view, extra = []) => [
   ...(view?.people || []).map((person) => person?.name),
-  ...(view?.families || []).map((family) => family?.name),
+  ...(view?.families || []).flatMap((family) => [family?.name, family?.hostPolityName]),
   view?.identity?.realmName,
+  ...[view?.cities, view?.religions, view?.tribes].flatMap((list) => (list || []).map((entry) => entry?.name)),
+  ...(view?.foreignRealms || []).flatMap((realm) => [realm?.name, realm?.seatName, realm?.rulerName, realm?.heirName, realm?.faithName]),
   ...extra,
 ];
 
-/** `{ englishNames }` to spread into a prompt's data when the map has an entry, otherwise `{}`. */
-export function englishNameData(names, language, readName = nativeReading) {
-  const map = englishNames(names, language, readName);
+/** The names in `names` that occur in `within`, a prompt's data or text, as JSON would write them. */
+const namesWithin = (names, within) => {
+  const text = typeof within === 'string' ? within : JSON.stringify(within) ?? '';
+  return names.filter((name) => typeof name === 'string' && name.trim() && text.includes(JSON.stringify(name).slice(1, -1)));
+};
+
+/**
+ * `{ englishNames }` to spread into a prompt's data when the map has an entry, otherwise `{}`. With `within`, the map
+ * keeps only the names that occur there, so it names nobody the prompt itself leaves out.
+ */
+export function englishNameData(names, language, readName = nativeReading, within) {
+  if (language === 'Swedish') return {};
+  const map = englishNames(within === undefined ? names : namesWithin(names, within), language, readName);
   return Object.keys(map).length ? { englishNames: map } : {};
 }
+
+/** `data` with an englishNames map last, for the names in `names` that `data` holds; `data` itself in Swedish. */
+export const withEnglishNames = (data, names, language, readName = nativeReading) => (
+  { ...data, ...englishNameData(names, language, readName, data) });

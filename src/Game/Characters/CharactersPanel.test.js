@@ -37,7 +37,9 @@ const envoyCompiled = compileFile("EnvoyView.jsx");
 
 // The views read their number locale from the real module: with no stored
 // language it is the Swedish one, as these tests expect.
-const SHARED_MODULES = { "../../runtime/characterLanguage.js": characterLanguageModule, "./nameInitials.js": nameInitialsModule };
+// The translator subscription is a stub: these renders run outside the browser and its native book.
+const SHARED_MODULES = { "../../runtime/characterLanguage.js": characterLanguageModule, "./nameInitials.js": nameInitialsModule,
+  "../../runtime/useTranslatorUpdates.js": { useTranslatorUpdates: () => 0, readNative: (text) => text } };
 
 function runModule(code, modules, globals = {}) {
   const module = { exports: {} };

@@ -17,7 +17,7 @@ export const characterLanguageCode = (code = getStoredLanguage()) => (code === E
  * Swedish where it asks for text, and the Swedish prompts stay word for word as they were.
  */
 export const dataLanguageClause = (language) => (language === 'Swedish' ? ''
-  : `The campaign data is written in Swedish. Write every sentence of your answer in ${language}, whatever language the data or the player's text is in. Copy ids, keys and option values exactly as given. When the data has englishNames, write each name it lists the way it gives it: that is the name the player reads.`);
+  : `The campaign data is written in Swedish. Write every sentence of your answer in ${language}, whatever language the data or the player's text is in. Copy ids, keys and option values exactly as given. When the data has englishNames, write each name it lists the way it gives it in every sentence the player reads. In a field that names a polity, region or person for the game to look up (a code, an owner, a claimant or a side in a war), write the name exactly as the data spells it.`);
 
 /** True for a campaign that runs the character system: the dynasty scenario and every historical start. */
 export const isCharacterCampaign = (world) => Boolean(world?.characterSystem);
