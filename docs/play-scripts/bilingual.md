@@ -48,3 +48,20 @@ Run on `feat/bilingual-help` against the same server and build, on `/wiki/espion
 | Structure | No duplicated element id; the hidden language takes no space; the upstream legal notice is present |
 
 Not covered: opening the help from the game's own link, a keyboard walk, the view without script, a phone. The visit-count banner on the page is upstream text and stays English.
+
+## Web adapter and family mode, 12 November 2026
+
+Run with Playwright Chromium against `vite --mode web` on port 5199 (campaign in IndexedDB), with `/api/local-models/status` stubbed so that a start is allowed; no model call was made.
+
+| Step | Result |
+| --- | --- |
+| Fresh profile | Swedish: `lang="sv"`, pack mode |
+| Family start, Kyrkostaten AD 800, `Leos hushåll` | Campaign `Kyrkostaten, 800 e.Kr. · Familjen`; the panel reads `FÖLJ FAMILJEN` |
+| Options, `Allmänt`, `Gränssnittsspråk` | The picker shows Swedish as chosen; choosing `English` reloads the page into English (`ui_language = en`, native mode) |
+| Family campaign in English | Every tab reads English: `FOLLOW THE FAMILY`, `Leo’s household`, `25 December AD 800` |
+| Action list | Marriage candidates read `Gisela, aged 20 (Charles’s realm (Carolingian Empire))`; a closed action gives its reason in English (`There is no eligible participant.`) |
+| Back to Swedish | Swedish again; the gap list holds no text from the Swedish-native views |
+
+The run found and fixed: a start row read as one year (`AD Byzantine Empire · 800`), a weak pattern around known values of many words (the marriage candidates), and Swedish view text listed as gaps of the Swedish pack.
+
+Known limits seen in this run: the web landing page and the demo notice are upstream English text outside the language pack, and in Swedish one link inside the notice is translated while its sentence is not. In Swedish with a model connected, the upstream translator sends the community hub's English posts to the model once to translate them, as it does for every language other than English. Not covered: Android, a model call on the web adapter, a conversation, an envoy.

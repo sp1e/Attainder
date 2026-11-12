@@ -40,6 +40,8 @@ const NATIVE_JOINERS = [[" eller ", " or "], [" och ", " and "]];
 // A count against its threshold as the Swedish views write it, and its English.
 const NATIVE_TALLY = /^(.*\S) (\d+(?:[.,]\d+)?) av (\d+(?:[.,]\d+)?)$/u;
 const NATIVE_TALLY_WORD = " of ";
+// A name of one to three words that starts with a capital: "Gisela", "Leo III".
+const SHORT_NAME = /^\p{Lu}[\p{L}\p{M}’'-]*(?: [\p{L}\p{M}\d’'-]+){0,2}$/u;
 // Where one sentence ends and the next begins.
 const SENTENCE_BREAK = /[.!?]\s+(?=\S)/gu;
 const SENTENCES_MAX = 600;
@@ -253,7 +255,15 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
       // A native book counts a value its rule reads (a date label, five
       // "words" of digits and letters) as the one word it is.
       const counted = native ? values.map((value) => (byRule(value.trim()) == null ? value : "x")) : values;
-      if (!acceptsValues(pattern, counted)) continue;
+      // In the full tier a native book also takes a weak pattern around any
+      // number of words when every value is known, a number or a short name
+      // the two languages share ("Gisela, 20 år (Karls rike)"): such text is
+      // the book's own.
+      const allKnown = native && !strong && values.every((value) => {
+        const inner = value.trim();
+        return !inner || !/\p{L}/u.test(inner) || SHORT_NAME.test(inner) || valueOf(inner, false, depth + 1) != null;
+      });
+      if (!allKnown && !acceptsValues(pattern, counted)) continue;
       // A weak pattern's value is a number or a name; words and numbers
       // together ("Found 12" before "{{value}} regions") are the start of some
       // other sentence, unless the book knows them (a date).
@@ -261,8 +271,9 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
         const inner = value.trim();
         if (!/\p{L}/u.test(inner) || !/\d/.test(inner) || get(inner) !== undefined || byRule(inner) != null) return false;
         // A native book also knows a value it can read by a pattern of its
-        // own ("Hovhus 1 (genererat)").
-        return !(native && valueOf(inner, strong, depth + 1) != null);
+        // own ("Hovhus 1 (genererat)"). A list does not count: "Bysantinska
+        // riket · 800" before "{{year}} e.Kr." is a row to read part by part.
+        return !(native && matchPattern(inner, strong, depth + 1) != null);
       })) continue;
       const translatedValues = values.map((value) => {
         const inner = value.trim();
