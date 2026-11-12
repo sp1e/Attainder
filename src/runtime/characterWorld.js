@@ -629,7 +629,7 @@ export const buildCharacterPromptContext = (state, { targetDate = "", watches = 
     "A dissolved realm has no government or public revenue. Its family may continue as a household without commanding a conqueror. Foreign refuge is possible only through a currently existing candidate and an accepted seek_refuge action; do not invent a host state, an automatic welcome or a replacement heir. Loss of territorial control alone is not dissolution: use the host's explicit polity lifecycle and settle sovereignty first.",
     ...(historicalContext ? [HISTORICAL_CHARACTER_GUIDANCE] : []),
     ...(dataLanguage ? [dataLanguage] : []),
-    JSON.stringify({ date: view.date, ...(historicalContext ? { historicalContext } : {}), ...englishNameData(viewNames(view), language, readName), mode: view.mode, playerCanDirectRealm: canCharacterDirectRealm(state), ruler: withoutPersonProvenance(view.ruler),
+    JSON.stringify({ date: view.date, ...(historicalContext ? { historicalContext } : {}), mode: view.mode, playerCanDirectRealm: canCharacterDirectRealm(state), ruler: withoutPersonProvenance(view.ruler),
       realmExists: state.realm.alive, status: state.status, externalHosts: state.externalHosts,
       representative: withoutPersonProvenance(view.representative), economy: view.economy, succession: view.succession,
       families: view.families, offices: view.offices, people: view.people.map(withoutPersonProvenance),
@@ -638,11 +638,13 @@ export const buildCharacterPromptContext = (state, { targetDate = "", watches = 
       contestedActions: Object.values(ACTION_CATALOG).filter(npcMayUse).map((entry) => ({ id: entry.id, label: entry.label, durationMonths: entry.durationMonths,
         target: `exactly one living adult other than the actor${entry.targetFamily === "other" ? ", outside the actor's family" : ""}` })) }),
   ];
+  let forecastView = null;
   if (targetDate && compareGameDates(targetDate, state.date) > 0) {
     blocks.push("[Character campaign timeline pacing]",
       `Aim for 4–8 meaningful AI world events per year, with an absolute maximum of ${getCharacterEventBudget(state.date, targetDate)} AI events in this entire jump. Combine routine administration into a concise period summary. Do not create filler meetings, monthly accounting or repeated implementation updates. The character engine supplies its own life events and annual economic results; do not duplicate them or invent character mutations to meet a quota. Fewer events are appropriate when less happened.`);
     const forecast = planCharacterAdvance({ characterSystem: state }, targetDate, { pauseForHealthDecisions: true, pauseForCharacterDecisions: true, watches });
     const outcome = getCharacterWorldEffects(forecast.state);
+    if (language !== "Swedish") forecastView = getCharacterPresentation(forecast.state);
     blocks.push("[Calendar forecast for this simulation request only]",
       "The deterministic engine will supply these dated character developments. Do not duplicate them or invent contradictory deaths/heirs. They are conditional on no intervening character command; proposals that change the conditions are resolved by the engine after this response. Describe wider world consequences, and describe proposed family actions as proposals. This forecast is not player-visible advance knowledge.",
       "A newly opened health-care or recurring character decision ends the playable period at its date. Do not narrate or apply anything after that stop: the player must be able to decide before later outcomes. The engine selects recurring events from current roles, personality and causal memories; do not invent or resolve them.",
@@ -650,5 +652,10 @@ export const buildCharacterPromptContext = (state, { targetDate = "", watches = 
         interruption: forecast.interruption ?? null, leaderAtEnd: outcome.leaderName,
         developments: forecast.events.map(({ date, title, description }) => ({ date, title, description })) }));
   }
+  // One map for every block: the forecast names people and houses that exist only after the jump, and a host polity
+  // appears only in externalHosts. The map keeps the names the blocks hold; Swedish gets none.
+  const names = englishNameData(viewNames(view, [...(state.externalHosts || []).map((host) => host?.name), ...(forecastView ? viewNames(forecastView) : [])]),
+    language, readName, blocks.join("\n"));
+  if (names.englishNames) blocks.push(JSON.stringify(names));
   return blocks.join("\n");
 };

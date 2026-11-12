@@ -2,8 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { campaignPromptLanguage, characterLanguage, characterLanguageCode, dataLanguageClause, isCharacterCampaign } from './characterLanguage.js';
 import { buildCharacterPromptContext } from './characterWorld.js';
-import { englishNameData, englishNames, viewNames } from './englishNames.js';
-import { createCharacterSystem } from './characters/index.js';
+import { englishNameData, englishNames, viewNames, withEnglishNames } from './englishNames.js';
+import { createCharacterSystem, getCharacterPresentation } from './characters/index.js';
+import { addGameMonths } from './gameDates.js';
 
 // Every call names its language or its code, so no test reads the stored Options choice.
 
@@ -64,21 +65,52 @@ test('the English name map lists each name the reader changes, once, and nothing
   assert.deepEqual(englishNames(['Karl'], 'English', () => '  '), {}, 'an empty reading is no reading');
   assert.deepEqual(englishNameData(['Odo'], 'English', reader), {}, 'no entry gives no key');
   assert.deepEqual(englishNameData(['Karl'], 'English', reader), { englishNames: { Karl: 'Charles' } });
+  assert.deepEqual(englishNameData(['Karl', 'Ludvig'], 'English', reader, { ruler: 'Karl' }), { englishNames: { Karl: 'Charles' } }, 'within keeps the names the data holds');
+  assert.deepEqual(englishNameData(['Ludvig'], 'English', reader, 'Karl spoke'), {}, 'a name outside the text stays out');
 });
 
-test('a view gives its people, families and realm, then the extra names', () => {
-  const view = { people: [{ name: 'Karl' }, {}], families: [{ name: 'Karolingerna' }], identity: { realmName: 'Karls rike' } };
-  assert.deepEqual(viewNames(view, ['Ansgar']), ['Karl', undefined, 'Karolingerna', 'Karls rike', 'Ansgar']);
+test('a prompt gets the map last, with the names its own data holds, and no map in Swedish', () => {
+  const reader = (name) => ({ Karl: 'Charles', Ludvig: 'Louis' })[name] ?? name;
+  const data = withEnglishNames({ ruler: 'Karl', heir: 'Odo' }, ['Ludvig', 'Karl', 'Odo'], 'English', reader);
+  assert.deepEqual(data, { ruler: 'Karl', heir: 'Odo', englishNames: { Karl: 'Charles' } });
+  assert.equal(Object.keys(data).at(-1), 'englishNames');
+  assert.deepEqual(withEnglishNames({ ruler: 'Karl' }, ['Karl'], 'Swedish', reader), { ruler: 'Karl' });
+});
+
+test('a view gives every name it may show, then the extra names', () => {
+  const view = { people: [{ name: 'Karl' }, {}], families: [{ name: 'Karolingerna', hostPolityName: 'Bysans' }], identity: { realmName: 'Karls rike' },
+    cities: [{ name: 'Aachen' }], religions: [{ name: 'Kristendom' }], tribes: [{ name: 'Sorber' }],
+    foreignRealms: [{ name: 'Córdoba', seatName: 'Córdoba stad', rulerName: 'al-Hakam I', heirName: 'Abd al-Rahman', faithName: 'Islam' }] };
+  assert.deepEqual(viewNames(view, ['Ansgar']), ['Karl', undefined, 'Karolingerna', 'Bysans', 'Karls rike', 'Aachen', 'Kristendom', 'Sorber',
+    'Córdoba', 'Córdoba stad', 'al-Hakam I', 'Abd al-Rahman', 'Islam', 'Ansgar']);
   assert.deepEqual(viewNames(undefined), [undefined]);
 });
 
-test('the year prompt gives the names the player reads in English and none in Swedish', () => {
+test('the year prompt ends with the names the player reads in English and has none in Swedish', () => {
   const state = createCharacterSystem({ seed: 321 });
   const readName = (name) => `${name} (en)`;
-  const dataOf = (block) => JSON.parse(block.split('\n').find((line) => line.startsWith('{"date"')));
-  const english = dataOf(buildCharacterPromptContext(state, { language: 'English', readName }));
-  assert.equal(english.englishNames[english.representative.name], `${english.representative.name} (en)`);
-  assert.equal(dataOf(buildCharacterPromptContext(state, { language: 'Swedish', readName })).englishNames, undefined);
+  const lines = buildCharacterPromptContext(state, { language: 'English', readName }).split('\n');
+  const data = JSON.parse(lines.find((line) => line.startsWith('{"date"')));
+  const { englishNames: names } = JSON.parse(lines.at(-1));
+  assert.equal(names[data.representative.name], `${data.representative.name} (en)`);
+  const rest = lines.slice(0, -1).join('\n');
+  for (const name of Object.keys(names)) assert.ok(rest.includes(JSON.stringify(name).slice(1, -1)), `${name} is in the prompt`);
+  assert.doesNotMatch(buildCharacterPromptContext(state, { language: 'Swedish', readName }), /"englishNames"/);
+});
+
+test('the year prompt names the people of the forecast and a hosting polity in English', () => {
+  const state = createCharacterSystem({ seed: 321 });
+  state.externalHosts = [{ id: 'Z-host', name: 'Värdriket', opinion: 10, admissionCost: 20, refugeThreshold: 30 }];
+  const readName = (name) => `${name} (en)`;
+  const now = new Set(viewNames(getCharacterPresentation(state)));
+  const lines = buildCharacterPromptContext(state, { language: 'English', readName, targetDate: addGameMonths(state.date, 12) }).split('\n');
+  const { englishNames: names } = JSON.parse(lines.at(-1));
+  assert.equal(names['Värdriket'], 'Värdriket (en)', 'the host polity');
+  const later = Object.keys(names).filter((name) => !now.has(name) && name !== 'Värdriket');
+  assert.ok(later.length > 0, 'the forecast names someone the court does not show yet');
+  for (const name of later) assert.ok(lines.at(-2).includes(name), `${name} comes from the forecast`);
+  const withoutForecast = JSON.parse(buildCharacterPromptContext(state, { language: 'English', readName }).split('\n').at(-1)).englishNames;
+  for (const name of later) assert.equal(withoutForecast[name], undefined, `${name} needs the forecast`);
 });
 
 test('the character views write numbers with a decimal point in English and a comma in Swedish', async () => {

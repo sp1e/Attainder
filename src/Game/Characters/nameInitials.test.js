@@ -22,6 +22,18 @@ test('the initials follow the name the player reads', () => {
   assert.equal(nameInitials('Odo (genererad)', reader), 'O');
 });
 
+test('a leading English article gives no initial and a number takes the second place', () => {
+  assert.equal(nameInitials('Court house 2 (generated)', same), 'C2');
+  assert.equal(nameInitials('The royal house', same), 'Rh');
+  assert.equal(nameInitials('Hovhus 1 (genererat)', same), 'H1');
+  assert.equal(nameInitials('The', same), 'T', 'an article alone is the name');
+});
+
+test('the first initial is a capital letter', () => {
+  assert.equal(nameInitials('al-Hakam I', same), 'AI');
+  assert.equal(nameInitials('karl den yngre', same), 'Kd');
+});
+
 test('a missing name or reading gives a question mark or falls back to the name', () => {
   assert.equal(nameInitials('', same), '?');
   assert.equal(nameInitials(null, same), '?');
