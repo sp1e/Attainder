@@ -356,3 +356,39 @@ test("strongOnly: the rule answers for a value inside a strong pattern, not for 
   assert.equal(book.translate("by Arkniem", { strongOnly: true }), null, "the tiers are the same in an English-keyed book");
   assert.equal(book.translate("by Arkniem"), "von Arkniem");
 });
+
+// ---- a native book: text the views assemble without words of their own ----
+
+const courtBook = () => {
+  const book = createPhraseBook({ native: true });
+  book.setAll({
+    "Tronföljd": "Succession", "Guvernör": "Governor", "Vakant": "Vacant", "Sorg": "Grief",
+    "uppnådda regeringsmål": "reign goals met", "ryktbarhet": "prestige", "månader på tronen": "months on the throne",
+    "{{label}} {{number}} av {{number2}}": "{{label}} {{number}} of {{number2}}",
+  });
+  return book;
+};
+
+test("native: a label and its value are read around the colon", () => {
+  const book = courtBook();
+  assert.equal(book.translate("Tronföljd: +65"), "Succession: +65", "a value without words is kept");
+  assert.equal(book.translate("Guvernör: Vakant"), "Governor: Vacant");
+  assert.equal(book.translate("Kelan Namar: sorg"), "Kelan Namar: grief", "a full name before a lowercased label");
+  assert.equal(book.translate("Tronföljd: okänd text"), null, "an unknown value with words would hide the gap");
+  assert.equal(book.translate("Chans: sorg"), null, "one unknown word is as likely a label the book lacks");
+  assert.equal(book.translate("Tronföljd: +65", { strongOnly: true }), null, "not outside the Swedish views");
+});
+
+test("native: a count against its threshold takes a label of several words", () => {
+  const book = courtBook();
+  assert.equal(book.translate("månader på tronen 12 av 48"), "months on the throne 12 of 48");
+  assert.equal(book.translate("uppnådda regeringsmål 0 av 2 eller ryktbarhet 10 av 40"), "reign goals met 0 of 2 or prestige 10 of 40");
+  assert.equal(book.translate("okänd rad 1 av 2"), null, "the label must be known");
+  assert.equal(book.translate("uppnådda regeringsmål 0 av 2 eller okänd rad 1 av 2"), null, "every joined part must be known");
+});
+
+test("a book that is not native reads none of these", () => {
+  const book = createPhraseBook();
+  book.setAll({ "Tronföljd": "Succession", "ryktbarhet": "prestige" });
+  for (const text of ["Tronföljd: +65", "ryktbarhet 10 av 40", "Tronföljd eller ryktbarhet"]) assert.equal(book.translate(text), null, text);
+});

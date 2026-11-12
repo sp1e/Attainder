@@ -16,6 +16,7 @@ import { createSecret, grantHook } from "../../runtime/characters/secrets.js";
 import { SHIPPED_START_FOLDERS } from "../../runtime/testing/shippedHistoricalStarts.js";
 import { interpretCharacterAction } from "./characterModelCalls.js";
 import * as playerTextModule from "./playerText.js";
+import * as characterLanguageModule from "../../runtime/characterLanguage.js";
 import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testing/hookDriver.js";
 
 // Render the real JSX with supplied presentation data. Runtime and portrait
@@ -33,11 +34,15 @@ const intrigueCompiled = compileFile("IntrigueView.jsx");
 const conversationCompiled = compileFile("ConversationView.jsx");
 const envoyCompiled = compileFile("EnvoyView.jsx");
 
+// The views read their number locale from the real module: with no stored
+// language it is the Swedish one, as these tests expect.
+const SHARED_MODULES = { "../../runtime/characterLanguage.js": characterLanguageModule };
+
 function runModule(code, modules, globals = {}) {
   const module = { exports: {} };
   vm.runInNewContext(code, { module, exports: module.exports, require: (id) => {
-    assert.ok(id in modules, `Unexpected import: ${id}`);
-    return modules[id];
+    assert.ok(id in modules || id in SHARED_MODULES, `Unexpected import: ${id}`);
+    return modules[id] ?? SHARED_MODULES[id];
   }, crypto: globalThis.crypto, console, ...globals });
   return module.exports;
 }

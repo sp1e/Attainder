@@ -33,6 +33,14 @@ const LIST_SPLIT = /( [/·•|] )/;
 // A native book looks for a pattern inside a pattern's value this many levels
 // down: "Spelbara riken: {{list}}" over a value that is itself a built sentence.
 const NATIVE_VALUE_DEPTH = 2;
+const LABEL_SEPARATOR = ": ";
+const LABEL_VALUE_MAX = 200;
+// The words the Swedish views join conditions with, and their English.
+const NATIVE_JOINERS = [[" eller ", " or "], [" och ", " and "]];
+// A count against its threshold as the Swedish views write it, and its English.
+const NATIVE_TALLY = /^(.*\S) (\d+(?:[.,]\d+)?) av (\d+(?:[.,]\d+)?)$/u;
+const NATIVE_TALLY_WORD = " of ";
+const FULL_NAME = /^\p{Lu}[\p{L}\p{M}’'-]*(?: \p{Lu}[\p{L}\p{M}’'-]*)+$/u;
 const COMMA_SPLIT = /(, )/;
 const COMMA_LIST_MAX_ITEMS = 15;
 const STARTS_LOWER = /^\p{Ll}/u;
@@ -238,7 +246,10 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
       const match = pattern.regex.exec(text);
       if (!match) continue;
       const values = match.slice(1);
-      if (!acceptsValues(pattern, values)) continue;
+      // A native book counts a value its rule reads (a date label, five
+      // "words" of digits and letters) as the one word it is.
+      const counted = native ? values.map((value) => (byRule(value.trim()) == null ? value : "x")) : values;
+      if (!acceptsValues(pattern, counted)) continue;
       // A weak pattern's value is a number or a name; words and numbers
       // together ("Found 12" before "{{value}} regions") are the start of some
       // other sentence, unless the book knows them (a date).
@@ -316,16 +327,73 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
     return known === undefined ? null : lowerFirst(known, label);
   };
 
+  // One piece of a longer text, read with everything the book has, one level
+  // further down. Null when the book has nothing for it.
+  const pieceOf = (text, depth) => {
+    const inner = text.trim();
+    if (!inner || depth > NATIVE_VALUE_DEPTH) return null;
+    const known = get(inner) ?? byRule(inner) ?? derive(inner, false, depth + 1);
+    return known == null ? null : text.replace(inner, () => known);
+  };
+
+  // Native only, full tier. The views write a label and its value as one run
+  // with nothing but a colon between them ("Tronföljd: +65", "Kelan Namar:
+  // sorg"), which no pattern can hold: a pattern needs words of its own. The
+  // label must be known; the value is translated when the book has it.
+  const byLabelValue = (text, depth) => {
+    const at = text.indexOf(LABEL_SEPARATOR);
+    if (at < 1 || text.length > LABEL_VALUE_MAX) return null;
+    const label = pieceOf(text.slice(0, at), depth);
+    const rest = text.slice(at + LABEL_SEPARATOR.length);
+    const value = pieceOf(rest, depth);
+    if (value == null && label == null) return null;
+    // A value the book lacks passes only when it has no words ("+65"): a
+    // translated label before Swedish words would hide the gap.
+    if (value == null && /\p{L}/u.test(rest)) return null;
+    // An unknown label passes only as a name of two words or more ("Kelan
+    // Namar: sorg"): a single unknown word is as likely a label the book
+    // lacks, and half a translation would hide the gap.
+    if (label == null && !FULL_NAME.test(text.slice(0, at).trim())) return null;
+    return `${label ?? text.slice(0, at)}${LABEL_SEPARATOR}${value ?? rest}`;
+  };
+
+  // Native only, full tier. A count against its threshold ("uppnådda
+  // regeringsmål 0 av 2"): the pattern for it has two letters of its own, so
+  // it cannot take a label of several words. The label must be known.
+  const byTally = (text, depth) => {
+    const match = NATIVE_TALLY.exec(text);
+    if (!match) return null;
+    const label = pieceOf(match[1], depth);
+    return label == null ? null : `${label} ${match[2]}${NATIVE_TALLY_WORD}${match[3]}`;
+  };
+
+  // Native only, full tier. Conditions the views join with a word ("mål 0 av
+  // 2 eller ryktbarhet 10 av 40"): every part must be known, and the joining
+  // word is put into the book's language.
+  const byJoiner = (text, depth) => {
+    for (const [joiner, translated] of NATIVE_JOINERS) {
+      if (!text.includes(joiner)) continue;
+      const parts = text.split(joiner);
+      if (parts.length > COMMA_LIST_MAX_ITEMS) continue;
+      const read = parts.map((part) => pieceOf(part, depth));
+      if (read.every((part) => part != null)) return read.join(translated);
+    }
+    return null;
+  };
+
   // What the book makes of a string it has no entry for: a pattern, then a
   // list; a native book then tries its comma list, the missing period and the
   // label behind a lowercased text. That last one answers for a value inside
   // a pattern in both tiers, and for a whole string only in the full tier:
   // outside the Swedish views a whole lowercase string is the English
-  // interface's, and must not be capitalised into a Swedish entry.
+  // interface's, and must not be capitalised into a Swedish entry. The label
+  // with its value and the joined conditions are read in the full tier only.
   const derive = (key, strong, depth) => {
     const found = matchPattern(key, strong, depth) ?? byParts(key, strong, depth);
     if (found != null || !native) return found;
-    return byCommaList(key) ?? withoutPeriod(key, strong, depth) ?? (strong && depth === 0 ? null : byLoweredLabel(key));
+    const simple = byCommaList(key) ?? withoutPeriod(key, strong, depth) ?? (strong && depth === 0 ? null : byLoweredLabel(key));
+    if (simple != null || strong) return simple;
+    return byTally(key, depth) ?? byLabelValue(key, depth) ?? byJoiner(key, depth);
   };
 
   // The translation of a whole string (already trimmed by the caller or not),

@@ -5,6 +5,51 @@
     "reason": "technical"
   },
   {
+    "file": "server/historicalScenarios.js",
+    "text": "(genererad)",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Africa",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Americas",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Antarctica",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Asia",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Europe",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Oceania",
+    "reason": "technical"
+  },
+  {
+    "file": "server/seed/historical/authored-scenarios.mjs",
+    "text": "isabella",
+    "reason": "technical"
+  },
+  {
+    "file": "server/seed/historical/authored-scenarios.mjs",
+    "text": "john",
+    "reason": "technical"
+  },
+  {
     "file": "server/seed/historical/authored-scenarios.mjs",
     "text": "karl-den-yngre",
     "reason": "technical"
@@ -98,6 +143,11 @@
     "file": "src/Game/Selection/Features.jsx",
     "text": "Under construction",
     "reason": "not-swedish"
+  },
+  {
+    "file": "src/runtime/characterLanguage.js",
+    "text": "en-GB",
+    "reason": "technical"
   },
   {
     "file": "src/runtime/characterWatchSettings.js",

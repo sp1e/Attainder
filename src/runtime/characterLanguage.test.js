@@ -55,3 +55,11 @@ test('the simulation rules ask for the proposal reason in the named language', (
   assert.equal(swedish.replace('reason is a Swedish sentence', 'reason is a English sentence'), english.replace(`${dataLanguageClause('English')}\n`, ''),
     'the language name and the clause are the only differences');
 });
+
+test('the character views write numbers with a decimal point in English and a comma in Swedish', async () => {
+  const { characterNumberLocale } = await import('./characterLanguage.js');
+  assert.equal(characterNumberLocale('en'), 'en-GB');
+  assert.equal(characterNumberLocale('sv'), 'sv-SE');
+  assert.equal(characterNumberLocale('de'), 'sv-SE', 'another language keeps the Swedish court text and its numbers');
+  assert.equal(new Intl.NumberFormat(characterNumberLocale('en'), { maximumFractionDigits: 1 }).format(56.84), '56.8');
+});

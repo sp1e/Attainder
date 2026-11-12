@@ -29,3 +29,7 @@ export const isCharacterCampaign = (world) => Boolean(world?.characterSystem);
  */
 export const campaignPromptLanguage = (world, game, language = characterLanguage()) => (
   isCharacterCampaign(world) ? language : world?.language || game?.language || 'English');
+
+// The locale the character views write numbers in: a decimal comma in Swedish,
+// a decimal point in English.
+export const characterNumberLocale = (code = getStoredLanguage()) => (characterLanguageCode(code) === 'en' ? 'en-GB' : 'sv-SE');

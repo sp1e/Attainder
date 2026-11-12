@@ -26,6 +26,8 @@ import {
   unknownTextFate,
   usesModel,
   usesSwedishHistoricalPack,
+  isSwedishAuthored,
+  skipsNativeContent,
 } from "./translatorMode.js";
 
 const ENGLISH = "Declare war on France";
@@ -225,8 +227,10 @@ test("sv and de: the pack applies whole everywhere, marked view or not", () => {
   }
 });
 
-test("en: the book is a native book without a date rule", () => {
-  assert.deepEqual(bookOptions("en"), { native: true });
+test("en: the book is a native book that reads Swedish date labels", () => {
+  assert.deepEqual(Object.keys(bookOptions("en")), ["native", "localizeValue"]);
+  assert.equal(bookOptions("en").native, true);
+  assert.equal(bookOptions("en").localizeValue("25/12 800 e.Kr."), "25 December AD 800");
   const book = createPhraseBook(bookOptions("en"));
   book.setAll({ "Hovet flyttar till Aachen": "The court moves to Aachen" });
   assert.equal(book.translate("Hovet flyttar till Aachen."), "The court moves to Aachen.", "the native lookups are on");
@@ -251,4 +255,19 @@ test("only Swedish mode reads the research's Swedish pairs", () => {
   assert.equal(usesSwedishHistoricalPack("en"), false);
   assert.equal(usesSwedishHistoricalPack("de"), false);
   assert.equal(usesSwedishHistoricalPack(""), false);
+});
+
+test("in Swedish the content collector leaves a record the game wrote in Swedish alone", () => {
+  const start = { name: "Frankrike", historicalStart: { date: "1200-12-31" } };
+  const world = { historicalScenario: { contentId: "john-1200" } };
+  const campaign = { characterSystem: { date: "1200-12-31" } };
+  const hubPost = { name: "Cold War Horizon: 1973", description: "Start in the year 1973." };
+  for (const record of [start, world, campaign]) {
+    assert.equal(isSwedishAuthored(record), true);
+    assert.equal(skipsNativeContent("sv", record), true);
+    assert.equal(skipsNativeContent("de", record), false, "another language still sends it to the model");
+  }
+  assert.equal(isSwedishAuthored(hubPost), false);
+  assert.equal(skipsNativeContent("sv", hubPost), false, "a player's English scenario is still translated");
+  assert.equal(skipsNativeContent("sv", null), false);
 });

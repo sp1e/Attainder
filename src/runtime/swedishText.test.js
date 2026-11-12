@@ -22,7 +22,7 @@ const read = (relative) => JSON.parse(fs.readFileSync(new URL(relative, LANG), "
 // The translator does not rely on the detector for them: inside a
 // Swedish-native view every unknown string is listed (unknownTextFate). Pinned
 // so that a change to the word list, the rule or the catalog is noticed here.
-const CATALOG_ENTRIES_NOT_RECOGNISED = 583;
+const CATALOG_ENTRIES_NOT_RECOGNISED = 577;
 
 test("å, ä or ö is enough, in either case and written with a combining mark", () => {
   for (const text of ["Mål", "Hög", "Kungen är död", "ÅR 800", "Mål", "Ätten Capet"]) {

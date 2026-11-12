@@ -51,6 +51,7 @@ import {
   NATIVE_TEXT_SELECTOR,
   bookOptions,
   mayQueueForModel,
+  skipsNativeContent,
   tierFor,
   translateInTier,
   translatorMode,
@@ -618,6 +619,7 @@ const isAuthoredEvent = (event) => !event?.source || event.source === "scenario"
 const collectContentStrings = async () => {
   const add = (value) => { queueContent(value); };
   const addCard = (entry) => {
+    if (skipsNativeContent(language, entry)) return;
     for (const key of ["name", "subtitle", "description", "eyebrow", "heroTitle", "heroSubtitle"]) {
       add(entry?.[key]);
     }
@@ -635,17 +637,20 @@ const collectContentStrings = async () => {
   }
 
   // Country names the pack lacks, the scenario's polities (names, aliases,
-  // the author's roles and notes, map labels), and its own events.
+  // the author's roles and notes, map labels), and its own events. A world
+  // the game wrote in Swedish gives none of these in Swedish (isSwedishAuthored).
+  let nativeWorld = false;
   try {
     const { JSON_URLS, loadCountryNames, readJson } = await import("./assets.js");
     (await loadCountryNames().catch(() => [])).forEach((country) => add(country?.name));
     const world = await readJson(JSON_URLS.world, { defaultValue: {} });
-    for (const polity of Object.values(world?.polityOverrides ?? {})) {
+    nativeWorld = skipsNativeContent(language, world);
+    for (const polity of nativeWorld ? [] : Object.values(world?.polityOverrides ?? {})) {
       for (const key of ["name", "role", "note", "mapLabel", "mapDistinctLabel"]) add(polity?.[key]);
       (polity?.aliases ?? []).forEach(add);
     }
     const events = await readJson(JSON_URLS.events, { defaultValue: [] });
-    for (const event of Array.isArray(events) ? events : []) {
+    for (const event of Array.isArray(events) && !nativeWorld ? events : []) {
       if (!isAuthoredEvent(event)) continue;
       add(event?.title);
       add(event?.description);
@@ -684,7 +689,7 @@ const collectContentStrings = async () => {
     const { loadRegionCatalog, loadScenarioRegionCatalog } = await import("./assets.js");
     const own = await loadScenarioRegionCatalog().catch(() => []);
     const regions = own?.length ? own : await loadRegionCatalog().catch(() => []);
-    regions.forEach((region) => add(region?.name));
+    if (!nativeWorld) regions.forEach((region) => add(region?.name));
   } catch { /* optional */ }
 };
 

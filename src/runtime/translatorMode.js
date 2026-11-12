@@ -15,6 +15,7 @@
 
 import { DEFAULT_LANGUAGE } from "./i18n.js";
 import { createDateLocalizer } from "./localDates.js";
+import { englishDateLabel } from "./swedishDates.js";
 import { looksSwedish } from "./swedishText.js";
 
 // The roots of the views written in Swedish carry this attribute.
@@ -57,7 +58,7 @@ export const usesModel = (mode) => mode === "pack";
 // written in Swedish, and the English ones on the page are already English.
 export const bookOptions = (language) => {
   const mode = translatorMode(language);
-  if (mode === "native") return { native: true };
+  if (mode === "native") return { native: true, localizeValue: englishDateLabel };
   if (mode === "pack") return { localizeValue: createDateLocalizer(language) };
   return {};
 };
@@ -143,3 +144,14 @@ export const translateInTier = (book, text, tier) => {
 // Swedish mode reads the research's Swedish for source locators and
 // institutions (historical-sv.json) beside its pack.
 export const usesSwedishHistoricalPack = (language) => translatorMode(language) === "pack" && language.trim() === "sv";
+
+// A record the game wrote in Swedish itself: a shipped historical start, a
+// campaign started from one, or a world that carries a historical scenario or
+// a character system. In Swedish its names are already the player's language,
+// and many of them ("Frankrike", "Khmerriket") have no letter or word the
+// detector knows, so the content collector leaves the whole record alone.
+export const isSwedishAuthored = (record) =>
+  Boolean(record && typeof record === "object"
+    && (record.historicalStart || record.historicalSummary || record.historicalScenario || record.characterSystem));
+
+export const skipsNativeContent = (language, record) => isSwedish(language) && isSwedishAuthored(record);

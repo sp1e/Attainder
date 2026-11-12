@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { characterNumberLocale } from "../../runtime/characterLanguage.js";
 import { useRuntimeState } from "../../runtime/useRuntimeState.js";
 import { compareGameDates, parseGameDate } from "../../runtime/gameDates.js";
 import { getCharacterPresentation } from "../../runtime/characters/index.js";
@@ -29,7 +30,7 @@ const TABS = [
 ];
 // Commands whose refusal is shown under their own card, so the panel banner stays quiet.
 const INLINE_REFUSALS = ["abort_scheme", "release_prisoner", "execute_prisoner"];
-const number = (value) => Number.isFinite(Number(value)) ? new Intl.NumberFormat("sv-SE", { maximumFractionDigits: 1 }).format(Number(value)) : "—";
+const number = (value) => Number.isFinite(Number(value)) ? new Intl.NumberFormat(characterNumberLocale(), { maximumFractionDigits: 1 }).format(Number(value)) : "—";
 const entries = (value) => Array.isArray(value) ? value : Object.values(value || {});
 const text = (value, fallback = "—") => typeof value === "string" || typeof value === "number" ? String(value) : value?.label || value?.name || value?.title || fallback;
 const dateLabel = (value) => {
