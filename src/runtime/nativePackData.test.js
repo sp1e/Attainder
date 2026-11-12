@@ -13,13 +13,21 @@ import fs from "node:fs";
 import { checkLocaleSidecars } from "../../scripts/check-locale-sidecars.mjs";
 import { buildHistoricalPairFiles } from "../../scripts/i18n/build-historical-pairs.mjs";
 import { PACKAGE_CATALOG_SCHEMA, buildPackageCatalog, packageCoverage } from "../../scripts/i18n/build-package-catalog.mjs";
+import { nativePackReport } from "../../scripts/i18n/check-native-pack.mjs";
 import { mergeNativePack } from "./nativePack.js";
 import { createPhraseBook } from "./phraseBook.js";
+import { SHARED_WITH_INTERFACE, translateInTier } from "./translatorMode.js";
 
 // Sidecar entries whose source text changed after they were translated. The
 // research session owns the sidecars and corrects them (PR #201 did for the
 // Rome settlement note).
 const KNOWN_STALE = [];
+
+// Catalog entries (catalog-sv.json) that en.json does not translate yet. The
+// pack is still {} on this branch, so this is the size of the catalog; the
+// translation slice lowers it to 0. A catalog rebuild changes it with the
+// catalog, and a translation that lands must lower it here.
+const EXPECTED_MISSING = 3169;
 
 const REPO = new URL("../../", import.meta.url);
 const readText = (relative) => fs.readFileSync(new URL(relative, REPO), "utf8").replace(/\r\n/g, "\n");
@@ -82,28 +90,91 @@ test("the package text is counted against the merged pack", (t) => {
   // The four packages hold 315 unique display strings today (6,638 occurrences).
   assert.ok(coverage.total > 300, `${coverage.total} display strings`);
   assert.equal(coverage.translated + coverage.missing, coverage.total);
-  const catalogSize = readLang("catalog-packages-sv.json").entries.length;
-  // The catalog is what the research pairs leave. Until the translations
-  // arrive, that is what is missing. When packages-en.json is complete this
-  // becomes: assert.equal(coverage.missing, 0).
-  if (!Object.keys(packages).length && !Object.keys(code).length) assert.equal(coverage.missing, catalogSize);
-  else assert.ok(coverage.missing <= catalogSize, `${coverage.missing} missing of ${catalogSize} catalog entries`);
+  // packages-en.json is complete: every built display string has a translation.
+  assert.equal(coverage.missing, 0);
 });
 
-test("outside the Swedish views, no English interface string is rewritten", () => {
+test("the pack report counts what a pack lacks and what it gets wrong", () => {
+  const catalog = { entries: ["Sändebud", "{{name}} föds", "{{a}} gifter sig med {{b}}", "{{a}} och {{a}}", "Krig", "Mat", "Hov"] };
+  const pack = {
+    "Sändebud": "Envoy",
+    "{{name}} föds": "A child is born",
+    "{{a}} gifter sig med {{b}}": "{{b}} is married to {{a}}",
+    "{{a}} och {{a}}": "{{a}} and {{b}}",
+    "Krig": "  ",
+    "Mat": "Food for {{name}}",
+    "Gammal nyckel": "Old key",
+  };
+  const report = nativePackReport({ catalog, pack });
+  assert.equal(report.total, 7);
+  assert.deepEqual(report.missing, ["Hov"]);
+  assert.deepEqual(report.empty, ["Krig"]);
+  assert.deepEqual(report.unknownKeys, ["Gammal nyckel"]);
+  assert.deepEqual(report.slotErrors, [
+    { entry: "{{name}} föds", expected: ["name"], actual: [] },
+    { entry: "{{a}} och {{a}}", expected: ["a", "a"], actual: ["a", "b"] },
+    { entry: "Mat", expected: [], actual: ["name"] },
+  ], "a dropped slot, a slot named once too few, an invented slot; slots in another order are fine");
+  assert.equal(report.translated, 5, "every entry with a text, right or wrong");
+  assert.equal(report.translated + report.missing.length + report.empty.length, report.total);
+
+  const none = nativePackReport({ catalog: ["Sändebud"], pack: {} });
+  assert.deepEqual([none.total, none.translated, none.missing], [1, 0, ["Sändebud"]], "a bare list of entries is a catalog too");
+  assert.deepEqual(nativePackReport({ catalog: ["Sändebud"], pack: { "Sändebud": null } }).empty, ["Sändebud"], "a value that is no text counts as empty");
+});
+
+test("en.json has no wrong slot, no empty text and no key outside the catalog, and the gap is the known one", (t) => {
+  const report = nativePackReport({ catalog: readLang("catalog-sv.json"), pack: readLang("en.json") });
+  t.diagnostic(`code text: ${report.translated} of ${report.total} catalog entries translated, ${report.missing.length} missing`);
+  assert.deepEqual(report.slotErrors, []);
+  assert.deepEqual(report.empty, []);
+  assert.deepEqual(report.unknownKeys, []);
+  assert.equal(report.missing.length, EXPECTED_MISSING);
+  assert.equal(report.translated + report.missing.length, report.total);
+});
+
+// The code layer of the native pack as it will be when en.json is complete.
+// en.json is written in a later slice, and "which Swedish keys answer for this
+// text?" cannot wait for it: every entry of catalog-sv.json is a key here,
+// mapped to itself behind a marker ("EN:{{name}} föds"). A pattern keeps its
+// slots, so it compiles and matches as the real translation will. A
+// translation en.json already has wins.
+const MARKER = "EN:";
+const markerCodePack = () => ({
+  ...Object.fromEntries(readLang("catalog-sv.json").entries.map((entry) => [entry, `${MARKER}${entry}`])),
+  ...readLang("en.json"),
+});
+
+// The whole native book: the research pairs, the package text and every key of
+// the code catalog.
+const wholeNativeBook = () => {
   const book = createPhraseBook({ native: true });
-  book.setAll(readLang("historical-en.json"));
-  book.setAll({
-    "{{name}} dog {{date}}": "{{name}} died {{date}}",
-    "{{a}} i {{b}}": "{{a}} in {{b}}",
-    "{{name}} föds": "{{name}} is born",
-    "Riket går i krig vid {{name}}s sida": "The realm goes to war at {{name}}'s side",
-  });
-  assert.equal(book.translate("Karl dog 814"), "Charles died 814", "the book works in the full tier");
-  assert.equal(book.translate("Karl dog 814", { strongOnly: true }), null);
-  assert.equal(book.translate("Riket går i krig vid Romarrikets sida", { strongOnly: true }), "The realm goes to war at Roman Empire's side");
+  book.setAll(mergeNativePack({ code: markerCodePack(), packages: readLang("packages-en.json"), historical: readLang("historical-en.json") }));
+  return book;
+};
+
+test("outside the Swedish views, no English interface string is rewritten by any key of the real catalogs", () => {
+  const book = wholeNativeBook();
+  assert.ok(book.patternCount() > 600, `${book.patternCount()} patterns: the code catalog's are loaded`);
+  // Real keys of catalog-sv.json: a weak pattern, a strong one, an entry.
+  assert.equal(book.translate("Karl föds"), `${MARKER}Charles föds`, "the book works in the full tier");
+  assert.equal(translateInTier(book, "Karl föds", "strong"), null, "a weak pattern stays inside the Swedish views");
+  assert.equal(translateInTier(book, "Riket går i krig vid Romarrikets sida", "strong"), `${MARKER}Riket går i krig vid Roman Empires sida`);
+  assert.equal(translateInTier(book, "Sändebud", "strong"), `${MARKER}Sändebud`);
   const catalog = readJson("public/lang/catalog-en.json");
   assert.ok(catalog.length > 5000, "the interface catalog is there");
-  const rewritten = catalog.filter((english) => book.translate(english, { strongOnly: true }) != null);
+  const rewritten = catalog.filter((english) => translateInTier(book, english, "strong") != null);
   assert.deepEqual(rewritten, []);
+});
+
+test("the Swedish keys the English interface also writes are exactly the ones the strong tier is told to skip", () => {
+  const swedish = new Set([...readLang("catalog-sv.json").entries, ...Object.keys(readLang("packages-en.json")), ...Object.keys(readLang("historical-en.json"))]);
+  const shared = readJson("public/lang/catalog-en.json").filter((english) => swedish.has(english)).sort();
+  assert.deepEqual([...SHARED_WITH_INTERFACE].sort(), shared, "list a new shared string in translatorMode.js, or keep it out of the Swedish catalog");
+  // The Swedish reading still applies where the text is Swedish.
+  const book = wholeNativeBook();
+  for (const word of shared) {
+    assert.notEqual(translateInTier(book, word, "full"), null, word);
+    assert.equal(translateInTier(book, word, "strong"), null, word);
+  }
 });

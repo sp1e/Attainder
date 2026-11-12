@@ -35,6 +35,23 @@ const LIST_SPLIT = /( [/·•|] )/;
 const NATIVE_VALUE_DEPTH = 2;
 const COMMA_SPLIT = /(, )/;
 const COMMA_LIST_MAX_ITEMS = 15;
+const STARTS_LOWER = /^\p{Ll}/u;
+const TWO_CAPITALS = /^\p{Lu}\p{Lu}/u;
+const firstWord = (text) => text.match(/^[\p{L}\p{M}]+/u)?.[0] ?? "";
+
+// A label's translation as a sentence carries it when the Swedish was written
+// in lower case: with its first letter lowered. Two kinds of translation keep
+// their capital: an acronym ("HIV": its second letter is a capital too), and
+// one that opens with the word the Swedish label opens with, which is a name
+// both languages write alike ("Silla", "Tang"). A name the languages write
+// differently cannot be told from a common word here; an entry for the
+// lowercase text settles such a case, since entries are looked up first.
+const lowerFirst = (translated, label) => {
+  if (TWO_CAPITALS.test(translated)) return translated;
+  const word = firstWord(translated);
+  if (word && word === firstWord(label)) return translated;
+  return translated[0].toLowerCase() + translated.slice(1);
+};
 
 const collapse = (text) => text.replace(/\s+/g, " ").trim();
 const letterCount = (text) => (text.match(/\p{L}/gu) ?? []).length;
@@ -45,6 +62,11 @@ const escapeRegex = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const literalSource = (text) => text.split(/\s+/).map(escapeRegex).join("\\s+");
 
 export const isPatternKey = (text) => typeof text === "string" && text.includes("{{") && new RegExp(SLOT.source).test(text);
+
+// The names of a text's slots, in order, each as often as it is written. The
+// pack check (scripts/i18n/check-native-pack.mjs) compares a pattern's slots
+// with its translation's, and has to read them the way the book does.
+export const slotNames = (text) => (typeof text === "string" ? Array.from(text.matchAll(SLOT), (match) => match[1]) : []);
 
 // One pattern, compiled; null for a key without a slot or without any words
 // outside its slots (it would match anything).
@@ -119,7 +141,7 @@ const acceptsValues = (pattern, values) => {
 // pattern ("Round {{round}} · {{date}}").
 //
 // `native` (optional): the book is keyed by the game's own Swedish. That text is
-// sentences the engine builds from other sentences and from data, so three more
+// sentences the engine builds from other sentences and from data, so four more
 // lookups apply, and only in such a book:
 //  - a slot's value is looked up with everything the book has, patterns
 //    included, NATIVE_VALUE_DEPTH levels down;
@@ -127,8 +149,11 @@ const acceptsValues = (pattern, values) => {
 //    is translated item by item;
 //  - a string that ends in one period and is otherwise unknown is looked up
 //    without it, and the period is put back: the package builders close a
-//    dossier's sentence with a period, and "{{x}}." cannot be a pattern.
-export const createPhraseBook = ({ localizeValue = null, native = false } = {}) => {
+//    dossier's sentence with a period, and "{{x}}." cannot be a pattern;
+//  - a value or a whole string that starts in lower case and is otherwise
+//    unknown is looked up with a capital, and the answer gets its lower case
+//    back (byLoweredLabel).
+export const createPhraseBook =({ localizeValue = null, native = false } = {}) => {
   // English (as extracted, and whitespace-collapsed) → translation.
   const exact = new Map();
   // Pattern keys → translation; compiled lazily, most specific first.
@@ -280,12 +305,27 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
     return known.endsWith(".") ? known : `${known}.`;
   };
 
+  // Native only. The engine writes a label into a sentence in lower case
+  // ("avslöjats för mord", from the label "Mord"), and the book has the label
+  // as the source declares it, with its capital. So a text that starts in
+  // lower case is looked up with a capital, among the entries alone.
+  const byLoweredLabel = (text) => {
+    if (!STARTS_LOWER.test(text)) return null;
+    const label = text[0].toUpperCase() + text.slice(1);
+    const known = get(label);
+    return known === undefined ? null : lowerFirst(known, label);
+  };
+
   // What the book makes of a string it has no entry for: a pattern, then a
-  // list; a native book then tries its comma list and the missing period.
+  // list; a native book then tries its comma list, the missing period and the
+  // label behind a lowercased text. That last one answers for a value inside
+  // a pattern in both tiers, and for a whole string only in the full tier:
+  // outside the Swedish views a whole lowercase string is the English
+  // interface's, and must not be capitalised into a Swedish entry.
   const derive = (key, strong, depth) => {
     const found = matchPattern(key, strong, depth) ?? byParts(key, strong, depth);
     if (found != null || !native) return found;
-    return byCommaList(key) ?? withoutPeriod(key, strong, depth);
+    return byCommaList(key) ?? withoutPeriod(key, strong, depth) ?? (strong && depth === 0 ? null : byLoweredLabel(key));
   };
 
   // The translation of a whole string (already trimmed by the caller or not),

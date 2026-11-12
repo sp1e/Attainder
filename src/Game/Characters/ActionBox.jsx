@@ -85,9 +85,10 @@ export async function prepareInterpretedAction({ text, view, interpret, estimate
   }
   if (!answer?.ok) {
     // interpretCharacterAction gives the player a Swedish reason and keeps a transport or schema error in `detail`.
-    // A no-match reason the model wrote carries `origin: 'model'` and may be in either language.
+    // A no-match reason the model wrote carries `origin: 'model'` and may be in either language. A Swedish reason
+    // that names a person the game does not know carries `quoted`, the name, which may be English.
     if (answer?.detail) console.warn("[character action] interpret failed:", answer.detail);
-    if (answer?.origin !== "model") return { kind: "menu", reason: playerText(answer?.reason, INTERPRET_FAILED) };
+    if (answer?.origin !== "model") return { kind: "menu", reason: playerText(answer?.reason, INTERPRET_FAILED, { quoted: answer?.quoted }) };
     const reason = modelText(answer.reason, "");
     return reason ? { kind: "menu", reason, reasonFromModel: true } : { kind: "menu", reason: INTERPRET_FAILED };
   }

@@ -16,22 +16,31 @@
 
 // Words that count on their own. Function words first, then the court nouns
 // the character system writes most, with their definite forms.
+//
+// The catalog extractor (scripts/i18n/extractNativeStrings.mjs) reads Swedish
+// by this same list and by hasSwedishLetter, so the two detectors cannot know
+// different words. Its own list had "inga", "hos", "igen" and "kunde", which
+// are here now.
 export const SWEDISH_WORDS = Object.freeze([
   "och", "att", "för", "med", "inte", "som", "det", "har", "kan", "ska", "eller",
   "från", "år", "är", "ett", "på", "av", "om", "vid", "blir", "får", "sitt", "sina",
-  "mot", "utan", "efter", "ingen", "inget", "enligt", "redan", "detta", "denna",
-  "dessa", "deras", "saknar", "saknas",
+  "mot", "utan", "efter", "ingen", "inget", "inga", "enligt", "redan", "detta", "denna",
+  "dessa", "deras", "saknar", "saknas", "hos", "igen", "kunde",
   "hov", "hovet", "rike", "riket", "kung", "kungen", "drottning", "drottningen",
 ]);
 
 // Swedish function words that are English words too, or sit inside names an
 // English string carries ("Aix-en-Provence", "van den Berg"). They are common
 // in Swedish, and still left out: "under" alone matched 25 entries of the
-// English catalog. A Swedish sentence built on one of them is caught by its
-// other words or by its letters, or it is missed.
-export const SHARED_WITH_ENGLISH = Object.freeze(["en", "den", "sin", "till", "under", "i", "de", "man", "men"]);
+// English catalog, and "finns" is how English writes the Finnish people, as
+// the first word of a research pair. A Swedish sentence built on one of them
+// is caught by its other words or by its letters, or it is missed.
+export const SHARED_WITH_ENGLISH = Object.freeze(["en", "den", "sin", "till", "under", "i", "de", "man", "men", "finns"]);
 
 const SWEDISH_LETTER = /[åäöÅÄÖ]/;
+
+// The letter test alone, for the extractor.
+export const hasSwedishLetter = (text) => typeof text === "string" && SWEDISH_LETTER.test(text);
 
 // A whole word: no letter of any script on either side. \b will not do, since
 // it reads å, ä and ö as non-letters: it finds "det" inside "ödet" and never

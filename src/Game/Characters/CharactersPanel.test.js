@@ -2350,6 +2350,23 @@ test("a reason with the model's origin that is no sentence gives the Swedish sen
   assert.doesNotMatch(html, /data-no-translate/);
 });
 
+test("the unknown-person message reaches the player with an English name in it, and is the game's text for the translator", async () => {
+  const box = loadActionBox();
+  const { view } = engineCampaign();
+  const callModel = async () => ({ toolInput: { status: "unknown_person", personText: "the Duke of York" } });
+  const { result, warnings } = await withWarnings(() => box.prepareInterpretedAction({ text: "I write to the Duke of York", view,
+    interpret: ({ text, view: seen }) => interpretCharacterAction({ text, view: seen, language: "English", callModel }), estimate: async () => assert.fail() }));
+  assert.deepEqual([result.kind, result.reason, result.reasonFromModel], ["menu", "Personen finns inte i spelet: the Duke of York.", undefined]);
+  assert.deepEqual(warnings, [], "nothing was kept back");
+  // Not marked as the model's: the page translator reads the sentence by its pattern in English mode.
+  const html = renderToStaticMarkup(React.createElement(box.ActionMenu, { view, reason: result.reason, reasonFromModel: result.reasonFromModel, onPropose: () => {} }));
+  assert.match(html, /<p class="char-reason" role="status">Personen finns inte i spelet: the Duke of York\.<\/p>/);
+  // The same sentence from a caller that does not name the quote is held back, as any English is.
+  const untagged = await withWarnings(() => box.prepareInterpretedAction({ text: "x", view,
+    interpret: async () => ({ ok: false, reason: "Personen finns inte i spelet: the Duke of York.", fallback: "menu" }), estimate: async () => assert.fail() }));
+  assert.deepEqual([untagged.result.reason, untagged.warnings.length], [INTERPRET_FAILED, 1]);
+});
+
 test("a narrated outcome is marked as the model's text; the engine's default text is not", async () => {
   const box = loadActionBox();
   const { view } = engineCampaign();
@@ -2411,4 +2428,35 @@ test("the roots of the Swedish-native views carry data-native-text, and no panel
   }
   const { default: Panel } = loadPanel(baseView(), { globals: { window: { matchMedia: () => ({ matches: false }), addEventListener() {}, removeEventListener() {} }, document: { activeElement: null } } });
   assert.match(renderToStaticMarkup(React.createElement(Panel, { open: true, onClose: () => {} })), /^<div class="char-backdrop" data-char-theme="light" data-native-text="true">/);
+});
+
+// The character system also writes its public events into the world's event stream, which upstream views show.
+// Those views are English, so only the elements that hold such an event's own title and description are marked,
+// and only for an event whose source is the character system (nativeEventProps in translatorMode.js).
+test("the upstream views that show world events mark a character-system event's title and description as Swedish-native", () => {
+  const read = (file) => readFileSync(new URL(`../${file}`, import.meta.url), "utf8");
+  const uses = (code) => (code.match(/\{\.\.\.nativeEventProps\(/g) || []).length;
+  const imported = /import \{[^}]*\bnativeEventProps\b[^}]*\} from "\.\.\/\.\.\/runtime\/translatorMode\.js";/;
+
+  const timeline = read("GameUI/time.jsx");
+  assert.match(timeline, imported);
+  assert.match(timeline, /<div \{\.\.\.nativeEventProps\(event\)\} style=[^>]*>\s*\{event\.title\}\s*<\/div>/, "the Events panel's card title");
+  assert.match(timeline, /<div \{\.\.\.nativeEventProps\(event\)\} className="timeline-markdown"[^>]*>\s*<ReactMarkdown[^>]*>\{normalizeMarkdown\(event\.description\)\}/, "the Events panel's card description");
+  assert.match(timeline, /<strong \{\.\.\.nativeEventProps\(visibleEvents\[visibleEvents\.length - 1\]\)\}>\{visibleEvents\[visibleEvents\.length - 1\]\?\.title\}<\/strong>/, "the title in the stop-the-round question");
+  assert.equal(uses(timeline), 3);
+
+  const country = read("Selection/CountryPanel.jsx");
+  assert.match(country, imported);
+  assert.match(country, /<span \{\.\.\.nativeEventProps\(event\)\} style=[^>]*>\{event\.title\}<\/span>/, "the country panel's event title");
+  assert.match(country, /<div \{\.\.\.nativeEventProps\(event\)\} style=[^>]*>\s*\{String\(event\.description\)\.length > 220 /, "the country panel's event description");
+  assert.equal(uses(country), 2);
+
+  const gameMaster = read("GameUI/cheats.jsx");
+  assert.match(gameMaster, imported);
+  assert.match(gameMaster, /<div \{\.\.\.nativeEventProps\(event\)\} style=[^>]*>\{event\.title \|\| "\(untitled\)"\}<\/div>/, "the Game Master timeline's event title");
+  assert.match(gameMaster, /<div \{\.\.\.nativeEventProps\(event\)\} style=[^>]*>\s*\{event\.description\.length > 260 /, "the Game Master timeline's event description");
+  assert.equal(uses(gameMaster), 2);
+
+  // Never the whole card or a list: the date, the tags and the buttons beside the text are the English interface.
+  for (const code of [timeline, country, gameMaster]) assert.doesNotMatch(code, /data-native-text/);
 });

@@ -241,12 +241,15 @@ function validateInterpretation(view, answer) {
 }
 
 /**
- * Maps the player's free text to one catalog entry. Resolves to { ok: true, intent: { type, payload }, catalogId, mode, payload, explanation }, where a contested entry's intent is an attempt_action command, or to { ok: false, reason, fallback: 'menu' } when nothing usable came back. `explanation` is the model's own sentence, and so is a `reason` that comes with `origin: 'model'`; both are in `language`. One corrective retry follows a schema or JSON failure.
+ * Maps the player's free text to one catalog entry. Resolves to { ok: true, intent: { type, payload }, catalogId, mode, payload, explanation }, where a contested entry's intent is an attempt_action command, or to { ok: false, reason, fallback: 'menu' } when nothing usable came back. `explanation` is the model's own sentence, and so is a `reason` that comes with `origin: 'model'`; both are in `language`. A `reason` that names a person the game does not know comes with `quoted`, the name as the model read it. One corrective retry follows a schema or JSON failure.
  */
 export async function interpretCharacterAction({ text: playerText, view, language = characterLanguage(), callModel = defaultCallModel }) {
   const { systemPrompt, userText } = interpretPrompt(view, String(playerText ?? ''), language);
   const result = await askWithRetry({ callModel, systemPrompt, userText, tool: interpretTool(language), callKind: 'interpret', validate: (answer) => validateInterpretation(view, answer) });
-  if (result.unknownPerson !== undefined) return { ok: false, reason: result.unknownPerson ? `Personen finns inte i spelet: ${result.unknownPerson}.` : 'Personen finns inte i spelet.', fallback: 'menu' };
+  // The sentence is the game's own; the name in it is the model's reading of the player's text, in the player's language
+  // (English in an English session). `quoted` names that part, so playerText can let the Swedish sentence through with it.
+  if (result.unknownPerson) return { ok: false, reason: `Personen finns inte i spelet: ${result.unknownPerson}.`, quoted: result.unknownPerson, fallback: 'menu' };
+  if (result.unknownPerson !== undefined) return { ok: false, reason: 'Personen finns inte i spelet.', fallback: 'menu' };
   // A transport or schema failure carries English diagnostics; they stay in `detail` for the log, and the player gets one Swedish sentence.
   if (result.failed) return { ok: false, reason: INTERPRET_FAILED, fallback: 'menu', detail: result.reason };
   return result.value;

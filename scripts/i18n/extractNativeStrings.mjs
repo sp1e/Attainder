@@ -28,11 +28,15 @@
 //      sits beside clearly Swedish text in the same structure: another element of a list
 //      of strings, another value of a map of strings, or the same field of another row
 //      of a table ({ a: { name }, b: { name } }, rows of [id, label]); see siblingEvidence.
+//      A row may be built by a call (band(40, 'låg')): its fields are the arguments. A key
+//      is the same field wherever it stands in the file (keyEvidence).
 //      So is the value of a key or constant the code names as Swedish (nameSv, *_SV).
 //   3. SWEDISH FILE: in a file where clearly Swedish units are at least half as many as
 //      the other text-like units (swedishFile), JSX text and text attributes are taken
 //      ('Skicka', 'Avbryt'), a string that reads like prose is taken ('Ogiltigt val.'),
-//      and so is the other branch of a ternary with a Swedish branch ('ja', 'nej').
+//      and so is the other branch of a ternary with a Swedish branch ('ja', 'nej'), the
+//      other return of a function with a Swedish return ('trogen'), and a value of a
+//      constant the code names as labels (X_LABELS).
 //
 // A unit in a technical position (a comparison, a key, a string operation, a class name,
 // a console call) is never an entry, and neither is a unit that holds a literal named in
@@ -49,20 +53,26 @@ import {
   NON_TEXT_PROPS, UI_ATTRS_DOM, calleeName, choiceShape, cleanJsxText, cleanSlot, cross, jsxName, render, shapeOf, slotName,
   withVariantLimit,
 } from "./extractStrings.mjs";
+import { SWEDISH_WORDS as TRANSLATOR_WORDS, hasSwedishLetter } from "../../src/runtime/swedishText.js";
 
 const traverse = traverseModule.default ?? traverseModule;
 
 // ---------------------------------------------------------------------------
 // What counts as Swedish.
 
-export const SWEDISH_WORDS = [
-  "och", "att", "för", "med", "inte", "som", "den", "det", "har", "kan", "ska", "eller", "till", "från", "år", "hov",
-  "rike", "kung", "drottning", "är", "en", "ett", "på", "av", "om", "vid", "blir", "får", "sin", "sitt", "sina", "mot",
-  "utan", "efter", "under", "inget", "ingen", "inga", "hos", "igen", "kunde", "finns", "saknas", "saknar", "redan",
-];
+// The words are the translator's (src/runtime/swedishText.js), so the detector that
+// builds the catalog and the one that reads the page know the same Swedish. On top come
+// six words the translator leaves out because English shares them. Here they still make
+// a literal Swedish-looking: this detector also has an English veto, a prose test and the
+// file's other text to go by, and without them "Till:" and "den Store" would miss the
+// catalog. "finns" counts in full (the source has no text about the Finns); the other five
+// are weak, as before. The translator's other shared words ("i", "de", "man", "men") stay
+// out: English source text is full of them.
+const WEAK_SHARED_WORDS = ["den", "till", "en", "sin", "under"];
+export const SWEDISH_WORDS = [...TRANSLATOR_WORDS, "finns", ...WEAK_SHARED_WORDS];
 // Swedish function words that English text and codes hold too ("under way", "en-US",
 // "OM"): enough to make a literal Swedish-looking, too weak to speak for its neighbours.
-const AMBIGUOUS_WORDS = new Set(["under", "en", "den", "till", "sin", "om", "mot", "av", "med"]);
+const AMBIGUOUS_WORDS = new Set([...WEAK_SHARED_WORDS, "om", "mot", "av", "med"]);
 // Words English prose is full of and Swedish never uses: text with one of these and no
 // å, ä or ö is English, whatever else it holds.
 const ENGLISH_WORDS = [
@@ -76,14 +86,13 @@ const wholeWord = (words) => new RegExp(`(?<![\\p{L}\\p{N}_])(?:${words.join("|"
 const SWEDISH_WORD = wholeWord(SWEDISH_WORDS);
 const CLEAR_WORD = wholeWord(SWEDISH_WORDS.filter((word) => !AMBIGUOUS_WORDS.has(word)));
 const ENGLISH_WORD = wholeWord(ENGLISH_WORDS);
-const DIACRITIC = /[åäöÅÄÖ]/;
 // The English possessive, also after a slot that has been blanked: "{{to}}'s control".
 const POSSESSIVE = /(?:^|[\p{L}\s])['’]s(?!\p{L})/u;
 
-const looksEnglish = (text) => !DIACRITIC.test(text) && (ENGLISH_WORD.test(text) || POSSESSIVE.test(text));
-export const looksSwedish = (text) => DIACRITIC.test(text) || (SWEDISH_WORD.test(text) && !looksEnglish(text));
+const looksEnglish = (text) => !hasSwedishLetter(text) && (ENGLISH_WORD.test(text) || POSSESSIVE.test(text));
+export const looksSwedish = (text) => hasSwedishLetter(text) || (SWEDISH_WORD.test(text) && !looksEnglish(text));
 // Swedish beyond doubt: evidence for the text beside it (rule 2) and for its file (rule 3).
-const clearlySwedish = (text) => DIACRITIC.test(text) || (CLEAR_WORD.test(text) && !looksEnglish(text));
+const clearlySwedish = (text) => hasSwedishLetter(text) || (CLEAR_WORD.test(text) && !looksEnglish(text));
 
 const SLOT = /\{\{[^{}]+\}\}/g;
 const withoutSlots = (text) => text.replace(SLOT, " ");
@@ -412,8 +421,14 @@ const collectUnits = (ast, code) => {
 const unwrap = (node) => (node?.type === "CallExpression" && calleeName(node.callee) === "freeze" ? node.arguments[0] : node);
 const isText = (node) => node?.type === "StringLiteral" || node?.type === "TemplateLiteral";
 const members = (container) => (container.type === "ArrayExpression" ? container.elements : container.properties.map((property) => property.value)).map(unwrap);
+// A step into a call's arguments: the position, and the function called. A row built by
+// a call (band(40, 'låg'), count('svek', read, 4)) has its fields at the argument
+// positions, and only calls of the same function are rows of one table.
+const argStep = (call, index) => ({ callee: calleeName(call.callee), index });
+const isArgStep = (step) => typeof step === "object" && step !== null;
 const memberAt = (container, step) => {
   if (!container) return null;
+  if (isArgStep(step)) return container.type === "CallExpression" && calleeName(container.callee) === step.callee ? unwrap(container.arguments[step.index]) : null;
   if (container.type === "ArrayExpression") return typeof step === "number" ? unwrap(container.elements[step]) : null;
   if (container.type !== "ObjectExpression") return null;
   return unwrap(container.properties.find((property) => property.type === "ObjectProperty" && keyName(property) === step)?.value);
@@ -421,6 +436,8 @@ const memberAt = (container, step) => {
 
 // The containers above a literal, nearest first, each with the step (key or index) that
 // leads down from it: for 'x' in { a: { name: 'x' } }, [{ name-object, "name" }, { map, "a" }].
+// A call is a container only for a literal that is one of its own arguments: the row it
+// builds. A list handed to a call ends the chain there, as before.
 const containerChain = (p, limit = 4) => {
   const chain = [];
   for (let child = p, q = p.parentPath; q && chain.length < limit; child = q, q = q.parentPath) {
@@ -430,7 +447,9 @@ const containerChain = (p, limit = 4) => {
       child = q;
       q = q.parentPath;
     } else if (q.isArrayExpression()) chain.push({ container: q.node, step: q.node.elements.indexOf(child.node) });
-    else break;
+    else if (!chain.length && q.isCallExpression() && calleeName(q.node.callee) && q.node.arguments.includes(child.node)) {
+      chain.push({ container: q.node, step: argStep(q.node, q.node.arguments.indexOf(child.node)) });
+    } else break;
   }
   return chain;
 };
@@ -445,7 +464,8 @@ const startsLower = (node) => /^\p{Ll}/u.test(cellWords(node).trim());
 // the field, every member is a string (a list of words, a map of labels), and a Swedish
 // member is written like the unit: in ['command', 'Förvaltning och hushåll'] the
 // lowercase word is a key. English in the same field or list means the table is mixed
-// (an upstream table with Swedish rows added), and nothing is taken from it.
+// (an upstream table with Swedish rows added), and nothing is taken from it. The
+// arguments of one call are fields of a row, never a list of their own.
 const siblingEvidence = (unit, swedishNodes) => {
   const chain = containerChain(unit.path);
   let rowsHaveField = false;
@@ -456,7 +476,7 @@ const siblingEvidence = (unit, swedishNodes) => {
     if (cells.some((cell) => swedishNodes.has(cell))) return true;
     rowsHaveField ||= cells.length > 0;
   }
-  if (!chain.length || rowsHaveField || technicalKey(chain[0].step)) return false;
+  if (!chain.length || rowsHaveField || isArgStep(chain[0].step) || technicalKey(chain[0].step)) return false;
   const own = members(chain[0].container);
   if (!own.every(isText) || own.some((node) => looksEnglish(cellWords(node)))) return false;
   return own.some((node) => node !== unit.node && swedishNodes.has(node) && startsLower(node) === startsLower(unit.node));
@@ -487,6 +507,78 @@ const ternaryEvidence = (unit, swedishNodes) => {
   return top !== unit.path && ternaryBranches(top.node).some((node) => node !== unit.node && swedishNodes.has(node));
 };
 
+// The literals a function body returns: `return 'x'` and the branches of
+// `return a ? 'x' : 'y'`. A nested function's returns are its own.
+const returnedLiterals = (node, out = []) => {
+  if (Array.isArray(node)) node.forEach((child) => returnedLiterals(child, out));
+  else if (node && typeof node.type === "string" && !FUNCTIONS.has(node.type)) {
+    if (node.type !== "ReturnStatement") {
+      for (const key of Object.keys(node)) if (!COMMENT_KEYS.has(key)) returnedLiterals(node[key], out);
+    } else if (isText(node.argument)) out.push(node.argument);
+    else if (node.argument?.type === "ConditionalExpression") ternaryBranches(node.argument, out);
+  }
+  return out;
+};
+// A function that answers with one of several words is the same choice as a ternary,
+// written with statements (serviceTier in council.js): `if (a) return 'trogen';
+// if (b) return 'pålitlig';`. The other returns of a function with a Swedish return are
+// taken with it, unless one of them is English.
+const returnEvidence = (unit, swedishNodes) => {
+  const at = positionPath(unit.path);
+  if (at.parent?.type !== "ReturnStatement") return false;
+  const owner = at.findParent((q) => FUNCTIONS.has(q.node.type));
+  const returned = owner ? returnedLiterals(owner.node.body) : [];
+  if (returned.some((node) => looksEnglish(cellWords(node)))) return false;
+  return returned.some((node) => node !== unit.node && swedishNodes.has(node));
+};
+
+// The key a unit is the value of, when it is one: 'Kejsare' in { rulerOfficeName: 'Kejsare' }.
+const propertyKey = (unit) => {
+  const parent = unit.path.parent;
+  return !unit.jsx && parent?.type === "ObjectProperty" && parent.value === unit.node && !parent.computed ? String(keyName(parent) ?? "") : "";
+};
+// Every text value of each key in the file: key → [literal nodes].
+const fieldsByKey = (units) => {
+  const fields = new Map();
+  for (const unit of units) {
+    const key = propertyKey(unit);
+    if (key) fields.set(key, [...(fields.get(key) ?? []), unit.node]);
+  }
+  return fields;
+};
+// A key names the same field wherever it stands in the file, also in objects that are
+// not rows of one literal table: one start's court is a constant of its own and another's
+// sits inside the package table (authored-scenarios.mjs). Clearly Swedish text under the
+// same key, written like the unit, is evidence. English under that key anywhere in the
+// file means the key is mixed, and nothing is taken through it. Only a value that reads
+// like prose is taken this way ('Kejsare' beside 'Påve'): a key can also be the id of a
+// row, and under such a key a lone lowercase word is an enum value
+// ({ support: 'opinion' } beside { support: 'stöd' }).
+const keyEvidence = (unit, swedishNodes, fields) => {
+  const key = propertyKey(unit);
+  if (!key || technicalKey(key) || !unit.texts.some(proseLike)) return false;
+  const cells = (fields.get(key) ?? []).filter((node) => node !== unit.node);
+  if (cells.some((node) => looksEnglish(cellWords(node)))) return false;
+  return cells.some((node) => swedishNodes.has(node) && startsLower(node) === startsLower(unit.node));
+};
+
+// A constant the code names as labels: LOYALTY_LABELS, REALM_EFFECT_LABELS. In a Swedish
+// file the strings of its lists and maps are labels the player reads, whether or not
+// one of them carries a marker the detector knows ('statskassan', 'legitimiteten',
+// 'arméns styrka'), and whether or not a list of another length sits beside it
+// ({ five: [...], three: ['svag', 'oviss', 'stark'] }, which the sibling rule reads
+// index by index, as rows). Only a list or map of nothing but strings counts, and not
+// the rows of a table ([['intrigue', 'Intrig'], …]): which column holds the label is
+// not in the name, so the sibling rule decides there.
+const LABEL_CONSTANT = /(?:^|_)LABELS?$/;
+const labelConstantValue = (unit) => {
+  if (!LABEL_CONSTANT.test(holderName(positionPath(unit.path)) ?? "")) return false;
+  const [own, above] = containerChain(unit.path, 2);
+  if (!own || isArgStep(own.step)) return false;
+  if (own.container.type === "ArrayExpression" && above?.container.type === "ArrayExpression") return false;
+  return members(own.container).every(isText);
+};
+
 // ---------------------------------------------------------------------------
 // Rule 3: a file written in Swedish.
 
@@ -504,13 +596,16 @@ const swedishFile = (units) => {
   return clear > 0 && clear * 2 >= other;
 };
 
-// Which rule takes a unit (1, 2 or 3), or 0.
-const ruleOf = (unit, swedishNodes, swedish) => {
+// Which rule takes a unit (1, 2 or 3), or 0. `fields` is fieldsByKey of the file.
+const ruleOf = (unit, swedishNodes, swedish, fields) => {
   const words = unit.texts.map((text) => collapse(withoutSlots(text)));
   if (unit.clear || (unit.detected && !words.every(idLike) && (swedish || unit.texts.some(proseLike)))) return 1;
   if (!unit.texts.length || unit.texts.some((text) => looksEnglish(withoutSlots(text)))) return 0;
-  if (!unit.jsx && !words.some(idLike) && (declaredSwedish(unit.path) || siblingEvidence(unit, swedishNodes))) return 2;
-  return swedish && (readsAsText(unit) || (!unit.jsx && ternaryEvidence(unit, swedishNodes))) ? 3 : 0;
+  const label = !unit.jsx && !words.some(idLike);
+  if (label && (declaredSwedish(unit.path) || siblingEvidence(unit, swedishNodes) || keyEvidence(unit, swedishNodes, fields))) return 2;
+  if (!swedish) return 0;
+  if (readsAsText(unit) || (!unit.jsx && ternaryEvidence(unit, swedishNodes))) return 3;
+  return label && (labelConstantValue(unit) || returnEvidence(unit, swedishNodes)) ? 3 : 0;
 };
 
 // ---------------------------------------------------------------------------
@@ -524,12 +619,16 @@ const kindOf = (text, unit) => (text.includes("{{") ? "pattern" : unit.jsx ? "js
 
 // The Swedish-looking literals of the units that gave no entry, each once, unless a
 // unit that did give one holds the literal too (JSX text is in its run as well).
-const skippedLiterals = (dropped, held, code, file) => {
+// A literal the exclusions name is reported whatever it looks like: a Swedish file
+// takes its unmarked labels with it (rule 3), English ones too ("Politics", an upstream
+// tag), and the build has to see that the exclusion still names something.
+const skippedLiterals = (dropped, held, code, file, excluded) => {
   const seen = new Set(held);
   const out = [];
   for (const { unit, why } of dropped) {
     for (const node of unit.literals) {
-      if (seen.has(node) || !looksSwedish(literalWords(node))) continue;
+      const named = why === "excluded" && excluded.has(literalText(node, code));
+      if (seen.has(node) || !(named || looksSwedish(literalWords(node)))) continue;
       seen.add(node);
       out.push({ file, line: node.loc?.start?.line ?? 0, text: literalText(node, code), why });
     }
@@ -548,11 +647,12 @@ export const extractNativeFromSource = (code, file, excluded = new Set()) => {
   const units = withVariantLimit(VARIANT_LIMIT, () => collectUnits(ast, code));
   const swedishNodes = new Set(units.filter((unit) => unit.clear && !unit.jsx).map((unit) => unit.node));
   const swedish = swedishFile(units);
+  const fields = fieldsByKey(units);
   const taken = [];
   const dropped = [];
   const held = new Set();
   for (const unit of units) {
-    const rule = ruleOf(unit, swedishNodes, swedish);
+    const rule = ruleOf(unit, swedishNodes, swedish, fields);
     const named = rule && excluded.size && unit.literals.some((node) => excluded.has(literalText(node, code)));
     const why = !rule ? "not-swedish" : named ? "excluded" : unit.jsx ? null : technicalReason(unit.path);
     if (why) {
@@ -565,7 +665,7 @@ export const extractNativeFromSource = (code, file, excluded = new Set()) => {
     // A variant that is English from end to end is the upstream half of a mixed choice.
     for (const text of unit.texts) if (!looksEnglish(withoutSlots(text))) taken.push({ text, kind: kindOf(text, unit), rule, ref });
   }
-  return { taken, skipped: skippedLiterals(dropped, held, code, file), swedish };
+  return { taken, skipped: skippedLiterals(dropped, held, code, file, excluded), swedish };
 };
 
 // ---------------------------------------------------------------------------

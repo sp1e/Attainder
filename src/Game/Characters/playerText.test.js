@@ -56,3 +56,36 @@ test("playerText keeps its rule: a Swedish refusal passes, an English sentence a
     assert.ok(warnings[0].includes(internal));
   }
 });
+
+// The interpreter's "Personen finns inte i spelet: <name>." quotes the name the model read out of the player's
+// text. In an English session that name is English, and the game's own sentence around it is still Swedish.
+test("an engine sentence passes with the text it quotes, whatever language the quote is in", () => {
+  const sentence = "Personen finns inte i spelet: the Duke of York.";
+  const { result, warnings } = withWarnings(() => [
+    playerText(sentence, FALLBACK, { quoted: "the Duke of York" }),
+    playerText("Personen finns inte i spelet: Lord Valdemar.", FALLBACK, { quoted: "Lord Valdemar" }),
+    playerText("Personen finns inte i spelet.", FALLBACK, { quoted: "" }),
+    playerText("Hovet saknar silver.", FALLBACK, { quoted: undefined }),
+  ]);
+  assert.deepEqual(result, [sentence, "Personen finns inte i spelet: Lord Valdemar.", "Personen finns inte i spelet.", "Hovet saknar silver."]);
+  assert.deepEqual(warnings, []);
+});
+
+test("a quote excuses only itself: English around it, or a quote that is no plain name, still gives the fallback", () => {
+  const sentence = "Personen finns inte i spelet: the Duke of York.";
+  const held = [
+    [sentence, undefined, "the same sentence without its quote named"],
+    [sentence, { quoted: "the Duke" }, "English left outside the quote"],
+    ["Request failed for the Duke of York.", { quoted: "the Duke of York" }, "an internal error that happens to hold the name"],
+    ["The person is not in the game: the Duke of York.", { quoted: "the Duke of York" }, "an English sentence around the quote"],
+    ["Personen finns inte i spelet: the Duke\nof York.", { quoted: "the Duke\nof York" }, "a quote of two lines"],
+    [`Personen finns inte i spelet: ${"the ".repeat(40)}Duke.`, { quoted: `${"the ".repeat(40)}Duke` }, "a quote longer than a name"],
+    ["Personen finns inte i spelet: the Duke of York", { quoted: "the Duke of York" }, "no sentence"],
+    [sentence, { quoted: 7 }, "a quote that is no text"],
+  ];
+  for (const [message, options, why] of held) {
+    const { result, warnings } = withWarnings(() => playerText(message, FALLBACK, options));
+    assert.equal(result, FALLBACK, why);
+    assert.equal(warnings.length, 1, why);
+  }
+});

@@ -33,6 +33,7 @@ import { useRuntimeState } from "../../runtime/useRuntimeState.js";
 import { tidyProse } from "./markdownText.js";
 import { useUnseenEventIds } from "./useUnseenEvents.js";
 import { compareGameDates, formatGameDateReadable, isGameDate } from "../../runtime/gameDates.js";
+import { nativeEventProps } from "../../runtime/translatorMode.js";
 import {
     REMINDERS_LIMIT,
     REMINDER_MAX_CHARS,
@@ -2149,7 +2150,8 @@ const EventEditorView = ({ meta, header, busy, status, game, runBusy }) => {
                             <div style={{ alignItems: "flex-start", display: "flex", gap: "0.5rem", justifyContent: "space-between" }}>
                                 <div style={{ minWidth: 0 }}>
                                     <div data-no-translate style={{ color: "rgba(255,255,255,0.46)", fontSize: "0.62rem", fontWeight: 700 }}>{event.date || "Undated"}</div>
-                                    <div style={{ fontSize: "0.78rem", fontWeight: 780, lineHeight: 1.28, marginTop: "0.08rem" }}>{event.title || "(untitled)"}</div>
+                                    {/* nativeEventProps: a character-system event is Swedish court text (translatorMode.js). */}
+                                    <div {...nativeEventProps(event)} style={{ fontSize: "0.78rem", fontWeight: 780, lineHeight: 1.28, marginTop: "0.08rem" }}>{event.title || "(untitled)"}</div>
                                 </div>
                                 <div style={{ display: "flex", flexShrink: 0, gap: "0.3rem" }}>
                                     <button type="button" className="oh-tap-row" disabled={busy} style={{ ...buttonStyle, padding: "0.28rem 0.5rem" }} onClick={() => isEditing ? setEditingKey(null) : beginEdit(event, editorKey)}>{isEditing ? "Close" : "Edit"}</button>
@@ -2192,7 +2194,7 @@ const EventEditorView = ({ meta, header, busy, status, game, runBusy }) => {
                             </div>
 
                             {!isEditing && event.description && (
-                                <div style={{ color: "rgba(255,255,255,0.49)", fontSize: "0.66rem", lineHeight: 1.4, marginTop: "0.38rem" }}>
+                                <div {...nativeEventProps(event)} style={{ color: "rgba(255,255,255,0.49)", fontSize: "0.66rem", lineHeight: 1.4, marginTop: "0.38rem" }}>
                                     {event.description.length > 260 ? `${event.description.slice(0, 257)}…` : event.description}
                                 </div>
                             )}

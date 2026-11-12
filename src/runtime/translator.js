@@ -31,8 +31,9 @@
 // (nativePack.js). Native mode never asks a model, reads or writes no cache
 // and sends nothing to the server. Inside a view marked [data-native-text] the
 // whole book applies; elsewhere only its entries and strong patterns do. A
-// Swedish string the book lacks stays Swedish and is listed in
-// window.__ohI18n.missing.
+// string the book lacks stays as it is and is listed in
+// window.__ohI18n.missing: every such string inside a marked view, and outside
+// one the strings that read as Swedish.
 
 import {
   DEFAULT_LANGUAGE,
@@ -51,7 +52,7 @@ import {
   bookOptions,
   mayQueueForModel,
   tierFor,
-  translateOptions,
+  translateInTier,
   translatorMode,
   unknownTextFate,
   usesModel,
@@ -254,11 +255,14 @@ const isTranslatable = (text) => {
 };
 
 // A rendered string the book has nothing for. With a shipped pack it stays
-// English and is listed for the next pack; without one it goes to the AI,
-// unless it is Swedish. In native mode only Swedish text is listed, and
-// nothing is queued.
-const noteUnknown = (trimmed) => {
-  const fate = unknownTextFate(mode, trimmed, { packed });
+// as it is, and is listed for the next pack unless it is Swedish; without one
+// it goes to the AI, unless the language is Swedish and so is the string. In
+// native mode nothing is queued: inside a Swedish-native view (tier "full")
+// every such string is listed, outside one only Swedish text is. A caller
+// without a place on the page (a map label) gives no tier and is read as
+// outside.
+const noteUnknown = (trimmed, tier) => {
+  const fate = unknownTextFate(mode, trimmed, { packed, tier, language });
   if (fate === "missing") {
     if (missing.size < MISSING_LIMIT) missing.add(trimmed);
   } else if (fate === "model") {
@@ -281,9 +285,9 @@ const translateValue = (value, { note = true, tier = "full" } = {}) => {
   const trimmed = value.trim();
   const numericDate = isNumericDate(trimmed);
   if (!numericDate && !isTranslatable(trimmed)) return null;
-  const translated = book.translate(trimmed, translateOptions(tier));
+  const translated = translateInTier(book, trimmed, tier);
   if (translated == null) {
-    if (note && !numericDate) noteUnknown(trimmed);
+    if (note && !numericDate) noteUnknown(trimmed, tier);
     return null;
   }
   const leading = value.slice(0, value.length - value.trimStart().length);
@@ -595,11 +599,11 @@ const processQueue = async () => {
 // ---- content ----
 
 // A content string for the AI: once, and only when nothing has it yet. Never
-// in native mode, and never Swedish text (mayQueueForModel).
+// in native mode, and in Swedish never Swedish text (mayQueueForModel).
 const queueContent = (value) => {
   if (typeof value !== "string") return false;
   const trimmed = value.trim();
-  if (!trimmed || !isTranslatable(trimmed) || !mayQueueForModel(mode, trimmed)) return false;
+  if (!trimmed || !isTranslatable(trimmed) || !mayQueueForModel(mode, trimmed, language)) return false;
   if (book.has(trimmed) || pending.has(trimmed)) return false;
   pending.add(trimmed);
   return true;
@@ -720,6 +724,22 @@ export const translateLabel = (text) => {
     noteUnknown(text.trim());
   }
   return text;
+};
+
+// What the page shows for a Swedish string inside a Swedish-native view in
+// English mode: the whole native book's reading of it. For text such a view
+// searches without rendering it (the start picker matches the typed query
+// against each row's fields), so a search finds what the player reads. The
+// string comes back unchanged in every other mode, while the translator is not
+// running, and when the book has nothing for it.
+//
+// translateLabel will not do here: in pack mode it queues an unknown string
+// for the model, and the picker's fields are Swedish names. This lookup queues
+// nothing and lists nothing; the same strings are on the page, where the scan
+// lists what the book lacks.
+export const nativeReading = (text) => {
+  if (!translatorActive || mode !== "native" || typeof text !== "string") return text;
+  return book.translate(text) ?? text;
 };
 
 // Proactively queue content that exists as data but may not be rendered yet

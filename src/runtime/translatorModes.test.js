@@ -18,11 +18,12 @@ import {
   enqueueContentStrings,
   enqueueEventStrings,
   enqueueStrings,
+  nativeReading,
   startTranslator,
   stopTranslator,
   translateLabel,
 } from "./translator.js";
-import { bookOptions } from "./translatorMode.js";
+import { bookOptions, translateInTier } from "./translatorMode.js";
 
 const PUBLIC = new URL("../../public", import.meta.url);
 const readPublic = (path) => JSON.parse(fs.readFileSync(new URL(`${PUBLIC.href}${path}`), "utf8"));
@@ -34,6 +35,7 @@ const SAMPLE_CODE = {
   "Riket går i krig vid {{name}}s sida": "The realm goes to war at {{name}}'s side",
   "Sändebud": "Envoy",
   "Hovet saknar silver": "The court lacks silver",
+  "stat": "state",
 };
 
 // A real event title and a real name of historical-en.json.
@@ -41,6 +43,16 @@ const TITLE = "Hugo Capet kröns till kung";
 const TITLE_EN = "Hugh Capet is crowned king";
 
 const fileJson = async (path) => (path === NATIVE_PACK_PATHS.code ? { ...readPublic(path), ...SAMPLE_CODE } : readPublic(path));
+
+// The code layer as it will be when en.json is complete: every entry of
+// catalog-sv.json as a key, mapped to itself behind a marker (a pattern keeps
+// its slots, so it matches as the real translation will). What en.json
+// already has wins.
+const MARKER = "EN:";
+const markerCodePack = () => ({
+  ...Object.fromEntries(readPublic("/lang/attainder/catalog-sv.json").entries.map((entry) => [entry, `${MARKER}${entry}`])),
+  ...readPublic(NATIVE_PACK_PATHS.code),
+});
 
 // ---- the native book ----
 
@@ -76,14 +88,21 @@ test("a strong pattern answers in both tiers", async () => {
   }
 });
 
-test("the strong tier leaves every string of the English interface untouched", async () => {
-  const book = await nativeBook();
+test("the strong tier leaves every string of the English interface untouched, with every key of the code catalog in the book", async () => {
+  // The book as the translator makes it, with the code layer complete: each
+  // entry of catalog-sv.json is a key (markerCodePack), beside the samples.
+  const complete = async (path) => (path === NATIVE_PACK_PATHS.code ? { ...markerCodePack(), ...SAMPLE_CODE } : readPublic(path));
+  const book = createPhraseBook(bookOptions("en"));
+  book.setAll(await loadNativePack(complete));
+  assert.ok(book.patternCount() > 600, `${book.patternCount()} patterns`);
+  assert.equal(translateInTier(book, "Karl föds", "full"), `${MARKER}Charles föds`, "a real weak pattern of the catalog");
+  assert.equal(translateInTier(book, "Karl föds", "strong"), null);
   const catalog = readPublic("/lang/catalog-en.json");
   assert.ok(catalog.length > 5000);
-  const touched = catalog.filter((english) => book.translate(english, { strongOnly: true }) != null);
+  const touched = catalog.filter((english) => translateInTier(book, english, "strong") != null);
   assert.deepEqual(touched, []);
   for (const english of ["Save game", "Declare war on {{target}}", "Hot dog stand"]) {
-    assert.equal(book.translate(english, { strongOnly: true }), null, english);
+    assert.equal(translateInTier(book, english, "strong"), null, english);
   }
 });
 
@@ -183,11 +202,27 @@ const until = async (condition, what) => {
 const settle = () => new Promise((resolve) => setTimeout(resolve, 30));
 const watching = () => page.observers.filter((observer) => observer.connected).length;
 
-test("English mode: the native book translates the page in two tiers and asks no one else", async (t) => {
-  t.mock.method(console, "warn", () => {});
+// A page of its own for one test: the translator stopped, no node, observer or
+// request left from the test before, the language stored on the device and on
+// the server, and the translator stopped again when the test ends. Each test
+// below starts here, so it passes alone and in any order.
+const freshPage = (t, { language, serverPack = {} }) => {
+  stopTranslator();
+  page.elements.length = 0;
+  page.observers.length = 0;
+  page.texts.length = 0;
+  page.startupScreen = false;
+  page.reloads = 0;
+  requests.length = 0;
   installPage();
-  globalThis.localStorage = createMemoryStorage({ ui_language: "en" });
-  installFetch({ settings: { language: "en" } });
+  globalThis.localStorage = createMemoryStorage({ ui_language: language });
+  installFetch({ settings: { language }, serverPack });
+  t.mock.method(console, "warn", () => {});
+  t.after(() => stopTranslator());
+};
+
+test("English mode: the native book translates the page in two tiers and asks no one else", async (t) => {
+  freshPage(t, { language: "en" });
 
   const inside = addText("Karl dog 814", { native: true });
   const outside = addText("Karl dog 814");
@@ -195,9 +230,16 @@ test("English mode: the native book translates the page in two tiers and asks no
   const title = addText(TITLE);
   const strong = addText("Riket går i krig vid Karls sida");
   const gap = addText("Hovet har inget silver kvar");
-  const word = addText("Mål", { native: true });
+  addText("Mål", { native: true });
+  // Swedish the detector does not recognise: a gap inside a native view, the
+  // English interface for all the translator knows outside one.
+  const unmarked = addText("Under beskydd", { native: true });
+  addText("Fly till landsbygden");
+  // A Swedish entry the English interface also writes.
+  const stateInside = addText("stat", { native: true });
+  const statOutside = addText("stat");
   const free = addText("Sändebud", { skip: true });
-  const hinted = addText("Envoy", { native: true, attributes: { title: "Karl dog 814" } }).parentElement;
+  const hinted = addText("Sändebud", { native: true, attributes: { title: "Karl dog 814" } }).parentElement;
   const plain = addText("Envoy", { attributes: { title: "Karl dog 814", "aria-label": "Sändebud" } }).parentElement;
   document.title = TITLE;
 
@@ -210,6 +252,9 @@ test("English mode: the native book translates the page in two tiers and asks no
   assert.equal(title.nodeValue, TITLE_EN, "an entry applies everywhere");
   assert.equal(strong.nodeValue, "The realm goes to war at Charles's side", "and so does a strong pattern");
   assert.equal(gap.nodeValue, "Hovet har inget silver kvar", "what the book lacks stays Swedish");
+  assert.equal(unmarked.nodeValue, "Under beskydd");
+  assert.equal(stateInside.nodeValue, "state", "the Swedish word inside a native view");
+  assert.equal(statOutside.nodeValue, "stat", "the interface's own word outside one");
   assert.equal(free.nodeValue, "Sändebud", "data-no-translate is still skipped");
   assert.equal(hinted.attributes.title, "Charles died 814", "an attribute takes its element's tier");
   assert.equal(plain.attributes.title, "Karl dog 814");
@@ -220,7 +265,8 @@ test("English mode: the native book translates the page in two tiers and asks no
   const state = window.__ohI18n;
   assert.deepEqual([state.language, state.mode, state.packed], ["en", "native", false]);
   assert.equal(typeof state.rescan, "function");
-  assert.deepEqual([...state.missing].sort(), ["Hovet har inget silver kvar", "Mål"], "only Swedish text is a gap");
+  assert.deepEqual([...state.missing].sort(), ["Hovet har inget silver kvar", "Mål", "Under beskydd"],
+    "outside a native view only text the detector reads as Swedish is a gap; inside one every unknown string is");
   assert.equal(state.pending.size, 0);
 
   // The map's labels, and the calls that queue content in pack mode.
@@ -228,6 +274,13 @@ test("English mode: the native book translates the page in two tiers and asks no
   assert.equal(translateLabel("Rome"), "Rome");
   assert.equal(translateLabel("Kungen av Asturien"), "Kungen av Asturien");
   assert.ok(state.missing.has("Kungen av Asturien"), "a Swedish label the book lacks is a gap too");
+  // What a Swedish-native view searches without rendering: the whole book's
+  // reading, weak patterns included, and nothing listed for what it lacks.
+  assert.equal(nativeReading("Karl dog 814"), "Charles died 814");
+  assert.equal(nativeReading("Sändebud"), "Envoy");
+  assert.equal(nativeReading("Drottningen av Navarra"), "Drottningen av Navarra");
+  assert.equal(state.missing.has("Drottningen av Navarra"), false, "a searched field is not a rendered gap");
+  assert.equal(nativeReading(null), null);
   enqueueStrings(["Declare war on France", "A new scenario"]);
   enqueueContentStrings({ name: "The Long Peace", description: "A scenario about a long peace." });
   enqueueEventStrings([{ title: "A war begins", description: "It begins in spring." }]);
@@ -247,8 +300,14 @@ test("English mode: the native book translates the page in two tiers and asks no
 });
 
 test("a second start changes nothing; a start after a stop watches the page again", async (t) => {
-  t.mock.method(console, "warn", () => {});
+  freshPage(t, { language: "en" });
+  const early = addText("Sändebud");
+  startTranslator();
+  await until(() => watching() === 1, "the page to be watched");
+  assert.equal(early.nodeValue, "Envoy");
+
   const before = requests.length;
+  assert.ok(before > 0, "the first start asked for its files");
   startTranslator();
   await settle();
   assert.equal(page.observers.length, 1);
@@ -257,6 +316,7 @@ test("a second start changes nothing; a start after a stop watches the page agai
   stopTranslator();
   assert.equal(watching(), 0);
   assert.equal(translateLabel("Karl"), "Karl", "a stopped translator translates nothing");
+  assert.equal(nativeReading("Sändebud"), "Sändebud");
 
   const late = addText("Sändebud");
   startTranslator();
@@ -268,19 +328,18 @@ test("a second start changes nothing; a start after a stop watches the page agai
 });
 
 test("Swedish mode: the pack, then the research's Swedish under it, and no Swedish text for the model", async (t) => {
-  t.mock.method(console, "warn", () => {});
   const locators = Object.entries(readPublic(SWEDISH_HISTORICAL_PATH));
   const [locator, locatorSv] = locators[0];
   const [claimed] = locators[1];
-  requests.length = 0;
-  page.texts.length = 0;
-  page.elements.length = 0;
-  globalThis.localStorage = createMemoryStorage({ ui_language: "sv" });
-  installFetch({ settings: { language: "sv" }, serverPack: { "Save game": "Spara spelet", [claimed]: "Packens egen text" } });
+  freshPage(t, { language: "sv", serverPack: { "Save game": "Spara spelet", [claimed]: "Packens egen text" } });
 
   const button = addText("Save game", { native: true });
   const court = addText("Karl dog 814", { native: true });
   const source = addText(locator);
+  // Court text the pack was never meant to hold, and interface text it lacks.
+  addText("Hovet saknar silver.", { native: true });
+  addText("Kungen är död");
+  addText("Declare war on Mars");
 
   startTranslator();
   await until(() => watching() === 1, "the page to be watched");
@@ -296,12 +355,33 @@ test("Swedish mode: the pack, then the research's Swedish under it, and no Swedi
   assert.equal(source.nodeValue, locatorSv, "a source locator reads Swedish");
   assert.equal(translateLabel(claimed), "Packens egen text", "the pack's entry is not replaced by a research pair");
 
-  const { pending } = window.__ohI18n;
+  const { missing, pending } = window.__ohI18n;
+  assert.ok(missing.has("Declare war on Mars"), "English the pack lacks is a gap in the pack");
+  assert.equal(missing.has("Hovet saknar silver."), false, "the court's Swedish is not");
+  assert.equal(missing.has("Kungen är död"), false);
   assert.equal(translateLabel("Hovet saknar silver"), "Hovet saknar silver");
   enqueueStrings(["Krig med Danmark", "Kungen är död"]);
   assert.equal(pending.size, 0, "Swedish text is never queued for the model");
+  assert.equal(nativeReading("Save game"), "Save game", "the native reading is English mode's: the pack is not asked");
+  assert.equal(nativeReading("Frankrike"), "Frankrike");
+  assert.equal(pending.size, 0, "and a searched field is never queued");
   assert.equal(translateLabel("The Long Peace"), "The Long Peace");
   assert.deepEqual([...pending], ["The Long Peace"], "English content still is");
   stopTranslator();
   assert.equal(watching(), 0);
+});
+
+test("German mode: a name with ä or ö and English with a word Swedish shares are content for the model", async (t) => {
+  freshPage(t, { language: "de", serverPack: { "Save game": "Spiel speichern" } });
+  const button = addText("Save game");
+  startTranslator();
+  await until(() => watching() === 1, "the page to be watched");
+  assert.deepEqual([window.__ohI18n.language, window.__ohI18n.mode, window.__ohI18n.packed], ["de", "pack", true]);
+  assert.equal(button.nodeValue, "Spiel speichern");
+
+  // translateLabel queues a name the book lacks, as the map's labels do.
+  const { pending } = window.__ohI18n;
+  for (const name of ["Kärnten", "Oberösterreich", "Bingöl", "Hövsgöl", "Kung fu fighting"]) assert.equal(translateLabel(name), name);
+  assert.deepEqual([...pending], ["Kärnten", "Oberösterreich", "Bingöl", "Hövsgöl", "Kung fu fighting"], "only Swedish mode holds text back for looking Swedish");
+  stopTranslator();
 });
