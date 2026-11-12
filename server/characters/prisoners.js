@@ -264,7 +264,7 @@ export function ransomChoices(state, story, { controller }) {
   return [
     { id: 'accept', label: 'Ta emot lösen', description: `${family?.name ?? 'Familjen'} betalar ${ransom} silver till statskassan och ${person?.name ?? 'fången'} friges. Familjens huvudman minns nåden (åsikt om dig +${ACCEPT_OPINION}).`, cost: '0 silver', stress: '0',
       disabledReason: mandate || (family && family.treasury >= ransom ? '' : MESSAGES.cannotPay) },
-    { id: 'refuse', label: 'Avvisa erbjudandet', description: `${person?.name ?? 'Fången'} sitter kvar. Familjens huvudman tar det illa (åsikt om dig ${REFUSE_OPINION}).`, cost: '0 silver', stress: '0', disabledReason: mandate },
+    { id: 'refuse', label: 'Avvisa erbjudandet', description: `${person?.name ?? 'Fången'} sitter kvar. Familjens huvudman tar det illa (åsikt om dig −${-REFUSE_OPINION}).`, cost: '0 silver', stress: '0', disabledReason: mandate },
   ];
 }
 

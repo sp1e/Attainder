@@ -636,7 +636,7 @@ function resolveStory(state, story, choiceId, events, automatic = false) {
   else if (story.type === 'plot_uncovered') resolvePlotUncovered(state, story, choiceId, actionHooks(state), events);
   else if (COURT_STORY_TYPES.includes(story.type)) resolveCourtStory(state, story, choiceId, events, actionHooks(state));
   story.status = 'resolved'; story.choiceId = choiceId; story.resolvedAt = state.date;
-  logEvent(state, events, 'choice', story.title, `${choice.label}. ${choice.description}`, [story.actorId, actor?.id]);
+  logEvent(state, events, 'choice', story.title, `${choice.label}. ${choice.description}`, [...new Set([story.actorId, actor?.id])]);
 }
 
 function handleGovernanceCommand(state, command, events) {
