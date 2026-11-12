@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { campaignPromptLanguage, characterLanguage, characterLanguageCode, dataLanguageClause, isCharacterCampaign } from './characterLanguage.js';
 import { buildCharacterPromptContext } from './characterWorld.js';
+import { englishNameData, englishNames, viewNames } from './englishNames.js';
 import { createCharacterSystem } from './characters/index.js';
 
 // Every call names its language or its code, so no test reads the stored Options choice.
@@ -54,6 +55,30 @@ test('the simulation rules ask for the proposal reason in the named language', (
   assert.doesNotMatch(swedish, /The campaign data is written in Swedish/);
   assert.equal(swedish.replace('reason is a Swedish sentence', 'reason is a English sentence'), english.replace(`${dataLanguageClause('English')}\n`, ''),
     'the language name and the clause are the only differences');
+});
+
+test('the English name map lists each name the reader changes, once, and nothing in Swedish', () => {
+  const reader = (name) => ({ Karl: 'Charles', Ludvig: 'Louis' })[name] ?? name;
+  assert.deepEqual(englishNames(['Karl', 'Ludvig', 'Karl', 'Odo', '', '  ', null, 7], 'English', reader), { Karl: 'Charles', Ludvig: 'Louis' });
+  assert.deepEqual(englishNames(['Karl', 'Ludvig'], 'Swedish', reader), {});
+  assert.deepEqual(englishNames(['Karl'], 'English', () => '  '), {}, 'an empty reading is no reading');
+  assert.deepEqual(englishNameData(['Odo'], 'English', reader), {}, 'no entry gives no key');
+  assert.deepEqual(englishNameData(['Karl'], 'English', reader), { englishNames: { Karl: 'Charles' } });
+});
+
+test('a view gives its people, families and realm, then the extra names', () => {
+  const view = { people: [{ name: 'Karl' }, {}], families: [{ name: 'Karolingerna' }], identity: { realmName: 'Karls rike' } };
+  assert.deepEqual(viewNames(view, ['Ansgar']), ['Karl', undefined, 'Karolingerna', 'Karls rike', 'Ansgar']);
+  assert.deepEqual(viewNames(undefined), [undefined]);
+});
+
+test('the year prompt gives the names the player reads in English and none in Swedish', () => {
+  const state = createCharacterSystem({ seed: 321 });
+  const readName = (name) => `${name} (en)`;
+  const dataOf = (block) => JSON.parse(block.split('\n').find((line) => line.startsWith('{"date"')));
+  const english = dataOf(buildCharacterPromptContext(state, { language: 'English', readName }));
+  assert.equal(english.englishNames[english.representative.name], `${english.representative.name} (en)`);
+  assert.equal(dataOf(buildCharacterPromptContext(state, { language: 'Swedish', readName })).englishNames, undefined);
 });
 
 test('the character views write numbers with a decimal point in English and a comma in Swedish', async () => {

@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { getPortraitAsset, portraitAssetKey } from '../../runtime/characters/portraitAssets.js';
+import { nameInitials } from './nameInitials.js';
+import { readNative, useTranslatorUpdates } from '../../runtime/useTranslatorUpdates.js';
 
 const loadedImages = new Map();
 function loadPortrait(src) {
@@ -46,7 +48,8 @@ export default function Portrait({ person, size = 'normal', eager = false }) {
   const missing = Boolean(asset?.missingVariant || (loaded?.key === key && loaded.failed));
   const deceased = person?.portraitState?.lifeStatus === 'deceased' || person?.alive === false || Boolean(person?.diedAt);
   const label = asset?.label || `${person?.name || 'Okänd person'} · porträtt saknas`;
-  const initials = String(person?.name || '?').split(/\s+/).slice(0, 2).map((word) => word[0]).join('');
+  const updates = useTranslatorUpdates();
+  const initials = nameInitials(person?.name, (text) => readNative(text, updates));
   return <div ref={holder} className={`char-portrait char-portrait--${size}${deceased ? ' char-portrait--deceased' : ''}`}
     role="img" aria-label={`${label}${missing ? ' · tillfällig bild' : ''}`} aria-busy={pending}
     title={`${label}${pending ? ' · porträttet uppdateras' : missing ? ' · bildvarianten är inte tillgänglig ännu' : ''}`}

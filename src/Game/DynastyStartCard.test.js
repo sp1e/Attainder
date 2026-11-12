@@ -31,7 +31,8 @@ const createTranslatorStub = (english = {}) => {
 const loadCard = (driver, modules, translator = createTranslatorStub()) => load('./DynastyStartCard.jsx','jsx',{
   react:driver.react, './Characters/LocalModelConnect.jsx':{default:()=>null,__esModule:true},
   './AI/providerConfig.js':{isFallbackListConfigured:()=>true}, './dynastyStart.css':{}, './Characters/playerText.js':playerTextModule,
-  './HistoricalStartPicker.jsx':load('./HistoricalStartPicker.jsx','jsx',{react:driver.react,'../runtime/historicalStartPicker.js':startPicker,'../runtime/translator.js':translator.module},{window:translator.window}),
+  './HistoricalStartPicker.jsx':load('./HistoricalStartPicker.jsx','jsx',{react:driver.react,'../runtime/historicalStartPicker.js':startPicker,'../runtime/translator.js':translator.module,
+    '../runtime/useTranslatorUpdates.js':load('../runtime/useTranslatorUpdates.js','js',{react:driver.react,'./translator.js':translator.module},{window:translator.window})},{window:translator.window}),
   '../runtime/historicalStartOptions.js':{coverageLineSv},
   ...modules,
 });

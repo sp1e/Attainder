@@ -19,6 +19,7 @@ import { BorderTribes, ChoiceOdds, CouncilSeats, DemandList, ForeignRealms, Reig
 import IntrigueView from "./IntrigueView.jsx";
 import LocalModelConnect from "./LocalModelConnect.jsx";
 import Portrait from "./Portrait.jsx";
+import { nameInitials as initials } from "./nameInitials.js";
 import HistoricalRecordView, { holdFocus, useChronicleRequest } from "./HistoricalRecordView.jsx";
 
 const THEME_KEY = "oh:characters:theme";
@@ -37,7 +38,6 @@ const dateLabel = (value) => {
   const date = parseGameDate(value);
   return date ? `${date.day}/${date.month} ${Math.abs(date.year)}${date.year < 0 ? " f.Kr." : " e.Kr."}` : text(value);
 };
-const initials = (name) => String(name || "?").split(/\s+/).slice(0, 2).map((word) => word[0]).join("");
 const isAlive = (person) => person.alive !== false && !person.deathDate && !person.diedAt;
 const signed = (value) => Number(value) > 0 ? `+${number(value)}` : number(value);
 const stressLabel = (value) => /^-?\d+(\.\d+)?$/.test(String(value)) ? `Stress ${signed(value)}` : value;
