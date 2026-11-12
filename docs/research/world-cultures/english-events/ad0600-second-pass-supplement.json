@@ -1,0 +1,278 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-12",
+  "batchId": "ad0600-second-pass-2026-11-12",
+  "researchWindow": {
+    "startYear": 600,
+    "endYear": 699
+  },
+  "integrationStatus": "integrated",
+  "catalogBaseline": {
+    "commit": "2dfcdf18f1b990c8f7d0fef1b85eb7566acae64b",
+    "eventCount": 986,
+    "sourceCount": 968
+  },
+  "sources": [
+    {
+      "id": "ad0600p2en-met-shotoku-first-mission-to-china",
+      "title": "Japan, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/eaj",
+      "locator": "Key Events, entry \"600\" beginning \"Prince Shōtoku sends the first official Japanese mission\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-18 (https://web.archive.org/web/20260218000213/https://www.metmuseum.org/toah/ht/06/eaj) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "600",
+      "originalChronology": "600; second embassy seven years later.",
+      "scopedClaim": "In 600 Prince Shōtoku sends the first official Japanese mission to China; seven years later another embassy carries his letter to the Chinese emperor, signed by the ruler of the \"land of the rising sun\", the first known use of the phrase behind the name Japan.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600p2en-met-slavs-move-west",
+      "title": "Eastern Europe and Scandinavia, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/eue",
+      "locator": "Key Events, entry \"ca. 600\" beginning \"The Slavs move westward into Bohemia and Pannonia\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-03-12 (https://web.archive.org/web/20260312134939/https://www.metmuseum.org/toah/ht/06/eue) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 600",
+      "originalChronology": "About 600.",
+      "scopedClaim": "About 600 the Slavs move westward into Bohemia and Pannonia, pushed by the Avars to the east; they live in small, remote villages isolated from one another and from developments elsewhere in Europe.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600p2en-met-tiwanaku-construction-program",
+      "title": "Central and Southern Andes, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/sac",
+      "locator": "Key Events, entry \"ca. 600 A.D.\" beginning \"A major construction program begins at Tiwanaku\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-17 (https://web.archive.org/web/20260217233851/https://www.metmuseum.org/toah/ht/06/sac) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 600 A.D.",
+      "originalChronology": "About 600.",
+      "scopedClaim": "About 600 a major construction program begins at Tiwanaku: many buildings in the city center are dismantled and new stone structures built, the underground canals and drains are modified and expanded, and walled elite compounds of adobe on cut-stone foundations are built.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600p2en-met-wari-capital-of-expanding-state",
+      "title": "Central and Southern Andes, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/sac",
+      "locator": "Key Events, entry \"ca. 600 A.D.\" beginning \"Wari, built over an earlier Huarpa settlement\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-17 (https://web.archive.org/web/20260217233851/https://www.metmuseum.org/toah/ht/06/sac) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 600 A.D.",
+      "originalChronology": "About 600.",
+      "scopedClaim": "About 600 Wari, built over an earlier Huarpa settlement north of modern Ayacucho in the south-central Andes, is a prosperous metropolis and capital of a rapidly expanding state, with luxury goods made in specialized craft compounds.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600p2en-met-khosrow-ii-seizes-egypt",
+      "title": "Egypt, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/afe",
+      "locator": "Key Events, entry \"616–628\" beginning \"The Persian-Sasanian king Khosrow II\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-03-12 (https://web.archive.org/web/20260312145735/https://www.metmuseum.org/toah/ht/06/afe) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "616–628",
+      "originalChronology": "616–628; Byzantine recapture 629.",
+      "scopedClaim": "The Sasanian king Khosrow II seizes control of Egypt from the Byzantine emperor Heraclius (r. 610–41); Sasanian rule is short-lived, and the Byzantine state recaptures Egypt in 629 along with Syria and Palestine.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600p2en-met-baekje-falls",
+      "title": "Korea, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/eak",
+      "locator": "Key Events, entry \"660\" beginning \"The Tang court and its Silla ally launch\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-04-10 (https://web.archive.org/web/20260410125641/https://www.metmuseum.org/toah/ht/06/eak) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "660",
+      "originalChronology": "660.",
+      "scopedClaim": "In 660 the Tang court and Silla invade Baekje, Silla by land from the east and Tang by sea from the west; Baekje's defenses are quickly overwhelmed and its reigning monarch is captured and taken to China.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0600p2en-met-longmen-vairocana",
+      "title": "China, 500–1000 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/06/eac",
+      "locator": "Key Events, entry \"ca. 672–675\" beginning \"A colossal image of the Buddha Vairocana\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-15 (https://web.archive.org/web/20260215062742/https://www.metmuseum.org/toah/ht/06/eac) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 672–675",
+      "originalChronology": "About 672–675; Wu Zetian r. 690–705.",
+      "scopedClaim": "About 672–675 a colossal image of the Buddha Vairocana with attendants is constructed at the Longmen cave-temples under the patronage of Wu Zetian (r. 690–705), whom the Met calls the only woman in Chinese history to rule openly rather than as a regent.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-0600-shotoku-first-mission-to-china",
+      "date": {
+        "kind": "exact",
+        "startYear": 600,
+        "endYear": 600,
+        "displayEn": "600",
+        "noteEn": "The Met's Japan page dates the first official mission to 600. Its China page dates the arrival of the first Japanese envoy at the Sui court to about 607; this record follows the Japan page."
+      },
+      "titleEn": "Prince Shōtoku sends Japan's first official mission to China",
+      "summaryEn": "Prince Shōtoku sends the first official Japanese mission to China. Seven years later another embassy carries his letter to the Chinese emperor, signed by the ruler of the \"land of the rising sun\". The Met calls this the first known use of the phrase on which the name Japan is based.",
+      "geographyEn": "Japan and China",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600p2en-met-shotoku-first-mission-to-china"
+      ],
+      "selectionNote": "The Met calls it the first official Japanese mission to China; the regency itself is a separate catalog record.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-0600-slavs-move-west",
+      "date": {
+        "kind": "approximate",
+        "startYear": 600,
+        "endYear": 600,
+        "displayEn": "c. AD 600",
+        "noteEn": "The Met dates the movement to about 600 and gives no start or end year."
+      },
+      "titleEn": "Slavs move west into Bohemia and Pannonia",
+      "summaryEn": "Pushed by the Avars to their east, Slavs move west into Bohemia and Pannonia. They live in small, remote villages, isolated from one another and from developments elsewhere in Europe.",
+      "geographyEn": "Bohemia and Pannonia",
+      "category": "migration",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600p2en-met-slavs-move-west"
+      ],
+      "selectionNote": "A population movement into central Europe that the source dates to about 600.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-0600-tiwanaku-construction-program",
+      "date": {
+        "kind": "approximate",
+        "startYear": 600,
+        "endYear": 600,
+        "displayEn": "c. AD 600",
+        "noteEn": "The Met dates the start of the programme to about 600 and gives no end date."
+      },
+      "titleEn": "Tiwanaku begins a major rebuilding of its centre",
+      "summaryEn": "A major construction programme begins at Tiwanaku. In the city centre many buildings are taken down and new stone structures built, the underground canals and drains are altered and extended, and walled elite compounds of adobe brick rise on cut-stone foundations.",
+      "geographyEn": "Tiwanaku, Andes",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600p2en-met-tiwanaku-construction-program"
+      ],
+      "selectionNote": "Marks the start of a rebuilding programme at Tiwanaku's centre.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-0600-wari-capital-of-expanding-state",
+      "date": {
+        "kind": "approximate",
+        "startYear": 600,
+        "endYear": 600,
+        "displayEn": "c. AD 600",
+        "noteEn": "The Met dates this state of affairs to about 600; the entry names no founding year."
+      },
+      "titleEn": "Wari is the capital of an expanding Andean state",
+      "summaryEn": "Wari, built over an earlier Huarpa settlement north of modern Ayacucho, is a prosperous metropolis and the capital of a fast-growing state. Artists in specialised craft compounds within the city make fine textiles, polychrome ceramics, ritual objects and ornaments of shell, wood, bone and semiprecious stone.",
+      "geographyEn": "Wari, south-central Andes",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600p2en-met-wari-capital-of-expanding-state"
+      ],
+      "selectionNote": "Records Wari as a state capital and craft centre; the catalog's only Wari record dates to about 800.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-0616-khosrow-ii-seizes-egypt",
+      "date": {
+        "kind": "range",
+        "startYear": 616,
+        "endYear": 628,
+        "displayEn": "616–628",
+        "noteEn": "The Met's entry spans 616–628 and does not give a single year for the seizure."
+      },
+      "titleEn": "Khosrow II takes Egypt from Byzantium",
+      "summaryEn": "The Sasanian king Khosrow II seizes Egypt from the Byzantine emperor Heraclius. Sasanian rule there is short-lived, and the Byzantine state recaptures Egypt in 629, together with Syria and Palestine.",
+      "geographyEn": "Egypt",
+      "category": "war",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600p2en-met-khosrow-ii-seizes-egypt"
+      ],
+      "selectionNote": "A Sasanian occupation of Egypt between Byzantine rule and the Arab conquest of 639–642.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-0660-baekje-falls",
+      "date": {
+        "kind": "exact",
+        "startYear": 660,
+        "endYear": 660,
+        "displayEn": "660"
+      },
+      "titleEn": "Tang and Silla conquer Baekje",
+      "summaryEn": "The Tang court and its ally Silla invade Baekje together, Silla's army by land from the east and the Tang force by sea from the west. Baekje's defences are quickly overwhelmed, and its reigning monarch is captured and taken to China.",
+      "geographyEn": "Baekje, Korea",
+      "category": "war",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600p2en-met-baekje-falls"
+      ],
+      "selectionNote": "Records the invasion that overwhelms Baekje and takes its monarch to China; the page's next entry dates the fall of Goguryeo to 668.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-0672-longmen-vairocana",
+      "date": {
+        "kind": "range",
+        "startYear": 672,
+        "endYear": 675,
+        "displayEn": "c. AD 672–675",
+        "noteEn": "The Met gives the span as about 672–675."
+      },
+      "titleEn": "A colossal Vairocana Buddha is made at Longmen",
+      "summaryEn": "A colossal image of the Buddha Vairocana with attendant figures is made at the Longmen cave-temples under the patronage of Wu Zetian, who rules as empress from 690 to 705. The Met calls her the only woman in Chinese history to rule openly rather than as regent.",
+      "geographyEn": "Longmen, China",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0600p2en-met-longmen-vairocana"
+      ],
+      "selectionNote": "A dated imperial commission at the Longmen cave-temples.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    }
+  ]
+}

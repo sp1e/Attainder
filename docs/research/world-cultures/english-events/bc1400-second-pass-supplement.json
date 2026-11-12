@@ -1,0 +1,168 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-12",
+  "batchId": "bc1400-second-pass-2026-11-12",
+  "researchWindow": {
+    "startYear": -1400,
+    "endYear": -1301
+  },
+  "integrationStatus": "integrated",
+  "catalogBaseline": {
+    "commit": "2dfcdf18f1b990c8f7d0fef1b85eb7566acae64b",
+    "eventCount": 986,
+    "sourceCount": 968
+  },
+  "sources": [
+    {
+      "id": "bc1400p2en-met-soconusco-luxury-burials",
+      "title": "Mesoamerica and Central America, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/ca",
+      "locator": "Key Events, entry \"ca. 1400 B.C.\" beginning \"Luxury goods such as ceramic figurines\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 1400 B.C.",
+      "originalChronology": "About 1400 BC.",
+      "scopedClaim": "Luxury goods such as ceramic figurines, stone bowls and greenstone beads are placed in burials in villages of the Soconusco region.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1400p2en-met-central-mexican-figurine-villages",
+      "title": "Mesoamerica and Central America, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/ca",
+      "locator": "Key Events, entry \"ca. 1400 B.C.\" beginning \"Highland villages in central Mexico\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 1400 B.C.",
+      "originalChronology": "About 1400 BC.",
+      "scopedClaim": "Highland villages in central Mexico produce many sophisticated ceramic works, notably small, detailed female figurines; certain villages, such as Tlatilco and Tlapacoya in the Basin of Mexico and Las Bocas in western Puebla, begin to establish precedence over their neighbours.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1400p2en-met-paso-de-la-amada-celt-offering",
+      "title": "Mesoamerica and Central America, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/ca",
+      "locator": "Key Events, entry \"ca. 1400 B.C.\" beginning \"A ground and polished greenstone celt\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 1400 B.C.",
+      "originalChronology": "About 1400 BC.",
+      "scopedClaim": "A ground and polished greenstone celt is placed as a dedicatory offering below a large residential mound at Paso de la Amada, which the entry calls a major village in the highlands of Chiapas; ground stone celts are agricultural tools across much of Mesoamerica and take on a revered, symbolic role.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1400p2en-met-kassite-kudurru-boundary-stones",
+      "title": "Mesopotamia, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/wam",
+      "locator": "Key Events, entry \"ca. 1350–1000 B.C.\" beginning \"A characteristic monument of the period\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-03-12 (https://web.archive.org/web/20260312144952/https://www.metmuseum.org/toah/ht/03/wam) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 1350–1000 B.C.",
+      "originalChronology": "About 1350 to 1000 BC.",
+      "scopedClaim": "The Kassite kudurru, or boundary stone, a characteristic monument of the period, records royal grants; kudurru are inscribed in cuneiform and decorated in relief with royal and divine figures. The entry's remarks on Assyrian cylinder seals are outside this record.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1400-soconusco-luxury-burials",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1400,
+        "endYear": -1400,
+        "displayEn": "c. 1400 BC",
+        "noteEn": "The Met gives ca. 1400 BC."
+      },
+      "titleEn": "Soconusco villagers place luxury goods in burials",
+      "summaryEn": "In villages of the Soconusco region, people place luxury goods in burials. The goods include ceramic figurines, stone bowls and greenstone beads.",
+      "geographyEn": "Soconusco region, Mesoamerica",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1400p2en-met-soconusco-luxury-burials"
+      ],
+      "selectionNote": "The catalog's Soconusco records concern Paso de la Amada at 1900–1500 BC and 1650–1600 BC. This record covers grave goods in the region's villages about 1400 BC.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-bc1400-central-mexican-figurine-villages",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1400,
+        "endYear": -1400,
+        "displayEn": "c. 1400 BC",
+        "noteEn": "The Met gives ca. 1400 BC."
+      },
+      "titleEn": "Highland villages of central Mexico make detailed ceramic figurines",
+      "summaryEn": "Highland villages in central Mexico produce many sophisticated ceramic works, notably small, detailed female figurines. Some villages, such as Tlatilco and Tlapacoya in the Basin of Mexico and Las Bocas in western Puebla, begin to establish precedence over their neighbours.",
+      "geographyEn": "Basin of Mexico and western Puebla, central Mexico",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1400p2en-met-central-mexican-figurine-villages"
+      ],
+      "selectionNote": "The catalog's Chalcatzingo record (900 BC) names Tlatilco only for later Olmec-style ceramics. This record covers the figurine-making villages and their precedence over neighbours about 1400 BC.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-bc1400-paso-de-la-amada-celt-offering",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1400,
+        "endYear": -1400,
+        "displayEn": "c. 1400 BC",
+        "noteEn": "The Met gives ca. 1400 BC. It places Paso de la Amada in the highlands of Chiapas, while the catalog's two Paso de la Amada records place it on the Pacific coast in the Soconusco region. This record names only Chiapas."
+      },
+      "titleEn": "A greenstone celt is buried as an offering at Paso de la Amada",
+      "summaryEn": "A ground and polished greenstone celt, a tear-shaped axe or adze, is placed as a dedicatory offering below a large residential mound at Paso de la Amada, a major village. Ground stone celts serve as farming tools across much of Mesoamerica and take on a revered, symbolic role, thought to rest on their use as tools.",
+      "geographyEn": "Paso de la Amada, Chiapas, Mexico",
+      "category": "religion",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1400p2en-met-paso-de-la-amada-celt-offering"
+      ],
+      "selectionNote": "The catalog's Paso de la Amada records cover cacao use (1900–1500 BC) and the ballcourt (1650–1600 BC); neither range includes 1400 BC. This record covers a dedicatory offering.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-bc1350-kassite-kudurru-boundary-stones",
+      "date": {
+        "kind": "range",
+        "startYear": -1350,
+        "endYear": -1000,
+        "displayEn": "c. 1350–1000 BC",
+        "noteEn": "The Met gives an approximate span for the period in which the kudurru is a characteristic monument. The record marks no single act or year."
+      },
+      "titleEn": "Kassite boundary stones record royal grants",
+      "summaryEn": "The kudurru, or boundary stone, is a characteristic Kassite monument of this period and records royal grants. Kudurru carry cuneiform inscriptions and relief decoration showing royal and divine figures.",
+      "geographyEn": "Mesopotamia",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1400p2en-met-kassite-kudurru-boundary-stones"
+      ],
+      "selectionNote": "The catalog records the fall of the Kassite dynasty (1155 BC). This record covers the Kassite boundary stones.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    }
+  ]
+}

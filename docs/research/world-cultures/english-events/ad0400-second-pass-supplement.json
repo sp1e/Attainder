@@ -1,0 +1,131 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-12",
+  "batchId": "ad0400-second-pass-2026-11-12",
+  "researchWindow": {
+    "startYear": 400,
+    "endYear": 499
+  },
+  "integrationStatus": "integrated",
+  "catalogBaseline": {
+    "commit": "2dfcdf18f1b990c8f7d0fef1b85eb7566acae64b",
+    "eventCount": 986,
+    "sourceCount": 968
+  },
+  "sources": [
+    {
+      "id": "ad0400p2en-met-ajanta-cave-paintings-begin",
+      "title": "South Asia, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/05/ssa",
+      "locator": "Key Events, entry \"ca. 5th century A.D.\" beginning \"Ajanta cave constructions and paintings begin\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2025-10-24 (https://web.archive.org/web/20251024170128/https://www.metmuseum.org/toah/ht/05/ssa) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 5th century A.D.",
+      "originalChronology": "ca. 5th century A.D.; Harisena r. ca. 460–78 A.D.",
+      "scopedClaim": "Ajanta cave construction and painting begin in Central India under Vakataka patronage, particularly under Harisena (r. ca. 460–78); the entry calls the paintings the earliest examples of painting in India and says they depict the Buddha, his attendants and jataka scenes.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0400p2en-met-huns-under-attila-move-west",
+      "title": "Eastern Europe and Scandinavia, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/05/eue.html",
+      "locator": "Key Events, entry \"434 A.D.\" beginning \"Under the rule of Attila\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2025-08-05 (https://web.archive.org/web/20250805052554/https://www.metmuseum.org/toah/ht/05/eue.html) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "434 A.D.",
+      "originalChronology": "434 A.D.; check in Gaul 451 A.D.; Attila's death 453 A.D. The page's timeline bar gives the empire of Attila the Hun as 434–453 A.D.",
+      "scopedClaim": "Under Attila the Huns move west again in 434 and defeat many Germanic tribes throughout central Europe; an alliance of Roman and Germanic troops checks them in Gaul in 451; Attila's death in 453 weakens his empire and the Huns retreat eastward.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad0400p2en-met-monte-alban-royal-tombs-funerary-urns",
+      "title": "Mexico, 1–500 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/05/cam",
+      "locator": "Key Events, entry \"ca. 450 A.D.\" beginning \"Royal tombs at Monte Albán\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-06 (https://web.archive.org/web/20260206234300/https://www.metmuseum.org/toah/ht/05/cam) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 450 A.D.",
+      "originalChronology": "ca. 450 A.D.",
+      "scopedClaim": "Around 450 royal tombs at Monte Albán contain numerous large, complex ceramic funerary urns, thought to depict deceased ancestors; Teotihuacan has a neighborhood for people from Monte Albán, known as the Oaxaca barrio.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-0401-ajanta-cave-paintings-begin",
+      "date": {
+        "kind": "range",
+        "startYear": 401,
+        "endYear": 500,
+        "displayEn": "c. 5th century AD",
+        "noteEn": "The Met dates the start to about the fifth century and gives no start year. The range covers that century; the entry places the work under Vakataka patronage, particularly under Harisena (r. c. 460–478)."
+      },
+      "titleEn": "Construction and painting of the Ajanta caves begin",
+      "summaryEn": "Cave construction and painting begin at Ajanta in Central India under Vakataka patronage, above all under Harisena. The refined paintings, which the Met calls the earliest examples of painting in India, depict the Buddha, his attendants and scenes from the jataka tales of the Buddha's lives.",
+      "geographyEn": "Ajanta, Central India",
+      "category": "culture",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0400p2en-met-ajanta-cave-paintings-begin"
+      ],
+      "selectionNote": "The entry ranks the Ajanta paintings as the earliest painting in India and names a royal patron. No catalog or English record covers Ajanta.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-0434-huns-under-attila-move-west",
+      "date": {
+        "kind": "exact",
+        "startYear": 434,
+        "endYear": 434,
+        "displayEn": "434",
+        "noteEn": "The Met dates the westward move to 434. The same entry dates the check in Gaul to 451 and Attila's death to 453; the record's date covers the move only."
+      },
+      "titleEn": "The Huns under Attila move west",
+      "summaryEn": "Under Attila's rule the Huns move west again and defeat many Germanic tribes throughout central Europe. An alliance of Roman and Germanic troops checks Attila's cavalry in Gaul in 451. His death in 453 weakens his empire: the Huns retreat east, and the tribes they had ruled pursue their own territorial ambitions.",
+      "geographyEn": "Central Europe; Gaul",
+      "category": "war",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0400p2en-met-huns-under-attila-move-west"
+      ],
+      "selectionNote": "The catalog records the Hun advance of the 370s (ev-0370-hunnernas-framryckning-vid-donau). This record covers the westward campaign under Attila from 434.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-0450-monte-alban-royal-tombs-funerary-urns",
+      "date": {
+        "kind": "approximate",
+        "startYear": 450,
+        "endYear": 450,
+        "displayEn": "c. AD 450",
+        "noteEn": "The Met gives ca. 450 and names no single burial. It presents the urns' depiction of ancestors as an interpretation."
+      },
+      "titleEn": "Royal tombs at Monte Albán hold ceramic funerary urns",
+      "summaryEn": "Royal tombs at Monte Albán contain many large, complex ceramic funerary urns, thought to depict deceased ancestors. Teotihuacan has a neighbourhood for people from Monte Albán, known as the Oaxaca barrio.",
+      "geographyEn": "Monte Albán; Teotihuacan, Mexico",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad0400p2en-met-monte-alban-royal-tombs-funerary-urns"
+      ],
+      "selectionNote": "The catalog dates Monte Albán's rise to c. 500 BC (ev-bc0500-monte-alban-grundas) and its dominance of the valley to c. AD 50 (ev-0050-montealban-dominerar-oaxaca). This record covers the royal tombs of c. AD 450 and the Monte Albán neighbourhood in Teotihuacan.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    }
+  ]
+}
