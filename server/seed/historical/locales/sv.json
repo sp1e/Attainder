@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "sv",
   "sourceLocale": "en",
-  "sourceRevision": "5e8f0bdbaab1784492aa5f631297acfce856057c",
+  "sourceRevision": "fdad48d561829f01849b528cb9c6530a287248fb",
   "entries": [
     {
       "id": "source/e0800-east-arizona-aguateca/locator",
@@ -21298,6 +21298,402 @@
         "sourceId": "bc3300en-kaliff-oestigaard-expansion",
         "fieldPath": "/locator",
         "textSha256": "750b278a47df63573f805d6568c1469c6855065f9af83ab1b8358c9ee8009a88"
+      }
+    },
+    {
+      "id": "source/ad0400p2en-met-ajanta-cave-paintings-begin/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0400p2en-met-ajanta-cave-paintings-begin",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/ad0400p2en-met-ajanta-cave-paintings-begin/locator",
+      "en": "Key Events, entry \"ca. 5th century A.D.\" beginning \"Ajanta cave constructions and paintings begin\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2025-10-24 (https://web.archive.org/web/20251024170128/https://www.metmuseum.org/toah/ht/05/ssa) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 5th century A.D.\" som börjar \"Ajanta cave constructions and paintings begin\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2025-10-24 (https://web.archive.org/web/20251024170128/https://www.metmuseum.org/toah/ht/05/ssa), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0400p2en-met-ajanta-cave-paintings-begin",
+        "fieldPath": "/locator",
+        "textSha256": "4aed20bede598c1357a217828fb44fbc9fd18819e91e43c444324c00b22e9f79"
+      }
+    },
+    {
+      "id": "source/ad0400p2en-met-huns-under-attila-move-west/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0400p2en-met-huns-under-attila-move-west",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/ad0400p2en-met-huns-under-attila-move-west/locator",
+      "en": "Key Events, entry \"434 A.D.\" beginning \"Under the rule of Attila\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2025-08-05 (https://web.archive.org/web/20250805052554/https://www.metmuseum.org/toah/ht/05/eue.html) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"434 A.D.\" som börjar \"Under the rule of Attila\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2025-08-05 (https://web.archive.org/web/20250805052554/https://www.metmuseum.org/toah/ht/05/eue.html), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0400p2en-met-huns-under-attila-move-west",
+        "fieldPath": "/locator",
+        "textSha256": "b726be370ed077c764067a32f63836726885e15bf1a1ccc1ac8173d5989d9aa6"
+      }
+    },
+    {
+      "id": "source/ad0400p2en-met-monte-alban-royal-tombs-funerary-urns/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0400p2en-met-monte-alban-royal-tombs-funerary-urns",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/ad0400p2en-met-monte-alban-royal-tombs-funerary-urns/locator",
+      "en": "Key Events, entry \"ca. 450 A.D.\" beginning \"Royal tombs at Monte Albán\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-06 (https://web.archive.org/web/20260206234300/https://www.metmuseum.org/toah/ht/05/cam) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 450 A.D.\" som börjar \"Royal tombs at Monte Albán\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-02-06 (https://web.archive.org/web/20260206234300/https://www.metmuseum.org/toah/ht/05/cam), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0400p2en-met-monte-alban-royal-tombs-funerary-urns",
+        "fieldPath": "/locator",
+        "textSha256": "21fa7a44eece5bc7c285d5ab4bd5673f13b33cde5a1d86dc75c5959030a0ee06"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-shotoku-first-mission-to-china/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-shotoku-first-mission-to-china",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-shotoku-first-mission-to-china/locator",
+      "en": "Key Events, entry \"600\" beginning \"Prince Shōtoku sends the first official Japanese mission\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-18 (https://web.archive.org/web/20260218000213/https://www.metmuseum.org/toah/ht/06/eaj) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"600\" som börjar \"Prince Shōtoku sends the first official Japanese mission\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-02-18 (https://web.archive.org/web/20260218000213/https://www.metmuseum.org/toah/ht/06/eaj), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-shotoku-first-mission-to-china",
+        "fieldPath": "/locator",
+        "textSha256": "17f0abec782a72cbc4614d21985faa13a7d2f864bf30ab10f67d6858f753ee89"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-slavs-move-west/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-slavs-move-west",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-slavs-move-west/locator",
+      "en": "Key Events, entry \"ca. 600\" beginning \"The Slavs move westward into Bohemia and Pannonia\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-03-12 (https://web.archive.org/web/20260312134939/https://www.metmuseum.org/toah/ht/06/eue) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 600\" som börjar \"The Slavs move westward into Bohemia and Pannonia\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-03-12 (https://web.archive.org/web/20260312134939/https://www.metmuseum.org/toah/ht/06/eue), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-slavs-move-west",
+        "fieldPath": "/locator",
+        "textSha256": "2b6d0694415e2cd623bceae19fc12817144338b56632eee7d18c54512cd527b3"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-tiwanaku-construction-program/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-tiwanaku-construction-program",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-tiwanaku-construction-program/locator",
+      "en": "Key Events, entry \"ca. 600 A.D.\" beginning \"A major construction program begins at Tiwanaku\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-17 (https://web.archive.org/web/20260217233851/https://www.metmuseum.org/toah/ht/06/sac) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 600 A.D.\" som börjar \"A major construction program begins at Tiwanaku\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-02-17 (https://web.archive.org/web/20260217233851/https://www.metmuseum.org/toah/ht/06/sac), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-tiwanaku-construction-program",
+        "fieldPath": "/locator",
+        "textSha256": "1422a78b7358e4064917fdb668b72b0907a3e058f8e5b4cbb66e91a535fddacb"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-wari-capital-of-expanding-state/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-wari-capital-of-expanding-state",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-wari-capital-of-expanding-state/locator",
+      "en": "Key Events, entry \"ca. 600 A.D.\" beginning \"Wari, built over an earlier Huarpa settlement\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-17 (https://web.archive.org/web/20260217233851/https://www.metmuseum.org/toah/ht/06/sac) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 600 A.D.\" som börjar \"Wari, built over an earlier Huarpa settlement\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-02-17 (https://web.archive.org/web/20260217233851/https://www.metmuseum.org/toah/ht/06/sac), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-wari-capital-of-expanding-state",
+        "fieldPath": "/locator",
+        "textSha256": "e81f200b38e7407b14dfc3ec87bb69ab97e42f346cd2a807150b05a58f2c7b7c"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-khosrow-ii-seizes-egypt/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-khosrow-ii-seizes-egypt",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-khosrow-ii-seizes-egypt/locator",
+      "en": "Key Events, entry \"616–628\" beginning \"The Persian-Sasanian king Khosrow II\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-03-12 (https://web.archive.org/web/20260312145735/https://www.metmuseum.org/toah/ht/06/afe) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"616–628\" som börjar \"The Persian-Sasanian king Khosrow II\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-03-12 (https://web.archive.org/web/20260312145735/https://www.metmuseum.org/toah/ht/06/afe), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-khosrow-ii-seizes-egypt",
+        "fieldPath": "/locator",
+        "textSha256": "4f5cfc1f810c7cd1f3e581165f556070f864a74899a945def028e509ef7a6aa9"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-baekje-falls/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-baekje-falls",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-baekje-falls/locator",
+      "en": "Key Events, entry \"660\" beginning \"The Tang court and its Silla ally launch\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-04-10 (https://web.archive.org/web/20260410125641/https://www.metmuseum.org/toah/ht/06/eak) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"660\" som börjar \"The Tang court and its Silla ally launch\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-04-10 (https://web.archive.org/web/20260410125641/https://www.metmuseum.org/toah/ht/06/eak), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-baekje-falls",
+        "fieldPath": "/locator",
+        "textSha256": "44c23fd1a43bf936ed65cf56055694b1d16dba48b8349bf8169596a4113084dd"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-longmen-vairocana/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-longmen-vairocana",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/ad0600p2en-met-longmen-vairocana/locator",
+      "en": "Key Events, entry \"ca. 672–675\" beginning \"A colossal image of the Buddha Vairocana\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-15 (https://web.archive.org/web/20260215062742/https://www.metmuseum.org/toah/ht/06/eac) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 672–675\" som börjar \"A colossal image of the Buddha Vairocana\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-02-15 (https://web.archive.org/web/20260215062742/https://www.metmuseum.org/toah/ht/06/eac), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "ad0600p2en-met-longmen-vairocana",
+        "fieldPath": "/locator",
+        "textSha256": "b1310c6de67101cefc7880c397e33ca568743840e6c45aa89eacee6159d56f5a"
+      }
+    },
+    {
+      "id": "source/bc0600p2en-met-baltic-face-urns/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0600p2en-met-baltic-face-urns",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/bc0600p2en-met-baltic-face-urns/locator",
+      "en": "Key Events, entry \"ca. 600–400 B.C.\" beginning \"The peoples of the Baltic create\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-14 (https://web.archive.org/web/20260214183438/https://www.metmuseum.org/toah/ht/04/eue) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 600–400 B.C.\" som börjar \"The peoples of the Baltic create\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-02-14 (https://web.archive.org/web/20260214183438/https://www.metmuseum.org/toah/ht/04/eue), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0600p2en-met-baltic-face-urns",
+        "fieldPath": "/locator",
+        "textSha256": "cd5a095c47daae358667f62b6f6793b9ef83f2f18390c73156330aacaa2cb068"
+      }
+    },
+    {
+      "id": "source/bc0600p2en-met-mangaasi-pottery-vanuatu/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0600p2en-met-mangaasi-pottery-vanuatu",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/bc0600p2en-met-mangaasi-pottery-vanuatu/locator",
+      "en": "Key Events, entry \"ca. 600 B.C.–1200 A.D.\" beginning \"Art of the Manga’asi period\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-10 (https://web.archive.org/web/20260210185509/https://www.metmuseum.org/toah/ht/04/oc) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 600 B.C.–1200 A.D.\" som börjar \"Art of the Manga’asi period\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-02-10 (https://web.archive.org/web/20260210185509/https://www.metmuseum.org/toah/ht/04/oc), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc0600p2en-met-mangaasi-pottery-vanuatu",
+        "fieldPath": "/locator",
+        "textSha256": "967b9e8712bd67e20fe6dbc96f8f7c4c8fd8d6ad3980db0863f1c35b8ffa582b"
+      }
+    },
+    {
+      "id": "source/bc1400p2en-met-soconusco-luxury-burials/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1400p2en-met-soconusco-luxury-burials",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/bc1400p2en-met-soconusco-luxury-burials/locator",
+      "en": "Key Events, entry \"ca. 1400 B.C.\" beginning \"Luxury goods such as ceramic figurines\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 1400 B.C.\" som börjar \"Luxury goods such as ceramic figurines\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1400p2en-met-soconusco-luxury-burials",
+        "fieldPath": "/locator",
+        "textSha256": "e02502c5f93f9245a468b087207adf05d5454c5c8940c47d0d935cc1f1099b7a"
+      }
+    },
+    {
+      "id": "source/bc1400p2en-met-central-mexican-figurine-villages/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1400p2en-met-central-mexican-figurine-villages",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/bc1400p2en-met-central-mexican-figurine-villages/locator",
+      "en": "Key Events, entry \"ca. 1400 B.C.\" beginning \"Highland villages in central Mexico\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 1400 B.C.\" som börjar \"Highland villages in central Mexico\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1400p2en-met-central-mexican-figurine-villages",
+        "fieldPath": "/locator",
+        "textSha256": "0d944cf6502cc443d23e39529a15e172282de0967e8b4af8172519b0f282c0a2"
+      }
+    },
+    {
+      "id": "source/bc1400p2en-met-paso-de-la-amada-celt-offering/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1400p2en-met-paso-de-la-amada-celt-offering",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/bc1400p2en-met-paso-de-la-amada-celt-offering/locator",
+      "en": "Key Events, entry \"ca. 1400 B.C.\" beginning \"A ground and polished greenstone celt\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 1400 B.C.\" som börjar \"A ground and polished greenstone celt\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1400p2en-met-paso-de-la-amada-celt-offering",
+        "fieldPath": "/locator",
+        "textSha256": "5bfbdc7fada6a98f6f2726ca5e23d82e856915f4696bc5b28a07273ca0cbb4b9"
+      }
+    },
+    {
+      "id": "source/bc1400p2en-met-kassite-kudurru-boundary-stones/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1400p2en-met-kassite-kudurru-boundary-stones",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/bc1400p2en-met-kassite-kudurru-boundary-stones/locator",
+      "en": "Key Events, entry \"ca. 1350–1000 B.C.\" beginning \"A characteristic monument of the period\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-03-12 (https://web.archive.org/web/20260312144952/https://www.metmuseum.org/toah/ht/03/wam) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 1350–1000 B.C.\" som börjar \"A characteristic monument of the period\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-03-12 (https://web.archive.org/web/20260312144952/https://www.metmuseum.org/toah/ht/03/wam), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1400p2en-met-kassite-kudurru-boundary-stones",
+        "fieldPath": "/locator",
+        "textSha256": "20fd8a608ad2e8529aec24cbd89426670f37c6bb981d355ffa0f0cce42c9316a"
+      }
+    },
+    {
+      "id": "source/bc1600p2en-met-coatzacoalcos-villages-flourish/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1600p2en-met-coatzacoalcos-villages-flourish",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/bc1600p2en-met-coatzacoalcos-villages-flourish/locator",
+      "en": "Key Events, entry \"ca. 1600 B.C.\" beginning \"Villages along the Coatzacoalcos River drainage\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 1600 B.C.\" som börjar \"Villages along the Coatzacoalcos River drainage\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1600p2en-met-coatzacoalcos-villages-flourish",
+        "fieldPath": "/locator",
+        "textSha256": "e3341a6aa8c3f6888152c44ad44ef1607bc4e777cb92338d8dab10356b0d5f0d"
+      }
+    },
+    {
+      "id": "source/bc1600p2en-met-lipari-villages-move-upslope/institution",
+      "en": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "sv": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1600p2en-met-lipari-villages-move-upslope",
+        "fieldPath": "/institution",
+        "textSha256": "42b3edc4b9481c4e7a375e78f74e408d43eb23a6e053cdbbde68ab8549002abb"
+      }
+    },
+    {
+      "id": "source/bc1600p2en-met-lipari-villages-move-upslope/locator",
+      "en": "Key Events, entry \"ca. 1600–1500 B.C.\" beginning \"During the Capo-Grazini phase\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2025-11-23 (https://web.archive.org/web/20251123130706/https://www.metmuseum.org/toah/ht/03/eus) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "sv": "Key Events, posten \"ca. 1600–1500 B.C.\" som börjar \"During the Capo-Grazini phase\". Endast sidtext; inga bilder eller länkade objektposter granskade. Läst från Internet Archive-kopian av denna URL daterad 2025-11-23 (https://web.archive.org/web/20251123130706/https://www.metmuseum.org/toah/ht/03/eus), eftersom originalsidan gav HTTP 429 från en säkerhetskontroll hos Vercel 2026-11-12.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "sourceId": "bc1600p2en-met-lipari-villages-move-upslope",
+        "fieldPath": "/locator",
+        "textSha256": "54e3dc6c01d4347214039ad57b1c91c2e76394f52f7a8099e08165249c20b877"
       }
     }
   ]

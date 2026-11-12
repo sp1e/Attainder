@@ -2,7 +2,7 @@
   "schema": "attainder-historical-translations-v1",
   "locale": "en",
   "sourceLocale": "sv",
-  "sourceRevision": "5e8f0bdbaab1784492aa5f631297acfce856057c",
+  "sourceRevision": "fdad48d561829f01849b528cb9c6530a287248fb",
   "entries": [
     {
       "id": "event/ev-0800-bronsgjutning-i-igbo-ukwu/date/displaySv",
@@ -68213,6 +68213,985 @@
         "eventId": "ev-bc3300-yamnaya-initial-expansion",
         "fieldPath": "/geographySv",
         "textSha256": "be459c451a9e4c04a086ef0b5aa7be8dcf99ca7d24b17f309befc6cedfbff8ff"
+      }
+    },
+    {
+      "id": "event/ev-0401-ajanta-cave-paintings-begin/date/displaySv",
+      "sv": "cirka femte århundradet e.Kr.",
+      "en": "c. 5th century AD",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0401-ajanta-cave-paintings-begin",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "7ad4415d937592684366cd87ff97ff65ee7de748af1cf84e6fb97d513eec298c"
+      }
+    },
+    {
+      "id": "event/ev-0401-ajanta-cave-paintings-begin/date/noteSv",
+      "sv": "Met daterar början till omkring det femte århundradet och anger inget startår. Intervallet täcker det århundradet; posten placerar arbetet under vakatakiskt beskydd, främst under Harisena (regerade cirka 460–478).",
+      "en": "The Met dates the start to about the fifth century and gives no start year. The range covers that century; the entry places the work under Vakataka patronage, particularly under Harisena (r. c. 460–478).",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0401-ajanta-cave-paintings-begin",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b16cd5029b958e1751b6648794bca7eeaa44b2c11330b70973d05fe9f603e194"
+      }
+    },
+    {
+      "id": "event/ev-0401-ajanta-cave-paintings-begin/titleSv",
+      "sv": "Bygget och målningen av Ajantagrottorna börjar",
+      "en": "Construction and painting of the Ajanta caves begin",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0401-ajanta-cave-paintings-begin",
+        "fieldPath": "/titleSv",
+        "textSha256": "810a65b77ea5282b3333ab2c8762e71732a5875a976c0f02a1f22c68654cb477"
+      }
+    },
+    {
+      "id": "event/ev-0401-ajanta-cave-paintings-begin/summarySv",
+      "sv": "Grottbyggen och målningar börjar i Ajanta i centrala Indien under vakatakiskt beskydd, främst under Harisena. De förfinade målningarna, som Met kallar de tidigaste exemplen på måleri i Indien, visar Buddha, hans följeslagare och scener ur jatakaberättelserna om Buddhas liv.",
+      "en": "Cave construction and painting begin at Ajanta in Central India under Vakataka patronage, above all under Harisena. The refined paintings, which the Met calls the earliest examples of painting in India, depict the Buddha, his attendants and scenes from the jataka tales of the Buddha's lives.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0401-ajanta-cave-paintings-begin",
+        "fieldPath": "/summarySv",
+        "textSha256": "7dfefe786ddb6a3c3840a1c33985ac3bd78041dd777018c9aa544d063040f69e"
+      }
+    },
+    {
+      "id": "event/ev-0401-ajanta-cave-paintings-begin/geographySv",
+      "sv": "Ajanta, centrala Indien",
+      "en": "Ajanta, Central India",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0401-ajanta-cave-paintings-begin",
+        "fieldPath": "/geographySv",
+        "textSha256": "ef26eded25ebc54f5aec5467a5ac8f0e7964bba16427136f50f46f8111cad02e"
+      }
+    },
+    {
+      "id": "event/ev-0434-huns-under-attila-move-west/date/displaySv",
+      "sv": "434",
+      "en": "434",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0434-huns-under-attila-move-west",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "ea415bf50eb65ade427d8d80222df4627e28cd9a418f830bfd9b81d4149bb2ab"
+      }
+    },
+    {
+      "id": "event/ev-0434-huns-under-attila-move-west/date/noteSv",
+      "sv": "Met daterar förflyttningen västerut till 434. Samma post daterar motgången i Gallien till 451 och Attilas död till 453; postens datum gäller bara förflyttningen.",
+      "en": "The Met dates the westward move to 434. The same entry dates the check in Gaul to 451 and Attila's death to 453; the record's date covers the move only.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0434-huns-under-attila-move-west",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "e35a3986f5f08c63b15a9e9b2b387cad4cfdaf09773c8a77d458bfbeb58d6eab"
+      }
+    },
+    {
+      "id": "event/ev-0434-huns-under-attila-move-west/titleSv",
+      "sv": "Hunnerna under Attila drar västerut",
+      "en": "The Huns under Attila move west",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0434-huns-under-attila-move-west",
+        "fieldPath": "/titleSv",
+        "textSha256": "a5f6ff067390b1fcfae246a33f7f8dd0b4cef2f12790b5b5dd2eb3900684f692"
+      }
+    },
+    {
+      "id": "event/ev-0434-huns-under-attila-move-west/summarySv",
+      "sv": "Under Attilas styre drar hunnerna åter västerut och besegrar många germanska stammar i hela Centraleuropa. En allians av romerska och germanska trupper hejdar Attilas kavalleri i Gallien 451. Hans död 453 försvagar hans välde: hunnerna drar sig tillbaka österut, och de stammar de hade härskat över fullföljer sina egna territoriella ambitioner.",
+      "en": "Under Attila's rule the Huns move west again and defeat many Germanic tribes throughout central Europe. An alliance of Roman and Germanic troops checks Attila's cavalry in Gaul in 451. His death in 453 weakens his empire: the Huns retreat east, and the tribes they had ruled pursue their own territorial ambitions.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0434-huns-under-attila-move-west",
+        "fieldPath": "/summarySv",
+        "textSha256": "d58588ce8dc7c93cc14f235097b61e94619ead0386b635b7397cee87bcd44126"
+      }
+    },
+    {
+      "id": "event/ev-0434-huns-under-attila-move-west/geographySv",
+      "sv": "Centraleuropa; Gallien",
+      "en": "Central Europe; Gaul",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0434-huns-under-attila-move-west",
+        "fieldPath": "/geographySv",
+        "textSha256": "b309077646100d1948ec6c4bb621080e3637e33edfd7cf3c28189ed5ca7f3eb9"
+      }
+    },
+    {
+      "id": "event/ev-0450-monte-alban-royal-tombs-funerary-urns/date/displaySv",
+      "sv": "cirka 450 e.Kr.",
+      "en": "c. AD 450",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0450-monte-alban-royal-tombs-funerary-urns",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "d3999ae2c3815f9c0d7aa8bc10ccc94deb4d8eb590b61bba653d50307512bf0a"
+      }
+    },
+    {
+      "id": "event/ev-0450-monte-alban-royal-tombs-funerary-urns/date/noteSv",
+      "sv": "Met anger cirka 450 och nämner ingen enskild begravning. Att urnorna föreställer förfäder framställs som en tolkning.",
+      "en": "The Met gives ca. 450 and names no single burial. It presents the urns' depiction of ancestors as an interpretation.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0450-monte-alban-royal-tombs-funerary-urns",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "ce7c2845d901ebe1043a6b902470c7a4c84a5175a0ab02cff5274d5d0e788ab2"
+      }
+    },
+    {
+      "id": "event/ev-0450-monte-alban-royal-tombs-funerary-urns/titleSv",
+      "sv": "Kungagravar i Monte Albán rymmer begravningsurnor av keramik",
+      "en": "Royal tombs at Monte Albán hold ceramic funerary urns",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0450-monte-alban-royal-tombs-funerary-urns",
+        "fieldPath": "/titleSv",
+        "textSha256": "118e4da608883dcd6bb9afac8384274d750a5bf1b715f511b561f5d58fa78d2b"
+      }
+    },
+    {
+      "id": "event/ev-0450-monte-alban-royal-tombs-funerary-urns/summarySv",
+      "sv": "Kungagravar i Monte Albán innehåller många stora, komplexa begravningsurnor av keramik, som tros föreställa avlidna förfäder. I Teotihuacan finns ett kvarter för människor från Monte Albán, kallat Oaxacakvarteret.",
+      "en": "Royal tombs at Monte Albán contain many large, complex ceramic funerary urns, thought to depict deceased ancestors. Teotihuacan has a neighbourhood for people from Monte Albán, known as the Oaxaca barrio.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0450-monte-alban-royal-tombs-funerary-urns",
+        "fieldPath": "/summarySv",
+        "textSha256": "82c9de4f933ab848e53c0a26210beff4a9aca72a4095691bdb57d9178a076fd7"
+      }
+    },
+    {
+      "id": "event/ev-0450-monte-alban-royal-tombs-funerary-urns/geographySv",
+      "sv": "Monte Albán; Teotihuacan, Mexiko",
+      "en": "Monte Albán; Teotihuacan, Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0450-monte-alban-royal-tombs-funerary-urns",
+        "fieldPath": "/geographySv",
+        "textSha256": "1d7b29d214c84885501f67ce77946fc3f1a8ea7c6e1a4c0ebfa1931ce1745e9c"
+      }
+    },
+    {
+      "id": "event/ev-0600-shotoku-first-mission-to-china/date/displaySv",
+      "sv": "600",
+      "en": "600",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-shotoku-first-mission-to-china",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "284b7e6d788f363f910f7beb1910473e23ce9d6c871f1ce0f31f22a982d48ad4"
+      }
+    },
+    {
+      "id": "event/ev-0600-shotoku-first-mission-to-china/date/noteSv",
+      "sv": "Mets Japansida daterar den första officiella beskickningen till 600. Dess Kinasida daterar det första japanska sändebudets ankomst till Suihovet till omkring 607; den här posten följer Japansidan.",
+      "en": "The Met's Japan page dates the first official mission to 600. Its China page dates the arrival of the first Japanese envoy at the Sui court to about 607; this record follows the Japan page.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-shotoku-first-mission-to-china",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "7c47816774fafb338dfa2eb59e90af46c3a53f2fe50d8953fa6fd46a788de200"
+      }
+    },
+    {
+      "id": "event/ev-0600-shotoku-first-mission-to-china/titleSv",
+      "sv": "Prins Shōtoku sänder Japans första officiella beskickning till Kina",
+      "en": "Prince Shōtoku sends Japan's first official mission to China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-shotoku-first-mission-to-china",
+        "fieldPath": "/titleSv",
+        "textSha256": "7456172717d486b8f6668594f5cbb9f1d678fb568d6cf75d867f64b6340db9fd"
+      }
+    },
+    {
+      "id": "event/ev-0600-shotoku-first-mission-to-china/summarySv",
+      "sv": "Prins Shōtoku sänder den första officiella japanska beskickningen till Kina. Sju år senare för en annan beskickning hans brev till den kinesiske kejsaren, undertecknat av härskaren över \"den uppgående solens land\". Met kallar detta den första kända användningen av den fras som namnet Japan bygger på.",
+      "en": "Prince Shōtoku sends the first official Japanese mission to China. Seven years later another embassy carries his letter to the Chinese emperor, signed by the ruler of the \"land of the rising sun\". The Met calls this the first known use of the phrase on which the name Japan is based.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-shotoku-first-mission-to-china",
+        "fieldPath": "/summarySv",
+        "textSha256": "0db8df9e2845d2464792af47bb6aa2a58ede0a6486160987655580333744277a"
+      }
+    },
+    {
+      "id": "event/ev-0600-shotoku-first-mission-to-china/geographySv",
+      "sv": "Japan och Kina",
+      "en": "Japan and China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-shotoku-first-mission-to-china",
+        "fieldPath": "/geographySv",
+        "textSha256": "eeba418fce1a22deefe31544596a78ac50f031592246bfa8ba49d60a80084eb8"
+      }
+    },
+    {
+      "id": "event/ev-0600-slavs-move-west/date/displaySv",
+      "sv": "cirka 600 e.Kr.",
+      "en": "c. AD 600",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-slavs-move-west",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b9a91ec620abcba977eb3835125bc33af2faf83e394851e0ddbab552fcab8684"
+      }
+    },
+    {
+      "id": "event/ev-0600-slavs-move-west/date/noteSv",
+      "sv": "Met daterar förflyttningen till omkring 600 och anger inget start- eller slutår.",
+      "en": "The Met dates the movement to about 600 and gives no start or end year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-slavs-move-west",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "8860c1cdb2b710a033da70accb5a567bbeb3b20fe555df9711a8366029f43d0e"
+      }
+    },
+    {
+      "id": "event/ev-0600-slavs-move-west/titleSv",
+      "sv": "Slaver flyttar västerut till Böhmen och Pannonien",
+      "en": "Slavs move west into Bohemia and Pannonia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-slavs-move-west",
+        "fieldPath": "/titleSv",
+        "textSha256": "3cca53940cc1f23faf74ea951517a1c6a121c7c25de735eabb0fbef6a6d4d8cd"
+      }
+    },
+    {
+      "id": "event/ev-0600-slavs-move-west/summarySv",
+      "sv": "Pressade av avarerna i öster flyttar slaver västerut till Böhmen och Pannonien. De bor i små, avlägsna byar, isolerade från varandra och från utvecklingen i övriga Europa.",
+      "en": "Pushed by the Avars to their east, Slavs move west into Bohemia and Pannonia. They live in small, remote villages, isolated from one another and from developments elsewhere in Europe.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-slavs-move-west",
+        "fieldPath": "/summarySv",
+        "textSha256": "92346ab26ed3950e8c333cc440a2fcc028ed4c646478f43e2d7ac1722b154841"
+      }
+    },
+    {
+      "id": "event/ev-0600-slavs-move-west/geographySv",
+      "sv": "Böhmen och Pannonien",
+      "en": "Bohemia and Pannonia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-slavs-move-west",
+        "fieldPath": "/geographySv",
+        "textSha256": "ff08d6c7f0b166bd4a7dceaf5a3ecd3004c7b124578915011bbc1a5d1b6a2ddf"
+      }
+    },
+    {
+      "id": "event/ev-0600-tiwanaku-construction-program/date/displaySv",
+      "sv": "cirka 600 e.Kr.",
+      "en": "c. AD 600",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-tiwanaku-construction-program",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b9a91ec620abcba977eb3835125bc33af2faf83e394851e0ddbab552fcab8684"
+      }
+    },
+    {
+      "id": "event/ev-0600-tiwanaku-construction-program/date/noteSv",
+      "sv": "Met daterar programmets början till omkring 600 och anger inget slutdatum.",
+      "en": "The Met dates the start of the programme to about 600 and gives no end date.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-tiwanaku-construction-program",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "f17400fad8a320a3f2b0528b2d37ec2b676b6e6a9001cffa9864379a2128151c"
+      }
+    },
+    {
+      "id": "event/ev-0600-tiwanaku-construction-program/titleSv",
+      "sv": "Tiwanaku inleder en stor ombyggnad av sitt centrum",
+      "en": "Tiwanaku begins a major rebuilding of its centre",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-tiwanaku-construction-program",
+        "fieldPath": "/titleSv",
+        "textSha256": "74fbeebe021c788d0f4533fe55ac11e63cd06d9e468465c32c233d0c675b91c9"
+      }
+    },
+    {
+      "id": "event/ev-0600-tiwanaku-construction-program/summarySv",
+      "sv": "Ett stort byggprogram inleds i Tiwanaku. I stadens centrum rivs många byggnader och nya stenbyggnader uppförs, de underjordiska kanalerna och avloppen byggs om och ut, och inhägnade elitkomplex av soltorkat tegel reser sig på grunder av huggen sten.",
+      "en": "A major construction programme begins at Tiwanaku. In the city centre many buildings are taken down and new stone structures built, the underground canals and drains are altered and extended, and walled elite compounds of adobe brick rise on cut-stone foundations.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-tiwanaku-construction-program",
+        "fieldPath": "/summarySv",
+        "textSha256": "20fa8188db93c079ee3064ee96363b58c18e241662873e000bf459e43a1beeb5"
+      }
+    },
+    {
+      "id": "event/ev-0600-tiwanaku-construction-program/geographySv",
+      "sv": "Tiwanaku, Anderna",
+      "en": "Tiwanaku, Andes",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-tiwanaku-construction-program",
+        "fieldPath": "/geographySv",
+        "textSha256": "5b9feef1486f3836b7fa7765475d7a1c63e13791a8acb173e289fb71c9a10569"
+      }
+    },
+    {
+      "id": "event/ev-0600-wari-capital-of-expanding-state/date/displaySv",
+      "sv": "cirka 600 e.Kr.",
+      "en": "c. AD 600",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-wari-capital-of-expanding-state",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "b9a91ec620abcba977eb3835125bc33af2faf83e394851e0ddbab552fcab8684"
+      }
+    },
+    {
+      "id": "event/ev-0600-wari-capital-of-expanding-state/date/noteSv",
+      "sv": "Met daterar detta tillstånd till omkring 600; posten nämner inget grundläggningsår.",
+      "en": "The Met dates this state of affairs to about 600; the entry names no founding year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-wari-capital-of-expanding-state",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "23eb016483466aa790a02e30effe70c3e47c9ad8943e27e3b86e30ca2ca24915"
+      }
+    },
+    {
+      "id": "event/ev-0600-wari-capital-of-expanding-state/titleSv",
+      "sv": "Wari är huvudstad i en växande andinsk stat",
+      "en": "Wari is the capital of an expanding Andean state",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-wari-capital-of-expanding-state",
+        "fieldPath": "/titleSv",
+        "textSha256": "fd90be5855f84d567ff9e023e9f77b9fe06257224cf61b9d650ef96e102a0921"
+      }
+    },
+    {
+      "id": "event/ev-0600-wari-capital-of-expanding-state/summarySv",
+      "sv": "Wari, byggt över en äldre huarpabosättning norr om dagens Ayacucho, är en välmående storstad och huvudstad i en snabbt växande stat. Konstnärer i specialiserade verkstadskomplex i staden tillverkar fina textilier, polykrom keramik, rituella föremål och prydnadsföremål av snäckskal, trä, ben och halvädelsten.",
+      "en": "Wari, built over an earlier Huarpa settlement north of modern Ayacucho, is a prosperous metropolis and the capital of a fast-growing state. Artists in specialised craft compounds within the city make fine textiles, polychrome ceramics, ritual objects and ornaments of shell, wood, bone and semiprecious stone.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-wari-capital-of-expanding-state",
+        "fieldPath": "/summarySv",
+        "textSha256": "d386cb635e8de9fdb6d8886f7a77aea838647522a42322f481856984e2fc33fe"
+      }
+    },
+    {
+      "id": "event/ev-0600-wari-capital-of-expanding-state/geographySv",
+      "sv": "Wari, södra centrala Anderna",
+      "en": "Wari, south-central Andes",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0600-wari-capital-of-expanding-state",
+        "fieldPath": "/geographySv",
+        "textSha256": "dfb642e03f12f669e2931c540b79b45040108f719eebf7a6c1ed7a12a415a594"
+      }
+    },
+    {
+      "id": "event/ev-0616-khosrow-ii-seizes-egypt/date/displaySv",
+      "sv": "616–628",
+      "en": "616–628",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0616-khosrow-ii-seizes-egypt",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "33a4b78b103cef13b4a2ee2782554ae075d713b3f8c16b457e3b032734f7ca71"
+      }
+    },
+    {
+      "id": "event/ev-0616-khosrow-ii-seizes-egypt/date/noteSv",
+      "sv": "Mets post omfattar 616–628 och anger inget enskilt år för erövringen.",
+      "en": "The Met's entry spans 616–628 and does not give a single year for the seizure.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0616-khosrow-ii-seizes-egypt",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9d15a98b568028a9d7adcc8eb0d36186118e117851f12e0c014dbd302226f703"
+      }
+    },
+    {
+      "id": "event/ev-0616-khosrow-ii-seizes-egypt/titleSv",
+      "sv": "Khosrow II tar Egypten från Bysans",
+      "en": "Khosrow II takes Egypt from Byzantium",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0616-khosrow-ii-seizes-egypt",
+        "fieldPath": "/titleSv",
+        "textSha256": "6c4e110385cd949b8f92627c9ed02fd05e7cf77c28033300e3d49927f8460912"
+      }
+    },
+    {
+      "id": "event/ev-0616-khosrow-ii-seizes-egypt/summarySv",
+      "sv": "Den sasanidiske kungen Khosrow II tar Egypten från den bysantinske kejsaren Herakleios. Det sasanidiska styret där blir kortvarigt, och den bysantinska staten återtar Egypten 629, tillsammans med Syrien och Palestina.",
+      "en": "The Sasanian king Khosrow II seizes Egypt from the Byzantine emperor Heraclius. Sasanian rule there is short-lived, and the Byzantine state recaptures Egypt in 629, together with Syria and Palestine.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0616-khosrow-ii-seizes-egypt",
+        "fieldPath": "/summarySv",
+        "textSha256": "5db8f47cf3b34bb444be0da5c755ef0364434e1799e74aa143fed9f3d828ea66"
+      }
+    },
+    {
+      "id": "event/ev-0616-khosrow-ii-seizes-egypt/geographySv",
+      "sv": "Egypten",
+      "en": "Egypt",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0616-khosrow-ii-seizes-egypt",
+        "fieldPath": "/geographySv",
+        "textSha256": "ca8d14e809a510e17d2f9c0d4e2c74c40f7e77c2e97bd71f3dbae109eff27335"
+      }
+    },
+    {
+      "id": "event/ev-0660-baekje-falls/date/displaySv",
+      "sv": "660",
+      "en": "660",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0660-baekje-falls",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "fc9e91cc78e1817d80b4ba8c2dc9a638d0c57959825ee34f5e3d7688ad80dfb9"
+      }
+    },
+    {
+      "id": "event/ev-0660-baekje-falls/titleSv",
+      "sv": "Tang och Silla erövrar Baekje",
+      "en": "Tang and Silla conquer Baekje",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0660-baekje-falls",
+        "fieldPath": "/titleSv",
+        "textSha256": "d71b064d64aacd867f6387dd120d655ce49a33885d59b4965d6287a366ba913e"
+      }
+    },
+    {
+      "id": "event/ev-0660-baekje-falls/summarySv",
+      "sv": "Tanghovet och dess allierade Silla invaderar Baekje tillsammans, Sillas här till lands från öster och Tangstyrkan sjövägen från väster. Baekjes försvar krossas snabbt, och dess regerande monark tas till fånga och förs till Kina.",
+      "en": "The Tang court and its ally Silla invade Baekje together, Silla's army by land from the east and the Tang force by sea from the west. Baekje's defences are quickly overwhelmed, and its reigning monarch is captured and taken to China.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0660-baekje-falls",
+        "fieldPath": "/summarySv",
+        "textSha256": "34d1566f8c5d8fca4d4a845592515c51fc65738c2da0bb1e231ee92b27401036"
+      }
+    },
+    {
+      "id": "event/ev-0660-baekje-falls/geographySv",
+      "sv": "Baekje, Korea",
+      "en": "Baekje, Korea",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0660-baekje-falls",
+        "fieldPath": "/geographySv",
+        "textSha256": "886a277161ee57a9039a0ea8df852f664f7be78f8f360af851eb995e8d48359d"
+      }
+    },
+    {
+      "id": "event/ev-0672-longmen-vairocana/date/displaySv",
+      "sv": "cirka 672–675 e.Kr.",
+      "en": "c. AD 672–675",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0672-longmen-vairocana",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "64963a749c1be90a75365728ad93f33aa3d16e8ddb4641ea3a4f0bebf455b2b1"
+      }
+    },
+    {
+      "id": "event/ev-0672-longmen-vairocana/date/noteSv",
+      "sv": "Met anger tidsspannet som omkring 672–675.",
+      "en": "The Met gives the span as about 672–675.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0672-longmen-vairocana",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "adb9cac63cf33b08c6d6d41d1c7632eb326b47bf12f118c1ad8525934025ea1d"
+      }
+    },
+    {
+      "id": "event/ev-0672-longmen-vairocana/titleSv",
+      "sv": "En kolossal Vairocanabuddha skapas i Longmen",
+      "en": "A colossal Vairocana Buddha is made at Longmen",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0672-longmen-vairocana",
+        "fieldPath": "/titleSv",
+        "textSha256": "a4586da91972b0bb56fb6446ba5562d2216f78544e149dd68cb421410ac69570"
+      }
+    },
+    {
+      "id": "event/ev-0672-longmen-vairocana/summarySv",
+      "sv": "En kolossal bild av buddha Vairocana med figurer av följeslagare skapas i grottemplen i Longmen med Wu Zetian som beskyddare. Hon härskar som kejsarinna 690–705, och Met kallar henne den enda kvinnan i Kinas historia som har härskat öppet och inte som regent.",
+      "en": "A colossal image of the Buddha Vairocana with attendant figures is made at the Longmen cave-temples under the patronage of Wu Zetian, who rules as empress from 690 to 705. The Met calls her the only woman in Chinese history to rule openly rather than as regent.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0672-longmen-vairocana",
+        "fieldPath": "/summarySv",
+        "textSha256": "c156e89884c94798132a23426b50ee01a9dd1c11baf34a169afff2e363a283e0"
+      }
+    },
+    {
+      "id": "event/ev-0672-longmen-vairocana/geographySv",
+      "sv": "Longmen, Kina",
+      "en": "Longmen, China",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-0672-longmen-vairocana",
+        "fieldPath": "/geographySv",
+        "textSha256": "dd22ab3f65f1c65f17531f8cd6900a687d0c9088f4b1449fcaa878dc130f5aba"
+      }
+    },
+    {
+      "id": "event/ev-bc0600-baltic-face-urns/date/displaySv",
+      "sv": "cirka 600–400 f.Kr.",
+      "en": "c. 600–400 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0600-baltic-face-urns",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "06a83c3311e19249ee579463156a086c4a4b14199aee980fc764671d5f9ca1c2"
+      }
+    },
+    {
+      "id": "event/ev-bc0600-baltic-face-urns/date/noteSv",
+      "sv": "Met anger cirka 600–400 f.Kr. för seden. Intervallet omfattar en gravtradition och daterar ingen enskild handling.",
+      "en": "The Met gives ca. 600–400 BC for the custom. The range spans a burial tradition and dates no single act.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0600-baltic-face-urns",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "9a7047cc3aa66738c9f5ba570f90a9a6687cb7233b4c6b5a0044c167127577b6"
+      }
+    },
+    {
+      "id": "event/ev-bc0600-baltic-face-urns/titleSv",
+      "sv": "Baltiska folk tillverkar ansiktsurnor för brandgravar",
+      "en": "Baltic peoples make face urns for cremation burials",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0600-baltic-face-urns",
+        "fieldPath": "/titleSv",
+        "textSha256": "cf7e0a6b0f9e09529655c051c40cc5235cee01ceb6bfb6d3b9f8025f95cab974"
+      }
+    },
+    {
+      "id": "event/ev-bc0600-baltic-face-urns/summarySv",
+      "sv": "Folken kring Östersjön skapar en särskild typ av urna för brandgravar. Dessa päronformade kärl, som kallas \"ansiktsurnor\", har modellerade människoansikten och ristad dekor som tycks visa personlig utrustning, som vapen eller kammar, eller efterlikna dekoren på rikt mönstrade dräkter.",
+      "en": "The peoples of the Baltic create a special type of urn for cremation burial. Nicknamed \"face urns\", these pear-shaped vessels carry modelled human faces and incised decoration that seems to show personal equipment, such as weapons or combs, or to copy the designs of richly patterned garments.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0600-baltic-face-urns",
+        "fieldPath": "/summarySv",
+        "textSha256": "8b17d0b2bc68487454c43994d5d301808b250511744e2cf3f545bb8c983a89e0"
+      }
+    },
+    {
+      "id": "event/ev-bc0600-baltic-face-urns/geographySv",
+      "sv": "Östersjöområdet",
+      "en": "Baltic region",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0600-baltic-face-urns",
+        "fieldPath": "/geographySv",
+        "textSha256": "67d69f5770cb32765f87b1066c1f7e66171cb91a13de6b1a861a43f2ce88e3f4"
+      }
+    },
+    {
+      "id": "event/ev-bc0600-mangaasi-pottery-vanuatu/date/displaySv",
+      "sv": "cirka 600 f.Kr.–1200 e.Kr.",
+      "en": "c. 600 BC–AD 1200",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0600-mangaasi-pottery-vanuatu",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "23a4377d791724c12dbc957e87540887ea28cfc84c608f04dbd87bb64e74c77b"
+      }
+    },
+    {
+      "id": "event/ev-bc0600-mangaasi-pottery-vanuatu/date/noteSv",
+      "sv": "Met daterar Manga'asiperioden till cirka 600 f.Kr.–1200 e.Kr. Intervallet markerar en lång konstperiod och daterar ingen händelse till ett enskilt år.",
+      "en": "The Met dates the Manga'asi period to ca. 600 BC–AD 1200. The range marks a long art period and dates no event in any single year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0600-mangaasi-pottery-vanuatu",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "341504c58e1f0d4761cc46b07b76db9a2789c3ef066d7ecdcf63231a207d9d5a"
+      }
+    },
+    {
+      "id": "event/ev-bc0600-mangaasi-pottery-vanuatu/titleSv",
+      "sv": "Manga'asikeramiken blomstrar i Vanuatu",
+      "en": "Manga'asi pottery flourishes in Vanuatu",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0600-mangaasi-pottery-vanuatu",
+        "fieldPath": "/titleSv",
+        "textSha256": "787d823a4a77af14fb90bea58d7be1a1a13df2013f17cb2d97ca73673e8044c5"
+      }
+    },
+    {
+      "id": "event/ev-bc0600-mangaasi-pottery-vanuatu/summarySv",
+      "sv": "Konsten under Manga'asiperioden blomstrar i Vanuatu, präglad av lerkärl med ristade och pålagda geometriska motiv. En fragmentarisk lerfigur av ett djur är också känd från perioden.",
+      "en": "Art of the Manga'asi period flourishes in Vanuatu, marked by pottery vessels with incised and applied geometric motifs. A fragmentary pottery figure of an animal is also known from the period.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0600-mangaasi-pottery-vanuatu",
+        "fieldPath": "/summarySv",
+        "textSha256": "26f7edbe6c47d976e362b186f547c12956ba309b87fcb2d80ef8c9f8e969914e"
+      }
+    },
+    {
+      "id": "event/ev-bc0600-mangaasi-pottery-vanuatu/geographySv",
+      "sv": "Vanuatu",
+      "en": "Vanuatu",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc0600-mangaasi-pottery-vanuatu",
+        "fieldPath": "/geographySv",
+        "textSha256": "c5b2a6de9d5ae20a21a551d160d6e6bdb1322f7dbe94c6f30d1f88f092af50a1"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-soconusco-luxury-burials/date/displaySv",
+      "sv": "cirka 1400 f.Kr.",
+      "en": "c. 1400 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-soconusco-luxury-burials",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e2ec7b6372c1c3d2a0f3aa7bcbd79ff1c7a6ce9f1d517aa0ee1347a594ed41ff"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-soconusco-luxury-burials/date/noteSv",
+      "sv": "Met anger cirka 1400 f.Kr.",
+      "en": "The Met gives ca. 1400 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-soconusco-luxury-burials",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b30dc092f167357f3bdaf3c0ce9a1eaab8722344fd6d208179efe5dc0cc7b27a"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-soconusco-luxury-burials/titleSv",
+      "sv": "Bybor i Soconusco lägger lyxföremål i gravar",
+      "en": "Soconusco villagers place luxury goods in burials",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-soconusco-luxury-burials",
+        "fieldPath": "/titleSv",
+        "textSha256": "26422fc43714653cd43312ddd2cf437293c70e30d6ba32afd94cac5f7aeff10f"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-soconusco-luxury-burials/summarySv",
+      "sv": "I byar i Soconuscoregionen lägger människor lyxföremål i gravar. Föremålen omfattar keramikfigurer, stenskålar och pärlor av grönsten.",
+      "en": "In villages of the Soconusco region, people place luxury goods in burials. The goods include ceramic figurines, stone bowls and greenstone beads.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-soconusco-luxury-burials",
+        "fieldPath": "/summarySv",
+        "textSha256": "1da81de1aafd8b9d987d2d54f65eddc13181a0821ac6b3ea9dc409e7f7db3d14"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-soconusco-luxury-burials/geographySv",
+      "sv": "Soconuscoregionen, Mesoamerika",
+      "en": "Soconusco region, Mesoamerica",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-soconusco-luxury-burials",
+        "fieldPath": "/geographySv",
+        "textSha256": "826b801d4330f12d73ceb11078b338d3cb6f0af64ddda0d37e3d3f3785d06951"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-central-mexican-figurine-villages/date/displaySv",
+      "sv": "cirka 1400 f.Kr.",
+      "en": "c. 1400 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-central-mexican-figurine-villages",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e2ec7b6372c1c3d2a0f3aa7bcbd79ff1c7a6ce9f1d517aa0ee1347a594ed41ff"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-central-mexican-figurine-villages/date/noteSv",
+      "sv": "Met anger cirka 1400 f.Kr.",
+      "en": "The Met gives ca. 1400 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-central-mexican-figurine-villages",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b30dc092f167357f3bdaf3c0ce9a1eaab8722344fd6d208179efe5dc0cc7b27a"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-central-mexican-figurine-villages/titleSv",
+      "sv": "Höglandsbyar i centrala Mexiko tillverkar detaljrika keramikfigurer",
+      "en": "Highland villages of central Mexico make detailed ceramic figurines",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-central-mexican-figurine-villages",
+        "fieldPath": "/titleSv",
+        "textSha256": "9405ce2230c8df4505fdd5407471c08287fb78e347213d548e4919ba88e0c461"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-central-mexican-figurine-villages/summarySv",
+      "sv": "Höglandsbyar i centrala Mexiko framställer många avancerade keramikarbeten, framför allt små, detaljrika kvinnofigurer. Några byar, som Tlatilco och Tlapacoya i Mexikobäckenet och Las Bocas i västra Puebla, börjar vinna företräde framför sina grannar.",
+      "en": "Highland villages in central Mexico produce many sophisticated ceramic works, notably small, detailed female figurines. Some villages, such as Tlatilco and Tlapacoya in the Basin of Mexico and Las Bocas in western Puebla, begin to establish precedence over their neighbours.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-central-mexican-figurine-villages",
+        "fieldPath": "/summarySv",
+        "textSha256": "f09b43bdf70c07ce10491cef79e1d6dbe96a7976f2b950d28db555971a5dfe09"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-central-mexican-figurine-villages/geographySv",
+      "sv": "Mexikobäckenet och västra Puebla, centrala Mexiko",
+      "en": "Basin of Mexico and western Puebla, central Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-central-mexican-figurine-villages",
+        "fieldPath": "/geographySv",
+        "textSha256": "e8524c367d7325e8ac59e5fc3395f3897cd52eabc959241f0dff7dbb0817ad5e"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-paso-de-la-amada-celt-offering/date/displaySv",
+      "sv": "cirka 1400 f.Kr.",
+      "en": "c. 1400 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-paso-de-la-amada-celt-offering",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "e2ec7b6372c1c3d2a0f3aa7bcbd79ff1c7a6ce9f1d517aa0ee1347a594ed41ff"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-paso-de-la-amada-celt-offering/date/noteSv",
+      "sv": "Met anger cirka 1400 f.Kr. Met placerar Paso de la Amada i Chiapas högland, medan katalogens två poster om Paso de la Amada placerar byn vid Stillahavskusten i Soconuscoregionen. Den här posten nämner bara Chiapas.",
+      "en": "The Met gives ca. 1400 BC. It places Paso de la Amada in the highlands of Chiapas, while the catalog's two Paso de la Amada records place it on the Pacific coast in the Soconusco region. This record names only Chiapas.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-paso-de-la-amada-celt-offering",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "5f9628508159526b21024d57233c4583fb72ddfe42c94ff5a7151145d31eadf4"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-paso-de-la-amada-celt-offering/titleSv",
+      "sv": "En yxa av grönsten grävs ned som offer i Paso de la Amada",
+      "en": "A greenstone celt is buried as an offering at Paso de la Amada",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-paso-de-la-amada-celt-offering",
+        "fieldPath": "/titleSv",
+        "textSha256": "086c94e2c946f4062eed2fb898da3500c4b97eb1784b34944713ae92d9e05560"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-paso-de-la-amada-celt-offering/summarySv",
+      "sv": "En slipad och polerad yxa av grönsten, ett droppformat yxblad eller en tväryxa, läggs ned som invigningsoffer under en stor bostadshög i Paso de la Amada, en betydande by. Slipade stenyxor tjänar som jordbruksredskap i stora delar av Mesoamerika och får en vördad, symbolisk roll, som tros bygga på deras användning som redskap.",
+      "en": "A ground and polished greenstone celt, a tear-shaped axe or adze, is placed as a dedicatory offering below a large residential mound at Paso de la Amada, a major village. Ground stone celts serve as farming tools across much of Mesoamerica and take on a revered, symbolic role, thought to rest on their use as tools.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-paso-de-la-amada-celt-offering",
+        "fieldPath": "/summarySv",
+        "textSha256": "5286c03d3a5c809770bd4b8628bf352c52b2d828f84fb2798ec05f2e5495e94f"
+      }
+    },
+    {
+      "id": "event/ev-bc1400-paso-de-la-amada-celt-offering/geographySv",
+      "sv": "Paso de la Amada, Chiapas, Mexiko",
+      "en": "Paso de la Amada, Chiapas, Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1400-paso-de-la-amada-celt-offering",
+        "fieldPath": "/geographySv",
+        "textSha256": "a08274c893278eae0332c521d29eb0cc70154f7862c0ce9ed4095b013607c878"
+      }
+    },
+    {
+      "id": "event/ev-bc1350-kassite-kudurru-boundary-stones/date/displaySv",
+      "sv": "cirka 1350–1000 f.Kr.",
+      "en": "c. 1350–1000 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1350-kassite-kudurru-boundary-stones",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "90a5d189fa002eec4b1c061ee78cf5d44443322c1a2c80a739c02dba451d6bfc"
+      }
+    },
+    {
+      "id": "event/ev-bc1350-kassite-kudurru-boundary-stones/date/noteSv",
+      "sv": "Met anger ett ungefärligt tidsspann för den period då kudurrun är ett karakteristiskt monument. Posten markerar ingen enskild handling eller något enskilt år.",
+      "en": "The Met gives an approximate span for the period in which the kudurru is a characteristic monument. The record marks no single act or year.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1350-kassite-kudurru-boundary-stones",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "b6e2916a70327682bf7108f5dca32142a269669062210d6923974709a1f6fb90"
+      }
+    },
+    {
+      "id": "event/ev-bc1350-kassite-kudurru-boundary-stones/titleSv",
+      "sv": "Kassitiska gränsstenar dokumenterar kungliga förläningar",
+      "en": "Kassite boundary stones record royal grants",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1350-kassite-kudurru-boundary-stones",
+        "fieldPath": "/titleSv",
+        "textSha256": "a8325639101a7e47c11d431beacfd970d43a305a56fcf6f2fad5fba980c81498"
+      }
+    },
+    {
+      "id": "event/ev-bc1350-kassite-kudurru-boundary-stones/summarySv",
+      "sv": "Kudurrun, eller gränsstenen, är ett karakteristiskt kassitiskt monument under denna period och dokumenterar kungliga förläningar. Kudurrur bär kilskriftsinskrifter och reliefdekor som visar kungliga och gudomliga gestalter.",
+      "en": "The kudurru, or boundary stone, is a characteristic Kassite monument of this period and records royal grants. Kudurru carry cuneiform inscriptions and relief decoration showing royal and divine figures.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1350-kassite-kudurru-boundary-stones",
+        "fieldPath": "/summarySv",
+        "textSha256": "4e013c5667076a1d9e081b463719c98b59933a00b498a92a2f4e38017195b79d"
+      }
+    },
+    {
+      "id": "event/ev-bc1350-kassite-kudurru-boundary-stones/geographySv",
+      "sv": "Mesopotamien",
+      "en": "Mesopotamia",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1350-kassite-kudurru-boundary-stones",
+        "fieldPath": "/geographySv",
+        "textSha256": "fec4a12001ff9f477fbbd5ae5dab1608b86a76c63ba1644e0f0fa65106c4aa6e"
+      }
+    },
+    {
+      "id": "event/ev-bc1600-coatzacoalcos-villages-flourish/date/displaySv",
+      "sv": "cirka 1600 f.Kr.",
+      "en": "c. 1600 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1600-coatzacoalcos-villages-flourish",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "945fd11385eb9ceb040001ddac342f9376db1fd419d9e528e943c7514dfdd28f"
+      }
+    },
+    {
+      "id": "event/ev-bc1600-coatzacoalcos-villages-flourish/date/noteSv",
+      "sv": "Met anger cirka 1600 f.Kr.",
+      "en": "The Met gives ca. 1600 BC.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1600-coatzacoalcos-villages-flourish",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "6f49d7f39ccd0d06110723d76b29a885d302812e63cd7dbda3a00f283f8d1bb5"
+      }
+    },
+    {
+      "id": "event/ev-bc1600-coatzacoalcos-villages-flourish/titleSv",
+      "sv": "Byar blomstrar längs Coatzacoalcosfloden",
+      "en": "Villages flourish along the Coatzacoalcos River",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1600-coatzacoalcos-villages-flourish",
+        "fieldPath": "/titleSv",
+        "textSha256": "39f08ad2f43e2940822ca57a804f1066b1ef432d8d75eab80e3b54501686df91"
+      }
+    },
+    {
+      "id": "event/ev-bc1600-coatzacoalcos-villages-flourish/summarySv",
+      "sv": "Byar i Coatzacoalcosflodens avrinningsområde vid Mexikanska golfen blomstrar. De drar nytta av flodens rika resurser och bördiga jordar.",
+      "en": "Villages along the Coatzacoalcos River drainage on the Gulf of Mexico flourish. They draw on abundant river resources and fertile soils.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1600-coatzacoalcos-villages-flourish",
+        "fieldPath": "/summarySv",
+        "textSha256": "1b1d60108b1f120ff9c4fffdbe57d51d7e7316f19cb92153d778bdc7f46a1423"
+      }
+    },
+    {
+      "id": "event/ev-bc1600-coatzacoalcos-villages-flourish/geographySv",
+      "sv": "Coatzacoalcosflodens avrinningsområde, Mexikos golfkust",
+      "en": "Coatzacoalcos River drainage, Gulf coast of Mexico",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1600-coatzacoalcos-villages-flourish",
+        "fieldPath": "/geographySv",
+        "textSha256": "c97c431d6091cacb3a637d3807ec447d0bec4e1483b1b51e4099ae1ba6ffe17a"
+      }
+    },
+    {
+      "id": "event/ev-bc1600-lipari-villages-move-upslope/date/displaySv",
+      "sv": "cirka 1600–1500 f.Kr.",
+      "en": "c. 1600–1500 BC",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1600-lipari-villages-move-upslope",
+        "fieldPath": "/date/displaySv",
+        "textSha256": "50730407973368bc791a9ed3ba0d4a7a3b1300dabf1cded75de68b345cec2dda"
+      }
+    },
+    {
+      "id": "event/ev-bc1600-lipari-villages-move-upslope/date/noteSv",
+      "sv": "Met anger ett ungefärligt århundrade och stavar fasen \"Capo-Grazini\".",
+      "en": "The Met gives an approximate century and spells the phase \"Capo-Grazini\".",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1600-lipari-villages-move-upslope",
+        "fieldPath": "/date/noteSv",
+        "textSha256": "af5720eca0c56e7f95a28265ac656e5cfb9484e10f22519a2c7a960ad806007d"
+      }
+    },
+    {
+      "id": "event/ev-bc1600-lipari-villages-move-upslope/titleSv",
+      "sv": "Byborna på Lipari lämnar kusten och flyttar upp på de vulkaniska höjderna",
+      "en": "Lipari villagers leave the shore for the volcanic heights",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1600-lipari-villages-move-upslope",
+        "fieldPath": "/titleSv",
+        "textSha256": "0d22dc7d28ea2bff17d0fb3c341f5efa605ddb8eca09d4bd62cfd52054582467"
+      }
+    },
+    {
+      "id": "event/ev-bc1600-lipari-villages-move-upslope/summarySv",
+      "sv": "Under Capo-Grazinifasen på Liparisöarna överger människor platser nära havet. De flyttar sina byar till säkrare lägen på de vulkaniska sluttningarna eller topparna.",
+      "en": "During the Capo-Grazini phase on the Lipari Islands, people abandon sites near the sea. They move their villages to safer positions on the volcanic slopes or summits.",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1600-lipari-villages-move-upslope",
+        "fieldPath": "/summarySv",
+        "textSha256": "44f16fd1f562e6f015d9ece7cedbe1f8b31464ce4f0c58b6452518127de2d728"
+      }
+    },
+    {
+      "id": "event/ev-bc1600-lipari-villages-move-upslope/geographySv",
+      "sv": "Liparisöarna",
+      "en": "Lipari Islands",
+      "source": {
+        "path": "server/seed/historical/events/catalog.json",
+        "eventId": "ev-bc1600-lipari-villages-move-upslope",
+        "fieldPath": "/geographySv",
+        "textSha256": "a418a45928c25b68ca6e52669f6005ef64bbd294909badeae4c244b53882be47"
       }
     }
   ]
