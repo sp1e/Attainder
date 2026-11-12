@@ -16,3 +16,15 @@ export const englishDateLabel = (text) => {
   if (!month || day < 1 || day > 31) return null;
   return match[4] === "e" ? `${day} ${month} AD ${match[3]}` : `${day} ${month} ${match[3]} BC`;
 };
+
+// The engine writes a number into its sentences with a decimal comma ("−13,8 silver"). One or two digits after
+// the comma are a decimal; three would be an English thousands group and are left alone.
+const DECIMAL_COMMA = /^([+−-]?\d+),(\d{1,2})$/;
+export const englishDecimal = (text) => {
+  if (typeof text !== "string") return null;
+  const match = DECIMAL_COMMA.exec(text.trim());
+  return match ? `${match[1]}.${match[2]}` : null;
+};
+
+// What English mode reads by rule: a date label or a decimal number.
+export const englishValue = (text) => englishDateLabel(text) ?? englishDecimal(text);

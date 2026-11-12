@@ -235,12 +235,17 @@ const APPLY = {
   },
 };
 
-// What the request asks for, as it reads after "bad <person>".
-const ASKED = Object.freeze({ support: 'om stöd', reveal_secret: 'att berätta en hemlighet', pledge: 'om ett löfte' });
+// Who asked whom for what, one whole sentence per request. Each is written out so that the English reading
+// has a pattern with words of its own for it: "X bad Y" followed by a looked-up phrase has none.
+const ASKED = Object.freeze({
+  support: (asker, asked) => `${asker} bad ${asked} om stöd`,
+  reveal_secret: (asker, asked) => `${asker} bad ${asked} att berätta en hemlighet`,
+  pledge: (asker, asked) => `${asker} bad ${asked} om ett löfte`,
+});
 
 // Title and text of the chronicle event. `empty` marks a reveal that was accepted but had no secret to give.
 function describe(representative, speaker, kind, accepted, empty) {
-  const asked = `${representative.name} bad ${speaker.name} ${ASKED[kind]}`;
+  const asked = ASKED[kind](representative.name, speaker.name);
   if (!accepted) return { title: `${speaker.name} avvisar förfrågan`, text: `${asked} men fick nej.` };
   if (kind === 'support') return { title: `${speaker.name} ger sitt stöd`, text: `${asked} och fick ja.` };
   if (kind === 'pledge') return { title: `${speaker.name} ger ett löfte`, text: `${asked} och fick ja.` };

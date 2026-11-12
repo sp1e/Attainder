@@ -65,3 +65,20 @@ Run with Playwright Chromium against `vite --mode web` on port 5199 (campaign in
 The run found and fixed: a start row read as one year (`AD Byzantine Empire · 800`), a weak pattern around known values of many words (the marriage candidates), and Swedish view text listed as gaps of the Swedish pack.
 
 Known limits seen in this run: the web landing page and the demo notice are upstream English text outside the language pack, and in Swedish one link inside the notice is translated while its sentence is not. In Swedish with a model connected, the upstream translator sends the community hub's English posts to the model once to translate them, as it does for every language other than English. Not covered: Android, a model call on the web adapter, a conversation, an envoy.
+
+## Conversation, envoy and refusal with the model, 12 November 2026
+
+Run on main `2339e247` against `node server/server.js` on port 4167 with the production build and the local Claude sign-in, in English, on the realm campaign of the first run (25 December AD 801). Six model requests.
+
+| Step | Result |
+| --- | --- |
+| No model connected | `The conversation could not be interpreted. Try putting it another way.`; the internal error stayed in the console |
+| Conversation with Charles the Younger | The model read the English message as a request: `Give their support`, `Gift offered: 20 silver from the family treasury`, `Chance of a yes: uncertain` |
+| `Ask` | `Charles the Younger refuses the request.` and a reply written by the model in English, marked as written text |
+| Envoy to the Papal States | `Ask for reconciliation`, `Chance of a yes: unlikely`; then `Leo III turns the envoy away. The next envoy can go in a year.` and Leo's reply in English |
+| Free-text action against a person who does not exist | `The person does not exist in the game: Duke of York.`, and the menu opens with every action |
+| Chronicle | The envoy, the conversation, the demand and the year's administration read English |
+
+The run found and fixed: the conversation's chronicle line stayed half Swedish (`Karl … bad Karl den yngre om stöd but the answer was no.`), so the engine now writes who asked whom as one sentence per request, with the same Swedish text as before; the border tribes' state `oroligt` had no entry; an engine sentence kept its decimal comma (`−13,8 silver`).
+
+Not covered: an accepted request, a pledge, a secret revealed, a prisoner, a duel, Android.
