@@ -265,3 +265,14 @@ test('saved legal, regency and host references are validated without mutating ma
   badClaim.realm.lawfulRulerId = 'missing-person';
   assert.throws(() => normalizeCharacterSystem(badClaim), /rättsligt anspråk/);
 });
+
+test('an appointment writes the title in lower case and the city as it is named', () => {
+  const state = createCharacterSystem({ seed: 321 });
+  state.offices['governor-0'].name = 'Guvernör: Ineb-Hedj (Memfis)';
+  const appointed = command(state, 'appoint', { officeId: 'governor-0', personId: 'person-0-1' });
+  assert.ok(appointed.log.some((entry) => entry.title === 'Iset Arel blir guvernör: Ineb-Hedj (Memfis)'));
+  const serving = createCharacterSystem({ seed: 321 });
+  Object.assign(serving.offices['governor-0'], { name: 'Guvernör: Ineb-Hedj (Memfis)', holderId: serving.offices.ruler.holderId });
+  const served = command(serving, 'exercise_office', { officeId: 'governor-0', policy: 'service' });
+  assert.ok(served.log.some((entry) => entry.description?.includes('mandat som guvernör: Ineb-Hedj (Memfis).')));
+});
