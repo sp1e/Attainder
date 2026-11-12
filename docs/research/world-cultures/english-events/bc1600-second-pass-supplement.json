@@ -1,0 +1,94 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-12",
+  "batchId": "bc1600-second-pass-2026-11-12",
+  "researchWindow": {
+    "startYear": -1600,
+    "endYear": -1501
+  },
+  "integrationStatus": "integrated",
+  "catalogBaseline": {
+    "commit": "2dfcdf18f1b990c8f7d0fef1b85eb7566acae64b",
+    "eventCount": 986,
+    "sourceCount": 968
+  },
+  "sources": [
+    {
+      "id": "bc1600p2en-met-coatzacoalcos-villages-flourish",
+      "title": "Mesoamerica and Central America, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/ca",
+      "locator": "Key Events, entry \"ca. 1600 B.C.\" beginning \"Villages along the Coatzacoalcos River drainage\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-04-22 (https://web.archive.org/web/20260422213319/https://www.metmuseum.org/toah/ht/03/ca) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 1600 B.C.",
+      "originalChronology": "About 1600 BC.",
+      "scopedClaim": "Villages along the Coatzacoalcos River drainage on the Gulf of Mexico flourish on abundant riverine resources and fertile soils.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc1600p2en-met-lipari-villages-move-upslope",
+      "title": "Southern Europe, 2000–1000 B.C.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/03/eus",
+      "locator": "Key Events, entry \"ca. 1600–1500 B.C.\" beginning \"During the Capo-Grazini phase\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2025-11-23 (https://web.archive.org/web/20251123130706/https://www.metmuseum.org/toah/ht/03/eus) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 1600–1500 B.C.",
+      "originalChronology": "About 1600 to 1500 BC; the Ausonian culture appears on the islands around 1300 BC.",
+      "scopedClaim": "During the Capo-Grazini phase on the Lipari Islands, sites near the sea are abandoned and villages move to safer positions on the volcanic slopes or summits. The entry's sentence on the Ausonian culture about 1300 BC is outside this record.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc1600-coatzacoalcos-villages-flourish",
+      "date": {
+        "kind": "approximate",
+        "startYear": -1600,
+        "endYear": -1600,
+        "displayEn": "c. 1600 BC",
+        "noteEn": "The Met gives ca. 1600 BC."
+      },
+      "titleEn": "Villages flourish along the Coatzacoalcos River",
+      "summaryEn": "Villages along the Coatzacoalcos River drainage on the Gulf of Mexico flourish. They draw on abundant river resources and fertile soils.",
+      "geographyEn": "Coatzacoalcos River drainage, Gulf coast of Mexico",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1600p2en-met-coatzacoalcos-villages-flourish"
+      ],
+      "selectionNote": "The catalog's San Lorenzo record (1500–900 BC) covers the later Olmec centre in the same drainage; its range begins after 1600 BC. This record covers the drainage's villages.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-bc1600-lipari-villages-move-upslope",
+      "date": {
+        "kind": "range",
+        "startYear": -1600,
+        "endYear": -1500,
+        "displayEn": "c. 1600–1500 BC",
+        "noteEn": "The Met gives an approximate century and spells the phase \"Capo-Grazini\"."
+      },
+      "titleEn": "Lipari villagers leave the shore for the volcanic heights",
+      "summaryEn": "During the Capo-Grazini phase on the Lipari Islands, people abandon sites near the sea. They move their villages to safer positions on the volcanic slopes or summits.",
+      "geographyEn": "Lipari Islands",
+      "category": "migration",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc1600p2en-met-lipari-villages-move-upslope"
+      ],
+      "selectionNote": "No catalog or English record covers the Lipari Islands. This record covers a shift of settlement away from the coast.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    }
+  ]
+}

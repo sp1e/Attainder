@@ -222,7 +222,8 @@ test("the events the character system adds to the world's stream carry the marke
 test("sv and de: the pack applies whole everywhere, marked view or not", () => {
   for (const language of ["sv", "de", "fi"]) {
     const mode = translatorMode(language);
-    assert.equal(tierFor(mode, true), "full", language);
+    assert.equal(tierFor(mode, true), "native-view", language);
+    assert.equal(translateOptions(tierFor(mode, true)), undefined, "the pack still applies whole inside a Swedish-native view");
     assert.equal(tierFor(mode, false), "full", language);
   }
 });
@@ -270,4 +271,12 @@ test("in Swedish the content collector leaves a record the game wrote in Swedish
   assert.equal(isSwedishAuthored(hubPost), false);
   assert.equal(skipsNativeContent("sv", hubPost), false, "a player's English scenario is still translated");
   assert.equal(skipsNativeContent("sv", null), false);
+});
+
+test("in Swedish a Swedish-native view holds no gap and nothing for the model", () => {
+  const inside = { packed: true, tier: tierFor("pack", true), language: "sv" };
+  assert.equal(unknownTextFate("pack", "Kampanjens identitet", inside), "none", "Swedish the detector does not know");
+  assert.equal(unknownTextFate("pack", "Kampanjens identitet", { ...inside, packed: false }), "none");
+  assert.equal(unknownTextFate("pack", "Kampanjens identitet", { ...inside, tier: tierFor("pack", false) }), "missing", "outside one it is a gap as before");
+  assert.equal(unknownTextFate("pack", "Kampanjens identitet", { ...inside, language: "de" }), "missing", "another language keeps today's behaviour");
 });

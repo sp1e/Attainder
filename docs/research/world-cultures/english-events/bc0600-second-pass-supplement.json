@@ -1,0 +1,94 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-12",
+  "batchId": "bc0600-second-pass-2026-11-12",
+  "researchWindow": {
+    "startYear": -600,
+    "endYear": -501
+  },
+  "integrationStatus": "integrated",
+  "catalogBaseline": {
+    "commit": "2dfcdf18f1b990c8f7d0fef1b85eb7566acae64b",
+    "eventCount": 986,
+    "sourceCount": 968
+  },
+  "sources": [
+    {
+      "id": "bc0600p2en-met-baltic-face-urns",
+      "title": "Eastern Europe and Scandinavia, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/eue",
+      "locator": "Key Events, entry \"ca. 600–400 B.C.\" beginning \"The peoples of the Baltic create\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-14 (https://web.archive.org/web/20260214183438/https://www.metmuseum.org/toah/ht/04/eue) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 600–400 B.C.",
+      "originalChronology": "ca. 600–400 B.C. The page's timeline bar gives the Face Urn period (Baltic region) as ca. 600–400 B.C.",
+      "scopedClaim": "Peoples of the Baltic create a special type of urn for cremation burial, nicknamed face urns: pear-shaped vessels with modeled human faces and incised decoration that seems to represent personal equipment or imitate patterned garments.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "bc0600p2en-met-mangaasi-pottery-vanuatu",
+      "title": "Oceania, 1000 B.C.–1 A.D.",
+      "institution": "The Metropolitan Museum of Art, Heilbrunn Timeline of Art History",
+      "url": "https://www.metmuseum.org/toah/ht/04/oc",
+      "locator": "Key Events, entry \"ca. 600 B.C.–1200 A.D.\" beginning \"Art of the Manga’asi period\". Page text only; no images or linked object records examined. Read from the Internet Archive capture of this URL dated 2026-02-10 (https://web.archive.org/web/20260210185509/https://www.metmuseum.org/toah/ht/04/oc) because the live page returned HTTP 429 from a Vercel security checkpoint on 2026-11-12.",
+      "retrievedOn": "2026-11-12",
+      "asWorded": "ca. 600 B.C.–1200 A.D.",
+      "originalChronology": "ca. 600 B.C.–1200 A.D. The page's timeline bar lists the Manga'asi period, Vanuatu (New Hebrides), under Melanesia with the same dates.",
+      "scopedClaim": "Art of the Manga'asi period, with pottery vessels bearing incised and applied geometric motifs, flourishes in Vanuatu; a fragmentary pottery figure of an animal is also known from the period.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-bc0600-baltic-face-urns",
+      "date": {
+        "kind": "range",
+        "startYear": -600,
+        "endYear": -400,
+        "displayEn": "c. 600–400 BC",
+        "noteEn": "The Met gives ca. 600–400 BC for the custom. The range spans a burial tradition and dates no single act."
+      },
+      "titleEn": "Baltic peoples make face urns for cremation burials",
+      "summaryEn": "The peoples of the Baltic create a special type of urn for cremation burial. Nicknamed \"face urns\", these pear-shaped vessels carry modelled human faces and incised decoration that seems to show personal equipment, such as weapons or combs, or to copy the designs of richly patterned garments.",
+      "geographyEn": "Baltic region",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0600p2en-met-baltic-face-urns"
+      ],
+      "selectionNote": "A distinct Baltic burial custom. No catalog or English record covers it.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    },
+    {
+      "id": "ev-bc0600-mangaasi-pottery-vanuatu",
+      "date": {
+        "kind": "range",
+        "startYear": -600,
+        "endYear": 1200,
+        "displayEn": "c. 600 BC–AD 1200",
+        "noteEn": "The Met dates the Manga'asi period to ca. 600 BC–AD 1200. The range marks a long art period and dates no event in any single year."
+      },
+      "titleEn": "Manga'asi pottery flourishes in Vanuatu",
+      "summaryEn": "Art of the Manga'asi period flourishes in Vanuatu, marked by pottery vessels with incised and applied geometric motifs. A fragmentary pottery figure of an animal is also known from the period.",
+      "geographyEn": "Vanuatu",
+      "category": "culture",
+      "importance": 1,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "bc0600p2en-met-mangaasi-pottery-vanuatu"
+      ],
+      "selectionNote": "A long pottery tradition in Vanuatu. The catalog's Teouma record (ev-bc1000-teouma-begravningsbruk) concerns burial practice at another site and date.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Claude independent check",
+        "reviewedOn": "2026-11-12"
+      }
+    }
+  ]
+}
