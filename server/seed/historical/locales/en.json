@@ -62300,7 +62300,7 @@
     {
       "id": "event/ev-ad0038-aqua-claudia-construction/date/displaySv",
       "sv": "38–52 e.Kr.",
-      "en": "38–52 CE",
+      "en": "AD 38–52",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad0038-aqua-claudia-construction",
@@ -62355,7 +62355,7 @@
     {
       "id": "event/ev-ad0038-alexandria-anti-jewish-violence/date/displaySv",
       "sv": "38 e.Kr.",
-      "en": "38 CE",
+      "en": "AD 38",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad0038-alexandria-anti-jewish-violence",
@@ -62520,7 +62520,7 @@
     {
       "id": "event/ev-ad0200-bambata-pottery-dispersal/date/displaySv",
       "sv": "omkring 200 e.Kr.",
-      "en": "Around 200 CE",
+      "en": "Around AD 200",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad0200-bambata-pottery-dispersal",
@@ -62553,7 +62553,7 @@
     {
       "id": "event/ev-ad0200-bambata-pottery-dispersal/summarySv",
       "sv": "I Huffmans rekonstruktion för grupper av jägare och samlare med sig Bambatakeramik till sydöstra Afrika omkring 200 e.Kr.",
-      "en": "In Huffman's reconstruction, hunter-gatherer groups carry Bambata pottery into southeastern Africa around 200 CE.",
+      "en": "In Huffman's reconstruction, hunter-gatherer groups carry Bambata pottery into southeastern Africa around AD 200.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad0200-bambata-pottery-dispersal",
@@ -62575,7 +62575,7 @@
     {
       "id": "event/ev-ad0220-cao-pi-takes-han-throne/date/displaySv",
       "sv": "220 e.Kr.",
-      "en": "220 CE",
+      "en": "AD 220",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad0220-cao-pi-takes-han-throne",
@@ -62630,7 +62630,7 @@
     {
       "id": "event/ev-ad0224-ardashir-sasanian-dynasty/date/displaySv",
       "sv": "224 e.Kr.",
-      "en": "224 CE",
+      "en": "AD 224",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad0224-ardashir-sasanian-dynasty",
@@ -62685,7 +62685,7 @@
     {
       "id": "event/ev-ad0229-wu-envoys-funan/date/displaySv",
       "sv": "Omtvistat: 229, 243–252 eller 244–247 e.Kr.",
-      "en": "Disputed: 229, 243–252 or 244–247 CE",
+      "en": "Disputed: AD 229, 243–252 or 244–247",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad0229-wu-envoys-funan",
@@ -62740,7 +62740,7 @@
     {
       "id": "event/ev-0350-meroe-royal-pyramid-burials-end/date/displaySv",
       "sv": "omkring mitten av fjärde århundradet e.Kr.",
-      "en": "Around the mid-fourth century CE",
+      "en": "Around the mid-fourth century AD",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0350-meroe-royal-pyramid-burials-end",
@@ -62795,7 +62795,7 @@
     {
       "id": "event/ev-0350-teotihuacan-adosada-platform/date/displaySv",
       "sv": "omkring 350 e.Kr.",
-      "en": "Around 350 CE",
+      "en": "Around AD 350",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0350-teotihuacan-adosada-platform",
@@ -62806,7 +62806,7 @@
     {
       "id": "event/ev-0350-teotihuacan-adosada-platform/date/noteSv",
       "sv": "Arqueología Mexicana daterar Adosadaövertäckningen till omkring 350 e.Kr. Met beskriver den i relativa termer och rapporterar inga större förändringar av komplexet efter omkring 350. Syftet är omtvistat: ett politiskt skifte och en respektfull rituell nedläggning är alternativa tolkningar. Skadorna på de andra fasaderna har ingen fastställd datering.",
-      "en": "Arqueología Mexicana dates the Adosada covering to around 350 CE. The Met describes it in relative terms and reports no major changes to the complex after about 350. Its purpose is disputed: a political change and respectful ritual caching are alternative interpretations. Damage to the other façades has no established date.",
+      "en": "Arqueología Mexicana dates the Adosada covering to around AD 350. The Met describes it in relative terms and reports no major changes to the complex after about 350. Its purpose is disputed: a political change and respectful ritual caching are alternative interpretations. Damage to the other façades has no established date.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0350-teotihuacan-adosada-platform",
@@ -62850,7 +62850,7 @@
     {
       "id": "event/ev-0410-roman-legions-leave-britain/date/displaySv",
       "sv": "410 e.Kr.",
-      "en": "410 CE",
+      "en": "AD 410",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0410-roman-legions-leave-britain",
@@ -62894,7 +62894,7 @@
     {
       "id": "event/ev-0429-vandals-invade-north-africa/date/displaySv",
       "sv": "429 e.Kr.",
-      "en": "429 CE",
+      "en": "AD 429",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0429-vandals-invade-north-africa",
@@ -62949,7 +62949,7 @@
     {
       "id": "event/ev-0451-egyptian-church-rejects-chalcedon/date/displaySv",
       "sv": "451 e.Kr.",
-      "en": "451 CE",
+      "en": "AD 451",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0451-egyptian-church-rejects-chalcedon",
@@ -62993,7 +62993,7 @@
     {
       "id": "event/ev-0475-goguryeo-takes-hanseong/date/displaySv",
       "sv": "475 e.Kr.",
-      "en": "475 CE",
+      "en": "AD 475",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0475-goguryeo-takes-hanseong",
@@ -63037,7 +63037,7 @@
     {
       "id": "event/ev-0494-northern-wei-moves-capital-to-luoyang/date/displaySv",
       "sv": "494 e.Kr.",
-      "en": "494 CE",
+      "en": "AD 494",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0494-northern-wei-moves-capital-to-luoyang",
@@ -63081,7 +63081,7 @@
     {
       "id": "event/ev-0496-clovis-converts/date/displaySv",
       "sv": "496 e.Kr.",
-      "en": "496 CE",
+      "en": "AD 496",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0496-clovis-converts",
@@ -63125,7 +63125,7 @@
     {
       "id": "event/ev-0607-horyuji-established/date/displaySv",
       "sv": "cirka 607 e.Kr.",
-      "en": "c. 607 CE",
+      "en": "c. AD 607",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0607-horyuji-established",
@@ -63169,7 +63169,7 @@
     {
       "id": "event/ev-0618-tang-dynasty-founded/date/displaySv",
       "sv": "618 e.Kr.",
-      "en": "618 CE",
+      "en": "AD 618",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0618-tang-dynasty-founded",
@@ -63213,7 +63213,7 @@
     {
       "id": "event/ev-0625-sutton-hoo-ship-burial/date/displaySv",
       "sv": "cirka 625 e.Kr.",
-      "en": "c. 625 CE",
+      "en": "c. AD 625",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0625-sutton-hoo-ship-burial",
@@ -63257,7 +63257,7 @@
     {
       "id": "event/ev-0629-xuanzang-travels-to-india/date/displaySv",
       "sv": "629–645 e.Kr.",
-      "en": "629–645 CE",
+      "en": "AD 629–645",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0629-xuanzang-travels-to-india",
@@ -63301,7 +63301,7 @@
     {
       "id": "event/ev-0639-arab-conquest-of-egypt/date/displaySv",
       "sv": "639–642 e.Kr.",
-      "en": "639–642 CE",
+      "en": "AD 639–642",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0639-arab-conquest-of-egypt",
@@ -63345,7 +63345,7 @@
     {
       "id": "event/ev-0642-battle-of-nahavand/date/displaySv",
       "sv": "642 e.Kr.",
-      "en": "642 CE",
+      "en": "AD 642",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0642-battle-of-nahavand",
@@ -63400,7 +63400,7 @@
     {
       "id": "event/ev-0646-taika-reform/date/displaySv",
       "sv": "646 e.Kr.",
-      "en": "646 CE",
+      "en": "AD 646",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0646-taika-reform",
@@ -63444,7 +63444,7 @@
     {
       "id": "event/ev-0650-teotihuacan-centre-burned/date/displaySv",
       "sv": "cirka 650 e.Kr.",
-      "en": "c. 650 CE",
+      "en": "c. AD 650",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0650-teotihuacan-centre-burned",
@@ -63499,7 +63499,7 @@
     {
       "id": "event/ev-0664-synod-of-whitby/date/displaySv",
       "sv": "664 e.Kr.",
-      "en": "664 CE",
+      "en": "AD 664",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0664-synod-of-whitby",
@@ -63543,7 +63543,7 @@
     {
       "id": "event/ev-0668-goguryeo-falls/date/displaySv",
       "sv": "668 e.Kr.",
-      "en": "668 CE",
+      "en": "AD 668",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0668-goguryeo-falls",
@@ -63587,7 +63587,7 @@
     {
       "id": "event/ev-0670-uqba-founds-kairouan/date/displaySv",
       "sv": "670 e.Kr.",
-      "en": "670 CE",
+      "en": "AD 670",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0670-uqba-founds-kairouan",
@@ -63642,7 +63642,7 @@
     {
       "id": "event/ev-0676-silla-unifies-korea/date/displaySv",
       "sv": "676 e.Kr.",
-      "en": "676 CE",
+      "en": "AD 676",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0676-silla-unifies-korea",
@@ -63686,7 +63686,7 @@
     {
       "id": "event/ev-0698-barhae-founded/date/displaySv",
       "sv": "698 e.Kr.",
-      "en": "698 CE",
+      "en": "AD 698",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0698-barhae-founded",
@@ -63730,7 +63730,7 @@
     {
       "id": "event/ev-0743-japan-permanent-reclaimed-field-tenure/date/displaySv",
       "sv": "743 e.Kr.",
-      "en": "743 CE",
+      "en": "AD 743",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0743-japan-permanent-reclaimed-field-tenure",
@@ -63785,7 +63785,7 @@
     {
       "id": "event/ev-0780-tang-two-tax-promulgation/date/displaySv",
       "sv": "780 e.Kr.",
-      "en": "780 CE",
+      "en": "AD 780",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0780-tang-two-tax-promulgation",
@@ -63950,7 +63950,7 @@
     {
       "id": "event/ev-0860-kairouan-aghlabid-water-reservoirs/date/displaySv",
       "sv": "860–862 e.Kr.",
-      "en": "860–862 CE",
+      "en": "AD 860–862",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0860-kairouan-aghlabid-water-reservoirs",
@@ -64005,7 +64005,7 @@
     {
       "id": "event/ev-0956-gwangjong-reviews-enslaved-status/date/displaySv",
       "sv": "956 e.Kr.",
-      "en": "956 CE",
+      "en": "AD 956",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-0956-gwangjong-reviews-enslaved-status",
@@ -64170,7 +64170,7 @@
     {
       "id": "event/ev-ad0958-goryeo-civil-service-examinations/date/displaySv",
       "sv": "958 e.Kr.",
-      "en": "958 CE",
+      "en": "AD 958",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad0958-goryeo-civil-service-examinations",
@@ -64280,7 +64280,7 @@
     {
       "id": "event/ev-ad1037-kamalagyan-waterworks-charter/date/displaySv",
       "sv": "1037 e.Kr.",
-      "en": "1037 CE",
+      "en": "AD 1037",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad1037-kamalagyan-waterworks-charter",
@@ -64335,7 +64335,7 @@
     {
       "id": "event/ev-ad1088-barus-tamil-merchants-meeting/date/displaySv",
       "sv": "1088 e.Kr.",
-      "en": "1088 CE",
+      "en": "AD 1088",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad1088-barus-tamil-merchants-meeting",
@@ -64500,7 +64500,7 @@
     {
       "id": "event/ev-ad1257-samalas-eruption/date/displaySv",
       "sv": "1257 e.Kr.",
-      "en": "1257 CE",
+      "en": "AD 1257",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad1257-samalas-eruption",
@@ -64555,7 +64555,7 @@
     {
       "id": "event/ev-ad1281-quanzhou-shiva-installation/date/displaySv",
       "sv": "cirka 1281 e.Kr.",
-      "en": "c. 1281 CE",
+      "en": "c. AD 1281",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad1281-quanzhou-shiva-installation",
@@ -64566,7 +64566,7 @@
     {
       "id": "event/ev-ad1281-quanzhou-shiva-installation/date/noteSv",
       "sv": "Utgivarna anger ungefär 1281 e.Kr. för inskriftens datum Saka 1203. Händelsen gäller den dokumenterade installationen, inte början på tempelbygget. Identifieringen av Chekachai Khan med Kublai är fortfarande preliminär och behövs inte för denna framställning.",
-      "en": "The editors give approximately 1281 CE for the inscription's Saka 1203 date. The event concerns the recorded installation, not the start of temple construction. Chekachai Khan's identification with Kublai remains tentative and is not required for this account.",
+      "en": "The editors give approximately AD 1281 for the inscription's Saka 1203 date. The event concerns the recorded installation, not the start of temple construction. Chekachai Khan's identification with Kublai remains tentative and is not required for this account.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad1281-quanzhou-shiva-installation",
@@ -64720,7 +64720,7 @@
     {
       "id": "event/ev-ad1450-dabra-metmaq-sabbath-council/date/displaySv",
       "sv": "1450 e.Kr.",
-      "en": "1450 CE",
+      "en": "AD 1450",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad1450-dabra-metmaq-sabbath-council",
@@ -64775,7 +64775,7 @@
     {
       "id": "event/ev-ad1475-pegu-ordination-reform/date/displaySv",
       "sv": "1475–1476 e.Kr.",
-      "en": "1475–1476 CE",
+      "en": "AD 1475–1476",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-ad1475-pegu-ordination-reform",
@@ -64940,7 +64940,7 @@
     {
       "id": "event/ev-bc0100-glassblowing-development/date/displaySv",
       "sv": "första århundradet f.Kr.; uppskattningar till början och mitten av århundradet",
-      "en": "First century BCE; early- and mid-century estimates",
+      "en": "First century BC; early- and mid-century estimates",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0100-glassblowing-development",
@@ -64995,7 +64995,7 @@
     {
       "id": "event/ev-bc0100-antikythera-shipwreck/date/displaySv",
       "sv": "ungefär 85–50 f.Kr.; uppskattningarna skiljer sig",
-      "en": "Approximately 85–50 BCE; estimates differ",
+      "en": "Approximately 85–50 BC; estimates differ",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0100-antikythera-shipwreck",
@@ -65006,7 +65006,7 @@
     {
       "id": "event/ev-bc0100-antikythera-shipwreck/date/noteSv",
       "sv": "Museet anger omkring 60–50 f.Kr. och WHOI 70–60 f.Kr. Forskningsprojektets FAQ anger både 80–50 och 85–60 f.Kr. Det yttre spannet rymmer dessa alternativ; fartyget sjönk inte under hela spannet. Dateringarna av last och virke är separata.",
-      "en": "The museum gives about 60–50 BCE and WHOI 70–60 BCE. The research-project FAQ gives both 80–50 and 85–60 BCE. The outer span accommodates these alternatives; the ship did not sink throughout it. Cargo and timber dates are separate.",
+      "en": "The museum gives about 60–50 BC and WHOI 70–60 BC. The research-project FAQ gives both 80–50 and 85–60 BC. The outer span accommodates these alternatives; the ship did not sink throughout it. Cargo and timber dates are separate.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0100-antikythera-shipwreck",
@@ -65050,7 +65050,7 @@
     {
       "id": "event/ev-bc0025-juba-mauretania/date/displaySv",
       "sv": "25 f.Kr.",
-      "en": "25 BCE",
+      "en": "25 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0025-juba-mauretania",
@@ -65160,7 +65160,7 @@
     {
       "id": "event/ev-bc0250-sopara-edict-ethical-conduct/date/displaySv",
       "sv": "omkring 250 f.Kr.",
-      "en": "Around 250 BCE",
+      "en": "Around 250 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0250-sopara-edict-ethical-conduct",
@@ -65215,7 +65215,7 @@
     {
       "id": "event/ev-bc0238-canopus-calendar-provision/date/displaySv",
       "sv": "238 f.Kr.",
-      "en": "238 BCE",
+      "en": "238 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0238-canopus-calendar-provision",
@@ -65270,7 +65270,7 @@
     {
       "id": "event/ev-bc0367-mausoleum-halicarnassus-construction/date/displaySv",
       "sv": "ungefär 367–350 f.Kr.",
-      "en": "Approximately 367–350 BCE",
+      "en": "Approximately 367–350 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0367-mausoleum-halicarnassus-construction",
@@ -65281,7 +65281,7 @@
     {
       "id": "event/ev-bc0367-mausoleum-halicarnassus-construction/date/noteSv",
       "sv": "Getty anger det ungefärliga byggintervallet. Pedersen hävdar att graven redan var nästan färdig under Maussollos livstid, i motsats till senare romerska framställningar som tillskrev Artemisia verket efter hans död 353 f.Kr. Gränserna fastställer varken exakta arbetsår eller oavbruten verksamhet.",
-      "en": "Getty supplies the approximate construction interval. Pedersen argues that the tomb was already nearly finished during Maussollos's lifetime, contrasting this with later Roman accounts that credited Artemisia after his death in 353 BCE. The bounds do not establish exact work years or uninterrupted activity.",
+      "en": "Getty supplies the approximate construction interval. Pedersen argues that the tomb was already nearly finished during Maussollos's lifetime, contrasting this with later Roman accounts that credited Artemisia after his death in 353 BC. The bounds do not establish exact work years or uninterrupted activity.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0367-mausoleum-halicarnassus-construction",
@@ -65325,7 +65325,7 @@
     {
       "id": "event/ev-bc0492-persepolis-silver-ration-payments/date/displaySv",
       "sv": "492–458 eller 492–457 f.Kr.",
-      "en": "492–458 or 492–457 BCE",
+      "en": "492–458 or 492–457 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0492-persepolis-silver-ration-payments",
@@ -65336,7 +65336,7 @@
     {
       "id": "event/ev-bc0492-persepolis-silver-ration-payments/date/noteSv",
       "sv": "Detta är de publicerade spannen för skattkammarens räkenskaper, inte början och slutet på en reform. Hallock anger Dareios I:s år 30 till Artaxerxes I:s år 7 som 492–458 f.Kr.; Garrisons förlag anger 492–457. Det yttre spannet behåller båda slutpunkterna utan att anta oavbrutna betalningar.",
-      "en": "These are published spans of the Treasury records, not a reform's start and end. Hallock gives Darius I's year 30 through Artaxerxes I's year 7 as 492–458 BCE; Garrison's publisher gives 492–457. The full envelope preserves both endpoints without assuming uninterrupted payments.",
+      "en": "These are published spans of the Treasury records, not a reform's start and end. Hallock gives Darius I's year 30 through Artaxerxes I's year 7 as 492–458 BC; Garrison's publisher gives 492–457. The full envelope preserves both endpoints without assuming uninterrupted payments.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0492-persepolis-silver-ration-payments",
@@ -65380,7 +65380,7 @@
     {
       "id": "event/ev-bc0433-marquis-yi-musical-burial/date/displaySv",
       "sv": "omkring 433 f.Kr.; alternativt omkring 430 f.Kr.",
-      "en": "Around 433 BCE; alternatively around 430 BCE",
+      "en": "Around 433 BC; alternatively around 430 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0433-marquis-yi-musical-burial",
@@ -65391,7 +65391,7 @@
     {
       "id": "event/ev-bc0433-marquis-yi-musical-burial/date/noteSv",
       "sv": "Hubei Provincial Museum placerar begravningen ungefär vid tiden för en klockgåva daterad till 433 f.Kr. University of Washington daterar graven till omkring 430 f.Kr. men behåller 433 för den klockan. Gränserna behåller dessa ungefärliga dateringar av begravningen, inte en treårig begravning eller tillverkningsåren för alla instrument.",
-      "en": "Hubei Provincial Museum places the burial roughly at the time of a bell gift dated to 433 BCE. The University of Washington dates the tomb around 430 BCE while retaining 433 for that bell. The bounds preserve these approximate burial datings, not a three-year funeral or the manufacture dates of all the instruments.",
+      "en": "Hubei Provincial Museum places the burial roughly at the time of a bell gift dated to 433 BC. The University of Washington dates the tomb around 430 BC while retaining 433 for that bell. The bounds preserve these approximate burial datings, not a three-year funeral or the manufacture dates of all the instruments.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0433-marquis-yi-musical-burial",
@@ -65435,7 +65435,7 @@
     {
       "id": "event/ev-bc0407-elephantine-temple-petition/date/displaySv",
       "sv": "25 november 407 f.Kr., enligt utgåvornas omräkning",
-      "en": "25 November 407 BCE, in the editions' conversion",
+      "en": "25 November 407 BC, in the editions' conversion",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0407-elephantine-temple-petition",
@@ -65490,7 +65490,7 @@
     {
       "id": "event/ev-bc0600-chiripa-ceremonial-complex/date/displaySv",
       "sv": "cirka 600 f.Kr.",
-      "en": "c. 600 BCE",
+      "en": "c. 600 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0600-chiripa-ceremonial-complex",
@@ -65534,7 +65534,7 @@
     {
       "id": "event/ev-bc0600-kuntur-wasi-gold-crown-burial/date/displaySv",
       "sv": "cirka 600 f.Kr.",
-      "en": "c. 600 BCE",
+      "en": "c. 600 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0600-kuntur-wasi-gold-crown-burial",
@@ -65578,7 +65578,7 @@
     {
       "id": "event/ev-bc0600-milesian-colonies-on-the-black-sea/date/displaySv",
       "sv": "cirka 600 f.Kr.",
-      "en": "c. 600 BCE",
+      "en": "c. 600 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0600-milesian-colonies-on-the-black-sea",
@@ -65589,7 +65589,7 @@
     {
       "id": "event/ev-bc0600-milesian-colonies-on-the-black-sea/date/noteSv",
       "sv": "Met daterar koloniseringen till omkring 600 f.Kr. och anger inget grundläggningsår för någon enskild stad.",
-      "en": "The Met dates the colonisation to about 600 BCE and gives no founding year for any single city.",
+      "en": "The Met dates the colonisation to about 600 BC and gives no founding year for any single city.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0600-milesian-colonies-on-the-black-sea",
@@ -65633,7 +65633,7 @@
     {
       "id": "event/ev-bc0600-scythian-animal-style/date/displaySv",
       "sv": "cirka 600 f.Kr.",
-      "en": "c. 600 BCE",
+      "en": "c. 600 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0600-scythian-animal-style",
@@ -65677,7 +65677,7 @@
     {
       "id": "event/ev-bc0600-zapotec-earliest-recorded-date/date/displaySv",
       "sv": "cirka 600 f.Kr.",
-      "en": "c. 600 BCE",
+      "en": "c. 600 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0600-zapotec-earliest-recorded-date",
@@ -65721,7 +65721,7 @@
     {
       "id": "event/ev-bc0559-cyrus-founds-achaemenid-empire/date/displaySv",
       "sv": "cirka 559–530 f.Kr.",
-      "en": "c. 559–530 BCE",
+      "en": "c. 559–530 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0559-cyrus-founds-achaemenid-empire",
@@ -65732,7 +65732,7 @@
     {
       "id": "event/ev-bc0559-cyrus-founds-achaemenid-empire/date/noteSv",
       "sv": "Met anger Kyros regeringstid till omkring 559–530 f.Kr. och daterar inte varje erövring; spannet omfattar regeringstiden.",
-      "en": "The Met gives Cyrus's reign as about 559–530 BCE and does not date each conquest; the range spans the reign.",
+      "en": "The Met gives Cyrus's reign as about 559–530 BC and does not date each conquest; the range spans the reign.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0559-cyrus-founds-achaemenid-empire",
@@ -65776,7 +65776,7 @@
     {
       "id": "event/ev-bc0540-battle-of-aleria/date/displaySv",
       "sv": "cirka 540 f.Kr.",
-      "en": "c. 540 BCE",
+      "en": "c. 540 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0540-battle-of-aleria",
@@ -65820,7 +65820,7 @@
     {
       "id": "event/ev-bc0672-esarhaddon-succession-oaths/date/displaySv",
       "sv": "672 f.Kr.",
-      "en": "672 BCE",
+      "en": "672 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0672-esarhaddon-succession-oaths",
@@ -65875,7 +65875,7 @@
     {
       "id": "event/ev-bc0690-jerwan-stone-aqueduct/date/displaySv",
       "sv": "omkring 690 f.Kr.",
-      "en": "Around 690 BCE",
+      "en": "Around 690 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0690-jerwan-stone-aqueduct",
@@ -65886,7 +65886,7 @@
     {
       "id": "event/ev-bc0690-jerwan-stone-aqueduct/date/noteSv",
       "sv": "Columbias monumentprofil anger 690 f.Kr. Stampoultzidis med kolleger placerar Jerwan i den fjärde fasen av det större kanalprogrammet, daterad 703–688 f.Kr.; 688 daterar Bavianinskriften i deras framställning. Varken hela programmets spann eller inskriftens år fastställer Jerwans exakta byggår.",
-      "en": "Columbia's monument profile gives 690 BCE. Stampoultzidis and colleagues place Jerwan in the fourth phase of the wider canal programme, dated 703–688 BCE; 688 dates the Bavian inscription in their account. Neither the whole programme's span nor the inscription year establishes Jerwan's exact construction dates.",
+      "en": "Columbia's monument profile gives 690 BC. Stampoultzidis and colleagues place Jerwan in the fourth phase of the wider canal programme, dated 703–688 BC; 688 dates the Bavian inscription in their account. Neither the whole programme's span nor the inscription year establishes Jerwan's exact construction dates.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0690-jerwan-stone-aqueduct",
@@ -65930,7 +65930,7 @@
     {
       "id": "event/ev-bc0900-chalcatzingo-terraces-and-reliefs/date/displaySv",
       "sv": "cirka 900 f.Kr.",
-      "en": "c. 900 BCE",
+      "en": "c. 900 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0900-chalcatzingo-terraces-and-reliefs",
@@ -65974,7 +65974,7 @@
     {
       "id": "event/ev-bc0900-korean-dolmen-burials/date/displaySv",
       "sv": "cirka 900 f.Kr.",
-      "en": "c. 900 BCE",
+      "en": "c. 900 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0900-korean-dolmen-burials",
@@ -66018,7 +66018,7 @@
     {
       "id": "event/ev-bc0900-la-venta-ceremonial-layout/date/displaySv",
       "sv": "cirka 900 f.Kr.",
-      "en": "c. 900 BCE",
+      "en": "c. 900 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0900-la-venta-ceremonial-layout",
@@ -66062,7 +66062,7 @@
     {
       "id": "event/ev-bc0900-manchay-bajo-flood-wall/date/displaySv",
       "sv": "cirka 900 f.Kr.",
-      "en": "c. 900 BCE",
+      "en": "c. 900 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0900-manchay-bajo-flood-wall",
@@ -66106,7 +66106,7 @@
     {
       "id": "event/ev-bc0879-ashurnasirpal-moves-capital-to-nimrud/date/displaySv",
       "sv": "879 f.Kr.",
-      "en": "879 BCE",
+      "en": "879 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0879-ashurnasirpal-moves-capital-to-nimrud",
@@ -66117,7 +66117,7 @@
     {
       "id": "event/ev-bc0879-ashurnasirpal-moves-capital-to-nimrud/date/noteSv",
       "sv": "Met daterar posten till 879 f.Kr. utan att säga om året avser flytten eller palatsets färdigställande.",
-      "en": "The Met dates the entry to 879 BCE without saying whether the year marks the move or the palace's completion.",
+      "en": "The Met dates the entry to 879 BC without saying whether the year marks the move or the palace's completion.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0879-ashurnasirpal-moves-capital-to-nimrud",
@@ -66161,7 +66161,7 @@
     {
       "id": "event/ev-bc0814-carthage-founded-by-tradition/date/displaySv",
       "sv": "814 f.Kr. (traditionellt datum)",
-      "en": "814 BCE (traditional date)",
+      "en": "814 BC (traditional date)",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0814-carthage-founded-by-tradition",
@@ -66172,7 +66172,7 @@
     {
       "id": "event/ev-bc0814-carthage-founded-by-tradition/date/noteSv",
       "sv": "Met anger 814 f.Kr. som det år traditionen bevarar. Posten gör inget anspråk på ett arkeologiskt datum.",
-      "en": "The Met gives 814 BCE as the year tradition preserves. The record claims no archaeological date.",
+      "en": "The Met gives 814 BC as the year tradition preserves. The record claims no archaeological date.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0814-carthage-founded-by-tradition",
@@ -66194,7 +66194,7 @@
     {
       "id": "event/ev-bc0814-carthage-founded-by-tradition/summarySv",
       "sv": "Enligt traditionen grundar feniciska kolonister från Levanten Karthago 814 f.Kr., vid kusten i nuvarande Tunisien. De lokala folken är fientliga och kräver tribut av kolonisterna, däribland arrende för deras mark, fram till femte århundradet f.Kr.",
-      "en": "Tradition dates to 814 BCE the founding of Carthage by Phoenician colonists from the Levant on the coast of present-day Tunisia. The local peoples are hostile and demand tribute from the colonists, including rent for their land, until the fifth century BCE.",
+      "en": "Tradition dates to 814 BC the founding of Carthage by Phoenician colonists from the Levant on the coast of present-day Tunisia. The local peoples are hostile and demand tribute from the colonists, including rent for their land, until the fifth century BC.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc0814-carthage-founded-by-tradition",
@@ -66216,7 +66216,7 @@
     {
       "id": "event/ev-bc1000-timna-site34-production-peak/date/displaySv",
       "sv": "första hälften av tionde århundradet f.Kr.",
-      "en": "First half of the tenth century BCE",
+      "en": "First half of the tenth century BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1000-timna-site34-production-peak",
@@ -66271,7 +66271,7 @@
     {
       "id": "event/ev-bc1100-ritidian-coastal-activity/date/displaySv",
       "sv": "omkring 1100–700 f.Kr.",
-      "en": "About 1100–700 BCE",
+      "en": "About 1100–700 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1100-ritidian-coastal-activity",
@@ -66282,7 +66282,7 @@
     {
       "id": "event/ev-bc1100-ritidian-coastal-activity/date/noteSv",
       "sv": "Detta är Carsons hela arkeologiska fas, inte ett exakt daterat grundande eller ett påstående att varje verksamhet började 1100 f.Kr. Tidigare bosättning 1500–1100 f.Kr. och den senare förskjutningen mot inlandet hålls isär. Hällkonstens tillkomst tilldelas inget exakt år.",
-      "en": "This is Carson's complete archaeological phase, not a precisely dated foundation or a claim that every activity began in 1100 BCE. Earlier occupation in 1500–1100 BCE and the later shift toward inland areas remain separate. Rock-art production is not assigned an exact year.",
+      "en": "This is Carson's complete archaeological phase, not a precisely dated foundation or a claim that every activity began in 1100 BC. Earlier occupation in 1500–1100 BC and the later shift toward inland areas remain separate. Rock-art production is not assigned an exact year.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1100-ritidian-coastal-activity",
@@ -66326,7 +66326,7 @@
     {
       "id": "event/ev-bc1042-wu-geng-rebellion/date/displaySv",
       "sv": "1042–1039 f.Kr. i Christophers kronologi",
-      "en": "1042–1039 BCE in Christopher's chronology",
+      "en": "1042–1039 BC in Christopher's chronology",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1042-wu-geng-rebellion",
@@ -66381,7 +66381,7 @@
     {
       "id": "event/ev-bc1200-ugarit-destruction/date/displaySv",
       "sv": "omkring 1200 f.Kr., eller omkring 1190/1180 f.Kr.",
-      "en": "About 1200 BCE, or around 1190/1180 BCE",
+      "en": "About 1200 BC, or around 1190/1180 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1200-ugarit-destruction",
@@ -66392,7 +66392,7 @@
     {
       "id": "event/ev-bc1200-ugarit-destruction/date/noteSv",
       "sv": "Drowers äldre framställning anger omkring 1200 f.Kr.; Callot och Yon anger omkring 1190/1180 f.Kr. Callot kallar senare 1180 vägledande och diskuterar uppskattningar kring 1190–1185. Dessa gränser samlar olika närmevärden, inte en varaktighet på tjugo år. Det exakta datumet och om förstörelsen skedde i en eller flera omgångar är fortfarande osäkert.",
-      "en": "Drower's older account gives about 1200 BCE; Callot and Yon give around 1190/1180 BCE. Callot later calls 1180 indicative and discusses estimates around 1190–1185. These bounds collect differing approximations, not a twenty-year duration. The exact date and whether destruction occurred in one episode or several remain uncertain.",
+      "en": "Drower's older account gives about 1200 BC; Callot and Yon give around 1190/1180 BC. Callot later calls 1180 indicative and discusses estimates around 1190–1185. These bounds collect differing approximations, not a twenty-year duration. The exact date and whether destruction occurred in one episode or several remain uncertain.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1200-ugarit-destruction",
@@ -66436,7 +66436,7 @@
     {
       "id": "event/ev-bc1300-qantir-primary-glassmaking/date/displaySv",
       "sv": "trettonde århundradet f.Kr. (arkeologisk periodtillskrivning)",
-      "en": "Thirteenth century BCE (archaeological period attribution)",
+      "en": "Thirteenth century BC (archaeological period attribution)",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1300-qantir-primary-glassmaking",
@@ -66491,7 +66491,7 @@
     {
       "id": "event/ev-bc1380-hittite-empire-reaches-greatest-extent/date/displaySv",
       "sv": "cirka 1380–1340 f.Kr.",
-      "en": "c. 1380–1340 BCE",
+      "en": "c. 1380–1340 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1380-hittite-empire-reaches-greatest-extent",
@@ -66502,7 +66502,7 @@
     {
       "id": "event/ev-bc1380-hittite-empire-reaches-greatest-extent/date/noteSv",
       "sv": "Met anger ett ungefärligt spann och daterar Shuppiluliuma I:s regeringstid till 1370–1330 f.Kr.",
-      "en": "The Met gives an approximate span and dates Shuppiluliuma I's reign to 1370–1330 BCE.",
+      "en": "The Met gives an approximate span and dates Shuppiluliuma I's reign to 1370–1330 BC.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1380-hittite-empire-reaches-greatest-extent",
@@ -66546,7 +66546,7 @@
     {
       "id": "event/ev-bc1380-pylos-palace-thrives/date/displaySv",
       "sv": "cirka 1380 f.Kr.",
-      "en": "c. 1380 BCE",
+      "en": "c. 1380 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1380-pylos-palace-thrives",
@@ -66590,7 +66590,7 @@
     {
       "id": "event/ev-bc1350-san-jose-mogote-first-public-building/date/displaySv",
       "sv": "cirka 1350 f.Kr.",
-      "en": "c. 1350 BCE",
+      "en": "c. 1350 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1350-san-jose-mogote-first-public-building",
@@ -66634,7 +66634,7 @@
     {
       "id": "event/ev-bc1340-chogha-zanbil-built/date/displaySv",
       "sv": "cirka 1340–1300 f.Kr.",
-      "en": "c. 1340–1300 BCE",
+      "en": "c. 1340–1300 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1340-chogha-zanbil-built",
@@ -66689,7 +66689,7 @@
     {
       "id": "event/ev-bc1500-glassworking-takes-hold-in-egypt/date/displaySv",
       "sv": "omkring 1500 f.Kr.",
-      "en": "Around 1500 BCE",
+      "en": "Around 1500 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1500-glassworking-takes-hold-in-egypt",
@@ -66700,7 +66700,7 @@
     {
       "id": "event/ev-bc1500-glassworking-takes-hold-in-egypt/date/noteSv",
       "sv": "Källorna placerar glasets introduktion eller framväxten av dess tillverkning i Egypten omkring 1500 f.Kr. Nicholson och Jackson skiljer detta från en möjlig lokal tillverkning under Thutmosis III, vars regeringstid de daterar till 1479–1425 f.Kr. Ingen exakt första verkstad, inget lokalt produktionsår och ingen enskild hantverkares ankomst fastställs.",
-      "en": "The sources place glass's introduction or the emergence of its production in Egypt around 1500 BCE. Nicholson and Jackson distinguish this from possible local manufacture under Thutmose III, whose reign they date to 1479–1425 BCE. No exact first workshop, local production year or arrival of an individual artisan is established.",
+      "en": "The sources place glass's introduction or the emergence of its production in Egypt around 1500 BC. Nicholson and Jackson distinguish this from possible local manufacture under Thutmose III, whose reign they date to 1479–1425 BC. No exact first workshop, local production year or arrival of an individual artisan is established.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1500-glassworking-takes-hold-in-egypt",
@@ -66744,7 +66744,7 @@
     {
       "id": "event/ev-bc1600-boat-images-appear-in-scandinavia/date/displaySv",
       "sv": "cirka 1600 f.Kr.",
-      "en": "c. 1600 BCE",
+      "en": "c. 1600 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1600-boat-images-appear-in-scandinavia",
@@ -66788,7 +66788,7 @@
     {
       "id": "event/ev-bc1600-scandinavia-takes-up-bronze/date/displaySv",
       "sv": "cirka 1600–1500 f.Kr.",
-      "en": "c. 1600–1500 BCE",
+      "en": "c. 1600–1500 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1600-scandinavia-takes-up-bronze",
@@ -66843,7 +66843,7 @@
     {
       "id": "event/ev-bc1600-shang-dynasty-rules-north-china/date/displaySv",
       "sv": "cirka 1600 f.Kr.",
-      "en": "c. 1600 BCE",
+      "en": "c. 1600 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1600-shang-dynasty-rules-north-china",
@@ -66854,7 +66854,7 @@
     {
       "id": "event/ev-bc1600-shang-dynasty-rules-north-china/date/noteSv",
       "sv": "Met daterar Shangs kontroll över området till omkring 1600 f.Kr. och anger inget grundläggningsår.",
-      "en": "The Met dates Shang control of this area to about 1600 BCE and gives no founding year.",
+      "en": "The Met dates Shang control of this area to about 1600 BC and gives no founding year.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1600-shang-dynasty-rules-north-china",
@@ -66876,7 +66876,7 @@
     {
       "id": "event/ev-bc1600-shang-dynasty-rules-north-china/summarySv",
       "sv": "Shangdynastin kontrollerar ett stort område i nordöstra och norra centrala Kina. Zhengzhou, som anses ha varit ett kultcentrum, hör till dess viktigaste platser, och Anyang är huvudstad från omkring 1300 f.Kr. Shangs verkstäder gjuter rituella bronskärl för vin och mat med flera keramiska formar.",
-      "en": "The Shang dynasty controls a large area of northeastern and north-central China. Zhengzhou, thought to be a cult centre, is among its major sites, and Anyang serves as capital from about 1300 BCE. Shang workshops cast ritual bronze vessels for wine and food in multiple ceramic moulds.",
+      "en": "The Shang dynasty controls a large area of northeastern and north-central China. Zhengzhou, thought to be a cult centre, is among its major sites, and Anyang serves as capital from about 1300 BC. Shang workshops cast ritual bronze vessels for wine and food in multiple ceramic moulds.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1600-shang-dynasty-rules-north-china",
@@ -66898,7 +66898,7 @@
     {
       "id": "event/ev-bc1550-ahmose-reunites-egypt/date/displaySv",
       "sv": "cirka 1550 f.Kr.",
-      "en": "c. 1550 BCE",
+      "en": "c. 1550 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1550-ahmose-reunites-egypt",
@@ -66909,7 +66909,7 @@
     {
       "id": "event/ev-bc1550-ahmose-reunites-egypt/date/noteSv",
       "sv": "Met daterar Nya riket till omkring 1550–1070 f.Kr. och placerar Ahmoses återförening vid dess början utan ett eget år.",
-      "en": "The Met dates the New Kingdom to about 1550–1070 BCE and places Ahmose's reunification at its start without a separate year.",
+      "en": "The Met dates the New Kingdom to about 1550–1070 BC and places Ahmose's reunification at its start without a separate year.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1550-ahmose-reunites-egypt",
@@ -66953,7 +66953,7 @@
     {
       "id": "event/ev-bc1550-kerma-loses-lower-nubia/date/displaySv",
       "sv": "cirka 1550 f.Kr.",
-      "en": "c. 1550 BCE",
+      "en": "c. 1550 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1550-kerma-loses-lower-nubia",
@@ -66964,7 +66964,7 @@
     {
       "id": "event/ev-bc1550-kerma-loses-lower-nubia/date/noteSv",
       "sv": "Met placerar förlusten vid Nya rikets början och den egyptiska kontrollen fram till fjärde katarakten omkring 1450 f.Kr.",
-      "en": "The Met places the loss at the beginning of the New Kingdom and Egyptian control to the fourth cataract by about 1450 BCE.",
+      "en": "The Met places the loss at the beginning of the New Kingdom and Egyptian control to the fourth cataract by about 1450 BC.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1550-kerma-loses-lower-nubia",
@@ -66986,7 +66986,7 @@
     {
       "id": "event/ev-bc1550-kerma-loses-lower-nubia/summarySv",
       "sv": "Kerma förlorar kontrollen över Nedre Nubien när de egyptiska kungarna av 18:e dynastin inleder fälttåg mot Övre Nubien. Omkring 1450 f.Kr. styr Egypten Nubien ända söderut till fjärde katarakten genom en vicekung, Kungens son av Kush.",
-      "en": "Kerma loses control of Lower Nubia when the Egyptian kings of Dynasty 18 begin campaigns against Upper Nubia. By about 1450 BCE Egypt rules Nubia as far south as the fourth cataract through a viceroy, the King's Son of Kush.",
+      "en": "Kerma loses control of Lower Nubia when the Egyptian kings of Dynasty 18 begin campaigns against Upper Nubia. By about 1450 BC Egypt rules Nubia as far south as the fourth cataract through a viceroy, the King's Son of Kush.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1550-kerma-loses-lower-nubia",
@@ -67008,7 +67008,7 @@
     {
       "id": "event/ev-bc1650-hattusa-becomes-hittite-royal-seat/date/displaySv",
       "sv": "omkring 1650 f.Kr., i den konventionella kronologin",
-      "en": "Around 1650 BCE, in the conventional chronology",
+      "en": "Around 1650 BC, in the conventional chronology",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1650-hattusa-becomes-hittite-royal-seat",
@@ -67019,7 +67019,7 @@
     {
       "id": "event/ev-bc1650-hattusa-becomes-hittite-royal-seat/date/noteSv",
       "sv": "Strupler placerar valet av Hattusa som huvudstad omkring 1650 f.Kr. Herrmann med kolleger förklarar att 1650 är en konventionell uppskattning av tronbestigningen byggd på generationsräkning, inte ett daterat grundande. Kloekhorst tolkar hovets flytt som att den följde på en tronbestigning i Nesa. Det exakta året för flytten är okänt; inga regeringsdatum räknas om till ett nytt händelsedatum.",
-      "en": "Strupler places the choice of Hattusa as capital around 1650 BCE. Herrmann and colleagues explain that 1650 is a conventional accession estimate based on generation counting, not a dated foundation. Kloekhorst interprets the court's move as following an accession at Nesa. The precise transfer year remains unknown; no reign dates are converted into a new event date.",
+      "en": "Strupler places the choice of Hattusa as capital around 1650 BC. Herrmann and colleagues explain that 1650 is a conventional accession estimate based on generation counting, not a dated foundation. Kloekhorst interprets the court's move as following an accession at Nesa. The precise transfer year remains unknown; no reign dates are converted into a new event date.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1650-hattusa-becomes-hittite-royal-seat",
@@ -67063,7 +67063,7 @@
     {
       "id": "event/ev-bc1650-paso-de-la-amada-ballcourt-built/date/displaySv",
       "sv": "omkring 1650–1600 f.Kr.",
-      "en": "Around 1650–1600 BCE",
+      "en": "Around 1650–1600 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1650-paso-de-la-amada-ballcourt-built",
@@ -67074,7 +67074,7 @@
     {
       "id": "event/ev-bc1650-paso-de-la-amada-ballcourt-built/date/noteSv",
       "sv": "2016 års studie anger ungefär 1650–1600 f.Kr. för bygget; BYU:s institutionella rapport från 1998 om utgrävningen anger omkring 1600 f.Kr. Hela det ungefärliga fönstret behålls över sekelgränsen. Det innebär inte femtio år av oavbrutet byggande och daterar inte uppfinningen av bollspelet.",
-      "en": "The 2016 study gives approximately 1650–1600 BCE for construction; BYU's 1998 institutional report on the excavation gives about 1600 BCE. The complete approximate window is retained across the century boundary. It does not imply fifty years of continuous building or date the invention of the ballgame.",
+      "en": "The 2016 study gives approximately 1650–1600 BC for construction; BYU's 1998 institutional report on the excavation gives about 1600 BC. The complete approximate window is retained across the century boundary. It does not imply fifty years of continuous building or date the invention of the ballgame.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1650-paso-de-la-amada-ballcourt-built",
@@ -67118,7 +67118,7 @@
     {
       "id": "event/ev-bc1800-anitta-reports-nesha-cult-image-return/date/displaySv",
       "sv": "artonde århundradet f.Kr. (exakt år okänt)",
-      "en": "Eighteenth century BCE (exact year unknown)",
+      "en": "Eighteenth century BC (exact year unknown)",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1800-anitta-reports-nesha-cult-image-return",
@@ -67129,7 +67129,7 @@
     {
       "id": "event/ev-bc1800-anitta-reports-nesha-cult-image-return/date/noteSv",
       "sv": "Intervallet motsvarar forskningens placering av de omtalade händelserna i artonde århundradet f.Kr., inte en handling som varade ett århundrade. Anittas redogörelse anger inget exakt år för återförandet. Textens ursprungliga språk och tradering är omdebatterade; intervallet daterar inte de bevarade handskrifterna. Den andra källan stöder detta textsammanhang, inte en oberoende bekräftelse av återförandet.",
-      "en": "The interval represents the scholarly placement of the reported events in the eighteenth century BCE, not a century-long action. Anitta's account supplies no exact year for the return. The text's original language and transmission are debated; this interval does not date the surviving manuscripts. The second source supports that textual context, not independent confirmation of the return.",
+      "en": "The interval represents the scholarly placement of the reported events in the eighteenth century BC, not a century-long action. Anitta's account supplies no exact year for the return. The text's original language and transmission are debated; this interval does not date the surviving manuscripts. The second source supports that textual context, not independent confirmation of the return.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1800-anitta-reports-nesha-cult-image-return",
@@ -67173,7 +67173,7 @@
     {
       "id": "event/ev-bc1900-phaistos-palace-construction/date/displaySv",
       "sv": "omkring 1900 f.Kr.",
-      "en": "Around 1900 BCE",
+      "en": "Around 1900 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1900-phaistos-palace-construction",
@@ -67184,7 +67184,7 @@
     {
       "id": "event/ev-bc1900-phaistos-palace-construction/date/noteSv",
       "sv": "Platsens officiella beskrivning anger ett ungefärligt byggdatum. Faistos var bebott redan tidigare; posten daterar inte bosättningens grundande eller den senare ombyggnaden av palatset till 1900 f.Kr.",
-      "en": "The official site account gives an approximate construction date. Phaistos was already occupied earlier; this entry does not date the settlement's foundation or the later palace rebuilding to 1900 BCE.",
+      "en": "The official site account gives an approximate construction date. Phaistos was already occupied earlier; this entry does not date the settlement's foundation or the later palace rebuilding to 1900 BC.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1900-phaistos-palace-construction",
@@ -67206,7 +67206,7 @@
     {
       "id": "event/ev-bc1900-phaistos-palace-construction/summarySv",
       "sv": "Byggare uppför det minoiska palatset i Faistos på Kreta omkring 1900 f.Kr., enligt den officiella beskrivningen av den arkeologiska platsen.",
-      "en": "Builders construct the Minoan palace at Phaistos on Crete around 1900 BCE, according to the official archaeological-site account.",
+      "en": "Builders construct the Minoan palace at Phaistos on Crete around 1900 BC, according to the official archaeological-site account.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1900-phaistos-palace-construction",
@@ -67228,7 +67228,7 @@
     {
       "id": "event/ev-bc1900-kerma-monumental-burials/date/displaySv",
       "sv": "omkring 1900 f.Kr.",
-      "en": "Around 1900 BCE",
+      "en": "Around 1900 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1900-kerma-monumental-burials",
@@ -67239,7 +67239,7 @@
     {
       "id": "event/ev-bc1900-kerma-monumental-burials/date/noteSv",
       "sv": "Honegger lyfter fram omkring 1900 f.Kr. inom en bredare utveckling under Mellersta Kerma. Detta daterar en episod av monumentala begravningar, inte en exakt första grav eller början på social hierarki. Hans senare bildtext daterar en grav till ungefär samma tid; den är ingen oberoende bekräftelse av hela förloppet.",
-      "en": "Honegger singles out around 1900 BCE within a broader Middle Kerma development. This dates a monumental burial episode, not an exact first grave or the beginning of social hierarchy. His later caption dates one grave to roughly the same time; it is not independent confirmation of the whole sequence.",
+      "en": "Honegger singles out around 1900 BC within a broader Middle Kerma development. This dates a monumental burial episode, not an exact first grave or the beginning of social hierarchy. His later caption dates one grave to roughly the same time; it is not independent confirmation of the whole sequence.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1900-kerma-monumental-burials",
@@ -67261,7 +67261,7 @@
     {
       "id": "event/ev-bc1900-kerma-monumental-burials/summarySv",
       "sv": "Honegger beskriver monumentala gravar i Kerma omkring 1900 f.Kr. Stora gravgropar och gravhögar åtföljs i regel av kapell av soltorkat tegel och arrangemang av nötkreaturskranier.",
-      "en": "Honegger describes monumental graves at Kerma around 1900 BCE. Large burial pits and mounds are generally accompanied by mudbrick chapels and arrangements of cattle skulls.",
+      "en": "Honegger describes monumental graves at Kerma around 1900 BC. Large burial pits and mounds are generally accompanied by mudbrick chapels and arrangements of cattle skulls.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc1900-kerma-monumental-burials",
@@ -67283,7 +67283,7 @@
     {
       "id": "event/ev-bc2000-kerma-wooden-burial-beds/date/displaySv",
       "sv": "omkring 2000 f.Kr.; övergången är inte exakt daterad",
-      "en": "Around 2000 BCE; the transition is not precisely dated",
+      "en": "Around 2000 BC; the transition is not precisely dated",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2000-kerma-wooden-burial-beds",
@@ -67294,7 +67294,7 @@
     {
       "id": "event/ev-bc2000-kerma-wooden-burial-beds/date/noteSv",
       "sv": "Honeggers syntes från 2018 placerar bruket av träbäddar i gravar omkring 2000 f.Kr. Hans katalog från 2014 beskriver det bara som kort efter fasen 2300–2100 f.Kr. Chaix placerar bäddarna senare i förloppet under Mellersta Kerma, vars hela ram är 2050–1750 f.Kr., utan ett eget startår. Dessa relativa beskrivningar fastställer varken en exakt första begravning eller en exakt avgränsad period för införandet.",
-      "en": "Honegger's 2018 synthesis places the use of wooden burial beds around 2000 BCE. His 2014 catalogue describes it only as shortly after the 2300–2100 BCE phase. Chaix places beds later in the Middle Kerma sequence, whose full framework is 2050–1750 BCE, without a separate start year. These relative descriptions do not establish an exact first burial or a precisely bounded adoption period.",
+      "en": "Honegger's 2018 synthesis places the use of wooden burial beds around 2000 BC. His 2014 catalogue describes it only as shortly after the 2300–2100 BC phase. Chaix places beds later in the Middle Kerma sequence, whose full framework is 2050–1750 BC, without a separate start year. These relative descriptions do not establish an exact first burial or a precisely bounded adoption period.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2000-kerma-wooden-burial-beds",
@@ -67316,7 +67316,7 @@
     {
       "id": "event/ev-bc2000-kerma-wooden-burial-beds/summarySv",
       "sv": "På Kermas östra gravfält, som användes av huvudstadens elit, börjar de döda läggas på träbäddar efter ett tidigare bruk att lägga dem direkt på nöthudar. Honegger daterar förändringen till ungefär 2000 f.Kr. och anger att bäddtraditionen har egyptiskt ursprung. Andra framställningar beskriver övergången genom relativa arkeologiska faser i stället för ett exakt år.",
-      "en": "In Kerma's eastern cemetery, used by the capital's elite, the dead come to be placed on wooden beds after an earlier practice of laying them directly on cattle hides. Honegger dates this change approximately to 2000 BCE and identifies the bed tradition as Egyptian in origin. Other accounts describe the transition through relative archaeological phases rather than a precise year.",
+      "en": "In Kerma's eastern cemetery, used by the capital's elite, the dead come to be placed on wooden beds after an earlier practice of laying them directly on cattle hides. Honegger dates this change approximately to 2000 BC and identifies the bed tradition as Egyptian in origin. Other accounts describe the transition through relative archaeological phases rather than a precise year.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2000-kerma-wooden-burial-beds",
@@ -67503,7 +67503,7 @@
     {
       "id": "event/ev-bc2300-sannai-maruyama-occupation-ends/date/displaySv",
       "sv": "omkring 2300 f.Kr.; alternativ slutpunkt för bosättningen: 2200 f.Kr.",
-      "en": "Around 2300 BCE; alternative occupation endpoint: 2200 BCE",
+      "en": "Around 2300 BC; alternative occupation endpoint: 2200 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2300-sannai-maruyama-occupation-ends",
@@ -67514,7 +67514,7 @@
     {
       "id": "event/ev-bc2300-sannai-maruyama-occupation-ends/date/noteSv",
       "sv": "Habu daterar bosättningsförloppet till omkring 3900–2300 kal. f.Kr.; den officiella kulturarvssammanfattningen anger 3900–2200 f.Kr. Denna post gäller deras alternativa slutpunkter, inte hela bosättningen eller ett uppbrott som varade ett århundrade. Tidigare förändringar i försörjning och bosättningsstorlek har sin egen kronologi.",
-      "en": "Habu dates the occupation sequence to around 3900–2300 cal BC; the official heritage summary gives 3900–2200 BCE. This record concerns their alternative endpoints, not the whole occupation or a century-long departure. Earlier changes in subsistence and settlement size have their own chronology.",
+      "en": "Habu dates the occupation sequence to around 3900–2300 cal BC; the official heritage summary gives 3900–2200 BC. This record concerns their alternative endpoints, not the whole occupation or a century-long departure. Earlier changes in subsistence and settlement size have their own chronology.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2300-sannai-maruyama-occupation-ends",
@@ -67536,7 +67536,7 @@
     {
       "id": "event/ev-bc2300-sannai-maruyama-occupation-ends/summarySv",
       "sv": "Det arkeologiska förloppet i jomonbosättningen Sannai Maruyama slutar omkring 2300 f.Kr. i Habus kronologi. Den officiella kulturarvsbeskrivningen förlänger bosättningen till 2200 f.Kr. Dessa uppskattningar fastställer inte ett enskilt år för uppbrottet, en orsak eller vart invånarna tog vägen.",
-      "en": "The archaeological sequence of the Jomon settlement at Sannai Maruyama ends around 2300 BCE in Habu's chronology. The official heritage account extends its occupation to 2200 BCE. These estimates do not establish a single departure year, a cause or the inhabitants' destination.",
+      "en": "The archaeological sequence of the Jomon settlement at Sannai Maruyama ends around 2300 BC in Habu's chronology. The official heritage account extends its occupation to 2200 BC. These estimates do not establish a single departure year, a cause or the inhabitants' destination.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2300-sannai-maruyama-occupation-ends",
@@ -67613,7 +67613,7 @@
     {
       "id": "event/ev-bc2450-britain-early-beaker-burials/date/displaySv",
       "sv": "2450–2325 f.Kr. (de tidigaste brittiska klockbägargravarna)",
-      "en": "2450–2325 BCE (earliest British Beaker burials)",
+      "en": "2450–2325 BC (earliest British Beaker burials)",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2450-britain-early-beaker-burials",
@@ -67668,7 +67668,7 @@
     {
       "id": "event/ev-bc2600-indus-cities-flourish/date/displaySv",
       "sv": "cirka 2600–1900 f.Kr.",
-      "en": "c. 2600–1900 BCE",
+      "en": "c. 2600–1900 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2600-indus-cities-flourish",
@@ -67723,7 +67723,7 @@
     {
       "id": "event/ev-bc2600-intercultural-style-chlorite-vessels/date/displaySv",
       "sv": "cirka 2600–2250 f.Kr.",
-      "en": "c. 2600–2250 BCE",
+      "en": "c. 2600–2250 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2600-intercultural-style-chlorite-vessels",
@@ -67778,7 +67778,7 @@
     {
       "id": "event/ev-bc2700-thy-grazing-landscape/date/displaySv",
       "sv": "omkring 2700 f.Kr.",
-      "en": "Around 2700 BCE",
+      "en": "Around 2700 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2700-thy-grazing-landscape",
@@ -67789,7 +67789,7 @@
     {
       "id": "event/ev-bc2700-thy-grazing-landscape/date/noteSv",
       "sv": "Thyprojektets författare kopplar pollenbeläggen till enkelgravskulturen och beskriver att förändringen tog mindre än ett århundrade. Den ungefärliga markören fastställer varken ett enskilt år eller ett slutdatum; den senare röjningen som börjar omkring 1500 f.Kr. är separat.",
-      "en": "The Thy Project authors link the pollen evidence to the Single Grave culture and describe the change as taking less than a century. The approximate marker does not fix a single year or an end date; the later clearance beginning around 1500 BCE is separate.",
+      "en": "The Thy Project authors link the pollen evidence to the Single Grave culture and describe the change as taking less than a century. The approximate marker does not fix a single year or an end date; the later clearance beginning around 1500 BC is separate.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2700-thy-grazing-landscape",
@@ -67833,7 +67833,7 @@
     {
       "id": "event/ev-bc2700-khasekhemwy-abydos-enclosure/date/displaySv",
       "sv": "omkring 2700 f.Kr.",
-      "en": "Around 2700 BCE",
+      "en": "Around 2700 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc2700-khasekhemwy-abydos-enclosure",
@@ -68053,7 +68053,7 @@
     {
       "id": "event/ev-bc3200-orkney-settlement-mounds/date/displaySv",
       "sv": "omkring 3200–3000 f.Kr. (kalibrerad kronologi)",
-      "en": "About 3200–3000 BCE (calibrated chronology)",
+      "en": "About 3200–3000 BC (calibrated chronology)",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc3200-orkney-settlement-mounds",
@@ -68064,7 +68064,7 @@
     {
       "id": "event/ev-bc3200-orkney-settlement-mounds/date/noteSv",
       "sv": "Bayliss med kolleger anger detta fullständiga intervall för en regional utveckling av bosättningsformen. Det daterar inte den första bosättningen på varje plats, innebär inte en oavbruten bosättning under hela tiden och placerar inte Skara Braes senare samlade bosättning till 3200 f.Kr.",
-      "en": "Bayliss and colleagues give this complete interval for a regional development in settlement form. It does not date the first occupation of every site, imply continuous occupation throughout, or assign Skara Brae's later nucleated settlement to 3200 BCE.",
+      "en": "Bayliss and colleagues give this complete interval for a regional development in settlement form. It does not date the first occupation of every site, imply continuous occupation throughout, or assign Skara Brae's later nucleated settlement to 3200 BC.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc3200-orkney-settlement-mounds",
@@ -68108,7 +68108,7 @@
     {
       "id": "event/ev-bc3300-fanshan-elite-burials/date/displaySv",
       "sv": "omkring 3300–2900 f.Kr.",
-      "en": "Around 3300–2900 BCE",
+      "en": "Around 3300–2900 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc3300-fanshan-elite-burials",
@@ -68163,7 +68163,7 @@
     {
       "id": "event/ev-bc3300-yamnaya-initial-expansion/date/displaySv",
       "sv": "omkring 3300–3000 f.Kr.",
-      "en": "Around 3300–3000 BCE",
+      "en": "Around 3300–3000 BC",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc3300-yamnaya-initial-expansion",
@@ -68174,7 +68174,7 @@
     {
       "id": "event/ev-bc3300-yamnaya-initial-expansion/date/noteSv",
       "sv": "Kaliff och Oestigaard placerar det utvecklade Jamnajakomplexets framträdande omkring 3300 f.Kr. och dess utbredning från Ungern till Kazakstan omkring 3000 f.Kr. Detta är ungefärliga gränser för en första expansion, inte en enda migration eller en exakt början. Deras vidare kulturspann, cirka 3300–2500 f.Kr., fortsätter efter denna episod.",
-      "en": "Kaliff and Oestigaard place the developed Yamnaya complex's appearance around 3300 BCE and its extent from Hungary to Kazakhstan by around 3000 BCE. These are approximate bounds for an initial expansion, not one migration or an exact beginning. Their wider c. 3300–2500 BCE culture span continues beyond this episode.",
+      "en": "Kaliff and Oestigaard place the developed Yamnaya complex's appearance around 3300 BC and its extent from Hungary to Kazakhstan by around 3000 BC. These are approximate bounds for an initial expansion, not one migration or an exact beginning. Their wider c. 3300–2500 BC culture span continues beyond this episode.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc3300-yamnaya-initial-expansion",
@@ -68196,7 +68196,7 @@
     {
       "id": "event/ev-bc3300-yamnaya-initial-expansion/summarySv",
       "sv": "Samhällen som förknippas med det arkeologiska Jamnajakomplexet sprider sig österut och västerut från stäpperna norr om Svarta havet och Kaspiska havet. Omkring 3000 f.Kr. sträcker sig komplexet från Ungern till Kazakstan. Denna vida spridning förbinder avlägsna herdefolk; den fastställer varken en enda stat eller ett gemensamt språk överallt.",
-      "en": "Communities associated with the Yamnaya archaeological complex spread eastward and westward from the steppes north of the Black and Caspian Seas. By around 3000 BCE, the complex extends from Hungary to Kazakhstan. This wide movement connects distant pastoral populations; it does not establish a single state or a uniformly shared language.",
+      "en": "Communities associated with the Yamnaya archaeological complex spread eastward and westward from the steppes north of the Black and Caspian Seas. By around 3000 BC, the complex extends from Hungary to Kazakhstan. This wide movement connects distant pastoral populations; it does not establish a single state or a uniformly shared language.",
       "source": {
         "path": "server/seed/historical/events/catalog.json",
         "eventId": "ev-bc3300-yamnaya-initial-expansion",

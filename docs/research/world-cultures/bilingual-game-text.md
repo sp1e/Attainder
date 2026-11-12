@@ -42,7 +42,7 @@ Historical text is delivered as locale sidecars beside the authoritative histori
 
 Historical event IDs and source field paths identify event text. Other historical records use entity IDs where available, with the original JSON pointer supplied for readback. Map features that share a polity use their distinct feature identity. Array position alone is not a durable identity for an entity.
 
-The translated text preserves numbers, dates, alternatives, uncertainty, attribution, generated-person labels and the scope of source evidence. Century wording is checked against the record's full numeric range; translation never changes the stored endpoints. A century-wide range does not become an exact event year. Translation does not approve new historical claims or repair existing research.
+The translated text preserves numbers, dates, alternatives, uncertainty, attribution, generated-person labels and the scope of source evidence. Century wording is checked against the record's full numeric range; translation never changes the stored endpoints. A century-wide range does not become an exact event year. Translation does not approve new historical claims or repair existing research. English display text writes eras as AD and BC, as the game's own text does; quoted titles, section headings and source locators keep the era labels of their source.
 
 Original quotations, bibliographic titles and attested personal-name forms keep their original language. Established English forms can be used for display names, while the canonical person or polity ID remains unchanged. Explanatory source locators receive Swedish text for the Swedish source panel; quoted section titles and archival identifiers remain recognizable.
 
