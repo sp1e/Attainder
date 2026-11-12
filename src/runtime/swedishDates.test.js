@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createPhraseBook } from "./phraseBook.js";
-import { englishDateLabel } from "./swedishDates.js";
+import { englishDateLabel, englishDecimal } from "./swedishDates.js";
 import { bookOptions } from "./translatorMode.js";
 
 test("a Swedish date label reads as an English date", () => {
@@ -22,4 +22,13 @@ test("the native book reads a date alone and as a value in a sentence", () => {
   assert.equal(book.translate("25/12 800 e.Kr."), "25 December AD 800");
   assert.equal(book.translate("Karl dör 28/1 814 e.Kr."), "Karl dies on 28 January AD 814");
   assert.equal(book.translate("25/12 800 e.Kr.", { strongOnly: true }), null, "outside the Swedish views a date is the interface's own");
+});
+
+test("a decimal comma in an engine sentence reads as a decimal point", () => {
+  assert.equal(englishDecimal("−13,8"), "−13.8");
+  assert.equal(englishDecimal("+0,25"), "+0.25");
+  for (const text of ["1,100", "13", "13,8 silver", "a,b", null]) assert.equal(englishDecimal(text), null, String(text));
+  const book = createPhraseBook(bookOptions("en"));
+  book.setAll({ "Statskassan förändras med {{amount}} silver.": "The treasury changes by {{amount}} silver." });
+  assert.equal(book.translate("Statskassan förändras med −13,8 silver."), "The treasury changes by −13.8 silver.");
 });

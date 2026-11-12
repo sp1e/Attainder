@@ -26,7 +26,7 @@ export const SWEDISH_WORDS = Object.freeze([
   "från", "år", "är", "ett", "på", "av", "om", "vid", "blir", "får", "sitt", "sina",
   "mot", "utan", "efter", "ingen", "inget", "inga", "enligt", "redan", "detta", "denna",
   "dessa", "deras", "saknar", "saknas", "hos", "igen", "kunde",
-  "hov", "hovet", "rike", "riket", "kung", "kungen", "drottning", "drottningen", "genererad", "genererat", "genererade",
+  "hov", "hovet", "rike", "riket", "kung", "kungen", "drottning", "drottningen", "genererad", "genererat", "genererade", "orolig", "oroligt",
 ]);
 
 // Swedish function words that are English words too, or sit inside names an

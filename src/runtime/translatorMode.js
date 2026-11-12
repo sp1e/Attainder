@@ -15,7 +15,7 @@
 
 import { DEFAULT_LANGUAGE } from "./i18n.js";
 import { createDateLocalizer } from "./localDates.js";
-import { englishDateLabel } from "./swedishDates.js";
+import { englishValue } from "./swedishDates.js";
 import { looksSwedish } from "./swedishText.js";
 
 // The roots of the views written in Swedish carry this attribute.
@@ -58,7 +58,7 @@ export const usesModel = (mode) => mode === "pack";
 // written in Swedish, and the English ones on the page are already English.
 export const bookOptions = (language) => {
   const mode = translatorMode(language);
-  if (mode === "native") return { native: true, localizeValue: englishDateLabel };
+  if (mode === "native") return { native: true, localizeValue: englishValue };
   if (mode === "pack") return { localizeValue: createDateLocalizer(language) };
   return {};
 };
