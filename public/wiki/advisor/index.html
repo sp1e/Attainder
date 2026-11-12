@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Använd rådgivaren — Guide till Attainder" data-title-en="Using the advisor — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>The Advisor — Open Historia Wiki</title>
+  <title>Använd rådgivaren — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/advisor/" />
-  <meta name="description" content="Your in-game analyst: asking questions about your real position, reading charts, and turning advice into orders." />
+  <meta name="description" content="Fråga om kampanjen, granska svaret och förstå eventuella registrerade ändringar." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/advisor/" />
-  <meta property="og:title" content="The Advisor — Open Historia Wiki" />
-  <meta property="og:description" content="Your in-game analyst: asking questions about your real position, reading charts, and turning advice into orders." />
+  <meta property="og:title" content="Använd rådgivaren — Guide till Attainder" />
+  <meta property="og:description" content="Fråga om kampanjen, granska svaret och förstå eventuella registrerade ändringar." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Advisor — Open Historia Wiki" />
-  <meta name="twitter:description" content="Your in-game analyst: asking questions about your real position, reading charts, and turning advice into orders." />
+  <meta name="twitter:title" content="Använd rådgivaren — Guide till Attainder" />
+  <meta name="twitter:description" content="Fråga om kampanjen, granska svaret och förstå eventuella registrerade ändringar." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,226 +81,170 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/" class="on" aria-current="page">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> The Advisor
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Använd rådgivaren
     </nav>
-    <h1>The Advisor</h1>
-    <p class="tagline">Your in-game analyst: asking questions about your real position, reading charts, and turning advice into orders.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#what-it-is-good-for">What it is good for</a></li><li class="d2"><a href="#charts">Charts</a></li><li class="d2"><a href="#what-it-is-not">What it is not</a></li><li class="d2"><a href="#asking-it-to-do-the-paperwork">Asking it to do the paperwork</a></li><li class="d2"><a href="#it-keeps-up-with-the-world">It keeps up with the world</a></li><li class="d2"><a href="#institutions-and-groups">Institutions and groups</a></li><li class="d2"><a href="#clearing-it">Clearing it</a></li><li class="d2"><a href="#where-it-sits">Where it sits</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>The advisor is an analyst that can see your actual game state. Ask it anything about your
-position and it answers about <em>your</em> position, not about grand strategy in general.</p>
-<p>Open it with the <strong>Advisor</strong> button in the bottom-right corner. Drag the drawer&#39;s left edge to resize it; the
-width is remembered.</p>
-<h2 id="what-it-is-good-for">What it is good for</h2>
-<p><img src="/wiki/img/advisor-reply.jpg" alt="The advisor answering">
-<em>The advisor reads the real game state — here, Poland&#39;s energy exposure and its friction with Brussels.</em></p>
-<p><strong>Orientation.</strong> The fastest way to understand a country you have just picked up:</p>
-<blockquote>
-<p>What are the three biggest risks to Poland right now?</p>
-</blockquote>
-<p><strong>Interpretation.</strong> You can read your own stat sheet, but the advisor can tell you what the
-combination means:</p>
-<blockquote>
-<p>My food autonomy is 32 and my debt is rising. How exposed does that make me if the Black Sea
-corridor closes?</p>
-</blockquote>
-<p><strong>Assessment of other people.</strong> It reads the whole world, not just you:</p>
-<blockquote>
-<p>Who is most likely to move against me in the next year, and what would the first sign be?</p>
-</blockquote>
-<p><strong>Deciding what to order.</strong> It is genuinely good at turning a vague worry into a specific
-policy, which is exactly the gap that makes <a href="/wiki/orders/">orders</a> work or not.</p>
-<blockquote>
-<p>I want to reduce my dependence on Russian gas without wrecking industry. What are my options
-over the next two years?</p>
-</blockquote>
-<p><strong>Brainstorm</strong> in the Actions panel opens the advisor with a question already in its box — a plan
-of concrete actions for this round — for you to send as it is or change first.</p>
-<h2 id="charts">Charts</h2>
-<p>The advisor answers in markdown, and it can include <strong>charts</strong>. When a question is better
-answered with a picture — a trend, a comparison across countries, a breakdown — it renders one
-inline rather than listing numbers.</p>
-<p>You can ask for one directly: <em>&quot;chart my GDP growth against my neighbours&#39;&quot;</em>.</p>
-<h2 id="what-it-is-not">What it is not</h2>
-<p><strong>It is not an oracle.</strong> It reasons from the same world state you can see. It does not know what
-other countries have secretly decided, and it cannot see through your opponents&#39; intentions any
-better than the information available to you allows.</p>
-<p><strong>It is not privileged intelligence.</strong> For what other countries are actually saying in private,
-you need <a href="/wiki/espionage/">espionage</a>. The advisor works from the public picture, your own
-records, and the documents your government holds — it knows everything you know and nothing
-more.</p>
-<p><strong>It does not act on the world.</strong> Nothing the advisor says moves a border, signs a treaty or
-resolves a war until a time skip does it. It <em>can</em> write to your order queue and your projects
-board on your behalf — see <a href="#asking-it-to-do-the-paperwork">asking it to do the paperwork</a>
-below — but even then it is filling in your plans, not executing them.</p>
-<p><strong>It is only as good as your model.</strong> The advisor is one of the most reasoning-heavy things in
-the game. On a small local model its answers get noticeably thinner. See
-<a href="/wiki/ai-providers/">AI providers and models</a>.</p>
-<h2 id="asking-it-to-do-the-paperwork">Asking it to do the paperwork</h2>
-<p>The advisor can write straight into your <strong>order queue</strong> and your <strong>projects board</strong>. Ask it in plain language:</p>
-<blockquote>
-<p><em>&quot;Draft me the orders for a phased withdrawal from the eastern border.&quot;</em></p>
-<p><em>&quot;Open a project for the rail modernisation we discussed, and close the one on port
-dredging — that finished last year.&quot;</em></p>
-</blockquote>
-<p>Its reply arrives as normal, and underneath it you get a receipt card for each thing it touched:
-a <strong>📋 Actions</strong> card and a <strong>🎯 Projects</strong> card, each listing exactly what changed, with
-<strong>Open Actions</strong> or <strong>Open Projects</strong> to take you to the panel itself.</p>
-<p><img src="/wiki/img/advisor-actions-projects.jpg" alt="The advisor&#39;s receipt cards">
-<em>Three orders queued, one rewritten, a project opened and another updated — each card lists
-exactly what changed and links to the panel. The amber line is the one thing it would not do
-itself.</em></p>
-<p>A few things worth knowing about how this behaves:</p>
-<ul>
-<li><strong>It applies immediately.</strong> There is no confirm step. The card is a receipt of what already
-happened, not a proposal waiting for your approval.</li>
-<li><strong>Orders are queued, not executed.</strong> Anything it adds lands in the queue as <strong>planned</strong>,
-exactly like an order you typed yourself, and waits for the next time skip. You can edit or
-delete it first. See <a href="/wiki/orders/">giving orders</a>.</li>
-<li><strong>It can remove and rewrite, not just add.</strong> The Actions card says what it <em>added</em>, <em>updated</em>
-or <em>removed</em>, and the Projects card what it <em>opened</em>, <em>updated</em>, <em>completed</em> or <em>closed</em>, so you
-can see which it did.</li>
-<li><strong>It cannot itself finish a project that would change the world.</strong> Completing something that
-moves a border or renames a country is the simulation&#39;s job. The card says so —
-<em>&quot;Awaiting the simulation … this one changes the world, so the next time skip enacts it&quot;</em> —
-rather than quietly doing nothing or claiming it finished.</li>
-</ul>
-<p>It can also draft for you:</p>
-<ul>
-<li><strong>Letters.</strong> A reply can carry a draft to a foreign government; <strong>✉️ Draft to France</strong> puts it
-in that country&#39;s thread, ready for you to read and send.</li>
-<li><strong>Deployments.</strong> A recommended deployment comes with <strong>📍 Place … here</strong>, which places it on
-the map with one click — an intention, like any order, until the next skip.</li>
-</ul>
-<p>The habit that makes this useful is treating it as dictation. Talk through the situation, then
-ask it to write up what you both concluded — and read the cards before you skip.</p>
-<h2 id="it-keeps-up-with-the-world">It keeps up with the world</h2>
-<p><strong>It knows what changed.</strong> When you come back to the advisor after the world has moved on, your
-next question carries a short note of what happened since — the newest events, anything in its
-own last reply that did not take (a chart it could not draw, a change that only half went
-through), and any changes made from the cheats panel — so it does not answer as though it were
-still last month. Your message shows it as one small line, <em>&quot;⏳ Since 1 December 2015 · 3
-events&quot;</em>. Until the event reveal reaches an event, the advisor does not know of it either.</p>
-<p><strong>It knows your standing goal.</strong> Set one in the Actions panel and the advisor weighs its advice by
-it, and says plainly when an order works against it.</p>
-<p><strong>Papers arrive here.</strong> When a document reaches your government — a letter through diplomacy, a
-copy an agent stole, a secret annex on an event — a line appears in the advisor&#39;s conversation:
-<em>📄 A new paper on your desk</em>, with <strong>Read it</strong> and <strong>Put it away</strong>. It is a notice, not a message
-to the model, and an undone turn takes it back.</p>
-<p><strong>A failed answer can be retried.</strong> It shows the provider&#39;s error, a button to save the logging
-file, and <strong>Retry</strong>, which asks the same question again. See
-<a href="/wiki/troubleshooting/#the-advisor">troubleshooting</a>.</p>
-<p class="beta-note"><b>On beta the advisor reads your stat sheet and the world's ledgers</b> —
-wars, relations, agreements — so it answers from your actual figures rather than estimating them.
-It also knows the season and the weather where you are, which of your regions you own, hold or
-only claim, who directs whom as far as your own government knows, and your institutions and the
-business before them.</p><h2 id="institutions-and-groups">Institutions and groups</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p><strong>Institutional business.</strong> On beta the advisor can prepare a step in one of your
-<a href="/wiki/diplomacy/#institutions">institutions</a> — table a proposal, open a formal vote, cast your
-ballot, invite a government — as a <strong>🏛️</strong> button under its reply, such as <strong>🏛️ Vote YES in</strong> an
-institution. Nothing happens until you press it, and the step is checked against the institution&#39;s
-rules at that moment. A letter it drafts can be addressed to an institution&#39;s council, too.</p>
-<p><strong>Groups.</strong> In a game with groups — a cartel, a militia, an outbreak holding ground inside a
-country — the advisor knows them by name. With <strong>AI lookup functions</strong> on and <strong>Save AI requests</strong>
-off (Settings → AI), it looks them up when the conversation turns to them: who they are, and every
-region each one controls. Each round of lookups is another request, and it takes at most two before
-it answers. Otherwise it is simply handed the list of groups with every message, and asks nothing.</p>
-<h2 id="clearing-it">Clearing it</h2>
-<p>The <strong>🗑</strong> button clears the conversation. Worth doing when you move into a genuinely new phase
-of a campaign and the old thread is no longer the context you want. On a touch screen the first
-tap only asks — <strong>Clear?</strong> — and a second clears it.</p>
-<h2 id="where-it-sits">Where it sits</h2>
-<p>The advisor drawer shares its space with the <strong>Stats</strong> tab — the numbers on one side, someone to
-interpret them on the other. See <a href="/wiki/statistics/">national statistics</a>.</p>
-<p class="beta-note"><b>On beta the advisor has the drawer to itself.</b> The stat sheet moved to a
-drawer of its own, the country panel — <i>Politics, diplomacy and national statistics</i> — which
-your flag opens, or on a phone your country's name over the date. A map card's Stats button opens
-it on that country.</p><h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/statistics/">National statistics</a> — the sheet the advisor is reading.</li>
-<li><a href="/wiki/orders/">Giving orders</a> — acting on the advice.</li>
-<li><a href="/wiki/ai-providers/">AI providers and models</a> — what governs answer quality.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/cities/"><span>← Previous</span><b>Cities &amp; structures</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Using the advisor
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Använd rådgivaren</span><span data-help-lang="en" lang="en">Using the advisor</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Fråga om kampanjen, granska svaret och förstå eventuella registrerade ändringar.</span><span data-help-lang="en" lang="en">Ask about the campaign, review the answer and understand any recorded changes.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#open">Ställ en konkret fråga</a></li><li class="d2"><a href="#answers">Läs svar och diagram</a></li><li class="d2"><a href="#receipts">Läs kvitton innan du fortsätter</a></li><li class="d2"><a href="#drafts">Brev och placeringsförslag</a></li><li class="d2"><a href="#retry">Försök igen eller rensa samtalet</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#open">Ask a concrete question</a></li><li class="d2"><a href="#answers">Read answers and charts</a></li><li class="d2"><a href="#receipts">Read receipts before proceeding</a></li><li class="d2"><a href="#drafts">Letters and deployment suggestions</a></li><li class="d2"><a href="#retry">Retry or clear the conversation</a></li></ul></nav>
+    <section id="open" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="open">
+<h2>Ställ en konkret fråga</h2>
+<p>Öppna rådgivaren från dess kartknapp. Panelen delar rubrikrad med statistiken. På en bred skärm kan du dra i vänsterkanten för att ändra bredden. Fråga om det aktuella läget, en ny händelse eller alternativ du vill jämföra.</p>
+<p>Rådgivaren bygger svaret på kampanjuppgifter som är synliga vid den aktuella händelsevisningen, tillgängliga dokument och ett övergripande mål där ett sådant finns. Svaret är en modells analys. Kontrollera personer, ämbeten, resurser och olösta ärenden i dynastipanelen innan du genomför en handling.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="open">
+<h2>Ask a concrete question</h2>
+<p>Open the advisor from its map button. The drawer shares its header with statistics; on a wide screen you can drag its left edge to resize it. Ask about the current position, a recent event or options you want to compare.</p>
+<p>The advisor builds its answer from campaign records visible at the current event reveal, available documents and a standing goal where one exists. Its answer is a model’s analysis. Check people, offices, resources and unresolved decisions in the dynasty panel before committing an action.</p>
+</div>
+</section>
+<section id="answers" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="answers">
+<h2>Läs svar och diagram</h2>
+<p>Rådgivaren kan visa ett diagram när modellen lämnar en användbar specifikation. Om diagrammet är ofullständigt eller ogiltigt förklarar svaret att det inte kunde ritas. Be om en jämförelse eller utveckling över tid när ett diagram gör frågan tydligare.</p>
+<p>Nya synliga händelser och problem i föregående svar kan tas med som uppdateringsunderlag i nästa fråga. Ett dokument som når din regering kan också visas som en notis. Läs svarets underlag och datum i stället för att behandla ett äldre svar som en direktvisning.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="answers">
+<h2>Read answers and charts</h2>
+<p>The advisor can render a chart when the model returns a usable specification. If a chart is incomplete or invalid, the reply explains that it could not be drawn. Ask for a comparison or trend when a chart would clarify the question.</p>
+<p>Newly revealed events and previous reply problems can enter the next question’s catch-up context. A paper delivered to your government may also appear as a notice. Read the answer’s source and date rather than treating an older reply as a live view.</p>
+</div>
+</section>
+<section id="receipts" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="receipts">
+<h2>Läs kvitton innan du fortsätter</h2>
+<p>Ett rådgivarsvar kan omedelbart ändra den allmänna handlingskön eller projekttavlan. Kvittot beskriver ändringar som redan har tillämpats. Det är inget bekräftelsekort. Köade order förblir planer inför en senare tur. Projekt kan läggas till, uppdateras eller avslutas, medan avslut som förändrar världen kan skjutas till simuleringen.</p>
+<p>Dessa allmänna paneler visas genom det nedre verktygsfältet bara i kampanjer utan karaktärssystem. I en dynastikampanj är ett rådgivarkvitto ingen bekräftad karaktärshandling. Använd karaktärshandlingens förslag och bekräftelse för dess kostnader och utfall. De allmänna knapparna för att öppna paneler visar inte det dolda verktygsfältet där.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="receipts">
+<h2>Read receipts before proceeding</h2>
+<p>An advisor reply can update the general action queue or projects board immediately. Its receipt describes changes already applied; it is not a confirmation card. Queued orders remain plans for a later turn. Project changes can be added, updated or closed, while world-changing completions may be deferred to the simulation.</p>
+<p>Those general panels are available through the bottom toolbar only in campaigns without a character system. In a dynasty campaign, an advisor receipt is not a confirmed character action. Use the character action’s proposal and confirmation for its costs and outcome. The generic open-panel buttons do not expose the hidden toolbar there.</p>
+</div>
+</section>
+<section id="drafts" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="drafts">
+<h2>Brev och placeringsförslag</h2>
+<p>Ett brevutkast lämnas till landschattens skrivfält för granskning och sändning. Den panelen hör till det allmänna verktygsfältet och är inte tillgänglig i en dynastikampanj. Hovets samtal använder personvyn och dess egen bekräftelse av förfrågningar.</p>
+<p>Ett placeringsförslag kan erbjuda en placeringsknapp. När du trycker på den skapas ett allmänt väntande förband och en order läggs i kön. Det avgör ingen karaktärshandling eller strid. Läs kvittot och den resulterande kartan innan du fortsätter.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="drafts">
+<h2>Letters and deployment suggestions</h2>
+<p>A drafted letter is handed to the country-chat composer for review and sending. That panel belongs to the general toolbar and is unavailable in a dynasty campaign. Court conversations use the person view and its own request confirmation.</p>
+<p>A deployment suggestion can offer a placement button. Pressing it creates a general pending formation and queues an order; it does not settle a character action or battle. Read the receipt and resulting map before continuing.</p>
+</div>
+</section>
+<section id="retry" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="retry">
+<h2>Försök igen eller rensa samtalet</h2>
+<p>Ett misslyckat svar kan begäras igen med samma fråga. Läs det visade felet och använd <a href="/wiki/troubleshooting/">Felsökning</a> eller <a href="/wiki/ai-setup/">AI-inställning</a> när leverantören inte kan svara. Kontrollera kvitton och aktuellt läge innan du upprepar en begäran som kan ha ändrat en plan.</p>
+<p>Rensningsknappen tömmer rådgivarsamtalet. På en pekskärm ber första trycket om bekräftelse och nästa rensar det. Att rensa samtalet återställer inte kampanjens personer, resurser eller historia.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="retry">
+<h2>Retry or clear the conversation</h2>
+<p>A failed answer can be retried with the same question. Read the displayed failure and use <a href="/wiki/troubleshooting/">Troubleshooting</a> or <a href="/wiki/ai-setup/">AI setup</a> when the provider cannot answer. Check receipts and current state before repeating a request that could have changed a plan.</p>
+<p>The clear control empties the advisor conversation. On a touch screen the first press asks for confirmation and the next clears it. Clearing this conversation does not reset the campaign’s people, resources or history.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/cities/"><span>← Föregående</span><b>Städer</b></a>
+        <a class="next" href="/wiki/settings/"><span>Nästa →</span><b>Inställningar</b></a>
+      </nav>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/cities/"><span>← Previous</span><b>Cities</b></a>
         <a class="next" href="/wiki/settings/"><span>Next →</span><b>Settings</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -292,27 +256,71 @@ it on that country.</p><h2 id="next">Next</h2>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

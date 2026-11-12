@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Samtal och diplomati — Guide till Attainder" data-title-en="Conversations and diplomacy — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Diplomacy — Open Historia Wiki</title>
+  <title>Samtal och diplomati — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/diplomacy/" />
-  <meta name="description" content="Talking to other countries: leader voices, group threads and polls, memory, reactions and unprompted approaches." />
+  <meta name="description" content="Samtala med personer vid hovet eller öppna ett lands diplomatiska samtal." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/diplomacy/" />
-  <meta property="og:title" content="Diplomacy — Open Historia Wiki" />
-  <meta property="og:description" content="Talking to other countries: leader voices, group threads and polls, memory, reactions and unprompted approaches." />
+  <meta property="og:title" content="Samtal och diplomati — Guide till Attainder" />
+  <meta property="og:description" content="Samtala med personer vid hovet eller öppna ett lands diplomatiska samtal." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Diplomacy — Open Historia Wiki" />
-  <meta name="twitter:description" content="Talking to other countries: leader voices, group threads and polls, memory, reactions and unprompted approaches." />
+  <meta name="twitter:title" content="Samtal och diplomati — Guide till Attainder" />
+  <meta name="twitter:description" content="Samtala med personer vid hovet eller öppna ett lands diplomatiska samtal." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,268 +81,170 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/" class="on" aria-current="page">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> Diplomacy
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Samtal och diplomati
     </nav>
-    <h1>Diplomacy</h1>
-    <p class="tagline">Talking to other countries: leader voices, group threads and polls, memory, reactions and unprompted approaches.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#talking-to-a-country">Talking to a country</a></li><li class="d2"><a href="#leaders-remember">Leaders remember</a></li><li class="d2"><a href="#reactions">Reactions</a></li><li class="d2"><a href="#group-conversations">Group conversations</a></li><li class="d2"><a href="#institutions">Institutions</a></li><li class="d2"><a href="#they-contact-you">They contact you</a></li><li class="d2"><a href="#the-world-cannot-sign-for-you">The world cannot sign for you</a></li><li class="d2"><a href="#peace-and-calls-to-arms">Peace and calls to arms</a></li><li class="d2"><a href="#turning-talk-into-outcomes">Turning talk into outcomes</a></li><li class="d2"><a href="#reading-everyone-else39s-diplomacy">Reading everyone else&#39;s diplomacy</a></li><li class="d2"><a href="#listen-in">Listen in</a></li><li class="d2"><a href="#the-ledgers-behind-the-talk">The ledgers behind the talk</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>Diplomacy is a conversation, not a menu. There is no &quot;propose alliance&quot; button and no
-accept/decline dialog. You open a chat with a country and talk its leader into something, or
-fail to.</p>
-<p>Find it in the <strong>Chat</strong> panel, <strong>Diplomacy</strong> tab — <strong>Start New Chat</strong> to open a thread — or with
-<strong>💬</strong> on the card when you click a country on the map, or <strong>Open Diplomacy</strong> in a country&#39;s
-panel.</p>
-<p class="beta-note"><b>On beta the panel is headed Diplomacy</b>, and its tabs are
-<b>Contacts</b> (your threads, with Start New Chat), <b>Institutions</b> and <b>Intelligence</b>.</p><h2 id="talking-to-a-country">Talking to a country</h2>
-<p><img src="/wiki/img/diplomacy-threads.jpg" alt="The diplomacy tab">
-<em>Threads you are part of. Germany opened this one unprompted after a time skip.</em></p>
-<p>Every country is played by its leader, in that leader&#39;s voice, shaped by their country&#39;s
-situation and by how they see you. Ask questions, make offers, issue threats, propose terms.</p>
-<p>What works is roughly what would work on a real government:</p>
-<ul>
-<li><strong>Offer something.</strong> A demand with nothing attached gets refused by anyone who can afford to.</li>
-<li><strong>Be concrete.</strong> &quot;Let&#39;s cooperate&quot; goes nowhere. &quot;Preferential grain transit in exchange for
-your vote at the UN&quot; is a proposal someone can answer.</li>
-<li><strong>Know who you are talking to.</strong> Read their panel and ask for the advisor&#39;s report first. A country in crisis wants different things from a confident one.</li>
-<li><strong>Follow up.</strong> Agreements reached in conversation become real through subsequent events and
-orders, not the moment the words are said.</li>
-</ul>
-<h2 id="leaders-remember">Leaders remember</h2>
-<p>Each country keeps its own private summary of its dealings with you, carried between
-conversations and fed back as context. A leader you threatened ten turns ago has not forgotten
-it, and neither has one you kept a promise to.</p>
-<p>This is separate from the world&#39;s event history. The event log records what happened; the
-diplomatic memory records how <em>that country</em> feels about you because of it.</p>
-<p><strong>They know what has happened since.</strong> A thread can sit for months of game time. When you write
-into it after the world has moved on, your message carries a short note of what happened on the
-public record since the thread last spoke — the newest events, borders moved, countries renamed,
-founded or dissolved. Your bubble shows it as one small line, <em>&quot;⏳ Since 1 December 2015 · 3 events
-· 1 border change&quot;</em>, with the whole note on hover. Only what is public goes in it: a leader learns
-secrets through its own threads, not yours.</p>
-<h2 id="reactions">Reactions</h2>
-<p>Leaders attach an emoji to your last message — a small, immediate read on how what you just
-said landed, before their actual reply arrives. It is a genuinely useful tell when you are
-probing.</p>
-<h2 id="group-conversations">Group conversations</h2>
-<p><img src="/wiki/img/diplomacy-group-picker.jpg" alt="Starting a group conversation">
-<em>Starting a thread. Select as many countries as you want in it — one for a private line, several
-for a summit.</em></p>
-<p>You can open a thread with several countries at once. When you speak, <strong>one request answers for
-the whole table</strong>: every other participant can reply, react, rename the thread, bring someone in
-or show someone out, and call or answer a <strong>poll</strong>. The lines are said one at a time — each speaker
-is seen typing for a few seconds before its line appears — and you can <strong>cut in</strong>: speak before the
-table has finished and the lines not yet said never are, and the next turn knows who was
-interrupted.</p>
-<p>A <strong>poll</strong> in a thread is binding: every AI participant votes in the same turn, and you can see
-the question, the options and the votes, and cast your own.</p>
-<p>Each country hears only what was said while it was in the room: a power brought in on turn six is
-not written as though it heard turn two. What a leader heard in its <em>own</em> other threads, it may
-bring with it.</p>
-<p>Group threads are where multi-party diplomacy actually happens: mediating between two rivals,
-assembling a coalition, or being ganged up on.</p>
-<h2 id="institutions">Institutions</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p>On beta, the bodies countries belong to — an alliance, a union, a council of nations — have a tab
-of their own in the Diplomacy panel: <strong>Institutions</strong>. <strong>Your institutions</strong> lists the ones you
-take part in, <strong>View all</strong> every one in the world, and <strong>＋ Found institution</strong> creates a new one: a
-name, a type, a purpose and the governments you invite to found it, with its decision rule
-(simple majority, qualified majority or unanimity) and the rest of its charter under the advanced
-settings.</p>
-<p>Open one and it has tabs of its own: <strong>Overview</strong>, <strong>Council</strong>, <strong>Agenda</strong>, <strong>Decisions</strong>,
-<strong>Charter</strong>, <strong>Members</strong> and <strong>Documents</strong>.</p>
-<ul>
-<li><strong>Council</strong> is the members&#39; own conversation. It reads like a group thread, and the members
-nobody plays speak, table business and vote in it themselves.</li>
-<li><strong>Agenda</strong> is where business is done. <strong>Table a matter</strong> and choose <strong>Open for debate</strong> or
-<strong>Put to vote now</strong>. On an open proposal you cast your ballot — yes, no or abstain, or veto where
-the charter gives you one — propose amendments, which its sponsor accepts or rejects, or
-<strong>Call vote</strong> on one that is ready.</li>
-<li><strong>Decisions</strong> keeps what was settled, with every member&#39;s ballot and its reasons.</li>
-<li><strong>Members</strong> is where you <strong>Request membership</strong> or <strong>Request observer status</strong>, invite other
-governments, withdraw, or propose a member&#39;s expulsion or the institution&#39;s dissolution: each a
-formal procedure under the charter.</li>
-</ul>
-<p>Your <a href="/wiki/advisor/">advisor</a> knows your institutions and can draft your business in them.</p>
-<h2 id="they-contact-you">They contact you</h2>
-<p><img src="/wiki/img/diplomacy-thread.jpg" alt="A diplomatic exchange">
-<em>Germany&#39;s opening message, in its government&#39;s voice and grounded in what the world had just done.</em></p>
-<p>Countries open conversations with you on their own initiative, in three ways:</p>
-<p><strong>Because of an event.</strong> A border incident produces an ultimatum, a war scare produces an offer
-of mediation, a windfall produces a trade delegation. The other side always speaks first.</p>
-<p><strong>As general outreach.</strong> Treaty feelers, non-aggression proposals, warnings, summit invitations —
-approaches that are not tied to any single event.</p>
-<p>The simulation is told to write these only when some country plausibly would — an approach has
-to serve the sender&#39;s interests — so a quiet turn brings none.</p>
-<p><strong>Unprompted, while you play.</strong> On average every <strong>eight minutes</strong> of real time while the game is
-on screen, the model is asked whether some country with a live reason to speak would write to
-you; most of the time nobody does. It never fires during a time skip or while events are still
-being revealed. Each attempt is a request nobody pressed a button for, so it only runs while
-<strong>Background AI</strong> is on (Settings → AI → AI requests), and stops at its daily cap. A scenario can
-change the cadence, or switch it off, with its <strong>Idle diplomacy</strong> feature.</p>
-<p>A document can arrive this way too: a paper held by you and other governments reaches you as a
-note in the thread with them, spoken by whoever sent it.</p>
-<p><strong>You are told when they write.</strong> A message that lands while its thread is not on screen raises
-a toast (click it to open the thread), an optional two-note chime (the 🔊 toggle), and a 🔔
-notification centre until you open the panel; desktop notifications can be allowed too. Unread
-threads are badged. Answering them is most of the game&#39;s texture — a campaign where you
-never reply is a much smaller campaign.</p>
-<h2 id="the-world-cannot-sign-for-you">The world cannot sign for you</h2>
-<p>This is an explicit rule the simulation is held to: <strong>no other country can commit you to
-anything.</strong></p>
-<p>The world may not sign treaties, alliances, ceasefires, surrenders, trade pacts or unions on
-your behalf, may not accept or reject offers for you, and may not have your country take
-landmark unilateral action — declaring war, ceding territory, changing government — unless it is
-directly executing an order you actually gave.</p>
-<p>When another country wants such a decision from you, it has to <em>ask</em>: as a chat where they speak
-first and make the proposal, or as an event describing the offer as open and awaiting your
-answer.</p>
-<p>So if you find yourself in an alliance, you agreed to it. Events remain free to narrate whatever
-other countries do among themselves.</p>
-<h2 id="peace-and-calls-to-arms">Peace and calls to arms</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p>On beta two decisions do come as cards to accept or decline. They sit over the map until you
-answer them (<strong>Fold away</strong> shrinks them to a button that counts what is waiting):</p>
-<ul>
-<li><strong>Peace offered.</strong> A country at war with you that is weary enough, or losing its own ground,
-offers terms — the ground as each side holds it or restored to the old borders, and any
-reparations — and you <strong>Accept</strong> or <strong>Decline</strong>. A declined offer is not made again for three
-turns.</li>
-<li><strong>Call to arms.</strong> When an ally you are bound to defend is attacked, it calls on you:
-<strong>Honour the alliance</strong> and you are at war beside it, or <strong>Break the treaty</strong>, which ends it and
-costs you 15 reputation. A call left unanswered for two turns counts as broken.</li>
-</ul>
-<p>You can make the first move too: under each of your wars on the <strong>🤝 Diplomacy</strong> tab of a stat
-sheet, <strong>Propose peace</strong> lets you set the ground and the reparations and <strong>Put these terms</strong>. A
-country nobody plays answers at once, by how the war stands for it and how weary it is; a fresh
-enemy that is not losing refuses. See <a href="/wiki/war/#alliances-that-bind">alliances that bind</a> and
-<a href="/wiki/war/#ending-a-war-peace-on-terms">peace on terms</a>.</p>
-<h2 id="turning-talk-into-outcomes">Turning talk into outcomes</h2>
-<p>A conversation on its own changes attitudes. To change the <em>world</em>, pair it with an
-<a href="/wiki/orders/">order</a>:</p>
-<blockquote>
-<p><strong>In chat:</strong> talk Germany into backing a joint force on the eastern border.
-<strong>In the queue:</strong> <em>&quot;Formalise the joint eastern deployment agreed with Berlin and begin
-stationing troops.&quot;</em></p>
-</blockquote>
-<p>The chat establishes that they are willing; the order is you acting on it. Doing only the first
-tends to produce a campaign where everyone likes you and nothing happens.</p>
-<h2 id="reading-everyone-else39s-diplomacy">Reading everyone else&#39;s diplomacy</h2>
-<p>The <strong>Spy</strong> tab of the same panel (<strong>Intelligence</strong> on beta) shows conversations you are <em>not</em>
-part of, as far as your intelligence service can read them. That is a whole system of its own —
-see <a href="/wiki/espionage/">espionage</a>.</p>
-<h2 id="listen-in">Listen in</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p>Leaders are not the only voices. On beta, <strong>Listen in</strong> — on a region&#39;s card when you click it on
-the map, and in a country&#39;s panel — opens a phone full of what ordinary people who live there are
-posting: the day&#39;s news as it reaches a kitchen table, rumours half right, and about one post in
-four about nothing at all. A region&#39;s phone has a second tab for the country that holds it,
-<strong>Trending</strong> sums up the talk, and earlier feeds stay further down, by day.</p>
-<p>Each new feed is one AI request, made only when a place has nothing kept for that game day or you
-press the refresh button for new posts; opening it again the same day costs nothing. The people
-posting know only what is public. A scenario or a game can switch it off with its <strong>Listen in</strong>
-feature.</p>
-<h2 id="the-ledgers-behind-the-talk">The ledgers behind the talk</h2>
-<p>Conversations sit on top of explicit ledgers: numeric relation scores between every pair of
-countries, a formal register of treaties and their status, and a war ledger that is the single
-authority on who is fighting whom. See <a href="/wiki/war/">relations, treaties and war</a>.</p>
-<p>You read them from the <strong>🤝 Diplomacy</strong> block on any country&#39;s
-<a href="/wiki/statistics/#the-diplomacy-block">stat sheet</a> — every bilateral score that country holds,
-its treaty register and its current wars, for anyone you click on the map. Checking a country&#39;s
-existing friendships before you open a thread with them changes how you play.</p>
-<p class="beta-note"><b>On beta the map can show the same thing.</b> Switch it from
-<b>Political</b> to <b>Diplomatic</b> at the bottom right, and every country takes the colour of
-where it stands with you — your puppets, allies, friends and trade partners, the hostile, those at
-war with you, and the neutral — with a legend beside the switch.</p><p class="beta-note"><b>On beta, an overlord can make demands.</b> In the one-on-one thread
-between a <a href="/wiki/war/#puppets-and-overlords">puppet and its overlord</a>, a message can be a
-demand — an overlord marks one with the <b>⚑</b> beside the message box — answered on a card with
-<b>Accept</b>, <b>Refuse</b> or an alternative of the puppet's own (<b>Offer</b>). Only a refusal
-costs the puppet loyalty, and only once; the card stays, so a puppet that thinks better of it can
-still <b>Accept after all</b>. An overlord offered an alternative can <b>Accept alternative</b> or
-<b>Reject</b> it, insisting on the demand or revising it.</p><h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/espionage/">Espionage</a> — reading what is said when you are not in the room.</li>
-<li><a href="/wiki/orders/">Giving orders</a> — acting on what you agreed.</li>
-<li><a href="/wiki/war/">Relations, treaties and war</a> — the ledgers, and what happens when talk fails.</li>
-<li><a href="/wiki/countries/">Countries and identity</a> — reputation, tags, and who you are dealing with.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/events/"><span>← Previous</span><b>Events &amp; history</b></a>
-        <a class="next" href="/wiki/war/"><span>Next →</span><b>Relations, treaties &amp; war</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Conversations and diplomacy
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Samtal och diplomati</span><span data-help-lang="en" lang="en">Conversations and diplomacy</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Samtala med personer vid hovet eller öppna ett lands diplomatiska samtal.</span><span data-help-lang="en" lang="en">Talk to people at court or open a country’s diplomatic thread.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#court">Börja ett samtal vid hovet</a></li><li class="d2"><a href="#requests">Bekräfta förfrågan och läs utfallet</a></li><li class="d2"><a href="#record">Följ förpliktelserna</a></li><li class="d2"><a href="#countries">Öppna diplomatiska samtal med ett land</a></li><li class="d2"><a href="#threads">Läs och avsluta landsamtal</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#court">Start a court conversation</a></li><li class="d2"><a href="#requests">Confirm the request and read the result</a></li><li class="d2"><a href="#record">Keep track of commitments</a></li><li class="d2"><a href="#countries">Open diplomatic talks with a country</a></li><li class="d2"><a href="#threads">Read and close country threads</a></li></ul></nav>
+    <section id="court" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="court">
+<h2>Börja ett samtal vid hovet</h2>
+<p>Öppna en person i personvyn i panelen för rike och familjer och använd samtalsknappen när den är tillgänglig. Skriv vad du vill säga. Fältet tar högst 500 tecken. Småprat får ett modellskrivet svar utan något slag i regelmotorn.</p>
+<p>Modellen kan känna igen en begäran om stöd, en hemlighet eller ett löfte. En sådan förfrågan öppnar ett bekräftelsekort innan handlingen genomförs. Kontrollera mottagaren, eventuellt erbjudet silver ur familjekassan, eventuellt grepp och den visade chansen att få ja.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="court">
+<h2>Start a court conversation</h2>
+<p>In the realm and families panel, open a person under people and use the conversation control when it is available. Write what you want to say; the field accepts up to 500 characters. Small talk receives a model-written reply without an engine roll.</p>
+<p>The model can recognise a request for support, a secret or a pledge. Such a request opens a confirmation card rather than immediately committing the action. Check the recipient, any offered family silver, any hook and the displayed chance of agreement.</p>
+</div>
+</section>
+<section id="requests" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="requests">
+<h2>Bekräfta förfrågan och läs utfallet</h2>
+<p>Bekräfta eller avbryt förfrågan innan du för året framåt. Reglerna avgör om personen säger ja. Modellen skriver sedan ett svar om det redan avgjorda resultatet. Om svaret misslyckas gäller utfallet ändå. En förfrågan som regelmotorn avvisar, exempelvis för att läget hunnit ändras, visas som ett fel innan något personligt svar skrivs.</p>
+<p>En accepterad begäran om stöd ändrar åsikten. Ett löfte ger ett grepp. En avslöjad hemlighet visas under intriger. Den som går med på att berätta kan också sakna något att avslöja. En erbjuden gåva dras från familjekassan bara vid ett ja. Läs utfallsnoteringarna för att se vad som faktiskt hände.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="requests">
+<h2>Confirm the request and read the result</h2>
+<p>Confirm the request or cancel it before advancing the year. The rules decide whether the person agrees; the model then writes a reply about that settled result. If the reply fails, the result still applies. A rejected or stale engine request is shown as an error before a personal response is written.</p>
+<p>An accepted support request changes opinion. A pledge gives a hook. A revealed secret appears under intrigues; someone who agrees to reveal may have nothing to tell. An offered gift is charged from the family treasury only on acceptance. Read the outcome notes to see what actually happened.</p>
+</div>
+</section>
+<section id="record" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="record">
+<h2>Följ förpliktelserna</h2>
+<p>Hovets samtalsutskrift finns i panelens session. Reglernas samtalsutfall registreras i kampanjen, men det tillfälliga ordutbytet sparas inte som en beständig chattutskrift. Använd krönikan och intrigvyn för att kontrollera bestående följder som minnen, hemligheter och grepp.</p>
+<p>Att avsluta ett samtal stänger den aktuella samtalsvyn. När du återvänder till en person kontrollerar du om samtalsknappen är tillgänglig. Tillgängligheten bestäms av kampanjens aktuella läge.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="record">
+<h2>Keep track of commitments</h2>
+<p>The court conversation transcript lives in the panel session. The rules’ conversation result is recorded in the campaign; the temporary exchange of lines is not saved as a durable chat transcript. Use the chronicle and intrigue views to check lasting effects such as memories, secrets and hooks.</p>
+<p>Closing a conversation ends the current conversation view. When you return to a person, check whether the conversation control is available; eligibility is determined by the current campaign state.</p>
+</div>
+</section>
+<section id="countries" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="countries">
+<h2>Öppna diplomatiska samtal med ett land</h2>
+<p>I en kampanj utan karaktärssystem väljer du ett land på kartan och öppnar diplomatin från landpanelen. Då öppnas ett nytt eller befintligt enskilt diplomatiskt samtal. Ett brev som rådgivaren har skrivit läggs i skrivfältet så att du kan granska det. Det skickas först när du trycker på skicka.</p>
+<p>Landschatten stöder också att starta ett samtal med flera valda länder. Läs varje deltagares svar och samtalets registrerade handlingar innan du betraktar ett förslag som avgjort. Du kan avbryta en deltagare som skriver genom att skicka ett meddelande. Texten som fortfarande väntar på att visas blir då inte sagd.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="countries">
+<h2>Open diplomatic talks with a country</h2>
+<p>In a campaign without a character system, select a country on the map and open diplomacy from its country panel. This opens or reuses a one-to-one diplomatic thread. An advisor-drafted letter lands in the composer for you to review; it is sent only when you press send.</p>
+<p>The country chat also supports starting a thread with several selected countries. Read each participant’s reply and the thread’s recorded actions before treating a proposal as settled. A typing participant can be interrupted by sending a message; the text still waiting to be revealed is then not said.</p>
+</div>
+</section>
+<section id="threads" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="threads">
+<h2>Läs och avsluta landsamtal</h2>
+<p>Landsamtal sparar meddelanden och samtalshandlingar, inklusive deltagarändringar och omröstningar. Att avsluta ett samtal döljer det från den aktiva listan men bevarar historiken som tidigare förhandlingar. En senare kontakt öppnar ett nytt samtal.</p>
+<p>Landsdiplomatin är skild från hovets personliga samtal. Dynastikampanjer visar varken det allmänna nedre verktygsfältet eller dess landschattpanel. Landpanelens diplomatiknappar och rådgivarens brevutkast öppnar inte den saknade panelen där. Använd hovets bekräftelsekort för personliga förfrågningar och granska kampanjhistoriken för bestående politiska följder.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="threads">
+<h2>Read and close country threads</h2>
+<p>Country threads save messages and thread actions, including participant changes and polls. Closing a thread hides it from the active list while preserving its record as past negotiations. A later approach opens a fresh thread.</p>
+<p>Country diplomacy is separate from the court’s personal conversation flow. Dynasty campaigns do not offer the general bottom toolbar or its country-chat panel. Country-panel diplomacy buttons and advisor letter drafts do not open that missing panel there. Use the confirmation cards in the court for personal requests and inspect campaign records for lasting political effects.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/events/"><span>← Föregående</span><b>Händelser</b></a>
+        <a class="next" href="/wiki/war/"><span>Nästa →</span><b>Krig och relationer</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/events/"><span>← Previous</span><b>Events</b></a>
+        <a class="next" href="/wiki/war/"><span>Next →</span><b>War and relations</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -334,27 +256,71 @@ still <b>Accept after all</b>. An overlord offered an alternative can <b>Accept 
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

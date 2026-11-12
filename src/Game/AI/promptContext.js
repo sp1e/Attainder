@@ -22,9 +22,19 @@ import { unitHandles } from "./nameRefs.js";
 import { STALE_ROUNDS, describeTimeline, deriveProjectFlags, isPlayerProject } from "../../runtime/projects.js";
 import { buildTerritoryIndex } from "./territoryOutlines.js";
 import { compareGameDates, formatGameDateReadable } from "../../runtime/gameDates.js";
-import { campaignPromptLanguage } from "../../runtime/characterLanguage.js";
+import { campaignPromptLanguage, isCharacterCampaign } from "../../runtime/characterLanguage.js";
 
 const normalizeString = (value) => String(value ?? "").trim();
+
+// A character campaign stores the player's polity by its id ("carolingian-realm"). The model needs the id for
+// its operations and the name for its prose: with the id alone it wrote "no judgment has yet come from
+// carolingian-realm". Other campaigns keep the stored value as it is.
+export const playerPolityLabel = (world, country) => {
+  const code = normalizeString(country);
+  if (!code) return "Unknown polity";
+  const name = isCharacterCampaign(world) ? normalizeString(world?.polityOverrides?.[code]?.name) : "";
+  return name && name !== code ? `${name} (id: ${code})` : code;
+};
 const normalizeArray = (value) => (Array.isArray(value) ? value : []);
 
 const joinWithinCharBudget = (
@@ -1650,7 +1660,7 @@ export const buildWorldSummary = async (bundle, regionCatalog = null, { regionLi
   });
 
   return [
-    `Player polity: ${bundle.game.country || "Unknown polity"}${playerTags.length ? ` (${playerTags.join(", ")})` : ""}`,
+    `Player polity: ${playerPolityLabel(world, bundle.game.country)}${playerTags.length ? ` (${playerTags.join(", ")})` : ""}`,
     `Current round: ${bundle.game.round || 1}`,
     `Current date: ${bundle.game.gameDate || "unknown"}`,
     `Language: ${campaignPromptLanguage(world, bundle.game, campaignLanguage)}`,
@@ -1984,7 +1994,7 @@ export const buildPromptContext = async (bundle, {
   if (wants("numberOfRegions")) {
     result.numberOfRegions = String(regionCatalog.length);
   }
-  put("playerPolity", bundle.game.country || "Unknown polity");
+  put("playerPolity", playerPolityLabel(bundle.world, bundle.game.country));
   if (wants("playerPolityRegions")) {
     result.playerPolityRegions = await buildPlayerPolityRegionsText(
       bundle,

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Guide till Attainder" data-title-en="Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Open Historia Wiki — Open Historia</title>
+  <title>Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/" />
-  <meta name="description" content="How to install, play and master Open Historia — the free, open-source, AI-driven grand strategy game." />
+  <meta name="description" content="Välj en historisk start, led ett rike eller en familj och följ konsekvenserna av dina beslut." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/" />
-  <meta property="og:title" content="Open Historia Wiki — Open Historia Wiki" />
-  <meta property="og:description" content="How to install, play and master Open Historia — the free, open-source, AI-driven grand strategy game." />
+  <meta property="og:title" content="Guide till Attainder" />
+  <meta property="og:description" content="Välj en historisk start, led ett rike eller en familj och följ konsekvenserna av dina beslut." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Open Historia Wiki — Open Historia Wiki" />
-  <meta name="twitter:description" content="How to install, play and master Open Historia — the free, open-source, AI-driven grand strategy game." />
+  <meta name="twitter:title" content="Guide till Attainder" />
+  <meta name="twitter:description" content="Välj en historisk start, led ett rike eller en familj och följ konsekvenserna av dina beslut." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -55,166 +75,146 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/" class="on" aria-current="page">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> Wiki
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> Guide
     </nav>
-    <h1>Open Historia Wiki</h1>
-    <p class="tagline">How to install, play and master Open Historia — the free, open-source, AI-driven grand strategy game.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#start-here">Start here</a></li><li class="d2"><a href="#deep-dives">Deep dives</a></li><li class="d2"><a href="#things-worth-knowing-up-front">Things worth knowing up front</a></li><li class="d2"><a href="#if-something-is-broken">If something is broken</a></li></ul></nav>
-    <p>Open Historia is a free, open-source grand strategy game. You take a country on a world map,
-write your orders in plain English, and skip time forward. A language model plays the rest of
-the world — every other country&#39;s leader, the events that befall them, the wars they start and
-the deals they cut — and hands you back a history of what happened.</p>
-<p>It is not a game with a tech tree and a build queue. There are no ticks and no clock running
-down. <strong>Nothing happens until you decide to advance time</strong>, and when you do, the world moves as
-far as you asked and tells you about it.</p>
-<h2 id="start-here">Start here</h2>
-<div class="feature-grid">
-  <div class="feature-tag"><a href="/wiki/install/">1. Install the game</a></div>
-  <div class="feature-tag"><a href="/wiki/ai-setup/">2. Connect an AI provider</a></div>
-  <div class="feature-tag"><a href="/wiki/how-to-play/">3. Learn the loop</a></div>
-  <div class="feature-tag"><a href="/wiki/first-campaign/">4. Play your first campaign</a></div>
-</div><p>You need step 2. Open Historia ships with no model of its own and does not sell you one — you
-bring a key from Google, OpenAI, Anthropic or any compatible service, or you point it at a model
-running on your own machine. Without one, the game still opens and the map still works, but the
-world stops responding: time skips fall back to canned events and the advisor cannot answer.
-Google&#39;s free tier is enough for solo play — a time skip is a single request — and a local model
-costs nothing at all.</p>
-<p class="beta-note"><b>On beta the desktop app can use your own Agent.</b> Instead of an API
-key, your own Claude Code, Codex, OpenCode or Antigravity CLI, on your own subscription, can
-answer the time skips, chats and scenes you start. See
-<a href="/wiki/ai-setup/#your-own-agent">connecting an AI provider</a>.</p><h2 id="deep-dives">Deep dives</h2>
-<p>Every system, with the actual rules and numbers rather than a summary.</p>
-<div class="feature-grid">
-  <div class="feature-tag"><a href="/wiki/diplomacy/">Diplomacy</a></div>
-  <div class="feature-tag"><a href="/wiki/war/">Relations, treaties &amp; war</a></div>
-  <div class="feature-tag"><a href="/wiki/espionage/">Espionage</a></div>
-  <div class="feature-tag"><a href="/wiki/military/">Military &amp; combat</a></div>
-  <div class="feature-tag"><a href="/wiki/projects/">Projects &amp; operations</a></div>
-  <div class="feature-tag"><a href="/wiki/territory/">Territory</a></div>
-  <div class="feature-tag"><a href="/wiki/countries/">Countries &amp; identity</a></div>
-  <div class="feature-tag"><a href="/wiki/statistics/">National statistics</a></div>
-  <div class="feature-tag"><a href="/wiki/advisor/">The advisor</a></div>
-  <div class="feature-tag"><a href="/wiki/cities/">Cities &amp; structures</a></div>
-</div><h2 id="things-worth-knowing-up-front">Things worth knowing up front</h2>
-<p><strong>The stable release is single-player.</strong> You can host it on your own machine and reach it from
-your phone or another computer on the same network, and you can share scenarios with other
-players through the <a href="/wiki/community-hub/">Community Hub</a>, but there is no shared session.</p>
-<p class="beta-note"><b>On beta you can play together.</b> The main menu has a <b>Lobbies</b>
-tab. <b>Host a lobby</b> shares the game you have open, from the desktop app: you keep playing
-your own country, and the friends you send its invite code to each take another. They join under
-<b>Join a private lobby</b>, from the beta app on a computer or on Android, and need the lobby's
-scenario in their library. The host's computer runs the game and pays for its AI with the host's
-key. The host, and the services that connect you, can see each player's network address.</p><p><strong>Your API key never leaves your machine.</strong> Provider settings live in your browser&#39;s local
-storage, or in the desktop app&#39;s own profile. No Open Historia server ever sees it. On the
-desktop build, requests to providers that refuse browser calls are relayed through the local
-server, which listens on loopback only unless you deliberately open it up.</p>
-<p><strong>The game is only as good as the model.</strong> Diplomacy, events, combat adjudication and the
-advisor are all model output. A larger model gives you a world that remembers what it did last
-turn and reacts in character; a very small local model will give you a thinner one. See
-<a href="/wiki/ai-providers/">AI providers and models</a> for what to pick.</p>
-<p><strong>Some features are beta-only.</strong> Pages and sections marked <em>beta</em> describe systems that
-have not reached the stable release — on the beta now: wars fought on battlefields from a War
-Room, war at sea, peace terms, espionage orders, seasons and weather, multiplayer and music. The
-beta build installs alongside the stable app and keeps its own saves, so trying it costs you
-nothing; see <a href="/wiki/install/#the-beta-build">installing the beta</a>.</p>
-<p><strong>Updates take care of themselves.</strong> The desktop app installs a waiting update when you open it,
-fetching only the parts that changed, and the Android app and the website offer theirs as they
-come. There is no update script to run. See <a href="/wiki/install/#updating">installing</a>.</p>
-<h2 id="if-something-is-broken">If something is broken</h2>
-<p>Start with <a href="/wiki/troubleshooting/">Troubleshooting</a> — it covers the common ones: a blank map,
-greyed-out AI, turns that take forever, and CORS errors from a local model. Beyond that, the
-<a href="https://discord.gg/QaqAK7fQAg">Discord</a> is the fastest place to get help, and bugs go to
-<a href="https://github.com/Open-Historia/open-historia/issues">GitHub issues</a>.</p>
-<p>Open Historia is licensed under the
-<a href="https://github.com/Open-Historia/open-historia/blob/main/LICENSE">GNU Affero General Public License v3.0 or later</a>
-(AGPL-3.0-or-later) and built by
-<a href="https://github.com/Open-Historia/open-historia/graphs/contributors">contributors</a>. If you want
-to work on it rather than play it, start with
-<a href="https://github.com/Open-Historia/open-historia/blob/main/CONTRIBUTING.md"><code>CONTRIBUTING.md</code></a> —
-contributions are accepted under a contributor agreement that you sign on your first pull
-request — and the developer documentation in
-<a href="https://github.com/Open-Historia/open-historia/tree/main/docs"><code>docs/</code></a>.</p>
-
-    <nav class="wiki-pager" aria-label="Pagination">
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> Guide
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Guide till Attainder</span><span data-help-lang="en" lang="en">Attainder guide</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Välj en historisk start, led ett rike eller en familj och följ konsekvenserna av dina beslut.</span><span data-help-lang="en" lang="en">Choose a historical start, lead a realm or family, and read the consequences of your decisions.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#begin">Börja en kampanj</a></li><li class="d2"><a href="#decisions">Fatta beslut och låt tiden gå</a></li><li class="d2"><a href="#historical-reference">Läs den historiska referensen</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#begin">Begin a campaign</a></li><li class="d2"><a href="#decisions">Make decisions and advance time</a></li><li class="d2"><a href="#historical-reference">Read the historical reference</a></li></ul></nav>
+    <section id="begin" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="begin">
+<h2>Börja en kampanj</h2>
+<p>Välj en historisk start på startkortet och bestäm om du vill följa riket eller en familj. Nya kampanjer måste börja mellan 3300 f.Kr. och 1530 e.Kr. Startkortet visar de spelbara starter som finns i ditt bibliotek. Tidsgränserna betyder inte att varje år har en förberedd start.</p>
+<p>Läs <a href="/wiki/new-game/">Starta en kampanj</a> om valen på kortet, eller följ <a href="/wiki/first-campaign/">Din första kampanj</a> genom de första besluten.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="begin">
+<h2>Begin a campaign</h2>
+<p>Choose a historical start from the start card, then decide whether to follow the realm or a family. New campaigns must begin between 3300 BC and AD 1530. The start card lists the playable starts available in your library; the date range does not mean that every year has a prepared start.</p>
+<p>Read <a href="/wiki/new-game/">Starting a campaign</a> for the choices on the card, or follow <a href="/wiki/first-campaign/">Your first campaign</a> through your opening decisions.</p>
+</div>
+</section>
+<section id="decisions" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="decisions">
+<h2>Fatta beslut och låt tiden gå</h2>
+<p>I personpanelen kan du undersöka personer, familjer, ämbeten och resurser som berör ditt nästa beslut. Beskriv en handling med egna ord eller välj en från handlingslistan. Läs bekräftelsekortet innan du genomför den.</p>
+<p>Modellen tolkar dina ord och berättar om händelserna. Spelreglerna avgör följderna. Läs rapporten när du går vidare ett år och hantera beslut som avbryter turen. <a href="/wiki/how-to-play/">Så spelar du</a> beskriver förloppet.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="decisions">
+<h2>Make decisions and advance time</h2>
+<p>In the character panel, inspect the people, families, offices and resources involved in your next decision. You can describe an action in your own words or choose one from the action list. Read its confirmation card before committing.</p>
+<p>The model interprets your words and narrates events. The game rules determine the effects. When you advance the year, read the report and handle any decision that interrupts the turn. <a href="/wiki/how-to-play/">How to play</a> explains this loop.</p>
+</div>
+</section>
+<section id="historical-reference" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="historical-reference">
+<h2>Läs den historiska referensen</h2>
+<p>Öppna avsnittet om källor och osäkerhet på startkortet innan du väljer kampanj. Där kan du läsa om det historiska underlaget och startens begränsningar. Din kampanj kan utvecklas annorlunda än verklig historia.</p>
+<p>När en tur avslutar ett kalenderår kan historikmeddelandet visa källbelagda händelser från verkligheten. I krönikan kan du läsa de tillgängliga händelserna för år som kampanjen har passerat. Om ett år saknar listade händelser betyder det att katalogen har en lucka. Det säger inget om hur händelserikt året var. Läs <a href="/wiki/events/">Händelser</a> om skillnaden mellan kampanjhändelser och historiska referenser.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="historical-reference">
+<h2>Read the historical reference</h2>
+<p>Open the start card&#39;s sources and uncertainty section before choosing a campaign. It describes the historical coverage and the limits of the start. Your campaign can develop differently from recorded history.</p>
+<p>After a turn closes a calendar year, the historical notice can show sourced events from the real world. The chronicle lists the available events for the years your campaign has passed. A year with no listed event is a gap in the catalog, not a claim that nothing happened. See <a href="/wiki/events/">Events</a> for the distinction between campaign events and historical references.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <span></span>
+        <a class="next" href="/wiki/install/"><span>Nästa →</span><b>Installation</b></a>
+      </nav>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
         <span></span>
         <a class="next" href="/wiki/install/"><span>Next →</span><b>Install</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -226,27 +226,71 @@ request — and the developer documentation in
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

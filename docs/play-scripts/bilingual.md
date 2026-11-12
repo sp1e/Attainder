@@ -34,3 +34,17 @@ Run on `feat/bilingual-runtime` with Playwright Chromium against `node server/se
 The run found and fixed: a label with its value in one run (`Tronföljd: +65`), a count against its threshold with a label of several words, conditions joined by `eller`, date labels, numbers in the Swedish locale, generated names, sentences set one after another in a choice, and a weak pattern around a value read by another pattern.
 
 Not covered by this run: a click on the Options picker, a refusal, a conversation or an envoy, family mode, the web adapter and Android, the help pages, and languages other than Swedish and English. The model once wrote the polity id `carolingian-realm` in its prose; that comes from the prompt context, not from the translation.
+
+## Help pages, 12 November 2026
+
+Run on `feat/bilingual-help` against the same server and build, on `/wiki/espionage/`.
+
+| Step | Result |
+| --- | --- |
+| `ui_language = sv` | Swedish page, `lang="sv"`, title `Spionage och avlyssningsrapporter — Guide till Attainder` |
+| `ui_language = en` | English page, `lang="en"`, title `Espionage and intercepted reports — Attainder guide` |
+| Switch to `Svenska` | Swedish without a reload or a scroll jump; `wiki_language = sv` stored, the game's choice untouched |
+| Search | `avlyssning` finds the page in Swedish and nothing in English; `intercept` finds it in English |
+| Structure | No duplicated element id; the hidden language takes no space; the upstream legal notice is present |
+
+Not covered: opening the help from the game's own link, a keyboard walk, the view without script, a phone. The visit-count banner on the page is upstream text and stays English.

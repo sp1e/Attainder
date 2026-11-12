@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Militär beredskap och förband — Guide till Attainder" data-title-en="Military readiness and formations — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Military and Combat — Open Historia Wiki</title>
+  <title>Militär beredskap och förband — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/military/" />
-  <meta name="description" content="Unit types, strength, posture, standing orders and travel by era — how forces move when you order them and the engine carries it out." />
+  <meta name="description" content="Läs militär beredskap, förbandsstyrka och förflyttning i den aktuella kampanjen." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/military/" />
-  <meta property="og:title" content="Military and Combat — Open Historia Wiki" />
-  <meta property="og:description" content="Unit types, strength, posture, standing orders and travel by era — how forces move when you order them and the engine carries it out." />
+  <meta property="og:title" content="Militär beredskap och förband — Guide till Attainder" />
+  <meta property="og:description" content="Läs militär beredskap, förbandsstyrka och förflyttning i den aktuella kampanjen." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Military and Combat — Open Historia Wiki" />
-  <meta name="twitter:description" content="Unit types, strength, posture, standing orders and travel by era — how forces move when you order them and the engine carries it out." />
+  <meta name="twitter:title" content="Militär beredskap och förband — Guide till Attainder" />
+  <meta name="twitter:description" content="Läs militär beredskap, förbandsstyrka och förflyttning i den aktuella kampanjen." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,342 +81,160 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/" class="on" aria-current="page">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> Military and Combat
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Militär beredskap och förband
     </nav>
-    <h1>Military and Combat</h1>
-    <p class="tagline">Unit types, strength, posture, standing orders and travel by era — how forces move when you order them and the engine carries it out.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#the-way-to-use-your-army">The way to use your army</a></li><li class="d2"><a href="#unit-types">Unit types</a></li><li class="d2"><a href="#strength-and-composition">Strength and composition</a></li><li class="d2"><a href="#posture">Posture</a></li><li class="d2"><a href="#standing-orders">Standing orders</a></li><li class="d2"><a href="#other-countries39-forces">Other countries&#39; forces</a></li><li class="d2"><a href="#men-money-and-military-power">Men, money and military power</a></li><li class="d2"><a href="#structures-do-not-move-borders">Structures do not move borders</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>Armies in Open Historia are formations on the map with a type, a strength, a posture and an
-owner. You do not move them by hand. You state what you want, the turn decides what happens, and
-the engine carries the movement out over however many turns it takes.</p>
-<h2 id="the-way-to-use-your-army">The way to use your army</h2>
-<p>Write it as an order. <em>&quot;Reinforce the eastern border with two armoured divisions&quot;</em>,
-<em>&quot;Launch an offensive toward Kharkiv&quot;</em>, <em>&quot;Withdraw the fleet to home ports&quot;</em>. The time skip
-resolves it, and after the skip the game moves units to match what the events say — armies
-advance, retreat and take losses where the events say they did. (The skip&#39;s own events
-carry those moves; nothing is asked afterwards.)</p>
-<p>The model owns movement; you own intent. A place an order or event names — &quot;toward Kyiv&quot;, &quot;the
-Suwałki gap&quot; — is read as an objective and found on the actual map, and new units and structures
-are placed by name and kept off one another.</p>
-<p>Clicking a unit on the map gives you an <strong>intelligence card</strong> — what the formation is, whose it
-is, roughly how strong, what it is made of, and what it appears to be doing. It is a briefing,
-not a command panel.</p>
-<p>Hands-on control does exist — the <strong>Force Manager</strong>, under <strong>Military</strong> in the
-<a href="/wiki/cheats/">cheats panel</a> — for deploying, inspecting, editing and repairing forces directly.
-That placement is deliberate: editing your order of battle by hand is a game-master tool, not the
-normal loop.</p>
-<p class="beta-note"><b>On beta, land wars are fought on battlefields.</b> Where two sides at war
-hold land that touches, a battlefield opens and the game fights the land war itself, with hundreds
-of troops a side, before the time skip's story is written. Your infantry, armour and artillery
-formations near the line join it as troops and come back as formations when it closes; fleets,
-air wings and garrisons stay formations. You command your troops in the
-<a href="/wiki/war-room/">War Room</a>, and your fleets there or by order: see
-<a href="/wiki/war-at-sea/">war at sea</a>.</p><h2 id="unit-types">Unit types</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Glyph</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Infantry</td>
-<td>🛡</td>
-</tr>
-<tr>
-<td>Armor</td>
-<td>⚙</td>
-</tr>
-<tr>
-<td>Air</td>
-<td>✈</td>
-</tr>
-<tr>
-<td>Naval</td>
-<td>⚓</td>
-</tr>
-<tr>
-<td>Artillery</td>
-<td>💥</td>
-</tr>
-<tr>
-<td>Garrison</td>
-<td>🏰</td>
-</tr>
-</tbody></table></div>
-<p>A scenario can restrict which types exist — there is no air force in 1200 AD — so the deploy
-options you see depend on the world you are playing.</p>
-<h2 id="strength-and-composition">Strength and composition</h2>
-<p>Strength is a <strong>percentage of the formation&#39;s established strength</strong>, 0–100: 78 means about three
-quarters of what that formation should have. A new unit starts at 100. A separate
-<strong>composition</strong> says what it actually is — <em>&quot;1 aircraft carrier, 2 frigates&quot;</em>.</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Strength</th>
-<th>Colour</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Above 60</td>
-<td>Green</td>
-</tr>
-<tr>
-<td>26 – 60</td>
-<td>Amber</td>
-</tr>
-<tr>
-<td>25 or below</td>
-<td>Red</td>
-</tr>
-</tbody></table></div>
-<p>Strength only changes where the events narrate casualties or reinforcement (on beta, also where a
-battlefield or a sea battle wears a formation down). A unit that reaches zero is destroyed and
-removed. Saves from before the percentage scale are converted on load —
-anything over 100 is divided by ten.</p>
-<h2 id="posture">Posture</h2>
-<p>What a formation is <strong>doing</strong>, as distinct from whether it is alive. Posture is what makes the map
-readable at a glance: <em>massing</em> on a border and <em>on exercise</em> on the same border are the same
-counter and a completely different message.</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Posture</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Holding position</strong></td>
-<td>In place.</td>
-</tr>
-<tr>
-<td><strong>Massing</strong></td>
-<td>Concentrating.</td>
-</tr>
-<tr>
-<td><strong>Patrolling</strong></td>
-<td>Working a station around a point.</td>
-</tr>
-<tr>
-<td><strong>In transit</strong></td>
-<td>On its way somewhere.</td>
-</tr>
-<tr>
-<td><strong>On exercise</strong></td>
-<td>Training, not threatening.</td>
-</tr>
-<tr>
-<td><strong>Blockading</strong></td>
-<td>Closing a sea or a port.</td>
-</tr>
-<tr>
-<td><strong>Withdrawing</strong></td>
-<td>Pulling back.</td>
-</tr>
-<tr>
-<td><strong>Assaulting</strong></td>
-<td>Attacking; arriving under this posture puts the unit in contact with the enemy.</td>
-</tr>
-</tbody></table></div>
-<h2 id="standing-orders">Standing orders</h2>
-<p>A move that is further than the unit could cover in the time skipped becomes a <strong>standing
-order</strong>, and the engine advances it every turn at the unit&#39;s pace until it arrives — within about
-60 km of its destination. A patrol works its station, drifting to a new point each turn (the
-same point every time you replay that turn, never at random). The map draws a heading line to a
-destination and a ring around a patrol station, and counters glide between positions.</p>
-<p>Travel is paced by what it is. A move is a <strong>redeployment</strong> unless the formation&#39;s posture is
-assaulting, and a redeployment goes by rail, road and ship; an <strong>advance</strong> against an enemy is
-much slower. Kilometres a day, by era:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th>Before 1500</th>
-<th>1500 – 1849</th>
-<th>1850 – 1944</th>
-<th>1945 onward</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Redeployed over land (infantry)</td>
-<td>25</td>
-<td>28</td>
-<td>300</td>
-<td>500</td>
-</tr>
-<tr>
-<td>Redeployed by sea</td>
-<td>110</td>
-<td>170</td>
-<td>400</td>
-<td>650</td>
-</tr>
-<tr>
-<td>Advancing, infantry</td>
-<td>18</td>
-<td>20</td>
-<td>20</td>
-<td>30</td>
-</tr>
-<tr>
-<td>Advancing, armour or cavalry</td>
-<td>30</td>
-<td>35</td>
-<td>35</td>
-<td>50</td>
-</tr>
-<tr>
-<td>Fleet</td>
-<td>130</td>
-<td>200</td>
-<td>480</td>
-<td>750</td>
-</tr>
-<tr>
-<td>Air wing</td>
-<td>700</td>
-<td>1000</td>
-<td>1500</td>
-<td>5000</td>
-</tr>
-</tbody></table></div>
-<p>A garrison does not travel. A redeployment that crosses water is paced by how much of its way
-lies over the sea, so a division ordered from Texas to Korea in 2016 arrives in about three
-weeks. Before the railways a march across a continent is still a campaign, not a turn. There is
-no separate cap on how far one order may send a unit: the pace is the limit, and a long move simply
-takes the turns it needs.</p>
-<h2 id="other-countries39-forces">Other countries&#39; forces</h2>
-<p>AI countries&#39; formations respond to the military events a turn wrote: the engine reuses an
-existing formation before raising a new one, moves each at its type&#39;s pace, and only changes
-strength where the events say so. The map holds at most <strong>12</strong> formations per AI country and
-<strong>80</strong> in total; your own forces count against neither. On the stable build their formations are
-moved by turns, not between them.</p>
-<p class="beta-note"><b>On beta, the world stirs between turns.</b> With <b>Background AI</b> and
-the <b>Idle diplomacy</b> feature on, the pulse that lets other countries write to you while the
-game sits open may also move or re-posture up to two of other countries' formations at a time:
-never one of yours, and never a garrison on the move. A movement near your sphere that your
-services would plausibly see is reported as a sighting.</p><p>Combat itself is narrated by the time skip and bound to the <a href="/wiki/war/">war ledger</a>: a battle
-needs an active war with named sides, so fighting cannot quietly appear out of nowhere.</p>
-<p class="beta-note"><b>On beta, what the events raise reaches the map.</b> A ship commissioned or
-a squadron formed in an event becomes a unit; a deployment or garrison the skip resolves joins
-the order of battle; a unit's move is listed once, not twice; and a renamed country's counters
-carry its flag.</p><h2 id="men-money-and-military-power">Men, money and military power</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p>On beta an army is drawn from a country&#39;s people and paid for by its economy, and how much it is
-worth in a war is a figure of its own.</p>
-<p><strong>Manpower.</strong> A formation on a battlefield stands for so many men: 2,000 before 1500, 5,000 to
-1849, 12,000 to 1944 and 10,000 after, unless the scenario or the country says otherwise. By
-default 12% of a country&#39;s people are fit to serve. Every formation raised, drafted or sent to make good
-a loss is drawn from that pool and leaves the country&#39;s population; those who come home when a
-battlefield closes or a country leaves a war are given back. Those who do not come home are what a
-war costs in people. A country with no men left to call up cannot raise more.</p>
-<p><strong>Funding.</strong> A share of a country&#39;s GDP goes to its forces, more with a budget in surplus and less
-with a deficit or a heavy debt, and what its forces have to spend weighs in how strong it is.
-Blockades and reparations cut into it.</p>
-<p><strong>Military power.</strong> Each country has military figures, shown as bars on the <strong>⚔ Military</strong> card
-of its stat sheet: <strong>Troop quality</strong>, <strong>Technology</strong>, <strong>Spending</strong>, <strong>Manpower share</strong>, <strong>War
-weariness</strong>, <strong>War resources</strong> (where the scenario counts them) and its <strong>Land</strong>, <strong>Naval</strong> and
-<strong>Air</strong> arms. Its <strong>Military power</strong>, the figure at the top of the card and the one the Stats
-pane&#39;s <strong>🏆 Ranking</strong> tab uses to rank military power, comes from its people and its spending
-through those figures, and never from how much land it holds. The figures are rated by the AI
-against every other country, twenty countries to a request: a scenario designer can rate every
-country at once in the scenario editor&#39;s <strong>Fronts</strong> tab (<strong>Rate every country</strong>), and a country
-nobody rated is rated the first time the game needs it. Time skips then move your figures with
-what you do: training, new weapons, a bigger defence budget and a larger army raise them over the
-years, and losses and cuts lower them. See
-<a href="/wiki/statistics/">national statistics</a>.</p>
-<h2 id="structures-do-not-move-borders">Structures do not move borders</h2>
-<p>Bases, ports, airfields and other built markers have an owner — whoever <em>runs</em> the facility —
-which is not the same as who owns the ground beneath it. Building a base in an ally&#39;s country
-does not annex it. See <a href="/wiki/cities/">cities and structures</a>.</p>
-<h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/territory/">Territory</a> — what winning actually transfers.</li>
-<li><a href="/wiki/orders/">Giving orders</a> — phrasing military instructions.</li>
-<li><a href="/wiki/war-room/">The War Room</a> — commanding troops on a battlefield, on beta.</li>
-<li><a href="/wiki/war-at-sea/">War at sea</a> — fleets, sea battles and blockades, on beta.</li>
-<li><a href="/wiki/cheats/">Cheats</a> — where the Force Manager lives.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/territory/"><span>← Previous</span><b>Territory</b></a>
-        <a class="next" href="/wiki/war-room/"><span>Next →</span><b>The War Room</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Military readiness and formations
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Militär beredskap och förband</span><span data-help-lang="en" lang="en">Military readiness and formations</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Läs militär beredskap, förbandsstyrka och förflyttning i den aktuella kampanjen.</span><span data-help-lang="en" lang="en">Read military readiness, formation strength and movement in the current campaign.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#dynasty">Läs dynastins beredskap</a></li><li class="d2"><a href="#formations">Förstå ett förband</a></li><li class="d2"><a href="#movement">Förflyttning tar tid</a></li><li class="d2"><a href="#records">Kontrollera kriget och marken</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#dynasty">Read the dynasty’s readiness</a></li><li class="d2"><a href="#formations">Understand a formation</a></li><li class="d2"><a href="#movement">Movement takes time</a></li><li class="d2"><a href="#records">Check the war and the ground</a></li></ul></nav>
+    <section id="dynasty" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="dynasty">
+<h2>Läs dynastins beredskap</h2>
+<p>Rikets överblick visar militär beredskap i procent bredvid statskassa, årsintäkt och handlingsutrymme. Befäl och familjernas stöd påverkar utfallet. Läs ansvarig aktör och mandat innan du väljer en tillgänglig militär handling eller hovhandling.</p>
+<p>Använd handlingskatalogen och besluten som kampanjen erbjuder. Den allmänna förbandspanelen är dold när ett karaktärssystem är aktivt. Ett eventuellt kartförband och en karaktärs krigskonst är olika uppgifter.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="dynasty">
+<h2>Read the dynasty’s readiness</h2>
+<p>The realm overview shows military readiness as a percentage beside treasury, annual revenue and action capacity. Command and family support affect the outcome. Read the responsible actor and mandate before choosing an available military or court action.</p>
+<p>Use the action catalogue and decisions currently offered by your campaign. The general force panel is hidden when a character system is active. An available map formation and a character’s military skill are different records.</p>
+</div>
+</section>
+<section id="formations" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="formations">
+<h2>Förstå ett förband</h2>
+<p>Allmänna kartförband har ägare, typ, position, styrka, sammansättning och uppträdande. Styrkan är en procentandel av ordinarie styrka. Visningen är grön över 60, gul över 25 till och med 60 och röd vid 25 eller lägre. Sammansättningen beskriver vad förbandet består av. Uppträdandet beskriver vad det gör.</p>
+<p>Infanteri, flottförband och garnisoner har olika förflyttningsregler. Scenariots begränsningar kan styra vilka förbandstyper som erbjuds i de allmänna förbandsverktygen.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="formations">
+<h2>Understand a formation</h2>
+<p>General map formations have an owner, type, position, strength, composition and posture. Strength is a percentage of established strength; the display is green above 60, amber above 25 through 60, and red at 25 or below. Composition describes what the formation contains; posture describes what it is doing.</p>
+<p>Infantry, naval formations and garrisons illustrate different movement rules. Scenario restrictions can limit the deployment types offered by the general force tools.</p>
+</div>
+</section>
+<section id="movement" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="movement">
+<h2>Förflyttning tar tid</h2>
+<p>Allmänna förbandsförflyttningar använder speldatumets epok. Ett anfall går långsammare än en vanlig omgruppering, och en resa som delvis går till sjöss kombinerar land- och sjöresans tidsåtgång. Garnisoner förflyttar sig inte. Ett avlägset mål kan ligga kvar som en väntande order över flera turer.</p>
+<p>Före 1500 omgrupperar infanteri exempelvis på land med en uthållig takt på 25 kilometer per dag och anfaller med 18. Från 1500 till och med 1849 är takterna 28 respektive 20. Speldatumet avgör vilken epok som gäller. Det är regler för förbandsförflyttning. Den här versionen saknar ett separat krigsrum för att rita truppvägar.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="movement">
+<h2>Movement takes time</h2>
+<p>General formation movement uses the game date’s era. An assault advances more slowly than an ordinary redeployment, and a journey partly by sea combines the land and sea travel times. Garrisons do not travel. A distant destination can remain a pending order across turns.</p>
+<p>For example, before 1500 infantry redeploys over land at a sustained 25 kilometres per day and advances in an assault at 18. From 1500 through 1849 those rates are 28 and 20. The game date determines which era applies. These are formation movement rules; this version has no separate War Room troop-routing interface.</p>
+</div>
+</section>
+<section id="records" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="records">
+<h2>Kontrollera kriget och marken</h2>
+<p>Stridshändelser kräver ett aktivt registrerat krig med rätt motstående sidor. En bas, hamn eller annan kartanläggning har en egen verksamhetsansvarig. Det överlåter inte i sig den omgivande regionen. Läs <a href="/wiki/war/">Krig</a>, <a href="/wiki/territory/">Territorium</a> och <a href="/wiki/cities/">Städer och anläggningar</a>.</p>
+<p>Direkt redigering av förband är ett spelledarverktyg. Fuskmenyn har kvar ett val för styrkehanteraren, men huvudgränssnittet visar dess allmänna förbandspanel bara för kampanjer utan karaktärssystem. Läs <a href="/wiki/cheats/">Fusk</a> om den begränsningen innan du letar efter placeringsreglage.</p>
+<p>När spelet är synligt kan en bakgrundspuls också uppdatera allmänna förband när bakgrunds-AI och vilande diplomati tillåter det. Den väntar under simulering eller en ofärdig händelsevisning. Denna bakgrundsaktivitet är skild från den dolda allmänna förbandspanelen i en dynastikampanj.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="records">
+<h2>Check the war and the ground</h2>
+<p>Battlefield combat events require an active recorded war and matching sides. A base, port or other map structure has its own operator; that alone does not transfer the surrounding region. Check <a href="/wiki/war/">War</a>, <a href="/wiki/territory/">Territory</a> and <a href="/wiki/cities/">Cities and structures</a>.</p>
+<p>Direct formation editing is a game-master tool. The cheats menu keeps a force-manager entry, but the main interface offers its general force panel only for campaigns without a character system. Read <a href="/wiki/cheats/">Cheats</a> for that limitation before looking for deployment controls.</p>
+<p>While the game is visible, an idle pulse can also update general formations when background AI and idle diplomacy allow it. It waits during simulation or an unfinished event reveal. This background activity is separate from the hidden general force panel in a dynasty campaign.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/territory/"><span>← Föregående</span><b>Territorium</b></a>
+        <a class="next" href="/wiki/war-room/"><span>Nästa →</span><b>Krigsrummet</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/territory/"><span>← Previous</span><b>Territory</b></a>
+        <a class="next" href="/wiki/war-room/"><span>Next →</span><b>War Room</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -408,27 +246,71 @@ does not annex it. See <a href="/wiki/cities/">cities and structures</a>.</p>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

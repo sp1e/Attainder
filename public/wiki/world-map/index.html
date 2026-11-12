@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Världskartan — Guide till Attainder" data-title-en="The world map — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>The World Map — Open Historia Wiki</title>
+  <title>Världskartan — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/world-map/" />
-  <meta name="description" content="Reading the map: political fills, striped disputes, groups&#39; areas, labels, projections, the 3D globe, terrain and basemaps — and on beta the diplomatic map, war, seasons and weather." />
+  <meta name="description" content="Läs territoriella överlägg och justera kartans visning." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/world-map/" />
-  <meta property="og:title" content="The World Map — Open Historia Wiki" />
-  <meta property="og:description" content="Reading the map: political fills, striped disputes, groups&#39; areas, labels, projections, the 3D globe, terrain and basemaps — and on beta the diplomatic map, war, seasons and weather." />
+  <meta property="og:title" content="Världskartan — Guide till Attainder" />
+  <meta property="og:description" content="Läs territoriella överlägg och justera kartans visning." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The World Map — Open Historia Wiki" />
-  <meta name="twitter:description" content="Reading the map: political fills, striped disputes, groups&#39; areas, labels, projections, the 3D globe, terrain and basemaps — and on beta the diplomatic map, war, seasons and weather." />
+  <meta name="twitter:title" content="Världskartan — Guide till Attainder" />
+  <meta name="twitter:description" content="Läs territoriella överlägg och justera kartans visning." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,323 +81,158 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/" class="on" aria-current="page">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> The World Map
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Världskartan
     </nav>
-    <h1>The World Map</h1>
-    <p class="tagline">Reading the map: political fills, striped disputes, groups&#39; areas, labels, projections, the 3D globe, terrain and basemaps — and on beta the diplomatic map, war, seasons and weather.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#political-fills">Political fills</a></li><li class="d2"><a href="#striped-regions-mean-a-dispute">Striped regions mean a dispute</a></li><li class="d2"><a href="#groups39-areas">Groups&#39; areas</a></li><li class="d2"><a href="#map-modes">Map modes</a></li><li class="d2"><a href="#war-on-the-map">War on the map</a></li><li class="d2"><a href="#labels">Labels</a></li><li class="d2"><a href="#zoom-and-bounds">Zoom and bounds</a></li><li class="d2"><a href="#basemaps">Basemaps</a></li><li class="d2"><a href="#the-3d-globe">The 3D globe</a></li><li class="d2"><a href="#3d-terrain">3D terrain</a></li><li class="d2"><a href="#custom-backgrounds">Custom backgrounds</a></li><li class="d2"><a href="#seasons-and-weather">Seasons and weather</a></li><li class="d2"><a href="#clicking-things">Clicking things</a></li><li class="d2"><a href="#performance">Performance</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>The map is the game&#39;s main display and its main control. Everything on it is clickable, and the
-way it is coloured tells you who holds what.</p>
-<h2 id="political-fills">Political fills</h2>
-<p>Each country is drawn as <strong>one surface</strong> in the colour of whoever administers it, with its
-frontiers stitched between neighbours, rather than as a patchwork of separately filled regions.
-The fill strengthens as you zoom in — about 46% with the whole world in view, 72% at regional zoom
-and 84% close in — so relief and seas read from far out and ownership reads clearly up close.</p>
-<p>A campaign opens under a loading screen, the logo turning over a dark ground, while the map works
-out every country&#39;s surface. That pause is normal, not a hang; the map is revealed once it is
-drawn. Switching the 3D globe on or off shows the same screen while the map redraws.</p>
-<p>Colours are resolved in a fixed order: the scenario&#39;s own palette first, then any colour set on
-the country, then a match against known aliases, and finally a colour derived from the country&#39;s
-name. That last fallback is why an invented faction always gets <em>a</em> colour even if you never
-picked one — and why two countries occasionally land on similar shades.</p>
-<p><img src="/wiki/img/world-map-globe.jpg" alt="The 3D globe">
-<em>The globe, with the real day/night terminator falling across the Atlantic and the starfield behind it.</em></p>
-<h2 id="striped-regions-mean-a-dispute">Striped regions mean a dispute</h2>
-<p>A region rendered in <strong>stripes</strong> is claimed by more than one country. The stripes combine the
-colour of whoever actually administers it with the colours of the claimants.</p>
-<p>This is a real mechanic, not decoration — see <a href="/wiki/territory/">territory</a> for the difference
-between holding ground and being acknowledged as its owner.</p>
-<h2 id="groups39-areas">Groups&#39; areas</h2>
-<p>Not everything that holds ground is a country. A <strong>group</strong> — a cartel, a militia, a movement, an
-outbreak — can control an area without owning it. Its area is drawn over the countries&#39; colours
-with a light tint in the group&#39;s colour, an outline around the whole area and the group&#39;s name;
-the regions in it stay their countries&#39;, and nothing about it is a border. Click a region inside
-one and its card shows <strong>Group control</strong>, with the group&#39;s name and what it is. The story creates,
-moves and ends groups as it goes. On beta a scenario or a game can switch groups off, and then no
-area is drawn.</p>
-<h2 id="map-modes">Map modes</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p>On beta the map has two modes, switched at the bottom right under the advisor&#39;s button or in
-<strong>Settings → Map → Map mode</strong>:</p>
-<ul>
-<li><strong>Political</strong> — every country in its own colour, as described above.</li>
-<li><strong>Diplomatic</strong> — every country, and the ground taken on a battlefield, in the colour of where it
-stands with you. A legend beside the switch says what each colour means: <strong>You</strong>,
-<strong>Puppets</strong>, <strong>Allies</strong>, <strong>Friendly / Trade</strong>, <strong>Hostile</strong>, <strong>At War</strong> and <strong>Neutral</strong>.</li>
-</ul>
-<p>Each time the game opens, the map starts on Political.</p>
-<h2 id="war-on-the-map">War on the map</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p>On beta, where a land war is fought on a battlefield, the battlefield is drawn over the map: the
-ground each side has taken, painted in the colour of whose troops took it; the troops as counters
-where they stand; and behind them arrows along the way they have come. The front is where the
-colours meet. Aircraft circle over battlefields that have them, a battle at sea is marked where it
-was fought with a ring and a cross, a blockading fleet has a dashed ring round the water it closes,
-and a missile or bombing raid an event tells of is flown across the map when it happens. See
-<a href="/wiki/war-room/">the War Room</a> and <a href="/wiki/war-at-sea/">war at sea</a>.</p>
-<h2 id="labels">Labels</h2>
-<p>Each country gets <strong>one label</strong>: curved along its territory where it fits, a straight one where
-it does not, placed so compact countries read horizontally and long ones follow their length.
-Detached land of consequence — Alaska, Kalimantan, Greenland — carries its owner&#39;s name as well.
-Labels use the name the scenario gives the country, so a renamed country is labelled by its new
-name. They scale with the map and fade out by zoom 7.5, once the provinces read on their own (on
-beta they begin to fade at zoom 5 and are gone by 6.2). Cities appear from about zoom 3.4 and get
-more numerous as you go in.</p>
-<p>Scenario authors can set the label font, letter colour and border colour for their world, so a
-custom map may look quite different from Modern Day.</p>
-<p>You can turn country labels off (<strong>Hide country labels</strong>), or override the label font, in
-<strong>Settings → Map</strong>.</p>
-<h2 id="zoom-and-bounds">Zoom and bounds</h2>
-<p>The camera runs from zoom <strong>2.25</strong> (the whole world) to <strong>16</strong> (street level, where the basemap
-supports it). Vertical panning is bounded at roughly 80°S to 85°N — there is no reason to fly off
-the top of the map.</p>
-<h2 id="basemaps">Basemaps</h2>
-<p>The imagery under the political fills. <strong>Settings → Map → Basemap</strong> starts on <strong>Scenario
-default</strong> — whatever the scenario&#39;s author chose, which for Modern Day is Ocean — and offers
-fourteen others:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Atlas Relief</td>
-<td>Bathymetry and shaded land relief, graded as a political canvas</td>
-</tr>
-<tr>
-<td>Atlas Relief - Dark</td>
-<td>The same, darker</td>
-</tr>
-<tr>
-<td>Satellite</td>
-<td>Photographic imagery</td>
-</tr>
-<tr>
-<td>Streets</td>
-<td>Roads and place names</td>
-</tr>
-<tr>
-<td>Topographic</td>
-<td>Contours and relief</td>
-</tr>
-<tr>
-<td>Terrain</td>
-<td>Physical terrain base</td>
-</tr>
-<tr>
-<td>Shaded Relief</td>
-<td>Hillshading only</td>
-</tr>
-<tr>
-<td>Physical</td>
-<td>Natural-earth style</td>
-</tr>
-<tr>
-<td>National Geographic</td>
-<td>Atlas styling</td>
-</tr>
-<tr>
-<td>National Geographic - Dark</td>
-<td>Atlas styling, darkened, without political or place labels</td>
-</tr>
-<tr>
-<td>Ocean</td>
-<td>Bathymetry and a muted land base</td>
-</tr>
-<tr>
-<td>Ocean - Dark</td>
-<td>The same, darker</td>
-</tr>
-<tr>
-<td>Light Gray Canvas</td>
-<td>Minimal, light</td>
-</tr>
-<tr>
-<td>Dark Gray Canvas</td>
-<td>Minimal, dark</td>
-</tr>
-</tbody></table></div>
-<p>Your choice is stored per browser and overrides the scenario&#39;s; it applies immediately. Setting
-it back to Scenario default hands control back to the scenario. A scenario drawn on a map of its
-own — a picture, a drawn map, the plain sea of a flat sheet — keeps it: there the list is greyed
-out and says so.</p>
-<p>Not every basemap has imagery at every zoom — Physical stops at zoom 8, Terrain and Shaded Relief
-at 13. Past that the game upscales the last available tiles rather than showing nothing.</p>
-<p class="beta-note"><b>On beta the list is the scenario's maps.</b> In a game, <b>Basemap</b>
-offers its scenario's starting map, any maps of its own, and the built-in ones it allows — every
-one on a real-world scenario, none on an invented one — and your pick is kept for that game only.
-The main menu's Settings has <b>Use my default basemap</b>, a built-in map every game starts on
-wherever its scenario offers it. Beta also has a fifteenth built-in map, <b>Midnight Terrain</b>, a
-very dark physical canvas with no names on it.</p><h2 id="the-3d-globe">The 3D globe</h2>
-<p><strong>Settings → Map → 3D Globe</strong> swaps the flat projection for a sphere.</p>
-<p>It is not just a projection change. The globe carries a real day/night terminator computed from
-the actual subsolar point, a starfield, and a sun sprite — the lighting corresponds to the real
-world clock, refreshed every minute. Left alone, the globe rotates slowly, a full turn every ten
-minutes.</p>
-<p>Both the idle rotation and the general motion can be switched off — <strong>Disable idle globe
-rotation</strong>, or <strong>Reduce motion</strong> as an umbrella setting.</p>
-<p>A scenario whose map is a flat sheet rather than a world can switch the globe off for its map;
-the switch then says <em>The 3D globe is disabled for this scenario&#39;s map.</em></p>
-<h2 id="3d-terrain">3D terrain</h2>
-<p><strong>Settings → Map → 3D Terrain</strong>, marked experimental and honestly so. It raises real elevation
-with a heavy 15× exaggeration so that mountain ranges actually read at world scale, plus light
-hillshading. A scenario with a custom background has no elevation data to raise, so it stays off
-there.</p>
-<h2 id="custom-backgrounds">Custom backgrounds</h2>
-<p>A scenario can replace Earth entirely, either with an image pinned to a geographic extent or
-with its own vector artwork. This is how fantasy maps work: the political layer sits on top of a
-world that has nothing to do with this planet.</p>
-<p>A scenario&#39;s map can also keep the <strong>projection</strong> it was drawn in — Mercator, Equirectangular,
-Miller, Gall-Peters, Robinson, Natural Earth, Equal Earth, Mollweide, Sinusoidal, or <strong>Freeform</strong>,
-a flat sheet of any shape — so a flat map or an invented world arrives undistorted. Its author can
-also stop the map repeating sideways as you pan past its edge. Projections are set in the
-<a href="/wiki/editor/">map editor</a>.</p>
-<p class="beta-note"><b>On beta a scenario can have detailed maps.</b> These are large terrain
-maps that stay sharp however far you zoom in, drawn over the scenario's own map in the desktop app.
-Each downloads once, is checked, and is shared by every scenario that uses it; on the website, on
-Android, or without the download, you see the drawn map underneath. In a game,
-<b>Settings → Map</b> lists the scenario's maps by name, and under <b>Detailed maps</b> a line says
-which are missing or out of date, with <b>Download…</b> beside it.</p><h2 id="seasons-and-weather">Seasons and weather</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p>On beta the world has climates. The whole map is faintly tinted by the season each place is in on
-the game&#39;s date — winter a cold blue-white, spring green, summer a warm yellow, autumn amber —
-following climate zones drawn across the world: the real world&#39;s on the built-in maps, or a
-scenario&#39;s own.</p>
-<p>Each zone has one weather at a time — clear, rain, storm, mud, snow, blizzard, frost, heat or
-fog — drawn over the land as a patch in the zone&#39;s own shape, thinning at its edges into the zones
-beside it. Clear skies are the commonest weather nearly everywhere. Nothing is written on the map:
-ask your advisor for the season and the weather. Lakes and seas frozen hard enough for troops to
-cross are drawn as cracked ice, whatever the switches below say, since they change where armies
-can go.</p>
-<p>In <strong>Settings → Map</strong>, <strong>Seasons and weather</strong> (on by default) turns the tint and the weather on
-or off, and <strong>Weather effects</strong> under it the weather alone. A scenario can also fight its wars
-without weather, and then none is drawn. What the weather does to armies is on the
-<a href="/wiki/war-room/">War Room</a> page.</p>
-<h2 id="clicking-things">Clicking things</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Click</th>
-<th>You get</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>A region</strong></td>
-<td>A card naming the country and the region, with <strong>💬</strong> to open a chat, <strong>⧉</strong> to copy the name and <strong>ⓘ</strong> to open the country&#39;s panel. An occupied or contested region also shows who is sovereign, who controls it and who claims it, and a region in a group&#39;s area names the group.</td>
-</tr>
-<tr>
-<td><strong>A country&#39;s panel</strong></td>
-<td>Flag, details, alternative names, related events filtered by importance, and an AI report on request.</td>
-</tr>
-<tr>
-<td><strong>A unit</strong></td>
-<td>An intelligence card — what the formation is, whose, how strong, what it appears to be doing. Not a command panel.</td>
-</tr>
-<tr>
-<td><strong>A city or structure</strong></td>
-<td>Name, population, whether it is a capital, and what kind of thing it is.</td>
-</tr>
-</tbody></table></div>
-<h2 id="performance">Performance</h2>
-<p>If the map is slow:</p>
-<ul>
-<li><strong>Turn off 3D terrain.</strong> It is the most expensive thing on the list by a wide margin.</li>
-<li><strong>Turn off the globe.</strong> The flat map is cheaper.</li>
-<li><strong>Reduce motion</strong>, which quiets several animations at once.</li>
-<li>Zoom out. Fewer tiles, fewer labels.</li>
-</ul>
-<p>The map caches a bounded number of tiles deliberately, to avoid running a browser tab out of
-memory on a long campaign.</p>
-<p class="beta-note"><b>On beta, Settings → Map has Performance mode.</b> <b>Auto</b> picks
-<b>Low memory</b> in the Android app, on a touch screen with no mouse, and on a device with 4 GB of
-memory or less: the map then loads in smaller steps with fewer workers. <b>Full</b> is faster on a
-strong tablet, and Low memory can steady a weak computer. A change applies after the game is
-reloaded.</p><h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/territory/">Territory</a> — what the stripes actually mean.</li>
-<li><a href="/wiki/cities/">Cities and structures</a> — the things drawn on top.</li>
-<li><a href="/wiki/settings/">Settings</a> — every map option in one place.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/interface/"><span>← Previous</span><b>The interface</b></a>
-        <a class="next" href="/wiki/time/"><span>Next →</span><b>Time &amp; turns</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> The world map
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Världskartan</span><span data-help-lang="en" lang="en">The world map</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Läs territoriella överlägg och justera kartans visning.</span><span data-help-lang="en" lang="en">Read territorial overlays and adjust the map’s presentation.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#territory">Läs färger och överlägg</a></li><li class="d2"><a href="#camera">Kamera och information</a></li><li class="d2"><a href="#basemaps">Baskarta och etiketter</a></li><li class="d2"><a href="#display-and-performance">Jordglob, terräng och prestanda</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#territory">Read colours and overlays</a></li><li class="d2"><a href="#camera">Camera and information</a></li><li class="d2"><a href="#basemaps">Basemap and labels</a></li><li class="d2"><a href="#display-and-performance">Globe, terrain and performance</a></li></ul></nav>
+    <section id="territory" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="territory">
+<h2>Läs färger och överlägg</h2>
+<p>Ländernas färger visar kartans politiska lager. Ränder kombinerar den nuvarande kontrollörens färg med anspråksställarnas färger där minst två olika färger finns. Läs region- och landinformationen för skillnaden mellan kontroll, suveränitet och anspråk. Läs om <a href="/wiki/territory/">territorium</a>.</p>
+<p>Ett gruppområde har en toning, en kontur och ett namn ovanpå landslagret. Överlägget skapar inte i sig någon landsgräns. Om det visas beror på kampanjens data för gruppområden.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="territory">
+<h2>Read colours and overlays</h2>
+<p>Country colours show the map’s political layer. Stripes combine the current controller’s colour with claimant colours where at least two distinct colours are available. Read the region and country information for the difference between control, sovereignty and claims; see <a href="/wiki/territory/">territory</a>.</p>
+<p>A group area uses a tint, an outline and a name over the country layer. That overlay does not itself create a country border. Its presence depends on the group-area data in the campaign.</p>
+</div>
+</section>
+<section id="camera" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="camera">
+<h2>Kamera och information</h2>
+<p>Dra för att panorera. Kameran är begränsad till zoom <strong>2,25–16</strong> och till latituderna <strong>80° syd</strong> och <strong>85° nord</strong>. Rotation med dragning och gester för lutning är avstängda. Ett scenario kan förhindra att kartan upprepas i sidled.</p>
+<p>Klicka på regioner, länder och utplacerade objekt för att granska dem. Sökningen flyttar till en vald ort. Historiska kampanjer använder sina lokala ortposter i stället för att söka den moderna världen på nätet. Läs om <a href="/wiki/interface/#map-and-search">gränssnittet</a>.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="camera">
+<h2>Camera and information</h2>
+<p>Drag to pan. The camera is bounded from zoom <strong>2.25</strong> to <strong>16</strong> and from latitude <strong>80° south</strong> to <strong>85° north</strong>. Drag rotation and pitch gestures are disabled. A scenario can stop the map from repeating sideways.</p>
+<p>Click regions, countries and placed features to inspect them. Search moves to a selected place; historical campaigns use their local place entries rather than searching the modern world online. See <a href="/wiki/interface/#map-and-search">the interface</a>.</p>
+</div>
+</section>
+<section id="basemaps" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="basemaps">
+<h2>Baskarta och etiketter</h2>
+<p>Under Inställningar → Karta väljer du <strong>Baskarta</strong> för att ändra bakgrunden där scenariot tillåter det. <strong>Scenariots standard</strong> återställer författarens val. Ett scenario med en egen bakgrund behåller den och inaktiverar det vanliga baskartsvalet.</p>
+<p>Du kan välja ett installerat teckensnitt för landsetiketterna eller lämna fältet tomt för scenariots val. Etikettreglaget döljer landsnamnen. Detta är visningsinställningar. De ritar inte om historiska gränser och ändrar inte ägandet.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="basemaps">
+<h2>Basemap and labels</h2>
+<p>In Settings → Map, choose <strong>Basemap</strong> to change the background where the scenario allows it. <strong>Scenario default</strong> restores the author’s choice. A scenario with its own background keeps that background and disables the ordinary basemap picker.</p>
+<p>You can override the country-label font with an installed font or leave the field empty to use the scenario’s choice. The label switch hides country names. These are display preferences; they do not redraw historical borders or change ownership.</p>
+</div>
+</section>
+<section id="display-and-performance" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="display-and-performance">
+<h2>Jordglob, terräng och prestanda</h2>
+<p>Kartinställningarna har experimentell visning med jordglob och terräng. Ett scenario kan stänga av jordgloben. Terräng kräver nätanslutning och höjs inte över en angiven egen bakgrund. När den används är den konfigurerade höjdförstärkningen <strong>15×</strong>.</p>
+<p>Om kartan ritas långsamt kan du prova att stänga av terrängen eller jordgloben och dölja landsetiketter. <strong>Minska rörelse</strong> stänger av både jordglobens rotation i vila och kamerans rörelse under händelser. Vid saknad geografi eller WebGL-varning använder du <a href="/wiki/troubleshooting/#map">felsökningen</a>.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="display-and-performance">
+<h2>Globe, terrain and performance</h2>
+<p>The Map settings offer experimental globe and terrain presentation. A scenario may disable the globe. Terrain needs a network connection and is not raised over a declared custom background; when enabled its configured exaggeration is <strong>15×</strong>.</p>
+<p>If drawing is slow, try turning off terrain or the globe and hide country labels. <strong>Reduce motion</strong> switches off idle globe rotation and event-camera movement together. For missing geography or a WebGL warning, use <a href="/wiki/troubleshooting/#map">troubleshooting</a>.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/interface/"><span>← Föregående</span><b>Gränssnitt</b></a>
+        <a class="next" href="/wiki/time/"><span>Nästa →</span><b>Tid</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/interface/"><span>← Previous</span><b>Interface</b></a>
+        <a class="next" href="/wiki/time/"><span>Next →</span><b>Time</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -389,27 +244,71 @@ reloaded.</p><h2 id="next">Next</h2>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {
