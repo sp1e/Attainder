@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Spionage och avlyssningsrapporter — Guide till Attainder" data-title-en="Espionage and intercepted reports — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Espionage — Open Historia Wiki</title>
+  <title>Spionage och avlyssningsrapporter — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/espionage/" />
-  <meta name="description" content="Intelligence ratings, sending agents, being spied on, double agents and sealed intercepts." />
+  <meta name="description" content="Förstå den allmänna spiontjänsten och skilj den från hovets intriger." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/espionage/" />
-  <meta property="og:title" content="Espionage — Open Historia Wiki" />
-  <meta property="og:description" content="Intelligence ratings, sending agents, being spied on, double agents and sealed intercepts." />
+  <meta property="og:title" content="Spionage och avlyssningsrapporter — Guide till Attainder" />
+  <meta property="og:description" content="Förstå den allmänna spiontjänsten och skilj den från hovets intriger." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Espionage — Open Historia Wiki" />
-  <meta name="twitter:description" content="Intelligence ratings, sending agents, being spied on, double agents and sealed intercepts." />
+  <meta name="twitter:title" content="Spionage och avlyssningsrapporter — Guide till Attainder" />
+  <meta name="twitter:description" content="Förstå den allmänna spiontjänsten och skilj den från hovets intriger." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,495 +81,160 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/" class="on" aria-current="page">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> Espionage
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Spionage och avlyssningsrapporter
     </nav>
-    <h1>Espionage</h1>
-    <p class="tagline">Intelligence ratings, sending agents, being spied on, double agents and sealed intercepts.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#intelligence-rating">Intelligence rating</a></li><li class="d2"><a href="#limits">Limits</a></li><li class="d2"><a href="#sending-an-agent">Sending an agent</a></li><li class="d2"><a href="#getting-caught">Getting caught</a></li><li class="d2"><a href="#caught-then-what">Caught, then what</a></li><li class="d3"><a href="#who-sent-them">Who sent them</a></li><li class="d3"><a href="#the-turned-agent">The turned agent</a></li><li class="d2"><a href="#being-spied-on">Being spied on</a></li><li class="d2"><a href="#reading-intercepts">Reading intercepts</a></li><li class="d3"><a href="#clarity-on-beta">Clarity on beta</a></li><li class="d2"><a href="#stolen-documents">Stolen documents</a></li><li class="d2"><a href="#agents-report-in-real-time">Agents report in real time</a></li><li class="d2"><a href="#agents-at-war">Agents at war</a></li><li class="d2"><a href="#orders-and-operations">Orders and operations</a></li><li class="d3"><a href="#what-a-network-collects-on">What a network collects on</a></li><li class="d3"><a href="#ordering-an-operation">Ordering an operation</a></li><li class="d3"><a href="#what-the-world-sees">What the world sees</a></li><li class="d3"><a href="#recruited-sources">Recruited sources</a></li><li class="d3"><a href="#the-operations-log">The Operations log</a></li><li class="d3"><a href="#using-them-well">Using them well</a></li><li class="d2"><a href="#playing-it-well">Playing it well</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>Espionage runs in both directions. You plant agents in other countries and read their private
-diplomacy; other countries plant agents in you and read yours. It is the most mechanically
-explicit system in the game — the rolls are real numbers, and they are deterministic.</p>
-<p>Find it in the <strong>Chat</strong> panel, <strong>Spy</strong> tab. (A scenario can switch espionage off with its
-<strong>Espionage</strong> feature; then the Spy tab is hidden and no service acts.)</p>
-<p class="beta-note"><b>On beta the tab is called Intelligence</b>, beside Contacts and
-Institutions, and it has four sections. <b>Overview</b> rates your service in a word, counts your
-active networks, current reports and counterintelligence alerts, and lists strategic warnings and
-the latest intelligence. <b>Countries</b> keeps a dossier on every country: how strong your
-network, political, diplomatic and source picture of it is, its public political picture, its
-institutional position and your intelligence assessment. <b>Operations</b> holds your networks and
-their orders, the Operations log, the foreign agents you have caught, and <b>♟ Deploy a
-network</b>. <b>Reports</b> files political assessments, intercepted traffic and documents. An
-agent is called a network there; it is the same thing.</p><p><img src="/wiki/img/espionage-spy-tab.jpg" alt="The Spy tab">
-<em>The Spy tab before anything is deployed — your service rating, and the three slots you have to spend.</em></p>
-<h2 id="intelligence-rating">Intelligence rating</h2>
-<p>Every country has an intelligence rating from <strong>0 to 100</strong>. It is the single number that decides
-how good its service is at everything below: planting agents, catching yours, turning the ones
-it catches, noticing when its own have been turned, and reading intercepted traffic.</p>
-<p>The default is <strong>40</strong> — deliberately &quot;ordinary&quot;, not &quot;none&quot;. A country with no rating yet gets
-one assessed the first time it matters: when you open its stats, send an agent there, read an
-intercept from it, or catch one of its agents.</p>
-<p>Your own rating is on your stat sheet: the <strong>Stats</strong> tab of the advisor drawer, or on beta the
-country panel your flag opens. Raising it is a matter of governing that way — order intelligence
-expansion, fund the service, make it a priority — and it moves like any other national statistic.</p>
-<p class="beta-note"><b>On beta the Intelligence tab puts your service in a word</b>: Minimal
-below 30, Developing from 30, Limited from 50, Capable from 70 and Advanced from 85.</p><h2 id="limits">Limits</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Agents you can have active</td>
-<td><strong>3</strong></td>
-</tr>
-<tr>
-<td>Foreign agents inside you at once</td>
-<td><strong>3</strong></td>
-</tr>
-<tr>
-<td>Agents per target country</td>
-<td><strong>1</strong></td>
-</tr>
-<tr>
-<td>Spying on yourself</td>
-<td>Not possible</td>
-</tr>
-</tbody></table></div>
-<p>Three is not many. Choosing where those three go is most of the strategy.</p>
-<h2 id="sending-an-agent">Sending an agent</h2>
-<p>From the <strong>Spy</strong> tab, deploy to a target country. You can also just write it as an order —
-<em>&quot;deploy a spy in Germany&quot;</em> — and the next time skip places a real agent through exactly the same
-rules and caps, quietly on the turn it happens; an order can also give the officer a cover, who
-they pose as. Either way the agent&#39;s operation opens on your
-<a href="/wiki/projects/">Projects board</a> the same turn, and recalling or losing it closes it.</p>
-<p>An active agent reports: it feeds you the target&#39;s private diplomatic traffic, subject to how
-much of it you can actually read.</p>
-<p><img src="/wiki/img/espionage-deploy.jpg" alt="Choosing a target for an agent">
-<em>The target picker. Countries you already have an agent in are not offered again — one agent per
-country, and never yourself.</em></p>
-<p>You can <strong>recall</strong> an agent at any time, and see everything it has sent.</p>
-<p class="beta-note"><b>On beta you deploy from the Operations section</b>, with <b>♟ Deploy a
-network</b>. Each network there says how well it reads its target — Strong, Moderate or Limited —
-with <b>Dossier</b> and <b>Recall</b> beside it, and takes orders: see
-<a href="#orders-and-operations">orders and operations</a> below.</p><p><img src="/wiki/img/espionage-states.jpg" alt="The Spy tab with agents in several states">
-<em>Every state at once: an agent running in Germany, one flagged <strong>possibly compromised</strong>, a line
-recording one Belarus expelled, and a German agent caught inside Poland waiting on your decision —
-expel it, or turn it and write what it reports home.</em></p>
-<h2 id="getting-caught">Getting caught</h2>
-<p>Every jump, each of your agents is rolled against the target&#39;s service.</p>
-<p>The chance of detection is driven mostly by the <strong>gap</strong> between the two services:</p>
-<pre><code>detection = 0.04 + (target/100 − yours/100) × 0.25 + (target/100) × 0.10
-            clamped to between 2% and 60%
-</code></pre>
-<p>Read that as: a service much better than yours will find your agent quickly; a service much
-worse will mostly not. But there is a floor of 2% — a brilliant agent in an incompetent country
-is never perfectly safe — and a ceiling of 60%, so even a hopeless agent is not guaranteed to be
-caught on day one.</p>
-<p>Some worked numbers, per jump:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Your service</th>
-<th>Their service</th>
-<th>Chance your agent is caught</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>40</td>
-<td>40</td>
-<td>8%</td>
-</tr>
-<tr>
-<td>40</td>
-<td>80</td>
-<td>22%</td>
-</tr>
-<tr>
-<td>80</td>
-<td>20</td>
-<td>2% (the floor)</td>
-</tr>
-</tbody></table></div>
-<p class="beta-note"><b>On beta, sources and operations change the roll.</b> Each recruited source
-a network runs cuts this chance by a tenth, and a network that carries out an operation during a
-skip is not rolled that skip: the operation's own risk of capture decides it.</p><h2 id="caught-then-what">Caught, then what</h2>
-<p>A caught agent becomes <strong>discovered</strong> and stops reporting. The target then either <strong>turns</strong> it
-or <strong>expels</strong> it:</p>
-<pre><code>turn chance = (target intelligence / 100) × 0.6
-              clamped to between 5% and 60%
-</code></pre>
-<p>Turning takes skill. An ordinary service mostly just throws your agent out; a very good one
-keeps it.</p>
-<h3 id="who-sent-them">Who sent them</h3>
-<p class="beta-note"><b>Beta channel only.</b></p><p>On beta, a caught agent is not always made to say who sent it. The service that caught it learns
-whose agent it is with this chance:</p>
-<pre><code>identified = 0.6 + (catcher/100 − sender/100) × 0.5
-             clamped to between 20% and 90%
-</code></pre>
-<p>An identified agent goes on as above: turned or expelled. One that is not identified dies under
-interrogation, and the trail ends there — the country that caught it never learns who sent it.
-Your <strong>Operations</strong> section keeps a line for it, <em>caught, and died in custody without giving you
-away</em>, and its entry on the Projects board fails with a note that the agent has gone silent.</p>
-<h3 id="the-turned-agent">The turned agent</h3>
-<p>This is the part worth understanding properly.</p>
-<p><strong>You are never told that your agent has been turned.</strong> From your side it looks like it is still
-reporting. What it is actually sending is material the target wrote for you.</p>
-<p>Each jump, your own service gets a chance to notice:</p>
-<pre><code>suspicion = 0.05 + (yours/100 − target/100) × 0.3
-            clamped to between 2% and 50%
-</code></pre>
-<p>So a service better than the one that turned your agent will usually spot it eventually. A
-service much worse may never.</p>
-<p>The game itself always knows — reports produced while an agent was turned are permanently marked
-as planted — but that mark is not shown to you. It exists so that the consequences are consistent
-later.</p>
-<p>The practical lesson: <strong>intelligence you cannot corroborate is not intelligence.</strong> If a single
-agent is telling you something convenient, and your service is weaker than theirs, consider that
-you may be reading fiction written for you.</p>
-<h2 id="being-spied-on">Being spied on</h2>
-<p>Other countries plant agents in you, on their own initiative, every jump:</p>
-<pre><code>deploy chance = (their intelligence / 100) × 0.12 + hostility × 0.2
-                capped at 40%
-</code></pre>
-<p>A capable service does it as a matter of course. A hostile one goes looking. At most three
-foreign agents can be inside you at once.</p>
-<p>When you catch one, it appears in the Spy tab and <strong>waits for your decision</strong>:</p>
-<ul>
-<li><strong>Expel</strong> it. Clean, final, and it tells the other country you found them.</li>
-<li><strong>Turn</strong> it. It becomes a double agent, and from then on <em>you</em> write what it reports home.
-The country that sent it is not told.</li>
-</ul>
-<p>Turning is the more interesting option and the more useful one, but it requires you to keep
-feeding it plausible material.</p>
-<p>Typing a story before you turn the agent changes the button to <strong>Turn &amp; plant story</strong>, so the
-first report home is yours from the start. A turned agent&#39;s <strong>Save</strong> is greyed out while the field
-matches what it already reports and reads &quot;Saved&quot; for a moment after you save; Enter in the field
-saves too.</p>
-<p class="beta-note"><b>On beta, your service has to identify them too.</b> A foreign agent you
-catch is identified by the same chance as under <a href="#who-sent-them">Who sent them</a>, with
-your service as the catcher. One that is never identified dies under interrogation: there is no
-one to expel or turn, and the Operations section notes only that a foreign agent died and who sent
-them was never learned. When your service does learn who sent one, it waits under
-<b>Counterintelligence cases</b> in the Operations section, and you decide as before.</p><h2 id="reading-intercepts">Reading intercepts</h2>
-<p>You rarely get a clean transcript. How much of an intercepted message you can read depends on
-both services:</p>
-<pre><code>clarity = 0.12 + (yours/100) × 0.88 − (theirs/100) × 0.35
-          clamped to between 6% and 100%
-</code></pre>
-<p><img src="/wiki/img/espionage-intercept.jpg" alt="An intercepted exchange, partly redacted">
-<em>An intercept read at 39% clarity. The formula above gives exactly that for a service of 55
-reading one of 61: <code>0.12 + 0.55×0.88 − 0.61×0.35</code>. Punctuation survives; the words do not.</em></p>
-<p>Unreadable words are blanked out, but punctuation and sentence rhythm survive, so you can often
-tell the shape of what was said even when you cannot read it. Raising your intelligence rating
-only ever reveals <em>more</em> of a message you have already seen — it never re-hides anything.</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Your service</th>
-<th>Their service</th>
-<th>How much you can read</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>40</td>
-<td>40</td>
-<td>33%</td>
-</tr>
-<tr>
-<td>80</td>
-<td>40</td>
-<td>68%</td>
-</tr>
-<tr>
-<td>20</td>
-<td>80</td>
-<td>6% (the floor — essentially nothing)</td>
-</tr>
-</tbody></table></div>
-<p>Intercepts are stored separately from the rest of your save and <strong>encrypted at rest</strong> with a key
-unique to your campaign. They are decrypted only to show you and to inform the simulation. An
-undone turn, or an Intervene, takes the turn&#39;s reports back with it.</p>
-<h3 id="clarity-on-beta">Clarity on beta</h3>
-<p class="beta-note"><b>Beta channel only.</b></p><p>On beta how much you can read rests on your own service, on a steep curve, and the target&#39;s
-service resists it only lightly:</p>
-<pre><code>clarity = 0.07 + (yours/100)^1.6 × 0.92 − (theirs/100) × 0.10
-          never below 4%
-</code></pre>
-<p>A world-class service reads nearly every word; a weak one gets scraps. The intercept pictured
-above would read at 36%.</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Your service</th>
-<th>Their service</th>
-<th>Stable build</th>
-<th>Beta</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>40</td>
-<td>40</td>
-<td>33%</td>
-<td>24%</td>
-</tr>
-<tr>
-<td>60</td>
-<td>40</td>
-<td>51%</td>
-<td>44%</td>
-</tr>
-<tr>
-<td>80</td>
-<td>40</td>
-<td>68%</td>
-<td>67%</td>
-</tr>
-<tr>
-<td>100</td>
-<td>40</td>
-<td>86%</td>
-<td>95%</td>
-</tr>
-<tr>
-<td>100</td>
-<td>100</td>
-<td>65%</td>
-<td>89%</td>
-</tr>
-<tr>
-<td>20</td>
-<td>80</td>
-<td>6%</td>
-<td>6%</td>
-</tr>
-</tbody></table></div>
-<p>A network reads as <strong>Strong</strong> from 72% clarity, <strong>Moderate</strong> from 46% and <strong>Limited</strong> below that.</p>
-<h2 id="stolen-documents">Stolen documents</h2>
-<p>Some things governments know are not on the public record at all — a secret protocol, a private
-letter between heads of state, the full articles of a treaty. When such a document is held by a
-government where you have an <strong>active</strong> agent, your agent brings you a copy: it is filed in the
-Spy tab with the agent&#39;s intercepts, sealed like them, and readable only as far as your service
-can read theirs. A turned agent brings nothing real. The country you stole it from is never told.</p>
-<p class="beta-note"><b>On beta every paper your government holds is in one place</b>: the
-Intelligence tab's Reports section lists them under <b>Documents on file</b>, a stolen one marked
-as an intercepted copy, and opens each one's text there.</p><p class="beta-note"><b>On beta, agents can uncover covert puppets.</b> An active agent inside
-either party to a covert <a href="/wiki/war/#puppets-and-overlords">puppet arrangement</a> reveals
-it at the end of the turn, and keeps what you know of it current for as long as it stays in
-place.</p><h2 id="agents-report-in-real-time">Agents report in real time</h2>
-<p>Agents report after time skips — their reports come back in the skip&#39;s own answer, at no extra
-request, and each agent files at least every third skip. They also report between
-skips: while the game is open and on screen, each deployed agent is rolled roughly once a minute,
-working out to about <strong>one report every twenty minutes per agent</strong>. Those in-between reports are
-background AI, so they only happen while <strong>Background AI</strong> is on, and stop at its daily cap.</p>
-<p>This is deliberate and it is why there is no &quot;gather intelligence&quot; button: an agent is a trickle
-of information you receive over time, not a resource to farm on demand. Leaving the game open
-during a tense period genuinely gets you more.</p>
-<h2 id="agents-at-war">Agents at war</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p>On beta, an agent of yours inside a country on the other side of a battlefield sends you its
-staff&#39;s planned movements: the War Room lists them, <em>From your agent in</em> that country. A turned
-agent sends what it is fed — the other side&#39;s diversions, or plans made up for it — and nothing in
-what arrives says which.</p>
-<p>It cuts both ways. An agent of theirs you have not caught sends them your real plans, and the
-diversions you draw in the War Room reach them only through an agent of theirs you have turned.</p>
-<h2 id="orders-and-operations">Orders and operations</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p>On beta your agents take orders. Every network in the <strong>Operations</strong> section carries two: what it
-collects on, and one operation for the next time skip.</p>
-<h3 id="what-a-network-collects-on">What a network collects on</h3>
-<p><strong>Collect on</strong> sets where a network looks: <strong>Diplomacy</strong> (the default, and the private traffic
-described above), <strong>Military</strong>, <strong>Research and technology</strong>, <strong>Economic policy</strong> or <strong>Internal
-politics</strong>. Most of each report then bears on it: the intercepted exchanges wherever they touch
-that subject, and the findings of any political assessment that comes with them, filed under
-Reports. Change it whenever you like; the next report follows it.</p>
-<h3 id="ordering-an-operation">Ordering an operation</h3>
-<p>Choose <strong>Sabotage</strong>, <strong>Recruit</strong>, <strong>Assassinate</strong> or <strong>Other operation</strong>, say in a line what the
-agent should do — what to sabotage, whom to recruit, who the target is — and press <strong>Give the
-order</strong>. Under the field the network shows its <strong>Odds of success</strong> (Good, Even, Poor or Slim) and
-its <strong>Risk of capture</strong> (Low, Moderate or High) before you commit. A network holds one order at a
-time. It waits, marked <em>Carried out during the next time skip</em>, and <strong>Cancel order</strong> withdraws it
-until then.</p>
-<p>The odds come from the two services and the network&#39;s recruited sources:</p>
-<pre><code>success = base + (yours/100 − theirs/100) × 0.6 + sources × 0.05
-          clamped to between 5% and 90%
-
-capture = detection × risk − sources × 0.03, plus 0.15 if it failed
-          clamped to between 4% and 85%
-</code></pre>
-<p>Here <em>detection</em> is the per-jump chance from <a href="#getting-caught">Getting caught</a>, and each kind of
-operation has its own base and risk:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Operation</th>
-<th>Base</th>
-<th>Risk</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Sabotage</td>
-<td>50%</td>
-<td>× 2.2</td>
-</tr>
-<tr>
-<td>Recruit</td>
-<td>45%</td>
-<td>× 1.6</td>
-</tr>
-<tr>
-<td>Assassinate</td>
-<td>30%</td>
-<td>× 3</td>
-</tr>
-<tr>
-<td>Other operation</td>
-<td>50%</td>
-<td>× 1.8</td>
-</tr>
-</tbody></table></div>
-<p>Success reads <strong>Good</strong> from 70%, <strong>Even</strong> from 45%, <strong>Poor</strong> from 25% and <strong>Slim</strong> below; capture
-reads <strong>High</strong> from 45%, <strong>Moderate</strong> from 20% and <strong>Low</strong> below. The risk shown is the risk if the
-operation succeeds — a failed one is 15 points likelier to be caught. With your service and theirs
-both at 40 and no sources: sabotage is Even (50%) at Low risk (18%, or 33% if it fails), a
-recruitment Even (45%) at Low risk (13%), and an assassination Poor (30%) at Moderate risk (24%).
-A caught agent is then identified 60% of the time.</p>
-<h3 id="what-the-world-sees">What the world sees</h3>
-<p>The operation is carried out during the next time skip. The game decides how it went before the
-skip is written, and the skip is told only the result:</p>
-<ul>
-<li><strong>Succeeded and never traced.</strong> The skip writes the event it makes — the fire at the shipyard,
-the death, the defection — with its consequences, and nobody in the world, the target included,
-knows who was behind it, then or later. The skip is not even told that you have an agent there.</li>
-<li><strong>Failed and nobody noticed.</strong> Nothing happens.</li>
-<li><strong>Caught, and never identified.</strong> The arrest and the agent&#39;s death in custody make an event, with
-no culprit named. Your network is lost.</li>
-<li><strong>Caught and identified.</strong> The arrest makes an event naming you, and the story goes on from there
-between you and the target. Your agent is expelled.</li>
-</ul>
-<p>A recruitment that succeeds untraced makes no public event at all: the person simply works for you
-from then on.</p>
-<p>A network that was turned without your knowing never carries an order out. The target knows you
-gave it; the Operations log says only that the agent reports it could not be done.</p>
-<h3 id="recruited-sources">Recruited sources</h3>
-<p>A successful, untraced recruitment adds the person you named to the network as a <strong>recruited
-source</strong>, listed under it. A network runs up to three; a fourth replaces the oldest. Each source:</p>
-<ul>
-<li>cuts the network&#39;s chance of being caught on an ordinary jump by a tenth;</li>
-<li>adds 5 points to the success of its operations and takes 3 off their risk of capture;</li>
-<li>feeds its reports: at least one finding in each comes from a source, and says what that source
-could know.</li>
-</ul>
-<h3 id="the-operations-log">The Operations log</h3>
-<p>Under your networks, the <strong>Operations log</strong> shows the eight most recent operations, newest first:
-the kind and the target, what you ordered, the date and what it came to — <em>Succeeded, and was
-never traced</em>, <em>Failed, and nobody noticed</em>, <em>Succeeded, but the agent was caught and died in
-custody without giving you away</em>, and so on. Above it is a line for each of your last three agents
-expelled or lost.</p>
-<h3 id="using-them-well">Using them well</h3>
-<ul>
-<li><strong>Recruit before you strike.</strong> Sources make every later operation likelier and safer, and keep
-the network itself alive longer.</li>
-<li><strong>An assassination is the loudest order you can give.</strong> It has the lowest odds and triples the
-network&#39;s ordinary chance of being caught; give it with a strong service, against a weaker one.</li>
-<li><strong>Untraced is the point.</strong> An operation that is never traced is never tied to you; one that is
-traced and identified is an incident with your name on it.</li>
-</ul>
-<h2 id="playing-it-well">Playing it well</h2>
-<ul>
-<li><strong>Raise the rating before you rely on the service.</strong> At 40 you can barely read what you steal
-and you are caught reasonably often. Intelligence capability is worth ordering as a programme.</li>
-<li><strong>Three agents means three priorities.</strong> Put them where a surprise would actually hurt you.</li>
-<li><strong>Recall an agent that has done its job.</strong> Every jump it stays is another detection roll.</li>
-<li><strong>Turn the agents you catch</strong> rather than expelling them, if you can afford the attention.</li>
-<li><strong>Distrust a lone source</strong>, especially against a stronger service.</li>
-</ul>
-<h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/diplomacy/">Diplomacy</a> — the conversations your agents are reading.</li>
-<li><a href="/wiki/statistics/">National statistics</a> — where the intelligence rating lives.</li>
-<li><a href="/wiki/projects/">Projects and operations</a> — running covert work as a long programme.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/war-at-sea/"><span>← Previous</span><b>War at sea</b></a>
-        <a class="next" href="/wiki/projects/"><span>Next →</span><b>Projects &amp; operations</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Espionage and intercepted reports
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Spionage och avlyssningsrapporter</span><span data-help-lang="en" lang="en">Espionage and intercepted reports</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Förstå den allmänna spiontjänsten och skilj den från hovets intriger.</span><span data-help-lang="en" lang="en">Understand the general spy service and distinguish it from court intrigue.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#access">Hitta rätt system</a></li><li class="d2"><a href="#agents">Placera och kalla hem landsagenter</a></li><li class="d2"><a href="#capture">Avslöjade och omvända agenter</a></li><li class="d2"><a href="#reports">Läs rapporter med deras begränsningar</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#access">Find the relevant system</a></li><li class="d2"><a href="#agents">Deploy and recall country agents</a></li><li class="d2"><a href="#capture">Caught and turned agents</a></li><li class="d2"><a href="#reports">Read reports with their limits</a></li></ul></nav>
+    <section id="access" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="access">
+<h2>Hitta rätt system</h2>
+<p>En dynastikampanjs intrigvy hör till karaktärssystemet. Den visar hemligheter och grepp som din sida har tillgång till. Personliga samtal kan avslöja hemligheter eller skapa ett löfte som ger ett grepp. Läs <a href="/wiki/diplomacy/">Diplomati</a> om bekräftelseflödet.</p>
+<p>Det allmänna gränssnittet för landsspionage är ett separat system. Det finns i chattpanelens spionflik, som visas när spionagefunktionen är aktiverad. Panelen visas genom det nedre verktygsfältet bara i kampanjer utan karaktärssystem. Använd karaktärernas intrigreglage i en dynastikampanj. Fliken för landsspionage är inte tillgänglig där.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="access">
+<h2>Find the relevant system</h2>
+<p>A dynasty campaign’s intrigue view belongs to its character system: it shows the secrets and hooks available to your side. Personal conversations can reveal secrets or create a pledge that gives a hook. Read <a href="/wiki/diplomacy/">Diplomacy</a> for the confirmation flow.</p>
+<p>The general country-spy interface is a separate system. It lives in the chat panel’s spy tab, visible when the espionage feature is enabled. That panel is available through the bottom toolbar only in campaigns without a character system. In a dynasty campaign, use the character intrigue controls; the country-spy tab is unavailable.</p>
+</div>
+</section>
+<section id="agents" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="agents">
+<h2>Placera och kalla hem landsagenter</h2>
+<p>Välj ett målland för att placera en agent i en kampanj som har den allmänna spionfliken. Du kan ha högst 3 verksamma agenter per ägare, med en per målland och ingen i ditt eget land. Kalla hem en när du behöver platsen för ett annat mål. Dessa agenter är skilda från hovpersonalen som hjälper till med en karaktärshandling.</p>
+<p>Underrättelsetjänstens värde går från 0 till 100 och är 40 tills tjänsten har bedömts. Upptäcktsrisken beror på skillnaden mellan tjänsterna och är minst 2% per tidssteg. En stark tjänst minskar risken men tar aldrig bort den.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="agents">
+<h2>Deploy and recall country agents</h2>
+<p>In a campaign with the general spy tab, choose a target country to deploy an agent. You can run at most 3 live agents per owner, with one per target and none in your own country. Recall one when you need its place for another target. These agents are separate from the court staff who assist a character action.</p>
+<p>The service rating ranges from 0 to 100 and defaults to 40 until assessed. Detection depends on the gap between services, with a chance of at least 2% per jump. A strong service reduces risk; it never removes it.</p>
+</div>
+</section>
+<section id="capture" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="capture">
+<h2>Avslöjade och omvända agenter</h2>
+<p>En utländsk agent som upptäcks i ditt land slutar rapportera och väntar på ditt beslut. Du kan utvisa agenten eller vända den. En omvänd agent rapporterar täckhistorien som du anger. Du kan skriva den före omvändningen och uppdatera den efteråt.</p>
+<p>Ett annat land kan vända din agent utan att meddela dig. Din egen tjänst kan senare bli misstänksam, men en inkommande rapport bevisar inte att källan fortfarande är pålitlig. Det allmänna systemet tillåter högst 3 utländska agenter i spelarens land samtidigt.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="capture">
+<h2>Caught and turned agents</h2>
+<p>A foreign agent discovered in your country stops reporting and waits for your decision. You can expel the agent or turn them. A turned agent reports the cover story you supply; you can write it before turning and update it afterward.</p>
+<p>Another country can silently turn your agent. Your service may later become suspicious, but a report arriving is not proof that its source remains trustworthy. The general system allows at most 3 foreign agents in the player’s country at once.</p>
+</div>
+</section>
+<section id="reports" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="reports">
+<h2>Läs rapporter med deras begränsningar</h2>
+<p>Hur stor del av ett avlyssnat samtal som går att läsa beror på båda underrättelsetjänsterna. Den aktuella formeln för läsbarhet är <code>0.12 + din/100 × 0.88 − deras/100 × 0.35</code>, begränsad till 6%–100%. Maskeringen använder samma dragning för varje ord, så högre läsbarhet visar fler ord i stället för att dölja sådant du redan kunde läsa.</p>
+<p>En aktiv agent kan ta en kopia av ett dokument som mållandets regering har. En omvänd agent ger ingen verklig kopia genom den kanalen. Rapporterna är krypterade i lagringen med en nyckel per spel. Nyckeln finns också i sparningen, så detta skyddar spelupplevelsen och skapar ingen säkerhetsgräns. Att ångra eller korta en tur tar också bort dokumentkopior som inte längre hör till historiken.</p>
+<p>Placerade landsagenter kan rapportera tillsammans med ett tidsstegs svar. Mellan turerna kontrollerar det synliga spelet en gång i minuten om en rapport ska hämtas, beroende på spionagefunktionen, bakgrundsutrymmet, pågående arbete och olästa händelser. En kontroll garanterar varken en rapport eller ett fast intervall per agent.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="reports">
+<h2>Read reports with their limits</h2>
+<p>The readable part of an intercepted exchange depends on both services. The current clarity formula is <code>0.12 + yours/100 × 0.88 − theirs/100 × 0.35</code>, clamped to 6%–100%. Redaction uses stable word draws, so a higher clarity reveals more words rather than hiding words you could already read.</p>
+<p>An active agent can bring a copy of a document held by its target government. A turned agent brings no genuine copy through this channel. Reports are sealed in storage with a per-game key; the key is also in the save, so this protects the play experience rather than creating a security boundary. Undoing or cutting short a turn also removes document copies that no longer belong to its record.</p>
+<p>Deployed country agents can report with a time jump’s answer. Between turns, the visible game checks once a minute whether to gather a report, subject to the espionage feature, background allowance, busy-state and unread-event guards. A check does not guarantee a report or a fixed interval per agent.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/war-at-sea/"><span>← Föregående</span><b>Krig till sjöss</b></a>
+        <a class="next" href="/wiki/projects/"><span>Nästa →</span><b>Projekt</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/war-at-sea/"><span>← Previous</span><b>War at sea</b></a>
+        <a class="next" href="/wiki/projects/"><span>Next →</span><b>Projects</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -561,27 +246,71 @@ and you are caught reasonably often. Intelligence capability is worth ordering a
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

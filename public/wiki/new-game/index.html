@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Starta en kampanj — Guide till Attainder" data-title-en="Starting a campaign — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Starting a Game — Open Historia Wiki</title>
+  <title>Starta en kampanj — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/new-game/" />
-  <meta name="description" content="Scenarios, choosing a country, inventing your own faction or leading a group, and what the six difficulty levels actually change." />
+  <meta name="description" content="Välj ett spelbart rike, kampanjens identitet, svårighetsgrad och ett valfritt startfrö." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/new-game/" />
-  <meta property="og:title" content="Starting a Game — Open Historia Wiki" />
-  <meta property="og:description" content="Scenarios, choosing a country, inventing your own faction or leading a group, and what the six difficulty levels actually change." />
+  <meta property="og:title" content="Starta en kampanj — Guide till Attainder" />
+  <meta property="og:description" content="Välj ett spelbart rike, kampanjens identitet, svårighetsgrad och ett valfritt startfrö." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Starting a Game — Open Historia Wiki" />
-  <meta name="twitter:description" content="Scenarios, choosing a country, inventing your own faction or leading a group, and what the six difficulty levels actually change." />
+  <meta name="twitter:title" content="Starta en kampanj — Guide till Attainder" />
+  <meta name="twitter:description" content="Välj ett spelbart rike, kampanjens identitet, svårighetsgrad och ett valfritt startfrö." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,312 +81,166 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/" class="on" aria-current="page">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> Starting a Game
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Starta en kampanj
     </nav>
-    <h1>Starting a Game</h1>
-    <p class="tagline">Scenarios, choosing a country, inventing your own faction or leading a group, and what the six difficulty levels actually change.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#scenarios">Scenarios</a></li><li class="d2"><a href="#choosing-a-country">Choosing a country</a></li><li class="d3"><a href="#pick-a-country">Pick a country</a></li><li class="d3"><a href="#create-a-faction">Create a faction</a></li><li class="d3"><a href="#play-as-a-group">Play as a group</a></li><li class="d2"><a href="#difficulty">Difficulty</a></li><li class="d2"><a href="#opening-a-campaign">Opening a campaign</a></li><li class="d2"><a href="#what-gets-created">What gets created</a></li><li class="d2"><a href="#starting-well">Starting well</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>A new game needs three things: a scenario to play on, a country to play as, and a difficulty.</p>
-<p><img src="/wiki/img/new-game-scenarios.jpg" alt="The Scenarios tab">
-<em>The Scenarios tab. Modern Day is the only built-in one; everything else comes from the Community Hub.</em></p>
-<h2 id="scenarios">Scenarios</h2>
-<p>A <strong>scenario</strong> is a world — its map, its borders, who owns what, the starting date, which troop
-types exist, and any house rules the author wrote. A <strong>game</strong> is one playthrough of a scenario.
-One scenario can seed as many games as you like, and playing one never changes it.</p>
-<p><strong>Modern Day</strong> is the only scenario built into the game. Everything else lives on the
-<a href="/wiki/community-hub/">Community Hub</a>, including the official presets:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Scenario</th>
-<th>Start</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>World War II</td>
-<td>1939</td>
-</tr>
-<tr>
-<td>Medieval</td>
-<td>1200 AD</td>
-</tr>
-<tr>
-<td>Rome</td>
-<td>117 AD</td>
-</tr>
-<tr>
-<td>Mongol World</td>
-<td>1300 AD</td>
-</tr>
-<tr>
-<td>New World</td>
-<td>1650</td>
-</tr>
-<tr>
-<td>Bronze Age</td>
-<td>1200 BC</td>
-</tr>
-</tbody></table></div>
-<p>Open the <strong>Community</strong> tab in the main menu, find one, and hit <strong>Import &amp; Play</strong>. It downloads
-into your library and behaves exactly like a built-in scenario from then on.</p>
-<p><strong>Modern Day is played on the real world&#39;s provinces</strong> — 3,662 regions, 202 countries with their
-own colours and common English names, about 2,500 cities — starting on 1 January 2016, with the
-United States as the default country. Campaigns begun on the earlier hand-drawn map are not lost:
-they move to a copy called <strong>Modern Day (classic map)</strong> and carry on there, on the map they were
-started on.</p>
-<p>If a scenario you imported gets updated by its author, an <strong>Update</strong> button appears on its
-card. Updating is safe — games already in progress keep working on the version they started on.</p>
-<h2 id="choosing-a-country">Choosing a country</h2>
-<p>Selecting <strong>New Game</strong> on a scenario opens the picker, drawn on that scenario&#39;s own map. It has
-two tabs, <strong>Pick a country</strong> and <strong>Create a faction</strong> (on beta, <strong>Pick a country</strong> and
-<strong>Play as a group</strong>).</p>
-<h3 id="pick-a-country">Pick a country</h3>
-<p><img src="/wiki/img/new-game-country-picker.jpg" alt="The country picker">
-<em>Pick a country, or switch to Create a faction to invent one.</em></p>
-<p>A map and a searchable list of every country in the scenario. Click one on the map or pick it
-from the list — or press <strong>Scenario default</strong> to play whoever the scenario&#39;s author chose.</p>
-<p>The list is built from the scenario&#39;s actual roster, which includes <strong>countries that hold no
-land</strong> — governments in exile, movements, organisations. Playing one of those is a very
-different game: you have no territory to defend and no territory to lose.</p>
-<p class="beta-note"><b>On beta the picker is larger:</b> the map beside a list of the countries
-you can play, each with its flag where one is known and its colour on the map, both in the
-scenario's own colours. Pointing at a row lights its country on the map.</p><h3 id="create-a-faction">Create a faction</h3>
-<p>This is where you invent a country that does not exist. You give it:</p>
-<ul>
-<li><strong>A name</strong> — this is its identity everywhere in the game, so choose it properly.</li>
-<li><strong>A colour</strong> — how it paints on the map.</li>
-<li><strong>A flag</strong> — optional; pick from the library or leave it blank.</li>
-<li><strong>Lore</strong> — who this power is: its history, cause and ambitions. The world reads this. It is
-worth writing something real, because it steers the story the AI tells and how every other
-country treats you.</li>
-<li><strong>Starting territory</strong> — <strong>Claim regions</strong> on the map, or <strong>Start landless</strong>.</li>
-</ul>
-<p>The regions you take are carved out of whoever held them, and that country will notice.</p>
-<h3 id="play-as-a-group">Play as a group</h3>
-<p class="beta-note"><b>Beta channel only.</b></p><p>On beta the picker&#39;s second tab is <strong>Play as a group</strong>, and Create a faction is part of it. A
-group is something that is not a country — a cartel, a militia, a movement, an outbreak. It owns
-no land: it controls an area, and the regions in it stay their countries&#39;.</p>
-<ul>
-<li><strong>This scenario&#39;s groups</strong> lists the groups the scenario already has, each with how many
-regions it controls. Pick one to lead it.</li>
-<li><strong>Or make a new group</strong> with the same form as a faction: a name, a colour, a flag, a
-<strong>Description</strong> — what the group is and wants, which the AI reads — and a <strong>Starting area</strong>:
-<strong>Choose its area</strong> on the map, or <strong>No area yet</strong>, to take one as the story goes.</li>
-</ul>
-<p>The AI then treats you as the group&#39;s leader, not a state&#39;s. The group cannot sign for a country,
-be annexed like one or govern one, and the governments and people where it operates deal with it
-as what it is — they may hunt it, bargain with it, use it or ignore it. Ground it gains or loses is
-its area growing or shrinking, and the world can push it back but never dissolve or rename it. In a
-scenario with its <strong>Groups</strong> feature switched off there is no list, and the same form invents a
-new power instead, as Create a faction does.</p>
-<h2 id="difficulty">Difficulty</h2>
-<p><img src="/wiki/img/new-game-difficulty.jpg" alt="The difficulty grid">
-<em>Six levels. Medium is the honest one.</em></p>
-<p>Six levels. Difficulty does not give the AI secret information or extra resources, and at no
-level is the world biased against you — it changes how much <strong>benefit of the doubt</strong> your plans
-get, how competent your rivals are, how hard consequences press, and how firm other governments
-are at the table. It has its own instructions for the time skip, for diplomacy and for
-interactive events.</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th>Your plans</th>
-<th>Rivals</th>
-<th>Consequences</th>
-<th>At the table</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>😴</td>
-<td><strong>Very Easy</strong></td>
-<td>Very generous reading</td>
-<td>Relaxed</td>
-<td>Low</td>
-<td>Soft</td>
-</tr>
-<tr>
-<td>🙂</td>
-<td><strong>Easy</strong></td>
-<td>Generous</td>
-<td>Moderate</td>
-<td>Low–medium</td>
-<td>Flexible</td>
-</tr>
-<tr>
-<td>⚖️</td>
-<td><strong>Medium</strong></td>
-<td>Neutral</td>
-<td>Normal</td>
-<td>Normal</td>
-<td>Interest-based</td>
-</tr>
-<tr>
-<td>😰</td>
-<td><strong>Hard</strong></td>
-<td>Little leeway</td>
-<td>High</td>
-<td>High</td>
-<td>Firm</td>
-</tr>
-<tr>
-<td>🔥</td>
-<td><strong>Very Hard</strong></td>
-<td>Almost none</td>
-<td>Very high</td>
-<td>Very high</td>
-<td>Very firm</td>
-</tr>
-<tr>
-<td>💀</td>
-<td><strong>Impossible</strong></td>
-<td>None</td>
-<td>Elite</td>
-<td>Maximum</td>
-<td>Maximum</td>
-</tr>
-</tbody></table></div>
-<p>At the easy end, when several outcomes are equally plausible the less punishing one is preferred
-— but no level grants a success the world state makes impossible. At the hard end, weak
-assumptions are punished and errors can compound naturally — but even Impossible is &quot;full causal
-consequences&quot;, never a scripted conspiracy against you.</p>
-<p><strong>Medium</strong> — &quot;the simulator neither helps nor targets the player&quot; — is the honest one and the
-right default. The difference between Medium and Hard is
-mostly whether a vague order gets a charitable reading — on Hard, <em>&quot;improve the economy&quot;</em> will
-get you an event about a policy that did not work.</p>
-<p class="beta-note"><b>On beta, difficulty decides how things tend to go for you.</b> The levels
-no longer only change how strictly your plans are read. The grid says so, from <b>Very Easy</b>,
-"Almost everything goes your way", through <b>Medium</b>, where things happen realistically, to
-<b>Impossible</b>, "Almost everything goes against you", with the levels between as steps on that
-ladder. What it still never does: grant what the world makes impossible, give a reverse with no
-cause the story states, or ignore an order — the attempt is always made and always gets an
-outcome. On the <a href="/wiki/war-room/#difficulty">battlefields</a> it is part of the fighting itself: the
-armies fighting you fight at 85% of their strength on Very Easy and 175% on Impossible, advance
-at 90% and 140% of their pace, and draw 70% and 300% of the usual reserves, while Medium is equal
-terms. It also sets who commands them: a plainer commander on Very Easy and Easy, and on Hard and
-above one that also weighs how you are likely to answer.</p><p>Difficulty is set when you start and stored with the game, but you can change it mid-campaign
-from the <a href="/wiki/cheats/">cheats panel</a>.</p>
-<h2 id="opening-a-campaign">Opening a campaign</h2>
-<p>Starting or resuming a game shows its scenario&#39;s cover, then a loading screen — the logo turning
-over a dark ground — while the map works out every country&#39;s surface. A pause here is normal
-rather than a hang; the map is revealed once it is drawn.</p>
-<p>On a new game&#39;s first turn, a scenario with a <em>World Before Round One</em> briefing also writes its
-own backstory — the recent history that led to the situation you have inherited.</p>
-<p class="beta-note"><b>On beta nothing loads until you press Play.</b> The game starts on the
-main menu, and a campaign opens only when you press <b>Play</b> on its card. The first time the
-game opens after an update, a steel vault door stands in front of the menu with the Open Historia
-mark as its wheel: click it and the door opens, onto a notice of what the update brings when there
-is one. <b>Show the vault door every time</b>, in Settings → General → Display, shows it at every
-start, and with Reduce motion on it simply fades away.</p><h2 id="what-gets-created">What gets created</h2>
-<p>Starting a game copies the scenario&#39;s world into a new playthrough and gives it its own set of
-documents — world state, game state, events, actions and chat history. From that point the
-game is independent: editing the scenario later does not touch it.</p>
-<p>Games appear in the <strong>Games</strong> tab of the main menu, under <strong>Last Played</strong> and <strong>Most Played</strong>,
-with your country, date, round, and pending actions and events on the card. <strong>Play</strong> opens one
-(the game you have open reads <strong>Current</strong>), <strong>Archive</strong> puts it away, and the card&#39;s <strong>⋮</strong> holds
-Edit, Clone and Export. See <a href="/wiki/saves/">saves and rollback</a>.</p>
-<p class="beta-note"><b>On beta the Games tab has Continue Playing and All Games.</b>
-<b>Continue Playing</b> is your latest few; <b>All Games</b> is every campaign once, with a search,
-<b>Active</b>, <b>All</b> and <b>Archived</b>, and a sort by recently played, most turns, most
-played or name. An archived game's card has <b>Delete</b>, and a deleted game waits on the
-<b>Recently deleted</b> shelf below, where it can be restored. See
-<a href="/wiki/saves/#archiving-and-deleting">archiving and deleting</a>.</p><h2 id="starting-well">Starting well</h2>
-<ul>
-<li><strong>Take a country you know something about.</strong> You will write better orders for a situation you
-can already picture.</li>
-<li><strong>Modern Day first.</strong> It is the most polished and the most legible.</li>
-<li><strong>Medium first.</strong> Very Hard is not more interesting on turn one, just less forgiving.</li>
-<li><strong>Write the faction lore if you invent a country.</strong> A faction with no lore is a blank to the
-world, and it will be treated like one.</li>
-</ul>
-<h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/first-campaign/">Your first campaign</a> — a walkthrough of the first hour.</li>
-<li><a href="/wiki/interface/">The interface</a> — what everything on screen is.</li>
-<li><a href="/wiki/countries/">Countries and identity</a> — names, tags, flags and reputation in depth.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/first-campaign/"><span>← Previous</span><b>Your first campaign</b></a>
-        <a class="next" href="/wiki/interface/"><span>Next →</span><b>The interface</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Starting a campaign
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Starting a campaign</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Välj ett spelbart rike, kampanjens identitet, svårighetsgrad och ett valfritt startfrö.</span><span data-help-lang="en" lang="en">Choose a playable polity, campaign identity, difficulty and optional start seed.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#choose-start">Välj en historisk start</a></li><li class="d2"><a href="#identity">Välj vad du följer</a></li><li class="d2"><a href="#difficulty">Välj svårighetsgrad</a></li><li class="d2"><a href="#seed">Använd ett startfrö om du vill</a></li><li class="d2"><a href="#begin">Anslut en modell och börja</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#choose-start">Choose a historical start</a></li><li class="d2"><a href="#identity">Choose what you follow</a></li><li class="d2"><a href="#difficulty">Set the difficulty</a></li><li class="d2"><a href="#seed">Use a start seed if needed</a></li><li class="d2"><a href="#begin">Connect a model and begin</a></li></ul></nav>
+    <section id="choose-start" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="choose-start">
+<h2>Välj en historisk start</h2>
+<p>Sök efter ett rike, en härskare eller en tid. Listan grupperar starterna efter världsdel och epok. Välj en rad för att välja riket och dess förberedda datum. En sökning kan dölja ditt val utan att ändra det. Då visas den valda starten under listan.</p>
+<p>Öppna avsnittet om källor och osäkerhet för att läsa om det historiska sammanhanget, kartans täckning och angivna begränsningar i hovet eller tronföljdsreglerna. Nya starter måste ligga mellan 3300 f.Kr. och 1530 e.Kr. Att en kultur finns på kartan betyder inte att den har ett spelbart hov.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="choose-start">
+<h2>Choose a historical start</h2>
+<p>Use the search field to find a polity, ruler or period. The list groups starts by region and era. Choose a row to select that polity and its prepared date. A search can hide your selection without changing it; the card then names the selected start below the list.</p>
+<p>Open the sources and uncertainty section to read the historical context, map coverage and any stated limits of the court or succession rules. New starts must fall between 3300 BC and AD 1530. A culture on the map does not by itself provide a playable court.</p>
+</div>
+</section>
+<section id="identity" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="identity">
+<h2>Välj vad du följer</h2>
+<p>Välj att följa riket för att fortsätta genom rikets härskare och dynastier. Kampanjen slutar om riket upplöses.</p>
+<p>Välj att följa familjen för att fortsätta med en familj även efter att den har förlorat tronen. Välj familj i listan som visas. Du kan förvalta familjens egendom och arbeta för en återkomst till makten. Kampanjen slutar när familjen saknar en giltig fortsättning.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="identity">
+<h2>Choose what you follow</h2>
+<p>Choose realm mode to continue through successive rulers and dynasties of the selected realm. This campaign ends if the realm dissolves.</p>
+<p>Choose family mode to follow a family even after it loses the throne. Select the family from the additional list. You can manage its property and work towards a return to power. This campaign ends when the family has no valid continuation.</p>
+</div>
+</section>
+<section id="difficulty" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="difficulty">
+<h2>Välj svårighetsgrad</h2>
+<p>Välj Lätt, Normal eller Svår. På Lätt får dina handlingar med ett prövat utfall 10 procentenheter högre chans att lyckas. Andra personers handlingar mot dig får 10 procentenheter lägre chans. Svår vänder på dessa justeringar. Valet sparas i kampanjen.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="difficulty">
+<h2>Set the difficulty</h2>
+<p>Choose Easy, Normal or Hard. On Easy, your contested actions receive 10 percentage points more chance of success, while other characters&#39; actions against you receive 10 percentage points less. Hard reverses those adjustments. The choice is saved in the campaign.</p>
+</div>
+</section>
+<section id="seed" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="seed">
+<h2>Använd ett startfrö om du vill</h2>
+<p>Med det valfria kampanjfröet kan du återskapa samma genererade start. Ange ett heltal från 1 till 4294967295. Modellens berättelse kan fortfarande variera. Om du lämnar fältet tomt använder spelet sitt förvalda frö.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="seed">
+<h2>Use a start seed if needed</h2>
+<p>The optional campaign seed lets you recreate the same generated start. Enter a whole number from 1 to 4294967295. The model&#39;s narration can still vary. Leaving the field empty uses the game&#39;s default seed.</p>
+</div>
+</section>
+<section id="begin" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="begin">
+<h2>Anslut en modell och börja</h2>
+<p>Kortet för lokal anslutning kontrollerar om Codex eller Claude finns på datorn, är inloggad och har en tillräckligt ny version. Välj en tillgänglig anslutning. Om kortet ber om inloggning eller uppdatering gör du det och uppdaterar sedan statusen.</p>
+<p>När du har valt en giltig start och konfigurerat en anslutning använder du startknappen för riket eller familjen. Om starten misslyckas läser du felmeddelandet innan du försöker igen. Personpanelen öppnas när kampanjen börjar.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="begin">
+<h2>Connect a model and begin</h2>
+<p>The local connection card checks whether Codex or Claude is installed, signed in and up to date. Select an available connection. If the card asks for sign-in or an update, complete that step and refresh its status.</p>
+<p>After you have selected a valid start and configured a connection, use the start button for your chosen realm or family mode. If creation fails, read the displayed error before trying again. The character panel opens when the campaign starts.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/first-campaign/"><span>← Föregående</span><b>Din första kampanj</b></a>
+        <a class="next" href="/wiki/interface/"><span>Nästa →</span><b>Gränssnitt</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/first-campaign/"><span>← Previous</span><b>Your first campaign</b></a>
+        <a class="next" href="/wiki/interface/"><span>Next →</span><b>Interface</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -378,27 +252,71 @@ world, and it will be treated like one.</li>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

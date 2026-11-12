@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Din första kampanj — Guide till Attainder" data-title-en="Your first campaign — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Your First Campaign — Open Historia Wiki</title>
+  <title>Din första kampanj — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/first-campaign/" />
-  <meta name="description" content="A guided first hour as Poland — from the main menu through your first turns, told step by step." />
+  <meta name="description" content="Lär känna hovet, fatta ett första beslut och gå vidare ett år." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/first-campaign/" />
-  <meta property="og:title" content="Your First Campaign — Open Historia Wiki" />
-  <meta property="og:description" content="A guided first hour as Poland — from the main menu through your first turns, told step by step." />
+  <meta property="og:title" content="Din första kampanj — Guide till Attainder" />
+  <meta property="og:description" content="Lär känna hovet, fatta ett första beslut och gå vidare ett år." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Your First Campaign — Open Historia Wiki" />
-  <meta name="twitter:description" content="A guided first hour as Poland — from the main menu through your first turns, told step by step." />
+  <meta name="twitter:title" content="Din första kampanj — Guide till Attainder" />
+  <meta name="twitter:description" content="Lär känna hovet, fatta ett första beslut och gå vidare ett år." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,207 +81,156 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/" class="on" aria-current="page">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> Your First Campaign
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Din första kampanj
     </nav>
-    <h1>Your First Campaign</h1>
-    <p class="tagline">A guided first hour as Poland — from the main menu through your first turns, told step by step.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#before-you-start">Before you start</a></li><li class="d2"><a href="#1-start-the-game">1. Start the game</a></li><li class="d2"><a href="#2-find-out-where-you-stand">2. Find out where you stand</a></li><li class="d2"><a href="#3-talk-to-someone">3. Talk to someone</a></li><li class="d2"><a href="#4-write-your-orders">4. Write your orders</a></li><li class="d2"><a href="#5-skip-a-month">5. Skip a month</a></li><li class="d2"><a href="#6-read-what-happened">6. Read what happened</a></li><li class="d2"><a href="#7-do-it-again-but-respond">7. Do it again, but respond</a></li><li class="d2"><a href="#common-first-hour-mistakes">Common first-hour mistakes</a></li><li class="d2"><a href="#where-to-go-next">Where to go next</a></li></ul></nav>
-    <p>This walks through the first hour of a campaign as <strong>Poland in the Modern Day scenario</strong>, on
-Medium. Poland is a good first country: it has real neighbours with real opinions about it, it is
-not so powerful that nothing threatens it, and not so weak that everything does.</p>
-<p>Follow along with your own country if you prefer — the shape is the same.</p>
-<h2 id="before-you-start">Before you start</h2>
-<p>Make sure you have <a href="/wiki/ai-setup/">connected an AI provider</a>. Without one, the world will not
-respond and this walkthrough will not work.</p>
-<h2 id="1-start-the-game">1. Start the game</h2>
-<p>From the main menu, <strong>Scenarios → Modern Day → New Game</strong>.</p>
-<p class="beta-note"><b>On beta the menu may be behind a vault door.</b> The first time the game
-starts after an update, a steel door stands before the main menu: click it and it opens.
-Settings has a switch to show it every time.</p><p>The country picker opens with a map and a searchable list. Find <strong>Poland</strong> and select it. Leave
-<strong>Create a faction</strong> alone for now — that is for inventing a country that does not exist.</p>
-<p class="beta-note"><b>On beta the picker has two tabs.</b> <b>Pick a country</b> is the map and
-the list, each country with its colour on the map and its flag where one is known; <b>Play as a
-group</b> is for leading a group instead — a cartel, a militia, a movement — one of the
-scenario's or one you make up, and inventing a faction of your own is there too. Stay on Pick a
-country.</p><p>Pick <strong>⚖️ Medium</strong>, and the game starts.</p>
-<p>The map loads centred on your country, with your flag in the corner and the date pill top right.
-If you have not set up a model yet, the <strong>Set up your AI provider</strong> prompt appears now — paste
-your key there and press <strong>Save and play</strong>.</p>
-<h2 id="2-find-out-where-you-stand">2. Find out where you stand</h2>
-<p><strong>Open the advisor</strong> — the button in the bottom-right corner. Ask it:</p>
-<blockquote>
-<p>What are the three biggest risks to Poland right now?</p>
-</blockquote>
-<p>It reads the actual world state and answers about it, sometimes with a chart. This is the
-fastest way to understand a position you have just inherited.</p>
-<p>Now <strong>open the Stats tab</strong> in the same drawer. You get your relations and agreements, your
-economy, your stability, your strategic indices and your intelligence rating. Note the
-intelligence number — it decides how well your spies work and how well you can read other
-people&#39;s, and 40 is ordinary.</p>
-<p class="beta-note"><b>On beta the statistics have a panel of their own.</b> The advisor's
-drawer is the advisor alone: your flag in the corner opens your country panel, with the same
-statistics and a <b>Ranking</b> tab that sets the countries side by side.</p><p>Finally, <strong>click Germany on the map</strong>. A card opens naming the country and the region you
-clicked; press <strong>ⓘ</strong> for Germany&#39;s panel — flag, details, related events, and an <strong>Advisor
-Report</strong> on request. Read it. Do the same for Russia and Ukraine.</p>
-<p class="beta-note"><b>On beta you can also Listen in.</b> The region's card has a <b>Listen
-in</b> button: a phone of posts by people who live there, about the day's news and about nothing
-at all. Each new feed is one AI request.</p><h2 id="3-talk-to-someone">3. Talk to someone</h2>
-<p>Click <strong>Germany</strong> on the map, then <strong>💬</strong> on its card to open a chat.</p>
-<p>Say something with an actual ask in it:</p>
-<blockquote>
-<p>Chancellor, Poland wants firmer guarantees on the eastern flank. What would Berlin want in
-return for backing a permanent NATO presence on our territory?</p>
-</blockquote>
-<p>You will get a reply in the German leader&#39;s voice, shaped by the current state of the world and
-by how Germany sees you. Keep going for a few messages. Notice that they remember what you said
-earlier in the thread.</p>
-<p>Diplomacy here is not a menu of treaty buttons. If you want an alliance, you have to talk
-someone into one.</p>
-<h2 id="4-write-your-orders">4. Write your orders</h2>
-<p>Open the <strong>actions</strong> panel (✦ in the bottom toolbar). First, set a <strong>standing goal</strong> at the top
-— the direction behind your orders, such as <em>&quot;Keep Poland out of any war while tying Germany and
-the United States to our eastern flank.&quot;</em> Your advisor and the simulation steer by it; no other
-country ever sees it.</p>
-<p>Then queue two or three orders. For a first turn as Poland, something like:</p>
-<ul>
-<li><em>Open formal negotiations with Germany on a permanent allied presence in eastern Poland.</em></li>
-<li><em>Begin a two-year programme to expand domestic ammunition production.</em></li>
-<li><em>Quietly increase intelligence collection on Russian force movements near Kaliningrad.</em></li>
-</ul>
-<p>Three orders is plenty. Each one should be a thing a government could actually decide to do this
-month.</p>
-<p>If you are not sure how to phrase one, type a rough version and press the <strong>✦ sparkle</strong> in the
-input (<strong>Improve action text</strong>) to have it rewritten into a proper order. <strong>AI Suggestions</strong>
-proposes orders based on your situation, and <strong>Brainstorm</strong> opens the advisor to plan a set of
-orders with you.</p>
-<h2 id="5-skip-a-month">5. Skip a month</h2>
-<p>Open the time panel (<strong>»</strong> on the date pill) and choose <strong>1 month</strong>.</p>
-<p>This takes a little while — the model is simulating the world, and the time panel says what it
-is doing. You can cancel if it hangs. Under the skip buttons, the panel also counts the AI
-requests you have used today; a skip uses one.</p>
-<h2 id="6-read-what-happened">6. Read what happened</h2>
-<p>The Events panel opens and fills as the model writes. Step through the events with <strong>Next
-event</strong>. Watch the map: borders, units and markers change as each event lands, and the camera
-moves to whatever the event is about. If an event is something you would have reacted to,
-<strong>✋ Intervene here</strong> stops the round there, and the rest never happens.</p>
-<p>Look for:</p>
-<ul>
-<li>Whether your orders were <strong>picked up</strong> — an event should reference the negotiation you opened.</li>
-<li>What <strong>other countries did</strong> on their own. They are not waiting for you.</li>
-<li>Anything that has clearly <strong>started rather than finished</strong>. A crisis that opens this turn is
-the thing to pay attention to next turn.</li>
-</ul>
-<h2 id="7-do-it-again-but-respond">7. Do it again, but respond</h2>
-<p>Now the campaign is actually running. Second turn:</p>
-<ul>
-<li>Go back to the advisor and ask what changed.</li>
-<li>Reply to any leader who wrote to you — countries will open chats with you unprompted.</li>
-<li>Write orders that <em>respond</em> to the events rather than repeating your last three.</li>
-</ul>
-<p>Take another month. Then another. Somewhere in the first handful of turns something will go
-wrong in a way you did not plan for, and that is when the game starts being interesting.</p>
-<h2 id="common-first-hour-mistakes">Common first-hour mistakes</h2>
-<p><strong>Skipping a whole year on turn one.</strong> You will get a compressed summary of twelve months and
-lose all the texture. Start with months.</p>
-<p><strong>Writing one vague order.</strong> <em>&quot;Improve the economy&quot;</em> produces a vague event. Name the policy.</p>
-<p><strong>Ignoring the chats.</strong> Countries write to you. If you never answer, you are playing a much
-smaller game than the one on offer.</p>
-<p><strong>Never using Undo.</strong> A turn that goes absurdly is a turn worth rewinding. It is in the time
-panel and it is there to be used.</p>
-<p><strong>Trying to control your army directly.</strong> Forces move because you <em>order</em> it and the world
-carries it out; the engine keeps them moving turn after turn. Hands-on deployment exists, but it
-is the <strong>Force Manager</strong> in the cheats panel. See <a href="/wiki/military/">military and combat</a>.</p>
-<p class="beta-note"><b>On beta a war on your border is yours to command.</b> When you are at war
-with a neighbour, a red <b>War Room</b> button appears: speak to your generals, or pick troops and
-draw the route they take. Your typed orders still reach them in the same skip.</p><h2 id="where-to-go-next">Where to go next</h2>
-<ul>
-<li><a href="/wiki/diplomacy/">Diplomacy</a> — how leaders, memory and group threads work.</li>
-<li><a href="/wiki/espionage/">Espionage</a> — once you have a stable position, start reading other people&#39;s.</li>
-<li><a href="/wiki/new-game/">Starting a game</a> — scenarios, inventing your own faction, and what
-difficulty changes.</li>
-<li><a href="/wiki/settings/">Settings</a> — worth a pass once you know what you are looking at.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/how-to-play/"><span>← Previous</span><b>How to play</b></a>
-        <a class="next" href="/wiki/new-game/"><span>Next →</span><b>Starting a game</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Your first campaign
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Lär känna hovet, fatta ett första beslut och gå vidare ett år.</span><span data-help-lang="en" lang="en">Read your court, make an opening decision and advance your first year.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#start">Välj din kampanj</a></li><li class="d2"><a href="#read-court">Lär känna hovet innan du handlar</a></li><li class="d2"><a href="#first-action">Fatta ett beslut</a></li><li class="d2"><a href="#first-year">Gå vidare ett år och läs rapporten</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#start">Choose your campaign</a></li><li class="d2"><a href="#read-court">Read the court before acting</a></li><li class="d2"><a href="#first-action">Make one decision</a></li><li class="d2"><a href="#first-year">Advance the year and read the report</a></li></ul></nav>
+    <section id="start" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="start">
+<h2>Välj din kampanj</h2>
+<p>Välj en historisk start och läs om dess sammanhang och källor. Välj att följa riket om du vill fortsätta genom tronskiften, eller familjen om du vill följa en familj genom förändringar i dess ställning. Konfigurera en modellanslutning och starta kampanjen. <a href="/wiki/new-game/">Starta en kampanj</a> beskriver de övriga valen.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="start">
+<h2>Choose your campaign</h2>
+<p>Select a historical start and read its context and source notes. Choose realm mode if you want to follow the realm through changes of ruler, or family mode if you want to follow one family through changes in its position. Configure a model connection and start the campaign. <a href="/wiki/new-game/">Starting a campaign</a> explains the remaining choices.</p>
+</div>
+</section>
+<section id="read-court" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="read-court">
+<h2>Lär känna hovet innan du handlar</h2>
+<p>Personpanelen öppnas med kampanjen. Kontrollera din företrädare och datumet och undersök sedan personerna och familjerna omkring dig. Läs om ämbeten och tronföljd för att förstå vem som har makten och vem som kan ta över.</p>
+<p>Kontrollera kassan och handlingsutrymmet i överblicken. I familjeläget har familjen en egen kassa, skild från statskassan. Läs vilken kassa en handling belastar innan du använder silver. Gå också igenom öppna beslut och deras tidsgränser.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="read-court">
+<h2>Read the court before acting</h2>
+<p>The character panel opens with the campaign. Check your current representative and date, then inspect the people and families around you. Read the offices and succession information to understand who holds authority and who may succeed them.</p>
+<p>Check the treasury and available actions in the overview. In family mode, the family treasury is separate from the realm treasury. Read which purse an action uses before spending silver. Look at open decisions and their deadlines as well as your own plans.</p>
+</div>
+</section>
+<section id="first-action" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="first-action">
+<h2>Fatta ett beslut</h2>
+<p>Öppna handlingslistan och välj en tillgänglig handling. Ange mål eller andra uppgifter som efterfrågas och läs sedan bekräftelsekortet. För en handling med ett prövat utfall visas chansen innan du bestämmer dig. Kontrollera kostnaden i silver och handlingar samt de följder som beskrivs.</p>
+<p>Bekräfta när du är redo, eller avbryt för att återvända utan att försöka genomföra förslaget. Läs resultatet innan du planerar nästa drag. Du kan också beskriva vad du vill göra i textfältet och låta modellen tolka det. Du får fortfarande granska förslaget innan du bekräftar.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="first-action">
+<h2>Make one decision</h2>
+<p>Open the action list and choose an available action. Set its target or other requested details, then read the confirmation card. For an action with a contested outcome, the card shows your chance before you commit. Check the silver and action costs and any consequences described there.</p>
+<p>Confirm when you are ready, or cancel to return without attempting the proposed action. Read the resulting report before planning the next move. You can also describe what you want to do in the text box and ask the model to interpret it; the confirmation step still lets you inspect the proposal.</p>
+</div>
+</section>
+<section id="first-year" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="first-year">
+<h2>Gå vidare ett år och läs rapporten</h2>
+<p>Använd personpanelens knapp för att gå vidare ett år med modellen. Besvara eller avbryt först en eventuell pågående förfrågan i ett samtal. Vänta på resultatet medan modellen arbetar. Om turen stannar vid ett beslut läser du händelserna fram till den punkten och hanterar beslutet innan du fortsätter.</p>
+<p>Kontrollera därefter förändringar i resurser, personer och åtaganden. Du kan öppna den senast sparade turens händelser igen utan att låta tiden gå. Krönikans historiska referens ger en separat redogörelse för verkliga händelser under de kalenderår som kampanjen har passerat.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="first-year">
+<h2>Advance the year and read the report</h2>
+<p>Use the character panel&#39;s button to advance the next year with the model. A pending request in a conversation must be answered or cancelled first. While the model works, wait for the result. If the turn stops at a decision, read the events up to that point and handle the decision before continuing.</p>
+<p>Afterwards, inspect the changed resources, people and commitments. You can reopen the latest saved turn&#39;s events without advancing time. The historical reference in the chronicle provides a separate account of real-world events for the calendar years your campaign has passed.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/how-to-play/"><span>← Föregående</span><b>Så spelar du</b></a>
+        <a class="next" href="/wiki/new-game/"><span>Nästa →</span><b>Starta en kampanj</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/how-to-play/"><span>← Previous</span><b>How to play</b></a>
+        <a class="next" href="/wiki/new-game/"><span>Next →</span><b>Start a campaign</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -273,27 +242,71 @@ difficulty changes.</li>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

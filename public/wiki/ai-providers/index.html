@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Modeller och leverantörer — Guide till Attainder" data-title-en="Models and providers — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>AI Providers and Models — Open Historia Wiki</title>
+  <title>Modeller och leverantörer — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/ai-providers/" />
-  <meta name="description" content="Which providers work, which models to pick, what it costs, and the expert controls." />
+  <meta name="description" content="Välj en anslutning, förstå modellernas förval och granska anropen." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/ai-providers/" />
-  <meta property="og:title" content="AI Providers and Models — Open Historia Wiki" />
-  <meta property="og:description" content="Which providers work, which models to pick, what it costs, and the expert controls." />
+  <meta property="og:title" content="Modeller och leverantörer — Guide till Attainder" />
+  <meta property="og:description" content="Välj en anslutning, förstå modellernas förval och granska anropen." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI Providers and Models — Open Historia Wiki" />
-  <meta name="twitter:description" content="Which providers work, which models to pick, what it costs, and the expert controls." />
+  <meta name="twitter:title" content="Modeller och leverantörer — Guide till Attainder" />
+  <meta name="twitter:description" content="Välj en anslutning, förstå modellernas förval och granska anropen." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,271 +81,170 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/" class="on" aria-current="page">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> AI Providers and Models
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Modeller och leverantörer
     </nav>
-    <h1>AI Providers and Models</h1>
-    <p class="tagline">Which providers work, which models to pick, what it costs, and the expert controls.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#what-the-game-asks-of-a-model">What the game asks of a model</a></li><li class="d2"><a href="#choosing-a-provider">Choosing a provider</a></li><li class="d2"><a href="#defaults">Defaults</a></li><li class="d2"><a href="#trading-up">Trading up</a></li><li class="d2"><a href="#costs">Costs</a></li><li class="d2"><a href="#local-models">Local models</a></li><li class="d2"><a href="#expert-controls">Expert controls</a></li><li class="d2"><a href="#seeing-what-the-ai-did">Seeing what the AI did</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p><a href="/wiki/ai-setup/">Connecting an AI provider</a> covers getting set up. This page is about choosing
-well: which provider, which model, what it costs, and what the expert controls do.</p>
-<h2 id="what-the-game-asks-of-a-model">What the game asks of a model</h2>
-<p>This matters more than raw benchmark scores. Open Historia does not just ask for prose — it asks
-the model to return <strong>strictly structured data</strong> describing territory transfers, unit operations,
-country changes, structures and diplomatic openings, alongside the narrative, and to keep them
-consistent with each other.</p>
-<p>A model that writes beautifully but cannot reliably produce valid structured output will give
-you turns that fall back to canned events. A smaller model that follows instructions precisely
-often outperforms a larger, chattier one.</p>
-<p>That is the main axis to judge on: <strong>instruction-following and structured output</strong>, then writing
-quality, then speed.</p>
-<h2 id="choosing-a-provider">Choosing a provider</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Provider</th>
-<th>Cost</th>
-<th>Works in the browser build</th>
-<th>Good for</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Gemini</strong></td>
-<td>Free tier</td>
-<td>Yes</td>
-<td>Getting started, and most people&#39;s permanent answer</td>
-</tr>
-<tr>
-<td><strong>Anthropic</strong></td>
-<td>Pay per token</td>
-<td>Yes</td>
-<td>Richest diplomacy and narrative</td>
-</tr>
-<tr>
-<td><strong>OpenAI</strong></td>
-<td>Pay per token</td>
-<td>Desktop only</td>
-<td>Strong all-round</td>
-</tr>
-<tr>
-<td><strong>OpenAI Compatible</strong></td>
-<td>Varies</td>
-<td>Depends on the service</td>
-<td>Local models, DeepSeek, Groq, OpenRouter, everything else</td>
-</tr>
-<tr>
-<td><strong>Anthropic Compatible</strong></td>
-<td>Varies</td>
-<td>Depends</td>
-<td>A self-hosted Anthropic-protocol proxy</td>
-</tr>
-</tbody></table></div>
-<p>&quot;Works in the browser build&quot; is about whether the provider allows direct requests from a web
-page. The desktop and self-hosted builds relay around this automatically, and the Android app
-reaches a model on your own network directly; the hosted website cannot. See
-<a href="/wiki/ai-setup/">connecting an AI provider</a>.</p>
-<p class="beta-note"><b>On beta, the desktop app has a sixth kind: Your own Agent.</b> It plays on
-a subscription you already pay for instead of an API key. Your own Claude Code, Codex, OpenCode or
-Antigravity CLI, opened in the game's Agent folder, answers what you start — a time skip, the
-advisor, your diplomatic messages, the Game Master, interactive events — when you type
-<code>/answer</code>. The game never starts the agent itself, so what the game does on its own,
-such as Background AI, goes to the entries below it in your list. The models are chosen inside
-your agent, not in the game.</p><h2 id="defaults">Defaults</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Provider</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Gemini</td>
-<td><code>gemini-3.5-flash-lite</code>, with <code>gemini-3.1-flash-lite</code> as its backup</td>
-</tr>
-<tr>
-<td>Anthropic</td>
-<td><code>claude-haiku-4-5</code></td>
-</tr>
-<tr>
-<td>OpenAI</td>
-<td><code>gpt-6-luna</code></td>
-</tr>
-<tr>
-<td>OpenAI Compatible</td>
-<td>no model set — the game picks a chat model from the server&#39;s own list</td>
-</tr>
-</tbody></table></div>
-<p>The defaults are the cheap, fast tier of each family. They are a genuinely reasonable place to
-start, not placeholders.</p>
-<h2 id="trading-up">Trading up</h2>
-<p>Moving from a fast model to a strong one changes the game noticeably. Where you will see it:</p>
-<ul>
-<li><strong>Diplomacy.</strong> Leaders that stay in character, remember, and negotiate rather than agree.</li>
-<li><strong>Long jumps.</strong> Compressing six months into a coherent set of events is hard.</li>
-<li><strong>The advisor.</strong> The most reasoning-heavy thing in the game.</li>
-<li><strong>Consistency.</strong> Whether turn twelve remembers what turn four established.</li>
-</ul>
-<p>Where you will not see much: short jumps in a quiet period, and anything mechanical.</p>
-<p>A reasonable pattern is to play on a cheap model and switch to a stronger one when something
-important is happening. <strong>Per-task models</strong> does this for you: the time skip on a strong
-model, small jobs on a cheap one.</p>
-<h2 id="costs">Costs</h2>
-<p>A time skip is <strong>one request</strong>, with <strong>Save AI requests</strong> on or off: its events carry their own
-changes, and nothing is asked after it. Turn Save AI requests off and, with AI lookup functions
-on, the model may look things up before it answers — two rounds at most, so a skip never uses
-more than three. Diplomacy, the advisor and <strong>Background AI</strong> (countries writing to
-you unprompted, forces repositioning, extra agent reports — capped at 30 a day by default) cost
-extra on top. Settings → AI → <strong>AI requests</strong> shows today&#39;s count and what your last skip used.</p>
-<p class="beta-note"><b>On beta, the wars on the battlefields are fought by the game itself</b>,
-not by the model: troops move and fight in the engine, and the skip's single request tells the
-story of how it went. What costs a request is what you ask for — talking to your generals in the
-War Room, and each new <b>Listen in</b> feed, which is asked only when you open a place with
-nothing kept for that day or ask for more (turn it off in a game's Features tab). In a shared
-game every time skip runs on the host's computer and the host's key.</p><p>Rough guidance rather than a price list:</p>
-<ul>
-<li><strong>Gemini free tier</strong> genuinely covers solo play. Watch the rate limits on the larger models —
-hitting one mid-jump stalls the turn. A
-<a href="/wiki/ai-setup/#backup-models">backup model</a> takes over when one runs out.</li>
-<li><strong>Cheap tiers</strong> (Haiku, Flash, DeepSeek) run a campaign for small change.</li>
-<li><strong>Frontier models</strong> are noticeably better and noticeably more expensive per turn. Long jumps
-cost more than short ones because there is more to write.</li>
-<li><strong>Local models</strong> cost nothing and run offline.</li>
-</ul>
-<p>If you are watching spend, leave Save AI requests on, turn Background AI off or lower its cap,
-and use the advisor less. Task prompts open with a fixed prefix that providers cache, so a large
-share of each time-skip prompt is billed at the cheaper cached rate where the provider offers one.</p>
-<h2 id="local-models">Local models</h2>
-<p>Free, private, offline. Setup is in <a href="/wiki/ai-setup/">connecting an AI provider</a>.</p>
-<p>Be realistic about size. Models around <strong>3B and below</strong> frequently fail to produce valid
-structured output, and you will see turns fall back to canned events. <strong>7–14B instruct models</strong>
-are a sensible floor. Larger is better if your hardware allows it.</p>
-<p>If your hardware does not, the Gemini free tier will give you a better game than a very small
-local model.</p>
-<p>Mind the <strong>context window</strong> too. A time skip on the built-in scenario is about 47,000 tokens, more
-with a long history, so a model loaded with a 32K window cannot take it. A cloud model that
-refuses a request for its size is remembered, and the game does not send it one too big again but
-moves to the next model in your list. A model on your own machine or network is different: its
-window is whatever you loaded it with, so nothing learned from its refusals is held against it,
-and loading it again with a bigger window takes effect at once. Settings → AI → the model&#39;s entry
-→ <strong>This model only</strong> → <strong>Context window (tokens)</strong> shows what the game knows, takes a figure of
-your own, and <strong>Forget this window</strong> clears what it learned.</p>
-<h2 id="expert-controls">Expert controls</h2>
-<p>You do not need any of these to play.</p>
-<p><strong>Model reasoning</strong> enables extended thinking on models that support it. Slower and more
-expensive per call; better on complex turns. Worth turning on for a frontier model, pointless on
-a small one.</p>
-<p><strong>Strict tool schema</strong> changes how structured output is requested from OpenAI-compatible
-endpoints. Some gateways and local servers handle the strict form badly. <strong>If turns keep failing
-to parse, toggle this</strong> — it is the single most useful switch for a misbehaving compatible
-endpoint.</p>
-<p><strong>Custom parameters (JSON)</strong> are merged into the request body, so you can set anything the
-provider accepts — temperature, sampling, provider-specific options. Malformed JSON is ignored
-rather than breaking the game.</p>
-<p><strong>Limit AI generation</strong> abandons a stalled generation and falls back to a canned event. It
-measures silence rather than elapsed time. Recommended with local models.</p>
-<p>Custom parameters and Strict tool schema are set on a <strong>connection</strong>; an entry in the Models list
-can have custom parameters of its own and <strong>How the AI answers</strong>, which picks the structured-output
-method to try first. See <a href="/wiki/ai-setup/#adding-backups">adding backups</a>.</p>
-<p class="beta-note"><b>On beta the game sets a temperature per task.</b> Tasks that match or
-classify — placing a name on a region, reading a leader's answer to a demand — are asked at 0.1;
-the ones that reconcile or summarise at 0.2; stat sheets and intelligence readings at 0.3. Anything written to be
-read in character (time skips, diplomacy, the advisor) is left at the provider's default. A
-temperature in your own custom parameters still wins, and a model that refuses one (an OpenAI
-reasoning model, say) is remembered and asked without it.</p><h2 id="seeing-what-the-ai-did">Seeing what the AI did</h2>
-<p><img src="/wiki/img/debug-console.jpg" alt="The AI debug console">
-<em>The debug console: every call with its task, model, token counts and latency. These two are idle diplomacy firing on its own.</em></p>
-<p>The <strong>AI debug console</strong> (☰ → Tools) shows every call with its full prompt, answer, model, token
-counts, latency and validation verdict, with analytics per task and model and a JSON or CSV
-export. It keeps the last 200 calls across sessions while <strong>Record AI telemetry</strong> is on.</p>
-<p>If you care about cost control, about a game that keeps going when a free allowance runs out, or
-about seeing what the game actually sends, that — with backup models and per-task models — is
-where to look.</p>
-<h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/ai-setup/">Connecting an AI provider</a> — the setup steps.</li>
-<li><a href="/wiki/troubleshooting/">Troubleshooting</a> — when it will not connect.</li>
-<li><a href="/wiki/settings/">Settings</a> — where all of this lives.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/mobile/"><span>← Previous</span><b>Playing on your phone</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Models and providers
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Välj en anslutning, förstå modellernas förval och granska anropen.</span><span data-help-lang="en" lang="en">Choose a connection, understand model defaults and inspect its requests.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#requirements">Vad modellen måste lämna</a></li><li class="d2"><a href="#defaults">Standardmodeller och val per uppgift</a></li><li class="d2"><a href="#usage-and-context">Anrop, kostnad och kontext</a></li><li class="d2"><a href="#expert-controls">Avancerade reglage</a></li><li class="d2"><a href="#diagnostics">Granska ett anrop</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#requirements">What a model must return</a></li><li class="d2"><a href="#defaults">Defaults and task choices</a></li><li class="d2"><a href="#usage-and-context">Requests, cost and context</a></li><li class="d2"><a href="#expert-controls">Expert controls</a></li><li class="d2"><a href="#diagnostics">Inspect a request</a></li></ul></nav>
+    <section id="requirements" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="requirements">
+<h2>Vad modellen måste lämna</h2>
+<p>Rollfigurssamtal ber modellen om strukturerade handlingsdata och berättande text. Spelet kontrollerar dessa data innan det godkänner en handling. Börja med att kontrollera att den valda modellen följer formatet och att svaret stämmer med scenen.</p>
+<p>De lokala anslutningarna till Codex och Claude använder de installerade programmen och deras befintliga inloggningar. API-anslutningar använder de inloggningsuppgifter och den adress du anger. Läs om att <a href="/wiki/ai-setup/">ansluta en modell</a>.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="requirements">
+<h2>What a model must return</h2>
+<p>Character interactions ask the model for structured action data as well as narrative text. The game validates that data before accepting an action. Start by checking that the selected model follows the requested format and keeps its answer consistent with the scene.</p>
+<p>The local Codex and Claude connections use the installed programs and their existing logins. API connections use the credentials and endpoint you configure. See <a href="/wiki/ai-setup/">connecting a model</a>.</p>
+</div>
+</section>
+<section id="defaults" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="defaults">
+<h2>Standardmodeller och val per uppgift</h2>
+<p>Geminis förval är <code>gemini-3.5-flash-lite</code>, följt av <code>gemini-3.1-flash-lite</code>. OpenAI har <code>gpt-6-luna</code> som förval och Anthropic har <code>claude-haiku-4-5</code>. En kompatibel server kan lämna en modell genom modellupptäckt när modellfältet är tomt. Ett tomt modellfält för den lokala CLI-anslutningen använder kontots standardmodell.</p>
+<p>Detta är konfigurerade förval. Tillgängligheten beror på leverantören och ditt konto. Ett val per uppgift kan välja en post innan reservlistan prövas. Kontrollera den faktiskt använda posten i diagnostiken om du undersöker en ändrad skrivstil.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="defaults">
+<h2>Defaults and task choices</h2>
+<p>The configured Gemini defaults are <code>gemini-3.5-flash-lite</code> followed by <code>gemini-3.1-flash-lite</code>. OpenAI defaults to <code>gpt-6-luna</code>; Anthropic defaults to <code>claude-haiku-4-5</code>. A compatible endpoint can discover a model when its model field is blank. Leaving the local CLI model blank uses the account default.</p>
+<p>These are configuration defaults. Availability depends on the provider and your account. A per-task choice can select an entry before the fallback list is tried. Check the entry actually used in diagnostics when investigating a different writing style.</p>
+</div>
+</section>
+<section id="usage-and-context" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="usage-and-context">
+<h2>Anrop, kostnad och kontext</h2>
+<p>En interaktion kan kräva tolkning och ett separat berättaranrop. Omförsök och reservposter kan ge fler anrop. Kontrollera användningsvillkor och avgifter hos din leverantör. Den lokala CLI-anslutningen använder kontot som är inloggat i programmet.</p>
+<p>Ladda en tillräckligt stor kontext i en modellserver på din dator eller ditt nätverk. Modellposten har en inställning för kontextfönster och möjlighet att rensa en inlärd gräns. En lokal server kan laddas om med ett annat fönster. Kontrollera därför dess aktuella konfiguration när en förfrågan är för stor.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="usage-and-context">
+<h2>Requests, cost and context</h2>
+<p>One interaction can require interpretation and a separate narrative request. Retries and fallback entries can add calls. Check your provider account for its usage terms and charges; the local CLI uses the account signed into that program.</p>
+<p>For a model server on your machine or network, load a context window large enough for the request. The model entry exposes a context-window setting and a way to clear a learned limit. A local server can be reloaded with a different window, so verify its current configuration when a request is too large.</p>
+</div>
+</section>
+<section id="expert-controls" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="expert-controls">
+<h2>Avancerade reglage</h2>
+<p>En anslutning kan ange egna anropsparametrar. OpenAI-kompatibla anslutningar erbjuder också Strikt verktygsschema. En modellpost kan ersätta de egna parametrarna och välja hur strukturerade svar begärs. Modellresonemang finns där leverantören stöder det. Ändra en inställning i taget och granska anropet när du undersöker formatfel.</p>
+<p>Reglagen påverkar modellförfrågan. Spelet kontrollerar fortfarande den föreslagna handlingen innan den genomförs. Om inget anrop når modellen kontrollerar du först inloggning, inloggningsuppgifter och serveradress.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="expert-controls">
+<h2>Expert controls</h2>
+<p>A connection can set custom request parameters. OpenAI-compatible connections also offer Strict tool schema. A model entry can override custom parameters and select how structured answers are requested. Model reasoning is available where the provider supports it. Change one setting at a time and inspect the resulting request when diagnosing format failures.</p>
+<p>These controls affect the model request. The game still validates the proposed action before committing it. If no request reaches the model, check login, credentials and endpoint first.</p>
+</div>
+</section>
+<section id="diagnostics" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="diagnostics">
+<h2>Granska ett anrop</h2>
+<p>Öppna AI-felsökningskonsolen i verktygsmenyn för att granska förfrågningar, svar, modelluppgifter, tokenantal, svarstid och valideringsresultat samt exportera JSON eller CSV. När beständig telemetriinspelning är på behålls de senaste 200 posterna. Detaljerad diagnostikloggning kan innehålla hela förfrågningar och svar. Läs exporten innan du delar den.</p>
+<p>Räknaren för lokala modellanrop uppdateras av CLI-transporten. Betrakta den som en räknare för lokala CLI-anrop och inte som en fullständig faktura för alla API-anslutningar. Läs <a href="/wiki/troubleshooting/">felsökningen</a> vid anslutningsfel.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="diagnostics">
+<h2>Inspect a request</h2>
+<p>Open AI debug console from the tools menu to inspect prompts, answers, model details, token counts, latency and validation results, and export JSON or CSV. With persistent telemetry recording enabled, the store retains the latest 200 records. Detailed diagnostic logging can include full prompts and replies; read the export before sharing it.</p>
+<p>The local model-call counter is updated by the CLI transport. Treat it as a local CLI counter rather than a complete bill for every API connection. See <a href="/wiki/troubleshooting/">troubleshooting</a> for connection failures.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/mobile/"><span>← Föregående</span><b>Mobil</b></a>
+        <a class="next" href="/wiki/troubleshooting/"><span>Nästa →</span><b>Felsökning</b></a>
+      </nav>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/mobile/"><span>← Previous</span><b>Mobile</b></a>
         <a class="next" href="/wiki/troubleshooting/"><span>Next →</span><b>Troubleshooting</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -337,27 +256,71 @@ where to look.</p>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

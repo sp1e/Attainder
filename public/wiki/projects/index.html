@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Projekt och bestående åtaganden — Guide till Attainder" data-title-en="Projects and continuing commitments — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Projects and Operations — Open Historia Wiki</title>
+  <title>Projekt och bestående åtaganden — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/projects/" />
-  <meta name="description" content="Long-running efforts that span turns: research programmes, construction, covert operations and campaigns." />
+  <meta name="description" content="Följ fördröjda intriger, byggen och den allmänna projekttavlan." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/projects/" />
-  <meta property="og:title" content="Projects and Operations — Open Historia Wiki" />
-  <meta property="og:description" content="Long-running efforts that span turns: research programmes, construction, covert operations and campaigns." />
+  <meta property="og:title" content="Projekt och bestående åtaganden — Guide till Attainder" />
+  <meta property="og:description" content="Följ fördröjda intriger, byggen och den allmänna projekttavlan." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Projects and Operations — Open Historia Wiki" />
-  <meta name="twitter:description" content="Long-running efforts that span turns: research programmes, construction, covert operations and campaigns." />
+  <meta name="twitter:title" content="Projekt och bestående åtaganden — Guide till Attainder" />
+  <meta name="twitter:description" content="Följ fördröjda intriger, byggen och den allmänna projekttavlan." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,307 +81,172 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/" class="on" aria-current="page">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> Projects and Operations
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Projekt och bestående åtaganden
     </nav>
-    <h1>Projects and Operations</h1>
-    <p class="tagline">Long-running efforts that span turns: research programmes, construction, covert operations and campaigns.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#projects-and-operations">Projects and operations</a></li><li class="d2"><a href="#secrecy">Secrecy</a></li><li class="d2"><a href="#milestones">Milestones</a></li><li class="d2"><a href="#on-each-card">On each card</a></li><li class="d2"><a href="#what-you-actually-control">What you actually control</a></li><li class="d2"><a href="#completion-has-consequences">Completion has consequences</a></li><li class="d2"><a href="#foreign-projects-and-whether-to-believe-them">Foreign projects, and whether to believe them</a></li><li class="d2"><a href="#limits">Limits</a></li><li class="d2"><a href="#filtering">Filtering</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>Some things a country does cannot happen in one turn. A nuclear programme, a canal, a rearmament
-plan, a decade-long insurgency, a covert operation to destabilise a neighbour — these are
-<em>efforts</em>, not actions, and they get their own board.</p>
-<p>Open it with the <strong>Projects &amp; Operations</strong> button in the toolbar, alongside Chat and Actions. A
-new campaign&#39;s board is empty — <em>&quot;Nothing on the board yet&quot;</em> — until events and your advisor
-start writing to it; <strong>🧭 Ask your advisor to populate this</strong> gets it to file the efforts you
-already have under way.</p>
-<p>This is also where research and technology live. There is no tech tree; there is a research
-programme with milestones that either progresses or stalls.</p>
-<p><img src="/wiki/img/projects-board.jpg" alt="The Projects and Operations board">
-*A board on a campaign that has been running a while. Note the counts — <strong>Mine (4)</strong>,
-<strong>Foreign (2)</strong> — the tag chips, the priority control on each card, and that an <strong>ongoing</strong> effort
-carries no target date and so can never run late.*</p>
-<h2 id="projects-and-operations">Projects and operations</h2>
-<p>Two kinds:</p>
-<ul>
-<li><strong>Projects</strong> — construction, research, industrial and political programmes. Building
-something, generally.</li>
-<li><strong>Operations</strong> — military and covert undertakings. Doing something to someone, generally.</li>
-</ul>
-<p>Each carries a status:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Status</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Proposed</strong></td>
-<td>Suggested, not yet under way</td>
-</tr>
-<tr>
-<td><strong>Active</strong></td>
-<td>Running</td>
-</tr>
-<tr>
-<td><strong>Stalled</strong></td>
-<td>Running, but not moving</td>
-</tr>
-<tr>
-<td><strong>Paused</strong></td>
-<td>Deliberately halted</td>
-</tr>
-<tr>
-<td><strong>Complete</strong></td>
-<td>Finished successfully</td>
-</tr>
-<tr>
-<td><strong>Failed</strong></td>
-<td>Finished unsuccessfully</td>
-</tr>
-<tr>
-<td><strong>Cancelled</strong></td>
-<td>Abandoned</td>
-</tr>
-</tbody></table></div>
-<p>The first four are <strong>open</strong> and appear on the default board. The last three are closed and live
-behind a separate view.</p>
-<p>Your <a href="/wiki/espionage/">agents</a> are on the board too: each one in place is a covert operation of
-its own, <em>Agent in Germany</em>, opened the moment it is deployed, cancelled when you recall it and
-failed when it is caught.</p>
-<h2 id="secrecy">Secrecy</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Public (no mark)</td>
-<td>Everyone can see it</td>
-</tr>
-<tr>
-<td>🔒 Restricted</td>
-<td>Known, but not openly</td>
-</tr>
-<tr>
-<td>🕵 Covert</td>
-<td>Hidden</td>
-</tr>
-</tbody></table></div>
-<p>A covert operation you can see on your own board is not visible to the country it targets —
-unless their intelligence service finds it.</p>
-<h2 id="milestones">Milestones</h2>
-<p>A project carries up to <strong>8 milestones</strong>, each dated and either pending, done or missed. The
-next pending one is what the board shows you as the thing to watch.</p>
-<p>Milestones can <strong>repeat</strong> — weekly, monthly, quarterly, annual or biennial. Marking a repeating
-milestone done advances it to its next date on <em>its own</em> calendar, so an annual exercise on 1 June
-stays on 1 June rather than drifting, and the card counts how many times it has been done. A
-missed occurrence is deliberately <strong>not</strong> rolled forward: it stays pending and the card flags it,
-<strong>Milestone slipped</strong>, because a drill you skipped is a fact about your country, not a scheduling
-inconvenience.</p>
-<p class="beta-note"><b>On beta a date that passes with nothing said is a slip.</b> A milestone
-whose date the time skip reaches without an outcome is marked <i>slipped</i>: late, but not
-missed, and the next skip is asked to say what became of it — reached, slipped again or
-missed.</p><p>A project marked <strong>ongoing</strong> is a standing effort with no planned end. It has no target date and
-can never be overdue.</p>
-<h2 id="on-each-card">On each card</h2>
-<p>Besides its status, progress and next milestone, a card warns you of what the calendar says:
-<strong>⚠ Overdue</strong> once its target date has passed, <strong>⏳ Due in</strong> so many days when a milestone falls
-inside the next month, <strong>Milestone slipped</strong> when one&#39;s date went by while it was still pending,
-and <strong>No recent progress</strong> — on another power&#39;s entry, <strong>No fresh intelligence</strong> — when it has
-stalled or nothing has been reported of it for three rounds. Under that:</p>
-<ul>
-<li><strong>🧭 Ask advisor</strong> on your own work, or <strong>What do we know?</strong> on someone else&#39;s, has the advisor
-brief you on it.</li>
-<li><strong>⚖ Our options</strong>, on another power&#39;s running effort, asks the advisor what you could do about
-it.</li>
-<li><strong>📍 Show on map</strong> takes the camera to where it is happening, when the board knows.</li>
-<li><strong>Activity</strong> lists the events behind it, with their dates.</li>
-</ul>
-<h2 id="what-you-actually-control">What you actually control</h2>
-<p>Two things, and this is deliberate:</p>
-<p><strong>Priority.</strong> <strong>▲</strong> high, <strong>●</strong> normal or <strong>▼</strong> low, on each of your own cards. High means the
-advisor briefs it first and the simulation is told to keep it moving. Low means it is allowed to
-drift.</p>
-<p><strong>Abandoning it.</strong> <strong>Abandon</strong>, then <strong>Confirm abandon?</strong>, which routes through cancellation —
-the project stays on the board under <strong>Closed</strong>, with the progress it actually reached.</p>
-<p>Neither is offered on another power&#39;s entry: you can watch it and act against it, but its priority
-and its cancellation are not yours to set.</p>
-<p>You do <strong>not</strong> author a project&#39;s content. Projects are written <em>by</em> the world — by events, by
-your intelligence service, and by the advisor — in response to what your country is doing. You
-steer them; you do not type them into existence.</p>
-<p>After each time skip the board is brought into step with what happened — progress, stalls and new
-long-term efforts — reading every event of the turn, including ones taken off the timeline as
-filler. The skip&#39;s own events carry the board&#39;s changes, so this costs no request and has no
-switch. If that update fails, the turn is held rather than lost — see
-<a href="/wiki/troubleshooting/#a-held-projects-board">troubleshooting</a>. The time skip itself is shown
-the board, so an effort you push is narrated as what it actually is.</p>
-<p class="beta-note"><b>On beta a project's activity lists only the events that moved it</b>,
-rather than every event that mentioned it in passing.</p><p>Closing keeps the record. Completing marks pending milestones done and forces progress to 100%;
-failing or cancelling marks them missed and preserves the real progress reached. Only an explicit
-delete erases a project entirely.</p>
-<h2 id="completion-has-consequences">Completion has consequences</h2>
-<p>A project can carry changes that release <strong>only on successful completion</strong> — never on
-cancellation, never on failure. This is how a five-year programme to build up your intelligence
-service actually raises your rating: not gradually, but when it finishes.</p>
-<p>It is also why abandoning a project at 90% gets you nothing except the record that you tried.</p>
-<h2 id="foreign-projects-and-whether-to-believe-them">Foreign projects, and whether to believe them</h2>
-<p>The board shows projects belonging to <em>other</em> countries too, when your intelligence tells you
-about them. Those carry a <strong>verification</strong> state:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Badge</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><em>(none)</em></td>
-<td>Learned openly; the ordinary case</td>
-</tr>
-<tr>
-<td><strong>Doubtful</strong></td>
-<td>The agent it came from is compromised</td>
-</tr>
-<tr>
-<td><strong>Confirmed</strong></td>
-<td>Corroborated by a clean source</td>
-</tr>
-<tr>
-<td><strong>Fabricated</strong></td>
-<td>Established as false</td>
-</tr>
-</tbody></table></div>
-<p>The loop this creates is the best thing on the board. A <a href="/wiki/espionage/">turned agent</a> feeds
-you planted material. A foreign project opens on your board from it. Later, that source is found
-to be compromised, and the entry is stamped <strong>Doubtful</strong> and stalls — the engine can raise the
-doubt but it cannot settle it. On the stable build the stamp comes as soon as the source is turned
-or your analysts suspect it.</p>
-<p class="beta-note"><b>On beta a turned agent's reports stay trusted until your own service
-catches on.</b> The stamp comes only when your analysts suspect the source, or the agent is caught
-after having been turned: the board never knows more than your service does.</p><p>The only way to resolve it is to get a <strong>fresh</strong> agent into that country and look again. Until
-you do, you are planning against something that may not exist.</p>
-<h2 id="limits">Limits</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Projects</td>
-<td><strong>120</strong></td>
-</tr>
-<tr>
-<td>Milestones per project</td>
-<td><strong>8</strong></td>
-</tr>
-<tr>
-<td>Linked events per project</td>
-<td><strong>12</strong></td>
-</tr>
-</tbody></table></div>
-<p>The board warns you when you are within ten of the project limit. Past it, <strong>finished work is
-evicted first</strong>, oldest by last update — your active programmes are never dropped to make room.</p>
-<h2 id="filtering">Filtering</h2>
-<p>The board filters by owner — <strong>All</strong>, <strong>Mine</strong> (where it opens) or <strong>Foreign</strong>, once there is
-anything foreign on it — by free text, and by tag chips, and sorts by <strong>Recently updated</strong>,
-<strong>Priority</strong>, <strong>Next milestone</strong>, <strong>Progress</strong>, <strong>Name</strong> or <strong>Status</strong>. <strong>Closed</strong> switches to the
-finished entries, and <strong>← Running</strong> back. On a long campaign with a busy intelligence service you
-will need them.</p>
-<p class="beta-note"><b>On beta the tags sit behind one Tags button</b>: a menu you tick them in,
-with a box to find one once there are many and <b>Clear selection</b>, so a long campaign's tags no
-longer push the projects off the panel. An entry shows if it carries any of the ticked tags.</p><p><strong>🧭 Ask the advisor to review or extend the board</strong>, at the foot of the list, has the advisor fill
-gaps a long campaign has left.</p>
-<h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/espionage/">Espionage</a> — where the foreign entries and the doubt come from.</li>
-<li><a href="/wiki/orders/">Giving orders</a> — how efforts get started.</li>
-<li><a href="/wiki/war/">Relations, treaties and war</a> — the ledgers the board sits beside.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/espionage/"><span>← Previous</span><b>Espionage</b></a>
-        <a class="next" href="/wiki/statistics/"><span>Next →</span><b>National statistics</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Projects and continuing commitments
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Projekt och bestående åtaganden</span><span data-help-lang="en" lang="en">Projects and continuing commitments</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Följ fördröjda intriger, byggen och den allmänna projekttavlan.</span><span data-help-lang="en" lang="en">Follow delayed schemes, construction and the general projects board.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#dynasty">Följ dynastins pågående arbete</a></li><li class="d2"><a href="#board">Den allmänna projekttavlan</a></li><li class="d2"><a href="#calendar">Milstolpar och kalendern</a></li><li class="d2"><a href="#controls">Prioritet, avslut och filtrering</a></li><li class="d2"><a href="#intelligence">Läs utländska projekt försiktigt</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#dynasty">Follow a dynasty’s continuing work</a></li><li class="d2"><a href="#board">The general projects board</a></li><li class="d2"><a href="#calendar">Milestones and the calendar</a></li><li class="d2"><a href="#controls">Priority, closing and filtering</a></li><li class="d2"><a href="#intelligence">Read foreign projects cautiously</a></li></ul></nav>
+    <section id="dynasty" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="dynasty">
+<h2>Följ dynastins pågående arbete</h2>
+<p>Dynastins överblick listar pågående intriger med aktör, mål och datum för avgörandet. Den visar också åtaganden som återkommer senare. Intrigens avbrytknapp ber om en ny bekräftelse innan den stoppas. Silver och handlingsutrymme som redan använts lämnas inte tillbaka.</p>
+<p>Vyn för ämbeten och arv förklarar vad som händer med projekt när en härskare dör. Personliga effekter upphör enligt ägare och mandat. Offentliga byggen och familjeegendom behåller sina scheman genom ett personligt tronskifte. Ett upplöst rike kan inte fortsätta offentliga uppdrag. Läs prognosen för den aktuella kampanjen.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="dynasty">
+<h2>Follow a dynasty’s continuing work</h2>
+<p>The dynasty overview lists running schemes with their actor, targets and resolution date. It also shows commitments that return later. A scheme’s abort control asks again before stopping it; silver and action capacity already spent are not returned.</p>
+<p>The offices and succession view explains what happens to projects when a ruler dies. Personal effects end according to their owner and mandate. Public construction and family estates keep their schedules through a personal succession; a dissolved realm cannot continue public work. Read the forecast for the current campaign.</p>
+</div>
+</section>
+<section id="board" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="board">
+<h2>Den allmänna projekttavlan</h2>
+<p>Kampanjer utan karaktärssystem har en tavla för projekt och operationer i det nedre verktygsfältet. Posterna beskriver byggen, forskning eller andra pågående program och operationer. Föreslaget, aktivt, avstannat och pausat arbete är öppet. Färdigt, misslyckat och avbrutet arbete är avslutat.</p>
+<p>Tavlan öppnas på ditt eget arbete. Utländska poster beskriver vad du vet om en annan makts program. Du styr det inte. Det nedre verktygsfältet och dess tavla visas inte i en dynastikampanj. Där följer intriger och byggen karaktärsvyerna ovan.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="board">
+<h2>The general projects board</h2>
+<p>Campaigns without a character system have a projects-and-operations board in the bottom toolbar. Its entries describe construction, research or other continuing programmes and operations. Proposed, active, stalled and paused work is open; complete, failed and cancelled work is closed.</p>
+<p>The board opens on your own work. Foreign entries describe what you know of another power’s programme; you do not control it. The bottom toolbar and its board are unavailable in a dynasty campaign, whose schemes and construction follow the character views above.</p>
+</div>
+</section>
+<section id="calendar" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="calendar">
+<h2>Milstolpar och kalendern</h2>
+<p>Ett allmänt projekt kan ha högst 8 milstolpar. Tavlan markerar ett försenat slutmål, en milstolpe inom 30 dagar, en passerad väntande milstolpe eller arbete utan nya framsteg. Ett fortlöpande projekt saknar slutdatum och kan inte vara försenat som helhet, men dess milstolpar kan passeras.</p>
+<p>Återkommande milstolpar kan vara veckovisa, månatliga, kvartalsvisa, årliga eller vartannat år. Nästa datum beräknas från milstolpens eget datum så att dess kalender består. Läs nästa väntande milstolpe och aktivitetshistoriken när du avgör vad som behöver uppmärksamhet.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="calendar">
+<h2>Milestones and the calendar</h2>
+<p>A general project can carry up to 8 milestones. The board marks an overdue target, a milestone due within 30 days, a passed pending milestone or work with no recent progress. An ongoing project has no final target date and cannot be overdue, although its milestones can slip.</p>
+<p>Repeating milestones can be weekly, monthly, quarterly, annual or biennial. Their next date is calculated from the milestone’s own date, preserving its calendar. Read the next pending milestone and the activity record when deciding what needs attention.</p>
+</div>
+</section>
+<section id="controls" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="controls">
+<h2>Prioritet, avslut och filtrering</h2>
+<p>På dina egna öppna tavleposter kan du ändra prioritet eller överge arbetet efter bekräftelse. Att överge det bevarar posten bland avslutat arbete med de framsteg som uppnåtts. En annan makts post har inget av dessa reglage. Sökning, ägare, kategorier och sortering hjälper dig hitta ett program. Valda kategorier matchar vilket som helst av de valda värdena.</p>
+<p>Ett framgångsrikt avslut kan utlösa lagrade följder en gång. Misslyckande och avbrytande utlöser inte dessa avslutsföljder. Tavlan rymmer högst 120 projekt, 8 milstolpar per projekt och 12 länkade händelser per projekt. Avslutat arbete tas bort först när utrymme behövs.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="controls">
+<h2>Priority, closing and filtering</h2>
+<p>On your own open board entries you can change priority or abandon the effort after confirmation. Abandoning preserves the entry under closed work with the progress it reached. Another country’s entry has neither control. Search, ownership, tags and sorting help you find a programme; selected tags match any of the selected values.</p>
+<p>A successful completion can release stored consequences once. Failure and cancellation do not release those completion effects. The board holds up to 120 projects, 8 milestones per project and 12 linked events per project. Closed work is evicted first when space is needed.</p>
+</div>
+</section>
+<section id="intelligence" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="intelligence">
+<h2>Läs utländska projekt försiktigt</h2>
+<p>Den allmänna tavlan kan innehålla utländska insatser som underrättelsetjänsten har fått kännedom om. Verifiering kan markera en uppgift som tvivelaktig, bekräftad eller fabricerad. Den aktuella tavlan kan markera ett projekt som tvivelaktigt när dess länkade agent har vänts eller blivit misstänkt. Detta är skilt från karaktärernas intrigsystem.</p>
+<p>Använd rådgivarens genomgång och läs källan till en utländsk post innan du planerar mot den. På en allmän projekttavla kan rådgivaren också lägga till eller uppdatera poster och lämnar kvitton som beskriver ändringarna. Se <a href="/wiki/advisor/">Rådgivaren</a> och <a href="/wiki/espionage/">Spionage</a>.</p>
+<p>Allmänna tavleposter har också en klassning som offentlig, begränsad eller hemlig. Begränsade och hemliga poster visar en lås- eller spionmarkering. Läs klassning och verifiering var för sig. En sekretessmarkering fastställer inte att uppgiften är riktig.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="intelligence">
+<h2>Read foreign projects cautiously</h2>
+<p>The general board can contain foreign efforts learned through intelligence. Verification can mark a report as doubtful, confirmed or fabricated. The current board may mark a project doubtful when its linked agent has been turned or suspected; this is distinct from the character intrigue system.</p>
+<p>Use the advisor briefing and read the source of a foreign entry before planning against it. On a general board, the advisor can also add or update entries and returns receipts describing what changed. See <a href="/wiki/advisor/">Advisor</a> and <a href="/wiki/espionage/">Espionage</a>.</p>
+<p>General board entries also carry a public, restricted or covert classification. Restricted and covert entries show their lock or spy marker. Read classification and verification separately: a secrecy marker does not establish that the report is correct.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/espionage/"><span>← Föregående</span><b>Spionage</b></a>
+        <a class="next" href="/wiki/statistics/"><span>Nästa →</span><b>Statistik</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/espionage/"><span>← Previous</span><b>Espionage</b></a>
+        <a class="next" href="/wiki/statistics/"><span>Next →</span><b>Statistics</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -373,27 +258,71 @@ gaps a long campaign has left.</p>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

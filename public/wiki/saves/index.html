@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Sparfiler och säkerhetskopior — Guide till Attainder" data-title-en="Saves and backups — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Saves, Rollback and Sharing — Open Historia Wiki</title>
+  <title>Sparfiler och säkerhetskopior — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/saves/" />
-  <meta name="description" content="How campaigns are stored, how to undo, how to clone, and how to move a game or scenario between machines." />
+  <meta name="description" content="Klona en kampanj, exportera filerna och återställ den matchande kartan." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/saves/" />
-  <meta property="og:title" content="Saves, Rollback and Sharing — Open Historia Wiki" />
-  <meta property="og:description" content="How campaigns are stored, how to undo, how to clone, and how to move a game or scenario between machines." />
+  <meta property="og:title" content="Sparfiler och säkerhetskopior — Guide till Attainder" />
+  <meta property="og:description" content="Klona en kampanj, exportera filerna och återställ den matchande kartan." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Saves, Rollback and Sharing — Open Historia Wiki" />
-  <meta name="twitter:description" content="How campaigns are stored, how to undo, how to clone, and how to move a game or scenario between machines." />
+  <meta name="twitter:title" content="Sparfiler och säkerhetskopior — Guide till Attainder" />
+  <meta name="twitter:description" content="Klona en kampanj, exportera filerna och återställ den matchande kartan." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,209 +81,158 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/" class="on" aria-current="page">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> Saves, Rollback and Sharing
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Sparfiler och säkerhetskopior
     </nav>
-    <h1>Saves, Rollback and Sharing</h1>
-    <p class="tagline">How campaigns are stored, how to undo, how to clone, and how to move a game or scenario between machines.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#games-and-scenarios">Games and scenarios</a></li><li class="d2"><a href="#autosave">Autosave</a></li><li class="d2"><a href="#undo-and-rollback">Undo and rollback</a></li><li class="d2"><a href="#cloning">Cloning</a></li><li class="d2"><a href="#where-saves-live">Where saves live</a></li><li class="d2"><a href="#moving-a-campaign-between-machines">Moving a campaign between machines</a></li><li class="d2"><a href="#syncing-between-devices">Syncing between devices</a></li><li class="d2"><a href="#archiving-and-deleting">Archiving and deleting</a></li><li class="d2"><a href="#what-a-save-contains">What a save contains</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>Open Historia saves continuously. There is no save button, and there is no way to lose an hour
-of play to a crash.</p>
-<p><img src="/wiki/img/saves-library.jpg" alt="The games library">
-<em>The Games tab. Each card carries its country, date and round; <strong>Current</strong> opens it, and its <strong>⋮</strong> holds Edit, Clone and Export.</em></p>
-<h2 id="games-and-scenarios">Games and scenarios</h2>
-<p>Two different things, and the distinction matters:</p>
-<ul>
-<li>A <strong>scenario</strong> is a world — the map, the borders, who owns what, the start date, the available
-troop types, the author&#39;s house rules. It never changes when you play.</li>
-<li>A <strong>game</strong> is one playthrough of a scenario. It starts as a copy of that world and diverges
-from the first turn.</li>
-</ul>
-<p>One scenario seeds as many games as you like. Editing a scenario later does not rewrite the games
-already running on it — each keeps its own world, from who owns what to its events — but a game
-draws its regions from its scenario&#39;s map, so a border you reshape in the
-<a href="/wiki/editor/">map editor</a> shows in that scenario&#39;s games too.</p>
-<p>That is also why, when an update replaces the built-in <strong>Modern Day</strong> scenario&#39;s map, the
-campaigns begun on the old map are not moved onto the new one: they go with the old map into a
-scenario of their own, <strong>Modern Day (classic map)</strong>, and carry on there. An update that only
-refreshes the built-in scenario&#39;s content on the same map leaves your campaigns where they are —
-unless you had edited the built-in scenario yourself, in which case your edited copy and the
-campaigns on it are kept as <strong>Modern Day (your edited copy)</strong>.</p>
-<h2 id="autosave">Autosave</h2>
-<p>Every time skip writes the whole campaign — world state, game state, events, your order queue,
-chat history and the colour palette — and then captures a rollback snapshot.</p>
-<p>There is nothing to do and nothing to remember. Closing the game mid-turn loses at most the
-orders you had typed but not queued.</p>
-<h2 id="undo-and-rollback">Undo and rollback</h2>
-<p><strong>↩ Undo last turn</strong>, in the time panel, restores everything to how it was before the last jump.
-The game keeps <strong>12</strong> turns of snapshots, so you can step back repeatedly. The panel tells you
-how many are available.</p>
-<p><strong>Roll Back Turn</strong>, in the <a href="/wiki/cheats/">cheats panel</a>, jumps straight to the start of any
-earlier turn in the stack and discards everything after it.</p>
-<p>Both restore the full campaign, not just the map — the events, the conversations, your queued
-orders, your agents&#39; reports and any papers that reached you all come back as they were. Your
-standing goal is yours rather than the turn&#39;s, so it stays as it is now.</p>
-<p>Use undo freely. See <a href="/wiki/time/">time and turns</a>.</p>
-<h2 id="cloning">Cloning</h2>
-<p>Both games and scenarios can be cloned from their card in the library — a game from its <strong>⋮</strong>,
-a scenario with <strong>Clone Scenario</strong>.</p>
-<p>Cloning a <strong>game</strong> is the closest thing to a manual save slot: fork the campaign before doing
-something reckless, and you keep both branches. Cloning a <strong>scenario</strong> gives you an editable copy
-of someone else&#39;s world.</p>
-<h2 id="where-saves-live">Where saves live</h2>
-<p><strong>Desktop and self-hosted</strong> — files on disk, in the app&#39;s own data directory. You can back the
-directory up like any other folder.</p>
-<p><strong>Browser</strong> — in your browser&#39;s storage. This is the one to be careful with: <strong>clearing site data
-clears your campaigns.</strong> The game will ask for persistent storage permission when you first
-play, and you should grant it.</p>
-<p>A browser keeps a site&#39;s <code>http://</code> and <code>https://</code> addresses as two separate stores, so games
-played on the website before it moved to https were left behind under the old address. The website
-brings them across by itself when you open it in that browser: your games and scenarios arrive in
-the library beside the ones you already have — nothing here is replaced, and the old copy is left
-as it was — along with any settings you have not already set again. If the trip fails, it tries
-again later, up to three times in all.</p>
-<p><strong>Android</strong> — on the phone, in the app&#39;s storage.</p>
-<p>The beta desktop build keeps a <strong>completely separate</strong> library from the stable one. Installing
-the beta cannot touch your stable campaigns, and vice versa.</p>
-<h2 id="moving-a-campaign-between-machines">Moving a campaign between machines</h2>
-<p><strong>Games export as one zip.</strong> On a game&#39;s card, <strong>⋮ → Export</strong> saves <code>&lt;name&gt;-game.zip</code>: the world,
-the clock, events, chats, actions, the advisor&#39;s conversation, prompts, colours, flags, tags,
-intercepts — and every rollback snapshot, so the campaign can be continued and undone on the other
-side, not just looked at. The card says so while the zip is being built, and the menu reminds you
-that an exported game carries its conversations, advisors and events, worth a look before you post
-it anywhere public. <strong>Import game</strong> (<strong>Import Game</strong> on beta), in the Games tab&#39;s header, brings one
-back; it lands right beside your current game, marked <strong>(Imported)</strong> if its name collides with one
-you already have.</p>
-<p>The scenario travels only when it has to. A built-in scenario is not included (everyone has it),
-nor one that came from the Community Hub (it can be fetched again). A map too large to carry — over
-32 MB — is left out rather than crashing the export; the game still exports, and the receiver ends
-up in the same position as a game whose scenario is missing. A game whose scenario is gone is still
-listed, opens in the editor, and can still be exported.</p>
-<p><strong>Scenarios</strong> export and import as a <code>.zip</code> bundle carrying the map, cities, colours, flags and
-any custom basemap, or as plain <code>.json</code>. Use <strong>Import JSON</strong> (<strong>Import Scenario</strong> on beta) in the
-Scenarios tab&#39;s header — it takes either form — or the <strong>Download .zip</strong> and <strong>Download JSON</strong>
-buttons in a scenario&#39;s editor drawer. <strong>Create Scenario</strong> starts a new one as a copy of the
-built-in world and drops you straight into its editor. To share one on the Community Hub, use
-<strong>⬆ Publish to Hub</strong> in the Community tab, which makes the export for you (see
-<a href="/wiki/community-hub/">the Community Hub</a>).</p>
-<p><strong>In the Android app</strong> an export is saved into the phone&#39;s Downloads folder, in a folder of its own
-called <em>Open Historia</em>, where the Files app and the import picker both find it, and a notice
-offers to share it. On Android 10 and older, where the app may not write to Downloads, it goes to
-the share sheet instead.</p>
-<h2 id="syncing-between-devices">Syncing between devices</h2>
-<p>There is none. Earlier versions of the website offered an optional sign-in that synced games
-between devices. It has been retired: there are no accounts, nothing of yours is stored on a
-server, and the game deletes what an old sign-in left in your browser the next time it opens.</p>
-<p>To play the same campaign on another device, move it yourself as described under
-<em>Moving a campaign between machines</em> above.</p>
-<p>If you had an account and want what it stored deleted, see the
-<a href="/privacy/">privacy policy</a>.</p>
-<h2 id="archiving-and-deleting">Archiving and deleting</h2>
-<p><strong>Archive</strong>, on a game&#39;s card, takes it out of the main library view without throwing it away, and the same
-button becomes <strong>Unarchive</strong> to bring it back. Useful once you have accumulated a dozen
-half-finished campaigns.</p>
-<p><strong>Delete</strong>, in a game&#39;s or a scenario&#39;s editor drawer, removes it after asking. On the stable build
-the game has no way to bring it back.</p>
-<p class="beta-note"><b>On beta a delete can be undone.</b> Deleted games and scenarios go to a
-<b>Recently deleted</b> shelf at the bottom of the Games and Scenarios tabs, each with
-<b>Restore</b>, and <b>Empty</b> deletes the shelf's contents for good. The desktop app keeps them
-for 30 days; the website and the Android app keep them for a week, and only the last five things
-you deleted. On the desktop the shelf is shown only on the computer the game runs on, not to
-other devices on your network. An archived game's card also has its own <b>Delete</b>, and
-archiving or deleting the game you have open takes you back to the main menu. In <b>All
-Games</b>, the <b>Active</b>, <b>All</b> and <b>Archived</b> buttons choose which games are
-shown.</p><h2 id="what-a-save-contains">What a save contains</h2>
-<p>For the curious: five documents per game — the world, the game state, the events, the actions
-queue and the chat history — plus siblings for colours, flags, tags, rollback snapshots, advisor
-history and intercepts. The map geometry is its scenario&#39;s.</p>
-<p>Intercepts are the exception to &quot;it is all just JSON&quot;: they are
-<a href="/wiki/espionage/">encrypted at rest</a> with a key unique to the campaign.</p>
-<h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/time/">Time and turns</a> — undo in context.</li>
-<li><a href="/wiki/community-hub/">The community hub</a> — sharing scenarios.</li>
-<li><a href="/wiki/self-hosting/">Hosting a server</a> — where the files actually live.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/cheats/"><span>← Previous</span><b>Cheats &amp; GM console</b></a>
-        <a class="next" href="/wiki/editor/"><span>Next →</span><b>The map editor</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Saves and backups
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Sparfiler och säkerhetskopior</span><span data-help-lang="en" lang="en">Saves and backups</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Klona en kampanj, exportera filerna och återställ den matchande kartan.</span><span data-help-lang="en" lang="en">Clone a campaign, export its files and restore the matching map.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#library">Spel, scenarier och kopior</a></li><li class="d2"><a href="#export">Flytta och säkerhetskopiera en kampanj</a></li><li class="d2"><a href="#map-restoration">När kartan inte följer med</a></li><li class="d2"><a href="#storage-and-undo">Lagring och ångring</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#library">Games, scenarios and copies</a></li><li class="d2"><a href="#export">Move and back up a campaign</a></li><li class="d2"><a href="#map-restoration">When the map does not travel</a></li><li class="d2"><a href="#storage-and-undo">Storage and undo</a></li></ul></nav>
+    <section id="library" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="library">
+<h2>Spel, scenarier och kopior</h2>
+<p>Ett scenario ger startvärlden och kartan. Ett spel är en kampanj som har skapats från scenariot. Använd menyn på spelkortet för att redigera, klona eller exportera en kampanj. En klon ger dig en separat gren att behålla innan du provar ett riskfyllt beslut. Scenariokort har en egen kloningsfunktion.</p>
+<p>Arkivering döljer ett spel från den vanliga bibliotekshyllan. Avarkivering tar fram det igen. Radering tar bort den lagrade posten. Exportera först om du kan vilja återvända till den.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="library">
+<h2>Games, scenarios and copies</h2>
+<p>A scenario supplies the starting world and map; a game is a campaign made from it. Use the library’s game-card menu to edit, clone or export a campaign. A clone gives you a separate branch to keep before trying a risky decision. Scenario cards have their own clone action.</p>
+<p>Archiving hides a game from the ordinary library shelf; unarchiving brings it back. Deleting removes its stored record. Export first if you may want it again.</p>
+</div>
+</section>
+<section id="export" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="export">
+<h2>Flytta och säkerhetskopiera en kampanj</h2>
+<p>Välj <strong>Exportera</strong> på ett spelkort för att skapa dess ZIP-fil. Den innehåller kampanjpaketet och tillgängliga återställningspunkter samt en inställningsrapport när den kan skapas. Bibliotekets spelimport läser ZIP-filen och återställer en kampanj. Behåll filen utanför programmets lagring.</p>
+<p>En export kan innehålla privata kampanjsamtal, rådgivarutbyten och händelser. Granska den innan du publicerar den. På Android används hämtningarnas mapp eller delning som reserv. Läs om <a href="/wiki/mobile/#files-and-background">mobilen</a>.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="export">
+<h2>Move and back up a campaign</h2>
+<p>Choose <strong>Export</strong> on a game card to build its ZIP file. It includes the campaign bundle and available rollback snapshots, plus a settings report when available. The library’s game import reads that ZIP and restores a campaign. Keep the file outside the application’s storage.</p>
+<p>An export can contain private campaign conversations, advisor exchanges and events. Read it before posting it publicly. On Android, file saving uses the Downloads folder or a share fallback; see <a href="/wiki/mobile/#files-and-background">mobile</a>.</p>
+</div>
+</section>
+<section id="map-restoration" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="map-restoration">
+<h2>När kartan inte följer med</h2>
+<p>Exporten försöker ta med varje tillgänglig matchande karta, även en inbyggd karta eller gemenskapskarta. Ett scenario som är större än <strong>32 MiB</strong> lämnas utanför innan det hämtas till ZIP-filen. Saknade eller ogiltiga kartdata redovisas också. Skicka det matchande scenariot separat när exporten meddelar att kartan utelämnades.</p>
+<p>Importen behåller kampanjens personer och återspelningsdata även om kartan inte kan kopplas. Samma scenarioidentifierare räcker inte. Geografin måste stämma med kampanjen. Återställ det matchande scenariot innan du försöker spela på kartan. Scenariopaket kan exporteras som ZIP eller JSON från redigeringspanelen.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="map-restoration">
+<h2>When the map does not travel</h2>
+<p>The exporter tries to carry every available matching map, including a built-in or community map. A scenario larger than <strong>32 MiB</strong> is left out before fetching it for the ZIP. Missing or invalid map data is also reported. Send the matching scenario separately when the export says the map was omitted.</p>
+<p>Import preserves the campaign’s people and replay data even if its map is unresolved. A scenario with the same identifier is insufficient: its geography must match the campaign. Restore that matching scenario before trying to play on the map. Scenario bundles can be exported as ZIP or JSON from their editor drawer.</p>
+</div>
+</section>
+<section id="storage-and-undo" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="storage-and-undo">
+<h2>Lagring och ångring</h2>
+<p>Den lokala starten använder <code>play-data</code> under vald datarot. En annan datarot kan därför visa ett annat bibliotek. En fristående server använder <code>OH_DATA_DIR</code> när den har angetts. Ren webbläsarlagring behåller spelposterna i webbläsaren. Rensning av webbplatsens lagring kan ta bort dessa poster. Beständig lagring begärs där webbläsaren stöder det, men en extern säkerhetskopia är fortfarande användbar.</p>
+<p>Tidslinjens ångring använder tillgängliga ögonblicksbilder från före turen. Arkivet har en gräns på <strong>12</strong>, och sparandet av en ögonblicksbild kan misslyckas. Kontrollera hur många ångringar som finns. En ögonblicksbild ersätter inte en exporterad säkerhetskopia. Läs om <a href="/wiki/time/">tid</a> för kampanjens tidsreglage.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="storage-and-undo">
+<h2>Storage and undo</h2>
+<p>The local launcher uses <code>play-data</code> under its selected data home. Changing the data home can therefore show a different library. A standalone server uses <code>OH_DATA_DIR</code> when set; browser-only storage keeps game records in the browser. Clearing that site’s storage can remove those records. Persistence permission is requested where the browser supports it, but an external backup remains useful.</p>
+<p>The timeline’s undo uses available pre-turn snapshots. The snapshot archive is capped at <strong>12</strong>, and capture is best-effort. Check the available undo count; a snapshot is not a substitute for an exported backup. Read <a href="/wiki/time/">time</a> for the campaign’s turn controls.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/cheats/"><span>← Föregående</span><b>Fusk</b></a>
+        <a class="next" href="/wiki/editor/"><span>Nästa →</span><b>Redigerare</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/cheats/"><span>← Previous</span><b>Cheats</b></a>
+        <a class="next" href="/wiki/editor/"><span>Next →</span><b>Editor</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -275,27 +244,71 @@ history and intercepts. The map geometry is its scenario&#39;s.</p>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {
