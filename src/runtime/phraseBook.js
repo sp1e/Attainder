@@ -153,7 +153,7 @@ const acceptsValues = (pattern, values) => {
 //  - a value or a whole string that starts in lower case and is otherwise
 //    unknown is looked up with a capital, and the answer gets its lower case
 //    back (byLoweredLabel).
-export const createPhraseBook =({ localizeValue = null, native = false } = {}) => {
+export const createPhraseBook = ({ localizeValue = null, native = false } = {}) => {
   // English (as extracted, and whitespace-collapsed) → translation.
   const exact = new Map();
   // Pattern keys → translation; compiled lazily, most specific first.
