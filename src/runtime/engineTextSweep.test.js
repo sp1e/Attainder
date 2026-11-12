@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { createPhraseBook } from "./phraseBook.js";
 import {
-  buildReport, isDisplayText, judge, listCampaigns, loadNativeBook, readAllowList, runSweep, swedishRun, vocabularyOf,
+  buildReport, isDisplayText, judge, keptWord, listCampaigns, loadNativeBook, readAllowList, runSweep, swedishRun, vocabularyOf,
 } from "../../scripts/i18n/sweep-engine-text.mjs";
 
 const native = loadNativeBook();
@@ -52,10 +52,23 @@ test("each string gets one class", () => {
   assert.equal(judge("Barn person-9:s gren av Okänt hus", context).class, "partial", "a house the engine names is text, not a name");
   const book = createPhraseBook({ native: true });
   book.setAll({ "{{name}} avslöjas": "{{name}} is exposed" });
-  const partial = (vocabularyOfBook) => judge("Gisela avslöjas", { book, vocabulary: vocabularyOfBook, names: new Set(), fixtures: new Set() });
+  const partial = (vocabularyOfBook, names = new Set(["Gisela"])) => judge("Gisela avslöjas", { book, vocabulary: vocabularyOfBook, names, fixtures: new Set() });
   assert.deepEqual(partial({ swedish: new Set(["Gisela"]), english: new Set() }), { class: "partial", reading: "Gisela is exposed", left: "Gisela" });
   assert.equal(partial({ swedish: new Set(), english: new Set() }).class, "translated");
+  assert.deepEqual(partial({ swedish: new Set(), english: new Set() }, new Set()), { class: "partial", reading: "Gisela is exposed", left: "Gisela" },
+    "a word the reading keeps is a name only when the state has it");
+  assert.equal(partial({ swedish: new Set(), english: new Set(["gisela"]) }, new Set()).class, "translated", "or when the book's English uses it");
   assert.equal(judge("Kungen avslöjas", { book, vocabulary, names: new Set(), fixtures: new Set() }).left, "(reads as Swedish)");
+});
+
+test("a word a reader let through as a name is a gap unless the state names it", () => {
+  const book = createPhraseBook({ native: true });
+  book.setAll({ "{{title}} av {{seat}}": "{{title}} of {{seat}}", Konstantinopel: "Constantinople" });
+  const english = { swedish: new Set(), english: new Set(["of", "constantinople"]) };
+  const context = (names) => ({ book, vocabulary: english, names, fixtures: new Set() });
+  assert.deepEqual(judge("Patriark av Konstantinopel.", context(new Set())), { class: "partial", reading: "Patriark of Constantinople.", left: "Patriark" });
+  assert.equal(judge("Patriark av Konstantinopel.", context(new Set(["Patriark"]))).class, "translated");
+  assert.equal(keptWord("guvernör: ineb-hedj (memfis)", "governor: ineb-hedj (memfis)", english, new Set(["Ineb-hedj (Memfis)"])), null, "a name the engine wrote in lower case");
 });
 
 test("two runs of one configuration collect the same strings", () => {

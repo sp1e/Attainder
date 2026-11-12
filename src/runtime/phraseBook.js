@@ -308,11 +308,13 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
 
   // The values of a native match, matched again with the commas inside
   // parentheses masked when a value was cut inside one. Null when no
-  // match keeps every parenthesis whole.
+  // match keeps every parenthesis whole. A text whose own parentheses do
+  // not pair ("Pesten tar 1) Rom") keeps its values.
   const balancedValues = (pattern, text, match) => {
     const values = match.slice(1);
     if (!values.some(unbalanced)) return values;
     const masked = maskParenthesisCommas(text);
+    if (masked === text && unbalanced(text)) return values;
     const again = masked === text ? null : pattern.regex.exec(masked);
     if (!again) return null;
     const unmasked = again.slice(1).map((value) => value.replaceAll(PAREN_COMMA, ", "));
@@ -449,6 +451,16 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
     const bare = text.slice(0, -1).trimEnd();
     if (!bare) return null;
     const known = get(bare) ?? (strong ? null : matchPattern(bare, false, depth, whole));
+    if (known == null) return null;
+    return known.endsWith(".") ? known : `${known}.`;
+  };
+
+  // Native only. A text the book has as an entry without its period. It is
+  // tried before the patterns: "{{title}} av {{seat}}" would otherwise let
+  // "Patriark" through as a name in "Patriark av Konstantinopel.".
+  const entryWithoutPeriod = (text) => {
+    if (!text.endsWith(".") || text.endsWith("..")) return null;
+    const known = get(text.slice(0, -1).trimEnd());
     if (known == null) return null;
     return known.endsWith(".") ? known : `${known}.`;
   };
@@ -631,7 +643,7 @@ export const createPhraseBook = ({ localizeValue = null, native = false } = {}) 
   // with its value, the joined conditions, the stacked sentences and the note
   // in parentheses are read in the full tier only.
   const deriveOnce = (key, strong, depth, whole) => {
-    const found = matchPattern(key, strong, depth, whole) ?? byParts(key, strong, depth, whole);
+    const found = (native ? entryWithoutPeriod(key) : null) ?? matchPattern(key, strong, depth, whole) ?? byParts(key, strong, depth, whole);
     if (found != null || !native) return found;
     const simple = byCommaList(key, strong, depth) ?? withoutPeriod(key, strong, depth, whole) ?? (strong && depth === 0 ? null : byLoweredLabel(key, strong, depth, whole));
     if (simple != null || strong) return simple;

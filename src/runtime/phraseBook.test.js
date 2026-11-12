@@ -512,3 +512,15 @@ test("native: the genitive after a name that ends in a digit", () => {
   assert.equal(book.translate("Barn person-123:s gren av Karls hus"), "Child person-123’s branch of Charles’s house");
   assert.equal(book.translate("Okänd sak 2:s gren av Karls hus"), null, "the book must read the name");
 });
+
+test("native: an entry without its period wins over a pattern", () => {
+  const entries = { "{{title}} av {{seat}}": "{{title}} of {{seat}}", Konstantinopel: "Constantinople", "Patriark av Konstantinopel": "Patriarch of Constantinople" };
+  assert.equal(nativeBookOf(entries).translate("Patriark av Konstantinopel."), "Patriarch of Constantinople.");
+  assert.equal(nativeBookOf(entries).translate("Biskop av Konstantinopel."), "Biskop of Constantinople.", "without the entry the pattern still reads");
+});
+
+test("native: a text whose own parentheses do not pair keeps its pattern", () => {
+  const book = nativeBookOf({ "Pesten tar {{names}}": "The plague takes {{names}}" });
+  assert.equal(book.translate("Pesten tar 1) Rom"), "The plague takes 1) Rom");
+  assert.equal(book.translate("Pesten tar Rom (Aten, Sparta"), "The plague takes Rom (Aten, Sparta");
+});

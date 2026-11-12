@@ -22,7 +22,8 @@
 //                 tribe or nickname) and holds no Swedish: a house the engine names
 //                 ("Barn person-5:s gren av Karls hus") is text;
 //   fixture       text the sweep itself supplied where a model or the host would write;
-//   partial       the reading still holds Swedish: a gap;
+//   partial       the reading still holds Swedish, or keeps a word of the text that
+//                 is neither the book's English nor part of a name: a gap;
 //   untranslated  the book has nothing for it: a gap.
 // A gap named in scripts/i18n/engine-sweep-allow.json is deliberate and passes --check.
 import fs from "node:fs";
@@ -207,6 +208,30 @@ export function swedishRun(text, { swedish, english }) {
   return null;
 }
 
+// Every word of every name in a state, in lower case: the engine writes some names in
+// lower case ("guvernör: ineb-hedj (memfis)").
+const nameWords = new WeakMap();
+const nameWordsOf = (names) => {
+  let words = nameWords.get(names);
+  if (!words) {
+    words = new Set();
+    for (const name of names) for (const word of name.match(WORD) ?? []) words.add(word.toLowerCase());
+    nameWords.set(names, words);
+  }
+  return words;
+};
+
+// A word of `text` that `reading` keeps as it is although the book's English never uses
+// it and no name in the state holds it, or null. A reader that lets a value through as
+// a name leaves such a word ("Patriark av Konstantinopel." read as "Patriark of
+// Constantinople."), and neither looksSwedish nor swedishRun sees a capitalised word
+// after the first.
+export function keptWord(text, reading, { english }, names) {
+  const kept = new Set(reading.match(WORD) ?? []);
+  const known = nameWordsOf(names);
+  return (text.match(WORD) ?? []).find((word) => kept.has(word) && !english.has(word.toLowerCase()) && !known.has(word.toLowerCase())) ?? null;
+}
+
 // The class of one string and, for a reading, the reading itself.
 export function judge(text, { book, vocabulary, names, fixtures }) {
   const reading = book.translate(text);
@@ -215,7 +240,7 @@ export function judge(text, { book, vocabulary, names, fixtures }) {
     return { class: fixtures.has(text) ? "fixture" : "untranslated" };
   }
   if (reading === text) return { class: "name" };
-  const left = looksSwedish(reading) ? "(reads as Swedish)" : swedishRun(reading, vocabulary);
+  const left = looksSwedish(reading) ? "(reads as Swedish)" : swedishRun(reading, vocabulary) ?? keptWord(text, reading, vocabulary, names);
   return left ? { class: "partial", reading, left } : { class: "translated" };
 }
 
