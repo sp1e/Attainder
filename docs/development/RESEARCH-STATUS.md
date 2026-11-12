@@ -73,9 +73,15 @@ The 113 approved events of the 52 English-first supplements now sit in `catalog.
 
 - Ruling: the seven window notes say what each supplement retained and withheld, and that other regions and empty years remain research gaps. The windows are partial and make no claim of complete coverage.
 
-## Current publication checkpoint: 11 November 2026
+### Second English pass: five windows
 
-The gameplay catalog contains 986 approved event records, 968 sources and 8,288 bilingual entries. Coverage spans 4,830 partially researched years; no year remains unresearched. The English-first integration on 11 November 2026 added 113 events and 167 sources (see the Claude research checkpoint above). The previous catalog publication was the BC2400 supplement in [PR #108](https://github.com/sp1e/Attainder/pull/108) at `04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c`. Its required CI passed 5,337 tests with no failures and two TODOs, and the build passed. The chronological record below preserves earlier milestones and remaining holds. Claude owns runtime integration and gameplay verification.
+On 12 November 2026 a second pass over AD 400–499, AD 600–699, 600–501 BC, 1400–1301 BC and 1600–1501 BC took up the candidates the first-pass supplements had left for later. Five `*-second-pass-supplement.json` files hold 18 approved records, each citing one Met Heilbrunn Key Events entry. The live Met pages returned HTTP 429 from a Vercel security checkpoint, so every entry was read from an Internet Archive capture, and each locator names the capture. An independent check reopened all 14 captures, confirmed the 18 records and applied five corrections. Five candidates were withheld: three as too thin or already covered, one as a second record for the same site and date, and one because its page has no archive capture.
+
+The catalog holds 1,004 events and 986 sources. The five windows stay `partial`, and each note adds one sentence listing the new titles. `locales/en.json` gains 89 entries and `locales/sv.json` 36. Both sidecars point at research commit `fdad48d561829f01849b528cb9c6530a287248fb` on the retained `research/second-pass-five-windows` branch, and all 8,413 entries were checked against it.
+
+## Current publication checkpoint: 12 November 2026
+
+The gameplay catalog contains 1,004 approved event records, 986 sources and 8,413 bilingual entries. Coverage spans 4,830 partially researched years; no year remains unresearched. The second English pass on 12 November 2026 added 18 events and 18 sources, and the English-first integration on 11 November 2026 added 113 events and 167 sources (see the Claude research checkpoint above). The previous catalog publication was the BC2400 supplement in [PR #108](https://github.com/sp1e/Attainder/pull/108) at `04ca6e0c0667325b0ca2816ccb31b5f136fe5c7c`. Its required CI passed 5,337 tests with no failures and two TODOs, and the build passed. The chronological record below preserves earlier milestones and remaining holds. Claude owns runtime integration and gameplay verification.
 
 ## New research: English only
 
