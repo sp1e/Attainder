@@ -41,7 +41,7 @@ export default function HistoricalRecordView({ startDate, gameDate }) {
   const groups = catalog ? historicalRecord(catalog, startDate, gameDate) : [];
   const sources = Array.isArray(catalog?.sources) ? catalog.sources : [];
   const pastResearch = RESEARCH_END_YEAR !== null && (parseGameDate(gameDate)?.year ?? 0) > RESEARCH_END_YEAR;
-  return <div className="hist-record">
+  return <div className="hist-record" data-native-text>
     {catalog && groups.length === 0 && <p className="char-caption">Inga godkända händelser ännu för de år kampanjen har passerat.</p>}
     {groups.map((group) => <section key={group.year} className="hist-year">
       <h4>{yearHeading(group.year)}</h4>

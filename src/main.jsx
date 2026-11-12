@@ -42,7 +42,9 @@ const mount = () => {
     }).render(
         <App />,
     );
-    // Live-translates the UI when a non-English language is set in Settings.
+    // Puts the page into the language set in Settings: the language's pack over
+    // the English interface, or in English the native book over the Swedish
+    // court text (runtime/translator.js).
     startTranslator();
     registerServiceWorker();
     // The Android app rests in the background once nothing is being generated

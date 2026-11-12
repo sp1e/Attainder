@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { groupHistoricalStartRows, historicalStartRows } from '../runtime/historicalStartPicker.js';
+import { nativeReading } from '../runtime/translator.js';
 
 // The start card's list of historical starts: a search field over rows grouped by region and era.
 // The rows form one radio group with a roving tab stop, as the card's mode buttons do.
@@ -26,9 +27,23 @@ function StartRow({ row, chosen, tabStop, disabled, onChoose }) {
   </button>;
 }
 
+// Draws the picker again when the page translator announces new translations ("i18n:updated", as the
+// map's labels listen for). In English mode the native book can arrive after the picker is on screen,
+// and the rows' search text is built from the book's readings.
+const useTranslatorUpdates = () => {
+  const [, setUpdates] = useState(0);
+  useEffect(() => {
+    const onUpdated = () => setUpdates(count => count + 1);
+    window.addEventListener('i18n:updated', onUpdated);
+    return () => window.removeEventListener('i18n:updated', onUpdated);
+  }, []);
+};
+
 export default function HistoricalStartPicker({ options, value, onChange, disabled = false }) {
   const [query, setQuery] = useState('');
-  const rows = historicalStartRows(options);
+  useTranslatorUpdates();
+  // nativeReading: in English mode the rows read English on the page, and the search must match that too.
+  const rows = historicalStartRows(options, nativeReading);
   const groups = groupHistoricalStartRows(rows, query);
   const shown = groups.flatMap(region => region.eras.flatMap(era => era.rows));
   const chosenKey = keyOf(value);
@@ -44,7 +59,7 @@ export default function HistoricalStartPicker({ options, value, onChange, disabl
     const next = shown[steppedIndex(shown.length, shown.findIndex(row => row.key === chosenKey), event.key)];
     choose(next); event.currentTarget.querySelector(rowSelector(next.key))?.focus();
   };
-  return <div className="historical-start-picker">
+  return <div className="historical-start-picker" data-native-text>
     <label htmlFor="historical-search">Sök rike, härskare eller tid</label>
     <input id="historical-search" type="search" autoComplete="off" value={query} onChange={event => setQuery(event.target.value)} disabled={disabled} />
     {rows.length > 0 && shown.length === 0 && <p className="dynasty-start-detail">Inga starter matchar sökningen.</p>}

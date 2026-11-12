@@ -107,8 +107,20 @@ export const cleanJsxText = (raw) => {
 // expanded); anything else is one slot.
 
 const MAX_VARIANTS = 8;
+// The cap in force. The native Swedish catalog (extractNativeStrings.mjs) raises it
+// for its own run: there a missing variant is a sentence the English mode cannot find.
+let variantLimit = MAX_VARIANTS;
+export const withVariantLimit = (limit, run) => {
+  const previous = variantLimit;
+  variantLimit = limit;
+  try {
+    return run();
+  } finally {
+    variantLimit = previous;
+  }
+};
 
-const slotName = (node, code) => {
+export const slotName = (node, code) => {
   if (!node) return "value";
   if (node.type === "Identifier") return node.name;
   if (node.type === "MemberExpression" || node.type === "OptionalMemberExpression") {
@@ -129,13 +141,13 @@ const slotName = (node, code) => {
   return "value";
 };
 
-const cleanSlot = (name) => String(name || "value").replace(/[^A-Za-z0-9_]/g, "_").replace(/^_+|_+$/g, "") || "value";
+export const cleanSlot = (name) => String(name || "value").replace(/[^A-Za-z0-9_]/g, "_").replace(/^_+|_+$/g, "") || "value";
 
-const cross = (a, b) => {
+export const cross = (a, b) => {
   const out = [];
   for (const x of a) for (const y of b) {
     out.push([...x, ...y]);
-    if (out.length >= MAX_VARIANTS) return out;
+    if (out.length >= variantLimit) return out;
   }
   return out;
 };
@@ -162,22 +174,22 @@ export const shapeOf = (node, code) => {
       // "event" or "events", never "event{{value}}" (a language cannot
       // translate a suffix).
       const choice = choiceShape(node, code);
-      if (choice) return choice.slice(0, MAX_VARIANTS);
+      if (choice) return choice.slice(0, variantLimit);
       const a = branchShape(node.consequent, code);
       const b = branchShape(node.alternate, code);
       if (!hasText(a) && !hasText(b)) return null;
-      return [...a, ...b].slice(0, MAX_VARIANTS);
+      return [...a, ...b].slice(0, variantLimit);
     }
     case "LogicalExpression": {
       // `{many && "s"}`: nothing, or the suffix, as above.
       const suffix = node.operator === "&&" ? choiceShape(node.right, code) : null;
-      if (suffix) return [[], ...suffix].slice(0, MAX_VARIANTS);
+      if (suffix) return [[], ...suffix].slice(0, variantLimit);
       const right = branchShape(node.right, code);
       if (!hasText(right)) return null;
       // cond && "Text": nothing, or the text. x || "Fallback" (and ??): x
       // itself, whatever it is, or the fallback.
       const left = node.operator === "&&" ? [[]] : [[{ slot: cleanSlot(slotName(node.left, code)) }]];
-      return [...left, ...right].slice(0, MAX_VARIANTS);
+      return [...left, ...right].slice(0, variantLimit);
     }
     case "BinaryExpression": {
       if (node.operator !== "+") return null;
@@ -209,7 +221,7 @@ const hasText = (shape) => Boolean(shape?.some((alt) => alt.some((part) => part.
 // child): expands into each. A branch may be a string, nothing, or a template
 // with values of its own: `Agenda${n ? ` (${n})` : ""}` is "Agenda" or
 // "Agenda ({{n}})". Anything else in a branch makes the whole choice one slot.
-const choiceShape = (node, code) => {
+export const choiceShape = (node, code) => {
   if (!node) return null;
   if (node.type === "StringLiteral") return [[{ text: node.value }]];
   if (node.type === "TemplateLiteral") return shapeOf(node, code);
@@ -217,19 +229,19 @@ const choiceShape = (node, code) => {
   if (node.type === "ConditionalExpression") {
     const a = isNothing(node.consequent) ? [[]] : choiceShape(node.consequent, code);
     const b = isNothing(node.alternate) ? [[]] : choiceShape(node.alternate, code);
-    if (a && b) return [...a, ...b].slice(0, MAX_VARIANTS);
+    if (a && b) return [...a, ...b].slice(0, variantLimit);
     return null;
   }
   if (node.type === "LogicalExpression" && node.operator === "&&") {
     const right = choiceShape(node.right, code);
-    return right ? [[], ...right].slice(0, MAX_VARIANTS) : null;
+    return right ? [[], ...right].slice(0, variantLimit) : null;
   }
   return null;
 };
 
 // Parts → the string the translator will see, and whether it has slots. An
 // alternative that renders an element is not one string: null.
-const render = (parts) => {
+export const render = (parts) => {
   if (parts.some((part) => part.element)) return null;
   const used = new Map();
   let text = "";
@@ -255,8 +267,8 @@ const patternHasWords = (text) => /[A-Za-z]{2}/.test(text.replace(/\{\{[^}]+\}\}
 // ---------------------------------------------------------------------------
 // Where a string sits.
 
-const UI_ATTRS_DOM = new Set(["title", "placeholder", "aria-label", "alt", "aria-description", "aria-roledescription"]);
-const NON_TEXT_PROPS = new Set([
+export const UI_ATTRS_DOM = new Set(["title", "placeholder", "aria-label", "alt", "aria-description", "aria-roledescription"]);
+export const NON_TEXT_PROPS = new Set([
   "className", "style", "key", "id", "type", "href", "src", "icon", "color", "variant", "size", "tone", "align",
   "direction", "role", "target", "rel", "mode", "kind", "as", "value", "defaultValue", "htmlFor", "accept",
   "autoComplete", "inputMode", "width", "height", "fill", "stroke", "viewBox", "d", "transform", "points",
@@ -299,7 +311,7 @@ const NON_UI_CALLS = new Set([
   "warn", "log", "info", "debug", "error", "trace", "assert", "table", "group", "groupEnd", "time", "timeEnd",
 ]);
 
-const calleeName = (callee) => {
+export const calleeName = (callee) => {
   if (!callee) return "";
   if (callee.type === "Identifier") return callee.name;
   if (callee.type === "MemberExpression" || callee.type === "OptionalMemberExpression") {
@@ -310,7 +322,7 @@ const calleeName = (callee) => {
   return "";
 };
 
-const jsxName = (nameNode) => {
+export const jsxName = (nameNode) => {
   if (!nameNode) return "";
   if (nameNode.type === "JSXIdentifier") return nameNode.name;
   if (nameNode.type === "JSXMemberExpression") return `${jsxName(nameNode.object)}.${jsxName(nameNode.property)}`;

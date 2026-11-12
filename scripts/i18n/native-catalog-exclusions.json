@@ -1,0 +1,192 @@
+[
+  {
+    "file": "server/characters/cadetBranches.js",
+    "text": "gren av",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "(genererad)",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Africa",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Americas",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Antarctica",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Asia",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Europe",
+    "reason": "technical"
+  },
+  {
+    "file": "server/historicalScenarios.js",
+    "text": "Oceania",
+    "reason": "technical"
+  },
+  {
+    "file": "server/seed/historical/authored-scenarios.mjs",
+    "text": "isabella",
+    "reason": "technical"
+  },
+  {
+    "file": "server/seed/historical/authored-scenarios.mjs",
+    "text": "john",
+    "reason": "technical"
+  },
+  {
+    "file": "server/seed/historical/authored-scenarios.mjs",
+    "text": "karl-den-yngre",
+    "reason": "technical"
+  },
+  {
+    "file": "server/seed/historical/authored-scenarios.mjs",
+    "text": "ludvig-av-akvitanien",
+    "reason": "technical"
+  },
+  {
+    "file": "server/seed/historical/authored-scenarios.mjs",
+    "text": "pippin-av-italien",
+    "reason": "technical"
+  },
+  {
+    "file": "src/Editor/topologySweep.js",
+    "text": "en-US",
+    "reason": "technical"
+  },
+  {
+    "file": "src/Game/AI/fallbackRunner.js",
+    "text": "en-US",
+    "reason": "technical"
+  },
+  {
+    "file": "src/Game/AI/gmTerritoryScope.js",
+    "text": "under",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/Game/AI/narratedCapture.js",
+    "text": "under",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/Game/AI/nativeDiplomaticDirector.js",
+    "text": "under",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/Game/AI/nativeTimelineCurator.js",
+    "text": "under",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/Game/AI/nativeWarLedger.js",
+    "text": "\\bretak(?:e|es|en|ing)\\b",
+    "reason": "technical"
+  },
+  {
+    "file": "src/Game/AI/nativeWorldDirector.js",
+    "text": "under",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/Game/AI/promptContext.js",
+    "text": "under",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/Game/AI/providerErrors.js",
+    "text": "en-US",
+    "reason": "technical"
+  },
+  {
+    "file": "src/Game/AI/worldDirection.js",
+    "text": "under",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/Game/Characters/CharactersPanel.jsx",
+    "text": "Läs färdigt",
+    "reason": "technical"
+  },
+  {
+    "file": "src/Game/GameUI/cheats.jsx",
+    "text": "Under construction",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/Game/Map/MarkersLayer.jsx",
+    "text": "Under construction",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/Game/Selection/CountryPanel.jsx",
+    "text": "Under Foreign Control (",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/Game/Selection/Features.jsx",
+    "text": "Under construction",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/runtime/characterLanguage.js",
+    "text": "en-GB",
+    "reason": "technical"
+  },
+  {
+    "file": "src/runtime/characterWatchSettings.js",
+    "text": "Bevakningarna för kampanj ${campaignId} kunde inte läsas.",
+    "reason": "developer-only"
+  },
+  {
+    "file": "src/runtime/characterWatchSettings.js",
+    "text": "Bevakningarna för kampanj ${campaignId} kunde inte sparas.",
+    "reason": "developer-only"
+  },
+  {
+    "file": "src/runtime/characterWorld.js",
+    "text": "Politics",
+    "reason": "not-swedish"
+  },
+  {
+    "file": "src/runtime/countryFlags.js",
+    "text": "OM",
+    "reason": "technical"
+  },
+  {
+    "file": "src/runtime/nativePack.js",
+    "text": "${BASE}lang/attainder/en.json",
+    "reason": "technical"
+  },
+  {
+    "file": "src/runtime/nativePack.js",
+    "text": "${BASE}lang/attainder/historical-en.json",
+    "reason": "technical"
+  },
+  {
+    "file": "src/runtime/nativePack.js",
+    "text": "${BASE}lang/attainder/packages-en.json",
+    "reason": "technical"
+  },
+  {
+    "file": "src/runtime/placeSearch.js",
+    "text": "Under construction",
+    "reason": "not-swedish"
+  }
+]

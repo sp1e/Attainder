@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { characterNumberLocale } from "../../runtime/characterLanguage.js";
 import { useRuntimeState } from "../../runtime/useRuntimeState.js";
 import { compareGameDates, parseGameDate } from "../../runtime/gameDates.js";
 import { getCharacterPresentation } from "../../runtime/characters/index.js";
@@ -29,7 +30,7 @@ const TABS = [
 ];
 // Commands whose refusal is shown under their own card, so the panel banner stays quiet.
 const INLINE_REFUSALS = ["abort_scheme", "release_prisoner", "execute_prisoner"];
-const number = (value) => Number.isFinite(Number(value)) ? new Intl.NumberFormat("sv-SE", { maximumFractionDigits: 1 }).format(Number(value)) : "—";
+const number = (value) => Number.isFinite(Number(value)) ? new Intl.NumberFormat(characterNumberLocale(), { maximumFractionDigits: 1 }).format(Number(value)) : "—";
 const entries = (value) => Array.isArray(value) ? value : Object.values(value || {});
 const text = (value, fallback = "—") => typeof value === "string" || typeof value === "number" ? String(value) : value?.label || value?.name || value?.title || fallback;
 const dateLabel = (value) => {
@@ -364,9 +365,13 @@ function OfficesView({ view, setTab, busy = false, runAction, onHold }) {
   </>;
 }
 
+// A log entry of type action_narrative holds the title and the story the model wrote for an action's outcome, so the
+// page translator leaves both as written. Every other entry is the engine's own text and is not marked.
+const asWritten = (memory) => memory.type === "action_narrative" ? "" : undefined;
+
 function MemoryList({ memories, people = {} }) {
   const titles = Object.fromEntries(memories.map((memory) => [memory.id, memory.title]));
-  return <ol className="char-memory-list">{memories.map((memory, index) => <li key={memory.id || index}><span className="char-memory-date">{dateLabel(memory.date || memory.createdAt)}</span><div><strong>{memory.title || humanize(memory.type)}</strong><p>{memory.description || memory.text}</p>{memory.participants?.length > 0 && <small>{memory.participants.map((id) => people[id]?.name).filter(Boolean).join(" · ")}</small>}{memory.causeId && <small className="char-memory-cause">Följd av: {memory.causeTitle || titles[memory.causeId] || "ett tidigare beslut"}</small>}</div></li>)}</ol>;
+  return <ol className="char-memory-list">{memories.map((memory, index) => <li key={memory.id || index}><span className="char-memory-date">{dateLabel(memory.date || memory.createdAt)}</span><div><strong data-no-translate={asWritten(memory)}>{memory.title || humanize(memory.type)}</strong><p data-no-translate={asWritten(memory)}>{memory.description || memory.text}</p>{memory.participants?.length > 0 && <small>{memory.participants.map((id) => people[id]?.name).filter(Boolean).join(" · ")}</small>}{memory.causeId && <small className="char-memory-cause">Följd av: {memory.causeTitle || titles[memory.causeId] || "ett tidigare beslut"}</small>}</div></li>)}</ol>;
 }
 
 function ChronicleView({ view, filter, setFilter, historical = false, startDate, gameDate }) {
@@ -494,7 +499,8 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0 })
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
   };
   if (!open) return null;
-  return <div className="char-backdrop" data-char-theme={theme} onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
+  // data-native-text: everything in the panel is written in Swedish, so the page translator applies its whole native book here.
+  return <div className="char-backdrop" data-char-theme={theme} data-native-text onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
     <section className="char-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="characters-title" onKeyDown={onKeyDown}>
       <header className="char-header"><div className="char-brand"><span className="char-brand-mark"><CivicMark /></span><div><span className="char-eyebrow">Attainder · Dynastier</span><h2 id="characters-title">Rike & familjer</h2></div></div><div className="char-header-controls"><button type="button" className="char-button char-connect-model" aria-expanded={modelConnectOpen} onClick={() => setModelConnectOpen((current) => !current)}>Anslut modell</button><button type="button" className="char-icon-button" onClick={() => choose(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? "Byt till ljust läge" : "Byt till mörkt läge"} title={theme === "dark" ? "Ljust läge" : "Mörkt läge"}>{theme === "dark" ? "☀" : "☾"}</button><button type="button" className="char-theme-system" aria-pressed={choice === "system"} onClick={() => choose("system")}>Systemtema</button><button type="button" className="char-icon-button char-close" onClick={onClose} aria-label="Stäng Rike & familjer"><CloseMark /></button></div></header>
       {view && <div className="char-campaign-strip"><div><span className="char-mode">{view.mode === "family" ? "FÖLJ FAMILJEN" : "FÖLJ RIKET"}</span><strong>{view.mode === "family" ? view.families.find((family) => family.id === view.identity?.familyId)?.name : (view.identity?.realmName || view.economy?.polityName || "Riket")}</strong><span className="char-date">{dateLabel(view.date)}</span>{view.difficulty?.label && <span className="char-difficulty">Svårighetsgrad: {view.difficulty.label}</span>}<CharacterWatchToggles disabled={busy} /></div><button type="button" className="char-button char-button--advance" disabled={busy || talkHold || view.status?.ended || view.status === "ended"} title={talkHold ? "Besvara eller avbryt förfrågan i samtalet först" : undefined} onClick={() => perform(() => advanceCharacterYearWithModel(), true)}>{busy ? "Bearbetar…" : "Nästa år med modellen"}<span aria-hidden="true"> →</span></button></div>}

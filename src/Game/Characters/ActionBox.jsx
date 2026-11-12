@@ -3,11 +3,14 @@ import { parseGameDate } from "../../runtime/gameDates.js";
 import { getCharacterPresentation } from "../../runtime/characters/index.js";
 import { estimateCharacterActionForView, recordCharacterNarrative, submitCharacterCommand } from "../../runtime/characterRuntime.js";
 import { interpretCharacterAction, narrateCharacterResolution } from "./characterModelCalls.js";
+import { modelText, playerText } from "./playerText.js";
 
 // The character panel's own action: free text interpreted by the model, a confirmation card with the engine's odds,
 // the full catalog as a menu fallback, and the list of the family's running schemes. The model never sets odds;
 // odds come from the engine, and only an estimate's `display` reaches the markup. Model-written text is rendered
-// as plain React text.
+// as plain React text inside an element marked data-no-translate, so the page translator leaves it as written.
+
+export { modelText, playerText };
 
 export const TIER_HEADINGS = Object.freeze({
   clean_success: "Lyckat i det tysta",
@@ -68,7 +71,10 @@ export async function proposalFor({ entry, payload, estimate, view, explanation 
   return { kind: "confirm", proposal: { mode: "contested", catalogId: entry.catalogId, entry, payload, estimate: odds, explanation, revision: odds.revision ?? viewRevision, viewRevision } };
 }
 
-/** Interprets the player's text. Resolves to { kind: 'confirm', proposal } or { kind: 'menu', reason } when the menu should take over. */
+/**
+ * Interprets the player's text. Resolves to { kind: 'confirm', proposal } or { kind: 'menu', reason } when the menu
+ * should take over; `reasonFromModel` is true when the reason is the model's own sentence.
+ */
 export async function prepareInterpretedAction({ text, view, interpret, estimate }) {
   let answer;
   try {
@@ -79,23 +85,16 @@ export async function prepareInterpretedAction({ text, view, interpret, estimate
   }
   if (!answer?.ok) {
     // interpretCharacterAction gives the player a Swedish reason and keeps a transport or schema error in `detail`.
+    // A no-match reason the model wrote carries `origin: 'model'` and may be in either language. A Swedish reason
+    // that names a person the game does not know carries `quoted`, the name, which may be English.
     if (answer?.detail) console.warn("[character action] interpret failed:", answer.detail);
-    return { kind: "menu", reason: playerText(answer?.reason, INTERPRET_FAILED) };
+    if (answer?.origin !== "model") return { kind: "menu", reason: playerText(answer?.reason, INTERPRET_FAILED, { quoted: answer?.quoted }) };
+    const reason = modelText(answer.reason, "");
+    return reason ? { kind: "menu", reason, reasonFromModel: true } : { kind: "menu", reason: INTERPRET_FAILED };
   }
   const entry = entries(view?.catalog).find((item) => item.catalogId === answer.catalogId);
   if (!entry) return { kind: "menu", reason: INTERPRET_FAILED };
-  return proposalFor({ entry, payload: answer.payload, estimate, view, explanation: playerText(answer.explanation, "") });
-}
-
-// Engine refusals are Swedish sentences ending with a period. A transport or parser error is English and is not
-// for the player: it goes to the log and the player reads the fallback sentence. A word counts only between two
-// non-letters; `\b` treats å, ä and ö as boundaries and would find "of" in "oförmögen".
-const ENGLISH_WORDS = /(?<!\p{L})(the|was|failed|fetch|of|with|error|must|cannot|unexpected|invalid|there|that|object|undefined|null|network|request|response|json|http)(?!\p{L})/iu;
-export function playerText(message, fallback) {
-  const text = typeof message === "string" ? message.trim() : "";
-  if (text && /[.!?]$/.test(text) && !ENGLISH_WORDS.test(text)) return text;
-  if (text) console.warn("[character action] an internal error was kept from the player:", text);
-  return fallback;
+  return proposalFor({ entry, payload: answer.payload, estimate, view, explanation: modelText(answer.explanation, "") });
 }
 
 const failedOutcome = (result) => ({ ok: false, heading: "Handlingen kunde inte genomföras", text: playerText(result?.error, ACTION_FAILED) });
@@ -113,7 +112,8 @@ function flatteryNote(resolution) {
 /**
  * Carries out a confirmed proposal. A command entry submits its own command. A contested entry submits attempt_action,
  * then asks the model for the story and saves it through recordNarrative (origin 'narrate'). A failed story leaves the
- * engine's default text and a note; the outcome stands either way.
+ * engine's default text and a note; the outcome stands either way. `narrated` is true on an outcome whose title and
+ * text the model wrote.
  */
 export async function executeProposal({ proposal, view, submit, narrate, recordNarrative, present, onProgress = () => {} }) {
   if (proposal.mode !== "contested") {
@@ -151,7 +151,7 @@ export async function executeProposal({ proposal, view, submit, narrate, recordN
   }
   if (story?.ok) {
     const saved = await recordNarrative({ resolutionId: resolution.id, title: story.title, narrative: story.narrative, adjustments: story.adjustments });
-    if (saved?.ok) return { ok: true, heading, title: story.title, text: story.narrative, ...reveal };
+    if (saved?.ok) return { ok: true, heading, title: story.title, text: story.narrative, narrated: true, ...reveal };
     console.warn(`[character action] the narrative for ${resolution.id} was refused:`, saved?.error);
   }
   return { ok: true, heading, ...standard, ...reveal, note: NARRATE_FAILED };
@@ -197,7 +197,7 @@ export function ConfirmationCard({ proposal, view, onConfirm, onCancel, busy = f
   return <section className="char-confirm" aria-label="Bekräfta handlingen" onFocus={onFocus} onBlur={onBlur}>
     <span className="char-eyebrow">{proposal.mode === "contested" ? "Omstridd handling" : "Beslut"}</span>
     <h4 ref={focusRef} tabIndex={-1}>{proposal.entry.label}</h4>
-    {proposal.explanation && <p className="char-caption">{proposal.explanation}</p>}
+    {proposal.explanation && <p className="char-caption" data-no-translate>{proposal.explanation}</p>}
     <ProposalFacts proposal={proposal} view={view} />
     <div className="char-confirm-buttons">
       <button type="button" className="char-button char-button--primary" disabled={busy} onClick={onConfirm}>Genomför</button>
@@ -277,8 +277,8 @@ function ContestedCard({ entry, view, onPropose, busy }) {
   </details>;
 }
 
-/** Every catalog entry, grouped by category. A disabled entry stays listed with its reason. */
-export function ActionMenu({ view, reason = "", CommandCard, onPropose, onClose, busy = false, focusRef }) {
+/** Every catalog entry, grouped by category. A disabled entry stays listed with its reason. `reasonFromModel` marks a reason the model wrote. */
+export function ActionMenu({ view, reason = "", reasonFromModel = false, CommandCard, onPropose, onClose, busy = false, focusRef }) {
   const catalog = entries(view?.catalog);
   const groups = [COMMAND_GROUP, ...CATEGORY_LABELS].map(([key, label]) => [key, label,
     catalog.filter((entry) => key === "command" ? entry.mode !== "contested" : entry.mode === "contested" && entry.category === key)]);
@@ -286,7 +286,7 @@ export function ActionMenu({ view, reason = "", CommandCard, onPropose, onClose,
   const other = catalog.filter((entry) => entry.mode === "contested" && !known.has(entry.category));
   if (other.length) groups.push(["other", "Övrigt", other]);
   return <section className="char-action-menu" aria-label="Alla handlingar" ref={focusRef} tabIndex={-1}>
-    {reason && <p className="char-reason" role="status">{reason}</p>}
+    {reason && <p className="char-reason" role="status" data-no-translate={reasonFromModel ? "" : undefined}>{reason}</p>}
     <div className="char-section-heading"><p className="char-caption">Välj en handling. Omstridda handlingar visar chansen innan du bestämmer dig.</p>{onClose && <button type="button" className="char-text-button" onClick={onClose}>Stäng listan</button>}</div>
     {groups.filter(([, , items]) => items.length).map(([key, label, items]) => <div className="char-action-group" key={key}>
       <h4>{label}</h4>
@@ -301,11 +301,13 @@ export function ActionMenu({ view, reason = "", CommandCard, onPropose, onClose,
 
 export function OutcomeCard({ outcome, onDone, focusRef }) {
   const paragraphs = String(outcome.text || "").split(/\n{2,}/).map((part) => part.trim()).filter(Boolean);
+  // A narrated outcome's title and text are the model's; the engine's default text is not marked.
+  const asWritten = outcome.narrated ? "" : undefined;
   return <section className={`char-outcome${outcome.ok ? "" : " char-outcome--error"}`} role="status" aria-label="Utfall">
     <span className="char-eyebrow">Utfall</span>
     <h4 ref={focusRef} tabIndex={-1}>{outcome.heading}</h4>
-    {outcome.title && <strong className="char-outcome-title">{outcome.title}</strong>}
-    {paragraphs.map((part, index) => <p key={index}>{part}</p>)}
+    {outcome.title && <strong className="char-outcome-title" data-no-translate={asWritten}>{outcome.title}</strong>}
+    {paragraphs.map((part, index) => <p key={index} data-no-translate={asWritten}>{part}</p>)}
     {outcome.revealed && <p className="char-caption">{outcome.revealed}</p>}
     {outcome.note && <p className="char-caption">{outcome.note}</p>}
     {outcome.pending && <p className="char-caption">{outcome.pending}</p>}
@@ -426,7 +428,8 @@ export default function ActionBox({ view, busy = false, runAction, CommandCard }
     };
     return runAction ? runAction(guarded) : guarded();
   };
-  const show = (step) => go(step.kind === "confirm" ? { kind: "confirm", proposal: step.proposal } : { kind: "menu", reason: step.reason });
+  const show = (step) => go(step.kind === "confirm" ? { kind: "confirm", proposal: step.proposal }
+    : { kind: "menu", reason: step.reason, reasonFromModel: step.reasonFromModel === true });
   const interpret = (event) => {
     event.preventDefault();
     if (!text.trim()) return undefined;
@@ -479,7 +482,7 @@ export default function ActionBox({ view, busy = false, runAction, CommandCard }
       onRefresh={() => propose(stage.proposal.entry, stage.proposal.payload, stage.proposal.explanation)} />}
     {stage.kind === "confirm" && !stale && <ConfirmationCard proposal={stage.proposal} view={view} busy={busy} focusRef={confirmRef} {...trackFocus}
       onConfirm={() => confirm(stage.proposal)} onCancel={() => go(IDLE)} />}
-    {stage.kind === "menu" && <ActionMenu view={view} reason={stage.reason} CommandCard={CommandCard} busy={busy} focusRef={menuRef}
+    {stage.kind === "menu" && <ActionMenu view={view} reason={stage.reason} reasonFromModel={stage.reasonFromModel} CommandCard={CommandCard} busy={busy} focusRef={menuRef}
       onPropose={propose} onClose={() => go(IDLE)} />}
     {stage.kind === "outcome" && <OutcomeCard outcome={stage.outcome} focusRef={outcomeRef} onDone={() => go(IDLE)} />}
   </section>;

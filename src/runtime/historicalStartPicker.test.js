@@ -81,3 +81,30 @@ test('rows in one era sort by date, then by polity name in Swedish order', () =>
   assert.deepEqual(groups[0].eras[0].rows.map(r => r.polityName), ['Bysantinska riket', 'Emiratet Córdoba', 'Furstendömet Benevento',
     'Karls rike (karolingiska riket)', 'Kungariket Asturien', 'Kyrkostaten', 'Zeeland', 'Österrike', 'Aachen']);
 });
+
+// In English mode the page shows each field in English, so the search has to find what the player reads.
+test('the search also reads each field as the page shows it, through the translate function it is given', () => {
+  const options = shippedOptions();
+  const english = { Kyrkostaten: 'Papal States', 'Tidig medeltid': 'Early Middle Ages', '800 e.Kr.': '800 CE', 'Leo III': 'Leo III' };
+  const asked = [];
+  const translate = text => { asked.push(text); return english[text] ?? text; };
+  const rows = historicalStartRows(options, translate);
+  const papal = rows.find(r => r.key === 'charlemagne-800/papal-states');
+  assert.ok(papal.searchText.includes('papal states') && papal.searchText.includes('kyrkostaten'), 'both readings');
+  assert.ok(papal.searchText.includes('800 ce') && papal.searchText.includes('early middle ages'));
+  assert.equal(papal.searchText.split('leo iii').length, 2, 'a field that reads the same is there once');
+  assert.equal(papal.polityName, 'Kyrkostaten', 'the row itself keeps the source text; the page translates it');
+  assert.deepEqual(keys(groupHistoricalStartRows(rows, 'Papal')), ['charlemagne-800/papal-states']);
+  assert.deepEqual(keys(groupHistoricalStartRows(rows, 'kyrko')), ['charlemagne-800/papal-states'], 'the Swedish still matches');
+  assert.equal(keys(groupHistoricalStartRows(rows, 'early middle')).length, rows.filter(r => r.eraId === 'early-middle-ages').length);
+  assert.ok(asked.every(text => typeof text === 'string' && text), 'only fields with text are asked about');
+});
+
+test('without a translate function, or with one that answers nothing, the search reads the source text alone', () => {
+  const options = shippedOptions();
+  const plain = historicalStartRows(options);
+  assert.deepEqual(keys(groupHistoricalStartRows(plain, 'Papal')), []);
+  for (const translate of [() => null, () => undefined, () => '', () => 7]) {
+    assert.deepEqual(historicalStartRows(options, translate).map(r => r.searchText), plain.map(r => r.searchText));
+  }
+});

@@ -1,4 +1,5 @@
 import React from "react";
+import { characterNumberLocale } from "../../runtime/characterLanguage.js";
 import { dateLabel, modifierText, oddsText } from "./ActionBox.jsx";
 
 // The court in the character panel: the reign, the council seats, the families' demands, the factions the player knows of and
@@ -6,7 +7,7 @@ import { dateLabel, modifierText, oddsText } from "./ActionBox.jsx";
 // as React text.
 
 const entries = (value) => Array.isArray(value) ? value : Object.values(value || {});
-const number = (value) => new Intl.NumberFormat("sv-SE", { maximumFractionDigits: 1 }).format(Number(value));
+const number = (value) => new Intl.NumberFormat(characterNumberLocale(), { maximumFractionDigits: 1 }).format(Number(value));
 
 /** A headed block of cards. `label` names it for assistive technology and defaults to the title. */
 export function Section({ title, label = title, eyebrow, children }) {

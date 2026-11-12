@@ -1,0 +1,36 @@
+{
+  "en": {
+    "Italienska halvön": "Italian Peninsula",
+    "Judeen": "Judaea",
+    "Kongoriket": "Kingdom of Kongo",
+    "Romarriket": "Roman Empire",
+    "Tangriket, Kina": "Tang Empire, China",
+    "cirka 3000 f.Kr.": "circa 3000 BC",
+    "omkring 2700 f.Kr.": "around 2700 BC"
+  },
+  "sv": {
+    "Department of the Arts of Africa, Oceania, and the Americas; The Metropolitan Museum of Art": "Department of the Arts of Africa, Oceania, and the Americas; The Metropolitan Museum of Art",
+    "Egyptian Ministry of Tourism and Antiquities": "Egyptian Ministry of Tourism and Antiquities",
+    "Smithsonian National Museum of Asian Art": "Smithsonian National Museum of Asian Art",
+    "The Metropolitan Museum of Art, Department of Asian Art": "The Metropolitan Museum of Art, Department of Asian Art",
+    "UNESCO World Heritage Centre": "UNESCO World Heritage Centre"
+  },
+  "reasons": {
+    "en": {
+      "Italienska halvön": "One event has \"Italian Peninsula\", one \"The Italian Peninsula\". The text is a place label; the form without the article also reads correctly as a list item and after a preposition the pattern supplies.",
+      "Judeen": "\"Judaea\" in the Bar Kokhba event, \"Judea\" in the Seleucid event. The sidecar's own English uses \"Judaea\" in four events (63 BC, AD 29, 70 and 132) and \"Judea\" in one, so \"Judaea\" matches the rest of the text the player reads.",
+      "Kongoriket": "\"Kingdom of Kongo\" is the name in the culture inventory, \"The Kingdom of Kongo\" one event's place label. The form without the article is the polity's name and fits a label, a list and a sentence.",
+      "Romarriket": "Seven events have \"Roman Empire\", four \"The Roman Empire\". The majority form without the article also fits a label and a list.",
+      "Tangriket, Kina": "One event each. The polity is \"Tang Empire\" in the court dossier and the map review, so the place label follows that name without the article.",
+      "cirka 3000 f.Kr.": "Lowercase and spelled out, as the Swedish is; the other entry abbreviates.",
+      "omkring 2700 f.Kr.": "Lowercase and BC, the form the other date lines use; the other entry capitalises and says BCE."
+    },
+    "sv": {
+      "Department of the Arts of Africa, Oceania, and the Americas; The Metropolitan Museum of Art": "One source keeps the official name, one translates it. The translation contract keeps official institution names in their original form.",
+      "Egyptian Ministry of Tourism and Antiquities": "Two sources keep the official name, two translate it. The translation contract keeps official institution names in their original form.",
+      "Smithsonian National Museum of Asian Art": "Two sources keep the official name; one adds a Swedish genitive to it. The official name is correct in every source panel.",
+      "The Metropolitan Museum of Art, Department of Asian Art": "One source keeps the official name, one translates the department. The translation contract keeps official institution names in their original form.",
+      "UNESCO World Heritage Centre": "22 sources keep the official name and four translate it. The translation contract keeps official institution names in their original form."
+    }
+  }
+}

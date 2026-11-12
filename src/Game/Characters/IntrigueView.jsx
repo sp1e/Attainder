@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { characterNumberLocale } from "../../runtime/characterLanguage.js";
 import { SchemeList, dateLabel, playerText } from "./ActionBox.jsx";
 import { FactionList, Section } from "./CourtSections.jsx";
 
@@ -11,7 +12,7 @@ const NO_DECISION = "Ingen kan besluta om fångarna just nu.";
 const HEADING_ID = "char-intrigue-heading";
 
 const entries = (value) => Array.isArray(value) ? value : Object.values(value || {});
-const silver = (value) => Number.isFinite(Number(value)) ? new Intl.NumberFormat("sv-SE", { maximumFractionDigits: 1 }).format(Number(value)) : "—";
+const silver = (value) => Number.isFinite(Number(value)) ? new Intl.NumberFormat(characterNumberLocale(), { maximumFractionDigits: 1 }).format(Number(value)) : "—";
 
 function SecretList({ secrets }) {
   const list = entries(secrets);

@@ -65,12 +65,15 @@ function RequestCard({ card, person, busy, onAsk, onCancel, focusRef }) {
   </section>;
 }
 
-/** The exchange so far; the envoy view (EnvoyView.jsx) uses it with its own `empty` text. */
+/**
+ * The exchange so far; the envoy view (EnvoyView.jsx) uses it with its own `empty` text. What the player typed and what
+ * the model answered are marked data-no-translate and stay as written; a note is the game's own text and is not marked.
+ */
 export function Transcript({ turns, person, empty = `Ni har inte talats vid ännu. Skriv vad du vill säga till ${person.name}.` }) {
   if (!turns.length) return <p className="char-caption">{empty}</p>;
   return <ol className="char-talk-log" aria-label="Samtalet" role="log">{turns.map((turn, index) => turn.from === "note"
     ? <li className="char-talk-note" key={index}>{turn.text}</li>
-    : <li className={`char-talk-turn char-talk-turn--${turn.from}`} key={index}><strong>{turn.from === "player" ? "Du" : person.name}</strong><p>{turn.text}</p></li>)}</ol>;
+    : <li className={`char-talk-turn char-talk-turn--${turn.from}`} key={index}><strong>{turn.from === "player" ? "Du" : person.name}</strong><p data-no-translate>{turn.text}</p></li>)}</ol>;
 }
 
 export default function ConversationView({ person, turns = [], setTurns, busy = false, runAction, onClose, onHold }) {

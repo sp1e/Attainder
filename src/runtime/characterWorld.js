@@ -14,6 +14,7 @@ import {
 } from "./characters/index.js";
 import { ACTION_CATALOG, requiresOf } from "./characters/actionCatalog.js";
 import { COURT_STORY_TYPES } from "./characters/court.js";
+import { characterLanguage, dataLanguageClause } from "./characterLanguage.js";
 import { firedWatch, watchBaseline } from "./characterWatches.js";
 import { compareGameDates, diffGameDays, normalizeGameDate } from "./gameDates.js";
 import { buildOwnerAliasMap, createOwnerResolver } from "./ownerNames.js";
@@ -606,16 +607,18 @@ const withoutPersonProvenance = (person) => {
   return { ...visible, ...characterOriginLabel(person) };
 };
 
-export const buildCharacterPromptContext = (state, { targetDate = "", watches = [] } = {}) => {
+// `language` is the name of the language the model writes in ('Swedish' or 'English'); the data in the block stays Swedish.
+export const buildCharacterPromptContext = (state, { targetDate = "", watches = [], language = characterLanguage() } = {}) => {
   if (!state) return "";
   const view = getCharacterPresentation(state);
   const historicalContext = buildHistoricalPromptContext(view);
+  const dataLanguage = dataLanguageClause(language);
   const blocks = [
     "[Character simulation — authoritative rules]",
     "This campaign has persistent people, families, offices, memories and succession. The local rule engine controls life, death, ownership, stress and resources. Do not invent a ruler, heir, death, office transfer or character balance in prose or polityChanges.stats.leader.",
     "Health conditions, recovery, lasting scars and portrait appearance are also canonical engine facts. Describe the actual dated health events supplied in the calendar forecast and their wider consequences; do not invent an infection, injury, cure, scar or health score. Medical care remains a player choice in the character panel. There is no free-form health mutation or model-executed care action. Appearance reflects the condition's current phase, not its later outcome.",
     "The player chooses and executes personal political actions directly in the character panel before a simulation turn. Do not spend the player's treasury or family wealth, resolve their stories, marry their representative, change their offices or issue their character commands. The model never acts for the player's own characters.",
-    "impacts.characterOps may carry two engine-gated proposals. The engine validates each one, rolls where the rules roll, and may refuse it; a refusal is shown to the player. (1) realm_effect payload {treasury, legitimacy, armyStrength, reason}: integer changes, each optional, at least one non-zero, within treasury -80…+40, legitimacy -10…+5, armyStrength -15…+10. A value outside its range refuses the whole proposal; the realm's fields stop at their bounds. reason is a Swedish sentence of at most 200 characters. At most 4 per turn. (2) npc_intent payload {actorId, actionId, targetIds}: a living adult who is neither the player's representative nor a member of the player's family attempts one contested catalog action listed below, with the engine's odds for that NPC. The NPC's own family pays; targets may include the player's people. At most 3 per turn. Give each proposal an id that is unique within the turn; the engine refuses a repeated id across the whole turn.",
+    `impacts.characterOps may carry two engine-gated proposals. The engine validates each one, rolls where the rules roll, and may refuse it; a refusal is shown to the player. (1) realm_effect payload {treasury, legitimacy, armyStrength, reason}: integer changes, each optional, at least one non-zero, within treasury -80…+40, legitimacy -10…+5, armyStrength -15…+10. A value outside its range refuses the whole proposal; the realm's fields stop at their bounds. reason is a ${language} sentence of at most 200 characters. At most 4 per turn. (2) npc_intent payload {actorId, actionId, targetIds}: a living adult who is neither the player's representative nor a member of the player's family attempts one contested catalog action listed below, with the engine's odds for that NPC. The NPC's own family pays; targets may include the player's people. At most 3 per turn. Give each proposal an id that is unique within the turn; the engine refuses a repeated id across the whole turn.`,
     "Held prisoners, hosted occasions (a feast) and the rumors the family has heard are engine facts too. A rumor is hearsay with a stated reliability: it may be false or name the wrong person, and you must not confirm or deny it. Do not release, ransom, execute or imprison anyone, hold a feast or start a rumor in prose; those are the player's or the engine's decisions.",
     "Nicknames, reign goals, legitimacy sources, family demands, factions and council service are engine facts. Do not invent, grant, resolve or change them. A faction appears here only as far as the player knows it: do not name other members, do not confirm that a faction exists, and do not state a person's loyalty beyond the label given.",
     "All other command types in impacts.characterOps are advisory proposals only and are NEVER executed automatically, even with a claimed player action ID. Keep them out normally; describe such an action as a proposal awaiting the player's decision. Calendar progression itself handles autonomous NPC characters, births, death and succession.",
@@ -623,6 +626,7 @@ export const buildCharacterPromptContext = (state, { targetDate = "", watches = 
     "Realm mode follows the government. Family mode follows its own family, which has no right to issue state orders after losing the governing role. Independent relatives do not confer direct state control. Unknown facts are unavailable.",
     "A dissolved realm has no government or public revenue. Its family may continue as a household without commanding a conqueror. Foreign refuge is possible only through a currently existing candidate and an accepted seek_refuge action; do not invent a host state, an automatic welcome or a replacement heir. Loss of territorial control alone is not dissolution: use the host's explicit polity lifecycle and settle sovereignty first.",
     ...(historicalContext ? [HISTORICAL_CHARACTER_GUIDANCE] : []),
+    ...(dataLanguage ? [dataLanguage] : []),
     JSON.stringify({ date: view.date, ...(historicalContext ? { historicalContext } : {}), mode: view.mode, playerCanDirectRealm: canCharacterDirectRealm(state), ruler: withoutPersonProvenance(view.ruler),
       realmExists: state.realm.alive, status: state.status, externalHosts: state.externalHosts,
       representative: withoutPersonProvenance(view.representative), economy: view.economy, succession: view.succession,

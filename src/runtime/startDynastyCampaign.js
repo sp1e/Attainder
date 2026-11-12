@@ -1,5 +1,6 @@
 import { activateGame, createGame, ensureLibraryCatalog } from './library.js';
 import { normalizeCampaignSeed } from './campaignSeed.js';
+import { characterLanguage } from './characterLanguage.js';
 import { historicalCampaignName, historicalStartOptionFromSummary, offersHistoricalStart, orderHistoricalStarts } from './historicalStartOptions.js';
 
 // The card's starts come from the summaries the library catalog carries; no package is loaded.
@@ -16,7 +17,8 @@ const findHistoricalStart = async scenarioId => {
 };
 
 // option is the start the card shows; without it the catalog is read and scenarioId picks the start.
-export async function startDynastyCampaign({ option, mode = 'realm', scenarioId, date, polityId, familyId, difficulty = 'normal', characterDifficulty, seed = 104729 } = {}) {
+// language is the language name stamped on the campaign: the Options choice when the campaign is created.
+export async function startDynastyCampaign({ option, mode = 'realm', scenarioId, date, polityId, familyId, difficulty = 'normal', characterDifficulty, seed = 104729, language = characterLanguage() } = {}) {
   seed = normalizeCampaignSeed(seed);
   const scenario = option ?? await findHistoricalStart(scenarioId);
   if (!scenario) throw new Error('Det finns inget giltigt historiskt scenario att starta.');
@@ -26,7 +28,7 @@ export async function startDynastyCampaign({ option, mode = 'realm', scenarioId,
   const created = await createGame({ name: historicalCampaignName(scenario, selectedPolity, mode),
     scenarioId: scenario.scenarioId, setActive: false,
     historicalStart: { date: selectedDate, polityId: selectedPolity, mode, ...(familyId ? {familyId} : {}), seed, difficulty: engineDifficulty },
-    gamePatch: { country: selectedPolity, difficulty: engineDifficulty === 'normal' ? 'standard' : engineDifficulty, language: 'Swedish' } });
+    gamePatch: { country: selectedPolity, difficulty: engineDifficulty === 'normal' ? 'standard' : engineDifficulty, language } });
   const gameId = created.game.id;
   try { localStorage.setItem('oh-open-characters-on-start','1'); } catch { /* Optional persistence. */ }
   await activateGame(gameId);

@@ -23,6 +23,17 @@
 // A language without a shipped pack still works the old way: there the
 // interface goes through the AI as well, a batch at a time, and is saved to
 // the server's pack like content.
+//
+// All of the above is PACK mode: any language but English. The character
+// system is written in Swedish, so English is a mode of its own, NATIVE mode
+// (translatorMode.js): the interface is shown as written and the Swedish text
+// is swapped for English from the native book, three static files
+// (nativePack.js). Native mode never asks a model, reads or writes no cache
+// and sends nothing to the server. Inside a view marked [data-native-text] the
+// whole book applies; elsewhere only its entries and strong patterns do. A
+// string the book lacks stays as it is and is listed in
+// window.__ohI18n.missing: every such string inside a marked view, and outside
+// one the strings that read as Swedish.
 
 import {
   DEFAULT_LANGUAGE,
@@ -33,9 +44,21 @@ import {
   languageDisplayName,
   syncLanguageFromServer,
 } from "./i18n.js";
-import { createDateLocalizer } from "./localDates.js";
+import { loadNativePack, loadSwedishHistoricalPack } from "./nativePack.js";
 import { createPhraseBook } from "./phraseBook.js";
 import { loadPromptTranslations } from "./promptTranslations.js";
+import {
+  NATIVE_TEXT_SELECTOR,
+  bookOptions,
+  mayQueueForModel,
+  skipsNativeContent,
+  tierFor,
+  translateInTier,
+  translatorMode,
+  unknownTextFate,
+  usesModel,
+  usesSwedishHistoricalPack,
+} from "./translatorMode.js";
 
 // v2: the shipped packs replaced the AI's translations of the interface, so
 // the old per-language caches (which were mostly those) are dropped on boot.
@@ -75,6 +98,8 @@ const ATTRIBUTE_SKIP_SELECTOR = "script, style, noscript, [contenteditable], [da
 const PROGRESS_TEXT = { label: "Translating to {{language}}…" };
 
 let language = DEFAULT_LANGUAGE;
+// "off" until startTranslator; then "native" for English, "pack" for the rest.
+let mode = "off";
 // A shipped pack covers the interface: only content goes to the AI.
 let packed = false;
 // Everything known: the server's pack (shipped + saved), over what this device
@@ -97,6 +122,10 @@ let unsyncedEntries = {};
 let syncTimer = null;
 let updatedEventTimer = null;
 let translatorActive = false;
+// Whether a start is in effect, and which one: a start that was stopped and
+// replaced while it waited for its files must not go on to watch the page.
+let started = false;
+let startCount = 0;
 
 // node → { english, written }: the English last rendered there, and what this
 // module wrote over it. A value equal to `written` is ours; anything else is
@@ -115,8 +144,9 @@ const cacheKey = () => `${CACHE_PREFIX}${language}`;
 // New translations are pushed to the server's language pack (debounced), so
 // every device — and every future session — reuses them instead of paying
 // for the same AI call again. The pack lives under server/data, which the
-// update script never touches.
+// update script never touches. Native mode learns nothing and sends nothing.
 const syncEntriesToServer = () => {
+  if (!usesModel(mode)) return;
   clearTimeout(syncTimer);
   syncTimer = setTimeout(async () => {
     const entries = unsyncedEntries;
@@ -170,6 +200,7 @@ const loadCache = () => {
 };
 
 const persistCache = () => {
+  if (!usesModel(mode)) return;
   clearTimeout(persistTimer);
   persistTimer = setTimeout(() => {
     try {
@@ -210,22 +241,40 @@ const updateProgress = () => {
 // ---- lookups ----
 
 // Only strings with real words need translating; glyphs, numbers, dates-only
-// fragments and emoji stay as-is. The authored language is English, so
-// requiring two Latin letters is a safe "has words" test.
+// fragments and emoji stay as-is. A word is two letters side by side, in any
+// script: the Swedish the native book is keyed by has words with no two Latin
+// letters together ("Mål", "Hög"), which a test for [A-Za-z]{2} skipped.
+//
+// That older test also kept text in the player's own script (an event the
+// model wrote in Chinese or Russian) away from the model and out of the
+// missing list. It still does, where it matters: such text is now looked up
+// in the book, which has nothing for it, but only English source is ever
+// queued or listed (mayQueueForModel and unknownTextFate, translatorMode.js).
 const isTranslatable = (text) => {
   const trimmed = text.trim();
-  return trimmed.length > 1 && trimmed.length < 3000 && /[A-Za-z]{2}/.test(trimmed);
+  return trimmed.length > 1 && trimmed.length < 3000 && /\p{L}{2}/u.test(trimmed);
 };
 
 // A rendered string the book has nothing for. With a shipped pack it stays
-// English and is listed for the next pack; without one it goes to the AI.
-const noteUnknown = (trimmed) => {
-  if (packed) {
+// as it is, and is listed for the next pack unless it is Swedish; without one
+// it goes to the AI, unless the language is Swedish and so is the string. In
+// native mode nothing is queued: inside a Swedish-native view (tier "full")
+// every such string is listed, outside one only Swedish text is. A caller
+// without a place on the page (a map label) gives no tier and is read as
+// outside.
+const noteUnknown = (trimmed, tier) => {
+  const fate = unknownTextFate(mode, trimmed, { packed, tier, language });
+  if (fate === "missing") {
     if (missing.size < MISSING_LIMIT) missing.add(trimmed);
-  } else {
+  } else if (fate === "model") {
     pending.add(trimmed);
   }
 };
+
+// Which part of the book answers for text under this element: all of it,
+// except in native mode outside the Swedish-native views (tierFor).
+const tierAt = (element) =>
+  tierFor(mode, mode === "native" && Boolean(element?.closest?.(NATIVE_TEXT_SELECTOR)));
 
 // The translation of a whole value with its surrounding whitespace kept, or
 // null when there is none.
@@ -233,13 +282,13 @@ const noteUnknown = (trimmed) => {
 // differently in most languages (localDates.js).
 export const isNumericDate = (text) => /^\d{1,2}\/\d{1,2}\/\d{1,6}$|^-?\d{4,6}-\d{2}-\d{2}$/.test(text);
 
-const translateValue = (value, { note = true } = {}) => {
+const translateValue = (value, { note = true, tier = "full" } = {}) => {
   const trimmed = value.trim();
   const numericDate = isNumericDate(trimmed);
   if (!numericDate && !isTranslatable(trimmed)) return null;
-  const translated = book.translate(trimmed);
+  const translated = translateInTier(book, trimmed, tier);
   if (translated == null) {
-    if (note && !numericDate) noteUnknown(trimmed);
+    if (note && !numericDate) noteUnknown(trimmed, tier);
     return null;
   }
   const leading = value.slice(0, value.length - value.trimStart().length);
@@ -277,15 +326,16 @@ const runParentOf = (node) => {
   return parent;
 };
 
-const visitPiece = (node, english) => {
-  const translated = translateValue(english);
+const visitPiece = (node, english, tier) => {
+  const translated = translateValue(english, { tier });
   writeText(node, english, translated ?? english);
 };
 
 const visitRun = (parent) => {
   const nodes = Array.from(parent.childNodes);
   const parts = nodes.map(englishOf);
-  const translated = translateValue(parts.join(""), { note: false });
+  const tier = tierAt(parent);
+  const translated = translateValue(parts.join(""), { note: false, tier });
   if (translated != null) {
     // The whole sentence goes in the first node; the rest are emptied (and
     // still remember their English, so React's next write to one is read
@@ -294,7 +344,7 @@ const visitRun = (parent) => {
     return;
   }
   // Nothing for the whole: each piece on its own ("Press " and " to close").
-  nodes.forEach((node, index) => visitPiece(node, parts[index]));
+  nodes.forEach((node, index) => visitPiece(node, parts[index], tier));
 };
 
 const visitTextNode = (node) => {
@@ -306,17 +356,18 @@ const visitTextNode = (node) => {
     }
     return;
   }
-  visitPiece(node, englishOf(node));
+  visitPiece(node, englishOf(node), tierAt(node.parentElement));
 };
 
 const visitAttributes = (element) => {
+  const tier = tierAt(element);
   for (const attribute of TRANSLATED_ATTRIBUTES) {
     const value = element.getAttribute(attribute);
     if (value == null) continue;
     let records = attributeRecords.get(element);
     const record = records?.[attribute];
     const english = record && value === record.written ? record.english : value;
-    const translated = translateValue(english) ?? english;
+    const translated = translateValue(english, { tier }) ?? english;
     if (translated === english) {
       if (record) delete records[attribute];
     } else {
@@ -330,10 +381,12 @@ const visitAttributes = (element) => {
   }
 };
 
+// The page's title belongs to no view, so in native mode it is read outside
+// the Swedish-native ones.
 const visitTitle = () => {
   const value = document.title;
   const english = titleRecord && value === titleRecord.written ? titleRecord.english : value;
-  const translated = translateValue(english) ?? english;
+  const translated = translateValue(english, { tier: tierFor(mode, false) }) ?? english;
   titleRecord = translated === english ? null : { english, written: translated };
   if (value !== translated) document.title = translated;
 };
@@ -371,7 +424,7 @@ const scan = () => {
   runsThisPass.clear();
   walkSubtree(document.body);
   visitTitle();
-  void processQueue();
+  if (usesModel(mode)) void processQueue();
 };
 
 const scheduleScan = () => {
@@ -486,7 +539,7 @@ export const planTranslationBatch = (strings, { maxStrings = BATCH_MAX_STRINGS, 
 let batchStrings = BATCH_MAX_STRINGS;
 
 const processQueue = async () => {
-  if (inFlight || stopped || pending.size === 0 || Date.now() < cooldownUntil) {
+  if (!usesModel(mode) || inFlight || stopped || pending.size === 0 || Date.now() < cooldownUntil) {
     return;
   }
 
@@ -546,11 +599,13 @@ const processQueue = async () => {
 
 // ---- content ----
 
-// A content string for the AI: once, and only when nothing has it yet.
+// A content string for the AI: once, and only when nothing has it yet. Never
+// in native mode, and in Swedish never Swedish text (mayQueueForModel).
 const queueContent = (value) => {
   if (typeof value !== "string") return false;
   const trimmed = value.trim();
-  if (!trimmed || !isTranslatable(trimmed) || book.has(trimmed) || pending.has(trimmed)) return false;
+  if (!trimmed || !isTranslatable(trimmed) || !mayQueueForModel(mode, trimmed, language)) return false;
+  if (book.has(trimmed) || pending.has(trimmed)) return false;
   pending.add(trimmed);
   return true;
 };
@@ -564,6 +619,7 @@ const isAuthoredEvent = (event) => !event?.source || event.source === "scenario"
 const collectContentStrings = async () => {
   const add = (value) => { queueContent(value); };
   const addCard = (entry) => {
+    if (skipsNativeContent(language, entry)) return;
     for (const key of ["name", "subtitle", "description", "eyebrow", "heroTitle", "heroSubtitle"]) {
       add(entry?.[key]);
     }
@@ -581,17 +637,20 @@ const collectContentStrings = async () => {
   }
 
   // Country names the pack lacks, the scenario's polities (names, aliases,
-  // the author's roles and notes, map labels), and its own events.
+  // the author's roles and notes, map labels), and its own events. A world
+  // the game wrote in Swedish gives none of these in Swedish (isSwedishAuthored).
+  let nativeWorld = false;
   try {
     const { JSON_URLS, loadCountryNames, readJson } = await import("./assets.js");
     (await loadCountryNames().catch(() => [])).forEach((country) => add(country?.name));
     const world = await readJson(JSON_URLS.world, { defaultValue: {} });
-    for (const polity of Object.values(world?.polityOverrides ?? {})) {
+    nativeWorld = skipsNativeContent(language, world);
+    for (const polity of nativeWorld ? [] : Object.values(world?.polityOverrides ?? {})) {
       for (const key of ["name", "role", "note", "mapLabel", "mapDistinctLabel"]) add(polity?.[key]);
       (polity?.aliases ?? []).forEach(add);
     }
     const events = await readJson(JSON_URLS.events, { defaultValue: [] });
-    for (const event of Array.isArray(events) ? events : []) {
+    for (const event of Array.isArray(events) && !nativeWorld ? events : []) {
       if (!isAuthoredEvent(event)) continue;
       add(event?.title);
       add(event?.description);
@@ -630,11 +689,12 @@ const collectContentStrings = async () => {
     const { loadRegionCatalog, loadScenarioRegionCatalog } = await import("./assets.js");
     const own = await loadScenarioRegionCatalog().catch(() => []);
     const regions = own?.length ? own : await loadRegionCatalog().catch(() => []);
-    regions.forEach((region) => add(region?.name));
+    if (!nativeWorld) regions.forEach((region) => add(region?.name));
   } catch { /* optional */ }
 };
 
 const collectAndTranslate = async () => {
+  if (!usesModel(mode)) return;
   await collectContentStrings();
   if (stopped) return;
   if (pending.size > 10) {
@@ -649,6 +709,11 @@ const collectAndTranslate = async () => {
 // Synchronous best-effort translation for text drawn OUTSIDE the DOM (map
 // country labels): names, so content. Unknown ones are queued, and an
 // "i18n:updated" event fires once they resolve, so callers can rebuild.
+//
+// In native mode a label is a polity's or a country's name, and a historical
+// package writes those in Swedish: the native book's entry for the name is
+// returned, so the map reads English like the panels beside it. A name the
+// book lacks stays as it is and is not queued (queueContent).
 export const translateLabel = (text) => {
   if (!translatorActive || typeof text !== "string") {
     return text;
@@ -659,14 +724,33 @@ export const translateLabel = (text) => {
   }
   if (queueContent(text)) {
     scheduleScan();
+  } else if (mode === "native") {
+    // A Swedish name the native book lacks is a gap, like one on the page.
+    noteUnknown(text.trim());
   }
   return text;
+};
+
+// What the page shows for a Swedish string inside a Swedish-native view in
+// English mode: the whole native book's reading of it. For text such a view
+// searches without rendering it (the start picker matches the typed query
+// against each row's fields), so a search finds what the player reads. The
+// string comes back unchanged in every other mode, while the translator is not
+// running, and when the book has nothing for it.
+//
+// translateLabel will not do here: in pack mode it queues an unknown string
+// for the model, and the picker's fields are Swedish names. This lookup queues
+// nothing and lists nothing; the same strings are on the page, where the scan
+// lists what the book lacks.
+export const nativeReading = (text) => {
+  if (!translatorActive || mode !== "native" || typeof text !== "string") return text;
+  return book.translate(text) ?? text;
 };
 
 // Proactively queue content that exists as data but may not be rendered yet
 // (e.g. freshly fetched Community-hub posts). Only unknown strings cost a call.
 export const enqueueStrings = (strings) => {
-  if (!translatorActive) return;
+  if (!translatorActive || !usesModel(mode)) return;
   let added = false;
   for (const value of strings ?? []) {
     if (queueContent(value)) added = true;
@@ -687,7 +771,7 @@ const CONTENT_TEXT_KEYS = new Set([
 ]);
 
 export const enqueueContentStrings = (payload) => {
-  if (!translatorActive || !payload) return;
+  if (!translatorActive || !usesModel(mode) || !payload) return;
   const found = [];
   const walk = (value, depth) => {
     if (depth > 6 || value == null) return;
@@ -715,7 +799,7 @@ export const enqueueContentStrings = (payload) => {
 // An event log as it is written: only the scenario's own events are content
 // (isAuthoredEvent); the AI's arrive in the player's language.
 export const enqueueEventStrings = (events) => {
-  if (!translatorActive || !Array.isArray(events)) return;
+  if (!translatorActive || !usesModel(mode) || !Array.isArray(events)) return;
   enqueueStrings(events.filter(isAuthoredEvent).flatMap((event) => [event?.title, event?.description]));
 };
 
@@ -761,14 +845,81 @@ const whenStartupScreenGone = () => new Promise((resolve) => {
   check();
 });
 
+// A static file of the build, parsed; rejects when it is not there.
+const fetchJson = async (path) => {
+  const response = await fetch(path);
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.json();
+};
+
+// Swedish mode: the research's Swedish for source locators and institutions,
+// under everything the book already has, so the pack's own translation of a
+// string is never replaced by a research pair.
+const loadSwedishHistorical = async () => {
+  const pairs = await loadSwedishHistoricalPack(fetchJson);
+  book.setAll(Object.fromEntries(Object.entries(pairs).filter(([english]) => !book.has(english))));
+};
+
+// A switch to another save brings its scenario's content (pack mode).
+const onActiveGameChanged = () => {
+  void collectAndTranslate();
+};
+
+// Walks the page as it is and watches it from here on.
+const watchPage = () => {
+  translatorActive = true;
+  observer = new MutationObserver(handleMutations);
+  observer.observe(document.body, {
+    attributeFilter: TRANSLATED_ATTRIBUTES,
+    attributes: true,
+    characterData: true,
+    childList: true,
+    subtree: true,
+  });
+  scan();
+  announceUpdate();
+};
+
+// True while the start numbered `run` is still the one in effect.
+const stillRunning = (run) => !stopped && run === startCount;
+
+// Native mode: the native book and nothing else. No cache, no server pack, no
+// prompt passages, no content for the model.
+const bootNative = async (run) => {
+  const pack = await loadNativePack(fetchJson);
+  if (!stillRunning(run)) return;
+  book.setAll(pack);
+  await whenStartupScreenGone();
+  if (!stillRunning(run)) return;
+  watchPage();
+};
+
+const bootPack = async (run) => {
+  // The prompts' guidance passages in this language, before any prompt is built.
+  if (packed) void loadPromptTranslations(language);
+  loadCache();
+  // Server pack first (cheap, instant), then wait out the loading screen.
+  await loadServerPack();
+  if (usesSwedishHistoricalPack(language)) await loadSwedishHistorical();
+  await whenStartupScreenGone();
+  if (!stillRunning(run)) return;
+  watchPage();
+
+  // Content, translated once: on later boots the server pack already has it
+  // and this drains without a request.
+  window.addEventListener("oh:active-game-changed", onActiveGameChanged);
+  await collectAndTranslate();
+};
+
 export const startTranslator = () => {
-  if (typeof document === "undefined") {
+  // A second call while the first is in effect changes nothing.
+  if (typeof document === "undefined" || (started && !stopped)) {
     return;
   }
 
   // The server's stored choice wins over this device's copy, so a language
-  // picked on desktop applies in the Android app (and vice versa). Runs even
-  // when this device thinks it's English — a fresh install has no local copy.
+  // picked on desktop applies in the Android app (and vice versa). Runs
+  // whatever this device reads: a fresh install has no local copy.
   void syncLanguageFromServer().then((changed) => {
     if (changed) {
       window.location.reload();
@@ -776,16 +927,20 @@ export const startTranslator = () => {
   });
 
   language = getStoredLanguage();
-  if (language === DEFAULT_LANGUAGE) {
+  mode = translatorMode(language);
+  if (mode === "off") {
     return;
   }
-  packed = hasShippedPack(language);
-  book = createPhraseBook({ localizeValue: createDateLocalizer(language) });
-  // The prompts' guidance passages in this language, before any prompt is built.
-  if (packed) void loadPromptTranslations(language);
-  // For bug reports and tests: what is queued for the AI, what the pack lacks,
-  // and a way to walk the page again.
-  window.__ohI18n = { language, packed, pending, missing, rescan: () => scan() };
+  started = true;
+  stopped = false;
+  startCount += 1;
+  packed = usesModel(mode) && hasShippedPack(language);
+  book = createPhraseBook(bookOptions(language));
+  pending.clear();
+  missing.clear();
+  // For bug reports and tests: the mode, what is queued for the AI (nothing in
+  // native mode), what the book lacks, and a way to walk the page again.
+  window.__ohI18n = { language, mode, packed, pending, missing, rescan: () => scan() };
 
   document.documentElement.lang = language;
   if (isRtlLanguage(language)) {
@@ -794,34 +949,7 @@ export const startTranslator = () => {
     document.body.style.direction = "rtl";
   }
 
-  loadCache();
-
-  void (async () => {
-    // Server pack first (cheap, instant), then wait out the loading screen.
-    await loadServerPack();
-    await whenStartupScreenGone();
-    if (stopped) return;
-
-    translatorActive = true;
-    observer = new MutationObserver(handleMutations);
-    observer.observe(document.body, {
-      attributeFilter: TRANSLATED_ATTRIBUTES,
-      attributes: true,
-      characterData: true,
-      childList: true,
-      subtree: true,
-    });
-    scan();
-    announceUpdate();
-
-    // Content, translated once: on later boots the server pack already has it
-    // and this drains without a request. A switch to another save brings its
-    // scenario's content.
-    window.addEventListener("oh:active-game-changed", () => {
-      void collectAndTranslate();
-    });
-    await collectAndTranslate();
-  })();
+  void (mode === "native" ? bootNative(startCount) : bootPack(startCount));
 };
 
 export const stopTranslator = () => {
@@ -829,6 +957,7 @@ export const stopTranslator = () => {
   translatorActive = false;
   observer?.disconnect();
   clearTimeout(scanTimer);
+  if (typeof window !== "undefined") window.removeEventListener("oh:active-game-changed", onActiveGameChanged);
   progressEl?.remove();
   progressEl = null;
 };
